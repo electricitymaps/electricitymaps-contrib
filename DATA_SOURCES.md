@@ -406,7 +406,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 Cross-border transmission capacities between the zones are centralized in the [config/exchanges](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges) folder. Capacities are included in the respective exchange configurations. Values in the `capacity` maps are in MW.
 
-#### For the nordic and baltic countries capacities are availible from [Nord Pool](https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Capacities1/Capacities/KEY/Norway/?view=table)
+#### For the nordic and baltic countries capacities are availible from [Nord Pool](https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Capacities1/Capacities/key1/hourly/?view=table)
 
 <details><summary>Click to see the full list of sources</summary>
 
@@ -418,6 +418,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - Australia (Victoria) ⇄ Australia (South Australia) ["Heywood interconnector": 650 MW](https://en.wikipedia.org/wiki/Heywood_interconnector) and ["Murraylink": 220MW](https://en.wikipedia.org/wiki/Murraylink)
 - Australia (Victoria) ⇄ Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
 - Belgium ⇄ Germany ["Alegro": 1000MW](https://www.elia.be/en/infrastructure-and-projects/infrastructure-projects/alegro?clang=en)
+- [Bosnia and Herzegovina ⇄ Croatia](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - Bulgaria ⇄ Noth Macedonia [950 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Bulgaria ⇄ Turkey [2485 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Canada (Alberta) ⇄ Canada (British Columbia): ["Path 1": 1000 MW (CA-AB -> CA-BC) 800 MW (CA-BC -> CA-AB)](https://www.aeso.ca/assets/Information-Documents/2011-001R-ATC-and-Transfer-Path-Management.pdf)
@@ -454,7 +455,10 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - Montenegro ⇄ Italy Central South: ["MONITA": 600MW](https://tyndp.entsoe.eu/tyndp2018/projects/projects/28)
 - [Norway ⇄ Netherlands](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - New Zealand (North Island) ⇄ New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
+- [North Macedonia ⇄ Greece](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - [Russia ⇄ Finland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Serbia ⇄ Bulgaria](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
+- [Slovakia ⇄ Ukraine](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - Spain ⇄ France: [According to "The Spanish electricity system 2019" page 65: 2800 MW](https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/InformesSistemaElectrico/2019/ISE_2019_eng.pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](<https://en.wikipedia.org/wiki/Cometa_(HVDC)>)
 - [Sweden ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
