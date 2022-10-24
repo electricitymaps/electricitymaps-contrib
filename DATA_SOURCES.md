@@ -453,7 +453,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - Montenegro ⇄ Italy Central South: ["MONITA": 600MW](https://tyndp.entsoe.eu/tyndp2018/projects/projects/28)
 - [Norway ⇄ Netherlands](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - New Zealand (North Island) ⇄ New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
- - [North Macedonia ⇄ Greece](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
+- [North Macedonia ⇄ Greece](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - [Russia ⇄ Finland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - [Serbia ⇄ Bulgaria](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - [Slovakia ⇄ Ukraine](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
