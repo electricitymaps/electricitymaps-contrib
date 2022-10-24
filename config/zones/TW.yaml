@@ -18,6 +18,7 @@ capacity:
 contributors:
   - corradio
   - MariusKroon
+  - nessie2013
 emissionFactors:
   direct:
     battery discharge:
