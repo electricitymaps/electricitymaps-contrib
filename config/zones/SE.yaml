@@ -298,48 +298,48 @@ fallbackZoneMixes:
         wind: 0.15836044754122586
 isLowCarbon:
   unknown:
-    - _comment: Sum of renewable sources in SE unknown production for 2015 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2015
       datetime: '2015-01-01'
       value: 0.8615
-    - _comment: Sum of renewable sources in SE unknown production for 2016 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2016
       datetime: '2016-01-01'
       value: 0.8646
-    - _comment: Sum of renewable sources in SE unknown production for 2017 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2017
       datetime: '2017-01-01'
       value: 0.8866
-    - _comment: Sum of renewable sources in SE unknown production for 2018 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2018
       datetime: '2018-01-01'
       value: 0.8693
-    - _comment: Sum of renewable sources in SE unknown production for 2019 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2019
       datetime: '2019-01-01'
       value: 0.9013
-    - _comment: Sum of renewable sources in SE unknown production for 2020 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2020
       datetime: '2020-01-01'
       value: 0.9332
-    - _comment: Sum of renewable sources in SE unknown production for 2022 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2022
       datetime: '2022-01-01'
       value: 0.9826
 isRenewable:
   unknown:
-    - _comment: Sum of renewable sources in SE unknown production for 2015 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2015
       datetime: '2015-01-01'
       value: 0.8615
-    - _comment: Sum of renewable sources in SE unknown production for 2016 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2016
       datetime: '2016-01-01'
       value: 0.8646
-    - _comment: Sum of renewable sources in SE unknown production for 2017 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2017
       datetime: '2017-01-01'
       value: 0.8866
-    - _comment: Sum of renewable sources in SE unknown production for 2018 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2018
       datetime: '2018-01-01'
       value: 0.8693
-    - _comment: Sum of renewable sources in SE unknown production for 2019 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2019
       datetime: '2019-01-01'
       value: 0.9013
-    - _comment: Sum of renewable sources in SE unknown production for 2020 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2020
       datetime: '2020-01-01'
       value: 0.9332
-    - _comment: Sum of renewable sources in SE unknown production for 2022 from co2eq_parameters_lifecycle.json
+    - _comment: Sum of renewable sources in SE unknown production for 2022
       datetime: '2022-01-01'
       value: 0.9826
 parsers:

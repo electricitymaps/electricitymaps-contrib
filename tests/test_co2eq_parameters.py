@@ -6,6 +6,12 @@ import numbers
 import re
 import unittest
 
+from electricitymap.contrib.config import (
+    CO2EQ_PARAMETERS,
+    CO2EQ_PARAMETERS_DIRECT,
+    CO2EQ_PARAMETERS_LIFECYCLE,
+)
+
 
 def get_possible_modes():
     """Get the set of possible modes."""
@@ -42,7 +48,7 @@ class CO2eqParametersAll(unittest.TestCase):
     """A test case for the CO2eq parameters."""
 
     modes = get_possible_modes()
-    parameters = parse_json_file("config/co2eq_parameters_all.json")
+    parameters = CO2EQ_PARAMETERS
 
     @staticmethod
     def check_valid_ratios_list(ratios):
@@ -318,7 +324,7 @@ class CO2eqParametersDirectAndLifecycleMixin:
 class CO2eqParametersDirect(CO2eqParametersDirectAndLifecycleMixin, unittest.TestCase):
     """A test case for the direct CO2eq parameters."""
 
-    parameters = parse_json_file("config/co2eq_parameters_direct.json")
+    parameters = CO2EQ_PARAMETERS_DIRECT
 
 
 class CO2eqParametersLifecycle(
@@ -326,7 +332,7 @@ class CO2eqParametersLifecycle(
 ):
     """A test case for the lifecycle CO2eq parameters."""
 
-    parameters = parse_json_file("config/co2eq_parameters_lifecycle.json")
+    parameters = CO2EQ_PARAMETERS_LIFECYCLE
 
 
 if __name__ == "__main__":

@@ -25,7 +25,7 @@ class JsonFilePatcher(object):
 
     Example:
 
-    with JsonFilePatcher(ROOT_PATH / "config/zones.json") as f:
+    with JsonFilePatcher(ROOT_PATH / "web/geo/world.geojson") as f:
         if zone in f.content:
             del f.content[zone]
     """
