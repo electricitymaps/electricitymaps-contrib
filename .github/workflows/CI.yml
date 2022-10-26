@@ -65,9 +65,9 @@ jobs:
           echo "workflows changed: ${{ steps.check-workflows.outputs.any_changed }}"
 
   # Repository wide checks
-  prettier:
-    name: Prettier
-    uses: ./.github/workflows/prettier.yml
+  # prettier:
+  #   name: Prettier
+  #   uses: ./.github/workflows/prettier.yml
 
   validate_local_links:
     name: Validate Markdown
