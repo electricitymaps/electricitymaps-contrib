@@ -77,7 +77,7 @@ jobs:
 
   jest:
     name: Jest
-    needs: [setup]
+    needs: [setup, prettier]
     if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/jest.yml
 
