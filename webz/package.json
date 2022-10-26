@@ -1,6 +1,6 @@
 {
   "name": "electricitymap-web",
-  "version": "2.0",
+  "version": "2.0.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "GPL-3.0-or-later",
   "engines": {
