@@ -8,7 +8,7 @@ _If you're looking for more info on the parsers, check out [how to setup Python 
 
 Prerequisites:
 
-- Ensure you have `NodeJS` and `pnpm` installed locally
+- Ensure you have `NodeJS` and `pnpm` installed locally (`brew install pnpm`)
 - Run `pnpm install` in both the web and mockserver directories
 
 1. Start the mockserver: `yarn run mockserver`
