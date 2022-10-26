@@ -17,7 +17,7 @@ jobs:
           node-version: lts/*
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             web/node_modules
@@ -25,8 +25,7 @@ jobs:
       - name: Install web dependencies
         if: steps.cache-web.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
-        with:
-          working-directory: ./web
+        working-directory: ./web
       - name: Prettier Check
         # Uses the prettier binary from the web node_modules so it's always in sync.
         run: |
