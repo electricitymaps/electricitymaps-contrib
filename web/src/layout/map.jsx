@@ -57,11 +57,11 @@ export default () => {
   useEffect(() => {
     if (!hasCentered) {
       if (zoneId && zones[zoneId]) {
-        console.log(`Centering on zone ${zoneId}`); // eslint-disable-line no-console
+        console.info(`Centering on zone ${zoneId}`);
         dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId].geography));
         setHasCentered(true);
       } else if (callerLocation) {
-        console.log(`Centering on browser location (${callerLocation})`); // eslint-disable-line no-console
+        console.info(`Centering on browser location (${callerLocation})`);
         dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
         setHasCentered(true);
       }
