@@ -10,3 +10,4 @@ excluded-aggregated-exchanges.json
 public/dist/
 public/images/
 src/config/
+.husky/_
