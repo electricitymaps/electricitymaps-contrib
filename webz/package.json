@@ -1,8 +1,15 @@
 {
-  "name": "vitamin",
-  "license": "MIT",
-  "private": true,
-  "version": "0.0.0",
+  "name": "electricitymap-web",
+  "version": "2.0",
+  "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
+  "license": "GPL-3.0-or-later",
+  "engines": {
+    "node": ">=14.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/electricityMaps/electricitymaps-contrib.git"
+  },
   "scripts": {
     "build": "vite build",
     "commit": "cz",
@@ -85,13 +92,11 @@
     "workbox-build": "6.5.4",
     "workbox-window": "6.5.4"
   },
-  "browserslist": {
-    "production": "Edge >= 18, Firefox >= 60, Chrome >= 61, Safari >= 11, Opera >= 48",
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version"
-    ]
-  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not op_mini all"
+  ],
   "lint-staged": {
     "*": "prettier -uw --cache",
     "*.css": "stylelint --cache --fix",
