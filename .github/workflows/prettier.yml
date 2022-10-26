@@ -21,7 +21,7 @@ jobs:
         with:
           path: |
             web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('web/yarn.lock') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/yarn.lock') }}
       - name: Install web dependencies
         if: steps.cache-web.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
