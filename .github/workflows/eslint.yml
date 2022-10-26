@@ -34,6 +34,9 @@ jobs:
       - name: Install web dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
+      - name: Generate zone config
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: yarn generate-zones-config
       - name: Restore ESLint cache
         uses: actions/cache@v3
         with:
