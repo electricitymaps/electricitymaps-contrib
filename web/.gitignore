@@ -6,5 +6,4 @@ dist-ssr
 .eslintcache
 coverage
 .nyc_output
-.stylelintcache
 cypress/videos
