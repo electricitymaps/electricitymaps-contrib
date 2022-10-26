@@ -39,8 +39,7 @@ jobs:
             ${{ runner.os }}-eslint_cache-master
             ${{ runner.os }}-eslint_cache
       - name: ESLint
-        run: node_modules/.bin/eslint geo src
-          --ext .js,.jsx
+        run: node_modules/.bin/eslint .
           --cache
           --cache-location node_modules/.cache/eslint/.eslintcache
           --format @microsoft/eslint-formatter-sarif
