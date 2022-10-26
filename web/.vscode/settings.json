@@ -1,0 +1,23 @@
+{
+  "editor.codeActionsOnSave": ["source.addMissingImports", "source.fixAll", "source.organizeImports"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "**/.eslintcache": true,
+    "**/.gitignore": true,
+    "**/.nyc_output": true,
+    "**/.vscode": true,
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/yarn.lock": true,
+    "**/coverage": true
+  },
+  "files.watcherExclude": {
+    "**/dist": true
+  },
+  "git.enableCommitSigning": true,
+  "javascript.format.enable": false,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
