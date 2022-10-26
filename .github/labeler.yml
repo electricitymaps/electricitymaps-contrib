@@ -36,8 +36,11 @@ parser:
 archived parser:
   - parsers/archive/**/*
 
-science:
-  - config/co2eq_parameters.json
-
 mobile app 📱:
   - mobileapp/**/*
+
+exchange config:
+  - config/exchanges/**/*.yaml
+
+zone config:
+  - config/zones/**/*.yaml

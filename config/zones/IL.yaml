@@ -90,11 +90,11 @@ fallbackZoneMixes:
         wind: 0.0
 isLowCarbon:
   unknown:
-    _comment: Sum of renewable sources in IL unknown production form co2eq_parameters_lifecycle.json
+    _comment: Sum of renewable sources in IL unknown production
     value: 0.056
 isRenewable:
   unknown:
-    _comment: Sum of renewable sources in IL unknown production form co2eq_parameters_lifecycle.json
+    _comment: Sum of renewable sources in IL unknown production
     value: 0.056
 parsers:
   consumption: IL.fetch_consumption

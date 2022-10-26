@@ -5,7 +5,7 @@ import { formatDistance } from 'date-fns';
 
 import { getRefTime, getTargetTime } from '../helpers/grib';
 import { TIME } from '../helpers/constants';
-import exchangesToExclude from '../excluded-aggregated-exchanges.json';
+import exchangesToExclude from '../config/excluded-aggregated-exchanges.json';
 import { useAggregatesEnabled } from './router';
 
 export function useExchangeArrowsData() {

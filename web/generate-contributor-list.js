@@ -1,8 +1,8 @@
-// Pass as argument the path to zones.json
 /* eslint-disable no-console */
 
 var d3 = require('d3');
-var fs = require('fs');
+const { mergeZones } = require('./generate-zones-config');
+const { saveZoneYaml } = require('./files');
 
 function fetch(path) {
   return new Promise(function (resolve, reject) {
@@ -16,7 +16,7 @@ function fetch(path) {
   });
 }
 
-var zones = JSON.parse(fs.readFileSync(process.argv[2]));
+var zones = mergeZones();
 var jobs = Object.keys(zones).map(function (zone_name) {
   var generationParser = (zones[zone_name].parsers || {}).production;
   if (!generationParser) {
@@ -49,6 +49,6 @@ Promise.all(jobs).then((parsers) => {
       }
     });
     zones[zone_name].contributors = Object.keys(authors);
+    saveZoneYaml(zone_name, zones[zone_name]);
   });
-  fs.writeFileSync(process.argv[2], JSON.stringify(zones, null, '  '));
 });

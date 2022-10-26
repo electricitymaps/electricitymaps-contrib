@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 import { TIME } from './constants';
-import constructTopos from './topos';
 import zonesConfig from '../config/zones.json';
 import exchangesConfig from '../config/exchanges.json';
+import constructTopos from './topos';
 
 const GRID_DATA_FETCH_REQUESTED = createAction('data/grid-fetch-requested');
 const GRID_DATA_FETCH_SUCCEEDED = createAction('data/grid-fetch-succeded');
@@ -101,16 +101,17 @@ function combineZoneData(zoneData, aggregate) {
 
 function removeDuplicateSources(source) {
   if (!source) {
-    return null;
+    return undefined;
   }
+
   const sources = [
     ...new Set(
       source
         .split('","')
-        .map((x) => x.split(',').map((x) => x.replace('\\', '').replace('"', '')))
+        .map((x) => x.split(',').map((x) => x.replaceAll('\\', '').replaceAll('"', '')))
         .flat()
     ),
-  ].join();
+  ];
 
   return sources;
 }

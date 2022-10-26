@@ -34,7 +34,10 @@ const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`)
 
 locales.forEach(function (locale) {
   const html = template({
-    maintitle: localeConfigs[locale || 'en'].misc.maintitle,
+    maintitle:
+      localeConfigs[locale].misc && localeConfigs[locale].misc.maintitle
+        ? localeConfigs[locale].misc.maintitle
+        : localeConfigs['en'].misc.maintitle,
     alternateUrls: [],
     bundleHash: getHash('bundle', 'js', manifest),
     vendorHash: getHash('vendor', 'js', manifest),

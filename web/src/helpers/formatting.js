@@ -111,7 +111,11 @@ const formatDateTick = function (date, lang, timeAggregate) {
     case TIME.DAILY:
       return new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' }).format(date);
     case TIME.MONTHLY:
-      return new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
+      return lang === 'et'
+        ? new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' })
+            .formatToParts(date)
+            .find((part) => part.type === 'month').value
+        : new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
     case TIME.YEARLY:
       return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
     default:
@@ -131,5 +135,17 @@ function isValidDate(date) {
 
   return true;
 }
+/**
+ * @param {string[]} dataSources - array of data sources.
+ * @param {string} language - ISO 639-1 language code (`en`) or ISO 639-1 language code + ISO 3166-1 alpha-2 country code (`en-GB`).
+ * @returns {string} formatted string of data sources.
+ */
+function formatDataSources(dataSources, language) {
+  if (typeof Intl.ListFormat !== 'undefined') {
+    return new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(dataSources);
+  } else {
+    return dataSources.join(', ');
+  }
+}
 
-export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick };
+export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };
