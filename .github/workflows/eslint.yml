@@ -25,10 +25,18 @@ jobs:
           node-version: lts/*
           cache: 'yarn'
           cache-dependency-path: web/yarn.lock
-      - name: Install Dependencies
-        run: |
-          yarn install --frozen-lockfile
-          yarn add @microsoft/eslint-formatter-sarif@2.1.7
+      - name: Restore node_modules
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/yarn.lock') }}
+      - name: Install web dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+      - name: Generate zone config
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: yarn generate-zones-config
       - name: Restore ESLint cache
         uses: actions/cache@v3
         with:
