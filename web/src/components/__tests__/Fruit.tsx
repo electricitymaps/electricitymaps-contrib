@@ -33,7 +33,6 @@ describe('<Fruit />', () => {
     await userEvent.keyboard('a');
     await userEvent.keyboard('[Enter]');
 
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(mockNavigate).toHaveBeenCalledTimes(1);
     expect(mockNavigate).toHaveBeenCalledWith('apple');
   });

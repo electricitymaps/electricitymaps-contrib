@@ -48,6 +48,7 @@ beforeAll(() => {
   });
   Object.defineProperty(window, 'scrollTo', {
     writable: true,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     value: () => {},
   });
   Object.defineProperty(window, 'resizeTo', {
