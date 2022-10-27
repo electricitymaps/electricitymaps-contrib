@@ -24,7 +24,7 @@ Prerequisites:
 - `pnpm test:e2e` - run all e2e tests with the Cypress Test Runner.
 - `pnpm test:e2e:headless` - run all e2e tests headlessly.
 - `pnpm format` - format all files with Prettier.
-- `pnpm lint` - runs TypeScript, ESLint and Stylelint.
+- `pnpm lint` - runs TypeScript and ESLint.
 - `pnpm validate` - runs `lint`, `test:ci` and `test:e2e:ci`.
 
 ### Using production API (internal eMap team only)
