@@ -31,7 +31,7 @@ Prerequisites:
 
 As an eMap internal team member, you can also run the app connected to production API instead of the mockserver:
 
-- Run `XXX='YOUR_TOKEN' yarn develop`
+- Run `VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='YOUR TOKEN' pnpm dev`
 - Add a `?remote=true` query parameter
 
 ## Geometries development
