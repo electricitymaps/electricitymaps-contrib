@@ -12,12 +12,13 @@ const baseConfig: CapacitorConfig = {
 
 
 switch (process.env.NODE_ENV) {
-  case 'qa':
+  case 'dev':
+    console.log("Serving app with dev config pointed to localhost:5173");
     config = {
       ...baseConfig,
       server:{
         "url" : "http://localhost:5173/"
-      }
+      },
     };
     break;
   default:

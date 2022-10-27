@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-ios": "NODE_ENV=dev pnpm exec cap run ios",
+    "dev-android": "NODE_ENV=dev pnpm exec cap run android"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@capacitor/assets": "^1.0.14",
     "@capacitor/cli": "^4.4.0",
+    "@types/node": "^18.11.7",
     "typescript": "^4.8.4"
   }
 }
