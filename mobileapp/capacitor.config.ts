@@ -5,7 +5,7 @@ let config: CapacitorConfig;
 const baseConfig: CapacitorConfig = {
   appId: 'com.tmrow.electricitymap',
   appName: 'Electricity Maps',
-  webDir: '../webz/dist',
+  webDir: '../web/dist',
   bundledWebRuntime: false,
 };
 
