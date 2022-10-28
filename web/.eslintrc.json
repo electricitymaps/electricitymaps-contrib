@@ -82,9 +82,9 @@
         "devDependencies": [
           "cypress.config.ts",
           "vite.config.ts",
-          "src/setupTests.ts",
-          "src/testUtils.tsx",
-          "src/mocks/**",
+          "src/testing/setupTests.ts",
+          "src/testing/testUtils.tsx",
+          "src/testing/mocks/**",
           "**/__tests__/*.{ts,tsx}"
         ]
       }

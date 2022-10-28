@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import GalleryPage from 'pages/Gallery';
-import renderWithProviders, { MOBILE_RESOLUTION_HEIGHT, MOBILE_RESOLUTION_WIDTH } from 'testUtils';
+import renderWithProviders, { MOBILE_RESOLUTION_HEIGHT, MOBILE_RESOLUTION_WIDTH } from 'testing/testUtils';
 
 describe('<Gallery />', () => {
   it('renders', async () => {
