@@ -30,7 +30,6 @@ beforeAll(() => {
         removeEventListener: (_: 'change', listener: () => void): void => {
           const index = listeners.indexOf(listener);
           if (index >= 0) {
-            // eslint-disable-next-line @typescript-eslint/no-magic-numbers
             listeners.splice(index, 1);
           }
         },
@@ -48,7 +47,6 @@ beforeAll(() => {
   });
   Object.defineProperty(window, 'scrollTo', {
     writable: true,
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     value: () => {},
   });
   Object.defineProperty(window, 'resizeTo', {
