@@ -41,7 +41,6 @@ for (const key in capacities) {
   }
 }
 zoneObject.capacity = capacities;
-// eslint-disable-next-line no-console
 console.info('Sucscessfully summed subzone capacities to:', zoneObject.capacity);
 try {
   fs.writeFileSync(`${basePath}/${zone}.yaml`, yaml.dump(zoneObject));
@@ -50,5 +49,4 @@ try {
   console.error(e);
   process.exit(1);
 }
-// eslint-disable-next-line no-console
 console.info(`Successfully added capacity to ${basePath}/${zone}.yaml`);
