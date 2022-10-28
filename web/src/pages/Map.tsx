@@ -1,11 +1,11 @@
 import Head from 'components/Head';
 import LoadingOrError from 'components/LoadingOrError';
 import type { ReactElement } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import getState from 'api/getState';
+import useGetState from 'api/getState';
+import { TimeAverages } from 'types';
 
 export default function MapPage(): ReactElement {
-  const { isLoading, isError, error, data } = useQuery(['state/hourly'], getState);
+  const { isLoading, isError, error, data } = useGetState(TimeAverages.HOURLY);
   if (isLoading || isError) {
     return <LoadingOrError error={error as Error} />;
   }

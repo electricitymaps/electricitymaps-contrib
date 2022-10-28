@@ -15,7 +15,7 @@ async function sha256(message: string): Promise<string> {
  * @returns
  */
 function isUsingLocalEndpoint(): boolean {
-  return import.meta.env.DEV && window.location.href.includes('remote=true') && document.domain !== '';
+  return import.meta.env.DEV && !window.location.href.includes('remote=true');
 }
 
 function getToken(): string {
@@ -48,11 +48,11 @@ export async function getHeaders(route: string): Promise<Headers> {
  * @returns The base path for the app-backend. If the app is running on localhost, the local endpoint is used.
  * @see isUsingLocalEndpoint
  */
-export function getBasePath(): string {
+export function getBasePath() {
   return isUsingLocalEndpoint() ? 'http://localhost:8001' : 'https://app-backend.electricitymap.org';
 }
 
-export default {
-  getHeaders,
-  getBasePath,
+export const QUERY_KEYS = {
+  STATE: 'state',
+  ZONE: 'zone',
 };
