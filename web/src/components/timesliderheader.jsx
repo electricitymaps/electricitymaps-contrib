@@ -46,7 +46,7 @@ const TimeSliderHeader = () => {
   return (
     <Wrapper>
       <Title>{__('time-controller.title')}</Title>
-      <DateDisplay data-test-id="date-display" loading={isLoading}>
+      <DateDisplay data-test-id="date-display" $loading={isLoading}>
         <TimeDisplay />
       </DateDisplay>
     </Wrapper>

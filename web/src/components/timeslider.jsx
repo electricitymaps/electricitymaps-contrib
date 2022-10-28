@@ -73,7 +73,7 @@ const TimeSlider = ({
     [width, datetimes, startTime, endTime]
   );
 
-  const startTimeValue = timeScale.domain()[0].valueOf();
+  const startTimeValue = timeScale.domain()[0].valueOf() || 0;
   const endTimeValue = timeScale.domain()[1].valueOf() || 1; // Ensures timeslider thumb is at the end at all times
 
   const handleChangeAndInput = useMemo(
