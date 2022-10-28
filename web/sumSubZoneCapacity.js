@@ -30,23 +30,17 @@ if (zoneObject.subZoneNames) {
       }
     }
   });
+  zoneObject.capacity = capacities;
+  console.info('Sucscessfully summed subzone capacities to:', zoneObject.capacity);
+  try {
+    fs.writeFileSync(`${basePath}/${zone}.yaml`, yaml.dump(zoneObject));
+  } catch (e) {
+    console.error('An unknown error occurred while writing the zone file.');
+    console.error(e);
+    process.exit(1);
+  }
+  console.info(`Successfully added capacity to ${basePath}/${zone}.yaml`);
 } else {
   console.error(`Zone ${zone} does not have any subzones.`);
   process.exit(1);
 }
-
-for (const key in capacities) {
-  if (capacities[key] === null) {
-    delete capacities[key];
-  }
-}
-zoneObject.capacity = capacities;
-console.info('Sucscessfully summed subzone capacities to:', zoneObject.capacity);
-try {
-  fs.writeFileSync(`${basePath}/${zone}.yaml`, yaml.dump(zoneObject));
-} catch (e) {
-  console.error('An unknown error occurred while writing the zone file.');
-  console.error(e);
-  process.exit(1);
-}
-console.info(`Successfully added capacity to ${basePath}/${zone}.yaml`);
