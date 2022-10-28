@@ -1,7 +1,7 @@
 import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import type { GridState, TimeAverages } from 'types';
-import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
+import { getBasePath, getHeaders, QUERY_KEYS, REFETCH_INTERVAL_MS } from './helpers';
 
 const getState = async (timeAverage: string): Promise<GridState> => {
   const path = `/v5/state/${timeAverage}`;
@@ -22,7 +22,7 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 
 const useGetState = (timeAverage: TimeAverages, options?: UseQueryOptions<GridState>): UseQueryResult<GridState> =>
   useQuery<GridState>([QUERY_KEYS.STATE, timeAverage], async () => getState(timeAverage), {
-    staleTime: 1000 * 60 * 5,
+    staleTime: REFETCH_INTERVAL_MS,
     ...options,
   });
 
