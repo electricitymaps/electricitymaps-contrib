@@ -62,6 +62,24 @@ const LanguageSelect = () => {
     setLanguagesVisible(false);
   };
 
+  // Set the selected language as first position
+  const languagesAsArray = Object.entries(LANGUAGE_NAMES);
+  const idx = languagesAsArray.findIndex((el) => el[1] === selectedLanguage);
+  languagesAsArray.unshift(languagesAsArray.splice(idx, 1)[0]);
+
+  const languagesList = languagesAsArray.map(([key, language]) => {
+    return (
+      <li key={key}>
+        <button
+          onClick={() => handleLanguageSelect(key, language)}
+          className={selectedLanguage === language ? 'preferred-language' : null}
+        >
+          {language}
+        </button>
+      </li>
+    );
+  });
+
   return (
     <>
       <ButtonToggle
@@ -71,18 +89,7 @@ const LanguageSelect = () => {
         icon="language_select"
       />
       {languagesVisible && (
-        <LanguageSelectContainer className="language-select-container">
-          {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
-            <li key={key}>
-              <button
-                onClick={() => handleLanguageSelect(key, language)}
-                className={selectedLanguage === language ? 'preferred-language' : null}
-              >
-                {language}
-              </button>
-            </li>
-          ))}
-        </LanguageSelectContainer>
+        <LanguageSelectContainer className="language-select-container">{languagesList}</LanguageSelectContainer>
       )}
     </>
   );
