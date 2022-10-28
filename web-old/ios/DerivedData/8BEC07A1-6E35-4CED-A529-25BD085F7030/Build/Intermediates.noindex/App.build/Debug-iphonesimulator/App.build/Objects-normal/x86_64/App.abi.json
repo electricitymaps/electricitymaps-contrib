@@ -1,0 +1,589 @@
+{
+  "kind": "Root",
+  "name": "TopLevel",
+  "printedName": "TopLevel",
+  "children": [
+    {
+      "kind": "Import",
+      "name": "Capacitor",
+      "printedName": "Capacitor",
+      "declKind": "Import",
+      "moduleName": "App"
+    },
+    {
+      "kind": "Import",
+      "name": "SwiftOnoneSupport",
+      "printedName": "SwiftOnoneSupport",
+      "declKind": "Import",
+      "moduleName": "App"
+    },
+    {
+      "kind": "Import",
+      "name": "UIKit",
+      "printedName": "UIKit",
+      "declKind": "Import",
+      "moduleName": "App"
+    },
+    {
+      "kind": "Import",
+      "name": "_Concurrency",
+      "printedName": "_Concurrency",
+      "declKind": "Import",
+      "moduleName": "App"
+    },
+    {
+      "kind": "TypeDecl",
+      "name": "AppDelegate",
+      "printedName": "AppDelegate",
+      "children": [
+        {
+          "kind": "Var",
+          "name": "window",
+          "printedName": "window",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Optional",
+              "printedName": "UIKit.UIWindow?",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "UIWindow",
+                  "printedName": "UIKit.UIWindow",
+                  "usr": "c:objc(cs)UIWindow"
+                }
+              ],
+              "usr": "s:Sq"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "c:@M@App@objc(cs)AppDelegate(py)window",
+          "mangledName": "$s3App0A8DelegateC6windowSo8UIWindowCSgvp",
+          "moduleName": "App",
+          "isOpen": true,
+          "objc_name": "window",
+          "declAttributes": [
+            "HasInitialValue",
+            "ObjC",
+            "Custom",
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 0,
+          "hasStorage": true,
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Optional",
+                  "printedName": "UIKit.UIWindow?",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "UIWindow",
+                      "printedName": "UIKit.UIWindow",
+                      "usr": "c:objc(cs)UIWindow"
+                    }
+                  ],
+                  "usr": "s:Sq"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "c:@M@App@objc(cs)AppDelegate(im)window",
+              "mangledName": "$s3App0A8DelegateC6windowSo8UIWindowCSgvg",
+              "moduleName": "App",
+              "implicit": true,
+              "isOpen": true,
+              "objc_name": "window",
+              "declAttributes": [
+                "ObjC"
+              ],
+              "accessorKind": "get"
+            },
+            {
+              "kind": "Accessor",
+              "name": "Set",
+              "printedName": "Set()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "Optional",
+                  "printedName": "UIKit.UIWindow?",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "UIWindow",
+                      "printedName": "UIKit.UIWindow",
+                      "usr": "c:objc(cs)UIWindow"
+                    }
+                  ],
+                  "usr": "s:Sq"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "c:@M@App@objc(cs)AppDelegate(im)setWindow:",
+              "mangledName": "$s3App0A8DelegateC6windowSo8UIWindowCSgvs",
+              "moduleName": "App",
+              "implicit": true,
+              "isOpen": true,
+              "objc_name": "setWindow:",
+              "declAttributes": [
+                "ObjC"
+              ],
+              "accessorKind": "set"
+            },
+            {
+              "kind": "Accessor",
+              "name": "Modify",
+              "printedName": "Modify()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:3App0A8DelegateC6windowSo8UIWindowCSgvM",
+              "mangledName": "$s3App0A8DelegateC6windowSo8UIWindowCSgvM",
+              "moduleName": "App",
+              "implicit": true,
+              "isOpen": true,
+              "accessorKind": "_modify"
+            }
+          ]
+        },
+        {
+          "kind": "Function",
+          "name": "application",
+          "printedName": "application(_:didFinishLaunchingWithOptions:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Bool",
+              "printedName": "Swift.Bool",
+              "usr": "s:Sb"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIApplication",
+              "printedName": "UIKit.UIApplication",
+              "usr": "c:objc(cs)UIApplication"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Optional",
+              "printedName": "[UIKit.UIApplication.LaunchOptionsKey : Any]?",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Dictionary",
+                  "printedName": "[UIKit.UIApplication.LaunchOptionsKey : Any]",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "LaunchOptionsKey",
+                      "printedName": "UIKit.UIApplication.LaunchOptionsKey",
+                      "usr": "c:@T@UIApplicationLaunchOptionsKey"
+                    },
+                    {
+                      "kind": "TypeNominal",
+                      "name": "ProtocolComposition",
+                      "printedName": "Any"
+                    }
+                  ],
+                  "usr": "s:SD"
+                }
+              ],
+              "usr": "s:Sq"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@M@App@objc(cs)AppDelegate(im)application:didFinishLaunchingWithOptions:",
+          "mangledName": "$s3App0A8DelegateC11application_29didFinishLaunchingWithOptionsSbSo13UIApplicationC_SDySo0i6LaunchH3KeyaypGSgtF",
+          "moduleName": "App",
+          "isOpen": true,
+          "objc_name": "application:didFinishLaunchingWithOptions:",
+          "declAttributes": [
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "applicationWillResignActive",
+          "printedName": "applicationWillResignActive(_:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Void",
+              "printedName": "()"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIApplication",
+              "printedName": "UIKit.UIApplication",
+              "usr": "c:objc(cs)UIApplication"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@M@App@objc(cs)AppDelegate(im)applicationWillResignActive:",
+          "mangledName": "$s3App0A8DelegateC27applicationWillResignActiveyySo13UIApplicationCF",
+          "moduleName": "App",
+          "isOpen": true,
+          "objc_name": "applicationWillResignActive:",
+          "declAttributes": [
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "applicationDidEnterBackground",
+          "printedName": "applicationDidEnterBackground(_:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Void",
+              "printedName": "()"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIApplication",
+              "printedName": "UIKit.UIApplication",
+              "usr": "c:objc(cs)UIApplication"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@M@App@objc(cs)AppDelegate(im)applicationDidEnterBackground:",
+          "mangledName": "$s3App0A8DelegateC29applicationDidEnterBackgroundyySo13UIApplicationCF",
+          "moduleName": "App",
+          "isOpen": true,
+          "objc_name": "applicationDidEnterBackground:",
+          "declAttributes": [
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "applicationWillEnterForeground",
+          "printedName": "applicationWillEnterForeground(_:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Void",
+              "printedName": "()"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIApplication",
+              "printedName": "UIKit.UIApplication",
+              "usr": "c:objc(cs)UIApplication"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@M@App@objc(cs)AppDelegate(im)applicationWillEnterForeground:",
+          "mangledName": "$s3App0A8DelegateC30applicationWillEnterForegroundyySo13UIApplicationCF",
+          "moduleName": "App",
+          "isOpen": true,
+          "objc_name": "applicationWillEnterForeground:",
+          "declAttributes": [
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "applicationDidBecomeActive",
+          "printedName": "applicationDidBecomeActive(_:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Void",
+              "printedName": "()"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIApplication",
+              "printedName": "UIKit.UIApplication",
+              "usr": "c:objc(cs)UIApplication"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@M@App@objc(cs)AppDelegate(im)applicationDidBecomeActive:",
+          "mangledName": "$s3App0A8DelegateC26applicationDidBecomeActiveyySo13UIApplicationCF",
+          "moduleName": "App",
+          "isOpen": true,
+          "objc_name": "applicationDidBecomeActive:",
+          "declAttributes": [
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "applicationWillTerminate",
+          "printedName": "applicationWillTerminate(_:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Void",
+              "printedName": "()"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIApplication",
+              "printedName": "UIKit.UIApplication",
+              "usr": "c:objc(cs)UIApplication"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@M@App@objc(cs)AppDelegate(im)applicationWillTerminate:",
+          "mangledName": "$s3App0A8DelegateC24applicationWillTerminateyySo13UIApplicationCF",
+          "moduleName": "App",
+          "isOpen": true,
+          "objc_name": "applicationWillTerminate:",
+          "declAttributes": [
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "application",
+          "printedName": "application(_:open:options:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Bool",
+              "printedName": "Swift.Bool",
+              "usr": "s:Sb"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIApplication",
+              "printedName": "UIKit.UIApplication",
+              "usr": "c:objc(cs)UIApplication"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "URL",
+              "printedName": "Foundation.URL",
+              "usr": "s:10Foundation3URLV"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Dictionary",
+              "printedName": "[UIKit.UIApplication.OpenURLOptionsKey : Any]",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "OpenURLOptionsKey",
+                  "printedName": "UIKit.UIApplication.OpenURLOptionsKey",
+                  "usr": "c:@T@UIApplicationOpenURLOptionsKey"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "ProtocolComposition",
+                  "printedName": "Any"
+                }
+              ],
+              "hasDefaultArg": true,
+              "usr": "s:SD"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@M@App@objc(cs)AppDelegate(im)application:openURL:options:",
+          "mangledName": "$s3App0A8DelegateC11application_4open7optionsSbSo13UIApplicationC_10Foundation3URLVSDySo0F17OpenURLOptionsKeyaypGtF",
+          "moduleName": "App",
+          "isOpen": true,
+          "objc_name": "application:openURL:options:",
+          "declAttributes": [
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "application",
+          "printedName": "application(_:continue:restorationHandler:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Bool",
+              "printedName": "Swift.Bool",
+              "usr": "s:Sb"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIApplication",
+              "printedName": "UIKit.UIApplication",
+              "usr": "c:objc(cs)UIApplication"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "NSUserActivity",
+              "printedName": "Foundation.NSUserActivity",
+              "usr": "c:objc(cs)NSUserActivity"
+            },
+            {
+              "kind": "TypeFunc",
+              "name": "Function",
+              "printedName": "([UIKit.UIUserActivityRestoring]?) -> ()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "Optional",
+                  "printedName": "[UIKit.UIUserActivityRestoring]?",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "Array",
+                      "printedName": "[UIKit.UIUserActivityRestoring]",
+                      "children": [
+                        {
+                          "kind": "TypeNominal",
+                          "name": "UIUserActivityRestoring",
+                          "printedName": "UIKit.UIUserActivityRestoring",
+                          "usr": "c:objc(pl)UIUserActivityRestoring"
+                        }
+                      ],
+                      "usr": "s:Sa"
+                    }
+                  ],
+                  "usr": "s:Sq"
+                }
+              ]
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@M@App@objc(cs)AppDelegate(im)application:continueUserActivity:restorationHandler:",
+          "mangledName": "$s3App0A8DelegateC11application_8continue18restorationHandlerSbSo13UIApplicationC_So14NSUserActivityCySaySo06UIUserI9Restoring_pGSgctF",
+          "moduleName": "App",
+          "isOpen": true,
+          "objc_name": "application:continueUserActivity:restorationHandler:",
+          "declAttributes": [
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Constructor",
+          "name": "init",
+          "printedName": "init()",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "AppDelegate",
+              "printedName": "App.AppDelegate",
+              "usr": "c:@M@App@objc(cs)AppDelegate"
+            }
+          ],
+          "declKind": "Constructor",
+          "usr": "c:@M@App@objc(cs)AppDelegate(im)init",
+          "mangledName": "$s3App0A8DelegateCACycfc",
+          "moduleName": "App",
+          "overriding": true,
+          "implicit": true,
+          "objc_name": "init",
+          "declAttributes": [
+            "Dynamic",
+            "ObjC",
+            "Override"
+          ],
+          "init_kind": "Designated"
+        }
+      ],
+      "declKind": "Class",
+      "usr": "c:@M@App@objc(cs)AppDelegate",
+      "mangledName": "$s3App0A8DelegateC",
+      "moduleName": "App",
+      "isOpen": true,
+      "declAttributes": [
+        "Custom",
+        "UIApplicationMain",
+        "ObjC"
+      ],
+      "superclassUsr": "c:objc(cs)UIResponder",
+      "inheritsConvenienceInitializers": true,
+      "superclassNames": [
+        "UIKit.UIResponder",
+        "ObjectiveC.NSObject"
+      ],
+      "conformances": [
+        {
+          "kind": "Conformance",
+          "name": "Equatable",
+          "printedName": "Equatable",
+          "usr": "s:SQ",
+          "mangledName": "$sSQ"
+        },
+        {
+          "kind": "Conformance",
+          "name": "Hashable",
+          "printedName": "Hashable",
+          "usr": "s:SH",
+          "mangledName": "$sSH"
+        },
+        {
+          "kind": "Conformance",
+          "name": "CVarArg",
+          "printedName": "CVarArg",
+          "usr": "s:s7CVarArgP",
+          "mangledName": "$ss7CVarArgP"
+        },
+        {
+          "kind": "Conformance",
+          "name": "_KeyValueCodingAndObservingPublishing",
+          "printedName": "_KeyValueCodingAndObservingPublishing",
+          "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+          "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+        },
+        {
+          "kind": "Conformance",
+          "name": "_KeyValueCodingAndObserving",
+          "printedName": "_KeyValueCodingAndObserving",
+          "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+          "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+        },
+        {
+          "kind": "Conformance",
+          "name": "CustomStringConvertible",
+          "printedName": "CustomStringConvertible",
+          "usr": "s:s23CustomStringConvertibleP",
+          "mangledName": "$ss23CustomStringConvertibleP"
+        },
+        {
+          "kind": "Conformance",
+          "name": "CustomDebugStringConvertible",
+          "printedName": "CustomDebugStringConvertible",
+          "usr": "s:s28CustomDebugStringConvertibleP",
+          "mangledName": "$ss28CustomDebugStringConvertibleP"
+        }
+      ]
+    }
+  ],
+  "json_format_version": 6
+}

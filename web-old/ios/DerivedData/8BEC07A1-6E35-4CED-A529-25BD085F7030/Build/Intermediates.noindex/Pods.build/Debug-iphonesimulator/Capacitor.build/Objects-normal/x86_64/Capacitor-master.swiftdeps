@@ -1,0 +1,62 @@
+version: "Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)"
+options: "57e3a72a2865e39529628e09d2127c30539f8f9e1457e92b1fa7b32c05ea3c0f"
+build_start_time: [1666331906, 511829853]
+build_end_time: [1666331919, 46351909]
+inputs:
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/AppUUID.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Array+Capacitor.swift": [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPApplicationDelegateProxy.swift"
+  : [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPBridge.swift": [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPBridgeDelegate.swift"
+  : [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPBridgeProtocol.swift"
+  : [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPBridgeViewController.swift"
+  : [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPFile.swift": [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPInstanceConfiguration.swift"
+  : [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPInstanceDescriptor.swift"
+  : [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPLog.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPNotifications.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPPluginCall.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CAPWebView.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CapacitorBridge.swift": [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/CapacitorExtension.swift"
+  : [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Data+Capacitor.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/DocLinks.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/JS.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/JSExport.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/JSTypes.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/KeyPath.swift": [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/NotificationHandlerProtocol.swift"
+  : [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/NotificationRouter.swift"
+  : [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/PluginCallResult.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/PluginConfig.swift": [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Plugins/CapacitorCookieManager.swift"
+  : [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Plugins/CapacitorCookies.swift"
+  : [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Plugins/CapacitorHttp.swift"
+  : [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Plugins/CapacitorUrlRequest.swift"
+  : [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Plugins/Console.swift": [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Plugins/HttpRequestHandler.swift"
+  : [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Plugins/WebView.swift": [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/Router.swift": [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/TmpViewController.swift"
+  : [1666331739, 815999031]
+  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/UIColor.swift": [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/WKWebView+Capacitor.swift"
+  : [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/WebViewAssetHandler.swift"
+  : [1666331739, 815999031]
+  ? "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/node_modules/@capacitor/ios/Capacitor/Capacitor/WebViewDelegationHandler.swift"
+  : [1666331739, 815999031]

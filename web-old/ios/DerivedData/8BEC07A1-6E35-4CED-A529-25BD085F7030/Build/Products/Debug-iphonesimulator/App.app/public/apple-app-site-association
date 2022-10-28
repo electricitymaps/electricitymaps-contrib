@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "2KS52W3WK3.com.tmrow.electricitymap",
+        "paths": [
+          "*",
+          "/"
+        ]
+      }
+    ]
+  }
+}
