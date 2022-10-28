@@ -8,13 +8,13 @@ capacity:
   coal: 0
   gas: 248
   geothermal: 0
-  hydro: 5197
+  hydro: 5288
   hydro storage: 2
   nuclear: 0
   oil: 0
   solar: 1.6
   unknown: 39.3
-  wind: 876
+  wind: 962
 emissionFactors:
   direct:
     battery discharge:
