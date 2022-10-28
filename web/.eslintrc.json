@@ -54,9 +54,10 @@
       "error",
       {
         "ignoreEnums": true,
-        "ignore": [0],
+        "ignore": [-1, 0, 1, 60, 1000],
+        "ignoreArrayIndexes": true,
         "enforceConst": true,
-        "detectObjects": true
+        "detectObjects": false
       }
     ],
     "@typescript-eslint/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
