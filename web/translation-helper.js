@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const fs = require('fs');
 const readline = require('readline-sync');
 require('colors');
@@ -10,7 +9,7 @@ const languages = fs
   .filter((f) => f !== 'en.json' && f.endsWith('.json'))
   .map((f) => f.replace('.json', ''));
 
-console.log(`Languages you can translate: ${languages.join(', ').green}`);
+console.info(`Languages you can translate: ${languages.join(', ').green}`);
 const language = readline.question('Which language do you want to translate: ');
 if (!languages.includes(language)) {
   console.error(`${language} is not a translatable language!`.red);
@@ -42,4 +41,4 @@ function checkUntranslated(e, o, p) {
 }
 
 fs.writeFileSync(`${LOCALES_PATH}/${language}.json`, JSON.stringify(checkUntranslated(en, other, ''), null, 2));
-console.log('Finished!');
+console.info('Finished!');

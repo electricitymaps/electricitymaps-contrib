@@ -534,7 +534,7 @@ def _fetch(
     s = session or Session()
     req = s.get(url)
     raw_data = req.json()
-    if not raw_data["response"]["data"]:
+    if raw_data.get("response", {}).get("data", None) is None:
         return []
     return [
         {
