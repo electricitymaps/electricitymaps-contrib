@@ -3,10 +3,10 @@ import type { ReactElement } from 'react';
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-const Gallery = lazy(async () => import('pages/Gallery'));
-const Details = lazy(async () => import('pages/Details'));
-const Map = lazy(async () => import('pages/Map'));
-const ZonePanel = lazy(async () => import('pages/ZonePanel'));
+const Gallery = lazy(async () => import('features/boilerplate/Gallery'));
+const Details = lazy(async () => import('features/boilerplate/Details'));
+const Map = lazy(async () => import('features/map'));
+const ZonePanel = lazy(async () => import('features/zone-details/ZonePanel'));
 
 export default function App(): ReactElement {
   return (

@@ -1,5 +1,5 @@
 import getFruits from 'api/getFruits';
-import Fruit from 'components/Fruit';
+import Fruit from 'features/boilerplate/components/Fruit';
 import Head from 'components/Head';
 import LoadingOrError from 'components/LoadingOrError';
 import type { ReactElement } from 'react';

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import fruits from 'testing/mocks/data/fruits.json';
 import type ReactRouterDOM from 'react-router-dom';
-import Fruit from '../Fruit';
+import Fruit from '../components/Fruit';
 
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async () => ({

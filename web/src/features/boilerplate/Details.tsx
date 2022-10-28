@@ -1,6 +1,6 @@
 import getFruits from 'api/getFruits';
 import Head from 'components/Head';
-import ImageAttribution from 'components/ImageAttribution';
+import ImageAttribution from 'features/boilerplate/components/ImageAttribution';
 import LoadingOrError from 'components/LoadingOrError';
 import type { ReactElement } from 'react';
 import { useQuery } from '@tanstack/react-query';
