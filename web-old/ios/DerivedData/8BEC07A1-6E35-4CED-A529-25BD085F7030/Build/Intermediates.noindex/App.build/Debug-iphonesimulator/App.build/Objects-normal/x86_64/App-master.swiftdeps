@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)"
-options: "f82ebd74161bb49b4441df34b2c82a325126176d36220157e4774b181d7c370d"
-build_start_time: [1666331920, 904080867]
-build_end_time: [1666331925, 341295003]
-inputs:
-  "/Users/madsnedergaard/dev/work/electricitymap/contrib/web/ios/App/App/AppDelegate.swift": [1663797182, 0]

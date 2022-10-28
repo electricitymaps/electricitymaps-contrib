@@ -1,9 +1,0 @@
-{
-	"appId": "com.example.app",
-	"appName": "Electricity Maps",
-	"webDir": "public/",
-	"bundledWebRuntime": false,
-	"server": {
-		"url": "http://localhost:8080/"
-	}
-}
