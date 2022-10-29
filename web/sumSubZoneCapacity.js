@@ -2,6 +2,7 @@ const yaml = require('js-yaml');
 const path = require('path');
 const fs = require('fs');
 const readline = require('readline-sync');
+const { round } = require('./geo/utilities');
 
 const zone = readline.question('For which zone do you wish to sum its subzones? ');
 
@@ -30,6 +31,10 @@ if (zoneObject.subZoneNames) {
       }
     }
   });
+  // Round to 2 decimal places to avoid floating point errors
+  for (const key in capacities) {
+    capacities[key] = round(capacities[key], 2);
+  }
   zoneObject.capacity = capacities;
   console.info('Sucscessfully summed subzone capacities to:', zoneObject.capacity);
   try {
