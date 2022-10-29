@@ -31,9 +31,9 @@ if (zoneObject.subZoneNames) {
       }
     }
   });
-  // Round to 2 decimal places to avoid floating point errors
+  // Round to 3 decimal places to avoid floating point errors
   for (const key in capacities) {
-    capacities[key] = round(capacities[key], 2);
+    capacities[key] = round(capacities[key], 3);
   }
   zoneObject.capacity = capacities;
   console.info('Sucscessfully summed subzone capacities to:', zoneObject.capacity);
