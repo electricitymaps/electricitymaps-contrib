@@ -1,3 +1,16 @@
+capacity:
+  battery storage: 4827
+  biomass: 14482.5
+  coal: 224217.6
+  gas: 556488.3
+  geothermal: 3838.4
+  hydro: 77365.2
+  hydro storage: 21969.3
+  nuclear: 99886.8
+  oil: 29525.9
+  solar: 64199.1
+  unknown: 1684.2
+  wind: 133198.6
 contributors:
   - systemcatch
   - robertahunt
