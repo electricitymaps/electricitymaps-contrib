@@ -3,5 +3,17 @@ bounding_box:
     - 21.368769246000056
   - - -158.7925919259999
     - 22.735494671000225
+emissionFactors:
+  direct:
+    oil:
+      datetime: '2020-01-01'
+      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 779.2439369
+  lifecycle:
+    coal:
+      datetime: '2014-01-01'
+      source: IPCC 2014, https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7;
+        IPCC 2014
+      value: 820.0
 flag_file_name: us.png
 timezone: Pacific/Honolulu

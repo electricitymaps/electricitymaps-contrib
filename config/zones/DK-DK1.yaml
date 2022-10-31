@@ -87,6 +87,16 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 193.17343969393835
+    coal:
+      datetime: '2012-01-01'
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+        generation.", https://drive.google.com/file/d/1XLg4fJ9_Bv9AfUda6yQlKeQ7vDwnUsaO/view?usp=sharing;
+        IPCC 2014
+      value: 828.794608
+    hydro:
+      datetime: '2020-01-01'
+      source: UNECE, https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=53
+      value: 10.7
     hydro discharge:
       - datetime: '2015-01-01'
         source: electricityMap, 2015 average
@@ -109,6 +119,19 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 193.17343969393835
+    nuclear:
+      datetime: '2020-01-01'
+      source: UNECE, https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=56
+      value: 5.13
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV, https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+      value: 37.66666667
+    wind:
+      datetime: '2020-01-01'
+      source: UNECE, https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37
+        and WindEurope https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTA4LTEyVDA5OjU4OjM0LjA1MVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--525dde85c30687b0af70bd8888f736cbb4bc11fd/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename*%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf#page=11
+      value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2015 average

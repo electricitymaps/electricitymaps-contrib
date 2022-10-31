@@ -51,6 +51,11 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 27.88734967855403
+    coal:
+      datetime: '2014-01-01'
+      source: IPCC 2014, https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7;
+        IPCC 2014
+      value: 820.0
     hydro discharge:
       - datetime: '2019-01-01'
         source: electricityMap, 2019 average

@@ -40,6 +40,18 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 363.7785287366052
+    coal:
+      datetime: '2020-01-01'
+      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 1092.399419
+    gas:
+      datetime: '2020-01-01'
+      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 405.9274374
+    geothermal:
+      datetime: '2020-01-01'
+      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 14.37975781
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -67,6 +79,12 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 456.10420017388526
+    coal:
+      datetime: '2020-01-01'
+      source: 'Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+        generation.", https://drive.google.com/file/d/1XLg4fJ9_Bv9AfUda6yQlKeQ7vDwnUsaO/view?usp=sharing;
+        eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 1179.761649
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -80,6 +98,10 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 456.10420017388526
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV, https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+      value: 25.6
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2018 average

@@ -113,6 +113,10 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 252.5679562057417
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV, https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+      value: 39.72
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2015 average

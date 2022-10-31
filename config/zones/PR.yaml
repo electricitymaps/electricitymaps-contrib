@@ -29,6 +29,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 445.3981040694054
+    coal:
+      datetime: '2020-01-01'
+      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 995.61187
+    gas:
+      datetime: '2020-01-01'
+      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 480.1222048
     hydro discharge:
       - datetime: '2020-01-01'
         source: electricityMap, 2020 average
@@ -36,6 +44,10 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 445.3981040694054
+    oil:
+      datetime: '2020-01-01'
+      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 786.0859158
   lifecycle:
     battery discharge:
       - datetime: '2020-01-01'

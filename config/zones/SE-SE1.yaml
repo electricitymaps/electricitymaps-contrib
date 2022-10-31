@@ -14,6 +14,12 @@ capacity:
   wind: 1927
 emissionFactors:
   lifecycle:
+    coal:
+      datetime: '2012-01-01'
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+        generation.", https://drive.google.com/file/d/1XLg4fJ9_Bv9AfUda6yQlKeQ7vDwnUsaO/view?usp=sharing;
+        IPCC 2014
+      value: 856.367209
     unknown:
       - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
           the sources in unknown

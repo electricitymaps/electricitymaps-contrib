@@ -84,6 +84,12 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 37.31289032604934
+    coal:
+      datetime: '2012-01-01'
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+        generation.", https://drive.google.com/file/d/1XLg4fJ9_Bv9AfUda6yQlKeQ7vDwnUsaO/view?usp=sharing;
+        IPCC 2014
+      value: 883.79433
     hydro discharge:
       - datetime: '2015-01-01'
         source: electricityMap, 2015 average

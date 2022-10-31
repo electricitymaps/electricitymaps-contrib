@@ -40,6 +40,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 135.69137283431053
+    biomass:
+      datetime: '2020-01-01'
+      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 205.8471989
+    gas:
+      datetime: '2020-01-01'
+      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      value: 393.6395083
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -67,6 +75,11 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 183.61633166677058
+    coal:
+      datetime: '2014-01-01'
+      source: IPCC 2014, https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7;
+        IPCC 2014
+      value: 820.0
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
