@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from 'App';
-import renderWithProviders from 'testUtils';
+import renderWithProviders from 'testing/testUtils';
 
 describe('<App />', () => {
   it('renders', async () => {

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+// TODO: Replace with react-helmet?
 interface Properties {
   title: string;
 }

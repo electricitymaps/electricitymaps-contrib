@@ -69,10 +69,10 @@
         "devDependencies": [
           "cypress.config.ts",
           "vite.config.ts",
-          "src/setupTests.ts",
-          "src/testUtils.tsx",
-          "src/mocks/**",
-          "**/__tests__/*.{ts,tsx}"
+          "src/testing/setupTests.ts",
+          "src/testing/testUtils.tsx",
+          "src/testing/mocks/**",
+          "src/**/*.test.{ts,tsx}"
         ]
       }
     ],
@@ -154,7 +154,7 @@
       }
     },
     {
-      "files": ["**/__tests__/**/*.ts?(x)"],
+      "files": ["src/**/*.test.ts?(x)"],
       "extends": ["plugin:testing-library/react"],
       "rules": {
         "@typescript-eslint/no-magic-numbers": ["off"],
