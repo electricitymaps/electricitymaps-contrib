@@ -8,25 +8,24 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["react-prefer-function-component"],
   "extends": [
-    "eslint:all",
-    "plugin:@typescript-eslint/all",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "plugin:react/all",
+    "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
-    "airbnb",
-    "airbnb-typescript",
-    "airbnb/hooks",
     "plugin:react/jsx-runtime",
-    "plugin:unicorn/all",
+    "plugin:unicorn/recommended",
     "plugin:react-prefer-function-component/recommended",
     "prettier"
   ],
   "rules": {
-    "no-dupe-else-if": "error",
+    // TODO: TEMPORARILY DISABLED DURING INITIAL DEVELOPMENT
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-empty-function": "off",
+
     "no-promise-executor-return": "error",
     "no-unreachable-loop": "error",
-    "no-useless-backreference": "error",
     "require-atomic-updates": "error",
     "default-case-last": "error",
     "grouped-accessor-pairs": "error",
@@ -51,31 +50,19 @@
     ],
     "no-void": "off",
 
-    "@typescript-eslint/padding-line-between-statements": "off",
-    "@typescript-eslint/prefer-enum-initializers": "off",
-    "@typescript-eslint/prefer-readonly-parameter-types": "off",
-    "@typescript-eslint/prefer-regexp-exec": "off",
     "@typescript-eslint/no-magic-numbers": [
       "error",
       {
         "ignoreEnums": true,
-        "ignore": [0],
+        "ignore": [-1, 0, 1, 60, 1000],
+        "ignoreArrayIndexes": true,
         "enforceConst": true,
-        "detectObjects": true
+        "detectObjects": false
       }
     ],
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/init-declarations": "off",
     "@typescript-eslint/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
-    "@typescript-eslint/non-nullable-type-assertion-style": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/no-implicit-any-catch": "off",
-    "@typescript-eslint/member-ordering": "off",
-    "@typescript-eslint/prefer-includes": "off",
-    "@typescript-eslint/no-restricted-imports": "off",
-
     "import/no-deprecated": "error",
-    "import/order": "off",
+    "import/no-unresolved": "off", // Off as TS handles this
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -90,22 +77,17 @@
       }
     ],
 
-    "react/no-did-update-set-state": "off",
-    "react/no-find-dom-node": "off",
-    "react/no-is-mounted": "off",
-    "react/no-redundant-should-component-update": "off",
-    "react/no-render-return-value": "off",
-    "react/no-string-refs": "off",
-    "react/no-this-in-sfc": "off",
-    "react/no-will-update-set-state": "off",
-    "react/prefer-es6-class": "off",
-    "react/no-unused-state": "off",
-    "react/prefer-stateless-function": "off",
-    "react/require-render-return": "off",
-    "react/sort-comp": "off",
-    "react/state-in-constructor": "off",
-    "react/static-property-placement": "off",
-
+    // Commented out as I don't think they were running anyway?
+    // "react/no-string-refs": "off",
+    // "react/no-this-in-sfc": "off",
+    // "react/no-will-update-set-state": "off",
+    // "react/prefer-es6-class": "off",
+    // "react/no-unused-state": "off",
+    // "react/prefer-stateless-function": "off",
+    // "react/sort-comp": "off",
+    // "react/state-in-constructor": "off",
+    // "react/static-property-placement": "off",
+    "react/prop-types": "off",
     "react/boolean-prop-naming": [
       "error",
       {
@@ -128,7 +110,6 @@
         "checkInlineFunction": true
       }
     ],
-    "react/jsx-key": "error",
     "react/jsx-no-bind": [
       "error",
       {
@@ -177,6 +158,7 @@
       "extends": ["plugin:testing-library/react"],
       "rules": {
         "@typescript-eslint/no-magic-numbers": ["off"],
+        "import/default": "off",
         "testing-library/no-await-sync-events": [
           "error",
           {
