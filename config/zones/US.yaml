@@ -1,0 +1,97 @@
+capacity:
+  battery storage: 4832.0
+  biomass: 14487.1
+  coal: 224217.6
+  gas: 557820.4
+  geothermal: 3838.4
+  hydro: 79372.6
+  hydro storage: 21969.3
+  nuclear: 99886.8
+  oil: 29535.9
+  solar: 64209.1
+  unknown: 1684.2
+  wind: 134695.0
+contributors:
+- kepiej
+- KabelWlan
+- robertahunt
+- danielmatsuda
+- brandongalbraith
+- systemcatch
+subZoneNames:
+- US-AK
+- US-CAL-BANC
+- US-CAL-CISO
+- US-CAL-IID
+- US-CAL-LDWP
+- US-CAL-TIDC
+- US-CAR-CPLE
+- US-CAR-CPLW
+- US-CAR-DUK
+- US-CAR-SC
+- US-CAR-SCEG
+- US-CAR-YAD
+- US-CENT-SPA
+- US-CENT-SWPP
+- US-FLA-FMPP
+- US-FLA-FPC
+- US-FLA-FPL
+- US-FLA-GVL
+- US-FLA-HST
+- US-FLA-JEA
+- US-FLA-NSB
+- US-FLA-SEC
+- US-FLA-TAL
+- US-FLA-TEC
+- US-HI-HA
+- US-HI-KA
+- US-HI-KH
+- US-HI-LA
+- US-HI-MA
+- US-HI-MO
+- US-HI-NI
+- US-HI-OA
+- US-MIDA-PJM
+- US-MIDW-AECI
+- US-MIDW-GLHB
+- US-MIDW-LGEE
+- US-MIDW-MISO
+- US-NE-ISNE
+- US-NW-AVA
+- US-NW-AVRN
+- US-NW-BPAT
+- US-NW-CHPD
+- US-NW-DOPD
+- US-NW-GCPD
+- US-NW-GRID
+- US-NW-GWA
+- US-NW-IPCO
+- US-NW-NEVP
+- US-NW-NWMT
+- US-NW-PACE
+- US-NW-PACW
+- US-NW-PGE
+- US-NW-PSCO
+- US-NW-PSEI
+- US-NW-SCL
+- US-NW-TPWR
+- US-NW-WACM
+- US-NW-WAUW
+- US-NW-WWA
+- US-NY-NYIS
+- US-SE-AEC
+- US-SE-SEPA
+- US-SE-SOCO
+- US-SW-AZPS
+- US-SW-DEAA
+- US-SW-EPE
+- US-SW-GRIF
+- US-SW-GRMA
+- US-SW-HGMA
+- US-SW-PNM
+- US-SW-SRP
+- US-SW-TEPC
+- US-SW-WALC
+- US-TEN-TVA
+- US-TEX-ERCO
+timezone: US-Central
