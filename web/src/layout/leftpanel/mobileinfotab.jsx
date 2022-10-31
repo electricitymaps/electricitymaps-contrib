@@ -7,6 +7,27 @@ import FAQ from '../../components/faq';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 import SocialButtons from './socialbuttons';
 import Icon from '../../components/icon';
+import styled from 'styled-components';
+
+const InfoTabContainer = styled.div`
+  padding: 1rem;
+  line-height: normal !important;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  flex: 1 1 0px;
+
+  @include respond-to('medium-up') {
+    padding-top: 0.5rem;
+  }
+
+  p {
+    margin: 0.6rem 0;
+  }
+
+  .info-text p {
+    margin: 0.6rem 0;
+  }
+`;
 
 const MobileInfoTab = () => {
   const { __ } = useTranslation();
@@ -45,7 +66,7 @@ const MobileInfoTab = () => {
   }
 
   return (
-    <div className="mobile-info-tab">
+    <InfoTabContainer>
       <div className="socialicons">
         <div
           className="fb-like"
@@ -109,7 +130,7 @@ const MobileInfoTab = () => {
 
       <div className="mobile-faq-header">{__('misc.faq')}</div>
       <FAQ className="mobile-faq" />
-    </div>
+    </InfoTabContainer>
   );
 };
 

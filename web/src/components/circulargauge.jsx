@@ -1,12 +1,23 @@
 import React from 'react';
 import { Motion, spring } from 'react-motion';
 import { arc } from 'd3-shape';
+import styled from 'styled-components';
 
 /*
   Note: Motion has a bug https://github.com/chenglou/react-motion/issues/567
   that causes a Warning: Can't perform a React state update on an unmounted component
   including Motion.startAnimationIfNecessary in the stack trace.
 */
+
+const CircularGaugeGroup = styled.g`
+  .background {
+    fill: var(--light-gray);
+  }
+
+  .foreground {
+    fill: var(--light-blue);
+  }
+`;
 
 const CircularGauge = React.memo(
   ({
@@ -39,7 +50,7 @@ const CircularGauge = React.memo(
       >
         <svg style={{ pointerEvents: 'none' }} width={radius * 2} height={radius * 2}>
           <g transform={`translate(${radius},${radius})`}>
-            <g className="circular-gauge">
+            <CircularGaugeGroup>
               <path className="background" d={percentageFill(100)} />
               <Motion
                 defaultStyle={{ percentage: 0 }}
@@ -50,7 +61,7 @@ const CircularGauge = React.memo(
               <text style={{ textAnchor: 'middle', fontWeight: 'bold', fontSize }} dy="0.4em">
                 {Number.isFinite(percentage) ? `${Math.round(percentage)}%` : '?'}
               </text>
-            </g>
+            </CircularGaugeGroup>
           </g>
         </svg>
       </div>
