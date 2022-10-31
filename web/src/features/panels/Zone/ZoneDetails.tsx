@@ -1,10 +1,11 @@
 import useGetZone from 'api/getZone';
 import LoadingOrError from 'components/LoadingOrError';
-import type { ReactElement } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { TimeAverages } from 'types';
 
-export default function ZoneDetailsPage({ zoneId }: { zoneId: string }): ReactElement {
+export default function ZoneDetails(): JSX.Element {
+  const { zoneId } = useParams();
+
   const { isLoading, isError, error, data } = useGetZone(TimeAverages.HOURLY, zoneId, { enabled: Boolean(zoneId) });
 
   if (!zoneId) {

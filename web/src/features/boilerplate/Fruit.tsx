@@ -2,7 +2,7 @@ import type { KeyboardEvent, ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { IFruit } from 'types';
 import { useMediaQuery } from 'utils';
-import ImageAttribution from './ImageAttribution';
+import ImageAttribution from './components/ImageAttribution';
 
 const PREFERRED_IMAGE_WIDTH = 384;
 const MOBILE_PADDING = 16;

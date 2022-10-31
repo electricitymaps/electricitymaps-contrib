@@ -1,9 +1,9 @@
 import { screen, waitFor } from '@testing-library/react';
-import Gallery from '../Gallery';
+import Gallery from './Gallery';
 import type ReactRouterDOM from 'react-router-dom';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import renderWithProviders, { MOBILE_RESOLUTION_HEIGHT, MOBILE_RESOLUTION_WIDTH } from 'testing/testUtils';
-import Details from '../Details';
+import Details from './Details';
 
 vi.mock('react-router-dom', async () => ({
   ...(await vi.importActual<typeof ReactRouterDOM>('react-router-dom')),
