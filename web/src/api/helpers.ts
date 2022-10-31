@@ -1,5 +1,8 @@
 import invariant from 'tiny-invariant';
 
+const REFETCH_INTERVAL_MINUTES = 5;
+export const REFETCH_INTERVAL_MS = REFETCH_INTERVAL_MINUTES * 60 * 1000;
+
 async function sha256(message: string): Promise<string> {
   const BASE = 16;
   const MAX_LENGTH = 2;
