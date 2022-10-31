@@ -8,7 +8,7 @@ describe('Ranking Panel', () => {
     cy.get('.zone-list a').should('have.length.above', 3);
 
     // Search for a country
-    cy.get('[data-test-id=zone-search-bar] > input').type('Germ');
+    cy.get('.zone-search-bar > input').type('Germ');
     cy.get('.zone-list a').should('have.length', 1);
 
     // Click a country and return the the ranking panel
