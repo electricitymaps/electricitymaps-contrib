@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build-web": "pnpm -C ../web build",
+    "build-ios": "pnpm build-web && pnpm exec cap copy && pnpm exec cap sync && pnpm exec cap open ios",
+    "build-android": "pnpm build-web && pnpm exec cap copy && pnpm exec cap sync && pnpm exec cap open android",
     "dev-ios": "NODE_ENV=dev pnpm exec cap run ios",
     "dev-android": "NODE_ENV=dev pnpm exec cap run android"
   },
