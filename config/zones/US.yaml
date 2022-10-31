@@ -58,7 +58,7 @@ subZoneNames:
 - US-MIDW-MISO
 - US-NE-ISNE
 - US-NW-AVA
-- US-NW-AVRN
+#- US-NW-AVRN
 - US-NW-BPAT
 - US-NW-CHPD
 - US-NW-DOPD
@@ -83,7 +83,7 @@ subZoneNames:
 - US-SE-SEPA
 - US-SE-SOCO
 - US-SW-AZPS
-- US-SW-DEAA
+#- US-SW-DEAA
 - US-SW-EPE
 - US-SW-GRIF
 - US-SW-GRMA
