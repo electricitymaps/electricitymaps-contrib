@@ -9,7 +9,7 @@ capacity:
   oil: 0
   solar: 160
   unknown: 112.6
-  wind: 4886
+  wind: 5056
 contributors:
   - corradio
 parsers:

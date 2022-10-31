@@ -14,7 +14,7 @@ capacity:
   oil: 0
   solar: 21.9
   unknown: 46.8
-  wind: 2095
+  wind: 2112
 emissionFactors:
   direct:
     battery discharge:
