@@ -1,13 +1,13 @@
 capacity:
-  battery storage: 4827
-  biomass: 14482.5
+  battery storage: 4832
+  biomass: 14487.1
   coal: 224217.6
   gas: 556488.3
   geothermal: 3838.4
-  hydro: 77365.2
+  hydro: 79372.6
   hydro storage: 21969.3
   nuclear: 99886.8
-  oil: 29525.9
+  oil: 29535.9
   solar: 64199.1
   unknown: 1684.2
   wind: 133198.6
@@ -73,6 +73,7 @@ subZoneNames:
   - US-NW-PGE
   - US-NW-PSCO
   - US-NW-PSEI
+  - US-NW-SCL
   - US-NW-TPWR
   - US-NW-WACM
   - US-NW-WAUW
