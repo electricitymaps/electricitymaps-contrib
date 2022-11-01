@@ -2,6 +2,10 @@ VERSION 0.6
 FROM python:3.8
 WORKDIR /contrib
 
+config-files:
+  COPY config ./config
+  SAVE ARTIFACT .
+
 src-files:
   COPY electricitymap ./electricitymap
   COPY parsers ./parsers
