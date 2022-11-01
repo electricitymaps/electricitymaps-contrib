@@ -16,7 +16,7 @@ const { mergeZones } = require('../generate-zones-config');
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
 function validateGeometry(fc, config) {
-  console.log('Validating geometries...'); // eslint-disable-line no-console
+  console.info('Validating geometries...');
   zeroNullGeometries(fc);
   containsRequiredProperties(fc);
   zeroComplexPolygons(fc, config);

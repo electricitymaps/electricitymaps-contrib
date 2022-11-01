@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 2
       - name: Check frontend files
         id: check-frontend
-        uses: tj-actions/changed-files@v32.1.0
+        uses: tj-actions/changed-files@v34.0.0
         with:
           files: |
             **/web/**/*
@@ -31,19 +31,19 @@ jobs:
             **/web/**/*.md
       - name: Check markdown files
         id: check-markdown
-        uses: tj-actions/changed-files@v32.1.0
+        uses: tj-actions/changed-files@v34.0.0
         with:
           files: |
             **/*.md
       - name: Check json files
         id: check-json
-        uses: tj-actions/changed-files@v32.1.0
+        uses: tj-actions/changed-files@v34.0.0
         with:
           files: |
             **/*.json
       - name: Check python files
         id: check-python
-        uses: tj-actions/changed-files@v32.1.0
+        uses: tj-actions/changed-files@v34.0.0
         with:
           files: |
             **/*.py
@@ -52,7 +52,7 @@ jobs:
             .python-version
       - name: Check if workflows have changed
         id: check-workflows
-        uses: tj-actions/changed-files@v32.1.0
+        uses: tj-actions/changed-files@v34.0.0
         with:
           files: |
             **/.github/workflows/**/*.yml
@@ -77,7 +77,7 @@ jobs:
 
   jest:
     name: Jest
-    needs: [setup]
+    needs: [setup, prettier]
     if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/jest.yml
 
@@ -102,7 +102,7 @@ jobs:
 
   cypress:
     name: Cypress
-    needs: [eslint, verify]
+    needs: [eslint, verify, jest]
     uses: ./.github/workflows/cypress.yml
     secrets: inherit
 

@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 var d3 = require('d3');
 const { mergeZones } = require('./generate-zones-config');
 const { saveZoneYaml } = require('./files');
@@ -43,7 +41,7 @@ Promise.all(jobs).then((parsers) => {
     var commits = obj[1];
     var authors = {}; // unique author list
     commits.forEach((commit) => {
-      console.log(commit.author);
+      console.info(commit.author);
       if (commit.author) {
         authors[commit.author.html_url] = true;
       }

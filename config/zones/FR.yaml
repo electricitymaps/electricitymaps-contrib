@@ -9,8 +9,8 @@ capacity:
   coal: 1818
   gas: 12752
   geothermal: 16
-  hydro: 18743.6955
-  hydro storage: 5029.87
+  hydro: 20222.24623
+  hydro storage: 5053.468
   nuclear: 61370
   oil: 2890
   solar: 13612
@@ -20,7 +20,7 @@ contributors:
   - corradio
   - lorrieq
   - nessie2013
-  - gafakast
+  - gadakast
 emissionFactors:
   direct:
     battery discharge:
