@@ -1,0 +1,11 @@
+bounding_box:
+  - - -113.83417
+    - 32.00496
+  - - -110.438901961
+    - 34.54817
+bypassAggregationChecks: true
+subZoneNames:
+  - US-SW-DEAA
+  - US-SW-HGMA
+  - US-SW-SRP
+timezone: US/Arizona
