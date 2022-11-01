@@ -6,4 +6,5 @@ bounding_box:
 subZoneNames:
   - US-SW-WALC
   - US-SW-GRIF
+hasGeometry: true
 timezone: US/Arizona

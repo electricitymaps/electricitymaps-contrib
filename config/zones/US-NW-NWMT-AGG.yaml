@@ -5,6 +5,7 @@ bounding_box:
     - 49.5011000000001
 comment: Northwestern Energy (Nwmt)
 bypassAggregationChecks: true
+hasGeometry: true
 timezone: US/Mountain
 subZoneNames:
   - US-NW-NWMT

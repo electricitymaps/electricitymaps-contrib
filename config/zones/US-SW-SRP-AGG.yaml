@@ -4,6 +4,7 @@ bounding_box:
   - - -110.438901961
     - 34.54817
 bypassAggregationChecks: true
+hasGeometry: true
 subZoneNames:
   - US-SW-DEAA
   - US-SW-HGMA
