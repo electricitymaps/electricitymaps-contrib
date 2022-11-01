@@ -56,11 +56,37 @@ const MobileHeader = styled.div`
 
   /* iOS Safari 11.4+, Safari 11.1+, Chrome 69+, Opera 56+ */
   padding-top: env(safe-area-inset-top, 0px);
+
+  @include respond-to('small') {
+    min-height: 50px;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* required for the box-shadow to overlay everything */
+  }
 `;
 
 const RightHeader = styled.div`
   @media (min-width: 768px) {
     display: none !important;
+  }
+
+  @include respond-to('small') {
+    font-size: 0.6em;
+  }
+`;
+
+const HeaderContent = styled.div`
+  @include respond-to('small') {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1rem;
+    height: 50px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 24px;
+    box-sizing: border-box;
   }
 `;
 
@@ -84,6 +110,20 @@ const Container = styled.div`
   }
 `;
 
+const LogoContainer = styled.div`
+  @include respond-to('small') {
+    display: flex;
+  }
+`;
+
+const ElectricityMapLogo = styled.div`
+  display: inline-block;
+  height: 25px;
+  width: 130px;
+  background-image: url(../images/electricitymap-logo.svg);
+  background-size: cover;
+`;
+
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const location = useLocation();
 
@@ -93,14 +133,14 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
   return (
     <Container pathname={location.pathname} className={`panel left-panel ${collapsedClass}`}>
       <MobileHeader id="mobile-header" className="brightmode">
-        <div className="header-content">
-          <div className="logo">
-            <div className="image" id="electricitymap-logo" />
-          </div>
-          <RightHeader className="right-header">
+        <HeaderContent>
+          <LogoContainer>
+            <ElectricityMapLogo />
+          </LogoContainer>
+          <RightHeader>
             <LastUpdatedTime />
           </RightHeader>
-        </div>
+        </HeaderContent>
       </MobileHeader>
 
       <LeftPanelCollapseButton
