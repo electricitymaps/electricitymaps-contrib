@@ -17,6 +17,44 @@ class TestEIA(unittest.TestCase):
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
 
+    def test_fetch_production_mix(self):
+        wind_avrn_data = resource_string(
+            "parsers.test.mocks.EIA", "US_NW_AVRN-wind.json"
+        )
+        self.adapter.register_uri(GET, ANY, json=loads(wind_avrn_data.decode("utf-8")))
+        data_list = EIA.fetch_production_mix("US-NW-PGE", self.session)
+        expected = [
+            {
+                "zoneKey": "US-NW-PGE",
+                "source": "eia.gov",
+                "production": {
+                    "gas": 1,
+                    "coal": 1,
+                    "wind": 1,
+                    "hydro": 1,
+                    "nuclear": 1,
+                    "oil": 1,
+                    "unknown": 1,
+                    "solar": 1,
+                },
+            },
+            {
+                "zoneKey": "US-NW-PGE",
+                "source": "eia.gov",
+                "production": {
+                    "gas": 2,
+                    "coal": 2,
+                    "wind": 2,
+                    "hydro": 2,
+                    "nuclear": 2,
+                    "oil": 2,
+                    "unknown": 2,
+                    "solar": 2,
+                },
+            },
+        ]
+        self.check_production_matches(data_list, expected)
+
     def test_US_NW_AVRN_rerouting(self):
         gas_avrn_data = resource_string("parsers.test.mocks.EIA", "US_NW_AVRN-gas.json")
         wind_avrn_data = resource_string(
@@ -52,19 +90,9 @@ class TestEIA(unittest.TestCase):
             {
                 "zoneKey": "US-NW-PACW",
                 "source": "eia.gov",
-                "production": {"gas": 30},
+                "production": {"gas": 330},
             },
-            {
-                "zoneKey": "US-NW-PACW",
-                "source": "eia.gov",
-                "production": {"gas": 50},
-            },
-            {
-                "zoneKey": "US-NW-PACW",
-                "source": "eia.gov",
-                "production": {"gas": 300},
-            },
-            {"zoneKey": "US-NW-PACW", "source": "eia.gov", "production": {"gas": 400}},
+            {"zoneKey": "US-NW-PACW", "source": "eia.gov", "production": {"gas": 450}},
         ]
         self.check_production_matches(data_list, expected)
         data_list = EIA.fetch_production_mix("US-NW-BPAT", self.session)
@@ -72,22 +100,12 @@ class TestEIA(unittest.TestCase):
             {
                 "zoneKey": "US-NW-BPAT",
                 "source": "eia.gov",
-                "production": {"wind": 20},
+                "production": {"wind": 21},
             },
             {
                 "zoneKey": "US-NW-BPAT",
                 "source": "eia.gov",
-                "production": {"wind": 40},
-            },
-            {
-                "zoneKey": "US-NW-BPAT",
-                "source": "eia.gov",
-                "production": {"wind": 1},
-            },
-            {
-                "zoneKey": "US-NW-BPAT",
-                "source": "eia.gov",
-                "production": {"wind": 2},
+                "production": {"wind": 42},
             },
         ]
         self.check_production_matches(data_list, expected)
@@ -100,6 +118,7 @@ class TestEIA(unittest.TestCase):
         self.assertIsNotNone(actual)
         self.assertEqual(len(expected), len(actual))
         for i, data in enumerate(actual):
+            print(data)
             self.assertEqual(data["zoneKey"], expected[i]["zoneKey"])
             self.assertEqual(data["source"], expected[i]["source"])
             self.assertIsNotNone(data["datetime"])

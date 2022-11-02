@@ -8,10 +8,9 @@ and exposes them via a unified API.
 Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
-import os
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
 import arrow
 from dateutil import parser, tz
@@ -430,25 +429,28 @@ def fetch_production_mix(
 
         if zone_key == "US-NW-PACW" and type == "gas":
             url_prefix = PRODUCTION_MIX.format(REGIONS["US-NW-AVRN"], code)
-            mix += _fetch(
+            additional_mix = _fetch(
                 "US-NW-AVRN",
                 url_prefix,
                 session=session,
                 target_datetime=target_datetime,
                 logger=logger,
             )
+            mix = _merge_production_mix([mix, additional_mix])
 
         if zone_key == "US-NW-BPAT" and type == "wind":
             url_prefix = PRODUCTION_MIX.format(REGIONS["US-NW-AVRN"], code)
-            mix += _fetch(
+            additional_mix = _fetch(
                 "US-NW-AVRN",
                 url_prefix,
                 session=session,
                 target_datetime=target_datetime,
                 logger=logger,
             )
+            mix = _merge_production_mix([mix, additional_mix])
         if not mix:
             continue
+
         for point in mix:
             negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
                 type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
@@ -572,6 +574,26 @@ def _fetch(
         }
         for datapoint in raw_data["response"]["data"]
     ]
+
+
+def _order_by_timestamp(datapoints: List[dict]) -> Dict[str, dict]:
+    indexed_data = {}
+    for datapoint in datapoints:
+        indexed_data[datapoint["datetime"]] = datapoint
+    return indexed_data
+
+
+def _merge_production_mix(mixes: List[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
+    merged_data = {}
+    for mix in mixes:
+        indexed_mix = _order_by_timestamp(mix)
+        for timestamp, mix_value in indexed_mix.items():
+            if not timestamp in merged_data.keys():
+                merged_data[timestamp] = mix_value
+            else:
+                print(mix_value)
+                merged_data[timestamp]["value"] += mix_value["value"]
+    return list(merged_data.values())
 
 
 def _conform_timestamp_convention(dt: datetime):
