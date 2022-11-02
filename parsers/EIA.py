@@ -95,6 +95,7 @@ REGIONS = {
     "US-MIDW-MISO": "MISO",  # Midcontinent Independent Transmission System Operator, Inc..
     "US-NE-ISNE": "ISNE",  # Iso New England Inc.
     "US-NW-AVA": "AVA",  # Avista Corporation
+    "US-NW-AVRN": "AVRN",  # Avangrid Renewables, LLC
     "US-NW-BPAT": "BPAT",  # Bonneville Power Administration
     "US-NW-CHPD": "CHPD",  # Public Utility District No. 1 Of Chelan County
     "US-NW-DOPD": "DOPD",  # Pud No. 1 Of Douglas County
@@ -422,6 +423,34 @@ def fetch_production_mix(
             for point in mix:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
 
+        # US-NW-AVRN is a producer only zone
+        #  supplying all its production to other zones.
+        # gas production is sent to US-NW-PACW
+        # wind production is sent to US-NW-BPAT
+
+        if zone_key == "US-NW-PACW" and type == "gas":
+            url_prefix = PRODUCTION_MIX.format(REGIONS["US-NW-AVRN"], code)
+            mix.append(
+                _fetch(
+                    "US-NW-AVRN",
+                    url_prefix,
+                    session=session,
+                    target_datetime=target_datetime,
+                    logger=logger,
+                )
+            )
+
+        if zone_key == "US-NW-BPAT" and type == "wind":
+            url_prefix = PRODUCTION_MIX.format(REGIONS["US-NW-AVRN"], code)
+            mix.append(
+                _fetch(
+                    "US-NW-AVRN",
+                    url_prefix,
+                    session=session,
+                    target_datetime=target_datetime,
+                    logger=logger,
+                )
+            )
         if not mix:
             continue
         for point in mix:
