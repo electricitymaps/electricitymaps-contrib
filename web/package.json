@@ -12,7 +12,6 @@
   },
   "scripts": {
     "build": "vite build",
-    "commit": "cz",
     "dev": "vite --open",
     "prepare": "cd .. && husky install web/.husky",
     "preview": "vite preview",
@@ -57,10 +56,8 @@
     "@vitejs/plugin-react": "2.1.0",
     "@vitest/coverage-istanbul": "0.24.3",
     "autoprefixer": "10.4.12",
-    "commitizen": "4.2.5",
     "css-mediaquery": "0.1.2",
     "cypress": "10.10.0",
-    "cz-conventional-changelog": "3.3.0",
     "eslint": "8.26.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-base": "15.0.0",
