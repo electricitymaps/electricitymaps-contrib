@@ -12,7 +12,7 @@
         "respondent-name": "Avangrid Renewables, LLC",
         "fueltype": "WIN",
         "type-name": "Wind",
-        "value": 348,
+        "value": 1,
         "value-units": "megawatthours"
       },
       {
@@ -21,7 +21,7 @@
         "respondent-name": "Avangrid Renewables, LLC",
         "fueltype": "WIN",
         "type-name": "Wind",
-        "value": 30,
+        "value": 2,
         "value-units": "megawatthours"
       }
     ],

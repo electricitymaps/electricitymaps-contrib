@@ -8,29 +8,20 @@
     "data": [
       {
         "period": "2022-10-31T11",
-        "respondent": "AVRN",
+        "respondent": "PACW",
         "respondent-name": "Avangrid Renewables, LLC",
         "fueltype": "NG",
         "type-name": "Natural gas",
-        "value": 348,
+        "value": 30,
         "value-units": "megawatthours"
       },
       {
         "period": "2022-10-31T12",
-        "respondent": "AVRN",
+        "respondent": "PACW",
         "respondent-name": "Avangrid Renewables, LLC",
         "fueltype": "NG",
         "type-name": "Natural gas",
-        "value": 451,
-        "value-units": "megawatthours"
-      },
-      {
-        "period": "2022-10-31T13",
-        "respondent": "AVRN",
-        "respondent-name": "Avangrid Renewables, LLC",
-        "fueltype": "NG",
-        "type-name": "Natural gas",
-        "value": 396,
+        "value": 50,
         "value-units": "megawatthours"
       }
     ],
@@ -41,12 +32,12 @@
     "params": {
       "data": ["value"],
       "facets": {
-        "respondent": ["AVRN"],
+        "respondent": ["PACW"],
         "fueltype": ["NG"]
       },
       "frequency": "hourly",
       "start": "2022-10-31T11",
-      "end": "2022-10-31T13"
+      "end": "2022-10-31T12"
     }
   },
   "apiVersion": "2.0.3"

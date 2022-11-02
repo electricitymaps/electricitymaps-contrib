@@ -430,26 +430,22 @@ def fetch_production_mix(
 
         if zone_key == "US-NW-PACW" and type == "gas":
             url_prefix = PRODUCTION_MIX.format(REGIONS["US-NW-AVRN"], code)
-            mix.append(
-                _fetch(
-                    "US-NW-AVRN",
-                    url_prefix,
-                    session=session,
-                    target_datetime=target_datetime,
-                    logger=logger,
-                )
+            mix += _fetch(
+                "US-NW-AVRN",
+                url_prefix,
+                session=session,
+                target_datetime=target_datetime,
+                logger=logger,
             )
 
         if zone_key == "US-NW-BPAT" and type == "wind":
             url_prefix = PRODUCTION_MIX.format(REGIONS["US-NW-AVRN"], code)
-            mix.append(
-                _fetch(
-                    "US-NW-AVRN",
-                    url_prefix,
-                    session=session,
-                    target_datetime=target_datetime,
-                    logger=logger,
-                )
+            mix += _fetch(
+                "US-NW-AVRN",
+                url_prefix,
+                session=session,
+                target_datetime=target_datetime,
+                logger=logger,
             )
         if not mix:
             continue

@@ -1,6 +1,7 @@
 import os
 import unittest
 from json import loads
+from typing import Dict, List, Union
 
 from pkg_resources import resource_string
 from requests import Session
@@ -11,7 +12,7 @@ from parsers import EIA
 
 class TestEIA(unittest.TestCase):
     def setUp(self):
-        os.environ["KEY"] = "token"
+        os.environ["EIA_KEY"] = "token"
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
@@ -29,9 +30,9 @@ class TestEIA(unittest.TestCase):
             "parsers.test.mocks.EIA", "US_NW_BPAT-wind.json"
         )
         gas_avrn_url = EIA.PRODUCTION_MIX.format("AVRN", "NG")
-        wind_avrn_url = EIA.PRODUCTION_MIX.format("AVRN", "WIND")
+        wind_avrn_url = EIA.PRODUCTION_MIX.format("AVRN", "WND")
         gas_pacw_url = EIA.PRODUCTION_MIX.format("PACW", "NG")
-        wind_bpat_url = EIA.PRODUCTION_MIX.format("BPAT", "WIND")
+        wind_bpat_url = EIA.PRODUCTION_MIX.format("BPAT", "WND")
         self.adapter.register_uri(GET, ANY, json=loads(other_avrn_data.decode("utf-8")))
         self.adapter.register_uri(
             GET, wind_avrn_url, json=loads(wind_avrn_data.decode("utf-8"))
@@ -47,34 +48,63 @@ class TestEIA(unittest.TestCase):
         )
 
         data_list = EIA.fetch_production_mix("US-NW-PACW", self.session)
-        self.assertIsNotNone(data_list)
         expected = [
             {
                 "zoneKey": "US-NW-PACW",
                 "source": "eia.gov",
-                "production": {"gas": 348},
+                "production": {"gas": 30},
             },
             {
                 "zoneKey": "US-NW-PACW",
                 "source": "eia.gov",
-                "production": {"gas": 451},
+                "production": {"gas": 50},
             },
             {
                 "zoneKey": "US-NW-PACW",
                 "source": "eia.gov",
-                "production": {"gas": 396},
+                "production": {"gas": 300},
             },
-            {"zoneKey": "US-NW-BAPT", "source": "eia.gov"},
+            {"zoneKey": "US-NW-PACW", "source": "eia.gov", "production": {"gas": 400}},
         ]
-        self.assertEqual(len(expected), len(data_list))
-        for i, data in enumerate(data_list):
+        self.check_production_matches(data_list, expected)
+        data_list = EIA.fetch_production_mix("US-NW-BPAT", self.session)
+        expected = [
+            {
+                "zoneKey": "US-NW-BPAT",
+                "source": "eia.gov",
+                "production": {"wind": 20},
+            },
+            {
+                "zoneKey": "US-NW-BPAT",
+                "source": "eia.gov",
+                "production": {"wind": 40},
+            },
+            {
+                "zoneKey": "US-NW-BPAT",
+                "source": "eia.gov",
+                "production": {"wind": 1},
+            },
+            {
+                "zoneKey": "US-NW-BPAT",
+                "source": "eia.gov",
+                "production": {"wind": 2},
+            },
+        ]
+        self.check_production_matches(data_list, expected)
+
+    def check_production_matches(
+        self,
+        actual: List[Dict[str, Union[str, Dict]]],
+        expected: List[Dict[str, Union[str, Dict]]],
+    ):
+        self.assertIsNotNone(actual)
+        self.assertEqual(len(expected), len(actual))
+        for i, data in enumerate(actual):
             self.assertEqual(data["zoneKey"], expected[i]["zoneKey"])
             self.assertEqual(data["source"], expected[i]["source"])
             self.assertIsNotNone(data["datetime"])
-            self.assertEqual(
-                data["production"]["gas"], expected[i]["production"]["gas"]
-            )
-        data_list = EIA.fetch_production_mix("US-NW-BPAT", self.session)
+            for key, value in data["production"].items():
+                self.assertEqual(value, expected[i]["production"][key])
 
 
 if __name__ == "__main__":

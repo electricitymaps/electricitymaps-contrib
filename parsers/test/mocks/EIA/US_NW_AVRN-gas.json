@@ -12,7 +12,7 @@
         "respondent-name": "Avangrid Renewables, LLC",
         "fueltype": "NG",
         "type-name": "Natural gas",
-        "value": 348,
+        "value": 300,
         "value-units": "megawatthours"
       },
       {
@@ -21,16 +21,7 @@
         "respondent-name": "Avangrid Renewables, LLC",
         "fueltype": "NG",
         "type-name": "Natural gas",
-        "value": 451,
-        "value-units": "megawatthours"
-      },
-      {
-        "period": "2022-10-31T13",
-        "respondent": "AVRN",
-        "respondent-name": "Avangrid Renewables, LLC",
-        "fueltype": "NG",
-        "type-name": "Natural gas",
-        "value": 396,
+        "value": 400,
         "value-units": "megawatthours"
       }
     ],

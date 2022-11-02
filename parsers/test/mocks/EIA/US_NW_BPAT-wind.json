@@ -8,29 +8,20 @@
     "data": [
       {
         "period": "2022-10-31T11",
-        "respondent": "AVRN",
+        "respondent": "BPAT",
         "respondent-name": "Avangrid Renewables, LLC",
-        "fueltype": "NG",
-        "type-name": "Natural gas",
-        "value": 348,
+        "fueltype": "WIND",
+        "type-name": "Wind",
+        "value": 20,
         "value-units": "megawatthours"
       },
       {
         "period": "2022-10-31T12",
-        "respondent": "AVRN",
+        "respondent": "BPAT",
         "respondent-name": "Avangrid Renewables, LLC",
-        "fueltype": "NG",
-        "type-name": "Natural gas",
-        "value": 451,
-        "value-units": "megawatthours"
-      },
-      {
-        "period": "2022-10-31T13",
-        "respondent": "AVRN",
-        "respondent-name": "Avangrid Renewables, LLC",
-        "fueltype": "NG",
-        "type-name": "Natural gas",
-        "value": 396,
+        "fueltype": "WIND",
+        "type-name": "Wind",
+        "value": 40,
         "value-units": "megawatthours"
       }
     ],
@@ -41,8 +32,8 @@
     "params": {
       "data": ["value"],
       "facets": {
-        "respondent": ["AVRN"],
-        "fueltype": ["NG"]
+        "respondent": ["BPAT"],
+        "fueltype": ["WIND"]
       },
       "frequency": "hourly",
       "start": "2022-10-31T11",
