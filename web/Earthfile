@@ -13,6 +13,10 @@ src-files:
   COPY yarn.lock .
   SAVE ARTIFACT .
 
+geo-files:
+  COPY geo ./geo
+  SAVE ARTIFACT .
+
 prepare:
   FROM +src-files
   RUN yarn
