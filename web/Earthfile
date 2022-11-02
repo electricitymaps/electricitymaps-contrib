@@ -1,0 +1,58 @@
+VERSION 0.6
+FROM node:16.15
+WORKDIR /contrib/web
+
+src-files:
+  COPY generate-zones-config.js .
+  COPY geo/utilities.js ./geo/utilities.js
+  COPY locales-config.json .
+  COPY translation-status.js .
+  COPY public/locales ./public/locales
+  COPY ../config+src-files/* ../config
+  COPY package.json .
+  COPY yarn.lock .
+  SAVE ARTIFACT .
+
+prepare:
+  FROM +src-files
+  RUN yarn
+  COPY geo ./geo
+  COPY locales-config.json translation-status.js ./
+  COPY --dir src views public ./
+  COPY .babelrc .eslintrc.js server.js webpack.config.js ./
+
+test:
+  FROM +prepare
+  RUN echo 'no tests'
+
+build:
+  FROM +prepare
+
+  ARG ELECTRICITYMAP_PUBLIC_TOKEN
+  ARG EARTHLY_GIT_HASH
+  ENV COMMIT_SHA=$EARTHLY_GIT_HASH
+
+  RUN mkdir -p public/dist
+  RUN yarn update-version
+  RUN yarn build-release
+  RUN yarn verify-zones-config
+
+  # Local outputs for debugging
+  SAVE ARTIFACT ./src/config/world.json AS LOCAL ./src/config/world.json
+  SAVE ARTIFACT ./src/config/excluded-aggregated-exchanges.json AS LOCAL ./src/config/excluded-aggregated-exchanges.json
+  SAVE ARTIFACT ./public/dist AS LOCAL ./public/dist
+
+  # Artifact to be deployed
+  SAVE ARTIFACT ./public
+  SAVE IMAGE --push eu.gcr.io/tmrow-152415/electricitymap_web
+
+deploy:
+  BUILD +build
+  FROM google/cloud-sdk:243.0.0
+  COPY +build/public ./public
+  RUN --push --mount=type=secret,target=./GCP_KEY.JSON,id=GCP_KEY \
+        gcloud auth activate-service-account --key-file=GCP_KEY.JSON && \
+        gsutil -m cp -a public-read -r public/* gs://static.electricitymap.org/public_web && \
+        gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://static.electricitymap.org/public_web/client-version.json && \
+        gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://static.electricitymap.org/public_web/dist/manifest.json && \
+        gcloud auth revoke
