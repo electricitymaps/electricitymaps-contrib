@@ -72,8 +72,6 @@ for row_upstream in df_upstream.itertuples():
         _rows_lifecycle.append(dict(row_upstream._asdict()))
     else:
         row_direct = _get_row_direct(row_upstream)
-        if row_upstream.zone_key == "AX":
-            breakpoint()
         _row_lifecycle = deepcopy(dict(row_upstream._asdict()))
         _row_lifecycle["emission_factor"] += row_direct.emission_factor
         _row_lifecycle["datetime"] = _get_lifecycle_datetime(row_upstream, row_direct)

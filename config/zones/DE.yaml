@@ -50,6 +50,18 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 297.22743966244326
+    biomass:
+      datetime: '2021-01-01'
+      source: 'EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      value: 439.145806
+    coal:
+      datetime: '2020-01-01'
+      source: 'EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      value: 1073.03112
+    gas:
+      datetime: '2021-01-01'
+      source: 'EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      value: 540.5939971
     hydro discharge:
       - datetime: '2015-01-01'
         source: electricityMap, 2015 average
@@ -72,6 +84,10 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 297.22743966244326
+    oil:
+      datetime: '2021-01-01'
+      source: 'EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      value: 880.903938
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -96,11 +112,11 @@ emissionFactors:
         source: electricityMap, 2021 average
         value: 297.22743966244326
     coal:
-      datetime: '2012-01-01'
-      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+      datetime: '2020-01-01'
+      source: 'Oberschelp, Christopher, et al. "Global emission hotspots of coal power
         generation.", https://drive.google.com/file/d/1XLg4fJ9_Bv9AfUda6yQlKeQ7vDwnUsaO/view?usp=sharing;
-        IPCC 2014
-      value: 839.355561
+        EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      value: 1152.3866810000002
     hydro:
       datetime: '2020-01-01'
       source: UNECE, https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=53

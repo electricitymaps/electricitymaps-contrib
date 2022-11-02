@@ -20,6 +20,19 @@ contributors:
   - nessie2013
 disclaimer: The data provider (ENTSO-E) underreports production and consumption data.
 emissionFactors:
+  direct:
+    biomass:
+      datetime: '2021-01-01'
+      source: 'EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      value: 439.145806
+    gas:
+      datetime: '2021-01-01'
+      source: 'EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      value: 470.7521775
+    oil:
+      datetime: '2021-01-01'
+      source: 'EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      value: 880.903938
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
