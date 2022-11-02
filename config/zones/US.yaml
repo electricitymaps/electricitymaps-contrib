@@ -58,16 +58,16 @@ subZoneNames:
 - US-MIDW-MISO
 - US-NE-ISNE
 - US-NW-AVA
-#- US-NW-AVRN
+#- US-NW-AVRN Production only zone, production integrated in US-NW-PACW for the gas and US-NW-BPAT for the wind
 - US-NW-BPAT
 - US-NW-CHPD
 - US-NW-DOPD
 - US-NW-GCPD
 - US-NW-GRID
-- US-NW-GWA
+# - US-NW-GWA Aggregated with US-NW-NWMT
 - US-NW-IPCO
 - US-NW-NEVP
-- US-NW-NWMT
+- US-NW-NWMT-AGG
 - US-NW-PACE
 - US-NW-PACW
 - US-NW-PGE
@@ -77,21 +77,22 @@ subZoneNames:
 - US-NW-TPWR
 - US-NW-WACM
 - US-NW-WAUW
-- US-NW-WWA
+#- US-NW-WWA Aggregated with US-NW-NWMT
 - US-NY-NYIS
 - US-SE-AEC
 - US-SE-SEPA
 - US-SE-SOCO
 - US-SW-AZPS
-#- US-SW-DEAA
+#- US-SW-DEAA Aggregated with US-SW-SRP
 - US-SW-EPE
-- US-SW-GRIF
+#- US-SW-GRIF Aggregated with US-SW-WALC
 - US-SW-GRMA
-- US-SW-HGMA
+#- US-SW-HGMA Aggregated with US-SW-SRP
 - US-SW-PNM
-- US-SW-SRP
+- US-SW-SRP-AGG
 - US-SW-TEPC
-- US-SW-WALC
+- US-SW-WALC-AGG
 - US-TEN-TVA
 - US-TEX-ERCO
+bypassAggregationChecks: true
 timezone: US-Central
