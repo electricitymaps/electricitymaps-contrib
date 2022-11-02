@@ -94,6 +94,9 @@ class Delays(StrictBaseModel):
 
 class Zone(StrictBaseModelWithAlias):
     bounding_box: Optional[List[Point]]
+    bypass_aggregation_checks: Optional[bool] = Field(
+        False, alias="bypassAggregationChecks"
+    )
     capacity: Optional[Capacity]
     comment: Optional[str] = Field(None, alias="_comment")
     contributors: Optional[List[str]]
