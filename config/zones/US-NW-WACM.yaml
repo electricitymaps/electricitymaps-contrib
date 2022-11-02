@@ -42,11 +42,11 @@ emissionFactors:
         value: 515.7360263413145
     coal:
       datetime: '2020-01-01'
-      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: eGrid 2020
       value: 1107.615308
     gas:
       datetime: '2020-01-01'
-      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: eGrid 2020
       value: 451.7150314
     hydro discharge:
       - datetime: '2018-01-01'
@@ -63,7 +63,7 @@ emissionFactors:
         value: 515.7360263413145
     oil:
       datetime: '2020-01-01'
-      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: eGrid 2020
       value: 953.0188558
   lifecycle:
     battery discharge:
@@ -81,10 +81,13 @@ emissionFactors:
         value: 565.1175752301851
     coal:
       datetime: '2020-01-01'
-      source: 'Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation.", https://drive.google.com/file/d/1XLg4fJ9_Bv9AfUda6yQlKeQ7vDwnUsaO/view?usp=sharing;
-        eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+        generation."; eGrid 2020
       value: 1125.725068
+    gas:
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 571.7150314
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -98,9 +101,13 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 565.1175752301851
+    oil:
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1197.0188558
     solar:
       datetime: '2021-01-01'
-      source: INCER ACV, https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+      source: INCER ACV
       value: 25.6
 fallbackZoneMixes:
   powerOriginRatios:

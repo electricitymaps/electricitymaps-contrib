@@ -31,11 +31,11 @@ emissionFactors:
         value: 445.3981040694054
     coal:
       datetime: '2020-01-01'
-      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: eGrid 2020
       value: 995.61187
     gas:
       datetime: '2020-01-01'
-      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: eGrid 2020
       value: 480.1222048
     hydro discharge:
       - datetime: '2020-01-01'
@@ -46,7 +46,7 @@ emissionFactors:
         value: 445.3981040694054
     oil:
       datetime: '2020-01-01'
-      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: eGrid 2020
       value: 786.0859158
   lifecycle:
     battery discharge:

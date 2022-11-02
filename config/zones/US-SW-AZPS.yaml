@@ -42,15 +42,15 @@ emissionFactors:
         value: 329.2721193872668
     biomass:
       datetime: '2020-01-01'
-      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
-      value: 34.52335329
+      source: eGrid 2020
+      value: 0.0
     coal:
       datetime: '2020-01-01'
-      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: eGrid 2020
       value: 1055.103824
     gas:
       datetime: '2020-01-01'
-      source: 'eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: eGrid 2020
       value: 371.3656203
     hydro discharge:
       - datetime: '2018-01-01'
@@ -79,12 +79,19 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 400.84470593835204
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 34.52335329
     coal:
       datetime: '2020-01-01'
-      source: 'Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation.", https://drive.google.com/file/d/1XLg4fJ9_Bv9AfUda6yQlKeQ7vDwnUsaO/view?usp=sharing;
-        eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+        generation."; eGrid 2020
       value: 1072.158303
+    gas:
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 491.3656203
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -98,9 +105,13 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 400.84470593835204
+    oil:
+      datetime: '2014-01-01'
+      source: EIA 2020/BEIS 2021; IPCC 2014
+      value: 650.0
     solar:
       datetime: '2021-01-01'
-      source: INCER ACV, https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+      source: INCER ACV
       value: 25.6
 fallbackZoneMixes:
   powerOriginRatios:

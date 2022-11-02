@@ -33,7 +33,7 @@ emissionFactors:
         value: 248.37990993773258
     gas:
       datetime: '2021-01-01'
-      source: 'EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      source: EU-ETS, ENTSO-E 2021
       value: 481.60707
     hydro discharge:
       - datetime: '2017-01-01'
@@ -53,7 +53,7 @@ emissionFactors:
         value: 248.37990993773258
     oil:
       datetime: '2021-01-01'
-      source: 'EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link'
+      source: EU-ETS, ENTSO-E 2021
       value: 880.903938
     unknown:
       source: Tidal (IPCC 2014)

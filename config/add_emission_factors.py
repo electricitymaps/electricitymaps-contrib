@@ -63,6 +63,9 @@ def _get_lifecycle_datetime(row_u: namedtuple, row_d: namedtuple) -> str:
         "YYYY-MM-DD"
     )
 
+def _join_sources(sources: list) -> str:
+    return "; ".join(list(set(sources)))
+
 
 # Sum per zone_key, per mode to get lifecycle emission factors
 _rows_lifecycle = []
@@ -75,7 +78,7 @@ for row_upstream in df_upstream.itertuples():
         _row_lifecycle = deepcopy(dict(row_upstream._asdict()))
         _row_lifecycle["emission_factor"] += row_direct.emission_factor
         _row_lifecycle["datetime"] = _get_lifecycle_datetime(row_upstream, row_direct)
-        _row_lifecycle["source"] = "; ".join([row_upstream.source, row_direct.source])
+        _row_lifecycle["source"] = _join_sources([row_upstream.source, row_direct.source])
         _rows_lifecycle.append(_row_lifecycle)
 
 # Remove the artefact `Index` column

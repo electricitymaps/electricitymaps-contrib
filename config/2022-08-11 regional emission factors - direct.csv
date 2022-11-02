@@ -1,355 +1,355 @@
 zone_key,mode,emission_factor,datetime,source
-PR,coal,995.61187,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-PR,gas,480.1222048,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-PR,oil,786.0859158,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-AK,coal,1054.589992,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-AK,gas,470.7986093,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-AK,oil,713.1828107,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-BANC,gas,389.6341439,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-CISO,biomass,101.6370901,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-CISO,coal,514.4743088,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-CISO,gas,403.8432591,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-CISO,geothermal,95.82104392,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-CISO,oil,910.2232446,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-IID,biomass,39.38869109,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-IID,gas,471.3724863,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-IID,geothermal,56.8894463,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-LDWP,biomass,138.0968906,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-LDWP,coal,932.7095009,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-LDWP,gas,405.0754852,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAL-TIDC,gas,462.3610483,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-CPLE,biomass,216.6227355,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-CPLE,coal,937.9666611,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-CPLE,gas,394.223375,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-DUK,coal,856.3493858,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-DUK,gas,396.0379906,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-SC,biomass,53.68073353,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-SC,coal,1072.534134,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-SC,gas,442.9124649,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-SCEG,biomass,90.54773858,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-SCEG,coal,849.2213607,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CAR-SCEG,gas,407.4177138,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CENT-SPA,coal,987.9224617,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CENT-SWPP,biomass,66.69147532,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CENT-SWPP,coal,1014.421382,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CENT-SWPP,gas,459.9267888,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-CENT-SWPP,oil,975.0111176,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-FMPP,coal,768.4856555,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-FMPP,gas,446.015972,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-FPC,biomass,572.1600047,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-FPC,coal,521.6312947,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-FPC,gas,423.934686,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-FPC,oil,1162.940076,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-FPL,biomass,902.3445824,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-FPL,gas,367.4893706,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-FPL,oil,390.0504417,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-GVL,biomass,424.0835095,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-GVL,coal,877.6982215,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-GVL,gas,457.6172075,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-JEA,biomass,82.16971627,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-JEA,gas,612.0220147,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-SEC,coal,964.3118179,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-SEC,gas,386.3298038,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-TAL,gas,359.8683566,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-TEC,biomass,1248.927719,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-FLA-TEC,gas,432.8237021,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-HI-HA,geothermal,0,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-HI-HA,oil,785.7600688,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-HI-KA,oil,779.2439369,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-HI-MA,oil,783.2844717,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-HI-OA,biomass,980.1789569,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-HI-OA,coal,1088.282256,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-HI-OA,oil,742.1719304,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDA-PJM,biomass,515.9462429,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDA-PJM,coal,970.4739304,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDA-PJM,gas,398.3043939,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDA-PJM,oil,751.5213327,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-AECI,coal,950.6306844,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-AECI,gas,400.7407839,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-GLHB,coal,989.6795376,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-GLHB,gas,961.3216471,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-LGEE,coal,939.8190588,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-LGEE,gas,378.1877271,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-MISO,biomass,139.1151962,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-MISO,coal,1014.733013,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-MISO,gas,409.968837,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-MIDW-MISO,oil,922.7890878,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NE-ISNE,biomass,429.7692167,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NE-ISNE,coal,1042.155724,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NE-ISNE,gas,389.0568749,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NE-ISNE,oil,1257.197843,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-AVA,biomass,205.8471989,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-AVA,gas,393.6395083,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-AVRN,gas,410.2399164,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-BPAT,biomass,85.91723542,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-BPAT,coal,1134.898924,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-BPAT,gas,394.4247594,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-BPAT,geothermal,0,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-GRID,gas,395.5270557,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-IPCO,gas,434.3409586,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-IPCO,geothermal,0,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-NEVP,coal,1092.399419,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-NEVP,gas,405.9274374,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-NEVP,geothermal,14.37975781,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-NWMT,coal,1063.960044,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-NWMT,gas,655.0343565,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-NWMT,oil,825.7991359,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PACE,coal,1048.49561,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PACE,gas,405.722707,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PACE,geothermal,32.63419569,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PACW,biomass,29.16184216,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PACW,gas,400.6744614,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PGE,coal,1040.946037,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PGE,gas,465.3652195,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PSCO,coal,1078.74216,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PSCO,gas,480.4971119,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PSEI,biomass,11.13357253,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-PSEI,gas,325.3877204,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-TPWR,biomass,25.02597585,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-WACM,coal,1107.615308,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-WACM,gas,451.7150314,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NW-WACM,oil,953.0188558,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NY-NYIS,biomass,667.6942738,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NY-NYIS,coal,1095.578562,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NY-NYIS,gas,412.8877102,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-NY-NYIS,oil,662.0576145,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SE-AEC,coal,1196.66141,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SE-AEC,gas,404.1054386,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SE-SOCO,biomass,72.20359898,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SE-SOCO,coal,865.2241498,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SE-SOCO,gas,403.2500634,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SE-SOCO,oil,569.2843708,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-AZPS,biomass,34.52335329,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-AZPS,coal,1055.103824,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-AZPS,gas,371.3656203,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-DEAA,gas,397.9497472,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-EPE,gas,545.8860298,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-GRIF,gas,390.1784429,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-PNM,coal,1202.427801,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-PNM,gas,412.1499722,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-SRP,coal,1218.520193,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-SRP,gas,376.0036772,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-TEPC,coal,1062.399036,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-TEPC,gas,505.3167692,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-SW-WALC,gas,517.3221021,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-TEN-TVA,biomass,14.46015011,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-TEN-TVA,coal,1070.741206,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-TEN-TVA,gas,391.2963051,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-TEN-TVA,oil,472.7975672,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-TEX-ERCO,biomass,0.4539605655,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-TEX-ERCO,coal,1043.400889,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-TEX-ERCO,gas,393.100066,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-US-TEX-ERCO,oil,1070.811109,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-PT,coal,1057.262766,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-PT-AC,coal,1057.262766,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-PT-MA,coal,1057.262766,2020-01-01,eGrid 2020: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
-ES,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-IZ,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-FO,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-MA,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-ME,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-LP,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-HI,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-IG,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-TE,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-GC,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-FVLZ,coal,971.2573613,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FR,coal,854.4786144,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FR-COR,coal,854.4786144,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IE,coal,758.4409086,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-BE,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LU,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DE,coal,1073.03112,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-BHM,coal,845.5332093,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-DK1,coal,845.5332093,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-DK2,coal,845.5332093,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE1,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE2,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE3,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE4,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FI,coal,895.6862569,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-EE,coal,832.9110972,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LV,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LT,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PL,coal,1012.451317,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-CZ,coal,1055.667306,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-AT,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SK,coal,1153.673876,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-HU,coal,1144.916957,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SI,coal,1046.269766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-NO,coal,997.0022828,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-CNO,coal,997.0022828,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-CSO,coal,997.0022828,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SO,coal,997.0022828,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SIC,coal,997.0022828,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SAR,coal,997.0022828,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-BG,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-GR,coal,1523.652468,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-GR-IS,coal,1523.652468,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-RO,coal,1464.275294,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-HR,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-MT,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-CY,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FO-MI,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FO-SI,coal,1057.262766,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-AX,coal,895.6862569,2020-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PT,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PT-AC,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PT-MA,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-IZ,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-FO,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-MA,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-ME,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-LP,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-HI,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-IG,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-TE,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-GC,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-FVLZ,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FR,biomass,819.5789414,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FR-COR,biomass,819.5789414,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IE,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-BE,biomass,548.8950964,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-NL,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LU,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DE,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-DK1,biomass,254.1851485,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-DK2,biomass,254.1851485,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-BHM,biomass,254.1851485,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE1,biomass,133.9240359,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE2,biomass,133.9240359,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE3,biomass,133.9240359,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE4,biomass,133.9240359,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FI,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-EE,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LV,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LT,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PL,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-CZ,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-AT,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SK,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-HU,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SI,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-NO,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-CNO,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-CSO,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SO,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SIC,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SAR,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-BG,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-GR,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-GR-IS,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-RO,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-HR,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-MT,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-CY,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FO-MI,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FO-SI,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-AX,biomass,439.145806,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PT,gas,372.109361,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PT-AC,gas,372.109361,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PT-MA,gas,372.109361,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-IZ,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-FO,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-MA,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-ME,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-LP,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-HI,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-IG,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-TE,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-GC,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-FVLZ,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FR,gas,504.846764,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FR-COR,gas,504.846764,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IE,gas,465.9170756,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-BE,gas,395.0912361,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-NL,gas,470.7521775,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LU,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DE,gas,540.5939971,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-DK1,gas,336.9719859,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-DK2,gas,336.9719859,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-BHM,gas,336.9719859,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE1,gas,447.9740216,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE2,gas,447.9740216,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE3,gas,447.9740216,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE4,gas,447.9740216,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FI,gas,684.2607818,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-EE,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LV,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LT,gas,356.9797889,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PL,gas,482.0973266,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-CZ,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-AT,gas,435.2364657,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SK,gas,347.5807988,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-HU,gas,455.1593805,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SI,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-NO,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-CNO,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-CSO,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SO,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SIC,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SAR,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-BG,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-GR,gas,382.5054126,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-GR-IS,gas,382.5054126,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-RO,gas,1068.215856,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-HR,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-MT,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-CY,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FO,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-AX,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PT,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PT-AC,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PT-MA,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-IZ,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-FO,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-MA,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-IB-ME,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-LP,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-HI,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-IG,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-TE,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-GC,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-ES-CN-FVLZ,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FR,oil,769.5956561,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FR-COR,oil,769.5956561,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IE,oil,911.7365666,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-BE,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-NL,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LU,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DE,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-DK1,oil,1193.417464,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-DK2,oil,1193.417464,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-DK-BHM,oil,1193.417464,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE1,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE2,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE3,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SE-SE4,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FI,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-EE,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LV,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-LT,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-PL,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-CZ,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-AT,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SK,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-HU,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-SI,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-NO,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-CNO,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-CSO,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SO,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SIC,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-IT-SAR,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-BG,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-GR,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-GR-IS,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-RO,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-HR,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-MT,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-CY,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-FO,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
-AX,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link"
+US-CAL-CISO,biomass,0,2020-01-01,eGrid 2020
+US-CAL-IID,biomass,0,2020-01-01,eGrid 2020
+US-CAL-LDWP,biomass,0,2020-01-01,eGrid 2020
+US-CAR-CPLE,biomass,0,2020-01-01,eGrid 2020
+US-CAR-SC,biomass,0,2020-01-01,eGrid 2020
+US-CAR-SCEG,biomass,0,2020-01-01,eGrid 2020
+US-CENT-SWPP,biomass,0,2020-01-01,eGrid 2020
+US-FLA-FPC,biomass,0,2020-01-01,eGrid 2020
+US-FLA-FPL,biomass,0,2020-01-01,eGrid 2020
+US-FLA-GVL,biomass,0,2020-01-01,eGrid 2020
+US-FLA-JEA,biomass,0,2020-01-01,eGrid 2020
+US-FLA-TEC,biomass,0,2020-01-01,eGrid 2020
+US-HI-OA,biomass,0,2020-01-01,eGrid 2020
+US-MIDA-PJM,biomass,0,2020-01-01,eGrid 2020
+US-MIDW-MISO,biomass,0,2020-01-01,eGrid 2020
+US-NE-ISNE,biomass,0,2020-01-01,eGrid 2020
+US-NW-AVA,biomass,0,2020-01-01,eGrid 2020
+US-NW-BPAT,biomass,0,2020-01-01,eGrid 2020
+US-NW-PACW,biomass,0,2020-01-01,eGrid 2020
+US-NW-PSEI,biomass,0,2020-01-01,eGrid 2020
+US-NW-TPWR,biomass,0,2020-01-01,eGrid 2020
+US-NY-NYIS,biomass,0,2020-01-01,eGrid 2020
+US-SE-SOCO,biomass,0,2020-01-01,eGrid 2020
+US-SW-AZPS,biomass,0,2020-01-01,eGrid 2020
+US-TEN-TVA,biomass,0,2020-01-01,eGrid 2020
+US-TEX-ERCO,biomass,0,2020-01-01,eGrid 2020
+PR,coal,995.61187,2020-01-01,eGrid 2020
+US-AK,coal,1054.589992,2020-01-01,eGrid 2020
+US-CAL-CISO,coal,514.4743088,2020-01-01,eGrid 2020
+US-CAL-LDWP,coal,932.7095009,2020-01-01,eGrid 2020
+US-CAR-CPLE,coal,937.9666611,2020-01-01,eGrid 2020
+US-CAR-DUK,coal,856.3493858,2020-01-01,eGrid 2020
+US-CAR-SC,coal,1072.534134,2020-01-01,eGrid 2020
+US-CAR-SCEG,coal,849.2213607,2020-01-01,eGrid 2020
+US-CENT-SPA,coal,987.9224617,2020-01-01,eGrid 2020
+US-CENT-SWPP,coal,1014.421382,2020-01-01,eGrid 2020
+US-FLA-FMPP,coal,768.4856555,2020-01-01,eGrid 2020
+US-FLA-FPC,coal,521.6312947,2020-01-01,eGrid 2020
+US-FLA-GVL,coal,877.6982215,2020-01-01,eGrid 2020
+US-FLA-SEC,coal,964.3118179,2020-01-01,eGrid 2020
+US-HI-OA,coal,1088.282256,2020-01-01,eGrid 2020
+US-MIDA-PJM,coal,970.4739304,2020-01-01,eGrid 2020
+US-MIDW-AECI,coal,950.6306844,2020-01-01,eGrid 2020
+US-MIDW-GLHB,coal,989.6795376,2020-01-01,eGrid 2020
+US-MIDW-LGEE,coal,939.8190588,2020-01-01,eGrid 2020
+US-MIDW-MISO,coal,1014.733013,2020-01-01,eGrid 2020
+US-NE-ISNE,coal,1042.155724,2020-01-01,eGrid 2020
+US-NW-BPAT,coal,1134.898924,2020-01-01,eGrid 2020
+US-NW-NEVP,coal,1092.399419,2020-01-01,eGrid 2020
+US-NW-NWMT,coal,1063.960044,2020-01-01,eGrid 2020
+US-NW-PACE,coal,1048.49561,2020-01-01,eGrid 2020
+US-NW-PGE,coal,1040.946037,2020-01-01,eGrid 2020
+US-NW-PSCO,coal,1078.74216,2020-01-01,eGrid 2020
+US-NW-WACM,coal,1107.615308,2020-01-01,eGrid 2020
+US-NY-NYIS,coal,1095.578562,2020-01-01,eGrid 2020
+US-SE-AEC,coal,1196.66141,2020-01-01,eGrid 2020
+US-SE-SOCO,coal,865.2241498,2020-01-01,eGrid 2020
+US-SW-AZPS,coal,1055.103824,2020-01-01,eGrid 2020
+US-SW-PNM,coal,1202.427801,2020-01-01,eGrid 2020
+US-SW-SRP,coal,1218.520193,2020-01-01,eGrid 2020
+US-SW-TEPC,coal,1062.399036,2020-01-01,eGrid 2020
+US-TEN-TVA,coal,1070.741206,2020-01-01,eGrid 2020
+US-TEX-ERCO,coal,1043.400889,2020-01-01,eGrid 2020
+PT,coal,1057.262766,2020-01-01,eGrid 2020
+PT-AC,coal,1057.262766,2020-01-01,eGrid 2020
+PT-MA,coal,1057.262766,2020-01-01,eGrid 2020
+PR,gas,480.1222048,2020-01-01,eGrid 2020
+US-AK,gas,470.7986093,2020-01-01,eGrid 2020
+US-CAL-BANC,gas,389.6341439,2020-01-01,eGrid 2020
+US-CAL-CISO,gas,403.8432591,2020-01-01,eGrid 2020
+US-CAL-IID,gas,471.3724863,2020-01-01,eGrid 2020
+US-CAL-LDWP,gas,405.0754852,2020-01-01,eGrid 2020
+US-CAL-TIDC,gas,462.3610483,2020-01-01,eGrid 2020
+US-CAR-CPLE,gas,394.223375,2020-01-01,eGrid 2020
+US-CAR-DUK,gas,396.0379906,2020-01-01,eGrid 2020
+US-CAR-SC,gas,442.9124649,2020-01-01,eGrid 2020
+US-CAR-SCEG,gas,407.4177138,2020-01-01,eGrid 2020
+US-CENT-SWPP,gas,459.9267888,2020-01-01,eGrid 2020
+US-FLA-FMPP,gas,446.015972,2020-01-01,eGrid 2020
+US-FLA-FPC,gas,423.934686,2020-01-01,eGrid 2020
+US-FLA-FPL,gas,367.4893706,2020-01-01,eGrid 2020
+US-FLA-GVL,gas,457.6172075,2020-01-01,eGrid 2020
+US-FLA-JEA,gas,612.0220147,2020-01-01,eGrid 2020
+US-FLA-SEC,gas,386.3298038,2020-01-01,eGrid 2020
+US-FLA-TAL,gas,359.8683566,2020-01-01,eGrid 2020
+US-FLA-TEC,gas,432.8237021,2020-01-01,eGrid 2020
+US-MIDA-PJM,gas,398.3043939,2020-01-01,eGrid 2020
+US-MIDW-AECI,gas,400.7407839,2020-01-01,eGrid 2020
+US-MIDW-GLHB,gas,961.3216471,2020-01-01,eGrid 2020
+US-MIDW-LGEE,gas,378.1877271,2020-01-01,eGrid 2020
+US-MIDW-MISO,gas,409.968837,2020-01-01,eGrid 2020
+US-NE-ISNE,gas,389.0568749,2020-01-01,eGrid 2020
+US-NW-AVA,gas,393.6395083,2020-01-01,eGrid 2020
+US-NW-AVRN,gas,410.2399164,2020-01-01,eGrid 2020
+US-NW-BPAT,gas,394.4247594,2020-01-01,eGrid 2020
+US-NW-GRID,gas,395.5270557,2020-01-01,eGrid 2020
+US-NW-IPCO,gas,434.3409586,2020-01-01,eGrid 2020
+US-NW-NEVP,gas,405.9274374,2020-01-01,eGrid 2020
+US-NW-NWMT,gas,655.0343565,2020-01-01,eGrid 2020
+US-NW-PACE,gas,405.722707,2020-01-01,eGrid 2020
+US-NW-PACW,gas,400.6744614,2020-01-01,eGrid 2020
+US-NW-PGE,gas,465.3652195,2020-01-01,eGrid 2020
+US-NW-PSCO,gas,480.4971119,2020-01-01,eGrid 2020
+US-NW-PSEI,gas,325.3877204,2020-01-01,eGrid 2020
+US-NW-WACM,gas,451.7150314,2020-01-01,eGrid 2020
+US-NY-NYIS,gas,412.8877102,2020-01-01,eGrid 2020
+US-SE-AEC,gas,404.1054386,2020-01-01,eGrid 2020
+US-SE-SOCO,gas,403.2500634,2020-01-01,eGrid 2020
+US-SW-AZPS,gas,371.3656203,2020-01-01,eGrid 2020
+US-SW-DEAA,gas,397.9497472,2020-01-01,eGrid 2020
+US-SW-EPE,gas,545.8860298,2020-01-01,eGrid 2020
+US-SW-GRIF,gas,390.1784429,2020-01-01,eGrid 2020
+US-SW-PNM,gas,412.1499722,2020-01-01,eGrid 2020
+US-SW-SRP,gas,376.0036772,2020-01-01,eGrid 2020
+US-SW-TEPC,gas,505.3167692,2020-01-01,eGrid 2020
+US-SW-WALC,gas,517.3221021,2020-01-01,eGrid 2020
+US-TEN-TVA,gas,391.2963051,2020-01-01,eGrid 2020
+US-TEX-ERCO,gas,393.100066,2020-01-01,eGrid 2020
+US-CAL-CISO,geothermal,95.82104392,2020-01-01,eGrid 2020
+US-CAL-IID,geothermal,56.8894463,2020-01-01,eGrid 2020
+US-HI-HA,geothermal,0,2020-01-01,eGrid 2020
+US-NW-BPAT,geothermal,0,2020-01-01,eGrid 2020
+US-NW-IPCO,geothermal,0,2020-01-01,eGrid 2020
+US-NW-NEVP,geothermal,14.37975781,2020-01-01,eGrid 2020
+US-NW-PACE,geothermal,32.63419569,2020-01-01,eGrid 2020
+PR,oil,786.0859158,2020-01-01,eGrid 2020
+US-AK,oil,713.1828107,2020-01-01,eGrid 2020
+US-CAL-CISO,oil,910.2232446,2020-01-01,eGrid 2020
+US-CENT-SWPP,oil,975.0111176,2020-01-01,eGrid 2020
+US-FLA-FPC,oil,1162.940076,2020-01-01,eGrid 2020
+US-FLA-FPL,oil,390.0504417,2020-01-01,eGrid 2020
+US-HI-HA,oil,785.7600688,2020-01-01,eGrid 2020
+US-HI-KA,oil,779.2439369,2020-01-01,eGrid 2020
+US-HI-MA,oil,783.2844717,2020-01-01,eGrid 2020
+US-HI-OA,oil,742.1719304,2020-01-01,eGrid 2020
+US-MIDA-PJM,oil,751.5213327,2020-01-01,eGrid 2020
+US-MIDW-MISO,oil,922.7890878,2020-01-01,eGrid 2020
+US-NE-ISNE,oil,1257.197843,2020-01-01,eGrid 2020
+US-NW-NWMT,oil,825.7991359,2020-01-01,eGrid 2020
+US-NW-WACM,oil,953.0188558,2020-01-01,eGrid 2020
+US-NY-NYIS,oil,662.0576145,2020-01-01,eGrid 2020
+US-SE-SOCO,oil,569.2843708,2020-01-01,eGrid 2020
+US-TEN-TVA,oil,472.7975672,2020-01-01,eGrid 2020
+US-TEX-ERCO,oil,1070.811109,2020-01-01,eGrid 2020
+PT,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PT-AC,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PT-MA,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-IZ,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-FO,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-MA,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-ME,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-LP,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-HI,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-IG,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-TE,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-GC,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-FVLZ,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FR,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FR-COR,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IE,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+BE,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+NL,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LU,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DE,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-DK1,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-DK2,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-BHM,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE1,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE2,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE3,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE4,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FI,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+EE,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LV,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LT,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PL,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+CZ,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+AT,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SK,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+HU,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SI,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-NO,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-CNO,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-CSO,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SO,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SIC,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SAR,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+BG,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+GR,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+GR-IS,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+RO,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+HR,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+MT,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+CY,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FO-MI,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FO-SI,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+AX,biomass,0,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-IZ,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-FO,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-MA,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-ME,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-LP,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-HI,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-IG,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-TE,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-GC,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-FVLZ,coal,971.2573613,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FR,coal,854.4786144,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FR-COR,coal,854.4786144,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IE,coal,758.4409086,2021-01-01,"EU-ETS, ENTSO-E 2021"
+BE,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LU,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DE,coal,1073.03112,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-BHM,coal,845.5332093,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-DK1,coal,845.5332093,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-DK2,coal,845.5332093,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE1,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE2,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE3,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE4,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FI,coal,895.6862569,2021-01-01,"EU-ETS, ENTSO-E 2021"
+EE,coal,832.9110972,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LV,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LT,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PL,coal,1012.451317,2021-01-01,"EU-ETS, ENTSO-E 2021"
+CZ,coal,1055.667306,2021-01-01,"EU-ETS, ENTSO-E 2021"
+AT,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SK,coal,1153.673876,2021-01-01,"EU-ETS, ENTSO-E 2021"
+HU,coal,1144.916957,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SI,coal,1046.269766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-NO,coal,997.0022828,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-CNO,coal,997.0022828,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-CSO,coal,997.0022828,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SO,coal,997.0022828,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SIC,coal,997.0022828,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SAR,coal,997.0022828,2021-01-01,"EU-ETS, ENTSO-E 2021"
+BG,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+GR,coal,1523.652468,2021-01-01,"EU-ETS, ENTSO-E 2021"
+GR-IS,coal,1523.652468,2021-01-01,"EU-ETS, ENTSO-E 2021"
+RO,coal,1464.275294,2021-01-01,"EU-ETS, ENTSO-E 2021"
+HR,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+MT,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+CY,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FO-MI,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FO-SI,coal,1057.262766,2021-01-01,"EU-ETS, ENTSO-E 2021"
+AX,coal,895.6862569,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PT,gas,372.109361,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PT-AC,gas,372.109361,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PT-MA,gas,372.109361,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-IZ,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-FO,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-MA,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-ME,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-LP,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-HI,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-IG,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-TE,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-GC,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-FVLZ,gas,422.8263312,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FR,gas,504.846764,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FR-COR,gas,504.846764,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IE,gas,465.9170756,2021-01-01,"EU-ETS, ENTSO-E 2021"
+BE,gas,395.0912361,2021-01-01,"EU-ETS, ENTSO-E 2021"
+NL,gas,470.7521775,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LU,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DE,gas,540.5939971,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-DK1,gas,336.9719859,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-DK2,gas,336.9719859,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-BHM,gas,336.9719859,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE1,gas,447.9740216,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE2,gas,447.9740216,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE3,gas,447.9740216,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE4,gas,447.9740216,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FI,gas,684.2607818,2021-01-01,"EU-ETS, ENTSO-E 2021"
+EE,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LV,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LT,gas,356.9797889,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PL,gas,482.0973266,2021-01-01,"EU-ETS, ENTSO-E 2021"
+CZ,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+AT,gas,435.2364657,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SK,gas,347.5807988,2021-01-01,"EU-ETS, ENTSO-E 2021"
+HU,gas,455.1593805,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SI,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-NO,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-CNO,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-CSO,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SO,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SIC,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SAR,gas,473.8451586,2021-01-01,"EU-ETS, ENTSO-E 2021"
+BG,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+GR,gas,382.5054126,2021-01-01,"EU-ETS, ENTSO-E 2021"
+GR-IS,gas,382.5054126,2021-01-01,"EU-ETS, ENTSO-E 2021"
+RO,gas,1068.215856,2021-01-01,"EU-ETS, ENTSO-E 2021"
+HR,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+MT,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+CY,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FO,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+AX,gas,481.60707,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PT,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PT-AC,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PT-MA,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-IZ,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-FO,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-MA,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-IB-ME,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-LP,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-HI,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-IG,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-TE,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-GC,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+ES-CN-FVLZ,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FR,oil,769.5956561,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FR-COR,oil,769.5956561,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IE,oil,911.7365666,2021-01-01,"EU-ETS, ENTSO-E 2021"
+BE,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+NL,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LU,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DE,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-DK1,oil,1193.417464,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-DK2,oil,1193.417464,2021-01-01,"EU-ETS, ENTSO-E 2021"
+DK-BHM,oil,1193.417464,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE1,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE2,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE3,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SE-SE4,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FI,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+EE,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LV,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+LT,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+PL,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+CZ,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+AT,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SK,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+HU,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+SI,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-NO,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-CNO,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-CSO,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SO,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SIC,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E 2021"
+IT-SAR,oil,921.1256533,2021-01-01,"EU-ETS, ENTSO-E 2021"
+BG,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+GR,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+GR-IS,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+RO,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+HR,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+MT,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+CY,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+FO,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"
+AX,oil,880.903938,2021-01-01,"EU-ETS, ENTSO-E 2021"

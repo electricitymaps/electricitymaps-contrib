@@ -66,7 +66,7 @@ emissionFactors:
         value: 93.10669243460696
     solar:
       datetime: '2021-01-01'
-      source: INCER ACV, https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+      source: INCER ACV
       value: 43.6
     unknown:
       _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
