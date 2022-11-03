@@ -110,21 +110,57 @@ class TestEIA(unittest.TestCase):
         ]
         self.check_production_matches(data_list, expected)
 
+    def test_US_CAR_SC_nuclear_split(self):
+        nuclear_sc_data = resource_string(
+            "parsers.test.mocks.EIA", "US_CAR_SC-nuclear.json"
+        )
+        nuclear_sceg_data = resource_string(
+            "parsers.test.mocks.EIA", "US_CAR_SCEG-nuclear.json"
+        )
+        other_data = resource_string("parsers.test.mocks.EIA", "US_NW_AVRN-other.json")
+        nuclear_sc_url = EIA.PRODUCTION_MIX.format("SC", "NUC")
+        nuclear_sceg_url = EIA.PRODUCTION_MIX.format("SCEG", "NUC")
+        self.adapter.register_uri(GET, ANY, json=loads(other_data.decode("utf-8")))
+        self.adapter.register_uri(
+            GET, nuclear_sceg_url, json=loads(nuclear_sceg_data.decode("utf-8"))
+        )
+        self.adapter.register_uri(
+            GET, nuclear_sc_url, json=loads(nuclear_sc_data.decode("utf-8"))
+        )
+
+        data_list = EIA.fetch_production_mix("US-CAR-SC", self.session)
+        expected = [
+            {
+                "zoneKey": "US-CAR-SC",
+                "source": "eia.gov",
+                "production": {"nuclear": 330.6666336},
+            },
+            {
+                "zoneKey": "US-CAR-SC",
+                "source": "eia.gov",
+                "production": {"nuclear": 330.3333003},
+            },
+        ]
+        self.check_production_matches(data_list, expected)
+        data_list = EIA.fetch_production_mix("US-CAR-SCEG", self.session)
+        expected = [
+            {
+                "zoneKey": "US-CAR-SCEG",
+                "source": "eia.gov",
+                "production": {"nuclear": 661.3333663999999},
+            },
+            {
+                "zoneKey": "US-CAR-SCEG",
+                "source": "eia.gov",
+                "production": {"nuclear": 660.6666997},
+            },
+        ]
+        self.check_production_matches(data_list, expected)
+
     def test_check_transfer_mixes(self):
-        for supplied_zone, production in EIA.PRODUCTION_ONLY_ZONES_TRANSFERS.items():
-            all_production = production.pop("all", [])
-            if len(set(all_production)) != len(all_production):
-                raise Exception(
-                    f"Dupplicated production zone only transfering all its production.\
-                        Please remove it: {supplied_zone}: {all_production}"
-                )
-            all_production = set(all_production)
+        for supplied_zone, production in EIA.PRODUCTION_ZONES_TRANSFERS.items():
+            all_production = production.pop("all", {})
             for type, supplying_zones in production.items():
-                if len(set(supplying_zones)) != len(supplying_zones):
-                    raise Exception(
-                        f"Dupplicated production zone only transfering its {type} production.\
-                            Please remove it: {supplied_zone}: {type} :{supplying_zones}"
-                    )
                 for zone in supplying_zones:
                     if zone in all_production:
                         raise Exception(

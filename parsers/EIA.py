@@ -295,13 +295,22 @@ EXCHANGES = {
     "US-SW-SRP->US-SW-WALC": "&facets[fromba][]=SRP&facets[toba][]=WALC",
     "US-SW-TEPC->US-SW-WALC": "&facets[fromba][]=TEPC&facets[toba][]=WALC",
 }
+# Some zones transfer all or part of their productions to another zone.
+# To avoid having multiple small production zones with no consumption,
+# their production is directly integrated into supplied zones according
+# to the supplied percentage.
 
-PRODUCTION_ONLY_ZONES_TRANSFERS = {
-    "US-SW-SRP": {"all": ["US-SW-DEAA", "US-SW-HGMA"]},
-    "US-NW-NWMT": {"all": ["US-NW-GWA", "US-NW-WWA"]},
-    "US-SW-WALC": {"all": ["US-SW-GRIF"]},
-    "US-NW-PACW": {"gas": ["US-NW-AVRN"]},
-    "US-NW-BPAT": {"wind": ["US-NW-AVRN"]},
+SC_VIRGIL_OWNERSHIP = 0.3333333
+
+PRODUCTION_ZONES_TRANSFERS = {
+    "US-SW-SRP": {"all": {"US-SW-DEAA": 1.0, "US-SW-HGMA": 1.0}},
+    "US-NW-NWMT": {"all": {"US-NW-GWA": 1.0, "US-NW-WWA": 1.0}},
+    "US-SW-WALC": {"all": {"US-SW-GRIF": 1.0}},
+    "US-NW-PACW": {"gas": {"US-NW-AVRN": 1.0}},
+    "US-NW-BPAT": {
+        "wind": {"US-NW-AVRN": 1.0},
+    },
+    "US-CAR-SC": {"nuclear": {"US-CAR-SCEG": SC_VIRGIL_OWNERSHIP}},
 }
 
 TYPES = {
@@ -414,18 +423,6 @@ def fetch_production_mix(
         # Here we apply a temporary fix for that until EIA properly splits the production
         # This split can be found in the eGRID data,
         # https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid
-        SC_VIRGIL_OWNERSHIP = 0.3333333
-        if zone_key == "US-CAR-SC" and type == "nuclear":
-            url_prefix = PRODUCTION_MIX.format(REGIONS["US-CAR-SCEG"], code)
-            mix = _fetch(
-                "US-CAR-SCEG",
-                url_prefix,
-                session=session,
-                target_datetime=target_datetime,
-                logger=logger,
-            )
-            for point in mix:
-                point.update({"value": point["value"] * SC_VIRGIL_OWNERSHIP})
 
         if zone_key == "US-CAR-SCEG" and type == "nuclear":
             for point in mix:
@@ -433,11 +430,12 @@ def fetch_production_mix(
 
         # Integrate the supplier zones in the zones they supply
 
-        supplying_zones = PRODUCTION_ONLY_ZONES_TRANSFERS.get(zone_key, {})
-        zones_to_integrate = set(
-            supplying_zones.get("all", []) + supplying_zones.get(type, [])
-        )
-        for zone in zones_to_integrate:
+        supplying_zones = PRODUCTION_ZONES_TRANSFERS.get(zone_key, {})
+        zones_to_integrate = {
+            **supplying_zones.get("all", {}),
+            **supplying_zones.get(type, {}),
+        }
+        for zone, percentage in zones_to_integrate.items():
             url_prefix = PRODUCTION_MIX.format(REGIONS[zone], code)
             additional_mix = _fetch(
                 zone,
@@ -446,6 +444,8 @@ def fetch_production_mix(
                 target_datetime=target_datetime,
                 logger=logger,
             )
+            for point in additional_mix:
+                point.update({"value": point["value"] * percentage})
             mix = _merge_production_mix([mix, additional_mix])
         if not mix:
             continue

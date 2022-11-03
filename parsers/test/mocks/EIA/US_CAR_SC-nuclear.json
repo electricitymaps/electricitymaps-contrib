@@ -1,0 +1,25 @@
+{
+  "response": {
+    "query execution": 0.02875779,
+    "count query execution": 0.045858883,
+    "total": 0,
+    "dateFormat": "YYYY-MM-DD\"T\"HH24",
+    "frequency": "hourly",
+    "data": [],
+    "description": "Hourly net generation by balancing authority and energy source.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
+  },
+  "request": {
+    "command": "/v2/electricity/rto/fuel-type-data/data/",
+    "params": {
+      "data": ["value"],
+      "facets": {
+        "respondent": ["SC"],
+        "fueltype": ["NUC"]
+      },
+      "frequency": "hourly",
+      "start": "2022-10-31T11",
+      "end": "2022-10-31T13"
+    }
+  },
+  "apiVersion": "2.0.3"
+}
