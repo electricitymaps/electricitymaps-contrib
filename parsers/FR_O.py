@@ -95,7 +95,7 @@ def generate_url(zone_key, target_datetime):
 
 
 def fetch_data(
-    zone_key: str = "FR-COR",
+    zone_key: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
@@ -136,6 +136,24 @@ def fetch_data(
     url = generate_url(zone_key, target_datetime)
     response: Response = ses.get(url, params=URL_QUERIES)
     data = response.json()
+    if data == []:
+        raise ParserException(
+            "FR_O.py",
+            f"No data available for {zone_key} for {target_datetime.strftime('%Y')}"
+            if target_datetime
+            else f"No live data available for {zone_key}.",
+            zone_key,
+        )
+    elif data.get("errorcode") == "10002":
+        raise ParserException(
+            "FR_O.py",
+            f"Rate limit exceeded. Please try again later after: {data.reset_time}",
+        )
+    elif data.get("error_code") == "ODSQLError":
+        raise ParserException(
+            "FR_O.py",
+            "Query malformed. Please check the parameters. If this was previously working there has likely been a change in the API.",
+        )
     return data, DATE_STRING_MAPPING[zone_key]
 
 
@@ -145,44 +163,41 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
 ):
-    data, date_string = fetch_data(zone_key, session, target_datetime, logger)
-    if data == []:
-        raise ParserException(
-            "FR_O.py",
-            f"No data available for {zone_key} for {target_datetime.strftime('%Y')}"
-            if target_datetime
-            else f"No live data available for {zone_key}.",
-            zone_key,
-        )
+    production_objects, date_string = fetch_data(zone_key, session, target_datetime, logger)
+
     return_list: List[Dict[str, Any]] = []
-    for object in data:
+    for production_object in production_objects:
         production: Dict[str, Union[float, int]] = {}
         storage: Dict[str, Union[float, int]] = {}
-        for key in object:
-            if key in PRODUCTION_MAPPING:
-                if PRODUCTION_MAPPING[key] in production.keys():
-                    production[PRODUCTION_MAPPING[key]] += object[key]
+        for mode_key in production_object:
+            if mode_key in PRODUCTION_MAPPING:
+                if PRODUCTION_MAPPING[mode_key] in production.keys():
+                    production[PRODUCTION_MAPPING[mode_key]] += production_object[
+                        mode_key
+                    ]
                 else:
-                    production[PRODUCTION_MAPPING[key]] = object[key]
+                    production[PRODUCTION_MAPPING[mode_key]] = production_object[
+                        mode_key
+                    ]
                 # Set values below 0 to 0
-                production[PRODUCTION_MAPPING[key]] = (
-                    production[PRODUCTION_MAPPING[key]]
-                    if production[PRODUCTION_MAPPING[key]] >= 0
+                production[PRODUCTION_MAPPING[mode_key]] = (
+                    production[PRODUCTION_MAPPING[mode_key]]
+                    if production[PRODUCTION_MAPPING[mode_key]] >= 0
                     else 0
                 )
-            elif key in STORAGE_MAPPING:
-                if STORAGE_MAPPING[key] in storage.keys():
-                    storage[STORAGE_MAPPING[key]] += object[key]
+            elif mode_key in STORAGE_MAPPING:
+                if STORAGE_MAPPING[mode_key] in storage.keys():
+                    storage[STORAGE_MAPPING[mode_key]] += production_object[mode_key]
                 else:
-                    storage[STORAGE_MAPPING[key]] = object[key]
+                    storage[STORAGE_MAPPING[mode_key]] = production_object[mode_key]
         return_list.append(
             {
                 "zoneKey": zone_key,
-                "datetime": datetime.fromisoformat(object[f"{date_string}"]),
+                "datetime": datetime.fromisoformat(production_object[f"{date_string}"]),
                 "production": production,
                 "storage": storage,
                 "source": "edf.fr",
-                "estimated": True if object["statut"] == "Estimé" else False,
+                "estimated": True if production_object["statut"] == "Estimé" else False,
             }
         )
     return return_list
