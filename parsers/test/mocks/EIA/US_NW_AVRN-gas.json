@@ -27,18 +27,5 @@
     ],
     "description": "Hourly net generation by balancing authority and energy source.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
   },
-  "request": {
-    "command": "/v2/electricity/rto/fuel-type-data/data/",
-    "params": {
-      "data": ["value"],
-      "facets": {
-        "respondent": ["AVRN"],
-        "fueltype": ["NG"]
-      },
-      "frequency": "hourly",
-      "start": "2022-10-31T11",
-      "end": "2022-10-31T13"
-    }
-  },
   "apiVersion": "2.0.3"
 }
