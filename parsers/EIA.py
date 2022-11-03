@@ -585,7 +585,7 @@ def _index_by_timestamp(datapoints: List[dict]) -> Dict[str, dict]:
 def _merge_production_mix(mixes: List[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
     merged_data = {}
     for mix in mixes:
-        indexed_mix = _order_by_timestamp(mix)
+        indexed_mix = _index_by_timestamp(mix)
         for timestamp, mix_value in indexed_mix.items():
             if not timestamp in merged_data.keys():
                 merged_data[timestamp] = mix_value
