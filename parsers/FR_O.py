@@ -143,16 +143,17 @@ def fetch_data(
             else f"No live data available for {zone_key}.",
             zone_key,
         )
-    elif data.get("errorcode") == "10002":
-        raise ParserException(
-            "FR_O.py",
-            f"Rate limit exceeded. Please try again later after: {data.reset_time}",
-        )
-    elif data.get("error_code") == "ODSQLError":
-        raise ParserException(
-            "FR_O.py",
-            "Query malformed. Please check the parameters. If this was previously working there has likely been a change in the API.",
-        )
+    elif isinstance(data, dict):
+        if data.get("errorcode") == "10002":
+            raise ParserException(
+                "FR_O.py",
+                f"Rate limit exceeded. Please try again later after: {data.reset_time}",
+            )
+        elif data.get("error_code") == "ODSQLError":
+            raise ParserException(
+                "FR_O.py",
+                "Query malformed. Please check the parameters. If this was previously working there has likely been a change in the API.",
+            )
     return data, DATE_STRING_MAPPING[zone_key]
 
 
