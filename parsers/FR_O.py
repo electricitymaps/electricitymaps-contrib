@@ -40,6 +40,11 @@ API_PARAMETER_GROUPS = {
         "coal": [
             "charbon",
         ],
+        "gas": [
+            "thermique_mw",
+            "thermique_mwh",
+            "turbines_a_combustion",
+        ],
         "geothermal": [
             "geothermie",
             "geothermie_mw",
@@ -64,13 +69,7 @@ API_PARAMETER_GROUPS = {
             "eolien_mw",
             "eolien_mwh",
         ],
-        "unknown": [
-            "bagasse_charbon_mwh",
-            "charbon_bagasse_mw",
-            "thermique_mw",
-            "thermique_mwh",
-            "turbines_a_combustion",
-        ],
+        "unknown": ["bagasse_charbon_mwh", "charbon_bagasse_mw"],
     },
     "storage": {},
 }
@@ -158,12 +157,14 @@ def fetch_data(
 
 
 def fetch_production(
-    zone_key: str = "FR-COR",
+    zone_key: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
 ):
-    production_objects, date_string = fetch_data(zone_key, session, target_datetime, logger)
+    production_objects, date_string = fetch_data(
+        zone_key, session, target_datetime, logger
+    )
 
     return_list: List[Dict[str, Any]] = []
     for production_object in production_objects:
