@@ -6,8 +6,13 @@ import { registerSW } from 'virtual:pwa-register';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import './index.css';
 import { REFETCH_INTERVAL_MS } from 'api/helpers';
+import enableErrorsInOverlay from 'utils/errorOverlay';
 
 registerSW();
+
+if (import.meta.env.DEV) {
+  enableErrorsInOverlay();
+}
 
 const MAX_RETRIES = 1;
 const queryClient = new QueryClient({
