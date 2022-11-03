@@ -104,6 +104,5 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.00160462179363718
 parsers:
-  price: FR_O.fetch_price
   production: FR_O.fetch_production
 timezone: Indian/Reunion
