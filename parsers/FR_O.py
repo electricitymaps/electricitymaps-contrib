@@ -1,7 +1,9 @@
 from datetime import datetime
+from logging import getLogger
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from requests import Response, Session
+from .lib.exceptions import ParserException
 
 DOMAIN_MAPPING = {
     "FR-COR": "https://opendata-corse.edf.fr",
@@ -92,7 +94,10 @@ def generate_url(zone_key, target_datetime):
 
 
 def fetch_data(
-    zone_key="", session=None, target_datetime=None, logger=None
+    zone_key: str = "FR-COR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger=getLogger(__name__),
 ) -> Tuple[Any, str]:
     ses = session or Session()
     target_datetime_string = None
@@ -106,12 +111,16 @@ def fetch_data(
     }
 
     if target_datetime and zone_key not in HISTORICAL_DATASETS.keys():
-        raise NotImplementedError(
-            f"Historical data not implemented for {zone_key} in this parser."
+        raise ParserException(
+            "FR_O.py",
+            f"Historical data not implemented for {zone_key} in this parser.",
+            zone_key,
         )
     elif target_datetime is None and zone_key not in LIVE_DATASETS.keys():
-        raise NotImplementedError(
-            f"Live data not implemented for {zone_key} in this parser."
+        raise ParserException(
+            "FR_O.py",
+            f"Live data not implemented for {zone_key} in this parser.",
+            zone_key,
         )
 
     URL_QUERIES: Dict[str, Union[str, None]] = {
@@ -130,9 +139,20 @@ def fetch_data(
 
 
 def fetch_production(
-    zone_key="FR-COR", session=None, target_datetime=None, logger=None
+    zone_key: str = "FR-COR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger=getLogger(__name__),
 ):
     data, date_string = fetch_data(zone_key, session, target_datetime, logger)
+    if data == []:
+        raise ParserException(
+            "FR_O.py",
+            f"No data available for {zone_key} for {target_datetime.strftime('%Y')}"
+            if target_datetime
+            else f"No live data available for {zone_key}.",
+            zone_key,
+        )
     return_list: List[Dict[str, Any]] = []
     for object in data:
         production: Dict[str, Union[float, int]] = {}
