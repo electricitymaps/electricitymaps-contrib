@@ -3,6 +3,7 @@ from logging import getLogger
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from requests import Response, Session
+
 from .lib.exceptions import ParserException
 
 DOMAIN_MAPPING = {
