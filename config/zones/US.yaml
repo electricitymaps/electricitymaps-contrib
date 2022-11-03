@@ -67,7 +67,7 @@ subZoneNames:
 # - US-NW-GWA Aggregated with US-NW-NWMT
 - US-NW-IPCO
 - US-NW-NEVP
-- US-NW-NWMT-AGG
+- US-NW-NWMT
 - US-NW-PACE
 - US-NW-PACW
 - US-NW-PGE
@@ -89,9 +89,9 @@ subZoneNames:
 - US-SW-GRMA
 #- US-SW-HGMA Aggregated with US-SW-SRP
 - US-SW-PNM
-- US-SW-SRP-AGG
+- US-SW-SRP
 - US-SW-TEPC
-- US-SW-WALC-AGG
+- US-SW-WALC
 - US-TEN-TVA
 - US-TEX-ERCO
 bypassAggregationChecks: true

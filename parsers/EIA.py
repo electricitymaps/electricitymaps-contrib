@@ -295,6 +295,14 @@ EXCHANGES = {
     "US-SW-TEPC->US-SW-WALC": "&facets[fromba][]=TEPC&facets[toba][]=WALC",
 }
 
+PRODUCTION_ONLY_ZONES_TRANSFERS = {
+    "US-SW-SRP": {"all": ["US-SW-DEAA", "US-SW-HGMA"]},
+    "US-NW-NWMT": {"all": ["US-NW-GWA", "US-NW-WWA"]},
+    "US-SW-WALC": {"all": ["US-SW-GRIF"]},
+    "US-NW-PACW": {"gas": ["US-NW-AVRN"]},
+    "US-NW-BPAT": {"wind": ["US-NW-AVRN"]},
+}
+
 TYPES = {
     # 'biomass': 'BM',  # not currently supported
     "coal": "COL",
@@ -422,26 +430,16 @@ def fetch_production_mix(
             for point in mix:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
 
-        # US-NW-AVRN is a producer only zone
-        #  supplying all its production to other zones.
-        # gas production is sent to US-NW-PACW
-        # wind production is sent to US-NW-BPAT
+        # Integrate the supplier zones in the zones they supply
 
-        if zone_key == "US-NW-PACW" and type == "gas":
-            url_prefix = PRODUCTION_MIX.format(REGIONS["US-NW-AVRN"], code)
+        supplying_zones = PRODUCTION_ONLY_ZONES_TRANSFERS.get(zone_key, {})
+        zones_to_integrate = set(
+            supplying_zones.get("all", []) + supplying_zones.get(type, [])
+        )
+        for zone in zones_to_integrate:
+            url_prefix = PRODUCTION_MIX.format(REGIONS[zone], code)
             additional_mix = _fetch(
-                "US-NW-AVRN",
-                url_prefix,
-                session=session,
-                target_datetime=target_datetime,
-                logger=logger,
-            )
-            mix = _merge_production_mix([mix, additional_mix])
-
-        if zone_key == "US-NW-BPAT" and type == "wind":
-            url_prefix = PRODUCTION_MIX.format(REGIONS["US-NW-AVRN"], code)
-            additional_mix = _fetch(
-                "US-NW-AVRN",
+                zone,
                 url_prefix,
                 session=session,
                 target_datetime=target_datetime,
@@ -591,7 +589,6 @@ def _merge_production_mix(mixes: List[List[Dict[str, Any]]]) -> List[Dict[str, A
             if not timestamp in merged_data.keys():
                 merged_data[timestamp] = mix_value
             else:
-                print(mix_value)
                 merged_data[timestamp]["value"] += mix_value["value"]
     return list(merged_data.values())
 

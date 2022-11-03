@@ -110,6 +110,29 @@ class TestEIA(unittest.TestCase):
         ]
         self.check_production_matches(data_list, expected)
 
+    def test_check_transfer_mixes(self):
+        for supplied_zone, production in EIA.PRODUCTION_ONLY_ZONES_TRANSFERS.items():
+            all_production = production.pop("all", [])
+            if len(set(all_production)) != len(all_production):
+                raise Exception(
+                    f"Dupplicated production zone only transfering all its production.\
+                        Please remove it: {supplied_zone}: {all_production}"
+                )
+            all_production = set(all_production)
+            for type, supplying_zones in production.items():
+                if len(set(supplying_zones)) != len(supplying_zones):
+                    raise Exception(
+                        f"Dupplicated production zone only transfering its {type} production.\
+                            Please remove it: {supplied_zone}: {type} :{supplying_zones}"
+                    )
+                for zone in supplying_zones:
+                    if zone in all_production:
+                        raise Exception(
+                            f"{zone} is both in the all production export\
+                            and exporting its {type} production. \
+                            This is not possible please fix this ambiguity."
+                        )
+
     def check_production_matches(
         self,
         actual: List[Dict[str, Union[str, Dict]]],
