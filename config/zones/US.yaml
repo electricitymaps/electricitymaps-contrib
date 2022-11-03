@@ -12,88 +12,88 @@ capacity:
   unknown: 1684.2
   wind: 134695.0
 contributors:
-- kepiej
-- KabelWlan
-- robertahunt
-- danielmatsuda
-- brandongalbraith
-- systemcatch
-- VIKTORVAV99
+  - kepiej
+  - KabelWlan
+  - robertahunt
+  - danielmatsuda
+  - brandongalbraith
+  - systemcatch
+  - VIKTORVAV99
 subZoneNames:
-- US-AK
-- US-CAL-BANC
-- US-CAL-CISO
-- US-CAL-IID
-- US-CAL-LDWP
-- US-CAL-TIDC
-- US-CAR-CPLE
-- US-CAR-CPLW
-- US-CAR-DUK
-- US-CAR-SC
-- US-CAR-SCEG
-- US-CAR-YAD
-- US-CENT-SPA
-- US-CENT-SWPP
-- US-FLA-FMPP
-- US-FLA-FPC
-- US-FLA-FPL
-- US-FLA-GVL
-- US-FLA-HST
-- US-FLA-JEA
-- US-FLA-NSB
-- US-FLA-SEC
-- US-FLA-TAL
-- US-FLA-TEC
-- US-HI-HA
-- US-HI-KA
-- US-HI-KH
-- US-HI-LA
-- US-HI-MA
-- US-HI-MO
-- US-HI-NI
-- US-HI-OA
-- US-MIDA-PJM
-- US-MIDW-AECI
-- US-MIDW-GLHB
-- US-MIDW-LGEE
-- US-MIDW-MISO
-- US-NE-ISNE
-- US-NW-AVA
-#- US-NW-AVRN Production only zone, production integrated in US-NW-PACW for the gas and US-NW-BPAT for the wind
-- US-NW-BPAT
-- US-NW-CHPD
-- US-NW-DOPD
-- US-NW-GCPD
-- US-NW-GRID
-# - US-NW-GWA Production only zone, all production integrated with US-NW-NWMT
-- US-NW-IPCO
-- US-NW-NEVP
-- US-NW-NWMT
-- US-NW-PACE
-- US-NW-PACW
-- US-NW-PGE
-- US-NW-PSCO
-- US-NW-PSEI
-- US-NW-SCL
-- US-NW-TPWR
-- US-NW-WACM
-- US-NW-WAUW
-#- US-NW-WWA Production only zone, all production integrated with US-NW-NWMT
-- US-NY-NYIS
-- US-SE-AEC
-- US-SE-SEPA
-- US-SE-SOCO
-- US-SW-AZPS
-#- US-SW-DEAA Production only zone, all production integrated with US-SW-SRP
-- US-SW-EPE
-#- US-SW-GRIF Production only zone, all production integrated with US-SW-WALC
-- US-SW-GRMA
-#- US-SW-HGMA Production only zone, all production integrated with US-SW-SRP
-- US-SW-PNM
-- US-SW-SRP
-- US-SW-TEPC
-- US-SW-WALC
-- US-TEN-TVA
-- US-TEX-ERCO
+  - US-AK
+  - US-CAL-BANC
+  - US-CAL-CISO
+  - US-CAL-IID
+  - US-CAL-LDWP
+  - US-CAL-TIDC
+  - US-CAR-CPLE
+  - US-CAR-CPLW
+  - US-CAR-DUK
+  - US-CAR-SC
+  - US-CAR-SCEG
+  - US-CAR-YAD
+  - US-CENT-SPA
+  - US-CENT-SWPP
+  - US-FLA-FMPP
+  - US-FLA-FPC
+  - US-FLA-FPL
+  - US-FLA-GVL
+  - US-FLA-HST
+  - US-FLA-JEA
+  - US-FLA-NSB
+  - US-FLA-SEC
+  - US-FLA-TAL
+  - US-FLA-TEC
+  - US-HI-HA
+  - US-HI-KA
+  - US-HI-KH
+  - US-HI-LA
+  - US-HI-MA
+  - US-HI-MO
+  - US-HI-NI
+  - US-HI-OA
+  - US-MIDA-PJM
+  - US-MIDW-AECI
+  - US-MIDW-GLHB
+  - US-MIDW-LGEE
+  - US-MIDW-MISO
+  - US-NE-ISNE
+  - US-NW-AVA
+  #- US-NW-AVRN Production only zone, production integrated in US-NW-PACW for the gas and US-NW-BPAT for the wind
+  - US-NW-BPAT
+  - US-NW-CHPD
+  - US-NW-DOPD
+  - US-NW-GCPD
+  - US-NW-GRID
+  # - US-NW-GWA Production only zone, all production integrated with US-NW-NWMT
+  - US-NW-IPCO
+  - US-NW-NEVP
+  - US-NW-NWMT
+  - US-NW-PACE
+  - US-NW-PACW
+  - US-NW-PGE
+  - US-NW-PSCO
+  - US-NW-PSEI
+  - US-NW-SCL
+  - US-NW-TPWR
+  - US-NW-WACM
+  - US-NW-WAUW
+  #- US-NW-WWA Production only zone, all production integrated with US-NW-NWMT
+  - US-NY-NYIS
+  - US-SE-AEC
+  - US-SE-SEPA
+  - US-SE-SOCO
+  - US-SW-AZPS
+  #- US-SW-DEAA Production only zone, all production integrated with US-SW-SRP
+  - US-SW-EPE
+  #- US-SW-GRIF Production only zone, all production integrated with US-SW-WALC
+  - US-SW-GRMA
+  #- US-SW-HGMA Production only zone, all production integrated with US-SW-SRP
+  - US-SW-PNM
+  - US-SW-SRP
+  - US-SW-TEPC
+  - US-SW-WALC
+  - US-TEN-TVA
+  - US-TEX-ERCO
 bypassAggregationChecks: true
 timezone: US-Central
