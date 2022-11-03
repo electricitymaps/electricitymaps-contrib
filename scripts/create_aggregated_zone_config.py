@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """
+Create an aggregation zone config file by looking up sub zones based on the zone name.
+Sums capacities, all contributors.
 poetry run python scripts/create_aggregated_zone_config US US-Central
 """
 import argparse
