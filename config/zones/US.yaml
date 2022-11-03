@@ -64,7 +64,7 @@ subZoneNames:
 - US-NW-DOPD
 - US-NW-GCPD
 - US-NW-GRID
-# - US-NW-GWA Aggregated with US-NW-NWMT
+# - US-NW-GWA Production only zone, all production integrated with US-NW-NWMT
 - US-NW-IPCO
 - US-NW-NEVP
 - US-NW-NWMT
@@ -77,17 +77,17 @@ subZoneNames:
 - US-NW-TPWR
 - US-NW-WACM
 - US-NW-WAUW
-#- US-NW-WWA Aggregated with US-NW-NWMT
+#- US-NW-WWA Production only zone, all production integrated with US-NW-NWMT
 - US-NY-NYIS
 - US-SE-AEC
 - US-SE-SEPA
 - US-SE-SOCO
 - US-SW-AZPS
-#- US-SW-DEAA Aggregated with US-SW-SRP
+#- US-SW-DEAA Production only zone, all production integrated with US-SW-SRP
 - US-SW-EPE
-#- US-SW-GRIF Aggregated with US-SW-WALC
+#- US-SW-GRIF Production only zone, all production integrated with US-SW-WALC
 - US-SW-GRMA
-#- US-SW-HGMA Aggregated with US-SW-SRP
+#- US-SW-HGMA Production only zone, all production integrated with US-SW-SRP
 - US-SW-PNM
 - US-SW-SRP
 - US-SW-TEPC
