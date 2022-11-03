@@ -3,8 +3,8 @@ const { union } = require('@turf/turf');
 const generateAggregates = (geojson, zones) => {
   const { features } = geojson;
 
-  const subzonesToCombine = Object.values(zones)
-    .filter((zone) => !zone?.hasGeometry && zone?.subZoneNames?.length > 0)
+  const countryZonesToCombine = Object.values(zones)
+    .filter((zone) => zone?.subZoneNames?.length > 0)
     .map((zone) => zone.subZoneNames);
 
   const zonesToFlagAsNotAggregated = Object.values(zones)
@@ -22,7 +22,7 @@ const generateAggregates = (geojson, zones) => {
     return feature;
   });
 
-  const combinedZones = subzonesToCombine.map((subzone) => {
+  const combinedZones = countryZonesToCombine.map((country) => {
     const combinedCountry = {
       type: 'Feature',
       properties: {
@@ -32,9 +32,10 @@ const generateAggregates = (geojson, zones) => {
       },
       geometry: { type: 'MultiPolygon', coordinates: [] },
     };
-    const [multiZoneCountry] = unCombinedZones.filter((feature) => feature.properties.zoneName === subzone[0]);
-    for (let i = 0; i < subzone.length; i++) {
-      const [zoneToAdd] = unCombinedZones.filter((feature) => feature.properties.zoneName === subzone[i]);
+    const [multiZoneCountry] = unCombinedZones.filter((feature) => feature.properties.zoneName === country[0]);
+    for (let i = 0; i < country.length; i++) {
+      const [zoneToAdd] = unCombinedZones.filter((feature) => feature.properties.zoneName === country[i]);
+
       combinedCountry.geometry = union(combinedCountry.geometry, zoneToAdd.geometry).geometry;
     }
     combinedCountry.properties.countryKey = multiZoneCountry.properties.countryKey;
