@@ -1,3 +1,8 @@
+boundingBox:
+  - - -171.791110603
+    - 18.91619
+  - - -66.96466
+    - 71.3577635769
 capacity:
   battery storage: 4832.0
   biomass: 14487.1
