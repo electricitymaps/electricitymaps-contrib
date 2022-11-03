@@ -23,7 +23,7 @@ class TestFR_O(unittest.TestCase):
             {
                 "zoneKey": "GP",
                 "production": {
-                    "unknown": 1,
+                    "gas": 1,
                     "coal": 2,
                     "oil": 3,
                     "hydro": 4,
@@ -37,7 +37,7 @@ class TestFR_O(unittest.TestCase):
             {
                 "zoneKey": "GP",
                 "production": {
-                    "unknown": 10,
+                    "gas": 10,
                     "coal": 11,
                     "oil": 12,
                     "hydro": 13,
