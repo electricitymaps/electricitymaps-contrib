@@ -49295,7 +49295,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "US-NW-NWMT-AGG", "countryKey": "US", "countryName": "United States" },
+      "properties": { "zoneName": "US-NW-NWMT", "countryKey": "US", "countryName": "United States" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -51490,7 +51490,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "US-SW-WALC-AGG", "countryKey": "US", "countryName": "United States" },
+      "properties": { "zoneName": "US-SW-WALC", "countryKey": "US", "countryName": "United States" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -51696,7 +51696,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "US-SW-SRP-AGG", "countryKey": "US", "countryName": "United States" },
+      "properties": { "zoneName": "US-SW-SRP", "countryKey": "US", "countryName": "United States" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
