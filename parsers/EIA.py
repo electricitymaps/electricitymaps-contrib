@@ -575,7 +575,7 @@ def _fetch(
     ]
 
 
-def _order_by_timestamp(datapoints: List[dict]) -> Dict[str, dict]:
+def _index_by_timestamp(datapoints: List[dict]) -> Dict[str, dict]:
     indexed_data = {}
     for datapoint in datapoints:
         indexed_data[datapoint["datetime"]] = datapoint
