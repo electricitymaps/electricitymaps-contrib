@@ -531,6 +531,7 @@
     "UA-CR": { "countryName": "Crimea", "zoneName": "Ukraine" },
     "UG": { "zoneName": "Uganda" },
     "UM": { "zoneName": "Các tiểu đảo xa của Hoa Kỳ" },
+    "US": { "zoneName": "Hoa Kỳ" },
     "US-HI-HA": { "countryName": "Hoa Kỳ", "zoneName": "Hawaii" },
     "US-HI-KA": { "countryName": "Hoa Kỳ", "zoneName": "Kauai" },
     "US-HI-KH": { "countryName": "Hoa Kỳ", "zoneName": "Kahoolawe" },

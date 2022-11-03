@@ -519,6 +519,7 @@
     "UA-CR": { "countryName": "Ukraine", "zoneName": "Krim" },
     "UG": { "zoneName": "Uganda" },
     "UM": { "zoneName": "United States Minor Outlying Islands" },
+    "US": { "zoneName": "Vereinigte Staaten" },
     "US-HI": { "zoneName": "Hawaii", "countryName": "Vereinigte Staaten" },
     "UY": { "zoneName": "Uruguay" },
     "UZ": { "zoneName": "Usbekistan" },

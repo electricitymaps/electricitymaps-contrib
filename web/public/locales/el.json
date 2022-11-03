@@ -536,6 +536,7 @@
     "UA-CR": { "countryName": "Κριμαία", "zoneName": "Ουκρανία" },
     "UG": { "zoneName": "Ουγκάντα" },
     "UM": { "zoneName": "United States Minor Outlying Islands" },
+    "US": { "zoneName": "Ηνωμένες Πολιτείες Αμερικής" },
     "US-HI-HA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Hawaii" },
     "US-HI-KA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Kauai" },
     "US-HI-KH": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Kahoolawe" },

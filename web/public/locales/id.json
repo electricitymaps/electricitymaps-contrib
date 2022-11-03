@@ -531,6 +531,7 @@
     "UA-CR": { "countryName": "Crimea", "zoneName": "Ukraina" },
     "UG": { "zoneName": "Uganda" },
     "UM": { "zoneName": "Pulau Outlying Amerika Serikat" },
+    "US": { "zoneName": "Amerika Serikat" },
     "US-HI-HA": { "countryName": "Amerika Serikat", "zoneName": "Hawaii" },
     "US-HI-KA": { "countryName": "Amerika Serikat", "zoneName": "Kauai" },
     "US-HI-KH": { "countryName": "Amerika Serikat", "zoneName": "Kahoolawe" },

@@ -534,6 +534,7 @@
     "UA-CR": { "countryName": "クリミア", "zoneName": "ウクライナ" },
     "UG": { "zoneName": "ウガンダ" },
     "UM": { "zoneName": "アメリカ合衆国領有小離島" },
+    "US": { "zoneName": "アメリカ合衆国" },
     "US-HI-HA": { "countryName": "アメリカ合衆国", "zoneName": "ハワイ" },
     "US-HI-KA": { "countryName": "アメリカ合衆国", "zoneName": "カウアイ" },
     "US-HI-KH": { "countryName": "アメリカ合衆国", "zoneName": "カホオラウェ" },

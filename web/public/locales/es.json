@@ -579,6 +579,7 @@
     "UA-CR": { "countryName": "Ucrania", "zoneName": "Crimea" },
     "UG": { "zoneName": "Uganda" },
     "UM": { "zoneName": "Islas Ultramarinas Menores de Estados Unidos" },
+    "US": { "zoneName": "Estados Unidos" },
     "US-HI": { "countryName": "Estados Unidos", "zoneName": "Hawái" },
     "US-HI-KA": { "countryName": "Estados Unidos", "zoneName": "Kauai" },
     "US-HI-KH": { "countryName": "Estados Unidos", "zoneName": "Kahoolawe" },

@@ -529,6 +529,7 @@
     "UA-CR": { "countryName": "크림 반도", "zoneName": "우크라이나" },
     "UG": { "zoneName": "우간다" },
     "UM": { "zoneName": "미국령 군소 제도" },
+    "US": { "zoneName": "미국" },
     "US-HI-HA": { "countryName": "미국", "zoneName": "하와이섬" },
     "US-HI-KA": { "countryName": "미국", "zoneName": "카우아이섬" },
     "US-HI-KH": { "countryName": "미국", "zoneName": "카호올라웨섬" },

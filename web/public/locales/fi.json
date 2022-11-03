@@ -533,6 +533,7 @@
     "UA-CR": { "countryName": "Krim", "zoneName": "Ukraina" },
     "UG": { "zoneName": "Uganda" },
     "UM": { "zoneName": "Yhdysvaltain pienet erillissaaret" },
+    "US": { "zoneName": "Yhdysvallat" },
     "US-HI-HA": { "countryName": "Yhdysvallat", "zoneName": "Havaiji" },
     "US-HI-KA": { "countryName": "Yhdysvallat", "zoneName": "Kauai" },
     "US-HI-KH": { "countryName": "Yhdysvallat", "zoneName": "Kahoolawe" },

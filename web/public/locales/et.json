@@ -545,6 +545,7 @@
     "UA-CR": { "countryName": "Krimm", "zoneName": "Ukraina" },
     "UG": { "zoneName": "Uganda" },
     "UM": { "zoneName": "Ühendriikide hajasaared" },
+    "US": { "zoneName": "Ameerika Ühendriigid" },
     "US-HI-HA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Hawaii" },
     "US-HI-KA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Kauai" },
     "US-HI-KH": { "countryName": "Ameerika Ühendriigid", "zoneName": "Kahoolawe" },
