@@ -94,13 +94,13 @@ REGIONS = {
     "US-MIDW-MISO": "MISO",  # Midcontinent Independent Transmission System Operator, Inc..
     "US-NE-ISNE": "ISNE",  # Iso New England Inc.
     "US-NW-AVA": "AVA",  # Avista Corporation
-    "US-NW-AVRN": "AVRN",  # Avangrid Renewables, LLC
+    "US-NW-AVRN": "AVRN",  # Avangrid Renewables, LLC, integrated with US-NW-BPAT and US-NW-PACW
     "US-NW-BPAT": "BPAT",  # Bonneville Power Administration
     "US-NW-CHPD": "CHPD",  # Public Utility District No. 1 Of Chelan County
     "US-NW-DOPD": "DOPD",  # Pud No. 1 Of Douglas County
     "US-NW-GCPD": "GCPD",  # Public Utility District No. 2 Of Grant County, Washington
     "US-NW-GRID": "GRID",  # Gridforce Energy Management, Llc
-    "US-NW-GWA": "GWA",  # Naturener Power Watch, Llc (Gwa)
+    "US-NW-GWA": "GWA",  # Naturener Power Watch, Llc (Gwa), integrated with US-NW-NWMT
     "US-NW-IPCO": "IPCO",  # Idaho Power Company
     "US-NW-NEVP": "NEVP",  # Nevada Power Company
     "US-NW-NWMT": "NWMT",  # Northwestern Energy (Nwmt)
@@ -113,16 +113,17 @@ REGIONS = {
     "US-NW-TPWR": "TPWR",  # City Of Tacoma, Department Of Public Utilities, Light Division
     "US-NW-WACM": "WACM",  # Western Area Power Administration - Rocky Mountain Region
     "US-NW-WAUW": "WAUW",  # Western Area Power Administration Ugp West
-    "US-NW-WWA": "WWA",  # Naturener Wind Watch, Llc
+    "US-NW-WWA": "WWA",  # Naturener Wind Watch, Llc, integrated with US-NW-NWMT
     "US-NY-NYIS": "NYIS",  # New York Independent System Operator
     "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative
     "US-SE-SEPA": "SEPA",  # Southeastern Power Administration
     "US-SE-SOCO": "SOCO",  # Southern Company Services, Inc. - Trans
     "US-SW-AZPS": "AZPS",  # Arizona Public Service Company
+    "US-SW-DEAA": "DEAA",  # Arlington Valley, LLC, integrated with US-SW-SRP
     "US-SW-EPE": "EPE",  # El Paso Electric Company
-    "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc
+    "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc, integrated with US-SW-WALC
     "US-SW-GRMA": "GRMA",  # Gila River Power, Llc
-    "US-SW-HGMA": "HGMA",  # New Harquahala Generating Company, Llc - Hgba
+    "US-SW-HGMA": "HGMA",  # New Harquahala Generating Company, Llc - Hgba, integrated with US-SW-SRP
     "US-SW-PNM": "PNM",  # Public Service Company Of New Mexico
     "US-SW-SRP": "SRP",  # Salt River Project
     "US-SW-TEPC": "TEPC",  # Tucson Electric Power Company
@@ -254,14 +255,14 @@ EXCHANGES = {
     "US-NW-CHPD->US-NW-PSEI": "&facets[fromba][]=CHPD&facets[toba][]=PSEI",
     "US-NW-GCPD->US-NW-PACW": "&facets[fromba][]=GCPD&facets[toba][]=PACW",
     "US-NW-GCPD->US-NW-PSEI": "&facets[fromba][]=GCPD&facets[toba][]=PSEI",
-    "US-NW-GWA->US-NW-NWMT": "&facets[fromba][]=GWA&facets[toba][]=NWMT",
+    #    "US-NW-GWA->US-NW-NWMT": "&facets[fromba][]=GWA&facets[toba][]=NWMT", integrated directly with US-NW-NWMT
     "US-NW-IPCO->US-NW-NEVP": "&facets[fromba][]=IPCO&facets[toba][]=NEVP",
     "US-NW-IPCO->US-NW-NWMT": "&facets[fromba][]=IPCO&facets[toba][]=NWMT",
     "US-NW-IPCO->US-NW-PACE": "&facets[fromba][]=IPCO&facets[toba][]=PACE",
     "US-NW-IPCO->US-NW-PACW": "&facets[fromba][]=IPCO&facets[toba][]=PACW",
     "US-NW-NEVP->US-NW-PACE": "&facets[fromba][]=NEVP&facets[toba][]=PACE",
     "US-NW-NEVP->US-SW-WALC": "&facets[fromba][]=NEVP&facets[toba][]=WALC",
-    "US-NW-NWMT->US-NW-WWA": "&facets[fromba][]=NWMT&facets[toba][]=WWA",
+    #    "US-NW-NWMT->US-NW-WWA": "&facets[fromba][]=NWMT&facets[toba][]=WWA", intergrated directly with US-NW-NWMT
     "US-NW-NWMT->US-NW-PACE": "&facets[fromba][]=NWMT&facets[toba][]=PACE",
     "US-NW-NWMT->US-NW-WAUW": "&facets[fromba][]=NWMT&facets[toba][]=WAUW",
     "US-NW-PACE->US-SW-AZPS": "&facets[fromba][]=PACE&facets[toba][]=AZPS",
@@ -286,8 +287,8 @@ EXCHANGES = {
     "US-SW-AZPS->US-SW-WALC": "&facets[fromba][]=AZPS&facets[toba][]=WALC",
     "US-SW-EPE->US-SW-PNM": "&facets[fromba][]=EPE&facets[toba][]=PNM",
     "US-SW-EPE->US-SW-TEPC": "&facets[fromba][]=EPE&facets[toba][]=TEPC",
-    "US-SW-GRIF->US-SW-WALC": "&facets[fromba][]=GRIF&facets[toba][]=WALC",
-    "US-SW-HGMA->US-SW-SRP": "&facets[fromba][]=HGMA&facets[toba][]=SRP",
+    #    "US-SW-GRIF->US-SW-WALC": "&facets[fromba][]=GRIF&facets[toba][]=WALC", directly integrated in US-WALC
+    #    "US-SW-HGMA->US-SW-SRP": "&facets[fromba][]=HGMA&facets[toba][]=SRP", directly integrated in US-SW-SRP
     "US-SW-PNM->US-SW-TEPC": "&facets[fromba][]=PNM&facets[toba][]=TEPC",
     "US-SW-PNM->US-SW-SRP": "&facets[fromba][]=SRP&facets[toba][]=PNM",
     "US-SW-SRP->US-SW-TEPC": "&facets[fromba][]=SRP&facets[toba][]=TEPC",
