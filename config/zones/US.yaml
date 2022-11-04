@@ -92,7 +92,6 @@ subZoneNames:
   #- US-SW-DEAA Production only zone, all production integrated with US-SW-SRP
   - US-SW-EPE
   #- US-SW-GRIF Production only zone, all production integrated with US-SW-WALC
-  - US-SW-GRMA
   #- US-SW-HGMA Production only zone, all production integrated with US-SW-SRP
   - US-SW-PNM
   - US-SW-SRP
