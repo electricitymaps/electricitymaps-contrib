@@ -1,351 +1,205 @@
-#!/usr/bin/env python3
-# coding=utf-8
-
-import json
 from datetime import datetime
-from logging import Logger, getLogger
-from typing import Optional
+from logging import getLogger
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-import arrow
-import requests
-from requests import Session
+from requests import Response, Session
 
-# APIs
-HISTORICAL_API_ENDPOINT = (
-    "https://opendata-corse-outremer.edf.fr/api/records/1.0/search/"
-)
-REAL_TIME_APIS = {
-    "FR-COR": "https://opendata-corse.edf.fr/api/records/1.0/search",
-    "RE": "https://opendata-reunion.edf.fr/api/records/1.0/search/",
-}
-# Sources
-HISTORICAL_SOURCE = "https://opendata-corse-outremer.edf.fr"
-REAL_TIME_SOURCES = {"FR-COR": "opendata-corse.edf.fr", "RE": "opendata-reunion.edf.fr"}
-# Managed zones
-zone_key_mapping = {
-    "FR-COR": "Corse",
-    "GF": "Guyane",
-    "GP": "Guadeloupe",
-    "MQ": "Martinique",
-    "RE": "Réunion",
+from .lib.exceptions import ParserException
+
+DOMAIN_MAPPING = {
+    "FR-COR": "https://opendata-corse.edf.fr",
+    "RE": "https://opendata-reunion.edf.fr",
+    "GF": "https://opendata-guyane.edf.fr",
+    "MQ": "https://opendata-martinique.edf.fr",
+    "GP": "https://opendata-guadeloupe.edf.fr",
 }
 
-# -------------- Parametrized properties functions -------------- #
-
-
-def get_param(zone_key: str, target_datetime: datetime):
-    if target_datetime is None:
-        params = {
-            "FR-COR": {
-                "dataset": "production-delectricite-par-filiere-en-temps-reel",
-                "timezone": "Europe/Paris",
-                "sort": "date",
-                "rows": "288",
-            },
-            "RE": {
-                "dataset": "courbe-de-charge-de-la-production-delectricite-par-filiere",
-                "timezone": "Indian/Reunion",
-                "sort": "date_heure",
-                "rows": 288,
-            },
-        }
-        return params[zone_key]
-    else:
-        datetime = arrow.get(target_datetime, tz="Europe/Paris")
-        formatted_from = datetime.shift(days=-1).format("DD/MM/YYYY")
-        formatted_to = datetime.format("DD/MM/YYYY")
-        return {
-            "dataset": "courbe-de-charge-de-la-production-delectricite-par-filiere",
-            "timezone": "Europe/Paris",
-            "q": "date_heure >= {} AND date_heure <= {}".format(
-                formatted_from, formatted_to
-            ),
-            "sort": "date_heure",
-            "rows": 24,
-            "facet": "territoire",
-            "refine.territoire": zone_key_mapping[zone_key],
-        }
-
-
-def get_api(zone_key: str, target_datetime: datetime):
-    if target_datetime is None:
-        return REAL_TIME_APIS[zone_key]
-    else:
-        return HISTORICAL_API_ENDPOINT
-
-
-def get_source(zone_key: str, target_datetime: datetime):
-    if target_datetime is None:
-        return REAL_TIME_SOURCES[zone_key]
-    else:
-        return HISTORICAL_SOURCE
-
-
-def get_date_name(zone_key: str, target_datetime: datetime):
-    if target_datetime is None:
-        return "date_heure" if zone_key == "RE" else "date"
-    else:
-        return "date_heure"
-
-
-# -------------- Bagasse / Coal Repartitions -------------- #
-
-# Depending on the month, this correspond more or less to bagasse or coal.
-# This map is an clumsy approximation using harvesting period and annual
-# percentage of biomass used. Here, we use  17.17% for this percentage
-# (https://fr.wikipedia.org/wiki/Usine_de_Bois_Rouge &
-# https://fr.wikipedia.org/wiki/Usine_du_Gol)
-MAP_GENERATION_BAGASSE_COAL_REUNION = {
-    1: {"coal": 1, "biomass": 0},
-    2: {"coal": 1, "biomass": 0},
-    3: {"coal": 1, "biomass": 0},
-    4: {"coal": 1, "biomass": 0},
-    5: {"coal": 1, "biomass": 0},
-    6: {"coal": 1, "biomass": 0},
-    7: {"coal": 0.77, "biomass": 0.23},
-    8: {"coal": 0.6, "biomass": 0.4},
-    9: {"coal": 0.6, "biomass": 0.4},
-    10: {"coal": 0.6, "biomass": 0.4},
-    11: {"coal": 0.6, "biomass": 0.4},
-    12: {"coal": 0.77, "biomass": 0.23},
-}
-# Depending on the month, this correspond more or less to bagasse or coal.
-# This map is an clumsy approximation using harvesting period and annual
-# percentage of biomass used. Here, we use  20% for this percentage
-# (https://fr.wikipedia.org/wiki/Syst%C3%A8me_%C3%A9lectrique_de_la_Guadeloupe &
-# https://www.guadeloupe-energie.gp/wp-content/uploads/2011/07/2010-10-01_Biomasse_Etat-des-lieux.pdf p.35)
-MAP_GENERATION_BAGASSE_COAL_GUADELOUPE = {
-    1: {"coal": 1, "biomass": 0},
-    2: {"coal": 1, "biomass": 0},
-    3: {"coal": 0.6, "biomass": 0.4},
-    4: {"coal": 0.3, "biomass": 0.7},
-    5: {"coal": 0.3, "biomass": 0.7},
-    6: {"coal": 0.6, "biomass": 0.4},
-    7: {"coal": 0.8, "biomass": 0.2},
-    8: {"coal": 1, "biomass": 0},
-    9: {"coal": 1, "biomass": 0},
-    10: {"coal": 1, "biomass": 0},
-    11: {"coal": 1, "biomass": 0},
-    12: {"coal": 1, "biomass": 0},
+LIVE_DATASETS = {
+    "FR-COR": "production-delectricite-par-filiere-en-temps-reel",
+    "GP": "mix-temps-reel-guadeloupe",
 }
 
-# -------------- Thermal Repartitions -------------- #
-# These approximations are made from this document :
-# https://opendata-corse-outremer.edf.fr/api/datasets/1.0/courbe-de-charge-de-la-production-delectricite-par-filiere/attachments/bilan_electrique_edf_sei_2017_pdf/
-
-MAP_GENERATION_DIESEL_GAS_REUNION = {"gas": 0.1202, "oil": 0.8798}
-# (RE) API update: - gas suppression
-MAP_GENERATION_REUNION_OIL = {"oil": 1}
-MAP_GENERATION_REUNION_COAL = {"coal": 1}
-
-MAP_GENERATION_DIESEL_GAS_MARTINIQUE = {"gas": 0.1247, "oil": 0.8753}
-MAP_GENERATION_DIESEL_GAS_GUADELOUPE = {"gas": 0.0126, "oil": 0.9874}
-MAP_GENERATION_DIESEL_GAS_GUYANNE = {"gas": 0.2261, "oil": 0.7739}
-MAP_GENERATION_DIESEL_GAS_CORSE = {"gas": 0.0196, "oil": 0.9804}
-
-
-# Thermal sources by region
-thermal_mapping = {
-    "FR-COR": [
-        {
-            "name": "thermique_mwh",
-            "monthly_variation": False,
-            "type": MAP_GENERATION_DIESEL_GAS_CORSE,
-        }
-    ],
-    "GF": [
-        {
-            "name": "thermique_mwh",
-            "monthly_variation": False,
-            "type": MAP_GENERATION_DIESEL_GAS_GUYANNE,
-        }
-    ],
-    "GP": [
-        {
-            "name": "bagasse_charbon_mwh",
-            "monthly_variation": True,
-            "type": MAP_GENERATION_BAGASSE_COAL_GUADELOUPE,
-        },
-        {
-            "name": "thermique_mwh",
-            "monthly_variation": False,
-            "type": MAP_GENERATION_DIESEL_GAS_GUADELOUPE,
-        },
-    ],
-    "MQ": [
-        {
-            "name": "thermique_mwh",
-            "monthly_variation": False,
-            "type": MAP_GENERATION_DIESEL_GAS_MARTINIQUE,
-        }
-    ],
-    "RE": [
-        {
-            "name": "bagasse_charbon_mwh",
-            "monthly_variation": True,
-            "type": MAP_GENERATION_BAGASSE_COAL_REUNION,
-        },
-        {
-            "name": "bagasse_charbon",
-            "monthly_variation": True,
-            "type": MAP_GENERATION_BAGASSE_COAL_REUNION,
-        },
-        {
-            "name": "thermique_mwh",
-            "monthly_variation": False,
-            "type": MAP_GENERATION_DIESEL_GAS_REUNION,
-        },
-        {
-            "name": "thermique",
-            "monthly_variation": False,
-            "type": MAP_GENERATION_DIESEL_GAS_REUNION,
-        },
-        # (RE) API update
-        {
-            "name": "turbine_a_combustion",
-            "monthly_variation": False,
-            "type": MAP_GENERATION_REUNION_OIL,
-        },
-        {
-            "name": "diesel",
-            "monthly_variation": False,
-            "type": MAP_GENERATION_REUNION_OIL,
-        },
-        {
-            "name": "charbon",
-            "monthly_variation": False,
-            "type": MAP_GENERATION_REUNION_COAL,
-        },
-    ],
+HISTORICAL_DATASETS = {
+    "FR-COR": "production-delectricite-par-filiere",
+    "RE": "courbe-de-charge-de-la-production-delectricite-par-filiere",
+    "GF": "courbe-de-charge-de-la-production-delectricite-par-filiere",
+    "MQ": "courbe-de-charge-de-la-production-delectricite-par-filiere",
+    "GP": "courbe-de-charge-de-la-production-delectricite-par-filiere",
 }
 
-# Non-thermal sources names in api
-sources_mapping = {
-    "biomass": ["bioenergies_mwh", "bioenergies", "biogaz"],
-    "hydro": ["hydraulique_mwh", "hydraulique", "micro_hydro"],
-    "solar": [
-        "photovoltaique_mwh",
-        "photovoltaique",
-        "photovoltaique_avec_stockage",
-        "photovoltaique0",
-    ],
-    "wind": ["eolien_mwh", "eolien"],
-    "geothermal": ["geothermie_mwh"],
-    "oil": ["moteur_diesel"],
+API_PARAMETER_GROUPS = {
+    "production": {
+        "biomass": [
+            "biomasse",
+            "biomasse_mw",
+            "biomasse_mwh",
+            "bioenergies",
+            "bioenergies_mw",
+            "bioenergies_mwh",
+        ],
+        "coal": [
+            "charbon",
+        ],
+        "gas": [
+            "thermique_mw",
+            "thermique_mwh",
+            "turbines_a_combustion",
+        ],
+        "geothermal": [
+            "geothermie",
+            "geothermie_mw",
+        ],
+        "hydro": [
+            "hydraulique",
+            "hydraulique_mw",
+            "hydraulique_mwh",
+            "micro_hydro",
+            "micro_hydraulique_mw",
+        ],
+        "oil": ["diesel", "moteur_diesel"],
+        "solar": [
+            "photovoltaique",
+            "photovoltaique0",
+            "photovoltaique_mw",
+            "photovoltaique_mwh",
+            "solaire_mw",
+        ],
+        "wind": [
+            "eolien",
+            "eolien_mw",
+            "eolien_mwh",
+        ],
+        "unknown": ["bagasse_charbon_mwh", "charbon_bagasse_mw"],
+    },
+    "storage": {},
 }
+
+PRODUCTION_MAPPING = {
+    API_TYPE: type
+    for key in ["production"]
+    for type, groups in API_PARAMETER_GROUPS[key].items()
+    for API_TYPE in groups
+}
+
+STORAGE_MAPPING = {
+    API_TYPE: type
+    for key in ["storage"]
+    for type, groups in API_PARAMETER_GROUPS[key].items()
+    for API_TYPE in groups
+}
+
+
+def generate_url(zone_key, target_datetime):
+    return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{HISTORICAL_DATASETS[zone_key] if target_datetime else LIVE_DATASETS[zone_key]}/exports/json"
+
+
+def fetch_data(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger=getLogger(__name__),
+) -> Tuple[Any, str]:
+    ses = session or Session()
+    target_datetime_string = None
+
+    DATE_STRING_MAPPING = {
+        "FR-COR": "date_heure" if target_datetime else "date",
+        "RE": "date_heure",
+        "GF": "date",
+        "MQ": "date_heure",
+        "GP": "date",
+    }
+
+    if target_datetime and zone_key not in HISTORICAL_DATASETS.keys():
+        raise ParserException(
+            "FR_O.py",
+            f"Historical data not implemented for {zone_key} in this parser.",
+            zone_key,
+        )
+    elif target_datetime is None and zone_key not in LIVE_DATASETS.keys():
+        raise ParserException(
+            "FR_O.py",
+            f"Live data not implemented for {zone_key} in this parser.",
+            zone_key,
+        )
+
+    URL_QUERIES: Dict[str, Union[str, None]] = {
+        #   "refine": "statut:Validé" if target_datetime else None,
+        "timezone": "UTC",
+        "order_by": f"{DATE_STRING_MAPPING[zone_key]} desc",
+        "refine": f"{DATE_STRING_MAPPING[zone_key]}:{target_datetime.strftime('%Y')}"
+        if target_datetime
+        else None,
+    }
+
+    url = generate_url(zone_key, target_datetime)
+    response: Response = ses.get(url, params=URL_QUERIES)
+    data = response.json()
+    if data == []:
+        raise ParserException(
+            "FR_O.py",
+            f"No data available for {zone_key} for {target_datetime.strftime('%Y')}"
+            if target_datetime
+            else f"No live data available for {zone_key}.",
+            zone_key,
+        )
+    elif isinstance(data, dict):
+        if data.get("errorcode") == "10002":
+            raise ParserException(
+                "FR_O.py",
+                f"Rate limit exceeded. Please try again later after: {data.reset_time}",
+            )
+        elif data.get("error_code") == "ODSQLError":
+            raise ParserException(
+                "FR_O.py",
+                "Query malformed. Please check the parameters. If this was previously working there has likely been a change in the API.",
+            )
+    return data, DATE_STRING_MAPPING[zone_key]
 
 
 def fetch_production(
     zone_key: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
+    logger=getLogger(__name__),
 ):
-    if (target_datetime is None) and zone_key not in REAL_TIME_SOURCES.keys():
-        raise NotImplementedError("There is no real time data")
+    production_objects, date_string = fetch_data(
+        zone_key, session, target_datetime, logger
+    )
 
-    # Request build
-    r = session or requests.session()
-    params = get_param(zone_key, target_datetime)
-    api = get_api(zone_key, target_datetime)
-    date_name = get_date_name(zone_key, target_datetime)
-
-    # Date build
-    if target_datetime is None:
-        datetime = arrow.now(tz=params["timezone"])
-    else:
-        datetime = arrow.get(target_datetime, params["timezone"])
-
-    # Data retrievement
-    response = r.get(api, params=params)
-    data = json.loads(response.content)
-    datapoints = []
-
-    # Response build
-    if len(data["records"]) > 0 and ("fields" in data["records"][0]):
-        for i in range(0, len(data["records"])):
-            fields = data["records"][i]["fields"]
-            datetime_result = arrow.get(fields[date_name]).datetime
-            result = {
-                "zoneKey": zone_key,
-                "datetime": datetime_result,
-                "source": get_source(zone_key, target_datetime),
-                "production": {
-                    "nuclear": 0,
-                    "biomass": 0,
-                    "coal": 0,
-                    "gas": 0,
-                    "hydro": 0,
-                    "oil": 0,
-                    "solar": 0,
-                    "wind": 0,
-                    "geothermal": 0,
-                    "unknown": 0,
-                },
-            }
-            # Non-thermal sources
-            for source_mapping_key in sources_mapping:
-                current_sources = sources_mapping[source_mapping_key]
-                for current_source in current_sources:
-                    if current_source in fields:
-                        value = fields[current_source]
-                        if value > 0:
-                            result["production"][source_mapping_key] += value
-
-            # Thermal sources
-            for k in range(0, len(thermal_mapping[zone_key])):
-                current_thermal = thermal_mapping[zone_key][k]
-                current_type = current_thermal["type"]
-                current_source = None
-                if current_thermal["monthly_variation"]:
-                    current_source = current_type[datetime.month]
+    return_list: List[Dict[str, Any]] = []
+    for production_object in production_objects:
+        production: Dict[str, Union[float, int]] = {}
+        storage: Dict[str, Union[float, int]] = {}
+        for mode_key in production_object:
+            if mode_key in PRODUCTION_MAPPING:
+                if PRODUCTION_MAPPING[mode_key] in production.keys():
+                    production[PRODUCTION_MAPPING[mode_key]] += production_object[
+                        mode_key
+                    ]
                 else:
-                    current_source = current_type
-                for type_name in current_source:
-                    if current_thermal["name"] in fields:
-                        value = fields[current_thermal["name"]]
-                        multiple = current_source[type_name]
-                        result["production"][type_name] += value * multiple
-
-            datapoints.append(result)
-
-    return datapoints
-
-
-def fetch_price(
-    zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-):
-    if target_datetime is None:
-        raise NotImplementedError("There is no real time data")
-
-    r = session or requests.session()
-    params = get_param(zone_key, target_datetime)
-    api = get_api(zone_key, target_datetime)
-    date_name = get_date_name(zone_key, target_datetime)
-
-    r = session or requests.session()
-
-    # Data retrievement
-    response = r.get(api, params=params)
-    data = json.loads(response.content)
-    datapoints = []
-
-    if len(data["records"]) > 0 and ("fields" in data["records"][0]):
-        for i in range(0, len(data["records"])):
-            fields = data["records"][i]["fields"]
-            if "cout_moyen_de_production_eu_mwh" in fields:
-                datetime_result = arrow.get(fields[date_name]).datetime
-                datapoints.append(
-                    {
-                        "zoneKey": zone_key,
-                        "currency": "EUR",
-                        "datetime": datetime_result,
-                        "source": get_source(zone_key, target_datetime),
-                        "price": float(fields["cout_moyen_de_production_eu_mwh"]),
-                    }
+                    production[PRODUCTION_MAPPING[mode_key]] = production_object[
+                        mode_key
+                    ]
+                # Set values below 0 to 0
+                production[PRODUCTION_MAPPING[mode_key]] = (
+                    production[PRODUCTION_MAPPING[mode_key]]
+                    if production[PRODUCTION_MAPPING[mode_key]] >= 0
+                    else 0
                 )
-
-    return datapoints
+            elif mode_key in STORAGE_MAPPING:
+                if STORAGE_MAPPING[mode_key] in storage.keys():
+                    storage[STORAGE_MAPPING[mode_key]] += production_object[mode_key]
+                else:
+                    storage[STORAGE_MAPPING[mode_key]] = production_object[mode_key]
+        return_list.append(
+            {
+                "zoneKey": zone_key,
+                "datetime": datetime.fromisoformat(production_object[f"{date_string}"]),
+                "production": production,
+                "storage": storage,
+                "source": "edf.fr",
+                "estimated": True if production_object["statut"] == "Estimé" else False,
+            }
+        )
+    return return_list
