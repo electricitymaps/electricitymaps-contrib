@@ -78,10 +78,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 523.9874193711945
-    solar:
-      datetime: '2021-01-01'
-      source: INCER ACV
-      value: 28.8
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2017 average
@@ -166,7 +162,4 @@ parsers:
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-sources:
-  INCER ACV:
-    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Asia/Bahrain

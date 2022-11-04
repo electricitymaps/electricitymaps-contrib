@@ -41,18 +41,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 364.08151989072695
-    biomass:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 0.0
-    coal:
-      datetime: '2020-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 758.4409086
-    gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 465.9170756
     hydro discharge:
       - datetime: '2015-01-01'
         source: electricityMap, 2015 average
@@ -75,10 +63,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 364.08151989072695
-    oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 911.7365666
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -102,23 +86,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 364.08151989072695
-    biomass:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 439.145806
-    coal:
-      datetime: '2020-01-01'
-      source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
-        hotspots of coal power generation."
-      value: 786.9856885999999
-    gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 585.9170756
-    hydro:
-      datetime: '2020-01-01'
-      source: UNECE 2022
-      value: 10.7
     hydro discharge:
       - datetime: '2015-01-01'
         source: electricityMap, 2015 average
@@ -141,23 +108,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 364.08151989072695
-    nuclear:
-      datetime: '2020-01-01'
-      source: UNECE 2022
-      value: 5.13
-    oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1155.7365666
-    solar:
-      datetime: '2021-01-01'
-      source: INCER ACV
-      value: 42.13333333
-    wind:
-      datetime: '2021-01-01'
-      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
-        outlook for 2022-2026" Wind Europe Proceedings (2021)
-      value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2015 average
@@ -272,11 +222,4 @@ parsers:
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-sources:
-  INCER ACV:
-    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
-  IPCC 2014:
-    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
-  UNECE 2022:
-    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 timezone: Europe/Dublin

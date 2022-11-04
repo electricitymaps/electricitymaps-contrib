@@ -40,18 +40,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 411.7071924468364
-    biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
-    coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 521.6312947
-    gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 423.934686
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -65,10 +53,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 411.7071924468364
-    oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 1162.940076
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -83,18 +67,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 517.0691117474728
-    biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 572.1600047
-    coal:
-      datetime: '2020-01-01'
-      source: IPCC 2014; eGrid 2020
-      value: 581.6312947
-    gas:
-      datetime: '2021-01-01'
-      source: IPCC 2014; eGrid 2020
-      value: 543.934686
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -108,14 +80,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 517.0691117474728
-    oil:
-      datetime: '2021-01-01'
-      source: IPCC 2014; eGrid 2020
-      value: 1406.940076
-    solar:
-      datetime: '2021-01-01'
-      source: INCER ACV
-      value: 25.6
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2018 average
@@ -168,11 +132,4 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
-sources:
-  INCER ACV:
-    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
-  IPCC 2014:
-    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
-  eGrid 2020:
-    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: US/Eastern

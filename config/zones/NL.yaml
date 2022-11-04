@@ -20,19 +20,6 @@ contributors:
   - nessie2013
 disclaimer: The data provider (ENTSO-E) underreports production and consumption data.
 emissionFactors:
-  direct:
-    biomass:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 0.0
-    gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 470.7521775
-    oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 880.903938
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -56,23 +43,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 367.67482398728197
-    biomass:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 439.145806
-    coal:
-      datetime: '2012-01-01'
-      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 817.319095
-    gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 590.7521775
-    hydro:
-      datetime: '2020-01-01'
-      source: UNECE 2022
-      value: 10.7
     hydro discharge:
       - datetime: '2015-01-01'
         source: electricityMap, 2015 average
@@ -95,27 +65,10 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 367.67482398728197
-    nuclear:
-      datetime: '2020-01-01'
-      source: UNECE 2022
-      value: 5.13
-    oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1124.903938
-    solar:
-      datetime: '2021-01-01'
-      source: INCER ACV
-      value: 36.5
     unknown:
       _url: https://github.com/tmrowco/electricityMap-contrib/issues/3015#issuecomment-888154930
       source: 2020 average by electricityMap. See disclaimer
       value: 342
-    wind:
-      datetime: '2021-01-01'
-      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
-        outlook for 2022-2026" Wind Europe Proceedings (2021)
-      value: 12.62
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
@@ -231,11 +184,4 @@ parsers:
   price: ENTSOE.fetch_price
   production: NL.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-sources:
-  INCER ACV:
-    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
-  IPCC 2014:
-    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
-  UNECE 2022:
-    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 timezone: Europe/Amsterdam

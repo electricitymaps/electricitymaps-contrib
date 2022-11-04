@@ -71,10 +71,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 532.8755839124373
-    solar:
-      datetime: '2021-01-01'
-      source: INCER ACV
-      value: 30.25
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2019 average
@@ -126,7 +122,4 @@ parsers:
   consumption: MD.fetch_consumption
   price: MD.fetch_price
   production: MD.fetch_production
-sources:
-  INCER ACV:
-    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Chisinau
