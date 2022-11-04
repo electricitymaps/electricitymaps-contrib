@@ -1,0 +1,24 @@
+bounding_box:
+  - - 0
+    - 0
+  - - 0
+    - 0
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 0
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 0
+contributors:
+  - daugym
+parsers:
+  production: IN_WS.fetch_production
+
+timezone: Asia/Kolkata
