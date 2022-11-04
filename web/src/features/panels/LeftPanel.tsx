@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes, useParams } from 'react-router-dom';
+import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import ZoneDetails from './Zone/ZoneDetails';
 
 function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }): JSX.Element {
@@ -12,21 +12,20 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }): JSX.E
 
 export default function LeftPanel(): JSX.Element {
   return (
-    <div className="left-panel">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<p>Ranking</p>} />
-          <Route path="/map" element={<p>Ranking</p>} />
-          <Route
-            path="/zone/:zoneId"
-            element={
-              <ValidZoneIdGuardWrapper>
-                <ZoneDetails />
-              </ValidZoneIdGuardWrapper>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+    <div className=" flex w-4/12 bg-zinc-200 shadow-lg">
+      <Routes>
+        <Route path="/" element={<p>Ranking Panel</p>} />
+        <Route
+          path="/zone/:zoneId"
+          element={
+            <ValidZoneIdGuardWrapper>
+              <ZoneDetails />
+            </ValidZoneIdGuardWrapper>
+          }
+        />
+        {/* Alternative: add /map here and have a NotFound component for anything else*/}
+        <Route path="*" element={<p>Ranking Panel</p>} />
+      </Routes>
     </div>
   );
 }

@@ -133,6 +133,12 @@
         }
       }
     ],
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "ignore": [".*[pP]rops"]
+      }
+    ],
     "unicorn/no-nested-ternary": ["error"]
   },
   "settings": {
@@ -144,7 +150,7 @@
     {
       "files": ["src/**/*.ts?(x)"],
       "parserOptions": {
-        "project": ["./web/tsconfig.json"]
+        "project": ["./tsconfig.json"]
       }
     },
     {

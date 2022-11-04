@@ -25,3 +25,9 @@
     src: url('/fonts/Inter-Bold.woff2') format('woff2');
   }
 }
+
+html,
+body,
+#root {
+  @apply h-full;
+}

@@ -16,6 +16,7 @@
   "files.watcherExclude": {
     "**/dist": true
   },
+  "eslint.workingDirectories": [{ "mode": "auto" }],
   "javascript.format.enable": false,
   "typescript.disableAutomaticTypeAcquisition": true,
   "typescript.tsdk": "node_modules/typescript/lib",
