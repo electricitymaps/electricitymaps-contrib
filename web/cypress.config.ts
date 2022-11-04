@@ -2,10 +2,17 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   fileServerFolder: 'dist',
-  fixturesFolder: false,
-  projectId: 'etow1b',
+  fixturesFolder: '../mockserver/public',
+  projectId: '9z8tgk',
+  video: false,
   e2e: {
-    baseUrl: 'http://localhost:4173/',
+    baseUrl: 'http://localhost:5173/',
     specPattern: 'cypress/e2e/**/*.ts',
+  },
+  component: {
+    devServer: {
+      framework: 'react',
+      bundler: 'vite',
+    },
   },
 });
