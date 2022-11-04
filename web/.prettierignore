@@ -2,6 +2,7 @@
 
 # Needed for lint staged.
 .prettierignore
+Earthfile
 yarn.lock
 
 world.json
