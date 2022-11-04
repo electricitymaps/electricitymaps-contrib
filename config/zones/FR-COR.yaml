@@ -15,6 +15,5 @@ contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
 parsers:
-  price: FR_O.fetch_price
   production: FR_O.fetch_production
 timezone: Europe/Paris
