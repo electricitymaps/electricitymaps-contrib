@@ -135,6 +135,10 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 42.07081808517848
+    hydro:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 10.7
     hydro discharge:
       - datetime: '2015-01-01'
         source: electricityMap, 2015 average
@@ -157,6 +161,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 42.07081808517848
+    nuclear:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 5.13
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 35.76666667
     unknown:
       - _comment: Uses the 2015 (2022 edition) eurostat production values for the sources
           in unknown
@@ -204,6 +216,11 @@ emissionFactors:
         datetime: '2022-01-01'
         source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
         value: 238.4
+    wind:
+      datetime: '2021-01-01'
+      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
+        outlook for 2022-2026" Wind Europe Proceedings (2021)
+      value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2015 average
@@ -350,6 +367,11 @@ parsers:
   production: ENTSOE.fetch_production_aggregate
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  UNECE 2022:
+    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 subZoneNames:
   - SE-SE1
   - SE-SE2

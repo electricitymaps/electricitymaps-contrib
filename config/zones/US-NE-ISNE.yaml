@@ -36,6 +36,18 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 183.63867835383604
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 1042.155724
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 389.0568749
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -49,6 +61,10 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 183.63867835383604
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 1257.197843
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -63,6 +79,19 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 260.81934215347667
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 429.7692167
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
+      value: 1133.712784
+    gas:
+      datetime: '2021-01-01'
+      source: IPCC 2014; eGrid 2020
+      value: 509.0568749
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -76,6 +105,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 260.81934215347667
+    oil:
+      datetime: '2021-01-01'
+      source: IPCC 2014; eGrid 2020
+      value: 1501.197843
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 27.825
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2020 average
@@ -113,4 +150,11 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: US_NEISO.fetch_production
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: US/Eastern

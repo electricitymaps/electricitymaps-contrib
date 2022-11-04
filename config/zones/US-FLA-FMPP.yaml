@@ -40,6 +40,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 440.5330707389499
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 768.4856555
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 446.015972
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -67,6 +75,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 536.0332636570112
+    coal:
+      datetime: '2020-01-01'
+      source: IPCC 2014; eGrid 2020
+      value: 828.4856555
+    gas:
+      datetime: '2021-01-01'
+      source: IPCC 2014; eGrid 2020
+      value: 566.0159719999999
     hydro discharge:
       - datetime: '2018-01-01'
         source: electricityMap, 2018 average
@@ -80,6 +96,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 536.0332636570112
+    oil:
+      datetime: '2014-01-01'
+      source: IPCC 2014; EIA 2020/BEIS 2021
+      value: 650.0
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 25.6
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2018 average
@@ -117,4 +141,11 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: US/Eastern

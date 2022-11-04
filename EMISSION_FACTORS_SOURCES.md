@@ -12,9 +12,37 @@ It only describes zone specific emission factors. Our default emission factors c
 
 * AT
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -27,6 +55,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -40,13 +70,39 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * AX
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -59,6 +115,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -76,9 +134,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * BE
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -91,6 +177,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -104,9 +192,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * BG
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -119,6 +235,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -152,13 +270,39 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * CY
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -171,6 +315,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -184,9 +330,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * CZ
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -199,6 +373,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -212,9 +388,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * DE
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -227,6 +431,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -240,9 +446,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * DK-BHM
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -255,6 +489,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -268,9 +504,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * DK-DK1
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -283,6 +547,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -296,9 +562,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * DK-DK2
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -311,6 +605,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -324,13 +620,39 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * EE
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -343,6 +665,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -356,9 +680,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-CN-FVLZ
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -371,6 +723,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -384,9 +738,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-CN-GC
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -399,6 +781,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -412,9 +796,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-CN-HI
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -427,6 +839,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -440,9 +854,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-CN-IG
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -455,6 +897,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -468,9 +912,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-CN-LP
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -483,6 +955,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -496,9 +970,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-CN-TE
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -511,6 +1013,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -524,9 +1028,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-IB-FO
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -539,6 +1071,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -552,9 +1086,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-IB-IZ
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -567,6 +1129,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -580,9 +1144,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-IB-MA
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -595,6 +1187,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -608,9 +1202,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES-IB-ME
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -623,6 +1245,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -636,9 +1260,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * ES
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -651,6 +1303,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -664,9 +1318,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * FI
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -680,6 +1362,8 @@ It only describes zone specific emission factors. Our default emission factors c
                 
     * oil
                 
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * wind
@@ -690,13 +1374,27 @@ It only describes zone specific emission factors. Our default emission factors c
         
   * Direct emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * unknown
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -726,9 +1424,25 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * FO-SI
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -756,6 +1470,14 @@ It only describes zone specific emission factors. Our default emission factors c
         
   * Direct emission factors
             
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * unknown
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
@@ -768,9 +1490,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * FR-COR
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -783,6 +1533,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -792,9 +1544,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * FR
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -807,6 +1587,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -836,9 +1618,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * GR-IS
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -851,6 +1661,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -860,9 +1672,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * GR
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -875,6 +1715,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -888,9 +1730,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * HR
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -903,6 +1773,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -916,9 +1788,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * HU
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -931,6 +1831,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -944,9 +1846,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * IE
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -959,6 +1889,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -988,9 +1920,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * IT-CNO
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1003,6 +1963,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1016,9 +1978,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * IT-CSO
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1031,6 +2021,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1044,9 +2036,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * IT-NO
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1059,6 +2079,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1072,9 +2094,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * IT-SAR
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1087,6 +2137,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1100,9 +2152,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * IT-SIC
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1115,6 +2195,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1128,9 +2210,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * IT-SO
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1143,6 +2253,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1172,13 +2284,39 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * LT
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1191,6 +2329,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1204,13 +2344,39 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * LU
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1223,6 +2389,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1232,13 +2400,39 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * LV
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1251,6 +2445,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1272,13 +2468,39 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * MT
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1291,6 +2513,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1300,13 +2524,33 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * NL
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * coal
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1319,6 +2563,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1412,9 +2658,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * PL
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1427,6 +2701,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1458,17 +2734,35 @@ It only describes zone specific emission factors. Our default emission factors c
         
   * Direct emission factors
             
-    * coal
+    * biomass
                 
-      * [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
-  * Lifecycle emission factors
-            
     * coal
                 
       * [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+  * Lifecycle emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1481,6 +2775,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1492,17 +2788,35 @@ It only describes zone specific emission factors. Our default emission factors c
         
   * Direct emission factors
             
-    * coal
+    * biomass
                 
-      * [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
-  * Lifecycle emission factors
-            
     * coal
                 
       * [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+  * Lifecycle emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1515,6 +2829,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1526,17 +2842,35 @@ It only describes zone specific emission factors. Our default emission factors c
         
   * Direct emission factors
             
-    * coal
+    * biomass
                 
-      * [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
-  * Lifecycle emission factors
-            
     * coal
                 
       * [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
                 
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+  * Lifecycle emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1549,6 +2883,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1562,9 +2898,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * RO
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1577,6 +2941,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1598,49 +2964,169 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * SE-SE1
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
 * SE-SE2
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
 * SE-SE3
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
 * SE-SE4
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1666,9 +3152,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * SI
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1681,6 +3195,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1694,9 +3210,37 @@ It only describes zone specific emission factors. Our default emission factors c
                 
 * SK
         
+  * Direct emission factors
+            
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
   * Lifecycle emission factors
             
+    * biomass
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
+    * coal
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+                
     * gas
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
@@ -1709,6 +3253,8 @@ It only describes zone specific emission factors. Our default emission factors c
       * [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
                 
     * oil
+                
+      * [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
                 
       * [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
                 
