@@ -89,16 +89,16 @@ emissionFactors:
       value: 101.6370901
     coal:
       datetime: '2020-01-01'
-      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation."; eGrid 2020
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
       value: 587.8020898
     gas:
       datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 523.8432591000001
     geothermal:
       datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 133.82104392
     hydro discharge:
       - datetime: '2018-01-01'
@@ -115,7 +115,7 @@ emissionFactors:
         value: 235.04724861550912
     oil:
       datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 1154.2232446
     solar:
       datetime: '2021-01-01'

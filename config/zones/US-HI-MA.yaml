@@ -20,7 +20,7 @@ emissionFactors:
       value: 490.0
     oil:
       datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 1027.2844717
 flag_file_name: us.png
 sources:

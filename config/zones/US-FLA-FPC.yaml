@@ -89,11 +89,11 @@ emissionFactors:
       value: 572.1600047
     coal:
       datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 581.6312947
     gas:
       datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 543.934686
     hydro discharge:
       - datetime: '2018-01-01'
@@ -110,7 +110,7 @@ emissionFactors:
         value: 517.0691117474728
     oil:
       datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 1406.940076
     solar:
       datetime: '2021-01-01'

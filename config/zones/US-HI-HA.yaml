@@ -24,11 +24,11 @@ emissionFactors:
       value: 490.0
     geothermal:
       datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 38.0
     oil:
       datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 1029.7600688
 flag_file_name: us.png
 sources:

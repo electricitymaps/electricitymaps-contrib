@@ -86,8 +86,8 @@ emissionFactors:
         value: 26.70306658420661
     coal:
       datetime: '2012-01-01'
-      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation."; IPCC 2014
+      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
       value: 883.79433
     gas:
       datetime: '2014-01-01'
@@ -117,7 +117,7 @@ emissionFactors:
         value: 26.70306658420661
     oil:
       datetime: '2014-01-01'
-      source: EIA 2020/BEIS 2021; IPCC 2014
+      source: IPCC 2014; EIA 2020/BEIS 2021
       value: 650.0
 fallbackZoneMixes:
   powerOriginRatios:

@@ -71,7 +71,7 @@ emissionFactors:
       value: 980.1789569
     coal:
       datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 1148.282256
     gas:
       datetime: '2014-01-01'
@@ -89,7 +89,7 @@ emissionFactors:
         value: 596.1959379579715
     oil:
       datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
+      source: IPCC 2014; eGrid 2020
       value: 986.1719304
 fallbackZoneMixes:
   powerOriginRatios:
