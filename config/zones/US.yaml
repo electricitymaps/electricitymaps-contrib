@@ -108,4 +108,6 @@ bypassedSubZones:
   - US-HI-MO
   - US-HI-NI
   - US-HI-OA
+  - US-SE-AEC
+  - US-MIDW-GLHB
 timezone: US-Central
