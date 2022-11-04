@@ -45,11 +45,11 @@ emissionFactors:
       source: eGrid 2020
       value: 514.4743088
     gas:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020
       value: 403.8432591
     geothermal:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020
       value: 95.82104392
     hydro discharge:
@@ -66,7 +66,7 @@ emissionFactors:
         source: electricityMap, 2021 average
         value: 235.04724861550912
     oil:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020
       value: 910.2232446
   lifecycle:
@@ -93,11 +93,11 @@ emissionFactors:
         generation."; eGrid 2020
       value: 587.8020898
     gas:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
       value: 523.8432591000001
     geothermal:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
       value: 133.82104392
     hydro discharge:
@@ -114,7 +114,7 @@ emissionFactors:
         source: electricityMap, 2021 average
         value: 235.04724861550912
     oil:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
       value: 1154.2232446
     solar:
@@ -188,4 +188,11 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: US_CA.fetch_production
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: US/Pacific

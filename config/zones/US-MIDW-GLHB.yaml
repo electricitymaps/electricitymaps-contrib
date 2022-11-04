@@ -37,7 +37,7 @@ emissionFactors:
       source: eGrid 2020
       value: 989.6795376
     gas:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020
       value: 961.3216471
     hydro discharge:
@@ -61,7 +61,7 @@ emissionFactors:
         generation."; eGrid 2020
       value: 1059.2490936
     gas:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
       value: 1081.3216471
     hydro discharge:
@@ -78,4 +78,9 @@ emissionFactors:
 flag_file_name: us.png
 parsers:
   production: EIA.fetch_production_mix
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: US/Central

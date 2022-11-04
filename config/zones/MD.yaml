@@ -126,4 +126,7 @@ parsers:
   consumption: MD.fetch_consumption
   price: MD.fetch_price
   production: MD.fetch_production
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Chisinau

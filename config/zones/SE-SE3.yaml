@@ -20,7 +20,7 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2021
       value: 0.0
     coal:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: EU-ETS, ENTSO-E 2021
       value: 1057.262766
     gas:
@@ -37,17 +37,17 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2021
       value: 133.9240359
     coal:
-      datetime: '2021-01-01'
-      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation."; EU-ETS, ENTSO-E 2021
+      datetime: '2020-01-01'
+      source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
+        hotspots of coal power generation."
       value: 1153.629975
     gas:
       datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS, ENTSO-E 2021
+      source: EU-ETS, ENTSO-E 2021; IPCC 2014
       value: 567.9740216
     oil:
       datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS, ENTSO-E 2021
+      source: EU-ETS, ENTSO-E 2021; IPCC 2014
       value: 1124.903938
     unknown:
       - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
@@ -65,4 +65,7 @@ parsers:
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Stockholm

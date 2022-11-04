@@ -19,6 +19,7 @@ EMISSION_FACTORS_DIRECT_FILENAME = "2022-08-11 regional emission factors - direc
 EMISSION_FACTORS_UPSTREAM_FILENAME = (
     "2022-08-11 regional emission factors - upstream.csv"
 )
+EMISSION_FACTORS_LINKS_FILENAME = "2022-08-11 regional emission factors - Links.csv"
 
 CARBON_FREE_MODES = [
     "nuclear",
@@ -33,6 +34,12 @@ EmissionFactorRow = namedtuple(
 
 df_direct = pd.read_csv(CONFIG_DIR.joinpath(EMISSION_FACTORS_DIRECT_FILENAME))
 df_upstream = pd.read_csv(CONFIG_DIR.joinpath(EMISSION_FACTORS_UPSTREAM_FILENAME))
+source_to_link = {
+    r["Source"]: r["Link"]
+    for r in pd.read_csv(CONFIG_DIR.joinpath(EMISSION_FACTORS_LINKS_FILENAME)).to_dict(
+        orient="records"
+    )
+}
 
 
 def _get_row_direct(row: namedtuple) -> namedtuple:
@@ -63,8 +70,24 @@ def _get_lifecycle_datetime(row_u: namedtuple, row_d: namedtuple) -> str:
         "YYYY-MM-DD"
     )
 
+
 def _join_sources(sources: list) -> str:
     return "; ".join(list(set(sources)))
+
+def _get_sources_and_links(zone_config: dict) -> dict:
+    sources = {}
+    for ef_type in ["direct", "lifecycle"]:
+        for mode, ef in zone_config.get("emissionFactors", {}).get(ef_type, {}).items():
+            if isinstance(ef, list):
+                for _ef in ef:
+                    for source in source_to_link.keys():
+                        if source in _ef["source"]:
+                            sources[source] = {"link": source_to_link[source]}
+            else:
+                for source in source_to_link.keys():
+                        if source in ef["source"]:
+                            sources[source] = {"link": source_to_link[source]}
+    return sources
 
 
 # Sum per zone_key, per mode to get lifecycle emission factors
@@ -78,7 +101,9 @@ for row_upstream in df_upstream.itertuples():
         _row_lifecycle = deepcopy(dict(row_upstream._asdict()))
         _row_lifecycle["emission_factor"] += row_direct.emission_factor
         _row_lifecycle["datetime"] = _get_lifecycle_datetime(row_upstream, row_direct)
-        _row_lifecycle["source"] = _join_sources([row_upstream.source, row_direct.source])
+        _row_lifecycle["source"] = _join_sources(
+            [row_upstream.source, row_direct.source]
+        )
         _rows_lifecycle.append(_row_lifecycle)
 
 # Remove the artefact `Index` column
@@ -114,6 +139,9 @@ def update_zone_config(ef: pd.DataFrame, ef_type: str) -> None:
             **zone_config.get("emissionFactors", {}),
             ef_type: _ef,
         }
+        # Add source top level object
+        zone_config["sources"] = _get_sources_and_links(zone_config)
+
 
         with open(CONFIG_DIR.joinpath(f"zones/{row.zone_key}.yaml"), "w") as f:
             yaml.dump(zone_config, f, default_flow_style=False)

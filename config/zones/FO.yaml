@@ -75,15 +75,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 408.8110193788959
-    coal:
-      datetime: '2014-01-01'
-      source: IPCC 2014, https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7;
-        IPCC 2014
-      value: 820.0
-    hydro:
-      datetime: '2020-01-01'
-      source: UNECE, https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=53
-      value: 10.7
     hydro discharge:
       - datetime: '2017-01-01'
         source: electricityMap, 2017 average
@@ -100,18 +91,9 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: electricityMap, 2021 average
         value: 408.8110193788959
-    nuclear:
-      datetime: '2020-01-01'
-      source: UNECE, https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=56
-      value: 5.13
     unknown:
       source: Tidal (IPCC 2014)
       value: 17
-    wind:
-      datetime: '2020-01-01'
-      source: UNECE, https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37
-        and WindEurope https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTA4LTEyVDA5OjU4OjM0LjA1MVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--525dde85c30687b0af70bd8888f736cbb4bc11fd/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename*%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf#page=11
-      value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: electricityMap, 2020 average
@@ -152,4 +134,7 @@ isRenewable:
     value: 1
 parsers:
   production: FO.fetch_production
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Atlantic/Faroe

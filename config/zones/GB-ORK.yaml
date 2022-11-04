@@ -143,4 +143,7 @@ isRenewable:
     value: 1
 parsers:
   production: GB_ORK.fetch_production
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: null

@@ -123,4 +123,7 @@ fallbackZoneMixes:
 flag_file_name: is.png
 parsers:
   production: IS.fetch_production
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: null

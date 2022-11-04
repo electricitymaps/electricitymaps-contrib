@@ -8,13 +8,13 @@ capacity:
   coal: 0
   gas: 0
   geothermal: 0
-  hydro: 4709
+  hydro: 4845
   hydro storage: 87
   nuclear: 0
   oil: 0
   solar: 21.9
   unknown: 46.8
-  wind: 2095
+  wind: 2112
 emissionFactors:
   direct:
     battery discharge:
@@ -218,4 +218,7 @@ parsers:
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: null

@@ -276,4 +276,9 @@ parsers:
   price: ENTSOE.fetch_price
   production: CH.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Zurich

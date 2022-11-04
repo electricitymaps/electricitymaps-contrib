@@ -6,11 +6,11 @@ bounding_box:
 emissionFactors:
   direct:
     geothermal:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020
       value: 0.0
     oil:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020
       value: 785.7600688
   lifecycle:
@@ -23,12 +23,17 @@ emissionFactors:
       source: IPCC 2014
       value: 490.0
     geothermal:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
       value: 38.0
     oil:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
       value: 1029.7600688
 flag_file_name: us.png
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: Pacific/Honolulu
