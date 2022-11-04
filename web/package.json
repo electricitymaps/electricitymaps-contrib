@@ -1,6 +1,6 @@
 {
   "name": "electricitymap-web",
-  "version": "2.0.0",
+  "version": "1.1.0-beta.1",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "GPL-3.0-or-later",
   "engines": {
@@ -24,7 +24,8 @@
     "run-tsc": "tsc",
     "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
     "lint": "run-p run-tsc run-eslint",
-    "validate": "run-p lint test:ci test:e2e:headless"
+    "validate": "run-p lint test:ci test:e2e:headless",
+    "deploy": "pnpm build && sh deploy.sh"
   },
   "dependencies": {
     "@tanstack/react-query": "4.13.0",
