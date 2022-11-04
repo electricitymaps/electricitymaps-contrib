@@ -11,6 +11,7 @@ capacity:
   solar: 44.879
 contributors:
   - PETILLON-Sebastien
+  - VIKTORVAV99
 parsers:
   production: FR_O.fetch_production
 timezone: Europe/Paris

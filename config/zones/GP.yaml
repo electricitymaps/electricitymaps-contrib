@@ -13,6 +13,7 @@ capacity:
   wind: 26.26
 contributors:
   - PETILLON-Sebastien
+  - VIKTORVAV99
 parsers:
   production: FR_O.fetch_production
 timezone: Europe/Paris

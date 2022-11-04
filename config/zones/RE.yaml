@@ -13,6 +13,7 @@ capacity:
   wind: 15
 contributors:
   - PETILLON-Sebastien
+  - VIKTORVAV99
 emissionFactors:
   direct:
     battery discharge:
