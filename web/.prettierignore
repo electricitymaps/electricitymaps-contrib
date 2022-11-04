@@ -2,6 +2,7 @@
 
 # Needed for lint staged.
 .prettierignore
+Earthfile
 yarn.lock
 
 world.json
@@ -10,3 +11,4 @@ excluded-aggregated-exchanges.json
 public/dist/
 public/images/
 src/config/
+.husky/_
