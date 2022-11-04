@@ -98,5 +98,14 @@ subZoneNames:
   - US-SW-WALC
   - US-TEN-TVA
   - US-TEX-ERCO
-bypassAggregationChecks: true
+bypassedSubZones:
+  - US-AK
+  - US-HI-HA
+  - US-HI-KA
+  - US-HI-KH
+  - US-HI-LA
+  - US-HI-MA
+  - US-HI-MO
+  - US-HI-NI
+  - US-HI-OA
 timezone: US-Central

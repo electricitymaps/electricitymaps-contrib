@@ -94,8 +94,8 @@ class Delays(StrictBaseModel):
 
 class Zone(StrictBaseModelWithAlias):
     bounding_box: Optional[List[Point]]
-    bypass_aggregation_checks: Optional[bool] = Field(
-        False, alias="bypassAggregationChecks"
+    bypass_aggregation_checks: Optional[List[ZoneKey]] = Field(
+        [], alias="bypassedSubZones"
     )
     capacity: Optional[Capacity]
     comment: Optional[str] = Field(None, alias="_comment")
@@ -104,7 +104,7 @@ class Zone(StrictBaseModelWithAlias):
     disclaimer: Optional[str]
     flag_file_name: Optional[str]
     parsers: Parsers = Parsers()
-    sub_zone_names: Optional[List[str]] = Field(None, alias="subZoneNames")
+    sub_zone_names: Optional[List[ZoneKey]] = Field(None, alias="bypassedSubZones")
     timezone: Optional[str]
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
     estimation_method: Optional[str]
