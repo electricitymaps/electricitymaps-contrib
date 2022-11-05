@@ -52,9 +52,17 @@ const mergeExchanges = () => {
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDir = exchangeFiles.map((file) => `${basePath}/${file}`);
 
+  const UNNECESSARY_EXCHANGE_FIELDS = ['capacity', 'comment', '_comment', 'parsers'];
+
   const exchanges = filesWithDir.reduce((exchanges, filepath) => {
+    const exchangeConfig = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    for (const key in exchangeConfig) {
+      if (UNNECESSARY_EXCHANGE_FIELDS.includes(key)) {
+        delete exchangeConfig[key];
+      }
+    }
     const exchangeKey = path.parse(filepath).name.split('_').join('->');
-    Object.assign(exchanges, { [exchangeKey]: yaml.load(fs.readFileSync(filepath, 'utf8')) });
+    Object.assign(exchanges, { [exchangeKey]: exchangeConfig });
     return exchanges;
   }, {});
 
