@@ -53,6 +53,23 @@ const AreaGraphLayers = React.memo(
             datetime: datetimes[layer.datapoints.length],
           };
           const datapoints = [...layer.datapoints, lastDataPoint];
+          const forwardFilledDatapoints = datapoints.map((d, i) => {
+            // if a datapoint is null, because we use curveStepAfter,
+            // we must draw the next point as a datapoint is valid until the
+            // next point
+            if (!Number.isFinite(d[1]) && i > 0 && !datapoints[i - 1]?.filled) {
+              // forward-fill
+              return {
+                ...datapoints[i - 1],
+                data: {
+                  ...datapoints[i - 1].data,
+                  datetime: d.data.datetime,
+                },
+                filled: true,
+              };
+            }
+            return d;
+          });
 
           return (
             <React.Fragment key={layer.key}>
@@ -61,7 +78,7 @@ const AreaGraphLayers = React.memo(
                 style={{ cursor: 'pointer' }}
                 stroke={layer.stroke}
                 fill={isGradient ? `url(#${gradientId})` : layer.fill}
-                d={layerArea(datapoints)}
+                d={layerArea(forwardFilledDatapoints)}
                 /* Support only click events in mobile mode, otherwise react to mouse hovers */
                 onClick={isMobile ? (ev) => handleLayerMouseMove(ev, ind) : noop}
                 onFocus={!isMobile ? (ev) => handleLayerMouseMove(ev, ind) : noop}
@@ -72,7 +89,7 @@ const AreaGraphLayers = React.memo(
               />
               {isGradient && (
                 <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1={x1} x2={x2}>
-                  {datapoints.map((d) => (
+                  {forwardFilledDatapoints.map((d) => (
                     <stop
                       key={d.data.datetime}
                       offset={`${((timeScale(d.data.datetime) - x1) / (x2 - x1)) * 100.0}%`}
