@@ -43,33 +43,34 @@ const AreaGraphLayers = React.memo(
         {layers.map((layer, ind) => {
           const isGradient = typeof layer.fill === 'function';
           const gradientId = `areagraph-gradient-${layer.key}`;
-          // The datapoint valid until the next point
-          // However, for the last point, we won't have a next point
-          // Therefore, we add one here in order to make sure
-          // the last point is visible for the following interval
-          const lastDataPoint = [...layer.datapoints.at(-1)];
-          lastDataPoint.data = {
-            ...layer.datapoints.at(-1)?.data,
-            datetime: datetimes[layer.datapoints.length],
-          };
-          const datapoints = [...layer.datapoints, lastDataPoint];
-          const forwardFilledDatapoints = datapoints.map((d, i) => {
-            // if a datapoint is null, because we use curveStepAfter,
-            // we must draw the next point as a datapoint is valid until the
-            // next point
-            if (!Number.isFinite(d[1]) && i > 0 && !datapoints[i - 1]?.filled) {
-              // forward-fill
-              return {
-                ...datapoints[i - 1],
+          // A datapoint valid until the next one
+          // However, for the last point (or for missing points),
+          // we won't have a next point.
+          // This affects the way step curves are plotted.
+          // Therefore, we copy all datapoints and make sure
+          // both a start and an end are present to ensure
+          // proper display of missing points
+          const datapoints = [
+            ...layer.datapoints.map((d, i) => [
+              {
+                ...d,
                 data: {
-                  ...datapoints[i - 1].data,
+                  ...d.data,
                   datetime: d.data.datetime,
                 },
-                filled: true,
-              };
-            }
-            return d;
-          });
+              },
+              {
+                ...d,
+                data: {
+                  ...d.data,
+                  // Here we use a different array which
+                  // will contain the last datetime.
+                  datetime: datetimes[i + 1],
+                },
+                isEnd: true,
+              },
+            ]),
+          ].flat();
 
           return (
             <React.Fragment key={layer.key}>
@@ -78,7 +79,7 @@ const AreaGraphLayers = React.memo(
                 style={{ cursor: 'pointer' }}
                 stroke={layer.stroke}
                 fill={isGradient ? `url(#${gradientId})` : layer.fill}
-                d={layerArea(forwardFilledDatapoints)}
+                d={layerArea(datapoints)}
                 /* Support only click events in mobile mode, otherwise react to mouse hovers */
                 onClick={isMobile ? (ev) => handleLayerMouseMove(ev, ind) : noop}
                 onFocus={!isMobile ? (ev) => handleLayerMouseMove(ev, ind) : noop}
@@ -89,9 +90,9 @@ const AreaGraphLayers = React.memo(
               />
               {isGradient && (
                 <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1={x1} x2={x2}>
-                  {forwardFilledDatapoints.map((d) => (
+                  {datapoints.map((d) => (
                     <stop
-                      key={d.data.datetime}
+                      key={`${d.data.datetime}${d.isEnd}`}
                       offset={`${((timeScale(d.data.datetime) - x1) / (x2 - x1)) * 100.0}%`}
                       stopColor={layer.fill(d)}
                     />
