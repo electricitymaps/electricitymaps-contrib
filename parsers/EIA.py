@@ -429,7 +429,15 @@ def fetch_production_mix(
 
         if zone_key == "US-CAR-SCEG" and type == "nuclear":
             for point in mix:
-                point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
+                value = point["value"]
+                if value is None:
+                    logger.warning(
+                        f"Missing value point for {zone_key} and production {type} \
+                            at {target_datetime}:\n \
+                            {point}"
+                    )
+                else:
+                    point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
 
         # Integrate the supplier zones in the zones they supply
 
@@ -448,7 +456,14 @@ def fetch_production_mix(
                 logger=logger,
             )
             for point in additional_mix:
-                point.update({"value": point["value"] * percentage})
+                if value is None:
+                    logger.warning(
+                        f"Missing value point for {zone_key} and production {type} \
+                            at {target_datetime}:\n \
+                            {point}"
+                    )
+                else:
+                    point.update({"value": point["value"] * percentage})
             mix = _merge_production_mix([mix, additional_mix])
         if not mix:
             continue
