@@ -24,10 +24,15 @@ function isUsingLocalEndpoint() {
 }
 
 async function sha256(message) {
-  const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
-  return Array.from(new Uint8Array(hashBuffer))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+  try {
+    const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
+    return Array.from(new Uint8Array(hashBuffer))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+  } catch (error) {
+    console.error('sha256 failed!', error);
+    console.error('message', message);
+  }
 }
 
 export function getEndpoint() {
@@ -39,6 +44,7 @@ export async function protectedJsonRequest(path) {
   const token = isUsingLocalEndpoint() ? 'development' : getToken();
   const timestamp = new Date().getTime();
   const signature = await sha256(token + path + timestamp);
+  console.info('Header:', Cookies.get('electricitymap-token'));
 
   return new Promise((resolve, reject) => {
     request
@@ -83,6 +89,7 @@ export function handleRequestError(err) {
 
       thirdPartyServices.trackError(new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`));
     } else {
+      console.error(err);
       thirdPartyServices.trackError(err);
     }
   }
