@@ -4,8 +4,7 @@ const { getJSON, writeJSON, fileExists } = require('./utilities');
 const exchangeConfig = mergeExchanges();
 
 const generateExchangesToIgnore = (OUT_PATH, zonesConfig) => {
-  console.log(`Generating new excluded-aggregated-exchanges.json...`); // eslint-disable-line no-console
-
+  console.info(`Generating new excluded-aggregated-exchanges.json...`);
   const countryKeysToExclude = Object.keys(zonesConfig).filter((key) => {
     if (zonesConfig[key].subZoneNames?.length > 0) {
       return key;
@@ -46,7 +45,7 @@ const generateExchangesToIgnore = (OUT_PATH, zonesConfig) => {
   };
   const existingExchanges = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(exchanges) === JSON.stringify(existingExchanges)) {
-    console.log(`No changes to excluded-aggregated-exchanges.json`); // eslint-disable-line no-console
+    console.info(`No changes to excluded-aggregated-exchanges.json`);
     return;
   }
 

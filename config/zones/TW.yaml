@@ -3,9 +3,22 @@ bounding_box:
     - 21.9705713974
   - - 121.951243931
     - 25.2954588893
+capacity:
+  biomass: 92
+  coal: 14681
+  gas: 18365
+  geothermal: 5
+  hydro: 2094
+  hydro storage: 2609
+  nuclear: 2865
+  oil: 1586
+  solar: 7700
+  wind: 1062
+  unknown: 632
 contributors:
   - corradio
   - MariusKroon
+  - nessie2013
 emissionFactors:
   direct:
     battery discharge:

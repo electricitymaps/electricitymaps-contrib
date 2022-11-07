@@ -16,6 +16,7 @@ mobileapp/www/electricitymap
 web/public/dist/
 web/public/images/
 web/src/config/
+web/.husky/_
 
 mockserver/public
 
