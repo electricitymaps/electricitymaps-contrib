@@ -84,9 +84,7 @@ subZoneNames:
   - US-NW-WAUW
   #- US-NW-WWA Production only zone, all production integrated with US-NW-NWMT
   - US-NY-NYIS
-  - US-SE-AEC
   - US-SE-SEPA
-  - US-SE-SOCO
   - US-SW-AZPS
   #- US-SW-DEAA Production only zone, all production integrated with US-SW-SRP
   - US-SW-EPE
@@ -108,6 +106,5 @@ bypassedSubZones:
   - US-HI-MO
   - US-HI-NI
   - US-HI-OA
-  - US-SE-AEC
   - US-MIDW-GLHB
 timezone: US-Central

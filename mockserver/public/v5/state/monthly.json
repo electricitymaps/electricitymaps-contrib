@@ -20915,68 +20915,6 @@
           "stateDatetime": "2022-07-01T00:00:00Z"
         }
       ],
-      "US-SE-AEC": [
-        {
-          "co2intensity": 485.23,
-          "co2intensityProduction": 486,
-          "countryCode": "US-SE-AEC",
-          "fossilFuelRatio": 0.9776,
-          "fossilFuelRatioProduction": 0.9887999999999999,
-          "renewableRatio": 0.013500000000000002,
-          "renewableRatioProduction": 0.011200000000000002,
-          "stateDatetime": "2021-08-01T00:00:00Z"
-        },
-        {
-          "co2intensity": 479.04,
-          "co2intensityProduction": 487.27,
-          "countryCode": "US-SE-AEC",
-          "fossilFuelRatio": 0.9264,
-          "fossilFuelRatioProduction": 0.9903,
-          "renewableRatio": 0.0239,
-          "renewableRatioProduction": 0.0097,
-          "stateDatetime": "2021-09-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2021-10-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2021-11-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2021-12-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2022-01-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2022-02-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2022-03-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2022-04-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2022-05-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2022-06-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2022-07-01T00:00:00Z"
-        }
-      ],
       "US-SE-SEPA": [
         {
           "co2intensity": 22.18,

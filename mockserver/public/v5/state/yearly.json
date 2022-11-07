@@ -8919,52 +8919,6 @@
           "stateDatetime": "2021-01-01T00:00:00Z"
         }
       ],
-      "US-SE-AEC": [
-        {
-          "countryCode": "US-SE-AEC",
-          "stateDatetime": "2017-01-01T00:00:00Z"
-        },
-        {
-          "co2intensity": 579.81,
-          "co2intensityProduction": 587.05,
-          "countryCode": "US-SE-AEC",
-          "fossilFuelRatio": 0.9831,
-          "fossilFuelRatioProduction": 0.9965999999999999,
-          "renewableRatio": 0.0068000000000000005,
-          "renewableRatioProduction": 0.0034000000000000002,
-          "stateDatetime": "2018-01-01T00:00:00Z"
-        },
-        {
-          "co2intensity": 538,
-          "co2intensityProduction": 552.24,
-          "countryCode": "US-SE-AEC",
-          "fossilFuelRatio": 0.9653,
-          "fossilFuelRatioProduction": 0.9967,
-          "renewableRatio": 0.0105,
-          "renewableRatioProduction": 0.0033,
-          "stateDatetime": "2019-01-01T00:00:00Z"
-        },
-        {
-          "co2intensity": 501.9,
-          "co2intensityProduction": 513.17,
-          "countryCode": "US-SE-AEC",
-          "fossilFuelRatio": 0.9671,
-          "fossilFuelRatioProduction": 0.9971,
-          "renewableRatio": 0.0127,
-          "renewableRatioProduction": 0.0029,
-          "stateDatetime": "2020-01-01T00:00:00Z"
-        },
-        {
-          "co2intensity": 480.86,
-          "co2intensityProduction": 487.65,
-          "countryCode": "US-SE-AEC",
-          "fossilFuelRatio": 0.9593,
-          "fossilFuelRatioProduction": 0.9915,
-          "renewableRatio": 0.0178,
-          "renewableRatioProduction": 0.0085,
-          "stateDatetime": "2021-01-01T00:00:00Z"
-        }
-      ],
       "US-SE-SEPA": [
         {
           "countryCode": "US-SE-SEPA",
