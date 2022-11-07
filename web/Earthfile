@@ -37,6 +37,7 @@ build:
 
   RUN mkdir -p public/dist
   RUN yarn update-version
+  RUN --secret ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN echo "token is $ELECTRICITYMAP_PUBLIC_TOKEN"
   RUN --secret ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN yarn build-release
   RUN yarn verify-zones-config
 

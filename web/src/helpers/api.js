@@ -11,6 +11,7 @@ function getToken() {
       'It seems like you are trying to run the app locally with remote API, but have not set the SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN environment variable.\n Try running `SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=<your-token> yarn develop`'
     );
   }
+  console.info('token has length', ELECTRICITYMAP_PUBLIC_TOKEN.length);
   return ELECTRICITYMAP_PUBLIC_TOKEN;
 }
 
