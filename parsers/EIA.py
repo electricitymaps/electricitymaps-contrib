@@ -17,11 +17,10 @@ import arrow
 from dateutil import parser, tz
 from requests import Session
 
+from parsers.ENTSOE import merge_production_outputs
 from parsers.lib.config import refetch_frequency
-
-from .ENTSOE import merge_production_outputs
-from .lib.utils import get_token
-from .lib.validation import validate
+from parsers.lib.utils import get_token
+from parsers.lib.validation import validate
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [
@@ -525,7 +524,7 @@ def _fetch(
                 f"target_datetime must be a valid datetime - received {target_datetime}"
             )
         utc = tz.gettz("UTC")
-        eia_ts_format = "%Y-%m-%dT%HH"
+        eia_ts_format = "%Y-%m-%dT%H"
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
         url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
@@ -535,7 +534,7 @@ def _fetch(
     s = session or Session()
     req = s.get(url)
     raw_data = req.json()
-    if not raw_data["response"]["data"]:
+    if raw_data.get("response", {}).get("data", None) is None:
         return []
     return [
         {
@@ -568,6 +567,12 @@ def _get_utc_datetime_from_datapoint(dt: datetime):
 if __name__ == "__main__":
     from pprint import pprint
 
-    # pprint(fetch_production('US-CAL-CISO'))
-    # pprint(fetch_consumption_forecast('US-CAL-CISO'))
-    pprint(fetch_exchange("US-CENT-SWPP", "CA-SK"))
+    # pprint(fetch_production('US-CENT-SWPP'))
+    # # pprint(fetch_consumption_forecast('US-CAL-CISO'))
+    pprint(
+        fetch_exchange(
+            zone_key1="US-CENT-SWPP",
+            zone_key2="CA-SK",
+            target_datetime=datetime(2022, 3, 1),
+        )
+    )
