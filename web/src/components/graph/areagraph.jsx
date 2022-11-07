@@ -24,11 +24,12 @@ const getTimeScale = (width, startTime, endTime) =>
     .range([0, width]);
 
 const getTotalValues = (layers) => {
-  const values = layers.flatMap((layer) => layer.datapoints.map((d) => d[1])).filter(Number.isFinite);
+  const topValues = layers.flatMap((layer) => layer.datapoints.map((d) => d[1])).filter(Number.isFinite);
+  const bottomValues = layers.flatMap((layer) => layer.datapoints.map((d) => d[0])).filter(Number.isFinite);
 
   return {
-    min: Number.isFinite(Math.min(...values)) ? Math.min(...values) : 0,
-    max: Number.isFinite(Math.max(...values)) ? Math.max(...values) : 0,
+    min: Number.isFinite(Math.min(...bottomValues)) ? Math.min(...bottomValues) : 0,
+    max: Number.isFinite(Math.max(...topValues)) ? Math.max(...topValues) : 0,
   };
 };
 
