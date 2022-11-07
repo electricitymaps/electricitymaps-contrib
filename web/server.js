@@ -172,4 +172,5 @@ if (isProduction) {
 // Start the application
 server.listen(process.env.PORT, () => {
   console.info(`Listening on *:${process.env.PORT}`);
+  console.info(`token: ${process.env.ELECTRICITYMAP_TOKEN}`);
 });
