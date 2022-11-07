@@ -35,7 +35,6 @@ const generateAggregates = (geojson, zones) => {
     const [multiZoneCountry] = unCombinedZones.filter((feature) => feature.properties.zoneName === country[0]);
     for (let i = 0; i < country.length; i++) {
       const [zoneToAdd] = unCombinedZones.filter((feature) => feature.properties.zoneName === country[i]);
-
       combinedCountry.geometry = union(combinedCountry.geometry, zoneToAdd.geometry).geometry;
     }
     combinedCountry.properties.countryKey = multiZoneCountry.properties.countryKey;
