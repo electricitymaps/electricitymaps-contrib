@@ -173,4 +173,5 @@ if (isProduction) {
 server.listen(process.env.PORT, () => {
   console.info(`Listening on *:${process.env.PORT}`);
   console.info(`token: ${process.env.ELECTRICITYMAP_TOKEN}`);
+  console.info(`public token: ${process.env.ELECTRICITYMAP_PUBLIC_TOKEN}`);
 });
