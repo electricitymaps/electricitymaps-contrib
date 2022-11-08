@@ -17,6 +17,9 @@
     "**/dist": true
   },
   "eslint.workingDirectories": [{ "mode": "auto" }],
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "'([^']*)'"] // clsx(...)
+  ],
   "javascript.format.enable": false,
   "typescript.disableAutomaticTypeAcquisition": true,
   "typescript.tsdk": "node_modules/typescript/lib",

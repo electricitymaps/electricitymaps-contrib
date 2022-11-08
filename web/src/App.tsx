@@ -9,15 +9,15 @@ const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 export default function App(): ReactElement {
   return (
     <Suspense fallback={<div />}>
-      <div className="h-full">
+      <main className="fixed flex h-screen w-screen flex-col">
         <Header />
-        <div className="flex h-screen">
+        <div className="relative flex flex-auto items-stretch">
           <ErrorBoundary>
             <LeftPanel />
             <Map />
           </ErrorBoundary>
         </div>
-      </div>
+      </main>
     </Suspense>
   );
 }

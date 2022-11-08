@@ -1,4 +1,5 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+
 interface MenuLinkProps {
   href: string;
   children: React.ReactNode;
@@ -19,10 +20,9 @@ function MenuLink({ children, href, active }: MenuLinkProps): JSX.Element {
 
 export default function Header(): JSX.Element {
   return (
-    <div className="hidden md:block">
-      <div className="flex items-center justify-between pl-4 pr-8 shadow-md">
+    <header className="hidden md:block">
+      <div className="z-30 flex items-center justify-between pl-4 pr-8 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)]">
         <img src="/electricity-maps-logo.svg" alt="" className="w-100 h-10" />
-
         <NavigationMenu.Root>
           <NavigationMenu.List className="flex space-x-2">
             <MenuLink href="/" active>
@@ -43,6 +43,6 @@ export default function Header(): JSX.Element {
           </NavigationMenu.List>
         </NavigationMenu.Root>
       </div>
-    </div>
+    </header>
   );
 }
