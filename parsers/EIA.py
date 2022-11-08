@@ -8,10 +8,9 @@ and exposes them via a unified API.
 Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
-import os
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
 import arrow
 from dateutil import parser, tz
@@ -84,7 +83,8 @@ REGIONS = {
     "US-FLA-GVL": "GVL",  # Gainesville Regional Utilities
     "US-FLA-HST": "HST",  # City Of Homestead
     "US-FLA-JEA": "JEA",  # Jea
-    "US-FLA-NSB": "NSB",  # New Smyrna Beach, Utilities Commission Of
+    #    "US-FLA-NSB": "NSB",  # Utilities Commission Of New Smyrna Beach, Decomissioned data is directly integrated in another balancing authority
+    # Some solar plants within this zone are operated by Florida Power & Light, therefore on the map the zones got merged.
     "US-FLA-SEC": "SEC",  # Seminole Electric Cooperative
     "US-FLA-TAL": "TAL",  # City Of Tallahassee
     "US-FLA-TEC": "TEC",  # Tampa Electric Company
@@ -95,12 +95,13 @@ REGIONS = {
     "US-MIDW-MISO": "MISO",  # Midcontinent Independent Transmission System Operator, Inc..
     "US-NE-ISNE": "ISNE",  # Iso New England Inc.
     "US-NW-AVA": "AVA",  # Avista Corporation
+    "US-NW-AVRN": "AVRN",  # Avangrid Renewables, LLC, integrated with US-NW-BPAT and US-NW-PACW
     "US-NW-BPAT": "BPAT",  # Bonneville Power Administration
     "US-NW-CHPD": "CHPD",  # Public Utility District No. 1 Of Chelan County
     "US-NW-DOPD": "DOPD",  # Pud No. 1 Of Douglas County
     "US-NW-GCPD": "GCPD",  # Public Utility District No. 2 Of Grant County, Washington
     "US-NW-GRID": "GRID",  # Gridforce Energy Management, Llc
-    "US-NW-GWA": "GWA",  # Naturener Power Watch, Llc (Gwa)
+    "US-NW-GWA": "GWA",  # Naturener Power Watch, Llc (Gwa), integrated with US-NW-NWMT
     "US-NW-IPCO": "IPCO",  # Idaho Power Company
     "US-NW-NEVP": "NEVP",  # Nevada Power Company
     "US-NW-NWMT": "NWMT",  # Northwestern Energy (Nwmt)
@@ -113,16 +114,19 @@ REGIONS = {
     "US-NW-TPWR": "TPWR",  # City Of Tacoma, Department Of Public Utilities, Light Division
     "US-NW-WACM": "WACM",  # Western Area Power Administration - Rocky Mountain Region
     "US-NW-WAUW": "WAUW",  # Western Area Power Administration Ugp West
-    "US-NW-WWA": "WWA",  # Naturener Wind Watch, Llc
+    "US-NW-WWA": "WWA",  # Naturener Wind Watch, Llc, integrated with US-NW-NWMT
     "US-NY-NYIS": "NYIS",  # New York Independent System Operator
     "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative
     "US-SE-SEPA": "SEPA",  # Southeastern Power Administration
     "US-SE-SOCO": "SOCO",  # Southern Company Services, Inc. - Trans
     "US-SW-AZPS": "AZPS",  # Arizona Public Service Company
+    "US-SW-DEAA": "DEAA",  # Arlington Valley, LLC, integrated with US-SW-SRP
     "US-SW-EPE": "EPE",  # El Paso Electric Company
-    "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc
-    "US-SW-GRMA": "GRMA",  # Gila River Power, Llc
-    "US-SW-HGMA": "HGMA",  # New Harquahala Generating Company, Llc - Hgba
+    "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc, integrated with US-SW-WALC
+    #   "US-SW-GRMA": "GRMA",  # Gila River Power, Llc Decommissioned,
+    #  The only gas power plant is owned by US-SW-SRP but there's a PPA with US-SW-AZPS, so it was merged with
+    # US-SW-AZPS https://www.power-technology.com/marketdata/gila-river-power-station-us/
+    "US-SW-HGMA": "HGMA",  # New Harquahala Generating Company, Llc - Hgba, integrated with US-SW-SRP
     "US-SW-PNM": "PNM",  # Public Service Company Of New Mexico
     "US-SW-SRP": "SRP",  # Salt River Project
     "US-SW-TEPC": "TEPC",  # Tucson Electric Power Company
@@ -206,14 +210,14 @@ EXCHANGES = {
     "US-FLA-FPC->US-FLA-SEC": "&facets[fromba][]=FPC&facets[toba][]=SEC",
     "US-FLA-FPC->US-SE-SOCO": "&facets[fromba][]=FPC&facets[toba][]=SOCO",
     "US-FLA-FPC->US-FLA-TEC": "&facets[fromba][]=FPC&facets[toba][]=TEC",
-    "US-FLA-FPC->US-FLA-NSB": "&facets[fromba][]=FPC&facets[toba][]=NSB",
+    #    "US-FLA-FPC->US-FLA-NSB": "&facets[fromba][]=FPC&facets[toba][]=NSB", decomissioned NSB zone
     "US-FLA-FPL->US-FLA-HST": "&facets[fromba][]=FPL&facets[toba][]=HST",
     "US-FLA-FPL->US-FLA-GVL": "&facets[fromba][]=FPL&facets[toba][]=GVL",
     "US-FLA-FPL->US-FLA-JEA": "&facets[fromba][]=FPL&facets[toba][]=JEA",
     "US-FLA-FPL->US-FLA-SEC": "&facets[fromba][]=FPL&facets[toba][]=SEC",
     "US-FLA-FPL->US-SE-SOCO": "&facets[fromba][]=FPL&facets[toba][]=SOCO",
     "US-FLA-FPL->US-FLA-TEC": "&facets[fromba][]=FPL&facets[toba][]=TEC",
-    "US-FLA-FPL->US-FLA-NSB": "&facets[fromba][]=FPL&facets[toba][]=NSB",
+    #    "US-FLA-FPL->US-FLA-NSB": "&facets[fromba][]=FPL&facets[toba][]=NSB", decomissioned NSB zone
     "US-FLA-JEA->US-FLA-SEC": "&facets[fromba][]=JEA&facets[toba][]=SEC",
     "US-FLA-SEC->US-FLA-TEC": "&facets[fromba][]=SEC&facets[toba][]=TEC",
     "US-FLA-TAL->US-SE-SOCO": "&facets[fromba][]=TAL&facets[toba][]=SOCO",
@@ -254,14 +258,14 @@ EXCHANGES = {
     "US-NW-CHPD->US-NW-PSEI": "&facets[fromba][]=CHPD&facets[toba][]=PSEI",
     "US-NW-GCPD->US-NW-PACW": "&facets[fromba][]=GCPD&facets[toba][]=PACW",
     "US-NW-GCPD->US-NW-PSEI": "&facets[fromba][]=GCPD&facets[toba][]=PSEI",
-    "US-NW-GWA->US-NW-NWMT": "&facets[fromba][]=GWA&facets[toba][]=NWMT",
+    #    "US-NW-GWA->US-NW-NWMT": "&facets[fromba][]=GWA&facets[toba][]=NWMT", integrated directly with US-NW-NWMT
     "US-NW-IPCO->US-NW-NEVP": "&facets[fromba][]=IPCO&facets[toba][]=NEVP",
     "US-NW-IPCO->US-NW-NWMT": "&facets[fromba][]=IPCO&facets[toba][]=NWMT",
     "US-NW-IPCO->US-NW-PACE": "&facets[fromba][]=IPCO&facets[toba][]=PACE",
     "US-NW-IPCO->US-NW-PACW": "&facets[fromba][]=IPCO&facets[toba][]=PACW",
     "US-NW-NEVP->US-NW-PACE": "&facets[fromba][]=NEVP&facets[toba][]=PACE",
     "US-NW-NEVP->US-SW-WALC": "&facets[fromba][]=NEVP&facets[toba][]=WALC",
-    "US-NW-NWMT->US-NW-WWA": "&facets[fromba][]=NWMT&facets[toba][]=WWA",
+    #    "US-NW-NWMT->US-NW-WWA": "&facets[fromba][]=NWMT&facets[toba][]=WWA", intergrated directly with US-NW-NWMT
     "US-NW-NWMT->US-NW-PACE": "&facets[fromba][]=NWMT&facets[toba][]=PACE",
     "US-NW-NWMT->US-NW-WAUW": "&facets[fromba][]=NWMT&facets[toba][]=WAUW",
     "US-NW-PACE->US-SW-AZPS": "&facets[fromba][]=PACE&facets[toba][]=AZPS",
@@ -279,20 +283,37 @@ EXCHANGES = {
     "US-SE-AEC->US-SE-SOCO": "&facets[fromba][]=AEC&facets[toba][]=SOCO",
     "US-SE-SEPA->US-SE-SOCO": "&facets[fromba][]=SEPA&facets[toba][]=SOCO",
     "US-SE-SOCO->US-TEN-TVA": "&facets[fromba][]=SOCO&facets[toba][]=TVA",
-    "US-SW-AZPS->US-SW-GRMA": "&facets[fromba][]=AZPS&facets[toba][]=GRMA",
+    #    "US-SW-AZPS->US-SW-GRMA": "&facets[fromba][]=AZPS&facets[toba][]=GRMA", Decommissioned
     "US-SW-AZPS->US-SW-PNM": "&facets[fromba][]=AZPS&facets[toba][]=PNM",
     "US-SW-AZPS->US-SW-SRP": "&facets[fromba][]=AZPS&facets[toba][]=SRP",
     "US-SW-AZPS->US-SW-TEPC": "&facets[fromba][]=AZPS&facets[toba][]=TEPC",
     "US-SW-AZPS->US-SW-WALC": "&facets[fromba][]=AZPS&facets[toba][]=WALC",
     "US-SW-EPE->US-SW-PNM": "&facets[fromba][]=EPE&facets[toba][]=PNM",
     "US-SW-EPE->US-SW-TEPC": "&facets[fromba][]=EPE&facets[toba][]=TEPC",
-    "US-SW-GRIF->US-SW-WALC": "&facets[fromba][]=GRIF&facets[toba][]=WALC",
-    "US-SW-HGMA->US-SW-SRP": "&facets[fromba][]=HGMA&facets[toba][]=SRP",
+    #    "US-SW-GRIF->US-SW-WALC": "&facets[fromba][]=GRIF&facets[toba][]=WALC", directly integrated in US-WALC
+    #    "US-SW-HGMA->US-SW-SRP": "&facets[fromba][]=HGMA&facets[toba][]=SRP", directly integrated in US-SW-SRP
     "US-SW-PNM->US-SW-TEPC": "&facets[fromba][]=PNM&facets[toba][]=TEPC",
     "US-SW-PNM->US-SW-SRP": "&facets[fromba][]=SRP&facets[toba][]=PNM",
     "US-SW-SRP->US-SW-TEPC": "&facets[fromba][]=SRP&facets[toba][]=TEPC",
     "US-SW-SRP->US-SW-WALC": "&facets[fromba][]=SRP&facets[toba][]=WALC",
     "US-SW-TEPC->US-SW-WALC": "&facets[fromba][]=TEPC&facets[toba][]=WALC",
+}
+# Some zones transfer all or part of their productions to another zone.
+# To avoid having multiple small production zones with no consumption,
+# their production is directly integrated into supplied zones according
+# to the supplied percentage.
+
+SC_VIRGIL_OWNERSHIP = 0.3333333
+
+PRODUCTION_ZONES_TRANSFERS = {
+    "US-SW-SRP": {"all": {"US-SW-DEAA": 1.0, "US-SW-HGMA": 1.0}},
+    "US-NW-NWMT": {"all": {"US-NW-GWA": 1.0, "US-NW-WWA": 1.0}},
+    "US-SW-WALC": {"all": {"US-SW-GRIF": 1.0}},
+    "US-NW-PACW": {"gas": {"US-NW-AVRN": 1.0}},
+    "US-NW-BPAT": {
+        "wind": {"US-NW-AVRN": 1.0},
+    },
+    "US-CAR-SC": {"nuclear": {"US-CAR-SCEG": SC_VIRGIL_OWNERSHIP}},
 }
 
 TYPES = {
@@ -405,25 +426,33 @@ def fetch_production_mix(
         # Here we apply a temporary fix for that until EIA properly splits the production
         # This split can be found in the eGRID data,
         # https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid
-        SC_VIRGIL_OWNERSHIP = 0.3333333
-        if zone_key == "US-CAR-SC" and type == "nuclear":
-            url_prefix = PRODUCTION_MIX.format(REGIONS["US-CAR-SCEG"], code)
-            mix = _fetch(
-                "US-CAR-SCEG",
-                url_prefix,
-                session=session,
-                target_datetime=target_datetime,
-                logger=logger,
-            )
-            for point in mix:
-                point.update({"value": point["value"] * SC_VIRGIL_OWNERSHIP})
 
         if zone_key == "US-CAR-SCEG" and type == "nuclear":
             for point in mix:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
 
+        # Integrate the supplier zones in the zones they supply
+
+        supplying_zones = PRODUCTION_ZONES_TRANSFERS.get(zone_key, {})
+        zones_to_integrate = {
+            **supplying_zones.get("all", {}),
+            **supplying_zones.get(type, {}),
+        }
+        for zone, percentage in zones_to_integrate.items():
+            url_prefix = PRODUCTION_MIX.format(REGIONS[zone], code)
+            additional_mix = _fetch(
+                zone,
+                url_prefix,
+                session=session,
+                target_datetime=target_datetime,
+                logger=logger,
+            )
+            for point in additional_mix:
+                point.update({"value": point["value"] * percentage})
+            mix = _merge_production_mix([mix, additional_mix])
         if not mix:
             continue
+
         for point in mix:
             negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
                 type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
@@ -547,6 +576,25 @@ def _fetch(
         }
         for datapoint in raw_data["response"]["data"]
     ]
+
+
+def _index_by_timestamp(datapoints: List[dict]) -> Dict[str, dict]:
+    indexed_data = {}
+    for datapoint in datapoints:
+        indexed_data[datapoint["datetime"]] = datapoint
+    return indexed_data
+
+
+def _merge_production_mix(mixes: List[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
+    merged_data = {}
+    for mix in mixes:
+        indexed_mix = _index_by_timestamp(mix)
+        for timestamp, mix_value in indexed_mix.items():
+            if not timestamp in merged_data.keys():
+                merged_data[timestamp] = mix_value
+            else:
+                merged_data[timestamp]["value"] += mix_value["value"]
+    return list(merged_data.values())
 
 
 def _conform_timestamp_convention(dt: datetime):
