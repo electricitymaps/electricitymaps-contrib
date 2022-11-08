@@ -96,6 +96,7 @@ subZoneNames:
   - US-SW-WALC
   - US-TEN-TVA
   - US-TEX-ERCO
+  - US-SE-SOCO
 bypassedSubZones:
   - US-AK
   - US-HI-HA
