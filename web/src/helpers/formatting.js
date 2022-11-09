@@ -144,7 +144,7 @@ function formatDataSources(dataSources, language) {
   if (typeof Intl.ListFormat !== 'undefined') {
     return new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(dataSources);
   } else {
-    return dataSources.join(', ');
+    return dataSources?.join(', ');
   }
 }
 

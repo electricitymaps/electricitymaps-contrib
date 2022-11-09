@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 require('colors');
 
 const flatMap = require('lodash.flatmap');
@@ -14,8 +13,8 @@ function getAndPrintOutput() {
     .reverse()
     .map(toText);
 
-  console.log('\nTranslation status for all languages\n'.underline.bold);
-  result.forEach((res) => console.log(res));
+  console.info('\nTranslation status for all languages\n'.underline.bold);
+  result.forEach((res) => console.info(res));
 }
 
 // Gets all deepest level keys from a JSON (they stand for concrete translated terms)
