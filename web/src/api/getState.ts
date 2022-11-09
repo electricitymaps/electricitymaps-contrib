@@ -1,6 +1,7 @@
 import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import type { GridState, TimeAverages } from 'types';
+import type { GridState } from 'types';
+import { TimeAverages } from 'utils/constants';
 import { getBasePath, getHeaders, QUERY_KEYS, REFETCH_INTERVAL_MS } from './helpers';
 
 const getState = async (timeAverage: string): Promise<GridState> => {

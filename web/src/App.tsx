@@ -1,5 +1,6 @@
 import ErrorBoundary from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
+import TimeController from 'features/time/TimeController';
 import type { ReactElement } from 'react';
 import { lazy, Suspense } from 'react';
 
@@ -15,6 +16,7 @@ export default function App(): ReactElement {
           <ErrorBoundary>
             <LeftPanel />
             <Map />
+            <TimeController />
           </ErrorBoundary>
         </div>
       </main>

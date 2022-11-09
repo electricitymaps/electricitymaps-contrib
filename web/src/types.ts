@@ -52,10 +52,3 @@ export interface StorageTypes {
   battery: number;
   hydro: number;
 }
-
-export enum TimeAverages {
-  DAILY = 'daily',
-  HOURLY = 'hourly',
-  MONTHLY = 'monthly',
-  YEARLY = 'yearly',
-}

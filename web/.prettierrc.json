@@ -1,6 +1,6 @@
 {
   "plugins": ["./node_modules/prettier-plugin-tailwindcss"],
-  "printWidth": 120,
+  "printWidth": 90,
   "semi": true,
   "singleQuote": true,
   "trailingComma": "es5",
@@ -8,7 +8,7 @@
     {
       "files": "*.md",
       "options": {
-        "printWidth": 80
+        "printWidth": 90
       }
     }
   ]

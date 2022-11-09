@@ -29,8 +29,11 @@
   },
   "dependencies": {
     "@radix-ui/react-navigation-menu": "^1.1.1",
+    "@radix-ui/react-slider": "^1.1.0",
+    "@radix-ui/react-toggle-group": "^1.0.1",
     "@tanstack/react-query": "4.13.0",
     "@tanstack/react-query-devtools": "^4.13.0",
+    "jotai": "^1.9.1",
     "mapbox-gl": "npm:empty-npm-package@1.0.0",
     "maplibre-gl": "^2.4.0",
     "react": "18.2.0",
