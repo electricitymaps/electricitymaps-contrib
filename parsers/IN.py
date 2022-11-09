@@ -8,13 +8,9 @@ from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from requests import Session
-
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
-from parsers.lib.exceptions import ParserException
 
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
