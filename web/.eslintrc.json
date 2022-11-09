@@ -32,7 +32,6 @@
     "no-constructor-return": "error",
     "no-implicit-coercion": "error",
     "prefer-regex-literals": "error",
-    "capitalized-comments": "error",
     "no-restricted-syntax": [
       "error",
       {
