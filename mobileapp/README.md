@@ -18,12 +18,12 @@ A lot of things here, so keep your tongue in your mouth and frequently use `cord
 - Follow the steps here: https://www.brainfever.co.uk/2022/02/04/build-tool-32-1-0-rc1-is-missing-dx-at/
   - instead of last step, add the following to your `.zshrc` file:
   ```bash
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
-    export PATH=$JAVA_HOME/bin:$PATH
-    export PATH=$PATH:/Library/Android/sdk/platform-tools
-    export PATH=$PATH:/Library/Android/sdk/tools
-    export ANDROID_SDK_ROOT=~/Library/Android/sdk
-    export ANDROID_HOME=~/Library/Android/sdk
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
+  export PATH=$JAVA_HOME/bin:$PATH
+  export PATH=$PATH:/Library/Android/sdk/platform-tools
+  export PATH=$PATH:/Library/Android/sdk/tools
+  export ANDROID_SDK_ROOT=~/Library/Android/sdk
+  export ANDROID_HOME=~/Library/Android/sdk
   ```
 
 See also the [guide in documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-environment-variables) for details and links.
