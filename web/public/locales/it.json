@@ -83,12 +83,24 @@
       "monthly": "Intensità di carbonio nell'ultimo anno",
       "yearly": "Intensità di carbonio negli ultimi 5 anni"
     },
-    "emissions": { "default": "Emissioni nell'ultimo %1$s" },
-    "emissionsorigin": { "default": "Origine delle emissioni nell' ultimo %1$s" },
-    "emissionsproduction": { "default": "Emissioni prodotte nell' ultimo %1$s" },
-    "electricityorigin": { "default": "Origine dell'elettricità nell' ultimo %1$s" },
-    "electricityproduction": { "default": "Produzione elettrica nell' ultimo %1$s" },
-    "electricityprices": { "hourly": "Prezzi dell'elettricità nell' ultimo %1$s" },
+    "emissions": {
+      "default": "Emissioni nell'ultimo %1$s"
+    },
+    "emissionsorigin": {
+      "default": "Origine delle emissioni nell' ultimo %1$s"
+    },
+    "emissionsproduction": {
+      "default": "Emissioni prodotte nell' ultimo %1$s"
+    },
+    "electricityorigin": {
+      "default": "Origine dell'elettricità nell' ultimo %1$s"
+    },
+    "electricityproduction": {
+      "default": "Produzione elettrica nell' ultimo %1$s"
+    },
+    "electricityprices": {
+      "hourly": "Prezzi dell'elettricità nell' ultimo %1$s"
+    },
     "Getdata": "Ottieni dati orari storici, in tempo reale e previsioni con le API di Electricity Maps"
   },
   "footer": {
@@ -1555,10 +1567,6 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "Jacksonville Electric Authority"
     },
-    "US-FLA-NSB": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Seminole Electric Cooperative"
@@ -1683,10 +1691,6 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Southeastern Power Administration"
@@ -1710,10 +1714,6 @@
     "US-SW-GRIF": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Stati Uniti d'America",
