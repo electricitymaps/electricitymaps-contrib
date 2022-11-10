@@ -24,5 +24,6 @@ contributors:
   - gopikrishna1793
 parsers:
   production: IN_WE.fetch_production
+  consumption: IN_WE.fetch_consumption
 
 timezone: Asia/Kolkata

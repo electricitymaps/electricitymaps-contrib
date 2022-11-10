@@ -13,10 +13,10 @@ from requests import Session
 
 from parsers.lib.exceptions import ParserException
 
-IN_W_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
-HOME_URL = f"{IN_W_PROXY}/content/165_1_GeneratorScheduleVsActual.aspx?host=https://www.wrldc.in"
-PRODUCTION_URL = f"{IN_W_PROXY}/GeneratorSchedule_data.aspx/Get_GeneratorScheduleData_state_Wise?host=https://www.wrldc.in"
-EXCHANGE_URL = f"{IN_W_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise?host=https://www.wrldc.in"
+IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
+HOME_URL = f"{IN_WE_PROXY}/content/165_1_GeneratorScheduleVsActual.aspx?host=https://www.wrldc.in"
+PRODUCTION_URL = f"{IN_WE_PROXY}/GeneratorSchedule_data.aspx/Get_GeneratorScheduleData_state_Wise?host=https://www.wrldc.in"
+EXCHANGE_URL = f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise?host=https://www.wrldc.in"
 
 POWER_PLANT_MAPPING = {
     "Korba I": "coal",
@@ -53,7 +53,8 @@ EXCHANGES_MAPPING = {
 
 KINDS_DICT = {
     "production":"https://www.wrldc.in/GeneratorSchedule_data.aspx/Get_GeneratorScheduleData_state_Wise",
-    "exchanges": "https://www.wrldc.in/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise"
+    "exchanges": "https://www.wrldc.in/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise",
+    "consumption":"https://www.wrldc.in/OnlinestateTest1.aspx/GetRealTimeData_state_Wise"
 }
 
 KINDS_URL = {"production": PRODUCTION_URL, "exchanges": EXCHANGE_URL}
@@ -77,19 +78,23 @@ def fetch_data(
     # resp = r.post(KINDS_URL[kind], json=payload)
 
     resp = r.post(url= KINDS_DICT[kind], json=payload)
+    if kind == "consumption":
+        dt_object = "current_datetime"
+    else:
+        dt_object = "lastUpdate"
     if resp.json():
         data = json.loads(resp.json()["d"])
         for item in data:
-            item["lastUpdate"] = datetime.strptime(
-                item["lastUpdate"], "%Y-%d-%m %H:%M:%S"
+            item[dt_object] = datetime.strptime(
+                item[dt_object], "%Y-%d-%m %H:%M:%S"
             )
-            dt = arrow.get(item["lastUpdate"])
+            dt = arrow.get(item[dt_object])
             if dt.second >= 30:
-                item["lastUpdate"] = dt.shift(minutes=1).floor("minute").datetime
+                item[dt_object] = dt.shift(minutes=1).floor("minute").datetime
             else:
-                item["lastUpdate"] = dt.floor("minute").datetime
+                item[dt_object] = dt.floor("minute").datetime
         df_data = pd.DataFrame(
-            [item for item in data if item["lastUpdate"] == dt_12_hour]
+            [item for item in data if item[dt_object] == dt_12_hour]
         )
         return df_data
     else:
@@ -128,7 +133,7 @@ def format_production_data(
     )
     df_production = (
         df_production.groupby(["lastUpdate", "production_mode"])["Actual"]
-        .mean()
+        .sum()
         .reset_index()
     )
     production = {}
@@ -169,9 +174,23 @@ def format_exchanges_data(
     exchanges["source"] = "wrldc.in"
     return exchanges
 
+def format_consumption_data(
+    data: pd.DataFrame, zone_key: str, target_datetime: Optional[datetime]
+) -> dict:
+    consumption = {'zoneKey': zone_key,
+        'datetime': target_datetime.replace(tzinfo=pytz.timezone("Asia/Kolkata")),
+        'consumption': 0.0,
+        'source': 'wrldc.in'}
+
+    if target_datetime.hour >= 12:
+        df_consumption = data.drop_duplicates(subset=["StateName","current_datetime"],keep='last')
+    else:
+        df_consumption = data.drop_duplicates(subset=["StateName","current_datetime"],keep='first')
+    consumption['consumption'] = df_consumption.groupby(["current_datetime"])["Act_Drawal"].sum().values[0]
+    return consumption
 
 def fetch_production(
-    zone_key: str = "IN_W",
+    zone_key: str = "IN_WE",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -212,3 +231,23 @@ def fetch_exchange(
         data=data, sortedZoneKeys=sortedZoneKeys, target_datetime=target_datetime
     )
     return exchanges
+
+def fetch_consumption(
+    zone_key: str = "IN_WE",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    if target_datetime is None:
+            target_datetime = arrow.utcnow().datetime
+    data = fetch_data(
+        zone_key=zone_key,
+        kind="consumption",
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )
+    consumption = format_consumption_data(
+        data=data, zone_key=zone_key, target_datetime=target_datetime
+    )
+    return consumption
