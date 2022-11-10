@@ -220,11 +220,13 @@ def fetch_exchange(
 
     return exchange_data
 
+
 def _NaN_safe_get(forecast: dict, key: str) -> Optional[float]:
     try:
         return float(forecast[key])
     except ValueError:
         return None
+
 
 def fetch_load_forecast(
     zone_key: str = "US-SPP",
@@ -294,7 +296,6 @@ def fetch_wind_solar_forecasts(
     # sometimes there is a leading whitespace in column names
     raw_data.columns = raw_data.columns.str.lstrip()
 
-
     data = []
 
     for index, row in raw_data.iterrows():
@@ -319,7 +320,9 @@ def fetch_wind_solar_forecasts(
             production["wind"] = wind
 
         if production == {}:
-            logger.info(f"fetch_wind_solar_forecasts: {dt} has no solar nor wind forecasted production")
+            logger.info(
+                f"fetch_wind_solar_forecasts: {dt} has no solar nor wind forecasted production"
+            )
             continue
 
         datapoint = {
