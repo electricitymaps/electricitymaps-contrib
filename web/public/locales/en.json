@@ -1480,6 +1480,13 @@
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
     },
+    "US": {
+      "zoneName": "United States of America"
+    },
+    "US-AK": {
+      "countryName": "USA",
+      "zoneName": "Alaska"
+    },
     "US-HI-HA": {
       "countryName": "USA",
       "zoneName": "Hawaii"

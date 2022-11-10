@@ -1402,6 +1402,7 @@
     "UM": {
       "zoneName": "Ühendriikide hajasaared"
     },
+    "US": { "zoneName": "Ameerika Ühendriigid" },
     "US-HI-HA": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Hawaii"

@@ -1417,6 +1417,7 @@
     "UM": {
       "zoneName": "Islas Ultramarinas Menores de Estados Unidos"
     },
+    "US": { "zoneName": "Estados Unidos" },
     "US-HI": {
       "countryName": "Estados Unidos",
       "zoneName": "Hawái"

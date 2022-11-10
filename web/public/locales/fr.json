@@ -1425,6 +1425,9 @@
     "UM": {
       "zoneName": "Îles mineures éloignées des États-Unis"
     },
+    "US": {
+      "zoneName": "États-Unis d’Amérique"
+    },
     "US-HI": {
       "countryName": "États-Unis d’Amérique",
       "zoneName": "Hawaï"
