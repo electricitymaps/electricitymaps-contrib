@@ -3,6 +3,7 @@ import LoadingOrError from 'components/LoadingOrError';
 import { useAtom } from 'jotai';
 import { Navigate, useParams } from 'react-router-dom';
 import { timeAverageAtom } from 'utils/state';
+import { ZoneHeader } from './ZoneHeader';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
@@ -19,13 +20,11 @@ export default function ZoneDetails(): JSX.Element {
     return <LoadingOrError error={error as Error} />;
   }
 
+  console.log('I should do something with all this data', data);
+
   return (
     <div>
-      {data.zoneStates.map((x) => (
-        <div key={x.stateDatetime}>
-          {x.stateDatetime} : {x.co2intensity}
-        </div>
-      ))}{' '}
+      <ZoneHeader zoneId={zoneId} />
     </div>
   );
 }
