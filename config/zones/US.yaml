@@ -85,6 +85,7 @@ subZoneNames:
   #- US-NW-WWA Production only zone, all production integrated with US-NW-NWMT
   - US-NY-NYIS
   - US-SE-SEPA
+  - US-SE-SOCO
   - US-SW-AZPS
   #- US-SW-DEAA Production only zone, all production integrated with US-SW-SRP
   - US-SW-EPE
