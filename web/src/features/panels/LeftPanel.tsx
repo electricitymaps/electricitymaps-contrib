@@ -22,11 +22,11 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
   return (
     <button
       className={
-        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)]'
+        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] dark:bg-gray-800'
       }
       onClick={onCollapse}
     >
-      {isCollapsed ? '<' : '>'}
+      {isCollapsed ? '>' : '<'}
     </button>
   );
 }
@@ -37,7 +37,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
 
   return (
     <aside
-      className={`duration-400 absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all md:flex md:w-[calc(14vw_+_16rem)] ${
+      className={`absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-800 md:flex md:w-[calc(14vw_+_16rem)] ${
         isOpen && '-translate-x-full'
       }`}
     >

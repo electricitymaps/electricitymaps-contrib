@@ -24,6 +24,13 @@
     font-display: swap;
     src: url('/fonts/Inter-Bold.woff2') format('woff2');
   }
+
+  /* Set defaults */
+  html {
+    @apply antialiased;
+    @apply bg-white dark:bg-gray-800;
+    @apply text-gray-900 dark:text-gray-200;
+  }
 }
 
 html,
