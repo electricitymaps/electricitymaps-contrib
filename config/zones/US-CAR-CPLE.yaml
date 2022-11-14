@@ -11,7 +11,7 @@ capacity:
   solar: 1749.1
   unknown: 54
   wind: 0
-cbounding_box:
+bounding_box:
   - - -81.37844
     - 32.6102500000001
   - - -75.53103
