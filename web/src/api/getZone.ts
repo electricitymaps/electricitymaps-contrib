@@ -2,19 +2,19 @@ import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { getHeaders, getBasePath, QUERY_KEYS, REFETCH_INTERVAL_MS } from './helpers';
+import { getBasePath, getHeaders, QUERY_KEYS, REFETCH_INTERVAL_MS } from './helpers';
 
 const getZone = async (
   zoneId: string,
   timeAverage: TimeAverages
 ): Promise<ZoneDetails> => {
-  const path = `/v5/history/${timeAverage}?countryCode=${zoneId}`;
+  const path = `/v6/details/${timeAverage}/${zoneId}`;
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
   };
 
-  const response = await fetch(`${getBasePath()}/${path}`, requestOptions);
+  const response = await fetch(`${getBasePath()}${path}`, requestOptions);
 
   if (response.ok) {
     const { data } = (await response.json()) as { data: ZoneDetails };

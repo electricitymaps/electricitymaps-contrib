@@ -53,7 +53,14 @@
       "error",
       {
         "ignoreEnums": true,
-        "ignore": [-1, 0, 1, 60, 1000],
+        "ignore": [
+          // commonly used integers
+          -1, 0, 1, 2, 100, 1000,
+          // time integers
+          60,
+          // geometry
+          360
+        ],
         "ignoreArrayIndexes": true,
         "enforceConst": true,
         "detectObjects": false
