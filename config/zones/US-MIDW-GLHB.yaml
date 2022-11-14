@@ -57,8 +57,8 @@ emissionFactors:
         value: 804.4231200348241
     coal:
       datetime: '2020-01-01'
-      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+        generation."; eGrid 2020
       value: 1059.2490936
     gas:
       datetime: '2021-01-01'
