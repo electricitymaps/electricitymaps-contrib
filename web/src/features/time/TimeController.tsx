@@ -2,9 +2,11 @@ import useGetState from 'api/getState';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom } from 'jotai';
+import { useTranslation } from 'translation/translation';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state';
 
 export default function TimeController() {
+  const { __ } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetimeIndex, setSelectedDatetimeIndex] = useAtom(
     selectedDatetimeIndexAtom
@@ -29,7 +31,7 @@ export default function TimeController() {
       }
     >
       <div className="flex flex-row items-center justify-between">
-        <p className="mb-2 text-sm font-bold">Display data from the past</p>
+        <p className="mb-2 text-sm font-bold">{__('time-controller.title')}</p>
         <div className="mb-2 rounded-full bg-gray-100 py-2 px-3 text-xs">
           {selectedDatetimeIndex}
         </div>
