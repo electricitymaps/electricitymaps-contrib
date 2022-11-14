@@ -6,7 +6,13 @@ enum step {
   EIGHT_HUNDRED = 800,
 }
 
-const steps = [step.ZERO, step.TWO_HUNDRED, step.FOUR_HUNDRED, step.SIX_HUNDRED, step.EIGHT_HUNDRED];
+const steps = [
+  step.ZERO,
+  step.TWO_HUNDRED,
+  step.FOUR_HUNDRED,
+  step.SIX_HUNDRED,
+  step.EIGHT_HUNDRED,
+];
 
 export const themes = {
   colorblindDark: {

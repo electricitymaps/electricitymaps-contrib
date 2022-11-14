@@ -12,9 +12,17 @@ describe('Map', () => {
     cy.contains('production').click();
     cy.contains('consumption').click();
     // TODO: cy.get('.controls-container > div > div:nth-child(2)').contains('i').click();
-    cy.contains('takes imports and exports into account,').should('have.css', 'visibility', 'visible');
+    cy.contains('takes imports and exports into account,').should(
+      'have.css',
+      'visibility',
+      'visible'
+    );
     // TODO: cy.get('.controls-container > div > div:nth-child(2)').contains('i').click();
-    cy.contains('takes imports and exports into account,').should('have.css', 'visibility', 'hidden');
+    cy.contains('takes imports and exports into account,').should(
+      'have.css',
+      'visibility',
+      'hidden'
+    );
 
     // test zoom buttons
     cy.get('[data-test-id=mapboxgl-ctrl-zoom-in]').click();

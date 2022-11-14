@@ -4,7 +4,10 @@ import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { getHeaders, getBasePath, QUERY_KEYS, REFETCH_INTERVAL_MS } from './helpers';
 
-const getZone = async (zoneId: string, timeAverage: TimeAverages): Promise<ZoneDetails> => {
+const getZone = async (
+  zoneId: string,
+  timeAverage: TimeAverages
+): Promise<ZoneDetails> => {
   const path = `/v5/history/${timeAverage}?countryCode=${zoneId}`;
   const requestOptions: RequestInit = {
     method: 'GET',
@@ -26,9 +29,13 @@ const useGetZone = (
   zoneId: string,
   options?: UseQueryOptions<ZoneDetails>
 ): UseQueryResult<ZoneDetails> =>
-  useQuery<ZoneDetails>([QUERY_KEYS.ZONE, zoneId, timeAverage], async () => getZone(zoneId, timeAverage), {
-    staleTime: REFETCH_INTERVAL_MS,
-    ...options,
-  });
+  useQuery<ZoneDetails>(
+    [QUERY_KEYS.ZONE, zoneId, timeAverage],
+    async () => getZone(zoneId, timeAverage),
+    {
+      staleTime: REFETCH_INTERVAL_MS,
+      ...options,
+    }
+  );
 
 export default useGetZone;

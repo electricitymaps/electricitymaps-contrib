@@ -2,7 +2,10 @@ import { screen, waitFor } from '@testing-library/react';
 import Gallery from './Gallery';
 import type ReactRouterDOM from 'react-router-dom';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import renderWithProviders, { MOBILE_RESOLUTION_HEIGHT, MOBILE_RESOLUTION_WIDTH } from 'testing/testUtils';
+import renderWithProviders, {
+  MOBILE_RESOLUTION_HEIGHT,
+  MOBILE_RESOLUTION_WIDTH,
+} from 'testing/testUtils';
 import Details from './Details';
 
 vi.mock('react-router-dom', async () => ({
@@ -29,7 +32,9 @@ describe('<Details />', () => {
   it('renders', async () => {
     await renderDetailsPage();
 
-    await expect(screen.findByRole('link', { name: 'Back' })).resolves.toBeInTheDocument();
+    await expect(
+      screen.findByRole('link', { name: 'Back' })
+    ).resolves.toBeInTheDocument();
     expect(screen.getByText('Apple')).toBeInTheDocument();
     expect(screen.getByText('Vitamins per 100 g (3.5 oz)')).toBeInTheDocument();
     expect(screen.getByText('Vitamin')).toBeInTheDocument();

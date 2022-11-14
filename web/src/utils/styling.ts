@@ -1,6 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
 
- 
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(() => matchMedia(query).matches);
 

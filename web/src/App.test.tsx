@@ -13,6 +13,8 @@ describe('<App />', () => {
     await userEvent.click(screen.getByText('Apple'));
 
     expect(screen.getByText('Loading...')).toBeInTheDocument();
-    await expect(screen.findByText('Vitamins per 100 g (3.5 oz)')).resolves.toBeInTheDocument();
+    await expect(
+      screen.findByText('Vitamins per 100 g (3.5 oz)')
+    ).resolves.toBeInTheDocument();
   });
 });

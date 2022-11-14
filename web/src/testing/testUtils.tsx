@@ -18,7 +18,10 @@ export const DESKTOP_RESOLUTION_HEIGHT = 800;
 export const MOBILE_RESOLUTION_WIDTH = 414;
 export const MOBILE_RESOLUTION_HEIGHT = 896;
 
-export default function renderWithProviders(ui: ReactElement, includeRouter = true): void {
+export default function renderWithProviders(
+  ui: ReactElement,
+  includeRouter = true
+): void {
   render(ui, {
     wrapper: ({ children }: PropsWithChildren): ReactElement => (
       <QueryClientProvider client={queryClient}>

@@ -6,8 +6,13 @@ export const REFETCH_INTERVAL_MS = REFETCH_INTERVAL_MINUTES * 60 * 1000;
 async function sha256(message: string): Promise<string> {
   const BASE = 16;
   const MAX_LENGTH = 2;
-  const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
-  return [...new Uint8Array(hashBuffer)].map((b) => b.toString(BASE).padStart(MAX_LENGTH, '0')).join('');
+  const hashBuffer = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(message)
+  );
+  return [...new Uint8Array(hashBuffer)]
+    .map((b) => b.toString(BASE).padStart(MAX_LENGTH, '0'))
+    .join('');
 }
 
 /**
@@ -52,7 +57,9 @@ export async function getHeaders(route: string): Promise<Headers> {
  * @see isUsingLocalEndpoint
  */
 export function getBasePath() {
-  return isUsingLocalEndpoint() ? 'http://localhost:8001' : 'https://app-backend.electricitymap.org';
+  return isUsingLocalEndpoint()
+    ? 'http://localhost:8001'
+    : 'https://app-backend.electricitymap.org';
 }
 
 export const QUERY_KEYS = {

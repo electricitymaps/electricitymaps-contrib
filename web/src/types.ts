@@ -79,4 +79,3 @@ export interface MapZone extends Feature<Polygon | MultiPolygon> {
     color: string;
   };
 }
-

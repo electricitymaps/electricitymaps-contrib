@@ -45,8 +45,12 @@ export default function Fruit({ fruit, index }: Properties): ReactElement {
       <div className="relative">
         <img
           data-testid="FruitCardImage"
-          loading={!isTabletAndUp && index >= IMAGE_INDEX_BELOW_THE_FOLD ? 'lazy' : 'eager'}
-          decoding={!isTabletAndUp && index >= IMAGE_INDEX_BELOW_THE_FOLD ? 'async' : 'sync'}
+          loading={
+            !isTabletAndUp && index >= IMAGE_INDEX_BELOW_THE_FOLD ? 'lazy' : 'eager'
+          }
+          decoding={
+            !isTabletAndUp && index >= IMAGE_INDEX_BELOW_THE_FOLD ? 'async' : 'sync'
+          }
           width={imageWidth}
           height={imageHeight}
           style={{

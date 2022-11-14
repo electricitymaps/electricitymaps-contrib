@@ -59,7 +59,10 @@
         "detectObjects": false
       }
     ],
-    "@typescript-eslint/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
+    "@typescript-eslint/no-confusing-void-expression": [
+      "error",
+      { "ignoreArrowShorthand": true }
+    ],
     "import/no-deprecated": "error",
     "import/no-unresolved": "off", // Off as TS handles this
     "import/no-extraneous-dependencies": [

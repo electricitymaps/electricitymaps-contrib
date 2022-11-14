@@ -31,7 +31,10 @@ Cypress.Commands.add('interceptAPI', (path) => {
   // Change fixture path if countryCode query parameter is used to use correct response
   if (parameters && parameters.includes('countryCode')) {
     const zone = parameters.split('=')[1];
-    fixturePath = pathWithoutParameters.replace('/history/hourly', `/history/${zone}/hourly`);
+    fixturePath = pathWithoutParameters.replace(
+      '/history/hourly',
+      `/history/${zone}/hourly`
+    );
   }
   cy.intercept('GET', `http://localhost:8001/${path}`, {
     fixture: `${fixturePath}.json`,

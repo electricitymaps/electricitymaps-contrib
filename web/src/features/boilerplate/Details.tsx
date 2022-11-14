@@ -25,10 +25,13 @@ export default function DetailsPage(): ReactElement {
   }
 
   const imageWidth =
-    (isTabletAndUp ? window.innerWidth * DESKTOP_IMAGE_WIDTH_PERCENTAGE : window.innerWidth) * window.devicePixelRatio;
+    (isTabletAndUp
+      ? window.innerWidth * DESKTOP_IMAGE_WIDTH_PERCENTAGE
+      : window.innerWidth) * window.devicePixelRatio;
   const imageHeight =
-    (isTabletAndUp ? window.innerHeight : window.innerHeight * MOBILE_IMAGE_HEIGHT_PERCENTAGE) *
-    window.devicePixelRatio;
+    (isTabletAndUp
+      ? window.innerHeight
+      : window.innerHeight * MOBILE_IMAGE_HEIGHT_PERCENTAGE) * window.devicePixelRatio;
 
   return (
     <>
@@ -56,7 +59,9 @@ export default function DetailsPage(): ReactElement {
           <h1 data-testid="FruitName" className="mt-2 text-6xl font-bold sm:mt-8">
             {fruit.name}
           </h1>
-          <h2 className="mt-3 text-xl text-gray-500 dark:text-gray-400">Vitamins per 100 g (3.5 oz)</h2>
+          <h2 className="mt-3 text-xl text-gray-500 dark:text-gray-400">
+            Vitamins per 100 g (3.5 oz)
+          </h2>
           <table className="mt-8 text-lg">
             <thead>
               <tr>

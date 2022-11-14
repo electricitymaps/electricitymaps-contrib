@@ -10,7 +10,10 @@ export default (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) =
       // Get rid of it, as the map is rendered using WebGL, for which the GPU is required
       return {
         ...launchOptions,
-        args: [...launchOptions.args.filter((argument) => argument !== '--disable-gpu'), '--ignore-gpu-blacklist'],
+        args: [
+          ...launchOptions.args.filter((argument) => argument !== '--disable-gpu'),
+          '--ignore-gpu-blacklist',
+        ],
       };
     }
   });

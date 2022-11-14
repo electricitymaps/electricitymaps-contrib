@@ -8,10 +8,19 @@ interface MenuLinkProps {
 function MenuLink({ children, href, active }: MenuLinkProps): JSX.Element {
   return (
     <div className="relative flex py-2 ">
-      <NavigationMenu.Item asChild className="rounded-md transition-colors hover:bg-zinc-100">
-        <NavigationMenu.Link active={active} href={href} className={`px-2 py-2 text-sm ${active && 'font-bold'}`}>
+      <NavigationMenu.Item
+        asChild
+        className="rounded-md transition-colors hover:bg-zinc-100"
+      >
+        <NavigationMenu.Link
+          active={active}
+          href={href}
+          className={`px-2 py-2 text-sm ${active && 'font-bold'}`}
+        >
           {children}
-          {active && <div className="absolute left-0 bottom-0 h-[2px] w-full bg-green-500"></div>}
+          {active && (
+            <div className="absolute left-0 bottom-0 h-[2px] w-full bg-green-500"></div>
+          )}
         </NavigationMenu.Link>
       </NavigationMenu.Item>
     </div>

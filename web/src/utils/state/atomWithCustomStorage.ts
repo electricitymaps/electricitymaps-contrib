@@ -51,10 +51,7 @@ function createStorage<Value extends string>({
   const _localStorage =
     syncWithLocalStorage && createJSONStorage<Value>(() => localStorage);
   const _URLStorage = syncWithUrl && createURLStorage<Value>();
-  invariant(
-    _sessionStorage || _localStorage || _URLStorage,
-    'No storage provided'
-  );
+  invariant(_sessionStorage || _localStorage || _URLStorage, 'No storage provided');
 
   return {
     getItem: (key) => {

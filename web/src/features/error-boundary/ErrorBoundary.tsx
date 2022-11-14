@@ -32,8 +32,11 @@ class ErrorBoundary extends Component<Props, State> {
         <div className="flex w-full flex-col items-center justify-center">
           <h1>Oh no, something went wrong...</h1>
           <p>
-            Please let us know <a href="https://github.com/electricityMaps/electricitymaps-contrib">on Github</a> so we
-            can fix this!
+            Please let us know{' '}
+            <a href="https://github.com/electricityMaps/electricitymaps-contrib">
+              on Github
+            </a>{' '}
+            so we can fix this!
           </p>
           <pre className="rounded-lg bg-gray-300 p-2 text-xs">
             Error message: {this.state.error?.message}

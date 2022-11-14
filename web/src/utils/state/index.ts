@@ -39,10 +39,7 @@ export const windLayerAtom = atomWithCustomStorage<ToggleOptions>({
   },
 });
 
-export const themeAtom = atomWithStorage<ThemeOptions>(
-  'theme',
-  ThemeOptions.LIGHT
-);
+export const themeAtom = atomWithStorage<ThemeOptions>('theme', ThemeOptions.LIGHT);
 
 export const isLeftPanelOpenAtom = atomWithStorage(
   'is-left-panel-open',

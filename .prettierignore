@@ -1,12 +1,24 @@
 # Needed for lint staged.
 .prettierignore
 yarn.lock
+pnpm-lock.yaml
 
 .venv
 **/parsers/test/mocks
-world.json
+web/config/world.json
+web/config/exchanges.json
+web/config/zones.json
 world-aggregated.json
 
 mockserver/public
 
 .github/ISSUE_TEMPLATE/
+
+dist
+node_modules
+.DS_Store
+.eslintcache
+coverage
+.nyc_output
+cypress/videos
+cypress/screenshots

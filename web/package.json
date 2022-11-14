@@ -20,7 +20,7 @@
     "preview:test": "start-server-and-test preview http://localhost:4173",
     "test": "vitest",
     "test:ci": "vitest run",
-    "format": "prettier -uw --cache --ignore-path .gitignore .",
+    "format": "prettier -uw --cache --ignore-path ../.prettierignore .",
     "run-tsc": "tsc",
     "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
     "lint": "run-p run-tsc run-eslint",

@@ -3,13 +3,5 @@
   "printWidth": 90,
   "semi": true,
   "singleQuote": true,
-  "trailingComma": "es5",
-  "overrides": [
-    {
-      "files": "*.md",
-      "options": {
-        "printWidth": 90
-      }
-    }
-  ]
+  "trailingComma": "es5"
 }

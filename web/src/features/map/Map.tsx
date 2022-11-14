@@ -23,13 +23,21 @@ export default function MapPage(): ReactElement {
       ocean: { 'background-color': theme.oceanColor },
       zonesBorder: { 'line-color': theme.strokeColor, 'line-width': theme.strokeWidth },
       zonesClickable: {
-        'fill-color': ['coalesce', ['feature-state', 'color'], ['get', 'color'], theme.clickableFill],
+        'fill-color': [
+          'coalesce',
+          ['feature-state', 'color'],
+          ['get', 'color'],
+          theme.clickableFill,
+        ],
       } as FillPaint,
     }),
     [theme]
   );
 
-  const { isLoading, isError, error, data } = useGetState(TimeAverages.HOURLY, getCo2colorScale);
+  const { isLoading, isError, error, data } = useGetState(
+    TimeAverages.HOURLY,
+    getCo2colorScale
+  );
 
   if (isLoading || isError) {
     return <LoadingOrError error={error as Error} />;
@@ -64,10 +72,14 @@ export default function MapPage(): ReactElement {
           {/* Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer */}
         </Source>
         <Source type="geojson" data={zonesClickable}>
-          <Layer id="hover" type="fill" paint={styles.hover} filter={['hoverFilter //TODO']} />
+          <Layer
+            id="hover"
+            type="fill"
+            paint={styles.hover}
+            filter={['hoverFilter //TODO']}
+          />
         </Source>
       </Map>
-
     </>
   );
 }

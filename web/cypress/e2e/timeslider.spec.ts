@@ -54,41 +54,89 @@ describe('TimeController', () => {
     cy.waitForAPISuccess(`v5/state/hourly`);
     cy.waitForAPISuccess(`v5/history/hourly?countryCode=DK-DK2`);
     cy.contains('LIVE');
-    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(24, hourlyData));
-    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(24, hourlyData, 'hourly'));
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      getco2intensity(24, hourlyData)
+    );
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      getFormattedDate(24, hourlyData, 'hourly')
+    );
     //cy.get('input.time-slider-input').setSliderValue(getTime(5, hourlyData));
-    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(5, hourlyData, 'hourly'));
-    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(5, hourlyData));
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      getFormattedDate(5, hourlyData, 'hourly')
+    );
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      getco2intensity(5, hourlyData)
+    );
 
     // Monthly
     cy.get('[data-test-id="time-controls-daily-btn"]').click();
     cy.waitForAPISuccess(`v5/state/daily`);
     cy.waitForAPISuccess(`v5/history/daily?countryCode=DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(30, dailyData));
-    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(30, dailyData, 'daily'));
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      getco2intensity(30, dailyData)
+    );
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      getFormattedDate(30, dailyData, 'daily')
+    );
     //cy.get('input.time-slider-input').setSliderValue(getTime(16, dailyData));
-    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(16, dailyData, 'daily'));
-    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(16, dailyData));
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      getFormattedDate(16, dailyData, 'daily')
+    );
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      getco2intensity(16, dailyData)
+    );
 
     // Yearly
     cy.get('[data-test-id="time-controls-monthly-btn"]').click();
     cy.waitForAPISuccess(`v5/state/monthly`);
     cy.waitForAPISuccess(`v5/history/monthly?countryCode=DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(11, monthlyData));
-    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(11, monthlyData, 'monthly'));
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      getco2intensity(11, monthlyData)
+    );
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      getFormattedDate(11, monthlyData, 'monthly')
+    );
     //cy.get('input.time-slider-input').setSliderValue(getTime(5, monthlyData));
-    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(5, monthlyData, 'monthly'));
-    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(5, monthlyData));
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      getFormattedDate(5, monthlyData, 'monthly')
+    );
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      getco2intensity(5, monthlyData)
+    );
 
     // 5 Years
     cy.get('[data-test-id="time-controls-yearly-btn"]').click();
     cy.waitForAPISuccess(`v5/state/yearly`);
     cy.waitForAPISuccess(`v5/history/yearly?countryCode=DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(4, yearlyData));
-    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(4, yearlyData, 'yearly'));
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      getco2intensity(4, yearlyData)
+    );
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      getFormattedDate(4, yearlyData, 'yearly')
+    );
     //cy.get('input.time-slider-input').setSliderValue(getTime(2, yearlyData));
-    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(2, yearlyData, 'yearly'));
-    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(2, yearlyData));
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      getFormattedDate(2, yearlyData, 'yearly')
+    );
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      getco2intensity(2, yearlyData)
+    );
   });
 
   // TODO: Figure out how to get open/drag bottom sheet in Cypress on mobile
