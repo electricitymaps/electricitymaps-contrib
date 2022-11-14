@@ -8,24 +8,13 @@ const PORT = process.argv[2] || 8001;
 
 app.use(cors());
 
-app.get('/v4/history', (req, res, next) => {
-  const { countryCode } = req.query;
-  if (countryCode && fs.existsSync(`./public/v4/history_${countryCode}`)) {
-    // we alter the URL to search for the specific history file if available
-    res.redirect(`/v4/history_${countryCode}`);
+app.get('/v6/details/:aggregate/:zoneId', (req, res, next) => {
+  const { aggregate, zoneId } = req.params;
+  if (zoneId && fs.existsSync(`./public/v6/details/${zoneId}/${aggregate}.json`)) {
+    // we alter the URL to use the specific zone details file if available
+    res.redirect(`/v6/details/${zoneId}/${aggregate}`);
   } else {
-    next();
-  }
-});
-
-app.get('/v5/history/:aggregate', (req, res, next) => {
-  const { aggregate } = req.params;
-  const { countryCode } = req.query;
-  if (countryCode && fs.existsSync(`./public/v5/history/${countryCode}/${aggregate}.json`)) {
-    // we alter the URL to use the specific zone history file if available
-    res.redirect(`/v5/history/${countryCode}/${aggregate}`);
-  } else {
-    // otherwise fallback to general history files (that are using data from DE)
+    // otherwise fallback to general details files (that are using data from DE)
     next();
   }
 });
