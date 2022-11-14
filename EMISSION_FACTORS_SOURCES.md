@@ -37,6 +37,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - AX
   - Direct emission factors
     - biomass
@@ -65,6 +66,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - BA
   - Lifecycle emission factors
     - solar
@@ -98,6 +100,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - BG
   - Direct emission factors
     - biomass
@@ -127,6 +130,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - CH
   - Lifecycle emission factors
     - coal
@@ -167,6 +171,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - CZ
   - Direct emission factors
     - biomass
@@ -196,6 +201,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - DE
   - Direct emission factors
     - biomass
@@ -225,6 +231,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - DK-BHM
   - Direct emission factors
     - biomass
@@ -254,6 +261,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - DK-DK1
   - Direct emission factors
     - biomass
@@ -283,6 +291,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - DK-DK2
   - Direct emission factors
     - biomass
@@ -312,6 +321,37 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
+- DK
+  - Direct emission factors
+    - biomass
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - coal
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+  - Lifecycle emission factors
+    - biomass
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - coal
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - hydro
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - nuclear
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
+    - wind
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - EE
   - Direct emission factors
     - biomass
@@ -342,6 +382,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-CN-FVLZ
   - Direct emission factors
     - biomass
@@ -371,6 +412,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-CN-GC
   - Direct emission factors
     - biomass
@@ -400,6 +442,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-CN-HI
   - Direct emission factors
     - biomass
@@ -429,6 +472,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-CN-IG
   - Direct emission factors
     - biomass
@@ -458,6 +502,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-CN-LP
   - Direct emission factors
     - biomass
@@ -487,6 +532,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-CN-TE
   - Direct emission factors
     - biomass
@@ -516,6 +562,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-IB-FO
   - Direct emission factors
     - biomass
@@ -545,6 +592,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-IB-IZ
   - Direct emission factors
     - biomass
@@ -574,6 +622,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-IB-MA
   - Direct emission factors
     - biomass
@@ -603,6 +652,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES-IB-ME
   - Direct emission factors
     - biomass
@@ -632,6 +682,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - ES
   - Direct emission factors
     - biomass
@@ -661,6 +712,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - FI
   - Direct emission factors
     - biomass
@@ -688,12 +740,17 @@ It only describes zone specific emission factors. Our default emission factors c
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - FO-MI
   - Direct emission factors
     - biomass
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
     - coal
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
     - unknown
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
   - Lifecycle emission factors
@@ -703,23 +760,30 @@ It only describes zone specific emission factors. Our default emission factors c
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - hydro
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
     - nuclear
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
     - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - unknown
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - FO-SI
   - Direct emission factors
     - biomass
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
     - coal
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
   - Lifecycle emission factors
     - biomass
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
@@ -727,15 +791,18 @@ It only describes zone specific emission factors. Our default emission factors c
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - hydro
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
     - nuclear
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
     - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - FO
   - Direct emission factors
     - gas
@@ -774,6 +841,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - FR
   - Direct emission factors
     - biomass
@@ -803,6 +871,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - GB-ORK
   - Lifecycle emission factors
     - solar
@@ -838,6 +907,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - GR
   - Direct emission factors
     - biomass
@@ -867,6 +937,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - HR
   - Direct emission factors
     - biomass
@@ -896,6 +967,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - HU
   - Direct emission factors
     - biomass
@@ -925,6 +997,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - IE
   - Direct emission factors
     - biomass
@@ -954,6 +1027,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - IS
   - Lifecycle emission factors
     - coal
@@ -991,6 +1065,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - IT-CSO
   - Direct emission factors
     - biomass
@@ -1020,6 +1095,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - IT-NO
   - Direct emission factors
     - biomass
@@ -1049,6 +1125,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - IT-SAR
   - Direct emission factors
     - biomass
@@ -1078,6 +1155,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - IT-SIC
   - Direct emission factors
     - biomass
@@ -1107,6 +1185,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - IT-SO
   - Direct emission factors
     - biomass
@@ -1136,6 +1215,37 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
+- IT
+  - Direct emission factors
+    - biomass
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - coal
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+  - Lifecycle emission factors
+    - biomass
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - coal
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - hydro
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - nuclear
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
+    - wind
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - LI
   - Lifecycle emission factors
     - coal
@@ -1174,6 +1284,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - LU
   - Direct emission factors
     - biomass
@@ -1202,6 +1313,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - LV
   - Direct emission factors
     - biomass
@@ -1232,6 +1344,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - MD
   - Lifecycle emission factors
     - solar
@@ -1264,6 +1377,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - NL
   - Direct emission factors
     - biomass
@@ -1291,6 +1405,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - NO-NO1
   - Lifecycle emission factors
     - coal
@@ -1331,6 +1446,14 @@ It only describes zone specific emission factors. Our default emission factors c
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - oil
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+- NO
+  - Lifecycle emission factors
+    - coal
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - gas
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - oil
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
 - PL
   - Direct emission factors
     - biomass
@@ -1360,6 +1483,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - PR
   - Direct emission factors
     - coal
@@ -1395,6 +1519,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - PT-MA
   - Direct emission factors
     - biomass
@@ -1422,6 +1547,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - PT
   - Direct emission factors
     - biomass
@@ -1451,6 +1577,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - RO
   - Direct emission factors
     - biomass
@@ -1480,6 +1607,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - RS
   - Lifecycle emission factors
     - solar
@@ -1502,9 +1630,18 @@ It only describes zone specific emission factors. Our default emission factors c
     - gas
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - hydro
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - nuclear
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
     - oil
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - wind
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - SE-SE2
   - Direct emission factors
     - biomass
@@ -1523,9 +1660,18 @@ It only describes zone specific emission factors. Our default emission factors c
     - gas
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - hydro
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - nuclear
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
     - oil
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - wind
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - SE-SE3
   - Direct emission factors
     - biomass
@@ -1544,9 +1690,18 @@ It only describes zone specific emission factors. Our default emission factors c
     - gas
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - hydro
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - nuclear
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
     - oil
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
+    - wind
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - SE-SE4
   - Direct emission factors
     - biomass
@@ -1565,19 +1720,48 @@ It only describes zone specific emission factors. Our default emission factors c
     - gas
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
-    - oil
-      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
-      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
-- SE
-  - Lifecycle emission factors
     - hydro
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
     - nuclear
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
     - solar
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
+- SE
+  - Direct emission factors
+    - biomass
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - coal
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+  - Lifecycle emission factors
+    - biomass
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - coal
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+    - gas
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - hydro
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - nuclear
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+    - oil
+      - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
+    - wind
+      - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - SI
   - Direct emission factors
     - biomass
@@ -1607,6 +1791,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - SK
   - Direct emission factors
     - biomass
@@ -1636,6 +1821,7 @@ It only describes zone specific emission factors. Our default emission factors c
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
+      - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
 - TR
   - Lifecycle emission factors
     - solar
@@ -2778,7 +2964,6 @@ It only describes zone specific emission factors. Our default emission factors c
     - solar
       - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
 - US-TEX-ERCO
-
   - Direct emission factors
     - biomass
       - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
@@ -2789,12 +2974,42 @@ It only describes zone specific emission factors. Our default emission factors c
     - oil
       - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
   - Lifecycle emission factors
-
     - biomass
       - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
     - coal
       - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
     - gas
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+    - oil
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+    - solar
+      - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
+- US
+
+  - Direct emission factors
+    - biomass
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+    - coal
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+    - gas
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+    - geothermal
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+    - oil
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+  - Lifecycle emission factors
+
+    - biomass
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+    - coal
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+    - gas
+      - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+      - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
+    - geothermal
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
       - [eGrid 2020](https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing)
     - oil

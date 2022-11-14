@@ -1,8 +1,3 @@
-bounding_box:
-  - - -81.37844
-    - 32.6102500000001
-  - - -75.53103
-    - 37.04465
 capacity:
   battery storage: 0
   biomass: 409.1
@@ -16,6 +11,11 @@ capacity:
   solar: 1749.1
   unknown: 54
   wind: 0
+cbounding_box:
+  - - -81.37844
+    - 32.6102500000001
+  - - -75.53103
+    - 37.04465
 comment: Duke Energy Progress East
 contributors:
   - systemcatch
@@ -85,12 +85,12 @@ emissionFactors:
       value: 216.6227355
     coal:
       datetime: '2020-01-01'
-      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation."; eGrid 2020
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
       value: 1059.9982231
     gas:
       datetime: '2021-01-01'
-      source: IPCC 2014; eGrid 2020
+      source: eGrid 2020; IPCC 2014
       value: 514.223375
     hydro discharge:
       - datetime: '2018-01-01'
@@ -107,7 +107,7 @@ emissionFactors:
         value: 292.6464775651042
     oil:
       datetime: '2014-01-01'
-      source: IPCC 2014; EIA 2020/BEIS 2021
+      source: EIA 2020/BEIS 2021; IPCC 2014
       value: 650.0
     solar:
       datetime: '2021-01-01'
