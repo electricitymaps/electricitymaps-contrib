@@ -51,10 +51,13 @@ EXCHANGES_MAPPING = {
     "WR-NR": "IN-NO->IN-WE",
 }
 
-KIND_URLS = {
-    "production": PRODUCTION_URL,
-    "exchange": EXCHANGE_URL,
-    "consumption": CONSUMPTION_URL,
+KIND_MAPPING = {
+    "production": {"url":PRODUCTION_URL,
+    "datetime_column": "lastUpdate"},
+    "exchange": {"url":EXCHANGE_URL,
+    "datetime_column": "lastUpdate"},
+    "consumption": {"url":CONSUMPTION_URL,
+    "datetime_column": "current_datetime"},
 }
 
 
@@ -72,22 +75,20 @@ def fetch_data(
     dt_12_hour = arrow.get(target_datetime.strftime("%Y-%m-%d %I:%M")).datetime
     payload = {"date": target_datetime.strftime("%Y-%m-%d")}
 
-    resp = r.post(url=KIND_URLS[kind], json=payload)
-    if kind == "consumption":
-        dt_object = "current_datetime"
-    else:
-        dt_object = "lastUpdate"
+    resp = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
+
+    datetime_col= KIND_MAPPING[kind]["datetime_column"]
     if resp.json():
         data = json.loads(resp.json()["d"])
         for item in data:
-            item[dt_object] = datetime.strptime(item[dt_object], "%Y-%d-%m %H:%M:%S")
-            dt = arrow.get(item[dt_object])
+            item[datetime_col] = datetime.strptime(item[datetime_col], "%Y-%d-%m %H:%M:%S")
+            dt = arrow.get(item[datetime_col])
             if dt.second >= 30:
-                item[dt_object] = dt.shift(minutes=1).floor("minute").datetime
+                item[datetime_col] = dt.shift(minutes=1).floor("minute").datetime
             else:
-                item[dt_object] = dt.floor("minute").datetime
+                item[datetime_col] = dt.floor("minute").datetime
         df_data = pd.DataFrame(
-            [item for item in data if item[dt_object].hour == dt_12_hour.hour]
+            [item for item in data if item[datetime_col].hour == dt_12_hour.hour]
         )
         return df_data
     else:
