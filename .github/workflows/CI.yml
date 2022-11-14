@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 2
       - name: Check frontend files
         id: check-frontend
-        uses: tj-actions/changed-files@v34.3.4
+        uses: tj-actions/changed-files@v34.4.0
         with:
           files: |
             **/web/**/*
@@ -33,19 +33,19 @@ jobs:
             **/web/**/*.md
       - name: Check markdown files
         id: check-markdown
-        uses: tj-actions/changed-files@v34.3.4
+        uses: tj-actions/changed-files@v34.4.0
         with:
           files: |
             **/*.md
       - name: Check json files
         id: check-json
-        uses: tj-actions/changed-files@v34.3.4
+        uses: tj-actions/changed-files@v34.4.0
         with:
           files: |
             **/*.json
       - name: Check python files
         id: check-python
-        uses: tj-actions/changed-files@v34.3.4
+        uses: tj-actions/changed-files@v34.4.0
         with:
           files: |
             **/*.py
@@ -54,7 +54,7 @@ jobs:
             .python-version
       - name: Check if workflows have changed
         id: check-workflows
-        uses: tj-actions/changed-files@v34.3.4
+        uses: tj-actions/changed-files@v34.4.0
         with:
           files: |
             **/.github/workflows/**/*.yml
