@@ -74,6 +74,7 @@ def _get_lifecycle_datetime(row_u: namedtuple, row_d: namedtuple) -> str:
 def _join_sources(sources: list) -> str:
     return "; ".join(list(set(sources)))
 
+
 def _get_sources_and_links(zone_config: dict) -> dict:
     sources = {}
     for ef_type in ["direct", "lifecycle"]:
@@ -85,8 +86,8 @@ def _get_sources_and_links(zone_config: dict) -> dict:
                             sources[source] = {"link": source_to_link[source]}
             else:
                 for source in source_to_link.keys():
-                        if source in ef["source"]:
-                            sources[source] = {"link": source_to_link[source]}
+                    if source in ef["source"]:
+                        sources[source] = {"link": source_to_link[source]}
     return sources
 
 
@@ -141,7 +142,6 @@ def update_zone_config(ef: pd.DataFrame, ef_type: str) -> None:
         }
         # Add source top level object
         zone_config["sources"] = _get_sources_and_links(zone_config)
-
 
         with open(CONFIG_DIR.joinpath(f"zones/{row.zone_key}.yaml"), "w") as f:
             yaml.dump(zone_config, f, default_flow_style=False)
