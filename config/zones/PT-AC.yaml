@@ -47,6 +47,10 @@ emissionFactors:
       datetime: '2021-01-01'
       source: IPCC 2014; EU-ETS, ENTSO-E 2021
       value: 1124.903938
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 32.0
     wind:
       datetime: '2021-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
@@ -56,6 +60,8 @@ flag_file_name: pt.png
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   UNECE 2022:

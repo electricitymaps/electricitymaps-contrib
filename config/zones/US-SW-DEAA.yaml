@@ -40,7 +40,7 @@ emissionFactors:
       value: 517.9497472
     oil:
       datetime: '2014-01-01'
-      source: EIA 2020/BEIS 2021; IPCC 2014
+      source: IPCC 2014; EIA 2020/BEIS 2021
       value: 650.0
 flag_file_name: us.png
 parsers:

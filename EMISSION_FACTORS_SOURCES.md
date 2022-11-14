@@ -839,6 +839,8 @@ It only describes zone specific emission factors. Our default emission factors c
     - oil
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
       - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
@@ -905,6 +907,8 @@ It only describes zone specific emission factors. Our default emission factors c
     - oil
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
       - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
@@ -1517,6 +1521,8 @@ It only describes zone specific emission factors. Our default emission factors c
     - oil
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
       - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)
@@ -1545,6 +1551,8 @@ It only describes zone specific emission factors. Our default emission factors c
     - oil
       - [EU-ETS, ENTSO-E 2021](https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link)
       - [IPCC 2014](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)
+    - solar
+      - [INCER ACV](https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing)
     - wind
       - [UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)
       - [UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37)

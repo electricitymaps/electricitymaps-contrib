@@ -45,8 +45,8 @@ emissionFactors:
       value: 439.145806
     coal:
       datetime: '2020-01-01'
-      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation."; EU-ETS, ENTSO-E 2021
+      source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
+        hotspots of coal power generation."
       value: 1050.5643503
     gas:
       datetime: '2021-01-01'
