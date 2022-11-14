@@ -1,11 +1,17 @@
 import * as SliderPrimitive from '@radix-ui/react-slider';
 
-function TimeSlider() {
+interface TimeSliderProps {
+  datetimes: string[];
+  onChange: (datetimeIndex: number) => void;
+}
+
+function TimeSlider({ datetimes, onChange }: TimeSliderProps) {
   return (
     <SliderPrimitive.Root
       defaultValue={[0]}
-      max={25}
+      max={datetimes.length - 1}
       step={1}
+      onValueChange={(value) => onChange(value[0])}
       aria-label="value"
       className="relative mb-2 flex h-5 w-full touch-none items-center"
     >

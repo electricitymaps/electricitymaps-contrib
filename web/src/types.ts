@@ -67,15 +67,28 @@ export interface StorageTypes {
   hydro: number;
 }
 
-export interface MapGrid extends FeatureCollection<Geometry> {
-  features: Array<MapZone>;
+export interface MapGeometries extends FeatureCollection<Geometry> {
+  features: Array<MapGeometry>;
 }
-export interface MapZone extends Feature<Polygon | MultiPolygon> {
+export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   geometry: MultiPolygon | Polygon;
   Id?: number;
   properties: {
-    zoneData: ZoneOverviewForTimePeriod;
     zoneId: string;
     color: string;
   };
+}
+
+export interface MapTheme {
+  co2Scale: CO2Scale;
+  clickableFill: string;
+  nonClickableFill: string;
+  oceanColor: string;
+  strokeWidth: number;
+  strokeColor: string;
+}
+
+export interface CO2Scale {
+  steps: number[];
+  colors: string[];
 }
