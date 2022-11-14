@@ -58,21 +58,6 @@ KIND_URLS = {
 }
 
 
-def fetch_all_data(
-    zone_key: str = "IN-WE",
-    kind: str = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    r = session or Session()
-    data = []
-    payload = {"date": target_datetime.strftime("%Y-%m-%d")}
-    resp = r.post(url=KIND_URLS[kind], json=payload)
-    data = json.loads(resp.json()["d"])
-    return data
-
-
 def fetch_data(
     zone_key: str = "IN-WE",
     kind: str = None,
@@ -102,7 +87,9 @@ def fetch_data(
                 item[dt_object] = dt.shift(minutes=1).floor("minute").datetime
             else:
                 item[dt_object] = dt.floor("minute").datetime
-        df_data = pd.DataFrame([item for item in data if item[dt_object] == dt_12_hour])
+        df_data = pd.DataFrame(
+            [item for item in data if item[dt_object].hour == dt_12_hour.hour]
+        )
         return df_data
     else:
         raise ParserException(
@@ -115,19 +102,55 @@ def format_production_data(
     data: pd.DataFrame, zone_key: str, target_datetime: Optional[datetime]
 ) -> dict:
     df_production = pd.DataFrame()
+    df_unique_dt = (
+        pd.DataFrame()
+    )  # for older datetimes datetimes are not the same in the AM and the PM which makes sorting harder
     if len(data) == len(POWER_PLANT_MAPPING):
         df_production = data.copy()
     else:
-        for plant in POWER_PLANT_MAPPING:
+        for plant in set(data.State_Name):
             df_plant = data.loc[data.State_Name == plant].copy()
-            if target_datetime.hour >= 12:
-                df_production = pd.concat(
-                    [df_production, df_plant.loc[df_plant["Id"] == max(df_plant["Id"])]]
-                )
-            else:
-                df_production = pd.concat(
-                    [df_production, df_plant.loc[df_plant["Id"] == min(df_plant["Id"])]]
-                )
+            for dt in set(df_plant.lastUpdate):
+                df_dt = df_plant.loc[df_plant.lastUpdate == dt]
+                if len(df_dt) > 1:
+                    if target_datetime.hour >= 12:
+                        df_production = pd.concat(
+                            [df_production, df_dt.loc[df_dt["Id"] == max(df_dt["Id"])]]
+                        )
+                    else:
+                        df_production = pd.concat(
+                            [df_production, df_dt.loc[df_dt["Id"] == min(df_dt["Id"])]]
+                        )
+                else:
+                    df_unique_dt = pd.concat([df_unique_dt, df_dt])
+
+            if not df_unique_dt.empty:
+                if target_datetime.hour >= 12:
+                    df_production = pd.concat(
+                        [
+                            df_production,
+                            df_unique_dt.loc[
+                                df_unique_dt.Id > df_plant["Id"].mean(numeric_only=True)
+                            ],
+                        ]
+                    )
+                else:
+                    df_production = pd.concat(
+                        [
+                            df_production,
+                            df_unique_dt.loc[
+                                df_unique_dt.Id
+                                <= df_plant["Id"].mean(numeric_only=True)
+                            ],
+                        ]
+                    )
+
+    df_production.loc[:, "target_datetime"] = target_datetime
+    df_production = (
+        df_production.groupby(["target_datetime", "State_Name"])["Actual"]
+        .mean(numeric_only=True)
+        .reset_index()
+    )  # get one hourly data point
 
     df_production.loc[:, "production_mode"] = df_production["State_Name"].map(
         POWER_PLANT_MAPPING
@@ -139,15 +162,18 @@ def format_production_data(
         axis=1,
     )
     df_production = (
-        df_production.groupby(["lastUpdate", "production_mode"])["Actual"]
+        df_production.groupby(["target_datetime", "production_mode"])["Actual"]
         .sum()
         .reset_index()
-    )
+    )  # aggregate by production mode
     production = {}
     for mode in set(df_production.production_mode):
-        production[mode] = df_production.loc[
-            df_production["production_mode"] == mode, "Actual"
-        ].values[0]
+        production[mode] = round(
+            df_production.loc[
+                df_production["production_mode"] == mode, "Actual"
+            ].values[0],
+            3,
+        )
     production_data_point = {
         "zoneKey": zone_key,
         "datetime": target_datetime.replace(tzinfo=pytz.timezone("Asia/Kolkata")),
@@ -163,22 +189,27 @@ def format_exchanges_data(
     data["zone_key"] = data["Region_Name"].map(EXCHANGES_MAPPING)
     df_exchanges = data.loc[data["zone_key"] == sortedZoneKeys]
     exchanges = {}
-    if len(df_exchanges) > 1:
-        if target_datetime.hour >= 12:
-            exchanges["netFLow"] = -df_exchanges.loc[max(df_exchanges.index)][
-                "Current_Loading"
-            ]  # sorted keys are inverted
-        else:
-            exchanges["netFLow"] = -df_exchanges.loc[min(df_exchanges.index)][
-                "Current_Loading"
-            ]
+    if target_datetime.hour >= 12:
+        df_exchanges = df_exchanges.drop_duplicates(
+            subset=["Region_Name", "lastUpdate"], keep="last"
+        )
     else:
-        exchanges["netFLow"] = -df_exchanges.iloc[0]["Current_Loading"]
-    exchanges["sortedZoneKeys"] = sortedZoneKeys
-    exchanges["datetime"] = target_datetime.replace(
-        tzinfo=pytz.timezone("Asia/Kolkata")
+        df_exchanges = data.drop_duplicates(
+            subset=["Region_Name", "lastUpdate"], keep="first"
+        )
+    df_exchanges.loc[:, "target_datetime"] = target_datetime
+    df_exchanges = (
+        df_exchanges.groupby(["Region_Name", "target_datetime"])
+        .mean(numeric_only=True)
+        .reset_index()
     )
-    exchanges["source"] = "wrldc.in"
+
+    exchanges = {
+        "netFLow": -round(df_exchanges.iloc[0]["Current_Loading"], 3),
+        "sortedZoneKeys": sortedZoneKeys,
+        "datetime": target_datetime.replace(tzinfo=pytz.timezone("Asia/Kolkata")),
+        "source": "wrldc.in",
+    }
     return exchanges
 
 
@@ -188,7 +219,6 @@ def format_consumption_data(
     consumption = {
         "zoneKey": zone_key,
         "datetime": target_datetime.replace(tzinfo=pytz.timezone("Asia/Kolkata")),
-        "consumption": 0.0,
         "source": "wrldc.in",
     }
 
@@ -200,8 +230,15 @@ def format_consumption_data(
         df_consumption = data.drop_duplicates(
             subset=["StateName", "current_datetime"], keep="first"
         )
-    consumption["consumption"] = (
-        df_consumption.groupby(["current_datetime"])["Act_Drawal"].sum().values[0]
+    df_consumption.loc[:, "target_datetime"] = target_datetime
+    df_consumption = (
+        df_consumption.groupby(["StateName", "target_datetime"])
+        .mean(numeric_only=True)
+        .reset_index()
+    )
+
+    consumption["consumption"] = round(
+        df_consumption.groupby(["target_datetime"])["Act_Drawal"].sum().values[0], 3
     )
     return consumption
 
