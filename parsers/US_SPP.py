@@ -17,7 +17,7 @@ from parsers.lib.config import refetch_frequency
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "host=https://marketplace.spp.org"
 
-HISTORIC_GENERATION_BASE_URL = f"{US_PROXY}/file-browser-api/download/generation-mix-historical?{HOST_PARAMETER}&path=%2F"
+HISTORIC_GENERATION_BASE_URL = f"{US_PROXY}/file-browser-api/download/generation-mix-historical?{HOST_PARAMETER}&path="
 
 GENERATION_URL = f"{US_PROXY}/chart-api/gen-mix/asFile?{HOST_PARAMETER}"
 

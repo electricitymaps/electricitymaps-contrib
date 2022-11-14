@@ -154,6 +154,6 @@ flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
-  production: EIA.fetch_production_mix
+  production: US_SPP.fetch_production
   productionPerModeForecast: US_SPP.fetch_wind_solar_forecasts
 timezone: US/Central
