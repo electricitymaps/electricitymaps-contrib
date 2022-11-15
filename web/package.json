@@ -143,8 +143,8 @@
     "cypress-open": "TZ=Europe/Copenhagen cypress open",
     "test": "yarn prebuild && jest",
     "test:watch": "yarn prebuild && test -- --watch",
-    "prettier-fix": "prettier --write . && prettier --write ../config",
-    "prettier-check": "prettier --check . && prettier --check ../config",
+    "prettier-fix": "prettier --write . && prettier --write ../config && prettier --write ../*.md",
+    "prettier-check": "prettier --check . && prettier --check ../config && prettier --check ../*.md",
     "predevelop": "yarn generate-zones-config",
     "prebuild": "yarn generate-zones-config",
     "postinstall": "yarn generate-zones-config"

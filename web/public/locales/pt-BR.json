@@ -1412,6 +1412,9 @@
     "UM": {
       "zoneName": "Ilhas Menores Distantes dos Estados Unidos"
     },
+    "US": {
+      "zoneName": "Estados Unidos da América"
+    },
     "US-HI-HA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Havaí"
@@ -1519,10 +1522,6 @@
     "US-FLA-JEA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "JEA"
-    },
-    "US-FLA-NSB": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Comissão de serviços públicos de New Smyrna Beach"
     },
     "US-FLA-SEC": {
       "countryName": "Estados Unidos da América",
@@ -1648,10 +1647,6 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "Operador de sistema independente de Nova York"
     },
-    "US-SE-AEC": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Southeastern Power Administration"
@@ -1675,10 +1670,6 @@
     "US-SW-GRIF": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Estados Unidos da América",

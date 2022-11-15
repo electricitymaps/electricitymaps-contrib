@@ -1425,6 +1425,9 @@
     "UM": {
       "zoneName": "Îles mineures éloignées des États-Unis"
     },
+    "US": {
+      "zoneName": "États-Unis d’Amérique"
+    },
     "US-HI": {
       "countryName": "États-Unis d’Amérique",
       "zoneName": "Hawaï"
@@ -1643,10 +1646,6 @@
       "countryName": "USA",
       "zoneName": "Autorité électrique de Jacksonville"
     },
-    "US-FLA-NSB": {
-      "countryName": "USA",
-      "zoneName": "Commission des services publics de New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "USA",
       "zoneName": "Coopérative électrique de Seminole"
@@ -1771,10 +1770,6 @@
       "countryName": "USA",
       "zoneName": "Exploitant de réseau indépendant de New York"
     },
-    "US-SE-AEC": {
-      "countryName": "USA",
-      "zoneName": "Coopérative d'énergie Powersouth"
-    },
     "US-SE-SEPA": {
       "countryName": "USA",
       "zoneName": "Administration de l'électricité du Sud-Est"
@@ -1798,10 +1793,6 @@
     "US-SW-GRIF": {
       "countryName": "USA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "USA",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "USA",
