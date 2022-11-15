@@ -52,12 +52,9 @@ EXCHANGES_MAPPING = {
 }
 
 KIND_MAPPING = {
-    "production": {"url":PRODUCTION_URL,
-    "datetime_column": "lastUpdate"},
-    "exchange": {"url":EXCHANGE_URL,
-    "datetime_column": "lastUpdate"},
-    "consumption": {"url":CONSUMPTION_URL,
-    "datetime_column": "current_datetime"},
+    "production": {"url": PRODUCTION_URL, "datetime_column": "lastUpdate"},
+    "exchange": {"url": EXCHANGE_URL, "datetime_column": "lastUpdate"},
+    "consumption": {"url": CONSUMPTION_URL, "datetime_column": "current_datetime"},
 }
 
 
@@ -77,11 +74,13 @@ def fetch_data(
 
     resp = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
 
-    datetime_col= KIND_MAPPING[kind]["datetime_column"]
+    datetime_col = KIND_MAPPING[kind]["datetime_column"]
     if resp.json():
         data = json.loads(resp.json()["d"])
         for item in data:
-            item[datetime_col] = datetime.strptime(item[datetime_col], "%Y-%d-%m %H:%M:%S")
+            item[datetime_col] = datetime.strptime(
+                item[datetime_col], "%Y-%d-%m %H:%M:%S"
+            )
             dt = arrow.get(item[datetime_col])
             if dt.second >= 30:
                 item[datetime_col] = dt.shift(minutes=1).floor("minute").datetime
@@ -105,7 +104,7 @@ def format_production_data(
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour
     - map power plants
-    - sum production per mode   """
+    - sum production per mode"""
     df_production = pd.DataFrame()
     df_unique_dt = (
         pd.DataFrame()
