@@ -85,14 +85,6 @@ export default function MapPage(): ReactElement {
     }
   }, [mapReference, geometries, data, getCo2colorScale, datetimeIndex]);
 
-  if (isLoading || isError) {
-    if (error) {
-      console.error(error);
-    }
-
-    return <LoadingOrError error={error as Error} />;
-  }
-
   const southernLatitudeBound = -62.947_193;
   const northernLatitudeBound = 84.613_245;
 
