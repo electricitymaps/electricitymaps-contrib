@@ -64,7 +64,7 @@ def fetch_data(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> pd.DataFrame:
     """- get production data from wrldc.in
     - filter all rows with same hour as target_datetime"""
     r = session or Session()
