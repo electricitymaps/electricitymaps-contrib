@@ -1412,6 +1412,9 @@
     "UM": {
       "zoneName": "Ilhas Menores Distantes dos Estados Unidos"
     },
+    "US": {
+      "zoneName": "Estados Unidos da América"
+    },
     "US-HI-HA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Havaí"

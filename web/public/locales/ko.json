@@ -1357,6 +1357,7 @@
     "UM": {
       "zoneName": "미국령 군소 제도"
     },
+    "US": { "zoneName": "미국" },
     "US-HI-HA": {
       "countryName": "미국",
       "zoneName": "하와이섬"

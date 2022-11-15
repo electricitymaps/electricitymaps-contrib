@@ -3,6 +3,17 @@ bounding_box:
     - 18.91619
   - - -66.96466
     - 71.3577635769
+bypassedSubZones:
+  - US-AK
+  - US-HI-HA
+  - US-HI-KA
+  - US-HI-KH
+  - US-HI-LA
+  - US-HI-MA
+  - US-HI-MO
+  - US-HI-NI
+  - US-HI-OA
+  - US-MIDW-GLHB
 capacity:
   battery storage: 4832.0
   biomass: 14487.1
@@ -24,6 +35,60 @@ contributors:
   - brandongalbraith
   - systemcatch
   - VIKTORVAV99
+emissionFactors:
+  direct:
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 989.615358
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 406.0342962
+    geothermal:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 70.87985131
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 803.8986689
+  lifecycle:
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 285.8412641
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1049.615358
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 526.0342962
+    geothermal:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 108.87985131
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1047.8986688999998
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 26.22100877
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 subZoneNames:
   - US-AK
   - US-CAL-BANC
@@ -63,13 +128,11 @@ subZoneNames:
   - US-MIDW-MISO
   - US-NE-ISNE
   - US-NW-AVA
-  #- US-NW-AVRN Production only zone, production integrated in US-NW-PACW for the gas and US-NW-BPAT for the wind
   - US-NW-BPAT
   - US-NW-CHPD
   - US-NW-DOPD
   - US-NW-GCPD
   - US-NW-GRID
-  # - US-NW-GWA Production only zone, all production integrated with US-NW-NWMT
   - US-NW-IPCO
   - US-NW-NEVP
   - US-NW-NWMT
@@ -82,29 +145,15 @@ subZoneNames:
   - US-NW-TPWR
   - US-NW-WACM
   - US-NW-WAUW
-  #- US-NW-WWA Production only zone, all production integrated with US-NW-NWMT
   - US-NY-NYIS
   - US-SE-SEPA
+  - US-SE-SOCO
   - US-SW-AZPS
-  #- US-SW-DEAA Production only zone, all production integrated with US-SW-SRP
   - US-SW-EPE
-  #- US-SW-GRIF Production only zone, all production integrated with US-SW-WALC
-  #- US-SW-HGMA Production only zone, all production integrated with US-SW-SRP
   - US-SW-PNM
   - US-SW-SRP
   - US-SW-TEPC
   - US-SW-WALC
   - US-TEN-TVA
   - US-TEX-ERCO
-bypassedSubZones:
-  - US-AK
-  - US-HI-HA
-  - US-HI-KA
-  - US-HI-KH
-  - US-HI-LA
-  - US-HI-MA
-  - US-HI-MO
-  - US-HI-NI
-  - US-HI-OA
-  - US-MIDW-GLHB
 timezone: US-Central

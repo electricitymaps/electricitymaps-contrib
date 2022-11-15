@@ -1472,6 +1472,9 @@
       "countryName": "Chile",
       "zoneName": "SING/SIC"
     },
+    "US": {
+      "zoneName": "Vereinigte Staaten"
+    },
     "US-HI-HA": {
       "countryName": "Vereinigte Staaten",
       "zoneName": "Hawaii"

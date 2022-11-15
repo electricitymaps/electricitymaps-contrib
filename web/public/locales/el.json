@@ -1372,6 +1372,7 @@
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
     },
+    "US": { "zoneName": "Ηνωμένες Πολιτείες Αμερικής" },
     "US-HI-HA": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Hawaii"
