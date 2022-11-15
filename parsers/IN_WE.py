@@ -72,7 +72,7 @@ def fetch_data(
     dt_12_hour = arrow.get(target_datetime.strftime("%Y-%m-%d %I:%M")).datetime
     payload = {"date": target_datetime.strftime("%Y-%m-%d")}
 
-    resp = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
+    resp: Response = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
 
     datetime_col = KIND_MAPPING[kind]["datetime_column"]
     if resp.json():
