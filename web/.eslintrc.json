@@ -49,23 +49,6 @@
     ],
     "no-void": "off",
 
-    "@typescript-eslint/no-magic-numbers": [
-      "error",
-      {
-        "ignoreEnums": true,
-        "ignore": [
-          // commonly used integers
-          -1, 0, 1, 2, 100, 1000,
-          // time integers
-          60,
-          // geometry
-          360
-        ],
-        "ignoreArrayIndexes": true,
-        "enforceConst": true,
-        "detectObjects": false
-      }
-    ],
     "@typescript-eslint/no-confusing-void-expression": [
       "error",
       { "ignoreArrowShorthand": true }
