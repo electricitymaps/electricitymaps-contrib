@@ -1,7 +1,7 @@
-import { TimeAverages } from 'utils/constants';
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
-import { timeAverageAtom } from 'utils/state';
 import { useAtom } from 'jotai';
+import { TimeAverages } from 'utils/constants';
+import { timeAverageAtom } from 'utils/state';
 
 interface ToggleItem {
   value: TimeAverages;
@@ -32,7 +32,11 @@ const settings: ToggleItem[] = [
   },
 ];
 
-function TimeAverageToggle({ className }: { className?: string }) {
+function ClockIcon() {
+  return <span className="material-symbols-outlined mr-1 text-[0.87rem]">schedule</span>;
+}
+
+function TimeAverageToggle() {
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const onToggleGroupClick = (newTimeAverage: TimeAverages) => {
     setTimeAverage(newTimeAverage);
@@ -40,7 +44,7 @@ function TimeAverageToggle({ className }: { className?: string }) {
 
   return (
     <ToggleGroupPrimitive.Root
-      className={className}
+      className={'flex-start mb-2 flex flex-row items-center gap-x-2'}
       type="multiple"
       aria-label="Font settings"
     >
@@ -50,11 +54,14 @@ function TimeAverageToggle({ className }: { className?: string }) {
           value={value}
           aria-label={label}
           onClick={() => onToggleGroupClick(value)}
-          className={`px-3 py-2 text-sm ${
-            timeAverage === value && `rounded-full font-bold shadow-md`
-          }`}
+          className={
+            timeAverage === value
+              ? 'inline-flex items-center rounded-full bg-white px-3 py-2 text-sm font-bold text-green-900 shadow-2xl dark:bg-gray-500 dark:text-white'
+              : 'inline-flex rounded-full bg-gray-100 px-3 py-2 text-sm dark:bg-gray-700'
+          }
         >
-          <p className="w-15 h-6 text-gray-700 dark:text-gray-100">{text}</p>
+          {timeAverage === value && <ClockIcon />}
+          <p className="w-15">{text}</p>
         </ToggleGroupPrimitive.Item>
       ))}
     </ToggleGroupPrimitive.Root>
