@@ -1,7 +1,5 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
-import { useAtom } from 'jotai';
 import { TimeAverages } from 'utils/constants';
-import { timeAverageAtom } from 'utils/state';
 
 interface ToggleItem {
   value: TimeAverages;
@@ -36,12 +34,12 @@ function ClockIcon() {
   return <span className="material-symbols-outlined mr-1 text-[0.87rem]">schedule</span>;
 }
 
-function TimeAverageToggle() {
-  const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
-  const onToggleGroupClick = (newTimeAverage: TimeAverages) => {
-    setTimeAverage(newTimeAverage);
-  };
+export interface TimeAverageToggleProps {
+  timeAverage: TimeAverages;
+  onToggleGroupClick: (newTimeAverage: TimeAverages) => void;
+}
 
+function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggleProps) {
   return (
     <ToggleGroupPrimitive.Root
       className={'flex-start mb-2 flex flex-row items-center gap-x-2'}
