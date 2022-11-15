@@ -60,7 +60,7 @@ KIND_MAPPING = {
 
 def fetch_data(
     zone_key: str = "IN-WE",
-    kind: str = None,
+    kind: Optional[str] = None,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
