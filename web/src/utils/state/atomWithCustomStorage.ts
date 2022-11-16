@@ -1,7 +1,7 @@
-import { atomWithStorage, createJSONStorage } from 'jotai/utils';
-import invariant from 'tiny-invariant';
-import { SyncStorage } from 'jotai/utils/atomWithStorage';
 import { atom } from 'jotai';
+import { atomWithStorage, createJSONStorage } from 'jotai/utils';
+import { SyncStorage } from 'jotai/utils/atomWithStorage';
+import invariant from 'tiny-invariant';
 
 // TODO: consider using preferences from capacitor https://capacitorjs.com/docs/apis/preferences
 
@@ -126,7 +126,7 @@ export default function atomWithCustomStorage<Value extends string>({
     (get) => {
       const value = get(baseAtom);
       if (typeof value == typeof NO_STORAGE_VALUE) {
-        return initialValue;
+        return initialValue as Value;
       }
       return value as Value;
     },
