@@ -1,6 +1,6 @@
 const path = require('path');
 const { validateGeometry } = require('./validate');
-const { getJSON } = require('./utilities');
+const { getJSON, roundGeoPoints } = require('./utilities');
 const { generateTopojson } = require('./generate-topojson');
 const { generateAggregates } = require('./generate-aggregates');
 const { generateExchangesToIgnore } = require('./generate-exchanges-to-exclude');
@@ -19,7 +19,7 @@ const config = {
 
 const EXCHANGE_OUT_PATH = path.resolve(__dirname, '../src/config/excluded-aggregated-exchanges.json');
 
-const fc = getJSON(config.WORLD_PATH);
+const fc = roundGeoPoints(getJSON(config.WORLD_PATH));
 const zoneConfig = mergeZones();
 const aggregates = generateAggregates(fc, zoneConfig);
 

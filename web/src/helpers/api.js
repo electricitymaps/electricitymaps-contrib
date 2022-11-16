@@ -23,10 +23,15 @@ function isUsingLocalEndpoint() {
 }
 
 async function sha256(message) {
-  const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
-  return Array.from(new Uint8Array(hashBuffer))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+  try {
+    const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
+    return Array.from(new Uint8Array(hashBuffer))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+  } catch (error) {
+    console.error(error);
+    return '';
+  }
 }
 
 export function getEndpoint() {
