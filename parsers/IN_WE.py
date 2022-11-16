@@ -100,13 +100,16 @@ def fetch_data(
 
 
 def format_production_data(
-    data: pd.DataFrame, zone_key: str, target_datetime: Optional[datetime]
+    data: pd.DataFrame, zone_key: str, target_datetime: datetime
 ) -> dict:
     """format production data:
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour
     - map power plants
     - sum production per mode"""
+    assert target_datetime is not None
+    assert not data.empty
+
     df_production = pd.DataFrame()
     df_unique_dt = (
         pd.DataFrame()
@@ -190,11 +193,14 @@ def format_production_data(
 
 
 def format_exchanges_data(
-    data: pd.DataFrame, sortedZoneKeys: str, target_datetime: Optional[datetime]
+    data: pd.DataFrame, sortedZoneKeys: str, target_datetime: datetime
 ) -> dict:
     """format exchanges data:
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour"""
+    assert target_datetime is not None
+    assert not data.empty
+
     data["zone_key"] = data["Region_Name"].map(EXCHANGES_MAPPING)
     df_exchanges = data.loc[data["zone_key"] == sortedZoneKeys]
     exchanges = {}
@@ -223,11 +229,14 @@ def format_exchanges_data(
 
 
 def format_consumption_data(
-    data: pd.DataFrame, zone_key: str, target_datetime: Optional[datetime]
+    data: pd.DataFrame, zone_key: str, target_datetime: datetime
 ) -> dict:
     """format consumption data:
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour"""
+    assert target_datetime is not None
+    assert not data.empty
+
     consumption = {
         "zoneKey": zone_key,
         "datetime": target_datetime.replace(tzinfo=pytz.timezone("Asia/Kolkata")),
