@@ -1,5 +1,4 @@
 import Head from 'components/Head';
-import LoadingOrError from 'components/LoadingOrError';
 import mapboxgl from 'mapbox-gl';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -9,25 +8,30 @@ import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 
 import useGetState from 'api/getState';
 import { useAtom } from 'jotai';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getCO2IntensityByMode } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state';
 import { useGetGeometries } from './map-utils/getMapGrid';
 
 const ZONE_SOURCE = 'zones-clickable';
+const SOUTHERN_LATITUDE_BOUND = -62.947_193;
+const NORTHERN_LATITUDE_BOUND = 84.613_245;
+const MAP_STYLE = { version: 8, sources: {}, layers: [] };
 
-const mapStyle = { version: 8, sources: {}, layers: [] };
+type FeatureId = string | number | undefined;
 
+// TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
+// We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage(): ReactElement {
-  const [hoveredFeatureId, setHoveredFeatureId] = useState<string | number | undefined>();
-  const [selectedFeatureId, setSelectedFeatureId] = useState<
-    string | number | undefined
-  >();
+  const [hoveredFeatureId, setHoveredFeatureId] = useState<FeatureId>();
+  const [selectedFeatureId, setSelectedFeatureId] = useState<FeatureId>();
   const [cursorType, setCursorType] = useState<string>('grab');
   const [timeAverage] = useAtom(timeAverageAtom);
   const [datetimeIndex] = useAtom(selectedDatetimeIndexAtom);
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
+  const location = useLocation();
+  const createToWithState = (to: string) => `${to}${location.search}${location.hash}`;
 
   const theme = useTheme();
   // Calculate layer styles only when the theme changes
@@ -139,10 +143,10 @@ export default function MapPage(): ReactElement {
       const zoneId = feature.properties.zoneId;
       // TODO: Open left panel
       // TODO: Consider using flyTo zone?
-      navigate(`/zone/${zoneId}`);
+      navigate(createToWithState(`/zone/${zoneId}`));
     } else {
       setSelectedFeatureId(undefined);
-      navigate('/map');
+      navigate(createToWithState('/map'));
     }
   };
 
@@ -190,9 +194,6 @@ export default function MapPage(): ReactElement {
     }
   };
 
-  const southernLatitudeBound = -62.947_193;
-  const northernLatitudeBound = 84.613_245;
-
   const onError = (event: mapboxgl.ErrorEvent) => {
     console.error(event.error);
     // TODO: Remove loading overlay
@@ -216,12 +217,12 @@ export default function MapPage(): ReactElement {
         onMouseOut={onMouseOut}
         minZoom={0.7}
         maxBounds={[
-          [Number.NEGATIVE_INFINITY, southernLatitudeBound],
-          [Number.POSITIVE_INFINITY, northernLatitudeBound],
+          [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
+          [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
         ]}
         mapLib={maplibregl}
         style={{ minWidth: '100vw', height: '100vh' }}
-        mapStyle={mapStyle as mapboxgl.Style}
+        mapStyle={MAP_STYLE as mapboxgl.Style}
       >
         <Layer id="ocean" type="background" paint={styles.ocean} />
         <Source id="zones-clickable" generateId type="geojson" data={geometries}>
