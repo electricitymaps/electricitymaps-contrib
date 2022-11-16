@@ -12,7 +12,6 @@ import { useCo2ColorScale } from '../hooks/theme';
  * @param {string} rgbColor a string with the background color (e.g. "rgb(0,5,4)")
  */
 const getTextColor = (rgbColor: string) => {
-  /* eslint-disable @typescript-eslint/no-magic-numbers */
   const colors = rgbColor.replace(/[^\d,.]/g, '').split(',');
   const r = Number.parseInt(colors[0], 10);
   const g = Number.parseInt(colors[1], 10);
@@ -23,7 +22,6 @@ const getTextColor = (rgbColor: string) => {
   });
   const luminosity = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
   return luminosity >= 0.384_741_302_385_683_16 ? 'black' : 'white';
-  /* eslint-enable @typescript-eslint/no-magic-numbers */
 };
 
 interface CarbonIntensitySquareProps {

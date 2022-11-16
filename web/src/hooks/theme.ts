@@ -5,7 +5,8 @@ import { Theme } from 'types';
 import { themes } from './oldThemes';
 // TODO: Convert this to a Jotai atom and consider if we want to do things differently now with new setup
 export function useTheme(): Theme {
-  const brightModeEnabled = true; //useSelector((state) => state.application.brightModeEnabled);
+  const darkThemeMediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+  const brightModeEnabled = darkThemeMediaQuery.matches; //useSelector((state) => state.application.brightModeEnabled);
   const colorBlindModeEnabled = false; //useSelector((state) => state.application.colorBlindModeEnabled);
 
   return useMemo(() => {

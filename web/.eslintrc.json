@@ -48,7 +48,6 @@
       }
     ],
     "no-void": "off",
-
     "@typescript-eslint/no-confusing-void-expression": [
       "error",
       { "ignoreArrowShorthand": true }
@@ -131,7 +130,8 @@
         "ignore": [".*[pP]rops"]
       }
     ],
-    "unicorn/no-nested-ternary": ["error"]
+    "unicorn/no-nested-ternary": ["error"],
+    "unicorn/no-useless-undefined": "off"
   },
   "settings": {
     "react": {

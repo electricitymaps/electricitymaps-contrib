@@ -13,7 +13,6 @@ const getCountryName = (zoneId: string) => {
 
 export function CountryTag({ zoneId }: { zoneId: string }) {
   const countryName = getCountryName(zoneId);
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   const isACountry = zoneId !== 'US' && zoneId.length === 2; // TODO: set up proper method to check if zoneId is a country
 
   if (isACountry) {

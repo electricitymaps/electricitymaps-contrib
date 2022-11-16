@@ -8,5 +8,5 @@ import { spatialAggregateAtom } from 'utils/state';
 export const useGetGeometries = (): MapGeometries => {
   const [spatialAggregate] = useAtom(spatialAggregateAtom);
   const theme = useTheme();
-  return useMemo(() => generateTopos(theme), [spatialAggregate, theme]);
+  return useMemo(() => generateTopos(theme, spatialAggregate), [theme, spatialAggregate]);
 };
