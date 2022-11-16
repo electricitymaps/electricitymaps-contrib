@@ -14,11 +14,14 @@ from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
-HISTORIC_GENERATION_BASE_URL = "https://marketplace.spp.org/file-browser-api/download/generation-mix-historical?path=%2F"
+US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
+HOST_PARAMETER = "host=https://marketplace.spp.org"
 
-GENERATION_URL = "https://marketplace.spp.org/chart-api/gen-mix/asFile"
+HISTORIC_GENERATION_BASE_URL = f"{US_PROXY}/file-browser-api/download/generation-mix-historical?{HOST_PARAMETER}&path="
 
-EXCHANGE_URL = "https://marketplace.spp.org/chart-api/interchange-trend/asFile"
+GENERATION_URL = f"{US_PROXY}/chart-api/gen-mix/asFile?{HOST_PARAMETER}"
+
+EXCHANGE_URL = f"{US_PROXY}/chart-api/interchange-trend/asFile?{HOST_PARAMETER}"
 
 MAPPING = {
     "Wind": "wind",
@@ -98,14 +101,15 @@ def data_processor(df, logger: Logger) -> list:
     keys_to_remove = keys_to_remove | unknown_keys
 
     processed_data = []
-    for index, row in df.iterrows():
-        production = row.to_dict()
+    for index in range(len(df)):
+        production = df.loc[index].to_dict()
         production["unknown"] = sum([production[k] for k in unknown_keys])
 
         dt_aware = production["GMT MKT Interval"].to_pydatetime()
         for k in keys_to_remove:
             production.pop(k, None)
 
+        production = {k: float(v) for k, v in production.items()}
         mapped_production = {MAPPING.get(k, k): v for k, v in production.items()}
 
         processed_data.append((dt_aware, mapped_production))
@@ -218,6 +222,13 @@ def fetch_exchange(
     return exchange_data
 
 
+def _NaN_safe_get(forecast: dict, key: str) -> Optional[float]:
+    try:
+        return float(forecast[key])
+    except ValueError:
+        return None
+
+
 def fetch_load_forecast(
     zone_key: str = "US-SPP",
     session: Optional[Session] = None,
@@ -233,20 +244,22 @@ def fetch_load_forecast(
         dt = target_datetime
     else:
         dt = parser.parse(target_datetime)
-    LOAD_URL = "https://marketplace.spp.org/file-api/download/mtlf-vs-actual?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTLF-{0}{1:02d}{2:02d}0000.csv".format(
-        dt.year, dt.month, dt.day
-    )
+    LOAD_URL = f"{US_PROXY}/chart-api/load-forecast/asFile?{HOST_PARAMETER}"
 
     raw_data = get_data(LOAD_URL)
 
     data = []
-    for index, row in raw_data.iterrows():
-        forecast = row.to_dict()
+    for index in range(len(raw_data)):
+        forecast = raw_data.loc[index].to_dict()
 
         dt = parser.parse(forecast["GMTIntervalEnd"]).replace(
             tzinfo=tz.gettz("Etc/GMT")
         )
-        load = float(forecast["MTLF"])
+        load = _NaN_safe_get(forecast, "STLF")
+        if load is None:
+            load = _NaN_safe_get(forecast, "MTLF")
+        if load is None:
+            logger.info(f"fetch_load_forecast: {dt} has no forecasted load")
 
         datapoint = {
             "datetime": dt,
@@ -276,9 +289,8 @@ def fetch_wind_solar_forecasts(
         dt = target_datetime
     else:
         dt = parser.parse(target_datetime)
-    FORECAST_URL = "https://marketplace.spp.org/file-browser-api/download/midterm-resource-forecast?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTRF-{0}{1:02d}{2:02d}0000.csv".format(
-        dt.year, dt.month, dt.day
-    )
+
+    FORECAST_URL = f"{US_PROXY}/chart-api/load-forecast/asFile?{HOST_PARAMETER}"
 
     raw_data = get_data(FORECAST_URL)
 
@@ -286,6 +298,7 @@ def fetch_wind_solar_forecasts(
     raw_data.columns = raw_data.columns.str.lstrip()
 
     data = []
+
     for index, row in raw_data.iterrows():
         forecast = row.to_dict()
 
@@ -293,19 +306,29 @@ def fetch_wind_solar_forecasts(
             tzinfo=tz.gettz("Etc/GMT")
         )
 
-        try:
-            solar = float(forecast["Wind Forecast MW"])
-            wind = float(forecast["Solar Forecast MW"])
-        except ValueError:
-            # can be NaN
+        # Get short term forecast if available, else medium term
+        solar = _NaN_safe_get(forecast, "STSF")
+        if solar is None:
+            solar = _NaN_safe_get(forecast, "MTSF")
+        wind = _NaN_safe_get(forecast, "STWF")
+        if wind is None:
+            wind = _NaN_safe_get(forecast, "MTWF")
+
+        production = {}
+        if solar is not None:
+            production["solar"] = solar
+        if wind is not None:
+            production["wind"] = wind
+
+        if production == {}:
+            logger.info(
+                f"fetch_wind_solar_forecasts: {dt} has no solar nor wind forecasted production"
+            )
             continue
 
         datapoint = {
             "datetime": dt,
-            "production": {
-                "solar": solar,
-                "wind": wind,
-            },
+            "production": production,
             "zoneKey": zone_key,
             "source": "spp.org",
         }
