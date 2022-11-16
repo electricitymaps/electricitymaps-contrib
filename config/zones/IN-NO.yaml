@@ -4,13 +4,10 @@ bounding_box:
   - - 93.647461
     - 35.978006
 capacity:
-  battery storage: 0
   biomass: 3284.43
   coal: 45879.0
   gas: 5780.96
-  geothermal: 0
   hydro: 21382.67
-  hydro storage: 0
   nuclear: 1620.0
   oil: 0
   solar: 20560.44

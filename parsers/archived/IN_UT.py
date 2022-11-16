@@ -7,7 +7,7 @@ from typing import Optional
 import arrow
 from requests import Session
 
-from .lib import web
+from ..lib import web
 
 ENDPOINT = "http://uksldc.in/real-time-data.php"
 

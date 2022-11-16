@@ -4,7 +4,7 @@ from typing import Optional
 
 from requests import Session
 
-from .lib import IN, web, zonekey
+from ..lib import IN, web, zonekey
 
 URL = "https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx"
 ZONE_KEY = "IN-AP"

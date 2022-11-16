@@ -9,7 +9,7 @@ from typing import Optional
 import arrow
 import pandas as pd
 import pytz
-from requests import Session
+from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
 
@@ -67,6 +67,8 @@ def fetch_data(
 ) -> pd.DataFrame:
     """- get production data from wrldc.in
     - filter all rows with same hour as target_datetime"""
+    assert target_datetime is not None
+
     r = session or Session()
 
     dt_12_hour = arrow.get(target_datetime.strftime("%Y-%m-%d %I:%M")).datetime
