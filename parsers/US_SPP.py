@@ -101,14 +101,15 @@ def data_processor(df, logger: Logger) -> list:
     keys_to_remove = keys_to_remove | unknown_keys
 
     processed_data = []
-    for index, row in df.iterrows():
-        production = row.to_dict()
+    for index in range(len(df)):
+        production = df.loc[index].to_dict()
         production["unknown"] = sum([production[k] for k in unknown_keys])
 
         dt_aware = production["GMT MKT Interval"].to_pydatetime()
         for k in keys_to_remove:
             production.pop(k, None)
 
+        production = {k: float(v) for k, v in production.items()}
         mapped_production = {MAPPING.get(k, k): v for k, v in production.items()}
 
         processed_data.append((dt_aware, mapped_production))
@@ -248,8 +249,8 @@ def fetch_load_forecast(
     raw_data = get_data(LOAD_URL)
 
     data = []
-    for index, row in raw_data.iterrows():
-        forecast = row.to_dict()
+    for index in range(len(raw_data)):
+        forecast = raw_data.loc[index].to_dict()
 
         dt = parser.parse(forecast["GMTIntervalEnd"]).replace(
             tzinfo=tz.gettz("Etc/GMT")
