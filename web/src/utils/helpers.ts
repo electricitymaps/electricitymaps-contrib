@@ -12,6 +12,6 @@ export function getCO2IntensityByMode(
 /**
  * Converts date to format returned by API
  */
-export function dateToDatetimeIndex(date: Date) {
+export function dateToDatetimeString(date: Date) {
   return date.toISOString().split('.')[0] + 'Z';
 }

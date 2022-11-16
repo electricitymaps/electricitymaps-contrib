@@ -6,22 +6,15 @@ import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
-import { dateToDatetimeIndex } from 'utils/helpers';
+import { dateToDatetimeString } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state';
 import TimeAxis from './TimeAxis';
 
 export default function TimeController() {
-  const { __ } = useTranslation();
+  const { __, i18n } = useTranslation();
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const { data, isLoading } = useGetState(timeAverage);
-
-  useEffect(() => {
-    if (datetimes) {
-      // Reset the selected datetime when data changes
-      setSelectedDatetime(dateToDatetimeIndex(datetimes[0]));
-    }
-  }, [data]);
 
   // TODO: Figure out whether we want to work with datetimes as strings
   // or as Date objects. In this case datetimes are easier to work with
@@ -30,12 +23,19 @@ export default function TimeController() {
     [data]
   );
 
+  useEffect(() => {
+    if (datetimes) {
+      // Reset the selected datetime when data changes
+      setSelectedDatetime(dateToDatetimeString(datetimes[0]));
+    }
+  }, [data]);
+
   const onTimeSliderChange = (datetimeIndex: number) => {
     // TODO: Does this work properly missing values?
     if (!datetimes) {
       return;
     }
-    setSelectedDatetime(dateToDatetimeIndex(datetimes[datetimeIndex]));
+    setSelectedDatetime(dateToDatetimeString(datetimes[datetimeIndex]));
   };
 
   const onToggleGroupClick = (timeAverage: TimeAverages) => {
@@ -45,13 +45,14 @@ export default function TimeController() {
   return (
     <div
       className={
-        'md: absolute bottom-0 w-full rounded-t-xl bg-white p-5 shadow-md dark:bg-gray-900 md:bottom-3 md:left-3 md:max-w-md md:rounded-xl'
+        'absolute bottom-0 w-full rounded-t-xl bg-white p-5 shadow-md dark:bg-gray-900 md:bottom-3 md:left-3 md:max-w-md md:rounded-xl'
       }
     >
       <div className=" flex flex-row items-center justify-between">
         <p className="mb-2 text-base font-bold">{__('time-controller.title')}</p>
-        <div className="mb-2 rounded-full bg-green-900/10 py-2 px-3 text-xs text-green-900 dark:bg-gray-700 dark:text-white">
-          {!isLoading && formatDate(new Date(selectedDatetime), 'en', timeAverage)}
+        <div className="mb-2 rounded-full bg-brand-green/10 py-2 px-3 text-xs text-brand-green dark:bg-gray-700 dark:text-white">
+          {!isLoading &&
+            formatDate(new Date(selectedDatetime), i18n.language, timeAverage)}
         </div>
       </div>
       <TimeAverageToggle
@@ -60,9 +61,9 @@ export default function TimeController() {
       />
       <TimeSlider
         onChange={onTimeSliderChange}
-        numberOfEntries={datetimes?.length || 0}
+        numberOfEntries={datetimes ? datetimes.length - 1 : 0}
         selectedIndex={datetimes?.findIndex(
-          (d) => dateToDatetimeIndex(d) === selectedDatetime
+          (d) => dateToDatetimeString(d) === selectedDatetime
         )}
       />
       <TimeAxis

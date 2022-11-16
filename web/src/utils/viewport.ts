@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 
+// TODO: Replace with https://github.com/ZeeCoder/use-resize-observer
 export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
@@ -11,8 +12,6 @@ export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
       // This callback will be called once the ref
       // returned has been attached to `node`.
       const update = () => {
-        console.log('update');
-
         if (newNode !== null) {
           const newWidth = newNode.getBoundingClientRect().width - offsetX;
           const newHeight = newNode.getBoundingClientRect().height - offsetY;

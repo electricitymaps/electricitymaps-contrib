@@ -6,18 +6,12 @@ const config = {
   content: ['index.html', 'src/**/*.tsx'],
   theme: {
     extend: {
-      backgroundImage: {
-        thumb: "url('/public/slider-thumb.svg')",
-      },
-      fontSize: {
-        '2xs': '.6rem',
-      },
       boxShadow: {
         '2xl': '0.1px 0.1px 5px rgba(0, 0, 0, 0.1)',
         '3xl': '0.1px 0.1px 6px rgba(0, 0, 0, 0.15);',
       },
       colors: {
-        'green-900': '#135836',
+        'brand-green': '#135836',
       },
     },
     fontFamily: {

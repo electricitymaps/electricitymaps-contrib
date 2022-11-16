@@ -32,7 +32,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
 }
 
 function OuterPanel({ children }: { children: React.ReactNode }) {
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(false);
   const onCollapse = () => setOpen(!isOpen);
 
   return (

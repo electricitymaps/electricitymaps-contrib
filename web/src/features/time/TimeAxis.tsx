@@ -29,7 +29,7 @@ const renderTick = (
   return (
     <g
       key={`timeaxis-tick-${index}`}
-      className="text-2xs"
+      className="text-xs"
       opacity={1}
       transform={`translate(${scale(value)},0)`}
     >
@@ -65,7 +65,7 @@ const renderTickValue = (
 const getTimeScale = (rangeEnd: number, startDate: Date, endDate: Date) =>
   scaleTime().domain([startDate, endDate]).range([0, rangeEnd]);
 
-export interface TimeAxisProps {
+interface TimeAxisProps {
   selectedTimeAggregate: TimeAverages;
   datetimes: Date[] | undefined;
   isLoading: boolean;

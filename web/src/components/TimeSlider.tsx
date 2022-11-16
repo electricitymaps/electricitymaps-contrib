@@ -23,7 +23,7 @@ function TimeSlider({ onChange, numberOfEntries, selectedIndex }: TimeSliderProp
       <SliderPrimitive.Thumb
         className={`block h-6 w-6 rounded-full bg-white bg-[url("/public/icons/slider-thumb.svg")]
           bg-center bg-no-repeat shadow-3xl focus:outline-none
-          focus-visible:ring focus-visible:ring-green-900/10
+          focus-visible:ring focus-visible:ring-brand-green/10
           focus-visible:ring-opacity-75 dark:bg-gray-400 dark:focus-visible:ring-white/70`}
       ></SliderPrimitive.Thumb>
     </SliderPrimitive.Root>

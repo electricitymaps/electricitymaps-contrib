@@ -40,15 +40,18 @@ const scalePower = function (maxPower: number) {
       formattingFactor: 1e-3,
     };
   }
-  return maxPower < 1e3
-    ? {
-        unit: 'MW',
-        formattingFactor: 1,
-      }
-    : {
-        unit: 'GW',
-        formattingFactor: 1e3,
-      };
+
+  if (maxPower < 1e3) {
+    return {
+      unit: 'MW',
+      formattingFactor: 1,
+    };
+  }
+
+  return {
+    unit: 'GW',
+    formattingFactor: 1e3,
+  };
 };
 
 const formatDate = function (date: Date, lang: string, time: string) {
