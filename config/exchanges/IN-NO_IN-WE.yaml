@@ -1,0 +1,6 @@
+lonlat:
+  - 75.065
+  - 24.892
+parsers:
+  exchange: IN_WE.fetch_exchange
+rotation: 0
