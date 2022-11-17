@@ -123,11 +123,17 @@ emissionFactors:
         datetime: '2020-01-01'
         source: assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat,
           0.01% coal
-        value: 25.2
-      - _comment: Uses the 2020 values minus solar and gas
+        value: 27.4
+      - _comment: Uses the 2020 values with 2021 emission factors
+        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+        datetime: '2021-01-01'
+        source: assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat,
+          0.01% coal
+        value: 35.5
+      - _comment: Uses the 2020 values with 2021 emission factors minus solar and gas
         datetime: '2022-01-01'
         source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
-        value: 9.3
+        value: 16.4
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -244,11 +250,16 @@ emissionFactors:
         datetime: '2020-01-01'
         source: assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat,
           0.01% coal
-        value: 236
-      - _comment: Uses the 2020 values minus solar and gas
+        value: 237.9
+      - _comment: Uses the 2020 values with 2021 emission factors
+        datetime: '2021-01-01'
+        source: assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat,
+          0.01% coal
+        value: 162.4
+      - _comment: Uses the 2020 with 2021 emission factors minus solar and gas
         datetime: '2022-01-01'
         source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
-        value: 238.4
+        value: 151.3
     wind:
       datetime: '2021-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
