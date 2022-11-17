@@ -7,7 +7,7 @@ import atomWithCustomStorage from './atomWithCustomStorage';
 // TODO: Ensure it works as intended without URL params
 export const timeAverageAtom = atomWithCustomStorage<TimeAverages>({
   key: 'average',
-  initialValue: TimeAverages.HOURLY.toString(),
+  initialValue: TimeAverages.HOURLY,
   options: {
     syncWithUrl: true,
     syncWithLocalStorage: true,

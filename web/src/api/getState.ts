@@ -22,7 +22,7 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 };
 
 const useGetState = (
-  timeAverage: TimeAverages,
+  timeAverage: TimeAverages | string,
   options?: UseQueryOptions<GridState>
 ): UseQueryResult<GridState> =>
   useQuery<GridState>(

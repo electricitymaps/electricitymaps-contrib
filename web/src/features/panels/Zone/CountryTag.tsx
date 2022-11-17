@@ -1,15 +1,5 @@
 import { CountryFlag } from 'components/Flag';
-
-// TODO: move to translations when config is added
-const getCountryName = (zoneId: string) => {
-  if (zoneId === 'DK-DK1') {
-    return 'Denmark';
-  }
-  if (zoneId === 'ES') {
-    return 'Spain';
-  }
-  return 'USA';
-};
+import { getCountryName } from 'translation/translation';
 
 export function CountryTag({ zoneId }: { zoneId: string }) {
   const countryName = getCountryName(zoneId);

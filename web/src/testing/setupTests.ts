@@ -38,7 +38,7 @@ beforeAll(() => {
         const change = matchQuery();
         if (change !== instance.matches) {
           instance.matches = change;
-          for (const listener of listeners) listener();
+          for (const listener of listeners) {listener();}
         }
       });
 

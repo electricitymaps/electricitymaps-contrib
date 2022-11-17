@@ -24,6 +24,7 @@
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-empty-function": "off",
 
+    "curly": "error",
     "no-promise-executor-return": "error",
     "no-unreachable-loop": "error",
     "require-atomic-updates": "error",
