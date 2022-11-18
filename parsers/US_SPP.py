@@ -8,9 +8,9 @@ from io import StringIO
 from logging import Logger, getLogger
 from typing import Optional
 
-from pytz import utc
 import pandas as pd
 from dateutil import parser
+from pytz import utc
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
@@ -255,7 +255,9 @@ def fetch_wind_solar_forecasts(
     try:
         raw_data = get_data(FORECAST_URL)
     except pd.errors.ParserError:
-        logger.error(f"fetch_wind_solar_forecasts: {dt} has no forecast for url: {FORECAST_URL}")
+        logger.error(
+            f"fetch_wind_solar_forecasts: {dt} has no forecast for url: {FORECAST_URL}"
+        )
         return []
 
     # sometimes there is a leading whitespace in column names
