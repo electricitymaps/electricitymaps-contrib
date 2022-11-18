@@ -9,7 +9,8 @@ from logging import Logger, getLogger
 from typing import Optional
 
 import pandas as pd
-from dateutil import parser, tz
+from dateutil import parser
+from pytz import utc
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
@@ -162,7 +163,7 @@ def fetch_production(
 
     data = []
     for item in processed_data:
-        dt = item[0].replace(tzinfo=tz.gettz("Etc/GMT"))
+        dt = item[0].replace(tzinfo=utc)
         datapoint = {
             "zoneKey": zone_key,
             "datetime": dt,
@@ -173,53 +174,6 @@ def fetch_production(
         data.append(datapoint)
 
     return data
-
-
-# NOTE disabled until discrepancy in MISO SPP flows is resolved.
-def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    """
-    Requests the last 24 hours of power exchange (in MW) between two zones."""
-
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    raw_data = get_data(EXCHANGE_URL, session=session)
-    sorted_codes = "->".join(sorted([zone_key1, zone_key2]))
-
-    try:
-        exchange_ties = TIE_MAPPING[sorted_codes]
-    except KeyError as e:
-        raise NotImplementedError(
-            "The exchange {} is not implemented".format(sorted_codes)
-        )
-
-    # TODO check glossary for flow direction.
-
-    exchange_data = []
-    for index, row in raw_data.iterrows():
-        all_exchanges = row.to_dict()
-
-        dt_aware = parser.parse(all_exchanges["GMTTime"])
-
-        flows = [all_exchanges[tie] for tie in exchange_ties]
-        netflow = sum(flows)
-
-        exchange = {
-            "sortedZoneKeys": sorted_codes,
-            "datetime": dt_aware,
-            "netFlow": netflow,
-            "source": "spp.org",
-        }
-
-        exchange_data.append(exchange)
-
-    return exchange_data
 
 
 def _NaN_safe_get(forecast: dict, key: str) -> Optional[float]:
@@ -252,9 +206,7 @@ def fetch_load_forecast(
     for index in range(len(raw_data)):
         forecast = raw_data.loc[index].to_dict()
 
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(
-            tzinfo=tz.gettz("Etc/GMT")
-        )
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=utc)
         load = _NaN_safe_get(forecast, "STLF")
         if load is None:
             load = _NaN_safe_get(forecast, "MTLF")
@@ -290,29 +242,36 @@ def fetch_wind_solar_forecasts(
     else:
         dt = parser.parse(target_datetime)
 
-    FORECAST_URL = f"{US_PROXY}/chart-api/load-forecast/asFile?{HOST_PARAMETER}"
+    FORECAST_URL_PATH = (
+        "%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTRF-{0}{1:02d}{2:02d}0000.csv".format(
+            dt.year, dt.month, dt.day
+        )
+    )
+    FORECAST_URL = (
+        f"{US_PROXY}/file-browser-api/download/midterm-resource-forecast?{HOST_PARAMETER}&path="
+        + FORECAST_URL_PATH
+    )
 
-    raw_data = get_data(FORECAST_URL)
+    try:
+        raw_data = get_data(FORECAST_URL)
+    except pd.errors.ParserError:
+        logger.error(
+            f"fetch_wind_solar_forecasts: {dt} has no forecast for url: {FORECAST_URL}"
+        )
+        return []
 
     # sometimes there is a leading whitespace in column names
     raw_data.columns = raw_data.columns.str.lstrip()
 
     data = []
+    for index in range(len(raw_data)):
+        forecast = raw_data.loc[index].to_dict()
 
-    for index, row in raw_data.iterrows():
-        forecast = row.to_dict()
-
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(
-            tzinfo=tz.gettz("Etc/GMT")
-        )
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=utc)
 
         # Get short term forecast if available, else medium term
-        solar = _NaN_safe_get(forecast, "STSF")
-        if solar is None:
-            solar = _NaN_safe_get(forecast, "MTSF")
-        wind = _NaN_safe_get(forecast, "STWF")
-        if wind is None:
-            wind = _NaN_safe_get(forecast, "MTWF")
+        solar = _NaN_safe_get(forecast, "Solar Forecast MW")
+        wind = _NaN_safe_get(forecast, "Wind Forecast MW")
 
         production = {}
         if solar is not None:
@@ -341,9 +300,7 @@ def fetch_wind_solar_forecasts(
 if __name__ == "__main__":
     print("fetch_production() -> ")
     print(fetch_production())
-    # print('fetch_exchange() -> ')
-    # print(fetch_exchange('US-MISO', 'US-SPP'))
     print("fetch_load_forecast() -> ")
     print(fetch_load_forecast(target_datetime="20190125"))
     print("fetch_wind_solar_forecasts() -> ")
-    print(fetch_wind_solar_forecasts(target_datetime="20190125"))
+    print(fetch_wind_solar_forecasts(target_datetime="20221118"))
