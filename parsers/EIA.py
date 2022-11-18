@@ -116,7 +116,8 @@ REGIONS = {
     "US-NW-WAUW": "WAUW",  # Western Area Power Administration Ugp West
     "US-NW-WWA": "WWA",  # Naturener Wind Watch, Llc, integrated with US-NW-NWMT
     "US-NY-NYIS": "NYIS",  # New York Independent System Operator
-    "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative
+    # "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative, decomissioned merged with US-SE-SOCO
+    # Though it is unclear which BA took over AEC.
     "US-SE-SEPA": "SEPA",  # Southeastern Power Administration
     "US-SE-SOCO": "SOCO",  # Southern Company Services, Inc. - Trans
     "US-SW-AZPS": "AZPS",  # Arizona Public Service Company
