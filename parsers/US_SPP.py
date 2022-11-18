@@ -10,7 +10,7 @@ from typing import Optional
 
 from pytz import utc
 import pandas as pd
-from dateutil import parser, tz
+from dateutil import parser
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
@@ -106,7 +106,7 @@ def data_processor(df, logger: Logger) -> list:
         production = df.loc[index].to_dict()
         production["unknown"] = sum([production[k] for k in unknown_keys])
 
-        dt_aware = production["GMT MKT Interval"].to_pydatetime(tz=utc)
+        dt_aware = production["GMT MKT Interval"].to_pydatetime()
         for k in keys_to_remove:
             production.pop(k, None)
 
@@ -252,7 +252,11 @@ def fetch_wind_solar_forecasts(
         + FORECAST_URL_PATH
     )
 
-    raw_data = get_data(FORECAST_URL)
+    try:
+        raw_data = get_data(FORECAST_URL)
+    except pd.errors.ParserError:
+        logger.error(f"fetch_wind_solar_forecasts: {dt} has no forecast for url: {FORECAST_URL}")
+        return []
 
     # sometimes there is a leading whitespace in column names
     raw_data.columns = raw_data.columns.str.lstrip()
@@ -297,4 +301,4 @@ if __name__ == "__main__":
     print("fetch_load_forecast() -> ")
     print(fetch_load_forecast(target_datetime="20190125"))
     print("fetch_wind_solar_forecasts() -> ")
-    print(fetch_wind_solar_forecasts(target_datetime="20190125"))
+    print(fetch_wind_solar_forecasts(target_datetime="20221118"))
