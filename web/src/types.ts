@@ -7,9 +7,27 @@ export interface GridState {
     createdAt: string;
     datetime: string;
     datetimes: Array<string>;
-    exchanges: { [key: string]: [unknown] };
+    exchanges: { [key: string]: ExchangeResponse };
     stateAggregation: string;
   };
+}
+
+export interface ExchangeResponse {
+  [datetimeKey: string]: {
+    netFlow: number;
+    co2intensity: number;
+  };
+}
+
+export interface ExchangeOverview {
+  netFlow: number;
+  co2intensity: number;
+}
+
+export interface ExchangeArrowData extends ExchangeOverview {
+  rotation: number;
+  lonlat: [number, number];
+  key: string;
 }
 
 export interface ZoneResponse {
