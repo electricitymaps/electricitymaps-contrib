@@ -47,6 +47,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^12.0.0",
+    "react-icons": "^4.6.0",
     "react-map-gl": "^7.0.19",
     "react-router-dom": "6.3.0",
     "react-spinners": "^0.13.6",

@@ -1,4 +1,5 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
+import { HiOutlineClock } from 'react-icons/hi2';
 import { TimeAverages } from 'utils/constants';
 
 interface ToggleItem {
@@ -30,10 +31,6 @@ const settings: ToggleItem[] = [
   },
 ];
 
-function ClockIcon() {
-  return <span className="material-symbols-outlined mr-1 text-[0.87rem]">schedule</span>;
-}
-
 export interface TimeAverageToggleProps {
   timeAverage: TimeAverages;
   onToggleGroupClick: (newTimeAverage: TimeAverages) => void;
@@ -60,7 +57,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
                 : 'bg-gray-100 dark:bg-gray-700'
             }`}
         >
-          {timeAverage === value && <ClockIcon />}
+          {timeAverage === value && <HiOutlineClock className="mr-1 text-[0.87rem]" />}
           <p className="w-15">{text}</p>
         </ToggleGroupPrimitive.Item>
       ))}

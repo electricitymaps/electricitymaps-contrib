@@ -48,6 +48,14 @@ As an eMap internal team member, you can also run the app connected to productio
 
 See [how to edit world geometries](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Edit-world-geometries).
 
+## Icon usage
+
+We use [react-icons](https://github.com/react-icons/react-icons) and by default the app uses the "Heroicons 2" library with "Outline" variants.
+
+If an icon should be missing, then feel free to look into other libraries to find an icon that matches the style. An important rule here is that we ideally want to use only outlined icons (and no filled/solid icons).
+
+Search for icons here: [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/)
+
 ## State Management
 
 We use [jotai](https://jotai.org/) for global UI state management, [TanStack Query](https://tanstack.com/query/v4/docs/overview) for data state management and React's setState() for local component state.
