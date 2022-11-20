@@ -76,9 +76,14 @@ def fetch_data(
 
     resp: Response = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
 
-    datetime_col = KIND_MAPPING[kind]["datetime_column"]
-    if resp.json():
-        data = json.loads(resp.json()["d"])
+    is_response_content_empty = False
+    try:
+        data = json.loads(resp.json().get("d", {}))
+    except json.decoder.JSONDecodeError:
+        is_response_content_empty = True
+
+    if not is_response_content_empty:
+        datetime_col = KIND_MAPPING[kind]["datetime_column"]
         for item in data:
             item[datetime_col] = datetime.strptime(
                 item[datetime_col], "%Y-%d-%m %H:%M:%S"
