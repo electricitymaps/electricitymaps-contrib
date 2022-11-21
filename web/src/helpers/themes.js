@@ -24,7 +24,7 @@ export const themes = {
   colorblindBright: {
     co2Scale: {
       steps: [0, 300, 600, 900, 1200, 1500],
-      colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
+      colors: ['#FFFFB0', '#E3BF66', '#BB833C', '#8B4D2B', '#4E241F', '#000010'],
     },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.3,
