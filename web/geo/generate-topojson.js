@@ -39,8 +39,12 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   const newObjects = {};
   topo.objects.objects.geometries.forEach((geo) => {
     // Precompute center for enable centering on the zone
-    geo.properties.center = getCenter(fc, geo.properties.zoneName);
 
+    geo.properties.center = getCenter(fc, geo.properties.zoneName);
+    // The US calculated center is not intuitive, so we override it
+    if (geo.properties.zoneName === 'US') {
+      geo.properties.center = [-110, 40];
+    }
     newObjects[geo.properties.zoneName] = geo;
   });
   topo.objects = newObjects;
