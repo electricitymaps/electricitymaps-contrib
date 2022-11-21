@@ -127,7 +127,7 @@
     "production": "production",
     "consumption": "consumption",
     "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
-    "aggregateinfo": "Countries are aggregated when the annual zone capacity is greater than 90% of the total capacity",
+    "aggregateinfo": "Country displays an aggregated view of countries with sub zones. Zone displays the most granular view available",
     "selectLanguage": "Select language",
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed"

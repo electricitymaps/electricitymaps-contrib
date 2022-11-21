@@ -11,14 +11,16 @@ export default function ConsumptionProductionToggle(): ReactElement {
   ];
   const [currentMode, setCurrentMode] = useAtom(productionConsumptionAtom);
   const onSetCurrentMode = (option: string) => {
-    if (option === currentMode) return;
+    if (option === currentMode) {
+      return;
+    }
     setCurrentMode(currentMode === Mode.PRODUCTION ? Mode.CONSUMPTION : Mode.PRODUCTION);
   };
 
   return (
     <ToggleButton
       options={options}
-      tooltipText="tooltips.cpinfo"
+      tooltipKey="tooltips.cpinfo"
       selectedOption={currentMode}
       onToggle={onSetCurrentMode}
     />

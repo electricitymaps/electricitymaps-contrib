@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
-import { Layer, Map, MapRef, Source } from 'react-map-gl';
+import { Layer, Map, MapRef, Source, NavigationControl } from 'react-map-gl';
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 
 import useGetState from 'api/getState';
@@ -16,8 +16,8 @@ import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 
 const ZONE_SOURCE = 'zones-clickable';
-const SOUTHERN_LATITUDE_BOUND = -62.947_193;
-const NORTHERN_LATITUDE_BOUND = 84.613_245;
+const SOUTHERN_LATITUDE_BOUND = -66.947_193;
+const NORTHERN_LATITUDE_BOUND = 84.313_245;
 const MAP_STYLE = { version: 8, sources: {}, layers: [] };
 
 type FeatureId = string | number | undefined;
@@ -35,7 +35,6 @@ export default function MapPage(): ReactElement {
   const navigate = useNavigate();
   const location = useLocation();
   const createToWithState = (to: string) => `${to}${location.search}${location.hash}`;
-
   const theme = useTheme();
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -203,13 +202,13 @@ export default function MapPage(): ReactElement {
     // TODO: Show error message to user
   };
 
- const onDragOrZoomStart = () => {
-   setIsMoving(true);
- };
+  const onDragOrZoomStart = () => {
+    setIsMoving(true);
+  };
 
- const onDragOrZoomEnd = () => {
-   setIsMoving(false);
- };
+  const onDragOrZoomEnd = () => {
+    setIsMoving(false);
+  };
 
   return (
     <>
@@ -247,6 +246,22 @@ export default function MapPage(): ReactElement {
           <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
           <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
         </Source>
+        {/* TODO: Get rid of the inline styling here if/when possible */}
+        <NavigationControl
+          style={{
+            marginRight: 12,
+
+            marginTop: 98,
+            width: '33px',
+            boxShadow: '0px 1px 1px  rgb(0 0 0 / 0.1)',
+            border: 0,
+            color: 'white',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+          showCompass={false}
+        ></NavigationControl>
         <CustomLayer>
           <ExchangeLayer isMoving={isMoving} />
         </CustomLayer>

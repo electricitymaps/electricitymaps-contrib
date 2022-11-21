@@ -14,8 +14,9 @@ export default function SpatialAggregatesToggle(): ReactElement {
     if (
       (option === SpatialAggregate.ZONE && currentMode === ToggleOptions.OFF) ||
       (option === SpatialAggregate.COUNTRY && currentMode === ToggleOptions.ON)
-    )
+    ) {
       return;
+    }
     setCurrentMode(
       currentMode === ToggleOptions.OFF ? ToggleOptions.ON : ToggleOptions.OFF
     );
@@ -24,7 +25,7 @@ export default function SpatialAggregatesToggle(): ReactElement {
   return (
     <ToggleButton
       options={options}
-      tooltipText="tooltips.aggregateinfo"
+      tooltipKey="tooltips.aggregateinfo"
       selectedOption={
         currentMode === ToggleOptions.OFF ? options[1].value : options[0].value
       }

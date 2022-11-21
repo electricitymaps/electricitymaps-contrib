@@ -49,16 +49,16 @@ function CarbonIntensitySquare({
             color: getTextColor(co2ColorScale(co2intensity)),
             ...styles,
           }}
-          className="text-md mx-auto flex h-[65px] w-[65px] flex-col items-center justify-center rounded-2xl"
+          className="mx-auto flex h-[65px] w-[65px] flex-col items-center justify-center rounded-2xl text-md"
         >
-          <p className="text-md select-none font-bold" data-test-id="co2-square-value">
+          <p className="select-none text-md font-bold" data-test-id="co2-square-value">
             <animated.div>{number.to((x) => `${Math.round(x) || '?'}g`)}</animated.div>
           </p>
         </animated.div>
       </div>
       <div className="mt-3 flex flex-col items-center">
         <div className="text-xs">{'Carbon Intensity'}</div>
-        {withSubtext && <div className="text-2xs">(gCO₂eq/kWh)</div>}
+        {withSubtext && <div className="text-xs">(gCO₂eq/kWh)</div>}
       </div>
     </div>
   );
