@@ -47,7 +47,7 @@ i18n
     fallbackLng: 'en',
     debug: import.meta.env.DEV,
     backend: {
-      loadPath: `${LOCALES_PATH}/{{lng}}.json`,
+      loadPath: `/${LOCALES_PATH}/{{lng}}.json`,
       crossDomain: true,
       // request: requestWithXmlHttpRequest, // TODO: test on mobile, if issue check out [INSERT PR]
     },
