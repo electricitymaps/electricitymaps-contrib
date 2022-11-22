@@ -90,7 +90,7 @@ REGIONS = {
     "US-FLA-TEC": "TEC",  # Tampa Electric Company
     "US-MIDA-PJM": "PJM",  # Pjm Interconnection, Llc
     "US-MIDW-AECI": "AECI",  # Associated Electric Cooperative, Inc.
-    "US-MIDW-GLHB": "GLHB",  # GridLiance
+    # "US-MIDW-GLHB": "GLHB",  # GridLiance US-MIDW-GLHB decommissioned no more powerplant
     "US-MIDW-LGEE": "LGEE",  # Louisville Gas And Electric Company And Kentucky Utilities
     "US-MIDW-MISO": "MISO",  # Midcontinent Independent Transmission System Operator, Inc..
     "US-NE-ISNE": "ISNE",  # Iso New England Inc.
@@ -228,9 +228,9 @@ EXCHANGES = {
     "US-MIDA-PJM->US-TEN-TVA": "&facets[fromba][]=PJM&facets[toba][]=TVA",
     "US-MIDW-AECI->US-MIDW-MISO": "&facets[fromba][]=AECI&facets[toba][]=MISO",
     "US-MIDW-AECI->US-TEN-TVA": "&facets[fromba][]=AECI&facets[toba][]=TVA",
-    "US-MIDW-GLHB->US-MIDW-LGEE": "&facets[fromba][]=GLHB&facets[toba][]=LGEE",
-    "US-MIDW-GLHB->US-MIDW-MISO": "&facets[fromba][]=GLHB&facets[toba][]=MISO",
-    "US-MIDW-GLHB->US-TEN-TVA": "&facets[fromba][]=EEI&facets[toba][]=TVA",
+    # "US-MIDW-GLHB->US-MIDW-LGEE": "&facets[fromba][]=GLHB&facets[toba][]=LGEE", US-MIDW-GLHB decommissioned no more powerplant
+    # "US-MIDW-GLHB->US-MIDW-MISO": "&facets[fromba][]=GLHB&facets[toba][]=MISO", US-MIDW-GLHB decommissioned no more powerplant
+    # "US-MIDW-GLHB->US-TEN-TVA": "&facets[fromba][]=EEI&facets[toba][]=TVA", US-MIDW-GLHB decommissioned no more powerplant
     "US-MIDW-LGEE->US-MIDW-MISO": "&facets[fromba][]=LGEE&facets[toba][]=MISO",
     "US-MIDW-LGEE->US-TEN-TVA": "&facets[fromba][]=LGEE&facets[toba][]=TVA",
     "US-MIDW-MISO->US-SE-AEC": "&facets[fromba][]=MISO&facets[toba][]=AEC",
