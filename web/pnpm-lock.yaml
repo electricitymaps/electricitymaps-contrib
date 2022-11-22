@@ -33,6 +33,7 @@ specifiers:
   '@vitejs/plugin-react': 2.1.0
   '@vitest/coverage-istanbul': 0.24.3
   autoprefixer: 10.4.12
+  colors: ^1.4.0
   css-mediaquery: 0.1.2
   cypress: 10.10.0
   d3-scale: ^4.0.2
@@ -71,6 +72,7 @@ specifiers:
   react-map-gl: ^7.0.19
   react-router-dom: 6.3.0
   react-spinners: ^0.13.6
+  readline-sync: ^1.4.10
   recharts: ^2.1.16
   sprintf-js: ^1.1.2
   start-server-and-test: 1.14.0
@@ -141,6 +143,7 @@ devDependencies:
   '@vitejs/plugin-react': 2.1.0_vite@3.1.8
   '@vitest/coverage-istanbul': 0.24.3_jsdom@20.0.1
   autoprefixer: 10.4.12_postcss@8.4.18
+  colors: 1.4.0
   css-mediaquery: 0.1.2
   cypress: 10.10.0
   eslint: 8.26.0
@@ -164,6 +167,7 @@ devDependencies:
   postcss: 8.4.18
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
+  readline-sync: 1.4.10
   start-server-and-test: 1.14.0
   typescript: 4.8.4
   vite: 3.1.8
@@ -4498,6 +4502,11 @@ packages:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
     dev: true
 
+  /colors/1.4.0:
+    resolution: {integrity: sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==}
+    engines: {node: '>=0.1.90'}
+    dev: true
+
   /combined-stream/1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
@@ -8131,6 +8140,11 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+
+  /readline-sync/1.4.10:
+    resolution: {integrity: sha512-gNva8/6UAe8QYepIQH/jQ2qn91Qj0B9sYjMBBs3QOB8F2CXcKgLxQaJRP76sWVRQt+QU+8fAkCbCvjjMFu7Ycw==}
+    engines: {node: '>= 0.8.0'}
+    dev: true
 
   /recharts-scale/0.4.5:
     resolution: {integrity: sha512-kivNFO+0OcUNu7jQquLXAxz1FIwZj8nrj+YkOKc5694NbjCvcT6aSZiIzNzd2Kul4o4rTto8QVR9lMNtxD4G1w==}
