@@ -14,7 +14,6 @@ bypassedSubZones:
   - US-HI-MO
   - US-HI-NI
   - US-HI-OA
-  - US-MIDW-GLHB
 capacity:
   battery storage: 4832.0
   biomass: 14487.1
@@ -124,7 +123,6 @@ subZoneNames:
   - US-HI-OA
   - US-MIDA-PJM
   - US-MIDW-AECI
-  - US-MIDW-GLHB
   - US-MIDW-LGEE
   - US-MIDW-MISO
   - US-NE-ISNE
