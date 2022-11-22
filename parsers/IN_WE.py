@@ -2,7 +2,7 @@
 
 
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
@@ -11,6 +11,7 @@ import pandas as pd
 import pytz
 from requests import Response, Session
 
+from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
@@ -58,54 +59,68 @@ KIND_MAPPING = {
 }
 
 
+def get_date_range(dt: datetime):
+    return pd.date_range(
+        arrow.get(dt).floor("day").datetime,
+        arrow.get(dt).ceil("day").floor("hour").datetime,
+        freq="H",
+    ).to_pydatetime()
+
+
 def fetch_data(
     zone_key: str = "IN-WE",
     kind: Optional[str] = None,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> pd.DataFrame:
+) -> dict:
     """- get production data from wrldc.in
     - filter all rows with same hour as target_datetime"""
     assert target_datetime is not None
+    assert kind is not None
 
     r = session or Session()
-
-    dt_12_hour = arrow.get(target_datetime.strftime("%Y-%m-%d %I:%M")).datetime
     payload = {"date": target_datetime.strftime("%Y-%m-%d")}
 
     resp: Response = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
 
-    is_response_content_empty = False
     try:
         data = json.loads(resp.json().get("d", {}))
     except json.decoder.JSONDecodeError:
-        is_response_content_empty = True
-
-    if not is_response_content_empty:
-        datetime_col = KIND_MAPPING[kind]["datetime_column"]
-        for item in data:
-            item[datetime_col] = datetime.strptime(
-                item[datetime_col], "%Y-%d-%m %H:%M:%S"
-            )
-            dt = arrow.get(item[datetime_col])
-            if dt.second >= 30:
-                item[datetime_col] = dt.shift(minutes=1).floor("minute").datetime
-            else:
-                item[datetime_col] = dt.floor("minute").datetime
-        df_data = pd.DataFrame(
-            [item for item in data if item[datetime_col].hour == dt_12_hour.hour]
-        )
-        return df_data
-    else:
         raise ParserException(
             parser="IN_WE.py",
             message=f"{target_datetime}: {kind} data is not available",
         )
 
+    datetime_col = KIND_MAPPING[kind]["datetime_column"]
+    for item in data:
+        item[datetime_col] = datetime.strptime(item[datetime_col], "%Y-%d-%m %H:%M:%S")
+        dt = arrow.get(item[datetime_col])
+        if dt.second >= 30:
+            item[datetime_col] = dt.shift(minutes=1).floor("minute").datetime
+        else:
+            item[datetime_col] = dt.floor("minute").datetime
+    return data
+
+
+def format_raw_data(
+    kind: str,
+    data: dict,
+    target_datetime: datetime,
+) -> pd.DataFrame:
+    assert len(data) > 0
+    assert kind != ""
+
+    dt_12_hour = arrow.get(target_datetime.strftime("%Y-%m-%d %I:%M")).datetime
+    datetime_col = KIND_MAPPING[kind]["datetime_column"]
+    filtered_data = pd.DataFrame(
+        [item for item in data if item[datetime_col].hour == dt_12_hour.hour]
+    )
+    return filtered_data
+
 
 def format_production_data(
-    data: pd.DataFrame, zone_key: str, target_datetime: datetime
+    data: dict, zone_key: str, target_datetime: datetime
 ) -> dict:
     """format production data:
     - filters out correct datetimes (source data is 12 hour format)
@@ -113,17 +128,21 @@ def format_production_data(
     - map power plants
     - sum production per mode"""
     assert target_datetime is not None
-    assert not data.empty
+    assert len(data) > 0
 
+    filtered_data = format_raw_data(
+        kind="production", data=data, target_datetime=target_datetime
+    )
     df_production = pd.DataFrame()
     df_unique_dt = (
         pd.DataFrame()
     )  # for older datetimes datetimes are not the same in the AM and the PM which makes sorting harder
-    if len(data) == len(POWER_PLANT_MAPPING):
-        df_production = data.copy()
+
+    if len(filtered_data) == len(POWER_PLANT_MAPPING):
+        df_production = filtered_data.copy()
     else:
-        for plant in set(data.State_Name):
-            df_plant = data.loc[data.State_Name == plant].copy()
+        for plant in set(filtered_data.State_Name):
+            df_plant = filtered_data.loc[filtered_data.State_Name == plant].copy()
             for dt in set(df_plant.lastUpdate):
                 df_dt = df_plant.loc[df_plant.lastUpdate == dt]
                 if len(df_dt) > 1:
@@ -198,23 +217,28 @@ def format_production_data(
 
 
 def format_exchanges_data(
-    data: pd.DataFrame, sortedZoneKeys: str, target_datetime: datetime
+    data: dict, zone_key1: str, zone_key2: str, target_datetime: datetime
 ) -> dict:
     """format exchanges data:
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour"""
     assert target_datetime is not None
-    assert not data.empty
+    assert len(data) > 0
 
-    data["zone_key"] = data["Region_Name"].map(EXCHANGES_MAPPING)
-    df_exchanges = data.loc[data["zone_key"] == sortedZoneKeys]
+    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
+    filtered_data = format_raw_data(
+        kind="exchange", data=data, target_datetime=target_datetime
+    )
+
+    filtered_data["zone_key"] = filtered_data["Region_Name"].map(EXCHANGES_MAPPING)
+    df_exchanges = filtered_data.loc[filtered_data["zone_key"] == sortedZoneKeys]
     exchanges = {}
     if target_datetime.hour >= 12:
         df_exchanges = df_exchanges.drop_duplicates(
             subset=["Region_Name", "lastUpdate"], keep="last"
         )
     else:
-        df_exchanges = data.drop_duplicates(
+        df_exchanges = filtered_data.drop_duplicates(
             subset=["Region_Name", "lastUpdate"], keep="first"
         )
     df_exchanges.loc[:, "target_datetime"] = target_datetime
@@ -225,7 +249,7 @@ def format_exchanges_data(
     )
 
     exchanges = {
-        "netFLow": -round(df_exchanges.iloc[0]["Current_Loading"], 3),
+        "netFlow": -round(df_exchanges.iloc[0]["Current_Loading"], 3),
         "sortedZoneKeys": sortedZoneKeys,
         "datetime": target_datetime.replace(tzinfo=pytz.timezone("Asia/Kolkata")),
         "source": "wrldc.in",
@@ -234,13 +258,19 @@ def format_exchanges_data(
 
 
 def format_consumption_data(
-    data: pd.DataFrame, zone_key: str, target_datetime: datetime
+    data: dict, zone_key: str, target_datetime: datetime
 ) -> dict:
     """format consumption data:
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour"""
     assert target_datetime is not None
-    assert not data.empty
+    assert len(data) > 0
+
+    filtered_data = format_raw_data(
+        kind="consumption",
+        data=data,
+        target_datetime=target_datetime,
+    )
 
     consumption = {
         "zoneKey": zone_key,
@@ -249,11 +279,11 @@ def format_consumption_data(
     }
 
     if target_datetime.hour >= 12:
-        df_consumption = data.drop_duplicates(
+        df_consumption = filtered_data.drop_duplicates(
             subset=["StateName", "current_datetime"], keep="last"
         )
     else:
-        df_consumption = data.drop_duplicates(
+        df_consumption = filtered_data.drop_duplicates(
             subset=["StateName", "current_datetime"], keep="first"
         )
     df_consumption.loc[:, "target_datetime"] = target_datetime
@@ -269,6 +299,7 @@ def format_consumption_data(
     return consumption
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "IN-WE",
     session: Optional[Session] = None,
@@ -284,12 +315,19 @@ def fetch_production(
         target_datetime=target_datetime,
         logger=logger,
     )
-    production = format_production_data(
-        data=data, zone_key=zone_key, target_datetime=target_datetime
-    )
+
+    production = [
+        format_production_data(
+            zone_key=zone_key,
+            data=data,
+            target_datetime=dt,
+        )
+        for dt in get_date_range(target_datetime)
+    ]
     return production
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
@@ -297,7 +335,6 @@ def fetch_exchange(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
     data = fetch_data(
@@ -307,12 +344,19 @@ def fetch_exchange(
         target_datetime=target_datetime,
         logger=logger,
     )
-    exchanges = format_exchanges_data(
-        data=data, sortedZoneKeys=sortedZoneKeys, target_datetime=target_datetime
-    )
+    exchanges = [
+        format_exchanges_data(
+            zone_key1=zone_key1,
+            zone_key2=zone_key2,
+            data=data,
+            target_datetime=dt,
+        )
+        for dt in get_date_range(target_datetime)
+    ]
     return exchanges
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "IN-WE",
     session: Optional[Session] = None,
@@ -328,7 +372,14 @@ def fetch_consumption(
         target_datetime=target_datetime,
         logger=logger,
     )
-    consumption = format_consumption_data(
-        data=data, zone_key=zone_key, target_datetime=target_datetime
-    )
+
+    consumption = [
+        format_consumption_data(
+            zone_key=zone_key,
+            data=data,
+            target_datetime=dt,
+        )
+        for dt in get_date_range(target_datetime)
+    ]
+
     return consumption
