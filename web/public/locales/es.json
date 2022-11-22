@@ -1417,7 +1417,9 @@
     "UM": {
       "zoneName": "Islas Ultramarinas Menores de Estados Unidos"
     },
-    "US": { "zoneName": "Estados Unidos" },
+    "US": {
+      "zoneName": "Estados Unidos"
+    },
     "US-HI": {
       "countryName": "Estados Unidos",
       "zoneName": "Hawái"
@@ -1545,10 +1547,6 @@
     "US-MIDW-AECI": {
       "countryName": "Estados Unidos",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Estados Unidos",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Estados Unidos",

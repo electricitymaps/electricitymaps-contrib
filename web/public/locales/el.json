@@ -1372,7 +1372,9 @@
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
     },
-    "US": { "zoneName": "Ηνωμένες Πολιτείες Αμερικής" },
+    "US": {
+      "zoneName": "Ηνωμένες Πολιτείες Αμερικής"
+    },
     "US-HI-HA": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Hawaii"
@@ -1500,10 +1502,6 @@
     "US-MIDW-AECI": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
