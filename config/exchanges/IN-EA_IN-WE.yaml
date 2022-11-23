@@ -1,6 +1,6 @@
 lonlat:
-  - 83.787
-  - 22.263
+  - 83.363
+  - 21.456
 parsers:
   exchange: IN_WE.fetch_exchange
 rotation: 310
