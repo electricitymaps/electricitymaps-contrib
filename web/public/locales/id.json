@@ -1365,7 +1365,9 @@
     "UM": {
       "zoneName": "Pulau Outlying Amerika Serikat"
     },
-    "US": { "zoneName": "Amerika Serikat" },
+    "US": {
+      "zoneName": "Amerika Serikat"
+    },
     "US-HI-HA": {
       "countryName": "Amerika Serikat",
       "zoneName": "Hawaii"
