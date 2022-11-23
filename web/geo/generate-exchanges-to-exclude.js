@@ -51,7 +51,7 @@ const generateExchangesToIgnore = (OUT_PATH, zonesConfig, verifyNoUpdates) => {
   }
 
   if (verifyNoUpdates) {
-    console.error('Did not expect any updates to world.json. Please run "yarn update-world"');
+    console.error('Did not expect any updates to excluded-aggregated-exchanges.json. Please run "yarn update-world"');
     process.exit(1);
   }
 
