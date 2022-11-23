@@ -49,6 +49,11 @@
       }
     ],
     "no-void": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn", // TODO: Change to error when ready for production
+      { "args": "after-used", "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+
     "@typescript-eslint/no-confusing-void-expression": [
       "error",
       { "ignoreArrowShorthand": true }
@@ -94,12 +99,10 @@
     ],
     "react/no-unstable-nested-components": "error",
     "react/jsx-handler-names": [
-      "error",
+      "warn", // TODO: Change to error when ready for production
       {
-        "eventHandlerPrefix": "on",
-        "eventHandlerPropPrefix": "on",
-        "checkLocalVariables": true,
-        "checkInlineFunction": true
+        "eventHandlerPrefix": "handle",
+        "eventHandlerPropPrefix": "on"
       }
     ],
     "react/jsx-no-bind": [

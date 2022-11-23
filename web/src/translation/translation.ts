@@ -1,7 +1,6 @@
 import { TFunction } from 'i18next';
 import { useTranslation as useTranslationHook } from 'react-i18next';
 import { vsprintf } from 'sprintf-js';
-import { N } from 'vitest/dist/global-732f9b14';
 import i18next from './i18n';
 
 // Todo: We should get rid of vsprintf and use i18next interpolation instead

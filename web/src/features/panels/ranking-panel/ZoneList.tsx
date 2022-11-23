@@ -1,5 +1,6 @@
 import InternalLink from 'components/InternalLink';
 import type { ReactElement } from 'react';
+import { HiChevronRight } from 'react-icons/hi2';
 import { GridState } from 'types';
 import { CountryTag } from '../zone/CountryTag';
 
@@ -23,25 +24,27 @@ function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRow) {
       key={ranking}
       to={`/zone/${zoneId}`}
     >
-      <text className=" flex w-4 justify-end pr-2 text-sm">{ranking}</text>
+      <p className=" flex w-4 justify-end pr-2 text-sm">{ranking}</p>
       <div
         className="mr-2 h-4 w-4 min-w-[16px] rounded"
         style={{ backgroundColor: color }}
       ></div>
       <CountryTag zoneId={zoneId} />
-      <div className="flex flex-grow justify-between overflow-hidden">
+      <div className="flex flex-grow items-center justify-between overflow-hidden">
         <div className="flex  flex-col justify-center overflow-hidden px-2 ">
-          <text className="truncate text-sm leading-none">{countryName}</text>
-          <text
+          <p className="truncate text-sm leading-none">{countryName}</p>
+          <p
             className={`${
               countryName ? 'truncate text-xs text-gray-400' : 'truncate text-sm '
             }`}
           >
             {zoneName}
-          </text>
+          </p>
         </div>
         <div className="min-w-2">
-          <text className="hidden pr-2 group-hover:block">></text>
+          <p className="hidden pr-2 group-hover:block">
+            <HiChevronRight />
+          </p>
         </div>
       </div>
     </InternalLink>

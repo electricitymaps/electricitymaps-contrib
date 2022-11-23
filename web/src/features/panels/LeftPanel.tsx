@@ -53,7 +53,6 @@ export default function LeftPanel() {
   return (
     <OuterPanel>
       <Routes>
-        <Route path="/" element={<RankingPanel />} />
         <Route
           path="/zone/:zoneId"
           element={
@@ -64,7 +63,7 @@ export default function LeftPanel() {
         />
         <Route path="/faq" element={<p>FAQ</p>} />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route path="*" element={<p>Ranking Panel</p>} />
+        <Route path="*" element={<RankingPanel />} />
       </Routes>
     </OuterPanel>
   );

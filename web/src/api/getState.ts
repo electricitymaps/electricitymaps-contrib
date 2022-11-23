@@ -30,6 +30,7 @@ const useGetState = (
     async () => getState(timeAverage),
     {
       staleTime: REFETCH_INTERVAL_MS,
+      refetchOnWindowFocus: false,
       ...options,
     }
   );
