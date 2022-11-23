@@ -1,3 +1,4 @@
+import LoadingOverlay from 'components/LoadingOverlay';
 import ErrorBoundary from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
 import MapControls from 'features/map-controls/MapControls';
@@ -15,6 +16,7 @@ export default function App(): ReactElement {
         <Header />
         <div className="relative flex flex-auto items-stretch">
           <ErrorBoundary>
+            <LoadingOverlay />
             <LeftPanel />
             <Map />
             <TimeController />
