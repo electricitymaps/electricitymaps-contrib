@@ -14,6 +14,7 @@ import { getCO2IntensityByMode } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
+import MapTooltip from 'components/MapTooltip';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -66.947_193;
@@ -31,6 +32,10 @@ export default function MapPage(): ReactElement {
   const [timeAverage] = useAtom(timeAverageAtom);
   const [datetimeIndex] = useAtom(selectedDatetimeIndexAtom);
   const [isMoving, setIsMoving] = useState<boolean>(false);
+  const [{ mousePositionX, mousePositionY }, setMousePosition] = useState({
+    mousePositionX: 0,
+    mousePositionY: 0,
+  });
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
   const location = useLocation();
@@ -175,6 +180,11 @@ export default function MapPage(): ReactElement {
       setCursorType('pointer');
       setHoveredFeatureId(feature.id);
       map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { hover: true });
+
+      setMousePosition({
+        mousePositionX: event.point.x,
+        mousePositionY: event.point.y,
+      });
     } else {
       setCursorType('grab');
       setHoveredFeatureId(undefined);
@@ -213,6 +223,11 @@ export default function MapPage(): ReactElement {
   return (
     <>
       <Head title="Electricity Maps" />
+      <MapTooltip
+        mousePositionX={mousePositionX}
+        mousePositionY={mousePositionY}
+        hoveredFeatureId={hoveredFeatureId}
+      ></MapTooltip>
       <Map
         ref={mapReference}
         initialViewState={{
