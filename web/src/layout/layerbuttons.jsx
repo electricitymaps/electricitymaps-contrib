@@ -9,6 +9,7 @@ import { dispatchApplication } from '../store';
 
 import LanguageSelect from '../components/languageselect';
 import ButtonToggle from '../components/buttontoggle';
+import { useTrackEvent } from '../hooks/tracking';
 import styled from 'styled-components';
 import { TIME } from '../helpers/constants';
 
@@ -23,7 +24,7 @@ export default () => {
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
   const windDataError = useSelector((state) => state.data.windDataError);
-
+  const trackEvent = useTrackEvent();
   const solarEnabled = useSolarEnabled();
   const solarDataError = useSelector((state) => state.data.solarDataError);
   const solarToggledLocation = useSolarToggledLocation();
@@ -35,6 +36,7 @@ export default () => {
   );
   const toggleBrightMode = () => {
     dispatchApplication('brightModeEnabled', !brightModeEnabled);
+    trackEvent(`Dark Mode ${brightModeEnabled ? 'Enabled' : 'Disabled'}`);
     saveKey('brightModeEnabled', !brightModeEnabled);
   };
 
@@ -53,22 +55,32 @@ export default () => {
     <HiddenOnMobile>
       <div className={'layer-buttons-container'}>
         <LanguageSelect />
-        <Link to={windToggledLocation} hasError={windDataError || !isWeatherEnabled}>
+        <Link
+          to={windToggledLocation}
+          onClick={() => trackEvent(`Wind Layer ${!windEnabled ? 'Enabled' : 'Disabled'}`)}
+          hasError={windDataError || !isWeatherEnabled}
+        >
           <ButtonToggle
             active={windEnabled}
             tooltip={__(getWeatherTranslateId('Wind', windEnabled, isWeatherEnabled))}
             errorMessage={windDataError}
             ariaLabel={__(getWeatherTranslateId('Wind', solarEnabled, isWeatherEnabled))}
             icon="weather/wind"
+            onChange={() => trackEvent(`Wind Layer ${!windEnabled ? 'Enabled' : 'Disabled'}`)}
           />
         </Link>
-        <Link to={solarToggledLocation} hasError={solarDataError || !isWeatherEnabled}>
+        <Link
+          to={solarToggledLocation}
+          onClick={() => trackEvent(`Solar Layer ${!solarEnabled ? 'Enabled' : 'Disabled'}`)}
+          hasError={solarDataError || !isWeatherEnabled}
+        >
           <ButtonToggle
             active={solarEnabled}
             tooltip={__(getWeatherTranslateId('Solar', solarEnabled, isWeatherEnabled))}
             errorMessage={solarDataError}
             ariaLabel={__(getWeatherTranslateId('Solar', solarEnabled, isWeatherEnabled))}
             icon="weather/sun"
+            onChange={() => trackEvent(`Solar Layer ${!solarEnabled ? 'Enabled' : 'Disabled'}`)}
           />
         </Link>
         <ButtonToggle
