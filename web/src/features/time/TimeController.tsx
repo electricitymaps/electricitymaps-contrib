@@ -70,6 +70,9 @@ export default function TimeController() {
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}
         isLoading={isLoading}
+        className="h-[22px] w-full overflow-visible"
+        transform={`translate(${12}, 0)`}
+        isLiveDisplay={timeAverage === TimeAverages.HOURLY}
       />
     </div>
   );

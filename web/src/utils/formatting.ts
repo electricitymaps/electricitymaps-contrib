@@ -32,8 +32,15 @@ import { TimeAverages } from './constants';
 //   }
 // };
 
-const scalePower = function (maxPower: number) {
+const scalePower = function (maxPower: number | undefined) {
   // Assume MW input
+  if (maxPower == undefined) {
+    return {
+      unit: '?',
+      formattingFactor: 1e3,
+    };
+  }
+
   if (maxPower < 1) {
     return {
       unit: 'kW',

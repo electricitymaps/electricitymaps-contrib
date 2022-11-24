@@ -56,9 +56,35 @@ export interface ZoneOverview {
   stateDatetime: string;
 }
 
+export type GenerationType =
+  | 'biomass'
+  | 'coal'
+  | 'gas'
+  | 'hydro'
+  | 'nuclear'
+  | 'oil'
+  | 'solar'
+  | 'unknown'
+  | 'geothermal'
+  | 'hydro storage' // storage should perhaps be separated
+  | 'battery storage' // storage should perhaps be separated
+  | 'wind';
+
 export interface ZoneDetail extends ZoneOverview {
-  production: GenerationTypes;
-  capacity: GenerationTypes;
+  production: { [key in GenerationType]: number };
+  capacity: { [key in GenerationType]: number };
+  exchange: { [key: string]: number };
+  totalco2intensity: number;
+  totalCo2Import: number;
+  totalCo2Discharge: number;
+  totalCo2Production: number;
+  totalProduction: number;
+  totalImport: number;
+  totalDischarge: number;
+  storage: { [key in StorageType]: number };
+  price?: {
+    value: number;
+  };
 }
 
 export interface ZoneDetails {
@@ -67,23 +93,7 @@ export interface ZoneDetails {
   zoneStates: ZoneDetail[];
 }
 
-export interface GenerationTypes {
-  biomass?: number;
-  coal?: number;
-  gas?: number;
-  geothermal?: number;
-  hydro?: number;
-  nuclear?: number;
-  oil?: number;
-  solar?: number;
-  wind?: number;
-  unknown?: number;
-}
-
-export interface StorageTypes {
-  battery: number;
-  hydro: number;
-}
+export type StorageType = 'battery' | 'hydro';
 
 export interface MapGeometries extends FeatureCollection<Geometry> {
   features: Array<MapGeometry>;

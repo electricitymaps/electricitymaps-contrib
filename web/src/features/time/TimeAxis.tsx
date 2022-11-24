@@ -1,11 +1,9 @@
-import { scaleTime } from 'd3-scale';
+import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { TimeAverages } from 'utils/constants';
 import { useRefWidthHeightObserver } from 'utils/viewport';
 import { formatDateTick } from '../../utils/formatting';
-
-const HORIZONTAL_MARGIN = 12;
 
 // Frequency at which values are displayed for a tick
 const TIME_TO_TICK_FREQUENCY = {
@@ -69,11 +67,26 @@ interface TimeAxisProps {
   selectedTimeAggregate: TimeAverages;
   datetimes: Date[] | undefined;
   isLoading: boolean;
+  scale?: ScaleTime<number, number>;
+  isLiveDisplay?: boolean;
+  transform?: string;
+  scaleWidth?: number;
+  className?: string;
 }
 
-function TimeAxis({ selectedTimeAggregate, datetimes, isLoading }: TimeAxisProps) {
+function TimeAxis({
+  selectedTimeAggregate,
+  datetimes,
+  isLoading,
+  transform,
+  scale,
+  scaleWidth,
+  isLiveDisplay,
+  className,
+}: TimeAxisProps) {
   const { i18n } = useTranslation();
-  const { ref, width } = useRefWidthHeightObserver(HORIZONTAL_MARGIN * 2);
+  const { ref, width } = useRefWidthHeightObserver(24);
+
   if (datetimes === undefined || isLoading) {
     return (
       <div className="flex h-[22px] w-full justify-center">
@@ -82,26 +95,28 @@ function TimeAxis({ selectedTimeAggregate, datetimes, isLoading }: TimeAxisProps
     );
   }
 
-  const displayLive = selectedTimeAggregate === TimeAverages.HOURLY;
-  // Required to render the ticks in the proper width on resize
-  const scale = getTimeScale(width, datetimes[0], datetimes[datetimes.length - 1]);
+  scale = getTimeScale(
+    scaleWidth ?? width,
+    datetimes[0],
+    datetimes[datetimes.length - 1]
+  );
   const [x1, x2] = scale.range();
 
   return (
-    <svg className="h-[22px] w-full overflow-visible" ref={ref}>
-      <g
-        transform={`translate(${HORIZONTAL_MARGIN}, 0)`}
-        fill="none"
-        textAnchor="middle"
-        style={{ pointerEvents: 'none' }}
-      >
+    <svg
+      // className="h-[22px] w-full overflow-visible"
+      className={className}
+      transform={transform}
+      ref={ref}
+    >
+      <g fill="none" textAnchor="middle" style={{ pointerEvents: 'none', transform }}>
         <path stroke="none" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
         {datetimes.map((v, index) =>
           renderTick(
             scale,
             v,
             index,
-            displayLive,
+            isLiveDisplay ?? false,
             i18n.language,
             selectedTimeAggregate,
             isLoading

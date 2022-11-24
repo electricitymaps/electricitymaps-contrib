@@ -3,7 +3,7 @@ import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import RankingPanel from './ranking-panel/RankingPanel';
 
-import ZoneDetails from './zone/ZoneDetails';
+import ZoneDetails from './Zone/ZoneDetails';
 
 function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   const { zoneId } = useParams();
@@ -34,7 +34,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
 }
 
 function OuterPanel({ children }: { children: React.ReactNode }) {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(true);
   const onCollapse = () => setOpen(!isOpen);
 
   return (
