@@ -39,7 +39,7 @@ export default function ZoneDetails(): JSX.Element {
 
   // TODO: Consider if we should move the items relying on this data to its own component instead
   // TODO: Fix rendering issue where this is shortly unavailable for some reason
-  const selectedData = data[0].zoneStates[selectedDatetime];
+  const selectedData = data.zoneStates[selectedDatetime];
   if (!selectedData) {
     return <div></div>;
   }
