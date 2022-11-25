@@ -79,7 +79,6 @@ function TimeAxis({
   datetimes,
   isLoading,
   transform,
-  scale,
   scaleWidth,
   isLiveDisplay,
   className,
@@ -95,7 +94,7 @@ function TimeAxis({
     );
   }
 
-  scale = getTimeScale(
+  const scale = getTimeScale(
     scaleWidth ?? width,
     datetimes[0],
     datetimes[datetimes.length - 1]

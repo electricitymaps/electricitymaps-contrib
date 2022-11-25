@@ -49,6 +49,7 @@ export interface ZoneOverviewForTimePeriod {
 export interface ZoneOverview {
   countryCode: string;
   co2intensity?: number;
+  co2intensityProduction?: number;
   consumptionColour?: string;
   productionColour?: string;
   colorBlindConsumptionColour?: string;
@@ -71,9 +72,11 @@ export type GenerationType =
   | 'wind';
 
 export interface ZoneDetail extends ZoneOverview {
-  production: { [key in GenerationType]: number };
+  production: { [key in GenerationType]: number }; // TODO: this assumes all modes are present
   capacity: { [key in GenerationType]: number };
   exchange: { [key: string]: number };
+  co2intensity: numbewr;
+  co2intensityProduction: number;
   totalco2intensity: number;
   totalCo2Import: number;
   totalCo2Discharge: number;
@@ -81,9 +84,13 @@ export interface ZoneDetail extends ZoneOverview {
   totalProduction: number;
   totalImport: number;
   totalDischarge: number;
+  dischargeCo2Intensities: { [key in StorageType]: number };
+  productionCo2Intensities: { [key in GenerationType]: number };
+  exchangeCo2Intensities: { [key: string]: number };
   storage: { [key in StorageType]: number };
   price?: {
     value: number;
+    currency: string;
   };
 }
 

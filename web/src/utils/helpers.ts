@@ -1,5 +1,3 @@
-import { TimeAverages } from './constants';
-
 export function getCO2IntensityByMode(
   zoneData: { co2intensity: number; co2intensityProduction: number },
   electricityMixMode: string

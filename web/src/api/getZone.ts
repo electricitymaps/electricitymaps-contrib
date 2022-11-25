@@ -1,7 +1,10 @@
 import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
+import { useAtom } from 'jotai';
+import { useParams } from 'react-router-dom';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
+import { timeAverageAtom } from 'utils/state';
 import { getBasePath, getHeaders, QUERY_KEYS, REFETCH_INTERVAL_MS } from './helpers';
 
 const getZone = async (
@@ -18,18 +21,20 @@ const getZone = async (
 
   if (response.ok) {
     const { data } = (await response.json()) as { data: ZoneDetails };
-    return data;
+    // TODO: Fix this in app-backend
+    // @ts-ignore: app-backend should not return array
+    return data.length > 0 ? data[0] : data;
   }
 
   throw new Error(await response.text());
 };
 
 const useGetZone = (
-  timeAverage: TimeAverages,
-  zoneId: string,
   options?: UseQueryOptions<ZoneDetails>
-): UseQueryResult<ZoneDetails> =>
-  useQuery<ZoneDetails>(
+): UseQueryResult<ZoneDetails> => {
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const { zoneId } = useParams();
+  return useQuery<ZoneDetails>(
     [QUERY_KEYS.ZONE, zoneId, timeAverage],
     async () => getZone(zoneId, timeAverage),
     {
@@ -37,5 +42,6 @@ const useGetZone = (
       ...options,
     }
   );
+};
 
 export default useGetZone;
