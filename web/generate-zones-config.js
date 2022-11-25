@@ -22,6 +22,7 @@ const mergeZones = () => {
     'capacity',
     'comment',
     '_comment',
+    'sources',
   ];
   const zones = filesWithDir.reduce((zones, filepath) => {
     const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8'));
