@@ -34,6 +34,8 @@ build:
 
   ARG EARTHLY_GIT_HASH
   ENV COMMIT_SHA=$EARTHLY_GIT_HASH
+  ENV NODE_ENV=production
+  ENV ENV=production
 
   RUN mkdir -p public/dist
   RUN yarn update-version
