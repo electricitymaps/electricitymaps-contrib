@@ -1,42 +1,45 @@
-import { resolvePath } from 'react-router-dom';
+import flags from 'country-flag-icons/react/3x2';
 
-const DEFAULT_FLAG_SIZE = 48;
+const DEFAULT_FLAG_SIZE = 18;
 
-const getFlagFileName = (zoneId: string) => {
-  // Return (zonesConfig[zoneId.toUpperCase()] || {}).flag_file_name; TODO: enable when config setup
-  if (zoneId === 'DK-DK1') {
-    return 'dk.png';
-  }
+const SPECIAL_ZONE_NAMES = {
+  AUS: 'AU',
+} as { [index: string]: string };
 
-  if (zoneId === 'ES') {
-    return 'es.png';
-  }
+function getCountryName(zoneId: string) {
+  const country = zoneId.split('-')[0];
+  const flagName = SPECIAL_ZONE_NAMES[country] || country;
+  return flagName.toUpperCase();
+}
 
-  return 'us.png';
-};
-
-const getFlagUri = function (zoneId: string, flagSize = DEFAULT_FLAG_SIZE) {
-  if (!zoneId) {
-    return;
-  }
-  const flagFile = getFlagFileName(zoneId);
-  return resolvePath(`flags_iso/${flagSize}/${flagFile}`).pathname;
-};
+type HTMLSVGElement = HTMLElement & SVGElement;
+interface CountryFlagProps
+  extends React.HTMLAttributes<HTMLSVGElement>,
+    React.SVGAttributes<HTMLSVGElement> {
+  zoneId: string;
+  size?: number;
+}
 
 export function CountryFlag({
   zoneId,
-  flagSize = DEFAULT_FLAG_SIZE,
+  size = DEFAULT_FLAG_SIZE,
   ...props
-}: {
-  zoneId: string;
-  flagSize?: number;
-  className?: string;
-}) {
-  const flagUri = getFlagUri(zoneId, flagSize);
+}: CountryFlagProps) {
+  const countryName = getCountryName(zoneId) as keyof typeof flags;
+  const FlagIcon = flags[countryName];
 
-  if (flagUri === undefined) {
-    return <div>No flag</div>;
+  if (!FlagIcon) {
+    return <span className={`text-[14px]`}>🏴‍☠️</span>;
   }
-
-  return <img src={flagUri} alt={zoneId} {...props} />;
+  return (
+    <FlagIcon
+      title="TODO"
+      width={size}
+      height={Math.floor((size / 3) * 2)}
+      style={{
+        minWidth: size,
+      }}
+      {...props}
+    />
+  );
 }

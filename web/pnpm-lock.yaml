@@ -39,6 +39,7 @@ specifiers:
   '@vitest/coverage-istanbul': 0.24.3
   autoprefixer: 10.4.12
   colors: ^1.4.0
+  country-flag-icons: ^1.5.5
   css-mediaquery: 0.1.2
   currency-symbol-map: ^5.1.0
   cypress: 10.10.0
@@ -113,6 +114,7 @@ dependencies:
   '@types/d3-selection': 3.0.3
   '@types/d3-shape': 3.1.0
   '@types/sprintf-js': 1.1.2
+  country-flag-icons: 1.5.5
   currency-symbol-map: 5.1.0
   d3-array: 3.2.0
   d3-scale: 4.0.2
@@ -4753,6 +4755,10 @@ packages:
   /core-util-is/1.0.2:
     resolution: {integrity: sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==}
     dev: true
+
+  /country-flag-icons/1.5.5:
+    resolution: {integrity: sha512-k4WXZ/WvWOSiYXRG1n8EYHNr1m/IX0GffKqAidaet5DrJsDOmJ8Q/8JvvONhZNnKYg24s4lvsm+9og1HcuIU/g==}
+    dev: false
 
   /cross-fetch/3.1.5:
     resolution: {integrity: sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==}

@@ -43,6 +43,7 @@
     "@types/d3-selection": "^3.0.3",
     "@types/d3-shape": "^3.1.0",
     "@types/sprintf-js": "^1.1.2",
+    "country-flag-icons": "^1.5.5",
     "currency-symbol-map": "^5.1.0",
     "d3-array": "^3.2.0",
     "d3-scale": "^4.0.2",
