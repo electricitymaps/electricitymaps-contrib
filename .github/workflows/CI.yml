@@ -13,6 +13,7 @@ jobs:
     timeout-minutes: 1
     outputs:
       frontend: ${{ steps.check-frontend.outputs.any_changed }}
+      geometries: ${{ steps.check-geometries.outputs.any_changed }}
       markdown: ${{ steps.check-markdown.outputs.any_changed }}
       json: ${{ steps.check-json.outputs.any_changed }}
       python: ${{ steps.check-python.outputs.any_changed }}
@@ -24,28 +25,38 @@ jobs:
           fetch-depth: 2
       - name: Check frontend files
         id: check-frontend
-        uses: tj-actions/changed-files@v34.4.0
+        uses: tj-actions/changed-files@v34.5.0
         with:
           files: |
             **/web/**/*
           files_ignore: |
             **/web/public/locales/*.json
             **/web/**/*.md
+      - name: Check files affecting geometries
+        id: check-geometries
+        uses: tj-actions/changed-files@v34.5.0
+        with:
+          files: |
+            **/web/geo/**/*
+            **/config/exchanges/**/*.yaml
+            **/config/zones/**/*.yaml
+          files_ignore: |
+            **/web/geo/README.md
       - name: Check markdown files
         id: check-markdown
-        uses: tj-actions/changed-files@v34.4.0
+        uses: tj-actions/changed-files@v34.5.0
         with:
           files: |
             **/*.md
       - name: Check json files
         id: check-json
-        uses: tj-actions/changed-files@v34.4.0
+        uses: tj-actions/changed-files@v34.5.0
         with:
           files: |
             **/*.json
       - name: Check python files
         id: check-python
-        uses: tj-actions/changed-files@v34.4.0
+        uses: tj-actions/changed-files@v34.5.0
         with:
           files: |
             **/*.py
@@ -54,13 +65,14 @@ jobs:
             .python-version
       - name: Check if workflows have changed
         id: check-workflows
-        uses: tj-actions/changed-files@v34.4.0
+        uses: tj-actions/changed-files@v34.5.0
         with:
           files: |
             **/.github/workflows/**/*.yml
       - name: Log outputs
         run: |
           echo "frontend changed: ${{ steps.check-frontend.outputs.any_changed }}"
+          echo "geometries changed: ${{ steps.check-geometries.outputs.any_changed }}"
           echo "markdown changed: ${{ steps.check-markdown.outputs.any_changed }}"
           echo "json changed: ${{ steps.check-json.outputs.any_changed }}"
           echo "python changed: ${{ steps.check-python.outputs.any_changed }}"
@@ -99,7 +111,7 @@ jobs:
   verify:
     name: Verify
     needs: [setup, prettier]
-    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
+    if: needs.setup.outputs.geometries != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/verify.yml
 
   cypress:

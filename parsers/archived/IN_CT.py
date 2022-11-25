@@ -4,7 +4,7 @@ from typing import Optional
 
 from requests import Session
 
-from .lib import IN, web, zonekey
+from ..lib import IN, web, zonekey
 
 ZONE_KEY = "IN-CT"
 URL = "http://117.239.199.203/csptcl/GEN.aspx"

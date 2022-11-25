@@ -1,10 +1,11 @@
 bounding_box:
-  - - -171.791110603
-    - 18.91619
-  - - -66.96466
-    - 71.3577635769
+  - - -230.800781
+    - -23.885838
+  - - -32.343750
+    - 74.019543
 bypassedSubZones:
   - US-AK
+  - US-FLA-HST
   - US-HI-HA
   - US-HI-KA
   - US-HI-KH
@@ -13,7 +14,6 @@ bypassedSubZones:
   - US-HI-MO
   - US-HI-NI
   - US-HI-OA
-  - US-MIDW-GLHB
 capacity:
   battery storage: 4832.0
   biomass: 14487.1
@@ -123,7 +123,6 @@ subZoneNames:
   - US-HI-OA
   - US-MIDA-PJM
   - US-MIDW-AECI
-  - US-MIDW-GLHB
   - US-MIDW-LGEE
   - US-MIDW-MISO
   - US-NE-ISNE
@@ -156,4 +155,4 @@ subZoneNames:
   - US-SW-WALC
   - US-TEN-TVA
   - US-TEX-ERCO
-timezone: US-Central
+timezone: US/Central

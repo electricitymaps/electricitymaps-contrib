@@ -1369,7 +1369,9 @@
     "UM": {
       "zoneName": "Yhdysvaltain pienet erillissaaret"
     },
-    "US": { "zoneName": "Yhdysvallat" },
+    "US": {
+      "zoneName": "Yhdysvallat"
+    },
     "US-HI-HA": {
       "countryName": "Yhdysvallat",
       "zoneName": "Havaiji"
@@ -1497,10 +1499,6 @@
     "US-MIDW-AECI": {
       "countryName": "Yhdysvallat",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Yhdysvallat",

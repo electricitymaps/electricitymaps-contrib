@@ -190,8 +190,8 @@ fallbackZoneMixes:
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
-  consumptionForecast: EIA.fetch_consumption_forecast
-  production: EIA.fetch_production_mix
+  consumptionForecast: US_SPP.fetch_load_forecast
+  production: US_SPP.fetch_production
   productionPerModeForecast: US_SPP.fetch_wind_solar_forecasts
 sources:
   INCER ACV:
