@@ -38,7 +38,9 @@ export default function ToggleButton({
            : ''
        }`}
           >
-            <p className="sans flex-grow  dark:text-white">{__(option.translationKey)}</p>
+            <p className="sans flex-grow select-none  dark:text-white">
+              {__(option.translationKey)}
+            </p>
           </ToggleGroupPrimitive.Item>
         ))}
       </ToggleGroupPrimitive.Root>
@@ -46,8 +48,8 @@ export default function ToggleButton({
         <Tooltip.Provider>
           <Tooltip.Root delayDuration={0}>
             <Tooltip.Trigger asChild>
-              <div className="b ml-2 h-6 w-6 justify-center self-center rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
-                <text>i</text>
+              <div className="b ml-2 h-6 w-6 select-none justify-center self-center rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
+                <p>i</p>
               </div>
             </Tooltip.Trigger>
             <Tooltip.Portal>
