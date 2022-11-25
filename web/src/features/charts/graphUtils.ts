@@ -5,7 +5,7 @@ import { bisectLeft } from 'd3-array';
 
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
-import { GenerationType, StorageType } from 'types';
+import { GenerationType, StorageType, ZoneDetail } from 'types';
 import { modeOrder } from 'utils/constants';
 
 export const detectHoveredDatapointIndex = (
@@ -71,3 +71,21 @@ export const getGenerationTypeKey = (name: string): GenerationType | undefined =
 
   return undefined;
 };
+
+export function tonsPerHourToGramsPerMinute(value: number) {
+  return value / 1e6 / 60;
+}
+
+export function getTotalElectricity(zoneData: ZoneDetail, displayByEmissions: boolean) {
+  const productionValue = displayByEmissions
+    ? zoneData.totalCo2Production
+    : zoneData.totalProduction;
+
+  if (productionValue == null) {
+    return Number.NaN;
+  }
+
+  return displayByEmissions
+    ? productionValue + zoneData.totalCo2Discharge + zoneData.totalCo2Import // gCO₂eq/h
+    : productionValue + zoneData.totalDischarge + zoneData.totalImport;
+}

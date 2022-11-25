@@ -1,9 +1,12 @@
 import useGetZone from 'api/getZone';
 import BreakdownChart from 'features/charts/BreakdownChart';
 import CarbonChart from 'features/charts/CarbonChart';
+import EmissionChart from 'features/charts/EmissionChart';
 import PriceChart from 'features/charts/PriceChart';
 import { useAtom } from 'jotai';
 import { Navigate, useParams } from 'react-router-dom';
+import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state';
+import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import { TimeAverages } from 'utils/constants';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state';
 import { ZoneHeader } from './ZoneHeader';
@@ -11,6 +14,7 @@ import { ZoneHeader } from './ZoneHeader';
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
   const [timeAverage] = useAtom(timeAverageAtom);
+  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const { data } = useGetZone({
     enabled: Boolean(zoneId),
@@ -43,7 +47,9 @@ export default function ZoneDetails(): JSX.Element {
   const isEstimated = Boolean(estimationMethod);
 
   return (
-    <div>
+    <div
+      className="mb-60" // Adding room to scroll past the time controller
+    >
       <ZoneHeader
         zoneId={zoneId}
         isEstimated={isEstimated}
@@ -52,8 +58,13 @@ export default function ZoneDetails(): JSX.Element {
         lowCarbonRatio={lowCarbonRatio}
         renewableRatio={renewableRatio}
       />
-      <CarbonChart datetimes={datetimes} timeAverage={timeAverage} />
-      <BreakdownChart timeAverage={timeAverage} datetimes={datetimes} />
+      <DisplayByEmissionToggle />
+      {displayByEmissions ? (
+        <EmissionChart datetimes={datetimes} timeAverage={timeAverage} />
+      ) : (
+        <CarbonChart datetimes={datetimes} timeAverage={timeAverage} />
+      )}
+      <BreakdownChart datetimes={datetimes} timeAverage={timeAverage} />
       <PriceChart datetimes={datetimes} timeAverage={timeAverage} />
     </div>
   );

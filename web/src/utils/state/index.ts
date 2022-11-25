@@ -49,6 +49,8 @@ export const productionConsumptionAtom = atomWithCustomStorage<Mode>({
   },
 });
 
+export const displayByEmissionsAtom = atom<boolean>(false);
+
 export const windLayerAtom = atomWithCustomStorage<ToggleOptions>({
   key: 'wind',
   initialValue: ToggleOptions.OFF,

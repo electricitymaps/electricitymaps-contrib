@@ -6,15 +6,15 @@ import { ZoneDetail } from 'types';
 
 import { Mode, modeColor, modeOrder } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
-import { productionConsumptionAtom } from 'utils/state';
+import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state';
 import { getGenerationTypeKey, getStorageKey } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
-export default function useBreakdownChartDatas() {
+export default function useBreakdownChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
   const [mixMode] = useAtom(productionConsumptionAtom);
-  const displayByEmissions = false;
+  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
 
   if (isLoading || isError) {
     return { isLoading, isError };
@@ -59,11 +59,7 @@ export default function useBreakdownChartDatas() {
       for (const [key, exchangeValue] of Object.entries(value.exchange)) {
         // in GW or MW
         entry.layerData[key] = Math.max(0, exchangeValue / valueFactor);
-        if (
-          Number.isFinite(value) &&
-          displayByEmissions &&
-          entry.layerData[key] != undefined
-        ) {
+        if (displayByEmissions) {
           // in tCO₂eq/min
           entry.layerData[key] *= (value.exchangeCo2Intensities || {})[key] / 1e3 / 60;
         }

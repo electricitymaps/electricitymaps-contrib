@@ -29,9 +29,9 @@ export function usePriceChartData() {
     });
   }
 
-  const currencySymbol: string = getSymbolFromCurrency(
-    Object.values(zoneData.zoneStates)[0].price?.currency // Every price has the same currency
-  );
+  const currency = Object.values(zoneData.zoneStates)[0].price?.currency; // Every price has the same currency
+  const currencySymbol: string = currency ? getSymbolFromCurrency(currency) : '?';
+
   const valueAxisLabel = `${currencySymbol || '?'} / MWh`;
 
   const priceMaxValue =

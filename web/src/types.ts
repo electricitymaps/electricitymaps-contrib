@@ -75,7 +75,7 @@ export interface ZoneDetail extends ZoneOverview {
   production: { [key in GenerationType]: number }; // TODO: this assumes all modes are present
   capacity: { [key in GenerationType]: number };
   exchange: { [key: string]: number };
-  co2intensity: numbewr;
+  co2intensity: number;
   co2intensityProduction: number;
   totalco2intensity: number;
   totalCo2Import: number;

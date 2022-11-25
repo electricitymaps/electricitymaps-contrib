@@ -2,15 +2,17 @@ import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import { useParams } from 'react-router-dom';
+import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { timeAverageAtom } from 'utils/state';
 import { getBasePath, getHeaders, QUERY_KEYS, REFETCH_INTERVAL_MS } from './helpers';
 
 const getZone = async (
-  zoneId: string,
-  timeAverage: TimeAverages
+  timeAverage: TimeAverages,
+  zoneId?: string
 ): Promise<ZoneDetails> => {
+  invariant(zoneId, 'Zone ID is required');
   const path = `/v6/details/${timeAverage}/${zoneId}`;
   const requestOptions: RequestInit = {
     method: 'GET',
@@ -36,7 +38,7 @@ const useGetZone = (
   const { zoneId } = useParams();
   return useQuery<ZoneDetails>(
     [QUERY_KEYS.ZONE, zoneId, timeAverage],
-    async () => getZone(zoneId, timeAverage),
+    async () => getZone(timeAverage, zoneId),
     {
       staleTime: REFETCH_INTERVAL_MS,
       ...options,
