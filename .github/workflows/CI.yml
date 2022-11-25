@@ -32,7 +32,7 @@ jobs:
           files_ignore: |
             **/web/public/locales/*.json
             **/web/**/*.md
-      - name: Check files affecting geometries
+      - name: Check config files
         id: check-config
         uses: tj-actions/changed-files@v34.5.0
         with:
