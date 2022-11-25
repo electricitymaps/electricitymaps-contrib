@@ -8,9 +8,7 @@ import { getRankedState } from './getRankingPanelData';
 import SearchBar from './SearchBar';
 import ZoneList from './ZoneList';
 
-interface RankingPanelProperties {}
-
-export default function RankingPanel(properties: RankingPanelProperties): ReactElement {
+export default function RankingPanel(): ReactElement {
   const { __ } = useTranslation();
   const getCo2colorScale = useCo2ColorScale();
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -22,7 +20,7 @@ export default function RankingPanel(properties: RankingPanelProperties): ReactE
     setSearchTerm(lowerCase);
   };
 
-  const { isLoading, isSuccess, isError, error, data } = useGetState(timeAverage);
+  const { isLoading, data } = useGetState(timeAverage);
   const rankedList = getRankedState(data, getCo2colorScale, 'asc', selectedDatetime);
   const filteredList = rankedList.filter((zone) => {
     if (zone.countryName && zone.countryName.toLowerCase().includes(searchTerm)) {

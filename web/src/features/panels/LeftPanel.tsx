@@ -39,7 +39,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
 
   return (
     <aside
-      className={`absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-800 md:flex md:w-[calc(14vw_+_16rem)] ${
+      className={`absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-800 dark:[color-scheme:dark] md:flex md:w-[calc(14vw_+_16rem)] ${
         !isOpen && '-translate-x-full'
       }`}
     >

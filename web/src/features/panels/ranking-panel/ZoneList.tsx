@@ -20,7 +20,7 @@ export interface ZoneRow {
 function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRow) {
   return (
     <InternalLink
-      className="group my-1 flex h-9 w-full items-center overflow-hidden rounded bg-gray-100  pl-3 text-left hover:bg-gray-200"
+      className="group my-1 flex h-9 w-full items-center overflow-hidden rounded bg-gray-100 pl-3  text-left hover:bg-gray-200 dark:bg-gray-700"
       key={ranking}
       to={`/zone/${zoneId}`}
     >
