@@ -5,10 +5,13 @@ import EmissionChart from 'features/charts/EmissionChart';
 import PriceChart from 'features/charts/PriceChart';
 import { useAtom } from 'jotai';
 import { Navigate, useParams } from 'react-router-dom';
-import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state';
-import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import { TimeAverages } from 'utils/constants';
-import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state';
+import {
+  displayByEmissionsAtom,
+  selectedDatetimeIndexAtom,
+  timeAverageAtom,
+} from 'utils/state';
+import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import { ZoneHeader } from './ZoneHeader';
 
 export default function ZoneDetails(): JSX.Element {
