@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 1
     outputs:
       frontend: ${{ steps.check-frontend.outputs.any_changed }}
-      geometries: ${{ steps.check-geometries.outputs.any_changed }}
+      config: ${{ steps.check-config.outputs.any_changed }}
       markdown: ${{ steps.check-markdown.outputs.any_changed }}
       json: ${{ steps.check-json.outputs.any_changed }}
       python: ${{ steps.check-python.outputs.any_changed }}
@@ -33,15 +33,11 @@ jobs:
             **/web/public/locales/*.json
             **/web/**/*.md
       - name: Check files affecting geometries
-        id: check-geometries
+        id: check-config
         uses: tj-actions/changed-files@v34.5.0
         with:
           files: |
-            **/web/geo/**/*
-            **/config/exchanges/**/*.yaml
-            **/config/zones/**/*.yaml
-          files_ignore: |
-            **/web/geo/README.md
+            **/config/**/*.yaml
       - name: Check markdown files
         id: check-markdown
         uses: tj-actions/changed-files@v34.5.0
@@ -86,32 +82,43 @@ jobs:
   validate_local_links:
     name: Validate Markdown
     needs: [setup, prettier]
-    if: needs.setup.outputs.markdown != 'false' || needs.setup.outputs.workflows != 'false'
+    if: >-
+      needs.setup.outputs.markdown != 'false' ||
+      needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/validate-local-links-in-md.yml
 
   jest:
     name: Jest
     needs: [setup, prettier]
-    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/jest.yml
 
   jsonlint:
     name: JSONLint
     needs: [setup, prettier]
-    if: needs.setup.outputs.json != 'false' || needs.setup.outputs.workflows != 'false'
+    if: >-
+      needs.setup.outputs.json != 'false' ||
+      needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/jsonlint.yml
 
   # Frontend checks
   eslint:
     name: ESLint
     needs: [setup, prettier]
-    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/eslint.yml
 
   verify:
     name: Verify
     needs: [setup, prettier]
-    if: needs.setup.outputs.geometries != 'false' || needs.setup.outputs.workflows != 'false'
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.config != 'false' ||
+      needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/verify.yml
 
   cypress:
