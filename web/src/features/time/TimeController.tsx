@@ -26,7 +26,7 @@ export default function TimeController() {
   useEffect(() => {
     if (datetimes) {
       // Reset the selected datetime when data changes
-      setSelectedDatetime(dateToDatetimeString(datetimes[0]));
+      setSelectedDatetime(dateToDatetimeString(datetimes.at(-1) as Date));
     }
   }, [data]);
 

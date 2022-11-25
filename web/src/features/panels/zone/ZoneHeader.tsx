@@ -1,36 +1,35 @@
-import Badge from 'components/Badge';
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
-import { CountryTag } from './CountryTag';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 interface ZoneHeaderProps {
   zoneId: string;
-  date: string;
   isEstimated?: boolean;
   isAggregated?: boolean;
+  co2intensity: number;
+  lowCarbonRatio: number;
+  renewableRatio: number;
 }
 
-export function ZoneHeader({ date, zoneId, isEstimated, isAggregated }: ZoneHeaderProps) {
+export function ZoneHeader({
+  zoneId,
+  isEstimated,
+  isAggregated,
+  co2intensity,
+  lowCarbonRatio,
+  renewableRatio,
+}: ZoneHeaderProps) {
   return (
     <div className="mt-1 grid w-full gap-y-5 sm:pr-4">
       <ZoneHeaderTitle
-        title="Western Area Power Administration Rocky Mountain Region"
-        formattedDate={date}
-        labels={[
-          isEstimated && (
-            <Badge type="warning" key={'badge-est'}>
-              Estimated
-            </Badge>
-          ),
-          isAggregated && <Badge key={'badge-agg'}>Aggregated</Badge>,
-        ]}
-        countryTag={<CountryTag zoneId={zoneId} />}
+        zoneId={zoneId}
+        isEstimated={isEstimated}
+        isAggregated={isAggregated}
       />
       <div className="flex flex-row justify-evenly">
-        <CarbonIntensitySquare co2intensity={60} withSubtext />
-        <CircularGauge name="Low-carbon" percentage={0.78} />
-        <CircularGauge name="Renewable" percentage={0.65} />
+        <CarbonIntensitySquare co2intensity={co2intensity} withSubtext />
+        <CircularGauge name="Low-carbon" ratio={lowCarbonRatio} />
+        <CircularGauge name="Renewable" ratio={renewableRatio} />
       </div>
     </div>
   );

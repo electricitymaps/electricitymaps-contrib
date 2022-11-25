@@ -1,38 +1,53 @@
+import Badge from 'components/Badge';
+import { CountryFlag } from 'components/Flag';
+import { TimeDisplay } from 'components/TimeDisplay';
+import { HiArrowLeft } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
+import { getZoneName } from 'translation/translation';
+import { CountryTag } from './CountryTag';
 
 interface ZoneHeaderTitleProps {
-  title: string;
-  formattedDate: string;
-  labels?: (false | JSX.Element | undefined)[];
-  countryTag?: React.ReactElement;
+  zoneId: string;
+  isEstimated?: boolean;
+  isAggregated?: boolean;
 }
 
 export default function ZoneHeaderTitle({
-  title,
-  labels,
-  formattedDate,
-  countryTag,
+  zoneId,
+  isAggregated,
+  isEstimated,
 }: ZoneHeaderTitleProps) {
-  // TODO: add correct icon
-  // TODO: Align title and countryTag vertically, while keeping the tag
-  // "wrapped" in the title. Also add gap between title and countryTag.
+  const title = getZoneName(zoneId);
+  const isSubZone = zoneId.includes('-');
 
   return (
     <div className="flex flex-row pl-2">
-      <Link className="text-3xl mr-4 self-center text-gray-400" to="/">
-        {'❮'}
+      <Link className="text-3xl mr-4 self-center " to="/">
+        <HiArrowLeft />
       </Link>
       <div>
-        <h2 className="mb-0.5 space-x-1.5 text-base font-medium">
-          <span>{title}</span>
-          {countryTag}
-        </h2>
-        {labels && (
-          <div className="flex flex-wrap items-center gap-1 text-center">
-            {labels}
-            <p className="whitespace-nowrap text-xs">{formattedDate}</p>
-          </div>
-        )}
+        <div className="mb-0.5 flex items-center space-x-1.5 ">
+          <CountryFlag
+            zoneId={zoneId}
+            size={18}
+            className="mr-1 shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+          />
+          <h2 className="font-medium">
+            {title}
+            <span className="absolute ml-1 -mt-0.5">
+              {isSubZone && <CountryTag zoneId={zoneId} />}
+            </span>
+          </h2>
+        </div>
+        <div className="flex flex-wrap items-center gap-1 text-center">
+          {isEstimated && (
+            <Badge type="warning" key={'badge-est'}>
+              Estimated
+            </Badge>
+          )}
+          {isAggregated && <Badge key={'badge-agg'}>Aggregated</Badge>}
+          <TimeDisplay className="whitespace-nowrap text-xs" />
+        </div>
       </div>
     </div>
   );

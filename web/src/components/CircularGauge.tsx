@@ -3,16 +3,15 @@ import { Label, Pie, PieChart } from 'recharts';
 const PIE_START_ANGLE = 90;
 
 export interface CircularGaugeProps {
-  percentage: number;
+  ratio: number;
   name: string;
 }
 
-export function CircularGauge({ percentage, name }: CircularGaugeProps) {
+export function CircularGauge({ ratio, name }: CircularGaugeProps) {
   // TODO: To improve performance, the background pie does not
   // need to rerender on percentage change
-  const value = percentage;
-  const data = [{ value }];
-  const percentageAsAngle = value * 360;
+  const data = [{ value: ratio }];
+  const percentageAsAngle = ratio * 360;
   const endAngle = PIE_START_ANGLE - percentageAsAngle;
 
   return (
@@ -35,7 +34,7 @@ export function CircularGauge({ percentage, name }: CircularGaugeProps) {
             position="center"
             offset={0}
             formatter={(value: number) => `${Math.round(value * 100)}%`}
-            value={percentage}
+            value={ratio}
           />
         </Pie>
         <Pie
