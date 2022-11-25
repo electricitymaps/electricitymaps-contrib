@@ -32,7 +32,7 @@ export interface ExchangeArrowData extends ExchangeOverview {
 
 export interface ZoneResponse {
   [key: string]: {
-    co2intensity: number;
+    co2intensity: number; //Non camel case sad face
     co2intensityProduction: number;
     countryCode: string;
     fossilFuelRatio: number;

@@ -5,10 +5,10 @@ import { GridState } from 'types';
 import { CountryTag } from '../zone/CountryTag';
 
 interface ZonelistProperties {
-  data: ZoneRow[];
+  data: ZoneRowType[];
 }
 
-export interface ZoneRow {
+export interface ZoneRowType {
   zoneId: keyof GridState;
   ranking?: number;
   color?: string;
@@ -17,7 +17,7 @@ export interface ZoneRow {
   zoneName?: string;
 }
 
-function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRow) {
+function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType) {
   return (
     <InternalLink
       className="group my-1 flex h-9 w-full items-center overflow-hidden rounded bg-gray-100 pl-3  text-left hover:bg-gray-200 dark:bg-gray-700"

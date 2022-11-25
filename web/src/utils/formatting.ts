@@ -1,16 +1,16 @@
-// import * as d3 from 'd3-format';
+import * as d3 from 'd3-format';
 // import * as translation from './translation';
 import { TimeAverages } from './constants';
 
-// const DEFAULT_NUM_DIGITS = 3;
+const DEFAULT_NUM_DIGITS = 3;
 
-// const formatPower = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
-//   // Assume MW input
-//   if (d == undefined || isNaN(d)) {
-//     return d;
-//   }
-//   return `${d3.format(`.${numberDigits}s`)(d * 1e6)}W`;
-// };
+export const formatPower = function (d: number, numberDigits = DEFAULT_NUM_DIGITS) {
+  // Assume MW input
+  if (d == undefined || Number.isNaN(d)) {
+    return d;
+  }
+  return `${d3.format(`.${numberDigits}s`)(d * 1e6)}W`;
+};
 // const formatCo2 = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
 //   let value = d;
 //   // Assume gCO₂ / h input

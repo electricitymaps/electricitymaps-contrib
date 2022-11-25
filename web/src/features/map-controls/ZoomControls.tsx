@@ -23,13 +23,13 @@ export default function ZoomControls(properties: ZoomControlsProperties): ReactE
       }}
       className="flex flex-col"
     >
-      <TooltipWrapper tooltipText={__('tooltips.zoomIn')}>
+      <TooltipWrapper tooltipContent={__('tooltips.zoomIn')}>
         <ToggleGroup.Item
           className="h-8 w-8 rounded rounded-b-none bg-white drop-shadow dark:bg-gray-900"
           value="zoomIn"
         ></ToggleGroup.Item>
       </TooltipWrapper>
-      <TooltipWrapper tooltipText={__('tooltips.zoomOut')}>
+      <TooltipWrapper tooltipContent={__('tooltips.zoomOut')}>
         <ToggleGroup.Item
           className="h-8 w-8 rounded  rounded-t-none bg-white drop-shadow dark:bg-gray-900"
           value="zoomOut"

@@ -21,6 +21,7 @@ specifiers:
   '@types/css-mediaquery': 0.1.1
   '@types/d3': ^7.4.0
   '@types/d3-array': ^3.0.3
+  '@types/d3-format': ^3.0.1
   '@types/d3-scale': ^4.0.2
   '@types/d3-selection': ^3.0.3
   '@types/d3-shape': ^3.1.0
@@ -44,6 +45,7 @@ specifiers:
   currency-symbol-map: ^5.1.0
   cypress: 10.10.0
   d3-array: ^3.2.0
+  d3-format: ^3.1.0
   d3-scale: ^4.0.2
   d3-selection: ^3.0.0
   d3-shape: ^3.1.0
@@ -117,6 +119,7 @@ dependencies:
   country-flag-icons: 1.5.5
   currency-symbol-map: 5.1.0
   d3-array: 3.2.0
+  d3-format: 3.1.0
   d3-scale: 4.0.2
   d3-selection: 3.0.0
   d3-shape: 3.1.0
@@ -149,6 +152,7 @@ devDependencies:
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 14.4.3_aaq3sbffpfe3jnxzm2zngsddei
   '@types/css-mediaquery': 0.1.1
+  '@types/d3-format': 3.0.1
   '@types/d3-scale': 4.0.2
   '@types/geojson': 7946.0.10
   '@types/mapbox-gl': 2.7.7
@@ -3497,7 +3501,6 @@ packages:
 
   /@types/d3-format/3.0.1:
     resolution: {integrity: sha512-5KY70ifCCzorkLuIkDe0Z9YTf9RR2CjBX1iaJG+rgM/cPP+sO+q9YdQ9WdhQcgPj1EQiJ2/0+yUkkziTG6Lubg==}
-    dev: false
 
   /@types/d3-geo/3.0.2:
     resolution: {integrity: sha512-DbqK7MLYA8LpyHQfv6Klz0426bQEf7bRTvhMy44sNGVyZoWn//B0c+Qbeg8Osi2Obdc9BLLXYAKpyWege2/7LQ==}

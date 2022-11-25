@@ -22,10 +22,15 @@ const MAP_STYLE = { version: 8, sources: {}, layers: [] };
 
 type FeatureId = string | number | undefined;
 
+interface Feature {
+  featureId: FeatureId;
+  zoneId: string;
+}
+
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage(): ReactElement {
-  const [hoveredFeatureId, setHoveredFeatureId] = useState<FeatureId>();
+  const [hoveredFeature, setHoveredFeature] = useState<Feature>();
   const [selectedFeatureId, setSelectedFeatureId] = useState<FeatureId>();
   const [cursorType, setCursorType] = useState<string>('grab');
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -164,21 +169,19 @@ export default function MapPage(): ReactElement {
     if (!map || !event.features) {
       return;
     }
-
     const feature = event.features[0];
 
     // Remove state from old feature if we are no longer hovering anything,
     // or if we are hovering a different feature than the previous one
-    if (hoveredFeatureId && (!feature || hoveredFeatureId !== feature.id)) {
+    if (hoveredFeature && (!feature || hoveredFeature.featureId !== feature.id)) {
       map.setFeatureState(
-        { source: ZONE_SOURCE, id: hoveredFeatureId },
+        { source: ZONE_SOURCE, id: hoveredFeature.featureId },
         { hover: false }
       );
     }
-
     if (feature && feature.id) {
       setCursorType('pointer');
-      setHoveredFeatureId(feature.id);
+      setHoveredFeature({ featureId: feature.id, zoneId: feature.properties?.zoneId });
       map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { hover: true });
 
       setMousePosition({
@@ -187,7 +190,7 @@ export default function MapPage(): ReactElement {
       });
     } else {
       setCursorType('grab');
-      setHoveredFeatureId(undefined);
+      setHoveredFeature(undefined);
     }
   };
 
@@ -197,12 +200,12 @@ export default function MapPage(): ReactElement {
       return;
     }
 
-    if (hoveredFeatureId !== null) {
+    if (hoveredFeature?.featureId !== null) {
       map.setFeatureState(
-        { source: ZONE_SOURCE, id: hoveredFeatureId },
+        { source: ZONE_SOURCE, id: hoveredFeature?.featureId },
         { hover: false }
       );
-      setHoveredFeatureId(undefined);
+      setHoveredFeature(undefined);
     }
   };
 
@@ -228,11 +231,13 @@ export default function MapPage(): ReactElement {
 
   return (
     <>
-      <MapTooltip
-        mousePositionX={mousePositionX}
-        mousePositionY={mousePositionY}
-        hoveredFeatureId={hoveredFeatureId}
-      ></MapTooltip>
+      {hoveredFeature && !isMoving && (
+        <MapTooltip
+          mousePositionX={mousePositionX}
+          mousePositionY={mousePositionY}
+          hoveredFeature={hoveredFeature}
+        />
+      )}
       <Map
         ref={mapReference}
         initialViewState={{
@@ -272,7 +277,6 @@ export default function MapPage(): ReactElement {
         <NavigationControl
           style={{
             marginRight: 12,
-
             marginTop: 98,
             width: '33px',
             boxShadow: '0px 1px 1px  rgb(0 0 0 / 0.1)',

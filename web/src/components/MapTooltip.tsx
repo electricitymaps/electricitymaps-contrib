@@ -1,68 +1,167 @@
+import * as Portal from '@radix-ui/react-portal';
+import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
 
-import * as Portal from '@radix-ui/react-portal';
-
-import * as Tooltip from '@radix-ui/react-tooltip';
+import useGetState from 'api/getState';
+import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
+import { CircularGauge } from 'components/CircularGauge';
+import { ZoneName } from 'components/ZoneName';
+import { useTranslation } from 'translation/translation';
+import { Mode } from 'utils/constants';
+import { formatDate } from 'utils/formatting';
+import {
+  productionConsumptionAtom,
+  selectedDatetimeIndexAtom,
+  timeAverageAtom,
+} from 'utils/state';
 
 interface MapTooltipProperties {
   mousePositionX: number;
   mousePositionY: number;
-  hoveredFeatureId: string | number | undefined;
+  hoveredFeature: { featureId: string | number | undefined; zoneId: string };
 }
-
-const ToolTipFlipBoundary = 100;
 
 const getTooltipPosition = (
   mousePositionX: number,
   mousePositionY: number,
-  screenHeight: number,
-  screenWidth: number
+  screenWidth: number,
+  tooltipWidth: number,
+  tooltipHeight: number
 ) => {
-  const mousePosition = { x: mousePositionX, y: mousePositionY };
-  if (screenWidth - mousePositionX < ToolTipFlipBoundary) {
-    mousePosition.x = mousePositionX - ToolTipFlipBoundary;
-  }
-  if (screenHeight - mousePositionY < ToolTipFlipBoundary) {
-    mousePosition.y = mousePositionY - ToolTipFlipBoundary;
-  }
-  if (mousePositionX < ToolTipFlipBoundary) {
-    mousePosition.x = mousePositionX + ToolTipFlipBoundary;
-  }
-  if (mousePositionY < ToolTipFlipBoundary) {
-    mousePosition.y = mousePositionY + ToolTipFlipBoundary;
-  }
-  return mousePosition;
-};
-export default function MapTooltip(properties: MapTooltipProperties): ReactElement {
-  const { mousePositionX, mousePositionY, hoveredFeatureId } = properties;
-  const screenWidth = window.innerWidth;
-  const screenHeight = window.innerHeight;
+  const ToolTipFlipBoundaryX = tooltipWidth + 30;
+  const ToolTipFlipBoundaryY = tooltipHeight - 40;
+  const xOffset = 10;
+  const yOffset = tooltipHeight - 40;
 
-  const mousePosition = getTooltipPosition(
+  const tooltipPosition = {
+    x: mousePositionX + xOffset,
+    y: mousePositionY - yOffset,
+  };
+  if (screenWidth - mousePositionX < ToolTipFlipBoundaryX) {
+    tooltipPosition.x = mousePositionX - tooltipWidth;
+  }
+  if (mousePositionY < ToolTipFlipBoundaryY) {
+    tooltipPosition.y = mousePositionY;
+  }
+  return tooltipPosition;
+};
+
+function TooltipInner({
+  zoneData,
+  date,
+  zoneId,
+}: {
+  date: string;
+  zoneId: string;
+  zoneData: {
+    co2intensity: number;
+    co2intensityProduction: number;
+    countryCode: string;
+    fossilFuelRatio: number;
+    fossilFuelRatioProduction: number;
+    renewableRatio: number;
+    renewableRatioProduction: number;
+    stateDatetime: number;
+  };
+}) {
+  const {
+    co2intensity,
+    co2intensityProduction,
+    fossilFuelRatio,
+    fossilFuelRatioProduction,
+    renewableRatio,
+    renewableRatioProduction,
+  } = zoneData;
+  const [currentMode] = useAtom(productionConsumptionAtom);
+  const isConsumption = currentMode === Mode.CONSUMPTION;
+
+  return (
+    <div className="w-full p-4 text-center">
+      <ZoneName zone={zoneId} textStyle="text-base" />
+      <div className="flex self-start text-xs">{date}</div>
+      <div className=" flex w-full flex-grow p-1 sm:pr-4">
+        <div className="flex w-full  flex-grow flex-row content-between justify-between">
+          <CarbonIntensitySquare
+            co2intensity={isConsumption ? co2intensity : co2intensityProduction}
+          />
+          <div className="px-4">
+            <CircularGauge
+              name="Low-carbon"
+              percentage={isConsumption ? fossilFuelRatio : fossilFuelRatioProduction}
+            />
+          </div>
+          <CircularGauge
+            name="Renewable"
+            percentage={isConsumption ? renewableRatio : renewableRatioProduction}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function MapTooltip(properties: MapTooltipProperties): ReactElement {
+  const { mousePositionX, mousePositionY, hoveredFeature } = properties;
+  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const { data } = useGetState(timeAverage);
+  const hoveredZoneData = data?.data?.zones[hoveredFeature.zoneId] ?? undefined;
+  const zoneData = hoveredZoneData
+    ? data?.data?.zones[hoveredFeature.zoneId][selectedDatetime]
+    : undefined;
+
+  const screenWidth = window.innerWidth;
+  const tooltipWithDataPositon = getTooltipPosition(
     mousePositionX,
     mousePositionY,
-    screenHeight,
-    screenWidth
+    screenWidth,
+    290,
+    176
   );
+  const emptyTooltipPosition = getTooltipPosition(
+    mousePositionX,
+    mousePositionY,
+    screenWidth,
+    176,
+    80
+  );
+  const { i18n } = useTranslation();
+  const formattedDate = formatDate(
+    new Date(selectedDatetime),
+    i18n.language,
+    timeAverage
+  );
+
+  if (zoneData) {
+    return (
+      <Portal.Root className="absolute left-0 top-0 h-0 w-0">
+        <div
+          className="relative h-[176px] w-[276px] rounded border bg-white  text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+          style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
+        >
+          <div>
+            <TooltipInner
+              zoneData={zoneData}
+              zoneId={hoveredFeature.zoneId}
+              date={formattedDate}
+            />
+          </div>
+        </div>
+      </Portal.Root>
+    );
+  }
   return (
-    <Portal.Root className="fixed left-5 top-10">
-      <Tooltip.Provider>
-        <Tooltip.Root open={Boolean(hoveredFeatureId)} delayDuration={0}>
-          <Tooltip.Trigger>
-            <div></div>
-          </Tooltip.Trigger>
-          <Tooltip.Portal>
-            <Tooltip.Content
-              className="TooltipContent relative  h-7 max-w-[164px] rounded border bg-white p-1 px-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
-              sideOffset={3}
-              side="top"
-              style={{ left: mousePosition.x, top: mousePosition.y }}
-            >
-              <div>dsss</div>
-            </Tooltip.Content>
-          </Tooltip.Portal>
-        </Tooltip.Root>
-      </Tooltip.Provider>
+    <Portal.Root className="absolute left-0 top-0 h-0 w-0">
+      <div
+        className="relative h-[80px] w-[176px] rounded border bg-white p-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+        style={{ left: emptyTooltipPosition.x, top: emptyTooltipPosition.y }}
+      >
+        <div>
+          <ZoneName zone={hoveredFeature.zoneId} textStyle="text-base" />
+          <div className="flex self-start text-xs">{formattedDate}</div>
+          <p className="text-start">No data available</p>
+        </div>
+      </div>
     </Portal.Root>
   );
 }

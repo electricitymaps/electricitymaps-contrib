@@ -1,14 +1,14 @@
 import { getCountryName, getZoneName } from 'translation/translation';
 import type { GridState } from 'types';
 import { getCO2IntensityByMode } from 'utils/helpers';
-import { ZoneRow } from './ZoneList';
+import { ZoneRowType } from './ZoneList';
 
 export const getRankedState = (
   data: GridState | undefined,
   getCo2colorScale: (co2intensity: number) => string,
   sortOrder: 'asc' | 'desc',
   datetimeIndex: string
-): ZoneRow[] => {
+): ZoneRowType[] => {
   if (!data) {
     return [];
   }
