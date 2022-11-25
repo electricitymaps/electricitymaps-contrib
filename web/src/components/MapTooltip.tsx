@@ -87,12 +87,12 @@ function TooltipInner({
           <div className="px-4">
             <CircularGauge
               name="Low-carbon"
-              percentage={isConsumption ? fossilFuelRatio : fossilFuelRatioProduction}
+              ratio={isConsumption ? fossilFuelRatio : fossilFuelRatioProduction}
             />
           </div>
           <CircularGauge
             name="Renewable"
-            percentage={isConsumption ? renewableRatio : renewableRatioProduction}
+            ratio={isConsumption ? renewableRatio : renewableRatioProduction}
           />
         </div>
       </div>
