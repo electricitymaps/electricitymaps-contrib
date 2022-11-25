@@ -88,7 +88,7 @@ function TimeAxis({
 
   if (datetimes === undefined || isLoading) {
     return (
-      <div className="flex h-[22px] w-full justify-center">
+      <div className="flex h-[22px]  w-full justify-center">
         <PulseLoader size={6} color={'#135836'} />
       </div>
     );
@@ -108,7 +108,12 @@ function TimeAxis({
       transform={transform}
       ref={ref}
     >
-      <g fill="none" textAnchor="middle" style={{ pointerEvents: 'none', transform }}>
+      <g
+        fill="none"
+        textAnchor="middle"
+        className="select-none"
+        style={{ pointerEvents: 'none', transform }}
+      >
         <path stroke="none" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
         {datetimes.map((v, index) =>
           renderTick(
