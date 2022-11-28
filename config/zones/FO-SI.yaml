@@ -4,9 +4,9 @@ capacity:
   solar: 0.24
   wind: 6
 contributors:
-- corradio
-- q--
-- VIKTORVAV99
+  - corradio
+  - q--
+  - VIKTORVAV99
 emissionFactors:
   direct:
     biomass:
