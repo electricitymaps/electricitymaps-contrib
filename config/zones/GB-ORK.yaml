@@ -1,69 +1,69 @@
 bounding_box:
-  - - -3.933338995999918
-    - 58.2306989600001
-  - - -1.8924861319999025
-    - 59.86090729400016
+- - -3.933338995999918
+  - 58.2306989600001
+- - -1.8924861319999025
+  - 59.86090729400016
 capacity:
   solar: 1.2
   wind: 48
 contributors:
-  - systemcatch
-  - maxbellec
+- systemcatch
+- maxbellec
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 500.1418085304128
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 461.82122772629816
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 479.96951155133394
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 460.17442286784836
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 500.1418085304128
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 461.82122772629816
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 479.96951155133394
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 460.17442286784836
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 500.1418085304128
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 461.82122772629816
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 479.96951155133394
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 460.17442286784836
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 500.1418085304128
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 461.82122772629816
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 479.96951155133394
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 460.17442286784836
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 78.11256644218723
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 91.9098107128763
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 75.11316627665826
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 93.10669243460696
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 78.11256644218723
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 91.9098107128763
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 75.11316627665826
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 93.10669243460696
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 78.11256644218723
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 91.9098107128763
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 75.11316627665826
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 93.10669243460696
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 78.11256644218723
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 91.9098107128763
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 75.11316627665826
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 93.10669243460696
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -74,66 +74,66 @@ emissionFactors:
       value: 13
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2018 average
-      datetime: '2018-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.014978609084899046
-        coal: 0.016268084661144405
-        gas: 0.10059253916212145
-        geothermal: 0.0
-        hydro: 0.004479261713856835
-        hydro discharge: 0.0017188136590886105
-        nuclear: 0.0476135641607624
-        oil: 8.32956797891947e-05
-        solar: 0.0025374494453676783
-        unknown: 0.7824860457816437
-        wind: 0.02912630723070798
-    - _source: electricityMap, 2019 average
-      datetime: '2019-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.019458438088055186
-        coal: 0.008071203414388365
-        gas: 0.1394045946161127
-        geothermal: 0.0
-        hydro: 0.005353305209678546
-        hydro discharge: 0.0021079806930353003
-        nuclear: 0.06996051344592186
-        oil: 0.00019049143772963527
-        solar: 0.01164297176415335
-        unknown: 0.7015862166690284
-        wind: 0.04234205737650967
-    - _source: electricityMap, 2020 average
-      datetime: '2020-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.01836446841655419
-        coal: 0.004405722890542708
-        gas: 0.11027768517963314
-        geothermal: 0.0
-        hydro: 0.005164619647807448
-        hydro discharge: 0.0016606279034816621
-        nuclear: 0.053148095145022944
-        oil: 0.00013570911245034642
-        solar: 0.009983060477264175
-        unknown: 0.757095706604353
-        wind: 0.039863510395723604
-    - _source: electricityMap, 2021 average
-      datetime: '2021-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.02221145799700354
-        coal: 0.007063866075719226
-        gas: 0.13999198375325847
-        geothermal: 0.0
-        hydro: 0.007248624915782768
-        hydro discharge: 0.002650416715439189
-        nuclear: 0.06619918266781534
-        oil: 0.00013887004021062506
-        solar: 0.012662224430234128
-        unknown: 0.7000304069719681
-        wind: 0.04240817199784188
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.014978609084899046
+      coal: 0.016268084661144405
+      gas: 0.10059253916212145
+      geothermal: 0.0
+      hydro: 0.004479261713856835
+      hydro discharge: 0.0017188136590886105
+      nuclear: 0.0476135641607624
+      oil: 8.32956797891947e-05
+      solar: 0.0025374494453676783
+      unknown: 0.7824860457816437
+      wind: 0.02912630723070798
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.019458438088055186
+      coal: 0.008071203414388365
+      gas: 0.1394045946161127
+      geothermal: 0.0
+      hydro: 0.005353305209678546
+      hydro discharge: 0.0021079806930353003
+      nuclear: 0.06996051344592186
+      oil: 0.00019049143772963527
+      solar: 0.01164297176415335
+      unknown: 0.7015862166690284
+      wind: 0.04234205737650967
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.01836446841655419
+      coal: 0.004405722890542708
+      gas: 0.11027768517963314
+      geothermal: 0.0
+      hydro: 0.005164619647807448
+      hydro discharge: 0.0016606279034816621
+      nuclear: 0.053148095145022944
+      oil: 0.00013570911245034642
+      solar: 0.009983060477264175
+      unknown: 0.757095706604353
+      wind: 0.039863510395723604
+  - _source: electricityMap, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.02221145799700354
+      coal: 0.007063866075719226
+      gas: 0.13999198375325847
+      geothermal: 0.0
+      hydro: 0.007248624915782768
+      hydro discharge: 0.002650416715439189
+      nuclear: 0.06619918266781534
+      oil: 0.00013887004021062506
+      solar: 0.012662224430234128
+      unknown: 0.7000304069719681
+      wind: 0.04240817199784188
 flag_file_name: gb.png
 isLowCarbon:
   unknown:

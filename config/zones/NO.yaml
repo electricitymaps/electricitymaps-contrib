@@ -11,9 +11,18 @@ capacity:
   unknown: 112.6
   wind: 5056
 contributors:
-  - corradio
+- corradio
 emissionFactors:
+  direct:
+    biomass:
+      datetime: '2021-01-01'
+      source: EU-ETS 2021
+      value: 0.0
   lifecycle:
+    biomass:
+      datetime: '2021-01-01'
+      source: IPCC 2014; EU-ETS 2021
+      value: 230.0
     coal:
       datetime: '2012-01-01'
       source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
@@ -38,9 +47,9 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 subZoneNames:
-  - NO-NO1
-  - NO-NO2
-  - NO-NO3
-  - NO-NO4
-  - NO-NO5
+- NO-NO1
+- NO-NO2
+- NO-NO3
+- NO-NO4
+- NO-NO5
 timezone: Europe/Oslo

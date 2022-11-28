@@ -1,5 +1,14 @@
 emissionFactors:
+  direct:
+    biomass:
+      datetime: '2021-01-01'
+      source: EU-ETS 2021
+      value: 0.0
   lifecycle:
+    biomass:
+      datetime: '2021-01-01'
+      source: IPCC 2014; EU-ETS 2021
+      value: 230.0
     coal:
       datetime: '2014-01-01'
       source: IPCC 2014
