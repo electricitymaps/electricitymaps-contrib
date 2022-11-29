@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/no-null */
-import TooltipWrapper from 'components/TooltipWrapper';
+import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { useMemo } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { resolvePath } from 'react-router-dom';

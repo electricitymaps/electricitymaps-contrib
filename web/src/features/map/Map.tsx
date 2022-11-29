@@ -6,7 +6,7 @@ import { Layer, Map, MapRef, NavigationControl, Source } from 'react-map-gl';
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 
 import useGetState from 'api/getState';
-import MapTooltip from 'components/MapTooltip';
+import MapTooltip from 'components/tooltips/MapTooltip';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import { useAtom } from 'jotai';
 import { useLocation, useNavigate } from 'react-router-dom';

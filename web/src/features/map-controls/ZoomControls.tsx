@@ -3,7 +3,7 @@ import * as ToggleGroup from '@radix-ui/react-toggle-group';
 
 import { useTranslation } from 'translation/translation';
 import { NavigationControl } from 'react-map-gl';
-import TooltipWrapper from 'components/TooltipWrapper';
+import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 
 interface ZoomControlsProperties {}
 
