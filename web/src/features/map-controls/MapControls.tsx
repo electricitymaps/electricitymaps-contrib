@@ -1,15 +1,17 @@
 import MapButton from 'components/MapButton';
-import type { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 import { useTranslation } from 'translation/translation';
 import { HiLanguage } from 'react-icons/hi2';
 import { HiOutlineSun } from 'react-icons/hi';
 import { FiWind } from 'react-icons/fi';
+import LanguageSelector from './LanguageSelector';
 interface MapControlsProperties {}
 
 export default function MapControls(properties: MapControlsProperties): ReactElement {
   const { __ } = useTranslation();
+  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
 
   return (
     <div className="z-1000 pointer-events-none  absolute right-3 top-3 flex flex-col items-end">
@@ -22,10 +24,11 @@ export default function MapControls(properties: MapControlsProperties): ReactEle
         icon={<HiLanguage size={21} />}
         tooltipText={__('tooltips.selectLanguage')}
         className="mt-5"
-        onClick={() => {
-          console.log('change the language');
-        }}
+        onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
       />
+      {isLanguageSelectorOpen && (
+        <LanguageSelector setLanguageSelectorOpen={setIsLanguageSelectorOpen} />
+      )}
       <MapButton
         icon={<FiWind size={18} />}
         tooltipText={__('tooltips.wind')}
