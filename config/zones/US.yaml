@@ -6,6 +6,7 @@ bounding_box:
 bypassedSubZones:
   - US-AK
   - US-FLA-HST
+  - US-SE-SEPA
   - US-HI-HA
   - US-HI-KA
   - US-HI-KH
