@@ -70,7 +70,7 @@ emissionFactors:
         value: 92.45529931962075
     unknown:
       _comment:
-        'Source ENTSOE, Swiss government and Electricity Maps: https://github.com/tmrowco/Electricity Maps-contrib/pull/2898
+        'Source ENTSOE, Swiss government and Electricity Maps: https://github.com/electricitymaps/electricitymaps-contrib/pull/2898
         and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/'
       source: 52% hydro storage, 48% unknown thermal
       value: 288
