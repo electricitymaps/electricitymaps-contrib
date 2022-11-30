@@ -5,7 +5,7 @@ import { bisectLeft } from 'd3-array';
 
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
-import { GenerationType, StorageType, ZoneDetail } from 'types';
+import { ElectricityStorageType, GenerationType, ZoneDetail } from 'types';
 import { modeOrder } from 'utils/constants';
 
 export const detectHoveredDatapointIndex = (
@@ -49,7 +49,7 @@ export const getTimeScale = (width: number, startTime: Date, endTime: Date) =>
     .domain([new Date(startTime), new Date(endTime)])
     .range([0, width]);
 
-export const getStorageKey = (name: string): StorageType | undefined => {
+export const getStorageKey = (name: string): ElectricityStorageType | undefined => {
   switch (name) {
     case 'hydro storage': {
       return 'hydro';
@@ -89,3 +89,8 @@ export function getTotalElectricity(zoneData: ZoneDetail, displayByEmissions: bo
     ? productionValue + zoneData.totalCo2Discharge + zoneData.totalCo2Import // gCO₂eq/h
     : productionValue + zoneData.totalDischarge + zoneData.totalImport;
 }
+
+export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
+  const index = datetimes.findIndex((d) => d.getTime() === currentDate.getTime());
+  return datetimes[index + 1];
+};

@@ -35,7 +35,7 @@ export default function MapPage(): ReactElement {
   const [cursorType, setCursorType] = useState<string>('grab');
   const [timeAverage] = useAtom(timeAverageAtom);
   const [_, updateIsLoadingMap] = useAtom(loadingMapAtom);
-  const [datetimeIndex] = useAtom(selectedDatetimeIndexAtom);
+  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [isMoving, setIsMoving] = useState<boolean>(false);
   const [{ mousePositionX, mousePositionY }, setMousePosition] = useState({
     mousePositionX: 0,
@@ -105,8 +105,8 @@ export default function MapPage(): ReactElement {
       const zone = data.data?.zones[zoneId];
 
       const co2intensity =
-        zone && zone[datetimeIndex]
-          ? getCO2IntensityByMode(zone[datetimeIndex], 'consumption')
+        zone && zone[selectedDatetime.datetimeString]
+          ? getCO2IntensityByMode(zone[selectedDatetime.datetimeString], 'consumption')
           : undefined;
 
       const fillColor = co2intensity
@@ -130,7 +130,7 @@ export default function MapPage(): ReactElement {
         );
       }
     }
-  }, [mapReference, geometries, data, getCo2colorScale, datetimeIndex]);
+  }, [mapReference, geometries, data, getCo2colorScale, selectedDatetime]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();

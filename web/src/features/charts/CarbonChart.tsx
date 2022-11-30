@@ -33,7 +33,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         height="8em"
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}
-        selectedZoneTimeIndex={0}
       />
     </div>
   );

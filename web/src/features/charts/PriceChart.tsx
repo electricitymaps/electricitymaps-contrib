@@ -36,7 +36,6 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
         height="6em"
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}
-        selectedZoneTimeIndex={0}
         isOverlayEnabled={false}
       />
     </div>

@@ -2,7 +2,8 @@
 /* eslint-disable react/jsx-handler-names */
 import { area, curveStepAfter } from 'd3-shape';
 import React from 'react';
-import { detectHoveredDatapointIndex, noop } from '../graphUtils';
+import { detectHoveredDatapointIndex, getNextDatetime, noop } from '../graphUtils';
+import { AreaGraphElement } from '../types';
 
 interface AreaGraphLayersProps {
   layers: any[];
@@ -67,21 +68,39 @@ function AreaGraphLayers({
       {layers.map((layer, ind) => {
         const isGradient = typeof layer.fill === 'function';
         const gradientId = `areagraph-gradient-${layer.key}`;
-        // The datapoint valid until the next point
-        // However, for the last point, we won't have a next point
-        // Therefore, we add one here in order to make sure
-        // the last point is visible for the following interval
-        const lastDataPoint: any = [...layer.datapoints.at(-1)];
-        lastDataPoint.data = {
-          ...layer.datapoints.at(-1)?.data,
-          datetime: datetimes[layer.datapoints.length],
-        };
-        const datapoints = [...layer.datapoints, lastDataPoint];
+        // A datapoint valid until the next one
+        // However, for the last point (or for missing points),
+        // we won't have a next point.
+        // This affects the way step curves are plotted.
+        // Therefore, we copy all datapoints and make sure
+        // both a start and an end are present to ensure
+        // proper display of missing points
+        const datapoints = [
+          ...layer.datapoints.map((d: { data: AreaGraphElement }) => [
+            {
+              ...d,
+              data: {
+                ...d.data,
+                datetime: d.data.datetime,
+              },
+            },
+            {
+              ...d,
+              data: {
+                ...d.data,
+                // Here we use a different array which
+                // will contain the last datetime.
+                datetime: getNextDatetime(datetimes, d.data.datetime),
+              },
+              isEnd: true,
+            },
+          ]),
+        ].flat();
 
         return (
           <React.Fragment key={layer.key}>
             <path
-              className={`area layer ${layer.key}`}
+              className={layers.length > 1 ? 'hover:opacity-75' : ''}
               style={{ cursor: 'pointer' }}
               stroke={layer.stroke}
               fill={isGradient ? `url(#${gradientId})` : layer.fill}
@@ -107,7 +126,7 @@ function AreaGraphLayers({
               >
                 {datapoints.map((d) => (
                   <stop
-                    key={d.data.datetime}
+                    key={`${d.data.datetime}${d.isEnd}`}
                     offset={`${((timeScale(d.data.datetime) - x1) / (x2 - x1)) * 100}%`}
                     stopColor={layer.fill(d)}
                   />

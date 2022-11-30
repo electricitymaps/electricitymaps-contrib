@@ -20,8 +20,13 @@ export default function RankingPanel(): ReactElement {
     setSearchTerm(lowerCase);
   };
 
-  const { isLoading, data } = useGetState(timeAverage);
-  const rankedList = getRankedState(data, getCo2colorScale, 'asc', selectedDatetime);
+  const { isLoading, isSuccess, isError, error, data } = useGetState();
+  const rankedList = getRankedState(
+    data,
+    getCo2colorScale,
+    'asc',
+    selectedDatetime.datetimeString
+  );
   const filteredList = rankedList.filter((zone) => {
     if (zone.countryName && zone.countryName.toLowerCase().includes(searchTerm)) {
       return true;

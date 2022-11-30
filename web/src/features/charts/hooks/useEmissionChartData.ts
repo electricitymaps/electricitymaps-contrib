@@ -36,8 +36,6 @@ export function useEmissionChartData() {
     .domain([0, maxEmissions])
     .range(['yellow', 'brown']);
 
-  console.log(maxEmissions, emissionsColorScale(0), emissionsColorScale(maxEmissions));
-
   const layerKeys = ['emissions'];
   const layerFill = (key: string) => (d: { data: AreaGraphElement }) =>
     emissionsColorScale(d.data.layerData[key]);

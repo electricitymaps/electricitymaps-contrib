@@ -104,10 +104,10 @@ export default function MapTooltip(properties: MapTooltipProperties): ReactEleme
   const { mousePositionX, mousePositionY, hoveredFeature } = properties;
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
-  const { data } = useGetState(timeAverage);
+  const { data } = useGetState();
   const hoveredZoneData = data?.data?.zones[hoveredFeature.zoneId] ?? undefined;
   const zoneData = hoveredZoneData
-    ? data?.data?.zones[hoveredFeature.zoneId][selectedDatetime]
+    ? data?.data?.zones[hoveredFeature.zoneId][selectedDatetime.datetimeString]
     : undefined;
 
   const screenWidth = window.innerWidth;
@@ -127,7 +127,7 @@ export default function MapTooltip(properties: MapTooltipProperties): ReactEleme
   );
   const { i18n } = useTranslation();
   const formattedDate = formatDate(
-    new Date(selectedDatetime),
+    new Date(selectedDatetime.datetimeString),
     i18n.language,
     timeAverage
   );

@@ -1,6 +1,8 @@
 /* eslint-disable react/display-name */
 import React, { useEffect } from 'react';
 
+const CIRCLE_RADIUS = 6;
+
 const GraphHoverLine = React.memo(
   ({
     layers,
@@ -27,7 +29,12 @@ const GraphHoverLine = React.memo(
     if (interval) {
       x += 0.5 * interval;
     }
-    const y = datapoint && Number.isFinite(datapoint[1]) && valueScale(datapoint[1]);
+    let y = datapoint && Number.isFinite(datapoint[1]) && valueScale(datapoint[1]);
+
+    if (datapoint && datapoint[0] < 0) {
+      // For negative values, we push the circle below the x-axis
+      y -= datapoint[0] + CIRCLE_RADIUS;
+    }
 
     const showVerticalLine = Number.isFinite(x);
     const showMarker = Number.isFinite(x) && Number.isFinite(y);
@@ -80,7 +87,7 @@ const GraphHoverLine = React.memo(
         )}
         {showMarker && (
           <circle
-            r="6"
+            r={CIRCLE_RADIUS}
             style={{
               display: 'block',
               pointerEvents: 'none',

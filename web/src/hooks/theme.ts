@@ -20,14 +20,13 @@ export function useTheme(): Theme {
 
 export function useCo2ColorScale() {
   const theme = useTheme();
+  return useMemo(() => getCo2ColorScale(theme), [theme]);
+}
 
-  return useMemo(
-    () =>
-      scaleLinear<number, string>()
-        .domain(theme.co2Scale.steps)
-        .range(theme.co2Scale.colors)
-        .unknown(theme.clickableFill)
-        .clamp(true), //TODO
-    [theme]
-  );
+export function getCo2ColorScale(theme: Theme) {
+  return scaleLinear<number, string>()
+    .domain(theme.co2Scale.steps)
+    .range(theme.co2Scale.colors)
+    .unknown(theme.clickableFill)
+    .clamp(true);
 }

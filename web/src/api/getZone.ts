@@ -23,14 +23,17 @@ const getZone = async (
 
   if (response.ok) {
     const { data } = (await response.json()) as { data: ZoneDetails };
-    // TODO: Fix this in app-backend
-    // @ts-ignore: app-backend should not return array
+    // TODO: app-backend should not return array
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return data.length > 0 ? data[0] : data;
   }
 
   throw new Error(await response.text());
 };
 
+// TODO: The frontend (graphs) expects that the datetimes in state are the same as in zone
+// should we add a check for this?
 const useGetZone = (
   options?: UseQueryOptions<ZoneDetails>
 ): UseQueryResult<ZoneDetails> => {

@@ -8,7 +8,7 @@ export function TimeDisplay({ className }: { className?: string }) {
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
 
-  const date = new Date(selectedDatetime);
+  const date = new Date(selectedDatetime.datetimeString);
 
   return <p className={className}>{formatDate(date, i18n.language, timeAverage)}</p>;
 }

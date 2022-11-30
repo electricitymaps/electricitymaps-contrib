@@ -32,7 +32,6 @@ function BreakdownChart({ datetimes, timeAverage }: BreakdownChartProps) {
         isOverlayEnabled={false} // TODO: create overlay
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}
-        selectedZoneTimeIndex={0}
       />
     </div>
   );

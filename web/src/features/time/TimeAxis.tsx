@@ -102,18 +102,8 @@ function TimeAxis({
   const [x1, x2] = scale.range();
 
   return (
-    <svg
-      // className="h-[22px] w-full overflow-visible"
-      className={className}
-      transform={transform}
-      ref={ref}
-    >
-      <g
-        fill="none"
-        textAnchor="middle"
-        className="select-none"
-        style={{ pointerEvents: 'none', transform }}
-      >
+    <svg className={className} transform={transform} ref={ref}>
+      <g fill="none" textAnchor="middle" style={{ pointerEvents: 'none', transform }}>
         <path stroke="none" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
         {datetimes.map((v, index) =>
           renderTick(
