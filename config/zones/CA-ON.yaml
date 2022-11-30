@@ -113,6 +113,6 @@ parsers:
   price: CA_ON.fetch_price
   production: CA_ON.fetch_production
 sources:
-  Mallia, E., Lewis, G. Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada (2013):
+  Life cycle greenhouse gas emissions of electricity generation in the province of Ontario Canada 2013:
     link: https://doi.org/10.1007/s11367-012-0501-0
 timezone: America/Toronto
