@@ -18,7 +18,8 @@ import {
 interface MapTooltipProperties {
   mousePositionX: number;
   mousePositionY: number;
-  hoveredFeature: { featureId: string | number | undefined; zoneId: string };
+  hoveredFeature?: { featureId: string | number | undefined; zoneId: string };
+  enabled: boolean;
 }
 
 const getTooltipPosition = (
@@ -101,10 +102,16 @@ function TooltipInner({
 }
 
 export default function MapTooltip(properties: MapTooltipProperties): ReactElement {
-  const { mousePositionX, mousePositionY, hoveredFeature } = properties;
+  const { mousePositionX, mousePositionY, hoveredFeature, enabled } = properties;
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
   const { data } = useGetState(timeAverage);
+  const { i18n } = useTranslation();
+
+  if (!enabled || !hoveredFeature) {
+    return null;
+  }
+
   const hoveredZoneData = data?.data?.zones[hoveredFeature.zoneId] ?? undefined;
   const zoneData = hoveredZoneData
     ? data?.data?.zones[hoveredFeature.zoneId][selectedDatetime]
@@ -125,7 +132,7 @@ export default function MapTooltip(properties: MapTooltipProperties): ReactEleme
     176,
     80
   );
-  const { i18n } = useTranslation();
+
   const formattedDate = formatDate(
     new Date(selectedDatetime),
     i18n.language,
