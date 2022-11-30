@@ -18,10 +18,10 @@ WIND_FORECAST_URL = "https://www.smartgriddashboard.com/DashboardService.svc/dat
 EXCHANGE_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=interconnection&region=ROI&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
 
 KINDS_URL = {
-    "demand":  DEMAND_URL,
-    "demand_forecast":  DEMAND_FORECAST_URL,
-    "wind":WIND_URL,
-    "exchange":  EXCHANGE_URL,
+    "demand": DEMAND_URL,
+    "demand_forecast": DEMAND_FORECAST_URL,
+    "wind": WIND_URL,
+    "exchange": EXCHANGE_URL,
 }
 
 
@@ -38,9 +38,7 @@ def fetch_data(
     assert kind != ""
 
     r = session or Session()
-    resp = r.get(
-        KINDS_URL[kind].format(dt=target_datetime.strftime("%d-%b-%Y"))
-    )
+    resp = r.get(KINDS_URL[kind].format(dt=target_datetime.strftime("%d-%b-%Y")))
     try:
         data = resp.json().get("Rows", {})
     except json.decoder.JSONDecodeError:
@@ -72,24 +70,21 @@ def fetch_production(
     exchange_data = fetch_data(
         target_datetime=target_datetime, kind="exchange", session=session
     )
-    assert len(demand_data) >0
-    assert len(wind_data) >0
-    assert len(exchange_data) >0
+    assert len(demand_data) > 0
+    assert len(wind_data) > 0
+    assert len(exchange_data) > 0
 
     production = []
     for item in demand_data:
         dt = item["EffectiveTime"]
         wind_dt = [item for item in wind_data if item["EffectiveTime"] == dt]
-        if len(wind_dt)>0:
-            wind_prod = wind_dt[0][
-            "Value"
-        ]
-        else: wind_prod=0
+        if len(wind_dt) > 0:
+            wind_prod = wind_dt[0]["Value"]
+        else:
+            wind_prod = 0
         exchange_dt = [item for item in exchange_data if item["EffectiveTime"] == dt]
-        if len(exchange_dt)>0:
-            exchange = exchange_dt[0][
-            "Value"
-        ]
+        if len(exchange_dt) > 0:
+            exchange = exchange_dt[0]["Value"]
         else:
             exchange = 0
         data_point = {
@@ -117,25 +112,30 @@ def fetch_exchange(
 ) -> list:
     """gets exchanges values for the East-West interconnector (GB->IE)"""
     if target_datetime is None:
-        target_datetime =  arrow.utcnow().datetime
+        target_datetime = arrow.utcnow().datetime
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    exchange_data = fetch_data(target_datetime=target_datetime, kind="exchange",session=session)
+    exchange_data = fetch_data(
+        target_datetime=target_datetime, kind="exchange", session=session
+    )
 
-    assert len(exchange_data)>0
-    filtered_exchanges = [item for item in exchange_data if item['FieldName']== 'INTER_EWIC']
+    assert len(exchange_data) > 0
+    filtered_exchanges = [
+        item for item in exchange_data if item["FieldName"] == "INTER_EWIC"
+    ]
     exchange = []
     for item in filtered_exchanges:
         data_point = {
-        "netFlow": -item["Value"],
-        "sortedZoneKeys": sortedZoneKeys,
-        "datetime": datetime.strptime(item["EffectiveTime"], "%d-%b-%Y %H:%M:%S").replace(
-                tzinfo=pytz.timezone("Europe/Dublin")
-            ),
-        "source": "eirgridgroup.com",
-    }
-        exchange +=[data_point]
+            "netFlow": -item["Value"],
+            "sortedZoneKeys": sortedZoneKeys,
+            "datetime": datetime.strptime(
+                item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
+            ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
+            "source": "eirgridgroup.com",
+        }
+        exchange += [data_point]
     return exchange
+
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
@@ -144,27 +144,29 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """ gets consumption values for ROI """
+    """gets consumption values for ROI"""
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
 
-    demand_data = fetch_data(target_datetime=target_datetime, kind="demand",session=session)
+    demand_data = fetch_data(
+        target_datetime=target_datetime, kind="demand", session=session
+    )
 
-    assert len(demand_data)>0
+    assert len(demand_data) > 0
 
     demand = []
     for item in demand_data:
         data_point = {
-        "zone_key":zone_key,
-        "consumption":item["Value"],
-        "datetime": datetime.strptime(item["EffectiveTime"], "%d-%b-%Y %H:%M:%S").replace(
-                tzinfo=pytz.timezone("Europe/Dublin")
-            ),
-
-        "source": "eirgridgroup.com",
-    }
-        demand +=[data_point]
+            "zone_key": zone_key,
+            "consumption": item["Value"],
+            "datetime": datetime.strptime(
+                item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
+            ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
+            "source": "eirgridgroup.com",
+        }
+        demand += [data_point]
     return demand
+
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
@@ -173,24 +175,26 @@ def fetch_consumption_forecast(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """ gets forecasted consumption values for ROI """
-    demand_forecast_data = fetch_data(target_datetime=target_datetime, kind="demand_forecast",session=session)
+    """gets forecasted consumption values for ROI"""
+    demand_forecast_data = fetch_data(
+        target_datetime=target_datetime, kind="demand_forecast", session=session
+    )
 
-    assert len(demand_forecast_data)>0
+    assert len(demand_forecast_data) > 0
 
     demand_forecast = []
     for item in demand_forecast_data:
         data_point = {
-        "zone_key":zone_key,
-        "consumption":item["Value"],
-        "datetime": datetime.strptime(item["EffectiveTime"], "%d-%b-%Y %H:%M:%S").replace(
-                tzinfo=pytz.timezone("Europe/Dublin")
-            ),
-
-        "source": "eirgridgroup.com",
-    }
-        demand_forecast +=[data_point]
+            "zone_key": zone_key,
+            "consumption": item["Value"],
+            "datetime": datetime.strptime(
+                item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
+            ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
+            "source": "eirgridgroup.com",
+        }
+        demand_forecast += [data_point]
     return demand_forecast
+
 
 @refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
@@ -205,20 +209,21 @@ def fetch_wind_solar_forecasts(
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
 
-    wind_forecast_data = fetch_data(target_datetime=target_datetime, kind="wind_forecast",session=session)
+    wind_forecast_data = fetch_data(
+        target_datetime=target_datetime, kind="wind_forecast", session=session
+    )
 
-    assert len(wind_forecast_data)>0
+    assert len(wind_forecast_data) > 0
 
     wind_forecast = []
     for item in wind_forecast_data:
         data_point = {
-        "zone_key":zone_key,
-        "production":{"wind":item["Value"]},
-        "datetime": datetime.strptime(item["EffectiveTime"], "%d-%b-%Y %H:%M:%S").replace(
-                tzinfo=pytz.timezone("Europe/Dublin")
-            ),
-
-        "source": "eirgridgroup.com",
-    }
-        wind_forecast +=[data_point]
+            "zone_key": zone_key,
+            "production": {"wind": item["Value"]},
+            "datetime": datetime.strptime(
+                item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
+            ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
+            "source": "eirgridgroup.com",
+        }
+        wind_forecast += [data_point]
     return wind_forecast
