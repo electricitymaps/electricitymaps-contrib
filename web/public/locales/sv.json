@@ -713,7 +713,7 @@
       "countryName": "Storbritannien",
       "zoneName": "Orkneyöarna"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Storbritannien",
       "zoneName": "Shetlandsöarna"
     },
@@ -1843,7 +1843,7 @@
       "zoneName": "Zimbabwe"
     },
     "US": {
-      "zoneName": "Amerikas förenta stater"
+      "zoneName": "Sammanhängande Amerikas förenta stater"
     },
     "US-AK": {
       "countryName": "USA",
