@@ -16,7 +16,7 @@ emissionFactors:
       source: assumes 43% solar PV and 57% wind
       value: 26
 fallbackZoneMixes:
-  _source: electricityMap
+  _source: Electricity Maps
   powerOriginRatios:
     value:
       battery discharge: 0
