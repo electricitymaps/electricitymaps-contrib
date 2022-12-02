@@ -6,7 +6,7 @@ import TimeAxis from 'features/time/TimeAxis'; // TODO: Move to a shared folder
 import { useAtom } from 'jotai';
 import React, { useMemo, useState } from 'react';
 import { TimeAverages } from 'utils/constants';
-import { selectedDatetimeIndexAtom } from 'utils/state';
+import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useRefWidthHeightObserver } from 'utils/viewport';
 import { getTimeScale, isEmpty } from '../graphUtils';
 import { AreaGraphElement } from '../types';

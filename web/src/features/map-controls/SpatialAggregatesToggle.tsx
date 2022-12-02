@@ -2,7 +2,7 @@ import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
 import { SpatialAggregate, ToggleOptions } from 'utils/constants';
-import { spatialAggregateAtom } from 'utils/state';
+import { spatialAggregateAtom } from 'utils/state/atoms';
 
 export default function SpatialAggregatesToggle(): ReactElement {
   const options = [

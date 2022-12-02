@@ -6,7 +6,7 @@ import { ElectricityStorageType, ZoneDetail } from 'types';
 
 import { Mode, modeColor, modeOrder } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
-import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state';
+import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 import { getGenerationTypeKey } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 

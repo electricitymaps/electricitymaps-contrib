@@ -7,7 +7,7 @@ import { useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 import { dateToDatetimeString } from 'utils/helpers';
-import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state';
+import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
 import TimeAxis from './TimeAxis';
 
 export default function TimeController() {

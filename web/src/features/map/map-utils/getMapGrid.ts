@@ -3,7 +3,7 @@ import { useTheme } from 'hooks/theme';
 import { useAtom } from 'jotai';
 import { useMemo } from 'react';
 import { MapGeometries } from 'types';
-import { spatialAggregateAtom } from 'utils/state';
+import { spatialAggregateAtom } from 'utils/state/atoms';
 
 export const useGetGeometries = (): MapGeometries => {
   const [spatialAggregate] = useAtom(spatialAggregateAtom);

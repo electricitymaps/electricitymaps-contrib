@@ -2,7 +2,7 @@ import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
 import { Mode } from 'utils/constants';
-import { productionConsumptionAtom } from 'utils/state';
+import { productionConsumptionAtom } from 'utils/state/atoms';
 
 export default function ConsumptionProductionToggle(): ReactElement {
   const options = [

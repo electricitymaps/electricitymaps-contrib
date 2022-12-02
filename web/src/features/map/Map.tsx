@@ -11,7 +11,11 @@ import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import { useAtom } from 'jotai';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getCO2IntensityByMode } from 'utils/helpers';
-import { loadingMapAtom, selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state';
+import {
+  loadingMapAtom,
+  selectedDatetimeIndexAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 

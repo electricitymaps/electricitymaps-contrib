@@ -67,3 +67,11 @@ export const isLeftPanelOpenAtom = atomWithStorage(
   false,
   createJSONStorage(() => sessionStorage)
 );
+
+export const hasOnboardingBeenSeenAtom = atomWithCustomStorage({
+  key: 'onboardingSeen',
+  initialValue: 'false',
+  options: {
+    syncWithLocalStorage: true,
+  },
+});

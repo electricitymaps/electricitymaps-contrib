@@ -28,6 +28,7 @@ const config = {
       base: '0.875rem',
       lg: '1.3rem',
       xl: '1.5rem',
+      '2xl':'3rem'
     },
   },
   experimental: { optimizeUniversalDefaults: true },

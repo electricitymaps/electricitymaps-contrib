@@ -2,7 +2,7 @@ import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import type { GridState } from 'types';
-import { timeAverageAtom } from 'utils/state';
+import { timeAverageAtom } from 'utils/state/atoms';
 import { getBasePath, getHeaders, QUERY_KEYS, REFETCH_INTERVAL_MS } from './helpers';
 
 const getState = async (timeAverage: string): Promise<GridState> => {

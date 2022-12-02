@@ -10,7 +10,7 @@ import {
   displayByEmissionsAtom,
   selectedDatetimeIndexAtom,
   timeAverageAtom,
-} from 'utils/state';
+} from 'utils/state/atoms';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import { ZoneHeader } from './ZoneHeader';
 

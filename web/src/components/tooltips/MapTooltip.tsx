@@ -13,7 +13,7 @@ import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
   timeAverageAtom,
-} from 'utils/state';
+} from 'utils/state/atoms';
 
 interface MapTooltipProperties {
   mousePositionX: number;
