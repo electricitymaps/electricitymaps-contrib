@@ -129,4 +129,5 @@ fallbackZoneMixes:
         wind: 0.2865918745596011
 parsers:
   production: UY.fetch_production
+  consumption: UY.consumption
 timezone: America/Montevideo
