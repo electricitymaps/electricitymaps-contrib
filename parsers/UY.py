@@ -135,6 +135,12 @@ def fetch_consumption(
 
     entry = parse_page(session)[-1] # get most recent timestamp
 
+def correct_for_salto_grande(entry,session:Optional[Session]=None):
+    """
+    corrects a single entry parsed from the UTE website using salto_grande data
+    Switched this to only operate on a single entry or list of entries so
+    fewer requests are needed
+    """
     # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
     entry = correct_for_salto_grande(entry,session)
 
@@ -148,7 +154,51 @@ def fetch_consumption(
     return data
 
 
-def fetch_production(
+# time: 
+def parse_page(session:Optional[Session]=None):
+    """
+    Queries the url in UTE_URL, and parses hourly production and trade data 
+    and retruns the results as a list of dictionary objects 
+    """
+    # load page 
+    r = session or Session()
+    resp = r.get(UTE_URL)
+    print
+    # print(response.text)
+    
+    # get the encoded XML with all the data we want
+    soup = BeautifulSoup(resp.text, "html.parser")
+    xml_tag = soup.find(id='valoresParaGraficar')
+    xml_string = f"<{xml_tag.contents[0]}>{xml_tag.contents[1]}"
+
+    # Use beautiful soup  to actually parse that XML string, and get information 
+    xml_doc = BeautifulSoup(xml_string, "lxml")
+
+    # Data is encoded hourly... get that subsection of the document 
+    # then get the data for each encoded hour, as a json-like object 
+    hourly = xml_doc.find('fuentesporhora')
+    hour_recs = []
+    for hour in hourly.find_all('nodo'):
+        # get generation data
+        datum = {key:parse_num(hour.find(spanish).contents[0])
+                 for key,spanish 
+                 in MAP_GENERATION.items()}
+        # solar can sometimes return -0.1 at night, round up to 0 
+        datum['solar'] = max(datum['solar'],0)
+        
+        # ingest date field 
+        datefield = hour.find('hora').contents[0]
+        datestr = re.findall("\d\d/\d\d/\d\d\d\d \d+:\d\d", str(datefield))[0]
+        date = arrow.get(datestr, "DD/MM/YYYY h:mm").replace(tzinfo=dateutil.tz.gettz(tz))
+        datum['time'] = date
+        
+        # add to list 
+        hour_recs.append(datum)
+    return hour_recs
+
+
+
+def fetch_consumption(
     zone_key: str = "UY",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
