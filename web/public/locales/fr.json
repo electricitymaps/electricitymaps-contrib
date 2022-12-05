@@ -650,7 +650,7 @@
       "countryName": "Grande Bretagne",
       "zoneName": "Orcades"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Grande Bretagne",
       "zoneName": "Shetland"
     },
@@ -1425,6 +1425,9 @@
     "UM": {
       "zoneName": "Îles mineures éloignées des États-Unis"
     },
+    "US": {
+      "zoneName": "États-Unis d’Amérique Contigus"
+    },
     "US-HI": {
       "countryName": "États-Unis d’Amérique",
       "zoneName": "Hawaï"
@@ -1662,10 +1665,6 @@
     "US-MIDW-AECI": {
       "countryName": "USA",
       "zoneName": "Coopérative électrique associée, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "USA",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",

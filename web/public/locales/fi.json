@@ -605,7 +605,7 @@
       "countryName": "Iso-Britannia",
       "zoneName": "Orkneysaaret"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Iso-Britannia",
       "zoneName": "Shetlandinsaaret"
     },
@@ -1369,6 +1369,9 @@
     "UM": {
       "zoneName": "Yhdysvaltain pienet erillissaaret"
     },
+    "US": {
+      "zoneName": "Vierekkäiset Yhdysvallat"
+    },
     "US-HI-HA": {
       "countryName": "Yhdysvallat",
       "zoneName": "Havaiji"
@@ -1496,10 +1499,6 @@
     "US-MIDW-AECI": {
       "countryName": "Yhdysvallat",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Yhdysvallat",

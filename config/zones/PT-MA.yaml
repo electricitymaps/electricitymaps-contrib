@@ -3,5 +3,73 @@ bounding_box:
     - 29.529242255000057
   - - -15.354969855999883
     - 33.61078522300012
+emissionFactors:
+  direct:
+    biomass:
+      datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021
+      value: 0.0
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 1057.262766
+    gas:
+      datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021
+      value: 372.109361
+    oil:
+      datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021
+      value: 880.903938
+  lifecycle:
+    biomass:
+      datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021
+      value: 439.145806
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
+      value: 1099.976527
+    gas:
+      datetime: '2021-01-01'
+      source: IPCC 2014; EU-ETS, ENTSO-E 2021
+      value: 492.109361
+    hydro:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 10.7
+    nuclear:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 5.13
+    oil:
+      datetime: '2021-01-01'
+      source: IPCC 2014; EU-ETS, ENTSO-E 2021
+      value: 1124.903938
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 27.0
+    wind:
+      datetime: '2021-01-01'
+      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
+        outlook for 2022-2026" Wind Europe Proceedings (2021)
+      value: 12.62
 flag_file_name: pt.png
+sources:
+  EU-ETS, ENTSO-E 2021:
+    link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  UNECE 2022:
+    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
+  ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
+    for 2022-2026" Wind Europe Proceedings (2021)
+  : link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
+      https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: null

@@ -642,7 +642,7 @@
       "countryName": "Storbritannia",
       "zoneName": "Orkenøyene"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Storbritannia",
       "zoneName": "Shetland"
     },
@@ -1547,10 +1547,6 @@
     "US-MIDW-AECI": {
       "countryName": "USA",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "USA",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",

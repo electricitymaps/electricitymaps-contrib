@@ -170,6 +170,10 @@
     "detailed": "detaljerad",
     "aggregateinfo": "Länder med zoner som sakanar data kan inte bli aggregerade"
   },
+  "aggregateButtons": {
+    "country": "land",
+    "zone": "zon"
+  },
   "misc": {
     "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
     "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
@@ -709,7 +713,7 @@
       "countryName": "Storbritannien",
       "zoneName": "Orkneyöarna"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Storbritannien",
       "zoneName": "Shetlandsöarna"
     },
@@ -1219,6 +1223,9 @@
     "NL": {
       "zoneName": "Nederländerna"
     },
+    "NO": {
+      "zoneName": "Norge"
+    },
     "NO-NO1": {
       "countryName": "Norge",
       "zoneName": "Sydöstra Norge"
@@ -1627,10 +1634,6 @@
       "countryName": "USA",
       "zoneName": "Associated Electric Cooperative, Inc."
     },
-    "US-MIDW-GLHB": {
-      "countryName": "USA",
-      "zoneName": "GridLiance"
-    },
     "US-MIDW-LGEE": {
       "countryName": "USA",
       "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
@@ -1838,6 +1841,13 @@
     },
     "ZW": {
       "zoneName": "Zimbabwe"
+    },
+    "US": {
+      "zoneName": "Sammanhängande Amerikas förenta stater"
+    },
+    "US-AK": {
+      "countryName": "USA",
+      "zoneName": "Alaska"
     }
   }
 }

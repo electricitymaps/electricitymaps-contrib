@@ -1416,7 +1416,7 @@
       "countryName": "Großbritannien",
       "zoneName": "Orkney Islands"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Großbritannien",
       "zoneName": "Shetland Islands"
     },
@@ -1471,6 +1471,9 @@
     "CL-SING-SIC": {
       "countryName": "Chile",
       "zoneName": "SING/SIC"
+    },
+    "US": {
+      "zoneName": "Zusammenhängende Vereinigte Staaten"
     },
     "US-HI-HA": {
       "countryName": "Vereinigte Staaten",
@@ -1759,10 +1762,6 @@
     "US-AK": {
       "countryName": "Vereinigte Staaten",
       "zoneName": "Alaska"
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "GridLiance"
     },
     "XK": {
       "zoneName": "Kosovo"

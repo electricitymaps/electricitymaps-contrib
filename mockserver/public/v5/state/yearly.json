@@ -2747,7 +2747,7 @@
           "stateDatetime": "2021-01-01T00:00:00Z"
         }
       ],
-      "GB-SHI": [],
+      "GB-ZET": [],
       "GE": [
         {
           "countryCode": "GE",
@@ -7600,40 +7600,6 @@
           "fossilFuelRatioProduction": 0.8769,
           "renewableRatio": 0.2045,
           "renewableRatioProduction": 0.1231,
-          "stateDatetime": "2021-01-01T00:00:00Z"
-        }
-      ],
-      "US-MIDW-GLHB": [
-        {
-          "countryCode": "US-MIDW-GLHB",
-          "stateDatetime": "2017-01-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-MIDW-GLHB",
-          "stateDatetime": "2018-01-01T00:00:00Z"
-        },
-        {
-          "countryCode": "US-MIDW-GLHB",
-          "stateDatetime": "2019-01-01T00:00:00Z"
-        },
-        {
-          "co2intensity": 818.22,
-          "co2intensityProduction": 820,
-          "countryCode": "US-MIDW-GLHB",
-          "fossilFuelRatio": 0.9983,
-          "fossilFuelRatioProduction": 1,
-          "renewableRatio": 0.0008,
-          "renewableRatioProduction": 0,
-          "stateDatetime": "2020-01-01T00:00:00Z"
-        },
-        {
-          "co2intensity": 816.17,
-          "co2intensityProduction": 820,
-          "countryCode": "US-MIDW-GLHB",
-          "fossilFuelRatio": 0.9963,
-          "fossilFuelRatioProduction": 1,
-          "renewableRatio": 0.002,
-          "renewableRatioProduction": 0,
           "stateDatetime": "2021-01-01T00:00:00Z"
         }
       ],

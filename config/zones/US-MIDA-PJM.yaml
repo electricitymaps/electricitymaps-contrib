@@ -25,60 +25,97 @@ emissionFactors:
   direct:
     battery discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 326.5009214195872
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 323.1715360400933
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 299.9994377848068
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 314.378697647263
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 970.4739304
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 398.3043939
     hydro discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 326.5009214195872
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 323.1715360400933
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 299.9994377848068
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 314.378697647263
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 751.5213327
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 384.7993545322297
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 387.49110944688
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 366.0285946744512
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 380.0140683195819
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 515.9462429
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
+      value: 1049.3545804
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 518.3043938999999
     hydro discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 384.7993545322297
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 387.49110944688
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 366.0285946744512
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 380.0140683195819
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 995.5213327
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 26.82
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2018 average
+    - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
         battery discharge: 2.8312263257073292e-08
@@ -93,7 +130,7 @@ fallbackZoneMixes:
         solar: 0.001822467675359443
         unknown: 0.012471024543119711
         wind: 0.03140433284030393
-    - _source: electricityMap, 2019 average
+    - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 2.819247815938517e-08
@@ -108,7 +145,7 @@ fallbackZoneMixes:
         solar: 0.0029550518994008374
         unknown: 0.011961550418697904
         wind: 0.03165520968693735
-    - _source: electricityMap, 2020 average
+    - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
@@ -123,7 +160,7 @@ fallbackZoneMixes:
         solar: 0.004461025665279608
         unknown: 0.013653454901457049
         wind: 0.03143496525003188
-    - _source: electricityMap, 2021 average
+    - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 1.4300614307001254e-11
@@ -144,4 +181,11 @@ parsers:
   consumptionForecast: EIA.fetch_consumption_forecast
   price: US_PJM.fetch_price
   production: US_PJM.fetch_production
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: US/Eastern

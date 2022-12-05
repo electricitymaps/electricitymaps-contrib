@@ -687,7 +687,7 @@
       "countryName": "Great Britain",
       "zoneName": "Orkney Islands"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Great Britain",
       "zoneName": "Shetland Islands"
     },
@@ -1480,6 +1480,13 @@
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
     },
+    "US": {
+      "zoneName": "Contiguous United States"
+    },
+    "US-AK": {
+      "countryName": "USA",
+      "zoneName": "Alaska"
+    },
     "US-HI-HA": {
       "countryName": "USA",
       "zoneName": "Hawaii"
@@ -1607,10 +1614,6 @@
     "US-MIDW-AECI": {
       "countryName": "USA",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "USA",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",

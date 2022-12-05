@@ -32,13 +32,12 @@ test:
 build:
   FROM +prepare
 
-  ARG ELECTRICITYMAP_PUBLIC_TOKEN
   ARG EARTHLY_GIT_HASH
   ENV COMMIT_SHA=$EARTHLY_GIT_HASH
 
   RUN mkdir -p public/dist
   RUN yarn update-version
-  RUN yarn build-release
+  RUN --secret ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN yarn build-release
   RUN yarn verify-zones-config
 
   # Local outputs for debugging

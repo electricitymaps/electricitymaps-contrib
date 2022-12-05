@@ -82,6 +82,10 @@ class Parsers(ParsersBaseModel):
     productionPerUnit: Optional[str]
 
 
+class Source(StrictBaseModel):
+    link: str
+
+
 class Delays(StrictBaseModel):
     consumption: Optional[PositiveInt]
     consumptionForecast: Optional[PositiveInt]
@@ -108,6 +112,7 @@ class Zone(StrictBaseModelWithAlias):
     timezone: Optional[str]
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
     estimation_method: Optional[str]
+    sources: Optional[Dict[str, Source]]
 
     def neighbors(self) -> List[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])
