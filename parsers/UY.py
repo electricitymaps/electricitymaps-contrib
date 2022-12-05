@@ -198,7 +198,7 @@ def fetch_exchange(
 
     data = {
         "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
-        "datetime": entry["time"],
+        "datetime": entry["time"].datetime,
         "netFlow": netFlow,
         "source": "ute.com.uy,",
     }
