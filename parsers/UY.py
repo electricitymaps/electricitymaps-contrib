@@ -18,8 +18,8 @@ MAP_GENERATION = {
     "hydro":"r",
     "wind":"eolica",
     "solar":"fotovoltaica",
-    "biomass":"biomasa",
-    "oil":"termica", 
+    "biomass":"biomasa", 
+    "unknown":"termica",  # lumps all thermal energy sources (gas + oil)
     "trade":"intercambios",
     "demand":"demanda",
     'comprassgu':'comprassgu',
@@ -123,7 +123,7 @@ def parse_page(session:Optional[Session]=None):
 
 
 
-def fetch_production(
+def fetch_consumption(
     zone_key: str = "UY",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
@@ -142,14 +142,14 @@ def fetch_production(
         "datetime": entry["time"],
         "consumption" : entry['demand'],
         "source": "ute.com.uy",
+
+
+def fetch_production(
+    zone_key: str = "UY",
+    session: Optional[Session] = None,
     }
 
     return data
-
-
-def fetch_consumption(
-    zone_key: str = "UY",
-    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
