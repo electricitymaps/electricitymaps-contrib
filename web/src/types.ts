@@ -118,15 +118,13 @@ export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
 }
 
 export interface MapTheme {
-  co2Scale: CO2Scale;
-  clickableFill: string;
-  nonClickableFill: string;
+  co2Scale: {
+    steps: number[];
+    colors: Array<string>;
+  };
   oceanColor: string;
   strokeWidth: number;
   strokeColor: string;
-}
-
-export interface CO2Scale {
-  steps: number[];
-  colors: string[];
+  clickableFill: string;
+  nonClickableFill: string;
 }

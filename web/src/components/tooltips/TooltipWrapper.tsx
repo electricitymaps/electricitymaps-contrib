@@ -24,7 +24,7 @@ export default function TooltipWrapper(
           <Tooltip.Content
             className={
               tooltipClassName ??
-              'relative  h-7 max-w-[164px] rounded border bg-white p-1 px-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900'
+              'relative   h-7 max-w-[164px] rounded border bg-gray-100 p-1 px-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900'
             }
             sideOffset={sideOffset ?? 3}
             side={side ?? 'left'}
