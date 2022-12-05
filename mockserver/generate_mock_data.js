@@ -14,7 +14,7 @@ const fetchAndStoreData = async (url, savePath) => {
 
 const CORE_URL = 'http://localhost:8001/v6';
 const timeAggregates = ['hourly', 'daily', 'monthly', 'yearly'];
-const detailsZones = ['UA', 'DK-DK2'];
+const detailsZones = ['DE', 'DK-DK2'];
 
 const generateMockData = async () => {
   timeAggregates.forEach(async (agg) => {
@@ -23,15 +23,10 @@ const generateMockData = async () => {
         `${CORE_URL}/state/${agg}`,
         `./public/v6/state/${agg}.json`
       );
-
-      await fetchAndStoreData(
-        `${CORE_URL}/details/${agg}/DE`,
-        `./public/v6/details/${agg}.json`
-      ); // default details data
       detailsZones.forEach(async (zoneId) => {
         await fetchAndStoreData(
           `${CORE_URL}/details/${agg}/${zoneId}`,
-          `./public/v6/details/${zoneId}/${agg}.json`
+          `./public/v6/details/${agg}/${zoneId}.json`
         );
       });
     } catch (error) {
