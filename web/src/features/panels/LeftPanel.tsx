@@ -24,7 +24,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
   return (
     <button
       className={
-        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] dark:bg-gray-800'
+        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 pl-1 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] dark:bg-gray-800'
       }
       onClick={onCollapse}
     >

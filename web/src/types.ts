@@ -32,7 +32,7 @@ export interface ExchangeArrowData extends ExchangeOverview {
 
 export interface ZoneResponse {
   [key: string]: {
-    co2intensity: number; //Non camel case sad face
+    co2intensity: number; //TODO https://linear.app/electricitymaps/issue/ELE-1495/update-app-backend-variable-naming-to-use-camel-case-update-the
     co2intensityProduction: number;
     countryCode: string;
     fossilFuelRatio: number;

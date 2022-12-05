@@ -8,7 +8,7 @@ export interface CircularGaugeProps {
 }
 
 export function CircularGauge({ ratio, name }: CircularGaugeProps) {
-  // TODO: To improve performance, the background pie does not
+  // TODO: To improve performance, the background pie does not https://linear.app/electricitymaps/issue/ELE-1497/improve-gauge-animation-performance
   // need to rerender on percentage change
   const data = [{ value: ratio }];
   const percentageAsAngle = ratio * 360;

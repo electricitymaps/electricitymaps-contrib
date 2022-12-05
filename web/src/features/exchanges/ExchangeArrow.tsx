@@ -16,7 +16,7 @@ interface ExchangeArrowProps {
 
 function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArrowProps) {
   const mapZoom = map.getZoom();
-  const colorBlindModeEnabled = false; // TODO: FIX
+  const colorBlindModeEnabled = false; // TODO: FIX https://linear.app/electricitymaps/issue/ELE-1384/set-up-colorblind-mode-that-changes-co2-scale
   const absFlow = Math.abs(data.netFlow ?? 0);
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
 

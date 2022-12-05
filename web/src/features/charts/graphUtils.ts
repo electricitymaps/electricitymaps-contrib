@@ -49,7 +49,7 @@ export const getTimeScale = (width: number, startTime: Date, endTime: Date) =>
     .domain([new Date(startTime), new Date(endTime)])
     .range([0, width]);
 
-export const getStorageKey = (name: string): ElectricityStorageType | undefined => {
+export const getStorageKey = (name: ElectricityStorageType): string | undefined => {
   switch (name) {
     case 'hydro storage': {
       return 'hydro';

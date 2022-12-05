@@ -21,7 +21,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // TODO: Send this to Sentry
+    // TODO: Send this to Sentry https://linear.app/electricitymaps/issue/ELE-1366/set-up-proper-sentry-process
     console.error('Uncaught error:', error, errorInfo);
   }
 

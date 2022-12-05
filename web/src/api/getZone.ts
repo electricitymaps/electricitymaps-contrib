@@ -23,7 +23,7 @@ const getZone = async (
 
   if (response.ok) {
     const { data } = (await response.json()) as { data: ZoneDetails };
-    // TODO: app-backend should not return array
+    // TODO: app-backend should not return array https://linear.app/electricitymaps/issue/ELE-1496/v6details-api-should-return-an-object-not-array
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return data.length > 0 ? data[0] : data;

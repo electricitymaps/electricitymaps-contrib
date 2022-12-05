@@ -19,7 +19,7 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [aggregateToggle] = useAtom(spatialAggregateAtom); // TODO: get from somewhere
-  const { data, isError, isLoading } = useGetState(timeAverage);
+  const { data, isError, isLoading } = useGetState();
   const isConsumption = true; // TODO: get from somewhere
   const isHourly = timeAverage === TimeAverages.HOURLY;
 
@@ -54,9 +54,9 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
   const exchanges = data?.data.exchanges;
 
   const currentExchanges: ExchangeArrowData[] = Object.entries(exchangesToUse)
-    .filter(([key]) => exchanges[key][selectedDatetime] !== undefined)
+    .filter(([key]) => exchanges[key][selectedDatetime.datetimeString] !== undefined)
     .map(([key, value]) => ({
-      ...value[selectedDatetime],
+      ...value[selectedDatetime.datetimeString],
       ...exchangesConfig[key],
       key: key,
     }));

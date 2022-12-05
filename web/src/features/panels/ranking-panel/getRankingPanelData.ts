@@ -1,13 +1,16 @@
+import { useAtom } from 'jotai';
 import { getCountryName, getZoneName } from 'translation/translation';
 import type { GridState } from 'types';
 import { getCO2IntensityByMode } from 'utils/helpers';
+import { productionConsumptionAtom } from 'utils/state';
 import { ZoneRowType } from './ZoneList';
 
 export const getRankedState = (
   data: GridState | undefined,
   getCo2colorScale: (co2intensity: number) => string,
   sortOrder: 'asc' | 'desc',
-  datetimeIndex: string
+  datetimeIndex: string,
+  electricityMode: string
 ): ZoneRowType[] => {
   if (!data) {
     return [];
@@ -22,8 +25,8 @@ export const getRankedState = (
     .map((key) => {
       const zoneData = zonesData.zones[key][datetimeIndex];
       const co2intensity = zoneData
-        ? getCO2IntensityByMode(zoneData, 'consumption')
-        : undefined; //TODO get mode
+        ? getCO2IntensityByMode(zoneData, electricityMode)
+        : undefined;
       const fillColor = co2intensity ? getCo2colorScale(co2intensity) : undefined;
       return {
         zoneId: key,

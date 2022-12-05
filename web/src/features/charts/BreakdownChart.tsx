@@ -27,9 +27,9 @@ function BreakdownChart({ datetimes, timeAverage }: BreakdownChartProps) {
         valueAxisLabel={valueAxisLabel}
         markerUpdateHandler={noop}
         markerHideHandler={noop}
-        isMobile={false} // Todo: test on mobile
+        isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
         height="10em"
-        isOverlayEnabled={false} // TODO: create overlay
+        isOverlayEnabled={false} // TODO: create overlay https://linear.app/electricitymaps/issue/ELE-1499/implement-chart-overlay-for-unavailable-data
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}
       />
