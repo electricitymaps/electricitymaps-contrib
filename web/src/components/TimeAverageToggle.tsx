@@ -6,6 +6,7 @@ interface ToggleItem {
   value: TimeAverages;
   label: string;
   text: string;
+  dataTestId: string; // For testing with Cypress
 }
 
 const settings: ToggleItem[] = [
@@ -13,21 +14,25 @@ const settings: ToggleItem[] = [
     value: TimeAverages.HOURLY,
     label: 'hourly',
     text: '24 hours',
+    dataTestId: 'time-controller-hourly',
   },
   {
     value: TimeAverages.DAILY,
     label: 'daily',
     text: '30 days',
+    dataTestId: 'time-controller-daily',
   },
   {
     value: TimeAverages.MONTHLY,
     label: 'monthly',
     text: '12 months',
+    dataTestId: 'time-controller-monthly',
   },
   {
     value: TimeAverages.YEARLY,
     label: 'yearly',
     text: '5 years',
+    dataTestId: 'time-controller-yearly',
   },
 ];
 
@@ -43,9 +48,10 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
       type="multiple"
       aria-label="Font settings"
     >
-      {settings.map(({ value, label, text }) => (
+      {settings.map(({ value, label, text, dataTestId }) => (
         <ToggleGroupPrimitive.Item
           key={`group-item-${value}-${label}`}
+          data-test-id={dataTestId}
           value={value}
           aria-label={label}
           onClick={() => onToggleGroupClick(value)}
