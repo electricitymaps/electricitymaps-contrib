@@ -5,9 +5,9 @@ capacity:
   unknown: 0.1
   wind: 37.5
 contributors:
-  - corradio
-  - q--
-  - VIKTORVAV99
+- corradio
+- q--
+- VIKTORVAV99
 emissionFactors:
   direct:
     biomass:
@@ -31,8 +31,8 @@ emissionFactors:
       value: 0
   lifecycle:
     biomass:
-      datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS 2021
+      datetime: '2014-01-01'
+      source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
       datetime: '2021-01-01'

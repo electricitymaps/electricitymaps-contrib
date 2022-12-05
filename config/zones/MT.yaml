@@ -1,8 +1,8 @@
 bounding_box:
-  - - 13.683604363000086
-    - 35.301214911
-  - - 15.067149285000113
-    - 36.5755882830001
+- - 13.683604363000086
+  - 35.301214911
+- - 15.067149285000113
+  - 36.5755882830001
 emissionFactors:
   direct:
     biomass:
@@ -23,8 +23,8 @@ emissionFactors:
       value: 880.903938
   lifecycle:
     biomass:
-      datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS 2021
+      datetime: '2014-01-01'
+      source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
       datetime: '2021-01-01'

@@ -4,9 +4,9 @@ capacity:
   solar: 0.24
   wind: 6
 contributors:
-  - corradio
-  - q--
-  - VIKTORVAV99
+- corradio
+- q--
+- VIKTORVAV99
 emissionFactors:
   direct:
     biomass:
@@ -27,8 +27,8 @@ emissionFactors:
       value: 1193.417464
   lifecycle:
     biomass:
-      datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS 2021
+      datetime: '2014-01-01'
+      source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
       datetime: '2021-01-01'

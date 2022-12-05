@@ -1,8 +1,8 @@
 bounding_box:
-  - - 6.7499552751
-    - 36.619987291
-  - - 18.4802470232
-    - 47.1153931748
+- - 6.7499552751
+  - 36.619987291
+- - 18.4802470232
+  - 47.1153931748
 capacity:
   biomass: 4105.9
   coal: 6981
@@ -15,7 +15,7 @@ capacity:
   solar: 21650.1
   wind: 10906.9
 contributors:
-  - corradio
+- corradio
 emissionFactors:
   direct:
     biomass:
@@ -36,13 +36,13 @@ emissionFactors:
       value: 921.1256533
   lifecycle:
     biomass:
-      datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS 2021
+      datetime: '2014-01-01'
+      source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
       datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
-        hotspots of coal power generation."
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+        generation."; EU-ETS, ENTSO-E 2021
       value: 1082.9825388
     gas:
       datetime: '2021-01-01'
@@ -56,8 +56,8 @@ emissionFactors:
       source: 2018 average by Electricity Maps
       value: 0.0
     nuclear:
-      datetime: '2014-01-01'
-      source: IPCC 2014
+      datetime: '2020-01-01'
+      source: UNECE 2022
       value: 5.13
     oil:
       datetime: '2021-01-01'
@@ -87,10 +87,10 @@ sources:
   : link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 subZoneNames:
-  - IT-CNO
-  - IT-CSO
-  - IT-NO
-  - IT-SAR
-  - IT-SIC
-  - IT-SO
+- IT-CNO
+- IT-CSO
+- IT-NO
+- IT-SAR
+- IT-SIC
+- IT-SO
 timezone: Europe/Rome

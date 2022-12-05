@@ -1,8 +1,8 @@
 bounding_box:
-  - - 5.67405195478
-    - 49.4426671413
-  - - 6.24275109216
-    - 50.1280516628
+- - 5.67405195478
+  - 49.4426671413
+- - 6.24275109216
+  - 50.1280516628
 capacity:
   biomass: 56.473
   coal: 0
@@ -15,14 +15,14 @@ capacity:
   unknown: 82.3648
   wind: 138.535
 contributors:
-  - corradio
-  - clawfire
+- corradio
+- clawfire
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 178.41865232807453
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 178.41865232807453
     biomass:
       datetime: '2021-01-01'
       source: EU-ETS 2021
@@ -36,21 +36,21 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2021
       value: 481.60707
     hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 178.41865232807453
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 178.41865232807453
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
       value: 880.903938
   lifecycle:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 246.79495684659946
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 246.79495684659946
     biomass:
-      datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS 2021
+      datetime: '2014-01-01'
+      source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
       datetime: '2021-01-01'
@@ -65,12 +65,12 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 246.79495684659946
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 246.79495684659946
     nuclear:
       datetime: '2020-01-01'
-      source: IPCC 2014
+      source: UNECE 2022
       value: 5.13
     oil:
       datetime: '2021-01-01'
@@ -83,21 +83,21 @@ emissionFactors:
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2021 average
-      datetime: '2021-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.13683191062360203
-        coal: 0.15346706775115065
-        gas: 0.1264632383266689
-        geothermal: 0.00021169172553920596
-        hydro: 0.04680064456188765
-        hydro discharge: 0.011667630183953117
-        nuclear: 0.22906003172926262
-        oil: 0.0038101838284090024
-        solar: 0.13108021125524777
-        unknown: 0.016793999410309606
-        wind: 0.14381581350105957
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.13683191062360203
+      coal: 0.15346706775115065
+      gas: 0.1264632383266689
+      geothermal: 0.00021169172553920596
+      hydro: 0.04680064456188765
+      hydro discharge: 0.011667630183953117
+      nuclear: 0.22906003172926262
+      oil: 0.0038101838284090024
+      solar: 0.13108021125524777
+      unknown: 0.016793999410309606
+      wind: 0.14381581350105957
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
