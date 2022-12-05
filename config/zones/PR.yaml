@@ -29,6 +29,10 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 445.3981040694054
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020

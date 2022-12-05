@@ -57,7 +57,7 @@ emissionFactors:
         value: 27.88734967855403
     biomass:
       datetime: '2014-01-01'
-      source: BEIS 2021; IPCC 2014
+      source: IPCC 2014; BEIS 2021
       value: 230.0
     coal:
       datetime: '2014-01-01'
@@ -79,7 +79,7 @@ emissionFactors:
         value: 27.88734967855403
     oil:
       datetime: '2014-01-01'
-      source: EIA 2020/BEIS 2021; IPCC 2014
+      source: IPCC 2014; EIA 2020/BEIS 2021
       value: 650.0
 fallbackZoneMixes:
   powerOriginRatios:

@@ -58,16 +58,16 @@ emissionFactors:
         value: 367.67482398728197
     biomass:
       datetime: '2014-01-01'
-      source: BEIS 2021; IPCC 2014
+      source: IPCC 2014; BEIS 2021
       value: 230.0
     coal:
       datetime: '2012-01-01'
-      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation."; IPCC 2014
+      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
       value: 817.319095
     gas:
       datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
+      source: IPCC 2014; EU-ETS, ENTSO-E 2021
       value: 590.7521775
     hydro:
       datetime: '2020-01-01'
@@ -101,7 +101,7 @@ emissionFactors:
       value: 5.13
     oil:
       datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
+      source: IPCC 2014; EU-ETS, ENTSO-E 2021
       value: 1124.903938
     solar:
       datetime: '2021-01-01'

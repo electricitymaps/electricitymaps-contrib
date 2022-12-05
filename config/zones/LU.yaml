@@ -25,7 +25,7 @@ emissionFactors:
         value: 178.41865232807453
     biomass:
       datetime: '2021-01-01'
-      source: EU-ETS 2021
+      source: BEIS 2021
       value: 0.0
     coal:
       datetime: '2021-01-01'
@@ -50,15 +50,15 @@ emissionFactors:
         value: 246.79495684659946
     biomass:
       datetime: '2014-01-01'
-      source: BEIS 2021; IPCC 2014
+      source: IPCC 2014; BEIS 2021
       value: 230.0
     coal:
       datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
+      source: IPCC 2014; EU-ETS, ENTSO-E 2021
       value: 1117.262766
     gas:
       datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
+      source: IPCC 2014; EU-ETS, ENTSO-E 2021
       value: 601.60707
     hydro:
       datetime: '2020-01-01'
@@ -74,7 +74,7 @@ emissionFactors:
       value: 5.13
     oil:
       datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
+      source: IPCC 2014; EU-ETS, ENTSO-E 2021
       value: 1124.903938
     wind:
       datetime: '2014-01-01'
