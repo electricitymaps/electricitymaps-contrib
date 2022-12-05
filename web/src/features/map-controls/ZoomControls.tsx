@@ -1,13 +1,10 @@
-import { ReactElement, useState } from 'react';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import { ReactElement, useState } from 'react';
 
-import { useTranslation } from 'translation/translation';
-import { NavigationControl } from 'react-map-gl';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
+import { useTranslation } from 'translation/translation';
 
-interface ZoomControlsProperties {}
-
-export default function ZoomControls(properties: ZoomControlsProperties): ReactElement {
+export default function ZoomControls(): ReactElement {
   const [value, setValue] = useState('');
   const { __ } = useTranslation();
 
