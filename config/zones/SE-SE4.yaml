@@ -1,8 +1,8 @@
 bounding_box:
-- - 11.800952121030544
-  - 54.84588629391277
-- - 17.699686739075773
-  - 58.013078824484765
+  - - 11.800952121030544
+    - 54.84588629391277
+  - - 17.699686739075773
+    - 58.013078824484765
 capacity:
   biomass: 883
   coal: 0
@@ -32,12 +32,12 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2021
       value: 880.903938
     unknown:
-    - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
-        the sources in unknown
-      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-      datetime: '2022-01-01'
-      source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
-      value: 16.4
+      - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
+          the sources in unknown
+        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+        datetime: '2022-01-01'
+        source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
+        value: 16.4
   lifecycle:
     biomass:
       datetime: '2014-01-01'
@@ -69,12 +69,12 @@ emissionFactors:
       source: INCER ACV
       value: 35.6
     unknown:
-    - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
-        the sources in unknown
-      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-      datetime: '2022-01-01'
-      source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
-      value: 151.3
+      - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
+          the sources in unknown
+        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+        datetime: '2022-01-01'
+        source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
+        value: 151.3
     wind:
       datetime: '2021-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
