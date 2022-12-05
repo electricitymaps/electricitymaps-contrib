@@ -9,6 +9,12 @@ capacity:
   solar: 258
   unknown: 1170
   wind: 1506
+  #fossil fuels: 1.61 GW
+  #wind: 1.51 GW
+  #solar: 0.26 GW
+  #hydro: 1.54 GW
+  #nuclear: 0 GW
+  #geothermal: 0 GW
 contributors:
   - jarek
   - corradio
@@ -129,4 +135,5 @@ fallbackZoneMixes:
         wind: 0.2865918745596011
 parsers:
   production: UY.fetch_production
+  consumption: UY.fetch_consumption
 timezone: America/Montevideo

@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 import re
 from datetime import datetime
 from logging import Logger, getLogger
@@ -15,27 +14,39 @@ from requests import Session
 tz = "America/Montevideo"
 
 MAP_GENERATION = {
-    "Hidráulica": "hydro",
-    "Eólica": "wind",
-    "Fotovoltaica": "solar",
-    "Biomasa": "biomass",
-    "Térmica": "oil",
+    "hydro":"r",
+    "wind":"eolica",
+    "solar":"fotovoltaica",
+    "biomass":"biomasa",
+    "unknown":"termica", 
+    "trade":"intercambios",
+    "demand":"demanda",
+    'comprassgu':'comprassgu',
 }
-INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
+
+AVALIABLE_KEYS = ['hydro','wind','solar','biomass','unknown']
+
+UTE_URL = url = "https://ute.com.uy/energia-generada-intercambios-demanda"
 
 SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
 
 
-def get_salto_grande(session: Optional[Session]) -> float:
+def get_salto_grande(session: Optional[Session],targ_time=None) -> float:
     """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
-
-    current_time = arrow.now("UTC-3")
-    if current_time.minute < 30:
-        # Data for current hour seems to be available after 30mins.
-        current_time = current_time.shift(hours=-1)
-    lookup_time = current_time.floor("hour").format("DD/MM/YYYY HH:mm")
-
+    # handle optional arguments
     s = session or Session()
+    lookup_time = arrow.now("UTC-3") if targ_time is None else targ_time
+
+    # Data for current hour seems to be available after 30mins.
+    # if we're too soon into the hour, check the hour before 
+    current_time = arrow.now("UTC-3")
+    if current_time.floor('hour') == targ_time.floor('hour') and current_time.minute < 30:
+        print(current_time.floor('hour'), targ_time.floor('hour'),current_time.minute < 30)
+        print('decrementing, because its too soon')
+        current_time = current_time.shift(hours=-1)
+        
+    lookup_time = lookup_time.floor("hour").format("DD/MM/YYYY HH:mm")
+
     url = SALTO_GRANDE_URL + lookup_time
     response = s.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
@@ -46,59 +57,95 @@ def get_salto_grande(session: Optional[Session]) -> float:
     return generation
 
 
-def parse_page(session: Optional[Session]):
+def parse_num(num_str:str) ->float:
+    """
+    given a string containing a decimal number in 
+    south american format, e.g. '23.456,45' using ',' as a decimal
+    and '.' as a separator, convert to the corresponding float 
+    :param num_str: string containing a number south american format, 
+        e.g. '23.456,45' using ',' as a decimal 
+    :returns: a float with the value denoted by num_str
+    """
+    return float(num_str.strip().replace('.','').replace(',','.'))
+
+def correct_for_salto_grande(entry,session:Optional[Session]=None):
+    """
+    corrects a single entry parsed from the UTE website using salto_grande data
+    Switched this to only operate on a single entry or list of entries so
+    fewer requests are needed
+    """
+    # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
+    salto_grande = get_salto_grande(session, entry['time'])
+    entry["hydro"] = entry['hydro'] + salto_grande
+    return entry 
+
+
+# time: 
+def parse_page(session:Optional[Session]=None):
+    """
+    Queries the url in UTE_URL, and parses hourly production and trade data 
+    and retruns the results as a list of dictionary objects 
+    """
+    # load page 
     r = session or Session()
-    url = "https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx"
-    response = r.get(url)
-    soup = BeautifulSoup(response.text, "html.parser")
+    resp = r.get(UTE_URL)
+    print
+    # print(response.text)
+    
+    # get the encoded XML with all the data we want
+    soup = BeautifulSoup(resp.text, "html.parser")
+    xml_tag = soup.find(id='valoresParaGraficar')
+    xml_string = f"<{xml_tag.contents[0]}>{xml_tag.contents[1]}"
 
-    datefield = soup.find(
-        "span", attrs={"id": "ctl00_ContentPlaceHolder1_lblUltFecScada"}
-    )
-    datestr = re.findall("\d\d/\d\d/\d\d\d\d \d+:\d\d", str(datefield.contents[0]))[0]
-    date = arrow.get(datestr, "DD/MM/YYYY h:mm").replace(tzinfo=dateutil.tz.gettz(tz))
+    # Use beautiful soup  to actually parse that XML string, and get information 
+    xml_doc = BeautifulSoup(xml_string, "lxml")
 
-    table = soup.find(
-        "table", attrs={"id": "ctl00_ContentPlaceHolder1_gridPotenciasNivel1"}
-    )
+    # Data is encoded hourly... get that subsection of the document 
+    # then get the data for each encoded hour, as a json-like object 
+    hourly = xml_doc.find('fuentesporhora')
+    hour_recs = []
+    for hour in hourly.find_all('nodo'):
+        # get generation data
+        datum = {key:parse_num(hour.find(spanish).contents[0])
+                 for key,spanish 
+                 in MAP_GENERATION.items()}
+        # solar can sometimes return -0.1 at night, round up to 0 
+        datum['solar'] = max(datum['solar'],0)
+        
+        # ingest date field 
+        datefield = hour.find('hora').contents[0]
+        datestr = re.findall("\d\d/\d\d/\d\d\d\d \d+:\d\d", str(datefield))[0]
+        date = arrow.get(datestr, "DD/MM/YYYY h:mm").replace(tzinfo=dateutil.tz.gettz(tz))
+        datum['time'] = date
+        
+        # add to list 
+        hour_recs.append(datum)
+    return hour_recs
 
-    obj = {"datetime": date.datetime}
 
-    for tr in table.find_all("tr"):
-        tds = tr.find_all("td")
-        if not len(tds):
-            continue
 
-        key = tds[0].find_all("b")
-        # Go back one level up if the b tag is not there
-        if not len(key):
-            key = tds[0].find_all("font")
-        k = key[0].contents[0]
+def fetch_consumption(
+    zone_key: str = "UY",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-        value = tds[1].find_all("b")
-        # Go back one level up if the b tag is not there
-        if not len(value):
-            value = tds[1].find_all("font")
-        v_str = value[0].contents[0]
-        if v_str.find(",") > -1 and v_str.find(".") > -1:
-            # there can be values like "1.012,5"
-            v_str = v_str.replace(".", "")
-            v_str = v_str.replace(",", ".")
-        else:
-            # just replace decimal separator, like "125,2"
-            v_str = v_str.replace(",", ".")
-        v = float(v_str)
-
-        # solar reports -0.1 at night, make it at least 0
-        v = max(v, 0)
-
-        obj[k] = v
+    entry = parse_page(session)[-1] # get most recent timestamp
 
     # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
-    salto_grande = get_salto_grande(session)
-    obj["Hidráulica"] = obj.get("Hidráulica", 0.0) + salto_grande
+    entry = correct_for_salto_grande(entry,session)
 
-    return obj
+    data = {
+        "zoneKey": zone_key,
+        "datetime": entry["time"].datetime,
+        "consumption" : entry['demand'],
+        "source": "ute.com.uy",
+    }
+
+    return data
 
 
 def fetch_production(
@@ -110,14 +157,15 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    obj = parse_page(session)
+    entry = parse_page(session)[-1] # get most recent timestamp
+
+    # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
+    entry = correct_for_salto_grande(entry,session)
 
     data = {
         "zoneKey": zone_key,
-        "datetime": obj["datetime"],
-        "production": dict(
-            [(k, obj[INV_MAP_GENERATION[k]]) for k in INV_MAP_GENERATION.keys()]
-        ),
+        "datetime": entry["time"].datetime,
+        "production" : {key:entry[key] for key in AVALIABLE_KEYS},
         "source": "ute.com.uy",
     }
 
@@ -141,16 +189,19 @@ def fetch_exchange(
     if {zone_key1, zone_key2} != {"UY", "BR"}:
         return None
 
-    obj = parse_page(session)
-    netFlow = obj["Interconexión con Brasil"]  # this represents BR->UY (imports)
+    entry = parse_page(session)[-1] #take latest entry parsed from page 
+    # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
+    entry = correct_for_salto_grande(entry,session)
+
+    netFlow = entry["trade"]  # this represents BR->UY (imports)
     if zone_key1 != "BR":
         netFlow *= -1
 
     data = {
         "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
-        "datetime": obj["datetime"],
+        "datetime": entry["time"],
         "netFlow": netFlow,
-        "source": "ute.com.uy",
+        "source": "ute.com.uy,",
     }
 
     return data
@@ -159,5 +210,7 @@ def fetch_exchange(
 if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
+    print('fetch_consumption() ->')
+    print(fetch_consumption())
     print("fetch_exchange(UY, BR) ->")
     print(fetch_exchange("UY", "BR"))
