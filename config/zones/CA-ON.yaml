@@ -16,64 +16,70 @@ contributors:
   - jarek
   - scriptator
   - felixvanoost
+  - misterclean
+  - christopheradlam
 emissionFactors:
   direct:
     battery discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 25.622565842572392
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 24.844900512830517
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 25.724691722166398
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 32.541670188589464
     hydro discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 25.622565842572392
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 24.844900512830517
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 25.724691722166398
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 32.541670188589464
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 48.84539739548282
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 47.955666282237026
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 49.10956853808276
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 58.066760035663556
     hydro discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 48.84539739548282
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 47.955666282237026
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 49.10956853808276
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 58.066760035663556
+    nuclear:
+      datetime: '2013-01-01'
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." (2013)
+      value: 4.8
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2019 average
+    - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
@@ -88,7 +94,7 @@ fallbackZoneMixes:
         solar: 0.00428256193849476
         unknown: 2.4112757797105254e-05
         wind: 0.07403640085363018
-    - _source: electricityMap, 2021 average
+    - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 5.455664708392035e-10
@@ -107,4 +113,7 @@ flag_file_name: ca.png
 parsers:
   price: CA_ON.fetch_price
   production: CA_ON.fetch_production
+sources:
+  Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013):
+    link: https://doi.org/10.1007/s11367-012-0501-0
 timezone: America/Toronto

@@ -53,7 +53,7 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      source: 2018 average by electricityMap
+      source: 2018 average by Electricity Maps
       value: 0.0
     nuclear:
       datetime: '2014-01-01'

@@ -18155,7 +18155,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "GB-SHI", "countryKey": "GB", "countryName": "United Kingdom" },
+      "properties": { "zoneName": "GB-ZET", "countryKey": "GB", "countryName": "United Kingdom" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
