@@ -4,7 +4,6 @@ from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-import pandas as pd
 import pytz
 from requests import Response, Session
 
@@ -21,6 +20,7 @@ KINDS_URL = {
     "demand": DEMAND_URL,
     "demand_forecast": DEMAND_FORECAST_URL,
     "wind": WIND_URL,
+    "wind_forecast": WIND_FORECAST_URL,
     "exchange": EXCHANGE_URL,
 }
 
@@ -38,10 +38,10 @@ def fetch_data(
     assert kind != ""
 
     r = session or Session()
-    resp = r.get(KINDS_URL[kind].format(dt=target_datetime.strftime("%d-%b-%Y")))
+    resp: Response = r.get(KINDS_URL[kind].format(dt=target_datetime.strftime("%d-%b-%Y")))
     try:
         data = resp.json().get("Rows", {})
-    except json.decoder.JSONDecodeError:
+    except:
         raise ParserException(
             parser="IN_WE.py",
             message=f"{target_datetime}: {kind} data is not available",
