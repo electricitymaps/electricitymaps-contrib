@@ -11,10 +11,10 @@ contributors:
 emissionFactors:
   lifecycle:
     battery discharge:
-      source: electricityMap, 2021 average
+      source: Electricity Maps, 2021 average
       value: 213.52156469368532
     hydro discharge:
-      source: electricityMap, 2021 average
+      source: Electricity Maps, 2021 average
       value: 27.514624060792045
 flag_file_name: nz.png
 parsers:

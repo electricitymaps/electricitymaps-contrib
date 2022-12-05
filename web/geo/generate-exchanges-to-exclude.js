@@ -3,7 +3,7 @@ const { getJSON, writeJSON, fileExists } = require('./utilities');
 
 const exchangeConfig = mergeExchanges();
 
-const generateExchangesToIgnore = (OUT_PATH, zonesConfig) => {
+const generateExchangesToIgnore = (OUT_PATH, zonesConfig, verifyNoUpdates) => {
   console.info(`Generating new excluded-aggregated-exchanges.json...`);
   const countryKeysToExclude = Object.keys(zonesConfig).filter((key) => {
     if (zonesConfig[key].subZoneNames?.length > 0) {
@@ -43,13 +43,20 @@ const generateExchangesToIgnore = (OUT_PATH, zonesConfig) => {
     exchangesToExcludeCountryView: unCombinedExchanges,
     exchangesToExcludeZoneView: countryExchangesWithSubzones,
   };
+
   const existingExchanges = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(exchanges) === JSON.stringify(existingExchanges)) {
     console.info(`No changes to excluded-aggregated-exchanges.json`);
     return;
   }
 
+  if (verifyNoUpdates) {
+    console.error('Did not expect any updates to excluded-aggregated-exchanges.json. Please run "yarn update-world"');
+    process.exit(1);
+  }
+
   writeJSON(OUT_PATH, exchanges);
+  console.info(`Successfully generated new excluded-aggregated-exchanges.json`);
 };
 
 module.exports = { generateExchangesToIgnore };

@@ -18,68 +18,68 @@ emissionFactors:
   direct:
     battery discharge:
       - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
+        source: Electricity Maps, 2017 average
         value: 451.29818758070206
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 402.3145961918597
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 363.3150433212974
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 375.3247374394167
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 367.8411069030223
     hydro discharge:
       - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
+        source: Electricity Maps, 2017 average
         value: 451.29818758070206
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 402.3145961918597
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 363.3150433212974
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 375.3247374394167
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 367.8411069030223
   lifecycle:
     battery discharge:
       - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
+        source: Electricity Maps, 2017 average
         value: 385.72843254185267
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 346.3121890140969
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 314.947960669568
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 324.4623883482573
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 318.5106507265494
     hydro discharge:
       - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
+        source: Electricity Maps, 2017 average
         value: 385.72843254185267
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 346.3121890140969
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 314.947960669568
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 324.4623883482573
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 318.5106507265494
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
@@ -87,7 +87,7 @@ emissionFactors:
       value: 485
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2017 average
+    - _source: Electricity Maps, 2017 average
       datetime: '2017-01-01'
       value:
         battery discharge: 0.0
@@ -102,7 +102,7 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.7848664392675877
         wind: 0.007308873233880055
-    - _source: electricityMap, 2018 average
+    - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
         battery discharge: 0.0
@@ -117,7 +117,7 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.6996776810729152
         wind: 0.018406808095920373
-    - _source: electricityMap, 2019 average
+    - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
@@ -132,7 +132,7 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.6318523306683219
         wind: 0.025846297329994508
-    - _source: electricityMap, 2020 average
+    - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
@@ -147,7 +147,7 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.652738565547545
         wind: 0.03462395987203926
-    - _source: electricityMap, 2021 average
+    - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0

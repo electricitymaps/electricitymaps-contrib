@@ -682,7 +682,7 @@
       "countryName": "Gran Bretagna",
       "zoneName": "Isole Orcadi"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Gran Bretagna",
       "zoneName": "Isole Shetland"
     },
@@ -1457,7 +1457,7 @@
       "zoneName": "Isole minori esterne degli Stati Uniti d'America"
     },
     "US": {
-      "zoneName": "Stati Uniti d'America"
+      "zoneName": "Contigui Stati Uniti d'America"
     },
     "US-HI-HA": {
       "countryName": "Stati Uniti d'America",

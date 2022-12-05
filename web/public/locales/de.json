@@ -1416,7 +1416,7 @@
       "countryName": "Großbritannien",
       "zoneName": "Orkney Islands"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Großbritannien",
       "zoneName": "Shetland Islands"
     },
@@ -1473,7 +1473,7 @@
       "zoneName": "SING/SIC"
     },
     "US": {
-      "zoneName": "Vereinigte Staaten"
+      "zoneName": "Zusammenhängende Vereinigte Staaten"
     },
     "US-HI-HA": {
       "countryName": "Vereinigte Staaten",
