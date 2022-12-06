@@ -5,7 +5,7 @@ bounding_box:
     - 44.2349230007
 capacity:
   battery storage: 0
-  biomass: 75
+  biomass: 81
   coal: 4475
   gas: 1266
   geothermal: 0
