@@ -19,9 +19,8 @@ from typing import List, Optional
 
 import arrow
 import pandas as pd
-from requests import Session
-
 from parsers.lib.config import refetch_frequency
+from requests import Session
 
 from .lib.utils import get_token
 from .lib.validation import validate
@@ -345,8 +344,12 @@ def fetch_production(
     expected_range = {
         # Historical data might be above the current capacity for coal
         "coal": (0, 20000),
-        "gas": (100, 30000),
-        "nuclear": (100, 20000),
+        # TODO put back to 100 once the API reports back other modes than wind.
+        # Temporary put threshold to 0 as the API currently reports 0.
+        "gas": (0, 30000),
+        # TODO put back to 100 once the API reports back other modes than wind.
+        # Temporary put threshold to 0 as the API currently reports 0.
+        "nuclear": (0, 20000),
         "wind": (0, 30000),
     }
     data = [
