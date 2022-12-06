@@ -19,8 +19,9 @@ from typing import List, Optional
 
 import arrow
 import pandas as pd
-from parsers.lib.config import refetch_frequency
 from requests import Session
+
+from parsers.lib.config import refetch_frequency
 
 from .lib.utils import get_token
 from .lib.validation import validate
