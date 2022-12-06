@@ -8,14 +8,17 @@ const PORT = process.argv[2] || 8001;
 
 app.use(cors());
 
+const DEFAULT_ZONE_KEY = 'DE';
+
 app.get('/v6/details/:aggregate/:zoneId', (req, res, next) => {
   const { aggregate, zoneId } = req.params;
-  if (zoneId && fs.existsSync(`./public/v6/details/${zoneId}/${aggregate}.json`)) {
-    // we alter the URL to use the specific zone details file if available
-    res.redirect(`/v6/details/${zoneId}/${aggregate}`);
-  } else {
-    // otherwise fallback to general details files (that are using data from DE)
+
+  // if file exists return it, otherwise redirect to DEFAULT file
+  if (fs.existsSync(`./public/v6/details/${aggregate}/${zoneId}.json`)) {
+    // file structure of project will return the correct file
     next();
+  } else {
+    res.redirect(`/v6/details/${aggregate}/${DEFAULT_ZONE_KEY}`);
   }
 });
 

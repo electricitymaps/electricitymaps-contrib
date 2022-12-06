@@ -23,6 +23,7 @@ function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType)
       className="group my-1 flex h-9 w-full items-center overflow-hidden rounded bg-gray-100 pl-3  text-left hover:bg-gray-200 dark:bg-gray-700"
       key={ranking}
       to={`/zone/${zoneId}`}
+      data-test-id="zone-list-link"
     >
       <p className=" flex w-4 justify-end pr-2 text-sm">{ranking}</p>
       <div

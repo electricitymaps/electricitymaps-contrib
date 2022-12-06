@@ -1,5 +1,5 @@
-import type { ReactElement } from 'react';
 import * as Toggle from '@radix-ui/react-toggle';
+import type { ReactElement } from 'react';
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
 interface MapButtonProperties {
@@ -7,10 +7,11 @@ interface MapButtonProperties {
   icon: any;
   tooltipText?: string;
   className?: string;
+  dataTestId?: string;
 }
 
 export default function MapButton(properties: MapButtonProperties): ReactElement {
-  const { onClick, icon, tooltipText, className } = properties;
+  const { onClick, icon, tooltipText, className, dataTestId } = properties;
 
   return (
     <TooltipWrapper tooltipContent={tooltipText}>
@@ -18,6 +19,7 @@ export default function MapButton(properties: MapButtonProperties): ReactElement
         onClick={onClick}
         className={`Toggle pointer-events-auto flex h-8 w-8 items-center justify-center rounded bg-white  drop-shadow dark:bg-gray-900 ${className}`}
         aria-label="Toggle italic"
+        data-test-id={dataTestId}
       >
         <div>{icon}</div>
       </Toggle.Root>

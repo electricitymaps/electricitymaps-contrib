@@ -22,7 +22,11 @@ export default function ZoneHeaderTitle({
 
   return (
     <div className="flex flex-row pl-2">
-      <Link className="text-3xl mr-4 self-center " to="/">
+      <Link
+        className="text-3xl mr-4 self-center"
+        to="/"
+        data-test-id="left-panel-back-button"
+      >
         <HiArrowLeft />
       </Link>
       <div>
@@ -32,7 +36,7 @@ export default function ZoneHeaderTitle({
             size={18}
             className="mr-1 shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
           />
-          <h2 className="font-medium">
+          <h2 className="font-medium" data-test-id="zone-name">
             {title}
             <span className="absolute ml-1 -mt-0.5">
               {isSubZone && <CountryTag zoneId={zoneId} />}

@@ -1,12 +1,12 @@
 import MapButton from 'components/MapButton';
 import { ReactElement, useState } from 'react';
-import ConsumptionProductionToggle from './ConsumptionProductionToggle';
-import SpatialAggregatesToggle from './SpatialAggregatesToggle';
-import { useTranslation } from 'translation/translation';
-import { HiLanguage } from 'react-icons/hi2';
-import { HiOutlineSun } from 'react-icons/hi';
 import { FiWind } from 'react-icons/fi';
+import { HiOutlineSun } from 'react-icons/hi';
+import { HiLanguage } from 'react-icons/hi2';
+import { useTranslation } from 'translation/translation';
+import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import LanguageSelector from './LanguageSelector';
+import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 interface MapControlsProperties {}
 
 export default function MapControls(properties: MapControlsProperties): ReactElement {
@@ -23,6 +23,7 @@ export default function MapControls(properties: MapControlsProperties): ReactEle
       <MapButton
         icon={<HiLanguage size={21} />}
         tooltipText={__('tooltips.selectLanguage')}
+        dataTestId="language-selector-open-button"
         className="mt-5"
         onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
       />
@@ -32,6 +33,7 @@ export default function MapControls(properties: MapControlsProperties): ReactEle
       <MapButton
         icon={<FiWind size={18} />}
         tooltipText={__('tooltips.wind')}
+        dataTestId="wind-layer-button"
         className="mt-2"
         onClick={() => {
           console.log('change the toggle weather');
@@ -41,6 +43,7 @@ export default function MapControls(properties: MapControlsProperties): ReactEle
       <MapButton
         icon={<HiOutlineSun size={21} />}
         className="mt-2"
+        dataTestId="solar-layer-button"
         tooltipText={__('tooltips.solar')}
         onClick={() => {
           console.log('change the toggle solar');

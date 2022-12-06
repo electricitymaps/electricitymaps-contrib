@@ -1,14 +1,14 @@
 // TODO: Convert to component test
 describe('Country Panel', () => {
   beforeEach(() => {
-    cy.interceptAPI('v5/state/hourly');
+    cy.interceptAPI('v6/state/hourly');
   });
 
   it('interacts with details', () => {
-    cy.interceptAPI('v5/history/hourly?countryCode=DK-DK2');
+    cy.interceptAPI('v6/details/hourly/DK-DK2');
     cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
-    cy.waitForAPISuccess('v5/state/hourly');
-    cy.waitForAPISuccess('v5/history/hourly?countryCode=DK-DK2');
+    cy.waitForAPISuccess('v6/state/hourly');
+    cy.waitForAPISuccess('v6/details/hourly/DK-DK2');
 
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
@@ -23,7 +23,7 @@ describe('Country Panel', () => {
     cy.contains('Electricity consumption').click();
 
     // test graph tooltip
-    cy.get('[data-test-id=history-carbon-graph]').trigger('mousemove', 'left');
+    cy.get('[data-test-id=details-carbon-graph]').trigger('mousemove', 'left');
     // ensure hovering the graph does not change underlying data
     cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').should(
       'have.text',
@@ -37,13 +37,13 @@ describe('Country Panel', () => {
       '176'
     );
 
-    cy.get('[data-test-id=history-carbon-graph]').trigger('mouseout');
-    cy.get('[data-test-id=history-carbon-graph]').trigger('mousemove', 'center');
+    cy.get('[data-test-id=details-carbon-graph]').trigger('mouseout');
+    cy.get('[data-test-id=details-carbon-graph]').trigger('mousemove', 'center');
     cy.get('[data-test-id=zone-tooltip] [data-test-id=co2-square-value]').should(
       'have.text',
       '177'
     );
-    cy.get('[data-test-id=history-carbon-graph]').trigger('mouseout');
+    cy.get('[data-test-id=details-carbon-graph]').trigger('mouseout');
 
     // Temporarily disabled as it was crashing thingd
     // cy.get('[data-test-id=time-slider-input] ').setSliderValue(1_661_306_400_000);
@@ -56,10 +56,10 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains "no-recent-data" message', () => {
-    cy.interceptAPI('v5/history/hourly?countryCode=UA');
+    cy.interceptAPI('v6/details/hourly?countryCode=UA');
     cy.visit('/zone/UA?lang=en-GB');
-    cy.waitForAPISuccess('v5/state/hourly');
-    cy.waitForAPISuccess('v5/history/hourly?countryCode=UA');
+    cy.waitForAPISuccess('v6/state/hourly');
+    cy.waitForAPISuccess('v6/details/hourly?countryCode=UA');
 
     cy.get('[data-test-id=no-data-overlay-message]')
       .should('exist')
@@ -68,7 +68,7 @@ describe('Country Panel', () => {
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
     cy.visit('/zone/CN?lang=en-GB');
-    cy.waitForAPISuccess('v5/state/hourly');
+    cy.waitForAPISuccess('v6/state/hourly');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });
