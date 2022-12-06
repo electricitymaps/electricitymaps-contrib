@@ -13,15 +13,18 @@ from requests import Session
 
 tz = "America/Montevideo"
 
+# maps the xml keys from the website to names used by parser system
 MAP_GENERATION = {
+    # short for rio negro, main hydro power plant
     "hydro": "r",
     "wind": "eolica",
     "solar": "fotovoltaica",
     "biomass": "biomasa",
+    # all thermal, i.e. miscilaneous oil + natural gas production
     "unknown": "termica",
     "trade": "intercambios",
     "demand": "demanda",
-    "comprassgu": "comprassgu",
+    "salto_grande_prod": "comprassgu",
 }
 
 AVALIABLE_KEYS = ["hydro", "wind", "solar", "biomass", "unknown"]
@@ -31,11 +34,11 @@ UTE_URL = url = "https://ute.com.uy/energia-generada-intercambios-demanda"
 SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
 
 
-def get_salto_grande(session: Optional[Session], targ_time=None) -> float:
+def get_salto_grande(session: Session, targ_time: Optional[datetime] = None) -> float:
     """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
     # handle optional arguments
     s = session or Session()
-    lookup_time = arrow.now("UTC-3") if targ_time is None else targ_time
+    lookup_time = datetime.now(tz=tz) if targ_time is None else targ_time
 
     # Data for current hour seems to be available after 30mins.
     # if we're too soon into the hour, check the hour before
@@ -45,11 +48,8 @@ def get_salto_grande(session: Optional[Session], targ_time=None) -> float:
         and current_time.minute < 30
     ):
         print(
-            current_time.floor("hour"),
-            targ_time.floor("hour"),
-            current_time.minute < 30,
+            "Looking at previous hour's data for salto grande, because it is too soon after the hour"
         )
-        print("decrementing, because its too soon")
         current_time = current_time.shift(hours=-1)
 
     lookup_time = lookup_time.floor("hour").format("DD/MM/YYYY HH:mm")
@@ -76,7 +76,7 @@ def parse_num(num_str: str) -> float:
     return float(num_str.strip().replace(".", "").replace(",", "."))
 
 
-def correct_for_salto_grande(entry, session: Optional[Session] = None):
+def correct_for_salto_grande(entry, session: Session):
     """
     corrects a single entry parsed from the UTE website using salto_grande data
     Switched this to only operate on a single entry or list of entries so
@@ -89,16 +89,13 @@ def correct_for_salto_grande(entry, session: Optional[Session] = None):
 
 
 # time:
-def parse_page(session: Optional[Session] = None):
+def parse_page(session: Session):
     """
     Queries the url in UTE_URL, and parses hourly production and trade data
     and retruns the results as a list of dictionary objects
     """
     # load page
-    r = session or Session()
-    resp = r.get(UTE_URL)
-    print
-    # print(response.text)
+    resp = session.get(UTE_URL)
 
     # get the encoded XML with all the data we want
     soup = BeautifulSoup(resp.text, "html.parser")
@@ -136,14 +133,18 @@ def parse_page(session: Optional[Session] = None):
 
 def fetch_consumption(
     zone_key: str = "UY",
-    session: Optional[Session] = None,
+    session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    entry = parse_page(session)[-1]  # get most recent timestamp
+    # handle optional argument
+    session = Session() if session is None else session
+
+    # get most recent timestamp
+    entry = parse_page(session)[-1]
 
     # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
     entry = correct_for_salto_grande(entry, session)
@@ -164,10 +165,15 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
+
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    entry = parse_page(session)[-1]  # get most recent timestamp
+    # handle optional argument
+    session = Session() if session is None else session
+
+    # get most recent timestamp
+    entry = parse_page(session)[-1]
 
     # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
     entry = correct_for_salto_grande(entry, session)
@@ -211,7 +217,7 @@ def fetch_exchange(
         "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
         "datetime": entry["time"].datetime,
         "netFlow": netFlow,
-        "source": "ute.com.uy,",
+        "source": "ute.com.uy",
     }
 
     return data
