@@ -4,17 +4,17 @@ bounding_box:
   - - -32.343750
     - 74.019543
 bypassedSubZones:
-  - US-AK
+  # - US-AK
   - US-FLA-HST
   - US-SE-SEPA
-  - US-HI-HA
-  - US-HI-KA
-  - US-HI-KH
-  - US-HI-LA
-  - US-HI-MA
-  - US-HI-MO
-  - US-HI-NI
-  - US-HI-OA
+  # - US-HI-HA
+  # - US-HI-KA
+  # - US-HI-KH
+  # - US-HI-LA
+  # - US-HI-MA
+  # - US-HI-MO
+  # - US-HI-NI
+  # - US-HI-OA
 capacity:
   battery storage: 4832.0
   biomass: 14487.1
@@ -91,7 +91,7 @@ sources:
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 subZoneNames:
-  - US-AK
+  # - US-AK
   - US-CAL-BANC
   - US-CAL-CISO
   - US-CAL-IID
@@ -114,14 +114,14 @@ subZoneNames:
   - US-FLA-SEC
   - US-FLA-TAL
   - US-FLA-TEC
-  - US-HI-HA
-  - US-HI-KA
-  - US-HI-KH
-  - US-HI-LA
-  - US-HI-MA
-  - US-HI-MO
-  - US-HI-NI
-  - US-HI-OA
+  # - US-HI-HA
+  # - US-HI-KA
+  # - US-HI-KH
+  # - US-HI-LA
+  # - US-HI-MA
+  # - US-HI-MO
+  # - US-HI-NI
+  # - US-HI-OA
   - US-MIDA-PJM
   - US-MIDW-AECI
   - US-MIDW-LGEE

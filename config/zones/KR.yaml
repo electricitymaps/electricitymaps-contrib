@@ -28,7 +28,7 @@ emissionFactors:
       value: 644
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
-  _source: electricityMap
+  _source: Electricity Maps
   powerOriginRatios:
     value:
       battery discharge: 0

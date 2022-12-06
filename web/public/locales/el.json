@@ -608,7 +608,7 @@
       "countryName": "Μεγάλη Βρετανία",
       "zoneName": "Orkney Islands"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Μεγάλη Βρετανία",
       "zoneName": "Shetland Islands"
     },
@@ -1373,7 +1373,7 @@
       "zoneName": "United States Minor Outlying Islands"
     },
     "US": {
-      "zoneName": "Ηνωμένες Πολιτείες Αμερικής"
+      "zoneName": "συνεχόμενες Ηνωμένες Πολιτείες"
     },
     "US-HI-HA": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
