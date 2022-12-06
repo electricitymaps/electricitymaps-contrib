@@ -1,4 +1,5 @@
 import useGetZone from 'api/getZone';
+import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import BreakdownChart from 'features/charts/BreakdownChart';
 import CarbonChart from 'features/charts/CarbonChart';
 import EmissionChart from 'features/charts/EmissionChart';
@@ -62,6 +63,7 @@ export default function ZoneDetails(): JSX.Element {
         renewableRatio={renewableRatio}
       />
       <DisplayByEmissionToggle />
+      <BarBreakdownChart timeAverage={timeAverage} />
       {displayByEmissions ? (
         <EmissionChart datetimes={datetimes} timeAverage={timeAverage} />
       ) : (

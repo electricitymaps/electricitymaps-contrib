@@ -1,8 +1,6 @@
-import { useAtom } from 'jotai';
 import { getCountryName, getZoneName } from 'translation/translation';
 import type { GridState } from 'types';
 import { getCO2IntensityByMode } from 'utils/helpers';
-import { productionConsumptionAtom } from 'utils/state';
 import { ZoneRowType } from './ZoneList';
 
 export const getRankedState = (

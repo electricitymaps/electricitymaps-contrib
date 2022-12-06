@@ -55,4 +55,4 @@ export const modeOrder = [
   'gas',
   'oil',
   'unknown',
-];
+] as const;

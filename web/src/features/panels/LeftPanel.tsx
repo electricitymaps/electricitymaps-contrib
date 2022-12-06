@@ -44,7 +44,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
         !isOpen && '-translate-x-full'
       }`}
     >
-      <section className="w-full overflow-y-scroll p-2">{children}</section>
+      <section className="w-full overflow-y-scroll p-6">{children}</section>
       <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
     </aside>
   );
