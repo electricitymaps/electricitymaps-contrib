@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
@@ -131,23 +131,51 @@ def parse_page(session: Session):
     return hour_recs
 
 
-def fetch_consumption(
-    zone_key: str = "UY",
-    session: Optional[Session] = Session(),
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
+def get_entry_for_time(
+    session: Optional[Session] = None, target_datetime: Optional[datetime] = None
 ) -> dict:
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+    """
+    If possible, fetches the data entry from the given time
+    Handles optional session and datetime logic.
 
+    If datetime is specified, the function will first fetch data for all avaliable times, then
+    return the data for the appropriate hour if possible
+
+    Throws NotImplementedError if the time input is outside the acceptable range.
+    """
     # handle optional argument
     session = Session() if session is None else session
 
-    # get most recent timestamp
-    entry = parse_page(session)[-1]
+    # get data from webpage
+    entries = parse_page(session)
 
+    # if using timestamp lookup, get the appropriate
+    if target_datetime:
+        targ = arrow.Arrow.fromdatetime(target_datetime)
+        entry = None
+        for candidate_entry in entries:
+            if candidate_entry["time"].floor("hour") == targ.floor("hour"):
+                entry = candidate_entry
+        if entry is None:
+            raise NotImplementedError(
+                "This parser is not yet able to parse dates more than a day in the past"
+            )
+    else:
+        entry = entries[-1]
     # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
     entry = correct_for_salto_grande(entry, session)
+    return entry
+
+
+def fetch_consumption(
+    zone_key: str = "UY",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+
+    # handle all session and time logics in get_entry_for_time function
+    entry = get_entry_for_time(session, target_datetime)
 
     data = {
         "zoneKey": zone_key,
@@ -166,17 +194,8 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> dict:
 
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    # handle optional argument
-    session = Session() if session is None else session
-
-    # get most recent timestamp
-    entry = parse_page(session)[-1]
-
-    # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
-    entry = correct_for_salto_grande(entry, session)
+    # handle all session and time logics in get_entry_for_time function
+    entry = get_entry_for_time(session, target_datetime)
 
     data = {
         "zoneKey": zone_key,
@@ -197,17 +216,12 @@ def fetch_exchange(
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
 
-    session = session or Session()
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
     # set comparison
     if {zone_key1, zone_key2} != {"UY", "BR"}:
         return None
 
-    entry = parse_page(session)[-1]  # take latest entry parsed from page
-    # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
-    entry = correct_for_salto_grande(entry, session)
+    # handle all session and time logics in get_entry_for_time function
+    entry = get_entry_for_time(session, target_datetime)
 
     netFlow = entry["trade"]  # this represents BR->UY (imports)
     if zone_key1 != "BR":
@@ -224,6 +238,8 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
+    print("fetch_production(hour -1 ) ->")
+    print(fetch_production(target_datetime=datetime.now() - timedelta(hours=1)))
     print("fetch_production() ->")
     print(fetch_production())
     print("fetch_consumption() ->")
