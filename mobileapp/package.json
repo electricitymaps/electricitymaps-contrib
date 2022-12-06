@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "",
   "dependencies": {
-    "cordova-android": "^9.1.0",
     "cordova-plugin-globalization": "^1.11.0",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.3",
@@ -39,6 +38,7 @@
     "@globules-io/cordova-plugin-ios-xhr": "^1.2.4",
     "app-icon": "^0.13.2",
     "code-push": "^3.1.0",
+    "cordova-android": "^10.1.2",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-advanced-http": "^3.2.2",
     "cordova-plugin-code-push": "^2.0.0",
