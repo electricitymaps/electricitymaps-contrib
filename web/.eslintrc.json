@@ -131,7 +131,8 @@
         "cases": {
           "camelCase": true,
           "pascalCase": true
-        }
+        },
+        "ignore": ["FAQ"]
       }
     ],
     "unicorn/prevent-abbreviations": [
