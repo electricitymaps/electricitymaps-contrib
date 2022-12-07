@@ -12,6 +12,11 @@ Any and all contributions however big or small are welcome.
 ### Parser requirements
 
 ### Formatting the parsers
+The parsers uses black and isort as code formatters which is automatically checked in the CI job `Python / Formatting`.
+
+If this jobs fail and you need to manually format the code you can run `poetry run format` in the top level of the repository.
+
+Check the [wiki page](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#python-code-formatting) for more details and tips.
 
 ## Front-end guidelines
 
