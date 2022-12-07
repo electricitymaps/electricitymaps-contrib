@@ -29,12 +29,16 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 445.3981040694054
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020
       value: 995.61187
     gas:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020
       value: 480.1222048
     hydro discharge:
@@ -45,7 +49,7 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 445.3981040694054
     oil:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020
       value: 786.0859158
   lifecycle:
