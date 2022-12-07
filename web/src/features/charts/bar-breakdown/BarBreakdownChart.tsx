@@ -9,13 +9,19 @@ import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarBreakdownProductionChart from './BarBreakdownProductionChart';
 
 function BarBreakdownChart({ timeAverage }: { timeAverage: TimeAverages }) {
-  const { data, productionData, exchangeData, isLoading, height } =
-    useBarBreakdownChartData();
+  const {
+    currentZoneDetail,
+    zoneDetails,
+    productionData,
+    exchangeData,
+    isLoading,
+    height,
+  } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width } = useRefWidthHeightObserver();
   const { __ } = useTranslation();
 
-  if (isLoading || !data) {
+  if (isLoading || !currentZoneDetail) {
     // TODO: Replace with skeleton graph (maybe full graph with no data?)
     return <PulseLoader />;
   }
@@ -43,7 +49,7 @@ function BarBreakdownChart({ timeAverage }: { timeAverage: TimeAverages }) {
 
       {displayByEmissions ? (
         <BarBreakdownEmissionsChart
-          data={data}
+          data={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
           onProductionRowMouseOver={todoHandler}
@@ -56,7 +62,8 @@ function BarBreakdownChart({ timeAverage }: { timeAverage: TimeAverages }) {
         />
       ) : (
         <BarBreakdownProductionChart
-          data={data}
+          data={zoneDetails}
+          currentData={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
           onProductionRowMouseOver={todoHandler}

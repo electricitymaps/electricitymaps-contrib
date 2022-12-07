@@ -32,7 +32,8 @@ export default function useBarBreakdownChartData() {
   ) {
     return {
       height: 0,
-      data: undefined,
+      zoneDetails: undefined,
+      currentZoneDetail: undefined,
       exchangeData: [],
       productionData: [],
       isLoading: true,
@@ -56,7 +57,8 @@ export default function useBarBreakdownChartData() {
 
   return {
     height,
-    data: currentData, // TODO: Data is returned here just to pass it back to the tooltip
+    zoneDetails: zoneData, // TODO: Data is returned here just to pass it back to the tooltip
+    currentZoneDetail: currentData,
     exchangeData,
     productionData,
     isLoading: false,

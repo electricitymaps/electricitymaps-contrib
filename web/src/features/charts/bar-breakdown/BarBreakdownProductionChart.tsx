@@ -5,7 +5,7 @@ import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
-import { ZoneDetail } from 'types';
+import { ElectricityModeType, ZoneDetail, ZoneDetails } from 'types';
 import { modeColor } from 'utils/constants';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
@@ -21,18 +21,28 @@ import {
 interface BarBreakdownProductionChartProps {
   height: number;
   width: number;
-  data: ZoneDetail;
+  data: ZoneDetails;
+  currentData: ZoneDetail;
   exchangeData: ExchangeDataType[];
   productionData: ProductionDataType[];
   isMobile: boolean;
-  onProductionRowMouseOver: (data: ZoneDetail) => void;
+  onProductionRowMouseOver: (
+    mode: ElectricityModeType,
+    data: ZoneDetail,
+    event: React.MouseEvent<SVGPathElement, MouseEvent>
+  ) => void;
   onProductionRowMouseOut: () => void;
-  onExchangeRowMouseOver: (data: ZoneDetail) => void;
+  onExchangeRowMouseOver: (
+    mode: string,
+    data: ZoneDetail,
+    event: React.MouseEvent<SVGPathElement, MouseEvent>
+  ) => void;
   onExchangeRowMouseOut: () => void;
 }
 
 function BarBreakdownProductionChart({
   data,
+  currentData,
   exchangeData,
   height,
   isMobile,
@@ -107,7 +117,7 @@ function BarBreakdownProductionChart({
             width={width}
             scale={powerScale}
             value={getElectricityProductionValue(d)}
-            onMouseOver={(event) => onProductionRowMouseOver(d.mode, data, event)}
+            onMouseOver={(event) => onProductionRowMouseOver(d.mode, currentData, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >
@@ -135,7 +145,7 @@ function BarBreakdownProductionChart({
             width={width}
             scale={powerScale}
             value={d.exchange}
-            onMouseOver={(event) => onExchangeRowMouseOver(d.mode, data, event)}
+            onMouseOver={(event) => onExchangeRowMouseOver(d.mode, currentData, event)}
             onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
           >
