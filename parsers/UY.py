@@ -2,7 +2,7 @@
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from typing import Optional, Union, List
 
 import arrow
 import dateutil
@@ -47,9 +47,7 @@ def get_salto_grande(session: Session, targ_time: Optional[datetime] = None) -> 
         current_time.floor("hour") == targ_time.floor("hour")
         and current_time.minute < 30
     ):
-        print(
-            "Looking at previous hour's data for salto grande, because it is too soon after the hour"
-        )
+        # Looking at previous hour's data for salto grande, because it is too soon after the hour
         current_time = current_time.shift(hours=-1)
 
     lookup_time: str = lookup_time.floor("hour").format("DD/MM/YYYY HH:mm")
@@ -132,77 +130,101 @@ def parse_page(session: Session):
 
 
 def get_entry_for_time(
-    session: Optional[Session] = None, target_datetime: Optional[datetime] = None
+    session: Session, target_datetime: Optional[datetime] = None
 ) -> dict:
     """
     If possible, fetches the data entry from the given time
-    Handles optional session and datetime logic.
 
-    If datetime is specified, the function will first fetch data for all avaliable times, then
+    The function will first fetch data for all avaliable times, then
     return the data for the appropriate hour if possible
 
     Throws NotImplementedError if the time input is outside the acceptable range.
     """
-    # handle optional argument
-    session = Session() if session is None else session
 
     # get data from webpage
     entries = parse_page(session)
 
     # if using timestamp lookup, get the appropriate
-    if target_datetime:
-        targ = arrow.Arrow.fromdatetime(target_datetime)
-        entry = None
-        for candidate_entry in entries:
-            if candidate_entry["time"].floor("hour") == targ.floor("hour"):
-                entry = candidate_entry
-        if entry is None:
-            raise NotImplementedError(
-                "This parser is not yet able to parse dates more than a day in the past"
-            )
-    else:
-        entry = entries[-1]
+    targ = arrow.Arrow.fromdatetime(target_datetime)
+    entry = None
+    for candidate_entry in entries:
+        if candidate_entry["time"].floor("hour") == targ.floor("hour"):
+            entry = candidate_entry
+    if entry is None:
+        raise NotImplementedError(
+            "This parser is unnable to parse dates more than a day in the past"
+        )
+
     # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
-    entry = correct_for_salto_grande(entry, session)
-    return entry
+    return correct_for_salto_grande(entry, session)
 
 
 def fetch_consumption(
     zone_key: str = "UY",
-    session: Optional[Session] = None,
+    session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> Union[dict, List[dict]]:
 
-    # handle all session and time logics in get_entry_for_time function
-    entry = get_entry_for_time(session, target_datetime)
+    if target_datetime:
+        # handle all session and time logics in get_entry_for_time function
+        entry = get_entry_for_time(session, target_datetime)
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": entry["time"].datetime,
-        "consumption": entry["demand"],
-        "source": "ute.com.uy",
-    }
-
+        data = {
+            "zoneKey": zone_key,
+            "datetime": entry["time"].datetime,
+            "consumption": entry["demand"],
+            "source": "ute.com.uy",
+        }
+    else:
+        # return list...
+        entries = parse_page(session)
+        data = []
+        for entry in entries:
+            # Don't need to correct for salto grande b/c demand is not affected
+            datum = {
+                "zoneKey": zone_key,
+                "datetime": entry["time"].datetime,
+                "consumption": entry["demand"],
+                "source": "ute.com.uy",
+            }
+            data.append(datum)
     return data
 
 
 def fetch_production(
     zone_key: str = "UY",
-    session: Optional[Session] = None,
+    session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> Union[dict, List[dict]]:
 
-    # handle all session and time logics in get_entry_for_time function
-    entry = get_entry_for_time(session, target_datetime)
+    if target_datetime:
+        # handle all session and time logics in get_entry_for_time function
+        entry = get_entry_for_time(session, target_datetime)
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": entry["time"].datetime,
-        "production": {key: entry[key] for key in AVALIABLE_KEYS},
-        "source": "ute.com.uy",
-    }
+        data = {
+            "zoneKey": zone_key,
+            "datetime": entry["time"].datetime,
+            "production": {key: entry[key] for key in AVALIABLE_KEYS},
+            "source": "ute.com.uy",
+        }
+    else:
+        # return list...
+        entries = parse_page(session)
+        data = []
+        for entry in entries:
+            # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
+            entry = correct_for_salto_grande(entry, session)
+
+            data.append(
+                {
+                    "zoneKey": zone_key,
+                    "datetime": entry["time"].datetime,
+                    "production": {key: entry[key] for key in AVALIABLE_KEYS},
+                    "source": "ute.com.uy",
+                }
+            )
 
     return data
 
@@ -210,7 +232,7 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "UY",
     zone_key2: str = "BR-S",
-    session: Optional[Session] = None,
+    session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
@@ -220,17 +242,41 @@ def fetch_exchange(
     if {zone_key1, zone_key2} != {"UY", "BR"}:
         return None
 
-    # handle all session and time logics in get_entry_for_time function
-    entry = get_entry_for_time(session, target_datetime)
+    flip_direction = zone_key1 != "BR"
 
-    netFlow = entry["trade"]  # this represents BR->UY (imports)
-    if zone_key1 != "BR":
-        netFlow *= -1
+    if target_datetime:
+        # handle all session and time logics in get_entry_for_time function
+        entry = get_entry_for_time(session, target_datetime)
+
+        data = {
+            "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
+            "datetime": entry["time"].datetime,
+            "netFlow": entry["trade"],
+            "source": "ute.com.uy",
+        }
+        if flip_direction:
+            data["netFlow"] *= -1
+    else:
+        # return list...
+        entries = parse_page(session)
+        data = []
+        for entry in entries:
+            data.append(
+                {
+                    "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
+                    "datetime": entry["time"].datetime,
+                    "netFlow": entry["trade"],
+                    "source": "ute.com.uy",
+                }
+            )
+            # flip if needed
+            if flip_direction:
+                data[-1]["netFlow"] *= -1
 
     data = {
         "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
         "datetime": entry["time"].datetime,
-        "netFlow": netFlow,
+        "netFlow": entry["trade"],
         "source": "ute.com.uy",
     }
 
@@ -238,11 +284,17 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
-    print("fetch_production(hour -1 ) ->")
-    print(fetch_production(target_datetime=datetime.now() - timedelta(hours=1)))
     print("fetch_production() ->")
     print(fetch_production())
     print("fetch_consumption() ->")
     print(fetch_consumption())
+    print("fetch_production(hour -1 ) ->")
+    print(fetch_production(target_datetime=datetime.now() - timedelta(hours=1)))
+    print("fetch_consumption(hour -1 ) ->")
+    print(fetch_consumption(target_datetime=datetime.now() - timedelta(hours=1)))
     print("fetch_exchange(UY, BR) ->")
     print(fetch_exchange("UY", "BR"))
+
+    print("fetch_exchange(UY, BR) ->")
+    print(fetch_exchange(zone_key1="UY", zone_key2="BR"))
+
