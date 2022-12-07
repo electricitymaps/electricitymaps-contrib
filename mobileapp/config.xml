@@ -31,6 +31,7 @@
         <preference name="android-targetSdkVersion" value="32" />
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <allow-intent href="market:*" />
+        <icon src="icon_ios.png" platform="ios" />
         <icon background="icon.background.png" density="ldpi" foreground="icon.foreground.png" />
         <icon background="icon.background.png" density="mdpi" foreground="icon.foreground.png" />
         <icon background="icon.background.png" density="hdpi" foreground="icon.foreground.png" />
