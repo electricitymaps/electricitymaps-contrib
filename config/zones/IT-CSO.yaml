@@ -37,7 +37,7 @@ emissionFactors:
         value: 351.78507100698533
     biomass:
       datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
+      source: BEIS 2021
       value: 0.0
     coal:
       datetime: '2021-01-01'
@@ -46,7 +46,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
-      value: 473.8451586
+      value: 446.1813452
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
@@ -85,9 +85,9 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 351.78507100698533
     biomass:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 439.145806
+      datetime: '2014-01-01'
+      source: BEIS 2021; IPCC 2014
+      value: 230.0
     coal:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
@@ -95,8 +95,8 @@ emissionFactors:
       value: 1082.9825388
     gas:
       datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS, ENTSO-E 2021
-      value: 593.8451586
+      source: EU-ETS, ENTSO-E 2021; IPCC 2014
+      value: 566.1813452
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -123,7 +123,7 @@ emissionFactors:
       value: 5.13
     oil:
       datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS, ENTSO-E 2021
+      source: EU-ETS, ENTSO-E 2021; IPCC 2014
       value: 1165.1256533
     solar:
       datetime: '2021-01-01'
