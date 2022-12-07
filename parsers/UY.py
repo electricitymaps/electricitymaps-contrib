@@ -297,4 +297,3 @@ if __name__ == "__main__":
 
     print("fetch_exchange(UY, BR) ->")
     print(fetch_exchange(zone_key1="UY", zone_key2="BR"))
-
