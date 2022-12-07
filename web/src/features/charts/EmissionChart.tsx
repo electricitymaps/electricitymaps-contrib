@@ -1,5 +1,6 @@
 import { PulseLoader } from 'react-spinners';
 import { TimeAverages } from 'utils/constants';
+import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 
 import { noop } from './graphUtils';
@@ -20,7 +21,8 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const { chartData, layerFill, layerKeys } = data;
 
   return (
-    <div className="ml-3">
+    <div className="ml-2">
+      <ChartTitle translationKey="country-history.emissions" />
       <AreaGraph
         testId="history-emissions-graph"
         data={chartData}

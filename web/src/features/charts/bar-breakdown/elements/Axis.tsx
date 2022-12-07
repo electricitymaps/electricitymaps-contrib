@@ -10,7 +10,7 @@ type Props = {
 export default function Axis({ formatTick, height, scale }: Props) {
   return (
     <g
-      className="x axis"
+      className="text-gray-500/30"
       fill="none"
       fontSize="10"
       fontFamily="sans-serif"
@@ -18,7 +18,7 @@ export default function Axis({ formatTick, height, scale }: Props) {
       transform={`translate(${scale.range()[0] + LABEL_MAX_WIDTH}, ${X_AXIS_HEIGHT})`}
     >
       <path
-        stroke="lightgray"
+        stroke="currentColor"
         fill="none"
         shapeRendering="auto"
         d={`M${scale.range()[0] + 0.5},0.5H${scale.range()[1] + 0.5}`}
@@ -26,7 +26,7 @@ export default function Axis({ formatTick, height, scale }: Props) {
       {scale.ticks(SCALE_TICKS).map((t) => (
         <g key={t} className="tick" opacity="1" transform={`translate(${scale(t)}, 0)`}>
           <line
-            stroke="lightgray"
+            stroke="currentColor"
             strokeWidth={1}
             shapeRendering={'auto'}
             y2={height - X_AXIS_HEIGHT}

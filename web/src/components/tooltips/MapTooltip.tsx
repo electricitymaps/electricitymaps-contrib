@@ -110,7 +110,6 @@ export default function MapTooltip(properties: MapTooltipProperties) {
     return undefined;
   }
 
-
   const hoveredZoneData = data?.data?.zones[hoveredFeature.zoneId] ?? undefined;
   const zoneData = hoveredZoneData
     ? data?.data?.zones[hoveredFeature.zoneId][selectedDatetime.datetimeString]

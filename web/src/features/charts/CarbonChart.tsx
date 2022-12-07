@@ -1,5 +1,6 @@
 import { PulseLoader } from 'react-spinners';
 import { TimeAverages } from 'utils/constants';
+import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
@@ -19,7 +20,8 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   const { chartData, layerFill, layerKeys } = data;
 
   return (
-    <div className="ml-3">
+    <div className="ml-2">
+      <ChartTitle translationKey="country-history.carbonintensity" />
       <AreaGraph
         testId="history-carbon-graph"
         data={chartData}

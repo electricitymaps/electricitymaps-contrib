@@ -122,8 +122,8 @@ function BarBreakdownProductionChart({
             isMobile={isMobile}
           >
             <HorizontalBar
-              className="capacity"
-              fill="rgba(0, 0, 0, 0.15)"
+              className="text-black/10 dark:text-white/10"
+              fill="currentColor"
               range={d.isStorage ? [-d.capacity, d.capacity] : [0, d.capacity]}
               scale={powerScale}
             />

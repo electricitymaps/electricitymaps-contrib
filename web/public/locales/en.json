@@ -84,7 +84,7 @@
       "yearly": "Carbon intensity in the last 5 years"
     },
     "emissions": { "default": "Emissions in the last %1$s" },
-    "emissionsorigin": { "default": "Emissions in the last %1$s" },
+    "emissionsorigin": { "default": "Origin of emissions in the last %1$s" },
     "emissionsproduction": { "default": "Origin of emissions in the last %1$s" },
     "electricityorigin": { "default": "Origin of electricity in the last %1$s" },
     "electricityproduction": { "default": "Electricity production in the last %1$s" },
