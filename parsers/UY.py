@@ -52,7 +52,7 @@ def get_salto_grande(session: Session, targ_time: Optional[datetime] = None) -> 
         )
         current_time = current_time.shift(hours=-1)
 
-    lookup_time = lookup_time.floor("hour").format("DD/MM/YYYY HH:mm")
+    lookup_time: str = lookup_time.floor("hour").format("DD/MM/YYYY HH:mm")
 
     url = SALTO_GRANDE_URL + lookup_time
     response = s.get(url)
