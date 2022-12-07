@@ -20,3 +20,8 @@ Any and all contributions however big or small are welcome.
 ### State management
 
 ### Formatting the frontend
+The frontend uses ESLint and Prettier as formatters for all code and this is automatically checked in the CI jobs `Prettier / Check` and `ESLint / Check`.
+
+If these jobs fail and you need to format the code you can run `yarn lint --fix` in the `/web` folder to do so.
+
+Check the [wiki page](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#js-code-formatting) on formatting for more details and tips.
