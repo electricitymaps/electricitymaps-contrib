@@ -1,25 +1,16 @@
-enum step {
-  ZERO = 0,
-  TWO_HUNDRED = 200,
-  FOUR_HUNDRED = 400,
-  SIX_HUNDRED = 600,
-  EIGHT_HUNDRED = 800,
-}
+const defaultCo2Scale = {
+  steps: [0, 150, 600, 750, 800],
+  colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02'],
+};
 
-const steps = [
-  step.ZERO,
-  step.TWO_HUNDRED,
-  step.FOUR_HUNDRED,
-  step.SIX_HUNDRED,
-  step.EIGHT_HUNDRED,
-];
+const colorblindCo2Scale = {
+  steps: [0, 200, 400, 600, 800],
+  colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
+};
 
 export const themes = {
   colorblindDark: {
-    co2Scale: {
-      steps,
-      colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
-    },
+    co2Scale: colorblindCo2Scale,
     oceanColor: '#33414A',
     strokeWidth: 0.3,
     strokeColor: '#6D6D6D',
@@ -27,10 +18,7 @@ export const themes = {
     nonClickableFill: '#7A878D',
   },
   dark: {
-    co2Scale: {
-      steps,
-      colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02'],
-    },
+    co2Scale: defaultCo2Scale,
     oceanColor: '#33414A',
     strokeWidth: 0.3,
     strokeColor: '#6D6D6D',
@@ -38,10 +26,7 @@ export const themes = {
     nonClickableFill: '#7A878D',
   },
   colorblindBright: {
-    co2Scale: {
-      steps,
-      colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
-    },
+    co2scale: colorblindCo2Scale,
     oceanColor: '#FAFAFA',
     strokeWidth: 0.3,
     strokeColor: '#FAFAFA',
@@ -49,10 +34,7 @@ export const themes = {
     nonClickableFill: '#D4D9DE',
   },
   bright: {
-    co2Scale: {
-      steps,
-      colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02'],
-    },
+    co2Scale: defaultCo2Scale,
     oceanColor: '#FAFAFA',
     strokeWidth: 0.3,
     strokeColor: '#FAFAFA',
