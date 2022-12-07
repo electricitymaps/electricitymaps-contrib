@@ -39,7 +39,21 @@
     @apply text-gray-900 dark:text-gray-200;
   }
 }
-
+*::-webkit-scrollbar {
+  /*remove scrollbar track chrome*/
+  background-color: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  border: 4px solid transparent;
+  height: 50px;
+  width: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  background-clip: content-box;
+}
+* {
+  scrollbar-color: #404040b3 transparent; /*remove scrollbar track firefox*/
+}
 .translate-x-radix-toast-swipe-move-x {
   transform: translateX(var(--radix-toast-swipe-move-x));
 }
@@ -48,9 +62,15 @@
   transform: translateX(var(--radix-toast-swipe-end-x));
 }
 
-
-button.maplibregl-ctrl-zoom-in.mapboxgl-ctrl-zoom-in{width: 33px; height:32px;  }
-button.maplibregl-ctrl-zoom-out.mapboxgl-ctrl-zoom-out{width: 33px; height:32px; border-color: lightgray;}
+button.maplibregl-ctrl-zoom-in.mapboxgl-ctrl-zoom-in {
+  width: 33px;
+  height: 32px;
+}
+button.maplibregl-ctrl-zoom-out.mapboxgl-ctrl-zoom-out {
+  width: 33px;
+  height: 32px;
+  border-color: lightgray;
+}
 
 button.maplibregl-ctrl-zoom-in.mapboxgl-ctrl-zoom-in {
   width: 33px;
