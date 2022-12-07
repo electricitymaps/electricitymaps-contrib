@@ -9,7 +9,7 @@ import { ToastProvider } from '@radix-ui/react-toast';
 import { useGetAppVersion } from 'api/getAppVersion';
 import Toast from 'components/Toast';
 
-const isProduction = import.meta.env.PROD
+const isProduction = import.meta.env.PROD;
 
 const Map = lazy(async () => import('features/map/Map'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -19,10 +19,11 @@ const handleReload = () => {
 export default function App(): ReactElement {
   //@ts-ignore Use global variable from Vite
   const currentAppVersion = APP_VERSION;
-
   const { data, isSuccess } = useGetAppVersion();
   const isNewVersionAvailable =
-    data?.version && currentAppVersion && isProduction ? data.version !== currentAppVersion : false;
+    data?.version && currentAppVersion && isProduction
+      ? data.version !== currentAppVersion
+      : false;
 
   return (
     <Suspense fallback={<div />}>
