@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { REFETCH_INTERVAL_MS } from 'api/helpers';
+import { REFETCH_INTERVAL_FIVE_MINUTES } from 'api/helpers';
 import App from 'App';
 import { useAtomsDevtools } from 'jotai/devtools';
 import { StrictMode } from 'react';
@@ -32,7 +32,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: MAX_RETRIES,
-      refetchInterval: REFETCH_INTERVAL_MS,
+      refetchInterval: REFETCH_INTERVAL_FIVE_MINUTES,
     },
   },
 });

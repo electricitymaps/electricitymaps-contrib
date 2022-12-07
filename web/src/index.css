@@ -40,6 +40,18 @@
   }
 }
 
+.translate-x-radix-toast-swipe-move-x {
+  transform: translateX(var(--radix-toast-swipe-move-x));
+}
+
+.translate-x-radix-toast-swipe-end-x {
+  transform: translateX(var(--radix-toast-swipe-end-x));
+}
+
+
+button.maplibregl-ctrl-zoom-in.mapboxgl-ctrl-zoom-in{width: 33px; height:32px;  }
+button.maplibregl-ctrl-zoom-out.mapboxgl-ctrl-zoom-out{width: 33px; height:32px; border-color: lightgray;}
+
 button.maplibregl-ctrl-zoom-in.mapboxgl-ctrl-zoom-in {
   width: 33px;
   height: 32px;
