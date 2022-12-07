@@ -24,44 +24,48 @@ emissionFactors:
   direct:
     battery discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 461.54009388696727
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 445.3981040694054
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020
       value: 995.61187
     gas:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020
       value: 480.1222048
     hydro discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 461.54009388696727
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 445.3981040694054
     oil:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020
       value: 786.0859158
   lifecycle:
     battery discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 622.0627301219394
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 606.5077121885872
     hydro discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 622.0627301219394
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 606.5077121885872
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
@@ -70,7 +74,7 @@ emissionFactors:
       value: 31.94
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2021 average
+    - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0

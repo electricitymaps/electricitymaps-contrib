@@ -35,7 +35,7 @@ class EmissionFactorTestCase(unittest.TestCase):
         expected = {
             "battery charge": 0,
             "battery discharge": 54.19088892903222,
-            "biomass": 819.5789414,
+            "biomass": 230,
             "coal": 953.9335274,
             "gas": 624.846764,
             "geothermal": 38,
