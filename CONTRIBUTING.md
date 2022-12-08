@@ -11,6 +11,14 @@ Any and all contributions however big or small are welcome.
 
 ### Parser requirements
 
+There are no clear cut model or template that works for all parsers as all data are different and unique but there are some basic requirements all parsers need to follow:
+
+- They need to return valid data from a credible source.
+- They need to return the date for when the data was collected together with the data.
+- They need to return at least one valid Electricity Maps data object (production, consumption, exchange, price, etc).
+
+<!-- TODO: Add link to or create and link to a clear parser/data type documentation -->
+
 ### Formatting the parsers
 
 The parsers uses black and isort as code formatters which is automatically checked in the CI job `Python / Formatting`.
