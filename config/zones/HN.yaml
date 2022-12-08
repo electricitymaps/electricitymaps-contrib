@@ -1,0 +1,87 @@
+bounding_box:
+  - - -90.5131
+    - 13.029
+  - - -82.4981
+    - 17.4603
+capacity:
+  biomass: 210
+  coal: 135
+  geothermal: 35
+  hydro: 706
+  nuclear: 0
+  oil: 875
+  solar: 451
+  wind: 225
+contributors:
+  - alixunderplatz
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 549.4540100197098
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 551.2165273275053
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 549.4540100197098
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 551.2165273275053
+  lifecycle:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 335.4255618552025
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 335.04899255391314
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 335.4255618552025
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 335.04899255391314
+    unknown:
+      _url: https://www.iea.org/fuels-and-technologies/electricity
+      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass,
+        7.8% wind, 2.8% geothermal
+      value: 340
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.004619403674992832
+        coal: 0.013026194970024944
+        gas: 6.543632649415684e-05
+        geothermal: 0.008744329268332424
+        hydro: 0.02730560737369362
+        hydro discharge: 0.0
+        nuclear: 1.8972962135359797e-05
+        oil: 0.008386943918895317
+        solar: 0.00208360914314322
+        unknown: 0.9324478173102372
+        wind: 0.0033637016506390016
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.007042568522024162
+        coal: 0.006717635865974526
+        gas: 0.00012142508853628217
+        geothermal: 0.0077884877400700705
+        hydro: 0.01886753355247677
+        hydro discharge: 0.0
+        nuclear: 2.977370702812155e-05
+        oil: 0.009966336785178782
+        solar: 0.0008071482158401607
+        unknown: 0.943014698526271
+        wind: 0.006033691992477824
+parsers:
+  production: ENTE.fetch_production
+timezone: America/Tegucigalpa

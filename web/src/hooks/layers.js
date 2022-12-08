@@ -5,14 +5,30 @@ import { formatDistance } from 'date-fns';
 
 import { getRefTime, getTargetTime } from '../helpers/grib';
 import { TIME } from '../helpers/constants';
+import exchangesToExclude from '../config/excluded-aggregated-exchanges.json';
+import { useAggregatesEnabled } from './router';
 
 export function useExchangeArrowsData() {
   const isConsumption = useSelector((state) => state.application.electricityMixMode === 'consumption');
   const isHourly = useSelector((state) => state.application.selectedTimeAggregate === TIME.HOURLY);
+  const allExchanges = useSelector((state) => state.data.exchanges);
+
+  const zoneViewExchanges = Object.keys(allExchanges)
+    .filter((key) => !exchangesToExclude.exchangesToExcludeZoneView.includes(key))
+    .reduce((cur, key) => {
+      return Object.assign(cur, { [key]: allExchanges[key] });
+    }, {});
 
   const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
-  const exchanges = useSelector((state) => state.data.exchanges);
 
+  const isAggregatedToggled = useAggregatesEnabled();
+  const countryViewExchanges = Object.keys(allExchanges)
+    .filter((key) => !exchangesToExclude.exchangesToExcludeCountryView.includes(key))
+    .reduce((cur, key) => {
+      return Object.assign(cur, { [key]: allExchanges[key] });
+    }, {});
+
+  const exchanges = isAggregatedToggled ? countryViewExchanges : zoneViewExchanges;
   if (!isConsumption || !isHourly) {
     return [];
   }
@@ -43,16 +59,15 @@ export function useInterpolatedWindData() {
       return null;
     }
 
-    // eslint-disable-next-line no-console
-    console.log(
+    console.info(
       `#1 wind forecast target ${formatDistance(tBefore, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(gribs1[0]),
         new Date(),
         { addSuffix: true }
       )}`
     );
-    // eslint-disable-next-line no-console
-    console.log(
+
+    console.info(
       `#2 wind forecast target ${formatDistance(tAfter, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(gribs2[0]),
         new Date(),
@@ -88,16 +103,15 @@ export function useInterpolatedSolarData() {
       return null;
     }
 
-    // eslint-disable-next-line no-console
-    console.log(
+    console.info(
       `#1 solar forecast target ${formatDistance(tBefore, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(grib1),
         new Date(),
         { addSuffix: true }
       )}`
     );
-    // eslint-disable-next-line no-console
-    console.log(
+
+    console.info(
       `#2 solar forecast target ${formatDistance(tAfter, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(grib2),
         new Date(),

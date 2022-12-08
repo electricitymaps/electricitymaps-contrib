@@ -7,6 +7,27 @@ import FAQ from '../../components/faq';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 import SocialButtons from './socialbuttons';
 import Icon from '../../components/icon';
+import styled from 'styled-components';
+
+const InfoTabContainer = styled.div`
+  padding: 1rem;
+  line-height: normal !important;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  flex: 1 1 0px;
+
+  @include respond-to('medium-up') {
+    padding-top: 0.5rem;
+  }
+
+  p {
+    margin: 0.6rem 0;
+  }
+
+  .info-text p {
+    margin: 0.6rem 0;
+  }
+`;
 
 const MobileInfoTab = () => {
   const { __ } = useTranslation();
@@ -45,11 +66,11 @@ const MobileInfoTab = () => {
   }
 
   return (
-    <div className="mobile-info-tab">
+    <InfoTabContainer>
       <div className="socialicons">
         <div
           className="fb-like"
-          data-href="https://www.facebook.com/tmrowco"
+          data-href="https://www.facebook.com/electricitymaps"
           data-layout="button"
           data-action="like"
           data-size="small"
@@ -70,11 +91,15 @@ const MobileInfoTab = () => {
         {mobileAppVersion ? <p>{`App version: ${mobileAppVersion}`}</p> : null}
         <p>
           {__('panel-initial-text.thisproject')}{' '}
-          <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank" rel="noreferrer">
+          <a href="https://github.com/electricitymaps/electricitymaps-contrib" target="_blank" rel="noreferrer">
             {__('panel-initial-text.opensource')}
           </a>{' '}
           ({__('panel-initial-text.see')}{' '}
-          <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
+            target="_blank"
+            rel="noreferrer"
+          >
             {__('panel-initial-text.datasources')}
           </a>
           ).{' '}
@@ -82,7 +107,7 @@ const MobileInfoTab = () => {
             dangerouslySetInnerHTML={{
               __html: __(
                 'panel-initial-text.contribute',
-                'https://github.com/tmrowco/electricitymap-contrib/wiki/Getting-started'
+                'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Getting-started'
               ),
             }}
           />
@@ -90,7 +115,11 @@ const MobileInfoTab = () => {
         </p>
         <p>
           {__('footer.foundbugs')}{' '}
-          <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/electricitymaps/electricitymaps-contrib/issues/new"
+            target="_blank"
+            rel="noreferrer"
+          >
             {__('footer.here')}
           </a>
           .
@@ -101,7 +130,7 @@ const MobileInfoTab = () => {
 
       <div className="mobile-faq-header">{__('misc.faq')}</div>
       <FAQ className="mobile-faq" />
-    </div>
+    </InfoTabContainer>
   );
 };
 

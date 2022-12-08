@@ -1,0 +1,105 @@
+bounding_box:
+  - - -123.703117998
+    - 45.902822584
+  - - -119.816106194
+    - 49.502493024
+capacity:
+  battery storage: 2
+  biomass: 37.9
+  coal: 0
+  gas: 2072
+  geothermal: 0
+  hydro: 347.8
+  hydro storage: 0
+  nuclear: 0
+  oil: 2.7
+  solar: 0.5
+  unknown: 0
+  wind: 502.9
+comment: Puget Sound Energy
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 212.78679287990548
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 151.24994391342204
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 127.8088759065813
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 325.3877204
+    hydro discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 212.78679287990548
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 151.24994391342204
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 127.8088759065813
+  lifecycle:
+    battery discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 266.8021525098982
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 201.28692810448706
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 175.31736485306627
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 11.13357253
+    coal:
+      datetime: '2014-01-01'
+      source: IPCC 2014
+      value: 820.0
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 445.3877204
+    hydro discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 266.8021525098982
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 201.28692810448706
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 175.31736485306627
+    oil:
+      datetime: '2014-01-01'
+      source: IPCC 2014; EIA 2020/BEIS 2021
+      value: 650.0
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+timezone: US/Pacific

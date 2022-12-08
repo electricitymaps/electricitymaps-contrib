@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Modules
@@ -77,6 +76,11 @@ app.all('/dist/*.map', (req, res, next) => {
   return next();
 });
 
+app.use('/client-version.json', (req, res, next) => {
+  res.header('Cache-Control', 'no-cache,max-age=0');
+  next();
+});
+
 // Static files
 app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
 
@@ -90,7 +94,7 @@ app.use('/', (req, res) => {
   // redirect everyone except the Facebook crawler,
   // else, we will lose all likes
   if (!isStaging && isProduction && isNonAppDomain && !isFacebookRobot) {
-    res.redirect(301, `https://app.electricitymap.org${req.originalUrl}`);
+    res.redirect(301, `https://app.electricitymaps.com${req.originalUrl}`);
   } else {
     // Set locale if facebook requests it
     if (req.query.fb_locale) {
@@ -100,7 +104,7 @@ app.use('/', (req, res) => {
       res.setLocale(lr[0]);
     }
     const { locale } = res;
-    let canonicalUrl = `https://app.electricitymap.org${req.baseUrl + req.path}`;
+    let canonicalUrl = `https://app.electricitymaps.com${req.baseUrl + req.path}`;
     if (req.query.lang) {
       canonicalUrl += `?lang=${req.query.lang}`;
     }
@@ -167,5 +171,5 @@ if (isProduction) {
 
 // Start the application
 server.listen(process.env.PORT, () => {
-  console.log(`Listening on *:${process.env.PORT}`);
+  console.info(`Listening on *:${process.env.PORT}`);
 });

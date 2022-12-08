@@ -11,12 +11,12 @@ const {
 } = require('@turf/turf');
 const { getPolygons, getHoles, writeJSON, log } = require('./utilities');
 
-const { getZonesJson } = require('./files');
+const { mergeZones } = require('../generate-zones-config');
 
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
 function validateGeometry(fc, config) {
-  console.log('Validating geometries...'); // eslint-disable-line no-console
+  console.info('Validating geometries...');
   zeroNullGeometries(fc);
   containsRequiredProperties(fc);
   zeroComplexPolygons(fc, config);
@@ -75,7 +75,7 @@ function zeroComplexPolygons(fc, { MAX_CONVEX_DEVIATION }) {
 }
 
 function matchesZonesConfig(fc) {
-  const zonesJson = getZonesJson();
+  const zonesJson = mergeZones();
 
   const missingZones = [];
   featureEach(fc, (ft) => {
@@ -84,14 +84,14 @@ function matchesZonesConfig(fc) {
     }
   });
   if (missingZones.length) {
-    missingZones.forEach((x) => log(`${x} not in zones.json`));
-    throw Error('Zonename not in zones.json');
+    missingZones.forEach((x) => log(`${x} not in zones/*.yaml`));
+    throw Error('Zonename not in zones/*.yaml');
   }
 }
 
-function zeroGaps(fc, { ERROR_PATH, MIN_AREA_HOLES }) {
+function zeroGaps(fc, { ERROR_PATH, MIN_AREA_HOLES, SLIVER_RATIO }) {
   const dissolved = getPolygons(dissolve(getPolygons(fc)));
-  const holes = getHoles(dissolved, MIN_AREA_HOLES);
+  const holes = getHoles(dissolved, MIN_AREA_HOLES, SLIVER_RATIO);
 
   if (holes.features.length > 0) {
     writeJSON(`${ERROR_PATH}/gaps.geojson`, holes);
@@ -132,10 +132,15 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
   // add bbox to features to increase speed
   const features = getPolygons(fc).features.map((ft) => ({ ft, bbox: bboxPolygon(bbox(ft)) }));
 
+  const countriesToIgnore = fc.features.filter((ft) => ft.properties.isCombined).map((ft) => ft.properties.countryKey);
+
   const overlaps = features
     .filter(
       (ft1, idx1) =>
         features.filter((ft2, idx2) => {
+          if (countriesToIgnore.includes(ft1.ft.properties.countryKey)) {
+            return false;
+          }
           if (idx1 !== idx2 && intersect(ft1.bbox, ft2.bbox)) {
             const intersection = intersect(ft1.ft, ft2.ft);
             if (intersection && area(intersection) > MIN_AREA_INTERSECTION) {
@@ -145,8 +150,7 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
         }).length
     )
     .map(({ ft, _ }) => ft.properties.zoneName);
-
-  if (overlaps.length) {
+  if (overlaps.length > 0) {
     overlaps.forEach((x) => console.error(`${x} overlaps with another feature`));
     throw Error('Feature(s) overlap');
   }

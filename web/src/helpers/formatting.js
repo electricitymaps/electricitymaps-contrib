@@ -68,12 +68,20 @@ const formatDate = function (date, lang, time) {
   }
 };
 
-const getLocaleNumberFormat = (lang, { unit, unitDisplay, range }) =>
-  new Intl.NumberFormat(lang, {
-    style: 'unit',
-    unit,
-    unitDisplay: unitDisplay || 'long',
-  }).format(range);
+const getLocaleNumberFormat = (lang, { unit, unitDisplay, range }) => {
+  try {
+    return new Intl.NumberFormat(lang, {
+      style: 'unit',
+      unit,
+      unitDisplay: unitDisplay || 'long',
+    }).format(range);
+  } catch (error) {
+    // As Intl.NumberFormat with custom 'unit' is not supported in all browsers, we fallback to
+    // a simple English based implementation
+    const plural = range !== 1 ? 's' : '';
+    return `${range} ${unit}${plural}`;
+  }
+};
 
 const formatTimeRange = (lang, timeAggregate) => {
   // Note that not all browsers fully support all languages
@@ -101,9 +109,13 @@ const formatDateTick = function (date, lang, timeAggregate) {
     case TIME.HOURLY:
       return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
     case TIME.DAILY:
-      return new Intl.DateTimeFormat(lang, { month: 'long', day: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' }).format(date);
     case TIME.MONTHLY:
-      return new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
+      return lang === 'et'
+        ? new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' })
+            .formatToParts(date)
+            .find((part) => part.type === 'month').value
+        : new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
     case TIME.YEARLY:
       return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
     default:
@@ -123,5 +135,17 @@ function isValidDate(date) {
 
   return true;
 }
+/**
+ * @param {string[]} dataSources - array of data sources.
+ * @param {string} language - ISO 639-1 language code (`en`) or ISO 639-1 language code + ISO 3166-1 alpha-2 country code (`en-GB`).
+ * @returns {string} formatted string of data sources.
+ */
+function formatDataSources(dataSources, language) {
+  if (typeof Intl.ListFormat !== 'undefined') {
+    return new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(dataSources);
+  } else {
+    return dataSources?.join(', ');
+  }
+}
 
-export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick };
+export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };

@@ -49,7 +49,7 @@ def fetch_production(
 
 def fetch_exchange(
     zone_key1: str = "DK-BHM",
-    zone_key2: str = "SE",
+    zone_key2: str = "SE-SE4",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -83,5 +83,5 @@ if __name__ == "__main__":
 
     print("fetch_production() ->")
     print(fetch_production())
-    print("fetch_exchange(DK-BHM, SE) ->")
-    print(fetch_exchange("DK-BHM", "SE"))
+    print("fetch_exchange(DK-BHM, SE-SE4) ->")
+    print(fetch_exchange("DK-BHM", "SE-SE4"))

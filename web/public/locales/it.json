@@ -59,8 +59,8 @@
     "dataIsDelayed": "I dati per questa regione possono essere in ritardo di %s ore. I dati in tempo reale non possono essere mostrati.",
     "estimated": "stimato",
     "aggregated": "aggregato",
-    "dataIsEstimated": "Alcuni dei dati per questa regione sono stimati. Leggi di più sul nostro metodo di stima <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">qui</a>.",
-    "exchangesAreMissing": "Gli scambi sono considerati nei calcoli, ma non sono mostrati attualmente. Leggi altro sulle nostre aggregazioni storiche <a href=\"https://github.com/electricitymap/electricitymap-contrib/wiki/Historical-aggregates\" target=\"_blank\"> qui</a>.",
+    "dataIsEstimated": "Alcuni dei dati per questa regione sono stimati. Leggi di più sul nostro metodo di stima <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">qui</a>.",
+    "exchangesAreMissing": "Gli scambi sono considerati nei calcoli, ma non sono mostrati attualmente. Leggi altro sulle nostre aggregazioni storiche <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\"> qui</a>.",
     "estimatedTooltip": "I dati in tempo reale per questa zona sono stimati sulla base dei dati dalla fonte e dalle assunzioni del modello.",
     "aggregatedTooltip": "I dati per questa zona sono aggregati basandosi su valori orari storici",
     "helpUs": "Aiutaci ad identificare il problema dando un'occhiata ai <a href=\"%s\" target=\"_blank\">log di esecuzione</a> o contatta il fornitore dei dati.",
@@ -83,12 +83,24 @@
       "monthly": "Intensità di carbonio nell'ultimo anno",
       "yearly": "Intensità di carbonio negli ultimi 5 anni"
     },
-    "emissions": { "default": "Emissioni nell'ultimo %1$s" },
-    "emissionsorigin": { "default": "Origine delle emissioni nell' ultimo %1$s" },
-    "emissionsproduction": { "default": "Emissioni prodotte nell' ultimo %1$s" },
-    "electricityorigin": { "default": "Origine dell'elettricità nell' ultimo %1$s" },
-    "electricityproduction": { "default": "Produzione elettrica nell' ultimo %1$s" },
-    "electricityprices": { "hourly": "Prezzi dell'elettricità nell' ultimo %1$s" },
+    "emissions": {
+      "default": "Emissioni nell'ultimo %1$s"
+    },
+    "emissionsorigin": {
+      "default": "Origine delle emissioni nell' ultimo %1$s"
+    },
+    "emissionsproduction": {
+      "default": "Emissioni prodotte nell' ultimo %1$s"
+    },
+    "electricityorigin": {
+      "default": "Origine dell'elettricità nell' ultimo %1$s"
+    },
+    "electricityproduction": {
+      "default": "Produzione elettrica nell' ultimo %1$s"
+    },
+    "electricityprices": {
+      "hourly": "Prezzi dell'elettricità nell' ultimo %1$s"
+    },
     "Getdata": "Ottieni dati orari storici, in tempo reale e previsioni con le API di Electricity Maps"
   },
   "footer": {
@@ -670,7 +682,7 @@
       "countryName": "Gran Bretagna",
       "zoneName": "Isole Orcadi"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Gran Bretagna",
       "zoneName": "Isole Shetland"
     },
@@ -1444,6 +1456,9 @@
     "UM": {
       "zoneName": "Isole minori esterne degli Stati Uniti d'America"
     },
+    "US": {
+      "zoneName": "Contigui Stati Uniti d'America"
+    },
     "US-HI-HA": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Hawaii"
@@ -1552,10 +1567,6 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "Jacksonville Electric Authority"
     },
-    "US-FLA-NSB": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Seminole Electric Cooperative"
@@ -1575,10 +1586,6 @@
     "US-MIDW-AECI": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Stati Uniti d'America",
@@ -1680,10 +1687,6 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Southeastern Power Administration"
@@ -1707,10 +1710,6 @@
     "US-SW-GRIF": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Stati Uniti d'America",

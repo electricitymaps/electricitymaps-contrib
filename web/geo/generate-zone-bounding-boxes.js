@@ -3,20 +3,30 @@ const path = require('path');
 const args = process.argv.slice(2);
 
 const { getJSON } = require('./utilities');
-const { getZonesJson, saveZonesJson } = require('./files');
+const { saveZoneYaml } = require('./files');
+const { mergeZones } = require('../generate-zones-config');
 
-let zones = getJSON(path.resolve(__dirname, './world.geojson'));
+const zonesGeo = getJSON(path.resolve(__dirname, './world.geojson'));
+const zones = mergeZones();
 
 if (args.length <= 0) {
   console.error('ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE")');
   process.exit(1);
 }
-zones.features = zones.features.filter((d) => d.properties.zoneName === args[0]);
+
+const zoneKey = args[0];
+
+if (!(zoneKey in zones)) {
+  console.error(`ERROR: Zone ${zoneKey} does not exist in configuration`);
+  process.exit(1);
+}
+
+zonesGeo.features = zonesGeo.features.filter((d) => d.properties.zoneName === zoneKey);
 
 let allCoords = [];
 const boundingBoxes = {};
 
-zones.features.forEach((zone) => {
+zonesGeo.features.forEach((zone) => {
   allCoords = [];
   const geometryType = zone.geometry.type;
   zone.geometry.coordinates.forEach((coords1) => {
@@ -54,20 +64,18 @@ zones.features.forEach((zone) => {
   ];
 });
 
-zones = getZonesJson();
-
-for (const [zone, bbox] of Object.entries(boundingBoxes)) {
-  // do not add new entries to zones.json, do not add RU because it crosses the 180th meridian
-  if (!(zone in zones) || zone === 'RU' || zone === 'RU-FE') {
+for (const [zoneKey, bbox] of Object.entries(boundingBoxes)) {
+  // do not add new entries to zones/*.yaml, do not add RU because it crosses the 180th meridian
+  if (!(zoneKey in zones) || zoneKey === 'RU' || zoneKey === 'RU-FE') {
     continue;
   }
   // do not modifiy current bounding boxes
-  if (zones[zone].bounding_box) {
+  if (zones[zoneKey].bounding_box) {
     continue;
   }
-  zones[zone].bounding_box = [bbox[0], bbox[1]];
+  zones[zoneKey].bounding_box = [bbox[0], bbox[1]];
+
+  saveZoneYaml(zoneKey, zones[zoneKey]);
 }
 
-saveZonesJson(zones);
-
-console.error('Done, check /config/zones.json to verify that the result looks good!');
+console.error(`Done, check /config/zones/${zoneKey}.yaml to verify that the result looks good!`);

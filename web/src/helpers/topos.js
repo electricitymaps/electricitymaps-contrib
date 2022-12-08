@@ -1,5 +1,5 @@
 import { merge } from 'topojson';
-import topo from '../world.json';
+import topo from '../config/world.json';
 
 const constructTopos = () => {
   const zones = {};

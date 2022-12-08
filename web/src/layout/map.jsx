@@ -56,12 +56,12 @@ export default () => {
   // Center the map initially based on the focused zone and the user geolocation.
   useEffect(() => {
     if (!hasCentered) {
-      if (zoneId) {
-        console.log(`Centering on zone ${zoneId}`); // eslint-disable-line no-console
+      if (zoneId && zones[zoneId]) {
+        console.info(`Centering on zone ${zoneId}`);
         dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId].geography));
         setHasCentered(true);
       } else if (callerLocation) {
-        console.log(`Centering on browser location (${callerLocation})`); // eslint-disable-line no-console
+        console.info(`Centering on browser location (${callerLocation})`);
         dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
         setHasCentered(true);
       }
@@ -183,6 +183,7 @@ export default () => {
       </div>
       {tooltipPosition && tooltipZoneData && hoveringEnabled && (
         <MapCountryTooltip
+          isZoneNameDisplayed
           zoneData={tooltipZoneData}
           position={tooltipPosition}
           onClose={() => setTooltipZoneData(null)}

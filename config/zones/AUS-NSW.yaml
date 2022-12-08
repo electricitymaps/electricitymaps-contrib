@@ -1,0 +1,92 @@
+bounding_box:
+  - - 148.26945193885587
+    - -36.41961598109262
+  - - 149.90440026326144
+    - -34.63950855917267
+capacity:
+  battery storage: 0
+  biomass: 102
+  coal: 10240
+  gas: 2007
+  hydro: 2658
+  hydro storage: 840
+  nuclear: 0
+  oil: 148
+  solar: 5892
+  wind: 1802
+contributors:
+  - brandongalbraith
+  - jarek
+  - corradio
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 732.0198500267021
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 734.0265137077417
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 708.2174868733902
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 666.7305825232543
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 609.4001059397319
+    hydro discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 732.0198500267021
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 734.0265137077417
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 708.2174868733902
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 666.7305825232543
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 609.4001059397319
+  lifecycle:
+    battery discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 732.0198500267021
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 734.0265137077417
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 708.2174868733902
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 666.7305825232543
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 609.4001059397319
+    hydro discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 732.0198500267021
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 734.0265137077417
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 708.2174868733902
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 666.7305825232543
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 609.4001059397319
+flag_file_name: au.png
+parsers:
+  price: OPENNEM.fetch_price
+  production: OPENNEM.fetch_production
+timezone: null

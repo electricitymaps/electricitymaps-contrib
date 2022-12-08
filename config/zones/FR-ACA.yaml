@@ -1,0 +1,17 @@
+bounding_box:
+  - - 3.3883584814447
+    - 47.422198455938
+  - - 8.2303986615424
+    - 50.168317417174
+capacity:
+  biomass: 237
+  hydro: 2312
+  nuclear: 12580
+  solar: 541
+  unknown: 3157
+  wind: 3603
+contributors:
+  - https://github.com/AilinvandenHonigkuchenpferdlande
+parsers:
+  production: ECO2MIX.fetch_production
+timezone: Europe/Paris

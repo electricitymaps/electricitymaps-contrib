@@ -1,250 +1,128 @@
-import json
-import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import List, Optional
+from typing import List, Optional, Union
 
-import arrow  # the arrow library is used to handle datetimes
-import pandas as pd
-import pytz
-from requests import Session, exceptions
+from requests import Response, Session
 
-from parsers.lib.config import refetch_frequency
-
+from .lib.config import refetch_frequency
 from .lib.exceptions import ParserException
 
-ids = {
-    "real_time": "06380963-b7c6-46b7-aec5-173d15e4648b",
-    "energy_bal": "02356e88-7c4e-4ee9-b896-275d217cc1b9",
+EXCHANGE_MAPPING = {
+    "DE->DK-DK1": {"id": "ExchangeGermany", "direction": 1, "priceArea": "DK1"},
+    "DE->DK-DK2": {"id": "ExchangeGermany", "direction": 1, "priceArea": "DK2"},
+    "DK-DK1->DK-DK2": {"id": "ExchangeGreatBelt", "direction": -1, "priceArea": "DK1"},
+    "DK-DK1->NL": {"id": "ExchangeNetherlands", "direction": -1, "priceArea": "DK1"},
+    "DK-DK1->NO-NO2": {"id": "ExchangeNorway", "direction": -1, "priceArea": "DK1"},
+    "DK-DK1->SE-SE3": {"id": "ExchangeSweden", "direction": -1, "priceArea": "DK1"},
+    "DK-DK2->SE-SE4": {"id": "ExchangeSweden", "direction": -1, "priceArea": "DK2"},
+    "DK-BHM->SE-SE4": {"id": "BornholmSE4", "direction": -1, "priceArea": "DK2"},
 }
 
 
-@refetch_frequency(timedelta(days=1))
-def fetch_production(
-    zone_key: str = "DK-DK1",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> List[dict]:
+def fetch_data(
+    price_area: str,
+    session: Optional[Session],
+    target_datetime: Optional[datetime],
+    logger: Logger,
+) -> dict:
     """
-    Queries "Electricity balance Non-Validated" from energinet api
-    for Danish bidding zones
-
-    NOTE: Missing historical wind/solar data @ 2017-08-01
+    Helper function to fetch data from the API.
     """
-    r = session or Session()
+    ses = session or Session()
 
-    if zone_key not in ["DK-DK1", "DK-DK2"]:
-        raise NotImplementedError(
-            "fetch_production() for {} not implemented".format(zone_key)
-        )
-
-    zone = zone_key[-3:]
-
-    timestamp = arrow.get(target_datetime).strftime("%Y-%m-%d %H:%M")
-
-    # fetch hourly energy balance from recent hours
-    sqlstr = 'SELECT "HourUTC" as timestamp, "Biomass", "Waste", \
-                     "OtherRenewable", "FossilGas" as gas, "FossilHardCoal" as coal, \
-                     "FossilOil" as oil, "HydroPower" as hydro, \
-                     ("OffshoreWindPower"%2B"OnshoreWindPower") as wind, \
-                     "SolarPower" as solar from "{0}" \
-                     WHERE "PriceArea" = \'{1}\' AND \
-                     "HourUTC" >= (timestamp\'{2}\'-INTERVAL \'24 hours\') AND \
-                     "HourUTC" <= timestamp\'{2}\' \
-                     ORDER BY "HourUTC" ASC'.format(
-        ids["energy_bal"], zone, timestamp
+    params = {
+        "limit": 144,
+        "filter": '{"PriceArea":"DK1"}'
+        if price_area == "DK1"
+        else '{"PriceArea":"DK2"}',
+        "start": (target_datetime - timedelta(days=1)).isoformat(timespec="minutes")
+        if target_datetime
+        else None,
+        "end": target_datetime.isoformat(timespec="minutes")
+        if target_datetime
+        else None,
+    }
+    response: Response = ses.get(
+        "https://api.energidataservice.dk/dataset/ElectricityProdex5MinRealtime",
+        params=params,
     )
-
-    url = "https://api.energidataservice.dk/datastore_search_sql?sql={}".format(sqlstr)
-    response = r.get(url)
-
-    # raise errors for responses with an error or no data
-    retry_count = 0
-    while response.status_code in [429, 403, 500]:
-        retry_count += 1
-        if retry_count > 5:
-            raise Exception("Retried too many times..")
-        # Wait and retry
-        logger.warn("Retrying..")
-        time.sleep(5 ** retry_count)
-        response = r.get(url)
-    if response.status_code != 200:
-        j = response.json()
-        if "error" in j and "info" in j["error"]:
-            error = j["error"]["__type"]
-            text = j["error"]["info"]["orig"]
-            msg = '"{}" fetching production data for {}: {}'.format(
-                error, zone_key, text
+    if response.ok:
+        data = response.json()
+        if data["total"] == 0:
+            raise ParserException(
+                parser="DK.py", message=f"No data found for {target_datetime}"
             )
         else:
-            msg = "error while fetching production data for {}: {}".format(
-                zone_key, json.dumps(j)
-            )
-        exceptions.HTTPError(msg)
-    if not response.json()["result"]["records"]:
-        raise ParserException("DK.py", "API returned no data", zone_key=zone_key)
-
-    df = pd.DataFrame(response.json()["result"]["records"])
-    # index response dataframe by time
-    df = df.set_index("timestamp")
-    df.index = pd.DatetimeIndex(df.index)
-    # drop empty rows from energy balance
-    df.dropna(how="all", inplace=True)
-
-    # Divide waste into 55% renewable and 45% non-renewable parts according to
-    # https://ens.dk/sites/ens.dk/files/Statistik/int.reporting_2016.xls (visited Jan 24th, 2019)
-    df["unknown"] = 0.45 * df["Waste"]  # Report fossil waste as unknown
-    df["renwaste"] = 0.55 * df["Waste"]
-    # Report biomass, renewable waste and other renewables (biogas etc.) as biomass
-    df["biomass"] = df.filter(["Biomass", "renwaste", "OtherRenewable"]).sum(axis=1)
-
-    fuels = ["biomass", "coal", "oil", "gas", "unknown", "hydro"]
-    # Format output as a list of dictionaries
-    output = []
-    for dt in df.index:
-
-        data = {
-            "zoneKey": zone_key,
-            "datetime": None,
-            "production": {
-                "biomass": 0,
-                "coal": 0,
-                "gas": 0,
-                "hydro": None,
-                "nuclear": 0,
-                "oil": 0,
-                "solar": None,
-                "wind": None,
-                "geothermal": None,
-                "unknown": 0,
-            },
-            "storage": {},
-            "source": "api.energidataservice.dk",
-        }
-
-        data["datetime"] = dt.to_pydatetime()
-        data["datetime"] = data["datetime"].replace(tzinfo=pytz.utc)
-        for f in ["solar", "wind"] + fuels:
-            data["production"][f] = df.loc[dt, f]
-        output.append(data)
-    return output
+            return data
+    else:
+        raise ParserException(parser="DK.py", message="No data was returned")
 
 
+def flow(sorted_keys: str, datapoint: dict) -> Union[int, float, None]:
+    """
+    Helper function to extract the net flow from a datapoint.
+    """
+    if sorted_keys == "DK-DK2->SE-SE4":
+        # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
+        # but Bornholm island is reported separately from DK-DK2 in Electricity Maps
+        return (
+            datapoint[EXCHANGE_MAPPING["DK-DK2->SE-SE4"]["id"]]
+            * EXCHANGE_MAPPING["DK-DK2->SE-SE4"]["direction"]
+            - datapoint[EXCHANGE_MAPPING["DK-BHM->SE-SE4"]["id"]]
+            * EXCHANGE_MAPPING["DK-BHM->SE-SE4"]["direction"]
+            if datapoint[EXCHANGE_MAPPING["DK-BHM->SE-SE4"]["id"]] is not None
+            and datapoint[EXCHANGE_MAPPING["DK-DK2->SE-SE4"]["id"]] is not None
+            else None
+        )
+    else:
+        return (
+            datapoint[EXCHANGE_MAPPING[sorted_keys]["id"]]
+            * EXCHANGE_MAPPING[sorted_keys]["direction"]
+            if datapoint[EXCHANGE_MAPPING[sorted_keys]["id"]]
+            else None
+        )
+
+
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: str = "DK-DK1",
     zone_key2: str = "DK-DK2",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-):
-    """
-    Fetches 5-minute frequency exchange data for Danish bidding zones
-    from api.energidataservice.dk
-    """
-    r = session or Session()
+) -> List[dict]:
     sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
-
-    # pick the correct zone to search
-    if "DK1" in sorted_keys and "DK2" in sorted_keys:
-        zone = "DK1"
-    elif "DK1" in sorted_keys:
-        zone = "DK1"
-    elif "DK2" in sorted_keys:
-        zone = "DK2"
-    elif "DK-BHM" in sorted_keys:
-        zone = "DK2"
-    else:
-        raise NotImplementedError(
-            "Only able to fetch exchanges for Danish bidding zones"
-        )
-
-    exch_map = {
-        "DE->DK-DK1": '"ExchangeGermany"',
-        "DE->DK-DK2": '"ExchangeGermany"',
-        "DK-DK1->DK-DK2": '"ExchangeGreatBelt"',
-        "DK-DK1->NO-NO2": '"ExchangeNorway"',
-        "DK-DK1->NL": '"ExchangeNetherlands"',
-        "DK-DK1->SE": '"ExchangeSweden"',
-        "DK-DK1->SE-SE3": '"ExchangeSweden"',
-        "DK-DK1->NL": '"ExchangeNetherlands"',
-        "DK-DK2->SE": '("ExchangeSweden" - "BornholmSE4")',  # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
-        "DK-DK2->SE-SE4": '("ExchangeSweden" - "BornholmSE4")',  # but Bornholm island is reported separately from DK-DK2 in eMap
-        "DK-BHM->SE": '"BornholmSE4"',
-    }
-    if sorted_keys not in exch_map:
-        raise NotImplementedError("Exchange {} not implemented".format(sorted_keys))
-
-    timestamp = arrow.get(target_datetime).strftime("%Y-%m-%d %H:%M")
-
-    # fetch real-time/5-min data
-    sqlstr = 'SELECT "Minutes5UTC" as timestamp, {0} as "netFlow" \
-                     from "{1}" WHERE "PriceArea" = \'{2}\' AND \
-                     "Minutes5UTC" >= (timestamp\'{3}\'-INTERVAL \'24 hours\') AND \
-                     "Minutes5UTC" <= timestamp\'{3}\' \
-                     ORDER BY "Minutes5UTC" ASC'.format(
-        exch_map[sorted_keys], ids["real_time"], zone, timestamp
+    data = fetch_data(
+        EXCHANGE_MAPPING[sorted_keys]["priceArea"], session, target_datetime, logger
     )
 
-    url = "https://api.energidataservice.dk/datastore_search_sql?sql={}".format(sqlstr)
-    response = r.get(url)
-
-    # raise errors for responses with an error or no data
-    retry_count = 0
-    while response.status_code in [429, 403, 500]:
-        retry_count += 1
-        if retry_count > 5:
-            raise Exception("Retried too many times..")
-        # Wait and retry
-        logger.warn("Retrying..")
-        time.sleep(5 ** retry_count)
-        response = r.get(url)
-    if response.status_code != 200:
-        j = response.json()
-        if "error" in j and "info" in j["error"]:
-            error = j["error"]["__type"]
-            text = j["error"]["info"]["orig"]
-            msg = '"{}" fetching exchange data for {}: {}'.format(
-                error, sorted_keys, text
+    if sorted_keys not in EXCHANGE_MAPPING:
+        raise ParserException(
+            "DK.py",
+            "Only able to fetch data for exchanges that are connected to Denmark (DK-DK1, DK-DK2, DK-BHM)",
+        )
+    else:
+        return_list: List[dict] = []
+        for datapoint in data["records"]:
+            return_list.append(
+                {
+                    "sortedZoneKeys": sorted_keys,
+                    "datetime": datetime.fromisoformat(
+                        datapoint["Minutes5UTC"]
+                    ).replace(tzinfo=timezone.utc),
+                    "netFlow": flow(sorted_keys, datapoint),
+                    "source": "energidataservice.dk",
+                }
             )
-        else:
-            msg = "error while fetching exchange data for {}: {}".format(
-                sorted_keys, json.dumps(j)
-            )
-        raise exceptions.HTTPError(msg)
-    if not response.json()["result"]["records"]:
-        raise ParserException("DK.py", "API returned no data", zone_key=sorted_keys)
-
-    df = pd.DataFrame(response.json()["result"]["records"])
-    df = df.set_index("timestamp")
-    df.index = pd.DatetimeIndex(df.index)
-    # drop empty rows
-    df.dropna(how="all", inplace=True)
-
-    # all exchanges are reported as net import,
-    # where as eMap expects net export from
-    # the first zone in alphabetical order
-    if "DE" not in sorted_keys:
-        df["netFlow"] = -1 * df["netFlow"]
-    # Format output
-    output = []
-    for dt in df.index:
-        data = {
-            "sortedZoneKeys": sorted_keys,
-            "datetime": None,
-            "netFlow": None,
-            "source": "api.energidataservice.dk",
-        }
-
-        data["datetime"] = dt.to_pydatetime()
-        data["datetime"] = data["datetime"].replace(tzinfo=pytz.utc)
-        data["netFlow"] = df.loc[dt, "netFlow"]
-        output.append(data)
-    return output
+    if return_list == []:
+        raise ParserException(
+            parser="DK.py",
+            message=f"No exchange data found for {sorted_keys} at: {target_datetime or datetime.now()}",
+        )
+    else:
+        return return_list
 
 
 if __name__ == "__main__":
-    print("fetch_production() ->")
-    print(fetch_production())
     print("fetch_exchange(DK-DK2, SE-SE4) ->")
     print(fetch_exchange("DK-DK2", "SE-SE4"))

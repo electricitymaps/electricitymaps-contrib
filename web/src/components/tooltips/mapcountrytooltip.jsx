@@ -9,7 +9,7 @@ import CarbonIntensitySquare from '../carbonintensitysquare';
 import Tooltip from '../tooltip';
 import { ZoneName } from './common';
 import { getCO2IntensityByMode } from '../../helpers/zonedata';
-import { TimeDisplay } from '../timeDisplay';
+import TooltipTimeDisplay from './tooltiptimedisplay';
 
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
@@ -19,12 +19,16 @@ const CountryTableHeaderInner = styled.div`
   display: flex;
   flex-basis: 33.3%;
   justify-content: space-between;
+  margin-bottom: 5px;
+
+  & .country-col:not(:first-of-type) {
+    margin-left: 1.25rem;
+  }
 `;
 
-const StyledTimeDisplay = styled(TimeDisplay)`
-  font-size: smaller;
-  margin-top: 0px;
-  margin-bottom: 12px;
+const StyledTooltipTimeDisplay = styled(TooltipTimeDisplay)`
+  margin-bottom: 5px;
+  font-weight: ${(props) => (props.isZoneNameDisplayed ? '500' : '600')};
 `;
 
 const TooltipContent = React.memo(
@@ -73,7 +77,11 @@ const TooltipContent = React.memo(
   }
 );
 
-const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) => {
+const ZoneNameHeader = styled.div`
+  margin-bottom: 5px;
+`;
+
+const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose, isZoneNameDisplayed }) => {
   if (!zoneData) {
     return null;
   }
@@ -92,10 +100,10 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
 
   return (
     <Tooltip id="country-tooltip" position={position} onClose={onClose}>
-      <div className="zone-name-header">
-        <ZoneName zone={zoneData.countryCode} />
-        <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
-      </div>
+      <ZoneNameHeader>
+        {isZoneNameDisplayed && <ZoneName zone={zoneData.countryCode} />}
+        <StyledTooltipTimeDisplay date={zoneData.stateDatetime} isZoneNameDisplayed={isZoneNameDisplayed} />
+      </ZoneNameHeader>
       <TooltipContent
         hasParser={zoneData.hasParser}
         isDataDelayed={isDataDelayed}

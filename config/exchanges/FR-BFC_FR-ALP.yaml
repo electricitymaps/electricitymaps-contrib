@@ -1,0 +1,2 @@
+parsers:
+  exchange: ECO2MIX.fetch_exchange

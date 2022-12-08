@@ -1,0 +1,53 @@
+bounding_box:
+  - - -113.397006989
+    - 32.8262615200001
+  - - -112.375976563
+    - 33.877473831
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 713
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 0
+comment: Arlington Valley, Llc - Avba
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  production: 30
+emissionFactors:
+  direct:
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 397.9497472
+  lifecycle:
+    coal:
+      datetime: '2014-01-01'
+      source: IPCC 2014
+      value: 820.0
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 517.9497472
+    oil:
+      datetime: '2014-01-01'
+      source: IPCC 2014; EIA 2020/BEIS 2021
+      value: 650.0
+flag_file_name: us.png
+parsers:
+  production: EIA.fetch_production_mix
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+timezone: US/Arizona

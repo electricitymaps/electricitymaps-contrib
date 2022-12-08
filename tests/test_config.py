@@ -1,11 +1,12 @@
+import json
 import unittest
 from pathlib import Path
 
-from electricitymap.contrib.config import (
-    EXCHANGES_CONFIG,
-    ZONES_CONFIG,
-    generate_zone_neighbours,
-)
+from deepdiff import DeepDiff
+
+from electricitymap.contrib import config
+
+CONFIG_DIR = Path(__file__).parent.parent.joinpath("config").resolve()
 
 
 class ConfigTestcase(unittest.TestCase):
@@ -17,7 +18,7 @@ class ConfigTestcase(unittest.TestCase):
             "DE": {},
             "FR": {},
         }
-        zone_neighbours = generate_zone_neighbours(zones, exchanges)
+        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(zone_neighbours, {"DE": ["FR"], "FR": ["DE"]})
 
     def test_generate_zone_neighbours_one_country_one_subzone(self):
@@ -31,7 +32,7 @@ class ConfigTestcase(unittest.TestCase):
             },
             "SE-SE4": {},
         }
-        zone_neighbours = generate_zone_neighbours(zones, exchanges)
+        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(zone_neighbours, {"DE": ["SE-SE4"], "SE-SE4": ["DE"]})
 
     def test_generate_zone_neighbours_two_subzones(self):
@@ -58,7 +59,7 @@ class ConfigTestcase(unittest.TestCase):
             "SE-SE3": {},
             "SE-SE4": {},
         }
-        zone_neighbours = generate_zone_neighbours(zones, exchanges)
+        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(
             zone_neighbours,
             {
@@ -84,7 +85,7 @@ class ConfigTestcase(unittest.TestCase):
             "SE-SE3": {},
             "SE-SE4": {},
         }
-        zone_neighbours = generate_zone_neighbours(zones, exchanges)
+        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(
             zone_neighbours,
             {"SE-SE1": ["SE-SE2"], "SE-SE2": ["SE-SE1"]},
@@ -103,7 +104,7 @@ class ConfigTestcase(unittest.TestCase):
             "GB-NIR": {},
             "GB-ORK": {},
         }
-        zone_neighbours = generate_zone_neighbours(zones, exchanges)
+        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(
             zone_neighbours,
             {"GB": ["GB-NIR", "GB-ORK"], "GB-NIR": ["GB"], "GB-ORK": ["GB"]},
@@ -117,11 +118,13 @@ class ConfigTestcase(unittest.TestCase):
             "DE": {},
             "FR": {},
         }
-        zone_neighbours = generate_zone_neighbours(zones, exchanges)
+        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(zone_neighbours, {})
 
     def test_ZONE_NEIGHBOURS(self):
-        zone_neighbours = generate_zone_neighbours(ZONES_CONFIG, EXCHANGES_CONFIG)
+        zone_neighbours = config.generate_zone_neighbours(
+            config.ZONES_CONFIG, config.EXCHANGES_CONFIG
+        )
         self.assertIn("DK-DK1", zone_neighbours.keys())
         dk_neighbours = zone_neighbours["DK-DK1"]
 

@@ -6,9 +6,15 @@
     "datasources": "데이터 정보",
     "contribute": "공헌으로<a href=\"%s\" target=\"_blank\">자기 지역을 추가해주세요</a>"
   },
-  "mobile-main-menu": { "map": "전력 지도", "areas": "지역", "about": "에 관하여" },
+  "mobile-main-menu": {
+    "map": "전력 지도",
+    "areas": "지역",
+    "about": "에 관하여"
+  },
   "onboarding-modal": {
-    "view1": { "subtitle": "기후가 전력생산에 미치는 영향" },
+    "view1": {
+      "subtitle": "기후가 전력생산에 미치는 영향"
+    },
     "view2": {
       "header": "전력 생산으로 인해향 얼마나 많은 이산화탄소가 실시간으로 배출되는지 보십시오",
       "text": "우리는 전세계의 전력소비로 인한 탄소밀집도(온실가스를 포함)를 색깔로 표시했습니다. 녹색에 가까운 색일수록 친환경적인 전력생산을 의미합니다."
@@ -45,12 +51,24 @@
   },
   "country-history": {
     "Getdata": "역사적 자료, marginal 그리고 예상된 API.",
-    "carbonintensity": { "hourly": "24시간 내 탄소밀집도" },
-    "emissionsorigin": { "hourly": "24시간 내 배출 원인지역" },
-    "emissionsproduction": { "hourly": "24시간 내 생산된 배출량" },
-    "electricityorigin": { "hourly": "24시간 내 전력 원천" },
-    "electricityproduction": { "hourly": "24시간 동안 전력생산" },
-    "electricityprices": { "hourly": "24시간 동안 전력 사용 요금" }
+    "carbonintensity": {
+      "hourly": "24시간 내 탄소밀집도"
+    },
+    "emissionsorigin": {
+      "hourly": "24시간 내 배출 원인지역"
+    },
+    "emissionsproduction": {
+      "hourly": "24시간 내 생산된 배출량"
+    },
+    "electricityorigin": {
+      "hourly": "24시간 내 전력 원천"
+    },
+    "electricityproduction": {
+      "hourly": "24시간 동안 전력생산"
+    },
+    "electricityprices": {
+      "hourly": "24시간 동안 전력 사용 요금"
+    }
   },
   "footer": {
     "foundbugs": "버그가 발견되었거나 의견이 있으신가요? 알려주세요",
@@ -184,375 +202,1248 @@
     "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>는 <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>에 정보제공 목적으로 이미지를 포함한 데이터를 사용합니다. 정보의 정확성에 대해 책임지지 않으며 어떤 형태의 보증도 제공하지 않습니다. the electricityMap 은 언제든 별도의 고지 없이 콘텐츠를 변경하거나 삭제할 권리를 유보합니다. electricityMap는 the electricityMap의 정보나 그로부터 유추되는 내용의 부정확성, 불완전성, 시기부적절성, 진부화로 인해 발생하는 손해나 비용에 대해 어떤 법적 책임도 지지 않습니다. 다른 웹페이지에 사전 공식 서면 허가 없이 본 웹페이지 자체나 부분적인 요소들을 포함시키는 것은 허용하지 않습니다.<br><br> 모든 지적 재산권은 정당한 소유자와 그 라이센스 소유자에게 있습니다. 에너지 데이터를 비롯한 모든 정보의 복사, 배포, 또는 그 외 모든 자료 사용은 특정 자료에 대해 따로 공지하지 않는 이상 electricityMap의 서면 허가 없이는 허용하지 않는다. (인용할 권리와 같이) 법적 규정에서 지정하는 경우만 예외로 둡니다. <br><br>본 고지 내용은 추후에 변경될 수 있습니다."
   },
   "zoneShortName": {
-    "AD": { "zoneName": "안도라" },
-    "AE": { "zoneName": "아랍 에미리트 연합국" },
-    "AF": { "zoneName": "아프가니스탄" },
-    "AG": { "zoneName": "앤티가 바부다" },
-    "AI": { "zoneName": "앙귈라" },
-    "AL": { "zoneName": "알바니아" },
-    "AM": { "zoneName": "아르메니아" },
-    "AO": { "zoneName": "앙골라" },
-    "AQ": { "zoneName": "남극 대륙" },
-    "AS": { "zoneName": "미국령 사모아" },
-    "AT": { "zoneName": "오스트리아" },
-    "AR": { "zoneName": "아르헨티나" },
-    "AUS-NSW": { "countryName": "호주", "zoneName": "뉴사우스웨일스 주" },
-    "AUS-NT": { "countryName": "호주", "zoneName": "노던 준주" },
-    "AUS-QLD": { "countryName": "호주", "zoneName": "퀸즐랜드 주" },
-    "AUS-SA": { "countryName": "호주", "zoneName": "사우스오스트레일리아 주" },
-    "AUS-TAS": { "countryName": "호주", "zoneName": "태즈메이니아 주" },
-    "AUS-TAS-KI": { "countryName": "태즈메이니아 주", "zoneName": "킹섬" },
-    "AUS-VIC": { "countryName": "호주", "zoneName": "빅토리아 주" },
-    "AUS-WA": { "countryName": "호주", "zoneName": "웨스턴 오스트레일리아 주" },
-    "AW": { "zoneName": "아루바" },
-    "AX": { "zoneName": "올란드 제도" },
-    "AZ": { "zoneName": "아제르바이잔" },
-    "BA": { "zoneName": "보스니아 헤르체코비나" },
-    "BB": { "zoneName": "바베이도스" },
-    "BD": { "zoneName": "방글라데시" },
-    "BE": { "zoneName": "벨기에" },
-    "BF": { "zoneName": "부르키나 파소" },
-    "BG": { "zoneName": "불가리아" },
-    "BH": { "zoneName": "바레인" },
-    "BI": { "zoneName": "부룬디" },
-    "BJ": { "zoneName": "베냉" },
-    "BM": { "zoneName": "버뮤다" },
-    "BN": { "zoneName": "브루나이" },
-    "BO": { "zoneName": "볼리비아" },
-    "BQ": { "zoneName": "보네르섬, 신트외스타티위스섬, 사바섬 제도" },
-    "BR-CS": { "countryName": "브라질", "zoneName": "중부 브라질" },
-    "BR-N": { "countryName": "브라질", "zoneName": "북부 브라질" },
-    "BR-NE": { "countryName": "브라질", "zoneName": "북동부 브라질" },
-    "BR-S": { "countryName": "브라질", "zoneName": "남부 브라질" },
-    "BS": { "zoneName": "바하마" },
-    "BT": { "zoneName": "부탄" },
-    "BV": { "zoneName": "부베섬" },
-    "BW": { "zoneName": "보츠와나" },
-    "BY": { "zoneName": "벨로루시" },
-    "BZ": { "zoneName": "벨리즈" },
-    "CA-AB": { "countryName": "캐나다", "zoneName": "앨버타 주" },
-    "CA-BC": { "countryName": "캐나다", "zoneName": "브리티시컬럼비아 주" },
-    "CA-MB": { "countryName": "캐나다", "zoneName": "매니토바 주" },
-    "CA-NL": { "countryName": "캐나다", "zoneName": "뉴펀들랜드 래브라도 주" },
-    "CA-NB": { "countryName": "캐나다", "zoneName": "뉴브런즈윅 주" },
-    "CA-NT": { "countryName": "캐나다", "zoneName": "노스웨스트 준주" },
-    "CA-NS": { "countryName": "캐나다", "zoneName": "노바스코샤 주" },
-    "CA-NU": { "countryName": "캐나다", "zoneName": "누나부트 준주" },
-    "CA-ON": { "countryName": "캐나다", "zoneName": "온타리오 주" },
-    "CA-PE": { "countryName": "캐나다", "zoneName": "프린스에드워드아일랜드 주" },
-    "CA-QC": { "countryName": "캐나다", "zoneName": "퀘벡 주" },
-    "CA-SK": { "countryName": "캐나다", "zoneName": "서스캐처원 주" },
-    "CA-YT": { "countryName": "캐나다", "zoneName": "유콘 준주" },
-    "CC": { "zoneName": "코코스 제도" },
-    "CD": { "zoneName": "콩고민주공화국" },
-    "CF": { "zoneName": "중앙아프리카 공화국" },
-    "CG": { "zoneName": "콩고" },
-    "CH": { "zoneName": "스위스" },
-    "CI": { "zoneName": "코트디부아르" },
-    "CK": { "zoneName": "쿡 제도" },
-    "CL-SING-SIC": { "countryName": "칠레", "zoneName": "SING/SIC" },
-    "CL-SEM": { "countryName": "칠레", "zoneName": "SEM" },
-    "CL-SEA": { "countryName": "칠레", "zoneName": "SEA" },
-    "CM": { "zoneName": "카메룬" },
-    "CN": { "zoneName": "중국" },
-    "CO": { "zoneName": "콜롬비아" },
-    "CR": { "zoneName": "코스타리카" },
-    "CU": { "zoneName": "쿠바" },
-    "CV": { "zoneName": "카보베르데" },
-    "CW": { "zoneName": "퀴라소" },
-    "CX": { "zoneName": "크리스마스섬" },
-    "CY": { "zoneName": "키프로스" },
-    "CZ": { "zoneName": "체코" },
-    "DE": { "zoneName": "독일" },
-    "DJ": { "zoneName": "지부티" },
-    "DK": { "zoneName": "덴마크" },
-    "DK-DK1": { "countryName": "덴마크", "zoneName": "서부 덴마크" },
-    "DK-DK2": { "countryName": "덴마크", "zoneName": "동부 덴마크" },
-    "DK-BHM": { "countryName": "덴마크", "zoneName": "보른홀름섬" },
-    "DM": { "zoneName": "도미니카 연방" },
-    "DO": { "zoneName": "도미니카 공화국" },
-    "DZ": { "zoneName": "알제리" },
-    "EC": { "zoneName": "에콰도르" },
-    "EE": { "zoneName": "에스토니아" },
-    "EG": { "zoneName": "이집트" },
-    "EH": { "zoneName": "서 사하라" },
-    "ER": { "zoneName": "에리트레아" },
-    "ES": { "zoneName": "스페인" },
-    "ES-IB-FO": { "countryName": "스페인", "zoneName": "포르멘테라섬" },
-    "ES-IB-IZ": { "countryName": "스페인", "zoneName": "이비사섬" },
-    "ES-IB-MA": { "countryName": "스페인", "zoneName": "마요르카섬" },
-    "ES-IB-ME": { "countryName": "스페인", "zoneName": "메노르카섬" },
-    "ES-CN-FVLZ": { "countryName": "스페인", "zoneName": "푸에르테벤투라섬/란사로테섬" },
-    "ES-CN-GC": { "countryName": "스페인", "zoneName": "그란카나리아섬" },
-    "ES-CN-HI": { "countryName": "스페인", "zoneName": "엘이에로섬" },
-    "ES-CN-IG": { "countryName": "스페인", "zoneName": "라고메라섬" },
-    "ES-CN-LP": { "countryName": "스페인", "zoneName": "라팔마섬" },
-    "ES-CN-TE": { "countryName": "스페인", "zoneName": "테네리페섬" },
-    "ET": { "zoneName": "에티오피아" },
-    "FI": { "zoneName": "핀란드" },
-    "FJ": { "zoneName": "피지" },
-    "FK": { "zoneName": "포클랜드 제도" },
-    "FM": { "zoneName": "미크로네시아" },
-    "FO": { "zoneName": "패로 제도" },
-    "FR": { "zoneName": "프랑스" },
-    "FR-COR": { "countryName": "프랑스", "zoneName": "코르시카" },
-    "GA": { "zoneName": "가봉" },
-    "GB": { "zoneName": "영국" },
-    "GB-NIR": { "zoneName": "북 아일랜드" },
-    "GB-ORK": { "countryName": "영국", "zoneName": "오크니 제도" },
-    "GB-SHI": { "countryName": "영국", "zoneName": "셰틀랜드 제도" },
-    "GB-ZET": { "countryName": "영국", "zoneName": "셰틀랜드 제도" },
-    "GD": { "zoneName": "그레나다" },
-    "GE": { "zoneName": "그루지야" },
-    "GF": { "zoneName": "프랑스령 기아나" },
-    "GG": { "zoneName": "건지" },
-    "GH": { "zoneName": "가나" },
-    "GI": { "zoneName": "지브롤터" },
-    "GL": { "zoneName": "그린란드" },
-    "GM": { "zoneName": "감비아" },
-    "GN": { "zoneName": "기니" },
-    "GP": { "zoneName": "과들루프섬" },
-    "GQ": { "zoneName": "적도 기니" },
-    "GR": { "zoneName": "그리스" },
-    "GR-IS": { "countryName": "그리스", "zoneName": "에게해 제도" },
-    "GS": { "zoneName": "사우스조지아 사우스샌드위치 제도" },
-    "GT": { "zoneName": "과테말라" },
-    "GU": { "zoneName": "괌" },
-    "GW": { "zoneName": "기니비사우" },
-    "GY": { "zoneName": "가이아나" },
-    "HK": { "zoneName": "홍콩" },
-    "HM": { "zoneName": "허드 맥도널드 제도" },
-    "HN": { "zoneName": "온두라스" },
-    "HR": { "zoneName": "크로아티아" },
-    "HT": { "zoneName": "아이티" },
-    "HU": { "zoneName": "헝가리" },
-    "ID": { "zoneName": "인도네시아" },
-    "IE": { "zoneName": "아일랜드" },
-    "IL": { "zoneName": "이스라엘" },
-    "IM": { "zoneName": "맨섬" },
-    "IN-AN": { "countryName": "인도", "zoneName": "안다만 니코바르 제도" },
-    "IN-AP": { "countryName": "인도", "zoneName": "안드라프라데시 주" },
-    "IN-AR": { "countryName": "인도", "zoneName": "아루나찰프라데시 주" },
-    "IN-AS": { "countryName": "인도", "zoneName": "아삼 주" },
-    "IN-BR": { "countryName": "인도", "zoneName": "비하르 주" },
-    "IN-CT": { "countryName": "인도", "zoneName": "차티스가르 주" },
-    "IN-DL": { "countryName": "인도", "zoneName": "델리" },
-    "IN-DN": { "countryName": "인도", "zoneName": "다드라 나가르하벨리" },
-    "IN-GA": { "countryName": "인도", "zoneName": "고아" },
-    "IN-GJ": { "countryName": "인도", "zoneName": "구자라트 주" },
-    "IN-HP": { "countryName": "인도", "zoneName": "히마찰프라데시 주" },
-    "IN-HR": { "countryName": "인도", "zoneName": "하리아나 주" },
-    "IN-JH": { "countryName": "인도", "zoneName": "자르칸드 주" },
-    "IN-JK": { "countryName": "인도", "zoneName": "잠무카슈미르 주" },
-    "IN-KA": { "countryName": "인도", "zoneName": "카르나타카 주" },
-    "IN-KL": { "countryName": "인도", "zoneName": "케랄라 주" },
-    "IN-MH": { "countryName": "인도", "zoneName": "마하라슈트라 주" },
-    "IN-ML": { "countryName": "인도", "zoneName": "메갈라야 주" },
-    "IN-MN": { "countryName": "인도", "zoneName": "마니푸르 주" },
-    "IN-MP": { "countryName": "인도", "zoneName": "마디아프라데시 주" },
-    "IN-MZ": { "countryName": "인도", "zoneName": "미조람 주" },
-    "IN-NL": { "countryName": "인도", "zoneName": "나갈랜드 주" },
-    "IN-OR": { "countryName": "인도", "zoneName": "오디샤 주" },
-    "IN-PB": { "countryName": "인도", "zoneName": "펀자브 주" },
-    "IN-PY": { "countryName": "인도", "zoneName": "퐁디셰리" },
-    "IN-RJ": { "countryName": "인도", "zoneName": "라자스탄 주" },
-    "IN-SK": { "countryName": "인도", "zoneName": "시킴 주" },
-    "IN-TN": { "countryName": "인도", "zoneName": "타밀나두 주" },
-    "IN-TR": { "countryName": "인도", "zoneName": "트리푸라 주" },
-    "IN-UP": { "countryName": "인도", "zoneName": "우타르프라데시 주" },
-    "IN-UT": { "countryName": "인도", "zoneName": "우타라칸드 주" },
-    "IN-WB": { "countryName": "인도", "zoneName": "서벵골 주" },
-    "IO": { "zoneName": "영국령 인도양 지역" },
-    "IQ": { "zoneName": "이라크" },
-    "IQ-KUR": { "countryName": "이라크", "zoneName": "쿠르디스탄" },
-    "IR": { "zoneName": "이란" },
-    "IS": { "zoneName": "아이슬란드" },
-    "IT": { "zoneName": "이탈리아" },
-    "IT-CNO": { "countryName": "이탈리아", "zoneName": "중앙 북부" },
-    "IT-CSO": { "countryName": "이탈리아", "zoneName": "중앙 남부" },
-    "IT-NO": { "countryName": "이탈리아", "zoneName": "북부" },
-    "IT-SAR": { "countryName": "이탈리아", "zoneName": "사르데냐 주" },
-    "IT-SIC": { "countryName": "이탈리아", "zoneName": "시칠리아 주" },
-    "IT-SO": { "countryName": "이탈리아", "zoneName": "남부" },
-    "JE": { "zoneName": "저지섬" },
-    "JM": { "zoneName": "자메이카" },
-    "JO": { "zoneName": "요르단" },
-    "JP-CB": { "countryName": "일본", "zoneName": "주부 지방" },
-    "JP-CG": { "countryName": "일본", "zoneName": "주고쿠 지방" },
-    "JP-HKD": { "countryName": "일본", "zoneName": "홋카이도" },
-    "JP-HR": { "countryName": "일본", "zoneName": "호쿠리쿠 지방" },
-    "JP-KN": { "countryName": "일본", "zoneName": "간사이 지방" },
-    "JP-KY": { "countryName": "일본", "zoneName": "규슈" },
-    "JP-ON": { "countryName": "일본", "zoneName": "오키나와 제도" },
-    "JP-SK": { "countryName": "일본", "zoneName": "시코쿠" },
-    "JP-TH": { "countryName": "일본", "zoneName": "도호쿠 지방" },
-    "JP-TK": { "countryName": "일본", "zoneName": "도쿄" },
-    "KE": { "zoneName": "케냐" },
-    "KG": { "zoneName": "키르기스스탄" },
-    "KH": { "zoneName": "캄보디아" },
-    "KI": { "zoneName": "키리바시" },
-    "KM": { "zoneName": "코모로" },
-    "KN": { "zoneName": "세인트키츠 네비스" },
-    "KP": { "zoneName": "북한" },
-    "KR": { "zoneName": "대한민국" },
-    "KW": { "zoneName": "쿠웨이트" },
-    "KY": { "zoneName": "케이맨 제도" },
-    "KZ": { "zoneName": "카자흐스탄" },
-    "LA": { "zoneName": "라오스" },
-    "LB": { "zoneName": "레바논" },
-    "LC": { "zoneName": "세인트루시아" },
-    "LI": { "zoneName": "리히텐슈타인" },
-    "LK": { "zoneName": "스리랑카" },
-    "LR": { "zoneName": "라이베리아" },
-    "LS": { "zoneName": "레소토" },
-    "LT": { "zoneName": "리투아니아" },
-    "LU": { "zoneName": "룩셈부르크" },
-    "LV": { "zoneName": "라트비아" },
-    "LY": { "zoneName": "리비아" },
-    "MA": { "zoneName": "모로코" },
-    "MC": { "zoneName": "모나코" },
-    "MD": { "zoneName": "몰도바" },
-    "ME": { "zoneName": "몬테네그로" },
-    "MF": { "countryName": "세인트마틴섬", "zoneName": "프랑스령" },
-    "MG": { "zoneName": "마다가스카르" },
-    "MH": { "zoneName": "마셜 제도" },
-    "MK": { "zoneName": "북마케도니아" },
-    "ML": { "zoneName": "말리" },
-    "MM": { "zoneName": "미얀마" },
-    "MN": { "zoneName": "몽골" },
-    "MO": { "zoneName": "마카오" },
-    "MP": { "zoneName": "북마리아나 제도" },
-    "MQ": { "zoneName": "마르티니크" },
-    "MR": { "zoneName": "모리타니아" },
-    "MS": { "zoneName": "몬트세랫" },
-    "MT": { "zoneName": "몰타" },
-    "MU": { "zoneName": "모리셔스" },
-    "MV": { "zoneName": "몰디브" },
-    "MW": { "zoneName": "말라위" },
-    "MX": { "zoneName": "멕시코" },
-    "MX-BC": { "countryName": "멕시코", "zoneName": "바하칼리포르니아 주" },
-    "MX-CE": { "countryName": "멕시코", "zoneName": "중앙부" },
-    "MX-NE": { "countryName": "멕시코", "zoneName": "동북부" },
-    "MX-NO": { "countryName": "멕시코", "zoneName": "북부" },
-    "MX-NW": { "countryName": "멕시코", "zoneName": "서북부" },
-    "MX-OC": { "countryName": "멕시코", "zoneName": "서부" },
-    "MX-OR": { "countryName": "멕시코", "zoneName": "동부" },
-    "MX-PN": { "countryName": "멕시코", "zoneName": "반도" },
-    "MY-EM": { "countryName": "말레이시아", "zoneName": "보르네오" },
-    "MY-WM": { "countryName": "말레이시아", "zoneName": "반도" },
-    "MZ": { "zoneName": "모잠비크" },
-    "NA": { "zoneName": "나미비아" },
-    "NC": { "zoneName": "뉴칼레도니아" },
-    "NE": { "zoneName": "니제르" },
-    "NF": { "zoneName": "노퍽섬" },
-    "NG": { "zoneName": "나이지리아" },
-    "NI": { "zoneName": "니카라과" },
-    "NKR": { "zoneName": "나고르노카라바흐" },
-    "NL": { "zoneName": "네덜란드" },
-    "NO-NO1": { "countryName": "노르웨이", "zoneName": "동남부 노르웨이" },
-    "NO-NO2": { "countryName": "노르웨이", "zoneName": "서남부 노르웨이" },
-    "NO-NO3": { "countryName": "노르웨이", "zoneName": "중앙부 노르웨이" },
-    "NO-NO4": { "countryName": "노르웨이", "zoneName": "북부 노르웨이" },
-    "NO-NO5": { "countryName": "노르웨이", "zoneName": "서부 노르웨이" },
-    "NP": { "zoneName": "네팔" },
-    "NR": { "zoneName": "나우루" },
-    "NU": { "zoneName": "니우에" },
-    "NZ": { "zoneName": "뉴질랜드" },
-    "NZ-NZA": { "countryName": "뉴질랜드", "zoneName": "오클랜드 제도" },
-    "NZ-NZC": { "countryName": "뉴질랜드", "zoneName": "채텀 제도" },
-    "OM": { "zoneName": "오만" },
-    "PA": { "zoneName": "파나마" },
-    "PE": { "zoneName": "페루" },
-    "PF": { "zoneName": "프랑스령 폴리네시아" },
-    "PG": { "zoneName": "파푸아뉴기니" },
-    "PH": { "zoneName": "필리핀" },
-    "PK": { "zoneName": "파키스탄" },
-    "PL": { "zoneName": "폴란드" },
-    "PM": { "zoneName": "생피에르 미클롱" },
-    "PN": { "zoneName": "핏케언 제도" },
-    "PR": { "zoneName": "푸에르토리코" },
-    "PS": { "zoneName": "팔레스타인" },
-    "PT": { "zoneName": "포르투갈" },
-    "PT-AC": { "countryName": "포르투갈", "zoneName": "아소르스 제도" },
-    "PT-MA": { "countryName": "포르투갈", "zoneName": "마데이라 제도" },
-    "PW": { "zoneName": "팔라우" },
-    "PY": { "zoneName": "파라과이" },
-    "QA": { "zoneName": "카타르" },
-    "RE": { "zoneName": "레위니옹" },
-    "RO": { "zoneName": "루마니아" },
-    "RS": { "zoneName": "세르비아" },
-    "RU": { "zoneName": "러시아" },
-    "RU-1": { "countryName": "러시아", "zoneName": "유럽 러시아 및 우랄" },
-    "RU-2": { "countryName": "러시아", "zoneName": "시베리아" },
-    "RU-EU": { "zoneName": "러시아" },
-    "RU-AS": { "zoneName": "러시아" },
-    "RU-KGD": { "countryName": "러시아", "zoneName": "칼리닌그라드" },
-    "RW": { "zoneName": "르완다" },
-    "SA": { "zoneName": "사우디 아라비아" },
-    "SB": { "zoneName": "솔로몬 제도" },
-    "SC": { "zoneName": "세이셸" },
-    "SD": { "zoneName": "수단" },
-    "SE": { "zoneName": "스웨덴" },
-    "SG": { "zoneName": "싱가포르" },
-    "SH": { "zoneName": "세인트헬레나 어센션 트리스탄다쿠냐" },
-    "SI": { "zoneName": "슬로베니아" },
-    "SJ": { "zoneName": "스발바르 얀마옌 제도" },
-    "SK": { "zoneName": "슬로바키아" },
-    "SL": { "zoneName": "시에라리온" },
-    "SM": { "zoneName": "산마리노" },
-    "SN": { "zoneName": "세네갈" },
-    "SO": { "zoneName": "소말리아" },
-    "SR": { "zoneName": "수리남" },
-    "SS": { "zoneName": "남수단" },
-    "ST": { "zoneName": "상투메 프린시페" },
-    "SV": { "zoneName": "엘살바도르" },
-    "SX": { "countryName": "신트마르턴", "zoneName": "네덜란드령" },
-    "SY": { "zoneName": "시리아" },
-    "SZ": { "zoneName": "스와질란드" },
-    "TC": { "zoneName": "터크스케이커스 제도" },
-    "TD": { "zoneName": "차드" },
-    "TF": { "zoneName": "프랑스령 남부 및 남극" },
-    "TG": { "zoneName": "토고" },
-    "TH": { "zoneName": "태국" },
-    "TJ": { "zoneName": "타지키스탄" },
-    "TK": { "zoneName": "토켈라우" },
-    "TL": { "zoneName": "동티모르" },
-    "TM": { "zoneName": "투르크메니스탄" },
-    "TN": { "zoneName": "튀니지" },
-    "TO": { "zoneName": "통가" },
-    "TR": { "zoneName": "터키" },
-    "TT": { "zoneName": "트리니다드토바고" },
-    "TV": { "zoneName": "투발루" },
-    "TW": { "zoneName": "대만" },
-    "TZ": { "zoneName": "탄자니아" },
-    "UA": { "zoneName": "우크라이나" },
-    "UA-CR": { "countryName": "크림 반도", "zoneName": "우크라이나" },
-    "UG": { "zoneName": "우간다" },
-    "UM": { "zoneName": "미국령 군소 제도" },
-    "US-HI-HA": { "countryName": "미국", "zoneName": "하와이섬" },
-    "US-HI-KA": { "countryName": "미국", "zoneName": "카우아이섬" },
-    "US-HI-KH": { "countryName": "미국", "zoneName": "카호올라웨섬" },
-    "US-HI-LA": { "countryName": "미국", "zoneName": "라나이섬" },
-    "US-HI-MA": { "countryName": "미국", "zoneName": "마우이섬" },
-    "US-HI-MO": { "countryName": "미국", "zoneName": "몰로카이섬" },
-    "US-HI-NI": { "countryName": "미국", "zoneName": "니하우섬" },
-    "US-HI-OA": { "countryName": "미국", "zoneName": "오아후섬" },
-    "UY": { "zoneName": "우루과이" },
-    "UZ": { "zoneName": "우즈베키스탄" },
-    "VA": { "zoneName": "바티칸 시국" },
-    "VC": { "zoneName": "세인트빈센트 그레나딘" },
-    "VE": { "zoneName": "베네수엘라" },
-    "VG": { "countryName": "버진 제도", "zoneName": "버진 제도" },
-    "VI": { "countryName": "미국", "zoneName": "버진 제도" },
-    "VN": { "zoneName": "베트남" },
-    "VU": { "zoneName": "바누아투" },
-    "WF": { "zoneName": "월리스푸투나 제도" },
-    "WS": { "zoneName": "사모아" },
-    "XX": { "zoneName": "북부 키프로스" },
-    "YE": { "zoneName": "예멘" },
-    "YT": { "zoneName": "마요트" },
-    "ZA": { "zoneName": "남아프리카공화국" },
-    "ZM": { "zoneName": "잠비아" },
-    "ZW": { "zoneName": "짐바브웨" }
+    "AD": {
+      "zoneName": "안도라"
+    },
+    "AE": {
+      "zoneName": "아랍 에미리트 연합국"
+    },
+    "AF": {
+      "zoneName": "아프가니스탄"
+    },
+    "AG": {
+      "zoneName": "앤티가 바부다"
+    },
+    "AI": {
+      "zoneName": "앙귈라"
+    },
+    "AL": {
+      "zoneName": "알바니아"
+    },
+    "AM": {
+      "zoneName": "아르메니아"
+    },
+    "AO": {
+      "zoneName": "앙골라"
+    },
+    "AQ": {
+      "zoneName": "남극 대륙"
+    },
+    "AS": {
+      "zoneName": "미국령 사모아"
+    },
+    "AT": {
+      "zoneName": "오스트리아"
+    },
+    "AR": {
+      "zoneName": "아르헨티나"
+    },
+    "AUS-NSW": {
+      "countryName": "호주",
+      "zoneName": "뉴사우스웨일스 주"
+    },
+    "AUS-NT": {
+      "countryName": "호주",
+      "zoneName": "노던 준주"
+    },
+    "AUS-QLD": {
+      "countryName": "호주",
+      "zoneName": "퀸즐랜드 주"
+    },
+    "AUS-SA": {
+      "countryName": "호주",
+      "zoneName": "사우스오스트레일리아 주"
+    },
+    "AUS-TAS": {
+      "countryName": "호주",
+      "zoneName": "태즈메이니아 주"
+    },
+    "AUS-TAS-KI": {
+      "countryName": "태즈메이니아 주",
+      "zoneName": "킹섬"
+    },
+    "AUS-VIC": {
+      "countryName": "호주",
+      "zoneName": "빅토리아 주"
+    },
+    "AUS-WA": {
+      "countryName": "호주",
+      "zoneName": "웨스턴 오스트레일리아 주"
+    },
+    "AW": {
+      "zoneName": "아루바"
+    },
+    "AX": {
+      "zoneName": "올란드 제도"
+    },
+    "AZ": {
+      "zoneName": "아제르바이잔"
+    },
+    "BA": {
+      "zoneName": "보스니아 헤르체코비나"
+    },
+    "BB": {
+      "zoneName": "바베이도스"
+    },
+    "BD": {
+      "zoneName": "방글라데시"
+    },
+    "BE": {
+      "zoneName": "벨기에"
+    },
+    "BF": {
+      "zoneName": "부르키나 파소"
+    },
+    "BG": {
+      "zoneName": "불가리아"
+    },
+    "BH": {
+      "zoneName": "바레인"
+    },
+    "BI": {
+      "zoneName": "부룬디"
+    },
+    "BJ": {
+      "zoneName": "베냉"
+    },
+    "BM": {
+      "zoneName": "버뮤다"
+    },
+    "BN": {
+      "zoneName": "브루나이"
+    },
+    "BO": {
+      "zoneName": "볼리비아"
+    },
+    "BQ": {
+      "zoneName": "보네르섬, 신트외스타티위스섬, 사바섬 제도"
+    },
+    "BR-CS": {
+      "countryName": "브라질",
+      "zoneName": "중부 브라질"
+    },
+    "BR-N": {
+      "countryName": "브라질",
+      "zoneName": "북부 브라질"
+    },
+    "BR-NE": {
+      "countryName": "브라질",
+      "zoneName": "북동부 브라질"
+    },
+    "BR-S": {
+      "countryName": "브라질",
+      "zoneName": "남부 브라질"
+    },
+    "BS": {
+      "zoneName": "바하마"
+    },
+    "BT": {
+      "zoneName": "부탄"
+    },
+    "BV": {
+      "zoneName": "부베섬"
+    },
+    "BW": {
+      "zoneName": "보츠와나"
+    },
+    "BY": {
+      "zoneName": "벨로루시"
+    },
+    "BZ": {
+      "zoneName": "벨리즈"
+    },
+    "CA-AB": {
+      "countryName": "캐나다",
+      "zoneName": "앨버타 주"
+    },
+    "CA-BC": {
+      "countryName": "캐나다",
+      "zoneName": "브리티시컬럼비아 주"
+    },
+    "CA-MB": {
+      "countryName": "캐나다",
+      "zoneName": "매니토바 주"
+    },
+    "CA-NL": {
+      "countryName": "캐나다",
+      "zoneName": "뉴펀들랜드 래브라도 주"
+    },
+    "CA-NB": {
+      "countryName": "캐나다",
+      "zoneName": "뉴브런즈윅 주"
+    },
+    "CA-NT": {
+      "countryName": "캐나다",
+      "zoneName": "노스웨스트 준주"
+    },
+    "CA-NS": {
+      "countryName": "캐나다",
+      "zoneName": "노바스코샤 주"
+    },
+    "CA-NU": {
+      "countryName": "캐나다",
+      "zoneName": "누나부트 준주"
+    },
+    "CA-ON": {
+      "countryName": "캐나다",
+      "zoneName": "온타리오 주"
+    },
+    "CA-PE": {
+      "countryName": "캐나다",
+      "zoneName": "프린스에드워드아일랜드 주"
+    },
+    "CA-QC": {
+      "countryName": "캐나다",
+      "zoneName": "퀘벡 주"
+    },
+    "CA-SK": {
+      "countryName": "캐나다",
+      "zoneName": "서스캐처원 주"
+    },
+    "CA-YT": {
+      "countryName": "캐나다",
+      "zoneName": "유콘 준주"
+    },
+    "CC": {
+      "zoneName": "코코스 제도"
+    },
+    "CD": {
+      "zoneName": "콩고민주공화국"
+    },
+    "CF": {
+      "zoneName": "중앙아프리카 공화국"
+    },
+    "CG": {
+      "zoneName": "콩고"
+    },
+    "CH": {
+      "zoneName": "스위스"
+    },
+    "CI": {
+      "zoneName": "코트디부아르"
+    },
+    "CK": {
+      "zoneName": "쿡 제도"
+    },
+    "CL-SING-SIC": {
+      "countryName": "칠레",
+      "zoneName": "SING/SIC"
+    },
+    "CL-SEM": {
+      "countryName": "칠레",
+      "zoneName": "SEM"
+    },
+    "CL-SEA": {
+      "countryName": "칠레",
+      "zoneName": "SEA"
+    },
+    "CM": {
+      "zoneName": "카메룬"
+    },
+    "CN": {
+      "zoneName": "중국"
+    },
+    "CO": {
+      "zoneName": "콜롬비아"
+    },
+    "CR": {
+      "zoneName": "코스타리카"
+    },
+    "CU": {
+      "zoneName": "쿠바"
+    },
+    "CV": {
+      "zoneName": "카보베르데"
+    },
+    "CW": {
+      "zoneName": "퀴라소"
+    },
+    "CX": {
+      "zoneName": "크리스마스섬"
+    },
+    "CY": {
+      "zoneName": "키프로스"
+    },
+    "CZ": {
+      "zoneName": "체코"
+    },
+    "DE": {
+      "zoneName": "독일"
+    },
+    "DJ": {
+      "zoneName": "지부티"
+    },
+    "DK": {
+      "zoneName": "덴마크"
+    },
+    "DK-DK1": {
+      "countryName": "덴마크",
+      "zoneName": "서부 덴마크"
+    },
+    "DK-DK2": {
+      "countryName": "덴마크",
+      "zoneName": "동부 덴마크"
+    },
+    "DK-BHM": {
+      "countryName": "덴마크",
+      "zoneName": "보른홀름섬"
+    },
+    "DM": {
+      "zoneName": "도미니카 연방"
+    },
+    "DO": {
+      "zoneName": "도미니카 공화국"
+    },
+    "DZ": {
+      "zoneName": "알제리"
+    },
+    "EC": {
+      "zoneName": "에콰도르"
+    },
+    "EE": {
+      "zoneName": "에스토니아"
+    },
+    "EG": {
+      "zoneName": "이집트"
+    },
+    "EH": {
+      "zoneName": "서 사하라"
+    },
+    "ER": {
+      "zoneName": "에리트레아"
+    },
+    "ES": {
+      "zoneName": "스페인"
+    },
+    "ES-IB-FO": {
+      "countryName": "스페인",
+      "zoneName": "포르멘테라섬"
+    },
+    "ES-IB-IZ": {
+      "countryName": "스페인",
+      "zoneName": "이비사섬"
+    },
+    "ES-IB-MA": {
+      "countryName": "스페인",
+      "zoneName": "마요르카섬"
+    },
+    "ES-IB-ME": {
+      "countryName": "스페인",
+      "zoneName": "메노르카섬"
+    },
+    "ES-CN-FVLZ": {
+      "countryName": "스페인",
+      "zoneName": "푸에르테벤투라섬/란사로테섬"
+    },
+    "ES-CN-GC": {
+      "countryName": "스페인",
+      "zoneName": "그란카나리아섬"
+    },
+    "ES-CN-HI": {
+      "countryName": "스페인",
+      "zoneName": "엘이에로섬"
+    },
+    "ES-CN-IG": {
+      "countryName": "스페인",
+      "zoneName": "라고메라섬"
+    },
+    "ES-CN-LP": {
+      "countryName": "스페인",
+      "zoneName": "라팔마섬"
+    },
+    "ES-CN-TE": {
+      "countryName": "스페인",
+      "zoneName": "테네리페섬"
+    },
+    "ET": {
+      "zoneName": "에티오피아"
+    },
+    "FI": {
+      "zoneName": "핀란드"
+    },
+    "FJ": {
+      "zoneName": "피지"
+    },
+    "FK": {
+      "zoneName": "포클랜드 제도"
+    },
+    "FM": {
+      "zoneName": "미크로네시아"
+    },
+    "FO": {
+      "zoneName": "패로 제도"
+    },
+    "FR": {
+      "zoneName": "프랑스"
+    },
+    "FR-COR": {
+      "countryName": "프랑스",
+      "zoneName": "코르시카"
+    },
+    "GA": {
+      "zoneName": "가봉"
+    },
+    "GB": {
+      "zoneName": "영국"
+    },
+    "GB-NIR": {
+      "zoneName": "북 아일랜드"
+    },
+    "GB-ORK": {
+      "countryName": "영국",
+      "zoneName": "오크니 제도"
+    },
+    "GB-ZET": {
+      "countryName": "영국",
+      "zoneName": "셰틀랜드 제도"
+    },
+    "GB-ZET": {
+      "countryName": "영국",
+      "zoneName": "셰틀랜드 제도"
+    },
+    "GD": {
+      "zoneName": "그레나다"
+    },
+    "GE": {
+      "zoneName": "그루지야"
+    },
+    "GF": {
+      "zoneName": "프랑스령 기아나"
+    },
+    "GG": {
+      "zoneName": "건지"
+    },
+    "GH": {
+      "zoneName": "가나"
+    },
+    "GI": {
+      "zoneName": "지브롤터"
+    },
+    "GL": {
+      "zoneName": "그린란드"
+    },
+    "GM": {
+      "zoneName": "감비아"
+    },
+    "GN": {
+      "zoneName": "기니"
+    },
+    "GP": {
+      "zoneName": "과들루프섬"
+    },
+    "GQ": {
+      "zoneName": "적도 기니"
+    },
+    "GR": {
+      "zoneName": "그리스"
+    },
+    "GR-IS": {
+      "countryName": "그리스",
+      "zoneName": "에게해 제도"
+    },
+    "GS": {
+      "zoneName": "사우스조지아 사우스샌드위치 제도"
+    },
+    "GT": {
+      "zoneName": "과테말라"
+    },
+    "GU": {
+      "zoneName": "괌"
+    },
+    "GW": {
+      "zoneName": "기니비사우"
+    },
+    "GY": {
+      "zoneName": "가이아나"
+    },
+    "HK": {
+      "zoneName": "홍콩"
+    },
+    "HM": {
+      "zoneName": "허드 맥도널드 제도"
+    },
+    "HN": {
+      "zoneName": "온두라스"
+    },
+    "HR": {
+      "zoneName": "크로아티아"
+    },
+    "HT": {
+      "zoneName": "아이티"
+    },
+    "HU": {
+      "zoneName": "헝가리"
+    },
+    "ID": {
+      "zoneName": "인도네시아"
+    },
+    "IE": {
+      "zoneName": "아일랜드"
+    },
+    "IL": {
+      "zoneName": "이스라엘"
+    },
+    "IM": {
+      "zoneName": "맨섬"
+    },
+    "IN-AN": {
+      "countryName": "인도",
+      "zoneName": "안다만 니코바르 제도"
+    },
+    "IN-AP": {
+      "countryName": "인도",
+      "zoneName": "안드라프라데시 주"
+    },
+    "IN-AR": {
+      "countryName": "인도",
+      "zoneName": "아루나찰프라데시 주"
+    },
+    "IN-AS": {
+      "countryName": "인도",
+      "zoneName": "아삼 주"
+    },
+    "IN-BR": {
+      "countryName": "인도",
+      "zoneName": "비하르 주"
+    },
+    "IN-CT": {
+      "countryName": "인도",
+      "zoneName": "차티스가르 주"
+    },
+    "IN-DL": {
+      "countryName": "인도",
+      "zoneName": "델리"
+    },
+    "IN-DN": {
+      "countryName": "인도",
+      "zoneName": "다드라 나가르하벨리"
+    },
+    "IN-GA": {
+      "countryName": "인도",
+      "zoneName": "고아"
+    },
+    "IN-GJ": {
+      "countryName": "인도",
+      "zoneName": "구자라트 주"
+    },
+    "IN-HP": {
+      "countryName": "인도",
+      "zoneName": "히마찰프라데시 주"
+    },
+    "IN-HR": {
+      "countryName": "인도",
+      "zoneName": "하리아나 주"
+    },
+    "IN-JH": {
+      "countryName": "인도",
+      "zoneName": "자르칸드 주"
+    },
+    "IN-JK": {
+      "countryName": "인도",
+      "zoneName": "잠무카슈미르 주"
+    },
+    "IN-KA": {
+      "countryName": "인도",
+      "zoneName": "카르나타카 주"
+    },
+    "IN-KL": {
+      "countryName": "인도",
+      "zoneName": "케랄라 주"
+    },
+    "IN-MH": {
+      "countryName": "인도",
+      "zoneName": "마하라슈트라 주"
+    },
+    "IN-ML": {
+      "countryName": "인도",
+      "zoneName": "메갈라야 주"
+    },
+    "IN-MN": {
+      "countryName": "인도",
+      "zoneName": "마니푸르 주"
+    },
+    "IN-MP": {
+      "countryName": "인도",
+      "zoneName": "마디아프라데시 주"
+    },
+    "IN-MZ": {
+      "countryName": "인도",
+      "zoneName": "미조람 주"
+    },
+    "IN-NL": {
+      "countryName": "인도",
+      "zoneName": "나갈랜드 주"
+    },
+    "IN-OR": {
+      "countryName": "인도",
+      "zoneName": "오디샤 주"
+    },
+    "IN-PB": {
+      "countryName": "인도",
+      "zoneName": "펀자브 주"
+    },
+    "IN-PY": {
+      "countryName": "인도",
+      "zoneName": "퐁디셰리"
+    },
+    "IN-RJ": {
+      "countryName": "인도",
+      "zoneName": "라자스탄 주"
+    },
+    "IN-SK": {
+      "countryName": "인도",
+      "zoneName": "시킴 주"
+    },
+    "IN-TN": {
+      "countryName": "인도",
+      "zoneName": "타밀나두 주"
+    },
+    "IN-TR": {
+      "countryName": "인도",
+      "zoneName": "트리푸라 주"
+    },
+    "IN-UP": {
+      "countryName": "인도",
+      "zoneName": "우타르프라데시 주"
+    },
+    "IN-UT": {
+      "countryName": "인도",
+      "zoneName": "우타라칸드 주"
+    },
+    "IN-WB": {
+      "countryName": "인도",
+      "zoneName": "서벵골 주"
+    },
+    "IO": {
+      "zoneName": "영국령 인도양 지역"
+    },
+    "IQ": {
+      "zoneName": "이라크"
+    },
+    "IQ-KUR": {
+      "countryName": "이라크",
+      "zoneName": "쿠르디스탄"
+    },
+    "IR": {
+      "zoneName": "이란"
+    },
+    "IS": {
+      "zoneName": "아이슬란드"
+    },
+    "IT": {
+      "zoneName": "이탈리아"
+    },
+    "IT-CNO": {
+      "countryName": "이탈리아",
+      "zoneName": "중앙 북부"
+    },
+    "IT-CSO": {
+      "countryName": "이탈리아",
+      "zoneName": "중앙 남부"
+    },
+    "IT-NO": {
+      "countryName": "이탈리아",
+      "zoneName": "북부"
+    },
+    "IT-SAR": {
+      "countryName": "이탈리아",
+      "zoneName": "사르데냐 주"
+    },
+    "IT-SIC": {
+      "countryName": "이탈리아",
+      "zoneName": "시칠리아 주"
+    },
+    "IT-SO": {
+      "countryName": "이탈리아",
+      "zoneName": "남부"
+    },
+    "JE": {
+      "zoneName": "저지섬"
+    },
+    "JM": {
+      "zoneName": "자메이카"
+    },
+    "JO": {
+      "zoneName": "요르단"
+    },
+    "JP-CB": {
+      "countryName": "일본",
+      "zoneName": "주부 지방"
+    },
+    "JP-CG": {
+      "countryName": "일본",
+      "zoneName": "주고쿠 지방"
+    },
+    "JP-HKD": {
+      "countryName": "일본",
+      "zoneName": "홋카이도"
+    },
+    "JP-HR": {
+      "countryName": "일본",
+      "zoneName": "호쿠리쿠 지방"
+    },
+    "JP-KN": {
+      "countryName": "일본",
+      "zoneName": "간사이 지방"
+    },
+    "JP-KY": {
+      "countryName": "일본",
+      "zoneName": "규슈"
+    },
+    "JP-ON": {
+      "countryName": "일본",
+      "zoneName": "오키나와 제도"
+    },
+    "JP-SK": {
+      "countryName": "일본",
+      "zoneName": "시코쿠"
+    },
+    "JP-TH": {
+      "countryName": "일본",
+      "zoneName": "도호쿠 지방"
+    },
+    "JP-TK": {
+      "countryName": "일본",
+      "zoneName": "도쿄"
+    },
+    "KE": {
+      "zoneName": "케냐"
+    },
+    "KG": {
+      "zoneName": "키르기스스탄"
+    },
+    "KH": {
+      "zoneName": "캄보디아"
+    },
+    "KI": {
+      "zoneName": "키리바시"
+    },
+    "KM": {
+      "zoneName": "코모로"
+    },
+    "KN": {
+      "zoneName": "세인트키츠 네비스"
+    },
+    "KP": {
+      "zoneName": "북한"
+    },
+    "KR": {
+      "zoneName": "대한민국"
+    },
+    "KW": {
+      "zoneName": "쿠웨이트"
+    },
+    "KY": {
+      "zoneName": "케이맨 제도"
+    },
+    "KZ": {
+      "zoneName": "카자흐스탄"
+    },
+    "LA": {
+      "zoneName": "라오스"
+    },
+    "LB": {
+      "zoneName": "레바논"
+    },
+    "LC": {
+      "zoneName": "세인트루시아"
+    },
+    "LI": {
+      "zoneName": "리히텐슈타인"
+    },
+    "LK": {
+      "zoneName": "스리랑카"
+    },
+    "LR": {
+      "zoneName": "라이베리아"
+    },
+    "LS": {
+      "zoneName": "레소토"
+    },
+    "LT": {
+      "zoneName": "리투아니아"
+    },
+    "LU": {
+      "zoneName": "룩셈부르크"
+    },
+    "LV": {
+      "zoneName": "라트비아"
+    },
+    "LY": {
+      "zoneName": "리비아"
+    },
+    "MA": {
+      "zoneName": "모로코"
+    },
+    "MC": {
+      "zoneName": "모나코"
+    },
+    "MD": {
+      "zoneName": "몰도바"
+    },
+    "ME": {
+      "zoneName": "몬테네그로"
+    },
+    "MF": {
+      "countryName": "세인트마틴섬",
+      "zoneName": "프랑스령"
+    },
+    "MG": {
+      "zoneName": "마다가스카르"
+    },
+    "MH": {
+      "zoneName": "마셜 제도"
+    },
+    "MK": {
+      "zoneName": "북마케도니아"
+    },
+    "ML": {
+      "zoneName": "말리"
+    },
+    "MM": {
+      "zoneName": "미얀마"
+    },
+    "MN": {
+      "zoneName": "몽골"
+    },
+    "MO": {
+      "zoneName": "마카오"
+    },
+    "MP": {
+      "zoneName": "북마리아나 제도"
+    },
+    "MQ": {
+      "zoneName": "마르티니크"
+    },
+    "MR": {
+      "zoneName": "모리타니아"
+    },
+    "MS": {
+      "zoneName": "몬트세랫"
+    },
+    "MT": {
+      "zoneName": "몰타"
+    },
+    "MU": {
+      "zoneName": "모리셔스"
+    },
+    "MV": {
+      "zoneName": "몰디브"
+    },
+    "MW": {
+      "zoneName": "말라위"
+    },
+    "MX": {
+      "zoneName": "멕시코"
+    },
+    "MX-BC": {
+      "countryName": "멕시코",
+      "zoneName": "바하칼리포르니아 주"
+    },
+    "MX-CE": {
+      "countryName": "멕시코",
+      "zoneName": "중앙부"
+    },
+    "MX-NE": {
+      "countryName": "멕시코",
+      "zoneName": "동북부"
+    },
+    "MX-NO": {
+      "countryName": "멕시코",
+      "zoneName": "북부"
+    },
+    "MX-NW": {
+      "countryName": "멕시코",
+      "zoneName": "서북부"
+    },
+    "MX-OC": {
+      "countryName": "멕시코",
+      "zoneName": "서부"
+    },
+    "MX-OR": {
+      "countryName": "멕시코",
+      "zoneName": "동부"
+    },
+    "MX-PN": {
+      "countryName": "멕시코",
+      "zoneName": "반도"
+    },
+    "MY-EM": {
+      "countryName": "말레이시아",
+      "zoneName": "보르네오"
+    },
+    "MY-WM": {
+      "countryName": "말레이시아",
+      "zoneName": "반도"
+    },
+    "MZ": {
+      "zoneName": "모잠비크"
+    },
+    "NA": {
+      "zoneName": "나미비아"
+    },
+    "NC": {
+      "zoneName": "뉴칼레도니아"
+    },
+    "NE": {
+      "zoneName": "니제르"
+    },
+    "NF": {
+      "zoneName": "노퍽섬"
+    },
+    "NG": {
+      "zoneName": "나이지리아"
+    },
+    "NI": {
+      "zoneName": "니카라과"
+    },
+    "NKR": {
+      "zoneName": "나고르노카라바흐"
+    },
+    "NL": {
+      "zoneName": "네덜란드"
+    },
+    "NO-NO1": {
+      "countryName": "노르웨이",
+      "zoneName": "동남부 노르웨이"
+    },
+    "NO-NO2": {
+      "countryName": "노르웨이",
+      "zoneName": "서남부 노르웨이"
+    },
+    "NO-NO3": {
+      "countryName": "노르웨이",
+      "zoneName": "중앙부 노르웨이"
+    },
+    "NO-NO4": {
+      "countryName": "노르웨이",
+      "zoneName": "북부 노르웨이"
+    },
+    "NO-NO5": {
+      "countryName": "노르웨이",
+      "zoneName": "서부 노르웨이"
+    },
+    "NP": {
+      "zoneName": "네팔"
+    },
+    "NR": {
+      "zoneName": "나우루"
+    },
+    "NU": {
+      "zoneName": "니우에"
+    },
+    "NZ": {
+      "zoneName": "뉴질랜드"
+    },
+    "NZ-NZA": {
+      "countryName": "뉴질랜드",
+      "zoneName": "오클랜드 제도"
+    },
+    "NZ-NZC": {
+      "countryName": "뉴질랜드",
+      "zoneName": "채텀 제도"
+    },
+    "OM": {
+      "zoneName": "오만"
+    },
+    "PA": {
+      "zoneName": "파나마"
+    },
+    "PE": {
+      "zoneName": "페루"
+    },
+    "PF": {
+      "zoneName": "프랑스령 폴리네시아"
+    },
+    "PG": {
+      "zoneName": "파푸아뉴기니"
+    },
+    "PH": {
+      "zoneName": "필리핀"
+    },
+    "PK": {
+      "zoneName": "파키스탄"
+    },
+    "PL": {
+      "zoneName": "폴란드"
+    },
+    "PM": {
+      "zoneName": "생피에르 미클롱"
+    },
+    "PN": {
+      "zoneName": "핏케언 제도"
+    },
+    "PR": {
+      "zoneName": "푸에르토리코"
+    },
+    "PS": {
+      "zoneName": "팔레스타인"
+    },
+    "PT": {
+      "zoneName": "포르투갈"
+    },
+    "PT-AC": {
+      "countryName": "포르투갈",
+      "zoneName": "아소르스 제도"
+    },
+    "PT-MA": {
+      "countryName": "포르투갈",
+      "zoneName": "마데이라 제도"
+    },
+    "PW": {
+      "zoneName": "팔라우"
+    },
+    "PY": {
+      "zoneName": "파라과이"
+    },
+    "QA": {
+      "zoneName": "카타르"
+    },
+    "RE": {
+      "zoneName": "레위니옹"
+    },
+    "RO": {
+      "zoneName": "루마니아"
+    },
+    "RS": {
+      "zoneName": "세르비아"
+    },
+    "RU": {
+      "zoneName": "러시아"
+    },
+    "RU-1": {
+      "countryName": "러시아",
+      "zoneName": "유럽 러시아 및 우랄"
+    },
+    "RU-2": {
+      "countryName": "러시아",
+      "zoneName": "시베리아"
+    },
+    "RU-EU": {
+      "zoneName": "러시아"
+    },
+    "RU-AS": {
+      "zoneName": "러시아"
+    },
+    "RU-KGD": {
+      "countryName": "러시아",
+      "zoneName": "칼리닌그라드"
+    },
+    "RW": {
+      "zoneName": "르완다"
+    },
+    "SA": {
+      "zoneName": "사우디 아라비아"
+    },
+    "SB": {
+      "zoneName": "솔로몬 제도"
+    },
+    "SC": {
+      "zoneName": "세이셸"
+    },
+    "SD": {
+      "zoneName": "수단"
+    },
+    "SE": {
+      "zoneName": "스웨덴"
+    },
+    "SG": {
+      "zoneName": "싱가포르"
+    },
+    "SH": {
+      "zoneName": "세인트헬레나 어센션 트리스탄다쿠냐"
+    },
+    "SI": {
+      "zoneName": "슬로베니아"
+    },
+    "SJ": {
+      "zoneName": "스발바르 얀마옌 제도"
+    },
+    "SK": {
+      "zoneName": "슬로바키아"
+    },
+    "SL": {
+      "zoneName": "시에라리온"
+    },
+    "SM": {
+      "zoneName": "산마리노"
+    },
+    "SN": {
+      "zoneName": "세네갈"
+    },
+    "SO": {
+      "zoneName": "소말리아"
+    },
+    "SR": {
+      "zoneName": "수리남"
+    },
+    "SS": {
+      "zoneName": "남수단"
+    },
+    "ST": {
+      "zoneName": "상투메 프린시페"
+    },
+    "SV": {
+      "zoneName": "엘살바도르"
+    },
+    "SX": {
+      "countryName": "신트마르턴",
+      "zoneName": "네덜란드령"
+    },
+    "SY": {
+      "zoneName": "시리아"
+    },
+    "SZ": {
+      "zoneName": "스와질란드"
+    },
+    "TC": {
+      "zoneName": "터크스케이커스 제도"
+    },
+    "TD": {
+      "zoneName": "차드"
+    },
+    "TF": {
+      "zoneName": "프랑스령 남부 및 남극"
+    },
+    "TG": {
+      "zoneName": "토고"
+    },
+    "TH": {
+      "zoneName": "태국"
+    },
+    "TJ": {
+      "zoneName": "타지키스탄"
+    },
+    "TK": {
+      "zoneName": "토켈라우"
+    },
+    "TL": {
+      "zoneName": "동티모르"
+    },
+    "TM": {
+      "zoneName": "투르크메니스탄"
+    },
+    "TN": {
+      "zoneName": "튀니지"
+    },
+    "TO": {
+      "zoneName": "통가"
+    },
+    "TR": {
+      "zoneName": "터키"
+    },
+    "TT": {
+      "zoneName": "트리니다드토바고"
+    },
+    "TV": {
+      "zoneName": "투발루"
+    },
+    "TW": {
+      "zoneName": "대만"
+    },
+    "TZ": {
+      "zoneName": "탄자니아"
+    },
+    "UA": {
+      "zoneName": "우크라이나"
+    },
+    "UA-CR": {
+      "countryName": "크림 반도",
+      "zoneName": "우크라이나"
+    },
+    "UG": {
+      "zoneName": "우간다"
+    },
+    "UM": {
+      "zoneName": "미국령 군소 제도"
+    },
+    "US": {
+      "zoneName": "인접한 미국"
+    },
+    "US-HI-HA": {
+      "countryName": "미국",
+      "zoneName": "하와이섬"
+    },
+    "US-HI-KA": {
+      "countryName": "미국",
+      "zoneName": "카우아이섬"
+    },
+    "US-HI-KH": {
+      "countryName": "미국",
+      "zoneName": "카호올라웨섬"
+    },
+    "US-HI-LA": {
+      "countryName": "미국",
+      "zoneName": "라나이섬"
+    },
+    "US-HI-MA": {
+      "countryName": "미국",
+      "zoneName": "마우이섬"
+    },
+    "US-HI-MO": {
+      "countryName": "미국",
+      "zoneName": "몰로카이섬"
+    },
+    "US-HI-NI": {
+      "countryName": "미국",
+      "zoneName": "니하우섬"
+    },
+    "US-HI-OA": {
+      "countryName": "미국",
+      "zoneName": "오아후섬"
+    },
+    "UY": {
+      "zoneName": "우루과이"
+    },
+    "UZ": {
+      "zoneName": "우즈베키스탄"
+    },
+    "VA": {
+      "zoneName": "바티칸 시국"
+    },
+    "VC": {
+      "zoneName": "세인트빈센트 그레나딘"
+    },
+    "VE": {
+      "zoneName": "베네수엘라"
+    },
+    "VG": {
+      "countryName": "버진 제도",
+      "zoneName": "버진 제도"
+    },
+    "VI": {
+      "countryName": "미국",
+      "zoneName": "버진 제도"
+    },
+    "VN": {
+      "zoneName": "베트남"
+    },
+    "VU": {
+      "zoneName": "바누아투"
+    },
+    "WF": {
+      "zoneName": "월리스푸투나 제도"
+    },
+    "WS": {
+      "zoneName": "사모아"
+    },
+    "XX": {
+      "zoneName": "북부 키프로스"
+    },
+    "YE": {
+      "zoneName": "예멘"
+    },
+    "YT": {
+      "zoneName": "마요트"
+    },
+    "ZA": {
+      "zoneName": "남아프리카공화국"
+    },
+    "ZM": {
+      "zoneName": "잠비아"
+    },
+    "ZW": {
+      "zoneName": "짐바브웨"
+    }
   }
 }

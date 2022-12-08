@@ -1,0 +1,50 @@
+bounding_box:
+  - - 43
+    - 38.6
+  - - 46.3
+    - 41.6
+capacity:
+  biomass: 0
+  gas: 1832
+  hydro: 1336
+  nuclear: 440
+  solar: 183
+  wind: 3
+contributors:
+  - tmslaine
+  - systemcatch
+  - alixunderplatz
+  - nessie2013
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 165.87320597981062
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 169.2474039323895
+    hydro discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 165.87320597981062
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 169.2474039323895
+  lifecycle:
+    battery discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 229.95224733536367
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 232.63488227492812
+    hydro discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 229.95224733536367
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 232.63488227492812
+parsers: {}
+timezone: Asia/Yerevan

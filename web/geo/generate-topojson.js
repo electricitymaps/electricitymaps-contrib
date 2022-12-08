@@ -1,5 +1,5 @@
 const { topology } = require('topojson-server');
-const { getJSON, writeJSON, round } = require('./utilities');
+const { getJSON, writeJSON, round, fileExists } = require('./utilities');
 const turf = require('@turf/turf');
 
 function getCenter(geojson, zoneName) {
@@ -30,24 +30,28 @@ function getCenter(geojson, zoneName) {
 }
 
 function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
-  console.log('Generating new world.json'); // eslint-disable-line no-console
+  const output = OUT_PATH.split('/').pop();
+  console.info(`Generating new ${output}`);
   const topo = topology({
     objects: fc,
   });
-
   // We do the following to match the specific format needed for visualization
   const newObjects = {};
   topo.objects.objects.geometries.forEach((geo) => {
     // Precompute center for enable centering on the zone
-    geo.properties.center = getCenter(fc, geo.properties.zoneName);
 
+    geo.properties.center = getCenter(fc, geo.properties.zoneName);
+    // The US calculated center is not intuitive, so we override it
+    if (geo.properties.zoneName === 'US') {
+      geo.properties.center = [-110, 40];
+    }
     newObjects[geo.properties.zoneName] = geo;
   });
   topo.objects = newObjects;
 
-  const currentTopo = getJSON(OUT_PATH);
+  const currentTopo = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
-    console.log('No changes to world.json'); // eslint-disable-line no-console
+    console.info(`No changes to ${output}`);
     return;
   }
 

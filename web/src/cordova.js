@@ -26,7 +26,7 @@ export const cordovaApp = {
   },
 
   onDeviceReady() {
-    console.log('Cordova: onDeviceReady'); // eslint-disable-line no-console
+    console.info('Cordova: onDeviceReady');
     // Resize if we're on iOS
     if (cordova.platformId === 'ios') {
       const styles = function (top, bottom) {

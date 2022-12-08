@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
@@ -22,12 +21,12 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import './helpers/i18n';
 
 // Initial greeting message for curious people
-console.log(
+console.info(
   `%cWelcome to Electricity Maps!
 🌍 %cReady to work on fixing the climate full-time?
   https://electricitymaps.com/jobs
 🐙 Got comments or want to contribute?
-  https://github.com/electricitymap/electricitymap-contrib`,
+  https://github.com/electricityMaps/electricitymaps-contrib`,
   'color: green; font-weight: bold',
   'color: #666; font-style: italic'
 );

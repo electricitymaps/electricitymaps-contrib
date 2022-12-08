@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 // Layout
 import Header from './header';
@@ -14,7 +14,7 @@ import TimeController from './timeController';
 // Modules
 import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useHeaderVisible } from '../hooks/router';
+import { useHeaderVisible, useAggregatesToggle, useAggregatesEnabled } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
@@ -71,6 +71,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const Main = ({ electricityMixMode }) => {
   const { __ } = useTranslation();
   const location = useLocation();
+  const history = useHistory();
   const headerVisible = useHeaderVisible();
   const clientType = useSelector((state) => state.application.clientType);
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
@@ -88,6 +89,7 @@ const Main = ({ electricityMixMode }) => {
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
 
+  // Note: we could also query static.electricitymap.org/public_web/client-version.json instead
   const { data: clientVersionData } = useSWR('/client-version.json', fetcher, {
     refreshInterval: CLIENT_VERSION_CHECK_INTERVAL,
   });
@@ -100,8 +102,11 @@ const Main = ({ electricityMixMode }) => {
   }
 
   if (isClientVersionOutdated) {
-    console.warn(`Current client version: ${clientVersion} is outdated`);
+    console.warn(`New client version available: ${clientVersion}`);
   }
+
+  const isAggregated = useAggregatesEnabled() ? 'country' : 'zone';
+  const toggleAggregates = useAggregatesToggle();
 
   return (
     <React.Fragment>
@@ -133,7 +138,18 @@ const Main = ({ electricityMixMode }) => {
                     { value: 'consumption', label: __('tooltips.consumption') },
                   ]}
                   value={electricityMixMode}
-                  tooltipStyle={{ left: 4, width: 204, top: 49 }}
+                  tooltipStyle={{ left: 5, width: 204, top: 40, zIndex: 99 }}
+                />
+
+                <Toggle
+                  infoHTML={__('tooltips.aggregateinfo')}
+                  onChange={(value) => value !== isAggregated && history.push(toggleAggregates)}
+                  options={[
+                    { value: 'country', label: __('aggregateButtons.country') },
+                    { value: 'zone', label: __('aggregateButtons.zone') },
+                  ]}
+                  value={isAggregated}
+                  tooltipStyle={{ left: 5, width: 204, top: 85 }}
                 />
               </HiddenOnMobile>
               <LayerButtons />

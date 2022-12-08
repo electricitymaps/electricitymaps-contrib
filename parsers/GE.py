@@ -134,7 +134,7 @@ def fetch_exchange(
     elif exchange == "AZ->GE":
         net_flow = net_flows["azerbaijanSum"]
     elif exchange == "GE->RU":
-        # GE->RU might be falsely reported, exchanges.json has a definition to
+        # GE->RU might be falsely reported, exchanges/*.yaml has a definition to
         # use the Russian TSO for this flow.
         net_flow = -(
             net_flows["russiaSum"]

@@ -58,8 +58,8 @@
     "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
     "estimated": "uppskattad",
     "aggregated": "aggregerad",
-    "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
-    "exchangesAreMissing": "Överföringar är inkluderade i beräkningarna, men visas för närvarande inte. Läs mer om våra historiska sammanställningar <a href=\"https://github.com/electricitymap/electricitymap-contrib/wiki/Historical-aggregates\" target=\"_blank\">här</a>.",
+    "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
+    "exchangesAreMissing": "Överföringar är inkluderade i beräkningarna, men visas för närvarande inte. Läs mer om våra historiska sammanställningar <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">här</a>.",
     "estimatedTooltip": "Realtidsdatan för denna region är uppskattad och baserat på källdata samt antaganden av modellen.",
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
@@ -165,7 +165,14 @@
     "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
     "selectLanguage": "Välj språk",
     "lowCarbDescription": "Inkluderar förnybart och kärnkraft",
-    "dataIsDelayed": "Data är fördröjd"
+    "dataIsDelayed": "Data är fördröjd",
+    "aggregated": "aggregerad",
+    "detailed": "detaljerad",
+    "aggregateinfo": "Länder med zoner som sakanar data kan inte bli aggregerade"
+  },
+  "aggregateButtons": {
+    "country": "land",
+    "zone": "zon"
   },
   "misc": {
     "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
@@ -264,7 +271,7 @@
     "feedback-question": "Kan jag ge er någon återkoppling?",
     "feedback-answer": "Gärna! Fyll i <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt återkopplingsformulär</a> eller <a href=\"mailto:app@electricitymaps.com\">skicka oss ett e-brev!</a>",
     "contribute-question": "Kan jag bidra till ert projekt?",
-    "contribute-answer": "Ja! Appen är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/electricitymap/electricitymap-contrib/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ja! Appen är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Kan vi arbeta tillsammans?",
     "workTogether-answer": "Vi letar aktivt efter nya möjligheter att samarbeta. <a href=\"mailto:app@electricitymaps.com\">Skicka oss ett e-brev</a>!",
     "disclaimer-question": "Ansvarsfriskrivning",
@@ -706,7 +713,7 @@
       "countryName": "Storbritannien",
       "zoneName": "Orkneyöarna"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Storbritannien",
       "zoneName": "Shetlandsöarna"
     },
@@ -1216,6 +1223,9 @@
     "NL": {
       "zoneName": "Nederländerna"
     },
+    "NO": {
+      "zoneName": "Norge"
+    },
     "NO-NO1": {
       "countryName": "Norge",
       "zoneName": "Sydöstra Norge"
@@ -1369,6 +1379,22 @@
     },
     "SE": {
       "zoneName": "Sverige"
+    },
+    "SE-SE1": {
+      "countryName": "Sverige",
+      "zoneName": "Norra Sverige"
+    },
+    "SE-SE2": {
+      "countryName": "Sverige",
+      "zoneName": "Norra Mellansverige"
+    },
+    "SE-SE3": {
+      "countryName": "Sverige",
+      "zoneName": "Södra Mellansverige"
+    },
+    "SE-SE4": {
+      "countryName": "Sverige",
+      "zoneName": "Södra Sverige"
     },
     "SG": {
       "zoneName": "Singapore"
@@ -1588,10 +1614,6 @@
       "countryName": "USA",
       "zoneName": "Jacksonville Electric Authority"
     },
-    "US-FLA-NSB": {
-      "countryName": "USA",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "USA",
       "zoneName": "Seminole Electric Cooperative"
@@ -1611,10 +1633,6 @@
     "US-MIDW-AECI": {
       "countryName": "USA",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "USA",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",
@@ -1716,10 +1734,6 @@
       "countryName": "USA",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "USA",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "USA",
       "zoneName": "Southeastern Power Administration"
@@ -1743,10 +1757,6 @@
     "US-SW-GRIF": {
       "countryName": "USA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "USA",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "USA",
@@ -1831,6 +1841,13 @@
     },
     "ZW": {
       "zoneName": "Zimbabwe"
+    },
+    "US": {
+      "zoneName": "Sammanhängande Amerikas förenta stater"
+    },
+    "US-AK": {
+      "countryName": "USA",
+      "zoneName": "Alaska"
     }
   }
 }

@@ -1,0 +1,11 @@
+_comment: https://umm.nordpoolgroup.com/#/messages/3355b9ad-9ef8-48bf-8743-4b11a1a3b350/1
+capacity:
+  - -500
+  - 800
+lonlat:
+  - 7.1
+  - 61.194118
+parsers:
+  exchange: ENTSOE.fetch_exchange
+  exchangeForecast: ENTSOE.fetch_exchange_forecast
+rotation: 140

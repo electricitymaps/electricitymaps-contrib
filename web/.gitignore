@@ -2,3 +2,7 @@ build
 
 ## Netbeans folder
 nbproject
+
+## Automatically generated zones config
+src/config/exchanges.json
+src/config/zones.json

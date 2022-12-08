@@ -1,0 +1,133 @@
+bounding_box:
+  - - -107.862115248933
+    - 28.4286900252724
+  - - -81.9130970652477
+    - 49.884274119856
+capacity:
+  battery storage: 68.2
+  biomass: 2487.4
+  coal: 57162.9
+  gas: 83349.6
+  geothermal: 0
+  hydro: 2467.3
+  hydro storage: 2416.8
+  nuclear: 13080.8
+  oil: 5025.3
+  solar: 3414.8
+  unknown: 605.8
+  wind: 29061
+comment: Midcontinent Independent Transmission System Operator, Inc..
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 463.5439164156875
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 410.03298675919297
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 370.0323935596471
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 398.6722582688924
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 1013.675084
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 409.253592
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 463.5439164156875
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 410.03298675919297
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 370.0323935596471
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 398.6722582688924
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 922.7890878
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 533.2061713878306
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 479.90089944064755
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 439.06055345228873
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 465.51623295234066
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 139.1151962
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
+      value: 1076.354463
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 529.253592
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 533.2061713878306
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 479.90089944064755
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 439.06055345228873
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 465.51623295234066
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1166.7890877999998
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 26.45
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+  productionPerModeForecast: US_MISO.fetch_wind_forecast
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+timezone: US/Central

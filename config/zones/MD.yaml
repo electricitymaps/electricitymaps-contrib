@@ -1,0 +1,132 @@
+bounding_box:
+  - - 26.6193367856
+    - 45.4882831895
+  - - 30.0246586443
+    - 48.4671194525
+capacity:
+  biomass: 6
+  coal: 1600
+  gas: 1263
+  hydro: 64
+  solar: 8
+  wind: 51
+contributors:
+  - systemcatch
+  - alixunderplatz
+  - nessie2013
+  - lgrigoryeva1
+  - Impelon
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 472.90049446668127
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 487.32937650197124
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 506.9966032016196
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 424.6352528711844
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 472.90049446668127
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 487.32937650197124
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 506.9966032016196
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 424.6352528711844
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 578.4295647357446
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 595.5876943916526
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 621.9282615611656
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 532.8755839124373
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 578.4295647357446
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 595.5876943916526
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 621.9282615611656
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 532.8755839124373
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 30.25
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 5.829903860058399e-05
+        coal: 0.032305946665993686
+        gas: 0.13736112172616033
+        geothermal: 0.0
+        hydro: 0.054708953751481056
+        hydro discharge: 1.8617994279669876e-05
+        nuclear: 0.058504872071133814
+        oil: 3.153307467901234e-05
+        solar: 4.359546058094648e-05
+        unknown: 0.7165231471293056
+        wind: 0.0006777242460161519
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 3.211237845539887e-05
+        coal: 0.010200822456484564
+        gas: 0.14390426912116705
+        geothermal: 0.0
+        hydro: 0.04811277794702165
+        hydro discharge: 9.623023529345394e-06
+        nuclear: 0.022105589715854784
+        oil: 1.1490749328585348e-05
+        solar: 1.4802634601103717e-05
+        unknown: 0.7763372840581466
+        wind: 3.733031219474419e-05
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0020286177127878335
+        coal: 0.017163247817590384
+        gas: 0.47492061643900907
+        geothermal: 0.0
+        hydro: 0.051391970583991246
+        hydro discharge: 5.952658646938796e-06
+        nuclear: 0.0441860790701409
+        oil: 7.658566876737603e-06
+        solar: 2.1627192187995087e-05
+        unknown: 0.41015129194023997
+        wind: 5.416408797589188e-05
+parsers:
+  consumption: MD.fetch_consumption
+  price: MD.fetch_price
+  production: MD.fetch_production
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+timezone: Europe/Chisinau
