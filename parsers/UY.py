@@ -7,7 +7,6 @@ from typing import Callable, List, Optional, Union
 import arrow
 import dateutil
 from bs4 import BeautifulSoup
-from lib.exceptions import ParserException
 from requests import Session
 
 from parsers.lib.exceptions import ParserException
