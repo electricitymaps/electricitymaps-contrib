@@ -166,8 +166,8 @@ def get_entry_list(
 
 
 def fetch_consumption(
+    session: Session,
     zone_key: str = "UY",
-    session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -191,8 +191,8 @@ def fetch_consumption(
 
 
 def fetch_production(
+    session: Session,
     zone_key: str = "UY",
-    session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -216,9 +216,9 @@ def fetch_production(
 
 
 def fetch_exchange(
+    session: Session,
     zone_key1: str = "UY",
     zone_key2: str = "BR-S",
-    session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -252,12 +252,13 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
+    session = Session()
     print("fetch_production() ->")
-    print(fetch_production())
+    print(fetch_production(session=session))
     print("fetch_consumption() ->")
-    print(fetch_consumption())
+    print(fetch_consumption(session=session))
     print("fetch_exchange(UY, BR) ->")
-    print(fetch_exchange("UY", "BR"))
+    print(fetch_exchange("UY", "BR", session=session))
 
     print("fetch_exchange(UY, BR) ->")
-    print(fetch_exchange(zone_key1="UY", zone_key2="BR"))
+    print(fetch_exchange(zone_key1="UY", zone_key2="BR", session=session))
