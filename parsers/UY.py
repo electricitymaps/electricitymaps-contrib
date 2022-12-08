@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import re
-from datetime import datetime, timedelta
+from datetime import datetime
 from logging import Logger, getLogger
-from typing import Callable, List, Optional, Union
+from typing import Callable, List, Optional
 
 import arrow
 import dateutil
@@ -11,7 +11,7 @@ from requests import Session
 
 from parsers.lib.exceptions import ParserException
 
-tz = "America/Montevideo"
+TIME_ZONE = "America/Montevideo"
 
 # maps the xml keys from the website to names used by parser system
 MAP_GENERATION = {
@@ -34,11 +34,8 @@ UTE_URL = url = "https://ute.com.uy/energia-generada-intercambios-demanda"
 SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
 
 
-def get_salto_grande(session: Session, targ_time: Optional[datetime] = None) -> float:
+def get_salto_grande(session: Session, targ_time: datetime = None) -> float:
     """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
-    # handle optional arguments
-    s = session or Session()
-    lookup_time = datetime.now(tz=tz) if targ_time is None else targ_time
 
     # Data for current hour seems to be available after 30mins.
     # if we're too soon into the hour, check the hour before
@@ -48,15 +45,21 @@ def get_salto_grande(session: Session, targ_time: Optional[datetime] = None) -> 
         and current_time.minute < 30
     ):
         # Looking at previous hour's data for salto grande, because it is too soon after the hour
-        current_time = current_time.shift(hours=-1)
+        targ_time = targ_time.shift(hours=-1)
 
-    lookup_time: str = lookup_time.floor("hour").format("DD/MM/YYYY HH:mm")
+    lookup_time: str = targ_time.floor("hour").format("DD/MM/YYYY HH:mm")
 
     url = SALTO_GRANDE_URL + lookup_time
-    response = s.get(url)
+    response = session.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
 
     tie = soup.find("div", style="position:absolute; top:143; left:597")
+    if not tie:
+        raise ParserException(
+            parser="UY",
+            message=f"Error parsing XML data string from page from secondary source; url={SALTO_GRANDE_URL}",
+        )
+
     generation = float(tie.text)
 
     return generation
@@ -98,6 +101,10 @@ def parse_page(session: Session):
     # get the encoded XML with all the data we want
     soup = BeautifulSoup(resp.text, "html.parser")
     xml_tag = soup.find(id="valoresParaGraficar")
+    if not xml_tag:
+        raise ParserException(
+            parser="UY", message="Error parsing XML data string from page"
+        )
     xml_string = f"<{xml_tag.contents[0]}>{xml_tag.contents[1]}"
 
     # Use beautiful soup  to actually parse that XML string, and get information
@@ -105,7 +112,12 @@ def parse_page(session: Session):
 
     # Data is encoded hourly... get that subsection of the document
     # then get the data for each encoded hour, as a json-like object
+
     hourly = xml_doc.find("fuentesporhora")
+    if not hourly:
+        raise ParserException(
+            parser="UY", message="Error parsing hourly data from xml string"
+        )
     hour_recs = []
     for hour in hourly.find_all("nodo"):
         # get generation data
@@ -120,7 +132,7 @@ def parse_page(session: Session):
         datefield = hour.find("hora").contents[0]
         datestr = re.findall("\d\d/\d\d/\d\d\d\d \d+:\d\d", str(datefield))[0]
         date = arrow.get(datestr, "DD/MM/YYYY h:mm").replace(
-            tzinfo=dateutil.tz.gettz(tz)
+            tzinfo=dateutil.tz.gettz(TIME_ZONE)
         )
         datum["time"] = date
 
@@ -131,7 +143,7 @@ def parse_page(session: Session):
 
 def get_entry_list(
     session: Session, make_output: Callable[[dict], dict], correct_hydro=True
-) -> dict:
+) -> List[dict]:
     """
     Creates list of return datapoints given make_output function
 
@@ -158,10 +170,12 @@ def fetch_consumption(
     session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[dict, List[dict]]:
+) -> List[dict]:
 
     if target_datetime is not None:
-        raise ParserException("This parser is unnable to parse dates in the past")
+        raise ParserException(
+            parser="UY", message="This parser is unnable to parse dates in the past"
+        )
 
     # helper func to format data output
     def make_datum(entry):
@@ -181,10 +195,12 @@ def fetch_production(
     session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[dict, List[dict]]:
+) -> List[dict]:
 
     if target_datetime is not None:
-        raise ParserException("This parser is unnable to parse dates in the past")
+        raise ParserException(
+            parser="UY", message="This parser is unnable to parse dates in the past"
+        )
 
     # make a helper function to create output format
     def make_datum(entry):
@@ -205,15 +221,19 @@ def fetch_exchange(
     session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[dict]:
     """Requests the last known power exchange (in MW) between two countries."""
 
     if target_datetime is not None:
-        raise ParserException("This parser is unnable to parse dates in the past")
+        raise ParserException(
+            parser="UY", message="This parser is unnable to parse dates in the past"
+        )
 
     # set comparison
     if {zone_key1, zone_key2} != {"UY", "BR"}:
-        return None
+        raise ParserException(
+            parser="UY", message="This parser is unnable to parse dates in the past"
+        )
 
     # flip directions if needed
     direction_coeff = -1 if zone_key1 == "UY" else 1
