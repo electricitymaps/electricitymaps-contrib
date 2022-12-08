@@ -99,7 +99,7 @@
       "default": "Produzione elettrica nell' ultimo %1$s"
     },
     "electricityprices": {
-      "hourly": "Prezzi dell'elettricità nell' ultimo %1$s"
+      "default": "Prezzi dell'elettricità nell' ultimo %1$s"
     },
     "Getdata": "Ottieni dati orari storici, in tempo reale e previsioni con le API di Electricity Maps"
   },
