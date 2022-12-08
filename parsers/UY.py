@@ -2,14 +2,14 @@
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import Callable, List, Optional, Union
 
 import arrow
 import dateutil
-
-# BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup
 from requests import Session
+
+from parsers.lib.exceptions import ParserException
 
 tz = "America/Montevideo"
 
@@ -129,34 +129,28 @@ def parse_page(session: Session):
     return hour_recs
 
 
-def get_entry_for_time(
-    session: Session, target_datetime: Optional[datetime] = None
+def get_entry_list(
+    session: Session, make_output: Callable[[dict], dict], correct_hydro=True
 ) -> dict:
     """
-    If possible, fetches the data entry from the given time
+    Creates list of return datapoints given make_output function
 
-    The function will first fetch data for all avaliable times, then
-    return the data for the appropriate hour if possible
-
-    Throws NotImplementedError if the time input is outside the acceptable range.
+    The function will first fetch data for all avaliable times,
+    then use make_output to format the data points before returning
+    a 24 hr history of data entries
     """
-
+    # handle datetime here, so we only have to do it once
     # get data from webpage
-    entries = parse_page(session)
+    raw_entries = parse_page(session)
 
-    # if using timestamp lookup, get the appropriate
-    targ = arrow.Arrow.fromdatetime(target_datetime)
-    entry = None
-    for candidate_entry in entries:
-        if candidate_entry["time"].floor("hour") == targ.floor("hour"):
-            entry = candidate_entry
-    if entry is None:
-        raise NotImplementedError(
-            "This parser is unnable to parse dates more than a day in the past"
-        )
+    entries = []
+    for raw_entry in raw_entries:
+        if correct_hydro:
+            # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
+            raw_entry = correct_for_salto_grande(raw_entry, session)
+        entries.append(make_output(raw_entry))
 
-    # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
-    return correct_for_salto_grande(entry, session)
+    return entries
 
 
 def fetch_consumption(
@@ -166,30 +160,20 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> Union[dict, List[dict]]:
 
-    if target_datetime:
-        # handle all session and time logics in get_entry_for_time function
-        entry = get_entry_for_time(session, target_datetime)
+    if target_datetime is not None:
+        raise ParserException("This parser is unnable to parse dates in the past")
 
-        data = {
+    # helper func to format data output
+    def make_datum(entry):
+        return {
             "zoneKey": zone_key,
             "datetime": entry["time"].datetime,
             "consumption": entry["demand"],
             "source": "ute.com.uy",
         }
-    else:
-        # return list...
-        entries = parse_page(session)
-        data = []
-        for entry in entries:
-            # Don't need to correct for salto grande b/c demand is not affected
-            datum = {
-                "zoneKey": zone_key,
-                "datetime": entry["time"].datetime,
-                "consumption": entry["demand"],
-                "source": "ute.com.uy",
-            }
-            data.append(datum)
-    return data
+
+    # then delegate all the actual work to get_entry_list
+    return get_entry_list(session, make_datum, correct_hydro=False)
 
 
 def fetch_production(
@@ -199,34 +183,20 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> Union[dict, List[dict]]:
 
-    if target_datetime:
-        # handle all session and time logics in get_entry_for_time function
-        entry = get_entry_for_time(session, target_datetime)
+    if target_datetime is not None:
+        raise ParserException("This parser is unnable to parse dates in the past")
 
-        data = {
+    # make a helper function to create output format
+    def make_datum(entry):
+        return {
             "zoneKey": zone_key,
             "datetime": entry["time"].datetime,
             "production": {key: entry[key] for key in AVALIABLE_KEYS},
             "source": "ute.com.uy",
         }
-    else:
-        # return list...
-        entries = parse_page(session)
-        data = []
-        for entry in entries:
-            # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
-            entry = correct_for_salto_grande(entry, session)
 
-            data.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": entry["time"].datetime,
-                    "production": {key: entry[key] for key in AVALIABLE_KEYS},
-                    "source": "ute.com.uy",
-                }
-            )
-
-    return data
+    # then delegate all the actual work to get_entry_list
+    return get_entry_list(session, make_datum, correct_hydro=True)
 
 
 def fetch_exchange(
@@ -238,49 +208,27 @@ def fetch_exchange(
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
 
+    if target_datetime is not None:
+        raise ParserException("This parser is unnable to parse dates in the past")
+
     # set comparison
     if {zone_key1, zone_key2} != {"UY", "BR"}:
         return None
 
-    flip_direction = zone_key1 != "BR"
+    # flip directions if needed
+    direction_coeff = -1 if zone_key1 == "UY" else 1
 
-    if target_datetime:
-        # handle all session and time logics in get_entry_for_time function
-        entry = get_entry_for_time(session, target_datetime)
-
-        data = {
+    # make a helper function to create output format
+    def make_datum(entry):
+        return {
             "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
             "datetime": entry["time"].datetime,
-            "netFlow": entry["trade"],
+            "netFlow": entry["trade"] * direction_coeff,
             "source": "ute.com.uy",
         }
-        if flip_direction:
-            data["netFlow"] *= -1
-    else:
-        # return list...
-        entries = parse_page(session)
-        data = []
-        for entry in entries:
-            data.append(
-                {
-                    "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
-                    "datetime": entry["time"].datetime,
-                    "netFlow": entry["trade"],
-                    "source": "ute.com.uy",
-                }
-            )
-            # flip if needed
-            if flip_direction:
-                data[-1]["netFlow"] *= -1
 
-    data = {
-        "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
-        "datetime": entry["time"].datetime,
-        "netFlow": entry["trade"],
-        "source": "ute.com.uy",
-    }
-
-    return data
+    # then delegate all the actual work to get_entry_list
+    return get_entry_list(session, make_datum, correct_hydro=False)
 
 
 if __name__ == "__main__":
@@ -288,10 +236,6 @@ if __name__ == "__main__":
     print(fetch_production())
     print("fetch_consumption() ->")
     print(fetch_consumption())
-    print("fetch_production(hour -1 ) ->")
-    print(fetch_production(target_datetime=datetime.now() - timedelta(hours=1)))
-    print("fetch_consumption(hour -1 ) ->")
-    print(fetch_consumption(target_datetime=datetime.now() - timedelta(hours=1)))
     print("fetch_exchange(UY, BR) ->")
     print(fetch_exchange("UY", "BR"))
 
