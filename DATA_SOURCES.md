@@ -23,6 +23,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Brazil: [ONS](http://www.ons.org.br/paginas/energia-agora/carga-e-geracao)
 - Bulgaria: [TSO](http://tso.bg/default.aspx/page-707/bg)
 - Canada (Alberta): [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet)
+- Canada (British Columbia): [Wikipedia](https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia)
 - Canada (New Brunswick): [NB Power](https://tso.nbpower.com/Public/en/op/market/data.aspx)
 - Canada (Nova Scotia): [Nova Scotia Power](https://www.nspower.ca/clean-energy/todays-energy-stats)
 - Canada (Ontario): [IESO](http://www.ieso.ca/power-data)
@@ -204,10 +205,11 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Bulgaria:
   - Hydro: [NEK](https://nek.bg/index.php/en/our-business/electricity-generation)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Canada (British Columbia, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
+- Canada (New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Alberta): [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet),
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Alberta)
+- Canada (British Columbia): [Wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia)
 - Canada (Manitoba)
   - Hydro & Gas: [Manitoba Hydro-Electric Board](https://www.hydro.mb.ca/corporate/ar/pdf/annual_report_2020_21.pdf), [Manitoba Hydro](https://www.hydro.mb.ca/corporate/facilities/generating_stations/#selkirk)
   - Wind: [Province of Manitoba](https://gov.mb.ca/sd/environment_and_biodiversity/energy/wind/windfarms.html)
