@@ -7,8 +7,9 @@ from typing import Callable, List, Optional
 import arrow
 import dateutil
 from bs4 import BeautifulSoup
-from parsers.lib.exceptions import ParserException
 from requests import Session
+
+from parsers.lib.exceptions import ParserException
 
 TIME_ZONE = "America/Montevideo"
 
