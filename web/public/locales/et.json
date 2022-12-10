@@ -6,9 +6,15 @@
     "datasources": "andmeallikaid",
     "contribute": "Aidake kaasa <a href=\"%s\" target=\"_blank\">lisades enda piirkond</a>"
   },
-  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Piirkonnad", "about": "Teave" },
+  "mobile-main-menu": {
+    "map": "Electricity Maps",
+    "areas": "Piirkonnad",
+    "about": "Teave"
+  },
   "onboarding-modal": {
-    "view1": { "subtitle": "Elektrienergia kliimamõju kaardistamine" },
+    "view1": {
+      "subtitle": "Elektrienergia kliimamõju kaardistamine"
+    },
     "view2": {
       "header": "Vaadake reaalajas, kui palju CO₂ eraldub teie elektri tootmiseks.",
       "text": "Värvime piirkondi ümber maailma vastavalt nende elektritarbimise süsiniku intensiivsuse järgi (sisaldab kõiki kasvuhoonegaase). Mida rohelisem värv, seda kliimasäästlikum elekter."
@@ -46,13 +52,27 @@
   },
   "country-history": {
     "Getdata": "Hangi läbi Electricity Maps API tundide kaupa ajaloo, reaalaja ja prognoosi andmeid",
-    "carbonintensity": { "hourly": "Süsiniku intensiivsus viimase 24 tunni jooksul" },
-    "emissionsorigin": { "hourly": "Heitkoguste päritolu viimase 24 tunni jooksul" },
-    "emissionsproduction": { "hourly": "Tootmisel tekkinud heitmed viimase 24 tunni jooksul" },
-    "electricityorigin": { "hourly": "Elektrienergia päritolu viimase 24 tunni jooksul" },
-    "electricityproduction": { "hourly": "Elektritootmine viimase 24 tunni jooksul" },
-    "electricityprices": { "hourly": "Elektrihinnad viimase 24 tunni jooksul" },
-    "emissions": { "hourly": "Heitkogused viimase 24 tunni jooksul" }
+    "carbonintensity": {
+      "hourly": "Süsiniku intensiivsus viimase 24 tunni jooksul"
+    },
+    "emissionsorigin": {
+      "hourly": "Heitkoguste päritolu viimase 24 tunni jooksul"
+    },
+    "emissionsproduction": {
+      "hourly": "Tootmisel tekkinud heitmed viimase 24 tunni jooksul"
+    },
+    "electricityorigin": {
+      "hourly": "Elektrienergia päritolu viimase 24 tunni jooksul"
+    },
+    "electricityproduction": {
+      "hourly": "Elektritootmine viimase 24 tunni jooksul"
+    },
+    "electricityprices": {
+      "hourly": "Elektrihinnad viimase 24 tunni jooksul"
+    },
+    "emissions": {
+      "hourly": "Heitkogused viimase 24 tunni jooksul"
+    }
   },
   "footer": {
     "foundbugs": "Leidsite vea või teil on idee? Andke nendest teada",
@@ -191,404 +211,1336 @@
     "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> avaldab andmed ja pildid <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> keskkonnas teavitustöö raames. Sellega ei kinnitata õigsust ega anda garantiid ja jäetakse õigus sisu igal ajal muuta või osasid eemaldada ilma, et peaksime teid sellest teavitama. Electricity Maps ei võta selle eest vastutust ega vastuta kahjude või kulude eest, mis võivad tekkida Electricity Maps'ist või nendest saadud teabe ebatäpsuse, puudulikkuse, enneaegsuse või aegumise tagajärjel.  Ilma ametliku eelneva kirjaliku nõusolekuta ei ole lubatud seda veebisaiti ega selle üksikuid elemente teistele veebisaitidele lisada.<br><br> Kõik omandiõigused kuuluvad õiguslikult omanikele ja selle litsentsiandjatele. Nende materjalide, eriti energiaandmete kopeerimine, levitamine ja mis tahes muu kasutamine ei ole lubatud ilma Electricity Maps'i kirjaliku loata, välja arvatud ja ainult juhul, kui imperatiivsete õigusnormide määrustes on sätestatud teisiti (näiteks õigus tsiteerida), kui ei ole konkreetsete materjalide puhul sätestatud teisiti. <br><br>Seda lahtiütlust võidakse aeg-ajalt uuendada."
   },
   "zoneShortName": {
-    "AD": { "zoneName": "Andorra" },
-    "AE": { "zoneName": "Araabia Ühendemiraadid" },
-    "AF": { "zoneName": "Afganistan" },
-    "AG": { "zoneName": "Antigua ja Barbuda" },
-    "AI": { "zoneName": "Anguilla" },
-    "AL": { "zoneName": "Albaania" },
-    "AM": { "zoneName": "Armeenia" },
-    "AO": { "zoneName": "Angola" },
-    "AQ": { "zoneName": "Antarktika" },
-    "AS": { "zoneName": "Ameerika Samoa" },
-    "AT": { "zoneName": "Austria" },
-    "AR": { "zoneName": "Argentina" },
-    "AUS-NSW": { "countryName": "Austraalia", "zoneName": "Uus-Lõuna-Wales" },
-    "AUS-NT": { "countryName": "Austraalia", "zoneName": "Põhjaterritoorium" },
-    "AUS-QLD": { "countryName": "Austraalia", "zoneName": "Queensland" },
-    "AUS-SA": { "countryName": "Austraalia", "zoneName": "Lõuna-Austraalia" },
-    "AUS-TAS": { "countryName": "Austraalia", "zoneName": "Tasmaania" },
-    "AUS-TAS-KI": { "countryName": "Austraalia", "zoneName": "King' saar" },
-    "AUS-TAS-FI": { "countryName": "Austraalia", "zoneName": "Flindersi saar" },
-    "AUS-TAS-CBI": { "countryName": "Austraalia", "zoneName": "Cape Barreni saar" },
-    "AUS-VIC": { "countryName": "Austraalia", "zoneName": "Victoria" },
-    "AUS-WA": { "countryName": "Austraalia", "zoneName": "Lääne-Austraalia" },
-    "AUS-WA-RI": { "countryName": "Austraalia", "zoneName": "Rottnesti saar" },
-    "AW": { "zoneName": "Aruba" },
-    "AX": { "zoneName": "Ahvenamaa" },
-    "AZ": { "zoneName": "Aserbaidžaan" },
-    "BA": { "zoneName": "Bosnia ja Hertsegoviina" },
-    "BB": { "zoneName": "Barbados" },
-    "BD": { "zoneName": "Bangladesh" },
-    "BE": { "zoneName": "Belgia" },
-    "BF": { "zoneName": "Burkina Faso" },
-    "BG": { "zoneName": "Bulgaaria" },
-    "BH": { "zoneName": "Bahrein" },
-    "BI": { "zoneName": "Burundi" },
-    "BJ": { "zoneName": "Benin" },
-    "BM": { "zoneName": "Bermuda" },
-    "BN": { "zoneName": "Brunei" },
-    "BO": { "zoneName": "Boliivia" },
-    "BQ": { "zoneName": "Bonaire, Sint Eustatius ja Saba" },
-    "BR": { "zoneName": "Brasiilia" },
-    "BR-CS": { "countryName": "Brasiilia", "zoneName": "Kesk-Brasiilia" },
-    "BR-N": { "countryName": "Brasiilia", "zoneName": "Põhja-Brasiilia" },
-    "BR-NE": { "countryName": "Brasiilia", "zoneName": "Kirde-Brasiilia" },
-    "BR-S": { "countryName": "Brasiilia", "zoneName": "Lõuna-Brasiilia" },
-    "BS": { "zoneName": "Bahama" },
-    "BT": { "zoneName": "Bhutan" },
-    "BV": { "zoneName": "Bouvet' saar" },
-    "BW": { "zoneName": "Botswana" },
-    "BY": { "zoneName": "Valgevene" },
-    "BZ": { "zoneName": "Belize" },
-    "CA-AB": { "countryName": "Kanada", "zoneName": "Alberta" },
-    "CA-BC": { "countryName": "Kanada", "zoneName": "Briti Columbia" },
-    "CA-MB": { "countryName": "Kanada", "zoneName": "Manitoba" },
-    "CA-NL": { "countryName": "Kanada", "zoneName": "Newfoundland ja Labrador" },
-    "CA-NL-LB": { "countryName": "Kanada", "zoneName": "Labrador" },
-    "CA-NL-NF": { "countryName": "Kanada", "zoneName": "Newfoundland" },
-    "CA-NB": { "countryName": "Kanada", "zoneName": "New Brunswick" },
-    "CA-NT": { "countryName": "Kanada", "zoneName": "Loodealad" },
-    "CA-NS": { "countryName": "Kanada", "zoneName": "Nova Scotia" },
-    "CA-NU": { "countryName": "Kanada", "zoneName": "Nunavut" },
-    "CA-ON": { "countryName": "Kanada", "zoneName": "Ontario" },
-    "CA-PE": { "countryName": "Kanada", "zoneName": "Prints Edwardi saar" },
-    "CA-QC": { "countryName": "Kanada", "zoneName": "Québec" },
-    "CA-SK": { "countryName": "Kanada", "zoneName": "Saskatchewan" },
-    "CA-YT": { "countryName": "Kanada", "zoneName": "Yukon" },
-    "CC": { "zoneName": "Kookossaared" },
-    "CD": { "zoneName": "Kongo Demokraatlik Vabariik" },
-    "CF": { "zoneName": "Kesk-Aafrika Vabariik" },
-    "CG": { "zoneName": "Kongo" },
-    "CH": { "zoneName": "Šveits" },
-    "CI": { "zoneName": "Elevandiluurannik" },
-    "CK": { "zoneName": "Cooki saared" },
-    "CL-SEA": { "countryName": "Tšilli", "zoneName": "SEA" },
-    "CL-SEM": { "countryName": "Tšilli", "zoneName": "SEM" },
-    "CL-SEN": { "countryName": "Tšilli", "zoneName": "SEN" },
-    "CL-CHP": { "countryName": "Tšilli", "zoneName": "Lihavõttesaar" },
-    "CM": { "zoneName": "Kamerun" },
-    "CN": { "zoneName": "Hiina" },
-    "CO": { "zoneName": "Kolumbia" },
-    "CR": { "zoneName": "Costa Rica" },
-    "CU": { "zoneName": "Kuuba" },
-    "CV": { "zoneName": "Cabo Verde" },
-    "CW": { "zoneName": "Curaçao" },
-    "CX": { "zoneName": "Jõulusaar" },
-    "CY": { "zoneName": "Küpros" },
-    "CZ": { "zoneName": "Tšehhi" },
-    "DE": { "zoneName": "Saksamaa" },
-    "DJ": { "zoneName": "Djibouti" },
-    "DK": { "zoneName": "Taani" },
-    "DK-DK1": { "countryName": "Taani", "zoneName": "Lääne-Taani" },
-    "DK-DK2": { "countryName": "Taani", "zoneName": "Ida-Taani" },
-    "DK-BHM": { "countryName": "Taani", "zoneName": "Bornholm" },
-    "DM": { "zoneName": "Dominica" },
-    "DO": { "zoneName": "Dominikaani Vabariik" },
-    "DZ": { "zoneName": "Alžeeria" },
-    "EC": { "zoneName": "Ecuador" },
-    "EE": { "zoneName": "Eesti" },
-    "EG": { "zoneName": "Egiptus" },
-    "EH": { "zoneName": "Lääne-Sahara" },
-    "ER": { "zoneName": "Eritrea" },
-    "ES": { "zoneName": "Hispaania" },
-    "ES-CE": { "countryName": "Hispaania", "zoneName": "Ceuta" },
-    "ES-IB-FO": { "countryName": "Hispaania", "zoneName": "Formentera" },
-    "ES-IB-IZ": { "countryName": "Hispaania", "zoneName": "Ibiza" },
-    "ES-IB-MA": { "countryName": "Hispaania", "zoneName": "Mallorca" },
-    "ES-IB-ME": { "countryName": "Hispaania", "zoneName": "Menorca" },
-    "ES-CN-FVLZ": { "countryName": "Hispaania", "zoneName": "Fuerteventura/Lanzarote" },
-    "ES-CN-GC": { "countryName": "Hispaania", "zoneName": "Gran Canaria" },
-    "ES-CN-HI": { "countryName": "Hispaania", "zoneName": "Hierro" },
-    "ES-CN-IG": { "countryName": "Hispaania", "zoneName": "Gomera" },
-    "ES-CN-LP": { "countryName": "Hispaania", "zoneName": "La Palma" },
-    "ES-CN-TE": { "countryName": "Hispaania", "zoneName": "Tenerife" },
-    "ES-ML": { "countryName": "Hispaania", "zoneName": "Melilla" },
-    "ET": { "zoneName": "Etioopia" },
-    "FI": { "zoneName": "Soome" },
-    "FJ": { "zoneName": "Fidži" },
-    "FK": { "zoneName": "Falklandi saared" },
-    "FM": { "zoneName": "Mikroneesia" },
-    "FO": { "zoneName": "Fääri saared" },
-    "FR": { "zoneName": "Prantsusmaa" },
-    "FR-COR": { "countryName": "Prantsusmaa", "zoneName": "Korsika" },
-    "GA": { "zoneName": "Gabon" },
-    "GB": { "zoneName": "Suurbritannia" },
-    "GB-NIR": { "zoneName": "Põhja-Iirimaa" },
-    "GB-ORK": { "countryName": "Suurbritannia", "zoneName": "Orkney saared" },
-    "GB-SHI": { "countryName": "Suurbritannia", "zoneName": "Shetlandi saared" },
-    "GB-ZET": { "countryName": "Suurbritannia", "zoneName": "Shetlandi saared" },
-    "GD": { "zoneName": "Grenada" },
-    "GE": { "zoneName": "Georgia" },
-    "GF": { "zoneName": "Prantsuse Guajaana" },
-    "GG": { "zoneName": "Guernsey" },
-    "GH": { "zoneName": "Ghana" },
-    "GI": { "zoneName": "Gibraltar" },
-    "GL": { "zoneName": "Gröönimaa" },
-    "GM": { "zoneName": "Gambia" },
-    "GN": { "zoneName": "Guinea" },
-    "GP": { "zoneName": "Guadeloupe" },
-    "GQ": { "zoneName": "Ekvatoriaal-Guinea" },
-    "GR": { "zoneName": "Kreeka" },
-    "GR-IS": { "countryName": "Kreeka", "zoneName": "Egeuse saared" },
-    "GS": { "zoneName": "Lõuna-Georgia ja Lõuna-Sandwichi saared" },
-    "GT": { "zoneName": "Guatemala" },
-    "GU": { "zoneName": "Guam" },
-    "GW": { "zoneName": "Guinea-Bissau" },
-    "GY": { "zoneName": "Guyana" },
-    "HK": { "zoneName": "Hong Kong" },
-    "HM": { "zoneName": "Heardi ja McDonaldi saarte ala" },
-    "HN": { "zoneName": "Honduras" },
-    "HR": { "zoneName": "Horvaatia" },
-    "HT": { "zoneName": "Haiti" },
-    "HU": { "zoneName": "Ungari" },
-    "ID": { "zoneName": "Indoneesia" },
-    "IE": { "zoneName": "Iirimaa" },
-    "IL": { "zoneName": "Israel" },
-    "IM": { "zoneName": "Man" },
-    "IN-AN": { "countryName": "India", "zoneName": "Andamanid ja Nicobarid" },
-    "IN-AP": { "countryName": "India", "zoneName": "Andhra Pradesh" },
-    "IN-AR": { "countryName": "India", "zoneName": "Arunachal Pradesh" },
-    "IN-AS": { "countryName": "India", "zoneName": "Assam" },
-    "IN-BR": { "countryName": "India", "zoneName": "Bihar" },
-    "IN-CT": { "countryName": "India", "zoneName": "Chhattisgarh" },
-    "IN-DL": { "countryName": "India", "zoneName": "Delhi" },
-    "IN-DN": { "countryName": "India", "zoneName": "Dadra ja Nagar Haveli" },
-    "IN-GA": { "countryName": "India", "zoneName": "Goa" },
-    "IN-GJ": { "countryName": "India", "zoneName": "Gujarat" },
-    "IN-HP": { "countryName": "India", "zoneName": "Himachal Pradesh" },
-    "IN-HR": { "countryName": "India", "zoneName": "Haryana" },
-    "IN-JH": { "countryName": "India", "zoneName": "Jharkhand" },
-    "IN-JK": { "countryName": "India", "zoneName": "Jammu ja Kashmir" },
-    "IN-KA": { "countryName": "India", "zoneName": "Karnataka" },
-    "IN-KL": { "countryName": "India", "zoneName": "Kerala" },
-    "IN-MH": { "countryName": "India", "zoneName": "Maharashtra" },
-    "IN-ML": { "countryName": "India", "zoneName": "Meghalaya" },
-    "IN-MN": { "countryName": "India", "zoneName": "Manipur" },
-    "IN-MP": { "countryName": "India", "zoneName": "Madhya Pradesh" },
-    "IN-MZ": { "countryName": "India", "zoneName": "Mizoram" },
-    "IN-NL": { "countryName": "India", "zoneName": "Nagaland" },
-    "IN-OR": { "countryName": "India", "zoneName": "Orissa" },
-    "IN-PB": { "countryName": "India", "zoneName": "Punjab" },
-    "IN-PY": { "countryName": "India", "zoneName": "Pondicherry" },
-    "IN-RJ": { "countryName": "India", "zoneName": "Rajasthan" },
-    "IN-SK": { "countryName": "India", "zoneName": "Sikkim" },
-    "IN-TN": { "countryName": "India", "zoneName": "Tamil Nadu" },
-    "IN-TR": { "countryName": "India", "zoneName": "Tripura" },
-    "IN-UP": { "countryName": "India", "zoneName": "Uttar Pradesh" },
-    "IN-UT": { "countryName": "India", "zoneName": "Uttarakhand" },
-    "IN-WB": { "countryName": "India", "zoneName": "Lääne-Bengali" },
-    "IO": { "zoneName": "Briti India ookeani ala" },
-    "IQ": { "zoneName": "Iraak" },
-    "IQ-KUR": { "countryName": "Iraak", "zoneName": "Kurdistan" },
-    "IR": { "zoneName": "Iraan" },
-    "IS": { "zoneName": "Island" },
-    "IT": { "zoneName": "Itaalia" },
-    "IT-CNO": { "countryName": "Itaalia", "zoneName": "Põhja keskosa" },
-    "IT-CSO": { "countryName": "Itaalia", "zoneName": "Lõuna keskosa" },
-    "IT-NO": { "countryName": "Itaalia", "zoneName": "Põhi" },
-    "IT-SAR": { "countryName": "Itaalia", "zoneName": "Sardinia" },
-    "IT-SIC": { "countryName": "Itaalia", "zoneName": "Sicily" },
-    "IT-SO": { "countryName": "Itaalia", "zoneName": "Lõuna" },
-    "JE": { "zoneName": "Jersey" },
-    "JM": { "zoneName": "Jamaica" },
-    "JO": { "zoneName": "Jordaania" },
-    "JP-CB": { "countryName": "Jaapan", "zoneName": "Chūbu" },
-    "JP-CG": { "countryName": "Jaapan", "zoneName": "Chūgoku" },
-    "JP-HKD": { "countryName": "Jaapan", "zoneName": "Hokkaidō" },
-    "JP-HR": { "countryName": "Jaapan", "zoneName": "Hokuriku" },
-    "JP-KN": { "countryName": "Jaapan", "zoneName": "Kansai" },
-    "JP-KY": { "countryName": "Jaapan", "zoneName": "Kyūshū" },
-    "JP-ON": { "countryName": "Jaapan", "zoneName": "Okinawa" },
-    "JP-SK": { "countryName": "Jaapan", "zoneName": "Shikoku" },
-    "JP-TH": { "countryName": "Jaapan", "zoneName": "Tōhoku" },
-    "JP-TK": { "countryName": "Jaapan", "zoneName": "Tōkyō" },
-    "KE": { "zoneName": "Keenia" },
-    "KG": { "zoneName": "Kõrgõzstan" },
-    "KH": { "zoneName": "Kambodža" },
-    "KI": { "zoneName": "Kiribati" },
-    "KM": { "zoneName": "Komoorid" },
-    "KN": { "zoneName": "Saint Kitts ja Nevis" },
-    "KP": { "zoneName": "Põhja-Korea" },
-    "KR": { "zoneName": "Lõuna-Korea" },
-    "KW": { "zoneName": "Kuveit" },
-    "KY": { "zoneName": "Kaimanisaared" },
-    "KZ": { "zoneName": "Kasahstan" },
-    "LA": { "zoneName": "Laos" },
-    "LB": { "zoneName": "Liibanon" },
-    "LC": { "zoneName": "Saint Lucia" },
-    "LI": { "zoneName": "Liechtenstein" },
-    "LK": { "zoneName": "Sri Lanka" },
-    "LR": { "zoneName": "Libeeria" },
-    "LS": { "zoneName": "Lesotho" },
-    "LT": { "zoneName": "Leedu" },
-    "LU": { "zoneName": "Luksemburg" },
-    "LV": { "zoneName": "Läti" },
-    "LY": { "zoneName": "Liibüa" },
-    "MA": { "zoneName": "Maroko" },
-    "MC": { "zoneName": "Monaco" },
-    "MD": { "zoneName": "Moldova" },
-    "ME": { "zoneName": "Montenegro" },
-    "MF": { "countryName": "Saint-Martin", "zoneName": "Prantsusmaa" },
-    "MG": { "zoneName": "Madagaskar" },
-    "MH": { "zoneName": "Marshalli Saared" },
-    "MK": { "zoneName": "Põhja-Makedoonia" },
-    "ML": { "zoneName": "Mali" },
-    "MM": { "zoneName": "Myanmar" },
-    "MN": { "zoneName": "Mongoolia" },
-    "MO": { "zoneName": "Macau" },
-    "MP": { "zoneName": "Põhja-Mariaanid" },
-    "MQ": { "zoneName": "Martinique" },
-    "MR": { "zoneName": "Mauritaania" },
-    "MS": { "zoneName": "Montserrat" },
-    "MT": { "zoneName": "Malta" },
-    "MU": { "zoneName": "Mauritius" },
-    "MV": { "zoneName": "Maldiivid" },
-    "MW": { "zoneName": "Malawi" },
-    "MX": { "zoneName": "Mehhiko" },
-    "MX-BC": { "countryName": "Mehhiko", "zoneName": "Baja California" },
-    "MX-CE": { "countryName": "Mehhiko", "zoneName": "Kesk" },
-    "MX-NE": { "countryName": "Mehhiko", "zoneName": "Kirre" },
-    "MX-NO": { "countryName": "Mehhiko", "zoneName": "Põhi" },
-    "MX-NW": { "countryName": "Mehhiko", "zoneName": "Loe" },
-    "MX-OC": { "countryName": "Mehhiko", "zoneName": "Lääs" },
-    "MX-OR": { "countryName": "Mehhiko", "zoneName": "Ida" },
-    "MX-PN": { "countryName": "Mehhiko", "zoneName": "Peninsula" },
-    "MY-EM": { "countryName": "Malaisia", "zoneName": "Borneo" },
-    "MY-WM": { "countryName": "Malaisia", "zoneName": "Peninsula" },
-    "MZ": { "zoneName": "Mosambiik" },
-    "NA": { "zoneName": "Namiibia" },
-    "NC": { "zoneName": "Uus-Kaledoonia" },
-    "NE": { "zoneName": "Niger" },
-    "NF": { "zoneName": "Norfolki saar" },
-    "NG": { "zoneName": "Nigeeria" },
-    "NI": { "zoneName": "Nicaragua" },
-    "NKR": { "zoneName": "Mägi-Karabahh" },
-    "NL": { "zoneName": "Holland" },
-    "NO-NO1": { "countryName": "Norra", "zoneName": "Kagu-Norra" },
-    "NO-NO2": { "countryName": "Norra", "zoneName": "Edela-Norra" },
-    "NO-NO3": { "countryName": "Norra", "zoneName": "Kesk-Norra" },
-    "NO-NO4": { "countryName": "Norra", "zoneName": "Põhja-Norra" },
-    "NO-NO5": { "countryName": "Norra", "zoneName": "Lääne-Norra" },
-    "NP": { "zoneName": "Nepal" },
-    "NR": { "zoneName": "Nauru" },
-    "NU": { "zoneName": "Niue" },
-    "NZ": { "zoneName": "Uus-Meremaa" },
-    "NZ-NZA": { "countryName": "Uus-Meremaa", "zoneName": "Aucklandi saared" },
-    "NZ-NZC": { "countryName": "Uus-Meremaa", "zoneName": "Chathami saared" },
-    "NZ-NZST": { "countryName": "Uus-Meremaa", "zoneName": "Stewarti saar" },
-    "OM": { "zoneName": "Omaan" },
-    "PA": { "zoneName": "Panama" },
-    "PE": { "zoneName": "Peruu" },
-    "PF": { "zoneName": "Prantsuse Polüneesia" },
-    "PG": { "zoneName": "Paapua Uus-Guinea" },
-    "PH": { "zoneName": "Filipiinid" },
-    "PK": { "zoneName": "Pakistan" },
-    "PL": { "zoneName": "Poola" },
-    "PM": { "zoneName": "Saint-Pierre ja Miquelon" },
-    "PN": { "zoneName": "Pitcairn" },
-    "PR": { "zoneName": "Puerto Rico" },
-    "PS": { "zoneName": "Palestiina riik" },
-    "PT": { "zoneName": "Portugal" },
-    "PT-AC": { "countryName": "Portugal", "zoneName": "Assoorid" },
-    "PT-MA": { "countryName": "Portugal", "zoneName": "Madeira" },
-    "PW": { "zoneName": "Belau" },
-    "PY": { "zoneName": "Paraguay" },
-    "QA": { "zoneName": "Katar" },
-    "RE": { "zoneName": "Réunion" },
-    "RO": { "zoneName": "Rumeenia" },
-    "RS": { "zoneName": "Serbia" },
-    "RU": { "zoneName": "Venemaa" },
-    "RU-1": { "countryName": "Venemaa", "zoneName": "Venemaa Euroopa-osa ja Uural" },
-    "RU-2": { "countryName": "Venemaa", "zoneName": "Siber" },
-    "RU-EU": { "zoneName": "Venemaa" },
-    "RU-AS": { "zoneName": "Venemaa" },
-    "RU-KGD": { "countryName": "Venemaa", "zoneName": "Kaliningrad" },
-    "RW": { "zoneName": "Rwanda" },
-    "SA": { "zoneName": "Saudi Araabia" },
-    "SB": { "zoneName": "Saalomoni Saared" },
-    "SC": { "zoneName": "Seišellid" },
-    "SD": { "zoneName": "Sudaan" },
-    "SE": { "zoneName": "Rootsi" },
-    "SG": { "zoneName": "Singapur" },
-    "SH": { "zoneName": "Saint Helena, Ascension ja Tristan da Cunha" },
-    "SI": { "zoneName": "Sloveenia" },
-    "SJ": { "zoneName": "Svalbard ja Jan Mayen" },
-    "SK": { "zoneName": "Slovakkia" },
-    "SL": { "zoneName": "Sierra Leone" },
-    "SM": { "zoneName": "San Marino" },
-    "SN": { "zoneName": "Senegal" },
-    "SO": { "zoneName": "Somaalia" },
-    "SR": { "zoneName": "Suriname" },
-    "SS": { "zoneName": "Lõuna-Sudaan" },
-    "ST": { "zoneName": "Sao Tome ja Principe" },
-    "SV": { "zoneName": "El Salvador" },
-    "SX": { "countryName": "Sint Maarten", "zoneName": "Holland" },
-    "SY": { "zoneName": "Süüria" },
-    "SZ": { "zoneName": "Svaasimaa" },
-    "TC": { "zoneName": "Turks ja Caicos" },
-    "TD": { "zoneName": "Tšaad" },
-    "TF": { "zoneName": "Prantsuse Lõunaalad" },
-    "TG": { "zoneName": "Togo" },
-    "TH": { "zoneName": "Tai" },
-    "TJ": { "zoneName": "Tadžikistan" },
-    "TK": { "zoneName": "Tokelau" },
-    "TL": { "zoneName": "Timor-Leste" },
-    "TM": { "zoneName": "Türkmenistan" },
-    "TN": { "zoneName": "Tuneesia" },
-    "TO": { "zoneName": "Tonga" },
-    "TR": { "zoneName": "Türgi" },
-    "TT": { "zoneName": "Trinidad ja Tobago" },
-    "TV": { "zoneName": "Tuvalu" },
-    "TW": { "zoneName": "Taiwan" },
-    "TZ": { "zoneName": "Tansaania" },
-    "UA": { "zoneName": "Ukraina" },
-    "UA-CR": { "countryName": "Krimm", "zoneName": "Ukraina" },
-    "UG": { "zoneName": "Uganda" },
-    "UM": { "zoneName": "Ühendriikide hajasaared" },
-    "US-HI-HA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Hawaii" },
-    "US-HI-KA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Kauai" },
-    "US-HI-KH": { "countryName": "Ameerika Ühendriigid", "zoneName": "Kahoolawe" },
-    "US-HI-LA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Lanai" },
-    "US-HI-MA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Maui" },
-    "US-HI-MO": { "countryName": "Ameerika Ühendriigid", "zoneName": "Molokai" },
-    "US-HI-NI": { "countryName": "Ameerika Ühendriigid", "zoneName": "Niihau" },
-    "US-HI-OA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Oahu" },
+    "AD": {
+      "zoneName": "Andorra"
+    },
+    "AE": {
+      "zoneName": "Araabia Ühendemiraadid"
+    },
+    "AF": {
+      "zoneName": "Afganistan"
+    },
+    "AG": {
+      "zoneName": "Antigua ja Barbuda"
+    },
+    "AI": {
+      "zoneName": "Anguilla"
+    },
+    "AL": {
+      "zoneName": "Albaania"
+    },
+    "AM": {
+      "zoneName": "Armeenia"
+    },
+    "AO": {
+      "zoneName": "Angola"
+    },
+    "AQ": {
+      "zoneName": "Antarktika"
+    },
+    "AS": {
+      "zoneName": "Ameerika Samoa"
+    },
+    "AT": {
+      "zoneName": "Austria"
+    },
+    "AR": {
+      "zoneName": "Argentina"
+    },
+    "AUS-NSW": {
+      "countryName": "Austraalia",
+      "zoneName": "Uus-Lõuna-Wales"
+    },
+    "AUS-NT": {
+      "countryName": "Austraalia",
+      "zoneName": "Põhjaterritoorium"
+    },
+    "AUS-QLD": {
+      "countryName": "Austraalia",
+      "zoneName": "Queensland"
+    },
+    "AUS-SA": {
+      "countryName": "Austraalia",
+      "zoneName": "Lõuna-Austraalia"
+    },
+    "AUS-TAS": {
+      "countryName": "Austraalia",
+      "zoneName": "Tasmaania"
+    },
+    "AUS-TAS-KI": {
+      "countryName": "Austraalia",
+      "zoneName": "King' saar"
+    },
+    "AUS-TAS-FI": {
+      "countryName": "Austraalia",
+      "zoneName": "Flindersi saar"
+    },
+    "AUS-TAS-CBI": {
+      "countryName": "Austraalia",
+      "zoneName": "Cape Barreni saar"
+    },
+    "AUS-VIC": {
+      "countryName": "Austraalia",
+      "zoneName": "Victoria"
+    },
+    "AUS-WA": {
+      "countryName": "Austraalia",
+      "zoneName": "Lääne-Austraalia"
+    },
+    "AUS-WA-RI": {
+      "countryName": "Austraalia",
+      "zoneName": "Rottnesti saar"
+    },
+    "AW": {
+      "zoneName": "Aruba"
+    },
+    "AX": {
+      "zoneName": "Ahvenamaa"
+    },
+    "AZ": {
+      "zoneName": "Aserbaidžaan"
+    },
+    "BA": {
+      "zoneName": "Bosnia ja Hertsegoviina"
+    },
+    "BB": {
+      "zoneName": "Barbados"
+    },
+    "BD": {
+      "zoneName": "Bangladesh"
+    },
+    "BE": {
+      "zoneName": "Belgia"
+    },
+    "BF": {
+      "zoneName": "Burkina Faso"
+    },
+    "BG": {
+      "zoneName": "Bulgaaria"
+    },
+    "BH": {
+      "zoneName": "Bahrein"
+    },
+    "BI": {
+      "zoneName": "Burundi"
+    },
+    "BJ": {
+      "zoneName": "Benin"
+    },
+    "BM": {
+      "zoneName": "Bermuda"
+    },
+    "BN": {
+      "zoneName": "Brunei"
+    },
+    "BO": {
+      "zoneName": "Boliivia"
+    },
+    "BQ": {
+      "zoneName": "Bonaire, Sint Eustatius ja Saba"
+    },
+    "BR": {
+      "zoneName": "Brasiilia"
+    },
+    "BR-CS": {
+      "countryName": "Brasiilia",
+      "zoneName": "Kesk-Brasiilia"
+    },
+    "BR-N": {
+      "countryName": "Brasiilia",
+      "zoneName": "Põhja-Brasiilia"
+    },
+    "BR-NE": {
+      "countryName": "Brasiilia",
+      "zoneName": "Kirde-Brasiilia"
+    },
+    "BR-S": {
+      "countryName": "Brasiilia",
+      "zoneName": "Lõuna-Brasiilia"
+    },
+    "BS": {
+      "zoneName": "Bahama"
+    },
+    "BT": {
+      "zoneName": "Bhutan"
+    },
+    "BV": {
+      "zoneName": "Bouvet' saar"
+    },
+    "BW": {
+      "zoneName": "Botswana"
+    },
+    "BY": {
+      "zoneName": "Valgevene"
+    },
+    "BZ": {
+      "zoneName": "Belize"
+    },
+    "CA-AB": {
+      "countryName": "Kanada",
+      "zoneName": "Alberta"
+    },
+    "CA-BC": {
+      "countryName": "Kanada",
+      "zoneName": "Briti Columbia"
+    },
+    "CA-MB": {
+      "countryName": "Kanada",
+      "zoneName": "Manitoba"
+    },
+    "CA-NL": {
+      "countryName": "Kanada",
+      "zoneName": "Newfoundland ja Labrador"
+    },
+    "CA-NL-LB": {
+      "countryName": "Kanada",
+      "zoneName": "Labrador"
+    },
+    "CA-NL-NF": {
+      "countryName": "Kanada",
+      "zoneName": "Newfoundland"
+    },
+    "CA-NB": {
+      "countryName": "Kanada",
+      "zoneName": "New Brunswick"
+    },
+    "CA-NT": {
+      "countryName": "Kanada",
+      "zoneName": "Loodealad"
+    },
+    "CA-NS": {
+      "countryName": "Kanada",
+      "zoneName": "Nova Scotia"
+    },
+    "CA-NU": {
+      "countryName": "Kanada",
+      "zoneName": "Nunavut"
+    },
+    "CA-ON": {
+      "countryName": "Kanada",
+      "zoneName": "Ontario"
+    },
+    "CA-PE": {
+      "countryName": "Kanada",
+      "zoneName": "Prints Edwardi saar"
+    },
+    "CA-QC": {
+      "countryName": "Kanada",
+      "zoneName": "Québec"
+    },
+    "CA-SK": {
+      "countryName": "Kanada",
+      "zoneName": "Saskatchewan"
+    },
+    "CA-YT": {
+      "countryName": "Kanada",
+      "zoneName": "Yukon"
+    },
+    "CC": {
+      "zoneName": "Kookossaared"
+    },
+    "CD": {
+      "zoneName": "Kongo Demokraatlik Vabariik"
+    },
+    "CF": {
+      "zoneName": "Kesk-Aafrika Vabariik"
+    },
+    "CG": {
+      "zoneName": "Kongo"
+    },
+    "CH": {
+      "zoneName": "Šveits"
+    },
+    "CI": {
+      "zoneName": "Elevandiluurannik"
+    },
+    "CK": {
+      "zoneName": "Cooki saared"
+    },
+    "CL-SEA": {
+      "countryName": "Tšilli",
+      "zoneName": "SEA"
+    },
+    "CL-SEM": {
+      "countryName": "Tšilli",
+      "zoneName": "SEM"
+    },
+    "CL-SEN": {
+      "countryName": "Tšilli",
+      "zoneName": "SEN"
+    },
+    "CL-CHP": {
+      "countryName": "Tšilli",
+      "zoneName": "Lihavõttesaar"
+    },
+    "CM": {
+      "zoneName": "Kamerun"
+    },
+    "CN": {
+      "zoneName": "Hiina"
+    },
+    "CO": {
+      "zoneName": "Kolumbia"
+    },
+    "CR": {
+      "zoneName": "Costa Rica"
+    },
+    "CU": {
+      "zoneName": "Kuuba"
+    },
+    "CV": {
+      "zoneName": "Cabo Verde"
+    },
+    "CW": {
+      "zoneName": "Curaçao"
+    },
+    "CX": {
+      "zoneName": "Jõulusaar"
+    },
+    "CY": {
+      "zoneName": "Küpros"
+    },
+    "CZ": {
+      "zoneName": "Tšehhi"
+    },
+    "DE": {
+      "zoneName": "Saksamaa"
+    },
+    "DJ": {
+      "zoneName": "Djibouti"
+    },
+    "DK": {
+      "zoneName": "Taani"
+    },
+    "DK-DK1": {
+      "countryName": "Taani",
+      "zoneName": "Lääne-Taani"
+    },
+    "DK-DK2": {
+      "countryName": "Taani",
+      "zoneName": "Ida-Taani"
+    },
+    "DK-BHM": {
+      "countryName": "Taani",
+      "zoneName": "Bornholm"
+    },
+    "DM": {
+      "zoneName": "Dominica"
+    },
+    "DO": {
+      "zoneName": "Dominikaani Vabariik"
+    },
+    "DZ": {
+      "zoneName": "Alžeeria"
+    },
+    "EC": {
+      "zoneName": "Ecuador"
+    },
+    "EE": {
+      "zoneName": "Eesti"
+    },
+    "EG": {
+      "zoneName": "Egiptus"
+    },
+    "EH": {
+      "zoneName": "Lääne-Sahara"
+    },
+    "ER": {
+      "zoneName": "Eritrea"
+    },
+    "ES": {
+      "zoneName": "Hispaania"
+    },
+    "ES-CE": {
+      "countryName": "Hispaania",
+      "zoneName": "Ceuta"
+    },
+    "ES-IB-FO": {
+      "countryName": "Hispaania",
+      "zoneName": "Formentera"
+    },
+    "ES-IB-IZ": {
+      "countryName": "Hispaania",
+      "zoneName": "Ibiza"
+    },
+    "ES-IB-MA": {
+      "countryName": "Hispaania",
+      "zoneName": "Mallorca"
+    },
+    "ES-IB-ME": {
+      "countryName": "Hispaania",
+      "zoneName": "Menorca"
+    },
+    "ES-CN-FVLZ": {
+      "countryName": "Hispaania",
+      "zoneName": "Fuerteventura/Lanzarote"
+    },
+    "ES-CN-GC": {
+      "countryName": "Hispaania",
+      "zoneName": "Gran Canaria"
+    },
+    "ES-CN-HI": {
+      "countryName": "Hispaania",
+      "zoneName": "Hierro"
+    },
+    "ES-CN-IG": {
+      "countryName": "Hispaania",
+      "zoneName": "Gomera"
+    },
+    "ES-CN-LP": {
+      "countryName": "Hispaania",
+      "zoneName": "La Palma"
+    },
+    "ES-CN-TE": {
+      "countryName": "Hispaania",
+      "zoneName": "Tenerife"
+    },
+    "ES-ML": {
+      "countryName": "Hispaania",
+      "zoneName": "Melilla"
+    },
+    "ET": {
+      "zoneName": "Etioopia"
+    },
+    "FI": {
+      "zoneName": "Soome"
+    },
+    "FJ": {
+      "zoneName": "Fidži"
+    },
+    "FK": {
+      "zoneName": "Falklandi saared"
+    },
+    "FM": {
+      "zoneName": "Mikroneesia"
+    },
+    "FO": {
+      "zoneName": "Fääri saared"
+    },
+    "FR": {
+      "zoneName": "Prantsusmaa"
+    },
+    "FR-COR": {
+      "countryName": "Prantsusmaa",
+      "zoneName": "Korsika"
+    },
+    "GA": {
+      "zoneName": "Gabon"
+    },
+    "GB": {
+      "zoneName": "Suurbritannia"
+    },
+    "GB-NIR": {
+      "zoneName": "Põhja-Iirimaa"
+    },
+    "GB-ORK": {
+      "countryName": "Suurbritannia",
+      "zoneName": "Orkney saared"
+    },
+    "GB-SHI": {
+      "countryName": "Suurbritannia",
+      "zoneName": "Shetlandi saared"
+    },
+    "GB-ZET": {
+      "countryName": "Suurbritannia",
+      "zoneName": "Shetlandi saared"
+    },
+    "GD": {
+      "zoneName": "Grenada"
+    },
+    "GE": {
+      "zoneName": "Georgia"
+    },
+    "GF": {
+      "zoneName": "Prantsuse Guajaana"
+    },
+    "GG": {
+      "zoneName": "Guernsey"
+    },
+    "GH": {
+      "zoneName": "Ghana"
+    },
+    "GI": {
+      "zoneName": "Gibraltar"
+    },
+    "GL": {
+      "zoneName": "Gröönimaa"
+    },
+    "GM": {
+      "zoneName": "Gambia"
+    },
+    "GN": {
+      "zoneName": "Guinea"
+    },
+    "GP": {
+      "zoneName": "Guadeloupe"
+    },
+    "GQ": {
+      "zoneName": "Ekvatoriaal-Guinea"
+    },
+    "GR": {
+      "zoneName": "Kreeka"
+    },
+    "GR-IS": {
+      "countryName": "Kreeka",
+      "zoneName": "Egeuse saared"
+    },
+    "GS": {
+      "zoneName": "Lõuna-Georgia ja Lõuna-Sandwichi saared"
+    },
+    "GT": {
+      "zoneName": "Guatemala"
+    },
+    "GU": {
+      "zoneName": "Guam"
+    },
+    "GW": {
+      "zoneName": "Guinea-Bissau"
+    },
+    "GY": {
+      "zoneName": "Guyana"
+    },
+    "HK": {
+      "zoneName": "Hong Kong"
+    },
+    "HM": {
+      "zoneName": "Heardi ja McDonaldi saarte ala"
+    },
+    "HN": {
+      "zoneName": "Honduras"
+    },
+    "HR": {
+      "zoneName": "Horvaatia"
+    },
+    "HT": {
+      "zoneName": "Haiti"
+    },
+    "HU": {
+      "zoneName": "Ungari"
+    },
+    "ID": {
+      "zoneName": "Indoneesia"
+    },
+    "IE": {
+      "zoneName": "Iirimaa"
+    },
+    "IL": {
+      "zoneName": "Israel"
+    },
+    "IM": {
+      "zoneName": "Man"
+    },
+    "IN-AN": {
+      "countryName": "India",
+      "zoneName": "Andamanid ja Nicobarid"
+    },
+    "IN-AP": {
+      "countryName": "India",
+      "zoneName": "Andhra Pradesh"
+    },
+    "IN-AR": {
+      "countryName": "India",
+      "zoneName": "Arunachal Pradesh"
+    },
+    "IN-AS": {
+      "countryName": "India",
+      "zoneName": "Assam"
+    },
+    "IN-BR": {
+      "countryName": "India",
+      "zoneName": "Bihar"
+    },
+    "IN-CT": {
+      "countryName": "India",
+      "zoneName": "Chhattisgarh"
+    },
+    "IN-DL": {
+      "countryName": "India",
+      "zoneName": "Delhi"
+    },
+    "IN-DN": {
+      "countryName": "India",
+      "zoneName": "Dadra ja Nagar Haveli"
+    },
+    "IN-GA": {
+      "countryName": "India",
+      "zoneName": "Goa"
+    },
+    "IN-GJ": {
+      "countryName": "India",
+      "zoneName": "Gujarat"
+    },
+    "IN-HP": {
+      "countryName": "India",
+      "zoneName": "Himachal Pradesh"
+    },
+    "IN-HR": {
+      "countryName": "India",
+      "zoneName": "Haryana"
+    },
+    "IN-JH": {
+      "countryName": "India",
+      "zoneName": "Jharkhand"
+    },
+    "IN-JK": {
+      "countryName": "India",
+      "zoneName": "Jammu ja Kashmir"
+    },
+    "IN-KA": {
+      "countryName": "India",
+      "zoneName": "Karnataka"
+    },
+    "IN-KL": {
+      "countryName": "India",
+      "zoneName": "Kerala"
+    },
+    "IN-MH": {
+      "countryName": "India",
+      "zoneName": "Maharashtra"
+    },
+    "IN-ML": {
+      "countryName": "India",
+      "zoneName": "Meghalaya"
+    },
+    "IN-MN": {
+      "countryName": "India",
+      "zoneName": "Manipur"
+    },
+    "IN-MP": {
+      "countryName": "India",
+      "zoneName": "Madhya Pradesh"
+    },
+    "IN-MZ": {
+      "countryName": "India",
+      "zoneName": "Mizoram"
+    },
+    "IN-NL": {
+      "countryName": "India",
+      "zoneName": "Nagaland"
+    },
+    "IN-OR": {
+      "countryName": "India",
+      "zoneName": "Orissa"
+    },
+    "IN-PB": {
+      "countryName": "India",
+      "zoneName": "Punjab"
+    },
+    "IN-PY": {
+      "countryName": "India",
+      "zoneName": "Pondicherry"
+    },
+    "IN-RJ": {
+      "countryName": "India",
+      "zoneName": "Rajasthan"
+    },
+    "IN-SK": {
+      "countryName": "India",
+      "zoneName": "Sikkim"
+    },
+    "IN-TN": {
+      "countryName": "India",
+      "zoneName": "Tamil Nadu"
+    },
+    "IN-TR": {
+      "countryName": "India",
+      "zoneName": "Tripura"
+    },
+    "IN-UP": {
+      "countryName": "India",
+      "zoneName": "Uttar Pradesh"
+    },
+    "IN-UT": {
+      "countryName": "India",
+      "zoneName": "Uttarakhand"
+    },
+    "IN-WB": {
+      "countryName": "India",
+      "zoneName": "Lääne-Bengali"
+    },
+    "IO": {
+      "zoneName": "Briti India ookeani ala"
+    },
+    "IQ": {
+      "zoneName": "Iraak"
+    },
+    "IQ-KUR": {
+      "countryName": "Iraak",
+      "zoneName": "Kurdistan"
+    },
+    "IR": {
+      "zoneName": "Iraan"
+    },
+    "IS": {
+      "zoneName": "Island"
+    },
+    "IT": {
+      "zoneName": "Itaalia"
+    },
+    "IT-CNO": {
+      "countryName": "Itaalia",
+      "zoneName": "Põhja keskosa"
+    },
+    "IT-CSO": {
+      "countryName": "Itaalia",
+      "zoneName": "Lõuna keskosa"
+    },
+    "IT-NO": {
+      "countryName": "Itaalia",
+      "zoneName": "Põhi"
+    },
+    "IT-SAR": {
+      "countryName": "Itaalia",
+      "zoneName": "Sardinia"
+    },
+    "IT-SIC": {
+      "countryName": "Itaalia",
+      "zoneName": "Sicily"
+    },
+    "IT-SO": {
+      "countryName": "Itaalia",
+      "zoneName": "Lõuna"
+    },
+    "JE": {
+      "zoneName": "Jersey"
+    },
+    "JM": {
+      "zoneName": "Jamaica"
+    },
+    "JO": {
+      "zoneName": "Jordaania"
+    },
+    "JP-CB": {
+      "countryName": "Jaapan",
+      "zoneName": "Chūbu"
+    },
+    "JP-CG": {
+      "countryName": "Jaapan",
+      "zoneName": "Chūgoku"
+    },
+    "JP-HKD": {
+      "countryName": "Jaapan",
+      "zoneName": "Hokkaidō"
+    },
+    "JP-HR": {
+      "countryName": "Jaapan",
+      "zoneName": "Hokuriku"
+    },
+    "JP-KN": {
+      "countryName": "Jaapan",
+      "zoneName": "Kansai"
+    },
+    "JP-KY": {
+      "countryName": "Jaapan",
+      "zoneName": "Kyūshū"
+    },
+    "JP-ON": {
+      "countryName": "Jaapan",
+      "zoneName": "Okinawa"
+    },
+    "JP-SK": {
+      "countryName": "Jaapan",
+      "zoneName": "Shikoku"
+    },
+    "JP-TH": {
+      "countryName": "Jaapan",
+      "zoneName": "Tōhoku"
+    },
+    "JP-TK": {
+      "countryName": "Jaapan",
+      "zoneName": "Tōkyō"
+    },
+    "KE": {
+      "zoneName": "Keenia"
+    },
+    "KG": {
+      "zoneName": "Kõrgõzstan"
+    },
+    "KH": {
+      "zoneName": "Kambodža"
+    },
+    "KI": {
+      "zoneName": "Kiribati"
+    },
+    "KM": {
+      "zoneName": "Komoorid"
+    },
+    "KN": {
+      "zoneName": "Saint Kitts ja Nevis"
+    },
+    "KP": {
+      "zoneName": "Põhja-Korea"
+    },
+    "KR": {
+      "zoneName": "Lõuna-Korea"
+    },
+    "KW": {
+      "zoneName": "Kuveit"
+    },
+    "KY": {
+      "zoneName": "Kaimanisaared"
+    },
+    "KZ": {
+      "zoneName": "Kasahstan"
+    },
+    "LA": {
+      "zoneName": "Laos"
+    },
+    "LB": {
+      "zoneName": "Liibanon"
+    },
+    "LC": {
+      "zoneName": "Saint Lucia"
+    },
+    "LI": {
+      "zoneName": "Liechtenstein"
+    },
+    "LK": {
+      "zoneName": "Sri Lanka"
+    },
+    "LR": {
+      "zoneName": "Libeeria"
+    },
+    "LS": {
+      "zoneName": "Lesotho"
+    },
+    "LT": {
+      "zoneName": "Leedu"
+    },
+    "LU": {
+      "zoneName": "Luksemburg"
+    },
+    "LV": {
+      "zoneName": "Läti"
+    },
+    "LY": {
+      "zoneName": "Liibüa"
+    },
+    "MA": {
+      "zoneName": "Maroko"
+    },
+    "MC": {
+      "zoneName": "Monaco"
+    },
+    "MD": {
+      "zoneName": "Moldova"
+    },
+    "ME": {
+      "zoneName": "Montenegro"
+    },
+    "MF": {
+      "countryName": "Saint-Martin",
+      "zoneName": "Prantsusmaa"
+    },
+    "MG": {
+      "zoneName": "Madagaskar"
+    },
+    "MH": {
+      "zoneName": "Marshalli Saared"
+    },
+    "MK": {
+      "zoneName": "Põhja-Makedoonia"
+    },
+    "ML": {
+      "zoneName": "Mali"
+    },
+    "MM": {
+      "zoneName": "Myanmar"
+    },
+    "MN": {
+      "zoneName": "Mongoolia"
+    },
+    "MO": {
+      "zoneName": "Macau"
+    },
+    "MP": {
+      "zoneName": "Põhja-Mariaanid"
+    },
+    "MQ": {
+      "zoneName": "Martinique"
+    },
+    "MR": {
+      "zoneName": "Mauritaania"
+    },
+    "MS": {
+      "zoneName": "Montserrat"
+    },
+    "MT": {
+      "zoneName": "Malta"
+    },
+    "MU": {
+      "zoneName": "Mauritius"
+    },
+    "MV": {
+      "zoneName": "Maldiivid"
+    },
+    "MW": {
+      "zoneName": "Malawi"
+    },
+    "MX": {
+      "zoneName": "Mehhiko"
+    },
+    "MX-BC": {
+      "countryName": "Mehhiko",
+      "zoneName": "Baja California"
+    },
+    "MX-CE": {
+      "countryName": "Mehhiko",
+      "zoneName": "Kesk"
+    },
+    "MX-NE": {
+      "countryName": "Mehhiko",
+      "zoneName": "Kirre"
+    },
+    "MX-NO": {
+      "countryName": "Mehhiko",
+      "zoneName": "Põhi"
+    },
+    "MX-NW": {
+      "countryName": "Mehhiko",
+      "zoneName": "Loe"
+    },
+    "MX-OC": {
+      "countryName": "Mehhiko",
+      "zoneName": "Lääs"
+    },
+    "MX-OR": {
+      "countryName": "Mehhiko",
+      "zoneName": "Ida"
+    },
+    "MX-PN": {
+      "countryName": "Mehhiko",
+      "zoneName": "Peninsula"
+    },
+    "MY-EM": {
+      "countryName": "Malaisia",
+      "zoneName": "Borneo"
+    },
+    "MY-WM": {
+      "countryName": "Malaisia",
+      "zoneName": "Peninsula"
+    },
+    "MZ": {
+      "zoneName": "Mosambiik"
+    },
+    "NA": {
+      "zoneName": "Namiibia"
+    },
+    "NC": {
+      "zoneName": "Uus-Kaledoonia"
+    },
+    "NE": {
+      "zoneName": "Niger"
+    },
+    "NF": {
+      "zoneName": "Norfolki saar"
+    },
+    "NG": {
+      "zoneName": "Nigeeria"
+    },
+    "NI": {
+      "zoneName": "Nicaragua"
+    },
+    "NKR": {
+      "zoneName": "Mägi-Karabahh"
+    },
+    "NL": {
+      "zoneName": "Holland"
+    },
+    "NO-NO1": {
+      "countryName": "Norra",
+      "zoneName": "Kagu-Norra"
+    },
+    "NO-NO2": {
+      "countryName": "Norra",
+      "zoneName": "Edela-Norra"
+    },
+    "NO-NO3": {
+      "countryName": "Norra",
+      "zoneName": "Kesk-Norra"
+    },
+    "NO-NO4": {
+      "countryName": "Norra",
+      "zoneName": "Põhja-Norra"
+    },
+    "NO-NO5": {
+      "countryName": "Norra",
+      "zoneName": "Lääne-Norra"
+    },
+    "NP": {
+      "zoneName": "Nepal"
+    },
+    "NR": {
+      "zoneName": "Nauru"
+    },
+    "NU": {
+      "zoneName": "Niue"
+    },
+    "NZ": {
+      "zoneName": "Uus-Meremaa"
+    },
+    "NZ-NZA": {
+      "countryName": "Uus-Meremaa",
+      "zoneName": "Aucklandi saared"
+    },
+    "NZ-NZC": {
+      "countryName": "Uus-Meremaa",
+      "zoneName": "Chathami saared"
+    },
+    "NZ-NZST": {
+      "countryName": "Uus-Meremaa",
+      "zoneName": "Stewarti saar"
+    },
+    "OM": {
+      "zoneName": "Omaan"
+    },
+    "PA": {
+      "zoneName": "Panama"
+    },
+    "PE": {
+      "zoneName": "Peruu"
+    },
+    "PF": {
+      "zoneName": "Prantsuse Polüneesia"
+    },
+    "PG": {
+      "zoneName": "Paapua Uus-Guinea"
+    },
+    "PH": {
+      "zoneName": "Filipiinid"
+    },
+    "PK": {
+      "zoneName": "Pakistan"
+    },
+    "PL": {
+      "zoneName": "Poola"
+    },
+    "PM": {
+      "zoneName": "Saint-Pierre ja Miquelon"
+    },
+    "PN": {
+      "zoneName": "Pitcairn"
+    },
+    "PR": {
+      "zoneName": "Puerto Rico"
+    },
+    "PS": {
+      "zoneName": "Palestiina riik"
+    },
+    "PT": {
+      "zoneName": "Portugal"
+    },
+    "PT-AC": {
+      "countryName": "Portugal",
+      "zoneName": "Assoorid"
+    },
+    "PT-MA": {
+      "countryName": "Portugal",
+      "zoneName": "Madeira"
+    },
+    "PW": {
+      "zoneName": "Belau"
+    },
+    "PY": {
+      "zoneName": "Paraguay"
+    },
+    "QA": {
+      "zoneName": "Katar"
+    },
+    "RE": {
+      "zoneName": "Réunion"
+    },
+    "RO": {
+      "zoneName": "Rumeenia"
+    },
+    "RS": {
+      "zoneName": "Serbia"
+    },
+    "RU": {
+      "zoneName": "Venemaa"
+    },
+    "RU-1": {
+      "countryName": "Venemaa",
+      "zoneName": "Venemaa Euroopa-osa ja Uural"
+    },
+    "RU-2": {
+      "countryName": "Venemaa",
+      "zoneName": "Siber"
+    },
+    "RU-EU": {
+      "zoneName": "Venemaa"
+    },
+    "RU-AS": {
+      "zoneName": "Venemaa"
+    },
+    "RU-KGD": {
+      "countryName": "Venemaa",
+      "zoneName": "Kaliningrad"
+    },
+    "RW": {
+      "zoneName": "Rwanda"
+    },
+    "SA": {
+      "zoneName": "Saudi Araabia"
+    },
+    "SB": {
+      "zoneName": "Saalomoni Saared"
+    },
+    "SC": {
+      "zoneName": "Seišellid"
+    },
+    "SD": {
+      "zoneName": "Sudaan"
+    },
+    "SE": {
+      "zoneName": "Rootsi"
+    },
+    "SG": {
+      "zoneName": "Singapur"
+    },
+    "SH": {
+      "zoneName": "Saint Helena, Ascension ja Tristan da Cunha"
+    },
+    "SI": {
+      "zoneName": "Sloveenia"
+    },
+    "SJ": {
+      "zoneName": "Svalbard ja Jan Mayen"
+    },
+    "SK": {
+      "zoneName": "Slovakkia"
+    },
+    "SL": {
+      "zoneName": "Sierra Leone"
+    },
+    "SM": {
+      "zoneName": "San Marino"
+    },
+    "SN": {
+      "zoneName": "Senegal"
+    },
+    "SO": {
+      "zoneName": "Somaalia"
+    },
+    "SR": {
+      "zoneName": "Suriname"
+    },
+    "SS": {
+      "zoneName": "Lõuna-Sudaan"
+    },
+    "ST": {
+      "zoneName": "Sao Tome ja Principe"
+    },
+    "SV": {
+      "zoneName": "El Salvador"
+    },
+    "SX": {
+      "countryName": "Sint Maarten",
+      "zoneName": "Holland"
+    },
+    "SY": {
+      "zoneName": "Süüria"
+    },
+    "SZ": {
+      "zoneName": "Svaasimaa"
+    },
+    "TC": {
+      "zoneName": "Turks ja Caicos"
+    },
+    "TD": {
+      "zoneName": "Tšaad"
+    },
+    "TF": {
+      "zoneName": "Prantsuse Lõunaalad"
+    },
+    "TG": {
+      "zoneName": "Togo"
+    },
+    "TH": {
+      "zoneName": "Tai"
+    },
+    "TJ": {
+      "zoneName": "Tadžikistan"
+    },
+    "TK": {
+      "zoneName": "Tokelau"
+    },
+    "TL": {
+      "zoneName": "Timor-Leste"
+    },
+    "TM": {
+      "zoneName": "Türkmenistan"
+    },
+    "TN": {
+      "zoneName": "Tuneesia"
+    },
+    "TO": {
+      "zoneName": "Tonga"
+    },
+    "TR": {
+      "zoneName": "Türgi"
+    },
+    "TT": {
+      "zoneName": "Trinidad ja Tobago"
+    },
+    "TV": {
+      "zoneName": "Tuvalu"
+    },
+    "TW": {
+      "zoneName": "Taiwan"
+    },
+    "TZ": {
+      "zoneName": "Tansaania"
+    },
+    "UA": {
+      "zoneName": "Ukraina"
+    },
+    "UA-CR": {
+      "countryName": "Krimm",
+      "zoneName": "Ukraina"
+    },
+    "UG": {
+      "zoneName": "Uganda"
+    },
+    "UM": {
+      "zoneName": "Ühendriikide hajasaared"
+    },
+    "US-HI-HA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Hawaii"
+    },
+    "US-HI-KA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Kauai"
+    },
+    "US-HI-KH": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Kahoolawe"
+    },
+    "US-HI-LA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Lanai"
+    },
+    "US-HI-MA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Maui"
+    },
+    "US-HI-MO": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Molokai"
+    },
+    "US-HI-NI": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Niihau"
+    },
+    "US-HI-OA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Oahu"
+    },
     "US-CAL-BANC": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Balancing Authority Of Northern California"
     },
-    "US-CAL-CISO": { "countryName": "Ameerika Ühendriigid", "zoneName": "California Independent System Operator" },
-    "US-CAL-IID": { "countryName": "Ameerika Ühendriigid", "zoneName": "Imperial Irrigation District" },
+    "US-CAL-CISO": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "California Independent System Operator"
+    },
+    "US-CAL-IID": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Imperial Irrigation District"
+    },
     "US-CAL-LDWP": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Los Angeles Department Of Water And Power"
     },
-    "US-CAL-TIDC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Turlock Irrigation District" },
-    "US-CAR-CPLE": { "countryName": "Ameerika Ühendriigid", "zoneName": "Duke Energy Progress East" },
-    "US-CAR-CPLW": { "countryName": "Ameerika Ühendriigid", "zoneName": "Duke Energy Progress West" },
-    "US-CAR-DUK": { "countryName": "Ameerika Ühendriigid", "zoneName": "Duke Energy Carolinas" },
-    "US-CAR-SC": { "countryName": "Ameerika Ühendriigid", "zoneName": "South Carolina Public Service Authority" },
-    "US-CAR-SCEG": { "countryName": "Ameerika Ühendriigid", "zoneName": "South Carolina Electric & Gas Company" },
+    "US-CAL-TIDC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Turlock Irrigation District"
+    },
+    "US-CAR-CPLE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Duke Energy Progress East"
+    },
+    "US-CAR-CPLW": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Duke Energy Progress West"
+    },
+    "US-CAR-DUK": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Duke Energy Carolinas"
+    },
+    "US-CAR-SC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "South Carolina Public Service Authority"
+    },
+    "US-CAR-SCEG": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "South Carolina Electric & Gas Company"
+    },
     "US-CAR-YAD": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
     },
-    "US-CENT-SPA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Southwestern Power Administration" },
-    "US-CENT-SWPP": { "countryName": "Ameerika Ühendriigid", "zoneName": "Southwest Power Pool" },
-    "US-FLA-FMPP": { "countryName": "Ameerika Ühendriigid", "zoneName": "Florida Municipal Power Pool" },
-    "US-FLA-FPC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Duke Energy Florida Inc" },
-    "US-FLA-FPL": { "countryName": "Ameerika Ühendriigid", "zoneName": "Florida Power & Light Company" },
-    "US-FLA-GVL": { "countryName": "Ameerika Ühendriigid", "zoneName": "Gainesville Regional Utilities" },
-    "US-FLA-HST": { "countryName": "Ameerika Ühendriigid", "zoneName": "City Of Homestead" },
-    "US-FLA-JEA": { "countryName": "Ameerika Ühendriigid", "zoneName": "JEA" },
-    "US-FLA-NSB": { "countryName": "Ameerika Ühendriigid", "zoneName": "Utilities Commission Of New Smyrna Beach" },
-    "US-FLA-SEC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Seminole Electric Cooperative" },
-    "US-FLA-TAL": { "countryName": "Ameerika Ühendriigid", "zoneName": "City Of Tallahassee" },
-    "US-FLA-TEC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Tampa Electric Company" },
-    "US-MIDA-PJM": { "countryName": "Ameerika Ühendriigid", "zoneName": "PJM Interconnection, Llc" },
-    "US-MIDW-AECI": { "countryName": "Ameerika Ühendriigid", "zoneName": "Associated Electric Cooperative, Inc." },
-    "US-MIDW-GLHB": { "countryName": "Ameerika Ühendriigid", "zoneName": "GridLiance" },
+    "US-CENT-SPA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Southwestern Power Administration"
+    },
+    "US-CENT-SWPP": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Southwest Power Pool"
+    },
+    "US-FLA-FMPP": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Florida Municipal Power Pool"
+    },
+    "US-FLA-FPC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Duke Energy Florida Inc"
+    },
+    "US-FLA-FPL": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Florida Power & Light Company"
+    },
+    "US-FLA-GVL": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Gainesville Regional Utilities"
+    },
+    "US-FLA-HST": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "City Of Homestead"
+    },
+    "US-FLA-JEA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "JEA"
+    },
+    "US-FLA-NSB": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Utilities Commission Of New Smyrna Beach"
+    },
+    "US-FLA-SEC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Seminole Electric Cooperative"
+    },
+    "US-FLA-TAL": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "City Of Tallahassee"
+    },
+    "US-FLA-TEC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Tampa Electric Company"
+    },
+    "US-MIDA-PJM": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "PJM Interconnection, Llc"
+    },
+    "US-MIDW-AECI": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Associated Electric Cooperative, Inc."
+    },
+    "US-MIDW-GLHB": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "GridLiance"
+    },
     "US-MIDW-LGEE": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
@@ -597,24 +1549,78 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
     },
-    "US-NE-ISNE": { "countryName": "Ameerika Ühendriigid", "zoneName": "Iso New England Inc." },
-    "US-NW-AVA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Avista Corporation" },
-    "US-NW-AVRN": { "countryName": "Ameerika Ühendriigid", "zoneName": "Avangrid Renewables Cooperative" },
-    "US-NW-BPAT": { "countryName": "Ameerika Ühendriigid", "zoneName": "Bonneville Power Administration" },
-    "US-NW-CHPD": { "countryName": "Ameerika Ühendriigid", "zoneName": "PUD No. 1 Of Chelan County" },
-    "US-NW-DOPD": { "countryName": "Ameerika Ühendriigid", "zoneName": "PUD No. 1 Of Douglas County" },
-    "US-NW-GCPD": { "countryName": "Ameerika Ühendriigid", "zoneName": "PUD No. 2 Of Grant County, Washington" },
-    "US-NW-GRID": { "countryName": "Ameerika Ühendriigid", "zoneName": "Gridforce Energy Management, Llc" },
-    "US-NW-GWA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Naturener Power Watch, Llc (Gwa)" },
-    "US-NW-IPCO": { "countryName": "Ameerika Ühendriigid", "zoneName": "Idaho Power Company" },
-    "US-NW-NEVP": { "countryName": "Ameerika Ühendriigid", "zoneName": "Nevada Power Company" },
-    "US-NW-NWMT": { "countryName": "Ameerika Ühendriigid", "zoneName": "Northwestern Energy" },
-    "US-NW-PACE": { "countryName": "Ameerika Ühendriigid", "zoneName": "Pacificorp East" },
-    "US-NW-PACW": { "countryName": "Ameerika Ühendriigid", "zoneName": "Pacificorp West" },
-    "US-NW-PGE": { "countryName": "Ameerika Ühendriigid", "zoneName": "Portland General Electric Company" },
-    "US-NW-PSCO": { "countryName": "Ameerika Ühendriigid", "zoneName": "Public Service Company Of Colorado" },
-    "US-NW-PSEI": { "countryName": "Ameerika Ühendriigid", "zoneName": "Puget Sound Energy" },
-    "US-NW-SCL": { "countryName": "Ameerika Ühendriigid", "zoneName": "Seattle City Light" },
+    "US-NE-ISNE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Iso New England Inc."
+    },
+    "US-NW-AVA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Avista Corporation"
+    },
+    "US-NW-AVRN": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Avangrid Renewables Cooperative"
+    },
+    "US-NW-BPAT": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Bonneville Power Administration"
+    },
+    "US-NW-CHPD": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "PUD No. 1 Of Chelan County"
+    },
+    "US-NW-DOPD": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "PUD No. 1 Of Douglas County"
+    },
+    "US-NW-GCPD": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "PUD No. 2 Of Grant County, Washington"
+    },
+    "US-NW-GRID": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Gridforce Energy Management, Llc"
+    },
+    "US-NW-GWA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Naturener Power Watch, Llc (Gwa)"
+    },
+    "US-NW-IPCO": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Idaho Power Company"
+    },
+    "US-NW-NEVP": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Nevada Power Company"
+    },
+    "US-NW-NWMT": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Northwestern Energy"
+    },
+    "US-NW-PACE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Pacificorp East"
+    },
+    "US-NW-PACW": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Pacificorp West"
+    },
+    "US-NW-PGE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Portland General Electric Company"
+    },
+    "US-NW-PSCO": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Public Service Company Of Colorado"
+    },
+    "US-NW-PSEI": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Puget Sound Energy"
+    },
+    "US-NW-SCL": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Seattle City Light"
+    },
     "US-NW-TPWR": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
@@ -627,46 +1633,129 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Western Area Power Administration UGP West"
     },
-    "US-NW-WWA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Naturener Wind Watch, Llc" },
-    "US-NY-NYIS": { "countryName": "Ameerika Ühendriigid", "zoneName": "New York Independent System Operator" },
-    "US-SE-AEC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Powersouth Energy Cooperative" },
-    "US-SE-SEPA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Southeastern Power Administration" },
-    "US-SE-SOCO": { "countryName": "Ameerika Ühendriigid", "zoneName": "Southern Company Services, Inc. - Trans" },
-    "US-SW-AZPS": { "countryName": "Ameerika Ühendriigid", "zoneName": "Arizona Public Service Company" },
-    "US-SW-DEAA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Arlington Valley, LLC" },
-    "US-SW-EPE": { "countryName": "Ameerika Ühendriigid", "zoneName": "El Paso Electric Company" },
-    "US-SW-GRIF": { "countryName": "Ameerika Ühendriigid", "zoneName": "Griffith Energy, LLC" },
-    "US-SW-GRMA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Gila River Power, LLC" },
-    "US-SW-HGMA": { "countryName": "Ameerika Ühendriigid", "zoneName": "New Harquahala Generating Company, LLC" },
-    "US-SW-PNM": { "countryName": "Ameerika Ühendriigid", "zoneName": "Public Service Company Of New Mexico" },
-    "US-SW-SRP": { "countryName": "Ameerika Ühendriigid", "zoneName": "Salt River Project" },
-    "US-SW-TEPC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Tucson Electric Power Company" },
+    "US-NW-WWA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Naturener Wind Watch, Llc"
+    },
+    "US-NY-NYIS": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "New York Independent System Operator"
+    },
+    "US-SE-AEC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Powersouth Energy Cooperative"
+    },
+    "US-SE-SEPA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Southeastern Power Administration"
+    },
+    "US-SE-SOCO": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Southern Company Services, Inc. - Trans"
+    },
+    "US-SW-AZPS": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Arizona Public Service Company"
+    },
+    "US-SW-DEAA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Arlington Valley, LLC"
+    },
+    "US-SW-EPE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "El Paso Electric Company"
+    },
+    "US-SW-GRIF": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Griffith Energy, LLC"
+    },
+    "US-SW-GRMA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Gila River Power, LLC"
+    },
+    "US-SW-HGMA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "New Harquahala Generating Company, LLC"
+    },
+    "US-SW-PNM": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Public Service Company Of New Mexico"
+    },
+    "US-SW-SRP": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Salt River Project"
+    },
+    "US-SW-TEPC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Tucson Electric Power Company"
+    },
     "US-SW-WALC": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Western Area Power Administration - Desert Southwest Region"
     },
-    "US-TEN-TVA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Tennessee Valley Authority" },
+    "US-TEN-TVA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Tennessee Valley Authority"
+    },
     "US-TEX-ERCO": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Electric Reliability Council Of Texas, Inc."
     },
-    "UY": { "zoneName": "Uruguay" },
-    "UZ": { "zoneName": "Usbekistan" },
-    "VA": { "zoneName": "Vatikani linn" },
-    "VC": { "zoneName": "Saint Vincent ja Grenadiinid" },
-    "VE": { "zoneName": "Venezuela" },
-    "VG": { "countryName": "Neitsisaared", "zoneName": "Neitsisaared" },
-    "VI": { "countryName": "Ameerika Ühendriigid", "zoneName": "Neitsisaared" },
-    "VN": { "zoneName": "Vietnam" },
-    "VU": { "zoneName": "Vanuatu" },
-    "WF": { "zoneName": "Wallis ja Futuna" },
-    "WS": { "zoneName": "Samoa" },
-    "XK": { "zoneName": "Kosovo" },
-    "XX": { "zoneName": "Põhja-Küpros" },
-    "YE": { "zoneName": "Jeemen" },
-    "YT": { "zoneName": "Mayotte" },
-    "ZA": { "zoneName": "Lõuna-Aafrika" },
-    "ZM": { "zoneName": "Zambia" },
-    "ZW": { "zoneName": "Zimbabwe" }
+    "UY": {
+      "zoneName": "Uruguay"
+    },
+    "UZ": {
+      "zoneName": "Usbekistan"
+    },
+    "VA": {
+      "zoneName": "Vatikani linn"
+    },
+    "VC": {
+      "zoneName": "Saint Vincent ja Grenadiinid"
+    },
+    "VE": {
+      "zoneName": "Venezuela"
+    },
+    "VG": {
+      "countryName": "Neitsisaared",
+      "zoneName": "Neitsisaared"
+    },
+    "VI": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Neitsisaared"
+    },
+    "VN": {
+      "zoneName": "Vietnam"
+    },
+    "VU": {
+      "zoneName": "Vanuatu"
+    },
+    "WF": {
+      "zoneName": "Wallis ja Futuna"
+    },
+    "WS": {
+      "zoneName": "Samoa"
+    },
+    "XK": {
+      "zoneName": "Kosovo"
+    },
+    "XX": {
+      "zoneName": "Põhja-Küpros"
+    },
+    "YE": {
+      "zoneName": "Jeemen"
+    },
+    "YT": {
+      "zoneName": "Mayotte"
+    },
+    "ZA": {
+      "zoneName": "Lõuna-Aafrika"
+    },
+    "ZM": {
+      "zoneName": "Zambia"
+    },
+    "ZW": {
+      "zoneName": "Zimbabwe"
+    }
   }
 }
