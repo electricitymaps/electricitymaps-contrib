@@ -1582,10 +1582,6 @@
       "countryName": "Vereinigte Staaten",
       "zoneName": "JEA"
     },
-    "US-FLA-NSB": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Versorgungskommission von New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "Vereinigte Staaten",
       "zoneName": "Elektrische Genossenschaft Seminole"
@@ -1706,10 +1702,6 @@
       "countryName": "Vereinigte Staaten",
       "zoneName": "New York unabhängiger Systembetreiber"
     },
-    "US-SE-AEC": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Vereinigte Staaten",
       "zoneName": "Südöstliche Energieverwaltung"
@@ -1733,10 +1725,6 @@
     "US-SW-GRIF": {
       "countryName": "Vereinigte Staaten",
       "zoneName": "Griffith Energie, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Gila Flussenergie, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Vereinigte Staaten",
@@ -1773,10 +1761,6 @@
     "US-AK": {
       "countryName": "Vereinigte Staaten",
       "zoneName": "Alaska"
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "GridLiance"
     },
     "XK": {
       "zoneName": "Kosovo"

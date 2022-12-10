@@ -1512,10 +1512,6 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "JEA"
     },
-    "US-FLA-NSB": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Seminole Electric Cooperative"
@@ -1535,10 +1531,6 @@
     "US-MIDW-AECI": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Ameerika Ühendriigid",
@@ -1640,10 +1632,6 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Southeastern Power Administration"
@@ -1667,10 +1655,6 @@
     "US-SW-GRIF": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Ameerika Ühendriigid",

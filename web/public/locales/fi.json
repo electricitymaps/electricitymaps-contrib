@@ -608,10 +608,6 @@
       "countryName": "Iso-Britannia",
       "zoneName": "Orkneysaaret"
     },
-    "GB-SHI": {
-      "countryName": "Iso-Britannia",
-      "zoneName": "Shetlandinsaaret"
-    },
     "GB-ZET": {
       "countryName": "Iso-Britannia",
       "zoneName": "Shetland Islands"
@@ -1372,6 +1368,9 @@
     "UM": {
       "zoneName": "Yhdysvaltain pienet erillissaaret"
     },
+    "US": {
+      "zoneName": "Vierekkäiset Yhdysvallat"
+    },
     "US-HI-HA": {
       "countryName": "Yhdysvallat",
       "zoneName": "Havaiji"
@@ -1480,10 +1479,6 @@
       "countryName": "Yhdysvallat",
       "zoneName": "JEA"
     },
-    "US-FLA-NSB": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "Yhdysvallat",
       "zoneName": "Seminole Electric Cooperative"
@@ -1503,10 +1498,6 @@
     "US-MIDW-AECI": {
       "countryName": "Yhdysvallat",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Yhdysvallat",
@@ -1608,10 +1599,6 @@
       "countryName": "Yhdysvallat",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Yhdysvallat",
       "zoneName": "Southeastern Power Administration"
@@ -1635,10 +1622,6 @@
     "US-SW-GRIF": {
       "countryName": "Yhdysvallat",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Yhdysvallat",

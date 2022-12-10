@@ -611,10 +611,6 @@
       "countryName": "Μεγάλη Βρετανία",
       "zoneName": "Orkney Islands"
     },
-    "GB-SHI": {
-      "countryName": "Μεγάλη Βρετανία",
-      "zoneName": "Shetland Islands"
-    },
     "GB-ZET": {
       "countryName": "Μεγάλη Βρετανία",
       "zoneName": "Shetland Islands"
@@ -1375,6 +1371,9 @@
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
     },
+    "US": {
+      "zoneName": "συνεχόμενες Ηνωμένες Πολιτείες"
+    },
     "US-HI-HA": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Hawaii"
@@ -1483,10 +1482,6 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "JEA"
     },
-    "US-FLA-NSB": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Southwest Power Pool"
-    },
     "US-FLA-SEC": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Seminole Electric Cooperative"
@@ -1506,10 +1501,6 @@
     "US-MIDW-AECI": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
@@ -1611,10 +1602,6 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Southeastern Power Administration"
@@ -1638,10 +1625,6 @@
     "US-SW-GRIF": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
