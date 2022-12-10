@@ -1,0 +1,26 @@
+bounding_box:
+  - - 60.051270
+    - 11.027472
+  - - 92.944336
+    - 27.332735
+capacity:
+  biomass: 3154.24
+  coal: 85586.0
+  gas: 10806.49
+  hydro: 8578.23
+  nuclear: 1840.0
+  oil: 0
+  solar: 15029.55
+  unknown: 0
+  wind: 17655.64
+contributors:
+  - GitMatze
+  - alixunderplatz
+  - systemcatch
+  - Manu1400
+  - gopikrishna1793
+parsers:
+  production: IN_WE.fetch_production
+  consumption: IN_WE.fetch_consumption
+
+timezone: Asia/Kolkata

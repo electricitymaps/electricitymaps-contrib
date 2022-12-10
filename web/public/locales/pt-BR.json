@@ -43,7 +43,15 @@
     "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
     "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
     "now": "Agora",
-    "dataIsDelayed": "Dados para essa região podem estar até %s horas atrasados. Dados em tempo real estão indisponíveis."
+    "dataIsDelayed": "Dados para essa região podem estar até %s horas atrasados. Dados em tempo real estão indisponíveis.",
+    "averagebysource": "média por fonte",
+    "estimated": "estimado",
+    "aggregated": "agregado",
+    "dataIsEstimated": "Parte dos dados dessa região são estimados. Leia mais sobre nossa metodologia de estimativas <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">aqui</a>.",
+    "exchangesAreMissing": "Trocas são consideradas para os cálculos mas não estão sendo mostradas. Leia mais sobre nossas agregações históricas <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">aqui</a>.",
+    "estimatedTooltip": "Os dados em tempo-real para essa zona são estimados e baseados na origem e em suposições do modelo.",
+    "aggregatedTooltip": "Os dados para essa zona são agregados e baseados em valores históricos de hora em hora.",
+    "helpUs": "Nos ajude a identificar o problema dando uma olhada nos <a href=\"%s\" target=\"_blank\">registros</a> ou contactando o provedor de dados."
   },
   "left-panel": {
     "zone-list-header-title": "Impacto climático",
@@ -53,25 +61,35 @@
   "country-history": {
     "Getdata": "Obtenha dados históricos, marginais e de previsão da API",
     "carbonintensity": {
-      "hourly": "Intensidade da emissão de carbono nas últimas 24 horas"
+      "hourly": "Intensidade da emissão de carbono nas últimas 24 horas",
+      "default": "Intensidade de carbono nas últimas %1$s",
+      "daily": "Intensidade de carbono no último mês",
+      "monthly": "Intensidade de carbono no último ano",
+      "yearly": "Intensidade de carbono nos últimos 5 anos"
     },
     "emissionsorigin": {
-      "hourly": "Origem da emissão de carbono nas últimas 24 horas"
+      "hourly": "Origem da emissão de carbono nas últimas 24 horas",
+      "default": "Emissões nas últimas %1$s"
     },
     "emissionsproduction": {
-      "hourly": "Emissões de carbono produzida nas últimas 24 horas"
+      "hourly": "Emissões de carbono produzida nas últimas 24 horas",
+      "default": "Origem de emissões nas últimas %1$s"
     },
     "electricityorigin": {
-      "hourly": "Origem da eletricidade nas últimas 24 horas"
+      "hourly": "Origem da eletricidade nas últimas 24 horas",
+      "default": "Origem da eletricidade nas últimas %1$s"
     },
     "electricityproduction": {
-      "hourly": "Produção de eletricidade nas últimas 24 horas"
+      "hourly": "Produção de eletricidade nas últimas 24 horas",
+      "default": "Produção de eletricidade nas últimas %1$s"
     },
     "electricityprices": {
-      "hourly": "Preço da eletricidade nas últimas 24 horas"
+      "hourly": "Preço da eletricidade nas últimas 24 horas",
+      "default": "Preço da eletricidade nas últimas %1$s"
     },
     "emissions": {
-      "hourly": "Emissões de carbono nas últimas 24 horas"
+      "hourly": "Emissões de carbono nas últimas 24 horas",
+      "default": "Emissões nas últimas %1$s"
     }
   },
   "footer": {
@@ -114,7 +132,9 @@
     "ofemissions": "de emissões",
     "zoomIn": "Aumentar zoom",
     "zoomOut": "Diminuir zoom",
-    "dataIsDelayed": "Dados estão atrasados"
+    "dataIsDelayed": "Dados estão atrasados",
+    "weatherDisabled": "Dados meteorológicos não disponíveis no momento",
+    "aggregateinfo": "Países são agregados quando a capacidade anual da zona é maior que 90% da capacidade total"
   },
   "misc": {
     "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
@@ -125,7 +145,9 @@
     "database-ad": "Procurando por dados históricos? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
     "api-ad": "Gostaria de dados em tempo real no seu app ou no seu dispositivo? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Tente nossa API!</a>",
     "legend": "Legenda",
-    "faq": "Questões frequentes"
+    "faq": "Questões frequentes",
+    "privacyPolicy": "Política de Privacidade",
+    "legalNotice": "Aviso Legal"
   },
   "wind": "eólica",
   "solar": "solar",
@@ -343,6 +365,10 @@
     "BR-CS": {
       "countryName": "Brasil",
       "zoneName": "Central"
+    },
+    "BR-I": {
+      "countryName": "Brasil",
+      "zoneName": "Sistemas Isolados"
     },
     "BR-N": {
       "countryName": "Brasil",
@@ -623,7 +649,7 @@
       "countryName": "Grã-Bretanha",
       "zoneName": "Ilhas Orkney"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Grã-Bretanha",
       "zoneName": "Ilhas Shetland"
     },
@@ -1389,6 +1415,9 @@
     "UM": {
       "zoneName": "Ilhas Menores Distantes dos Estados Unidos"
     },
+    "US": {
+      "zoneName": "Estados Unidos da América Contíguos"
+    },
     "US-HI-HA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Havaí"
@@ -1497,10 +1526,6 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "JEA"
     },
-    "US-FLA-NSB": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Comissão de serviços públicos de New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Seminole Electric Cooperative"
@@ -1520,10 +1545,6 @@
     "US-MIDW-AECI": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Estados Unidos da América",
@@ -1625,10 +1646,6 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "Operador de sistema independente de Nova York"
     },
-    "US-SE-AEC": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Southeastern Power Administration"
@@ -1652,10 +1669,6 @@
     "US-SW-GRIF": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Estados Unidos da América",
@@ -1776,8 +1789,53 @@
     },
     "XK": {
       "zoneName": "Kosovo"
+    },
+    "FO-MI": {
+      "countryName": "Ilhas Faroe",
+      "zoneName": "Ilhas Principais"
+    },
+    "FO-SI": {
+      "countryName": "Ilhas Faroe",
+      "zoneName": "Ilha Sul"
+    },
+    "NO": {
+      "zoneName": "Noruega"
+    },
+    "SE-SE1": {
+      "countryName": "Suécia",
+      "zoneName": "Norte da Suécia"
+    },
+    "SE-SE2": {
+      "countryName": "Suécia",
+      "zoneName": "Centro-Norte da Suécia"
+    },
+    "SE-SE3": {
+      "countryName": "Suécia",
+      "zoneName": "Centro-Sul da Suécia"
+    },
+    "SE-SE4": {
+      "countryName": "Suécia",
+      "zoneName": "Sul da Suécia"
     }
   },
   "windDataError": "Dados eólicos estão indisponíveis",
-  "solarDataError": "Dados solares estão indisponíveis"
+  "solarDataError": "Dados solares estão indisponíveis",
+  "info-modal": {
+    "title": "Info",
+    "intro-text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no celular para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios de transição de energia.",
+    "open-source-text": "Esse aplicativo é <a href=\"%s\" target=\"_blank\">de código aberto</a> (<a href=\"%s\" target=\"_blank\">veja fontes de dados</a>) e apoiado pela comunidade.",
+    "feedback-button": "Compartilhar Feedback",
+    "github-button": "Ver nosso GitHub",
+    "twitter-button": "Compartilhar no Twitter",
+    "slack-button": "Entrar na comunidade do Slack",
+    "privacy-policy": "Política de Privacidade",
+    "legal-notice": "Aviso Legal"
+  },
+  "settings-modal": {
+    "title": "Configurações"
+  },
+  "aggregateButtons": {
+    "country": "País",
+    "zone": "zona"
+  }
 }

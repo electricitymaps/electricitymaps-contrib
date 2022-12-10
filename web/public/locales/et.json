@@ -637,10 +637,6 @@
       "countryName": "Suurbritannia",
       "zoneName": "Orkney saared"
     },
-    "GB-SHI": {
-      "countryName": "Suurbritannia",
-      "zoneName": "Shetlandi saared"
-    },
     "GB-ZET": {
       "countryName": "Suurbritannia",
       "zoneName": "Shetlandi saared"
@@ -1404,6 +1400,9 @@
     },
     "UM": {
       "zoneName": "Ühendriikide hajasaared"
+    },
+    "US": {
+      "zoneName": "Külgnevad Ameerika Ühendriigid"
     },
     "US-HI-HA": {
       "countryName": "Ameerika Ühendriigid",

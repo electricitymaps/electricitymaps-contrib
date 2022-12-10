@@ -656,7 +656,7 @@
       "countryName": "Reino Unido",
       "zoneName": "Islas Orcadas"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Reino Unido",
       "zoneName": "Islas Shetland"
     },
@@ -1420,6 +1420,9 @@
     "UM": {
       "zoneName": "Islas Ultramarinas Menores de Estados Unidos"
     },
+    "US": {
+      "zoneName": "Estados Unidos contiguos"
+    },
     "US-HI": {
       "countryName": "Estados Unidos",
       "zoneName": "Hawái"
@@ -1528,10 +1531,6 @@
       "countryName": "Estados Unidos",
       "zoneName": "JEA"
     },
-    "US-FLA-NSB": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "Estados Unidos",
       "zoneName": "Seminole Electric Cooperative"
@@ -1551,10 +1550,6 @@
     "US-MIDW-AECI": {
       "countryName": "Estados Unidos",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Estados Unidos",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Estados Unidos",
@@ -1656,10 +1651,6 @@
       "countryName": "Estados Unidos",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Estados Unidos",
       "zoneName": "Southeastern Power Administration"
@@ -1683,10 +1674,6 @@
     "US-SW-GRIF": {
       "countryName": "Estados Unidos",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Estados Unidos",

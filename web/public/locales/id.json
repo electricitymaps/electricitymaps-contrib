@@ -604,7 +604,7 @@
       "countryName": "Britania Raya",
       "zoneName": "Pulau Orkney"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Britania Raya",
       "zoneName": "Pulau Shetland"
     },
@@ -1367,6 +1367,9 @@
     },
     "UM": {
       "zoneName": "Pulau Outlying Amerika Serikat"
+    },
+    "US": {
+      "zoneName": "Amerika Serikat yang bersebelahan"
     },
     "US-HI-HA": {
       "countryName": "Amerika Serikat",

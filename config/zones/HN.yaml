@@ -18,32 +18,32 @@ emissionFactors:
   direct:
     battery discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 549.4540100197098
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 551.2165273275053
     hydro discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 549.4540100197098
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 551.2165273275053
   lifecycle:
     battery discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 335.4255618552025
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 335.04899255391314
     hydro discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 335.4255618552025
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 335.04899255391314
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
@@ -52,7 +52,7 @@ emissionFactors:
       value: 340
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2020 average
+    - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
@@ -67,7 +67,7 @@ fallbackZoneMixes:
         solar: 0.00208360914314322
         unknown: 0.9324478173102372
         wind: 0.0033637016506390016
-    - _source: electricityMap, 2021 average
+    - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0

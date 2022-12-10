@@ -603,7 +603,7 @@
       "countryName": "イギリス",
       "zoneName": "オークニー諸島"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "イギリス",
       "zoneName": "シェットランド諸島"
     },
@@ -1367,6 +1367,9 @@
     "UM": {
       "zoneName": "アメリカ合衆国領有小離島"
     },
+    "US": {
+      "zoneName": "本土アメリカ合衆国"
+    },
     "US-HI-HA": {
       "countryName": "アメリカ合衆国",
       "zoneName": "ハワイ"
@@ -1475,10 +1478,6 @@
       "countryName": "アメリカ合衆国",
       "zoneName": "JEA"
     },
-    "US-FLA-NSB": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "アメリカ合衆国",
       "zoneName": "Seminole Electric Cooperative"
@@ -1498,10 +1497,6 @@
     "US-MIDW-AECI": {
       "countryName": "アメリカ合衆国",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "アメリカ合衆国",
@@ -1603,10 +1598,6 @@
       "countryName": "アメリカ合衆国",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "アメリカ合衆国",
       "zoneName": "Southeastern Power Administration"
@@ -1630,10 +1621,6 @@
     "US-SW-GRIF": {
       "countryName": "アメリカ合衆国",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "アメリカ合衆国",

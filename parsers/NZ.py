@@ -19,19 +19,13 @@ NZ_PRICE_REGIONS = set([i for i in range(1, 14)])
 
 def fetch(session: Optional[Session] = None):
     r = session or Session()
-    url = "https://www.transpower.co.nz/power-system-live-data"
+    url = "https://www.transpower.co.nz/system-operator/live-system-and-market-data/consolidated-live-data"
     response = r.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     for item in soup.find_all("script"):
-        if "src" in item.attrs:
-            continue
-        body = item.contents[0]
-        if not body.startswith("jQuery.extend(Drupal.settings"):
-            continue
-        obj = json.loads(
-            body.replace("jQuery.extend(Drupal.settings, ", "").replace(");", "")
-        )
-        break
+        if item.attrs.get("data-drupal-selector"):
+            body = item.contents[0]
+            obj = json.loads(body)
     return obj
 
 

@@ -1,6 +1,7 @@
 # Needed for lint staged.
 .prettierignore
 yarn.lock
+.eartlyignore
 
 .venv
 **/parsers/test/mocks
@@ -16,6 +17,7 @@ mobileapp/www/electricitymap
 web/public/dist/
 web/public/images/
 web/src/config/
+web/.husky/_
 
 mockserver/public
 

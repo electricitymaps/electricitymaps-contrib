@@ -596,7 +596,7 @@
       "countryName": "영국",
       "zoneName": "오크니 제도"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "영국",
       "zoneName": "셰틀랜드 제도"
     },
@@ -1359,6 +1359,9 @@
     },
     "UM": {
       "zoneName": "미국령 군소 제도"
+    },
+    "US": {
+      "zoneName": "인접한 미국"
     },
     "US-HI-HA": {
       "countryName": "미국",

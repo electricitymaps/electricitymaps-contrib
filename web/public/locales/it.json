@@ -83,12 +83,48 @@
       "monthly": "Intensità di carbonio nell'ultimo anno",
       "yearly": "Intensità di carbonio negli ultimi 5 anni"
     },
-    "emissions": { "default": "Emissioni nell'ultimo %1$s" },
-    "emissionsorigin": { "default": "Origine delle emissioni nell' ultimo %1$s" },
-    "emissionsproduction": { "default": "Emissioni prodotte nell' ultimo %1$s" },
-    "electricityorigin": { "default": "Origine dell'elettricità nell' ultimo %1$s" },
-    "electricityproduction": { "default": "Produzione elettrica nell' ultimo %1$s" },
-    "electricityprices": { "hourly": "Prezzi dell'elettricità nell' ultimo %1$s" },
+    "emissions": {
+      "default": "Emissioni nell'ultimo %1$s",
+      "hourly": "Emissioni nelle ultime 24 ore",
+      "daily": "Emissioni nell'ultimo mese",
+      "monthly": "Emissioni nell'ultimo anno",
+      "yearly": "Emissioni negli ultimi 5 anni"
+    },
+    "emissionsorigin": {
+      "default": "Origine delle emissioni nell' ultimo %1$s",
+      "hourly": "Origine delle emissioni nelle ultime 24 ore",
+      "daily": "Origine delle emissioni nell'ultimo mese",
+      "monthly": "Origine delle emissioni nell'ultimo anno",
+      "yearly": "Origine delle emissioni negli ultimi 5 anni"
+    },
+    "emissionsproduction": {
+      "default": "Emissioni prodotte nell' ultimo %1$s",
+      "hourly": "Emissioni prodotte nelle ultime 24 ore",
+      "daily": "Emissioni prodotte nell'ultimo mese",
+      "monthly": "Emissioni prodotte nell'ultimo anno",
+      "yearly": "Emissioni prodotte negli ultimi 5 anni"
+    },
+    "electricityorigin": {
+      "default": "Origine dell'elettricità nell' ultimo %1$s",
+      "hourly": "Origine dell'elettricità nelle ultime 24 ore",
+      "daily": "Origine dell'elettricità nell'ultimo mese",
+      "monthly": "Origine dell'elettricità nell'ultimo anno",
+      "yearly": "Origine dell'elettricità negli ultimi 5 anni"
+    },
+    "electricityproduction": {
+      "default": "Produzione elettrica nell' ultimo %1$s",
+      "hourly": "Produzione elettrica nelle ultime 24 ore",
+      "daily": "Produzione elettrica nell'ultimo mese",
+      "monthly": "Produzione elettrica nell'ultimo anno",
+      "yearly": "Produzione elettrica negli ultimi 5 anni"
+    },
+    "electricityprices": {
+      "default": "Prezzi dell'elettricità nell' ultimo %1$s",
+      "hourly": "Prezzi dell'elettricità nelle ultime 24 ore",
+      "daily": "Prezzi dell'elettricità nell'ultimo mese",
+      "monthly": "Prezzi dell'elettricità nell'ultimo anno",
+      "yearly": "Prezzi dell'elettricità negli ultimi 5 anni"
+    },
     "Getdata": "Ottieni dati orari storici, in tempo reale e previsioni con le API di Electricity Maps"
   },
   "footer": {
@@ -669,7 +705,7 @@
       "countryName": "Gran Bretagna",
       "zoneName": "Isole Orcadi"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Gran Bretagna",
       "zoneName": "Isole Shetland"
     },
@@ -1443,6 +1479,9 @@
     "UM": {
       "zoneName": "Isole minori esterne degli Stati Uniti d'America"
     },
+    "US": {
+      "zoneName": "Contigui Stati Uniti d'America"
+    },
     "US-HI-HA": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Hawaii"
@@ -1551,10 +1590,6 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "Jacksonville Electric Authority"
     },
-    "US-FLA-NSB": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Seminole Electric Cooperative"
@@ -1574,10 +1609,6 @@
     "US-MIDW-AECI": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Stati Uniti d'America",
@@ -1679,10 +1710,6 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Southeastern Power Administration"
@@ -1706,10 +1733,6 @@
     "US-SW-GRIF": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Stati Uniti d'America",

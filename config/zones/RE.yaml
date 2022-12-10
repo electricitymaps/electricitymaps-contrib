@@ -13,52 +13,53 @@ capacity:
   wind: 15
 contributors:
   - PETILLON-Sebastien
+  - VIKTORVAV99
 emissionFactors:
   direct:
     battery discharge:
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 357.6061183151501
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 425.62923233408634
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 399.6759026824
     hydro discharge:
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 357.6061183151501
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 425.62923233408634
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 399.6759026824
   lifecycle:
     battery discharge:
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 498.71220611544584
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 544.7806021753815
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 532.7677022709563
     hydro discharge:
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 498.71220611544584
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 544.7806021753815
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
+        source: Electricity Maps, 2021 average
         value: 532.7677022709563
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2019 average
+    - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
@@ -73,7 +74,7 @@ fallbackZoneMixes:
         solar: 0.07921158049470954
         unknown: 0.0
         wind: 0.003651057721571292
-    - _source: electricityMap, 2020 average
+    - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
@@ -88,7 +89,7 @@ fallbackZoneMixes:
         solar: 0.06983394335017121
         unknown: 0.0
         wind: 0.0044003798986360435
-    - _source: electricityMap, 2021 average
+    - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0
@@ -104,6 +105,5 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.00160462179363718
 parsers:
-  price: FR_O.fetch_price
   production: FR_O.fetch_production
 timezone: Indian/Reunion

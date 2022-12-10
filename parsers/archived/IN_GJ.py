@@ -11,8 +11,8 @@ from typing import Optional
 import arrow
 from requests import Session
 
-from .lib import IN, web, zonekey
-from .lib.validation import validate
+from ..lib import IN, web, zonekey
+from ..lib.validation import validate
 
 SLDCGUJ_URL = (
     "http://www.sldcguj.com/RealTimeData/PrintPage.php?page=realtimedemand.php"

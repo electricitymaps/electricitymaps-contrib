@@ -101,10 +101,6 @@
     }
   }
 
-  .country-spot-price {
-    width: 100%;
-  }
-
   .country-gauge-wrap {
     width: 64px;
     height: 64px;
@@ -129,21 +125,6 @@
   padding: 1rem 1.25rem 1rem 1.25rem;
 }
 
-.left-panel-toolbar .left-panel-toolbar-back,
-#left-panel-highscore-back {
-  line-height: 1;
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 0.2rem;
-  right: 0px;
-  top: 0px;
-  position: absolute;
-
-  &:hover {
-    color: $white;
-  }
-}
-
 .left-panel-back-button {
   fill-opacity: 0.5;
   position: absolute;
@@ -159,9 +140,6 @@
   font-family: $headline-font;
   font-size: 1.2rem;
   line-height: 1.5rem;
-}
-.left-panel-toolbar-right-placeholder {
-  width: 2.875rem;
 }
 
 .left-panel-zone-details {
@@ -185,12 +163,6 @@
   }
 }
 
-.left-panel-welcome {
-  @include respond-to('small') {
-    display: none;
-  }
-}
-
 .detail-bottom-section {
   @include respond-to('small') {
     position: fixed;
@@ -202,8 +174,4 @@
     width: 100%;
     z-index: 999;
   }
-}
-
-label[for='checkbox-colorblind'] {
-  font-size: smaller;
 }

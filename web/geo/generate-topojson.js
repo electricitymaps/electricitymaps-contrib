@@ -31,7 +31,7 @@ function getCenter(geojson, zoneName) {
 
 function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   const output = OUT_PATH.split('/').pop();
-  console.log(`Generating new ${output}`); // eslint-disable-line no-console
+  console.info(`Generating new ${output}`);
   const topo = topology({
     objects: fc,
   });
@@ -39,15 +39,19 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   const newObjects = {};
   topo.objects.objects.geometries.forEach((geo) => {
     // Precompute center for enable centering on the zone
-    geo.properties.center = getCenter(fc, geo.properties.zoneName);
 
+    geo.properties.center = getCenter(fc, geo.properties.zoneName);
+    // The US calculated center is not intuitive, so we override it
+    if (geo.properties.zoneName === 'US') {
+      geo.properties.center = [-110, 40];
+    }
     newObjects[geo.properties.zoneName] = geo;
   });
   topo.objects = newObjects;
 
   const currentTopo = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
-    console.log(`No changes to ${output}`); // eslint-disable-line no-console
+    console.info(`No changes to ${output}`);
     return;
   }
 

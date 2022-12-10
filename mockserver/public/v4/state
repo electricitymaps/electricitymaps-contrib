@@ -2413,8 +2413,8 @@
         "exchangeCo2Intensities": {
           "CR": 27.63
         },
-        "fossilFuelRatio": null,
-        "fossilFuelRatioProduction": null,
+        "fossilFuelRatio": 0.0134,
+        "fossilFuelRatioProduction": 0.013999999999999999,
         "maxCapacity": 1795.52,
         "maxDischarge": 0,
         "maxExport": 0,
@@ -2464,19 +2464,14 @@
           "unknown": "assumes thermal (coal, gas, oil or biomass)",
           "wind": "IPCC 2014"
         },
-        "renewableRatio": null,
-        "renewableRatioProduction": null,
+        "renewableRatio": 0.9865999999999999,
+        "renewableRatioProduction": 0.986,
         "source": null,
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
           "battery": null,
           "hydro": null
-        },
-        "fossilFuelRatio": 0.0134,
-        "fossilFuelRatioProduction": 0.013999999999999999,
-        "renewableRatio": 0.9865999999999999,
-        "renewableRatioProduction": 0.986,
-        "stateDatetime": "2022-01-04T08:00:00Z"
+        }
       },
       "PE": {
         "co2intensity": 183.68,
@@ -3240,19 +3235,6 @@
         "fossilFuelRatioProduction": 0.8434,
         "renewableRatio": 0.1566,
         "renewableRatioProduction": 0.1566,
-        "stateDatetime": "2022-01-04T08:00:00Z"
-      },
-      "US-MIDW-GLHB": {
-        "co2intensity": 820,
-        "co2intensityProduction": 820,
-        "countryCode": "US-MIDW-GLHB",
-        "exchange": {},
-        "exchangeCapacities": {},
-        "exchangeCo2Intensities": {},
-        "fossilFuelRatio": 1,
-        "fossilFuelRatioProduction": 1,
-        "renewableRatio": 0,
-        "renewableRatioProduction": 0,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
       "US-MIDW-LGEE": {

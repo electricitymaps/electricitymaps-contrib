@@ -39,7 +39,7 @@ function getPolygons(input) {
     }
   });
 
-  return truncate(featureCollection(polygons), { precision: 6 });
+  return truncate(featureCollection(polygons), { precision: 4 });
 }
 
 function isSliver(polygon, polArea, sliverRatio) {
@@ -85,4 +85,24 @@ const round = (number, decimals = 2) => {
   return Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
 };
 
-module.exports = { getPolygons, getHoles, isSliver, writeJSON, getJSON, log, round, fileExists };
+/**
+ * Rounds the all the coordinates in the geojson to a specific amount of decimals and returns a new geojson.
+ * @param {GeoJSON} geojson
+ * @param {int} precision
+ * @returns
+ */
+const roundGeoPoints = (geojson, precision = 4) => {
+  geojson.features.forEach((feature) => {
+    feature.geometry.coordinates.forEach((group) => {
+      group.forEach((area) => {
+        area.forEach((point) => {
+          point[0] = round(point[0], precision);
+          point[1] = round(point[1], precision);
+        });
+      });
+    });
+  });
+  return geojson;
+};
+
+module.exports = { getPolygons, getHoles, isSliver, writeJSON, getJSON, log, round, roundGeoPoints, fileExists };
