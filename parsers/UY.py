@@ -9,7 +9,7 @@ import dateutil
 from bs4 import BeautifulSoup
 from requests import Session
 
-from parsers.lib.exceptions import ParserException
+from lib.exceptions import ParserException
 
 TIME_ZONE = "America/Montevideo"
 
@@ -166,8 +166,8 @@ def get_entry_list(
 
 
 def fetch_consumption(
-    session: Session,
     zone_key: str = "UY",
+    session: Session = Session() ,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -191,8 +191,8 @@ def fetch_consumption(
 
 
 def fetch_production(
-    session: Session,
     zone_key: str = "UY",
+    session: Session= Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -216,9 +216,9 @@ def fetch_production(
 
 
 def fetch_exchange(
-    session: Session,
     zone_key1: str = "UY",
     zone_key2: str = "BR-S",
+    session: Session= Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
