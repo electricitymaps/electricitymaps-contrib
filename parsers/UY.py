@@ -99,7 +99,12 @@ def correct_for_salto_grande(entry, session: Session):
 def parse_page(session: Session):
     """
     Queries the url in UTE_URL, and parses hourly production and trade data
-    and retruns the results as a list of dictionary objects
+    and retruns the results as a list of dictionary objects.
+    :param session: requests.session object that will be used to make API requests
+    :returns: a dictionary mapping data items to their values (in MW) for the past hour:
+        ['hydro', 'wind', 'solar', 'biomass', 'unknown', 'trade', 'demand', 'salto_grande_agg']
+        where 'trade' is the total average imported power in MW (can be negative)
+        and 'salto_grande_agg' is the total power imported and produced at the salto grande site
     """
     # load page
     resp = session.get(UTE_URL)
@@ -156,7 +161,7 @@ def get_entry_list(
     Creates list of return datapoints given make_output function
 
     The function will first fetch data for all avaliable times,
-    then use make_output to format the data points before returning
+    then use `make_output` to format the data points before returning
     a 24 hr history of data entries
     """
     # handle datetime here, so we only have to do it once
@@ -179,6 +184,25 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
+    """
+    Takes a zone key, session and optional datetime and returns the consumption
+    for the UY reigon for the past 24 hours
+
+    This parser is not at this time able to parse dates in the past. Therefore if
+    a datetime is passed, it will throw a parser exception.
+    :param zone_key: the key of the desired zone. Should only be UY
+    :param session: a `requests.Session` object that will be used to make API requests
+    :praram target_datetime: an optional datetime object that is the desired time.
+        This parser is not at this time able to parse dates in the past. Therefore if
+        a datetime is passed, it will throw a parser exception.
+    :param logger: a logger if needed
+    :returns: a list of dictionaries corresponding to the consumption data for the last 24 hrs
+        each entry  has the following keys
+            * "zoneKey":  the key passed to the parser
+            * "datetime":  a datetime object containing the datetime that the entry applies to
+            * "consumption":  a the average consumption for that hour, in MW
+            * "source":  the source of the information
+    """
 
     if target_datetime is not None:
         raise ParserException(
@@ -204,6 +228,26 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
+    """
+    Takes a zone key, session and optional datetime and returns the production data
+    for the UY reigon for the past 24 hours
+
+    This parser is not at this time able to parse dates in the past. Therefore if
+    a datetime is passed, it will throw a parser exception.
+    :param zone_key: the key of the desired zone. Should only be UY
+    :param session: a `requests.Session` object that will be used to make API requests
+    :praram target_datetime: an optional datetime object that is the desired time.
+        This parser is not at this time able to parse dates in the past. Therefore if
+        a datetime is passed, it will throw a parser exception.
+    :param logger: a logger if needed
+    :returns: a list of dictionaries corresponding to the production data for the last 24 hrs
+        each entry  has the following keys
+            * "zoneKey":  the key passed to the parser
+            * "datetime":  a datetime object containing the datetime that the entry applies to
+            * "production":  a dictionary indicating the production in MW for the  categories
+                    "hydro", "wind", "solar", "biomass", and "unknown"
+            * "source":  the source of the information
+    """
 
     if target_datetime is not None:
         raise ParserException(
