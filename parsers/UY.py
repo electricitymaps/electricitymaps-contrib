@@ -7,9 +7,8 @@ from typing import Callable, List, Optional
 import arrow
 import dateutil
 from bs4 import BeautifulSoup
+from lib.exceptions import ParserException
 from requests import Session
-
-from parsers.lib.exceptions import ParserException
 
 TIME_ZONE = "America/Montevideo"
 
@@ -24,7 +23,7 @@ MAP_GENERATION = {
     "unknown": "termica",
     "trade": "intercambios",
     "demand": "demanda",
-    "salto_grande_prod": "comprassgu",
+    "salto_grande_agg": "comprassgu",
 }
 
 AVALIABLE_KEYS = ["hydro", "wind", "solar", "biomass", "unknown"]
@@ -34,7 +33,7 @@ UTE_URL = url = "https://ute.com.uy/energia-generada-intercambios-demanda"
 SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
 
 
-def get_salto_grande(session: Session, targ_time: datetime = None) -> float:
+def get_salto_grande(session: Session, targ_time: datetime) -> float:
     """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
 
     # Data for current hour seems to be available after 30mins.
@@ -83,13 +82,19 @@ def correct_for_salto_grande(entry, session: Session):
     Switched this to only operate on a single entry or list of entries so
     fewer requests are needed
     """
-    # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
+    # our current source of hydro electric power only considers power generated
+    # at the rio negro power generation plant. There is an additional source
+    # which is power generated at the Salto Grande dam. This is in contrast to the
+    # comprassgu field which is a total between exchange done at the Salto Grande site
+    # and the amount of energy bought from the argentinian side of the dam.
+    # Therefore, we use the workaround described in the below commit to get the actual generation
+    # in a way that is compatible with the way we represent trade with argentina.
+    # https://github.com/electricitymaps/electricitymaps-contrib/issues/1325#issuecomment-380453296
     salto_grande = get_salto_grande(session, entry["time"])
     entry["hydro"] = entry["hydro"] + salto_grande
     return entry
 
 
-# time:
 def parse_page(session: Session):
     """
     Queries the url in UTE_URL, and parses hourly production and trade data
@@ -125,8 +130,10 @@ def parse_page(session: Session):
             key: parse_num(hour.find(spanish).contents[0])
             for key, spanish in MAP_GENERATION.items()
         }
-        # solar can sometimes return -0.1 at night, round up to 0
-        datum["solar"] = max(datum["solar"], 0)
+        # some values can sometimes return -0.1 at night, round up to 0
+        for key, val in datum.items():
+            if key not in ["trade", "demand"]:
+                datum[key] = max(val, 0)
 
         # ingest date field
         datefield = hour.find("hora").contents[0]
@@ -232,7 +239,8 @@ def fetch_exchange(
     # set comparison
     if {zone_key1, zone_key2} != {"UY", "BR"}:
         raise ParserException(
-            parser="UY", message="This parser is unnable to parse dates in the past"
+            parser="UY",
+            message="This parser is unnable to parse information on that feature",
         )
 
     # flip directions if needed
