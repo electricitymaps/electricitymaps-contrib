@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Callable, List, Optional
 
@@ -34,19 +34,12 @@ UTE_URL = url = "https://ute.com.uy/energia-generada-intercambios-demanda"
 SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
 
 
-def get_salto_grande(session: Session, targ_time: datetime) -> Optional[float]:
+def get_salto_grande(session: Session, targ_time: datetime) -> float:
     """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
 
-    # Data for current hour seems to be available after 30mins.
-    # if we're too soon into the hour, check the hour before
-    current_time = arrow.now("UTC-3")
-    if (
-        current_time.floor("hour") == targ_time.floor("hour")
-        and current_time.minute < 30
-    ):
-        # if this is the case,  it is too soon to get the latest information,
-        # return None and skip this entry
-        return None
+    # Shift hours around to match up with UY's data source as suggested by
+    # https://github.com/electricitymaps/electricitymaps-contrib/pull/4840#discussion_r1045617671
+    targ_time = targ_time.floor("hour") - timedelta(hours=1)
 
     lookup_time: str = targ_time.floor("hour").format("DD/MM/YYYY HH:mm")
 
@@ -78,7 +71,7 @@ def parse_num(num_str: str) -> float:
     return float(num_str.strip().replace(".", "").replace(",", "."))
 
 
-def correct_for_salto_grande(entry, session: Session) -> Optional[dict]:
+def correct_for_salto_grande(entry, session: Session) -> dict:
     """
     corrects a single entry parsed from the UTE website using salto_grande data
     Switched this to only operate on a single entry or list of entries so
@@ -93,8 +86,6 @@ def correct_for_salto_grande(entry, session: Session) -> Optional[dict]:
     # in a way that is compatible with the way we represent trade with argentina.
     # https://github.com/electricitymaps/electricitymaps-contrib/issues/1325#issuecomment-380453296
     salto_grande = get_salto_grande(session, entry["time"])
-    if salto_grande is None:
-        return None
     entry["hydro"] = entry["hydro"] + salto_grande
     return entry
 
@@ -176,8 +167,7 @@ def get_entry_list(
         if correct_hydro:
             # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
             raw_entry = correct_for_salto_grande(raw_entry, session)
-        if raw_entry is not None:
-            entries.append(make_output(raw_entry))
+        entries.append(make_output(raw_entry))
 
     return entries
 
@@ -223,6 +213,8 @@ def fetch_consumption(
         }
 
     # then delegate all the actual work to get_entry_list
+    # correct_hydro is set to false, becuase we dont use hydro here
+    # and correcting for hydro takes quite a bit of time (lots of API calls)
     return get_entry_list(session, make_datum, correct_hydro=False)
 
 
@@ -303,6 +295,8 @@ def fetch_exchange(
         }
 
     # then delegate all the actual work to get_entry_list
+    # correct_hydro is set to false, becuase we dont use hydro here
+    # and correcting for hydro takes quite a bit of time (lots of API calls)
     return get_entry_list(session, make_datum, correct_hydro=False)
 
 
