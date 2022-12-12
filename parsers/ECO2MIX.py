@@ -10,180 +10,156 @@ import numpy as np
 import pandas as pd
 import requests
 
+from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-from io import BytesIO
-from unidecode import unidecode
-from zipfile import ZipFile
+# from io import BytesIO
+# from unidecode import unidecode
+# from zipfile import ZipFile
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG
+from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 from .lib.validation import validate, validate_production_diffs
 
-API_ENDPOINT = 'https://eco2mix.rte-france.com/curves/eco2mixDl'
-
-# note: thermal lump sum for coal, oil, gas as breakdown not available at regional level
-MAP_GENERATION = {
-    'Nucléaire': 'nuclear',
-    'Thermique': 'unknown',
-    'Eolien': 'wind',
-    'Solaire': 'solar',
-    'Hydraulique': 'hydro',
-    'Bioénergies': 'biomass'
+# From RTE domain to EM domain
+MAP_ZONES = {
+    'France': 'FR',
+    **{
+        subzone.replace('FR-', ''): subzone
+        for subzone in ZONES_CONFIG['FR'].get('subZoneNames', [])
+    },
+    'BE': 'BE',
+    'CH': 'CH',
+    'DE': 'DE',
+    'ES': 'ES',
+    'GB': 'GB',
+    'IT': 'IT-NO',
+    'LU': 'LU',
 }
 
-MAP_STORAGE = {
-    'Pompage': 'hydro',
-}
+MAP_MODES = {
+    'NuclÃ©aire': 'production.nuclear',
+    'Thermique': 'production.unknown',
+    'Eolien': 'production.wind',
+    'Solaire': 'production.solar',
+    'Hydraulique': 'production.hydro',
+    'Bioénergies': 'production.biomass',
+    'Consommation': 'consumption',
+    'Autres': 'production.unknown',
+    'Charbon': 'production.coal',
+    'Fioul': 'production.oil',
+    'Gaz': 'production.gas',
 
-# define all RTE French regional zone-key <-> domain mapping
-ZONE_IDENTIFIERS = {
-    'BE': 'Belgique',
-    'CH': 'Suisse',
-    'DE': 'Allemagne',
-    'ES': 'Espagne',
-    'GB': 'Royaume-Uni',
-    'IT-NO': 'Italie',
-    'LU': 'Luxembourg',
-    'FR-ACA': 'Grand-Est',
-    'FR-ARA': 'Auvergne-Rhône-Alpes',
-    'FR-ALP': 'Nouvelle-Aquitaine',
-    'FR-BFC': 'Bourgogne-Franche-Comté',
-    'FR-BRE': 'Bretagne',
-    'FR-CEN': 'Centre-Val de Loire',
-    'FR-NPP': 'Hauts-de-France',
-    'FR-IDF': 'Ile-de-France',
-    'FR-NOR': 'Normandie',
-    'FR-LRM': 'Occitanie',
-    'FR-PLO': 'Pays de la Loire',
-    'FR-PAC': 'Provence-Alpes-Côte d\'Azur'
+    'Pompage': 'storage.hydro',
+    'Destockage': 'storage.hydro',
+    'Batterie_Injection': 'storage.battery',
+    'Batterie_Soutirage': 'storage.battery',
+    'Stockage': 'storage.battery',
+
+    'Solde': 'IGNORED',
+    'Co2': 'IGNORED',
+    'Taux de Co2': 'IGNORED',
+    'PrÃ©visionJ': 'IGNORED',
+    'PrÃ©visionJ-1': 'IGNORED',
 }
 
 # validations for each region
 VALIDATIONS = {
-    'FR-ACA': ['unknown', 'nuclear', 'hydro'],
     'FR-ARA': ['unknown', 'nuclear', 'hydro'],
-    'FR-ALP': ['nuclear', 'hydro'],
-    'FR-BFC': ['wind'],
-    'FR-BRE': ['unknown', 'wind'],
-    'FR-CEN': ['nuclear', 'wind'],
-    'FR-NPP': ['unknown', 'nuclear'],
-    'FR-IDF': ['unknown'],
-    'FR-NOR': ['unknown', 'nuclear'],
-    'FR-LRM': ['nuclear', 'hydro'],
-    'FR-PLO': ['unknown', 'wind'],
-    'FR-PAC': ['unknown', 'hydro'],
 }
 
 
-def is_not_nan_and_truthy(v):
-    if isinstance(v, float) and math.isnan(v):
-        return False
-    return bool(v)
-
-def fetch(zone_key, session=None, target_datetime=None):
+def query_production(session=None, target_datetime=None):
     if target_datetime:
-        to = arrow.get(target_datetime, 'Europe/Paris')
+        date_to = arrow.get(target_datetime, 'Europe/Paris')
     else:
-        to = arrow.now(tz='Europe/Paris')
+        date_to = arrow.now(tz='Europe/Paris')
+    date_from = date_to.floor('day')
 
-    assert 'FR-' in zone_key
-
-    # setup request
+    URL = f"http://www.rte-france.com/getEco2MixXml.php?type=region&dateDeb={date_from.format('DD/MM/YYYY')}&dateFin={date_to.format('DD/MM/YYYY')}"
     r = session or requests.session()
-
-    params = {
-        'date': to.floor('day').format('DD/MM/YYYY'),
-        'region': zone_key.replace('FR-', ''),
-    }
-    response = r.get(API_ENDPOINT, params=params)
+    response = r.get(URL, verify=False)
     response.raise_for_status()
-    # Write content to in-memory zip file
-    buf = BytesIO()
-    buf.write(response.content)
-    buf.seek(0)
-    # Decode zip and extract XLS
-    zip = ZipFile(buf)
-    with zip.open(zip.namelist()[0], 'r') as file:
-        df = pd.read_csv(file, sep='\t', encoding='latin-1', nrows=4*24, na_values=['-', 'ND'])
+    return response.text
 
+
+def parse_production_to_df(text):
+    bs_content = BeautifulSoup(text, features="xml")
+    # Flatten
+    df = pd.DataFrame([
+        {
+            **valeur.attrs,
+            **valeur.parent.attrs,
+            **valeur.parent.parent.attrs,
+            'value': valeur.contents[0]
+        }
+        for valeur in bs_content.find_all('valeur')
+    ])
     # Add datetime
-    df['date_heure'] = df['Date'] + ' ' + df['Heures']
-    df = df.set_index('date_heure')
-    assert not df.index.isna().any(), 'date_heure can\'t have any nan'
-
+    df['datetime'] = pd.to_datetime(df['date']) + pd.to_timedelta(df['periode'].astype('int') * 15, unit='minute')
+    df.datetime = df.datetime.dt.tz_localize("Europe/Paris")
+    # Set index
+    df = df.set_index('datetime').drop(['date', 'periode'], axis=1)
+    # Remove invalid granularities
+    df = df[df.granularite == 'Global'].drop('granularite', axis=1)
+    # Create key (will crash if a mode is not in the map and ensures we coded this right)
+    df['key'] = df.v.apply(lambda k: MAP_MODES[k])
+    # Filter out invalid modes
+    df = df[df.key != 'IGNORED']
+    # Compute zone_key
+    df['zone_key'] = df['perimetre'].apply(lambda k: MAP_ZONES[k])
+    # Compute values
+    df.value = df.value.replace('ND', np.nan).replace('-', np.nan).astype('float')
+    # Storage works the other way around (RTE treats storage as production)
+    df.loc[df.key.str.startswith('storage.'), 'value'] *= -1
     return df
 
+
+def format_production_df(df, zone_key):
+    # There can be multiple rows with the same key
+    # (e.g. multiple things lumping into `unknown`)
+    # so we need to group them and sum.
+    df = (df[df.zone_key == zone_key]
+            .reset_index()
+            .groupby(['datetime', 'key'])
+            # We use `min_count=1` to make sure at least one non-NaN
+            # value is present to compute a sum.
+            .sum(min_count=1)
+            # We unstack `key` which creates a df where keys are columns
+            .unstack('key')['value'])
+    return [
+        {
+            'zoneKey': zone_key,
+            'datetime': ts.to_pydatetime(),
+            'production': (
+                row
+                    .filter(like='production.')
+                    .rename(lambda c: c.replace('production.', ''))
+                    .to_dict()
+            ),
+            'storage': (
+                row
+                    .filter(like='storage.')
+                    .rename(lambda c: c.replace('storage.', ''))
+                    .to_dict()
+            ),
+            'source': 'rte-france.com/eco2mix'
+        }
+        for (ts, row) in df.iterrows()
+    ]
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key, session=None, target_datetime=None,
                      logger: Logger = getLogger(__name__)):
 
-    df = fetch(zone_key, session=session, target_datetime=target_datetime)
-
-    # filter out desired columns and convert values to float
-    value_columns = list(MAP_GENERATION.keys()) + list(MAP_STORAGE.keys()) + [f'tch_{x}' for x in MAP_GENERATION.keys()]
-    missing_columns = [v for v in value_columns if v not in df.columns]
-    present_columns = [v for v in value_columns if v in df.columns]
-    assert len(missing_columns) != len(value_columns), 'All columns of interest are missing from the API response'
-
-    if len(missing_columns) > 0:
-        mf_str = ', '.join(missing_columns)
-        logger.warning('Columns [{}] are not present in the API '
-                       'response'.format(mf_str))
-        # note this happens and is ok as not all French regions have all fuels.
-
-    df = df.loc[:, present_columns]
-    df[present_columns] = df[present_columns].astype(float)
-
-    datapoints = list()
-    for _, row in df.iterrows():
-        production = dict()
-        storage = dict()
-        capacity = dict()
-
-        for key, value in MAP_GENERATION.items():
-            if key not in present_columns:
-                continue
-
-            if -50 < row[key] < 0:
-                # set small negative values to 0
-                logger.warning('Setting small value of %s (%s) to 0.' % (key, value))
-                production[value] = 0
-            else:
-                production[value] = None if np.isnan(row[key]) else row[key]
-
-            # # Capacity
-            # load_factor = row[f'tch_{key}'] / 100.0
-            # # We can't estimate capacity if load factor is too small
-            # if load_factor > 0.05:
-            #     capacity[value] = round(row[key] / load_factor)
-
-        for key, value in MAP_STORAGE.items():
-            if key not in present_columns:
-                continue
-            else:
-                # Note: in the data, negative value means storage,
-                # which is the opposite of our convention
-                storage[value] = None if np.isnan(row[key]) else -1 * row[key]
-
-        # if all production values are null, ignore datapoint
-        if not any([is_not_nan_and_truthy(v)
-                    for k, v in production.items()]):
-            continue
-
-        datapoint = {
-            'zoneKey': zone_key,
-            'datetime': arrow.get(row.name, tzinfo='Europe/Paris').datetime,
-            'production': production,
-            'storage': storage,
-            'capacity': capacity,
-            'source': 'opendata.reseaux-energies.fr'
-        }
-        # validations responsive to region
-        datapoint = validate(datapoint, logger, required=VALIDATIONS[zone_key])
-        datapoints.append(datapoint)
+    datapoints = [
+        validate(d, logger, required=VALIDATIONS.get(zone_key, []))
+        for d in format_production_df(
+            df=parse_production_to_df(
+                query_production(session, target_datetime)),
+            zone_key=zone_key)
+    ]
 
     max_diffs = {
         'hydro': 1600,
