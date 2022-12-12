@@ -34,7 +34,7 @@ UTE_URL = url = "https://ute.com.uy/energia-generada-intercambios-demanda"
 SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
 
 
-def get_salto_grande(session: Session, targ_time: datetime) -> float:
+def get_salto_grande(session: Session, targ_time: datetime) -> Optional[float]:
     """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
 
     # Data for current hour seems to be available after 30mins.
@@ -44,8 +44,9 @@ def get_salto_grande(session: Session, targ_time: datetime) -> float:
         current_time.floor("hour") == targ_time.floor("hour")
         and current_time.minute < 30
     ):
-        # Looking at previous hour's data for salto grande, because it is too soon after the hour
-        targ_time = targ_time.shift(hours=-1)
+        # if this is the case,  it is too soon to get the latest information,
+        # return None and skip this entry
+        return None
 
     lookup_time: str = targ_time.floor("hour").format("DD/MM/YYYY HH:mm")
 
@@ -77,7 +78,7 @@ def parse_num(num_str: str) -> float:
     return float(num_str.strip().replace(".", "").replace(",", "."))
 
 
-def correct_for_salto_grande(entry, session: Session):
+def correct_for_salto_grande(entry, session: Session) -> Optional[dict]:
     """
     corrects a single entry parsed from the UTE website using salto_grande data
     Switched this to only operate on a single entry or list of entries so
@@ -92,6 +93,8 @@ def correct_for_salto_grande(entry, session: Session):
     # in a way that is compatible with the way we represent trade with argentina.
     # https://github.com/electricitymaps/electricitymaps-contrib/issues/1325#issuecomment-380453296
     salto_grande = get_salto_grande(session, entry["time"])
+    if salto_grande is None:
+        return None
     entry["hydro"] = entry["hydro"] + salto_grande
     return entry
 
@@ -173,7 +176,8 @@ def get_entry_list(
         if correct_hydro:
             # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
             raw_entry = correct_for_salto_grande(raw_entry, session)
-        entries.append(make_output(raw_entry))
+        if raw_entry is not None:
+            entries.append(make_output(raw_entry))
 
     return entries
 
@@ -282,21 +286,19 @@ def fetch_exchange(
         )
 
     # set comparison
-    if {zone_key1, zone_key2} != {"UY", "BR"}:
+    if (zone_key1, zone_key2) != ("BR", "UY"):
+        print(zone_key1, zone_key2)
         raise ParserException(
             parser="UY",
             message="This parser is unnable to parse information on that feature",
         )
 
-    # flip directions if needed
-    direction_coeff = -1 if zone_key1 == "UY" else 1
-
     # make a helper function to create output format
     def make_datum(entry):
         return {
-            "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
+            "sortedZoneKeys": "->".join([zone_key1, zone_key2]),
             "datetime": entry["time"].datetime,
-            "netFlow": entry["trade"] * direction_coeff,
+            "netFlow": entry["trade"],
             "source": "ute.com.uy",
         }
 
@@ -310,8 +312,8 @@ if __name__ == "__main__":
     print(fetch_production(session=session))
     print("fetch_consumption() ->")
     print(fetch_consumption(session=session))
-    print("fetch_exchange(UY, BR) ->")
-    print(fetch_exchange("UY", "BR", session=session))
+    print("fetch_exchange(BR, UY) ->")
+    print(fetch_exchange("BR", "UY", session=session))
 
-    print("fetch_exchange(UY, BR) ->")
-    print(fetch_exchange(zone_key1="UY", zone_key2="BR", session=session))
+    print("fetch_exchange(BR, UY) ->")
+    print(fetch_exchange(zone_key1="BR", zone_key2="UY", session=session))
