@@ -21,11 +21,28 @@ def fetch_data(session: Session, logger: Logger):
     response.raise_for_status()
 
     soup = BeautifulSoup(response.text, "html.parser").find_all("script")
-    time_series = findall(r"data: \[(.*?)\]", str(soup))[0]
-    raw_data = findall(r"data:\[(.*?)\]", str(soup))
+    result_time_series = findall(r"data: \[(.*?)\]", str(soup))
+    if len(result_time_series) != 3:
+        raise ParserException(
+            "AX.py",
+            "Did not find the expected amount of results. Check if the website has changed.",
+        )
+    time_series: List = result_time_series[0].split(",")
+    raw_data: List[str] = findall(r"data:\[(.*?)\]", str(soup))
+    if len(raw_data) != 6:
+        raise ParserException(
+            "AX.py",
+            "The raw data did not match the expected format. Check if the website has changed.",
+        )
+    for raw in raw_data:
+        if len(raw.split(",")) != len(time_series):
+            raise ParserException(
+                "AX.py",
+                "The raw data did not match the length of the the time series. Check if the website has changed.",
+            )
     data_list = []
     for time, sweden, alink, fossil, gustavs, wind, consumption in zip(
-        time_series.split(","),
+        time_series,
         raw_data[0].split(","),
         raw_data[1].split(","),
         raw_data[2].split(","),
@@ -67,7 +84,6 @@ def formated_data(
     return_list = []
     for data in data_list:
         corrected_date = date - timedelta(minutes=15 * data_list.index(data))
-        # TODO: Check if the corrected date matches the expected time in the data.
         if type == "production":
             return_list.append(
                 {
@@ -90,12 +106,12 @@ def formated_data(
                 }
             )
         elif type == "exchange":
-            if zone_key1 == "AX" and zone_key2 == "SE":
+            if zone_key1 == "AX" and zone_key2 == "SE-SE3":
                 return_list.append(
                     {
-                        "sortedZoneKeys": "AX->SE",
+                        "sortedZoneKeys": "AX->SE-SE3",
                         "datetime": corrected_date,
-                        "netFlow": data["sweden"],
+                        "netFlow": data["sweden"] * -1,
                         "source": SOURCE,
                     }
                 )
@@ -104,7 +120,7 @@ def formated_data(
                     {
                         "sortedZoneKeys": "AX->FI",
                         "datetime": corrected_date,
-                        "netFlow": data["alink"] + data["gustavs"],
+                        "netFlow": round(data["alink"] + data["gustavs"], 2) * -1,
                         "source": SOURCE,
                     }
                 )
