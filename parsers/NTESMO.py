@@ -1,5 +1,8 @@
 """Parser for AUS-NT using https://ntesmo.com.au data, the electricity market operator for the Northen Territories.
 Uses some webscrapping as no API seems to be available. Data is available in the form of daily xslx files.
+Mapping is done using EDL's website and Territory Generation.
+https://edlenergy.com/project/pine-creek/
+https://territorygeneration.com.au/about-us/our-power-stations/
 """
 from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
@@ -37,6 +40,10 @@ PLANT_MAPPING = {
     "P1": Generator(power_plant="Pine Creek Power Station", fuel_type="gas"),
     "P2": Generator(power_plant="Pine Creek Power Station", fuel_type="gas"),
     "P3": Generator(power_plant="Pine Creek Power Station", fuel_type="gas"),
+    "KS01": Generator(power_plant="", fuel_type="unknown"),
+    "MY01": Generator(power_plant="", fuel_type="unknown"),
+    "BJ01": Generator(power_plant="", fuel_type="unknown"),
+    "HP01": Generator(power_plant="", fuel_type="unknown")
 }
 
 def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
@@ -87,7 +94,7 @@ def parse_consumption(raw_consumption: pd.DataFrame, target_datetime: datetime, 
             data_point["price"] = consumption["Market Price"]
             data_point["currency"] = "AUD"
         else:
-            data_point["consumption"] = consumption["Demand"],
+            data_point["consumption"] = consumption["Demand"]
         data_points.append(data_point)
     return data_points
 
@@ -100,12 +107,15 @@ def parse_production_mix(raw_production_mix: pd.DataFrame) -> List[dict]:
             "source": "ntesmo.com.au",
             "production": {
                 "gas": 0,
-                "biomass": 0
+                "biomass": 0,
+                "unknown": 0
             },
             "storage": dict()
         }
         for generator_key, generator in PLANT_MAPPING.items():
-            data_point["production"][generator["fuel_type"]] += production[generator_key]
+            # Some decomissioned plants have negative production values.
+            if production[generator_key] >= 0:
+                data_point["production"][generator["fuel_type"]] += production[generator_key]
         production_mix.append(data_point)
     return production_mix
 
@@ -121,7 +131,7 @@ def fetch_consumption(
     return parse_consumption(consumption, target_datetime)
 
 @refetch_frequency(timedelta(days=1))
-def fetch_consumption(
+def fetch_price(
     zone_key: str = 'AUS-NT',
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
