@@ -1,26 +1,21 @@
 #!/usr/bin/env python3
 
-import arrow
 import json
-from logging import Logger, getLogger
-import os
 import math
+import os
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
 
+import arrow
 import numpy as np
 import pandas as pd
 import requests
-
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
-
-# from io import BytesIO
-# from unidecode import unidecode
-# from zipfile import ZipFile
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
-
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
+
 from .lib.validation import validate, validate_production_diffs
 
 # From RTE domain to EM domain
