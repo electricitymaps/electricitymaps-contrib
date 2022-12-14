@@ -14,7 +14,7 @@ export default function MapControls(properties: MapControlsProperties): ReactEle
   const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
 
   return (
-    <div className="z-1000 pointer-events-none  absolute right-3 top-3 flex flex-col items-end">
+    <div className="z-1000 pointer-events-none absolute right-3 top-3 hidden flex-col items-end md:flex">
       <div className="pointer-events-auto mb-16 flex flex-col items-end">
         <ConsumptionProductionToggle />
         <div className="mb-1"></div>

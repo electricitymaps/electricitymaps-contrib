@@ -13,3 +13,11 @@ export function getCO2IntensityByMode(
 export function dateToDatetimeString(date: Date) {
   return date.toISOString().split('.')[0] + 'Z';
 }
+
+/**
+ * Returns a link which maintains search and hash parameters
+ * @param to
+ */
+export function createToWithState(to: string) {
+  return `${to}${location.search}${location.hash}`;
+}

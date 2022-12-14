@@ -30,9 +30,9 @@ function MenuLink({ children, href, active }: MenuLinkProps): JSX.Element {
 
 export default function Header(): JSX.Element {
   return (
-    <header className="z-30 hidden w-full items-center justify-between bg-white pl-4 pr-8 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-900 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:flex">
+    <header className="z-30 hidden w-full items-center justify-between bg-white pl-4 pr-8 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-900 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] sm:flex">
       <Logo className="h-12 w-56 fill-black dark:fill-white" />
-      <NavigationMenu.Root>
+      <NavigationMenu.Root className="hidden md:block">
         <NavigationMenu.List className="flex space-x-2">
           <MenuLink href="/" active>
             Live

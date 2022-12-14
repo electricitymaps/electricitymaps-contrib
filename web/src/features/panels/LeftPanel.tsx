@@ -1,10 +1,40 @@
+import { TimeDisplay } from 'components/TimeDisplay';
+import Logo from 'features/header/Logo';
 import { useState } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
-import { Navigate, Route, Routes, useParams } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import FAQPanel from './faq/FAQPanel';
 import RankingPanel from './ranking-panel/RankingPanel';
 
 import ZoneDetails from './zone/ZoneDetails';
+
+function HandleLegacyRoutes() {
+  const [searchParameters] = useSearchParams();
+
+  const page = (searchParameters.get('page') || 'map')
+    .replace('country', 'zone')
+    .replace('highscore', 'ranking');
+  searchParameters.delete('page');
+
+  const zoneId = searchParameters.get('countryCode');
+  searchParameters.delete('countryCode');
+
+  return (
+    <Navigate
+      to={{
+        pathname: zoneId ? `/zone/${zoneId}` : `/${page}`,
+        search: searchParameters.toString(),
+      }}
+    />
+  );
+}
 
 function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   const { zoneId } = useParams();
@@ -29,22 +59,35 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
       }
       onClick={onCollapse}
     >
-      {isCollapsed ? <HiChevronLeft /> : <HiChevronRight />}
+      {isCollapsed ? <HiChevronRight /> : <HiChevronLeft />}
     </button>
+  );
+}
+
+function MobileHeader() {
+  return (
+    <div className="flex w-full items-center justify-between p-1 shadow-md dark:bg-gray-900 sm:hidden">
+      <Logo className="h-10 w-44 fill-black dark:fill-white" />
+      <TimeDisplay className="mr-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300" />
+    </div>
   );
 }
 
 function OuterPanel({ children }: { children: React.ReactNode }) {
   const [isOpen, setOpen] = useState(true);
   const onCollapse = () => setOpen(!isOpen);
+  const location = useLocation();
 
   return (
     <aside
-      className={`absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-800 dark:[color-scheme:dark] md:flex md:w-[calc(14vw_+_16rem)] ${
-        !isOpen && '-translate-x-full'
-      }`}
+      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-800 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
+        location.pathname === '/map' ? 'hidden' : ''
+      } ${!isOpen ? '-translate-x-full' : ''}`}
     >
-      <section className="w-full p-2">{children}</section>
+      <MobileHeader />
+      <section className="h-full w-full overflow-y-scroll p-2 pr-0 sm:pr-2">
+        {children}
+      </section>
       <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
     </aside>
   );
@@ -54,6 +97,7 @@ export default function LeftPanel() {
   return (
     <OuterPanel>
       <Routes>
+        <Route path="/" element={<HandleLegacyRoutes />} />
         <Route
           path="/zone/:zoneId"
           element={

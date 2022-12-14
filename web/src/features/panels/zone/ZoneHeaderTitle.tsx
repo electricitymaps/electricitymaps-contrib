@@ -4,6 +4,7 @@ import { TimeDisplay } from 'components/TimeDisplay';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 import { getZoneName } from 'translation/translation';
+import { createToWithState } from 'utils/helpers';
 import { CountryTag } from './CountryTag';
 
 interface ZoneHeaderTitleProps {
@@ -20,11 +21,13 @@ export default function ZoneHeaderTitle({
   const title = getZoneName(zoneId);
   const isSubZone = zoneId.includes('-');
 
+  const returnToMapLink = createToWithState('/map');
+
   return (
     <div className="flex flex-row pl-2">
       <Link
         className="text-3xl mr-4 self-center"
-        to="/"
+        to={returnToMapLink}
         data-test-id="left-panel-back-button"
       >
         <HiArrowLeft />

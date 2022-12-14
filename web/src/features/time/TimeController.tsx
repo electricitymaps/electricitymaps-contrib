@@ -3,15 +3,13 @@ import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
-import { useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
-import { formatDate } from 'utils/formatting';
 import { dateToDatetimeString } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
 import TimeAxis from './TimeAxis';
+import TimeHeader from './TimeHeader';
 
-export default function TimeController() {
-  const { __, i18n } = useTranslation();
+export default function TimeController({ className }: { className?: string }) {
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const { data, isLoading } = useGetState();
@@ -49,24 +47,11 @@ export default function TimeController() {
   };
 
   return (
-    <div
-      className={
-        'fixed bottom-0 z-20 w-full rounded-t-xl bg-white p-5 shadow-md dark:bg-gray-900 md:bottom-3 md:left-3 md:max-w-md md:rounded-xl'
-      }
-    >
-      <div className=" flex flex-row items-center justify-between">
-        <p className="mb-2 select-none text-base font-bold">
-          {__('time-controller.title')}
-        </p>
-        <div className="mb-2 select-none rounded-full bg-brand-green/10 py-2 px-3 text-xs text-brand-green dark:bg-gray-700 dark:text-white">
-          {!isLoading &&
-            formatDate(
-              new Date(selectedDatetime.datetimeString),
-              i18n.language,
-              timeAverage
-            )}
-        </div>
-      </div>
+    <div className={className}>
+      <TimeHeader
+        // Hide the header on mobile as it is loaded directly into the BottomSheet header section
+        className="hidden sm:flex"
+      />
       <TimeAverageToggle
         timeAverage={timeAverage}
         onToggleGroupClick={onToggleGroupClick}

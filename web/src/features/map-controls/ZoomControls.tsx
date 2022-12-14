@@ -1,37 +1,23 @@
-import * as ToggleGroup from '@radix-ui/react-toggle-group';
-import { ReactElement, useState } from 'react';
-
-import TooltipWrapper from 'components/tooltips/TooltipWrapper';
-import { useTranslation } from 'translation/translation';
+import { ReactElement } from 'react';
+import { NavigationControl } from 'react-map-gl';
 
 export default function ZoomControls(): ReactElement {
-  const [value, setValue] = useState('');
-  const { __ } = useTranslation();
-
   return (
-    <ToggleGroup.Root
-      type="single"
-      value={value}
-      orientation="vertical"
-      onValueChange={(value) => {
-        if (value) {
-          setValue(value);
-        }
+    <NavigationControl
+      style={{
+        marginRight: 12,
+        marginTop: 98,
+        width: '33px',
+        boxShadow: '0px 1px 1px  rgb(0 0 0 / 0.1)',
+        border: 0,
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
-      className="flex flex-col"
-    >
-      <TooltipWrapper tooltipContent={__('tooltips.zoomIn')}>
-        <ToggleGroup.Item
-          className="h-8 w-8 rounded rounded-b-none bg-white drop-shadow dark:bg-gray-900"
-          value="zoomIn"
-        ></ToggleGroup.Item>
-      </TooltipWrapper>
-      <TooltipWrapper tooltipContent={__('tooltips.zoomOut')}>
-        <ToggleGroup.Item
-          className="h-8 w-8 rounded  rounded-t-none bg-white drop-shadow dark:bg-gray-900"
-          value="zoomOut"
-        ></ToggleGroup.Item>
-      </TooltipWrapper>
-    </ToggleGroup.Root>
+      showCompass={false}
+      //TODO: Find a way to use a __('tooltips.zoomIn') as aria-label here
+      //TODO: Find a way to use a __('tooltips.zoomOut') as aria-label here
+    />
   );
 }

@@ -2,15 +2,16 @@ import mapboxgl from 'mapbox-gl';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
-import { Layer, Map, MapRef, NavigationControl, Source } from 'react-map-gl';
+import { Layer, Map, MapRef, Source } from 'react-map-gl';
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 
 import useGetState from 'api/getState';
 import MapTooltip from 'components/tooltips/MapTooltip';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
+import ZoomControls from 'features/map-controls/ZoomControls';
 import { useAtom } from 'jotai';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getCO2IntensityByMode } from 'utils/helpers';
+import { useNavigate } from 'react-router-dom';
+import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import {
   loadingMapAtom,
   selectedDatetimeIndexAtom,
@@ -47,8 +48,6 @@ export default function MapPage(): ReactElement {
   });
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
-  const location = useLocation();
-  const createToWithState = (to: string) => `${to}${location.search}${location.hash}`;
   const theme = useTheme();
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -275,24 +274,10 @@ export default function MapPage(): ReactElement {
           <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
           <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
         </Source>
-        {/* TODO: Get rid of the inline styling here if/when possible */}
-        <NavigationControl
-          style={{
-            marginRight: 12,
-            marginTop: 98,
-            width: '33px',
-            boxShadow: '0px 1px 1px  rgb(0 0 0 / 0.1)',
-            border: 0,
-            color: 'white',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-          showCompass={false}
-        ></NavigationControl>
         <CustomLayer>
           <ExchangeLayer isMoving={isMoving} />
         </CustomLayer>
+        <ZoomControls />
       </Map>
     </>
   );

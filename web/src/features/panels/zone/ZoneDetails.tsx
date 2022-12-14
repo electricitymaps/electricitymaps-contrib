@@ -62,7 +62,7 @@ export default function ZoneDetails(): JSX.Element {
         renewableRatio={renewableRatio}
       />
       <DisplayByEmissionToggle />
-      <div className="h-[calc(100%-290px)] overflow-y-scroll pb-48">
+      <div className="h-[calc(100%-290px)] pb-48 sm:overflow-y-scroll">
         <BarBreakdownChart timeAverage={timeAverage} />
         <Divider />
         {displayByEmissions ? (
