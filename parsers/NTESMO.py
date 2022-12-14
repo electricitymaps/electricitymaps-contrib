@@ -10,8 +10,9 @@ from typing import Callable, Dict, List, Optional, TypedDict
 
 import pandas as pd
 from bs4 import BeautifulSoup
-from parsers.lib.config import refetch_frequency
 from requests import Session
+
+from parsers.lib.config import refetch_frequency
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 
