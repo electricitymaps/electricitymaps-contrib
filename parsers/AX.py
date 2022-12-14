@@ -1,1110 +1,208 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional, Union
+from re import findall
+from typing import List, Optional
 
-import arrow
+from bs4 import BeautifulSoup
+from pytz import timezone
+from requests import Response, Session
 
-# Numpy and PIL are used to process the image
-import numpy as np
-from PIL import Image
-from requests import Session
+from .lib.exceptions import ParserException
 
-URL = "http://194.110.178.135/grafik/stamnat.php"
+IFRAME_URL = "https://grafik.kraftnat.ax/grafer/tot_inm_24h_15.php"
+TIME_ZONE = "Europe/Mariehamn"
 SOURCE = "kraftnat.ax"
-TZ = "Europe/Mariehamn"
 
 
-def _get_masks(session=None):
-    Minus = np.array(
-        [
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
+def fetch_data(session: Session, logger: Logger):
+    """Fetch data from the iFrame."""
+
+    response: Response = session.get(IFRAME_URL)
+    response.raise_for_status()
+
+    soup = BeautifulSoup(response.text, "html.parser").find_all("script")
+    result_time_series = findall(r"data: \[(.*?)\]", str(soup))
+    if len(result_time_series) != 3:
+        raise ParserException(
+            "AX.py",
+            "Did not find the expected amount of results. Check if the website has changed.",
+        )
+    time_series: List = result_time_series[0].split(",")
+    raw_data: List[str] = findall(r"data:\[(.*?)\]", str(soup))
+    if len(raw_data) != 6:
+        raise ParserException(
+            "AX.py",
+            "The raw data did not match the expected format. Check if the website has changed.",
+        )
+    for raw in raw_data:
+        if len(raw.split(",")) != len(time_series):
+            raise ParserException(
+                "AX.py",
+                "The raw data did not match the length of the the time series. Check if the website has changed.",
+            )
+    data_list = []
+    for time, sweden, alink, fossil, gustavs, wind, consumption in zip(
+        time_series,
+        raw_data[0].split(","),
+        raw_data[1].split(","),
+        raw_data[2].split(","),
+        raw_data[3].split(","),
+        raw_data[4].split(","),
+        raw_data[5].split(","),
+    ):
+        data_list.append(
+            {
+                "time": str(time.replace('"', "")),
+                "sweden": float(sweden),
+                "alink": float(alink),
+                "fossil": float(fossil),
+                "gustavs": float(gustavs),
+                "wind": float(wind),
+                "consumption": float(consumption),
+            }
+        )
+    return data_list
+
+
+def formated_data(
+    zone_key: Optional[str],
+    zone_key1: Optional[str],
+    zone_key2: Optional[str],
+    session: Session,
+    logger: Logger,
+    type: str,
+):
+    """Format data to Electricity Map standards."""
+    data_list = fetch_data(session, logger)
+    data_list.reverse()
+    date = datetime.now(timezone(TIME_ZONE)).replace(
+        hour=int(data_list[0]["time"].split(":")[0]),
+        minute=int(data_list[0]["time"].split(":")[1]),
+        second=0,
+        microsecond=0,
     )
-    Minus = Image.fromarray(Minus)
-
-    Dot = np.array(
-        [
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Dot = Image.fromarray(Dot)
-
-    Zero = np.array(
-        [
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [[0, 0, 0], [0, 0, 0], [255, 255, 255], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [255, 255, 255], [0, 0, 0], [0, 0, 0]],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Zero = Image.fromarray(Zero)
-
-    One = np.array(
-        [
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [0, 0, 0],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    One = Image.fromarray(One)
-
-    Two = np.array(
-        [
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Two = Image.fromarray(Two)
-
-    Three = np.array(
-        [
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Three = Image.fromarray(Three)
-
-    Four = np.array(
-        [
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Four = Image.fromarray(Four)
-
-    Five = np.array(
-        [
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [255, 255, 255]],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Five = Image.fromarray(Five)
-
-    Six = np.array(
-        [
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [255, 255, 255]],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Six = Image.fromarray(Six)
-
-    Seven = np.array(
-        [
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Seven = Image.fromarray(Seven)
-
-    Eight = np.array(
-        [
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Eight = Image.fromarray(Eight)
-
-    Nine = np.array(
-        [
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [[255, 255, 255], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [255, 255, 255],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0],
-                [255, 255, 255],
-            ],
-            [
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-                [255, 255, 255],
-            ],
-        ],
-        dtype=np.uint8,
-    )
-    Nine = Image.fromarray(Nine)
-
-    shorts = ["-", ".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    masks = [Minus, Dot, Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine]
-
-    return dict(zip(shorts, masks))
-
-
-def _fetch_data(session: Optional[Session] = None) -> dict:
-    """Return usable data from source."""
-    # Load masks for reading numbers from the image
-    # Create a dictionary of symbols and their pixel masks
-    mapping = _get_masks(session)
-
-    # Download the updating image from Kraftnät Åland
-    r = session or Session()
-
-    im = Image.open(r.get(URL, stream=True).raw)
-    # Get timestamp
-    fetchtime = arrow.utcnow().floor("second").to(TZ)
-
-    # "data" is a height x width x 3 RGB numpy array
-    data = np.array(im)
-    # red, green, blue, alpha = data.T
-    # Temporarily unpack the bands for readability
-    red, green, blue = data.T
-    # Color non-blue areas in the image with white
-    blue_areas = (red == 0) & (green == 0) & (blue == 255)
-    data[~blue_areas.T] = (255, 255, 255)
-    # Color blue areas in the image with black
-    data[blue_areas.T] = (0, 0, 0)
-
-    # Transform the array back to image
-    im = Image.fromarray(data)
-
-    shorts = mapping.keys()
-
-    # check import from Sweden
-    se_3_flow = []
-    for x in range(80, 130 - 6):
-        for abr in shorts:
-            im1 = im.crop((x, 443, x + 6, 452))
-            if im1 == mapping[abr]:
-                se_3_flow.append(abr)
-    se_3_flow = "".join(se_3_flow)
-    se_3_flow = round(float(se_3_flow), 1)
-
-    # export Åland-Finland(Kustavi/Gustafs)
-    gustafs_flow = []
-    for x in range(780, 825 - 6):
-        for abr in shorts:
-            im1 = im.crop((x, 43, x + 6, 52))
-            if im1 == mapping[abr]:
-                gustafs_flow.append(abr)
-    gustafs_flow = "".join(gustafs_flow)
-    gustafs_flow = round(float(gustafs_flow), 1)
-
-    # Reserve cable import Naantali-Åland
-    # Åland administration does not allow export
-    # to Finland through this cable
-    fin_flow = []
-    for x in range(760, 815 - 6):
-        for abr in shorts:
-            im1 = im.crop((x, 328, x + 6, 337))
-            if im1 == mapping[abr]:
-                fin_flow.append(abr)
-    fin_flow = "".join(fin_flow)
-    fin_flow = round(float(fin_flow), 1)
-
-    # The shown total consumption is not reliable according to the TSO
-    # Consumption
-    # Cons = []
-    # for x in range(650, 700-6):
-    #    for abr in shorts:
-    #        im1 = im.crop((x, 564, x+6, 573))
-    #        if im1 == mapping[abr]:
-    #            Cons.append(abr)
-    # Cons = "".join(Cons)
-    # Cons = round(float(Cons),1)
-
-    # Wind production
-    wind = []
-    for x in range(650, 700 - 6):
-        for abr in shorts:
-            im1 = im.crop((x, 576, x + 6, 585))
-            if im1 == mapping[abr]:
-                wind.append(abr)
-    wind = "".join(wind)
-    wind = round(float(wind), 1)
-
-    # Fossil fuel production
-    fossil = []
-    for x in range(650, 700 - 6):
-        for abr in shorts:
-            im1 = im.crop((x, 588, x + 6, 597))
-            if im1 == mapping[abr]:
-                fossil.append(abr)
-    fossil = "".join(fossil)
-    fossil = round(float(fossil), 1)
-
-    # Both are confirmed to be import from Finland by the TSO
-    fin_flow = fin_flow + gustafs_flow
-
-    # Calculate sum of exchanges
-    sum_exchanges = se_3_flow + fin_flow
-    # Calculate total production
-    total_production = fossil + wind
-    # Calculate total consumption
-    consumption = round(total_production + sum_exchanges, 1)
-
-    # The production that is not fossil fuel or wind based is unknown
-    # Impossible to estimate with current data
-    # UProd = TotProd - WProd - FProd
-    return {
-        "production": total_production,
-        "consumption": consumption,
-        "wind": wind,
-        "fossil": fossil,
-        "SE3->AX": se_3_flow,
-        "FI->AX": fin_flow,
-        "fetchtime": fetchtime,
-    }
+    return_list = []
+    for data in data_list:
+        corrected_date = date - timedelta(minutes=15 * data_list.index(data))
+        if type == "production":
+            return_list.append(
+                {
+                    "zoneKey": zone_key,
+                    "production": {
+                        "wind": data["wind"],
+                        "oil": data["fossil"],
+                    },
+                    "datetime": corrected_date,
+                    "source": SOURCE,
+                }
+            )
+        elif type == "consumption":
+            return_list.append(
+                {
+                    "zoneKey": zone_key,
+                    "datetime": corrected_date,
+                    "consumption": data["consumption"],
+                    "source": SOURCE,
+                }
+            )
+        elif type == "exchange":
+            if zone_key1 == "AX" and zone_key2 == "SE-SE3":
+                return_list.append(
+                    {
+                        "sortedZoneKeys": "AX->SE-SE3",
+                        "datetime": corrected_date,
+                        "netFlow": data["sweden"] * -1,
+                        "source": SOURCE,
+                    }
+                )
+            elif zone_key1 == "AX" and zone_key2 == "FI":
+                return_list.append(
+                    {
+                        "sortedZoneKeys": "AX->FI",
+                        "datetime": corrected_date,
+                        "netFlow": round(data["alink"] + data["gustavs"], 2) * -1,
+                        "source": SOURCE,
+                    }
+                )
+            else:
+                raise ParserException(
+                    "AX.py",
+                    "This parser can only fetch data between Åland <-> Sweden and Åland <-> Finland",
+                )
+        else:
+            raise ParserException(
+                "AX.py",
+                "The datasource currently implemented is only for production, consumption and exchange data",
+                zone_key,
+            )
+    return return_list
 
 
 def fetch_production(
     zone_key: str = "AX",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
-    """Requests the last known production mix (in MW) of a given country."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+) -> List[dict]:
+    """Fetch production data."""
 
-    obj = _fetch_data(session)
+    if target_datetime is not None:
+        raise ParserException(
+            "AX.py", "The datasource currently implemented is only for real time data"
+        )
 
-    return {
-        "zoneKey": zone_key,
-        "production": {
-            "biomass": None,
-            "coal": 0,
-            "gas": 0,
-            "hydro": None,
-            "nuclear": 0,
-            "oil": obj["fossil"],
-            "solar": None,
-            "wind": obj["wind"],
-            "geothermal": None,
-            "unknown": None,
-        },
-        "storage": {},
-        "source": SOURCE,
-        "datetime": arrow.get(obj["fetchtime"]).datetime,
-    }
+    return formated_data(
+        zone_key=zone_key,
+        zone_key1=None,
+        zone_key2=None,
+        session=session,
+        logger=logger,
+        type="production",
+    )
 
 
 def fetch_consumption(
     zone_key: str = "AX",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+) -> List[dict]:
+    """Fetch consumption data."""
 
-    obj = _fetch_data(session)
+    if target_datetime is not None:
+        raise ParserException(
+            "AX.py", "The datasource currently implemented is only for real time data"
+        )
 
-    return {
-        "zoneKey": zone_key,
-        "datetime": arrow.get(obj["fetchtime"]).datetime,
-        "consumption": obj["consumption"],
-        "source": SOURCE,
-    }
+    return formated_data(
+        zone_key=zone_key,
+        zone_key1=None,
+        zone_key2=None,
+        session=session,
+        logger=logger,
+        type="consumption",
+    )
 
 
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
-    """Requests the last known power exchange (in MW) between two countries."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+) -> List[dict]:
+    """Fetch exchange data."""
 
-    obj = _fetch_data(session)
+    if target_datetime is not None:
+        raise ParserException(
+            "AX.py", "The datasource currently implemented is only for real time data"
+        )
 
-    # Country codes are sorted in order to enable easier indexing in the database
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-
-    data = {
-        "sortedZoneKeys": sorted_zone_keys,
-        "source": SOURCE,
-        "datetime": arrow.get(obj["fetchtime"]).datetime,
-    }
-
-    # Here we assume that the net flow returned by the api is the flow from
-    # country1 to country2. A positive flow indicates an export from country1
-    # to country2. A negative flow indicates an import.
-    net_flow: Union[float, None] = None
-    if sorted_zone_keys in ["AX->SE", "AX->SE-SE3"]:
-        net_flow = obj["SE3->AX"]
-
-    elif sorted_zone_keys == "AX->FI":
-        net_flow = obj["FI->AX"]  # Import is positive
-
-    # The net flow to be reported should be from the first country to the second
-    # (sorted alphabetically). This is NOT necessarily the same direction as the flow
-    # from country1 to country2
-
-    #  AX is before both FI and SE
-    if net_flow:
-        data["netFlow"] = round(-1 * net_flow, 1)
-    else:
-        data["netFlow"] = None
-
-    return data
-
-
-if __name__ == "__main__":
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
-
-    print("fetch_production() ->")
-    print(fetch_production())
-    print("fetch_consumption() ->")
-    print(fetch_consumption())
-    print("fetch_exchange(AX, FI) ->")
-    print(fetch_exchange("FI", "AX"))
-    print("fetch_exchange(AX, SE-SE3) ->")
-    print(fetch_exchange("SE-SE3", "AX"))
+    return formated_data(
+        zone_key=None,
+        zone_key1=zone_key1,
+        zone_key2=zone_key2,
+        session=session,
+        logger=logger,
+        type="exchange",
+    )
