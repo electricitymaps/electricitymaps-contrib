@@ -17,23 +17,23 @@ capacity:
   unknown: null
   wind: 7173.8
 contributors:
-- corradio
-- unitrium
-- MariusKroon
-- chuqtas
-- jarek
-- ajoga
-- brandongalbraith
+  - corradio
+  - unitrium
+  - MariusKroon
+  - chuqtas
+  - jarek
+  - ajoga
+  - brandongalbraith
 subZoneNames:
-- AUS-NSW
-- AUS-NT
-- AUS-QLD
-- AUS-SA
-- AUS-TAS
-- AUS-TAS-CBI
-- AUS-TAS-FI
-- AUS-TAS-KI
-- AUS-VIC
-- AUS-WA
-- AUS-WA-RI
+  - AUS-NSW
+  - AUS-NT
+  - AUS-QLD
+  - AUS-SA
+  - AUS-TAS
+  - AUS-TAS-CBI
+  - AUS-TAS-FI
+  - AUS-TAS-KI
+  - AUS-VIC
+  - AUS-WA
+  - AUS-WA-RI
 timezone: Australia/Sydney
