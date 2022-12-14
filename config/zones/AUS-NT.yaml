@@ -5,5 +5,13 @@ bounding_box:
     - -10.468357028999876
 capacity:
   solar: 158
+  gas: 471.4
+  biomass: 1.1
+contributors:
+  - unitrium
+parsers:
+  price: NTESMO.fetch_price
+  production: NTESMO.fetch_production
+  consumption: NTESMO.fetch_consumption
 flag_file_name: au.png
 timezone: null
