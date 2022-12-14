@@ -219,13 +219,6 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
 ):
-    if target_datetime is None:
-        raise ParserException(
-            "FR_O.py",
-            f"Live price data not implemented for {zone_key} in this parser.",
-            zone_key,
-        )
-
     production_objects, date_string = fetch_data(
         zone_key, session, target_datetime, logger
     )
