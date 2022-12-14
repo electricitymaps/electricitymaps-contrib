@@ -11,7 +11,7 @@ contributors:
   - unitrium
 parsers:
   price: NTESMO.fetch_price
-  production: NTESMO.fetch_production
+  production: NTESMO.fetch_production_mix
   consumption: NTESMO.fetch_consumption
 flag_file_name: au.png
 timezone: null
