@@ -240,6 +240,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Finland:
   - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=FI)
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+  - Wind: [Fingrid](https://data.fingrid.fi/en/dataset/total-wind-production-capacity)
+  - Solar: [Fingrid](https://data.fingrid.fi/en/dataset/total-solar-production-capacity)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France:
   - Geothermal: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
