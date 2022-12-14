@@ -670,6 +670,54 @@
     "FR": {
       "zoneName": "France"
     },
+    "FR-ACA": {
+      "countryName": "France",
+      "zoneName": "Grand-Est"
+    },
+    "FR-ALP": {
+      "countryName": "France",
+      "zoneName": "Nouvelle-Aquitaine"
+    },
+    "FR-ARA": {
+      "countryName": "France",
+      "zoneName": "Auvergne-Rhône-Alpes"
+    },
+    "FR-BFC": {
+      "countryName": "France",
+      "zoneName": "Bourgogne-Franche-Comté"
+    },
+    "FR-BRE": {
+      "countryName": "France",
+      "zoneName": "Bretagne"
+    },
+    "FR-CEN": {
+      "countryName": "France",
+      "zoneName": "Centre-Val de Loire"
+    },
+    "FR-IDF": {
+      "countryName": "France",
+      "zoneName": "Ile-de-France"
+    },
+    "FR-LRM": {
+      "countryName": "France",
+      "zoneName": "Occitanie"
+    },
+    "FR-NOR": {
+      "countryName": "France",
+      "zoneName": "Normandie"
+    },
+    "FR-NPP": {
+      "countryName": "France",
+      "zoneName": "Hauts-de-France"
+    },
+    "FR-PAC": {
+      "countryName": "France",
+      "zoneName": "PACA"
+    },
+    "FR-PLO": {
+      "countryName": "France",
+      "zoneName": "Pays-de-la-Loire"
+    },
     "FR-COR": {
       "countryName": "France",
       "zoneName": "Corsica"
