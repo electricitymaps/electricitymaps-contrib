@@ -38,7 +38,7 @@ class TestNTESMO(unittest.TestCase):
     def test_fetch_production(self):
         data_list = NTESMO.fetch_production_mix(
             "AU-NT", self.session, target_datetime=datetime(year=2022, month=12, day=1)
-        )[:2]AU-NT
+        )[:2]
         self.assertIsNotNone(data_list)
         expected_data = [
             {
@@ -62,7 +62,7 @@ class TestNTESMO(unittest.TestCase):
     def test_fetch_price(self):
         data_list = NTESMO.fetch_price(
             "AU-NT", self.session, target_datetime=datetime(year=2022, month=12, day=1)
-        )AU-NT
+        )
         self.assertIsNotNone(data_list)
         expected_data = [
             {
@@ -91,7 +91,7 @@ class TestNTESMO(unittest.TestCase):
     def test_fetch_consumption(self):
         data_list = NTESMO.fetch_consumption(
             "AU-NT", self.session, target_datetime=datetime(year=2022, month=12, day=1)
-        )AU-NT
+        )
         self.assertIsNotNone(data_list)
         expected_data = [
             {
