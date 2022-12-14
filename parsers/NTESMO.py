@@ -43,6 +43,7 @@ PLANT_MAPPING = {
     "KS01": Generator(power_plant="", fuel_type="unknown"),
     "MY01": Generator(power_plant="", fuel_type="unknown"),
     "BJ01": Generator(power_plant="", fuel_type="unknown"),
+    "BP01": Generator(power_plant="", fuel_type="unknown"),
     "HP01": Generator(power_plant="", fuel_type="unknown")
 }
 
@@ -69,14 +70,17 @@ def extract_production_data(file: bytes) -> pd.DataFrame:
 def extract_demand_price_data(file: bytes) -> pd.DataFrame:
     return pd.read_excel(file, 'System Demand and Market Price', skiprows=4, header=0, usecols='A:C')
 
-def get_data(session: Session, target_datetime: Optional[datetime], extraction_func: Callable[[bytes], pd.DataFrame]) -> pd.DataFrame:
+def get_data(session: Session, target_datetime: Optional[datetime], extraction_func: Callable[[bytes], pd.DataFrame], logger: Logger) -> pd.DataFrame:
     if target_datetime is None:
         target_datetime = datetime.utcnow()
     index = construct_year_index(target_datetime.year, session)
-    data_file = get_historical_daily_data(index[target_datetime.month][target_datetime.day], session)
+    try:
+        data_file = get_historical_daily_data(index[target_datetime.month][target_datetime.day], session)
+    except KeyError:
+        raise Exception(f"Cannot find file on the index page for date {target_datetime}")
     return extraction_func(data_file)
 
-def parse_consumption(raw_consumption: pd.DataFrame, target_datetime: datetime, price: bool = False) -> List[dict]:
+def parse_consumption(raw_consumption: pd.DataFrame, target_datetime: datetime, logger: Logger, price: bool = False) -> List[dict]:
     data_points = []
     for _, consumption in raw_consumption.iterrows():
         # Market day starts at 4:30 and reports up until 4:00 the next day.
@@ -98,24 +102,30 @@ def parse_consumption(raw_consumption: pd.DataFrame, target_datetime: datetime, 
         data_points.append(data_point)
     return data_points
 
-def parse_production_mix(raw_production_mix: pd.DataFrame) -> List[dict]:
+def parse_production_mix(raw_production_mix: pd.DataFrame, logger: Logger) -> List[dict]:
     production_mix = []
+    generation_units = set(raw_production_mix.columns)
+    generation_units.remove("Period Start")
+    generation_units.remove("Period End")
+    if not generation_units == PLANT_MAPPING.keys():
+        raise Exception(f"New generator {generation_units - PLANT_MAPPING.keys()} detected in AUS-NT, please update the mapping of generators.")
     for _, production in raw_production_mix.iterrows():
         data_point = {
             "zoneKey": "AUS-NT",
             "datetime": production["Period Start"],
             "source": "ntesmo.com.au",
-            "production": {
-                "gas": 0,
-                "biomass": 0,
-                "unknown": 0
-            },
+            "production": dict(),
             "storage": dict()
         }
         for generator_key, generator in PLANT_MAPPING.items():
+            if generator_key not in production:
+                raise Exception(f"Missing generator {generator_key} detected in AUS-NT, please update the mapping of generators.")
             # Some decomissioned plants have negative production values.
             if production[generator_key] >= 0:
-                data_point["production"][generator["fuel_type"]] += production[generator_key]
+                if generator["fuel_type"] in data_point["production"]:
+                    data_point["production"][generator["fuel_type"]] += production[generator_key]
+                else:
+                    data_point["production"][generator["fuel_type"]] = production[generator_key]
         production_mix.append(data_point)
     return production_mix
 
@@ -127,8 +137,8 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    consumption = get_data(session, target_datetime, extract_demand_price_data)
-    return parse_consumption(consumption, target_datetime)
+    consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
+    return parse_consumption(consumption, target_datetime, logger)
 
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
@@ -137,8 +147,8 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    consumption = get_data(session, target_datetime, extract_demand_price_data)
-    return parse_consumption(consumption, target_datetime, price= True)
+    consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
+    return parse_consumption(consumption, target_datetime, logger, price= True)
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production_mix(
@@ -147,15 +157,15 @@ def fetch_production_mix(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    production_mix = get_data(session, target_datetime, extract_production_data)
-    return parse_production_mix(production_mix)
+    production_mix = get_data(session, target_datetime, extract_production_data, logger)
+    return parse_production_mix(production_mix, logger)
 
 
 
 
 if __name__ == "__main__":
     target_datetime = datetime.now() - timedelta(days=2)
-    consumption = get_data(Session(), target_datetime, extract_demand_price_data)
-    print(parse_consumption(consumption, target_datetime))
+    consumption = get_data(Session(), target_datetime, extract_production_data, Logger('test'))
+    print(parse_production_mix(consumption, Logger('test')))
 
 
