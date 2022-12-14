@@ -24,9 +24,10 @@ from parsers.lib.quality import (
 logger = getLogger(__name__)
 basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s")
 
+
 @click.command()
 @click.argument("zone")
-@click.argument("data-type", default='')
+@click.argument("data-type", default="")
 @click.option("--target_datetime", default=None, show_default=True)
 def test_parser(zone: ZoneKey, data_type, target_datetime):
     """\b
@@ -50,7 +51,7 @@ def test_parser(zone: ZoneKey, data_type, target_datetime):
     start = time.time()
 
     if not data_type:
-        data_type = 'exchange' if '->' in zone else 'production'
+        data_type = "exchange" if "->" in zone else "production"
     parser: Callable[
         ..., Union[List[Dict[str, Any]], Dict[str, Any]]
     ] = PARSER_KEY_TO_DICT[data_type][zone]
