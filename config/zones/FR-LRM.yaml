@@ -11,7 +11,8 @@ capacity:
   unknown: 283
   wind: 1630
 contributors:
-  - https://github.com/AilinvandenHonigkuchenpferdlande
+  - AilinvandenHonigkuchenpferdlande
+  - corradio
 parsers:
   production: ECO2MIX.fetch_production
 timezone: Europe/Paris
