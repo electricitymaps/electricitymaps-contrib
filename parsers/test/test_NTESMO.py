@@ -2,10 +2,11 @@ import unittest
 from datetime import datetime
 from json import loads
 
-from parsers import NTESMO
 from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, Adapter
+
+from parsers import NTESMO
 
 
 class TestNTESMO(unittest.TestCase):
