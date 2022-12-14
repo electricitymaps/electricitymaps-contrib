@@ -2,11 +2,10 @@ import unittest
 from datetime import datetime
 from json import loads
 
+from parsers import NTESMO
 from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, Adapter
-
-from parsers import NTESMO
 
 
 class TestNTESMO(unittest.TestCase):
@@ -38,8 +37,8 @@ class TestNTESMO(unittest.TestCase):
 
     def test_fetch_production(self):
         data_list = NTESMO.fetch_production_mix(
-            "AUS-NT", self.session, target_datetime=datetime(year=2022, month=12, day=1)
-        )[:2]
+            "AU-NT", self.session, target_datetime=datetime(year=2022, month=12, day=1)
+        )[:2]AU-NT
         self.assertIsNotNone(data_list)
         expected_data = [
             {
@@ -53,8 +52,8 @@ class TestNTESMO(unittest.TestCase):
         ]
         self.assertEqual(len(data_list), len(expected_data))
         for index, actual in enumerate(data_list):
-            self.assertEqual(actual["zoneKey"], "AUS-NT")
-            self.assertEqual(actual["source"], "ntesmo.com.au")
+            self.assertEqual(actual["zoneKey"], "AU-NT")
+            self.assertEqual(actual["source"], "nAU-NTcom.au")
             for production_type, production in actual["production"].items():
                 self.assertEqual(
                     production, expected_data[index]["production"][production_type]
@@ -62,8 +61,8 @@ class TestNTESMO(unittest.TestCase):
 
     def test_fetch_price(self):
         data_list = NTESMO.fetch_price(
-            "AUS-NT", self.session, target_datetime=datetime(year=2022, month=12, day=1)
-        )
+            "AU-NT", self.session, target_datetime=datetime(year=2022, month=12, day=1)
+        )AU-NT
         self.assertIsNotNone(data_list)
         expected_data = [
             {
@@ -73,8 +72,8 @@ class TestNTESMO(unittest.TestCase):
         ] * 48
         self.assertEqual(len(data_list), len(expected_data))
         for index, actual in enumerate(data_list):
-            self.assertEqual(actual["zoneKey"], "AUS-NT")
-            self.assertEqual(actual["source"], "ntesmo.com.au")
+            self.assertEqual(actual["zoneKey"], "AU-NT")
+            self.assertEqual(actual["source"], "nAU-NTcom.au")
             self.assertEqual(actual["price"], expected_data[index]["price"])
             self.assertEqual(actual["currency"], expected_data[index]["currency"])
 
@@ -91,8 +90,8 @@ class TestNTESMO(unittest.TestCase):
 
     def test_fetch_consumption(self):
         data_list = NTESMO.fetch_consumption(
-            "AUS-NT", self.session, target_datetime=datetime(year=2022, month=12, day=1)
-        )
+            "AU-NT", self.session, target_datetime=datetime(year=2022, month=12, day=1)
+        )AU-NT
         self.assertIsNotNone(data_list)
         expected_data = [
             {
@@ -101,8 +100,8 @@ class TestNTESMO(unittest.TestCase):
         ] * 48
         self.assertEqual(len(data_list), len(expected_data))
         for index, actual in enumerate(data_list):
-            self.assertEqual(actual["zoneKey"], "AUS-NT")
-            self.assertEqual(actual["source"], "ntesmo.com.au")
+            self.assertEqual(actual["zoneKey"], "AU-NT")
+            self.assertEqual(actual["source"], "nAU-NTcom.au")
             self.assertEqual(actual["consumption"], expected_data[index]["consumption"])
 
         # Check that the dates corresponds to two days:

@@ -1,4 +1,4 @@
-"""Parser for AUS-NT using https://ntesmo.com.au data, the electricity market operator for the Northen Territories.
+"""Parser for AU-NT using https://ntesmo.com.au data, the electricity market operator for the Northen Territories.
 Uses some webscrapping as no API seems to be available. Data is available in the form of daily xslx files.
 Mapping is done using EDL's website and Territory Generation.
 https://edlenergy.com/project/pine-creek/
@@ -10,9 +10,8 @@ from typing import Callable, Dict, List, Optional, TypedDict
 
 import pandas as pd
 from bs4 import BeautifulSoup
-from requests import Session
-
 from parsers.lib.config import refetch_frequency
+from requests import Session
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 
@@ -122,7 +121,7 @@ def parse_consumption(
             timestamp = timestamp + timedelta(days=1)
 
         data_point = {
-            "zoneKey": "AUS-NT",
+            "zoneKey": "AU-NT",
             "datetime": timestamp,
             "source": "ntesmo.com.au",
         }
@@ -144,11 +143,11 @@ def parse_production_mix(
     generation_units.remove("Period End")
     if not generation_units == PLANT_MAPPING.keys():
         raise Exception(
-            f"New generator {generation_units - PLANT_MAPPING.keys()} detected in AUS-NT, please update the mapping of generators."
+            f"New generator {generation_units - PLANT_MAPPING.keys()} detected in AU-NT, please update the mapping of generators."
         )
     for _, production in raw_production_mix.iterrows():
         data_point = {
-            "zoneKey": "AUS-NT",
+            "zoneKey": "AU-NT",
             "datetime": production["Period Start"],
             "source": "ntesmo.com.au",
             "production": dict(),
@@ -157,7 +156,7 @@ def parse_production_mix(
         for generator_key, generator in PLANT_MAPPING.items():
             if generator_key not in production:
                 raise Exception(
-                    f"Missing generator {generator_key} detected in AUS-NT, please update the mapping of generators."
+                    f"Missing generator {generator_key} detected in AU-NT, please update the mapping of generators."
                 )
             # Some decomissioned plants have negative production values.
             if production[generator_key] >= 0:
@@ -175,7 +174,7 @@ def parse_production_mix(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "AUS-NT",
+    zone_key: str = "AU-NT",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -186,7 +185,7 @@ def fetch_consumption(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
-    zone_key: str = "AUS-NT",
+    zone_key: str = "AU-NT",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -197,7 +196,7 @@ def fetch_price(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production_mix(
-    zone_key: str = "AUS-NT",
+    zone_key: str = "AU-NT",
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),

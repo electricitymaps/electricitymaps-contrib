@@ -1556,7 +1556,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-NT", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-NT", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
