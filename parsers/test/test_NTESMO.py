@@ -2,11 +2,10 @@ import unittest
 from datetime import datetime
 from json import loads
 
+from parsers import NTESMO
 from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, Adapter
-
-from parsers import NTESMO
 
 
 class TestNTESMO(unittest.TestCase):
@@ -54,7 +53,7 @@ class TestNTESMO(unittest.TestCase):
         self.assertEqual(len(data_list), len(expected_data))
         for index, actual in enumerate(data_list):
             self.assertEqual(actual["zoneKey"], "AU-NT")
-            self.assertEqual(actual["source"], "nAU-NTcom.au")
+            self.assertEqual(actual["source"], "ntesmo.com.au")
             for production_type, production in actual["production"].items():
                 self.assertEqual(
                     production, expected_data[index]["production"][production_type]
@@ -74,7 +73,7 @@ class TestNTESMO(unittest.TestCase):
         self.assertEqual(len(data_list), len(expected_data))
         for index, actual in enumerate(data_list):
             self.assertEqual(actual["zoneKey"], "AU-NT")
-            self.assertEqual(actual["source"], "nAU-NTcom.au")
+            self.assertEqual(actual["source"], "ntesmo.com.au")
             self.assertEqual(actual["price"], expected_data[index]["price"])
             self.assertEqual(actual["currency"], expected_data[index]["currency"])
 
@@ -102,7 +101,7 @@ class TestNTESMO(unittest.TestCase):
         self.assertEqual(len(data_list), len(expected_data))
         for index, actual in enumerate(data_list):
             self.assertEqual(actual["zoneKey"], "AU-NT")
-            self.assertEqual(actual["source"], "nAU-NTcom.au")
+            self.assertEqual(actual["source"], "ntesmo.com.au")
             self.assertEqual(actual["consumption"], expected_data[index]["consumption"])
 
         # Check that the dates corresponds to two days:
