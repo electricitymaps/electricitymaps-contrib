@@ -67,7 +67,7 @@ FUEL_MAPPING = {
 }
 
 
-def fetch_api_data(kind: str, params: dict) -> List[Dict]:
+def fetch_api_data(kind: str, params: dict) -> list:
 
     headers = {
         "Host": "api.pjm.com",
@@ -129,7 +129,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict]:
+) -> list:
     """uses PJM API to get generation  by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
