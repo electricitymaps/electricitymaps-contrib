@@ -72,6 +72,9 @@ API_PARAMETER_GROUPS = {
         "unknown": ["bagasse_charbon_mwh", "charbon_bagasse_mw"],
     },
     "storage": {},
+    "price": {
+        "price": ["cout_moyen_de_production_eur_mwh"],
+    },
 }
 
 PRODUCTION_MAPPING = {
@@ -88,6 +91,12 @@ STORAGE_MAPPING = {
     for API_TYPE in groups
 }
 
+PRICE_MAPPING = {
+    API_TYPE: type
+    for key in ["price"]
+    for type, groups in API_PARAMETER_GROUPS[key].items()
+    for API_TYPE in groups
+}
 
 def generate_url(zone_key, target_datetime):
     return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{HISTORICAL_DATASETS[zone_key] if target_datetime else LIVE_DATASETS[zone_key]}/exports/json"
@@ -200,6 +209,34 @@ def fetch_production(
                 "storage": storage,
                 "source": "edf.fr",
                 "estimated": True if production_object["statut"] == "Estimé" else False,
+            }
+        )
+    return return_list
+
+def fetch_price(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger=getLogger(__name__),
+):
+    production_objects, date_string = fetch_data(
+        zone_key, session, target_datetime, logger
+    )
+
+    return_list: List[Dict[str, Any]] = []
+    for production_object in production_objects:
+        price: Union[float, int] = 0
+        for mode_key in production_object:
+            if mode_key in PRICE_MAPPING:
+                price += production_object[mode_key]
+
+        return_list.append(
+            {
+                "zoneKey": zone_key,
+                "currency": "EUR",
+                "datetime": datetime.fromisoformat(production_object[f"{date_string}"]),
+                "source": "edf.fr",
+                "price": price,
             }
         )
     return return_list
