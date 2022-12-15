@@ -37,3 +37,4 @@ subZoneNames:
   - AUS-WA
   - AUS-WA-RI
 timezone: Australia/Sydney
+estimation_method: RECONSTRUCT_BREAKDOWN
