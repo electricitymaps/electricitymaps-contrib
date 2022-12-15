@@ -8,6 +8,7 @@ from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import Callable, Dict, List, Optional, TypedDict
 
+import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
 from parsers.lib.config import refetch_frequency
@@ -15,7 +16,8 @@ from parsers.lib.exceptions import ParserException
 from requests import Session
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
-
+# Data is published for the previous day only.
+DELAY = 30
 
 class Generator(TypedDict):
     power_plant: str
@@ -180,7 +182,7 @@ def parse_production_mix(
 def fetch_consumption(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime = arrow.now().to("utc").shift(hours=-DELAY),
     logger: Logger = getLogger(__name__),
 ):
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
@@ -191,7 +193,7 @@ def fetch_consumption(
 def fetch_price(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime = arrow.now().to("utc").shift(hours=-DELAY),
     logger: Logger = getLogger(__name__),
 ):
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
@@ -202,7 +204,7 @@ def fetch_price(
 def fetch_production_mix(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime = arrow.now().to("utc").shift(hours=-DELAY),
     logger: Logger = getLogger(__name__),
 ):
     production_mix = get_data(session, target_datetime, extract_production_data, logger)
