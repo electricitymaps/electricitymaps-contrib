@@ -10,10 +10,9 @@ from typing import Callable, Dict, List, Optional, TypedDict
 
 import pandas as pd
 from bs4 import BeautifulSoup
-from requests import Session
-
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
+from requests import Session
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 
@@ -89,12 +88,11 @@ def extract_demand_price_data(file: bytes) -> pd.DataFrame:
 
 def get_data(
     session: Session,
-    target_datetime: Optional[datetime],
+    target_datetime: datetime,
     extraction_func: Callable[[bytes], pd.DataFrame],
     logger: Logger,
 ) -> pd.DataFrame:
-    if target_datetime is None:
-        target_datetime = datetime.utcnow()
+    assert target_datetime is not None, ParserException("NTESMO.py", "Target datetime cannot be None.")
     index = construct_year_index(target_datetime.year, session)
     try:
         data_file = get_historical_daily_data(
@@ -110,13 +108,12 @@ def get_data(
 
 def parse_consumption(
     raw_consumption: pd.DataFrame,
-    target_datetime: Optional[datetime],
+    target_datetime: datetime,
     logger: Logger,
     price: bool = False,
 ) -> List[dict]:
     data_points = []
-    if target_datetime is None:
-        target_datetime = datetime.utcnow()
+    assert target_datetime is not None, ParserException("NTESMO.py", "Target datetime cannot be None.")
     for _, consumption in raw_consumption.iterrows():
         # Market day starts at 4:30 and reports up until 4:00 the next day.
         # Therefore timestamps between 0:00 and 4:30 excluded need to have an extra day.
