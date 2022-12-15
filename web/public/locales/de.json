@@ -258,7 +258,7 @@
       "countryName": "Australien",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australien",
       "zoneName": "Northern Territory"
     },
@@ -1770,7 +1770,7 @@
       "countryName": "Australien",
       "zoneName": "Flinders Island"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australien",
       "zoneName": "Cape Barren Island"
     },

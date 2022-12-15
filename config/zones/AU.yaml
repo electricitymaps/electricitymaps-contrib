@@ -1,0 +1,40 @@
+bounding_box:
+  - - 140.46708580936263
+    - -39.64495208099984
+  - - 150.47207507627593
+    - -33.486452325214685
+capacity:
+  battery storage: 157.2
+  biomass: 384.1
+  coal: 18359
+  gas: 8488.4
+  geothermal: 0
+  hydro: 5745
+  hydro storage: 1320
+  nuclear: 0
+  oil: 1389.2
+  solar: 19988.2
+  unknown: null
+  wind: 7173.8
+contributors:
+  - corradio
+  - unitrium
+  - MariusKroon
+  - chuqtas
+  - jarek
+  - ajoga
+  - brandongalbraith
+subZoneNames:
+  - AUS-NSW
+  - AU-NT
+  - AUS-QLD
+  - AUS-SA
+  - AUS-TAS
+  - AU-TAS-CBI
+  - AUS-TAS-FI
+  - AUS-TAS-KI
+  - AUS-VIC
+  - AUS-WA
+  - AUS-WA-RI
+timezone: Australia/Sydney
+estimation_method: RECONSTRUCT_BREAKDOWN

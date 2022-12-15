@@ -126,8 +126,8 @@
     "selectLanguage": "Choisissez une langue",
     "lowCarbDescription": "Inclut les énergies renouvelables et nucléaire",
     "dataIsDelayed": "Données en retard",
-    "representing": "représentation",
-    "ofemissions": "d'émissions",
+    "representing": "représentant",
+    "ofemissions": "des émissions",
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
     "weatherDisabled": "Les données météo ne sont pas disponible actuellement",
@@ -275,7 +275,7 @@
       "countryName": "Australie",
       "zoneName": "Nouvelle-Galles du Sud"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australie",
       "zoneName": "Territoire du Nord"
     },
@@ -1519,7 +1519,7 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australie",
       "zoneName": "Île du Cap Barren"
     },
