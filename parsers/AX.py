@@ -82,15 +82,11 @@ def formated_data(
         second=0,
         microsecond=0,
     )
+    if date > date_time:
+        date = date - timedelta(days=1)
     return_list = []
     for data in data_list:
-        index = data_list.index(data)
-        corrected_date = date - timedelta(minutes=15 * index)
-        if corrected_date > (date_time - timedelta(minutes=15 * index)):
-            raise ParserException(
-                "AX.py",
-                f"You have hit a edge case where the data is fetched before the iFrame has updated at midnight.\nPlease try again at {(datetime.utcnow() + timedelta(minutes=15)).isoformat(timespec='minutes')}.",
-            )
+        corrected_date = date - timedelta(minutes=15 * data_list.index(data))
         if type == "production":
             return_list.append(
                 {
