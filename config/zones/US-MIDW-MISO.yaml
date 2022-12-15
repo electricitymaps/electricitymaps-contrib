@@ -71,18 +71,9 @@ emissionFactors:
       value: 922.7890878
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 533.2061713878306
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 479.90089944064755
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 439.06055345228873
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 465.51623295234066
+        value: 565.6209396789254
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -97,18 +88,9 @@ emissionFactors:
       source: eGrid 2020; IPCC 2014
       value: 529.253592
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 533.2061713878306
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 479.90089944064755
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 439.06055345228873
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 465.51623295234066
+        value: 565.6209396789254
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
@@ -117,6 +99,23 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 26.45
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.3645360852974365
+        gas: 0.30037584595458294
+        geothermal: 0.0
+        hydro: 0.01694805949970092
+        hydro discharge: 0.0
+        nuclear: 0.15206562429253728
+        oil: 0.039240934812855545
+        solar: 0.0026026978505841476
+        unknown: 0.011260956292966863
+        wind: 0.11296974699180189
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

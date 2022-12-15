@@ -11,11 +11,30 @@ contributors:
 emissionFactors:
   lifecycle:
     battery discharge:
-      source: Electricity Maps, 2021 average
-      value: 213.52156469368532
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 108.98583333333332
     hydro discharge:
-      source: Electricity Maps, 2021 average
-      value: 27.514624060792045
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 108.98583333333332
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 3.4226520008310204e-06
+        biomass: 0.0
+        coal: 0.023587462962627034
+        gas: 0.09006665957036818
+        geothermal: 0.1885704985879849
+        hydro: 0.6037118318683812
+        hydro discharge: 0.0
+        nuclear: 0.00014169779283440418
+        oil: 0.00017464081834240276
+        solar: 0.0
+        unknown: 0.02596304015010383
+        wind: 0.06777937653655683
 flag_file_name: nz.png
 parsers:
   price: NZ.fetch_price

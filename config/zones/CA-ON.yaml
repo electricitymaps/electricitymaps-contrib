@@ -48,72 +48,42 @@ emissionFactors:
         value: 32.541670188589464
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 48.84539739548282
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 47.955666282237026
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 49.10956853808276
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 58.066760035663556
+        value: 57.47323263502428
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 48.84539739548282
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 47.955666282237026
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 49.10956853808276
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 58.066760035663556
+        value: 57.47323263502428
     nuclear:
       datetime: '2013-01-01'
-      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." (2013)
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
+        generation in the province of Ontario, Canada." (2013)
       value: 4.8
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2019 average
-      datetime: '2019-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0028163449505250113
-        coal: 1.1084762910340108e-06
-        gas: 0.06710873761526043
-        geothermal: 0.0
-        hydro: 0.26495287137749207
-        hydro discharge: 0.0
-        nuclear: 0.5872121380501228
-        oil: 5.8676358785421204e-08
-        solar: 0.00428256193849476
-        unknown: 2.4112757797105254e-05
-        wind: 0.07403640085363018
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
-        battery discharge: 5.455664708392035e-10
-        biomass: 0.003333064935932752
-        coal: 3.664686891727823e-05
-        gas: 0.0878236250950737
-        geothermal: 0.0
-        hydro: 0.2690217697122311
-        hydro discharge: 8.573187398901767e-10
-        nuclear: 0.5533052756582156
-        oil: 3.771189260642363e-06
-        solar: 0.004921634240578726
-        unknown: 3.0845081252172356e-05
-        wind: 0.08227978382933682
+        battery discharge: 5.246005859666389e-10
+        biomass: 0.003308911750891661
+        coal: 3.5777460191161355e-05
+        gas: 0.08659659371046442
+        geothermal: 7.324173609502802e-07
+        hydro: 0.2684266723798568
+        hydro discharge: 7.494294085237698e-10
+        nuclear: 0.5549845749984755
+        oil: 8.643169368504636e-07
+        solar: 0.004738808598367428
+        unknown: 2.8767372446770864e-05
+        wind: 0.08265783000861422
 flag_file_name: ca.png
 parsers:
   price: CA_ON.fetch_price
   production: CA_ON.fetch_production
 sources:
-  Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013):
-    link: https://doi.org/10.1007/s11367-012-0501-0
+  ? "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation\
+    \ in the province of Ontario, Canada.\" Int J Life Cycle Assess 18, 377\u2013\
+    391 (2013)"
+  : link: https://doi.org/10.1007/s11367-012-0501-0
 timezone: America/Toronto

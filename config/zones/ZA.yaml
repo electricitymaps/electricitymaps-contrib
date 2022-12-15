@@ -11,15 +11,33 @@ capacity:
   oil: 2409
 contributors:
   - IV1T3
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 702.6228258713882
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 702.6228258713882
 fallbackZoneMixes:
-  _source: Our world in data 2019
-  _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZAF
   powerOriginRatios:
-    value:
-      coal: 0.88
-      nuclear: 0.06
-      solar: 0.03
-      wind: 0.03
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.8268065921463611
+        gas: 1.2419063863541504e-06
+        geothermal: 0.0
+        hydro: 0.007023381544160146
+        hydro discharge: 0.029636903599686466
+        nuclear: 0.054461669852511524
+        oil: 0.014220180829927011
+        solar: 0.029868263429910637
+        unknown: 0.0005550119628318646
+        wind: 0.0374267298388545
 isLowCarbon:
   unknown:
     value: 1

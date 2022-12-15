@@ -71,18 +71,9 @@ emissionFactors:
         value: 53.50440564280603
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 117.62690701804988
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 103.37311717623633
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 67.08189685920867
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 85.70421092545492
+        value: 94.64933322719386
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -100,18 +91,9 @@ emissionFactors:
       source: eGrid 2020; IPCC 2014
       value: 38.0
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 117.62690701804988
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 103.37311717623633
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 67.08189685920867
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 85.70421092545492
+        value: 94.64933322719386
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -120,6 +102,23 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 32.8
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 6.826404758671036e-08
+        biomass: 3.2464208994361687e-07
+        coal: 6.249780417313596e-06
+        gas: 0.06783483299171798
+        geothermal: 6.465691325400351e-07
+        hydro: 0.7387561594236416
+        hydro discharge: 2.075071901073298e-07
+        nuclear: 0.10042080216300388
+        oil: 5.998961757620001e-08
+        solar: 0.0015106497582219824
+        unknown: 0.01854558147361244
+        wind: 0.0729243836931472
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

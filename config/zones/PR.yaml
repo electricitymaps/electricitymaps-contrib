@@ -54,19 +54,13 @@ emissionFactors:
       value: 786.0859158
   lifecycle:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 622.0627301219394
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 606.5077121885872
+        value: 604.8374514356746
     hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 622.0627301219394
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 606.5077121885872
+        value: 604.8374514356746
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
       source: Based on average renewable generation October 2019-September 2020 (12%
@@ -78,17 +72,17 @@ fallbackZoneMixes:
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0005883023303993181
-        coal: 0.17619531076716322
-        gas: 0.3589211745158209
-        geothermal: 0.0
-        hydro: 0.003060597850880488
+        biomass: 0.0007066304908926925
+        coal: 0.18341052141931616
+        gas: 0.36254281549275963
+        geothermal: 0.00013555981409766826
+        hydro: 0.004039114053495066
         hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.43884255125901067
-        solar: 0.012781128317819695
-        unknown: 0.0009022217665603376
-        wind: 0.008708607186538299
+        nuclear: 0.00013555981409766826
+        oil: 0.4242839401782749
+        solar: 0.012345607699868429
+        unknown: 0.002485333110272757
+        wind: 0.009913517715532442
 flag_file_name: pr.png
 isLowCarbon:
   unknown:

@@ -54,19 +54,13 @@ emissionFactors:
         value: 351.9679562
   lifecycle:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 239.9847501944717
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 258.08616563398533
+        value: 250.68772646613445
     hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 239.9847501944717
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 258.08616563398533
+        value: 250.68772646613445
     unknown:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
@@ -83,6 +77,23 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
         value: 415.2803301
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 5.584174914636865e-06
+        coal: 9.833998483134234e-05
+        gas: 0.0045042703186954055
+        geothermal: 0.0039665849279413475
+        hydro: 0.20190823746388056
+        hydro discharge: 3.837562257680779e-05
+        nuclear: 0.0005286543131162734
+        oil: 0.000125783013005312
+        solar: 0.1310421022647695
+        unknown: 0.5690886071472351
+        wind: 0.08868521298423133
 parsers:
   production: CL.fetch_production
 timezone: America/Santiago

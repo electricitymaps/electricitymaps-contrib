@@ -1,5 +1,5 @@
 bounding_box:
-  - - 60.051270
+  - - 60.05127
     - 11.027472
   - - 92.944336
     - 27.332735
@@ -19,8 +19,34 @@ contributors:
   - systemcatch
   - Manu1400
   - gopikrishna1793
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 688.6162960224434
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 688.6162960224434
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.003979734141315539
+        coal: 0.7876068205096145
+        gas: 0.06889152713651356
+        geothermal: 0.0007003004552504755
+        hydro: 0.045683653850865834
+        hydro discharge: 0.0
+        nuclear: 0.06851703493122113
+        oil: 0.006818894955722726
+        solar: 0.004992795111794922
+        unknown: 0.0017565472292090639
+        wind: 0.010845681494329525
 parsers:
-  production: IN_WE.fetch_production
   consumption: IN_WE.fetch_consumption
-
+  production: IN_WE.fetch_production
 timezone: Asia/Kolkata

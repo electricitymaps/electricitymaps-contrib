@@ -33,18 +33,29 @@ emissionFactors:
         value: 169.2474039323895
   lifecycle:
     battery discharge:
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 229.95224733536367
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 232.63488227492812
+        value: 235.97485082659796
     hydro discharge:
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 229.95224733536367
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 232.63488227492812
+        value: 235.97485082659796
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.46377516996269275
+        geothermal: 0.0
+        hydro: 0.19084097045703635
+        hydro discharge: 0.0
+        nuclear: 0.3454011583392152
+        oil: 1.8951088677709353e-05
+        solar: 0.0
+        unknown: 4.115911610833948e-07
+        wind: 1.592678840714006e-06
 parsers: {}
 timezone: Asia/Yerevan

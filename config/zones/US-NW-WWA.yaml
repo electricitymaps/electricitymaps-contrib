@@ -25,6 +25,10 @@ delays:
   production: 30
 emissionFactors:
   lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 11.538837852794687
     coal:
       datetime: '2014-01-01'
       source: IPCC 2014
@@ -33,6 +37,10 @@ emissionFactors:
       datetime: '2014-01-01'
       source: IPCC 2014
       value: 490.0
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 11.538837852794687
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021

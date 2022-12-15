@@ -19,6 +19,10 @@ emissionFactors:
       source: EU-ETS 2021
       value: 0.0
   lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 32.51061695202239
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -32,10 +36,31 @@ emissionFactors:
       datetime: '2014-01-01'
       source: IPCC 2014
       value: 490.0
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 32.51061695202239
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
       value: 650.0
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.003370000115291126
+        coal: 0.00297301580330705
+        gas: 0.007069411944029302
+        geothermal: 3.7720935553373134e-06
+        hydro: 0.8447082089673605
+        hydro discharge: 0.04089857883901085
+        nuclear: 0.010382064895908389
+        oil: 0.00011865184164168842
+        solar: 0.0016135108065831775
+        unknown: 0.004522524222705108
+        wind: 0.08434138148245467
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

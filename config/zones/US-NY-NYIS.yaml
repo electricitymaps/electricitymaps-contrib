@@ -56,12 +56,9 @@ emissionFactors:
       value: 662.0576145
   lifecycle:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 229.98354021758712
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 244.1288249460265
+        value: 266.28720998594736
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -76,12 +73,9 @@ emissionFactors:
       source: eGrid 2020; IPCC 2014
       value: 532.8877102
     hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 229.98354021758712
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 244.1288249460265
+        value: 266.28720998594736
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
@@ -92,36 +86,21 @@ emissionFactors:
       value: 27.6
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2020 average
-      datetime: '2020-01-01'
-      value:
-        battery discharge: 3.9834624616495575e-07
-        biomass: 0.0015236458759893409
-        coal: 0.01287817817323788
-        gas: 0.4022698912869475
-        geothermal: 1.5958266866941092e-08
-        hydro: 0.2487372269210103
-        hydro discharge: 7.1211367793512375e-06
-        nuclear: 0.2816190932223843
-        oil: 0.00016352959280419027
-        solar: 0.00047314848561446217
-        unknown: 0.017269940915413378
-        wind: 0.035086583625300184
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
-        battery discharge: 4.4662494296152485e-06
-        biomass: 0.0020698311556562716
-        coal: 0.01934981729348317
-        gas: 0.42212736362167086
-        geothermal: 8.675127992504238e-08
-        hydro: 0.25316713931546475
-        hydro discharge: 8.55456730136974e-06
-        nuclear: 0.25014838629521474
-        oil: 0.00023891217312607503
-        solar: 0.0007829272873062293
-        unknown: 0.016108628684213998
-        wind: 0.036029430584006227
+        battery discharge: 4.466848291645783e-06
+        biomass: 0.0020788498474700354
+        coal: 0.019449970743529506
+        gas: 0.42217852676771495
+        geothermal: 1.2609286587518547e-06
+        hydro: 0.2532193834568092
+        hydro discharge: 8.66439618901438e-06
+        nuclear: 0.24999899256426106
+        oil: 0.0002357772783840252
+        solar: 0.0007832537754805805
+        unknown: 0.016115275134822374
+        wind: 0.035959274617650035
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

@@ -37,19 +37,13 @@ emissionFactors:
         value: 575.0
   lifecycle:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 558.0
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 558.0000000000001
+        value: 574.4101372912717
     hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 558.0
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 558.0000000000001
+        value: 574.4101372912717
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
@@ -58,35 +52,20 @@ emissionFactors:
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2020 average
-      datetime: '2020-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 1.0
-        wind: 0.0
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.0
-        gas: 0.0
+        coal: 0.2900379952510115
+        gas: 0.6751018633094137
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.9999999999999999
+        oil: 0.003987777873555271
+        solar: 0.027370886270618757
+        unknown: 0.0035014545848240067
         wind: 0.0
 isLowCarbon:
   unknown:

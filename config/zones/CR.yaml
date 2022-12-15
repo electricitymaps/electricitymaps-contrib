@@ -50,58 +50,34 @@ emissionFactors:
         value: 16.291577964697424
   lifecycle:
     battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 47.97255678135195
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 53.90739997736844
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 65.1027409922794
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 51.881427239682125
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 40.346358212191696
+        value: 40.29042613825314
     hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 47.97255678135195
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 53.90739997736844
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 65.1027409922794
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 51.881427239682125
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 40.346358212191696
+        value: 40.29042613825314
     unknown:
       _comment: Source https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp
       source: assumes 58% thermal (coal, gas, or oil), 42% solar and biomass
       value: 463.75
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2020 average
-      datetime: '2020-01-01'
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0058360066971719984
-        coal: 0.0020582558203533136
-        gas: 0.00019989306674291488
-        geothermal: 0.10831993843185753
-        hydro: 0.7153011219950227
+        biomass: 0.00549389096701877
+        coal: 0.006330178148151061
+        gas: 0.004074494053361619
+        geothermal: 0.12171759516772186
+        hydro: 0.7239324633817049
         hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0034552162548463143
-        solar: 0.0015175146866818396
-        unknown: 0.04495296394096208
-        wind: 0.11856417727960715
+        nuclear: 1.4643825794992153e-05
+        oil: 0.0013856654924077098
+        solar: 0.0019952073478883793
+        unknown: 0.016265764319618264
+        wind: 0.11879820724119527
 parsers:
   production: CR.fetch_production
 timezone: null

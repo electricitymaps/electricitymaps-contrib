@@ -55,18 +55,9 @@ emissionFactors:
         value: 33.575020236312795
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 99.31349067162931
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 80.95425524778744
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 55.94689331623827
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 62.780638512347714
+        value: 24.0
     coal:
       datetime: '2014-01-01'
       source: IPCC 2014
@@ -76,22 +67,30 @@ emissionFactors:
       source: IPCC 2014
       value: 490.0
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 99.31349067162931
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 80.95425524778744
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 55.94689331623827
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 62.780638512347714
+        value: 24.0
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
       value: 650.0
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 1.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

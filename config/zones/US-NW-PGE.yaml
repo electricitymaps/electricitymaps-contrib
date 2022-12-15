@@ -63,18 +63,9 @@ emissionFactors:
         value: 125.68350934154255
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 208.1490155546106
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 181.73506222776373
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 145.54691797102316
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 176.8878423289599
+        value: 200.41626737941024
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
@@ -84,18 +75,9 @@ emissionFactors:
       source: eGrid 2020; IPCC 2014
       value: 585.3652195
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 208.1490155546106
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 181.73506222776373
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 145.54691797102316
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 176.8878423289599
+        value: 200.41626737941024
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -104,6 +86,23 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 30.16666667
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0010741020124494648
+        gas: 0.6855501497321558
+        geothermal: 0.0
+        hydro: 0.29920227169981184
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.013088996745911958
+        wind: 0.0010741020124494648
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

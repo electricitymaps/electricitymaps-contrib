@@ -67,18 +67,9 @@ emissionFactors:
         value: 237.68880592797754
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 331.97896099655054
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 324.7871979417284
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 293.6595248219585
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 292.6464775651042
+        value: 316.56730941021874
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -93,18 +84,9 @@ emissionFactors:
       source: eGrid 2020; IPCC 2014
       value: 514.223375
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 331.97896099655054
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 324.7871979417284
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 293.6595248219585
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 292.6464775651042
+        value: 316.56730941021874
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -113,6 +95,23 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 25.6
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.12181074526630606
+        gas: 0.20719791976264543
+        geothermal: 0.0
+        hydro: 0.01105941456534805
+        hydro discharge: 0.00044187568881411257
+        nuclear: 0.47819846481329514
+        oil: 0.0007655733883164278
+        solar: 0.07465947588576685
+        unknown: 0.10479719391944284
+        wind: 0.0010693509031109126
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

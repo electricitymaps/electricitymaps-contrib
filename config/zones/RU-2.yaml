@@ -40,31 +40,13 @@ emissionFactors:
         value: 325.8976606822384
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 368.2988164796275
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 414.67967187303975
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 493.7909799131237
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 453.45101844835244
+        value: 453.4506704652607
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 368.2988164796275
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 414.67967187303975
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 493.7909799131237
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 453.45101844835244
+        value: 453.4506704652607
     unknown:
       _comment: 'Assumes weighted average emission factor based on estimated 2021
         fuel consumption: 86.0% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 9.1%
@@ -78,17 +60,17 @@ fallbackZoneMixes:
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0
-        biomass: 1.294049358262306e-05
-        coal: 0.004143078389017562
-        gas: 0.0011987748486757908
+        biomass: 1.2941410009713337e-05
+        coal: 0.00414308086676488
+        gas: 0.0011987754596271842
         geothermal: 2.2198579466046784e-06
-        hydro: 0.4319238891921842
+        hydro: 0.431923864278944
         hydro discharge: 9.164270902774583e-10
-        nuclear: 0.0006696673863185435
-        oil: 6.270024442957947e-05
-        solar: 0.0014655094047953219
-        unknown: 0.5604868171706635
-        wind: 5.93185266412234e-05
+        nuclear: 0.0006696813363753621
+        oil: 6.270031231306764e-05
+        solar: 0.0014655092690283454
+        unknown: 0.5604868211079058
+        wind: 5.932259965051352e-05
 flag_file_name: ru.png
 parsers:
   production: RU.fetch_production

@@ -55,18 +55,9 @@ emissionFactors:
         value: 359.9878897203928
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 441.45370599080195
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 411.6400934346708
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 409.9863350394665
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 458.44186506978184
+        value: 469.7657014610443
     coal:
       datetime: '2012-01-01'
       source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
@@ -77,18 +68,9 @@ emissionFactors:
       source: IPCC 2014
       value: 490.0
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 441.45370599080195
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 411.6400934346708
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 409.9863350394665
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 458.44186506978184
+        value: 469.7657014610443
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -97,6 +79,23 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 26.76666667
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.04628124963465928
+        gas: 0.5229843813274132
+        geothermal: 0.0
+        hydro: 0.08046753955169564
+        hydro discharge: 0.001859699781686574
+        nuclear: 0.10616013445095886
+        oil: 0.00643905788262904
+        solar: 0.008624673464115738
+        unknown: 0.22398920958726876
+        wind: 0.003196209415827884
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

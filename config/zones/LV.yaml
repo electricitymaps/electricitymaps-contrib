@@ -75,27 +75,9 @@ emissionFactors:
       value: 880.903938
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 493.7680899731894
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 514.2989603956713
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 409.0929869387971
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 525.1871186670132
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 403.54356709907603
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 298.8199728907811
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 340.34978459014843
+        value: 333.7276629065241
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -113,27 +95,9 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 493.7680899731894
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 514.2989603956713
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 409.0929869387971
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 525.1871186670132
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 403.54356709907603
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 298.8199728907811
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 340.34978459014843
+        value: 333.7276629065241
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -157,17 +121,17 @@ fallbackZoneMixes:
       datetime: '2015-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.09559713993091913
-        coal: 0.1741463540266478
-        gas: 0.22443439919551225
+        biomass: 0.09521385334849329
+        coal: 0.1766692634561594
+        gas: 0.22360496075438827
         geothermal: 0.0
-        hydro: 0.23046641926159206
-        hydro discharge: 0.00022296442784058433
-        nuclear: 0.07980127887337295
-        oil: 0.00044697719209325736
-        solar: 0.0002540485133358337
-        unknown: 0.16423172814264578
-        wind: 0.031070687325306556
+        hydro: 0.22555730760921025
+        hydro discharge: 0.0002107480762409701
+        nuclear: 0.08250509532394029
+        oil: 0.0005165188925849671
+        solar: 8.62061454456349e-05
+        unknown: 0.16427774886685256
+        wind: 0.03227802165242511
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

@@ -39,6 +39,10 @@ emissionFactors:
         source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
         value: 16.4
   lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 44.219234735389676
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -56,6 +60,10 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 44.219234735389676
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -80,6 +88,23 @@ emissionFactors:
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
         outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.004005223304670885
+        coal: 0.0032956063083241774
+        gas: 0.003950613163556925
+        geothermal: 1.9023263199311216e-06
+        hydro: 0.3065766565741437
+        hydro discharge: 0.0014872789223386164
+        nuclear: 0.32089750013018165
+        oil: 0.00021647331499258964
+        solar: 0.013865177736923485
+        unknown: 0.08354032907530295
+        wind: 0.262578344424122
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

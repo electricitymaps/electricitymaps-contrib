@@ -17,7 +17,34 @@ contributors:
   - tmslaine
   - lorrieq
   - kongkille
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 458.14684827051013
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 458.14684827051013
 estimation_method: RECONSTRUCT_BREAKDOWN
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.002893007095903178
+        coal: 0.3232395644862032
+        gas: 0.3180783100503133
+        geothermal: 0.0005090720600838113
+        hydro: 0.10666834115465541
+        hydro discharge: 0.0
+        nuclear: 0.1402333488483548
+        oil: 0.044419355077048125
+        solar: 0.05479799764840612
+        unknown: 0.001276895189937593
+        wind: 0.007884106619853407
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price

@@ -12,25 +12,34 @@ contributors:
   - gopikrishna1793
 emissionFactors:
   lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 623.8608749425698
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 623.8608749425698
     unknown:
       source: assumes 43% solar PV and 57% wind
       value: 26
 fallbackZoneMixes:
-  _source: Electricity Maps
   powerOriginRatios:
-    value:
-      battery discharge: 0
-      biomass: 0.0
-      coal: 0.739788531237817
-      gas: 0.03592277014733543
-      geothermal: 0.0
-      hydro: 0.1233011541061651
-      hydro discharge: 0.0
-      nuclear: 0.02956120063948037
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.07142634386920217
-      wind: 0.0
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.7133026005915483
+        gas: 0.03918849273359453
+        geothermal: 0.0
+        hydro: 0.1298550483645379
+        hydro discharge: 0.0
+        nuclear: 0.03209713780119373
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.08555672082678238
+        wind: 0.0
 parsers:
   production: IN.fetch_production
 timezone: Asia/Kolkata

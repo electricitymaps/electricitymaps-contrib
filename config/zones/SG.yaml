@@ -48,31 +48,30 @@ emissionFactors:
         value: 372.16040720903
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 493.83082278143814
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 493.304923348922
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 492.5205635082304
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 491.6164625671815
+        value: 491.319745388494
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 493.83082278143814
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 493.304923348922
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 492.5205635082304
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 491.6164625671815
+        value: 491.319745388494
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 1.0989757147822616e-07
+        coal: 0.0005229464985545066
+        gas: 0.9717309828819485
+        geothermal: 0.0
+        hydro: 8.242536925793498e-05
+        hydro discharge: 0.0
+        nuclear: 2.6776123416227276e-05
+        oil: 0.0
+        solar: 0.006996661565346144
+        unknown: 0.02059445128771734
+        wind: 2.6791457961084702e-05
 isLowCarbon:
   unknown:
     value: 1

@@ -71,18 +71,9 @@ emissionFactors:
       value: 1070.811109
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 448.5146423943851
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 404.4887502096075
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 378.01622559875517
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 369.5728740282122
+        value: 428.8286615039803
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -97,18 +88,9 @@ emissionFactors:
       source: eGrid 2020; IPCC 2014
       value: 513.100066
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 448.5146423943851
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 404.4887502096075
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 378.01622559875517
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 369.5728740282122
+        value: 428.8286615039803
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
@@ -119,66 +101,21 @@ emissionFactors:
       value: 25.6
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2018 average
-      datetime: '2018-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 3.4894853196899422e-06
-        coal: 0.26345354395754506
-        gas: 0.46649858973001096
-        geothermal: 2.344623382892225e-07
-        hydro: 0.002778053092486769
-        hydro discharge: 9.840478081500393e-09
-        nuclear: 0.10351763840956121
-        oil: 1.084705540525808e-05
-        solar: 0.0077011333382190445
-        unknown: 0.0007529107227805255
-        wind: 0.15528362888863972
-    - _source: Electricity Maps, 2019 average
-      datetime: '2019-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 4.676075603849542e-06
-        coal: 0.2046950948001881
-        gas: 0.4717958553603389
-        geothermal: 6.254041721430412e-07
-        hydro: 0.002489801669223775
-        hydro discharge: 2.2570702974955382e-08
-        nuclear: 0.10808074624891617
-        oil: 7.436120318160386e-06
-        solar: 0.010441374871748831
-        unknown: 0.002030492090797747
-        wind: 0.20045394163901945
-    - _source: Electricity Maps, 2020 average
-      datetime: '2020-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 3.6118431437981373e-06
-        coal: 0.18147715404375914
-        gas: 0.4516517930741943
-        geothermal: 4.591535362579655e-07
-        hydro: 0.001671581703414332
-        hydro discharge: 8.282790283781304e-08
-        nuclear: 0.10954431991964447
-        oil: 5.397714687186657e-06
-        solar: 0.021796916702043298
-        unknown: 0.0043299827143816515
-        wind: 0.22951877982018173
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0
-        biomass: 2.9117594468909434e-06
-        coal: 0.19241185010007458
-        gas: 0.41841172294007406
-        geothermal: 3.3128153191570337e-07
-        hydro: 0.0013753427229622871
-        hydro discharge: 6.0163479439866095e-09
-        nuclear: 0.10327502674989009
-        oil: 8.558841289315493e-06
-        solar: 0.03882394598723538
-        unknown: 0.0015170316429651352
-        wind: 0.2441734074534763
+        biomass: 2.699271923729837e-06
+        coal: 0.19252396325419224
+        gas: 0.418260460555364
+        geothermal: 2.785496967056957e-07
+        hydro: 0.0013928784580988127
+        hydro discharge: 1.7836149624404227e-10
+        nuclear: 0.10324877356075696
+        oil: 7.002090139334862e-06
+        solar: 0.03879396735206749
+        unknown: 0.0015180241712047652
+        wind: 0.24425208187027933
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
