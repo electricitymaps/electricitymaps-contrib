@@ -13,8 +13,7 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
-
-from .lib.exceptions import ParserException
+from parsers.lib.exceptions import ParserException
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 
