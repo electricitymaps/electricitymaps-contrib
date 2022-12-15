@@ -108,11 +108,13 @@ def get_data(
 
 def parse_consumption(
     raw_consumption: pd.DataFrame,
-    target_datetime: datetime,
+    target_datetime: Optional[datetime],
     logger: Logger,
     price: bool = False,
 ) -> List[dict]:
     data_points = []
+    if target_datetime is None:
+        target_datetime = datetime.utcnow()
     for _, consumption in raw_consumption.iterrows():
         # Market day starts at 4:30 and reports up until 4:00 the next day.
         # Therefore timestamps between 0:00 and 4:30 excluded need to have an extra day.
