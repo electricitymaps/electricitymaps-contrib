@@ -11,8 +11,9 @@ from typing import Callable, Dict, List, Optional, TypedDict
 import pandas as pd
 from bs4 import BeautifulSoup
 from lib.exceptions import ParserException
-from parsers.lib.config import refetch_frequency
 from requests import Session
+
+from parsers.lib.config import refetch_frequency
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 
@@ -100,8 +101,9 @@ def get_data(
             index[target_datetime.month][target_datetime.day], session
         )
     except KeyError:
-        raise ParserException("NTESMO.py",
-            f"Cannot find file on the index page for date {target_datetime}"
+        raise ParserException(
+            "NTESMO.py",
+            f"Cannot find file on the index page for date {target_datetime}",
         )
     return extraction_func(data_file)
 
@@ -145,8 +147,9 @@ def parse_production_mix(
     generation_units.remove("Period Start")
     generation_units.remove("Period End")
     if not generation_units == PLANT_MAPPING.keys():
-        raise ParserException("NTESMO.py",
-            f"New generator {generation_units - PLANT_MAPPING.keys()} detected in AU-NT, please update the mapping of generators."
+        raise ParserException(
+            "NTESMO.py",
+            f"New generator {generation_units - PLANT_MAPPING.keys()} detected in AU-NT, please update the mapping of generators.",
         )
     for _, production in raw_production_mix.iterrows():
         data_point = {
@@ -158,8 +161,9 @@ def parse_production_mix(
         }
         for generator_key, generator in PLANT_MAPPING.items():
             if generator_key not in production:
-                raise ParserException("NTESMO.py",
-                    f"Missing generator {generator_key} detected in AU-NT, please update the mapping of generators."
+                raise ParserException(
+                    "NTESMO.py",
+                    f"Missing generator {generator_key} detected in AU-NT, please update the mapping of generators.",
                 )
             # Some decomissioned plants have negative production values.
             if production[generator_key] >= 0:
