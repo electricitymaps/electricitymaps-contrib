@@ -18,4 +18,4 @@ parsers:
   production: NTESMO.fetch_production_mix
   consumption: NTESMO.fetch_consumption
 flag_file_name: au.png
-timezone: null
+timezone: Australia/Darwin
