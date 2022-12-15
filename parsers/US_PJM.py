@@ -67,7 +67,6 @@ FUEL_MAPPING = {
 }
 
 
-
 def fetch_api_data(kind: str, params: dict) -> List[Dict]:
 
     headers = {
