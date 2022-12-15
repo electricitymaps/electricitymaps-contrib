@@ -69,7 +69,7 @@ def query(url_type_arg, session=None, target_datetime=None):
         date_to = arrow.get(target_datetime, "Europe/Paris")
     else:
         date_to = arrow.now(tz="Europe/Paris")
-    date_from = date_to.floor("day")
+    date_from = date_to.shift(days=-1).floor("day")
 
     url = f"http://www.rte-france.com/getEco2MixXml.php?type={url_type_arg}&dateDeb={date_from.format('DD/MM/YYYY')}&dateFin={date_to.format('DD/MM/YYYY')}"
     if url_type_arg == "regionFlux":
@@ -170,6 +170,8 @@ def format_production_df(df, zone_key):
 def fetch_production(
     zone_key, session=None, target_datetime=None, logger: Logger = getLogger(__name__)
 ):
+    if zone_key == "FR-COR":
+        raise ParserException("FR-COR is not supported in this parser")
 
     datapoints = [
         validate(d, logger, required=VALIDATIONS.get(zone_key, []))
@@ -180,11 +182,11 @@ def fetch_production(
     ]
 
     max_diffs = {
-        "hydro": 1600,
-        "solar": 1000,  # was 500 before
-        "unknown": 2000,  # thermal
-        "wind": 1000,
-        "nuclear": 1300,
+        # "hydro": 1600,
+        # "solar": 500,
+        # "unknown": 2000,  # thermal
+        # "wind": 1000,
+        # "nuclear": 1300,
     }
 
     datapoints = validate_production_diffs(datapoints, max_diffs, logger)
@@ -217,18 +219,35 @@ def parse_exchange_to_df(text):
     df = df.set_index("datetime").drop(["date", "periode"], axis=1)
     # Remove invalid granularities
     df = df[df.granularite == "Global"].drop("granularite", axis=1)
-    # # Compute values
+    # Compute values
     df.value = df.value.replace("ND", np.nan).replace("-", np.nan).astype("float")
     df["zone_key_other"] = df.v.apply(lambda x: MAP_ZONES[x.split("_")[1]])
     df["zone_key"] = df.perimetre.apply(lambda k: MAP_ZONES[k])
     df["sorted_zone_keys"] = df.apply(
         lambda row: "->".join(sorted([row["zone_key"], row["zone_key_other"]])), axis=1
     )
-    # RTE defines flow from zone_key_other to zone_key (same as us), as exports will show as negative
-    # We therefore need to flip the sign if the alphabetical order changes
+    # Data comes in for all zones, which means on zone's import
+    # will be another's export. We therefore only keep one of them
+    df = df[
+        df.perimetre
+        == df.sorted_zone_keys.apply(
+            # make sure we only selected rows where `perimetre`
+            # is one of the FR- keys of the pair (to make sure we capture
+            # exchange with neighboring countries)
+            lambda k: [
+                zone_key.replace("FR-", "")
+                for zone_key in k.split("->")
+                if "FR-" in zone_key
+            ][0]
+        )
+    ]
+    # RTE defines flow in the follow way:
+    # `value` represents flow from `zone_key_other` to `zone_key` (`perimetre`)
+    # We here flip the sign if the alphabetical order requires it
+    # (e.g. if zone_key is not the second key)
     df["net_flow"] = df.apply(
         lambda row: row["value"]
-        if row["sorted_zone_keys"].split("->")[0] == row["zone_key"]
+        if row["sorted_zone_keys"].split("->")[1] == row["zone_key"]
         else row["value"] * -1,
         axis=1,
     )
