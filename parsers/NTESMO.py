@@ -156,6 +156,7 @@ def parse_production_mix(
             "NTESMO.py",
             f"New generator {generation_units - PLANT_MAPPING.keys()} detected in AU-NT, please update the mapping of generators.",
         )
+    raw_production_mix["Period Start"] = raw_production_mix["Period Start"].dt.tz_localize("Australia/Darwin")
     for _, production in raw_production_mix.iterrows():
         data_point = {
             "zoneKey": "AU-NT",
