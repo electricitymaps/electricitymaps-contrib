@@ -154,7 +154,7 @@ def parse_production_mix(
     for _, production in raw_production_mix.iterrows():
         data_point = {
             "zoneKey": "AU-NT",
-            "datetime": production["Period Start"],
+            "datetime": production["Period Start"].to_pydatetime(),
             "source": "ntesmo.com.au",
             "production": dict(),
             "storage": dict(),
