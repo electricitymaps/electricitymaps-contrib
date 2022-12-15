@@ -4,17 +4,21 @@
 
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import Dict, List, Optional, Union
 
 import arrow
 import demjson3 as demjson
+import pandas as pd
+import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
 from requests import Session, get
 
-from .lib.utils import get_token
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
+from parsers.lib.utils import get_token
 
 # Used for consumption forecast data.
 API_ENDPOINT = "https://api.pjm.com/api/v1/"
@@ -46,6 +50,20 @@ exchange_mapping = {
     "cpl west": "SOUTHIMP|CPLW",
     "duke": "SOUTHIMP|DUKE",
     "cpl east": "SOUTHIMP|CPLE",
+}
+
+FUEL_MAPPING = {
+    "Coal": "coal",
+    "Gas": "gas",
+    "Hydro": "hydro",
+    "Multiple Fuels": "unknown",
+    "Nuclear": "nuclear",
+    "Oil": "oil",
+    "Other": "unknown",
+    "Other Renewables": "unknown",
+    "Solar": "solar",
+    "Storage": "battery",
+    "Wind": "wind",
 }
 
 
@@ -125,6 +143,26 @@ def data_processer(data) -> dict:
     return production
 
 
+def fetch_api_data(kind: str, params: dict) -> List[Dict]:
+
+    headers = {
+        "Host": "api.pjm.com",
+        "Ocp-Apim-Subscription-Key": get_token("PJM_TOKEN"),
+        "Origin": "http://dataminer2.pjm.com",
+        "Referer": "http://dataminer2.pjm.com/",
+    }
+    url = API_ENDPOINT + kind
+    resp = get(url, params, headers=headers)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data
+    else:
+        raise ParserException(
+            parser="US_PJM.py",
+            message=f"{kind} data is not available in the API",
+        )
+
+
 def fetch_consumption_forecast_7_days(
     zone_key: str = "US-PJM",
     session: Optional[Session] = None,
@@ -145,9 +183,7 @@ def fetch_consumption_forecast_7_days(
     params = {"download": True, "startRow": 1, "forecast_area": "RTO_COMBINED"}
 
     # query API
-    url = API_ENDPOINT + "load_frcstd_7_day"
-    resp = get(url, params, headers=headers)
-    data = json.loads(resp.content)
+    data = fetch_api_data(kind="load_frcstd_7_day", params=params)
 
     data_points = list()
     for elem in data:
@@ -163,28 +199,55 @@ def fetch_consumption_forecast_7_days(
     return data_points
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-PJM",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
-    """Requests the last known production mix (in MW) of a given country."""
-    if target_datetime is not None:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+) -> List[Dict]:
+    """uses PJM API to get generation  by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
+    if target_datetime is None:
+        target_datetime = arrow.utcnow().datetime
+    if not session:
+        session = Session()
 
-    extracted = extract_data(session=None)
-    production = data_processer(extracted[0])
-
-    datapoint = {
-        "zoneKey": zone_key,
-        "datetime": extracted[1],
-        "production": production,
-        "storage": {"hydro": None, "battery": None},
-        "source": "pjm.com",
+    params = {
+        "download": True,
+        "startRow": 1,
+        "fields": "datetime_beginning_ept,fuel_type,mw",
+        "datetime_beginning_ept": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
     }
+    resp_data = fetch_api_data(kind="gen_by_fuel", params=params)
 
-    return datapoint
+    data = pd.DataFrame(resp_data)
+    data.fuel_type = data.fuel_type.map(FUEL_MAPPING)
+
+    all_data_points = []
+    for dt in set(data.datetime_beginning_ept):
+        production = {}
+        storage = {}
+        data_dt = data.loc[data.datetime_beginning_ept == dt]
+        for mode in set(data.fuel_type):
+            if mode == "battery":
+                storage["battery"] = data_dt.loc[
+                    data_dt.fuel_type == mode, "mw"
+                ].values[0]
+            else:
+                production[mode] = data_dt.loc[data_dt.fuel_type == mode, "mw"].values[
+                    0
+                ]
+        data_point = {
+            "zoneKey": zone_key,
+            "datetime": arrow.get(dt).datetime.replace(
+                tzinfo=pytz.timezone("US/Eastern")
+            ),
+            "production": production,
+            "storage": storage,
+            "source": "pjm.com",
+        }
+        all_data_points += [data_point]
+    return all_data_points
 
 
 def add_default_tz(timestamp):
