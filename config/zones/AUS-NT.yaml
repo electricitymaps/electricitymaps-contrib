@@ -1,9 +1,0 @@
-bounding_box:
-  - - 128.50011587536375
-    - -26.499911390797962
-  - - 138.50018768629417
-    - -10.468357028999876
-capacity:
-  solar: 158
-flag_file_name: au.png
-timezone: null

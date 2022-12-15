@@ -765,7 +765,7 @@
           "stateDatetime": "2022-08-24T09:00:00Z"
         }
       ],
-      "AUS-NT": [],
+      "AU-NT": [],
       "AUS-QLD": [
         {
           "co2intensity": 679.09,
@@ -1522,7 +1522,7 @@
           "stateDatetime": "2022-08-24T09:00:00Z"
         }
       ],
-      "AUS-TAS-CBI": [],
+      "AU-TAS-CBI": [],
       "AUS-TAS-FI": [
         {
           "co2intensity": 11.19,
