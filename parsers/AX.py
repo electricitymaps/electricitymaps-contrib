@@ -75,12 +75,15 @@ def formated_data(
     """Format data to Electricity Map standards."""
     data_list = fetch_data(session, logger)
     data_list.reverse()
-    date = datetime.now(timezone(TIME_ZONE)).replace(
+    date_time = datetime.now(timezone(TIME_ZONE))
+    date = date_time.replace(
         hour=int(data_list[0]["time"].split(":")[0]),
         minute=int(data_list[0]["time"].split(":")[1]),
         second=0,
         microsecond=0,
     )
+    if date > date_time:
+        date = date - timedelta(days=1)
     return_list = []
     for data in data_list:
         corrected_date = date - timedelta(minutes=15 * data_list.index(data))
