@@ -2,7 +2,6 @@
 
 """Parser for the PJM area of the United States."""
 
-import json
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
