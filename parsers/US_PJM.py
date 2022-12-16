@@ -5,7 +5,7 @@
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Optional, Union
+from typing import List, Optional, Union
 
 import arrow
 import demjson3 as demjson
