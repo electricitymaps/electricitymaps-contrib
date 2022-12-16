@@ -122,3 +122,46 @@ export function useInterpolatedSolarData() {
     return { ...grib1, data: grib1.data.map((d, i) => interpolate(d, grib2.data[i])(k)) };
   }, [solarData]);
 }
+
+export function useInterpolatedSnowData() {
+  const snowData = useSelector((state) => state.data.snow);
+
+  console.log('snowData', snowData);
+
+  // TODO: Recalculate every 5 minutes if custom datetime is not set.
+  return useMemo(() => {
+    if (!snowData || !snowData.forecasts) {
+      return null;
+    }
+
+    const grib1 = snowData.forecasts[0];
+    const grib2 = snowData.forecasts[1];
+    const tBefore = getTargetTime(grib1);
+    const tAfter = getTargetTime(grib2);
+    const datetime = new Date();
+    const k = (datetime - tBefore) / (tAfter - tBefore);
+
+    if (datetime > tAfter) {
+      console.error('Error while interpolating snow because current time is out of bounds');
+      return null;
+    }
+
+    console.info(
+      `#1 snow forecast target ${formatDistance(tBefore, new Date(), { addSuffix: true })} made ${formatDistance(
+        getRefTime(grib1),
+        new Date(),
+        { addSuffix: true }
+      )}`
+    );
+
+    console.info(
+      `#2 snow forecast target ${formatDistance(tAfter, new Date(), { addSuffix: true })} made ${formatDistance(
+        getRefTime(grib2),
+        new Date(),
+        { addSuffix: true }
+      )}`
+    );
+
+    return { ...grib1, data: grib1.data.map((d, i) => interpolate(d, grib2.data[i])(k)) };
+  }, [snowData]);
+}

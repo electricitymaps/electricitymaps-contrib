@@ -24,6 +24,12 @@ export const windColor = scaleLinear()
 // ** Solar
 export const solarColor = scaleLinear().domain([0, 500, 1000]).range(['black', 'transparent', 'gold']).clamp(true);
 
+// ** Snow
+export const snowColor = scaleLinear()
+  .domain([0, 10])
+  .range(['rgba(159, 206, 204, 0)', 'rgba(159, 206, 204, 1)'])
+  .clamp(true);
+
 // ** Exchange
 
 export const quantizedCo2IntensityScale = scaleQuantize()

@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
-import { useWindEnabled, useSolarEnabled, useSolarToggledLocation, useWindToggledLocation } from '../hooks/router';
+import { useWindEnabled, useSolarEnabled, useSnowEnabled, useSolarToggledLocation, useWindToggledLocation, useSnowToggledLocation } from '../hooks/router';
 import { dispatchApplication } from '../store';
 
 import LanguageSelect from '../components/languageselect';
@@ -28,6 +28,10 @@ export default () => {
   const solarEnabled = useSolarEnabled();
   const solarDataError = useSelector((state) => state.data.solarDataError);
   const solarToggledLocation = useSolarToggledLocation();
+
+  const snowEnabled = useSnowEnabled();
+  const snowDataError = useSelector((state) => state.data.snowDataError);
+  const snowToggledLocation = useSnowToggledLocation();
 
   const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
 
@@ -81,6 +85,20 @@ export default () => {
             ariaLabel={__(getWeatherTranslateId('Solar', solarEnabled, isWeatherEnabled))}
             icon="weather/sun"
             onChange={() => trackEvent(`Solar Layer ${!solarEnabled ? 'Enabled' : 'Disabled'}`)}
+          />
+        </Link>
+        <Link
+          to={snowToggledLocation}
+          onClick={() => trackEvent(`Snow Layer ${!solarEnabled ? 'Enabled' : 'Disabled'}`)}
+          hasError={snowDataError || !isWeatherEnabled}
+        >
+          <ButtonToggle
+            active={snowEnabled}
+            tooltip={__(getWeatherTranslateId('Snow', snowEnabled, isWeatherEnabled))}
+            errorMessage={solarDataError}
+            ariaLabel={__(getWeatherTranslateId('Snow', snowEnabled, isWeatherEnabled))}
+            icon="weather/snow"
+            onChange={() => trackEvent(`Snow Layer ${!snowEnabled ? 'Enabled' : 'Disabled'}`)}
           />
         </Link>
         <ButtonToggle

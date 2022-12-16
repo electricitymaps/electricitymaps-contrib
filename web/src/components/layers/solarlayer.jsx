@@ -95,7 +95,7 @@ export default ({ unproject }) => {
 
   return (
     <CSSTransition classNames="fade" in={isVisible} timeout={300}>
-      <Canvas id="solar" width={width} height={height} ref={ref} />
+        <Canvas id="solar" width={width} height={height} ref={ref} />
     </CSSTransition>
   );
 };

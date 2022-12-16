@@ -16,7 +16,7 @@ import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useHeaderVisible, useAggregatesToggle, useAggregatesEnabled } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
-import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
+import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling, useConditionalSnowDataPolling } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import InfoModal from '../components/infomodal';
@@ -88,6 +88,8 @@ const Main = ({ electricityMixMode }) => {
 
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
+
+  useConditionalSnowDataPolling();
 
   // Note: we could also query static.electricitymap.org/public_web/client-version.json instead
   const { data: clientVersionData } = useSWR('/client-version.json', fetcher, {

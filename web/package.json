@@ -51,6 +51,8 @@
     "react-portal": "^4.2.1",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
+    "react-snowfall": "^1.2.1",
+    "react-sound": "^1.2.0",
     "react-spinners": "^0.12.0",
     "react-spring-bottom-sheet": "^3.4.0",
     "react-transition-group": "^4.3.0",

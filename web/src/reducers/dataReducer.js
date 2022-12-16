@@ -9,6 +9,9 @@ import {
   SOLAR_DATA_FETCH_FAILED,
   SOLAR_DATA_FETCH_REQUESTED,
   SOLAR_DATA_FETCH_SUCCEDED,
+  SNOW_DATA_FETCH_FAILED,
+  SNOW_DATA_FETCH_REQUESTED,
+  SNOW_DATA_FETCH_SUCCEDED,
   WIND_DATA_FETCH_FAILED,
   WIND_DATA_FETCH_REQUESTED,
   WIND_DATA_FETCH_SUCCEDED,
@@ -112,6 +115,19 @@ const reducer = createReducer(initialState, (builder) => {
       state.isLoadingSolar = false;
       state.solar = null;
       state.solarDataError = translation.translate('solarDataError');
+    })
+    .addCase(SNOW_DATA_FETCH_SUCCEDED, (state, action) => {
+      state.isLoadingSnow = false;
+      state.snow = action.payload;
+    })
+    .addCase(SNOW_DATA_FETCH_REQUESTED, (state) => {
+      state.isLoadingSnow = true;
+      state.snowDataError = null;
+    })
+    .addCase(SNOW_DATA_FETCH_FAILED, (state) => {
+      state.isLoadingSnow = false;
+      state.snow = null;
+      state.snowDataError = translation.translate('snowDataError');
     })
     .addCase(WIND_DATA_FETCH_SUCCEDED, (state, action) => {
       state.isLoadingWind = false;

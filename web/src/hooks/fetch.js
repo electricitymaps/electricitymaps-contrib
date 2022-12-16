@@ -5,12 +5,13 @@ import { useParams } from 'react-router-dom';
 import { DATA_FETCH_INTERVAL, TIME } from '../helpers/constants';
 import {
   GRID_DATA_FETCH_REQUESTED,
+  SNOW_DATA_FETCH_REQUESTED,
   SOLAR_DATA_FETCH_REQUESTED,
   WIND_DATA_FETCH_REQUESTED,
   ZONE_HISTORY_FETCH_REQUESTED,
 } from '../helpers/redux';
 
-import { useWindEnabled, useSolarEnabled, useFeatureToggle } from './router';
+import { useWindEnabled, useSolarEnabled, useSnowEnabled, useFeatureToggle } from './router';
 
 export function useConditionalZoneHistoryFetch() {
   const { zoneId } = useParams();
@@ -92,4 +93,23 @@ export function useConditionalSolarDataPolling() {
     }
     return () => clearInterval(pollInterval);
   }, [solarEnabled, dispatch, solarData]);
+}
+
+export function useConditionalSnowDataPolling() {
+  // TODO: ensure Wind/Solar is able to refetch if newer data were to become available
+  const snowEnabled = useSnowEnabled();
+  const snowData = useSelector((state) => state.data.snow);
+  const dispatch = useDispatch();
+
+  // After initial request, do the polling only if the custom datetime is not specified.
+  useEffect(() => {
+    let pollInterval;
+    if (snowEnabled && !snowData) {
+      dispatch(SNOW_DATA_FETCH_REQUESTED());
+      pollInterval = setInterval(() => {
+        dispatch(SNOW_DATA_FETCH_REQUESTED());
+      }, DATA_FETCH_INTERVAL);
+    }
+    return () => clearInterval(pollInterval);
+  }, [snowEnabled, dispatch, snowData]);
 }

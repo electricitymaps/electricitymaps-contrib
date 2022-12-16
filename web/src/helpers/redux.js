@@ -20,6 +20,10 @@ const SOLAR_DATA_FETCH_FAILED = createAction('weather/solar-fetch-failed');
 const SOLAR_DATA_FETCH_SUCCEDED = createAction('weather/solar-fetch-succeded');
 const SOLAR_DATA_FETCH_REQUESTED = createAction('weather/solar-fetch-requested');
 
+const SNOW_DATA_FETCH_FAILED = createAction('weather/snow-fetch-failed');
+const SNOW_DATA_FETCH_SUCCEDED = createAction('weather/snow-fetch-succeded');
+const SNOW_DATA_FETCH_REQUESTED = createAction('weather/snow-fetch-requested');
+
 function initDataState() {
   const geographies = constructTopos();
   const zones = {};
@@ -68,10 +72,13 @@ function initDataState() {
     isGridExpired,
     isLoadingSolar: false,
     isLoadingWind: false,
+    isLoadingSnow: false,
     solar: null,
     wind: null,
+    snow: null,
     solarDataError: null,
     windDataError: null,
+    snowDataError: null,
     zoneDatetimes: {},
     zones,
     exchanges,
@@ -124,6 +131,9 @@ export {
   SOLAR_DATA_FETCH_FAILED,
   SOLAR_DATA_FETCH_SUCCEDED,
   SOLAR_DATA_FETCH_REQUESTED,
+  SNOW_DATA_FETCH_FAILED,
+  SNOW_DATA_FETCH_SUCCEDED,
+  SNOW_DATA_FETCH_REQUESTED,
   WIND_DATA_FETCH_FAILED,
   WIND_DATA_FETCH_SUCCEDED,
   WIND_DATA_FETCH_REQUESTED,

@@ -10,6 +10,9 @@ import {
   SOLAR_DATA_FETCH_FAILED,
   SOLAR_DATA_FETCH_REQUESTED,
   SOLAR_DATA_FETCH_SUCCEDED,
+  SNOW_DATA_FETCH_FAILED,
+  SNOW_DATA_FETCH_REQUESTED,
+  SNOW_DATA_FETCH_SUCCEDED,
   WIND_DATA_FETCH_FAILED,
   WIND_DATA_FETCH_REQUESTED,
   WIND_DATA_FETCH_SUCCEDED,
@@ -66,6 +69,18 @@ function* fetchSolarData(action) {
   }
 }
 
+function* fetchSnowData(action) {
+  const { datetime } = action.payload || {};
+  try {
+    const before = yield call(fetchGfsForecast, 'precipitation', getGfsTargetTimeBefore(datetime));
+    const after = yield call(fetchGfsForecast, 'precipitation', getGfsTargetTimeAfter(datetime));
+    yield put(SNOW_DATA_FETCH_SUCCEDED({ forecasts: [before, after] }));
+  } catch (err) {
+    yield put(SNOW_DATA_FETCH_FAILED());
+    handleRequestError(err);
+  }
+}
+
 function* fetchWindData(action) {
   const { datetime } = action.payload || {};
   try {
@@ -91,6 +106,7 @@ export default function* () {
   yield takeLatest(GRID_DATA_FETCH_REQUESTED, fetchGridData);
   yield takeLatest(WIND_DATA_FETCH_REQUESTED, fetchWindData);
   yield takeLatest(SOLAR_DATA_FETCH_REQUESTED, fetchSolarData);
+  yield takeLatest(SNOW_DATA_FETCH_REQUESTED, fetchSnowData);
   yield takeLatest(ZONE_HISTORY_FETCH_REQUESTED, fetchZoneHistory);
   // Analytics
   yield takeLatest('TRACK_EVENT', trackEvent);

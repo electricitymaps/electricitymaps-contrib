@@ -18,6 +18,7 @@ import MapLayer from '../components/maplayer';
 import MapCountryTooltip from '../components/tooltips/mapcountrytooltip';
 import ExchangeLayer from '../components/layers/exchangelayer';
 import SolarLayer from '../components/layers/solarlayer';
+import SnowLayer from '../components/layers/snowlayer';
 import WindLayer from '../components/layers/windlayer';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
 
@@ -211,6 +212,7 @@ export default () => {
         <MapLayer component={ExchangeLayer} />
         <MapLayer component={WindLayer} />
         <MapLayer component={SolarLayer} />
+        <MapLayer component={SnowLayer} />
       </ZoneMap>
     </React.Fragment>
   );

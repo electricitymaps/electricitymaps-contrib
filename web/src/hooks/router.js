@@ -34,6 +34,13 @@ export function useSolarEnabled() {
   return useSearchParams().get('solar') === 'true' && isWeatherEnabled;
 }
 
+export function useSnowEnabled() {
+  const isWeatherEnabled = useSelector(
+    (state) => state.application.selectedTimeAggregate === TIME.HOURLY && state.application.selectedZoneTimeIndex === 24
+  );
+  return useSearchParams().get('snow') === 'true' && isWeatherEnabled;
+}
+
 export function useWindEnabled() {
   const isWeatherEnabled = useSelector(
     (state) => state.application.selectedTimeAggregate === TIME.HOURLY && state.application.selectedZoneTimeIndex === 24
@@ -69,6 +76,20 @@ export function useSolarToggledLocation() {
       search: searchParams.toString(),
     };
   }, [location, searchParams, solarEnabled]);
+}
+
+export function useSnowToggledLocation() {
+  const location = useLocation();
+  const searchParams = useSearchParams();
+  const snowEnabled = useSnowEnabled();
+
+  return useMemo(() => {
+    searchParams.set('snow', !snowEnabled);
+    return {
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    };
+  }, [location, searchParams, snowEnabled]);
 }
 
 export function useWindToggledLocation() {
