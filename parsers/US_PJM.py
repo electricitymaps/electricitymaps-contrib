@@ -75,7 +75,7 @@ def fetch_api_data(kind: str, params: dict) -> list:
         "Referer": "http://dataminer2.pjm.com/",
     }
     url = API_ENDPOINT + kind
-    resp = get(url, params, headers=headers)
+    resp: Response = session.get(url, params, headers=headers)
     if resp.status_code == 200:
         data = resp.json()
         return data
