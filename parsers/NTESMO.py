@@ -11,10 +11,11 @@ from typing import Callable, Dict, List, TypedDict
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-from parsers.lib.config import refetch_frequency
-from parsers.lib.exceptions import ParserException
 from pytz import timezone
 from requests import Session
+
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 australia = timezone("Australia/Darwin")
 
