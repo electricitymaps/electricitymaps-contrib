@@ -156,7 +156,7 @@ fallbackZoneMixes:
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 1.0000000000000002
+        oil: 1.0
         solar: 0.0
         unknown: 0.0
         wind: 0.0
