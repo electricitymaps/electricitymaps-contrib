@@ -13,7 +13,7 @@ import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
-from requests import Session, get
+from requests import Session, Response
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
