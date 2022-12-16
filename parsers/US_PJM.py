@@ -106,7 +106,7 @@ def fetch_consumption_forecast_7_days(
     params = {"download": True, "startRow": 1, "forecast_area": "RTO_COMBINED"}
 
     # query API
-    data = fetch_api_data(kind="load_frcstd_7_day", params=params)
+    data = fetch_api_data(kind="load_frcstd_7_day", params=params, session=session)
 
     data_points = list()
     for elem in data:
