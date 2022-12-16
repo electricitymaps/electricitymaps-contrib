@@ -17,7 +17,7 @@ from requests import Session
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-australia = timezone("Australia/Darwin")
+australia_tz = timezone("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 # Data is published for the previous day only.
@@ -134,7 +134,7 @@ def parse_consumption(
             timestamp = timestamp + timedelta(days=1)
         data_point = {
             "zoneKey": "AU-NT",
-            "datetime": australia.localize(timestamp),
+            "datetime": australia_tz.localize(timestamp),
             "source": "ntesmo.com.au",
         }
         if price:
