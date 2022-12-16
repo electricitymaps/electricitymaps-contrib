@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 import parse from 'color-parse';
-import Snowfall from 'react-snowfall'
+import Snowfall from 'react-snowfall';
 import { useRefWidthHeightObserver } from '../../hooks/viewport';
 import { useSnowEnabled } from '../../hooks/router';
 import { stackBlurImageOpacity } from '../../helpers/image';
@@ -95,15 +95,11 @@ export default ({ unproject }) => {
 
   return (
     <CSSTransition classNames="fade" in={isVisible} timeout={300}>
-        <div>
-        {
-            isVisible ? <embed src="music/lastchristmas.mp3" loop="true" autostart="true" width="2" height="0" /> : null
-        }
-        {
-            isVisible ? <Snowfall color="white" snowflakeCount={200} /> : null
-        }
+      <div>
+        {isVisible ? <embed src="music/lastchristmas.mp3" loop="true" autostart="true" width="2" height="0" /> : null}
+        {isVisible ? <Snowfall color="white" snowflakeCount={200} /> : null}
         <Canvas id="snow" width={width} height={height} ref={ref} />
-        </div>
-  </CSSTransition>
+      </div>
+    </CSSTransition>
   );
 };

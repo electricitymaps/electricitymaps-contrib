@@ -4,7 +4,14 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
-import { useWindEnabled, useSolarEnabled, useSnowEnabled, useSolarToggledLocation, useWindToggledLocation, useSnowToggledLocation } from '../hooks/router';
+import {
+  useWindEnabled,
+  useSolarEnabled,
+  useSnowEnabled,
+  useSolarToggledLocation,
+  useWindToggledLocation,
+  useSnowToggledLocation,
+} from '../hooks/router';
 import { dispatchApplication } from '../store';
 
 import LanguageSelect from '../components/languageselect';

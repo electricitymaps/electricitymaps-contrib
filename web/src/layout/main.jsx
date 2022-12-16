@@ -16,7 +16,12 @@ import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useHeaderVisible, useAggregatesToggle, useAggregatesEnabled } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
-import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling, useConditionalSnowDataPolling } from '../hooks/fetch';
+import {
+  useGridDataPolling,
+  useConditionalWindDataPolling,
+  useConditionalSolarDataPolling,
+  useConditionalSnowDataPolling,
+} from '../hooks/fetch';
 import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import InfoModal from '../components/infomodal';
