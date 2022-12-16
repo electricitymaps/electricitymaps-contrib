@@ -26,11 +26,11 @@ emissionFactors:
     battery discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 222.34335573874446
+        value: 222.3430624603678
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 222.34335573874446
+        value: 222.3430624603678
   lifecycle:
     battery discharge:
       - datetime: '2021-01-01'

@@ -21,31 +21,49 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 29.431231035827615
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 29.43125619394837
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 28.895469972234196
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 25.622565842572392
+        value: 25.2470538727056
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 24.844900512830517
+        value: 24.48486910930771
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 25.724691722166398
+        value: 25.3061525281097
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 32.541670188589464
+        value: 32.100176825682105
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 29.431231035827615
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 29.43125619394837
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 28.895469972234196
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 25.622565842572392
+        value: 25.2470538727056
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 24.844900512830517
+        value: 24.48486910930771
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 25.724691722166398
+        value: 25.3061525281097
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 32.541670188589464
+        value: 32.100176825682105
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

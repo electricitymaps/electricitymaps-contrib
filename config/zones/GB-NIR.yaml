@@ -21,47 +21,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 395.02150311392023
+        value: 400.825862117709
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 403.8066019171408
+        value: 410.5753050884724
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 347.2166230243035
+        value: 351.3818106256959
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 316.4666549524557
+        value: 330.8718346811666
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 286.7554826670641
+        value: 302.56341118267267
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 290.046000988274
+        value: 304.7507814773746
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 291.012971537
+        value: 295.25335109382246
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 395.02150311392023
+        value: 400.825862117709
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 403.8066019171408
+        value: 410.5753050884724
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 347.2166230243035
+        value: 351.3818106256959
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 316.4666549524557
+        value: 330.8718346811666
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 286.7554826670641
+        value: 302.56341118267267
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 290.046000988274
+        value: 304.7507814773746
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 291.012971537
+        value: 295.25335109382246
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

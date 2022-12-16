@@ -10,51 +10,51 @@ capacity:
 contributors:
   - nessie2013
 emissionFactors:
-  lifecycle:
+  emission_factor_type:
     battery discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 435.36
+        value: 360.0
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 435.36
+        value: 360.00000000000006
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 435.35999999999996
+        value: 360.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 435.36000000000007
+        value: 360.0
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 435.36
+        value: 359.99999999999994
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 435.36000000000007
+        value: 360.00000000000006
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 435.35999999999996
+        value: 359.99999999999994
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 435.36
+        value: 360.0
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 435.36
+        value: 360.00000000000006
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 435.35999999999996
+        value: 360.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 435.36000000000007
+        value: 360.0
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 435.36
+        value: 359.99999999999994
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 435.36000000000007
+        value: 360.00000000000006
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 435.35999999999996
+        value: 359.99999999999994
 estimation_method: CONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:

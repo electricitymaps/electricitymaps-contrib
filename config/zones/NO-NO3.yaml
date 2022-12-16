@@ -20,25 +20,25 @@ emissionFactors:
     battery discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 16.644207302874474
+        value: 11.646649104889134
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 16.593698989188432
+        value: 11.633555598472645
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 10.34131121195846
+        value: 8.38373176546619
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 21.04457168433364
+        value: 16.863952930957037
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 14.667641397306
+        value: 11.17508916411737
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 13.145697349281024
+        value: 8.647417985545815
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 13.43629439767019
+        value: 3.50709038196545
     biomass:
       datetime: '2021-01-01'
       source: EU-ETS 2021
@@ -46,25 +46,25 @@ emissionFactors:
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 16.644207302874474
+        value: 11.646649104889134
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 16.593698989188432
+        value: 11.633555598472645
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 10.34131121195846
+        value: 8.38373176546619
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 21.04457168433364
+        value: 16.863952930957037
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 14.667641397306
+        value: 11.17508916411737
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 13.145697349281024
+        value: 8.647417985545815
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 13.43629439767019
+        value: 3.50709038196545
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

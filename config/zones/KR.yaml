@@ -19,57 +19,51 @@ contributors:
   - IV1T3
   - gadakast
 emissionFactors:
-  lifecycle:
+  emission_factor_type:
     battery discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 490.36144312742397
+        value: 424.796504522417
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 490.36674359237577
+        value: 424.8015973642796
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 490.36105959311783
+        value: 424.79623224172053
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 490.36117070619747
+        value: 424.79633219230965
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 490.2768902786858
+        value: 424.7158277554034
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 490.0073695376889
+        value: 424.45885876480395
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 490.50488607461506
+        value: 424.9334004987764
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 490.36144312742397
+        value: 424.796504522417
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 490.36674359237577
+        value: 424.8015973642796
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 490.36105959311783
+        value: 424.79623224172053
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 490.36117070619747
+        value: 424.79633219230965
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 490.2768902786858
+        value: 424.7158277554034
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 490.0073695376889
+        value: 424.45885876480395
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 490.50488607461506
-    unknown:
-      _comment: 'Source: 2020 annual electricity production by IEA'
-      _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8%
-        wind, 2.2% biofuels, 1.0% other
-      value: 644
+        value: 424.9334004987764
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:

@@ -28,15 +28,27 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 330.01973962738714
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 354.94519397632246
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 354.9450870724256
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 227.3787509418474
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 212.78679287990548
+        value: 240.87252182678557
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 151.24994391342204
+        value: 156.29652745336782
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 127.8088759065813
+        value: 99.29246149171
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -46,15 +58,27 @@ emissionFactors:
       source: eGrid 2020
       value: 325.3877204
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 330.01973962738714
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 354.94519397632246
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 354.9450870724256
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 227.3787509418474
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 212.78679287990548
+        value: 240.87252182678557
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 151.24994391342204
+        value: 156.29652745336782
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 127.8088759065813
+        value: 99.29246149171
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

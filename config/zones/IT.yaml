@@ -18,6 +18,28 @@ contributors:
   - corradio
 emissionFactors:
   direct:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 364.9917246167399
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 438.7901841243746
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 444.15251162583434
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 385.9766738441898
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 386.2993278631199
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 370.1887966359118
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 390.4279679862484
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -30,6 +52,28 @@ emissionFactors:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
       value: 446.1813452
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 364.9917246167399
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 438.7901841243746
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 444.15251162583434
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 385.9766738441898
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 386.2993278631199
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 370.1887966359118
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 390.4279679862484
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021

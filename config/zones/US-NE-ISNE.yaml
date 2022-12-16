@@ -24,18 +24,27 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 225.5945374112616
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 246.90134260343558
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 246.9012476919782
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 216.37482780091437
+        value: 206.8950363063045
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 194.32240964325084
+        value: 178.95087048701706
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 181.9320300734626
+        value: 186.1560490413342
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 183.63867835383604
+        value: 196.32177755564254
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -49,18 +58,27 @@ emissionFactors:
       source: eGrid 2020
       value: 389.0568749
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 225.5945374112616
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 246.90134260343558
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 246.9012476919782
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 216.37482780091437
+        value: 206.8950363063045
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 194.32240964325084
+        value: 178.95087048701706
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 181.9320300734626
+        value: 186.1560490413342
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 183.63867835383604
+        value: 196.32177755564254
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020

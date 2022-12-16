@@ -13,15 +13,15 @@ contributors:
 delays:
   production: 48
 emissionFactors:
-  lifecycle:
+  emission_factor_type:
     battery discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 820.0
+        value: 759.9999999999999
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 820.0
+        value: 759.9999999999999
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average

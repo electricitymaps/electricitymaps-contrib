@@ -28,37 +28,49 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 372.0656219377529
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 374.19699135461235
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 391.9231166685683
+        value: 384.90056773015544
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 406.09210216862743
+        value: 407.52676444949384
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 367.8879660293103
+        value: 367.8352525743728
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 363.11298731762804
+        value: 365.12428978759016
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 362.32319395730116
+        value: 363.1179635399138
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 372.0656219377529
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 374.19699135461235
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 391.9231166685683
+        value: 384.90056773015544
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 406.09210216862743
+        value: 407.52676444949384
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 367.8879660293103
+        value: 367.8352525743728
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 363.11298731762804
+        value: 365.12428978759016
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 362.32319395730116
+        value: 363.1179635399138
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

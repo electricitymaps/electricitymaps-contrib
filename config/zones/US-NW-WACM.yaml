@@ -28,18 +28,27 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 522.328946727275
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 600.24085171663
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 599.9171704894312
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 521.4568598921377
+        value: 636.8362049769621
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 511.2777405120074
+        value: 727.5689224678046
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 513.7422117905244
+        value: 713.3386200996066
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 515.7360263413145
+        value: 745.1015602237039
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -49,18 +58,27 @@ emissionFactors:
       source: eGrid 2020
       value: 451.7150314
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 522.328946727275
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 600.24085171663
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 599.9171704894312
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 521.4568598921377
+        value: 636.8362049769621
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 511.2777405120074
+        value: 727.5689224678046
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 513.7422117905244
+        value: 713.3386200996066
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 515.7360263413145
+        value: 745.1015602237039
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020

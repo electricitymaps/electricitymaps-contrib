@@ -15,29 +15,29 @@ emissionFactors:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 262.01740080595744
+        value: 261.87640141729236
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 296.7933394725147
+        value: 296.5859943816046
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 356.0279249226042
+        value: 355.9691647554508
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 325.8976606822384
+        value: 325.8977916246751
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 262.01740080595744
+        value: 261.87640141729236
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 296.7933394725147
+        value: 296.5859943816046
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 356.0279249226042
+        value: 355.9691647554508
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 325.8976606822384
+        value: 325.8977916246751
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -74,21 +74,6 @@ emissionFactors:
       value: 784
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2021 average
-      datetime: '2021-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 1.294049358262306e-05
-        coal: 0.004143078389017562
-        gas: 0.0011987748486757908
-        geothermal: 2.2198579466046784e-06
-        hydro: 0.4319238891921842
-        hydro discharge: 9.164270902774583e-10
-        nuclear: 0.0006696673863185435
-        oil: 6.270024442957947e-05
-        solar: 0.0014655094047953219
-        unknown: 0.5604868171706635
-        wind: 5.93185266412234e-05
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:

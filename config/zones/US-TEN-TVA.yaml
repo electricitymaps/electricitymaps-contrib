@@ -28,18 +28,27 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 231.92380002652985
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 288.1028190493361
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 306.1350607682899
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 283.98299931476635
+        value: 355.7146475745379
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 257.2468837277304
+        value: 542.5236493219804
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 220.15206446184618
+        value: 269.7802346441538
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 246.4290952696185
+        value: 309.10263292981676
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -53,18 +62,27 @@ emissionFactors:
       source: eGrid 2020
       value: 391.2963051
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 231.92380002652985
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 288.1028190493361
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 306.1350607682899
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 283.98299931476635
+        value: 355.7146475745379
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 257.2468837277304
+        value: 542.5236493219804
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 220.15206446184618
+        value: 269.7802346441538
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 246.4290952696185
+        value: 309.10263292981676
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020

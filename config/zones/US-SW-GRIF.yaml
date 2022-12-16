@@ -25,10 +25,36 @@ delays:
   production: 30
 emissionFactors:
   direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 390.18
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 390.17999999999995
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 390.18
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 390.18
     gas:
       datetime: '2021-01-01'
       source: eGrid 2020
       value: 390.1784429
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 390.18
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 390.17999999999995
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 390.18
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 390.18
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'

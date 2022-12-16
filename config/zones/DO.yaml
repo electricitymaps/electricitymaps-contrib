@@ -27,6 +27,12 @@ emissionFactors:
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 403.853052112231
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 476.1883385830544
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 440.1252321879519
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
@@ -37,6 +43,12 @@ emissionFactors:
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 403.853052112231
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 476.1883385830544
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 440.1252321879519
   lifecycle:
     battery discharge:
       - datetime: '2017-01-01'

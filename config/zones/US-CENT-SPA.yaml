@@ -28,35 +28,53 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 128.73370000980418
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 128.73370000980415
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 136.07774539875038
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 243.53084531688168
+        value: 236.62726623997656
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 110.26324864222208
+        value: 110.4479089107277
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 135.6728015970651
+        value: 132.5004986598673
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 155.27637450952585
+        value: 164.00004434072346
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020
       value: 987.9224617
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 128.73370000980418
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 128.73370000980415
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 136.07774539875038
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 243.53084531688168
+        value: 236.62726623997656
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 110.26324864222208
+        value: 110.4479089107277
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 135.6728015970651
+        value: 132.5004986598673
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 155.27637450952585
+        value: 164.00004434072346
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

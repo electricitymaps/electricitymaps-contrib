@@ -28,35 +28,53 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 0.0
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 0.0
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 0.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 67.61255030616458
+        value: 52.27932116142599
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 56.93168195584996
+        value: 68.97211542140349
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 25.989293496070676
+        value: 25.99484981291907
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 32.98563615085665
+        value: 36.76361635161157
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
       value: 0.0
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 0.0
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 0.0
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 0.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 67.61255030616458
+        value: 52.27932116142599
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 56.93168195584996
+        value: 68.97211542140349
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 25.989293496070676
+        value: 25.99484981291907
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 32.98563615085665
+        value: 36.76361635161157
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

@@ -25,12 +25,27 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 190.57315883489173
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 211.38354826285794
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 211.38354826285791
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 199.02348563246184
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 188.97558471035077
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 168.63187033920536
+        value: 183.74436866351815
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 180.25650620309392
+        value: 201.96505688874868
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -44,12 +59,27 @@ emissionFactors:
       source: eGrid 2020
       value: 412.8877102
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 190.57315883489173
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 211.38354826285794
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 211.38354826285791
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 199.02348563246184
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 188.97558471035077
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 168.63187033920536
+        value: 183.74436866351815
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 180.25650620309392
+        value: 201.96505688874868
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020

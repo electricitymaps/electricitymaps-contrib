@@ -17,37 +17,49 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 17.69002299962013
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 17.69002314802289
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 28.389231774125705
+        value: 26.0122890646349
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 28.577963851800597
+        value: 28.05120768699409
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 35.43431135188619
+        value: 27.94763199758968
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 28.881983882888647
+        value: 28.91942374304954
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 16.291577964697424
+        value: 16.23380919585552
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 17.69002299962013
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 17.69002314802289
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 28.389231774125705
+        value: 26.0122890646349
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 28.577963851800597
+        value: 28.05120768699409
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 35.43431135188619
+        value: 27.94763199758968
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 28.881983882888647
+        value: 28.91942374304954
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 16.291577964697424
+        value: 16.23380919585552
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

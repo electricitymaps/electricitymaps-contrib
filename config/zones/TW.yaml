@@ -22,37 +22,49 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 558.8386137266799
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 558.8386298157064
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 572.6566573269317
+        value: 572.7071277877018
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 568.9119237126492
+        value: 568.451449634544
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 549.8008336152262
+        value: 547.5450564898416
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 550.3762670573702
+        value: 550.3483853760877
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 548.4428624926388
+        value: 548.20726744507
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 558.8386137266799
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 558.8386298157064
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 572.6566573269317
+        value: 572.7071277877018
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 568.9119237126492
+        value: 568.451449634544
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 549.8008336152262
+        value: 547.5450564898416
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 550.3762670573702
+        value: 550.3483853760877
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 548.4428624926388
+        value: 548.20726744507
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

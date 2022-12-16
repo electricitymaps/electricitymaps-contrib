@@ -28,18 +28,27 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 500.3346999828076
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 663.1301859380343
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 662.7239007560696
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 525.929110346553
+        value: 698.395515384997
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 499.7763522049775
+        value: 657.3148541626158
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 470.8378022801315
+        value: 625.6200887054168
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 447.0277441701108
+        value: 592.4944239287973
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -53,18 +62,27 @@ emissionFactors:
       source: eGrid 2020
       value: 32.63419569
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 500.3346999828076
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 663.1301859380343
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 662.7239007560696
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 525.929110346553
+        value: 698.395515384997
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 499.7763522049775
+        value: 657.3148541626158
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 470.8378022801315
+        value: 625.6200887054168
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 447.0277441701108
+        value: 592.4944239287973
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

@@ -28,18 +28,27 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 356.58538124958676
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 395.87585698070444
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 390.4120200382159
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 387.86457393118644
+        value: 430.9875307935109
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 363.98213837874664
+        value: 402.93609098694236
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 330.5848387522014
+        value: 363.30442521652844
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 348.1291170995103
+        value: 385.44064889984975
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -53,18 +62,27 @@ emissionFactors:
       source: eGrid 2020
       value: 403.2500634
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 356.58538124958676
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 395.87585698070444
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 390.4120200382159
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 387.86457393118644
+        value: 430.9875307935109
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 363.98213837874664
+        value: 402.93609098694236
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 330.5848387522014
+        value: 363.30442521652844
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 348.1291170995103
+        value: 385.44064889984975
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020

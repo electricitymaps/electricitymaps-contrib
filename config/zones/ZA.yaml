@@ -12,7 +12,7 @@ capacity:
 contributors:
   - IV1T3
 emissionFactors:
-  lifecycle:
+  emission_factor_type:
     battery discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average

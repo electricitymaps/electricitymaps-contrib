@@ -14,6 +14,28 @@ capacity:
   wind: 5342
 emissionFactors:
   direct:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 2.001401386786906
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 1.2087639841418323
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 1.282656610040373
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 1.6179976221244272
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 1.507922399457648
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 0.9941776472153058
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 1.2545518723338986
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -26,6 +48,28 @@ emissionFactors:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
       value: 447.9740216
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 2.001401386786906
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 1.2087639841418323
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 1.282656610040373
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 1.6179976221244272
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 1.507922399457648
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 0.9941776472153058
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 1.2545518723338986
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021

@@ -17,51 +17,51 @@ contributors:
   - tmslaine
   - lorrieq
 emissionFactors:
-  lifecycle:
+  emission_factor_type:
     battery discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 564.1637840501728
+        value: 469.7028107056677
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 563.3910376169232
+        value: 469.0674184228592
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 564.3291403216983
+        value: 469.9698821228458
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 560.9847127452987
+        value: 467.3776955386126
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 552.77620351811
+        value: 461.06582925627777
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 550.152802733962
+        value: 458.92783231439626
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 553.8173645733688
+        value: 461.90613306170593
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 564.1637840501728
+        value: 469.7028107056677
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 563.3910376169232
+        value: 469.0674184228592
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 564.3291403216983
+        value: 469.9698821228458
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 560.9847127452987
+        value: 467.3776955386126
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 552.77620351811
+        value: 461.06582925627777
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 550.152802733962
+        value: 458.92783231439626
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 553.8173645733688
+        value: 461.90613306170593
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:

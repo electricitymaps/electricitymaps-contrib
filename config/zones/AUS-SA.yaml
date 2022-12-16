@@ -21,31 +21,49 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 195.34605602031309
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 195.35045278669472
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 244.8445316787786
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 254.20761977966023
+        value: 253.4048988280059
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 260.8060391664488
+        value: 260.323058651702
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 220.96263613980696
+        value: 206.45227689976784
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 207.83318272590503
+        value: 210.20870605862984
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 195.34605602031309
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 195.35045278669472
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 244.8445316787786
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 254.20761977966023
+        value: 253.4048988280059
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 260.8060391664488
+        value: 260.323058651702
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 220.96263613980696
+        value: 206.45227689976784
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 207.83318272590503
+        value: 210.20870605862984
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

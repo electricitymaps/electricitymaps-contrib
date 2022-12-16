@@ -28,18 +28,27 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 314.52344820264335
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 380.0670884406045
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 380.44227224267195
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 373.2665017887658
+        value: 458.58100785291015
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 331.3032294168079
+        value: 400.22966429364493
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 307.5256999044057
+        value: 369.393819397942
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 301.921088325611
+        value: 366.1763011584388
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -53,18 +62,27 @@ emissionFactors:
       source: eGrid 2020
       value: 393.100066
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 314.52344820264335
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 380.0670884406045
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 380.44227224267195
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 373.2665017887658
+        value: 458.58100785291015
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 331.3032294168079
+        value: 400.22966429364493
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 307.5256999044057
+        value: 369.393819397942
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 301.921088325611
+        value: 366.1763011584388
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020

@@ -22,7 +22,7 @@ emissionFactors:
     battery discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 178.41865232807453
+        value: 240.34920223886382
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -38,7 +38,7 @@ emissionFactors:
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 178.41865232807453
+        value: 240.34920223886382
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021

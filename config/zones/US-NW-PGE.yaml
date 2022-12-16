@@ -28,18 +28,27 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 262.0002398503522
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 327.68012616806976
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 327.68012616806976
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 155.00851509578533
+        value: 166.21855249358939
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 132.51412996153388
+        value: 163.37247128333274
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 99.82584134645398
+        value: 115.66745843333453
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 125.68350934154255
+        value: 151.69710209539352
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -49,18 +58,27 @@ emissionFactors:
       source: eGrid 2020
       value: 465.3652195
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 262.0002398503522
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 327.68012616806976
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 327.68012616806976
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 155.00851509578533
+        value: 166.21855249358939
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 132.51412996153388
+        value: 163.37247128333274
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 99.82584134645398
+        value: 115.66745843333453
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 125.68350934154255
+        value: 151.69710209539352
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

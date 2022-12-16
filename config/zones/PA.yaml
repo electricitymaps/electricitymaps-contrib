@@ -26,31 +26,49 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 257.1317218116027
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 257.13171792686063
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 194.40212541803066
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 126.10732140009884
+        value: 127.55008977538328
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 305.1762895032016
+        value: 304.4312223711911
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 208.02544224564645
+        value: 208.03694488067214
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 183.22835403392483
+        value: 179.14901259067096
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 257.1317218116027
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 257.13171792686063
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 194.40212541803066
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 126.10732140009884
+        value: 127.55008977538328
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 305.1762895032016
+        value: 304.4312223711911
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 208.02544224564645
+        value: 208.03694488067214
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 183.22835403392483
+        value: 179.14901259067096
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

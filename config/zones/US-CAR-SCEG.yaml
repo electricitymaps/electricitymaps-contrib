@@ -28,18 +28,27 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 333.45584889389426
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 369.387291702775
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 371.6960890227183
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 415.9966831424999
+        value: 461.7475641490103
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 347.8776522729067
+        value: 384.8941791840858
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 309.5380666314754
+        value: 341.0146565361128
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 324.31032673234637
+        value: 359.73740517000465
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -53,18 +62,27 @@ emissionFactors:
       source: eGrid 2020
       value: 407.4177138
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 333.45584889389426
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 369.387291702775
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 371.6960890227183
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 415.9966831424999
+        value: 461.7475641490103
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 347.8776522729067
+        value: 384.8941791840858
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 309.5380666314754
+        value: 341.0146565361128
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 324.31032673234637
+        value: 359.73740517000465
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

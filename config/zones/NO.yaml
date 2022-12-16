@@ -14,10 +14,54 @@ contributors:
   - corradio
 emissionFactors:
   direct:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 11.955167007947617
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 12.106721528830082
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 11.981345842611063
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 16.88513410920129
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 16.84494091239904
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 8.007932349595754
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 8.456060465427806
     biomass:
       datetime: '2021-01-01'
       source: EU-ETS 2021
       value: 0.0
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 11.955167007947617
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 12.106721528830082
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 11.981345842611063
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 16.88513410920129
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 16.84494091239904
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 8.007932349595754
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 8.456060465427806
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

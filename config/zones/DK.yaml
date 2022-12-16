@@ -19,6 +19,19 @@ contributors:
   - Manu1400
 emissionFactors:
   direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 175.6679542184547
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 147.06649839805567
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 112.24825613718873
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 146.43134312177915
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -31,6 +44,19 @@ emissionFactors:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
       value: 336.9719859
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 175.6679542184547
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 147.06649839805567
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 112.24825613718873
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 146.43134312177915
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021

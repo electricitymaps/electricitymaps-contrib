@@ -21,6 +21,28 @@ contributors:
 disclaimer: The data provider (ENTSO-E) underreports production and consumption data.
 emissionFactors:
   direct:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 329.707756493409
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 398.9380617448162
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 406.36987287594684
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 423.8974375890719
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 376.6182999967637
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 360.8000379385998
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 350.735060243539
     biomass:
       datetime: '2021-01-01'
       source: EU-ETS 2021
@@ -29,6 +51,28 @@ emissionFactors:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
       value: 470.7521775
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 329.707756493409
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 398.9380617448162
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 406.36987287594684
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 423.8974375890719
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 376.6182999967637
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 360.8000379385998
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 350.735060243539
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021

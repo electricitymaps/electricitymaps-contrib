@@ -23,15 +23,27 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 410.39794188222544
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 701.3131580711408
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 701.3131343083057
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 730.0244347012316
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 429.5925224742688
+        value: 725.3627752472624
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 416.698742219887
+        value: 707.875524344012
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 401.49743615810416
+        value: 685.9001691120977
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -41,15 +53,27 @@ emissionFactors:
       source: eGrid 2020
       value: 1088.282256
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 410.39794188222544
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 701.3131580711408
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 701.3131343083057
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 730.0244347012316
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 429.5925224742688
+        value: 725.3627752472624
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 416.698742219887
+        value: 707.875524344012
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 401.49743615810416
+        value: 685.9001691120977
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020

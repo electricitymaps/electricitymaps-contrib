@@ -24,18 +24,27 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 311.69463053963204
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 368.96289737698226
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 368.9958838774317
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 326.5009214195872
+        value: 392.8774398049959
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 323.1715360400933
+        value: 385.5618417227628
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 299.9994377848068
+        value: 353.10968789219714
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 314.378697647263
+        value: 372.3153209954643
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -49,18 +58,27 @@ emissionFactors:
       source: eGrid 2020
       value: 398.3043939
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 311.69463053963204
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 368.96289737698226
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 368.9958838774317
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 326.5009214195872
+        value: 392.8774398049959
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 323.1715360400933
+        value: 385.5618417227628
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 299.9994377848068
+        value: 353.10968789219714
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 314.378697647263
+        value: 372.3153209954643
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020

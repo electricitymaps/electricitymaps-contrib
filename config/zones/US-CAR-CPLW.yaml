@@ -28,31 +28,49 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 407.67606620850535
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 470.8734737859908
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 394.36795149917674
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 380.10147396815887
+        value: 462.36559981526585
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 354.12480750422793
+        value: 427.0392127129855
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 320.8603194024024
+        value: 344.7535249673115
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 359.9878897203928
+        value: 389.07060314483147
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 407.67606620850535
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 470.8734737859908
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 394.36795149917674
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 380.10147396815887
+        value: 462.36559981526585
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 354.12480750422793
+        value: 427.0392127129855
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 320.8603194024024
+        value: 344.7535249673115
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 359.9878897203928
+        value: 389.07060314483147
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

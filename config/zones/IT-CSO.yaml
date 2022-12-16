@@ -20,21 +20,27 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 526.8664860277657
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 566.4280123974896
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 478.3908421320879
+        value: 542.9308097631258
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 410.51714658604686
+        value: 491.9677515181123
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 389.5865204962955
+        value: 476.0422409426083
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 394.91541721077107
+        value: 477.61296953806806
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 351.78507100698533
+        value: 422.73850571653725
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -48,21 +54,27 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2021
       value: 446.1813452
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 526.8664860277657
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 566.4280123974896
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 478.3908421320879
+        value: 542.9308097631258
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 410.51714658604686
+        value: 491.9677515181123
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 389.5865204962955
+        value: 476.0422409426083
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 394.91541721077107
+        value: 477.61296953806806
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 351.78507100698533
+        value: 422.73850571653725
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021

@@ -28,18 +28,27 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 187.39370352085754
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 211.15834447270018
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 210.77922223932822
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 234.7223073963906
+        value: 250.09802307967547
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 208.17859641915237
+        value: 348.4782315083393
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 217.92328237284988
+        value: 245.0086310006108
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 209.6509902146305
+        value: 240.19057250496743
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -49,18 +58,27 @@ emissionFactors:
       source: eGrid 2020
       value: 376.0036772
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 187.39370352085754
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 211.15834447270018
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 210.77922223932822
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 234.7223073963906
+        value: 250.09802307967547
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 208.17859641915237
+        value: 348.4782315083393
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 217.92328237284988
+        value: 245.0086310006108
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 209.6509902146305
+        value: 240.19057250496743
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'

@@ -16,51 +16,51 @@ capacity:
 contributors:
   - nessie2013
 emissionFactors:
-  lifecycle:
+  emission_factor_type:
     battery discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 652.36
+        value: 580.1799999999998
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 652.36
+        value: 580.1800000000001
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 652.3600000000001
+        value: 580.18
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 652.3599999999998
+        value: 580.18
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 652.3600000000001
+        value: 580.1799999999998
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 652.3599999999998
+        value: 580.18
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 652.3600000000001
+        value: 580.1800000000001
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 652.36
+        value: 580.1799999999998
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 652.36
+        value: 580.1800000000001
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 652.3600000000001
+        value: 580.18
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 652.3599999999998
+        value: 580.18
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 652.3600000000001
+        value: 580.1799999999998
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 652.3599999999998
+        value: 580.18
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 652.3600000000001
+        value: 580.1800000000001
 estimation_method: CONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:

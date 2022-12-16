@@ -29,6 +29,13 @@ contributors:
   - VIKTORVAV99
 emissionFactors:
   direct:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -45,6 +52,13 @@ emissionFactors:
       datetime: '2021-01-01'
       source: eGrid 2020
       value: 70.87985131
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020

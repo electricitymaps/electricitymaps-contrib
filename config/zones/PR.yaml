@@ -23,12 +23,27 @@ contributors:
 emissionFactors:
   direct:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 448.99621840545547
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 698.4810101077925
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 698.4810101077924
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 697.9827697209355
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 697.9827697209355
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 461.54009388696727
+        value: 716.3495131110815
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 445.3981040694054
+        value: 691.6232949567844
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -42,12 +57,27 @@ emissionFactors:
       source: eGrid 2020
       value: 480.1222048
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 448.99621840545547
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 698.4810101077925
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 698.4810101077924
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 697.9827697209355
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 697.9827697209355
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 461.54009388696727
+        value: 716.3495131110815
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 445.3981040694054
+        value: 691.6232949567844
     oil:
       datetime: '2020-01-01'
       source: eGrid 2020
