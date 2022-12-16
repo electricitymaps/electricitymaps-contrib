@@ -36,5 +36,7 @@ subZoneNames:
   - AUS-VIC
   - AUS-WA
   - AUS-WA-RI
+bypassedSubZones:
+  - AU-TAS-CBI
 timezone: Australia/Sydney
 estimation_method: RECONSTRUCT_BREAKDOWN
