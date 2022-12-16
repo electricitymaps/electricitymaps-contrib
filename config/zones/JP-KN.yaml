@@ -18,7 +18,7 @@ contributors:
   - lorrieq
   - kongkille
 emissionFactors:
-  emission_factor_type:
+  direct:
     battery discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -63,6 +63,51 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 382.1195198581935
+  lifecycle:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 457.51467661995366
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 456.0686288827389
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 456.88733763287775
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 459.18052378244937
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 459.3416932617926
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 456.8750189742006
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 458.14684827051013
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 457.51467661995366
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 456.0686288827389
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 456.88733763287775
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 459.18052378244937
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 459.3416932617926
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 456.8750189742006
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 458.14684827051013
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:

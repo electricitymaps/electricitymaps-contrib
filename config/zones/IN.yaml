@@ -11,7 +11,7 @@ contributors:
   - systemcatch
   - gopikrishna1793
 emissionFactors:
-  emission_factor_type:
+  direct:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
@@ -38,6 +38,36 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 622.1542087942669
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 685.1544880148955
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 629.270158494957
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 609.8366487824223
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 623.8608749425698
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 685.1544880148955
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 629.270158494957
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 609.8366487824223
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 623.8608749425698
+    unknown:
+      source: assumes 43% solar PV and 57% wind
+      value: 26
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
