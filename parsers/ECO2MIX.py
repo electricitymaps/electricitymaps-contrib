@@ -12,7 +12,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
+from electricitymap.contrib.config import ZONES_CONFIG
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
