@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 
-import json
-import math
-import os
-from datetime import datetime, timedelta
+from datetime import timedelta
 from logging import Logger, getLogger
 
 import arrow
