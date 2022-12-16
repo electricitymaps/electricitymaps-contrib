@@ -13,10 +13,28 @@ contributors:
 emissionFactors:
   lifecycle:
     battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 685.1544880148955
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 629.270158494957
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 609.8366487824223
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 623.8608749425698
     hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 685.1544880148955
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 629.270158494957
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 609.8366487824223
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 623.8608749425698
@@ -25,6 +43,36 @@ emissionFactors:
       value: 26
 fallbackZoneMixes:
   powerOriginRatios:
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.8089872269900487
+        gas: 0.037422744593654036
+        geothermal: 0.0
+        hydro: 0.07886209808899303
+        hydro discharge: 0.0
+        nuclear: 0.027707077841435432
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.04702085079812528
+        wind: 0.0
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.7396355796865115
+        gas: 0.035903591947817
+        geothermal: 0.0
+        hydro: 0.12315478740878912
+        hydro discharge: 0.0
+        nuclear: 0.029533910596758597
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.07177212935296305
+        wind: 0.0
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:

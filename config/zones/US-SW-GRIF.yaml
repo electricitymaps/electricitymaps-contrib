@@ -31,6 +31,15 @@ emissionFactors:
       value: 390.1784429
   lifecycle:
     battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 510.18
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 510.17999999999995
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 510.18
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 510.18
@@ -43,6 +52,15 @@ emissionFactors:
       source: eGrid 2020; IPCC 2014
       value: 510.1784429
     hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 510.18
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 510.17999999999995
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 510.18
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 510.18
@@ -52,6 +70,51 @@ emissionFactors:
       value: 650.0
 fallbackZoneMixes:
   powerOriginRatios:
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 1.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 1.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 1.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:

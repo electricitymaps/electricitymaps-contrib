@@ -47,6 +47,12 @@ emissionFactors:
       value: 880.903938
   lifecycle:
     battery discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 738.3515824289298
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 523.06089673736
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 585.052830682122
@@ -68,6 +74,12 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 738.3515824289298
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 523.06089673736
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 585.052830682122
@@ -90,6 +102,36 @@ emissionFactors:
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.035954269506885954
+        coal: 0.2277164943660621
+        gas: 0.3679953318819429
+        geothermal: 0.0
+        hydro: 0.01817169259552173
+        hydro discharge: 0.0002982450123837706
+        nuclear: 0.04449925518678932
+        oil: 0.25027226162834726
+        solar: 0.02036985622615096
+        unknown: 0.0008550318131663073
+        wind: 0.03396950249298142
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.050963373746682465
+        coal: 0.06489540848417576
+        gas: 0.6145519800478603
+        geothermal: 0.0
+        hydro: 0.0337448284998253
+        hydro discharge: 0.0005952730529026526
+        nuclear: 0.061748550436322006
+        oil: 0.0849775711662605
+        solar: 0.03482057828216471
+        unknown: 0.0012967935952910058
+        wind: 0.05226579666850004
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:

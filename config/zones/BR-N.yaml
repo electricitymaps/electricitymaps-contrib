@@ -49,15 +49,126 @@ emissionFactors:
         value: 137.31123882457092
   lifecycle:
     battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 154.1014375526151
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 154.1014375526151
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 311.84854581269667
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 114.34324508538558
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 170.934097344898
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 173.00835728355122
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 183.97005869344875
     hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 154.1014375526151
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 154.1014375526151
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 311.84854581269667
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 114.34324508538558
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 170.934097344898
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 173.00835728355122
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 183.97005869344875
 fallbackZoneMixes:
   powerOriginRatios:
+    - _source: Electricity Maps, 2015 average
+      datetime: '2015-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.7894126189677013
+        hydro discharge: 0.0
+        nuclear: 7.004071158656081e-05
+        oil: 0.0
+        solar: 3.793871877605378e-05
+        unknown: 0.19279720946977486
+        wind: 0.01768168459077276
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.7894126189677013
+        hydro discharge: 0.0
+        nuclear: 7.004071158656081e-05
+        oil: 0.0
+        solar: 3.7938718776053774e-05
+        unknown: 0.19279720946977486
+        wind: 0.01768168459077276
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 1.2276076476585306e-06
+        coal: 3.6754719989776365e-10
+        gas: 5.5132079984664555e-09
+        geothermal: 0.0
+        hydro: 0.5397103875524742
+        hydro discharge: 0.0
+        nuclear: 0.0009957958124566112
+        oil: 0.0
+        solar: 0.00014810939250120211
+        unknown: 0.426509281037074
+        wind: 0.03278610006265147
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 4.971527473859788e-09
+        coal: 0.0
+        gas: 5.800115386169752e-09
+        geothermal: 0.0
+        hydro: 0.7139918703196414
+        hydro discharge: 0.0
+        nuclear: 8.359437015014963e-05
+        oil: 0.0
+        solar: 0.0019536048074246435
+        unknown: 0.21867666328927052
+        wind: 0.06610074964320466
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.3315167063014597
+        hydro discharge: 0.0
+        nuclear: 3.2025613546843097e-06
+        oil: 0.0
+        solar: 0.09170213681300539
+        unknown: 0.22437777584102908
+        wind: 0.35249873200792264
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:

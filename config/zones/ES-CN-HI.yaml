@@ -56,6 +56,15 @@ emissionFactors:
       value: 880.903938
   lifecycle:
     battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 141.55183256804253
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 178.2122761644179
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 226.36203583322924
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 198.47674260721914
@@ -77,6 +86,15 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 141.55183256804253
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 178.2122761644179
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 226.36203583322924
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 198.47674260721914
@@ -99,6 +117,36 @@ emissionFactors:
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.04424395347895984
+        nuclear: 0.0
+        oil: 0.41521711388994126
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.5405265475442473
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.036587326365899994
+        nuclear: 0.0
+        oil: 0.5372941527579187
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.42612439253626966
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
