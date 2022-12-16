@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
@@ -24,31 +20,29 @@ const Canvas = styled.canvas`
 `;
 
 export default ({ project, unproject }) => {
-  const {
-    ref, width, height, node,
-  } = useRefWidthHeightObserver();
+  const { ref, width, height, node } = useRefWidthHeightObserver();
   const interpolatedData = useInterpolatedWindData();
   const enabled = useWindEnabled();
 
   const [windy, setWindy] = useState(null);
 
-  const isMapLoaded = useSelector(state => !state.application.isLoadingMap);
-  const isMoving = useSelector(state => state.application.isMovingMap);
+  const isMapLoaded = useSelector((state) => !state.application.isLoadingMap);
+  const isMoving = useSelector((state) => state.application.isMovingMap);
   const isVisible = enabled && isMapLoaded && !isMoving;
 
-  const viewport = useMemo(
-    () => {
-      const sw = unproject([0, height]);
-      const ne = unproject([width, 0]);
-      return [
-        [[0, 0], [width, height]],
-        width,
-        height,
-        [sw, ne],
-      ];
-    },
-    [unproject, width, height],
-  );
+  const viewport = useMemo(() => {
+    const sw = unproject([0, height]);
+    const ne = unproject([width, 0]);
+    return [
+      [
+        [0, 0],
+        [width, height],
+      ],
+      width,
+      height,
+      [sw, ne],
+    ];
+  }, [unproject, width, height]);
 
   // Kill and reinitialize Windy every time the layer visibility changes, which
   // will usually be at the beginning and the end of dragging. Windy initialization
@@ -66,25 +60,23 @@ export default ({ project, unproject }) => {
       });
       w.start(...viewport);
       // Set in the next render cycle.
-      setTimeout(() => { setWindy(w); }, 0);
+      setTimeout(() => {
+        setWindy(w);
+      }, 0);
     } else if (windy && !isVisible) {
       windy.stop();
       setWindy(null);
     }
   }, [windy, isVisible, node, interpolatedData]);
 
+  const windyIsStarted = windy && windy.started;
+
   return (
-    <CSSTransition
-      classNames="fade"
-      in={isVisible && windy && windy.started}
-      timeout={300}
-    >
-      <Canvas
-        id="wind"
-        width={width}
-        height={height}
-        ref={ref}
-      />
-    </CSSTransition>
+    <Canvas
+      id={windyIsStarted ? 'windlayer-started' : 'windlayer'}
+      width={width}
+      height={height}
+      ref={ref}
+    />
   );
 };

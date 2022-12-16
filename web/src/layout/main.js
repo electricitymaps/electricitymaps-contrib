@@ -37,7 +37,7 @@ const CLIENT_VERSION_CHECK_INTERVAL = 60 * 60 * 1000; // 1 hour
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   hasConnectionWarning: state.data.hasConnectionWarning,
@@ -46,24 +46,19 @@ const mapStateToProps = state => ({
 
 const MapContainer = styled.div`
   @media (max-width: 767px) {
-    display: ${props => props.pathname !== '/map' ? 'none !important' : 'block' };
+    display: ${(props) => (props.pathname !== '/map' ? 'none !important' : 'block')};
   }
 `;
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const Main = ({
-  electricityMixMode,
-  hasConnectionWarning,
-  currentDate,
-  brightModeEnabled,
-}) => {
+const Main = ({ electricityMixMode, hasConnectionWarning, currentDate, brightModeEnabled }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
-  const clientType = useSelector(state => state.application.clientType);
-  const isLocalhost = useSelector(state => state.application.isLocalhost);
+  const clientType = useSelector((state) => state.application.clientType);
+  const isLocalhost = useSelector((state) => state.application.isLocalhost);
 
   const showLoadingOverlay = useLoadingOverlayVisible();
 
@@ -76,7 +71,9 @@ const Main = ({
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
 
-  const { data: clientVersionData } = useSWR('/clientVersion', fetcher, {refreshInterval: CLIENT_VERSION_CHECK_INTERVAL})
+  const { data: clientVersionData } = useSWR('/clientVersion', fetcher, {
+    refreshInterval: CLIENT_VERSION_CHECK_INTERVAL,
+  });
   const clientVersion = clientVersionData && clientVersionData.version;
 
   let isClientVersionOutdated = false;
@@ -89,41 +86,33 @@ const Main = ({
     <React.Fragment>
       <div
         style={{
-          position: 'fixed', /* This is done in order to ensure that dragging will not affect the body */
+          position:
+            'fixed' /* This is done in order to ensure that dragging will not affect the body */,
           width: '100vw',
           height: 'inherit',
           display: 'flex',
-          flexDirection: 'column', /* children will be stacked vertically */
-          alignItems: 'stretch', /* force children to take 100% width */
+          flexDirection: 'column' /* children will be stacked vertically */,
+          alignItems: 'stretch' /* force children to take 100% width */,
         }}
       >
         {headerVisible && <Header />}
         <div id="inner">
-          <LoadingOverlay visible={showLoadingOverlay} />
+          {/* <LoadingOverlay visible={showLoadingOverlay} /> */}
           <MapContainer pathname={location.pathname} id="map-container">
             <Map />
             <Legend />
-            <div className="controls-container">
-              <Toggle
-                infoHTML={__('tooltips.cpinfo')}
-                onChange={value => dispatchApplication('electricityMixMode', value)}
-                options={[
-                  { value: 'production', label: __('tooltips.production') },
-                  { value: 'consumption', label: __('tooltips.consumption') },
-                ]}
-                value={electricityMixMode}
-              />
-            </div>
             <LayerButtons />
             <div className="text-title" style={{ color: brightModeEnabled ? '#000' : '#fff' }}>
-              {moment(datetime).format('MMMM YYYY')}
+              {moment(datetime).locale('en').format('MMMM YYYY')}
             </div>
           </MapContainer>
 
-          <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
+          <div
+            id="connection-warning"
+            className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}
+          >
             <div className="inner">
-              {__('misc.oops')}
-              {' '}
+              {__('misc.oops')}{' '}
               <a
                 href=""
                 onClick={(e) => {
@@ -136,13 +125,16 @@ const Main = ({
               .
             </div>
           </div>
-          <div id="new-version" className={`flash-message ${isClientVersionOutdated ? 'active' : ''}`}>
+          <div
+            id="new-version"
+            className={`flash-message ${isClientVersionOutdated ? 'active' : ''}`}
+          >
             <div className="inner">
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
             </div>
           </div>
 
-          { /* end #inner */}
+          {/* end #inner */}
         </div>
         <Tabs />
       </div>

@@ -18,20 +18,22 @@ import ButtonToggle from '../components/buttontoggle';
 export default () => {
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
-  const windDataError = useSelector(state => state.data.windDataError);
+  const windDataError = useSelector((state) => state.data.windDataError);
 
   const solarEnabled = useSolarEnabled();
-  const solarDataError = useSelector(state => state.data.solarDataError);
+  const solarDataError = useSelector((state) => state.data.solarDataError);
   const solarToggledLocation = useSolarToggledLocation();
 
-  const brightModeEnabled = useSelector(state => state.application.brightModeEnabled);
+  const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
   const toggleBrightMode = () => {
     dispatchApplication('brightModeEnabled', !brightModeEnabled);
     saveKey('brightModeEnabled', !brightModeEnabled);
   };
 
   const Link = ({ to, hasError, children }) =>
-  !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
+    !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
+
+  return null;
 
   return (
     <div className="layer-buttons-container">

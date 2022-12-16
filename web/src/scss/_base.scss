@@ -15,7 +15,7 @@ a {
 	}
 }
 
-html, 
+html,
 body {
     margin: 0 !important;
     padding: 0 !important;
@@ -88,7 +88,7 @@ div::-webkit-scrollbar {
 }
 div::-webkit-scrollbar-track-piece {
     background: $light-gray;
-    border-radius: 3px; 
+    border-radius: 3px;
 }
 
 div::-webkit-scrollbar-thumb {
@@ -106,4 +106,8 @@ div::-webkit-scrollbar-thumb {
   100% {
     top: -40px;
   }
+}
+
+.mapboxgl-ctrl-group:not(:empty) {
+    display: none;
 }

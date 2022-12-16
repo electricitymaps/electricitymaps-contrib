@@ -6,7 +6,7 @@ import { isLocalhost } from './environment';
 import thirdPartyServices from '../services/thirdparty';
 
 function isRemoteParam() {
-  return (new URLSearchParams(window.location.search)).get('remote') === 'true';
+  return new URLSearchParams(window.location.search).get('remote') === 'true';
 }
 
 // Use local endpoint only if ALL of the following conditions are true:
@@ -18,7 +18,9 @@ function isUsingLocalEndpoint() {
 }
 
 export function getEndpoint() {
-  return isUsingLocalEndpoint() ? 'http://localhost:8001' : 'https://app-backend.electricitymap.org';
+  return isUsingLocalEndpoint()
+    ? 'http://localhost:8002'
+    : 'https://app-backend.electricitymap.org';
 }
 
 export function protectedJsonRequest(path) {
@@ -27,7 +29,8 @@ export function protectedJsonRequest(path) {
   const timestamp = new Date().getTime();
 
   return new Promise((resolve, reject) => {
-    request.json(url)
+    request
+      .json(url)
       .header('electricitymap-token', Cookies.get('electricitymap-token'))
       .header('x-request-timestamp', timestamp)
       .header('x-signature', sha256(token + path + timestamp))
@@ -52,12 +55,7 @@ export function protectedJsonRequest(path) {
 export function handleRequestError(err) {
   if (err) {
     if (err.target) {
-      const {
-        responseText,
-        responseURL,
-        status,
-        statusText,
-      } = err.target;
+      const { responseText, responseURL, status, statusText } = err.target;
 
       // Avoid catching HTTPError 0
       // The error will be empty, and we can't catch any more info for security purposes.
@@ -67,7 +65,9 @@ export function handleRequestError(err) {
       // Also ignore 5xx errors as they are usually caused by server downtime and are not useful to track.
       if ((status >= 500 && status <= 599) || status === 404) return;
 
-      thirdPartyServices.trackError(new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`));
+      thirdPartyServices.trackError(
+        new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`)
+      );
     } else {
       thirdPartyServices.trackError(err);
     }
