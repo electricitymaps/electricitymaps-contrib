@@ -168,7 +168,7 @@ def fetch_production(
     zone_key, session=None, target_datetime=None, logger: Logger = getLogger(__name__)
 ):
     if zone_key == "FR-COR":
-        raise ParserException("FR-COR is not supported in this parser")
+        raise ParserException("ECO2MIX.py", "FR-COR is not supported in this parser")
 
     datapoints = [
         validate(d, logger, required=VALIDATIONS.get(zone_key, []))
