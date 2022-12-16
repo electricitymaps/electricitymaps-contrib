@@ -15,6 +15,7 @@ import './index.css';
 
 // Init polyfills
 import 'utils/polyfills';
+import { StrictMode } from 'react';
 
 /**
  * DevTools for Jotai which makes atoms appear in Redux Dev Tools.
@@ -48,13 +49,15 @@ if (container) {
   // StrictMode is disabled due to issue in react-spring-bottom-sheet
   // https://github.com/stipsan/react-spring-bottom-sheet/issues/210
   root.render(
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AtomsDevtools>
-          <App />
-        </AtomsDevtools>
-      </BrowserRouter>
-      <ReactQueryDevtools position="top-right" initialIsOpen={false} />
-    </QueryClientProvider>
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <AtomsDevtools>
+            <App />
+          </AtomsDevtools>
+        </BrowserRouter>
+        <ReactQueryDevtools position="top-right" initialIsOpen={false} />
+      </QueryClientProvider>
+    </StrictMode>
   );
 }
