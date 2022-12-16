@@ -6,15 +6,17 @@ https://territorygeneration.com.au/about-us/our-power-stations/
 """
 from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, Optional, TypedDict
+from typing import Callable, Dict, List, TypedDict
 
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-from requests import Session
-
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
+from pytz import timezone
+from requests import Session
+
+australia = timezone("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 # Data is published for the previous day only.
@@ -129,10 +131,9 @@ def parse_consumption(
         timestamp = datetime.combine(date=target_datetime.date(), time=raw_timestamp)
         if raw_timestamp < time(hour=4, minute=30):
             timestamp = timestamp + timedelta(days=1)
-
         data_point = {
             "zoneKey": "AU-NT",
-            "datetime": timestamp,
+            "datetime": australia.localize(timestamp),
             "source": "ntesmo.com.au",
         }
         if price:
@@ -191,7 +192,7 @@ def parse_production_mix(
 def fetch_consumption(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().to("utc").shift(hours=-DELAY),
+    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("UTC"),
     logger: Logger = getLogger(__name__),
 ):
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
@@ -202,7 +203,7 @@ def fetch_consumption(
 def fetch_price(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().to("utc").shift(hours=-DELAY),
+    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("utc"),
     logger: Logger = getLogger(__name__),
 ):
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
@@ -213,7 +214,7 @@ def fetch_price(
 def fetch_production_mix(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().to("utc").shift(hours=-DELAY),
+    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("utc"),
     logger: Logger = getLogger(__name__),
 ):
     production_mix = get_data(session, target_datetime, extract_production_data, logger)
