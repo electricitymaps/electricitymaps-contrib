@@ -13,7 +13,7 @@ import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
-from requests import Session, Response
+from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -75,7 +75,7 @@ def fetch_api_data(kind: str, params: dict, session: Session) -> list:
         "Referer": "http://dataminer2.pjm.com/",
     }
     url = API_ENDPOINT + kind
-    resp: Response = session.get(url, params, headers=headers)
+    resp: Response = session.get(url, params=params, headers=headers)
     if resp.status_code == 200:
         data = resp.json()
         return data
@@ -88,7 +88,7 @@ def fetch_api_data(kind: str, params: dict, session: Session) -> list:
 
 def fetch_consumption_forecast_7_days(
     zone_key: str = "US-PJM",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
@@ -96,8 +96,6 @@ def fetch_consumption_forecast_7_days(
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
-    if not session:
-        session = Session()
 
     headers = {"Ocp-Apim-Subscription-Key": get_token("PJM_TOKEN")}
 
@@ -139,7 +137,7 @@ def fetch_production(
         "fields": "datetime_beginning_ept,fuel_type,mw",
         "datetime_beginning_ept": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
     }
-    resp_data = fetch_api_data(kind="gen_by_fuel", params=params)
+    resp_data = fetch_api_data(kind="gen_by_fuel", params=params, session=session)
 
     data = pd.DataFrame(resp_data)
     data.fuel_type = data.fuel_type.map(FUEL_MAPPING)
@@ -180,7 +178,7 @@ def add_default_tz(timestamp):
     return modified_timestamp
 
 
-def get_miso_exchange(session: Optional[Session] = None) -> tuple:
+def get_miso_exchange(session: Session) -> tuple:
     """
     Current exchange status between PJM and MISO.
     :return: tuple containing flow and timestamp.
@@ -188,9 +186,8 @@ def get_miso_exchange(session: Optional[Session] = None) -> tuple:
 
     map_url = "http://pjm.com/markets-and-operations/interregional-map.aspx"
 
-    s = session or Session()
-    req = s.get(map_url)
-    soup = BeautifulSoup(req.content, "html.parser")
+    res: Response = session.get(map_url)
+    soup = BeautifulSoup(res.text, "html.parser")
 
     find_div = soup.find("div", {"id": "body_0_flow1", "class": "flow"})
 
@@ -217,7 +214,7 @@ def get_miso_exchange(session: Optional[Session] = None) -> tuple:
     return flow, dt_aware
 
 
-def get_exchange_data(interface, session: Optional[Session] = None) -> list:
+def get_exchange_data(interface, session: Session) -> list:
     """
     This function can fetch 5min data for any PJM interface in the current day.
     Extracts load and timestamp data from html source then joins them together.
@@ -226,9 +223,8 @@ def get_exchange_data(interface, session: Optional[Session] = None) -> list:
     base_url = "http://www.pjm.com/Charts/InterfaceChart.aspx?open="
     url = base_url + exchange_mapping[interface]
 
-    s = session or Session()
-    req = s.get(url)
-    soup = BeautifulSoup(req.content, "html.parser")
+    res: Response = session.get(url)
+    soup = BeautifulSoup(res.text, "html.parser")
 
     scripts = soup.find(
         "script",
@@ -265,16 +261,16 @@ def get_exchange_data(interface, session: Optional[Session] = None) -> list:
     return converted_flows
 
 
-def combine_NY_exchanges() -> list:
+def combine_NY_exchanges(session: Session) -> list:
     """
     Combination function for the 4 New York interfaces.
     Timestamps are checked to ensure correct combination.
     """
 
-    nyiso = get_exchange_data("nyiso", session=None)
-    neptune = get_exchange_data("neptune", session=None)
-    linden = get_exchange_data("linden", session=None)
-    hudson = get_exchange_data("hudson", session=None)
+    nyiso = get_exchange_data("nyiso", session)
+    neptune = get_exchange_data("neptune", session)
+    linden = get_exchange_data("linden", session)
+    hudson = get_exchange_data("hudson", session)
 
     combined_flows = zip(nyiso, neptune, linden, hudson)
 
@@ -298,7 +294,7 @@ def combine_NY_exchanges() -> list:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
@@ -310,12 +306,12 @@ def fetch_exchange(
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
 
     if sortedcodes == "US-NY->US-PJM":
-        flows = combine_NY_exchanges()
+        flows = combine_NY_exchanges(session)
     elif sortedcodes == "US-MIDA-PJM->US-NY-NYIS":
-        flows = combine_NY_exchanges()
+        flows = combine_NY_exchanges(session)
         flows = [(-total, dt) for total, dt in flows]
     elif sortedcodes == "US-MISO->US-PJM":
-        flow = get_miso_exchange()
+        flow = get_miso_exchange(session)
         exchange = {
             "sortedZoneKeys": sortedcodes,
             "datetime": flow[1],
@@ -324,7 +320,7 @@ def fetch_exchange(
         }
         return exchange
     elif sortedcodes == "US-MIDA-PJM->US-MIDW-MISO":
-        flow = get_miso_exchange()
+        flow = get_miso_exchange(session)
         exchange = {
             "sortedZoneKeys": sortedcodes,
             "datetime": flow[1],
@@ -350,7 +346,7 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: str = "US-PJM",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
@@ -358,9 +354,8 @@ def fetch_price(
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    s = session or Session()
-    req = s.get(url)
-    soup = BeautifulSoup(req.content, "html.parser")
+    res: Response = session.get(url)
+    soup = BeautifulSoup(res.text, "html.parser")
 
     price_tag = soup.find("span", class_="rtolmpico")
     price_data = price_tag.find_next("h2")
