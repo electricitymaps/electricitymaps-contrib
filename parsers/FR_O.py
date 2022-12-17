@@ -98,6 +98,7 @@ PRICE_MAPPING = {
     for API_TYPE in groups
 }
 
+
 def generate_url(zone_key, target_datetime):
     return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{HISTORICAL_DATASETS[zone_key] if target_datetime else LIVE_DATASETS[zone_key]}/exports/json"
 
@@ -212,6 +213,7 @@ def fetch_production(
             }
         )
     return return_list
+
 
 def fetch_price(
     zone_key: str,
