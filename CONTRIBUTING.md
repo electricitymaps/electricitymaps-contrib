@@ -7,6 +7,14 @@ Any and all contributions however big or small are welcome.
 
 ## Non-code contributions
 
+There are several ways to help out without coding, these are primarily:
+
+- Opening issues for bugs.
+- Opening issues for data issues.
+- Opening and participating in discussions about new data sources.
+- Opening issues when capacity data sources have been updated or changed.
+- And more!
+
 ## Parser guidelines
 
 ### Parser requirements
