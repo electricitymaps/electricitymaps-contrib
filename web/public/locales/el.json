@@ -6,9 +6,15 @@
     "datasources": "πηγές δεδομένων",
     "contribute": "Συνεισφέρετε <a href=\"%s\" target=\"_blank\">προσθέτοντας την περιοχή σας</a>"
   },
-  "mobile-main-menu": { "map": "Χάρτης", "areas": "Περιοχές", "about": "Σχετικά με εμάς" },
+  "mobile-main-menu": {
+    "map": "Χάρτης",
+    "areas": "Περιοχές",
+    "about": "Σχετικά με εμάς"
+  },
   "onboarding-modal": {
-    "view1": { "subtitle": "Χαρτογράφηση των κλιματικών επιπτώσεων της ηλεκτρικής ενέργειας" },
+    "view1": {
+      "subtitle": "Χαρτογράφηση των κλιματικών επιπτώσεων της ηλεκτρικής ενέργειας"
+    },
     "view2": {
       "header": "Δείτε πόσο CO₂ εκπέμπεται για να παραχθεί η ηλεκτρική σας ενέργεια, σε πραγματικό χρόνο.",
       "text": "Χρωματίζουμε τις περιοχές του κόσμου κατά την Ένταση Άνθρακα (συμπεριλαμβανομένων όλων των αερίων θερμοκηπίου) της ηλεκτρικής ενέργειας που καταναλώνεται εκεί. Όσο πιο πράσινο το χρώμα, τόσο πιο φιλική προς το κλίμα είναι η ηλεκτρική ενέργεια."
@@ -48,9 +54,15 @@
     "carbonintensity": { "hourly": "Ένταση άνθρακα τις τελευταίες 24 ώρες" },
     "emissionsorigin": { "hourly": "Προέλευση εκπομπών τις τελευταίες 24 ώρες" },
     "emissionsproduction": { "hourly": "Εκπομπές που παράχθηκαν τις τελευταίες 24 ώρες" },
-    "electricityorigin": { "hourly": "Προέλευση ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες" },
-    "electricityproduction": { "hourly": "Παραγωγή ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες" },
-    "electricityprices": { "hourly": "Τιμές ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες" },
+    "electricityorigin": {
+      "hourly": "Προέλευση ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες"
+    },
+    "electricityproduction": {
+      "hourly": "Παραγωγή ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες"
+    },
+    "electricityprices": {
+      "hourly": "Τιμές ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες"
+    },
     "emissions": { "hourly": "Εκπομπές τις τελευταίες 24 ώρες" }
   },
   "footer": {
@@ -112,14 +124,14 @@
   "coal": "άνθρακας",
   "oil": "πετρέλαιο",
   "unknown": "άγνωστη",
-  "electricityComesFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> προέρχεται από %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθενται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> προέρχεται από %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> αποθηκεύεται σε %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> αποθηκεύεται σε %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εξάγεται στο/στη(ν) <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εξάγεται στο/στη(ν) <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εισάγεται από <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εισάγεται από <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> προέρχεται από %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθενται στο/στη(ν) %4$s <b>%2$s</b> προέρχεται από %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> αποθηκεύεται σε %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> αποθηκεύεται σε %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εξάγεται στο/στη(ν) %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εξάγεται στο/στη(ν) %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εισάγεται από %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εισάγεται από %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq ανά λεπτό",
   "theMap": {
     "groupName": "Ο χάρτης",
@@ -552,15 +564,30 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "California Independent System Operator"
     },
-    "US-CAL-IID": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Imperial Irrigation District" },
+    "US-CAL-IID": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Imperial Irrigation District"
+    },
     "US-CAL-LDWP": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Los Angeles Department Of Water And Power"
     },
-    "US-CAL-TIDC": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Turlock Irrigation District" },
-    "US-CAR-CPLE": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Duke Energy Progress East" },
-    "US-CAR-CPLW": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Duke Energy Progress West" },
-    "US-CAR-DUK": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Duke Energy Carolinas" },
+    "US-CAL-TIDC": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Turlock Irrigation District"
+    },
+    "US-CAR-CPLE": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Duke Energy Progress East"
+    },
+    "US-CAR-CPLW": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Duke Energy Progress West"
+    },
+    "US-CAR-DUK": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Duke Energy Carolinas"
+    },
     "US-CAR-SC": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "South Carolina Public Service Authority"
@@ -577,26 +604,59 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Southwestern Power Administration"
     },
-    "US-CENT-SWPP": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Southwest Power Pool" },
-    "US-FLA-FMPP": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Florida Municipal Power Pool" },
-    "US-FLA-FPC": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Duke Energy Florida Inc" },
-    "US-FLA-FPL": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Florida Power & Light Company" },
-    "US-FLA-GVL": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Gainesville Regional Utilities" },
-    "US-FLA-HST": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "City Of Homestead" },
+    "US-CENT-SWPP": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Southwest Power Pool"
+    },
+    "US-FLA-FMPP": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Florida Municipal Power Pool"
+    },
+    "US-FLA-FPC": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Duke Energy Florida Inc"
+    },
+    "US-FLA-FPL": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Florida Power & Light Company"
+    },
+    "US-FLA-GVL": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Gainesville Regional Utilities"
+    },
+    "US-FLA-HST": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "City Of Homestead"
+    },
     "US-FLA-JEA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "JEA" },
     "US-FLA-NSB": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Utilities Commission Of New Smyrna Beach"
     },
-    "US-FLA-SEC": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Seminole Electric Cooperative" },
-    "US-FLA-TAL": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "City Of Tallahassee" },
-    "US-FLA-TEC": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Tampa Electric Company" },
-    "US-MIDA-PJM": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "PJM Interconnection, Llc" },
+    "US-FLA-SEC": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Seminole Electric Cooperative"
+    },
+    "US-FLA-TAL": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "City Of Tallahassee"
+    },
+    "US-FLA-TEC": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Tampa Electric Company"
+    },
+    "US-MIDA-PJM": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "PJM Interconnection, Llc"
+    },
     "US-MIDW-AECI": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Associated Electric Cooperative, Inc."
     },
-    "US-MIDW-GLHB": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "GridLiance" },
+    "US-MIDW-GLHB": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "GridLiance"
+    },
     "US-MIDW-LGEE": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
@@ -605,30 +665,78 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
     },
-    "US-NE-ISNE": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Iso New England Inc." },
-    "US-NW-AVA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Avista Corporation" },
-    "US-NW-AVRN": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Avangrid Renewables Cooperative" },
-    "US-NW-BPAT": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Bonneville Power Administration" },
-    "US-NW-CHPD": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "PUD No. 1 Of Chelan County" },
-    "US-NW-DOPD": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "PUD No. 1 Of Douglas County" },
+    "US-NE-ISNE": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Iso New England Inc."
+    },
+    "US-NW-AVA": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Avista Corporation"
+    },
+    "US-NW-AVRN": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Avangrid Renewables Cooperative"
+    },
+    "US-NW-BPAT": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Bonneville Power Administration"
+    },
+    "US-NW-CHPD": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "PUD No. 1 Of Chelan County"
+    },
+    "US-NW-DOPD": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "PUD No. 1 Of Douglas County"
+    },
     "US-NW-GCPD": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "PUD No. 2 Of Grant County, Washington"
     },
-    "US-NW-GRID": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Gridforce Energy Management, Llc" },
-    "US-NW-GWA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Naturener Power Watch, Llc (Gwa)" },
-    "US-NW-IPCO": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Idaho Power Company" },
-    "US-NW-NEVP": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Nevada Power Company" },
-    "US-NW-NWMT": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Northwestern Energy" },
-    "US-NW-PACE": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Pacificorp East" },
-    "US-NW-PACW": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Pacificorp West" },
-    "US-NW-PGE": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Portland General Electric Company" },
+    "US-NW-GRID": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Gridforce Energy Management, Llc"
+    },
+    "US-NW-GWA": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Naturener Power Watch, Llc (Gwa)"
+    },
+    "US-NW-IPCO": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Idaho Power Company"
+    },
+    "US-NW-NEVP": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Nevada Power Company"
+    },
+    "US-NW-NWMT": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Northwestern Energy"
+    },
+    "US-NW-PACE": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Pacificorp East"
+    },
+    "US-NW-PACW": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Pacificorp West"
+    },
+    "US-NW-PGE": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Portland General Electric Company"
+    },
     "US-NW-PSCO": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Public Service Company Of Colorado"
     },
-    "US-NW-PSEI": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Puget Sound Energy" },
-    "US-NW-SCL": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Seattle City Light" },
+    "US-NW-PSEI": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Puget Sound Energy"
+    },
+    "US-NW-SCL": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Seattle City Light"
+    },
     "US-NW-TPWR": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
@@ -641,22 +749,46 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Western Area Power Administration UGP West"
     },
-    "US-NW-WWA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Naturener Wind Watch, Llc" },
+    "US-NW-WWA": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Naturener Wind Watch, Llc"
+    },
     "US-NY-NYIS": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Powersouth Energy Cooperative" },
-    "US-SE-SEPA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Southeastern Power Administration" },
+    "US-SE-AEC": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Powersouth Energy Cooperative"
+    },
+    "US-SE-SEPA": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Southeastern Power Administration"
+    },
     "US-SE-SOCO": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Southern Company Services, Inc. - Trans"
     },
-    "US-SW-AZPS": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Arizona Public Service Company" },
-    "US-SW-DEAA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Arlington Valley, LLC" },
-    "US-SW-EPE": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "El Paso Electric Company" },
-    "US-SW-GRIF": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Griffith Energy, LLC" },
-    "US-SW-GRMA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Gila River Power, LLC" },
+    "US-SW-AZPS": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Arizona Public Service Company"
+    },
+    "US-SW-DEAA": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Arlington Valley, LLC"
+    },
+    "US-SW-EPE": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "El Paso Electric Company"
+    },
+    "US-SW-GRIF": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Griffith Energy, LLC"
+    },
+    "US-SW-GRMA": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Gila River Power, LLC"
+    },
     "US-SW-HGMA": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "New Harquahala Generating Company, LLC"
@@ -665,13 +797,22 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Public Service Company Of New Mexico"
     },
-    "US-SW-SRP": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Salt River Project" },
-    "US-SW-TEPC": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Tucson Electric Power Company" },
+    "US-SW-SRP": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Salt River Project"
+    },
+    "US-SW-TEPC": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Tucson Electric Power Company"
+    },
     "US-SW-WALC": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Western Area Power Administration - Desert Southwest Region"
     },
-    "US-TEN-TVA": { "countryName": "Ηνωμένες Πολιτείες Αμερικής", "zoneName": "Tennessee Valley Authority" },
+    "US-TEN-TVA": {
+      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+      "zoneName": "Tennessee Valley Authority"
+    },
     "US-TEX-ERCO": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Electric Reliability Council Of Texas, Inc."

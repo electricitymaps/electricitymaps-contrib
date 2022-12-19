@@ -13,6 +13,7 @@ import {
   selectedDatetimeIndexAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+import { getSafeTooltipPosition } from './utilities';
 
 interface MapTooltipProperties {
   mousePositionX: number;
@@ -20,31 +21,6 @@ interface MapTooltipProperties {
   hoveredFeature?: { featureId: string | number | undefined; zoneId: string };
   enabled: boolean;
 }
-
-const getTooltipPosition = (
-  mousePositionX: number,
-  mousePositionY: number,
-  screenWidth: number,
-  tooltipWidth: number,
-  tooltipHeight: number
-) => {
-  const ToolTipFlipBoundaryX = tooltipWidth + 30;
-  const ToolTipFlipBoundaryY = tooltipHeight - 40;
-  const xOffset = 10;
-  const yOffset = tooltipHeight - 40;
-
-  const tooltipPosition = {
-    x: mousePositionX + xOffset,
-    y: mousePositionY - yOffset,
-  };
-  if (screenWidth - mousePositionX < ToolTipFlipBoundaryX) {
-    tooltipPosition.x = mousePositionX - tooltipWidth;
-  }
-  if (mousePositionY < ToolTipFlipBoundaryY) {
-    tooltipPosition.y = mousePositionY;
-  }
-  return tooltipPosition;
-};
 
 function TooltipInner({
   zoneData,
@@ -116,14 +92,14 @@ export default function MapTooltip(properties: MapTooltipProperties) {
     : undefined;
 
   const screenWidth = window.innerWidth;
-  const tooltipWithDataPositon = getTooltipPosition(
+  const tooltipWithDataPositon = getSafeTooltipPosition(
     mousePositionX,
     mousePositionY,
     screenWidth,
     290,
     176
   );
-  const emptyTooltipPosition = getTooltipPosition(
+  const emptyTooltipPosition = getSafeTooltipPosition(
     mousePositionX,
     mousePositionY,
     screenWidth,

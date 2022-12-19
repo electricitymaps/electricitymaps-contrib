@@ -39,7 +39,7 @@ export function usePriceChartData() {
       layerData: {
         price: value.price?.value ?? Number.NaN,
       },
-      meta: {},
+      meta: value,
     });
   }
 

@@ -6,7 +6,11 @@
     "datasources": "source des données",
     "contribute": "Contribuez en <a href=\"%s\" target=\"_blank\">ajoutant votre pays</a>"
   },
-  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Zones", "about": "À propos" },
+  "mobile-main-menu": {
+    "map": "Electricity Maps",
+    "areas": "Zones",
+    "about": "À propos"
+  },
   "onboarding-modal": {
     "view1": { "subtitle": "Cartographie de l’impact de l’électricité sur le climat" },
     "view2": {
@@ -48,9 +52,13 @@
     "Getdata": "Obtenir l’historique et l’API de prévision + marginal",
     "carbonintensity": { "hourly": "Intensité carbone des 24 dernières heures" },
     "emissionsorigin": { "hourly": "Origine des émissions des 24 dernières heures" },
-    "emissionsproduction": { "hourly": "Émissions produites dans les 24 dernières heures" },
+    "emissionsproduction": {
+      "hourly": "Émissions produites dans les 24 dernières heures"
+    },
     "electricityorigin": { "hourly": "Origine de l’électricité des 24 dernières heures" },
-    "electricityproduction": { "hourly": "Production électrique des 24 dernières heures" },
+    "electricityproduction": {
+      "hourly": "Production électrique des 24 dernières heures"
+    },
     "electricityprices": { "hourly": "Prix de l’électricité des 24 dernières heures" },
     "emissions": { "hourly": "Émissions des 24 dernières heures" }
   },
@@ -112,14 +120,14 @@
   "coal": "charbon",
   "oil": "fioul",
   "unknown": "inconnu",
-  "electricityComesFrom": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est produite par %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont produites par %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est stockée par %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont stockées par %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est exportée vers <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont exportées vers <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est importée depuis <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont importées depuis <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est produite par %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont produites par %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est stockée par %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont stockées par %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est exportée vers %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont exportées vers %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est importée depuis %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont importées depuis %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "de CO₂eq par minute",
   "theMap": {
     "groupName": "La carte",
@@ -556,7 +564,10 @@
     "VC": { "zoneName": "Saint-Vincent-et-les Grenadines" },
     "VE": { "zoneName": "Venezuela" },
     "VG": { "countryName": "Îles Vierges", "zoneName": "Îles Vierges britanniques" },
-    "VI": { "countryName": "États-Unis d’Amérique", "zoneName": "Îles Vierges des États-Unis" },
+    "VI": {
+      "countryName": "États-Unis d’Amérique",
+      "zoneName": "Îles Vierges des États-Unis"
+    },
     "VN": { "zoneName": "Viêt Nam" },
     "VU": { "zoneName": "Vanuatu" },
     "WF": { "countryName": "France", "zoneName": "Wallis-et-Futuna" },

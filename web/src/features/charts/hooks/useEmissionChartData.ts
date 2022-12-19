@@ -25,7 +25,7 @@ export function useEmissionChartData() {
             getTotalElectricity(value, mixMode === Mode.CONSUMPTION)
           ),
         },
-        meta: {},
+        meta: value,
       };
     }
   );

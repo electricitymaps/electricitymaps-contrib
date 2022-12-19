@@ -94,3 +94,35 @@ export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   const index = datetimes.findIndex((d) => d.getTime() === currentDate.getTime());
   return datetimes[index + 1];
 };
+
+export function getRatioPercent(value: number, total: number) {
+  // If both the numerator and denominator are zeros,
+  // interpret the ratio as zero instead of NaN.
+  if (value === 0 && total === 0) {
+    return 0;
+  }
+  if (!Number.isFinite(value) || !Number.isFinite(total)) {
+    return '?';
+  }
+  return Math.round((value / total) * 10_000) / 100;
+}
+
+export function getElectricityProductionValue({
+  generationTypeCapacity,
+  isStorage,
+  generationTypeProduction,
+  generationTypeStorage,
+}: {
+  generationTypeCapacity: number;
+  isStorage: boolean;
+  generationTypeProduction: number;
+  generationTypeStorage: number;
+}) {
+  const value = isStorage ? -generationTypeStorage : generationTypeProduction;
+  // If the value is not defined but the capacity
+  // is zero, assume the value is also zero.
+  if (!Number.isFinite(value) && generationTypeCapacity === 0) {
+    return 0;
+  }
+  return value;
+}

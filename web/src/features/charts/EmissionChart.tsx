@@ -5,6 +5,7 @@ import AreaGraph from './elements/AreaGraph';
 
 import { noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
+import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 
 interface EmissionChartProps {
   datetimes: Date[];
@@ -21,7 +22,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const { chartData, layerFill, layerKeys } = data;
 
   return (
-    <div className="ml-2">
+    <div className="ml-4">
       <ChartTitle translationKey="country-history.emissions" />
       <AreaGraph
         testId="history-emissions-graph"
@@ -36,6 +37,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         isMobile={false}
         selectedTimeAggregate={timeAverage}
         height="8em"
+        tooltip={EmissionChartTooltip}
       />
     </div>
   );

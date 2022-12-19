@@ -45,11 +45,21 @@
   },
   "country-history": {
     "Getdata": "Dapatkan data original, marjinal dan API cuaca.",
-    "carbonintensity": { "hourly": "Intensitas Karbon dalam kurun waktu 24 jam terakhir" },
-    "emissionsorigin": { "hourly": "Originalitas emisi dalam kurun waktu 24 jam terakhir" },
-    "emissionsproduction": { "hourly": "Emisi yang dihasilkan dalam kurun waktu 24 jam terakhir" },
-    "electricityorigin": { "hourly": "Originalitas listrik dalam kurun waktu 24 jam terakhir" },
-    "electricityproduction": { "hourly": "Produksi listrik dalam kurun waktu 24 jam terakhir" },
+    "carbonintensity": {
+      "hourly": "Intensitas Karbon dalam kurun waktu 24 jam terakhir"
+    },
+    "emissionsorigin": {
+      "hourly": "Originalitas emisi dalam kurun waktu 24 jam terakhir"
+    },
+    "emissionsproduction": {
+      "hourly": "Emisi yang dihasilkan dalam kurun waktu 24 jam terakhir"
+    },
+    "electricityorigin": {
+      "hourly": "Originalitas listrik dalam kurun waktu 24 jam terakhir"
+    },
+    "electricityproduction": {
+      "hourly": "Produksi listrik dalam kurun waktu 24 jam terakhir"
+    },
     "electricityprices": { "hourly": "Harga listrik dalam kurun waktu 24 jam terakhir" }
   },
   "footer": {
@@ -107,14 +117,14 @@
   "coal": "batu bara",
   "oil": "minyak",
   "unknown": "tidak diketahui",
-  "electricityComesFrom": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> berasal dari %3$s",
-  "emissionsComeFrom": "%1$s %% emisi dari energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> berasal dari %3$s",
-  "electricityStoredUsing": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> tersimpan menggunakan %3$s",
-  "emissionsStoredUsing": "%1$s %% emisi dari energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> tersimpan menggunakan %3$s",
-  "electricityExportedTo": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diekspor ke <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "%1$s %% emisi dari energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diekspor ke <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diimport dari <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "%1$s %% emisi energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diimport dari <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> berasal dari %3$s",
+  "emissionsComeFrom": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> berasal dari %3$s",
+  "electricityStoredUsing": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> tersimpan menggunakan %3$s",
+  "emissionsStoredUsing": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> tersimpan menggunakan %3$s",
+  "electricityExportedTo": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> diekspor ke %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> diekspor ke %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "%1$s %% emisi energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq per menit",
   "theMap": {
     "groupName": "Peta",

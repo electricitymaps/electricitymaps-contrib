@@ -65,10 +65,18 @@
       "monthly": "Źródła emisji CO₂ w ciągu ostatnich 12 miesięcy",
       "yearly": "Źródła emisji CO₂ w ciągu ostatnich 5 lat"
     },
-    "emissionsproduction": { "hourly": "Emisja wyprodukowana w ciągu ostatnich 24 godzin" },
-    "electricityorigin": { "hourly": "Źródła energii elektrycznej w ciągu ostatnich 24 godzin" },
-    "electricityproduction": { "hourly": "Energia elektryczna wyprodukowana w ciągu ostatnich 24 godzin" },
-    "electricityprices": { "hourly": "Ceny energii elektrycznej w ciągu ostatnich 24 godzin" },
+    "emissionsproduction": {
+      "hourly": "Emisja wyprodukowana w ciągu ostatnich 24 godzin"
+    },
+    "electricityorigin": {
+      "hourly": "Źródła energii elektrycznej w ciągu ostatnich 24 godzin"
+    },
+    "electricityproduction": {
+      "hourly": "Energia elektryczna wyprodukowana w ciągu ostatnich 24 godzin"
+    },
+    "electricityprices": {
+      "hourly": "Ceny energii elektrycznej w ciągu ostatnich 24 godzin"
+    },
     "emissions": { "hourly": "Emisja w ciągu ostatnich 24 godzin" }
   },
   "footer": {
@@ -196,14 +204,14 @@
   "coal": "węglowa",
   "oil": "naftowa",
   "unknown": "nieznana",
-  "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> energii elektrycznej",
-  "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> emisji",
-  "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> energii elektrycznej",
-  "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> emisji",
-  "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisji jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "%4$s <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> energii elektrycznej",
+  "emissionsComeFrom": "%4$s <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> emisji",
+  "electricityStoredUsing": "%4$s <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> energii elektrycznej",
+  "emissionsStoredUsing": "%4$s <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> emisji",
+  "electricityExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest eksportowane do %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisji jest eksportowane do %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest importowane z %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisji jest importowane z %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq na minutę",
   "zoneShortName": {
     "AE": { "zoneName": "Zjednoczone Emiraty Arabskie" },

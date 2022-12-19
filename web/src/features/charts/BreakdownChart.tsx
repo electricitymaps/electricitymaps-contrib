@@ -4,6 +4,7 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
+import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 
 interface BreakdownChartProps {
   displayByEmissions: boolean;
@@ -27,7 +28,7 @@ function BreakdownChart({
   const titleDisplayMode = displayByEmissions ? 'emissions' : 'electricity';
   const titleMixMode = mixMode === Mode.CONSUMPTION ? 'origin' : 'production';
   return (
-    <div className="ml-2">
+    <div className="ml-4">
       <ChartTitle translationKey={`country-history.${titleDisplayMode}${titleMixMode}`} />
       <AreaGraph
         testId="history-mix-graph"
@@ -42,6 +43,8 @@ function BreakdownChart({
         isOverlayEnabled={false} // TODO: create overlay https://linear.app/electricitymaps/issue/ELE-1499/implement-chart-overlay-for-unavailable-data
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}
+        tooltip={BreakdownChartTooltip}
+        tooltipSize={displayByEmissions ? 'small' : 'large'}
       />
     </div>
   );

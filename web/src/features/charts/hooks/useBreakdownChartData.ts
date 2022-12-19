@@ -46,9 +46,7 @@ export default function useBreakdownChartData() {
     const datetime = new Date(datetimeString);
     const entry: AreaGraphElement = {
       datetime,
-      meta: {
-        exchangeCo2Intensities: value.exchangeCo2Intensities,
-      },
+      meta: value,
       layerData: {},
     };
 
@@ -91,6 +89,15 @@ export default function useBreakdownChartData() {
   }
 
   const layerKeys: string[] = [...modeOrder, ...exchangeKeys];
+
+  // Ensure that all chart data entries contains all layer keys
+  for (const entry of chartData) {
+    for (const key of layerKeys) {
+      if (!(key in entry.layerData)) {
+        entry.layerData[key] = Number.NaN;
+      }
+    }
+  }
 
   const result = {
     chartData,

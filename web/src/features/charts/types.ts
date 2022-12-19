@@ -1,5 +1,12 @@
+import { ZoneDetail } from 'types';
+
 export interface AreaGraphElement {
   datetime: Date;
-  meta: any; // TODO: investigate whether this can be removed after tooltips are implemented
+  meta: ZoneDetail;
   layerData: { [layerKey: string]: number };
+}
+
+export interface InnerAreaGraphTooltipProps {
+  zoneDetail: ZoneDetail;
+  selectedLayerKey: string;
 }

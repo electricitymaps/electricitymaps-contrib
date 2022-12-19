@@ -109,14 +109,14 @@
   "coal": "hiili",
   "oil": "öljy",
   "unknown": "tuntematon",
-  "electricityComesFrom": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevasta sähköstä tulee %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevista sähkön päästöistä tulee %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevasta sähköstä varastoidaan %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevista sähkön päästöistä varastoidaan %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevasta sähköstä viedään %3$s",
-  "emissionsExportedTo": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevista sähkön päästöistä viedään %3$s",
-  "electricityImportedFrom": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevasta sähköstä tuodaan %3$s",
-  "emissionsImportedFrom": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevista sähkön päästöistä tuodaan %3$s",
+  "electricityComesFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä tulee %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä tulee %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä varastoidaan %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä varastoidaan %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä viedään %3$s",
+  "emissionsExportedTo": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä viedään %3$s",
+  "electricityImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä tuodaan %3$s",
+  "emissionsImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä tuodaan %3$s",
   "ofCO2eqPerMinute": "hiilidioksiidia minuutissa",
   "theMap": {
     "groupName": "Kartta",
@@ -541,31 +541,85 @@
     "US-HI-MO": { "countryName": "Yhdysvallat", "zoneName": "Molokai" },
     "US-HI-NI": { "countryName": "Yhdysvallat", "zoneName": "Niihau" },
     "US-HI-OA": { "countryName": "Yhdysvallat", "zoneName": "Oahu" },
-    "US-CAL-BANC": { "countryName": "Yhdysvallat", "zoneName": "Balancing Authority Of Northern California" },
-    "US-CAL-CISO": { "countryName": "Yhdysvallat", "zoneName": "California Independent System Operator" },
-    "US-CAL-IID": { "countryName": "Yhdysvallat", "zoneName": "Imperial Irrigation District" },
-    "US-CAL-LDWP": { "countryName": "Yhdysvallat", "zoneName": "Los Angeles Department Of Water And Power" },
-    "US-CAL-TIDC": { "countryName": "Yhdysvallat", "zoneName": "Turlock Irrigation District" },
-    "US-CAR-CPLE": { "countryName": "Yhdysvallat", "zoneName": "Duke Energy Progress East" },
-    "US-CAR-CPLW": { "countryName": "Yhdysvallat", "zoneName": "Duke Energy Progress West" },
+    "US-CAL-BANC": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Balancing Authority Of Northern California"
+    },
+    "US-CAL-CISO": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "California Independent System Operator"
+    },
+    "US-CAL-IID": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Imperial Irrigation District"
+    },
+    "US-CAL-LDWP": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Los Angeles Department Of Water And Power"
+    },
+    "US-CAL-TIDC": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Turlock Irrigation District"
+    },
+    "US-CAR-CPLE": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Duke Energy Progress East"
+    },
+    "US-CAR-CPLW": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Duke Energy Progress West"
+    },
     "US-CAR-DUK": { "countryName": "Yhdysvallat", "zoneName": "Duke Energy Carolinas" },
-    "US-CAR-SC": { "countryName": "Yhdysvallat", "zoneName": "South Carolina Public Service Authority" },
-    "US-CAR-SCEG": { "countryName": "Yhdysvallat", "zoneName": "South Carolina Electric & Gas Company" },
-    "US-CAR-YAD": { "countryName": "Yhdysvallat", "zoneName": "Alcoa Power Generating, Inc. Yadkin Division" },
-    "US-CENT-SPA": { "countryName": "Yhdysvallat", "zoneName": "Southwestern Power Administration" },
+    "US-CAR-SC": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "South Carolina Public Service Authority"
+    },
+    "US-CAR-SCEG": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "South Carolina Electric & Gas Company"
+    },
+    "US-CAR-YAD": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
+    },
+    "US-CENT-SPA": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Southwestern Power Administration"
+    },
     "US-CENT-SWPP": { "countryName": "Yhdysvallat", "zoneName": "Southwest Power Pool" },
-    "US-FLA-FMPP": { "countryName": "Yhdysvallat", "zoneName": "Florida Municipal Power Pool" },
+    "US-FLA-FMPP": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Florida Municipal Power Pool"
+    },
     "US-FLA-FPC": { "countryName": "Yhdysvallat", "zoneName": "Duke Energy Florida Inc" },
-    "US-FLA-FPL": { "countryName": "Yhdysvallat", "zoneName": "Florida Power & Light Company" },
-    "US-FLA-GVL": { "countryName": "Yhdysvallat", "zoneName": "Gainesville Regional Utilities" },
+    "US-FLA-FPL": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Florida Power & Light Company"
+    },
+    "US-FLA-GVL": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Gainesville Regional Utilities"
+    },
     "US-FLA-HST": { "countryName": "Yhdysvallat", "zoneName": "City Of Homestead" },
     "US-FLA-JEA": { "countryName": "Yhdysvallat", "zoneName": "JEA" },
-    "US-FLA-NSB": { "countryName": "Yhdysvallat", "zoneName": "Utilities Commission Of New Smyrna Beach" },
-    "US-FLA-SEC": { "countryName": "Yhdysvallat", "zoneName": "Seminole Electric Cooperative" },
+    "US-FLA-NSB": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Utilities Commission Of New Smyrna Beach"
+    },
+    "US-FLA-SEC": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Seminole Electric Cooperative"
+    },
     "US-FLA-TAL": { "countryName": "Yhdysvallat", "zoneName": "City Of Tallahassee" },
     "US-FLA-TEC": { "countryName": "Yhdysvallat", "zoneName": "Tampa Electric Company" },
-    "US-MIDA-PJM": { "countryName": "Yhdysvallat", "zoneName": "PJM Interconnection, Llc" },
-    "US-MIDW-AECI": { "countryName": "Yhdysvallat", "zoneName": "Associated Electric Cooperative, Inc." },
+    "US-MIDA-PJM": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "PJM Interconnection, Llc"
+    },
+    "US-MIDW-AECI": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Associated Electric Cooperative, Inc."
+    },
     "US-MIDW-GLHB": { "countryName": "Yhdysvallat", "zoneName": "GridLiance" },
     "US-MIDW-LGEE": {
       "countryName": "Yhdysvallat",
@@ -577,20 +631,47 @@
     },
     "US-NE-ISNE": { "countryName": "Yhdysvallat", "zoneName": "Iso New England Inc." },
     "US-NW-AVA": { "countryName": "Yhdysvallat", "zoneName": "Avista Corporation" },
-    "US-NW-AVRN": { "countryName": "Yhdysvallat", "zoneName": "Avangrid Renewables Cooperative" },
-    "US-NW-BPAT": { "countryName": "Yhdysvallat", "zoneName": "Bonneville Power Administration" },
-    "US-NW-CHPD": { "countryName": "Yhdysvallat", "zoneName": "PUD No. 1 Of Chelan County" },
-    "US-NW-DOPD": { "countryName": "Yhdysvallat", "zoneName": "PUD No. 1 Of Douglas County" },
-    "US-NW-GCPD": { "countryName": "Yhdysvallat", "zoneName": "PUD No. 2 Of Grant County, Washington" },
-    "US-NW-GRID": { "countryName": "Yhdysvallat", "zoneName": "Gridforce Energy Management, Llc" },
-    "US-NW-GWA": { "countryName": "Yhdysvallat", "zoneName": "Naturener Power Watch, Llc (Gwa)" },
+    "US-NW-AVRN": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Avangrid Renewables Cooperative"
+    },
+    "US-NW-BPAT": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Bonneville Power Administration"
+    },
+    "US-NW-CHPD": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "PUD No. 1 Of Chelan County"
+    },
+    "US-NW-DOPD": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "PUD No. 1 Of Douglas County"
+    },
+    "US-NW-GCPD": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "PUD No. 2 Of Grant County, Washington"
+    },
+    "US-NW-GRID": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Gridforce Energy Management, Llc"
+    },
+    "US-NW-GWA": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Naturener Power Watch, Llc (Gwa)"
+    },
     "US-NW-IPCO": { "countryName": "Yhdysvallat", "zoneName": "Idaho Power Company" },
     "US-NW-NEVP": { "countryName": "Yhdysvallat", "zoneName": "Nevada Power Company" },
     "US-NW-NWMT": { "countryName": "Yhdysvallat", "zoneName": "Northwestern Energy" },
     "US-NW-PACE": { "countryName": "Yhdysvallat", "zoneName": "Pacificorp East" },
     "US-NW-PACW": { "countryName": "Yhdysvallat", "zoneName": "Pacificorp West" },
-    "US-NW-PGE": { "countryName": "Yhdysvallat", "zoneName": "Portland General Electric Company" },
-    "US-NW-PSCO": { "countryName": "Yhdysvallat", "zoneName": "Public Service Company Of Colorado" },
+    "US-NW-PGE": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Portland General Electric Company"
+    },
+    "US-NW-PSCO": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Public Service Company Of Colorado"
+    },
     "US-NW-PSEI": { "countryName": "Yhdysvallat", "zoneName": "Puget Sound Energy" },
     "US-NW-SCL": { "countryName": "Yhdysvallat", "zoneName": "Seattle City Light" },
     "US-NW-TPWR": {
@@ -601,27 +682,63 @@
       "countryName": "Yhdysvallat",
       "zoneName": "Western Area Power Administration - Rocky Mountain Region"
     },
-    "US-NW-WAUW": { "countryName": "Yhdysvallat", "zoneName": "Western Area Power Administration UGP West" },
-    "US-NW-WWA": { "countryName": "Yhdysvallat", "zoneName": "Naturener Wind Watch, Llc" },
-    "US-NY-NYIS": { "countryName": "Yhdysvallat", "zoneName": "New York Independent System Operator" },
-    "US-SE-AEC": { "countryName": "Yhdysvallat", "zoneName": "Powersouth Energy Cooperative" },
-    "US-SE-SEPA": { "countryName": "Yhdysvallat", "zoneName": "Southeastern Power Administration" },
-    "US-SE-SOCO": { "countryName": "Yhdysvallat", "zoneName": "Southern Company Services, Inc. - Trans" },
-    "US-SW-AZPS": { "countryName": "Yhdysvallat", "zoneName": "Arizona Public Service Company" },
+    "US-NW-WAUW": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Western Area Power Administration UGP West"
+    },
+    "US-NW-WWA": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Naturener Wind Watch, Llc"
+    },
+    "US-NY-NYIS": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "New York Independent System Operator"
+    },
+    "US-SE-AEC": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Powersouth Energy Cooperative"
+    },
+    "US-SE-SEPA": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Southeastern Power Administration"
+    },
+    "US-SE-SOCO": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Southern Company Services, Inc. - Trans"
+    },
+    "US-SW-AZPS": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Arizona Public Service Company"
+    },
     "US-SW-DEAA": { "countryName": "Yhdysvallat", "zoneName": "Arlington Valley, LLC" },
     "US-SW-EPE": { "countryName": "Yhdysvallat", "zoneName": "El Paso Electric Company" },
     "US-SW-GRIF": { "countryName": "Yhdysvallat", "zoneName": "Griffith Energy, LLC" },
     "US-SW-GRMA": { "countryName": "Yhdysvallat", "zoneName": "Gila River Power, LLC" },
-    "US-SW-HGMA": { "countryName": "Yhdysvallat", "zoneName": "New Harquahala Generating Company, LLC" },
-    "US-SW-PNM": { "countryName": "Yhdysvallat", "zoneName": "Public Service Company Of New Mexico" },
+    "US-SW-HGMA": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "New Harquahala Generating Company, LLC"
+    },
+    "US-SW-PNM": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Public Service Company Of New Mexico"
+    },
     "US-SW-SRP": { "countryName": "Yhdysvallat", "zoneName": "Salt River Project" },
-    "US-SW-TEPC": { "countryName": "Yhdysvallat", "zoneName": "Tucson Electric Power Company" },
+    "US-SW-TEPC": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Tucson Electric Power Company"
+    },
     "US-SW-WALC": {
       "countryName": "Yhdysvallat",
       "zoneName": "Western Area Power Administration - Desert Southwest Region"
     },
-    "US-TEN-TVA": { "countryName": "Yhdysvallat", "zoneName": "Tennessee Valley Authority" },
-    "US-TEX-ERCO": { "countryName": "Yhdysvallat", "zoneName": "Electric Reliability Council Of Texas, Inc." },
+    "US-TEN-TVA": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Tennessee Valley Authority"
+    },
+    "US-TEX-ERCO": {
+      "countryName": "Yhdysvallat",
+      "zoneName": "Electric Reliability Council Of Texas, Inc."
+    },
     "UY": { "zoneName": "Uruguay" },
     "UZ": { "zoneName": "Uzbekistan" },
     "VA": { "zoneName": "Vatikaanivaltio" },

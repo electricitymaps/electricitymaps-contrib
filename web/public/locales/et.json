@@ -6,7 +6,11 @@
     "datasources": "andmeallikaid",
     "contribute": "Aidake kaasa <a href=\"%s\" target=\"_blank\">lisades enda piirkond</a>"
   },
-  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Piirkonnad", "about": "Teave" },
+  "mobile-main-menu": {
+    "map": "Electricity Maps",
+    "areas": "Piirkonnad",
+    "about": "Teave"
+  },
   "onboarding-modal": {
     "view1": { "subtitle": "Elektrienergia kliimamõju kaardistamine" },
     "view2": {
@@ -48,7 +52,9 @@
     "Getdata": "Hangi läbi Electricity Maps API tundide kaupa ajaloo, reaalaja ja prognoosi andmeid",
     "carbonintensity": { "hourly": "Süsiniku intensiivsus viimase 24 tunni jooksul" },
     "emissionsorigin": { "hourly": "Heitkoguste päritolu viimase 24 tunni jooksul" },
-    "emissionsproduction": { "hourly": "Tootmisel tekkinud heitmed viimase 24 tunni jooksul" },
+    "emissionsproduction": {
+      "hourly": "Tootmisel tekkinud heitmed viimase 24 tunni jooksul"
+    },
     "electricityorigin": { "hourly": "Elektrienergia päritolu viimase 24 tunni jooksul" },
     "electricityproduction": { "hourly": "Elektritootmine viimase 24 tunni jooksul" },
     "electricityprices": { "hourly": "Elektrihinnad viimase 24 tunni jooksul" },
@@ -114,14 +120,14 @@
   "coal": "süsi",
   "oil": "õli",
   "unknown": "teadmata",
-  "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> tuleb allikast %3$s",
-  "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> tuleb allikast %3$s",
-  "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> hoiustatakse kasutades %3$s",
-  "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> hoiustatakse kasutades %3$s",
-  "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> eksporditakse riiki <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> eksporditakse riiki <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> imporditakse riigist <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> imporditakse riigist <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> tuleb allikast %3$s",
+  "emissionsComeFrom": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> tuleb allikast %3$s",
+  "electricityStoredUsing": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> hoiustatakse kasutades %3$s",
+  "emissionsStoredUsing": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> hoiustatakse kasutades %3$s",
+  "electricityExportedTo": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> eksporditakse riiki %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> eksporditakse riiki %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq minutis",
   "theMap": {
     "groupName": "Kaart",
@@ -557,36 +563,99 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Balancing Authority Of Northern California"
     },
-    "US-CAL-CISO": { "countryName": "Ameerika Ühendriigid", "zoneName": "California Independent System Operator" },
-    "US-CAL-IID": { "countryName": "Ameerika Ühendriigid", "zoneName": "Imperial Irrigation District" },
+    "US-CAL-CISO": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "California Independent System Operator"
+    },
+    "US-CAL-IID": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Imperial Irrigation District"
+    },
     "US-CAL-LDWP": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Los Angeles Department Of Water And Power"
     },
-    "US-CAL-TIDC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Turlock Irrigation District" },
-    "US-CAR-CPLE": { "countryName": "Ameerika Ühendriigid", "zoneName": "Duke Energy Progress East" },
-    "US-CAR-CPLW": { "countryName": "Ameerika Ühendriigid", "zoneName": "Duke Energy Progress West" },
-    "US-CAR-DUK": { "countryName": "Ameerika Ühendriigid", "zoneName": "Duke Energy Carolinas" },
-    "US-CAR-SC": { "countryName": "Ameerika Ühendriigid", "zoneName": "South Carolina Public Service Authority" },
-    "US-CAR-SCEG": { "countryName": "Ameerika Ühendriigid", "zoneName": "South Carolina Electric & Gas Company" },
+    "US-CAL-TIDC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Turlock Irrigation District"
+    },
+    "US-CAR-CPLE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Duke Energy Progress East"
+    },
+    "US-CAR-CPLW": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Duke Energy Progress West"
+    },
+    "US-CAR-DUK": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Duke Energy Carolinas"
+    },
+    "US-CAR-SC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "South Carolina Public Service Authority"
+    },
+    "US-CAR-SCEG": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "South Carolina Electric & Gas Company"
+    },
     "US-CAR-YAD": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
     },
-    "US-CENT-SPA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Southwestern Power Administration" },
-    "US-CENT-SWPP": { "countryName": "Ameerika Ühendriigid", "zoneName": "Southwest Power Pool" },
-    "US-FLA-FMPP": { "countryName": "Ameerika Ühendriigid", "zoneName": "Florida Municipal Power Pool" },
-    "US-FLA-FPC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Duke Energy Florida Inc" },
-    "US-FLA-FPL": { "countryName": "Ameerika Ühendriigid", "zoneName": "Florida Power & Light Company" },
-    "US-FLA-GVL": { "countryName": "Ameerika Ühendriigid", "zoneName": "Gainesville Regional Utilities" },
-    "US-FLA-HST": { "countryName": "Ameerika Ühendriigid", "zoneName": "City Of Homestead" },
+    "US-CENT-SPA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Southwestern Power Administration"
+    },
+    "US-CENT-SWPP": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Southwest Power Pool"
+    },
+    "US-FLA-FMPP": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Florida Municipal Power Pool"
+    },
+    "US-FLA-FPC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Duke Energy Florida Inc"
+    },
+    "US-FLA-FPL": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Florida Power & Light Company"
+    },
+    "US-FLA-GVL": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Gainesville Regional Utilities"
+    },
+    "US-FLA-HST": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "City Of Homestead"
+    },
     "US-FLA-JEA": { "countryName": "Ameerika Ühendriigid", "zoneName": "JEA" },
-    "US-FLA-NSB": { "countryName": "Ameerika Ühendriigid", "zoneName": "Utilities Commission Of New Smyrna Beach" },
-    "US-FLA-SEC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Seminole Electric Cooperative" },
-    "US-FLA-TAL": { "countryName": "Ameerika Ühendriigid", "zoneName": "City Of Tallahassee" },
-    "US-FLA-TEC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Tampa Electric Company" },
-    "US-MIDA-PJM": { "countryName": "Ameerika Ühendriigid", "zoneName": "PJM Interconnection, Llc" },
-    "US-MIDW-AECI": { "countryName": "Ameerika Ühendriigid", "zoneName": "Associated Electric Cooperative, Inc." },
+    "US-FLA-NSB": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Utilities Commission Of New Smyrna Beach"
+    },
+    "US-FLA-SEC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Seminole Electric Cooperative"
+    },
+    "US-FLA-TAL": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "City Of Tallahassee"
+    },
+    "US-FLA-TEC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Tampa Electric Company"
+    },
+    "US-MIDA-PJM": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "PJM Interconnection, Llc"
+    },
+    "US-MIDW-AECI": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Associated Electric Cooperative, Inc."
+    },
     "US-MIDW-GLHB": { "countryName": "Ameerika Ühendriigid", "zoneName": "GridLiance" },
     "US-MIDW-LGEE": {
       "countryName": "Ameerika Ühendriigid",
@@ -596,24 +665,78 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
     },
-    "US-NE-ISNE": { "countryName": "Ameerika Ühendriigid", "zoneName": "Iso New England Inc." },
-    "US-NW-AVA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Avista Corporation" },
-    "US-NW-AVRN": { "countryName": "Ameerika Ühendriigid", "zoneName": "Avangrid Renewables Cooperative" },
-    "US-NW-BPAT": { "countryName": "Ameerika Ühendriigid", "zoneName": "Bonneville Power Administration" },
-    "US-NW-CHPD": { "countryName": "Ameerika Ühendriigid", "zoneName": "PUD No. 1 Of Chelan County" },
-    "US-NW-DOPD": { "countryName": "Ameerika Ühendriigid", "zoneName": "PUD No. 1 Of Douglas County" },
-    "US-NW-GCPD": { "countryName": "Ameerika Ühendriigid", "zoneName": "PUD No. 2 Of Grant County, Washington" },
-    "US-NW-GRID": { "countryName": "Ameerika Ühendriigid", "zoneName": "Gridforce Energy Management, Llc" },
-    "US-NW-GWA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Naturener Power Watch, Llc (Gwa)" },
-    "US-NW-IPCO": { "countryName": "Ameerika Ühendriigid", "zoneName": "Idaho Power Company" },
-    "US-NW-NEVP": { "countryName": "Ameerika Ühendriigid", "zoneName": "Nevada Power Company" },
-    "US-NW-NWMT": { "countryName": "Ameerika Ühendriigid", "zoneName": "Northwestern Energy" },
-    "US-NW-PACE": { "countryName": "Ameerika Ühendriigid", "zoneName": "Pacificorp East" },
-    "US-NW-PACW": { "countryName": "Ameerika Ühendriigid", "zoneName": "Pacificorp West" },
-    "US-NW-PGE": { "countryName": "Ameerika Ühendriigid", "zoneName": "Portland General Electric Company" },
-    "US-NW-PSCO": { "countryName": "Ameerika Ühendriigid", "zoneName": "Public Service Company Of Colorado" },
-    "US-NW-PSEI": { "countryName": "Ameerika Ühendriigid", "zoneName": "Puget Sound Energy" },
-    "US-NW-SCL": { "countryName": "Ameerika Ühendriigid", "zoneName": "Seattle City Light" },
+    "US-NE-ISNE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Iso New England Inc."
+    },
+    "US-NW-AVA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Avista Corporation"
+    },
+    "US-NW-AVRN": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Avangrid Renewables Cooperative"
+    },
+    "US-NW-BPAT": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Bonneville Power Administration"
+    },
+    "US-NW-CHPD": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "PUD No. 1 Of Chelan County"
+    },
+    "US-NW-DOPD": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "PUD No. 1 Of Douglas County"
+    },
+    "US-NW-GCPD": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "PUD No. 2 Of Grant County, Washington"
+    },
+    "US-NW-GRID": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Gridforce Energy Management, Llc"
+    },
+    "US-NW-GWA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Naturener Power Watch, Llc (Gwa)"
+    },
+    "US-NW-IPCO": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Idaho Power Company"
+    },
+    "US-NW-NEVP": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Nevada Power Company"
+    },
+    "US-NW-NWMT": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Northwestern Energy"
+    },
+    "US-NW-PACE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Pacificorp East"
+    },
+    "US-NW-PACW": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Pacificorp West"
+    },
+    "US-NW-PGE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Portland General Electric Company"
+    },
+    "US-NW-PSCO": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Public Service Company Of Colorado"
+    },
+    "US-NW-PSEI": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Puget Sound Energy"
+    },
+    "US-NW-SCL": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Seattle City Light"
+    },
     "US-NW-TPWR": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
@@ -626,25 +749,70 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Western Area Power Administration UGP West"
     },
-    "US-NW-WWA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Naturener Wind Watch, Llc" },
-    "US-NY-NYIS": { "countryName": "Ameerika Ühendriigid", "zoneName": "New York Independent System Operator" },
-    "US-SE-AEC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Powersouth Energy Cooperative" },
-    "US-SE-SEPA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Southeastern Power Administration" },
-    "US-SE-SOCO": { "countryName": "Ameerika Ühendriigid", "zoneName": "Southern Company Services, Inc. - Trans" },
-    "US-SW-AZPS": { "countryName": "Ameerika Ühendriigid", "zoneName": "Arizona Public Service Company" },
-    "US-SW-DEAA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Arlington Valley, LLC" },
-    "US-SW-EPE": { "countryName": "Ameerika Ühendriigid", "zoneName": "El Paso Electric Company" },
-    "US-SW-GRIF": { "countryName": "Ameerika Ühendriigid", "zoneName": "Griffith Energy, LLC" },
-    "US-SW-GRMA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Gila River Power, LLC" },
-    "US-SW-HGMA": { "countryName": "Ameerika Ühendriigid", "zoneName": "New Harquahala Generating Company, LLC" },
-    "US-SW-PNM": { "countryName": "Ameerika Ühendriigid", "zoneName": "Public Service Company Of New Mexico" },
-    "US-SW-SRP": { "countryName": "Ameerika Ühendriigid", "zoneName": "Salt River Project" },
-    "US-SW-TEPC": { "countryName": "Ameerika Ühendriigid", "zoneName": "Tucson Electric Power Company" },
+    "US-NW-WWA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Naturener Wind Watch, Llc"
+    },
+    "US-NY-NYIS": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "New York Independent System Operator"
+    },
+    "US-SE-AEC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Powersouth Energy Cooperative"
+    },
+    "US-SE-SEPA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Southeastern Power Administration"
+    },
+    "US-SE-SOCO": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Southern Company Services, Inc. - Trans"
+    },
+    "US-SW-AZPS": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Arizona Public Service Company"
+    },
+    "US-SW-DEAA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Arlington Valley, LLC"
+    },
+    "US-SW-EPE": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "El Paso Electric Company"
+    },
+    "US-SW-GRIF": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Griffith Energy, LLC"
+    },
+    "US-SW-GRMA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Gila River Power, LLC"
+    },
+    "US-SW-HGMA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "New Harquahala Generating Company, LLC"
+    },
+    "US-SW-PNM": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Public Service Company Of New Mexico"
+    },
+    "US-SW-SRP": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Salt River Project"
+    },
+    "US-SW-TEPC": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Tucson Electric Power Company"
+    },
     "US-SW-WALC": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Western Area Power Administration - Desert Southwest Region"
     },
-    "US-TEN-TVA": { "countryName": "Ameerika Ühendriigid", "zoneName": "Tennessee Valley Authority" },
+    "US-TEN-TVA": {
+      "countryName": "Ameerika Ühendriigid",
+      "zoneName": "Tennessee Valley Authority"
+    },
     "US-TEX-ERCO": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Electric Reliability Council Of Texas, Inc."

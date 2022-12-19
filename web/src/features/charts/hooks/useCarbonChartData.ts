@@ -23,7 +23,7 @@ export function useCarbonChartData() {
         layerData: {
           carbonIntensity: getCO2IntensityByMode(value, mixMode),
         },
-        meta: {},
+        meta: value,
       };
     }
   );

@@ -1,5 +1,5 @@
 import * as d3 from 'd3-format';
-// import * as translation from './translation';
+import { translate } from '../translation/translation';
 import { TimeAverages } from './constants';
 
 const DEFAULT_NUM_DIGITS = 3;
@@ -11,26 +11,25 @@ export const formatPower = function (d: number, numberDigits = DEFAULT_NUM_DIGIT
   }
   return `${d3.format(`.${numberDigits}s`)(d * 1e6)}W`;
 };
-// const formatCo2 = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
-//   let value = d;
-//   // Assume gCO₂ / h input
-//   value /= 60; // Convert to gCO₂ / min
-//   value /= 1e6; // Convert to tCO₂ / min
-//   if (d == undefined || isNaN(d)) {
-//     return d;
-//   }
 
-//   if (d >= 1) {
-//     // a ton or more
-//     return `${d3.format(`.${numberDigits}s`)(value)}t ${translation.translate(
-//       'ofCO2eqPerMinute'
-//     )}`;
-//   } else {
-//     return `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translation.translate(
-//       'ofCO2eqPerMinute'
-//     )}`;
-//   }
-// };
+export const formatCo2 = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
+  let value = d;
+  // Assume gCO₂ / h input
+  value /= 60; // Convert to gCO₂ / min
+  value /= 1e6; // Convert to tCO₂ / min
+  if (d == undefined || Number.isNaN(d)) {
+    return d;
+  }
+
+  if (d >= 1) {
+    // a ton or more
+    return `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}`;
+  } else {
+    return `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate(
+      'ofCO2eqPerMinute'
+    )}`;
+  }
+};
 
 const scalePower = function (maxPower: number | undefined) {
   // Assume MW input

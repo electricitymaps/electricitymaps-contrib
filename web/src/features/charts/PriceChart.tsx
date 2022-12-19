@@ -4,6 +4,7 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { usePriceChartData } from './hooks/usePriceChartData';
+import PriceChartTooltip from './tooltips/PriceChartTooltip';
 
 interface PriceChartProps {
   datetimes: Date[];
@@ -22,7 +23,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     data;
 
   return (
-    <div className="ml-2">
+    <div className="ml-4">
       <ChartTitle translationKey="country-history.electricityprices" />
       <AreaGraph
         testId="history-prices-graph"
@@ -39,6 +40,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}
         isOverlayEnabled={false}
+        tooltip={PriceChartTooltip}
       />
     </div>
   );

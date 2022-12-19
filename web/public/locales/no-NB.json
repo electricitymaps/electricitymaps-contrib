@@ -11,7 +11,11 @@
     "zone-list-header-subtitle": "Sortert etter CO₂-intensitet fra strømforbruk (gCO₂eq/kWh)",
     "search": "Søk etter land/region"
   },
-  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Regioner", "about": "Om kartet" },
+  "mobile-main-menu": {
+    "map": "Electricity Maps",
+    "areas": "Regioner",
+    "about": "Om kartet"
+  },
   "onboarding-modal": {
     "view1": { "subtitle": "Kartlegger klimaeffekten av el-energi" },
     "view2": {
@@ -189,14 +193,14 @@
   "coal": "Kull",
   "oil": "Olje",
   "unknown": "Ukjent energikilde",
-  "electricityComesFrom": "<b>%1$s %%</b> av elektrisitet i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> av CO₂-utslipp i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> av elektrisitet i <img id=\"country-flag\"></img> <b>%2$s</b> lagres gjennom %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> av CO₂-utslipp i <img id=\"country-flag\"></img> <b>%2$s</b> lagres gjennom %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> av elektrisitet i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> av CO₂-utslipp i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> av elektrisitet i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> av CO₂-utslipp i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> kommer fra %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> kommer fra %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> lagres gjennom %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> lagres gjennom %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "av CO₂-ekvivalenter per minutt",
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },
@@ -562,18 +566,39 @@
     "US-HI-MO": { "countryName": "USA", "zoneName": "Molokai" },
     "US-HI-NI": { "countryName": "USA", "zoneName": "Niihau" },
     "US-HI-OA": { "countryName": "USA", "zoneName": "Oahu" },
-    "US-CAL-BANC": { "countryName": "USA", "zoneName": "Balancing Authority Of Northern California" },
-    "US-CAL-CISO": { "countryName": "USA", "zoneName": "California Independent System Operator" },
+    "US-CAL-BANC": {
+      "countryName": "USA",
+      "zoneName": "Balancing Authority Of Northern California"
+    },
+    "US-CAL-CISO": {
+      "countryName": "USA",
+      "zoneName": "California Independent System Operator"
+    },
     "US-CAL-IID": { "countryName": "USA", "zoneName": "Imperial Irrigation District" },
-    "US-CAL-LDWP": { "countryName": "USA", "zoneName": "Los Angeles Department Of Water And Power" },
+    "US-CAL-LDWP": {
+      "countryName": "USA",
+      "zoneName": "Los Angeles Department Of Water And Power"
+    },
     "US-CAL-TIDC": { "countryName": "USA", "zoneName": "Turlock Irrigation District" },
     "US-CAR-CPLE": { "countryName": "USA", "zoneName": "Duke Energy Progress East" },
     "US-CAR-CPLW": { "countryName": "USA", "zoneName": "Duke Energy Progress West" },
     "US-CAR-DUK": { "countryName": "USA", "zoneName": "Duke Energy Carolinas" },
-    "US-CAR-SC": { "countryName": "USA", "zoneName": "South Carolina Public Service Authority" },
-    "US-CAR-SCEG": { "countryName": "USA", "zoneName": "South Carolina Electric & Gas Company" },
-    "US-CAR-YAD": { "countryName": "USA", "zoneName": "Alcoa Power Generating, Inc. Yadkin Division" },
-    "US-CENT-SPA": { "countryName": "USA", "zoneName": "Southwestern Power Administration" },
+    "US-CAR-SC": {
+      "countryName": "USA",
+      "zoneName": "South Carolina Public Service Authority"
+    },
+    "US-CAR-SCEG": {
+      "countryName": "USA",
+      "zoneName": "South Carolina Electric & Gas Company"
+    },
+    "US-CAR-YAD": {
+      "countryName": "USA",
+      "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
+    },
+    "US-CENT-SPA": {
+      "countryName": "USA",
+      "zoneName": "Southwestern Power Administration"
+    },
     "US-CENT-SWPP": { "countryName": "USA", "zoneName": "Southwest Power Pool" },
     "US-FLA-FMPP": { "countryName": "USA", "zoneName": "Florida Municipal Power Pool" },
     "US-FLA-FPC": { "countryName": "USA", "zoneName": "Duke Energy Florida Inc" },
@@ -581,13 +606,22 @@
     "US-FLA-GVL": { "countryName": "USA", "zoneName": "Gainesville Regional Utilities" },
     "US-FLA-HST": { "countryName": "USA", "zoneName": "City Of Homestead" },
     "US-FLA-JEA": { "countryName": "USA", "zoneName": "Jacksonville Electric Authority" },
-    "US-FLA-NSB": { "countryName": "USA", "zoneName": "Utilities Commission Of New Smyrna Beach" },
+    "US-FLA-NSB": {
+      "countryName": "USA",
+      "zoneName": "Utilities Commission Of New Smyrna Beach"
+    },
     "US-FLA-SEC": { "countryName": "USA", "zoneName": "Seminole Electric Cooperative" },
     "US-FLA-TAL": { "countryName": "USA", "zoneName": "City Of Tallahassee" },
     "US-FLA-TEC": { "countryName": "USA", "zoneName": "Tampa Electric Company" },
-    "US-MIDA-OVEC": { "countryName": "USA", "zoneName": "Ohio Valley Electric Corporation" },
+    "US-MIDA-OVEC": {
+      "countryName": "USA",
+      "zoneName": "Ohio Valley Electric Corporation"
+    },
     "US-MIDA-PJM": { "countryName": "USA", "zoneName": "PJM Interconnection, Llc" },
-    "US-MIDW-AECI": { "countryName": "USA", "zoneName": "Associated Electric Cooperative, Inc." },
+    "US-MIDW-AECI": {
+      "countryName": "USA",
+      "zoneName": "Associated Electric Cooperative, Inc."
+    },
     "US-MIDW-GLHB": { "countryName": "USA", "zoneName": "GridLiance" },
     "US-MIDW-LGEE": {
       "countryName": "USA",
@@ -603,36 +637,69 @@
     "US-NW-BPAT": { "countryName": "USA", "zoneName": "Bonneville Power Administration" },
     "US-NW-CHPD": { "countryName": "USA", "zoneName": "PUD No. 1 Of Chelan County" },
     "US-NW-DOPD": { "countryName": "USA", "zoneName": "PUD No. 1 Of Douglas County" },
-    "US-NW-GCPD": { "countryName": "USA", "zoneName": "PUD No. 2 Of Grant County, Washington" },
-    "US-NW-GRID": { "countryName": "USA", "zoneName": "Gridforce Energy Management, Llc" },
+    "US-NW-GCPD": {
+      "countryName": "USA",
+      "zoneName": "PUD No. 2 Of Grant County, Washington"
+    },
+    "US-NW-GRID": {
+      "countryName": "USA",
+      "zoneName": "Gridforce Energy Management, Llc"
+    },
     "US-NW-GWA": { "countryName": "USA", "zoneName": "Naturener Power Watch, Llc (Gwa)" },
     "US-NW-IPCO": { "countryName": "USA", "zoneName": "Idaho Power Company" },
     "US-NW-NEVP": { "countryName": "USA", "zoneName": "Nevada Power Company" },
     "US-NW-NWMT": { "countryName": "USA", "zoneName": "Northwestern Energy" },
     "US-NW-PACE": { "countryName": "USA", "zoneName": "Pacificorp East" },
     "US-NW-PACW": { "countryName": "USA", "zoneName": "Pacificorp West" },
-    "US-NW-PGE": { "countryName": "USA", "zoneName": "Portland General Electric Company" },
-    "US-NW-PSCO": { "countryName": "USA", "zoneName": "Public Service Company Of Colorado" },
+    "US-NW-PGE": {
+      "countryName": "USA",
+      "zoneName": "Portland General Electric Company"
+    },
+    "US-NW-PSCO": {
+      "countryName": "USA",
+      "zoneName": "Public Service Company Of Colorado"
+    },
     "US-NW-PSEI": { "countryName": "USA", "zoneName": "Puget Sound Energy" },
     "US-NW-SCL": { "countryName": "USA", "zoneName": "Seattle City Light" },
     "US-NW-TPWR": {
       "countryName": "USA",
       "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
     },
-    "US-NW-WACM": { "countryName": "USA", "zoneName": "Western Area Power Administration - Rocky Mountain Region" },
-    "US-NW-WAUW": { "countryName": "USA", "zoneName": "Western Area Power Administration UGP West" },
+    "US-NW-WACM": {
+      "countryName": "USA",
+      "zoneName": "Western Area Power Administration - Rocky Mountain Region"
+    },
+    "US-NW-WAUW": {
+      "countryName": "USA",
+      "zoneName": "Western Area Power Administration UGP West"
+    },
     "US-NW-WWA": { "countryName": "USA", "zoneName": "Naturener Wind Watch, Llc" },
-    "US-NY-NYIS": { "countryName": "USA", "zoneName": "New York Independent System Operator" },
+    "US-NY-NYIS": {
+      "countryName": "USA",
+      "zoneName": "New York Independent System Operator"
+    },
     "US-SE-AEC": { "countryName": "USA", "zoneName": "Powersouth Energy Cooperative" },
-    "US-SE-SEPA": { "countryName": "USA", "zoneName": "Southeastern Power Administration" },
-    "US-SE-SOCO": { "countryName": "USA", "zoneName": "Southern Company Services, Inc. - Trans" },
+    "US-SE-SEPA": {
+      "countryName": "USA",
+      "zoneName": "Southeastern Power Administration"
+    },
+    "US-SE-SOCO": {
+      "countryName": "USA",
+      "zoneName": "Southern Company Services, Inc. - Trans"
+    },
     "US-SW-AZPS": { "countryName": "USA", "zoneName": "Arizona Public Service Company" },
     "US-SW-DEAA": { "countryName": "USA", "zoneName": "Arlington Valley, LLC" },
     "US-SW-EPE": { "countryName": "USA", "zoneName": "El Paso Electric Company" },
     "US-SW-GRIF": { "countryName": "USA", "zoneName": "Griffith Energy, LLC" },
     "US-SW-GRMA": { "countryName": "USA", "zoneName": "Gila River Power, LLC" },
-    "US-SW-HGMA": { "countryName": "USA", "zoneName": "New Harquahala Generating Company, LLC" },
-    "US-SW-PNM": { "countryName": "USA", "zoneName": "Public Service Company Of New Mexico" },
+    "US-SW-HGMA": {
+      "countryName": "USA",
+      "zoneName": "New Harquahala Generating Company, LLC"
+    },
+    "US-SW-PNM": {
+      "countryName": "USA",
+      "zoneName": "Public Service Company Of New Mexico"
+    },
     "US-SW-SRP": { "countryName": "USA", "zoneName": "Salt River Project" },
     "US-SW-TEPC": { "countryName": "USA", "zoneName": "Tucson Electric Power Company" },
     "US-SW-WALC": {
@@ -640,7 +707,10 @@
       "zoneName": "Western Area Power Administration - Desert Southwest Region"
     },
     "US-TEN-TVA": { "countryName": "USA", "zoneName": "Tennessee Valley Authority" },
-    "US-TEX-ERCO": { "countryName": "USA", "zoneName": "Electric Reliability Council Of Texas, Inc." },
+    "US-TEX-ERCO": {
+      "countryName": "USA",
+      "zoneName": "Electric Reliability Council Of Texas, Inc."
+    },
     "UY": { "zoneName": "Uruguay" },
     "UZ": { "zoneName": "Uzbekistan" },
     "VA": { "zoneName": "Vatikanet" },

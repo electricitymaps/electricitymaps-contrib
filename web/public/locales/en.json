@@ -130,7 +130,8 @@
     "aggregateinfo": "Country displays an aggregated view of countries with sub zones. Zone displays the most granular view available",
     "selectLanguage": "Select language",
     "lowCarbDescription": "Includes renewables and nuclear",
-    "dataIsDelayed": "Data is delayed"
+    "dataIsDelayed": "Data is delayed",
+    "price": "Price"
   },
   "aggregateButtons": { "country": "country", "zone": "zone" },
   "misc": {
@@ -160,14 +161,14 @@
   "coal": "coal",
   "oil": "oil",
   "unknown": "unknown",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> comes from %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> come from %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is stored using %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are stored using %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is exported to %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "The map",
