@@ -19,13 +19,13 @@ from typing import List, Optional
 
 import arrow
 import pandas as pd
-from requests import Session
-
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
+from requests import Session
+
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
 
 ELEXON_ENDPOINT = "https://api.bmreports.com/BMRS/{}/v1"
 
@@ -50,7 +50,7 @@ RESOURCE_TYPE_TO_FUEL = {
     "Wind Offshore": "wind",
     "Other": "unknown",
 }
-
+# Mapping is ordered to match the FUELINST output file.
 FUEL_INST_MAPPING = {
     "CCGT": "gas",
     "OIL": "oil",
@@ -202,7 +202,7 @@ def parse_production_FUELINST(
         )
     # The file doesn't have a column header, so we need to recreate it.
     mapping = {1: "Settlement Date", 2: "Settlement Period", 3: "Spot Time"}
-    for index, fuel in enumerate(FUEL_INST_MAPPING.values()):
+    for index, fuel in enumerate(FUEL_INST_MAPPING.keys()):
         mapping[index + 4] = fuel
     df.rename(columns=mapping, inplace=True)
     df["Settlement Date"] = df["Settlement Date"].apply(
@@ -226,13 +226,14 @@ def parse_production_FUELINST(
         }
 
         for row in time_df.iterrows():
-            electricity_production = row[1].to_dict()
-            for key in electricity_production.keys():
-                if key in PRODUCTION_MODES:
-                    if key in data_point["production"]:
-                        data_point["production"][key] += electricity_production[key]
+            electricity_production: dict = row[1].to_dict()
+            for elexon_prod_type, prod_value in electricity_production.items():
+                production_key = FUEL_INST_MAPPING.get(elexon_prod_type)
+                if production_key in PRODUCTION_MODES:
+                    if production_key in data_point["production"]:
+                        data_point["production"][production_key] += prod_value
                     else:
-                        data_point["production"][key] = electricity_production[key]
+                        data_point["production"][production_key] = prod_value
 
         data_points.append(data_point)
     return data_points
@@ -435,9 +436,9 @@ def fetch_production(
     expected_range = {
         # Historical data might be above the current capacity for coal
         "coal": (0, 20000),
-        "gas": (100, 30000),
-        "nuclear": (100, 20000),
-        "wind": (0, 30000),
+        "gas": (100, 60000),
+        "nuclear": (100, 56000),
+        "wind": (0, 600000),
     }
     data = [
         x
