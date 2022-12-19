@@ -15,6 +15,6 @@
     "target": "ESNext",
     "types": ["vite/client", "vitest/globals", "vite-plugin-pwa/client"]
   },
-  "include": ["src", "./cypress/cypress.d.ts"],
+  "include": ["src", "./cypress/cypress.d.ts", "viteEnvironment.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

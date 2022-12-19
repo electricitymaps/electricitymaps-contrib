@@ -1,18 +1,122 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="TODO" />
-    <meta name="theme-color" content="#42b883" />
-    <meta name="robots" content="noindex" />
-    <title>Avocado Maps</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, viewport-fit=cover" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *;"
+    />
+    <title>Electricity Maps | Live 24/7 CO₂ emissions of electricity consumption</title>
+    <meta
+      name="description"
+      content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it."
+    />
+    <meta
+      property="og:description"
+      content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it."
+    />
+    <meta
+      property="og:image"
+      content="https://app.electricitymaps.com/electricitymap_social_image.png"
+    />
+    <meta
+      property="og:title"
+      content="Live 24/7 CO₂ emissions of electricity consumption"
+    />
+    <meta property="og:type" content="website" />
+    <!-- It's import to keep the old og:url, else, likes will not accumulate properly -->
+    <meta property="og:url" content="http://electricitymap.tmrow.co" />
+    <meta property="fb:app_id" content="1267173759989113" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@electricitymaps" />
+    <meta
+      name="twitter:description"
+      content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it."
+    />
+    <meta
+      name="twitter:image"
+      content="https://app.electricitymaps.com/electricitymap_social_image.png"
+    />
+    <meta name="twitter:site" content="@ElectricityMaps" />
+    <meta
+      name="twitter:title"
+      content="@ElectricityMaps | Live 24/7 CO2 emissions of electricity consumption"
+    />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/images/electricitymap-favicon-dark-light.svg"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Mobile linking -->
+    <meta name="apple-itunes-app" content="app-id=1224594248" />
+    <link
+      rel="alternate"
+      href="android-app://com.tmrow.electricitymap/https/app.electricitymaps.com"
+    />
+    <link
+      rel="alternate"
+      href="android-app://com.tmrow.electricitymap/http/app.electricitymaps.com"
+    />
+    <link rel="alternate" href="ios-app://1224594248/https/app.electricitymaps.com" />
+    <link rel="alternate" href="ios-app://1224594248/http/app.electricitymaps.com" />
+
+    <!-- Language -->
+    <meta property="og:locale" content="en_US" />
+    <% FB_LOCALES.forEach(function(fbLocale) {%>
+    <meta property="og:locale:alternate" content="<%= fbLocale %>" />
+    <% }) %> <% LOCALES.forEach(function(locale) {%>
+    <link
+      rel="alternate"
+      href="https://app.electricitymaps.com?lang=<%- locale %>"
+      hreflang="<%= locale %>"
+    />
+    <% }) %>
+    <link rel="alternate" href="https://app.electricitymaps.com" hreflang="x-default" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://app.electricitymaps.com" />
+
+    <!-- Pre-connect to backend to improve performance -->
+    <link rel="preconnect" href="https://app-backend.electricitymaps.com/" />
+
+    <!-- Preload font files to improve performance-->
+    <% ['Inter-Regular', 'Inter-Medium', 'Inter-Bold',
+    'Poppins-Medium'].forEach(function(fontname) {%>
+    <link
+      rel="preload"
+      href="/fonts/<%= fontname %>.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <% }) %>
+
+    <!-- Plausible -->
+    <script
+      defer
+      data-domain="app.electricitymaps.com"
+      src="https://plausible.io/js/plausible.local.js"
+    ></script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <img src="/electricity-maps-logo.svg" alt="Electricity Maps logo" />
+      <div>
+        <h1>JavaScript required!</h1>
+        <p>
+          For the Electricity Maps app to function properly JavaScript is required, please
+          enable it to continue using the app.
+        </p>
+      </div>
+    </noscript>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,9 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 require('colors');
 
-const { languageNames } = require('../config/locales.json');
+const LOCALES_PATH = path.join(__dirname, '..', 'public/locales/');
+const languages = fs
+  .readdirSync(LOCALES_PATH)
+  .filter((f) => f !== 'en.json' && f.endsWith('.json'))
+  .map((f) => f.replace('.json', ''));
 
 function getAndPrintOutput() {
-  const locales = Object.keys(languageNames);
+  const locales = languages;
   const result = locales
     .map(translationStatusFor)
     .concat()
@@ -59,17 +65,8 @@ function translationStatusFor(language) {
 
 function toText(json) {
   const { language, color, percentageString } = json;
-  const padding = 30;
-  const customPaddings = {
-    ja: padding - 3,
-    ko: padding - 3,
-    'zh-CN': padding - 2,
-    'zh-TW': padding - 2,
-    'zh-HK': padding - 2,
-    hi: padding + 1,
-  };
-  const name = `${languageNames[language]} (${language})`;
-  const paddedName = name.padEnd(customPaddings[language] || padding);
+  const padding = 10;
+  const paddedName = language.padEnd(padding);
   return `${paddedName} ${percentageString[color]}`;
 }
 

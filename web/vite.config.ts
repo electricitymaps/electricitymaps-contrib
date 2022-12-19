@@ -2,8 +2,10 @@
 import eslintPlugin from '@nabla/vite-plugin-eslint';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import { createHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { localeToFacebookLocale } from './src/translation/locales';
 
 export default defineConfig(({ mode }) => ({
   optimizeDeps: {
@@ -36,6 +38,15 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     tsconfigPaths(),
     react(),
+    createHtmlPlugin({
+      entry: 'src/main.tsx',
+      inject: {
+        data: {
+          LOCALES: Object.keys(localeToFacebookLocale),
+          FB_LOCALES: Object.values(localeToFacebookLocale),
+        },
+      },
+    }),
     ...(mode !== 'test'
       ? [
           eslintPlugin(),

@@ -49,6 +49,11 @@ class ErrorBoundary extends Component<Props, State> {
           >
             Back to map
           </a>
+          <pre className="mt-4 whitespace-normal text-center text-xs">
+            App version: {APP_VERSION}
+            <br />
+            {navigator.userAgent}
+          </pre>
         </div>
       );
     }

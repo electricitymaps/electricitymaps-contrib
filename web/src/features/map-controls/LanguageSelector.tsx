@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
+import { languageNames } from 'translation/locales';
 import { useTranslation } from 'translation/translation';
-import { languageNames } from '../../../config/locales.json';
 
 interface LanguageSelectorProperties {
   setLanguageSelectorOpen: (isOpen: boolean) => void;

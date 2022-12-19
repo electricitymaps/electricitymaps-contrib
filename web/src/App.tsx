@@ -18,7 +18,6 @@ const handleReload = () => {
   window.location.reload();
 };
 export default function App(): ReactElement {
-  //@ts-ignore Use global variable from Vite
   const currentAppVersion = APP_VERSION;
   const { data, isSuccess } = useGetAppVersion();
   const isNewVersionAvailable =
