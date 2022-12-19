@@ -34,14 +34,14 @@ class EmissionFactorTestCase(unittest.TestCase):
         # FR - override
         expected = {
             "battery charge": 0,
-            "battery discharge": 54.19088892903222,
-            "biomass": 230,
+            "battery discharge": 66.82067058776849,
+            "biomass": 230.0,
             "coal": 953.9335274,
             "gas": 624.846764,
             "geothermal": 38,
             "hydro": 10.7,
             "hydro charge": 0,
-            "hydro discharge": 54.19088892903222,
+            "hydro discharge": 66.82067058776849,
             "nuclear": 5.13,
             "oil": 1013.5956561,
             "solar": 30.075,
