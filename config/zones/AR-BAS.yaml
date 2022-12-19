@@ -1,0 +1,17 @@
+bounding_box:
+  - - -74.08803584899991
+    - -55.55201588299982
+  - - -53.161551879999934
+    - -21.286937763999916
+capacity:
+  biomass: 139
+  gas: 23579
+  hydro: 11347
+  nuclear: 1755
+  oil: 1696
+  solar: 1075
+  wind: 3291
+contributors:
+parsers:
+  production: AR.fetch_production
+timezone: America/Argentina/Buenos_Aires

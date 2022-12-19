@@ -20,10 +20,30 @@ from .lib.exceptions import ParserException
 CAMMESA_DEMANDA_ENDPOINT = (
     "https://api.cammesa.com/demanda-svc/generacion/ObtieneGeneracioEnergiaPorRegion/"
 )
+
+CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/RenovablesService/GetChartTotalTRDataSource/"
+
+CAMMESA_RENEWABLES_REGIONAL_ENDPOINT = (
+    "https://cdsrenovables.cammesa.com/exhisto/RenovablesService/getCapacidadesRegiones"
+)
+
+CAMMESA_REGIONS_ENDPOINT = "https://api.cammesa.com/demanda-svc/demanda/RegionesDemanda"
+
 CAMMESA_EXCHANGE_ENDPOINT = (
     "https://api.cammesa.com/demanda-svc/demanda/IntercambioCorredoresGeo/"
 )
-CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/RenovablesService/GetChartTotalTRDataSource/"
+
+REGIONS = {
+    "AR": "Total del SADI",
+    "AR-BAS": "Buenos Aires",
+    "AR-NEA": "NEA",
+    "AR-NOA": "NOA",
+    "AR-CEN": "Centro",
+    "AR-PAT": "Patagonia",
+    "AR-LIT": "Litoral",
+    "AR-COM": "Comahue",
+    "AR-CUY": "Cuyo",
+}
 
 SUPPORTED_EXCHANGES = {
     "AR->CL-SEN": "ARG-CHI",
@@ -82,9 +102,15 @@ def fetch_production(
     non_renewables_production: Dict[str, dict] = non_renewables_production_mix(
         zone_key, current_session
     )
-    renewables_production: Dict[str, dict] = renewables_production_mix(
-        zone_key, current_session
-    )
+
+    if zone_key == "AR":
+        renewables_production: Dict[str, dict] = renewables_production_mix(
+            zone_key, current_session
+        )
+    else:
+        renewables_production: Dict[str, dict] = regional_renewables_production_mix(
+            zone_key, current_session
+        )
 
     full_production_list = [
         {
@@ -146,6 +172,41 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
         }
         for production_info in sorted_production_list
     }
+    return renewables_production
+
+
+def regional_renewables_production_mix(
+    zone_key: str, session: Session
+) -> Dict[str, dict]:
+    """Retrieves production mix for renewables per region using CAMMESA's API"""
+
+    now = arrow.now(tz="America/Argentina/Buenos Aires").floor("minute")
+    minute = int(now.format("mm"))
+    rounded = minute - minute % 5
+    time = now.replace(minute=rounded).format("YYYY-MM-DDTHH:mm:ss.SSSZ")
+
+    renewables_response = session.get(CAMMESA_RENEWABLES_REGIONAL_ENDPOINT)
+    assert renewables_response.status_code == 200, (
+        "Exception when fetching production for "
+        "{}: error when calling url={}".format(
+            zone_key, CAMMESA_RENEWABLES_REGIONAL_ENDPOINT
+        )
+    )
+
+    production_list = renewables_response.json()
+
+    region_name = zone_key[3:]
+
+    renewables_production: Dict[str, dict] = {
+        time: {
+            "biomass": production_info["biocombustible"],
+            "hydro": production_info["hidraulica"],
+            "solar": production_info["fotovoltaica"],
+            "wind": production_info["eolica"],
+        }
+        for production_info in production_list
+        if production_info["nemoRegion"] == region_name
+    }
 
     return renewables_production
 
@@ -153,7 +214,8 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
 def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
     """Retrieves production mix for non renewables using CAMMESA's API"""
 
-    params = {"id_region": 1002}
+    id = get_region_id(zone_key, session)
+    params = {"id_region": id}
     api_cammesa_response = session.get(CAMMESA_DEMANDA_ENDPOINT, params=params)
     assert api_cammesa_response.status_code == 200, (
         "Exception when fetching production for "
@@ -176,7 +238,6 @@ def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, 
         }
         for production_info in sorted_production_list
     }
-
     return non_renewables_production
 
 
