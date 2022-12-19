@@ -19,13 +19,13 @@ from typing import List, Optional
 
 import arrow
 import pandas as pd
+from requests import Session
+
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
-from requests import Session
-
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
 
 ELEXON_ENDPOINT = "https://api.bmreports.com/BMRS/{}/v1"
 
@@ -455,11 +455,11 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
 
-    print("fetch_exchange(FR, GB) ->")
-    print(fetch_exchange("FR", "GB"))
+    # print("fetch_exchange(FR, GB) ->")
+    # print(fetch_exchange("FR", "GB"))
 
-    print("fetch_exchange(GB, IE) ->")
-    print(fetch_exchange("GB", "IE"))
+    # print("fetch_exchange(GB, IE) ->")
+    # print(fetch_exchange("GB", "IE"))
 
-    print("fetch_exchange(GB, NL) ->")
-    print(fetch_exchange("GB", "NL"))
+    # print("fetch_exchange(GB, NL) ->")
+    # print(fetch_exchange("GB", "NL"))
