@@ -322,6 +322,9 @@
     "BQ": {
       "zoneName": "Alankomaiden Karibia"
     },
+    "BR": {
+      "zoneName": "Brasilia"
+    },
     "BR-CS": {
       "countryName": "Brasilia",
       "zoneName": "Keski-Brasilia"
@@ -604,10 +607,6 @@
     "GB-ORK": {
       "countryName": "Iso-Britannia",
       "zoneName": "Orkneysaaret"
-    },
-    "GB-ZET": {
-      "countryName": "Iso-Britannia",
-      "zoneName": "Shetlandinsaaret"
     },
     "GB-ZET": {
       "countryName": "Iso-Britannia",

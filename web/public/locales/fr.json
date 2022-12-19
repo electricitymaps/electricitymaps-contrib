@@ -355,6 +355,9 @@
     "BQ": {
       "zoneName": "Pays-Bas caribéens"
     },
+    "BR": {
+      "zoneName": "Brésil"
+    },
     "BR-CS": {
       "countryName": "Brésil",
       "zoneName": "Central"
@@ -649,10 +652,6 @@
     "GB-ORK": {
       "countryName": "Grande Bretagne",
       "zoneName": "Orcades"
-    },
-    "GB-ZET": {
-      "countryName": "Grande Bretagne",
-      "zoneName": "Shetland"
     },
     "GB-ZET": {
       "countryName": "Grande Bretagne",

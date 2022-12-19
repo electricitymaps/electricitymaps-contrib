@@ -339,6 +339,9 @@
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius ja Saba"
     },
+    "BR": {
+      "zoneName": "Brasiilia"
+    },
     "BR-CS": {
       "countryName": "Brasiilia",
       "zoneName": "Kesk-Brasiilia"
@@ -633,10 +636,6 @@
     "GB-ORK": {
       "countryName": "Suurbritannia",
       "zoneName": "Orkney saared"
-    },
-    "GB-ZET": {
-      "countryName": "Suurbritannia",
-      "zoneName": "Shetlandi saared"
     },
     "GB-ZET": {
       "countryName": "Suurbritannia",
