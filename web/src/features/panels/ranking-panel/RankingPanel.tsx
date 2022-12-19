@@ -9,7 +9,9 @@ import {
 } from 'utils/state/atoms';
 import { useTranslation } from '../../../translation/translation';
 import { getRankedState } from './getRankingPanelData';
+import InfoText from './InfoText';
 import SearchBar from './SearchBar';
+import SocialButtons from './SocialButtons';
 import ZoneList from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
@@ -24,7 +26,7 @@ export default function RankingPanel(): ReactElement {
     setSearchTerm(lowerCase);
   };
 
-  const { isLoading, isSuccess, isError, error, data } = useGetState();
+  const { data } = useGetState();
   const rankedList = getRankedState(
     data,
     getCo2colorScale,
@@ -43,12 +45,12 @@ export default function RankingPanel(): ReactElement {
   });
 
   return (
-    <div className="py-5 pl-5 pr-1">
+    <div className="flex max-h-[calc(100vh_-_230px)] flex-col py-5 pl-5 pr-1 ">
       <div className="pb-5">
         <div className="font-poppins text-lg font-medium">
           {__('left-panel.zone-list-header-title')}
         </div>
-        <div className="text-xs">{__('left-panel.zone-list-header-subtitle')}</div>
+        <div className="text-sm">{__('left-panel.zone-list-header-subtitle')}</div>
       </div>
 
       <SearchBar
@@ -56,8 +58,11 @@ export default function RankingPanel(): ReactElement {
         searchHandler={inputHandler}
         value={searchTerm}
       />
-      {!isLoading && <ZoneList data={filteredList} />}
-      {/* <InfoText /> TODO */}
+      <ZoneList data={filteredList} />
+      <div className="space-y-4 p-2">
+        <InfoText />
+        <SocialButtons />
+      </div>
     </div>
   );
 }

@@ -1,45 +1,31 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { useTranslation } from '../../../translation/translation';
-// Import ColorBlindCheckbox from '../../components/colorblindcheckbox';
-// Import SocialButtons from './socialbuttons';
+import { useTranslation } from 'translation/translation';
+import { createToWithState } from 'utils/helpers';
 
-const Container = styled.div`
-  @media (max-width: 767px) {
-    display: none !important;
-  }
-
-  p {
-    margin: 0.4rem 0;
-    line-height: 1.2rem;
-  }
-`;
-
-export default function () {
-  const { __ } = useTranslation();
-  const { search } = useLocation();
-
+function ExternalLink({ href, text }: { href: string; text: string }) {
   return (
-    <Container className="info-text">
-      <ColorBlindCheckbox />
+    <a href={href} target="_blank" rel="noreferrer">
+      {text}
+    </a>
+  );
+}
+
+export default function InfoText() {
+  const { __ } = useTranslation();
+  return (
+    <div className="prose text-sm prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-invert">
       <p>
         {__('panel-initial-text.thisproject')}{' '}
-        <a
+        <ExternalLink
           href="https://github.com/electricitymaps/electricitymaps-contrib"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {__('panel-initial-text.opensource')}
-        </a>{' '}
+          text={__('panel-initial-text.opensource')}
+        />{' '}
         ({__('panel-initial-text.see')}{' '}
-        <a
+        <ExternalLink
           href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {__('panel-initial-text.datasources')}
-        </a>
+          text={__('panel-initial-text.datasources')}
+        />
         ).{' '}
         <span
           dangerouslySetInnerHTML={{
@@ -53,22 +39,18 @@ export default function () {
       </p>
       <p>
         {__('footer.foundbugs')}{' '}
-        <a
+        <ExternalLink
           href="https://github.com/electricitymaps/electricitymaps-contrib/issues/new"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {__('footer.here')}
-        </a>
-        .<br />
+          text={__('footer.here')}
+        />
+        .
       </p>
       <p>
         {__('footer.faq-text')}{' '}
-        <Link to={{ pathname: '/faq', search }}>
-          <span className="faq-link">{__('footer.faq')}</span>
+        <Link to={createToWithState('/faq')}>
+          <span data-test-id="faq-link">{__('footer.faq')}</span>
         </Link>
       </p>
-      <SocialButtons />
-    </Container>
+    </div>
   );
 }

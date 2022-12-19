@@ -55,10 +55,10 @@ function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType)
   );
 }
 
-export default function Zonelist(properties: ZonelistProperties): ReactElement {
+export default function Zonelist({ data }: ZonelistProperties): ReactElement {
   return (
-    <div className="h-80 overflow-y-scroll">
-      {properties.data.map((rowProps, index) => {
+    <div className="overflow-y-scroll">
+      {data.map((rowProps, index) => {
         return <ZoneRow key={index} {...rowProps} ranking={index + 1} />;
       })}
     </div>
