@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 
-import json
-import math
-import os
-from datetime import datetime, timedelta
+from datetime import timedelta
 from logging import Logger, getLogger
 
 import arrow
@@ -12,7 +9,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
+from electricitymap.contrib.config import ZONES_CONFIG
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -171,7 +168,7 @@ def fetch_production(
     zone_key, session=None, target_datetime=None, logger: Logger = getLogger(__name__)
 ):
     if zone_key == "FR-COR":
-        raise ParserException("FR-COR is not supported in this parser")
+        raise ParserException("ECO2MIX.py", "FR-COR is not supported in this parser")
 
     datapoints = [
         validate(d, logger, required=VALIDATIONS.get(zone_key, []))
