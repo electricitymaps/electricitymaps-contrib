@@ -15,11 +15,11 @@ from requests import Session
 # http://www.industcards.com/st-other-argentina.htm
 
 # API Documentation: https://api.cammesa.com/demanda-svc/swagger-ui.html
-CAMMESA_DEMANDA_ENDPOINT = (
-    "https://api.cammesa.com/demanda-svc/generacion/ObtieneGeneracioEnergiaPorRegion/"
-)
+CAMMESA_DEMANDA_ENDPOINT = "https://api.cammesa.com/demanda-svc/generacion/ObtieneGeneracioEnergiaPorRegion/"
+CAMMESA_EXCHANGE_ENDPOINT = "https://api.cammesa.com/demanda-svc/demanda/IntercambioCorredoresGeo/"
 CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/RenovablesService/GetChartTotalTRDataSource/"
 
+SUPPORTED_EXCHANGES = { "AR->BR-S": "ARG-BRA", "AR->CL-SEN": "ARG-CHI", "AR->PY": "ARG-PAR", "AR->UY": "ARG-URU" }
 
 def fetch_production(
     zone_key="AR",
@@ -143,8 +143,45 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    raise NotImplementedError("This exchange is not currently implemented")
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
+    sorted_codes = "->".join(sorted_zone_keys)
+    flow = 0
+    target_datetime = ""
+
+    if sorted_codes in SUPPORTED_EXCHANGES:
+      # haha we can proly just refactor this and return the flow and target_datetime
+      current_session = session or Session()
+
+      api_cammesa_response = current_session.get(CAMMESA_EXCHANGE_ENDPOINT)
+      assert api_cammesa_response.status_code == 200, (
+        "Exception when fetching echange for "
+        "{}: error when calling url={}".format(
+          status_code, CAMMESA_EXCHANGE_ENDPOINT
+        )
+      )
+
+      exchange_name = SUPPORTED_EXCHANGES[sorted_codes]
+      exchange_list = api_cammesa_response.json()
+      for exchange in exchange_list["features"]:
+        properties = exchange["properties"]
+        if properties["nombre"] == exchange_name:
+          flow = -int(properties["text"])
+          target_datetime = properties["fecha"]
+          break
+    else:
+      raise NotImplementedError("This exchange is not currently implemented")
+
+    exchange = {
+      "sortedZoneKeys": sorted_codes,
+      "datetime": target_datetime, #arrow.now("UTC-3").datetime,
+      "netFlow": flow,
+      "source": "cammesa.com"
+    }
+
+    return exchange
 
 
 def fetch_price(
