@@ -24,19 +24,19 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 378.5690283287609
+        value: 810.5724022852503
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 371.55800252548016
+        value: 806.1744467919108
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 366.77584242796866
+        value: 795.7985563395267
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 360.10961420762055
+        value: 781.334836269716
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 346.7887268176241
+        value: 752.432349872631
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -52,19 +52,19 @@ emissionFactors:
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 378.5690283287609
+        value: 810.5724022852503
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 371.55800252548016
+        value: 806.1744467919108
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 366.77584242796866
+        value: 795.7985563395267
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 360.10961420762055
+        value: 781.334836269716
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 346.7887268176241
+        value: 752.432349872631
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -73,19 +73,19 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 604.493215202587
+        value: 1035.9124675979383
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 597.1206893968299
+        value: 1031.0531688268663
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 589.7930265830532
+        value: 1018.0278709402899
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 581.2160045069614
+        value: 1002.9107206147008
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 562.0549713749683
+        value: 968.2605808523339
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -105,19 +105,19 @@ emissionFactors:
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 604.493215202587
+        value: 1035.9124675979383
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 597.1206893968299
+        value: 1031.0531688268663
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 589.7930265830532
+        value: 1018.0278709402899
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 581.2160045069614
+        value: 1002.9107206147008
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 562.0549713749683
+        value: 968.2605808523339
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
