@@ -15,14 +15,14 @@ class EmissionFactorTestCase(unittest.TestCase):
         # KR - no override
         expected = {
             "battery charge": 0,
-            "battery discharge": 391.33,
+            "battery discharge": 490.50488607461506,
             "biomass": 230,
             "coal": 820,
             "gas": 490,
             "geothermal": 38,
             "hydro": 24,
             "hydro charge": 0,
-            "hydro discharge": 391.33,
+            "hydro discharge": 490.50488607461506,
             "nuclear": 12,
             "oil": 650,
             "solar": 45,
@@ -34,19 +34,19 @@ class EmissionFactorTestCase(unittest.TestCase):
         # FR - override
         expected = {
             "battery charge": 0,
-            "battery discharge": 54.19088892903222,
-            "biomass": 230,
-            "coal": 820,
-            "gas": 490,
+            "battery discharge": 66.82067058776849,
+            "biomass": 230.0,
+            "coal": 953.9335274,
+            "gas": 624.846764,
             "geothermal": 38,
-            "hydro": 24,
+            "hydro": 10.7,
             "hydro charge": 0,
-            "hydro discharge": 54.19088892903222,
-            "nuclear": 12,
-            "oil": 650,
-            "solar": 45,
+            "hydro discharge": 66.82067058776849,
+            "nuclear": 5.13,
+            "oil": 1013.5956561,
+            "solar": 30.075,
             "unknown": 700,
-            "wind": 11,
+            "wind": 12.62,
         }
         self.assertEqual(emission_factors("FR"), expected)  # type: ignore
 

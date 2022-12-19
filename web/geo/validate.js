@@ -11,12 +11,12 @@ const {
 } = require('@turf/turf');
 const { getPolygons, getHoles, writeJSON, log } = require('./utilities');
 
-const { getZonesJson } = require('./files');
+const { mergeZones } = require('../generate-zones-config');
 
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
 function validateGeometry(fc, config) {
-  console.log('Validating geometries...'); // eslint-disable-line no-console
+  console.info('Validating geometries...');
   zeroNullGeometries(fc);
   containsRequiredProperties(fc);
   zeroComplexPolygons(fc, config);
@@ -75,7 +75,7 @@ function zeroComplexPolygons(fc, { MAX_CONVEX_DEVIATION }) {
 }
 
 function matchesZonesConfig(fc) {
-  const zonesJson = getZonesJson();
+  const zonesJson = mergeZones();
 
   const missingZones = [];
   featureEach(fc, (ft) => {
@@ -84,8 +84,8 @@ function matchesZonesConfig(fc) {
     }
   });
   if (missingZones.length) {
-    missingZones.forEach((x) => log(`${x} not in zones.json`));
-    throw Error('Zonename not in zones.json');
+    missingZones.forEach((x) => log(`${x} not in zones/*.yaml`));
+    throw Error('Zonename not in zones/*.yaml');
   }
 }
 

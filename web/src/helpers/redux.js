@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 import { TIME } from './constants';
-import constructTopos from './topos';
 import zonesConfig from '../config/zones.json';
 import exchangesConfig from '../config/exchanges.json';
+import constructTopos from './topos';
 
 const GRID_DATA_FETCH_REQUESTED = createAction('data/grid-fetch-requested');
 const GRID_DATA_FETCH_SUCCEEDED = createAction('data/grid-fetch-succeded');
@@ -35,12 +35,10 @@ function initDataState() {
     Object.keys(TIME).forEach((agg) => {
       zone[TIME[agg]] = { details: [], overviews: [], isExpired: true };
     });
-
-    zone.config.capacity = zoneConfig.capacity;
     zone.config.contributors = zoneConfig.contributors;
     zone.config.timezone = zoneConfig.timezone;
     // hasParser is true if parser exists, or if estimation method exists
-    zone.config.hasParser = zoneConfig.parsers?.production !== undefined || zoneConfig.estimation_method !== undefined;
+    zone.config.hasParser = zoneConfig.parsers || zoneConfig.estimation_method !== undefined;
     zone.config.delays = zoneConfig.delays;
     zone.config.disclaimer = zoneConfig.disclaimer;
     zone.config.countryCode = key;

@@ -150,7 +150,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 
 ### Production capacity data sources
 
-Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file. Values in the `capacity` maps are in MW.
+Production capacities are centralized in the [config/zones](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones) folder. Capacities are included in the respective zone configurations. Values in the `capacity` maps are in MW.
 
 #### International sources
 
@@ -240,6 +240,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Finland:
   - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=FI)
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+  - Wind: [Fingrid](https://data.fingrid.fi/en/dataset/total-wind-production-capacity)
+  - Solar: [Fingrid](https://data.fingrid.fi/en/dataset/total-solar-production-capacity)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France:
   - Geothermal: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -371,7 +373,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Switzerland
   - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
-- Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
+- Taiwan
+  - Renewable: [TAIPOWER](https://www.taipower.com.tw/en/page.aspx?mid=4495)
+  - Other: [TAIPOWER](https://www.taipower.com.tw/en/page.aspx?mid=4488&cid=2793&cchk=4ce0ae20-8549-4207-b5e2-2f0919e749bf)
 - Thailand:
   - EGAT's production capacity: [EGAT](https://www.egat.co.th/home/statistics-all-egat/)
   - EGAT's purchase capacity: [EGAT](https://www.egat.co.th/home/statistics-all-3rdparty/)
@@ -402,9 +406,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 ### Cross-border transmission capacity data sources
 
-Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/exchanges.json) file. Values in the `capacity` maps are in MW.
+Cross-border transmission capacities between the zones are centralized in the [config/exchanges](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges) folder. Capacities are included in the respective exchange configurations. Values in the `capacity` maps are in MW.
 
-#### For the nordic and baltic countries capacities are availible from [Nord Pool](https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Capacities1/Capacities/KEY/Norway/?view=table)
+#### For the nordic and baltic countries capacities are availible from [Nord Pool](https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Capacities1/Capacities/key1/hourly/?view=table)
 
 <details><summary>Click to see the full list of sources</summary>
 
@@ -416,6 +420,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Australia (Victoria) ⇄ Australia (South Australia) ["Heywood interconnector": 650 MW](https://en.wikipedia.org/wiki/Heywood_interconnector) and ["Murraylink": 220MW](https://en.wikipedia.org/wiki/Murraylink)
 - Australia (Victoria) ⇄ Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
 - Belgium ⇄ Germany ["Alegro": 1000MW](https://www.elia.be/en/infrastructure-and-projects/infrastructure-projects/alegro?clang=en)
+- [Bosnia and Herzegovina ⇄ Croatia](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - Bulgaria ⇄ Noth Macedonia [950 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Bulgaria ⇄ Turkey [2485 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Canada (Alberta) ⇄ Canada (British Columbia): ["Path 1": 1000 MW (CA-AB -> CA-BC) 800 MW (CA-BC -> CA-AB)](https://www.aeso.ca/assets/Information-Documents/2011-001R-ATC-and-Transfer-Path-Management.pdf)
@@ -427,7 +432,8 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - [Denmark (West) ⇄ Sweden](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - [Denmark (West) ⇄ Netherlands](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Estonia ⇄ European Russia And Ural [2464 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
-- [Estonia ⇄ Finnland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Estonia ⇄ Finland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- Finland ⇄ Norway: ["Joint operation between the Norwegian and Finnish subsystems, Appendix 3 to SOA Annex OS (FI and NO)": 120 MW (NO4 -> FI) 100 MW (FI -> NO4)](https://www.fingrid.fi/globalassets/dokumentit/fi/kantaverkko/sahkonsiirto/appendix-1-8-to-soa-annex-os.pdf)
 - Georgia ⇄ Turkey: ["Black Sea Transmission Network Project (BSTN)": 700 MW](http://www.gse.com.ge/M9Ltvi2EQCCNYg7LvHW0JQ.html 'Two additional connections are planned/under construction, Batumi-Muratli and Akhalstikhe-Tortum, to double capacity to 1400MW; see http://www.gse.com.ge/sw/static/file/TYNDP_GE-2020-2030_ENG.pdf. Another interconnector (Batumi-Khopa) is only used in emergencies, according to http://www.gse.com.ge/about-us/international-affairs')
 - [Germany ⇄ Sweden](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - [Germany ⇄ Norway](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
@@ -452,7 +458,10 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Montenegro ⇄ Italy Central South: ["MONITA": 600MW](https://tyndp.entsoe.eu/tyndp2018/projects/projects/28)
 - [Norway ⇄ Netherlands](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - New Zealand (North Island) ⇄ New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
+- [North Macedonia ⇄ Greece](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - [Russia ⇄ Finland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Serbia ⇄ Bulgaria](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
+- [Slovakia ⇄ Ukraine](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - Spain ⇄ France: [According to "The Spanish electricity system 2019" page 65: 2800 MW](https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/InformesSistemaElectrico/2019/ISE_2019_eng.pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](<https://en.wikipedia.org/wiki/Cometa_(HVDC)>)
 - [Sweden ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)

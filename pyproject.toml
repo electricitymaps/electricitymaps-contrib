@@ -29,7 +29,8 @@ requests = {version="~2.25.1", optional=true}
 signalr-client-threads = {version="~0.0.12", optional=true}
 tablib = {version="~0.12.1", optional=true}
 tqdm = {version="^4.64.0", optional=true}
-xlrd = {version="^1.2.0", optional=true}
+xlrd = {version="^2.0.1", optional=true}
+xmltodict = {version = "^0.13.0", optional=true}
 black = "21.6b0"
 isort = "5.9.3"
 deepdiff = "^5.8.1"
@@ -80,6 +81,10 @@ parsers = [
 validators = [
     "arrow",
     "pandas"
+]
+
+scripts = [
+    "xmltodict"
 ]
 
 [tool.isort]

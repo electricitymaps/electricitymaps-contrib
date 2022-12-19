@@ -6,9 +6,15 @@
     "datasources": "zdroje dát",
     "contribute": "Zapojte sa <a href=\"%s\" target=\"_blank\">pridaním svojej oblasti</a>"
   },
-  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Oblasti", "about": "Info" },
+  "mobile-main-menu": {
+    "map": "Electricity Maps",
+    "areas": "Oblasti",
+    "about": "Info"
+  },
   "onboarding-modal": {
-    "view1": { "subtitle": "Mapovanie dopadu spotreby elektriny na klímu" },
+    "view1": {
+      "subtitle": "Mapovanie dopadu spotreby elektriny na klímu"
+    },
     "view2": {
       "header": "Sledujte koľko CO₂ je vyprodukovaného tvojou spotrebou elektriny v reálnom čase",
       "text": "Farebne zobrazujeme oblasti po celom svete na základe ich intenzity emisií"
@@ -45,12 +51,24 @@
   },
   "country-history": {
     "Getdata": "Získajte historické dáta, menšinové a predpoveď API",
-    "carbonintensity": { "hourly": "Intenzita uhlíka za posledných 24 hodín" },
-    "emissionsorigin": { "hourly": "Pôvod emisií za posledných 24 hodín" },
-    "emissionsproduction": { "hourly": "Emisie vyprodukované za posledných 24 hodín" },
-    "electricityorigin": { "hourly": "Pôvod elektriny za posledných 24 hodín" },
-    "electricityproduction": { "hourly": "Produkcia elektriny za posledných 24 hodín" },
-    "electricityprices": { "hourly": "Ceny elektriny za posledných 24 hodín" }
+    "carbonintensity": {
+      "hourly": "Intenzita uhlíka za posledných 24 hodín"
+    },
+    "emissionsorigin": {
+      "hourly": "Pôvod emisií za posledných 24 hodín"
+    },
+    "emissionsproduction": {
+      "hourly": "Emisie vyprodukované za posledných 24 hodín"
+    },
+    "electricityorigin": {
+      "hourly": "Pôvod elektriny za posledných 24 hodín"
+    },
+    "electricityproduction": {
+      "hourly": "Produkcia elektriny za posledných 24 hodín"
+    },
+    "electricityprices": {
+      "hourly": "Ceny elektriny za posledných 24 hodín"
+    }
   },
   "footer": {
     "foundbugs": "Našli ste nedostatky alebo máte nápad? Povedzte nám o nich",
@@ -180,367 +198,1214 @@
     "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publikuje dáta a obrázky na <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">electricityMap</a> pre informačné účely. Nezaručuje správnosť ani žiadnu formu záruky a vyhradzuje si právo kedykoľvek zmeniť obsah alebo odstrániť časti bez toho, že by o tom musel informovať. Electricity Maps nepreberá žiadnu zodpovednosť za akékoľvek škody alebo výdavky, ktoré by mohli vzniknúť v dôsledku nepresnosti, neúplnosti, neopatrnosti alebo zastaranosti Electricity Maps alebo informácií ziskýnych z nej. Nie je dovolené zahrnúť túto webovú stránku alebo jej jednotlivé prvky do inej webovej stránky bez formálneho predchádzajúceho písomného súhlasu.<br><br> Všetky práva duševného vlastníctva patria oprávneným majiteľom a poskytovateľom licencií. Kopírovanie, distribúcia a akýkoľvek iné použitie týchto materiálov, najmä energetických údajov, nie je povolené bez písomného súhlasu Electricity Maps, s výnimkou prípadov, ktoré sú ustanovené inak v predpisoch povinného práva (ako je právo citovať), pokiaľ nie je pre konkrétne materiály uvedené inak. <br><br> Toto vylúčenie zodpovednosti môže byť z času na čas aktualizované."
   },
   "zoneShortName": {
-    "AD": { "zoneName": "Andorra" },
-    "AE": { "zoneName": "Spojené Arabské Emiráty" },
-    "AF": { "zoneName": "Afganistan" },
-    "AG": { "zoneName": "Antigua a Barbuda" },
-    "AI": { "zoneName": "Anguilla" },
-    "AL": { "zoneName": "Albánsko" },
-    "AM": { "zoneName": "Arménsko" },
-    "AO": { "zoneName": "Angola" },
-    "AQ": { "zoneName": "Antarktída" },
-    "AS": { "zoneName": "Americká Samoa" },
-    "AT": { "zoneName": "Rakúsko" },
-    "AR": { "zoneName": "Argentína" },
-    "AUS-NSW": { "countryName": "Austrália", "zoneName": "Nový Južný Wales" },
-    "AUS-NT": { "countryName": "Austrália", "zoneName": "Severné teritórium" },
-    "AUS-QLD": { "countryName": "Austrália", "zoneName": "Queensland" },
-    "AUS-SA": { "countryName": "Austrália", "zoneName": "Juzná Austrália" },
-    "AUS-TAS": { "countryName": "Austrália", "zoneName": "Tasmánia" },
-    "AUS-VIC": { "countryName": "Austrália", "zoneName": "Viktória" },
-    "AUS-WA": { "countryName": "Austrália", "zoneName": "Západná Austrália" },
-    "AW": { "zoneName": "Aruba" },
-    "AX": { "zoneName": "Ålandy" },
-    "AZ": { "zoneName": "Azerbajdžan" },
-    "BA": { "zoneName": "Bosna a Hercegovina" },
-    "BB": { "zoneName": "Barbados" },
-    "BD": { "zoneName": "Bangladéš" },
-    "BE": { "zoneName": "Belgicko" },
-    "BF": { "zoneName": "Burkina Faso" },
-    "BG": { "zoneName": "Bulharsko" },
-    "BH": { "zoneName": "Bahrajn" },
-    "BI": { "zoneName": "Burundi" },
-    "BJ": { "zoneName": "Benin" },
-    "BM": { "zoneName": "Bermudy" },
-    "BN": { "zoneName": "Brunej" },
-    "BO": { "zoneName": "Bolívia" },
-    "BQ": { "zoneName": "Bonaire, Sint Eustatius and Saba" },
-    "BR-CS": { "countryName": "Brazília", "zoneName": "Centrálna Brazília" },
-    "BR-N": { "countryName": "Brazília", "zoneName": "Severná Brazília" },
-    "BR-NE": { "countryName": "Brazília", "zoneName": "Severovychodná Brazília" },
-    "BR-S": { "countryName": "Brazília", "zoneName": "Južná Brazília" },
-    "BS": { "zoneName": "Bahamy" },
-    "BT": { "zoneName": "Bhután" },
-    "BV": { "zoneName": "Bouvetov ostrov" },
-    "BW": { "zoneName": "Botswana" },
-    "BY": { "zoneName": "Bielorusko" },
-    "BZ": { "zoneName": "Belize" },
-    "CA-AB": { "countryName": "Kanada", "zoneName": "Alberta" },
-    "CA-BC": { "countryName": "Kanada", "zoneName": "Britská Kolumbia" },
-    "CA-MB": { "countryName": "Kanada", "zoneName": "Manitoba" },
-    "CA-NL": { "countryName": "Kanada", "zoneName": "Newfoundland a Labrador" },
-    "CA-NB": { "countryName": "Kanada", "zoneName": "New Brunswick" },
-    "CA-NT": { "countryName": "Kanada", "zoneName": "Severozápadné teritóriá" },
-    "CA-NS": { "countryName": "Kanada", "zoneName": "Nové Škótsko" },
-    "CA-NU": { "countryName": "Kanada", "zoneName": "Nunavut" },
-    "CA-ON": { "countryName": "Kanada", "zoneName": "Ontário" },
-    "CA-PE": { "countryName": "Kanada", "zoneName": "Ostrov princa Eduarda" },
-    "CA-QC": { "countryName": "Kanada", "zoneName": "Quebec" },
-    "CA-SK": { "countryName": "Kanada", "zoneName": "Saskatchewan" },
-    "CA-YT": { "countryName": "Kanada", "zoneName": "Yukon" },
-    "CC": { "zoneName": "Kokosové ostrovy" },
-    "CD": { "zoneName": "Konžská emokratická republika" },
-    "CF": { "zoneName": "Stredoafrická Republika" },
-    "CG": { "zoneName": "Kongo" },
-    "CH": { "zoneName": "Švajčiarsko" },
-    "CI": { "zoneName": "Pobrežie Slonoviny" },
-    "CK": { "zoneName": "Cookove ostrovy" },
-    "CL-SING": { "countryName": "Čile", "zoneName": "SING" },
-    "CL-SEM": { "countryName": "Čile", "zoneName": "SEM" },
-    "CL-SEA": { "countryName": "Čile", "zoneName": "SEA" },
-    "CM": { "zoneName": "Kamerun" },
-    "CN": { "zoneName": "Čína" },
-    "CO": { "zoneName": "Kolumbia" },
-    "CR": { "zoneName": "Kostarika" },
-    "CU": { "zoneName": "Kuba" },
-    "CV": { "zoneName": "Kapverdy" },
-    "CW": { "zoneName": "Curaçao" },
-    "CX": { "zoneName": "Vianočný ostrov" },
-    "CY": { "zoneName": "Cyprus" },
-    "CZ": { "zoneName": "Česko" },
-    "DE": { "zoneName": "Nemecko" },
-    "DJ": { "zoneName": "Džibutsko" },
-    "DK": { "zoneName": "Dánsko" },
-    "DK-DK1": { "countryName": "Dánsko", "zoneName": "Západné Dánsko" },
-    "DK-DK2": { "countryName": "Dásko", "zoneName": "Vychodné Dánsko" },
-    "DK-BHM": { "countryName": "Dánsko", "zoneName": "Bornholm" },
-    "DM": { "zoneName": "Dominika" },
-    "DO": { "zoneName": "Dominikánska republika" },
-    "DZ": { "zoneName": "Alžírsko" },
-    "EC": { "zoneName": "Ekvádor" },
-    "EE": { "zoneName": "Estónsko" },
-    "EG": { "zoneName": "Egypt" },
-    "EH": { "zoneName": "Západná Sahara" },
-    "ER": { "zoneName": "Eritrea" },
-    "ES": { "zoneName": "Španielsko" },
-    "ES-CE": { "countryName": "Španielsko", "zoneName": "Ceuta" },
-    "ES-IB-FO": { "countryName": "Španielsko", "zoneName": "Formentera" },
-    "ES-IB-IZ": { "countryName": "Španielsko", "zoneName": "Ibiza" },
-    "ES-IB-MA": { "countryName": "Španielsko", "zoneName": "Malorka" },
-    "ES-IB-ME": { "countryName": "Španielsko", "zoneName": "Menorca" },
-    "ES-CN-FVLZ": { "countryName": "Španielsko", "zoneName": "Fuerteventura/Lanzarote" },
-    "ES-CN-GC": { "countryName": "Španielsko", "zoneName": "Gran Canaria" },
-    "ES-CN-HI": { "countryName": "Španielsko", "zoneName": "El Hierro" },
-    "ES-CN-IG": { "countryName": "Španielsko", "zoneName": "La Gomera" },
-    "ES-CN-LP": { "countryName": "Španielsko", "zoneName": "La Palma" },
-    "ES-CN-TE": { "countryName": "Španielsko", "zoneName": "Tenerife" },
-    "ES-ML": { "countryName": "Španielsko", "zoneName": "Melilla" },
-    "ET": { "zoneName": "Etiópia" },
-    "FI": { "zoneName": "Fínsko" },
-    "FJ": { "zoneName": "Fidži" },
-    "FK": { "zoneName": "Falklandy" },
-    "FM": { "zoneName": "Mikronézia" },
-    "FO": { "zoneName": "Faerské ostrovy" },
-    "FR": { "zoneName": "Francúzsko" },
-    "FR-COR": { "countryName": "Francúzsko", "zoneName": "Korzika" },
-    "GA": { "zoneName": "Gabon" },
-    "GB": { "zoneName": "Veľká Británia" },
-    "GB-NIR": { "zoneName": "Severné Irsko" },
-    "GB-ORK": { "countryName": "Veľká Británia", "zoneName": "Orkneje" },
-    "GB-SHI": { "countryName": "Veľká Británia", "zoneName": "Shetlandy" },
-    "GB-ZET": { "countryName": "Velká Británia", "zoneName": "Shetlandy" },
-    "GD": { "zoneName": "Grenada" },
-    "GE": { "zoneName": "Gruzínsko" },
-    "GF": { "zoneName": "Francúzska Guyana" },
-    "GG": { "zoneName": "Guernsey" },
-    "GH": { "zoneName": "Ghana" },
-    "GI": { "zoneName": "Gibraltár" },
-    "GL": { "zoneName": "Grónsko" },
-    "GM": { "zoneName": "Gambia" },
-    "GN": { "zoneName": "Guinea" },
-    "GP": { "zoneName": "Guadeloupe" },
-    "GQ": { "zoneName": "Rovníková Guinea" },
-    "GR": { "zoneName": "Grécko" },
-    "GR-IS": { "countryName": "Grécko", "zoneName": "Egejské ostrovy" },
-    "GS": { "zoneName": "Južná Georgia a Sandwichove ostrovy" },
-    "GT": { "zoneName": "Guatemala" },
-    "GU": { "zoneName": "Guam" },
-    "GW": { "zoneName": "Guinea-Bissau" },
-    "GY": { "zoneName": "Guyana" },
-    "HK": { "zoneName": "Hongkong" },
-    "HM": { "zoneName": "Teritórium Heardovho ostrova a Macdonaldových ostrovov" },
-    "HN": { "zoneName": "Honduras" },
-    "HR": { "zoneName": "Chorvátsko" },
-    "HT": { "zoneName": "Haiti" },
-    "HU": { "zoneName": "Maďarsko" },
-    "ID": { "zoneName": "Indonézia" },
-    "IE": { "zoneName": "Írsko" },
-    "IL": { "zoneName": "Izrael" },
-    "IM": { "zoneName": "Ostrov Man" },
-    "IN-AN": { "countryName": "India", "zoneName": "Andmany a Nikobary" },
-    "IN-AP": { "countryName": "India", "zoneName": "Andhrapradáš" },
-    "IN-AR": { "countryName": "India", "zoneName": "Arunáčalpraéš" },
-    "IN-AS": { "countryName": "India", "zoneName": "Ásam" },
-    "IN-BR": { "countryName": "India", "zoneName": "Bihár" },
-    "IN-CT": { "countryName": "India", "zoneName": "Čhattásgarh" },
-    "IN-DL": { "countryName": "India", "zoneName": "Dillí" },
-    "IN-DN": { "countryName": "India", "zoneName": "Dádra a Nagar Havelí" },
-    "IN-GA": { "countryName": "India", "zoneName": "Goa" },
-    "IN-GJ": { "countryName": "India", "zoneName": "Gudžarát" },
-    "IN-HP": { "countryName": "India", "zoneName": "Himáčalpradéš" },
-    "IN-HR": { "countryName": "india", "zoneName": "Harijána" },
-    "IN-JH": { "countryName": "India", "zoneName": "Džhárkhand" },
-    "IN-JK": { "countryName": "India", "zoneName": "Džammú a Kašmír" },
-    "IN-KA": { "countryName": "India", "zoneName": "Karnátaka" },
-    "IN-KL": { "countryName": "India", "zoneName": "Kérala" },
-    "IN-MH": { "countryName": "India", "zoneName": "Maháraštra" },
-    "IN-ML": { "countryName": "India", "zoneName": "Meghálaj" },
-    "IN-MN": { "countryName": "India", "zoneName": "Manípur" },
-    "IN-MP": { "countryName": "India", "zoneName": "Madhjapradéš" },
-    "IN-MZ": { "countryName": "India", "zoneName": "Mizorám" },
-    "IN-NL": { "countryName": "India", "zoneName": "Nágsko" },
-    "IN-OR": { "countryName": "India", "zoneName": "Urísa" },
-    "IN-PB": { "countryName": "India", "zoneName": "Pandžáb" },
-    "IN-PY": { "countryName": "India", "zoneName": "Puttučéri" },
-    "IN-RJ": { "countryName": "India", "zoneName": "Radžastan" },
-    "IN-SK": { "countryName": "India", "zoneName": "Sikkim" },
-    "IN-TN": { "countryName": "India", "zoneName": "Tamilnádu" },
-    "IN-TR": { "countryName": "India", "zoneName": "Tripura" },
-    "IN-UP": { "countryName": "India", "zoneName": "Uttarpradáš" },
-    "IN-UT": { "countryName": "India", "zoneName": "Uttarákhand" },
-    "IN-WB": { "countryName": "India", "zoneName": "Západné Bengálsko" },
-    "IO": { "zoneName": "Britské indickooceánske územie" },
-    "IQ": { "zoneName": "Irak" },
-    "IQ-KUR": { "countryName": "Irak", "zoneName": "Kurdistan" },
-    "IR": { "zoneName": "Irán" },
-    "IS": { "zoneName": "Island" },
-    "IT": { "zoneName": "Taliansko" },
-    "IT-CNO": { "countryName": "Taliansko", "zoneName": "Centrálne Severné" },
-    "IT-CSO": { "countryName": "Taliansko", "zoneName": "Centrálne Južné" },
-    "IT-NO": { "countryName": "Taliansko", "zoneName": "Severné Taliansko" },
-    "IT-SAR": { "countryName": "Taliansko", "zoneName": "Sardínia" },
-    "IT-SIC": { "countryName": "Taliansko", "zoneName": "Sicília" },
-    "IT-SO": { "countryName": "Taliansko", "zoneName": "Južné Taliansko" },
-    "JE": { "zoneName": "Jersey" },
-    "JM": { "zoneName": "Jamajka" },
-    "JO": { "zoneName": "Jordánsko" },
-    "JP-CB": { "countryName": "Japonsko", "zoneName": "Čobú" },
-    "JP-CG": { "countryName": "Japan", "zoneName": "Čugokú" },
-    "JP-HKD": { "countryName": "Japonsko", "zoneName": "Hokkaidó" },
-    "JP-HR": { "countryName": "Japonsko", "zoneName": "Hokuriku" },
-    "JP-KN": { "countryName": "Japonsko", "zoneName": "Kansai" },
-    "JP-KY": { "countryName": "Japonsko", "zoneName": "Kjušú" },
-    "JP-ON": { "countryName": "Japonsko", "zoneName": "Okinawa" },
-    "JP-SK": { "countryName": "Japonsko", "zoneName": "Šikoku" },
-    "JP-TH": { "countryName": "Japonsko", "zoneName": "Tóhoku" },
-    "JP-TK": { "countryName": "Japonsko", "zoneName": "Tokio" },
-    "KE": { "zoneName": "Keňa" },
-    "KG": { "zoneName": "Kirgizsko" },
-    "KH": { "zoneName": "Kambodža" },
-    "KI": { "zoneName": "Kiribati" },
-    "KM": { "zoneName": "Komory" },
-    "KN": { "zoneName": "Svätý Krištof a Nevis" },
-    "KP": { "zoneName": "Kórejská ľudovodemokratická republika" },
-    "KR": { "zoneName": "Kórejská republika" },
-    "KW": { "zoneName": "Kuvajt" },
-    "KY": { "zoneName": "Kajmanie ostrovy" },
-    "KZ": { "zoneName": "Kazachstan" },
-    "LA": { "zoneName": "Laos" },
-    "LB": { "zoneName": "Libanon" },
-    "LC": { "zoneName": "Svätá Lucia" },
-    "LI": { "zoneName": "Lichtenštajnsko" },
-    "LK": { "zoneName": "Srí Lanka" },
-    "LR": { "zoneName": "Libéria" },
-    "LS": { "zoneName": "Lesotho" },
-    "LT": { "zoneName": "Litva" },
-    "LU": { "zoneName": "Luxembursko" },
-    "LV": { "zoneName": "Lotyšsko" },
-    "LY": { "zoneName": "Líbya" },
-    "MA": { "zoneName": "Maroko" },
-    "MC": { "zoneName": "Monako" },
-    "MD": { "zoneName": "Moldavsko" },
-    "ME": { "zoneName": "Čierna Hora" },
-    "MF": { "countryName": "Sväty Martin", "zoneName": "French" },
-    "MG": { "zoneName": "Madagaskar" },
-    "MH": { "zoneName": "Marshallove ostrovy" },
-    "MK": { "zoneName": "Severné Macedónsko" },
-    "ML": { "zoneName": "Mali" },
-    "MM": { "zoneName": "Mjanmarsko" },
-    "MN": { "zoneName": "Mongolsko" },
-    "MO": { "zoneName": "Macao" },
-    "MP": { "zoneName": "Severné Mariány" },
-    "MQ": { "zoneName": "Martinik" },
-    "MR": { "zoneName": "Mauritánia" },
-    "MS": { "zoneName": "Montserrat" },
-    "MT": { "zoneName": "Malta" },
-    "MU": { "zoneName": "Maurícius" },
-    "MV": { "zoneName": "Maldivy" },
-    "MW": { "zoneName": "Malawi" },
-    "MX": { "zoneName": "Mexiko" },
-    "MX-BC": { "countryName": "Mexiko", "zoneName": "Baja California" },
-    "MX-CE": { "countryName": "Mexiko", "zoneName": "Centrálne Mexiko" },
-    "MX-NE": { "countryName": "Mexiko", "zoneName": "Severovychodné Mexiko" },
-    "MX-NO": { "countryName": "Mexiko", "zoneName": "Severné Mexiko" },
-    "MX-NW": { "countryName": "Mexiko", "zoneName": "Severzápadné Mexiko" },
-    "MX-OC": { "countryName": "Mexiko", "zoneName": "Západné Mexiko" },
-    "MX-OR": { "countryName": "Mexiko", "zoneName": "Orientálne Mexiko" },
-    "MX-PN": { "countryName": "Mexiko", "zoneName": "Poloostrov" },
-    "MY-EM": { "countryName": "Malajzia", "zoneName": "Borneo" },
-    "MY-WM": { "countryName": "Malajyia", "zoneName": "Poloostrov" },
-    "MZ": { "zoneName": "Mozambik" },
-    "NA": { "zoneName": "Namíbia" },
-    "NC": { "zoneName": "Nová Kaledónia" },
-    "NE": { "zoneName": "Niger" },
-    "NF": { "zoneName": "Norfolk" },
-    "NG": { "zoneName": "Nigéria" },
-    "NI": { "zoneName": "Nikaragua" },
-    "NL": { "zoneName": "Holandsko" },
-    "NO-NO1": { "countryName": "Nórsko", "zoneName": "Juhovychodné Nórsko" },
-    "NO-NO2": { "countryName": "Nórsko", "zoneName": "Juhozápadné Nórsko" },
-    "NO-NO3": { "countryName": "Nórsko", "zoneName": "Stredné Nórsko" },
-    "NO-NO4": { "countryName": "Nórsko", "zoneName": "Severné Nórsko" },
-    "NO-NO5": { "countryName": "Nórsko", "zoneName": "Západné Nórsko" },
-    "NP": { "zoneName": "Nepál" },
-    "NR": { "zoneName": "Nauru" },
-    "NU": { "zoneName": "Niue" },
-    "NZ": { "zoneName": "Novy Zéland" },
-    "NZ-NZA": { "countryName": "Novy Zéland", "zoneName": "Aucklandove ostrovy" },
-    "NZ-NZC": { "countryName": "Novy Zéland", "zoneName": "Chathamské ostrovy" },
-    "OM": { "zoneName": "Omán" },
-    "PA": { "zoneName": "Panama" },
-    "PE": { "zoneName": "Peru" },
-    "PF": { "zoneName": "Francúzska Polynézia" },
-    "PG": { "zoneName": "Papua-Nová Guinea" },
-    "PH": { "zoneName": "Filipíny" },
-    "PK": { "zoneName": "Pakistan" },
-    "PL": { "zoneName": "Poľsko" },
-    "PM": { "zoneName": "Saint Pierre a Miquelon" },
-    "PN": { "zoneName": "Pitcairnove ostrovy" },
-    "PR": { "zoneName": "Portoriko" },
-    "PS": { "zoneName": "Palestína" },
-    "PT": { "zoneName": "Portugalsko" },
-    "PT-AC": { "countryName": "Portugalsko", "zoneName": "Azory" },
-    "PT-MA": { "countryName": "Portugalsko", "zoneName": "Madeira" },
-    "PW": { "zoneName": "Palau" },
-    "PY": { "zoneName": "Paraguaj" },
-    "QA": { "zoneName": "Katar" },
-    "RE": { "zoneName": "Réunion" },
-    "RO": { "zoneName": "Rumunsko" },
-    "RS": { "zoneName": "Srbsko" },
-    "RU": { "zoneName": "Rusko" },
-    "RU-1": { "countryName": "Rusko", "zoneName": "Európske Rusko a Ural" },
-    "RU-2": { "countryName": "Rusko", "zoneName": "Sibír" },
-    "RU-EU": { "zoneName": "Rusko" },
-    "RU-AS": { "zoneName": "Rusko" },
-    "RU-KGD": { "countryName": "Rusko", "zoneName": "Kaliningrad" },
-    "RW": { "zoneName": "Rwanda" },
-    "SA": { "zoneName": "Saudská Arábia" },
-    "SB": { "zoneName": "Šalamúnové ostrovy" },
-    "SC": { "zoneName": "Seychely" },
-    "SD": { "zoneName": "Sudán" },
-    "SE": { "zoneName": "Švédsko" },
-    "SG": { "zoneName": "Singapur" },
-    "SH": { "zoneName": "Svätá Helena, Ascension a Tristan da Cunha" },
-    "SI": { "zoneName": "Slovinsko" },
-    "SJ": { "zoneName": "Svalbard a Jan Mayen" },
-    "SK": { "zoneName": "Slovensko" },
-    "SL": { "zoneName": "Sierra Leone" },
-    "SM": { "zoneName": "San Maríno" },
-    "SN": { "zoneName": "Senegal" },
-    "SO": { "zoneName": "Somálsko" },
-    "SR": { "zoneName": "Surinam" },
-    "SS": { "zoneName": "Južný Sudán" },
-    "ST": { "zoneName": "Svätý Tomáš a Princov ostrov" },
-    "SV": { "zoneName": "Salvádor" },
-    "SX": { "countryName": "San Maarten", "zoneName": "Dutch" },
-    "SY": { "zoneName": "Sýria" },
-    "SZ": { "zoneName": "Svazijsko" },
-    "TC": { "zoneName": "Turks a Caicos" },
-    "TD": { "zoneName": "Čad" },
-    "TF": { "zoneName": "Francúzske južné a antarktické teritória" },
-    "TG": { "zoneName": "Togo" },
-    "TH": { "zoneName": "Thajsko" },
-    "TJ": { "zoneName": "Tadžikistan" },
-    "TK": { "zoneName": "Tokelau" },
-    "TL": { "zoneName": "Vychodnź Timor" },
-    "TM": { "zoneName": "Turkménsko" },
-    "TN": { "zoneName": "Tunisko" },
-    "TO": { "zoneName": "Tonga" },
-    "TR": { "zoneName": "Turecko" },
-    "TT": { "zoneName": "Trinidad a Tobago" },
-    "TV": { "zoneName": "Tuvalu" },
-    "TW": { "zoneName": "Taiwan" },
-    "TZ": { "zoneName": "Tanzánia" },
-    "UA": { "zoneName": "Ukrajina" },
-    "UA-CR": { "countryName": "Ukrajina", "zoneName": "Krym" },
-    "UG": { "zoneName": "Uganda" },
-    "UM": { "zoneName": "Menšie ohľahlé ostrovy USA" },
-    "UY": { "zoneName": "Uruguaj" },
-    "UZ": { "zoneName": "Uzbekistan" },
-    "VA": { "zoneName": "Vatikán" },
-    "VC": { "zoneName": "Svätý Vincent a Grenadíny" },
-    "VE": { "zoneName": "Venezuela" },
-    "VG": { "countryName": "Britské Panenské ostrovy", "zoneName": "Britské Panenské ostrovy" },
-    "VI": { "countryName": "Spojené štáty americké", "zoneName": "Americké Panenské ostrovy" },
-    "VN": { "zoneName": "Vietnam" },
-    "VU": { "zoneName": "Vanuatu" },
-    "WF": { "zoneName": "Wallis a Futuna" },
-    "WS": { "zoneName": "Samoa" },
-    "XX": { "zoneName": "Severocyperská turecká republika" },
-    "YE": { "zoneName": "Jemen" },
-    "YT": { "zoneName": "Mayotte" },
-    "ZA": { "zoneName": "Južná Afrika" },
-    "ZM": { "zoneName": "Zambia" },
-    "ZW": { "zoneName": "Zimbabwe" }
+    "AD": {
+      "zoneName": "Andorra"
+    },
+    "AE": {
+      "zoneName": "Spojené Arabské Emiráty"
+    },
+    "AF": {
+      "zoneName": "Afganistan"
+    },
+    "AG": {
+      "zoneName": "Antigua a Barbuda"
+    },
+    "AI": {
+      "zoneName": "Anguilla"
+    },
+    "AL": {
+      "zoneName": "Albánsko"
+    },
+    "AM": {
+      "zoneName": "Arménsko"
+    },
+    "AO": {
+      "zoneName": "Angola"
+    },
+    "AQ": {
+      "zoneName": "Antarktída"
+    },
+    "AS": {
+      "zoneName": "Americká Samoa"
+    },
+    "AT": {
+      "zoneName": "Rakúsko"
+    },
+    "AR": {
+      "zoneName": "Argentína"
+    },
+    "AUS-NSW": {
+      "countryName": "Austrália",
+      "zoneName": "Nový Južný Wales"
+    },
+    "AU-NT": {
+      "countryName": "Austrália",
+      "zoneName": "Severné teritórium"
+    },
+    "AUS-QLD": {
+      "countryName": "Austrália",
+      "zoneName": "Queensland"
+    },
+    "AUS-SA": {
+      "countryName": "Austrália",
+      "zoneName": "Juzná Austrália"
+    },
+    "AUS-TAS": {
+      "countryName": "Austrália",
+      "zoneName": "Tasmánia"
+    },
+    "AUS-VIC": {
+      "countryName": "Austrália",
+      "zoneName": "Viktória"
+    },
+    "AUS-WA": {
+      "countryName": "Austrália",
+      "zoneName": "Západná Austrália"
+    },
+    "AW": {
+      "zoneName": "Aruba"
+    },
+    "AX": {
+      "zoneName": "Ålandy"
+    },
+    "AZ": {
+      "zoneName": "Azerbajdžan"
+    },
+    "BA": {
+      "zoneName": "Bosna a Hercegovina"
+    },
+    "BB": {
+      "zoneName": "Barbados"
+    },
+    "BD": {
+      "zoneName": "Bangladéš"
+    },
+    "BE": {
+      "zoneName": "Belgicko"
+    },
+    "BF": {
+      "zoneName": "Burkina Faso"
+    },
+    "BG": {
+      "zoneName": "Bulharsko"
+    },
+    "BH": {
+      "zoneName": "Bahrajn"
+    },
+    "BI": {
+      "zoneName": "Burundi"
+    },
+    "BJ": {
+      "zoneName": "Benin"
+    },
+    "BM": {
+      "zoneName": "Bermudy"
+    },
+    "BN": {
+      "zoneName": "Brunej"
+    },
+    "BO": {
+      "zoneName": "Bolívia"
+    },
+    "BQ": {
+      "zoneName": "Bonaire, Sint Eustatius and Saba"
+    },
+    "BR-CS": {
+      "countryName": "Brazília",
+      "zoneName": "Centrálna Brazília"
+    },
+    "BR-N": {
+      "countryName": "Brazília",
+      "zoneName": "Severná Brazília"
+    },
+    "BR-NE": {
+      "countryName": "Brazília",
+      "zoneName": "Severovychodná Brazília"
+    },
+    "BR-S": {
+      "countryName": "Brazília",
+      "zoneName": "Južná Brazília"
+    },
+    "BS": {
+      "zoneName": "Bahamy"
+    },
+    "BT": {
+      "zoneName": "Bhután"
+    },
+    "BV": {
+      "zoneName": "Bouvetov ostrov"
+    },
+    "BW": {
+      "zoneName": "Botswana"
+    },
+    "BY": {
+      "zoneName": "Bielorusko"
+    },
+    "BZ": {
+      "zoneName": "Belize"
+    },
+    "CA-AB": {
+      "countryName": "Kanada",
+      "zoneName": "Alberta"
+    },
+    "CA-BC": {
+      "countryName": "Kanada",
+      "zoneName": "Britská Kolumbia"
+    },
+    "CA-MB": {
+      "countryName": "Kanada",
+      "zoneName": "Manitoba"
+    },
+    "CA-NL": {
+      "countryName": "Kanada",
+      "zoneName": "Newfoundland a Labrador"
+    },
+    "CA-NB": {
+      "countryName": "Kanada",
+      "zoneName": "New Brunswick"
+    },
+    "CA-NT": {
+      "countryName": "Kanada",
+      "zoneName": "Severozápadné teritóriá"
+    },
+    "CA-NS": {
+      "countryName": "Kanada",
+      "zoneName": "Nové Škótsko"
+    },
+    "CA-NU": {
+      "countryName": "Kanada",
+      "zoneName": "Nunavut"
+    },
+    "CA-ON": {
+      "countryName": "Kanada",
+      "zoneName": "Ontário"
+    },
+    "CA-PE": {
+      "countryName": "Kanada",
+      "zoneName": "Ostrov princa Eduarda"
+    },
+    "CA-QC": {
+      "countryName": "Kanada",
+      "zoneName": "Quebec"
+    },
+    "CA-SK": {
+      "countryName": "Kanada",
+      "zoneName": "Saskatchewan"
+    },
+    "CA-YT": {
+      "countryName": "Kanada",
+      "zoneName": "Yukon"
+    },
+    "CC": {
+      "zoneName": "Kokosové ostrovy"
+    },
+    "CD": {
+      "zoneName": "Konžská emokratická republika"
+    },
+    "CF": {
+      "zoneName": "Stredoafrická Republika"
+    },
+    "CG": {
+      "zoneName": "Kongo"
+    },
+    "CH": {
+      "zoneName": "Švajčiarsko"
+    },
+    "CI": {
+      "zoneName": "Pobrežie Slonoviny"
+    },
+    "CK": {
+      "zoneName": "Cookove ostrovy"
+    },
+    "CL-SING": {
+      "countryName": "Čile",
+      "zoneName": "SING"
+    },
+    "CL-SEM": {
+      "countryName": "Čile",
+      "zoneName": "SEM"
+    },
+    "CL-SEA": {
+      "countryName": "Čile",
+      "zoneName": "SEA"
+    },
+    "CM": {
+      "zoneName": "Kamerun"
+    },
+    "CN": {
+      "zoneName": "Čína"
+    },
+    "CO": {
+      "zoneName": "Kolumbia"
+    },
+    "CR": {
+      "zoneName": "Kostarika"
+    },
+    "CU": {
+      "zoneName": "Kuba"
+    },
+    "CV": {
+      "zoneName": "Kapverdy"
+    },
+    "CW": {
+      "zoneName": "Curaçao"
+    },
+    "CX": {
+      "zoneName": "Vianočný ostrov"
+    },
+    "CY": {
+      "zoneName": "Cyprus"
+    },
+    "CZ": {
+      "zoneName": "Česko"
+    },
+    "DE": {
+      "zoneName": "Nemecko"
+    },
+    "DJ": {
+      "zoneName": "Džibutsko"
+    },
+    "DK": {
+      "zoneName": "Dánsko"
+    },
+    "DK-DK1": {
+      "countryName": "Dánsko",
+      "zoneName": "Západné Dánsko"
+    },
+    "DK-DK2": {
+      "countryName": "Dásko",
+      "zoneName": "Vychodné Dánsko"
+    },
+    "DK-BHM": {
+      "countryName": "Dánsko",
+      "zoneName": "Bornholm"
+    },
+    "DM": {
+      "zoneName": "Dominika"
+    },
+    "DO": {
+      "zoneName": "Dominikánska republika"
+    },
+    "DZ": {
+      "zoneName": "Alžírsko"
+    },
+    "EC": {
+      "zoneName": "Ekvádor"
+    },
+    "EE": {
+      "zoneName": "Estónsko"
+    },
+    "EG": {
+      "zoneName": "Egypt"
+    },
+    "EH": {
+      "zoneName": "Západná Sahara"
+    },
+    "ER": {
+      "zoneName": "Eritrea"
+    },
+    "ES": {
+      "zoneName": "Španielsko"
+    },
+    "ES-CE": {
+      "countryName": "Španielsko",
+      "zoneName": "Ceuta"
+    },
+    "ES-IB-FO": {
+      "countryName": "Španielsko",
+      "zoneName": "Formentera"
+    },
+    "ES-IB-IZ": {
+      "countryName": "Španielsko",
+      "zoneName": "Ibiza"
+    },
+    "ES-IB-MA": {
+      "countryName": "Španielsko",
+      "zoneName": "Malorka"
+    },
+    "ES-IB-ME": {
+      "countryName": "Španielsko",
+      "zoneName": "Menorca"
+    },
+    "ES-CN-FVLZ": {
+      "countryName": "Španielsko",
+      "zoneName": "Fuerteventura/Lanzarote"
+    },
+    "ES-CN-GC": {
+      "countryName": "Španielsko",
+      "zoneName": "Gran Canaria"
+    },
+    "ES-CN-HI": {
+      "countryName": "Španielsko",
+      "zoneName": "El Hierro"
+    },
+    "ES-CN-IG": {
+      "countryName": "Španielsko",
+      "zoneName": "La Gomera"
+    },
+    "ES-CN-LP": {
+      "countryName": "Španielsko",
+      "zoneName": "La Palma"
+    },
+    "ES-CN-TE": {
+      "countryName": "Španielsko",
+      "zoneName": "Tenerife"
+    },
+    "ES-ML": {
+      "countryName": "Španielsko",
+      "zoneName": "Melilla"
+    },
+    "ET": {
+      "zoneName": "Etiópia"
+    },
+    "FI": {
+      "zoneName": "Fínsko"
+    },
+    "FJ": {
+      "zoneName": "Fidži"
+    },
+    "FK": {
+      "zoneName": "Falklandy"
+    },
+    "FM": {
+      "zoneName": "Mikronézia"
+    },
+    "FO": {
+      "zoneName": "Faerské ostrovy"
+    },
+    "FR": {
+      "zoneName": "Francúzsko"
+    },
+    "FR-COR": {
+      "countryName": "Francúzsko",
+      "zoneName": "Korzika"
+    },
+    "GA": {
+      "zoneName": "Gabon"
+    },
+    "GB": {
+      "zoneName": "Veľká Británia"
+    },
+    "GB-NIR": {
+      "zoneName": "Severné Irsko"
+    },
+    "GB-ORK": {
+      "countryName": "Veľká Británia",
+      "zoneName": "Orkneje"
+    },
+    "GB-ZET": {
+      "countryName": "Veľká Británia",
+      "zoneName": "Shetlandy"
+    },
+    "GB-ZET": {
+      "countryName": "Velká Británia",
+      "zoneName": "Shetlandy"
+    },
+    "GD": {
+      "zoneName": "Grenada"
+    },
+    "GE": {
+      "zoneName": "Gruzínsko"
+    },
+    "GF": {
+      "zoneName": "Francúzska Guyana"
+    },
+    "GG": {
+      "zoneName": "Guernsey"
+    },
+    "GH": {
+      "zoneName": "Ghana"
+    },
+    "GI": {
+      "zoneName": "Gibraltár"
+    },
+    "GL": {
+      "zoneName": "Grónsko"
+    },
+    "GM": {
+      "zoneName": "Gambia"
+    },
+    "GN": {
+      "zoneName": "Guinea"
+    },
+    "GP": {
+      "zoneName": "Guadeloupe"
+    },
+    "GQ": {
+      "zoneName": "Rovníková Guinea"
+    },
+    "GR": {
+      "zoneName": "Grécko"
+    },
+    "GR-IS": {
+      "countryName": "Grécko",
+      "zoneName": "Egejské ostrovy"
+    },
+    "GS": {
+      "zoneName": "Južná Georgia a Sandwichove ostrovy"
+    },
+    "GT": {
+      "zoneName": "Guatemala"
+    },
+    "GU": {
+      "zoneName": "Guam"
+    },
+    "GW": {
+      "zoneName": "Guinea-Bissau"
+    },
+    "GY": {
+      "zoneName": "Guyana"
+    },
+    "HK": {
+      "zoneName": "Hongkong"
+    },
+    "HM": {
+      "zoneName": "Teritórium Heardovho ostrova a Macdonaldových ostrovov"
+    },
+    "HN": {
+      "zoneName": "Honduras"
+    },
+    "HR": {
+      "zoneName": "Chorvátsko"
+    },
+    "HT": {
+      "zoneName": "Haiti"
+    },
+    "HU": {
+      "zoneName": "Maďarsko"
+    },
+    "ID": {
+      "zoneName": "Indonézia"
+    },
+    "IE": {
+      "zoneName": "Írsko"
+    },
+    "IL": {
+      "zoneName": "Izrael"
+    },
+    "IM": {
+      "zoneName": "Ostrov Man"
+    },
+    "IN-AN": {
+      "countryName": "India",
+      "zoneName": "Andmany a Nikobary"
+    },
+    "IN-AP": {
+      "countryName": "India",
+      "zoneName": "Andhrapradáš"
+    },
+    "IN-AR": {
+      "countryName": "India",
+      "zoneName": "Arunáčalpraéš"
+    },
+    "IN-AS": {
+      "countryName": "India",
+      "zoneName": "Ásam"
+    },
+    "IN-BR": {
+      "countryName": "India",
+      "zoneName": "Bihár"
+    },
+    "IN-CT": {
+      "countryName": "India",
+      "zoneName": "Čhattásgarh"
+    },
+    "IN-DL": {
+      "countryName": "India",
+      "zoneName": "Dillí"
+    },
+    "IN-DN": {
+      "countryName": "India",
+      "zoneName": "Dádra a Nagar Havelí"
+    },
+    "IN-GA": {
+      "countryName": "India",
+      "zoneName": "Goa"
+    },
+    "IN-GJ": {
+      "countryName": "India",
+      "zoneName": "Gudžarát"
+    },
+    "IN-HP": {
+      "countryName": "India",
+      "zoneName": "Himáčalpradéš"
+    },
+    "IN-HR": {
+      "countryName": "india",
+      "zoneName": "Harijána"
+    },
+    "IN-JH": {
+      "countryName": "India",
+      "zoneName": "Džhárkhand"
+    },
+    "IN-JK": {
+      "countryName": "India",
+      "zoneName": "Džammú a Kašmír"
+    },
+    "IN-KA": {
+      "countryName": "India",
+      "zoneName": "Karnátaka"
+    },
+    "IN-KL": {
+      "countryName": "India",
+      "zoneName": "Kérala"
+    },
+    "IN-MH": {
+      "countryName": "India",
+      "zoneName": "Maháraštra"
+    },
+    "IN-ML": {
+      "countryName": "India",
+      "zoneName": "Meghálaj"
+    },
+    "IN-MN": {
+      "countryName": "India",
+      "zoneName": "Manípur"
+    },
+    "IN-MP": {
+      "countryName": "India",
+      "zoneName": "Madhjapradéš"
+    },
+    "IN-MZ": {
+      "countryName": "India",
+      "zoneName": "Mizorám"
+    },
+    "IN-NL": {
+      "countryName": "India",
+      "zoneName": "Nágsko"
+    },
+    "IN-OR": {
+      "countryName": "India",
+      "zoneName": "Urísa"
+    },
+    "IN-PB": {
+      "countryName": "India",
+      "zoneName": "Pandžáb"
+    },
+    "IN-PY": {
+      "countryName": "India",
+      "zoneName": "Puttučéri"
+    },
+    "IN-RJ": {
+      "countryName": "India",
+      "zoneName": "Radžastan"
+    },
+    "IN-SK": {
+      "countryName": "India",
+      "zoneName": "Sikkim"
+    },
+    "IN-TN": {
+      "countryName": "India",
+      "zoneName": "Tamilnádu"
+    },
+    "IN-TR": {
+      "countryName": "India",
+      "zoneName": "Tripura"
+    },
+    "IN-UP": {
+      "countryName": "India",
+      "zoneName": "Uttarpradáš"
+    },
+    "IN-UT": {
+      "countryName": "India",
+      "zoneName": "Uttarákhand"
+    },
+    "IN-WB": {
+      "countryName": "India",
+      "zoneName": "Západné Bengálsko"
+    },
+    "IO": {
+      "zoneName": "Britské indickooceánske územie"
+    },
+    "IQ": {
+      "zoneName": "Irak"
+    },
+    "IQ-KUR": {
+      "countryName": "Irak",
+      "zoneName": "Kurdistan"
+    },
+    "IR": {
+      "zoneName": "Irán"
+    },
+    "IS": {
+      "zoneName": "Island"
+    },
+    "IT": {
+      "zoneName": "Taliansko"
+    },
+    "IT-CNO": {
+      "countryName": "Taliansko",
+      "zoneName": "Centrálne Severné"
+    },
+    "IT-CSO": {
+      "countryName": "Taliansko",
+      "zoneName": "Centrálne Južné"
+    },
+    "IT-NO": {
+      "countryName": "Taliansko",
+      "zoneName": "Severné Taliansko"
+    },
+    "IT-SAR": {
+      "countryName": "Taliansko",
+      "zoneName": "Sardínia"
+    },
+    "IT-SIC": {
+      "countryName": "Taliansko",
+      "zoneName": "Sicília"
+    },
+    "IT-SO": {
+      "countryName": "Taliansko",
+      "zoneName": "Južné Taliansko"
+    },
+    "JE": {
+      "zoneName": "Jersey"
+    },
+    "JM": {
+      "zoneName": "Jamajka"
+    },
+    "JO": {
+      "zoneName": "Jordánsko"
+    },
+    "JP-CB": {
+      "countryName": "Japonsko",
+      "zoneName": "Čobú"
+    },
+    "JP-CG": {
+      "countryName": "Japan",
+      "zoneName": "Čugokú"
+    },
+    "JP-HKD": {
+      "countryName": "Japonsko",
+      "zoneName": "Hokkaidó"
+    },
+    "JP-HR": {
+      "countryName": "Japonsko",
+      "zoneName": "Hokuriku"
+    },
+    "JP-KN": {
+      "countryName": "Japonsko",
+      "zoneName": "Kansai"
+    },
+    "JP-KY": {
+      "countryName": "Japonsko",
+      "zoneName": "Kjušú"
+    },
+    "JP-ON": {
+      "countryName": "Japonsko",
+      "zoneName": "Okinawa"
+    },
+    "JP-SK": {
+      "countryName": "Japonsko",
+      "zoneName": "Šikoku"
+    },
+    "JP-TH": {
+      "countryName": "Japonsko",
+      "zoneName": "Tóhoku"
+    },
+    "JP-TK": {
+      "countryName": "Japonsko",
+      "zoneName": "Tokio"
+    },
+    "KE": {
+      "zoneName": "Keňa"
+    },
+    "KG": {
+      "zoneName": "Kirgizsko"
+    },
+    "KH": {
+      "zoneName": "Kambodža"
+    },
+    "KI": {
+      "zoneName": "Kiribati"
+    },
+    "KM": {
+      "zoneName": "Komory"
+    },
+    "KN": {
+      "zoneName": "Svätý Krištof a Nevis"
+    },
+    "KP": {
+      "zoneName": "Kórejská ľudovodemokratická republika"
+    },
+    "KR": {
+      "zoneName": "Kórejská republika"
+    },
+    "KW": {
+      "zoneName": "Kuvajt"
+    },
+    "KY": {
+      "zoneName": "Kajmanie ostrovy"
+    },
+    "KZ": {
+      "zoneName": "Kazachstan"
+    },
+    "LA": {
+      "zoneName": "Laos"
+    },
+    "LB": {
+      "zoneName": "Libanon"
+    },
+    "LC": {
+      "zoneName": "Svätá Lucia"
+    },
+    "LI": {
+      "zoneName": "Lichtenštajnsko"
+    },
+    "LK": {
+      "zoneName": "Srí Lanka"
+    },
+    "LR": {
+      "zoneName": "Libéria"
+    },
+    "LS": {
+      "zoneName": "Lesotho"
+    },
+    "LT": {
+      "zoneName": "Litva"
+    },
+    "LU": {
+      "zoneName": "Luxembursko"
+    },
+    "LV": {
+      "zoneName": "Lotyšsko"
+    },
+    "LY": {
+      "zoneName": "Líbya"
+    },
+    "MA": {
+      "zoneName": "Maroko"
+    },
+    "MC": {
+      "zoneName": "Monako"
+    },
+    "MD": {
+      "zoneName": "Moldavsko"
+    },
+    "ME": {
+      "zoneName": "Čierna Hora"
+    },
+    "MF": {
+      "countryName": "Sväty Martin",
+      "zoneName": "French"
+    },
+    "MG": {
+      "zoneName": "Madagaskar"
+    },
+    "MH": {
+      "zoneName": "Marshallove ostrovy"
+    },
+    "MK": {
+      "zoneName": "Severné Macedónsko"
+    },
+    "ML": {
+      "zoneName": "Mali"
+    },
+    "MM": {
+      "zoneName": "Mjanmarsko"
+    },
+    "MN": {
+      "zoneName": "Mongolsko"
+    },
+    "MO": {
+      "zoneName": "Macao"
+    },
+    "MP": {
+      "zoneName": "Severné Mariány"
+    },
+    "MQ": {
+      "zoneName": "Martinik"
+    },
+    "MR": {
+      "zoneName": "Mauritánia"
+    },
+    "MS": {
+      "zoneName": "Montserrat"
+    },
+    "MT": {
+      "zoneName": "Malta"
+    },
+    "MU": {
+      "zoneName": "Maurícius"
+    },
+    "MV": {
+      "zoneName": "Maldivy"
+    },
+    "MW": {
+      "zoneName": "Malawi"
+    },
+    "MX": {
+      "zoneName": "Mexiko"
+    },
+    "MX-BC": {
+      "countryName": "Mexiko",
+      "zoneName": "Baja California"
+    },
+    "MX-CE": {
+      "countryName": "Mexiko",
+      "zoneName": "Centrálne Mexiko"
+    },
+    "MX-NE": {
+      "countryName": "Mexiko",
+      "zoneName": "Severovychodné Mexiko"
+    },
+    "MX-NO": {
+      "countryName": "Mexiko",
+      "zoneName": "Severné Mexiko"
+    },
+    "MX-NW": {
+      "countryName": "Mexiko",
+      "zoneName": "Severzápadné Mexiko"
+    },
+    "MX-OC": {
+      "countryName": "Mexiko",
+      "zoneName": "Západné Mexiko"
+    },
+    "MX-OR": {
+      "countryName": "Mexiko",
+      "zoneName": "Orientálne Mexiko"
+    },
+    "MX-PN": {
+      "countryName": "Mexiko",
+      "zoneName": "Poloostrov"
+    },
+    "MY-EM": {
+      "countryName": "Malajzia",
+      "zoneName": "Borneo"
+    },
+    "MY-WM": {
+      "countryName": "Malajyia",
+      "zoneName": "Poloostrov"
+    },
+    "MZ": {
+      "zoneName": "Mozambik"
+    },
+    "NA": {
+      "zoneName": "Namíbia"
+    },
+    "NC": {
+      "zoneName": "Nová Kaledónia"
+    },
+    "NE": {
+      "zoneName": "Niger"
+    },
+    "NF": {
+      "zoneName": "Norfolk"
+    },
+    "NG": {
+      "zoneName": "Nigéria"
+    },
+    "NI": {
+      "zoneName": "Nikaragua"
+    },
+    "NL": {
+      "zoneName": "Holandsko"
+    },
+    "NO-NO1": {
+      "countryName": "Nórsko",
+      "zoneName": "Juhovychodné Nórsko"
+    },
+    "NO-NO2": {
+      "countryName": "Nórsko",
+      "zoneName": "Juhozápadné Nórsko"
+    },
+    "NO-NO3": {
+      "countryName": "Nórsko",
+      "zoneName": "Stredné Nórsko"
+    },
+    "NO-NO4": {
+      "countryName": "Nórsko",
+      "zoneName": "Severné Nórsko"
+    },
+    "NO-NO5": {
+      "countryName": "Nórsko",
+      "zoneName": "Západné Nórsko"
+    },
+    "NP": {
+      "zoneName": "Nepál"
+    },
+    "NR": {
+      "zoneName": "Nauru"
+    },
+    "NU": {
+      "zoneName": "Niue"
+    },
+    "NZ": {
+      "zoneName": "Novy Zéland"
+    },
+    "NZ-NZA": {
+      "countryName": "Novy Zéland",
+      "zoneName": "Aucklandove ostrovy"
+    },
+    "NZ-NZC": {
+      "countryName": "Novy Zéland",
+      "zoneName": "Chathamské ostrovy"
+    },
+    "OM": {
+      "zoneName": "Omán"
+    },
+    "PA": {
+      "zoneName": "Panama"
+    },
+    "PE": {
+      "zoneName": "Peru"
+    },
+    "PF": {
+      "zoneName": "Francúzska Polynézia"
+    },
+    "PG": {
+      "zoneName": "Papua-Nová Guinea"
+    },
+    "PH": {
+      "zoneName": "Filipíny"
+    },
+    "PK": {
+      "zoneName": "Pakistan"
+    },
+    "PL": {
+      "zoneName": "Poľsko"
+    },
+    "PM": {
+      "zoneName": "Saint Pierre a Miquelon"
+    },
+    "PN": {
+      "zoneName": "Pitcairnove ostrovy"
+    },
+    "PR": {
+      "zoneName": "Portoriko"
+    },
+    "PS": {
+      "zoneName": "Palestína"
+    },
+    "PT": {
+      "zoneName": "Portugalsko"
+    },
+    "PT-AC": {
+      "countryName": "Portugalsko",
+      "zoneName": "Azory"
+    },
+    "PT-MA": {
+      "countryName": "Portugalsko",
+      "zoneName": "Madeira"
+    },
+    "PW": {
+      "zoneName": "Palau"
+    },
+    "PY": {
+      "zoneName": "Paraguaj"
+    },
+    "QA": {
+      "zoneName": "Katar"
+    },
+    "RE": {
+      "zoneName": "Réunion"
+    },
+    "RO": {
+      "zoneName": "Rumunsko"
+    },
+    "RS": {
+      "zoneName": "Srbsko"
+    },
+    "RU": {
+      "zoneName": "Rusko"
+    },
+    "RU-1": {
+      "countryName": "Rusko",
+      "zoneName": "Európske Rusko a Ural"
+    },
+    "RU-2": {
+      "countryName": "Rusko",
+      "zoneName": "Sibír"
+    },
+    "RU-EU": {
+      "zoneName": "Rusko"
+    },
+    "RU-AS": {
+      "zoneName": "Rusko"
+    },
+    "RU-KGD": {
+      "countryName": "Rusko",
+      "zoneName": "Kaliningrad"
+    },
+    "RW": {
+      "zoneName": "Rwanda"
+    },
+    "SA": {
+      "zoneName": "Saudská Arábia"
+    },
+    "SB": {
+      "zoneName": "Šalamúnové ostrovy"
+    },
+    "SC": {
+      "zoneName": "Seychely"
+    },
+    "SD": {
+      "zoneName": "Sudán"
+    },
+    "SE": {
+      "zoneName": "Švédsko"
+    },
+    "SG": {
+      "zoneName": "Singapur"
+    },
+    "SH": {
+      "zoneName": "Svätá Helena, Ascension a Tristan da Cunha"
+    },
+    "SI": {
+      "zoneName": "Slovinsko"
+    },
+    "SJ": {
+      "zoneName": "Svalbard a Jan Mayen"
+    },
+    "SK": {
+      "zoneName": "Slovensko"
+    },
+    "SL": {
+      "zoneName": "Sierra Leone"
+    },
+    "SM": {
+      "zoneName": "San Maríno"
+    },
+    "SN": {
+      "zoneName": "Senegal"
+    },
+    "SO": {
+      "zoneName": "Somálsko"
+    },
+    "SR": {
+      "zoneName": "Surinam"
+    },
+    "SS": {
+      "zoneName": "Južný Sudán"
+    },
+    "ST": {
+      "zoneName": "Svätý Tomáš a Princov ostrov"
+    },
+    "SV": {
+      "zoneName": "Salvádor"
+    },
+    "SX": {
+      "countryName": "San Maarten",
+      "zoneName": "Dutch"
+    },
+    "SY": {
+      "zoneName": "Sýria"
+    },
+    "SZ": {
+      "zoneName": "Svazijsko"
+    },
+    "TC": {
+      "zoneName": "Turks a Caicos"
+    },
+    "TD": {
+      "zoneName": "Čad"
+    },
+    "TF": {
+      "zoneName": "Francúzske južné a antarktické teritória"
+    },
+    "TG": {
+      "zoneName": "Togo"
+    },
+    "TH": {
+      "zoneName": "Thajsko"
+    },
+    "TJ": {
+      "zoneName": "Tadžikistan"
+    },
+    "TK": {
+      "zoneName": "Tokelau"
+    },
+    "TL": {
+      "zoneName": "Vychodnź Timor"
+    },
+    "TM": {
+      "zoneName": "Turkménsko"
+    },
+    "TN": {
+      "zoneName": "Tunisko"
+    },
+    "TO": {
+      "zoneName": "Tonga"
+    },
+    "TR": {
+      "zoneName": "Turecko"
+    },
+    "TT": {
+      "zoneName": "Trinidad a Tobago"
+    },
+    "TV": {
+      "zoneName": "Tuvalu"
+    },
+    "TW": {
+      "zoneName": "Taiwan"
+    },
+    "TZ": {
+      "zoneName": "Tanzánia"
+    },
+    "UA": {
+      "zoneName": "Ukrajina"
+    },
+    "UA-CR": {
+      "countryName": "Ukrajina",
+      "zoneName": "Krym"
+    },
+    "UG": {
+      "zoneName": "Uganda"
+    },
+    "UM": {
+      "zoneName": "Menšie ohľahlé ostrovy USA"
+    },
+    "UY": {
+      "zoneName": "Uruguaj"
+    },
+    "UZ": {
+      "zoneName": "Uzbekistan"
+    },
+    "VA": {
+      "zoneName": "Vatikán"
+    },
+    "VC": {
+      "zoneName": "Svätý Vincent a Grenadíny"
+    },
+    "VE": {
+      "zoneName": "Venezuela"
+    },
+    "VG": {
+      "countryName": "Britské Panenské ostrovy",
+      "zoneName": "Britské Panenské ostrovy"
+    },
+    "VI": {
+      "countryName": "Spojené štáty americké",
+      "zoneName": "Americké Panenské ostrovy"
+    },
+    "VN": {
+      "zoneName": "Vietnam"
+    },
+    "VU": {
+      "zoneName": "Vanuatu"
+    },
+    "WF": {
+      "zoneName": "Wallis a Futuna"
+    },
+    "WS": {
+      "zoneName": "Samoa"
+    },
+    "XX": {
+      "zoneName": "Severocyperská turecká republika"
+    },
+    "YE": {
+      "zoneName": "Jemen"
+    },
+    "YT": {
+      "zoneName": "Mayotte"
+    },
+    "ZA": {
+      "zoneName": "Južná Afrika"
+    },
+    "ZM": {
+      "zoneName": "Zambia"
+    },
+    "ZW": {
+      "zoneName": "Zimbabwe"
+    }
   }
 }

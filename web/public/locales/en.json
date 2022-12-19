@@ -83,12 +83,24 @@
       "monthly": "Carbon intensity in the last year",
       "yearly": "Carbon intensity in the last 5 years"
     },
-    "emissions": { "default": "Emissions in the last %1$s" },
-    "emissionsorigin": { "default": "Emissions in the last %1$s" },
-    "emissionsproduction": { "default": "Origin of emissions in the last %1$s" },
-    "electricityorigin": { "default": "Origin of electricity in the last %1$s" },
-    "electricityproduction": { "default": "Electricity production in the last %1$s" },
-    "electricityprices": { "default": "Electricity prices in the last %1$s" },
+    "emissions": {
+      "default": "Emissions in the last %1$s"
+    },
+    "emissionsorigin": {
+      "default": "Emissions in the last %1$s"
+    },
+    "emissionsproduction": {
+      "default": "Origin of emissions in the last %1$s"
+    },
+    "electricityorigin": {
+      "default": "Origin of electricity in the last %1$s"
+    },
+    "electricityproduction": {
+      "default": "Electricity production in the last %1$s"
+    },
+    "electricityprices": {
+      "default": "Electricity prices in the last %1$s"
+    },
     "Getdata": "Get hourly historical, live, and forecast data with Electricity Maps API"
   },
   "footer": {
@@ -132,7 +144,10 @@
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed"
   },
-  "aggregateButtons": { "country": "country", "zone": "zone" },
+  "aggregateButtons": {
+    "country": "country",
+    "zone": "zone"
+  },
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
     "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
@@ -277,7 +292,7 @@
       "countryName": "Australia",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Northern Territory"
     },
@@ -293,7 +308,7 @@
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australia",
       "zoneName": "Cape Barren Island"
     },
@@ -672,7 +687,7 @@
       "countryName": "Great Britain",
       "zoneName": "Orkney Islands"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Great Britain",
       "zoneName": "Shetland Islands"
     },
@@ -1465,6 +1480,13 @@
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
     },
+    "US": {
+      "zoneName": "Contiguous United States"
+    },
+    "US-AK": {
+      "countryName": "USA",
+      "zoneName": "Alaska"
+    },
     "US-HI-HA": {
       "countryName": "USA",
       "zoneName": "Hawaii"
@@ -1573,10 +1595,6 @@
       "countryName": "USA",
       "zoneName": "Jacksonville Electric Authority"
     },
-    "US-FLA-NSB": {
-      "countryName": "USA",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "USA",
       "zoneName": "Seminole Electric Cooperative"
@@ -1596,10 +1614,6 @@
     "US-MIDW-AECI": {
       "countryName": "USA",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "USA",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",
@@ -1701,10 +1715,6 @@
       "countryName": "USA",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "USA",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "USA",
       "zoneName": "Southeastern Power Administration"
@@ -1728,10 +1738,6 @@
     "US-SW-GRIF": {
       "countryName": "USA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "USA",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "USA",
