@@ -43,6 +43,12 @@ const LanguageSelectContainer = styled.ul`
     }
     &.preferred-language {
       background-color: rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 0;
+    }
+    &.other-language {
+      position: relative;
+      top: 30px;
     }
   }
 `;
@@ -76,7 +82,7 @@ const LanguageSelect = () => {
             <li key={key}>
               <button
                 onClick={() => handleLanguageSelect(key, language)}
-                className={selectedLanguage === language ? 'preferred-language' : null}
+                className={selectedLanguage === language ? 'preferred-language' : 'other-language'}
               >
                 {language}
               </button>
