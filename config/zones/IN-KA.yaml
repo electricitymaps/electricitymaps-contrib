@@ -53,7 +53,7 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 571.1581301253207
+        value: 571.1581301253204
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
         value: 476.11209555921374
@@ -69,7 +69,7 @@ emissionFactors:
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 571.1581301253207
+        value: 571.1581301253204
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
         value: 476.11209555921374
@@ -104,7 +104,7 @@ fallbackZoneMixes:
         oil: 0.0
         solar: 0.028615004554740323
         unknown: 0.43441800404349246
-        wind: 0.06742579042409781
+        wind: 0.0674257904240978
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:

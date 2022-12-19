@@ -4,18 +4,18 @@ bounding_box:
   - - 138.50018768629417
     - -10.468357028999876
 capacity:
-  solar: 158
-  gas: 471.4
   biomass: 1.1
-delays:
-  production: 30
-  consumption: 30
-  price: 30
+  gas: 471.4
+  solar: 158
 contributors:
   - unitrium
+delays:
+  consumption: 30
+  price: 30
+  production: 30
+flag_file_name: au.png
 parsers:
+  consumption: NTESMO.fetch_consumption
   price: NTESMO.fetch_price
   production: NTESMO.fetch_production_mix
-  consumption: NTESMO.fetch_consumption
-flag_file_name: au.png
 timezone: Australia/Darwin
