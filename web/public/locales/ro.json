@@ -343,6 +343,9 @@
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius and Saba"
     },
+    "BR": {
+      "zoneName": "Brazil"
+    },
     "BR-CS": {
       "countryName": "Brazil",
       "zoneName": "Central Brazil"
@@ -637,10 +640,6 @@
     "GB-ORK": {
       "countryName": "Great Britain",
       "zoneName": "Orkney Islands"
-    },
-    "GB-ZET": {
-      "countryName": "Great Britain",
-      "zoneName": "Shetland Islands"
     },
     "GB-ZET": {
       "countryName": "Great Britain",
