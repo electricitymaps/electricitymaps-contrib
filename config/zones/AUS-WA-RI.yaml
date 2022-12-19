@@ -25,20 +25,20 @@ emissionFactors:
     battery discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 292.82528927059946
+        value: 292.8252892705995
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 292.82528927059946
+        value: 292.8252892705995
   lifecycle:
     battery discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 475.1604205448953
+        value: 475.16042054489543
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 475.1604205448953
+        value: 475.16042054489543
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
@@ -55,7 +55,7 @@ fallbackZoneMixes:
         oil: 0.7214348874672578
         solar: 0.09655515040514011
         unknown: 0.0
-        wind: 0.18206372128287884
+        wind: 0.18206372128287882
 flag_file_name: au.png
 parsers:
   production: ajenti.fetch_production
