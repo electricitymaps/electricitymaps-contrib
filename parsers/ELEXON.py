@@ -19,13 +19,13 @@ from typing import List, Optional
 
 import arrow
 import pandas as pd
+from requests import Session
+
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
-from requests import Session
-
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
 
 ELEXON_ENDPOINT = "https://api.bmreports.com/BMRS/{}/v1"
 
@@ -69,7 +69,7 @@ FUEL_INST_MAPPING = {
     "INTNEM": "exchange",
     "INTELEC": "exchange",
     "INTIFA2": "exchange",
-    "INTNSL": "exchange"
+    "INTNSL": "exchange",
 }
 
 EXCHANGES = {
@@ -99,7 +99,9 @@ def query_exchange(session: Session, target_datetime=None):
     return response.text
 
 
-def query_production(session: Session, target_datetime: Optional[datetime] = None, report: str = "B1620"):
+def query_production(
+    session: Session, target_datetime: Optional[datetime] = None, report: str = "B1620"
+):
     if target_datetime is None:
         target_datetime = datetime.now()
 
@@ -118,6 +120,7 @@ def query_production(session: Session, target_datetime: Optional[datetime] = Non
     }
     response = query_ELEXON(report, session, params)
     return response.text
+
 
 def parse_exchange(
     zone_key1: str,
@@ -172,21 +175,19 @@ def parse_exchange(
 
     return data_points
 
+
 def parse_production_FUELINST(
     csv_data: str,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-    ):
+):
     """A temporary parser for the FUELINST report.
     This report will be decomissioned sometime in 2023.
     We use it as a replacement for B1620 that doesn't work
     at the moment (19/12/2022).
     """
     if not csv_data:
-        raise ParserException(
-            "ELEXON.py",
-            "Production file is empty."
-        )
+        raise ParserException("ELEXON.py", "Production file is empty.")
     report = REPORT_META["FUELINST"]
     # create DataFrame from slice of CSV rows
     df = pd.read_csv(StringIO(csv_data), skiprows=1, skipfooter=1, header=None)
@@ -197,16 +198,12 @@ def parse_production_FUELINST(
             "ELEXON.py",
             "Expected {} fields in FUELINST report, got {}".format(
                 report["expected_fields"], len(df.columns)
-            )
+            ),
         )
     # The file doesn't have a column header, so we need to recreate it.
-    mapping = {
-        1: "Settlement Date",
-        2: "Settlement Period",
-        3: "Spot Time"
-    }
+    mapping = {1: "Settlement Date", 2: "Settlement Period", 3: "Spot Time"}
     for index, fuel in enumerate(FUEL_INST_MAPPING.values()):
-        mapping[index+4] = fuel
+        mapping[index + 4] = fuel
     df.rename(columns=mapping, inplace=True)
     df["Settlement Date"] = df["Settlement Date"].apply(
         lambda x: datetime.strptime(str(x), "%Y%m%d")
