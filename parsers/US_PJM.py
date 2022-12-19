@@ -17,7 +17,6 @@ from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
-from parsers.lib.utils import get_token
 
 # Used for consumption forecast data.
 API_ENDPOINT = "https://api.pjm.com/api/v1/"
@@ -157,7 +156,7 @@ def fetch_production(
     data.fuel_type = data.fuel_type.map(FUEL_MAPPING)
 
     all_data_points = []
-    for dt in set(data.index):
+    for dt in data.index.unique():
         production = {}
         storage = {}
         data_dt = data.loc[data.index == dt]
@@ -387,14 +386,14 @@ def fetch_price(
     return data
 
 
-# if __name__ == "__main__":
-#     print("fetch_consumption_forecast_7_days() ->")
-#     print(fetch_consumption_forecast_7_days())
-#     print("fetch_production() ->")
-#     print(fetch_production())
-#     print("fetch_exchange(US-NY, US-PJM) ->")
-#     print(fetch_exchange("US-NY", "US-PJM"))
-#     print("fetch_exchange(US-MISO, US-PJM)")
-#     print(fetch_exchange("US-MISO", "US-PJM"))
-#     print("fetch_price() ->")
-#     print(fetch_price())
+if __name__ == "__main__":
+    print("fetch_consumption_forecast_7_days() ->")
+    print(fetch_consumption_forecast_7_days())
+    print("fetch_production() ->")
+    print(fetch_production())
+    print("fetch_exchange(US-NY, US-PJM) ->")
+    print(fetch_exchange("US-NY", "US-PJM"))
+    print("fetch_exchange(US-MISO, US-PJM)")
+    print(fetch_exchange("US-MISO", "US-PJM"))
+    print("fetch_price() ->")
+    print(fetch_price())
