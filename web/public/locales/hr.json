@@ -312,6 +312,9 @@
     "BQ": {
       "zoneName": "Karipska Nizozemska"
     },
+    "BR": {
+      "zoneName": "Brazil"
+    },
     "BR-CS": {
       "countryName": "Brazil",
       "zoneName": "Središnji Brazil"
@@ -598,10 +601,6 @@
     "GB-ORK": {
       "countryName": "Velika Britanija",
       "zoneName": "Otočje Orkney"
-    },
-    "GB-ZET": {
-      "countryName": "Velika Britanija",
-      "zoneName": "Shetland Otoci"
     },
     "GB-ZET": {
       "countryName": "Velika Britanija",

@@ -29,6 +29,24 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 311.5124591762403
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 408.70340083342444
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 405.35996543455053
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 359.4123098524982
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 305.9693624906424
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 371.52541092288993
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 311.5124591762403
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
@@ -36,6 +54,24 @@ emissionFactors:
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 306.5874931991598
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 371.52541092288993
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 311.5124591762403
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 408.70340083342444
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 405.35996543455053
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 359.4123098524982
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 305.9693624906424
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
         value: 371.52541092288993
@@ -56,6 +92,24 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 388.75244760996026
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 504.86404052782575
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 501.0605061866396
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 447.4085111237463
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 387.1009867101464
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 460.3606162230115
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 388.75244760996026
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
@@ -63,6 +117,24 @@ emissionFactors:
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 387.15115204183274
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 460.3606162230115
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 388.75244760996026
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 504.86404052782575
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 501.0605061866396
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 447.4085111237463
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 387.1009867101464
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
         value: 460.3606162230115
