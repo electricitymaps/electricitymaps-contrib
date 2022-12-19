@@ -13,7 +13,7 @@ import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
-from requests import Session, Response
+from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -66,16 +66,28 @@ FUEL_MAPPING = {
 }
 
 
+def get_api_subscription_key(session: Session) -> str:
+    pjm_settings: Response = session.get(
+        "https://dataminer2.pjm.com/config/settings.json"
+    )
+    if pjm_settings.status_code == 200:
+        return pjm_settings.json()["subscriptionKey"]
+    raise ParserException(
+        parser="US_PJM.py",
+        message=f"Could not get API key",
+    )
+
+
 def fetch_api_data(kind: str, params: dict, session: Session) -> list:
 
     headers = {
         "Host": "api.pjm.com",
-        "Ocp-Apim-Subscription-Key": get_token("PJM_TOKEN"),
+        "Ocp-Apim-Subscription-Key": get_api_subscription_key(session=session),
         "Origin": "http://dataminer2.pjm.com",
         "Referer": "http://dataminer2.pjm.com/",
     }
     url = API_ENDPOINT + kind
-    resp: Response = session.get(url, params, headers=headers)
+    resp: Response = session.get(url=url, params=params, headers=headers)
     if resp.status_code == 200:
         data = resp.json()
         return data
@@ -98,8 +110,6 @@ def fetch_consumption_forecast_7_days(
         raise NotImplementedError("This parser is not yet able to parse past dates")
     if not session:
         session = Session()
-
-    headers = {"Ocp-Apim-Subscription-Key": get_token("PJM_TOKEN")}
 
     # startRow must be set if forecast_area is set.
     # RTO_COMBINED is area for whole PJM zone.
@@ -139,25 +149,25 @@ def fetch_production(
         "fields": "datetime_beginning_ept,fuel_type,mw",
         "datetime_beginning_ept": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
     }
-    resp_data = fetch_api_data(kind="gen_by_fuel", params=params)
+    resp_data = fetch_api_data(kind="gen_by_fuel", params=params, session=session)
 
     data = pd.DataFrame(resp_data)
+    data.datetime_beginning_ept = pd.to_datetime(data.datetime_beginning_ept)
+    data = data.set_index("datetime_beginning_ept")
     data.fuel_type = data.fuel_type.map(FUEL_MAPPING)
 
     all_data_points = []
-    for dt in set(data.datetime_beginning_ept):
+    for dt in set(data.index):
         production = {}
         storage = {}
-        data_dt = data.loc[data.datetime_beginning_ept == dt]
-        for mode in set(data.fuel_type):
-            if mode == "battery":
-                storage["battery"] = data_dt.loc[
-                    data_dt.fuel_type == mode, "mw"
-                ].values[0]
+        data_dt = data.loc[data.index == dt]
+        for i in range(len(data_dt)):
+            row = data_dt.iloc[i]
+            if row["fuel_type"] == "battery":
+                storage["battery"] = row.get("mw")
             else:
-                production[mode] = data_dt.loc[data_dt.fuel_type == mode, "mw"].values[
-                    0
-                ]
+                mode = row["fuel_type"]
+                production[mode] = row.get("mw")
         data_point = {
             "zoneKey": zone_key,
             "datetime": arrow.get(dt).datetime.replace(
@@ -380,14 +390,14 @@ def fetch_price(
     return data
 
 
-if __name__ == "__main__":
-    print("fetch_consumption_forecast_7_days() ->")
-    print(fetch_consumption_forecast_7_days())
-    print("fetch_production() ->")
-    print(fetch_production())
-    print("fetch_exchange(US-NY, US-PJM) ->")
-    print(fetch_exchange("US-NY", "US-PJM"))
-    print("fetch_exchange(US-MISO, US-PJM)")
-    print(fetch_exchange("US-MISO", "US-PJM"))
-    print("fetch_price() ->")
-    print(fetch_price())
+# if __name__ == "__main__":
+#     print("fetch_consumption_forecast_7_days() ->")
+#     print(fetch_consumption_forecast_7_days())
+#     print("fetch_production() ->")
+#     print(fetch_production())
+#     print("fetch_exchange(US-NY, US-PJM) ->")
+#     print(fetch_exchange("US-NY", "US-PJM"))
+#     print("fetch_exchange(US-MISO, US-PJM)")
+#     print(fetch_exchange("US-MISO", "US-PJM"))
+#     print("fetch_price() ->")
+#     print(fetch_price())
