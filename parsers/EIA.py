@@ -14,11 +14,12 @@ from typing import Any, Dict, List, Optional
 
 import arrow
 from dateutil import parser, tz
+from requests import Session
+
 from parsers.ENTSOE import merge_production_outputs
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
-from requests import Session
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [
@@ -629,7 +630,7 @@ def _get_utc_datetime_from_datapoint(dt: datetime):
 if __name__ == "__main__":
     from pprint import pprint
 
-    #pprint(fetch_production_mix("US-NW-NEVP"))
+    # pprint(fetch_production_mix("US-NW-NEVP"))
     # pprint(fetch_consumption_forecast('US-CAL-CISO'))
     pprint(
         fetch_exchange(
