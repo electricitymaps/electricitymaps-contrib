@@ -118,6 +118,15 @@ def query_production(
         "Period": "*",
         "ServiceType": "csv",
     }
+    if report == "FUELINST":
+        params = {
+            "FromDateTime": (settlement_date - timedelta(hours=24)).strftime(
+                "%Y-%m-%d HH:mm:ss"
+            ),
+            "ToDateTime": settlement_date.strftime("%Y-%m-%d HH:mm:ss"),
+            "Period": "*",
+            "ServiceType": "csv",
+        }
     response = query_ELEXON(report, session, params)
     return response.text
 
