@@ -1,9 +1,8 @@
 import { animated, useTransition } from '@react-spring/web';
 import useGetState from 'api/getState';
+import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtom } from 'jotai';
 import { TimeAverages } from 'utils/constants';
-import { loadingMapAtom } from 'utils/state/atoms';
-
 
 // TODO: Consider splitting up the icon and the overlay into two different components.
 // That way we can maybe reuse it in panels for a loading indicator there.

@@ -149,7 +149,7 @@ export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
 export interface MapTheme {
   co2Scale: {
     steps: number[];
-    colors: Array<string>;
+    colors: string[];
   };
   oceanColor: string;
   strokeWidth: number;

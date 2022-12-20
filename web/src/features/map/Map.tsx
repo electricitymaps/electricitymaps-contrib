@@ -6,42 +6,40 @@ import { Layer, Map, MapRef, Source } from 'react-map-gl';
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 
 import useGetState from 'api/getState';
-import MapTooltip from 'components/tooltips/MapTooltip';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
+import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
-import { loadingMapAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
+import {
+  hoveredZoneAtom,
+  loadingMapAtom,
+  mapMovingAtom,
+  mousePositionAtom,
+} from './mapAtoms';
+import { FeatureId } from './mapTypes';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -66.947_193;
 const NORTHERN_LATITUDE_BOUND = 84.313_245;
 const MAP_STYLE = { version: 8, sources: {}, layers: [] };
 
-type FeatureId = string | number | undefined;
-
-interface Feature {
-  featureId: FeatureId;
-  zoneId: string;
-}
-
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage(): ReactElement {
-  const [hoveredFeature, setHoveredFeature] = useState<Feature>();
   const [selectedFeatureId, setSelectedFeatureId] = useState<FeatureId>();
-  const [cursorType, setCursorType] = useState<string>('grab');
-  const [_, updateIsLoadingMap] = useAtom(loadingMapAtom);
+  const setIsMoving = useSetAtom(mapMovingAtom);
+  const setMousePosition = useSetAtom(mousePositionAtom);
+  const setIsLoadingMap = useSetAtom(loadingMapAtom);
+  const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [isMoving, setIsMoving] = useState<boolean>(false);
-  const [{ mousePositionX, mousePositionY }, setMousePosition] = useState({
-    mousePositionX: 0,
-    mousePositionY: 0,
-  });
+  const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
+
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
   const theme = useTheme();
@@ -152,6 +150,7 @@ export default function MapPage(): ReactElement {
       setSelectedFeatureId(feature.id);
       map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { selected: true });
       //TODO If panel is closed and user clicks on zone, reopen panel
+      setLeftPanelOpen(true);
       const zoneId = feature.properties.zoneId;
       // TODO: Consider using flyTo zone?
       navigate(createToWithState(`/zone/${zoneId}`));
@@ -162,7 +161,6 @@ export default function MapPage(): ReactElement {
   };
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging
-  // TODO: Save cursor position to be used for tooltip
   const onMouseMove = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();
     if (!map || !event.features) {
@@ -170,26 +168,41 @@ export default function MapPage(): ReactElement {
     }
     const feature = event.features[0];
 
-    // Remove state from old feature if we are no longer hovering anything,
-    // or if we are hovering a different feature than the previous one
-    if (hoveredFeature && (!feature || hoveredFeature.featureId !== feature.id)) {
+    const isHoveringAZone = feature?.id !== undefined;
+    const isHoveringANewZone = isHoveringAZone && hoveredZone?.featureId !== feature?.id;
+
+    // Reset currently hovered zone if we are no longer hovering anything
+    if (!isHoveringAZone && hoveredZone) {
+      setHoveredZone(null);
       map.setFeatureState(
-        { source: ZONE_SOURCE, id: hoveredFeature.featureId },
+        { source: ZONE_SOURCE, id: hoveredZone?.featureId },
         { hover: false }
       );
     }
-    if (feature && feature.id) {
-      setCursorType('pointer');
-      setHoveredFeature({ featureId: feature.id, zoneId: feature.properties?.zoneId });
-      map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { hover: true });
 
-      setMousePosition({
-        mousePositionX: event.point.x,
-        mousePositionY: event.point.y,
-      });
-    } else {
-      setCursorType('grab');
-      setHoveredFeature(undefined);
+    // Do no more if we are not hovering a zone
+    if (!isHoveringAZone) {
+      return;
+    }
+
+    // Update mouse position to help position the tooltip
+    setMousePosition({
+      x: event.point.x,
+      y: event.point.y,
+    });
+
+    // Update hovered zone if we are hovering a new zone
+    if (isHoveringANewZone) {
+      // Reset the old one first
+      if (hoveredZone) {
+        map.setFeatureState(
+          { source: ZONE_SOURCE, id: hoveredZone?.featureId },
+          { hover: false }
+        );
+      }
+
+      setHoveredZone({ featureId: feature.id, zoneId: feature.properties?.zoneId });
+      map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { hover: true });
     }
   };
 
@@ -199,25 +212,26 @@ export default function MapPage(): ReactElement {
       return;
     }
 
-    if (hoveredFeature?.featureId !== null) {
+    // Reset hovered state when mouse leaves map (e.g. cursor moving into panel)
+    if (hoveredZone?.featureId !== undefined) {
       map.setFeatureState(
-        { source: ZONE_SOURCE, id: hoveredFeature?.featureId },
+        { source: ZONE_SOURCE, id: hoveredZone?.featureId },
         { hover: false }
       );
-      setHoveredFeature(undefined);
+      setHoveredZone(null);
     }
   };
 
   const onError = (event: mapboxgl.ErrorEvent) => {
     console.error(event.error);
-    updateIsLoadingMap(false);
+    setIsLoadingMap(false);
     // TODO: Show error message to user
     // TODO: Send to Sentry
     // TODO: Handle the "no webgl" error gracefully
   };
 
   const onLoad = () => {
-    updateIsLoadingMap(false);
+    setIsLoadingMap(false);
   };
 
   const onDragOrZoomStart = () => {
@@ -229,56 +243,48 @@ export default function MapPage(): ReactElement {
   };
 
   return (
-    <>
-      <MapTooltip
-        enabled={hoveredFeature !== undefined && !isMoving}
-        mousePositionX={mousePositionX}
-        mousePositionY={mousePositionY}
-        hoveredFeature={hoveredFeature}
-      />
-      <Map
-        ref={mapReference}
-        initialViewState={{
-          // TODO: Make these dynamic depending on callerLocation from v6/state
-          latitude: 37.8,
-          longitude: -122.4,
-          zoom: 2,
-        }}
-        interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
-        cursor={cursorType}
-        onClick={onClick}
-        onLoad={onLoad}
-        onError={onError}
-        onMouseMove={onMouseMove}
-        onMouseOut={onMouseOut}
-        onDragStart={onDragOrZoomStart}
-        onZoomStart={onDragOrZoomStart}
-        onZoomEnd={onDragOrZoomEnd}
-        dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
-        onDragEnd={onDragOrZoomEnd}
-        minZoom={0.7}
-        maxBounds={[
-          [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
-          [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
-        ]}
-        mapLib={maplibregl}
-        style={{ minWidth: '100vw', height: '100vh' }}
-        mapStyle={MAP_STYLE as mapboxgl.Style}
-      >
-        <Layer id="ocean" type="background" paint={styles.ocean} />
-        <Source id="zones-clickable" generateId type="geojson" data={geometries}>
-          <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
-          <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
-          <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
-        </Source>
-        <CustomLayer>
-          <WindLayer isMoving={isMoving} />
-        </CustomLayer>
-        <CustomLayer>
-          <ExchangeLayer isMoving={isMoving} />
-        </CustomLayer>
-        <ZoomControls />
-      </Map>
-    </>
+    <Map
+      ref={mapReference}
+      initialViewState={{
+        // TODO: Make these dynamic depending on callerLocation from v6/state
+        latitude: 37.8,
+        longitude: -122.4,
+        zoom: 2,
+      }}
+      interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
+      cursor={hoveredZone ? 'pointer' : 'grab'}
+      onClick={onClick}
+      onLoad={onLoad}
+      onError={onError}
+      onMouseMove={onMouseMove}
+      onMouseOut={onMouseOut}
+      onDragStart={onDragOrZoomStart}
+      onZoomStart={onDragOrZoomStart}
+      onZoomEnd={onDragOrZoomEnd}
+      dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
+      onDragEnd={onDragOrZoomEnd}
+      minZoom={0.7}
+      maxBounds={[
+        [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
+        [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
+      ]}
+      mapLib={maplibregl}
+      style={{ minWidth: '100vw', height: '100vh' }}
+      mapStyle={MAP_STYLE as mapboxgl.Style}
+    >
+      <Layer id="ocean" type="background" paint={styles.ocean} />
+      <Source id="zones-clickable" generateId type="geojson" data={geometries}>
+        <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
+        <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
+        <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
+      </Source>
+      <CustomLayer>
+        <WindLayer />
+      </CustomLayer>
+      <CustomLayer>
+        <ExchangeLayer />
+      </CustomLayer>
+      <ZoomControls />
+    </Map>
   );
 }

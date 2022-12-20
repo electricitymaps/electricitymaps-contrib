@@ -1,17 +1,20 @@
+import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useExchangeArrowsData } from 'hooks/arrows';
+import { useAtom } from 'jotai';
 import React from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { useRefWidthHeightObserver } from 'utils/viewport';
 import ExchangeArrow from './ExchangeArrow';
 
-function ExchangeLayer({ map, isMoving }: { map?: MapboxMap; isMoving: boolean }) {
+function ExchangeLayer({ map }: { map?: MapboxMap }) {
+  const [isMapMoving] = useAtom(mapMovingAtom);
   const { ref, width, height } = useRefWidthHeightObserver();
   const arrows = useExchangeArrowsData();
 
   return (
     <div className="h-full w-full" ref={ref}>
       {/* Don't render arrows when moving map - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
-      {!isMoving &&
+      {!isMapMoving &&
         map &&
         arrows.map((arrow) => (
           <ExchangeArrow

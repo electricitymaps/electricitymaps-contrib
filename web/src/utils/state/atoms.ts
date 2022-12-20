@@ -1,10 +1,7 @@
 import { atom } from 'jotai';
-import { atomWithStorage, createJSONStorage } from 'jotai/utils';
+import { atomWithStorage } from 'jotai/utils';
 import { Mode, ThemeOptions, TimeAverages, ToggleOptions } from '../constants';
 import atomWithCustomStorage from './atomWithCustomStorage';
-
-export const loadingMapAtom = atom(true);
-loadingMapAtom.debugLabel = 'loadingMap';
 
 // TODO: Ensure it works as intended without URL params
 export const timeAverageAtom = atomWithCustomStorage<TimeAverages>({
@@ -18,9 +15,7 @@ export const timeAverageAtom = atomWithCustomStorage<TimeAverages>({
 
 // TODO consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetimeString: '', index: 0 });
-selectedDatetimeIndexAtom.debugLabel = 'selectedDatetimeIndex';
 
-/** Some example atoms that are not currently used */
 export const spatialAggregateAtom = atomWithCustomStorage<ToggleOptions>({
   key: 'country-mode',
   initialValue: ToggleOptions.OFF,
@@ -48,7 +43,7 @@ export const productionConsumptionAtom = atomWithCustomStorage<Mode>({
   },
 });
 
-export const displayByEmissionsAtom = atom<boolean>(false);
+export const displayByEmissionsAtom = atom(false);
 
 export const windLayerAtom = atomWithCustomStorage<ToggleOptions>({
   key: 'wind',
@@ -59,13 +54,7 @@ export const windLayerAtom = atomWithCustomStorage<ToggleOptions>({
   },
 });
 
-export const themeAtom = atomWithStorage<ThemeOptions>('theme', ThemeOptions.LIGHT);
-
-export const isLeftPanelOpenAtom = atomWithStorage(
-  'is-left-panel-open',
-  false,
-  createJSONStorage(() => sessionStorage)
-);
+export const themeAtom = atomWithStorage('theme', ThemeOptions.LIGHT);
 
 export const hasOnboardingBeenSeenAtom = atomWithCustomStorage({
   key: 'onboardingSeen',

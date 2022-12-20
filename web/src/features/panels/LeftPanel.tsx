@@ -1,6 +1,6 @@
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
-import { useState } from 'react';
+import { useAtom } from 'jotai';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
@@ -11,6 +11,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import FAQPanel from './faq/FAQPanel';
+import { leftPanelOpenAtom } from './panelAtoms';
 import RankingPanel from './ranking-panel/RankingPanel';
 
 import ZoneDetails from './zone/ZoneDetails';
@@ -74,7 +75,7 @@ function MobileHeader() {
 }
 
 function OuterPanel({ children }: { children: React.ReactNode }) {
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useAtom(leftPanelOpenAtom);
   const onCollapse = () => setOpen(!isOpen);
   const location = useLocation();
 

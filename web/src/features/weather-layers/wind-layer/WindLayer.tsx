@@ -1,4 +1,5 @@
 import { useGetWind } from 'api/getWeatherData';
+import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
 import { MapboxMap } from 'react-map-gl';
@@ -21,13 +22,8 @@ const createWindy = async (canvas: HTMLCanvasElement, data: any, map: MapboxMap)
   return windySingleton as WindyType;
 };
 
-export default function WindLayer({
-  map,
-  isMoving,
-}: {
-  map?: MapboxMap;
-  isMoving: boolean;
-}) {
+export default function WindLayer({ map }: { map?: MapboxMap }) {
+  const [isMapMoving] = useAtom(mapMovingAtom);
   const [windy, setWindy] = useState<Maybe<WindyType>>(null);
   const { ref, node, width, height } = useRefWidthHeightObserver();
   const viewport = useMemo(() => {
@@ -52,7 +48,7 @@ export default function WindLayer({
   const isWindLayerEnabled =
     windLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
   const { data: windData, isSuccess } = useGetWind({ enabled: isWindLayerEnabled });
-  const isVisible = isSuccess && !isMoving && isWindLayerEnabled;
+  const isVisible = isSuccess && !isMapMoving && isWindLayerEnabled;
 
   useEffect(() => {
     if (map && !windy && isVisible && node && isWindLayerEnabled && windData) {
