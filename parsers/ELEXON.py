@@ -21,10 +21,11 @@ import arrow
 import pandas as pd
 from requests import Session
 
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.lib.config import refetch_frequency
-
-from .lib.utils import get_token
-from .lib.validation import validate
+from parsers.lib.exceptions import ParserException
+from parsers.lib.utils import get_token
+from parsers.lib.validation import validate
 
 ELEXON_ENDPOINT = "https://api.bmreports.com/BMRS/{}/v1"
 
@@ -48,6 +49,27 @@ RESOURCE_TYPE_TO_FUEL = {
     "Wind Onshore": "wind",
     "Wind Offshore": "wind",
     "Other": "unknown",
+}
+# Mapping is ordered to match the FUELINST output file.
+FUEL_INST_MAPPING = {
+    "CCGT": "gas",
+    "OIL": "oil",
+    "COAL": "coal",
+    "NUCLEAR": "nuclear",
+    "WIND": "wind",
+    "PS": "solar",
+    "NPSHYD": "hydro",
+    "OCGT": "gas",
+    "OTHER": "unknown",
+    "INTFR": "exchange",
+    "INTIRL": "exchange",
+    "INTNED": "exchange",
+    "INTEW": "exchange",
+    "BIOMASS": "biomass",
+    "INTNEM": "exchange",
+    "INTELEC": "exchange",
+    "INTIFA2": "exchange",
+    "INTNSL": "exchange",
 }
 
 EXCHANGES = {
@@ -77,7 +99,9 @@ def query_exchange(session: Session, target_datetime=None):
     return response.text
 
 
-def query_production(session: Session, target_datetime: Optional[datetime] = None):
+def query_production(
+    session: Session, target_datetime: Optional[datetime] = None, report: str = "B1620"
+):
     if target_datetime is None:
         target_datetime = datetime.now()
 
@@ -94,7 +118,16 @@ def query_production(session: Session, target_datetime: Optional[datetime] = Non
         "Period": "*",
         "ServiceType": "csv",
     }
-    response = query_ELEXON("B1620", session, params)
+    if report == "FUELINST":
+        params = {
+            "FromDateTime": (settlement_date - timedelta(hours=24)).strftime(
+                "%Y-%m-%d %H:%M:%S"
+            ),
+            "ToDateTime": settlement_date.strftime("%Y-%m-%d %H:%M:%S"),
+            "Period": "*",
+            "ServiceType": "csv",
+        }
+    response = query_ELEXON(report, session, params)
     return response.text
 
 
@@ -149,6 +182,67 @@ def parse_exchange(
         data["netFlow"] = net_flow
         data_points.append(data)
 
+    return data_points
+
+
+def parse_production_FUELINST(
+    csv_data: str,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
+    """A temporary parser for the FUELINST report.
+    This report will be decomissioned sometime in 2023.
+    We use it as a replacement for B1620 that doesn't work
+    at the moment (19/12/2022).
+    """
+    if not csv_data:
+        raise ParserException("ELEXON.py", "Production file is empty.")
+    report = REPORT_META["FUELINST"]
+    # create DataFrame from slice of CSV rows
+    df = pd.read_csv(StringIO(csv_data), skiprows=1, skipfooter=1, header=None)
+    # check field count in report is as expected
+    field_count = len(df.columns)
+    if field_count != report["expected_fields"]:
+        raise ParserException(
+            "ELEXON.py",
+            "Expected {} fields in FUELINST report, got {}".format(
+                report["expected_fields"], len(df.columns)
+            ),
+        )
+    # The file doesn't have a column header, so we need to recreate it.
+    mapping = {1: "Settlement Date", 2: "Settlement Period", 3: "Spot Time"}
+    for index, fuel in enumerate(FUEL_INST_MAPPING.values()):
+        mapping[index + 4] = fuel
+    df.rename(columns=mapping, inplace=True)
+    df["Settlement Date"] = df["Settlement Date"].apply(
+        lambda x: datetime.strptime(str(x), "%Y%m%d")
+    )
+    df["Settlement Period"] = df["Settlement Period"].astype(int)
+    df["datetime"] = df.apply(
+        lambda x: datetime_from_date_sp(x["Settlement Date"], x["Settlement Period"]),
+        axis=1,
+    )
+    df = df.groupby(df.columns, axis=1).sum()
+
+    data_points = list()
+    for time in pd.unique(df["datetime"]):
+        time_df = df[df["datetime"] == time]
+
+        data_point = {
+            "zoneKey": "GB",
+            "datetime": time.to_pydatetime(),
+            "source": "bmreports.com",
+            "production": dict(),
+            "storage": dict(),
+        }
+
+        for row in time_df.iterrows():
+            electricity_production = row[1].to_dict()
+            for key in electricity_production.keys():
+                if key in PRODUCTION_MODES:
+                    data_point["production"][key] = electricity_production[key]
+
+        data_points.append(data_point)
     return data_points
 
 
@@ -322,32 +416,36 @@ def fetch_production(
         target_datetime = arrow.get(target_datetime).datetime
     except arrow.parser.ParserError:
         raise ValueError("Invalid target_datetime: {}".format(target_datetime))
-    response = query_production(session, target_datetime)
-    data = parse_production(response, target_datetime, logger)
-
-    # At times B1620 has had poor quality data for wind so fetch from FUELINST
-    # But that source is unavailable prior to cutout date
-    HISTORICAL_WIND_CUTOUT = "2016-03-01"
-    FETCH_WIND_FROM_FUELINST = True
-    if target_datetime < arrow.get(HISTORICAL_WIND_CUTOUT).datetime:
-        FETCH_WIND_FROM_FUELINST = False
-    if FETCH_WIND_FROM_FUELINST:
-        wind = _fetch_wind(target_datetime, logger=logger)
-        for entry in data:
-            datetime = entry["datetime"]
-            wind_row = wind[wind["datetime"] == datetime]
-            if len(wind_row):
-                entry["production"]["wind"] = wind_row.iloc[0]["Wind"]
-            else:
-                entry["production"]["wind"] = None
+    # TODO currently resorting to FUELINST as B1620 reports 0 production in most production
+    # modes at the moment. (16/12/2022) FUELINST will be decomissioned in 2023, so we should
+    # switch back to B1620 at some point.
+    response = query_production(session, target_datetime, "FUELINST")
+    data = parse_production_FUELINST(response, target_datetime, logger)
+    # We are fetching from FUELINST directly.
+    if False:
+        # At times B1620 has had poor quality data for wind so fetch from FUELINST
+        # But that source is unavailable prior to cutout date
+        HISTORICAL_WIND_CUTOUT = "2016-03-01"
+        FETCH_WIND_FROM_FUELINST = True
+        if target_datetime < arrow.get(HISTORICAL_WIND_CUTOUT).datetime:
+            FETCH_WIND_FROM_FUELINST = False
+        if FETCH_WIND_FROM_FUELINST:
+            wind = _fetch_wind(target_datetime, logger=logger)
+            for entry in data:
+                datetime = entry["datetime"]
+                wind_row = wind[wind["datetime"] == datetime]
+                if len(wind_row):
+                    entry["production"]["wind"] = wind_row.iloc[0]["Wind"]
+                else:
+                    entry["production"]["wind"] = None
 
     required = ["coal", "gas", "nuclear", "wind"]
     expected_range = {
         # Historical data might be above the current capacity for coal
         "coal": (0, 20000),
-        "gas": (100, 30000),
-        "nuclear": (100, 20000),
-        "wind": (0, 30000),
+        "gas": (100, 60000),
+        "nuclear": (100, 56000),
+        "wind": (0, 600000),
     }
     data = [
         x
