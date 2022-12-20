@@ -221,22 +221,25 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
 ):
-    production_objects, date_string = fetch_data(
+    data_objects, date_string = fetch_data(
         zone_key, session, target_datetime, logger
     )
 
     return_list: List[Dict[str, Any]] = []
-    for production_object in production_objects:
-        price: Union[float, int] = 0
-        for mode_key in production_object:
+    for data_object in data_objects:
+        price: Union[float, int, None] = None
+        for mode_key in data_object:
             if mode_key in PRICE_MAPPING:
-                price += production_object[mode_key]
+                if price == None:
+                    price = data_object[mode_key]
+                else:
+                    price += data_object[mode_key]
 
         return_list.append(
             {
                 "zoneKey": zone_key,
                 "currency": "EUR",
-                "datetime": datetime.fromisoformat(production_object[f"{date_string}"]),
+                "datetime": datetime.fromisoformat(data_object[f"{date_string}"]),
                 "source": "edf.fr",
                 "price": price,
             }
