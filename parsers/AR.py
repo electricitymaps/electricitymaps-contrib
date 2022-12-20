@@ -92,7 +92,7 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-    """Requests up to date list of production mixes (in MW) of a given country."""
+    """Requests up to date list of production mixes (in MW) of a given region."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -239,6 +239,23 @@ def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, 
         for production_info in sorted_production_list
     }
     return non_renewables_production
+
+
+def get_region_id(zone_key, session: Session) -> int:
+    """Fetches the region id for the zone that is required to get the production of that zone."""
+    regions_response = session.get(CAMMESA_REGIONS_ENDPOINT)
+
+    assert (
+        regions_response.status_code == 200
+    ), "Exception when fetching regions for AR: " "error when calling url={}".format(
+        CAMMESA_REGIONS_ENDPOINT
+    )
+
+    regions = regions_response.json()
+    region_to_id = {region["nombre"]: region["id"] for region in regions}
+
+    region_name = REGIONS[zone_key]
+    return region_to_id[region_name]
 
 
 def fetch_exchange(
