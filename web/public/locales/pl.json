@@ -241,7 +241,7 @@
       "countryName": "Australia",
       "zoneName": "Nowa Południowa Walia"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Terytorium Północne"
     },
@@ -288,6 +288,9 @@
     },
     "BO": {
       "zoneName": "Boliwia"
+    },
+    "BR": {
+      "zoneName": "Brazylia"
     },
     "BR-CS": {
       "countryName": "Brazylia",

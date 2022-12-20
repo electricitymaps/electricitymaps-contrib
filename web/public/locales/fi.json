@@ -246,7 +246,7 @@
       "countryName": "Australia",
       "zoneName": "Uusi Etelä-Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Pohjois-territorio"
     },
@@ -321,6 +321,9 @@
     },
     "BQ": {
       "zoneName": "Alankomaiden Karibia"
+    },
+    "BR": {
+      "zoneName": "Brasilia"
     },
     "BR-CS": {
       "countryName": "Brasilia",
@@ -604,10 +607,6 @@
     "GB-ORK": {
       "countryName": "Iso-Britannia",
       "zoneName": "Orkneysaaret"
-    },
-    "GB-ZET": {
-      "countryName": "Iso-Britannia",
-      "zoneName": "Shetlandinsaaret"
     },
     "GB-ZET": {
       "countryName": "Iso-Britannia",

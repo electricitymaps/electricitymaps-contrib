@@ -238,7 +238,7 @@
       "countryName": "Austrália",
       "zoneName": "Nový Južný Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Austrália",
       "zoneName": "Severné teritórium"
     },
@@ -309,6 +309,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius and Saba"
+    },
+    "BR": {
+      "zoneName": "Brazília"
     },
     "BR-CS": {
       "countryName": "Brazília",
@@ -595,10 +598,6 @@
     },
     "GB-ZET": {
       "countryName": "Veľká Británia",
-      "zoneName": "Shetlandy"
-    },
-    "GB-ZET": {
-      "countryName": "Velká Británia",
       "zoneName": "Shetlandy"
     },
     "GD": {

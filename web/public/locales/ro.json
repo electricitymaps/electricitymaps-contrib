@@ -255,7 +255,7 @@
       "countryName": "Australia",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Northern Territory"
     },
@@ -271,7 +271,7 @@
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australia",
       "zoneName": "Cape Barren Island"
     },
@@ -342,6 +342,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius and Saba"
+    },
+    "BR": {
+      "zoneName": "Brazil"
     },
     "BR-CS": {
       "countryName": "Brazil",
@@ -637,10 +640,6 @@
     "GB-ORK": {
       "countryName": "Great Britain",
       "zoneName": "Orkney Islands"
-    },
-    "GB-ZET": {
-      "countryName": "Great Britain",
-      "zoneName": "Shetland Islands"
     },
     "GB-ZET": {
       "countryName": "Great Britain",

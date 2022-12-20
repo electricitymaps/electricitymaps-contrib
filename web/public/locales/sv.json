@@ -318,7 +318,7 @@
       "countryName": "Australien",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australien",
       "zoneName": "Northern Territory"
     },
@@ -334,7 +334,7 @@
       "countryName": "Australien",
       "zoneName": "Tasmanien"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australien",
       "zoneName": "Cape Barren Island"
     },
@@ -406,13 +406,12 @@
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius och Saba"
     },
+    "BR": {
+      "zoneName": "Brasilien"
+    },
     "BR-CS": {
       "countryName": "Brasilien",
       "zoneName": "Centrala Brasilien"
-    },
-    "BR-I": {
-      "countryName": "Brasilien",
-      "zoneName": "Isolerade system"
     },
     "BR-N": {
       "countryName": "Brasilien",
@@ -712,10 +711,6 @@
     "GB-ORK": {
       "countryName": "Storbritannien",
       "zoneName": "Orkneyöarna"
-    },
-    "GB-ZET": {
-      "countryName": "Storbritannien",
-      "zoneName": "Shetlandsöarna"
     },
     "GB-ZET": {
       "countryName": "Storbritannien",

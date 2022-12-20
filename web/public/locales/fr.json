@@ -275,7 +275,7 @@
       "countryName": "Australie",
       "zoneName": "Nouvelle-Galles du Sud"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australie",
       "zoneName": "Territoire du Nord"
     },
@@ -354,6 +354,9 @@
     },
     "BQ": {
       "zoneName": "Pays-Bas caribéens"
+    },
+    "BR": {
+      "zoneName": "Brésil"
     },
     "BR-CS": {
       "countryName": "Brésil",
@@ -649,10 +652,6 @@
     "GB-ORK": {
       "countryName": "Grande Bretagne",
       "zoneName": "Orcades"
-    },
-    "GB-ZET": {
-      "countryName": "Grande Bretagne",
-      "zoneName": "Shetland"
     },
     "GB-ZET": {
       "countryName": "Grande Bretagne",
@@ -1519,7 +1518,7 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australie",
       "zoneName": "Île du Cap Barren"
     },
