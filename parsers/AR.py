@@ -158,7 +158,7 @@ def fetch_exchange(
       assert api_cammesa_response.status_code == 200, (
         "Exception when fetching echange for "
         "{}: error when calling url={}".format(
-          status_code, CAMMESA_EXCHANGE_ENDPOINT
+          api_cammesa_response.status_code, CAMMESA_EXCHANGE_ENDPOINT
         )
       )
 
