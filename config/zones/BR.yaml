@@ -15,3 +15,4 @@ subZoneNames:
   - BR-N
   - BR-NE
   - BR-S
+estimation_method: RECONSTRUCT_BREAKDOWN
