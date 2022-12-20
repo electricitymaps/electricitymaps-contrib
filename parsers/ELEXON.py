@@ -121,9 +121,9 @@ def query_production(
     if report == "FUELINST":
         params = {
             "FromDateTime": (settlement_date - timedelta(hours=24)).strftime(
-                "%Y-%m-%d HH:mm:ss"
+                "%Y-%m-%d %H:%M:%S"
             ),
-            "ToDateTime": settlement_date.strftime("%Y-%m-%d HH:mm:ss"),
+            "ToDateTime": settlement_date.strftime("%Y-%m-%d %H:%M:%S"),
             "Period": "*",
             "ServiceType": "csv",
         }
@@ -211,7 +211,7 @@ def parse_production_FUELINST(
         )
     # The file doesn't have a column header, so we need to recreate it.
     mapping = {1: "Settlement Date", 2: "Settlement Period", 3: "Spot Time"}
-    for index, fuel in enumerate(FUEL_INST_MAPPING.keys()):
+    for index, fuel in enumerate(FUEL_INST_MAPPING.values()):
         mapping[index + 4] = fuel
     df.rename(columns=mapping, inplace=True)
     df["Settlement Date"] = df["Settlement Date"].apply(
@@ -241,28 +241,6 @@ def parse_production_FUELINST(
             for key in electricity_production.keys():
                 if key in PRODUCTION_MODES:
                     data_point["production"][key] = electricity_production[key]
-
-        data_points.append(data_point)
-    for time in pd.unique(df["datetime"]):
-        time_df = df[df["datetime"] == time]
-
-        data_point = {
-            "zoneKey": "GB",
-            "datetime": time.to_pydatetime(),
-            "source": "bmreports.com",
-            "production": dict(),
-            "storage": dict(),
-        }
-
-        for row in time_df.iterrows():
-            electricity_production: dict = row[1].to_dict()
-            for elexon_prod_type, prod_value in electricity_production.items():
-                production_key = FUEL_INST_MAPPING.get(elexon_prod_type)
-                if production_key in PRODUCTION_MODES:
-                    if production_key in data_point["production"]:
-                        data_point["production"][production_key] += prod_value
-                    else:
-                        data_point["production"][production_key] = prod_value
 
         data_points.append(data_point)
     return data_points
