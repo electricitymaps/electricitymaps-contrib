@@ -5,7 +5,7 @@ bounding_box:
     - 27.664069
 capacity:
   biomass: 513.24
-  coal: 35887.00
+  coal: 35887.0
   gas: 80.0
   hydro: 6331.74
   nuclear: 0
@@ -13,5 +13,4 @@ capacity:
   solar: 917.72
   unknown: 0
   wind: 0
-
 timezone: Asia/Kolkata

@@ -69,6 +69,7 @@ emissionFactors:
       value: 12.62
 parsers:
   production: FR_O.fetch_production
+  price: FR_O.fetch_price
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

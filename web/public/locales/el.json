@@ -249,7 +249,7 @@
       "countryName": "Αυστραλία",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Αυστραλία",
       "zoneName": "Northern Territory"
     },
@@ -324,6 +324,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius and Saba"
+    },
+    "BR": {
+      "zoneName": "Βραζιλία"
     },
     "BR-CS": {
       "countryName": "Βραζιλία",
@@ -607,10 +610,6 @@
     "GB-ORK": {
       "countryName": "Μεγάλη Βρετανία",
       "zoneName": "Orkney Islands"
-    },
-    "GB-ZET": {
-      "countryName": "Μεγάλη Βρετανία",
-      "zoneName": "Shetland Islands"
     },
     "GB-ZET": {
       "countryName": "Μεγάλη Βρετανία",
