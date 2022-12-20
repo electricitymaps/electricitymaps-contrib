@@ -11,12 +11,14 @@ interface AreaGraphTooltipProperties {
   dataPoint?: AreaGraphElement;
   position?: { x: number; y: number } | undefined;
   tooltipSize?: 'small' | 'large';
+  isMinSM: boolean;
 }
 
 export default function AreaGraphTooltip(
   properties: AreaGraphTooltipProperties
 ): ReactElement | null {
-  const { children, zoneDetail, selectedLayerKey, position, tooltipSize } = properties;
+  const { children, zoneDetail, selectedLayerKey, position, tooltipSize, isMinSM } =
+    properties;
 
   if (
     children === undefined ||
@@ -30,16 +32,17 @@ export default function AreaGraphTooltip(
     mousePositionX: position?.x || 0,
     mousePositionY: position?.y || 0,
     tooltipHeight: tooltipSize === 'large' ? 360 : 160,
+    isMinSM,
   });
 
   return (
-    <Portal.Root className="absolute left-0 top-0 h-0 w-0">
+    <Portal.Root className="pointer-events-none absolute left-0 top-0 h-full w-full bg-black/20 sm:h-0 sm:w-0">
       <div
         style={{
           left: tooltipWithDataPositon.x,
           top: tooltipWithDataPositon.y,
-          position: 'relative',
         }}
+        className="relative flex p-2 sm:block sm:p-0"
       >
         {children({ zoneDetail, selectedLayerKey })}
       </div>

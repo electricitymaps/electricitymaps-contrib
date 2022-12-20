@@ -8,6 +8,7 @@ import React, { useMemo, useState } from 'react';
 import { ZoneDetail } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import { useBreakpoint } from 'utils/styling';
 import { useRefWidthHeightObserver } from 'utils/viewport';
 import { getTimeScale, isEmpty } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
@@ -113,6 +114,7 @@ function AreaGraph({
 
   const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
+  const isMinSM = useBreakpoint('sm');
 
   // Build layers
   const layers = useMemo(
@@ -260,6 +262,7 @@ function AreaGraph({
             selectedLayerIndex !== null ? layerKeys[selectedLayerIndex] : undefined
           }
           tooltipSize={tooltipSize}
+          isMinSM={isMinSM}
         >
           {(props) => tooltip(props)}
         </AreaGraphTooltip>

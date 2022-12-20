@@ -14,8 +14,8 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
 
 // Init polyfills
-import 'utils/polyfills';
 import { StrictMode } from 'react';
+import 'utils/polyfills';
 
 /**
  * DevTools for Jotai which makes atoms appear in Redux Dev Tools.
@@ -46,8 +46,6 @@ const queryClient = new QueryClient({
 const container = document.querySelector('#root');
 if (container) {
   const root = createRoot(container);
-  // StrictMode is disabled due to issue in react-spring-bottom-sheet
-  // https://github.com/stipsan/react-spring-bottom-sheet/issues/210
   root.render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>

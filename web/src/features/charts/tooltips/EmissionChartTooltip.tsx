@@ -20,7 +20,7 @@ export default function EmissionChartTooltip(props: InnerAreaGraphTooltipProps) 
   const { stateDatetime } = zoneDetail;
 
   return (
-    <div className="w-[350px] rounded-md bg-white p-3 shadow-xl">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[350px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
