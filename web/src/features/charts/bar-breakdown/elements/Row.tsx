@@ -9,8 +9,8 @@ type Props = {
   label: string;
   scale: ScaleLinear<number, number, never>;
   value: number;
-  onMouseOver: MouseEventHandler<SVGRectElement>;
-  onMouseOut: () => void;
+  onMouseOver?: MouseEventHandler<SVGRectElement>;
+  onMouseOut?: () => void;
   width: number;
 };
 

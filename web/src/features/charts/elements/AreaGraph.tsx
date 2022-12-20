@@ -202,6 +202,11 @@ function AreaGraph({
     }
   }
 
+  if (layers.every((layer) => layer.datapoints.every((d) => d[0] === 0 && d[1] === 0))) {
+    // Don't render the graph if all datapoints are 0
+    return null;
+  }
+
   return (
     <svg
       data-test-id={testId}

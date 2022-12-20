@@ -1,19 +1,18 @@
 import useGetZone from 'api/getZone';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
-import BreakdownChart from 'features/charts/BreakdownChart';
-import CarbonChart from 'features/charts/CarbonChart';
-import EmissionChart from 'features/charts/EmissionChart';
-import PriceChart from 'features/charts/PriceChart';
 import { useAtom } from 'jotai';
 import { Navigate, useParams } from 'react-router-dom';
-import { TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   selectedDatetimeIndexAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+import AreaGraphContainer from './AreaGraphContainer';
+import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
+import NoInformationMessage from './NoInformationMessage';
+import { getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeader } from './ZoneHeader';
 
 export default function ZoneDetails(): JSX.Element {
@@ -21,7 +20,7 @@ export default function ZoneDetails(): JSX.Element {
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const { data } = useGetZone({
+  const { data, isError, isLoading } = useGetZone({
     enabled: Boolean(zoneId),
   });
 
@@ -29,55 +28,68 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/" replace />;
   }
 
-  // TODO: Handle error state
-  // TODO: Handle loading state nicely (let's keep country name in the header)
-  // TODO: Show zone title while data is loading
-
-  if (!data) {
-    return <div>No data</div>;
-  }
-
-  const datetimes = Object.keys(data.zoneStates).map((key) => new Date(key));
-
-  // TODO: Consider if we should move the items relying on this data to its own component instead
   // TODO: Fix rendering issue where this is shortly unavailable for some reason
-  const selectedData = data.zoneStates[selectedDatetime.datetimeString];
-  if (!selectedData) {
-    return <div></div>;
-  }
-  const { estimationMethod, co2intensity, fossilFuelRatio, renewableRatio } =
-    selectedData;
-  const lowCarbonRatio = 1 - fossilFuelRatio; // TODO: Handle null values
-  const isAggregated = timeAverage !== TimeAverages.HOURLY;
-  const isEstimated = Boolean(estimationMethod);
+  const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
 
+  const zoneDataStatus = getZoneDataStatus(zoneId, data);
+
+  const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
   return (
     <>
-      <ZoneHeader
-        zoneId={zoneId}
-        isEstimated={isEstimated}
-        isAggregated={isAggregated}
-        co2intensity={co2intensity}
-        lowCarbonRatio={lowCarbonRatio}
-        renewableRatio={renewableRatio}
-      />
+      <ZoneHeader zoneId={zoneId} {...selectedData} />
       <DisplayByEmissionToggle />
-      <div className="h-[calc(100%-290px)] pb-48 sm:overflow-y-scroll">
-        <BarBreakdownChart timeAverage={timeAverage} />
-        <Divider />
-        {displayByEmissions ? (
-          <EmissionChart datetimes={datetimes} timeAverage={timeAverage} />
-        ) : (
-          <CarbonChart datetimes={datetimes} timeAverage={timeAverage} />
-        )}
-        <BreakdownChart
-          displayByEmissions={displayByEmissions}
-          datetimes={datetimes}
-          timeAverage={timeAverage}
-        />
-        <PriceChart datetimes={datetimes} timeAverage={timeAverage} />
-        <Divider />
+      <div className="h-[calc(100%-290px)] overflow-y-scroll pb-48">
+        <ZoneDetailsContent
+          isLoading={isLoading}
+          isError={isError}
+          zoneDataStatus={zoneDataStatus}
+        >
+          <BarBreakdownChart />
+          <Divider />
+          {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
+            <AreaGraphContainer
+              datetimes={datetimes}
+              timeAverage={timeAverage}
+              displayByEmissions={displayByEmissions}
+            />
+          )}
+          <Attribution dataSources={selectedData?.source} zoneId={zoneId} />
+        </ZoneDetailsContent>
       </div>
     </>
   );
+}
+
+function ZoneDetailsContent({
+  isLoading,
+  isError,
+  children,
+  zoneDataStatus,
+}: {
+  isLoading: boolean;
+  isError: boolean;
+  children: React.ReactNode;
+  zoneDataStatus: ZoneDataStatus;
+}): JSX.Element {
+  if (isLoading) {
+    return (
+      <div className={`flex h-full w-full items-center justify-center`}>
+        <div className="z-50 h-[50px] w-[50px] bg-[url('/loading-icon.svg')] bg-[length:60px] bg-center bg-no-repeat dark:bg-gray-900 dark:bg-[url('/loading-icon-darkmode.svg')]"></div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className={`flex h-full w-full items-center justify-center text-sm`}>
+        🤖 Unknown server error 🤖
+      </div>
+    );
+  }
+
+  if (zoneDataStatus === ZoneDataStatus.NO_INFORMATION) {
+    return <NoInformationMessage />;
+  }
+
+  return children as JSX.Element;
 }

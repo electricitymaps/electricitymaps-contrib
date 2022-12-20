@@ -125,6 +125,14 @@ body,
   @apply h-full;
 }
 
+.message a {
+  @apply text-blue-400;
+  @apply hover:text-blue-600;
+  @apply hover:underline;
+  @apply no-underline;
+  @apply dark:hover:text-blue-400;
+}
+
 noscript div {
   height: 100vh;
   width: 100vw;
@@ -135,6 +143,7 @@ noscript div {
   font-family: sans-serif;
   text-align: center;
 }
+
 noscript img {
   max-width: 300px;
 }

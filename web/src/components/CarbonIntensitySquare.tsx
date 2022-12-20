@@ -38,7 +38,7 @@ function CarbonIntensitySquare({
   const styles = useSpring({ backgroundColor: co2ColorScale(co2intensity) });
   const { number } = useSpring({
     from: { number: 0 },
-    number: co2intensity,
+    number: Number.isFinite(co2intensity) ? co2intensity : 0,
   });
 
   return (

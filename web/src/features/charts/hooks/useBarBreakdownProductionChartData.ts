@@ -14,6 +14,8 @@ import {
   getProductionData,
 } from '../bar-breakdown/utils';
 
+const DEFAULT_BAR_PX_HEIGHT = 265;
+
 export default function useBarBreakdownChartData() {
   // TODO: Create hook for using "current" selectedTimeIndex of data instead
   const { data: zoneData, isLoading } = useGetZone();
@@ -23,20 +25,19 @@ export default function useBarBreakdownChartData() {
   const [mixMode] = useAtom(productionConsumptionAtom);
   const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
   const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
-  if (
-    isLoading ||
-    !zoneId ||
-    !zoneData ||
-    !selectedDatetime.datetimeString ||
-    !currentData
-  ) {
+
+  if (isLoading) {
+    return { isLoading };
+  }
+
+  if (!zoneId || !zoneData || !selectedDatetime.datetimeString || !currentData) {
     return {
-      height: 0,
+      height: DEFAULT_BAR_PX_HEIGHT,
       zoneDetails: undefined,
       currentZoneDetail: undefined,
       exchangeData: [],
       productionData: [],
-      isLoading: true,
+      isLoading: false,
     };
   }
 

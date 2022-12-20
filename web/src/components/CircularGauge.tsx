@@ -33,7 +33,9 @@ export function CircularGauge({ ratio, name }: CircularGaugeProps) {
             className="select-none fill-gray-900 text-sm font-bold dark:fill-gray-300"
             position="center"
             offset={0}
-            formatter={(value: number) => `${Math.round(value * 100)}%`}
+            formatter={(value: number) =>
+              !Number.isNaN(value) ? `${Math.round(value * 100)}%` : '?%'
+            }
             value={ratio}
           />
         </Pie>

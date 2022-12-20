@@ -16,7 +16,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   const { data, isLoading, isError } = usePriceChartData();
 
   if (isLoading || isError || !data) {
-    return <PulseLoader />;
+    return null;
   }
 
   const { chartData, layerFill, layerKeys, layerStroke, valueAxisLabel, markerFill } =

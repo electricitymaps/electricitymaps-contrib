@@ -1,4 +1,3 @@
-import { PulseLoader } from 'react-spinners';
 import { TimeAverages } from 'utils/constants';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -16,7 +15,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const { data, isLoading, isError } = useEmissionChartData();
 
   if (isLoading || isError || !data) {
-    return <PulseLoader />;
+    return null;
   }
 
   const { chartData, layerFill, layerKeys } = data;

@@ -1,5 +1,4 @@
 import { useAtom } from 'jotai';
-import { PulseLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
@@ -7,8 +6,10 @@ import { useRefWidthHeightObserver } from 'utils/viewport';
 import useBarBreakdownChartData from '../hooks/useBarBreakdownProductionChartData';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarBreakdownProductionChart from './BarBreakdownProductionChart';
+import BySource from './BySource';
+import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
-function BarBreakdownChart({ timeAverage }: { timeAverage: TimeAverages }) {
+function BarBreakdownChart() {
   const {
     currentZoneDetail,
     zoneDetails,
@@ -21,9 +22,21 @@ function BarBreakdownChart({ timeAverage }: { timeAverage: TimeAverages }) {
   const { ref, width } = useRefWidthHeightObserver();
   const { __ } = useTranslation();
 
-  if (isLoading || !currentZoneDetail) {
-    // TODO: Replace with skeleton graph (maybe full graph with no data?)
-    return <PulseLoader />;
+  if (isLoading) {
+    return null;
+  }
+
+  if (!currentZoneDetail) {
+    return (
+      <div className="relative w-full text-md" ref={ref}>
+        <BySource className="opacity-40" />
+        <EmptyBarBreakdownChart
+          height={height}
+          width={width}
+          overLayText={__('country-panel.noDataAtTimestamp')}
+        />
+      </div>
+    );
   }
 
   // TODO: Show CountryTableOverlayIfNoData when required
@@ -38,15 +51,8 @@ function BarBreakdownChart({ timeAverage }: { timeAverage: TimeAverages }) {
   };
 
   return (
-    <div className="relative w-full text-md" ref={ref}>
-      <div className="relative top-2 mb-1 text-sm">
-        {__(
-          timeAverage !== TimeAverages.HOURLY
-            ? 'country-panel.averagebysource'
-            : 'country-panel.bysource'
-        )}
-      </div>
-
+    <div className="relative w-full text-md " ref={ref}>
+      <BySource />
       {displayByEmissions ? (
         <BarBreakdownEmissionsChart
           data={currentZoneDetail}
