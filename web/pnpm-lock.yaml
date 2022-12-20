@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@mapbox/point-geometry': ^0.1.0
   '@mdx-js/react': ^2.1.5
   '@nabla/vite-plugin-eslint': 1.4.1
   '@radix-ui/react-accordion': ^1.0.1
@@ -39,6 +40,7 @@ specifiers:
   '@types/d3': ^7.4.0
   '@types/d3-array': ^3.0.3
   '@types/d3-format': ^3.0.1
+  '@types/d3-interpolate': ^3.0.1
   '@types/d3-scale': ^4.0.2
   '@types/d3-selection': ^3.0.3
   '@types/d3-shape': ^3.1.0
@@ -47,6 +49,7 @@ specifiers:
   '@types/react': 18.0.22
   '@types/react-dom': 18.0.7
   '@types/react-router-dom': 5.3.3
+  '@types/react-transition-group': ^4.4.5
   '@types/sprintf-js': ^1.1.2
   '@types/testing-library__jest-dom': 5.14.5
   '@types/topojson': ^3.2.3
@@ -63,9 +66,11 @@ specifiers:
   cypress: 10.10.0
   d3-array: ^3.2.0
   d3-format: ^3.1.0
+  d3-interpolate: ^3.0.1
   d3-scale: ^4.0.2
   d3-selection: ^3.0.0
   d3-shape: ^3.1.0
+  date-fns: ^2.29.3
   eslint: 8.26.0
   eslint-config-airbnb: 19.0.4
   eslint-config-airbnb-base: 15.0.0
@@ -123,6 +128,7 @@ specifiers:
   workbox-window: 6.5.4
 
 dependencies:
+  '@mapbox/point-geometry': 0.1.0
   '@radix-ui/react-accordion': 1.0.1_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-navigation-menu': 1.1.1_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-portal': 1.0.1_biqbaboplfbrettd7655fr4n2y
@@ -145,9 +151,11 @@ dependencies:
   currency-symbol-map: 5.1.0
   d3-array: 3.2.0
   d3-format: 3.1.0
+  d3-interpolate: 3.0.1
   d3-scale: 4.0.2
   d3-selection: 3.0.0
   d3-shape: 3.1.0
+  date-fns: 2.29.3
   geojson: 0.5.0
   i18next: 22.0.5
   i18next-browser-languagedetector: 7.0.1
@@ -194,12 +202,14 @@ devDependencies:
   '@testing-library/user-event': 14.4.3_aaq3sbffpfe3jnxzm2zngsddei
   '@types/css-mediaquery': 0.1.1
   '@types/d3-format': 3.0.1
+  '@types/d3-interpolate': 3.0.1
   '@types/d3-scale': 4.0.2
   '@types/geojson': 7946.0.10
   '@types/mapbox-gl': 2.7.7
   '@types/react': 18.0.22
   '@types/react-dom': 18.0.7
   '@types/react-router-dom': 5.3.3
+  '@types/react-transition-group': 4.4.5
   '@types/testing-library__jest-dom': 5.14.5
   '@types/topojson': 3.2.3
   '@types/topojson-client': 3.1.1
@@ -4020,7 +4030,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-alpha.47
       '@storybook/csf-tools': 7.0.0-alpha.47
       '@storybook/docs-tools': 7.0.0-alpha.47_yalvw3r2waubxycyb7k7qsruca
-      '@storybook/mdx2-csf': 0.1.0-next.8
+      '@storybook/mdx2-csf': 1.0.0-next.2
       '@storybook/node-logger': 7.0.0-alpha.47
       '@storybook/postinstall': 7.0.0-alpha.47
       '@storybook/preview-web': 7.0.0-alpha.47_biqbaboplfbrettd7655fr4n2y
@@ -4059,7 +4069,7 @@ packages:
       '@storybook/components': 7.0.0-alpha.54_biqbaboplfbrettd7655fr4n2y
       '@storybook/csf-plugin': 7.0.0-alpha.54
       '@storybook/csf-tools': 7.0.0-alpha.54
-      '@storybook/mdx2-csf': 0.1.0-next.8
+      '@storybook/mdx2-csf': 1.0.0-next.2
       '@storybook/node-logger': 7.0.0-alpha.54
       '@storybook/postinstall': 7.0.0-alpha.54
       '@storybook/preview-api': 7.0.0-alpha.54
@@ -4566,7 +4576,7 @@ packages:
       '@storybook/client-api': 7.0.0-alpha.54
       '@storybook/client-logger': 7.0.0-alpha.54
       '@storybook/core-common': 7.0.0-alpha.54_yalvw3r2waubxycyb7k7qsruca
-      '@storybook/mdx2-csf': 0.1.0-next.8
+      '@storybook/mdx2-csf': 1.0.0-next.2
       '@storybook/node-logger': 7.0.0-alpha.54
       '@storybook/preview': 7.0.0-alpha.54
       '@storybook/preview-api': 7.0.0-alpha.54
@@ -4887,7 +4897,7 @@ packages:
       '@storybook/core-events': 7.0.0-alpha.54
       '@storybook/csf': 0.0.2-next.8
       '@storybook/csf-tools': 7.0.0-alpha.54
-      '@storybook/docs-mdx': 0.0.1-next.4
+      '@storybook/docs-mdx': 0.0.1-next.5
       '@storybook/node-logger': 7.0.0-alpha.54
       '@storybook/preview-api': 7.0.0-alpha.54
       '@storybook/telemetry': 7.0.0-alpha.54_yalvw3r2waubxycyb7k7qsruca
@@ -4993,8 +5003,8 @@ packages:
       type-fest: 2.19.0
     dev: true
 
-  /@storybook/docs-mdx/0.0.1-next.4:
-    resolution: {integrity: sha512-a1wiJbxBzikxl73dxyteeylPN7fpVd2JHrcnpX8O3ztPiaX2XQOJM4+7u0xndvn07ZtZzOnH5m9iHP8BJOwXZQ==}
+  /@storybook/docs-mdx/0.0.1-next.5:
+    resolution: {integrity: sha512-EowXFPq4TBZQguKCdU8y7EzpuSv2vSu5gy7pgF/1P5mq7LG9h8YIrerOW9DL4zfp9E0GHIWlSXR5KuFIqqKc/Q==}
     dev: true
 
   /@storybook/docs-tools/7.0.0-alpha.47_yalvw3r2waubxycyb7k7qsruca:
@@ -5086,10 +5096,8 @@ packages:
     resolution: {integrity: sha512-lMRKO083NQSSvO/FgOETzn0sf6eZ5YPirvp1+KD+sWkwzPTib8p+g14fbbH/88MV1GpMaXIHP/FD/pEc1jf4Cw==}
     dev: true
 
-  /@storybook/mdx2-csf/0.1.0-next.8:
-    resolution: {integrity: sha512-fl8BxHzkypAaFYjBkbYfiDUy/3bzPaSXsDTCuPTBIVu8CwkVntpFrjSujZH/pgJig8/9P4VdUJw0H+beMXpktg==}
-    dependencies:
-      loader-utils: 2.0.4
+  /@storybook/mdx2-csf/1.0.0-next.2:
+    resolution: {integrity: sha512-Mg6pYKhuuMrzF/DcCI5dEA36jx7156bBnCk9uFInthFrr1sLYlj+HfRMibFa/VdJx8L0Wsf/15cIu3xPWriinA==}
     dev: true
 
   /@storybook/node-logger/6.5.13:
@@ -6711,7 +6719,6 @@ packages:
 
   /@types/d3-color/2.0.3:
     resolution: {integrity: sha512-+0EtEjBfKEDtH9Rk3u3kLOUXM5F+iZK+WvASPb0MhIZl8J8NUvGeZRwKCXl+P3HkYx5TdU4YtcibpqHkSR9n7w==}
-    dev: false
 
   /@types/d3-contour/3.0.1:
     resolution: {integrity: sha512-C3zfBrhHZvrpAAK3YXqLWVAGo87A4SvJ83Q/zVJ8rFWJdKejUnDYaWZPkA8K84kb2vDA/g90LTQAz7etXcgoQQ==}
@@ -6770,6 +6777,11 @@ packages:
     dependencies:
       '@types/d3-color': 2.0.3
     dev: false
+
+  /@types/d3-interpolate/3.0.1:
+    resolution: {integrity: sha512-jx5leotSeac3jr0RePOH1KdR9rISG91QIE4Q2PYTu4OymLTZfA3SrnURSLzKH48HmXVUru50b8nje4E79oQSQw==}
+    dependencies:
+      '@types/d3-color': 2.0.3
 
   /@types/d3-path/2.0.2:
     resolution: {integrity: sha512-3YHpvDw9LzONaJzejXLOwZ3LqwwkoXb9LI2YN7Hbd6pkGo5nIlJ09ul4bQhBN4hQZJKmUpX8HkVqbzgUKY48cg==}
@@ -6842,7 +6854,7 @@ packages:
   /@types/d3-zoom/3.0.1:
     resolution: {integrity: sha512-7s5L9TjfqIYQmQQEUcpMAcBOahem7TRoSO/+Gkz02GbMVuULiZzjF2BOdw291dbO2aNon4m2OdFsRGaCq2caLQ==}
     dependencies:
-      '@types/d3-interpolate': 2.0.2
+      '@types/d3-interpolate': 3.0.1
       '@types/d3-selection': 3.0.3
     dev: false
 
@@ -6865,7 +6877,7 @@ packages:
       '@types/d3-format': 3.0.1
       '@types/d3-geo': 3.0.2
       '@types/d3-hierarchy': 3.1.0
-      '@types/d3-interpolate': 2.0.2
+      '@types/d3-interpolate': 3.0.1
       '@types/d3-path': 2.0.2
       '@types/d3-polygon': 3.0.0
       '@types/d3-quadtree': 3.0.2
@@ -7103,6 +7115,12 @@ packages:
     resolution: {integrity: sha512-YYknwy0D0iOwKQgz9v8nOzt2J6l4gouBmDnWqUUznltOTaon+r8US8ky8HvN0tXvc38U9m6z/t2RsVsnd1zM0g==}
     dependencies:
       '@types/history': 4.7.11
+      '@types/react': 18.0.22
+    dev: true
+
+  /@types/react-transition-group/4.4.5:
+    resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
+    dependencies:
       '@types/react': 18.0.22
     dev: true
 
@@ -9189,6 +9207,11 @@ packages:
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
     dev: true
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
+    dev: false
 
   /dayjs/1.11.5:
     resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}

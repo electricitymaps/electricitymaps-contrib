@@ -26,9 +26,6 @@ export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
       }, 0);
       // Update container width on every resize
       window.addEventListener('resize', update);
-      return () => {
-        window.removeEventListener('resize', update);
-      };
     },
     [offsetX, offsetY]
   );

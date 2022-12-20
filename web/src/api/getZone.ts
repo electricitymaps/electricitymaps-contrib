@@ -6,12 +6,14 @@ import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { timeAverageAtom } from 'utils/state/atoms';
+
 import {
   getBasePath,
   getHeaders,
   QUERY_KEYS,
   REFETCH_INTERVAL_FIVE_MINUTES,
 } from './helpers';
+
 
 const getZone = async (
   timeAverage: TimeAverages,

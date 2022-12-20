@@ -1,16 +1,33 @@
 import MapButton from 'components/MapButton';
+import { useAtom } from 'jotai';
 import { ReactElement, useState } from 'react';
 import { FiWind } from 'react-icons/fi';
 import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
 import { HiLanguage } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
+import { ToggleOptions } from 'utils/constants';
+import { solarLayerAtom, windLayerAtom } from 'utils/state/atoms';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import LanguageSelector from './LanguageSelector';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
-interface MapControlsProperties {}
+
 export default function MapControls(properties: MapControlsProperties): ReactElement {
   const { __ } = useTranslation();
   const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
+  const [windLayerToggle, setWindLayerToggle] = useAtom(windLayerAtom);
+  const [solarLayerToggle, setSolarLayerToggle] = useAtom(solarLayerAtom);
+
+  const onToggleWindLayer = () => {
+    setWindLayerToggle(
+      windLayerToggle === ToggleOptions.ON ? ToggleOptions.OFF : ToggleOptions.ON
+    );
+  };
+
+  const onToggleSolarLayer = () => {
+    setSolarLayerToggle(
+      solarLayerToggle === ToggleOptions.ON ? ToggleOptions.OFF : ToggleOptions.ON
+    );
+  };
 
   return (
     <div className="z-1000 pointer-events-none absolute right-3 top-3 hidden flex-col items-end md:flex">
@@ -30,23 +47,26 @@ export default function MapControls(properties: MapControlsProperties): ReactEle
         <LanguageSelector setLanguageSelectorOpen={setIsLanguageSelectorOpen} />
       )}
       <MapButton
-        icon={<FiWind size={18} />}
+        icon={
+          <FiWind size={18} color={windLayerToggle === ToggleOptions.ON ? '' : 'gray'} />
+        }
         tooltipText={__('tooltips.wind')}
         dataTestId="wind-layer-button"
         className="mt-2"
-        onClick={() => {
-          console.log('change the toggle weather');
-        }}
+        onClick={onToggleWindLayer}
       />
 
       <MapButton
-        icon={<HiOutlineSun size={21} />}
+        icon={
+          <HiOutlineSun
+            size={21}
+            color={solarLayerToggle === ToggleOptions.ON ? '' : 'gray'}
+          />
+        }
         className="mt-2"
         dataTestId="solar-layer-button"
         tooltipText={__('tooltips.solar')}
-        onClick={() => {
-          console.log('change the toggle solar');
-        }}
+        onClick={onToggleSolarLayer}
       />
 
       <MapButton

@@ -83,7 +83,7 @@ export default function MapTooltip(properties: MapTooltipProperties) {
   const { i18n } = useTranslation();
   const { data } = useGetState();
   if (!enabled || !hoveredFeature) {
-    return undefined;
+    return null;
   }
 
   const hoveredZoneData = data?.data?.zones[hoveredFeature.zoneId] ?? undefined;
