@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 import arrow
 from requests import Session
