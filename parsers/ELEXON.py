@@ -455,11 +455,11 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
 
-    # print("fetch_exchange(FR, GB) ->")
-    # print(fetch_exchange("FR", "GB"))
+    print("fetch_exchange(FR, GB) ->")
+    print(fetch_exchange("FR", "GB"))
 
-    # print("fetch_exchange(GB, IE) ->")
-    # print(fetch_exchange("GB", "IE"))
+    print("fetch_exchange(GB, IE) ->")
+    print(fetch_exchange("GB", "IE"))
 
-    # print("fetch_exchange(GB, NL) ->")
-    # print(fetch_exchange("GB", "NL"))
+    print("fetch_exchange(GB, NL) ->")
+    print(fetch_exchange("GB", "NL"))
