@@ -229,7 +229,7 @@ def fetch_price(
         for mode_key in data_object:
             if mode_key in PRICE_MAPPING:
                 price = data_object[mode_key]
-                break;
+                break
 
         return_list.append(
             {
