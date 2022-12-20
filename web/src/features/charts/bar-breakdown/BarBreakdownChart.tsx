@@ -1,8 +1,7 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
-import { TimeAverages } from 'utils/constants';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
-import { useRefWidthHeightObserver } from 'utils/viewport';
+import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import useBarBreakdownChartData from '../hooks/useBarBreakdownProductionChartData';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarBreakdownProductionChart from './BarBreakdownProductionChart';
@@ -19,7 +18,7 @@ function BarBreakdownChart() {
     height,
   } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const { ref, width } = useRefWidthHeightObserver();
+  const { ref, width } = useReferenceWidthHeightObserver();
   const { __ } = useTranslation();
 
   if (isLoading) {

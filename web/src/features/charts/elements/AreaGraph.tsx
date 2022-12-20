@@ -9,7 +9,7 @@ import { ZoneDetail } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
-import { useRefWidthHeightObserver } from 'utils/viewport';
+import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import { getTimeScale, isEmpty } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, InnerAreaGraphTooltipProps } from '../types';
@@ -110,7 +110,7 @@ function AreaGraph({
     width: containerWidth,
     height: containerHeight,
     node,
-  } = useRefWidthHeightObserver(Y_AXIS_WIDTH, X_AXIS_HEIGHT);
+  } = useReferenceWidthHeightObserver(Y_AXIS_WIDTH, X_AXIS_HEIGHT);
 
   const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);

@@ -6,14 +6,14 @@ import { MapboxMap } from 'react-map-gl';
 import { Maybe } from 'types';
 import { ToggleOptions } from 'utils/constants';
 import { selectedDatetimeIndexAtom, windLayerAtom } from 'utils/state/atoms';
-import { useRefWidthHeightObserver } from 'utils/viewport';
+import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import Windy from './windy';
 
 type WindyType = ReturnType<typeof Windy>;
 let windySingleton: Maybe<WindyType> = null;
 const createWindy = async (canvas: HTMLCanvasElement, data: any, map: MapboxMap) => {
   if (!windySingleton) {
-    windySingleton = new Windy({
+    windySingleton = new (Windy as any)({
       canvas,
       data,
       map,
@@ -25,7 +25,7 @@ const createWindy = async (canvas: HTMLCanvasElement, data: any, map: MapboxMap)
 export default function WindLayer({ map }: { map?: MapboxMap }) {
   const [isMapMoving] = useAtom(mapMovingAtom);
   const [windy, setWindy] = useState<Maybe<WindyType>>(null);
-  const { ref, node, width, height } = useRefWidthHeightObserver();
+  const { ref, node, width, height } = useReferenceWidthHeightObserver();
   const viewport = useMemo(() => {
     const sw = map?.unproject([0, height]);
     const ne = map?.unproject([width, 0]);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { resolvePath, useParams } from 'react-router-dom';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 

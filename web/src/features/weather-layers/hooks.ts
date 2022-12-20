@@ -3,7 +3,7 @@ import { formatDistance } from 'date-fns';
 
 import { GfsForecastResponse } from 'api/getWeatherData';
 import { Maybe } from 'types';
-import { getRefTime as getReferenceTime, getTargetTime } from './grib';
+import { getReferenceTime, getTargetTime } from './grib';
 
 export function useInterpolatedWindData(
   windData: GfsForecastResponse[]

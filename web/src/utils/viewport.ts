@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 // TODO: Replace with https://github.com/ZeeCoder/use-resize-observer
-export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
+export function useReferenceWidthHeightObserver(offsetX = 0, offsetY = 0) {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   const [node, setNode] = useState(null); // The DOM node
