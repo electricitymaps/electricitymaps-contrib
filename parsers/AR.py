@@ -24,12 +24,16 @@ CAMMESA_EXCHANGE_ENDPOINT = (
 CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/RenovablesService/GetChartTotalTRDataSource/"
 
 SUPPORTED_EXCHANGES = {
-    "AR->BR-S": "ARG-BRA",
     "AR->CL-SEN": "ARG-CHI",
     "AR->PY": "ARG-PAR",
     "AR->UY": "ARG-URU",
 }
 
+EXCHANGE_DIRECTIONS = { # directions are from outer region -> Argentina
+    "AR->CL-SEN": 0,
+    "AR->PY": 225,
+    "AR->UY": 180,
+}
 
 def fetch_production(
     zone_key="AR",
@@ -177,7 +181,12 @@ def fetch_exchange(
         for exchange in exchange_list["features"]:
             properties = exchange["properties"]
             if properties["nombre"] == exchange_name:
-                flow = -int(properties["text"])
+                angle_config = EXCHANGE_DIRECTIONS[sorted_codes]
+                given_angle = int(properties["url"][6:])
+                flow = int(properties["text"])
+                print(angle_config, given_angle, flow)
+                if (angle_config != given_angle):
+                    flow = -flow
                 target_datetime = (
                     properties["fecha"][:-2] + ":" + properties["fecha"][-2:]
                 )
