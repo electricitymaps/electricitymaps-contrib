@@ -14,12 +14,11 @@ from typing import Any, Dict, List, Optional
 
 import arrow
 from dateutil import parser, tz
-from requests import Session
-
 from parsers.ENTSOE import merge_production_outputs
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
+from requests import Session
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [
@@ -575,7 +574,11 @@ def _fetch(
             "value": datapoint["value"],
             "source": "eia.gov",
         }
-        for datapoint in raw_data["response"]["data"]
+        # TODO Currently manually filtering out datapoints with null values
+        # As null values can cause problems in the estimation models if there's
+        # only null values.
+        # Integrate with data quality layer later.
+        for datapoint in raw_data["response"]["data"] if datapoint["value"] is not None
     ]
 
 
@@ -618,10 +621,11 @@ if __name__ == "__main__":
 
     # pprint(fetch_production('US-CENT-SWPP'))
     # # pprint(fetch_consumption_forecast('US-CAL-CISO'))
-    pprint(
-        fetch_exchange(
-            zone_key1="US-CENT-SWPP",
-            zone_key2="CA-SK",
-            target_datetime=datetime(2022, 3, 1),
-        )
-    )
+    print(fetch_production_mix('US-CAR-YAD'))
+    # pprint(
+    #     fetch_exchange(
+    #         zone_key1="US-CENT-SWPP",
+    #         zone_key2="CA-SK",
+    #         target_datetime=datetime(2022, 3, 1),
+    #     )
+    # )
