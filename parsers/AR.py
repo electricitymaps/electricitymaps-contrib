@@ -169,14 +169,14 @@ def fetch_exchange(
         properties = exchange["properties"]
         if properties["nombre"] == exchange_name:
           flow = -int(properties["text"])
-          target_datetime = properties["fecha"]
+          target_datetime = properties["fecha"][:-2] + ":" + properties["fecha"][-2:]
           break
     else:
       raise NotImplementedError("This exchange is not currently implemented")
 
     exchange = {
       "sortedZoneKeys": sorted_codes,
-      "datetime": target_datetime, #arrow.now("UTC-3").datetime,
+      "datetime": arrow.get(target_datetime).datetime,
       "netFlow": flow,
       "source": "cammesa.com"
     }
