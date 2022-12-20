@@ -221,9 +221,7 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
 ):
-    data_objects, date_string = fetch_data(
-        zone_key, session, target_datetime, logger
-    )
+    data_objects, date_string = fetch_data(zone_key, session, target_datetime, logger)
 
     return_list: List[Dict[str, Any]] = []
     for data_object in data_objects:
