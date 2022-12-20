@@ -152,7 +152,6 @@ def fetch_exchange(
     target_datetime = ""
 
     if sorted_codes in SUPPORTED_EXCHANGES:
-      # haha we can proly just refactor this and return the flow and target_datetime
       current_session = session or Session()
 
       api_cammesa_response = current_session.get(CAMMESA_EXCHANGE_ENDPOINT)
