@@ -228,10 +228,8 @@ def fetch_price(
         price: Union[float, int, None] = None
         for mode_key in data_object:
             if mode_key in PRICE_MAPPING:
-                if price == None:
-                    price = data_object[mode_key]
-                else:
-                    price += data_object[mode_key]
+                price = data_object[mode_key]
+                break;
 
         return_list.append(
             {
