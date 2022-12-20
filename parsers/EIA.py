@@ -419,6 +419,11 @@ def fetch_production_mix(
             target_datetime=target_datetime,
             logger=logger,
         )
+        # TODO Currently manually filtering out datapoints with null values
+        # As null values can cause problems in the estimation models if there's
+        # only null values.
+        # Integrate with data quality layer later.
+        mix = [datapoint for datapoint in mix if datapoint["value"] is not None]
 
         # EIA does not currently split production from the Virgil Summer C
         # plant across the two owning/ utilizing BAs:
@@ -448,6 +453,15 @@ def fetch_production_mix(
                 target_datetime=target_datetime,
                 logger=logger,
             )
+            # TODO Currently manually filtering out datapoints with null values
+            # As null values can cause problems in the estimation models if there's
+            # only null values.
+            # Integrate with data quality layer later.
+            additional_mix = [
+                datapoint
+                for datapoint in additional_mix
+                if datapoint["value"] is not None
+            ]
             for point in additional_mix:
                 point.update({"value": point["value"] * percentage})
             mix = _merge_production_mix([mix, additional_mix])
@@ -616,8 +630,8 @@ def _get_utc_datetime_from_datapoint(dt: datetime):
 if __name__ == "__main__":
     from pprint import pprint
 
-    # pprint(fetch_production('US-CENT-SWPP'))
-    # # pprint(fetch_consumption_forecast('US-CAL-CISO'))
+    # pprint(fetch_production_mix("US-NW-NEVP"))
+    # pprint(fetch_consumption_forecast('US-CAL-CISO'))
     pprint(
         fetch_exchange(
             zone_key1="US-CENT-SWPP",
