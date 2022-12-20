@@ -120,10 +120,10 @@ def query_production(
     }
     if report == "FUELINST":
         params = {
-            "FromDateTime": (settlement_date - timedelta(hours=24)).strftime(
-                "%Y-%m-%d %H:%M:%S"
-            ),
-            "ToDateTime": settlement_date.strftime("%Y-%m-%d %H:%M:%S"),
+            "FromDateTime": (target_datetime).date().strftime("%Y-%m-%d %H:%M:%S"),
+            "ToDateTime": (target_datetime + timedelta(days=1))
+            .date()
+            .strftime("%Y-%m-%d %H:%M:%S"),
             "Period": "*",
             "ServiceType": "csv",
         }
@@ -404,7 +404,8 @@ def fetch_exchange(
     return data
 
 
-@refetch_frequency(timedelta(days=1))
+# While using the FUELINST report we can increase the refetch frequency.
+@refetch_frequency(timedelta(hours=6))
 def fetch_production(
     zone_key: str = "GB",
     session: Optional[Session] = None,
