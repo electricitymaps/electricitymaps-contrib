@@ -222,7 +222,27 @@ def parse_production_FUELINST(
         lambda x: datetime_from_date_sp(x["Settlement Date"], x["Settlement Period"]),
         axis=1,
     )
+    df = df.groupby(df.columns, axis=1).sum()
+
     data_points = list()
+    for time in pd.unique(df["datetime"]):
+        time_df = df[df["datetime"] == time]
+
+        data_point = {
+            "zoneKey": "GB",
+            "datetime": time.to_pydatetime(),
+            "source": "bmreports.com",
+            "production": dict(),
+            "storage": dict(),
+        }
+
+        for row in time_df.iterrows():
+            electricity_production = row[1].to_dict()
+            for key in electricity_production.keys():
+                if key in PRODUCTION_MODES:
+                    data_point["production"][key] = electricity_production[key]
+
+        data_points.append(data_point)
     for time in pd.unique(df["datetime"]):
         time_df = df[df["datetime"] == time]
 
