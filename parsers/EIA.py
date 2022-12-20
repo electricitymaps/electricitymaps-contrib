@@ -575,7 +575,12 @@ def _fetch(
             "value": datapoint["value"],
             "source": "eia.gov",
         }
+        # TODO Currently manually filtering out datapoints with null values
+        # As null values can cause problems in the estimation models if there's
+        # only null values.
+        # Integrate with data quality layer later.
         for datapoint in raw_data["response"]["data"]
+        if datapoint["value"] is not None
     ]
 
 
