@@ -15,11 +15,21 @@ from requests import Session
 # http://www.industcards.com/st-other-argentina.htm
 
 # API Documentation: https://api.cammesa.com/demanda-svc/swagger-ui.html
-CAMMESA_DEMANDA_ENDPOINT = "https://api.cammesa.com/demanda-svc/generacion/ObtieneGeneracioEnergiaPorRegion/"
-CAMMESA_EXCHANGE_ENDPOINT = "https://api.cammesa.com/demanda-svc/demanda/IntercambioCorredoresGeo/"
+CAMMESA_DEMANDA_ENDPOINT = (
+    "https://api.cammesa.com/demanda-svc/generacion/ObtieneGeneracioEnergiaPorRegion/"
+)
+CAMMESA_EXCHANGE_ENDPOINT = (
+    "https://api.cammesa.com/demanda-svc/demanda/IntercambioCorredoresGeo/"
+)
 CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/RenovablesService/GetChartTotalTRDataSource/"
 
-SUPPORTED_EXCHANGES = { "AR->BR-S": "ARG-BRA", "AR->CL-SEN": "ARG-CHI", "AR->PY": "ARG-PAR", "AR->UY": "ARG-URU" }
+SUPPORTED_EXCHANGES = {
+    "AR->BR-S": "ARG-BRA",
+    "AR->CL-SEN": "ARG-CHI",
+    "AR->PY": "ARG-PAR",
+    "AR->UY": "ARG-URU",
+}
+
 
 def fetch_production(
     zone_key="AR",
@@ -152,32 +162,34 @@ def fetch_exchange(
     target_datetime = ""
 
     if sorted_codes in SUPPORTED_EXCHANGES:
-      current_session = session or Session()
+        current_session = session or Session()
 
-      api_cammesa_response = current_session.get(CAMMESA_EXCHANGE_ENDPOINT)
-      assert api_cammesa_response.status_code == 200, (
-        "Exception when fetching echange for "
-        "{}: error when calling url={}".format(
-          api_cammesa_response.status_code, CAMMESA_EXCHANGE_ENDPOINT
+        api_cammesa_response = current_session.get(CAMMESA_EXCHANGE_ENDPOINT)
+        assert api_cammesa_response.status_code == 200, (
+            "Exception when fetching echange for "
+            "{}: error when calling url={}".format(
+                api_cammesa_response.status_code, CAMMESA_EXCHANGE_ENDPOINT
+            )
         )
-      )
 
-      exchange_name = SUPPORTED_EXCHANGES[sorted_codes]
-      exchange_list = api_cammesa_response.json()
-      for exchange in exchange_list["features"]:
-        properties = exchange["properties"]
-        if properties["nombre"] == exchange_name:
-          flow = -int(properties["text"])
-          target_datetime = properties["fecha"][:-2] + ":" + properties["fecha"][-2:]
-          break
+        exchange_name = SUPPORTED_EXCHANGES[sorted_codes]
+        exchange_list = api_cammesa_response.json()
+        for exchange in exchange_list["features"]:
+            properties = exchange["properties"]
+            if properties["nombre"] == exchange_name:
+                flow = -int(properties["text"])
+                target_datetime = (
+                    properties["fecha"][:-2] + ":" + properties["fecha"][-2:]
+                )
+                break
     else:
-      raise NotImplementedError("This exchange is not currently implemented")
+        raise NotImplementedError("This exchange is not currently implemented")
 
     exchange = {
-      "sortedZoneKeys": sorted_codes,
-      "datetime": arrow.get(target_datetime).datetime,
-      "netFlow": flow,
-      "source": "cammesa.com"
+        "sortedZoneKeys": sorted_codes,
+        "datetime": arrow.get(target_datetime).datetime,
+        "netFlow": flow,
+        "source": "cammesa.com",
     }
 
     return exchange
