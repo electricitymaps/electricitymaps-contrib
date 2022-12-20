@@ -9,6 +9,13 @@ capacity:
   hydro: 506
   nuclear: 0
   wind: 35
+delays:
+  consumption: 24
+  consumptionForecast: 24
+  generationForecast: 24
+  price: 24
+  production: 24
+  productionPerModeForecast: 24
 emissionFactors:
   direct:
     battery discharge:
