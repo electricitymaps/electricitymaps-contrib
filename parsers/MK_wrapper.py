@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import Optional
 
 from pytz import utc
 from requests import Session
@@ -28,7 +28,7 @@ def fetch_consumption(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict, None]:
+) -> list:
     target_datetime = modify_target_datetime(target_datetime)
     return ENTSOE.fetch_consumption(
         zone_key=zone_key,
