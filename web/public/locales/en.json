@@ -282,6 +282,38 @@
     "AR": {
       "zoneName": "Argentina"
     },
+    "AR-BAS": {
+      "countryName": "Argentina",
+      "zoneName": "Buenos Aires"
+    },
+    "AR-CEN": {
+      "countryName": "Argentina",
+      "zoneName": "Center Region"
+    },
+    "AR-COM": {
+      "countryName": "Argentina",
+      "zoneName": "Comahue"
+    },
+    "AR-CUY": {
+      "countryName": "Argentina",
+      "zoneName": "Cuyo"
+    },
+    "AR-LIT": {
+      "countryName": "Argentina",
+      "zoneName": "Litoral"
+    },
+    "AR-NEA": {
+      "countryName": "Argentina",
+      "zoneName": "Northeast"
+    },
+    "AR-NOA": {
+      "countryName": "Argentina",
+      "zoneName": "Northwest"
+    },
+    "AR-PAT": {
+      "countryName": "Argentina",
+      "zoneName": "Patagonia"
+    },
     "AS": {
       "zoneName": "American Samoa"
     },

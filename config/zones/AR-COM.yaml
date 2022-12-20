@@ -1,16 +1,12 @@
 bounding_box:
-  - - 4.2302808850321
-    - 42.982043008785
-  - - 7.7169378581589
-    - 45.12684420383
-capacity:
-  biomass: 293
-  hydro: 3269
-  nuclear: 0
-  solar: 1334
-  unknown: 3283
-  wind: 48
+  - - -72.45571955719552
+    - -42.489222664872244
+  - - -62.266036451537765
+    - -34.50508882897927
 contributors:
+  - meiyiniu
+  - cynding
+  - juliadu
 parsers:
   production: AR.fetch_production
 timezone: America/Argentina/Buenos_Aires
