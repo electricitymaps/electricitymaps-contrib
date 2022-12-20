@@ -164,9 +164,7 @@ def fetch_exchange(
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     sorted_codes = "->".join(sorted_zone_keys)
     flow: Union[float, None] = None
-    target_datetime = arrow.now(tz="America/Argentina/Buenos Aires").format(
-        "DD-MM-YYYY"
-    )
+    target_datetime = arrow.now(tz="America/Argentina/Buenos_Aires").datetime
 
     if sorted_codes in SUPPORTED_EXCHANGES:
         current_session = session or Session()
@@ -187,7 +185,6 @@ def fetch_exchange(
                 angle_config = EXCHANGE_DIRECTIONS[sorted_codes]
                 given_angle = int(properties["url"][6:])
                 flow = int(properties["text"])
-                print(angle_config, given_angle, flow)
                 if angle_config != given_angle:
                     flow = -flow
                 target_datetime = (
