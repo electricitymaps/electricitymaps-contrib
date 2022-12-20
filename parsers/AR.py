@@ -29,11 +29,12 @@ SUPPORTED_EXCHANGES = {
     "AR->UY": "ARG-URU",
 }
 
-EXCHANGE_DIRECTIONS = { # directions are from outer region -> Argentina
+EXCHANGE_DIRECTIONS = {  # directions are from outer region -> Argentina
     "AR->CL-SEN": 0,
     "AR->PY": 225,
     "AR->UY": 180,
 }
+
 
 def fetch_production(
     zone_key="AR",
@@ -185,7 +186,7 @@ def fetch_exchange(
                 given_angle = int(properties["url"][6:])
                 flow = int(properties["text"])
                 print(angle_config, given_angle, flow)
-                if (angle_config != given_angle):
+                if angle_config != given_angle:
                     flow = -flow
                 target_datetime = (
                     properties["fecha"][:-2] + ":" + properties["fecha"][-2:]
