@@ -120,7 +120,9 @@ def query_production(
     }
     if report == "FUELINST":
         params = {
-            "FromDateTime": (target_datetime).date().strftime("%Y-%m-%d %H:%M:%S"),
+            "FromDateTime": (target_datetime - timedelta(days=1))
+            .date()
+            .strftime("%Y-%m-%d %H:%M:%S"),
             "ToDateTime": (target_datetime + timedelta(days=1))
             .date()
             .strftime("%Y-%m-%d %H:%M:%S"),
