@@ -279,13 +279,13 @@ export default function MapPage(): ReactElement {
         <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
       </Source>
       <CustomLayer>
-        <ExchangeLayer />
-      </CustomLayer>
-      <CustomLayer>
         <WindLayer />
       </CustomLayer>
       <CustomLayer>
         <SolarLayer />
+      </CustomLayer>
+      <CustomLayer>
+        <ExchangeLayer />
       </CustomLayer>
       <ZoomControls />
     </Map>
