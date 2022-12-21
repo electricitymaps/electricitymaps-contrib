@@ -1,10 +1,12 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import getLogger
 from typing import Any, Dict, List, Optional, Tuple, Union
 
+import arrow
 from requests import Response, Session
 
-from .lib.exceptions import ParserException
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 DOMAIN_MAPPING = {
     "FR-COR": "https://opendata-corse.edf.fr",
@@ -21,9 +23,13 @@ LIVE_DATASETS = {
 
 HISTORICAL_DATASETS = {
     "FR-COR": "production-delectricite-par-filiere",
+    # RE is only updated once a year
     "RE": "courbe-de-charge-de-la-production-delectricite-par-filiere",
+    # GF is updated approximately once a month
     "GF": "courbe-de-charge-de-la-production-delectricite-par-filiere",
+    # MQ is only updated once a year
     "MQ": "courbe-de-charge-de-la-production-delectricite-par-filiere",
+    # GP is updated only once every 6 months approximatly
     "GP": "courbe-de-charge-de-la-production-delectricite-par-filiere",
 }
 
@@ -95,12 +101,11 @@ def generate_url(zone_key, target_datetime):
 
 def fetch_data(
     zone_key: str,
+    target_datetime: datetime,
     session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
 ) -> Tuple[Any, str]:
     ses = session or Session()
-    target_datetime_string = None
 
     DATE_STRING_MAPPING = {
         "FR-COR": "date_heure" if target_datetime else "date",
@@ -127,11 +132,8 @@ def fetch_data(
         #   "refine": "statut:Validé" if target_datetime else None,
         "timezone": "UTC",
         "order_by": f"{DATE_STRING_MAPPING[zone_key]} desc",
-        "refine": f"{DATE_STRING_MAPPING[zone_key]}:{target_datetime.strftime('%Y')}"
-        if target_datetime
-        else None,
+        "where": f"""{DATE_STRING_MAPPING[zone_key]} IN [date'{(target_datetime - timedelta(days=1)).strftime('%Y/%m/%d')}'..date'{(target_datetime + timedelta(days=1)).strftime('%Y/%m/%d')}']""",
     }
-
     url = generate_url(zone_key, target_datetime)
     response: Response = ses.get(url, params=URL_QUERIES)
     data = response.json()
@@ -157,14 +159,15 @@ def fetch_data(
     return data, DATE_STRING_MAPPING[zone_key]
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str,
     session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    target_datetime: Optional[datetime] = arrow.now().to("UTC"),
     logger=getLogger(__name__),
 ):
     production_objects, date_string = fetch_data(
-        zone_key, session, target_datetime, logger
+        zone_key, target_datetime, session, logger
     )
 
     return_list: List[Dict[str, Any]] = []
@@ -203,3 +206,8 @@ def fetch_production(
             }
         )
     return return_list
+
+
+if __name__ == "__main__":
+    for zone_key in DOMAIN_MAPPING.keys():
+        print(fetch_production(zone_key, target_datetime=datetime(2022, 12, 20)))
