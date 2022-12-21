@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 
 const MAX_WIND = 15;
 
-export const windColor = scaleLinear()
+export const windColor = scaleLinear<string>()
   .domain(range(10).map((index) => interpolate(0, MAX_WIND)(index / (10 - 1))))
   .range([
     'rgba(0,   255, 255, 1.0)',

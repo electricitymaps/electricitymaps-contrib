@@ -1,9 +1,11 @@
 import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 import { add, startOfHour, sub } from 'date-fns';
-import { useInterpolatedWindData } from 'features/weather-layers/hooks';
+import { useInterpolatedData } from 'features/weather-layers/hooks';
 import type { Maybe } from 'types';
 
 import { REFETCH_INTERVAL_FIVE_MINUTES, getBasePath, getHeaders } from './helpers';
+
+export type WeatherType = 'wind' | 'solar';
 
 interface ForecastEntry {
   data: number[];
@@ -20,7 +22,7 @@ interface ForecastEntry {
     refTime: string;
   };
 }
-export type GfsForecastResponse = [ForecastEntry, ForecastEntry];
+export type GfsForecastResponse = ForecastEntry[];
 
 const GFS_STEP_ORIGIN = 6; // hours
 const GFS_STEP_HORIZON = 1; // hours
@@ -49,13 +51,13 @@ const targetTimeFunction = {
 };
 
 export async function fetchGfsForecast(
-  resource: string,
+  resource: WeatherType,
   startTime: Date,
   endTime: Date,
-  type: 'before' | 'after',
+  period: 'before' | 'after',
   retries = 0
 ): Promise<GfsForecastResponse> {
-  const targetTime = targetTimeFunction[type](endTime);
+  const targetTime = targetTimeFunction[period](endTime);
   const path = `/v3/gfs/${resource}?refTime=${startTime.toISOString()}&targetTime=${targetTime}`;
   const requestOptions: RequestInit = {
     method: 'GET',
@@ -64,7 +66,9 @@ export async function fetchGfsForecast(
   const response = await fetch(`${getBasePath()}${path}`, requestOptions);
   if (response.ok) {
     const { data } = await response.json();
-    return data;
+    // TODO: Change this on backend instead
+    // Convert solar data to array to ensure that data is consistent between weather layers
+    return resource === 'solar' ? [data] : data;
   }
 
   if (retries >= 3 || response.status !== 404) {
@@ -80,30 +84,32 @@ export async function fetchGfsForecast(
     resource,
     sub(startTime, { hours: GFS_STEP_ORIGIN }),
     endTime,
-    type,
+    period,
     retries + 1
   );
 }
 
-async function getWeatherData() {
+async function getWeatherData(type: WeatherType) {
   const now = new Date();
 
   const startTime = getForecastStartTime(now);
-  const before = fetchGfsForecast('wind', startTime, now, 'before');
-  const after = fetchGfsForecast('wind', startTime, now, 'after');
+  const before = fetchGfsForecast(type, startTime, now, 'before');
+  const after = fetchGfsForecast(type, startTime, now, 'after');
 
   const forecasts = await Promise.all([before, after]).then((values) => {
     return values;
   });
-  const interdata = useInterpolatedWindData(forecasts);
-
+  const interdata = useInterpolatedData(type, forecasts);
   return interdata;
 }
 
-export const useGetWind = (options?: UseQueryOptions<Maybe<GfsForecastResponse>>) => {
+const useGetWeather = (
+  type: WeatherType,
+  options?: UseQueryOptions<Maybe<GfsForecastResponse>>
+) => {
   return useQuery<Maybe<GfsForecastResponse>>(
-    ['wind'],
-    async () => await getWeatherData(),
+    [type],
+    async () => await getWeatherData(type),
     {
       staleTime: REFETCH_INTERVAL_FIVE_MINUTES,
       refetchOnWindowFocus: false,
@@ -111,4 +117,11 @@ export const useGetWind = (options?: UseQueryOptions<Maybe<GfsForecastResponse>>
       ...options,
     }
   );
+};
+
+export const useGetWind = (options?: UseQueryOptions<Maybe<GfsForecastResponse>>) => {
+  return useGetWeather('wind', options);
+};
+export const useGetSolar = (options?: UseQueryOptions<Maybe<GfsForecastResponse>>) => {
+  return useGetWeather('solar', options);
 };
