@@ -25,7 +25,7 @@ export const spatialAggregateAtom = atomWithCustomStorage<ToggleOptions>({
   },
 });
 
-export const solarLayerAtom = atomWithCustomStorage<ToggleOptions>({
+export const solarLayerEnabledAtom = atomWithCustomStorage<ToggleOptions>({
   key: 'solar',
   initialValue: ToggleOptions.OFF,
   options: {
@@ -33,21 +33,23 @@ export const solarLayerAtom = atomWithCustomStorage<ToggleOptions>({
     syncWithLocalStorage: true,
   },
 });
+export const solarLayerLoadingAtom = atom(false);
 
-export const productionConsumptionAtom = atomWithCustomStorage<Mode>({
-  key: 'mode',
-  initialValue: Mode.CONSUMPTION,
+export const windLayerAtom = atomWithCustomStorage<ToggleOptions>({
+  key: 'wind',
+  initialValue: ToggleOptions.OFF,
   options: {
     syncWithUrl: true,
     syncWithLocalStorage: true,
   },
 });
+export const windLayerLoadingAtom = atom(false);
 
 export const displayByEmissionsAtom = atom(false);
 
-export const windLayerAtom = atomWithCustomStorage<ToggleOptions>({
-  key: 'wind',
-  initialValue: ToggleOptions.OFF,
+export const productionConsumptionAtom = atomWithCustomStorage<Mode>({
+  key: 'mode',
+  initialValue: Mode.CONSUMPTION,
   options: {
     syncWithUrl: true,
     syncWithLocalStorage: true,

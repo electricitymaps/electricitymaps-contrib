@@ -4,30 +4,76 @@ import { ReactElement, useState } from 'react';
 import { FiWind } from 'react-icons/fi';
 import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
 import { HiLanguage } from 'react-icons/hi2';
+import { MoonLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
-import { ToggleOptions } from 'utils/constants';
-import { solarLayerAtom, windLayerAtom } from 'utils/state/atoms';
+import { TimeAverages, ToggleOptions } from 'utils/constants';
+import {
+  selectedDatetimeIndexAtom,
+  solarLayerEnabledAtom,
+  solarLayerLoadingAtom,
+  timeAverageAtom,
+  windLayerAtom,
+  windLayerLoadingAtom,
+} from 'utils/state/atoms';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import LanguageSelector from './LanguageSelector';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 
-export default function MapControls(properties: MapControlsProperties): ReactElement {
+const weatherButtonMap = {
+  wind: {
+    icon: FiWind,
+    iconSize: 18,
+    enabledAtom: windLayerAtom,
+    loadingAtom: windLayerLoadingAtom,
+  },
+  solar: {
+    icon: HiOutlineSun,
+    iconSize: 21,
+    enabledAtom: solarLayerEnabledAtom,
+    loadingAtom: solarLayerLoadingAtom,
+  },
+};
+
+function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
+  const { __ } = useTranslation();
+  const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
+  const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
+  const isEnabled = enabled === ToggleOptions.ON;
+  const Icon = weatherButtonMap[type].icon;
+
+  const onToggle = () => {
+    if (!isEnabled) {
+      setIsLoadingLayer(true);
+    }
+    setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
+  };
+
+  return (
+    <MapButton
+      icon={
+        isLoadingLayer ? (
+          <MoonLoader size={14} color="#135836" />
+        ) : (
+          <Icon size={weatherButtonMap[type].iconSize} color={isEnabled ? '' : 'gray'} />
+        )
+      }
+      tooltipText={__(`tooltips.${type}}`)}
+      dataTestId={`${type}-layer-button`}
+      className={`mt-2 ${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
+      onClick={!isLoadingLayer ? onToggle : () => {}}
+    />
+  );
+}
+
+export default function MapControls(): ReactElement {
   const { __ } = useTranslation();
   const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
-  const [windLayerToggle, setWindLayerToggle] = useAtom(windLayerAtom);
-  const [solarLayerToggle, setSolarLayerToggle] = useAtom(solarLayerAtom);
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
 
-  const onToggleWindLayer = () => {
-    setWindLayerToggle(
-      windLayerToggle === ToggleOptions.ON ? ToggleOptions.OFF : ToggleOptions.ON
-    );
-  };
-
-  const onToggleSolarLayer = () => {
-    setSolarLayerToggle(
-      solarLayerToggle === ToggleOptions.ON ? ToggleOptions.OFF : ToggleOptions.ON
-    );
-  };
+  // We are currently only supporting and fetching weather data for the latest hourly value
+  const areWeatherLayersAllowed =
+    selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
 
   return (
     <div className="z-1000 pointer-events-none absolute right-3 top-3 hidden flex-col items-end md:flex">
@@ -46,28 +92,6 @@ export default function MapControls(properties: MapControlsProperties): ReactEle
       {isLanguageSelectorOpen && (
         <LanguageSelector setLanguageSelectorOpen={setIsLanguageSelectorOpen} />
       )}
-      <MapButton
-        icon={
-          <FiWind size={18} color={windLayerToggle === ToggleOptions.ON ? '' : 'gray'} />
-        }
-        tooltipText={__('tooltips.wind')}
-        dataTestId="wind-layer-button"
-        className="mt-2"
-        onClick={onToggleWindLayer}
-      />
-
-      <MapButton
-        icon={
-          <HiOutlineSun
-            size={21}
-            color={solarLayerToggle === ToggleOptions.ON ? '' : 'gray'}
-          />
-        }
-        className="mt-2"
-        dataTestId="solar-layer-button"
-        tooltipText={__('tooltips.solar')}
-        onClick={onToggleSolarLayer}
-      />
 
       <MapButton
         icon={<HiOutlineEyeOff size={21} className="opacity-50" />}
@@ -78,6 +102,12 @@ export default function MapControls(properties: MapControlsProperties): ReactEle
           console.log('toggle colorblind mode');
         }}
       />
+      {areWeatherLayersAllowed && (
+        <>
+          <WeatherButton type="wind" />
+          <WeatherButton type="solar" />
+        </>
+      )}
     </div>
   );
 }

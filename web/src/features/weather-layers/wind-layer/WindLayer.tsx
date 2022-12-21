@@ -1,11 +1,15 @@
 import { useGetWind } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { Maybe } from 'types';
 import { ToggleOptions } from 'utils/constants';
-import { selectedDatetimeIndexAtom, windLayerAtom } from 'utils/state/atoms';
+import {
+  selectedDatetimeIndexAtom,
+  windLayerAtom,
+  windLayerLoadingAtom,
+} from 'utils/state/atoms';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import Windy from './windy';
 
@@ -45,6 +49,7 @@ export default function WindLayer({ map }: { map?: MapboxMap }) {
 
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [windLayerToggle] = useAtom(windLayerAtom);
+  const setIsLoadingWindLayer = useSetAtom(windLayerLoadingAtom);
   const isWindLayerEnabled =
     windLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
   const { data: windData, isSuccess } = useGetWind({ enabled: isWindLayerEnabled });
@@ -57,6 +62,7 @@ export default function WindLayer({ map }: { map?: MapboxMap }) {
         w.start(bounds, width, height, extent);
         setWindy(w);
       });
+      setIsLoadingWindLayer(false);
     } else if (!isVisible && windy) {
       windy.stop();
       setWindy(null);
