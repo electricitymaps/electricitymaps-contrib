@@ -7,7 +7,7 @@ import { MapboxMap } from 'react-map-gl';
 import { ToggleOptions } from 'utils/constants';
 import {
   selectedDatetimeIndexAtom,
-  solarLayerAtom,
+  solarLayerEnabledAtom,
   solarLayerLoadingAtom,
 } from 'utils/state/atoms';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
@@ -22,7 +22,7 @@ import {
 export default function SolarLayer({ map }: { map?: MapboxMap }) {
   const [isMapMoving] = useAtom(mapMovingAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [solarLayerToggle] = useAtom(solarLayerAtom);
+  const [solarLayerToggle] = useAtom(solarLayerEnabledAtom);
   const setIsLoadingSolarLayer = useSetAtom(solarLayerLoadingAtom);
 
   const isSolarLayerEnabled =
