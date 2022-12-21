@@ -1,4 +1,5 @@
 import unittest
+from datetime import datetime
 from json import loads
 
 from pkg_resources import resource_string
@@ -57,6 +58,35 @@ class TestFR_O(unittest.TestCase):
                 self.assertEqual(
                     production, expected_data[index]["production"][production_type]
                 )
+
+    def test_fetch_price(self):
+        json_data = resource_string("parsers.test.mocks.FR_O", "FR_RE.json")
+        self.adapter.register_uri(ANY, ANY, json=loads(json_data.decode("utf-8")))
+        data_list = FR_O.fetch_price("RE", self.session, datetime(2018, 1, 1))
+        self.assertIsNotNone(data_list)
+        expected_data = [
+            {
+                "zoneKey": "RE",
+                "currency": "EUR",
+                "datetime": datetime.fromisoformat("2018-01-01T00:00:00+00:00"),
+                "source": "edf.fr",
+                "price": 193.7,
+            },
+            {
+                "zoneKey": "RE",
+                "currency": "EUR",
+                "datetime": datetime.fromisoformat("2018-01-01T01:00:00+00:00"),
+                "source": "edf.fr",
+                "price": 195.8,
+            },
+        ]
+        self.assertEqual(len(data_list), len(expected_data))
+        for index, actual in enumerate(data_list):
+            self.assertEqual(actual["zoneKey"], expected_data[index]["zoneKey"])
+            self.assertEqual(actual["currency"], expected_data[index]["currency"])
+            self.assertEqual(actual["datetime"], expected_data[index]["datetime"])
+            self.assertEqual(actual["source"], expected_data[index]["source"])
+            self.assertEqual(actual["price"], expected_data[index]["price"])
 
 
 if __name__ == "__main__":

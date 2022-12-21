@@ -14,4 +14,5 @@ contributors:
   - VIKTORVAV99
 parsers:
   production: FR_O.fetch_production
+  price: FR_O.fetch_price
 timezone: Europe/Paris

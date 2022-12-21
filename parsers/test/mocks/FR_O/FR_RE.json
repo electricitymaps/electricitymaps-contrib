@@ -1,0 +1,28 @@
+[
+    {
+        "territoire": "Réunion",
+        "production_totale_mwh" :259.9774783,
+        "bagasse_charbon_mwh": 196.4090964,
+        "statut": "Validé",
+        "hydraulique_mwh": 32.09856161,
+        "cout_moyen_de_production_eur_mwh": 193.7,
+        "photovoltaique_mwh": -0.23266477,
+        "bioenergies_mwh": 0.955333333,
+        "date_heure": "2018-01-01T00:00:00+00:00",
+        "eolien_mwh": 0.536,
+        "thermique_mwh": 30.21115168
+    },
+    {
+        "territoire": "Réunion",
+        "production_totale_mwh": 252.2947686,
+        "bagasse_charbon_mwh": 194.6044467,
+        "statut": "Validé",
+        "hydraulique_mwh": 26.79243513,
+        "cout_moyen_de_production_eur_mwh": 195.8,
+        "photovoltaique_mwh": -0.172447205,
+        "bioenergies_mwh": 0.9555,
+        "date_heure": "2018-01-01T01:00:00+00:00",
+        "eolien_mwh": 0.435666667,
+        "thermique_mwh": 29.67916731
+    }
+]
