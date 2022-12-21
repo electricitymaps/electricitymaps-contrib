@@ -162,3 +162,12 @@ fallbackZoneMixes:
 parsers:
   production: AR.fetch_production
 timezone: America/Argentina/Buenos_Aires
+subZoneNames:
+  - AR-BAS
+  - AR-CEN
+  - AR-COM
+  - AR-CUY
+  - AR-LIT
+  - AR-NEA
+  - AR-NOA
+  - AR-PAT
