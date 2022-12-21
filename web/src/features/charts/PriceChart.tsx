@@ -23,7 +23,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     data;
 
   return (
-    <div className="ml-4">
+    <>
       <ChartTitle translationKey="country-history.electricityprices" />
       <AreaGraph
         testId="history-prices-graph"
@@ -42,7 +42,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
         isOverlayEnabled={false}
         tooltip={PriceChartTooltip}
       />
-    </div>
+    </>
   );
 }
 

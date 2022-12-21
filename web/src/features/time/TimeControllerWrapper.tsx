@@ -33,6 +33,10 @@ function FloatingTimeController() {
 }
 
 export default function TimeControllerWrapper() {
-  const isMinSM = useBreakpoint('sm');
-  return isMinSM ? <FloatingTimeController /> : <BottomSheetWrappedTimeController />;
+  const isBiggerThanMobile = useBreakpoint('sm');
+  return isBiggerThanMobile ? (
+    <FloatingTimeController />
+  ) : (
+    <BottomSheetWrappedTimeController />
+  );
 }

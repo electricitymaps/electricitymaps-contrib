@@ -20,7 +20,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   const { chartData, layerFill, layerKeys } = data;
 
   return (
-    <div className="ml-4">
+    <>
       <ChartTitle translationKey="country-history.carbonintensity" />
       <AreaGraph
         testId="history-carbon-graph"
@@ -37,7 +37,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         selectedTimeAggregate={timeAverage}
         tooltip={CarbonChartTooltip}
       />
-    </div>
+    </>
   );
 }
 

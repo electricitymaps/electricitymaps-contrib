@@ -114,7 +114,7 @@ function AreaGraph({
 
   const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
-  const isMinSM = useBreakpoint('sm');
+  const isBiggerThanMobile = useBreakpoint('sm');
 
   // Build layers
   const layers = useMemo(
@@ -267,7 +267,7 @@ function AreaGraph({
             selectedLayerIndex !== null ? layerKeys[selectedLayerIndex] : undefined
           }
           tooltipSize={tooltipSize}
-          isMinSM={isMinSM}
+          isBiggerThanMobile={isBiggerThanMobile}
         >
           {(props) => tooltip(props)}
         </AreaGraphTooltip>

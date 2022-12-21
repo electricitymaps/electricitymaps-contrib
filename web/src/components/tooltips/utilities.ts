@@ -28,18 +28,18 @@ export const getOffsetTooltipPosition = ({
   mousePositionX,
   mousePositionY,
   tooltipHeight,
-  isMinSM,
+  isBiggerThanMobile,
 }: {
   mousePositionX: number;
   mousePositionY: number;
   tooltipHeight: number;
-  isMinSM: boolean;
+  isBiggerThanMobile: boolean;
 }) => {
   const xOffset = 10;
   const yOffset = tooltipHeight - 40;
 
   // For smaller screens we translate the tooltip to the top
-  if (!isMinSM) {
+  if (!isBiggerThanMobile) {
     return {
       x: 0,
       y: 40, // Provides space for the header to still be visible

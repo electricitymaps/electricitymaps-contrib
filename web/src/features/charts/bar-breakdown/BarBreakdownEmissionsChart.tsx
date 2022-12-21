@@ -19,9 +19,17 @@ interface BarBreakdownEmissionsChartProps {
   exchangeData: ExchangeDataType[];
   productionData: ProductionDataType[];
   isMobile: boolean;
-  onProductionRowMouseOver: (data: ZoneDetail) => void;
+  onProductionRowMouseOver: (
+    mode: string,
+    data: ZoneDetail,
+    event: React.MouseEvent<SVGPathElement, MouseEvent>
+  ) => void;
   onProductionRowMouseOut: () => void;
-  onExchangeRowMouseOver: (data: ZoneDetail) => void;
+  onExchangeRowMouseOver: (
+    mode: string,
+    data: ZoneDetail,
+    event: React.MouseEvent<SVGPathElement, MouseEvent>
+  ) => void;
   onExchangeRowMouseOut: () => void;
 }
 

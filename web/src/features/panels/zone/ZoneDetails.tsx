@@ -38,7 +38,7 @@ export default function ZoneDetails(): JSX.Element {
     <>
       <ZoneHeader zoneId={zoneId} {...selectedData} />
       <DisplayByEmissionToggle />
-      <div className="h-[calc(100%-290px)] overflow-y-scroll pb-48">
+      <div className="h-[calc(100%-290px)] overflow-y-scroll p-4 pt-0 pb-48">
         <ZoneDetailsContent
           isLoading={isLoading}
           isError={isError}

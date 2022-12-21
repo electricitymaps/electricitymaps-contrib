@@ -3,7 +3,7 @@ import { useTranslation } from 'translation/translation';
 export default function NoInformationMessage() {
   const { __ } = useTranslation();
   return (
-    <div data-test-id="no-parser-message" className="text-base">
+    <div data-test-id="no-parser-message" className="pt-4 text-base">
       <span
         className="message"
         dangerouslySetInnerHTML={{
