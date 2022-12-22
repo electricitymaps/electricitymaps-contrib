@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => ({
     clearMocks: true,
     coverage: {
       provider: 'istanbul',
-      enabled: true,
+      enabled: false,
       '100': true,
       reporter: ['text', 'lcov'],
       reportsDirectory: 'coverage',

@@ -1,4 +1,4 @@
-import { ElectricityStorageType, GenerationType, ZoneDetail } from 'types';
+import { ElectricityStorageKeyType, GenerationType, ZoneDetail } from 'types';
 import { getProductionCo2Intensity } from 'utils/helpers';
 import { getElectricityProductionValue, getTotalElectricity } from './graphUtils';
 
@@ -8,8 +8,13 @@ export function getProductionTooltipData(
   displayByEmissions: boolean
 ) {
   const co2Intensity = getProductionCo2Intensity(selectedLayerKey, zoneDetail);
-  const generationType = selectedLayerKey as GenerationType;
-  const isStorage = generationType.includes('storage');
+  const isStorage = selectedLayerKey.includes('storage');
+
+  const generationType = isStorage
+    ? (selectedLayerKey.replace(' storage', '') as GenerationType)
+    : (selectedLayerKey as GenerationType);
+
+  const storageKey = generationType as ElectricityStorageKeyType;
 
   const totalElectricity = getTotalElectricity(zoneDetail, displayByEmissions);
   const totalEmissions = getTotalElectricity(zoneDetail, true);
@@ -24,15 +29,13 @@ export function getProductionTooltipData(
   } = zoneDetail;
 
   const co2IntensitySource = isStorage
-    ? (dischargeCo2IntensitySources || {})[generationType]
+    ? (dischargeCo2IntensitySources || {})[storageKey]
     : (productionCo2IntensitySources || {})[generationType];
 
   const generationTypeCapacity = capacity[generationType];
   const generationTypeProduction = production[generationType];
-  const storageType = isStorage
-    ? (generationType.replace('storage', '') as ElectricityStorageType)
-    : undefined;
-  const generationTypeStorage = storageType ? storage[storageType] : 0;
+
+  const generationTypeStorage = storageKey ? storage[storageKey] : 0;
 
   const electricity = getElectricityProductionValue({
     generationTypeCapacity,
@@ -41,14 +44,16 @@ export function getProductionTooltipData(
     generationTypeProduction,
   });
   const isExport = electricity < 0;
-  const usage =
-    (Number.isFinite(electricity) &&
-      Math.abs(displayByEmissions ? electricity * co2Intensity * 1000 : electricity)) ||
-    Number.NaN;
 
-  const emissions =
-    (Number.isFinite(electricity) && Math.abs(electricity * co2Intensity * 1000)) ||
-    Number.NaN;
+  let usage = Number.NaN;
+  let emissions = Number.NaN;
+
+  if (Number.isFinite(electricity)) {
+    usage = Math.abs(
+      displayByEmissions ? electricity * co2Intensity * 1000 : electricity
+    );
+    emissions = Math.abs(electricity * co2Intensity * 1000);
+  }
 
   return {
     co2Intensity,

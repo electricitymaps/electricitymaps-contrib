@@ -129,7 +129,7 @@ export function BreakdownChartTooltipContent(
       ); // Eg: "20 % of electricity in Denmark comes from biomass"
 
   return (
-    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl sm:w-[410px]">
+    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:bg-gray-900 sm:w-[410px]">
       <AreaGraphToolTipHeader
         squareColor={
           isExchange ? co2ColorScale(co2Intensity) : modeColor[selectedLayerKey]

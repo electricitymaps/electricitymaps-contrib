@@ -11,14 +11,20 @@ interface AreaGraphTooltipProperties {
   dataPoint?: AreaGraphElement;
   position?: { x: number; y: number } | undefined;
   tooltipSize?: 'small' | 'large';
-  isMinSM: boolean;
+  isBiggerThanMobile: boolean;
 }
 
 export default function AreaGraphTooltip(
   properties: AreaGraphTooltipProperties
 ): ReactElement | null {
-  const { children, zoneDetail, selectedLayerKey, position, tooltipSize, isMinSM } =
-    properties;
+  const {
+    children,
+    zoneDetail,
+    selectedLayerKey,
+    position,
+    tooltipSize,
+    isBiggerThanMobile,
+  } = properties;
 
   if (
     children === undefined ||
@@ -32,7 +38,7 @@ export default function AreaGraphTooltip(
     mousePositionX: position?.x || 0,
     mousePositionY: position?.y || 0,
     tooltipHeight: tooltipSize === 'large' ? 360 : 160,
-    isMinSM,
+    isBiggerThanMobile,
   });
 
   return (

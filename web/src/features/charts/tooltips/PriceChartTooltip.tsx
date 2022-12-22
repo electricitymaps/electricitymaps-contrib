@@ -17,7 +17,7 @@ export default function PriceChartTooltip(props: InnerAreaGraphTooltipProps) {
   const value = priceIsDefined ? price?.value : '';
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-64">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:bg-gray-900 sm:w-64">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}

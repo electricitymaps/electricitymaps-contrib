@@ -119,7 +119,7 @@ describe('getProductionTooltipData', () => {
       totalEmissions: 13_208_019_616.973_745,
       production: 41_161,
       zoneKey: 'FR',
-      storage: 0,
+      storage: undefined,
       isExport: false,
       emissions: 211_155_930,
       usage: 41_161,
@@ -138,12 +138,41 @@ describe('getProductionTooltipData', () => {
       totalEmissions: 13_208_019_616.973_745,
       production: 41_161,
       zoneKey: 'FR',
-      storage: 0,
+      storage: undefined,
       isExport: false,
       emissions: 211_155_930,
       usage: 211_155_930,
     };
     expect(actual).toEqual(expected);
+  });
+
+  it('returns correct data for hydro storage', () => {
+    const actual = getProductionTooltipData('hydro storage', zoneDetailsData, false);
+    const expected = {
+      capacity: 20_222.25,
+      co2Intensity: 54.190_888_929_032_22,
+      co2IntensitySource: 'Electricity Maps, 2021 average',
+      displayByEmissions: false,
+      totalElectricity: 84_545.75,
+      totalEmissions: 13_208_019_616.973_745,
+      production: 11_930.25,
+      zoneKey: 'FR',
+      storage: -3738.75,
+      isExport: false,
+      emissions: 202_606_185.983_419_2,
+      usage: 3738.75,
+    };
+    expect(actual).toEqual(expected);
+  });
+
+  it('returns 0 usage for zero production', () => {
+    const actual = getProductionTooltipData('solar', zoneDetailsData, false);
+    expect(actual.usage).toEqual(0);
+  });
+
+  it('returns nan usage for null production', () => {
+    const actual = getProductionTooltipData('geothermal', zoneDetailsData, false);
+    expect(actual.usage).toEqual(Number.NaN);
   });
 });
 
