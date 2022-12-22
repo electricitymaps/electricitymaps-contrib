@@ -10,6 +10,9 @@ web/config/exchanges.json
 web/config/zones.json
 world-aggregated.json
 
+# disabling index.html as we want to keep longer lines to make scanning easier
+web/index.html
+
 mockserver/public
 
 .github/ISSUE_TEMPLATE/

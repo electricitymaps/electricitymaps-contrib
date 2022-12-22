@@ -10,5 +10,5 @@
     "strict": true,
     "target": "ESNext"
   },
-  "include": ["vite.config.ts", "cypress.config.ts", "src/translation/locales.ts"]
+  "include": ["vite.config.ts", "cypress.config.ts"]
 }
