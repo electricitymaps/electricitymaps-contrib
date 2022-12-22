@@ -318,6 +318,9 @@
     "BQ": {
       "zoneName": "보네르섬, 신트외스타티위스섬, 사바섬 제도"
     },
+    "BR": {
+      "zoneName": "브라질"
+    },
     "BR-CS": {
       "countryName": "브라질",
       "zoneName": "중부 브라질"
@@ -592,10 +595,6 @@
     "GB-ORK": {
       "countryName": "영국",
       "zoneName": "오크니 제도"
-    },
-    "GB-ZET": {
-      "countryName": "영국",
-      "zoneName": "셰틀랜드 제도"
     },
     "GB-ZET": {
       "countryName": "영국",

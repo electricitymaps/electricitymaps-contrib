@@ -6,6 +6,7 @@ bounding_box:
 bypassedSubZones:
   - US-FLA-HST
   - US-SE-SEPA
+  - US-CAR-YAD
 capacity:
   battery storage: 4832.0
   biomass: 14487.1

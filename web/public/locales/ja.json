@@ -325,6 +325,9 @@
     "BQ": {
       "zoneName": "ボネール、シント・ユースタティウスおよびサバ"
     },
+    "BR": {
+      "zoneName": "ブラジル"
+    },
     "BR-CS": {
       "countryName": "ブラジル",
       "zoneName": "中央ブラジル"
@@ -599,10 +602,6 @@
     "GB-ORK": {
       "countryName": "イギリス",
       "zoneName": "オークニー諸島"
-    },
-    "GB-ZET": {
-      "countryName": "イギリス",
-      "zoneName": "シェットランド諸島"
     },
     "GB-ZET": {
       "countryName": "イギリス",
