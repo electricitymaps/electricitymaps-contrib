@@ -48,7 +48,7 @@ const LanguageSelectContainer = styled.ul`
     }
     &.other-language {
       position: relative;
-      top: 30px;
+      top: 27px;
     }
   }
 `;
