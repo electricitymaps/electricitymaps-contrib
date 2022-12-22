@@ -34,7 +34,7 @@ CAMMESA_EXCHANGE_ENDPOINT = (
 )
 
 REGIONS = {
-    "AR": "Total del SADI",
+    "AR": "Total del SADI ",
     "AR-BAS": "Buenos Aires",
     "AR-NEA": "NEA",
     "AR-NOA": "NOA",
@@ -99,18 +99,8 @@ def fetch_production(
 
     current_session = session or Session()
 
-    non_renewables_production: Dict[str, dict] = non_renewables_production_mix(
-        zone_key, current_session
-    )
-
-    if zone_key == "AR":
-        renewables_production: Dict[str, dict] = renewables_production_mix(
-            zone_key, current_session
-        )
-    else:
-        renewables_production: Dict[str, dict] = regional_renewables_production_mix(
-            zone_key, current_session
-        )
+    non_renewables_production = non_renewables_production_mix(zone_key, current_session)
+    renewables_production = renewables_production_mix(zone_key, current_session)
 
     full_production_list = [
         {
@@ -150,21 +140,41 @@ def merged_production_mix(non_renewables_mix: dict, renewables_mix: dict) -> dic
 def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
     """Retrieves production mix for renewables using CAMMESA's API"""
 
-    today = arrow.now(tz="America/Argentina/Buenos Aires").format("DD-MM-YYYY")
-    params = {"desde": today, "hasta": today}
-    renewables_response = session.get(CAMMESA_RENEWABLES_ENDPOINT, params=params)
+    now = arrow.now(tz="America/Argentina/Buenos_Aires").floor("minute")
+
+    if zone_key == "AR":
+        today = now.format("DD-MM-YYYY")
+        params = {"desde": today, "hasta": today}
+        endpoint = CAMMESA_RENEWABLES_ENDPOINT
+        time = now
+
+    else:
+        endpoint = CAMMESA_RENEWABLES_REGIONAL_ENDPOINT
+        params = {}
+        minute = int(now.format("mm"))
+        rounded = minute - minute % 5
+        time = now.replace(minute=rounded).format("YYYY-MM-DDTHH:mm:ss.SSSZ")
+        region_name = zone_key[3:]
+
+    renewables_response = session.get(endpoint, params=params)
     assert renewables_response.status_code == 200, (
         "Exception when fetching production for "
         "{}: error when calling url={} with payload={}".format(
-            zone_key, CAMMESA_RENEWABLES_ENDPOINT, params
+            zone_key, endpoint, params
         )
     )
 
     production_list = renewables_response.json()
-    sorted_production_list = sorted(production_list, key=lambda d: d["momento"])
+
+    if zone_key == "AR":
+        sorted_production_list = sorted(production_list, key=lambda d: d["momento"])
+    else:
+        sorted_production_list = list(
+            filter(lambda d: d["nemoRegion"] == region_name, production_list)
+        )
 
     renewables_production: Dict[str, dict] = {
-        production_info["momento"]: {
+        production_info.get("momento", time): {
             "biomass": production_info["biocombustible"],
             "hydro": production_info["hidraulica"],
             "solar": production_info["fotovoltaica"],
@@ -172,42 +182,6 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
         }
         for production_info in sorted_production_list
     }
-    return renewables_production
-
-
-def regional_renewables_production_mix(
-    zone_key: str, session: Session
-) -> Dict[str, dict]:
-    """Retrieves production mix for renewables per region using CAMMESA's API"""
-
-    now = arrow.now(tz="America/Argentina/Buenos Aires").floor("minute")
-    minute = int(now.format("mm"))
-    rounded = minute - minute % 5
-    time = now.replace(minute=rounded).format("YYYY-MM-DDTHH:mm:ss.SSSZ")
-
-    renewables_response = session.get(CAMMESA_RENEWABLES_REGIONAL_ENDPOINT)
-    assert renewables_response.status_code == 200, (
-        "Exception when fetching production for "
-        "{}: error when calling url={}".format(
-            zone_key, CAMMESA_RENEWABLES_REGIONAL_ENDPOINT
-        )
-    )
-
-    production_list = renewables_response.json()
-
-    region_name = zone_key[3:]
-
-    renewables_production: Dict[str, dict] = {
-        time: {
-            "biomass": production_info["biocombustible"],
-            "hydro": production_info["hidraulica"],
-            "solar": production_info["fotovoltaica"],
-            "wind": production_info["eolica"],
-        }
-        for production_info in production_list
-        if production_info["nemoRegion"] == region_name
-    }
-
     return renewables_production
 
 
