@@ -8,6 +8,7 @@ interface ToggleButtonProperties {
   selectedOption: string;
   onToggle: (option: string) => void;
   tooltipKey?: string;
+  fontSize?: string;
 }
 
 export default function ToggleButton({
@@ -15,6 +16,7 @@ export default function ToggleButton({
   selectedOption,
   tooltipKey,
   onToggle,
+  fontSize = 'text-sm',
 }: ToggleButtonProperties): ReactElement {
   const { __ } = useTranslation();
   return (
@@ -32,11 +34,11 @@ export default function ToggleButton({
             value={option.value}
             onClick={() => onToggle(option.value)}
             className={`
-       inline-flex h-[26px] w-full rounded-full px-4 pt-1 text-sm  ${
-         option.value === selectedOption
-           ? ' box-shadow bg-white  transition duration-500 ease-in-out dark:bg-gray-500'
-           : ''
-       }`}
+       inline-flex h-[26px] w-full items-center rounded-full px-4 ${fontSize} ${
+              option.value === selectedOption
+                ? ' box-shadow bg-white  transition duration-500 ease-in-out dark:bg-gray-500'
+                : ''
+            }`}
           >
             <p className="sans flex-grow select-none  dark:text-white">
               {__(option.translationKey)}

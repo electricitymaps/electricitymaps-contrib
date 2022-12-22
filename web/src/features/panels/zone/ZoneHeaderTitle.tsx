@@ -3,7 +3,7 @@ import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
-import { getZoneName } from 'translation/translation';
+import { getCountryName, getZoneName } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
 import { CountryTag } from './CountryTag';
 
@@ -20,7 +20,7 @@ export default function ZoneHeaderTitle({
 }: ZoneHeaderTitleProps) {
   const title = getZoneName(zoneId);
   const isSubZone = zoneId.includes('-');
-
+  const countryName = getCountryName(zoneId);
   const returnToMapLink = createToWithState('/map');
 
   return (
@@ -42,7 +42,7 @@ export default function ZoneHeaderTitle({
           <h2 className="font-medium" data-test-id="zone-name">
             {title}
             <span className="absolute ml-1 -mt-0.5">
-              {isSubZone && <CountryTag zoneId={zoneId} />}
+              {isSubZone && <CountryTag zoneId={zoneId} hideFlag />}
             </span>
           </h2>
         </div>

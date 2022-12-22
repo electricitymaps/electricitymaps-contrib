@@ -30,6 +30,7 @@ export default function EmissionToggle(): ReactElement {
         options={options}
         selectedOption={displayByEmissions.toString()}
         onToggle={onSetCurrentMode}
+        fontSize="text-xs"
       />
     </div>
   );
