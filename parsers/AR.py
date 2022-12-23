@@ -146,7 +146,6 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
         today = now.format("DD-MM-YYYY")
         params = {"desde": today, "hasta": today}
         endpoint = CAMMESA_RENEWABLES_ENDPOINT
-        time = now
 
     else:
         endpoint = CAMMESA_RENEWABLES_REGIONAL_ENDPOINT
@@ -158,23 +157,18 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
 
     renewables_response = session.get(endpoint, params=params)
     assert renewables_response.status_code == 200, (
-        "Exception when fetching production for "
-        "{}: error when calling url={} with payload={}".format(
-            zone_key, endpoint, params
-        )
+        f"Exception when fetching production for {zone_key}: error when calling url={endpoint} with payload={params}"
     )
 
     production_list = renewables_response.json()
 
-    if zone_key == "AR":
-        sorted_production_list = sorted(production_list, key=lambda d: d["momento"])
-    else:
+    if zone_key != "AR":
         sorted_production_list = list(
             filter(lambda d: d["nemoRegion"] == region_name, production_list)
         )
 
     renewables_production: Dict[str, dict] = {
-        production_info.get("momento", time): {
+        (production_info["momento"] if zone_key == "AR" else time): {
             "biomass": production_info["biocombustible"],
             "hydro": production_info["hidraulica"],
             "solar": production_info["fotovoltaica"],
@@ -192,10 +186,7 @@ def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, 
     params = {"id_region": id}
     api_cammesa_response = session.get(CAMMESA_DEMANDA_ENDPOINT, params=params)
     assert api_cammesa_response.status_code == 200, (
-        "Exception when fetching production for "
-        "{}: error when calling url={} with payload={}".format(
-            zone_key, CAMMESA_DEMANDA_ENDPOINT, params
-        )
+        f"Exception when fetching production for {zone_key}: error when calling url={CAMMESA_DEMANDA_ENDPOINT} with payload={params}"
     )
 
     production_list = api_cammesa_response.json()
@@ -219,10 +210,8 @@ def get_region_id(zone_key, session: Session) -> int:
     """Fetches the region id for the zone that is required to get the production of that zone."""
     regions_response = session.get(CAMMESA_REGIONS_ENDPOINT)
 
-    assert (
-        regions_response.status_code == 200
-    ), "Exception when fetching regions for AR: " "error when calling url={}".format(
-        CAMMESA_REGIONS_ENDPOINT
+    assert regions_response.status_code == 200, (
+        f"Exception when fetching regions for AR: error when calling url={CAMMESA_REGIONS_ENDPOINT}"
     )
 
     regions = regions_response.json()
