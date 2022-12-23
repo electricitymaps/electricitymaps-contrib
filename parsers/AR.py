@@ -27,12 +27,38 @@ SUPPORTED_EXCHANGES = {
     "AR->CL-SEN": "ARG-CHI",
     "AR->PY": "ARG-PAR",
     "AR->UY": "ARG-URU",
+    "AR-BAS->AR-COM": "PBA-COM",
+    "AR-CEN->AR-COM": "CEN-COM",
+    "AR-CEN->AR-NOA": "CEN-NOA",
+    "AR-CUY->AR-COM": "CUY-COM",
+    "AR-CEN->AR-CUY": "CEN-CUY",
+    "AR-LIT->AR-NEA": "LIT-NEA",
+    "AR-BAS->AR-LIT": "PBA-LIT",
+    "AR-CUY->AR-NOA": "CUY-NOA",
+    "AR-LIT->AR-CEN": "LIT-CEN",
+    "AR-LIT->AR-NOA": "LIT-NOA",
+    "AR-BAS->AR-CEN": "PBA-CEN",
+    "AR-COM->AR-PAT": "COM-PAT",
+    "AR-NEA->AR-NOA": "NEA-NOA",
 }
 
-EXCHANGE_DIRECTIONS = {  # directions are from outer region -> Argentina
+EXCHANGE_DIRECTIONS = {  # directions are from second region -> first region
     "AR->CL-SEN": 0,
     "AR->PY": 225,
     "AR->UY": 180,
+    "AR-BAS->AR-COM": 45,
+    "AR-CEN->AR-COM": 90,
+    "AR-CEN->AR-NOA": 315,
+    "AR-CUY->AR-COM": 135,
+    "AR-CEN->AR-CUY": 45,
+    "AR-LIT->AR-NEA": 225,
+    "AR-BAS->AR-LIT": 270,
+    "AR-CUY->AR-NOA": 45,
+    "AR-LIT->AR-CEN": 45,
+    "AR-LIT->AR-NOA": 135,
+    "AR-BAS->AR-CEN": 135,
+    "AR-COM->AR-PAT": 90,
+    "AR-NEA->AR-NOA": 180,
 }
 
 
