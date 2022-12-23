@@ -164,18 +164,15 @@ def fetch_exchange(
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     sorted_codes = "->".join(sorted_zone_keys)
     flow: Union[float, None] = None
-    target_datetime = arrow.now(tz="America/Argentina/Buenos_Aires").datetime
+    returned_datetime = arrow.now(tz="America/Argentina/Buenos_Aires").datetime
 
     if sorted_codes in SUPPORTED_EXCHANGES:
         current_session = session or Session()
 
         api_cammesa_response = current_session.get(CAMMESA_EXCHANGE_ENDPOINT)
-        assert api_cammesa_response.status_code == 200, (
-            "Exception when fetching exchange for "
-            "{}: error when calling url={}".format(
-                sorted_codes, CAMMESA_EXCHANGE_ENDPOINT
-            )
-        )
+        assert (
+            api_cammesa_response.status_code == 200
+        ), f"Exception when fetching exchange for {sorted_codes}: error when calling url={CAMMESA_EXCHANGE_ENDPOINT}"
 
         exchange_name = SUPPORTED_EXCHANGES[sorted_codes]
         exchange_list = api_cammesa_response.json()
@@ -187,7 +184,7 @@ def fetch_exchange(
                 flow = int(properties["text"])
                 if angle_config != given_angle:
                     flow = -flow
-                target_datetime = (
+                returned_datetime = datetime.fromisoformat(
                     properties["fecha"][:-2] + ":" + properties["fecha"][-2:]
                 )
                 break
@@ -196,7 +193,7 @@ def fetch_exchange(
 
     exchange = {
         "sortedZoneKeys": sorted_codes,
-        "datetime": arrow.get(target_datetime).datetime,
+        "datetime": returned_datetime,
         "netFlow": flow,
         "source": "cammesaweb.cammesa.com",
     }
