@@ -156,9 +156,9 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
         region_name = zone_key[3:]
 
     renewables_response = session.get(endpoint, params=params)
-    assert renewables_response.status_code == 200, (
-        f"Exception when fetching production for {zone_key}: error when calling url={endpoint} with payload={params}"
-    )
+    assert (
+        renewables_response.status_code == 200
+    ), f"Exception when fetching production for {zone_key}: error when calling url={endpoint} with payload={params}"
 
     production_list = renewables_response.json()
 
@@ -185,9 +185,9 @@ def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, 
     id = get_region_id(zone_key, session)
     params = {"id_region": id}
     api_cammesa_response = session.get(CAMMESA_DEMANDA_ENDPOINT, params=params)
-    assert api_cammesa_response.status_code == 200, (
-        f"Exception when fetching production for {zone_key}: error when calling url={CAMMESA_DEMANDA_ENDPOINT} with payload={params}"
-    )
+    assert (
+        api_cammesa_response.status_code == 200
+    ), f"Exception when fetching production for {zone_key}: error when calling url={CAMMESA_DEMANDA_ENDPOINT} with payload={params}"
 
     production_list = api_cammesa_response.json()
     sorted_production_list = sorted(production_list, key=lambda d: d["fecha"])
@@ -210,9 +210,9 @@ def get_region_id(zone_key, session: Session) -> int:
     """Fetches the region id for the zone that is required to get the production of that zone."""
     regions_response = session.get(CAMMESA_REGIONS_ENDPOINT)
 
-    assert regions_response.status_code == 200, (
-        f"Exception when fetching regions for AR: error when calling url={CAMMESA_REGIONS_ENDPOINT}"
-    )
+    assert (
+        regions_response.status_code == 200
+    ), f"Exception when fetching regions for AR: error when calling url={CAMMESA_REGIONS_ENDPOINT}"
 
     regions = regions_response.json()
     region_to_id = {region["nombre"]: region["id"] for region in regions}
