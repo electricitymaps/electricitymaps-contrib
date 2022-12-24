@@ -8,6 +8,8 @@ from typing import Dict, List, Optional, Union
 import arrow
 from requests import Session
 
+from .lib.exceptions import ParserException
+
 # Useful links.
 # https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
 # https://en.wikipedia.org/wiki/List_of_power_stations_in_Argentina
@@ -190,7 +192,6 @@ def fetch_exchange(
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     sorted_codes = "->".join(sorted_zone_keys)
     flow: Union[float, None] = None
-    returned_datetime = arrow.now(tz="America/Argentina/Buenos_Aires").datetime
 
     if sorted_codes in SUPPORTED_EXCHANGES:
         current_session = session or Session()
@@ -214,6 +215,12 @@ def fetch_exchange(
                     properties["fecha"][:-2] + ":" + properties["fecha"][-2:]
                 )
                 break
+        if flow is None:
+            raise ParserException(
+            "AR.py",
+            f"Failed fetching exchange for {sorted_zone_keys}",
+            sorted_codes,
+        )
     else:
         raise NotImplementedError("This exchange is not currently implemented")
 
