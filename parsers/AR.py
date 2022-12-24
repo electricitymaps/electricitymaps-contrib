@@ -217,10 +217,10 @@ def fetch_exchange(
                 break
         if flow is None:
             raise ParserException(
-            "AR.py",
-            f"Failed fetching exchange for {sorted_zone_keys}",
-            sorted_codes,
-        )
+                "AR.py",
+                f"Failed fetching exchange for {sorted_zone_keys}",
+                sorted_codes,
+            )
     else:
         raise NotImplementedError("This exchange is not currently implemented")
 
