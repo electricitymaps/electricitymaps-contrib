@@ -5,17 +5,17 @@ bounding_box:
     - 51.2894059027
 capacity:
   battery storage: 7
-  biomass: 2234
-  coal: 1818
-  gas: 12752
-  geothermal: 16
-  hydro: 20222.24623
-  hydro storage: 5053.468
+  biomass: 2248
+  coal: 1816
+  gas: 13074
+  geothermal: 2
+  hydro: 20619
+  hydro storage: 5050
   nuclear: 61370
-  oil: 2890
-  solar: 13612
-  unknown: 1366
-  wind: 19099
+  oil: 2762
+  solar: 13154
+  unknown: 1544
+  wind: 19536
 contributors:
   - corradio
   - lorrieq

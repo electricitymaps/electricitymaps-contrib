@@ -4,11 +4,13 @@ bounding_box:
   - - 22.9523771502
     - 42.3202595078
 capacity:
+  biomass: 7
   coal: 824
   gas: 251
-  hydro: 506
+  hydro: 644
   nuclear: 0
-  wind: 35
+  solar: 22
+  wind: 37
 delays:
   consumption: 24
   consumptionForecast: 24
