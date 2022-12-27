@@ -9,7 +9,7 @@ capacity:
   gas: 251
   hydro: 644
   nuclear: 0
-  solar: 22 
+  solar: 22
   wind: 37
 delays:
   consumption: 24
