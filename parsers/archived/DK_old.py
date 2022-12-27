@@ -68,7 +68,7 @@ def fetch_production(
             raise Exception("Retried too many times..")
         # Wait and retry
         logger.warn("Retrying..")
-        time.sleep(5 ** retry_count)
+        time.sleep(5**retry_count)
         response = r.get(url)
     if response.status_code != 200:
         j = response.json()
@@ -198,7 +198,7 @@ def fetch_exchange(
             raise Exception("Retried too many times..")
         # Wait and retry
         logger.warn("Retrying..")
-        time.sleep(5 ** retry_count)
+        time.sleep(5**retry_count)
         response = r.get(url)
     if response.status_code != 200:
         j = response.json()
