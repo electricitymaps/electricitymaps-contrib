@@ -8,115 +8,119 @@ from typing import Optional
 
 import arrow
 import pandas as pd
-from bs4 import BeautifulSoup
 from requests import Session
 
 TIMEZONE = "America/Costa_Rica"
-DATE_FORMAT = "DD/MM/YYYY"
-MONTH_FORMAT = "MM/YYYY"
-POWER_PLANTS = {
-    "Aeroenergía": "wind",
-    "Altamira": "wind",
-    "Angostura": "hydro",
-    "Arenal": "hydro",
-    "Balsa Inferior": "hydro",
-    "Barranca": "oil",
-    "Barro Morado": "geothermal",
-    "Belén": "hydro",
-    "Bijagua": "hydro",
-    "Birris12": "hydro",
-    "Birris3": "hydro",
-    "Boca de Pozo": "hydro",
-    "CNFL": "hydro",
-    "Cachí": "hydro",
-    "Campos Azules": "wind",
-    "Canalete": "hydro",
-    "Cariblanco": "hydro",
-    "Carrillos": "hydro",
-    "Caño Grande": "hydro",
-    "Caño Grande III": "hydro",
-    "Chiripa": "wind",
-    "Chocosuelas": "hydro",
-    "Chucás": "hydro",
-    "Cote": "hydro",
-    "Cubujuquí": "hydro",
-    "Daniel Gutiérrez": "hydro",
-    "Dengo": "hydro",
-    "Don Pedro": "hydro",
-    "Doña Julia": "hydro",
-    "Echandi": "hydro",
-    "Electriona": "hydro",
-    "El Encanto": "hydro",
-    "El Angel": "hydro",
-    "El Angel Ampliación": "hydro",
-    "El Embalse": "hydro",
-    "El General": "hydro",
-    "El Viejo": "biomass",
-    "Garabito": "oil",
-    "Garita": "hydro",
-    "Guápiles": "oil",
-    "Hidrozarcas": "hydro",
-    "Jorge Manuel Dengo": "hydro",
-    "La Esperanza (CoopeL)": "hydro",
-    "La Joya": "hydro",
-    "Las Pailas II": "geothermal",
-    "Los Negros": "hydro",
-    "Los Negros II": "hydro",
-    "Los Santos": "wind",
-    "MOVASA": "wind",
-    "Matamoros": "hydro",
-    "Miravalles I": "geothermal",
-    "Miravalles II": "geothermal",
-    "Miravalles III": "geothermal",
-    "Miravalles V": "geothermal",
-    "Moín I": "oil",
-    "Moín II": "oil",
-    "Moín III": "oil",
-    "Orosí": "wind",
-    "Orotina": "unknown",
-    "Otros": "unknown",
-    "PE Cacao": "wind",
-    "PE Mogote": "wind",
-    "PE Río Naranjo": "hydro",
-    "PEG": "wind",
-    "Pailas": "geothermal",
-    "Parque Solar Juanilama": "solar",
-    "Parque Solar Miravalles": "solar",
-    "Peñas Blancas": "hydro",
-    "Pirrís": "hydro",
-    "Plantas Eólicas": "wind",
-    "Platanar": "hydro",
-    "Pocosol": "hydro",
-    "Poás I y II": "hydro",
-    "Reventazón": "hydro",
-    "Río Lajas": "hydro",
-    "Río Macho": "hydro",
-    "Río Segundo": "hydro",
-    "San Antonio": "oil",
-    "San Lorenzo (C)": "hydro",
-    "Sandillal": "hydro",
-    "Suerkata": "hydro",
-    "Taboga": "biomass",
-    "Tacares": "hydro",
-    "Tejona": "wind",
-    "Tilawind": "wind",
-    "Torito": "hydro",
-    "Toro I": "hydro",
-    "Toro II": "hydro",
-    "Toro III": "hydro",
-    "Tuis (JASEC)": "hydro",
-    "Valle Central": "wind",
-    "Vara Blanca": "hydro",
-    "Ventanas": "hydro",
-    "Ventanas-Garita": "hydro",
-    "Vientos de La Perla": "wind",
-    "Vientos de Miramar": "wind",
-    "Vientos del Este": "wind",
-    "Volcán": "hydro",
+# POWER_PLANTS = {
+#     "Aeroenergía": "wind",
+#     "Altamira": "wind",
+#     "Angostura": "hydro",
+#     "Arenal": "hydro",
+#     "Balsa Inferior": "hydro",
+#     "Barranca": "oil",
+#     "Barro Morado": "geothermal",
+#     "Belén": "hydro",
+#     "Bijagua": "hydro",
+#     "Birris12": "hydro",
+#     "Birris3": "hydro",
+#     "Boca de Pozo": "hydro",
+#     "CNFL": "hydro",
+#     "Cachí": "hydro",
+#     "Campos Azules": "wind",
+#     "Canalete": "hydro",
+#     "Cariblanco": "hydro",
+#     "Carrillos": "hydro",
+#     "Caño Grande": "hydro",
+#     "Caño Grande III": "hydro",
+#     "Chiripa": "wind",
+#     "Chocosuelas": "hydro",
+#     "Chucás": "hydro",
+#     "Cote": "hydro",
+#     "Cubujuquí": "hydro",
+#     "Daniel Gutiérrez": "hydro",
+#     "Dengo": "hydro",
+#     "Don Pedro": "hydro",
+#     "Doña Julia": "hydro",
+#     "Echandi": "hydro",
+#     "Electriona": "hydro",
+#     "El Encanto": "hydro",
+#     "El Angel": "hydro",
+#     "El Angel Ampliación": "hydro",
+#     "El Embalse": "hydro",
+#     "El General": "hydro",
+#     "El Viejo": "biomass",
+#     "Garabito": "oil",
+#     "Garita": "hydro",
+#     "Guápiles": "oil",
+#     "Hidrozarcas": "hydro",
+#     "Jorge Manuel Dengo": "hydro",
+#     "La Esperanza (CoopeL)": "hydro",
+#     "La Joya": "hydro",
+#     "Las Pailas II": "geothermal",
+#     "Los Negros": "hydro",
+#     "Los Negros II": "hydro",
+#     "Los Santos": "wind",
+#     "MOVASA": "wind",
+#     "Matamoros": "hydro",
+#     "Miravalles I": "geothermal",
+#     "Miravalles II": "geothermal",
+#     "Miravalles III": "geothermal",
+#     "Miravalles V": "geothermal",
+#     "Moín I": "oil",
+#     "Moín II": "oil",
+#     "Moín III": "oil",
+#     "Orosí": "wind",
+#     "Orotina": "oil",
+#     "Otros": "hydra",
+#     "PE Cacao": "wind",
+#     "PE Mogote": "wind",
+#     "PE Río Naranjo": "hydro",
+#     "PEG": "wind",
+#     "Pailas": "geothermal",
+#     "Parque Solar Juanilama": "solar",
+#     "Parque Solar Miravalles": "solar",
+#     "Peñas Blancas": "hydro",
+#     "Pirrís": "hydro",
+#     "Plantas Eólicas": "wind",
+#     "Platanar": "hydro",
+#     "Pocosol": "hydro",
+#     "Poás I y II": "hydro",
+#     "Reventazón": "hydro",
+#     "Río Lajas": "hydro",
+#     "Río Macho": "hydro",
+#     "Río Segundo": "hydro",
+#     "San Antonio": "oil",
+#     "San Lorenzo (C)": "hydro",
+#     "Sandillal": "hydro",
+#     "Suerkata": "hydro",
+#     "Taboga": "biomass",
+#     "Tacares": "hydro",
+#     "Tejona": "wind",
+#     "Tilawind": "wind",
+#     "Torito": "hydro",
+#     "Toro I": "hydro",
+#     "Toro II": "hydro",
+#     "Toro III": "hydro",
+#     "Tuis (JASEC)": "hydro",
+#     "Valle Central": "wind",
+#     "Vara Blanca": "hydro",
+#     "Ventanas": "hydro",
+#     "Ventanas-Garita": "hydro",
+#     "Vientos de La Perla": "wind",
+#     "Vientos de Miramar": "wind",
+#     "Vientos del Este": "wind",
+#     "Volcán": "hydro",
+# }
+
+# Note: Ignoring Intercambio deliberately
+SPANISH_TO_ENGLISH = {
+    "Bagazo": "biomass",
+    "Eólica": "wind",
+    "Geotérmica": "geothermal",
+    "Hidroeléctrica": "hydro",
+    "Solar": "solar",
+    "Térmica": "oil",
 }
-
-CHARACTERISTIC_NAME = "Angostura"
-
 
 def empty_record(zone_key: str):
     return {
@@ -137,39 +141,6 @@ def empty_record(zone_key: str):
         "storage": {},
         "source": "grupoice.com",
     }
-
-
-def df_to_data(zone_key: str, day, df, logger: Logger):
-    df = df.dropna(axis=1, how="any")
-    # Check for empty dataframe
-    if df.shape == (1, 1):
-        return []
-    df = df.drop(["Intercambio Sur", "Intercambio Norte", "Total"], errors="ignore")
-    df = df.iloc[:, :-1]
-
-    results = []
-    unknown_plants = set()
-    hour = 0
-    for column in df:
-        data = empty_record(zone_key)
-        data_time = day.replace(hour=hour, minute=0, second=0, microsecond=0).datetime
-        for index, value in df[column].items():
-            source = POWER_PLANTS.get(index)
-            if not source:
-                source = "unknown"
-                unknown_plants.add(index)
-            data["datetime"] = data_time
-            data["production"][source] += max(0.0, value)
-        hour += 1
-        results.append(data)
-
-    for plant in unknown_plants:
-        logger.warning(
-            "{} is not mapped to generation type".format(plant), extra={"key": zone_key}
-        )
-
-    return results
-
 
 def fetch_production(
     zone_key: str = "CR",
@@ -202,62 +173,61 @@ def fetch_production(
 
     # Do not use existing session as some amount of cache is taking place
     r = Session()
-    url = "https://apps.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf"
+    day = target_datetime.format("DD")
+    month = target_datetime.format("MM")
+    year = target_datetime.format("YYYY")
+    url = f"https://apps.grupoice.com/CenceWeb/data/sen/json/EnergiaHorariaFuentePlanta?anno={year}&mes={month}&dia={day}"
+
     response = r.get(url)
+    resp_data = response.json()["data"]
 
-    soup = BeautifulSoup(response.text, "html.parser")
-    jsf_view_state = soup.find("input", {"name": "javax.faces.ViewState"})["value"]
+    results = {}
+    for hourly_item in resp_data:
+        if hourly_item["fuente"] == "Intercambio":
+            continue
+        if hourly_item["fecha"] not in results:
+            results[hourly_item["fecha"]] = empty_record(zone_key)
 
-    data = [
-        ("formPosdespacho:txtFechaInicio_input", target_datetime.format(DATE_FORMAT)),
-        ("formPosdespacho:pickFecha", ""),
-        ("formPosdespacho_SUBMIT", 1),
-        ("javax.faces.ViewState", jsf_view_state),
-    ]
-    response = r.post(url, data=data)
-
-    # tell pandas which table to use by providing CHARACTERISTIC_NAME
-    df = pd.read_html(
-        response.text, match=CHARACTERISTIC_NAME, skiprows=1, index_col=0
-    )[0]
-
-    results = df_to_data(zone_key, target_datetime, df, logger)
-
-    return results
+        results[hourly_item["fecha"]]["datetime"] = arrow.get(hourly_item["fecha"], tzinfo=TIMEZONE).datetime
+        results[hourly_item["fecha"]]["production"][SPANISH_TO_ENGLISH[hourly_item["fuente"]]] += hourly_item["dato"]
+    
+    return [results[k] for k in sorted(results.keys())]
 
 
-def fetch_exchange(
-    zone_key1: str = "CR",
-    zone_key2: str = "NI",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    """Requests the last known power exchange (in MW) between two regions."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+# TODO: Source not available anymore. Need to find a new source for this.
+# --------------------------------------------------------------------------------
+# def fetch_exchange(
+#     zone_key1: str = "CR",
+#     zone_key2: str = "NI",
+#     session: Optional[Session] = None,
+#     target_datetime: Optional[datetime] = None,
+#     logger: Logger = getLogger(__name__),
+# ) -> dict:
+#     """Requests the last known power exchange (in MW) between two regions."""
+#     if target_datetime:
+#         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+#     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    df = pd.read_csv(
-        "http://www.enteoperador.org/newsite/flash/data.csv", index_col=False
-    )
+#     df = pd.read_csv(
+#         "http://www.enteoperador.org/newsite/flash/data.csv", index_col=False
+#     )
 
-    if sorted_zone_keys == "CR->NI":
-        flow = df["NICR"][0]
-    elif sorted_zone_keys == "CR->PA":
-        flow = -1 * df["CRPA"][0]
-    else:
-        raise NotImplementedError("This exchange pair is not implemented")
+#     if sorted_zone_keys == "CR->NI":
+#         flow = df["NICR"][0]
+#     elif sorted_zone_keys == "CR->PA":
+#         flow = -1 * df["CRPA"][0]
+#     else:
+#         raise NotImplementedError("This exchange pair is not implemented")
 
-    data = {
-        "datetime": arrow.now(TIMEZONE).datetime,
-        "sortedZoneKeys": sorted_zone_keys,
-        "netFlow": flow,
-        "source": "enteoperador.org",
-    }
+#     data = {
+#         "datetime": arrow.now(TIMEZONE).datetime,
+#         "sortedZoneKeys": sorted_zone_keys,
+#         "netFlow": flow,
+#         "source": "enteoperador.org",
+#     }
 
-    return data
+#     return data
 
 
 if __name__ == "__main__":
@@ -268,16 +238,16 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     pprint(fetch_production())
 
-    print('fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z")))
+    # print('fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z") ->')
+    # pprint(fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z")))
 
-    # this should work
-    print('fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z")))
+    # # this should work
+    # print('fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z") ->')
+    # pprint(fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z")))
 
-    # this should return None
-    print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z")))
+    # # this should return None
+    # print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
+    # pprint(fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z")))
 
-    print("fetch_exchange() ->")
-    print(fetch_exchange())
+    # print("fetch_exchange() ->")
+    # print(fetch_exchange())
