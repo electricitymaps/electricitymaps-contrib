@@ -30,7 +30,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Canada (Yukon): [Yukon Energy](http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption)
 - Chile (SING/SIC): [Coordinador](https://sipub.coordinador.cl/api/v1/recursos/generacion_centrales_tecnologia_horario?)
 - Czech Republic: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Costa Rica: [ICE](https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf)
+- Costa Rica: [ICE](https://apps.grupoice.com/CenceWeb/data/sen/json/EnergiaHorariaFuentePlanta?anno=2022&mes=12&dia=27)
 - Croatia (Exchanges): [HOPS](https://www.hops.hr/wps/portal/hr/web)
 - Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
 - Denmark: [TSO](https://www.energidataservice.dk/groups/production-and-consumption)
