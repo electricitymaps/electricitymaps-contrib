@@ -98,7 +98,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - [Energy Market Services](https://em6live.co.nz)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Nigeria: [TCN ISO grid data portal](https://www.niggrid.com/GenerationProfile)
-- Northern Ireland: [SONI](http://www.soni.ltd.uk/InformationCentre/)
+- Northern Ireland: [SONI](https://www.smartgriddashboard.com/)
 - Norway: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Oman: [GCCIA](https://www.gccia.com.sa/)
 - Panama: [CND](http://sitr.cnd.com.pa/m/pub/gen.html)
