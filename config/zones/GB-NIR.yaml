@@ -11,6 +11,7 @@ capacity:
   solar: 92
   wind: 995
 contributors:
+  - msaynevirta
   - corradio
   - systemcatch
   - brunolajoie
@@ -216,9 +217,6 @@ fallbackZoneMixes:
         wind: 0.34781314616395964
 flag_file_name: _Northern%20Ireland.png
 parsers:
-  consumption: ENTSOE.fetch_consumption
-  consumptionForecast: ENTSOE.fetch_consumption_forecast
-  generationForecast: ENTSOE.fetch_generation_forecast
-  price: ENTSOE.fetch_price
-  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  consumption: GB_NIR.fetch_consumption
+  production: GB_NIR.fetch_production
 timezone: null
