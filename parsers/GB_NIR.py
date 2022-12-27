@@ -5,6 +5,8 @@ from typing import Optional
 from dateutil import tz
 from requests import ConnectionError, Response, Session
 
+from parsers.lib.config import refetch_frequency
+
 TZ = "Europe/Dublin"
 DATA_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data"
 
@@ -53,6 +55,7 @@ def _fetch_json_data(
         raise ConnectionError
 
 
+@refetch_frequency(timedelta(minutes=15))
 def fetch_consumption(
     zone_key: str = "GB-NIR",
     session: Session = Session(),
@@ -73,6 +76,7 @@ def fetch_consumption(
         print("Failed to retrieve consumption at requested timestamp." + e)
 
 
+@refetch_frequency(timedelta(minutes=15))
 def fetch_production(
     zone_key: str = "GB-NIR",
     session: Session = Session(),
@@ -112,6 +116,7 @@ def fetch_production(
         print("Failed to retrieve production at requested timestamp." + e)
 
 
+@refetch_frequency(timedelta(minutes=15))
 def fetch_exchange(
     zone_key1: str = "GB",
     zone_key2: str = "GB-NIR",
