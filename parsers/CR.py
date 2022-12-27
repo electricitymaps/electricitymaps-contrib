@@ -122,6 +122,7 @@ SPANISH_TO_ENGLISH = {
     "Térmica": "oil",
 }
 
+
 def empty_record(zone_key: str):
     return {
         "zoneKey": zone_key,
@@ -141,6 +142,7 @@ def empty_record(zone_key: str):
         "storage": {},
         "source": "grupoice.com",
     }
+
 
 def fetch_production(
     zone_key: str = "CR",
@@ -188,9 +190,13 @@ def fetch_production(
         if hourly_item["fecha"] not in results:
             results[hourly_item["fecha"]] = empty_record(zone_key)
 
-        results[hourly_item["fecha"]]["datetime"] = arrow.get(hourly_item["fecha"], tzinfo=TIMEZONE).datetime
-        results[hourly_item["fecha"]]["production"][SPANISH_TO_ENGLISH[hourly_item["fuente"]]] += hourly_item["dato"]
-    
+        results[hourly_item["fecha"]]["datetime"] = arrow.get(
+            hourly_item["fecha"], tzinfo=TIMEZONE
+        ).datetime
+        results[hourly_item["fecha"]]["production"][
+            SPANISH_TO_ENGLISH[hourly_item["fuente"]]
+        ] += hourly_item["dato"]
+
     return [results[k] for k in sorted(results.keys())]
 
 
