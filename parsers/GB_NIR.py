@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
@@ -9,12 +9,17 @@ TZ = "Europe/Dublin"
 DATA_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data"
 
 
-def get_previous_quarter(time: datetime):
+def _get_previous_quarter(time: datetime):
     last_quarter_minute = 15 * (time.minute // 15)
     return time.replace(minute=last_quarter_minute)
 
 
-def fetch_json_data(
+def _parse_effective_time(time_str: str):
+    naive_dt = datetime.strptime(time_str, "%d-%b-%Y %H:%M:%S")
+    return naive_dt.replace(tzinfo=tz.gettz(name=TZ))
+
+
+def _fetch_json_data(
     region: str,
     dataset: str,
     session: Session = Session(),
@@ -22,9 +27,10 @@ def fetch_json_data(
 ) -> dict:
     try:
         if not target_datetime:
-            target_datetime = datetime.now(tz.gettz(name=TZ))
+            # get the previous datapoint as it's usually available
+            target_datetime = datetime.now(tz.gettz(name=TZ)) - timedelta(minutes=15)
 
-        previous_quarter = get_previous_quarter(target_datetime)
+        previous_quarter = _get_previous_quarter(target_datetime)
 
         date = previous_quarter.strftime("%d-%b-%Y+%H:%M")
 
@@ -48,45 +54,23 @@ def fetch_json_data(
 
 
 def fetch_consumption(
-    zone_key: str,
-    session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    try:
-        demand = fetch_json_data("NI", "demandactual", session, target_datetime)
-        effective_time = datetime.strptime(demand["EffectiveTime"], "%d-%b-%Y %H:%M:%S")
-        demand_mw = float(demand["Value"])
-
-        return {
-            "zoneKey": zone_key,
-            "datetime": effective_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "consumption": demand_mw,
-            "source": "smartgriddashboard.com",
-        }
-    except TypeError:
-        print("Failed to retrieve consumption at requested timestamp.")
-
-
-def fetch_consumption(
     zone_key: str = "GB-NIR",
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     try:
-        demand = fetch_json_data("NI", "demandactual", session, target_datetime)
-        effective_time = datetime.strptime(demand["EffectiveTime"], "%d-%b-%Y %H:%M:%S")
+        demand = _fetch_json_data("NI", "demandactual", session, target_datetime)
         demand_mw = float(demand["Value"])
 
         return {
             "zoneKey": zone_key,
-            "datetime": effective_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "datetime": _parse_effective_time(demand["EffectiveTime"]),
             "consumption": demand_mw,
             "source": "smartgriddashboard.com",
         }
-    except TypeError:
-        print("Failed to retrieve consumption at requested timestamp.")
+    except TypeError as e:
+        print("Failed to retrieve consumption at requested timestamp." + e)
 
 
 def fetch_production(
@@ -96,12 +80,11 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     try:
-        production = fetch_json_data("NI", "generationactual", session, target_datetime)
-        wind = fetch_json_data("NI", "windactual", session, target_datetime)
-
-        effective_time = datetime.strptime(
-            production["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
+        production = _fetch_json_data(
+            "NI", "generationactual", session, target_datetime
         )
+        wind = _fetch_json_data("NI", "windactual", session, target_datetime)
+
         total_production_mw = float(production["Value"])
         wind_mw = float(wind["Value"])
 
@@ -109,7 +92,7 @@ def fetch_production(
 
         return {
             "zoneKey": zone_key,
-            "datetime": effective_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "datetime": _parse_effective_time(production["EffectiveTime"]),
             "production": {
                 "biomass": None,
                 "coal": None,
@@ -125,8 +108,8 @@ def fetch_production(
             "source": "smartgriddashboard.com",
         }
 
-    except TypeError:
-        print("Failed to retrieve production at requested timestamp.")
+    except TypeError as e:
+        print("Failed to retrieve production at requested timestamp." + e)
 
 
 def fetch_exchange(
@@ -137,36 +120,33 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    interconnection = fetch_json_data("NI", "interconnection", session, target_datetime)
-
-    effective_time = datetime.strptime(
-        interconnection["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
+    interconnection = _fetch_json_data(
+        "NI", "interconnection", session, target_datetime
     )
+
     moyle_mw = float(interconnection["Value"])
 
     if sortedZoneKeys == "GB->GB-NIR":
         return {
             "sortedZoneKeys": sortedZoneKeys,
-            "datetime": effective_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "datetime": _parse_effective_time(interconnection["EffectiveTime"]),
             "netFlow": moyle_mw,
             "source": "smartgriddashboard.com",
         }
     elif sortedZoneKeys == "GB-NIR->IE":
-        production = fetch_json_data("NI", "generationactual", session, target_datetime)
+        production = _fetch_json_data(
+            "NI", "generationactual", session, target_datetime
+        )
         production_mw = float(production["Value"])
 
-        demand = fetch_json_data("NI", "demandactual", session, target_datetime)
+        demand = _fetch_json_data("NI", "demandactual", session, target_datetime)
         demand_mw = float(demand["Value"])
 
         power_flow_mw = demand_mw - production_mw - moyle_mw  # power flow gb_nir -> ie
 
-        effective_time = datetime.strptime(
-            interconnection["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
-        )
-
         return {
             "sortedZoneKeys": sortedZoneKeys,
-            "datetime": effective_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "datetime": _parse_effective_time(interconnection["EffectiveTime"]),
             "netFlow": power_flow_mw,
             "source": "smartgriddashboard.com",
         }
@@ -175,7 +155,7 @@ def fetch_exchange(
 if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
-    print("fetch_exchange(GB, GB-ORK)")
-    print(fetch_exchange("GB", "GB-ORK"))
+    print("fetch_exchange(GB, GB-NIR)")
+    print(fetch_exchange("GB", "GB-NIR"))
     print("fetch_exchange(GB-NIR, IE)")
     print(fetch_exchange("GB-NIR", "GB-IE"))
