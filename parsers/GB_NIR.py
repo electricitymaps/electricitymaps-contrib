@@ -37,12 +37,7 @@ def _fetch_json_data(
 
         date = previous_quarter.strftime("%d-%b-%Y+%H:%M")
 
-        params = {
-            "area": dataset,
-            "region": region,
-            "datefrom": date,
-            "dateto": date
-        }
+        params = {"area": dataset, "region": region, "datefrom": date, "dateto": date}
 
         response: Response = session.get(DATA_URL, params=params)
 
@@ -70,7 +65,10 @@ def fetch_consumption(
             "source": "smartgriddashboard.com",
         }
     except TypeError as e:
-        print("Failed to retrieve consumption at requested timestamp." + e)
+        ParserException(
+            "GB_NIR.py", f"Failed to retrieve consumption at requested timestamp: {e}"
+        )
+        raise TypeError
 
 
 @refetch_frequency(timedelta(minutes=15))
@@ -110,7 +108,10 @@ def fetch_production(
         }
 
     except TypeError as e:
-        print("Failed to retrieve production at requested timestamp." + e)
+        ParserException(
+            "GB_NIR.py", f"Failed to retrieve production at requested timestamp: {e}"
+        )
+        raise TypeError
 
 
 @refetch_frequency(timedelta(minutes=15))
