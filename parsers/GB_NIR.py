@@ -36,18 +36,14 @@ def _fetch_json_data(
 
         date = previous_quarter.strftime("%d-%b-%Y+%H:%M")
 
-        params = (
-            "?area="
-            + dataset
-            + "&region="
-            + region
-            + "&datefrom="
-            + date
-            + "&dateto="
-            + date
-        )
+        params = {
+            "area": dataset,
+            "region": region,
+            "datefrom": date,
+            "dateto": date
+        }
 
-        response: Response = session.get(DATA_URL + params)
+        response: Response = session.get(DATA_URL, params=params)
 
         return response.json()["Rows"][0]
     except ConnectionError as e:
