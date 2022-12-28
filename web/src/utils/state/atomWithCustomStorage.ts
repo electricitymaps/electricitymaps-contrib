@@ -122,7 +122,7 @@ export default function atomWithCustomStorage<Value extends string>({
   const storage = createStorage(options);
   const baseAtom = atomWithStorage(key, initialValue, storage);
   // Wrap base atom to return initial value if storage is empty
-  return atom(
+  const newAtom = atom(
     (get) => {
       const value = get(baseAtom);
       if (typeof value == typeof NO_STORAGE_VALUE) {
@@ -140,4 +140,6 @@ export default function atomWithCustomStorage<Value extends string>({
       set(baseAtom, update);
     }
   );
+  newAtom.debugLabel = `atomWithCustomStorage(${key})`;
+  return newAtom;
 }

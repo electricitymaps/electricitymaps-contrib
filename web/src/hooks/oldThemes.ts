@@ -8,7 +8,25 @@ const colorblindCo2Scale = {
   colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
 };
 
-export const themes = {
+interface Theme {
+  co2Scale: {
+    steps: number[];
+    colors: string[];
+  };
+  oceanColor: string;
+  strokeWidth: number;
+  strokeColor: string;
+  clickableFill: string;
+  nonClickableFill: string;
+}
+
+interface Themes {
+  colorblindDark: Theme;
+  dark: Theme;
+  colorblindBright: Theme;
+  bright: Theme;
+}
+export const themes: Themes = {
   colorblindDark: {
     co2Scale: colorblindCo2Scale,
     oceanColor: '#33414A',
@@ -26,7 +44,7 @@ export const themes = {
     nonClickableFill: '#7A878D',
   },
   colorblindBright: {
-    co2scale: colorblindCo2Scale,
+    co2Scale: colorblindCo2Scale,
     oceanColor: '#FAFAFA',
     strokeWidth: 0.3,
     strokeColor: '#FAFAFA',

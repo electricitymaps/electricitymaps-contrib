@@ -65,3 +65,11 @@ export const hasOnboardingBeenSeenAtom = atomWithCustomStorage({
     syncWithLocalStorage: true,
   },
 });
+
+export const colorblindModeAtom = atomWithCustomStorage({
+  key: 'colorblindModeEnabled',
+  initialValue: 'false',
+  options: {
+    syncWithLocalStorage: true,
+  },
+});

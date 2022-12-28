@@ -1,4 +1,3 @@
-import MapButton from 'components/MapButton';
 import { useAtom } from 'jotai';
 import { ReactElement, useState } from 'react';
 import { FiWind } from 'react-icons/fi';
@@ -8,6 +7,7 @@ import { MoonLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
 import { TimeAverages, ToggleOptions } from 'utils/constants';
 import {
+  colorblindModeAtom,
   selectedDatetimeIndexAtom,
   solarLayerEnabledAtom,
   solarLayerLoadingAtom,
@@ -17,6 +17,7 @@ import {
 } from 'utils/state/atoms';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import LanguageSelector from './LanguageSelector';
+import MapButton from './MapButton';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 
 const weatherButtonMap = {
@@ -59,7 +60,7 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       }
       tooltipText={__(`tooltips.${type}}`)}
       dataTestId={`${type}-layer-button`}
-      className={`mt-2 ${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
+      className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={!isLoadingLayer ? onToggle : () => {}}
     />
   );
@@ -70,44 +71,52 @@ export default function MapControls(): ReactElement {
   const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
+    useAtom(colorblindModeAtom);
 
   // We are currently only supporting and fetching weather data for the latest hourly value
   const areWeatherLayersAllowed =
     selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
 
+  const handleColorblindModeToggle = () => {
+    setIsColorblindModeEnabled(!isColorblindModeEnabled);
+  };
+
   return (
     <div className="z-1000 pointer-events-none absolute right-3 top-3 hidden flex-col items-end md:flex">
-      <div className="pointer-events-auto mb-16 flex flex-col items-end">
+      <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-1">
         <ConsumptionProductionToggle />
-        <div className="mb-1"></div>
         <SpatialAggregatesToggle />
       </div>
-      <MapButton
-        icon={<HiLanguage size={21} />}
-        tooltipText={__('tooltips.selectLanguage')}
-        dataTestId="language-selector-open-button"
-        className="mt-5"
-        onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
-      />
-      {isLanguageSelectorOpen && (
-        <LanguageSelector setLanguageSelectorOpen={setIsLanguageSelectorOpen} />
-      )}
+      <div className="mt-5 space-y-2">
+        <MapButton
+          icon={<HiLanguage size={21} />}
+          tooltipText={__('tooltips.selectLanguage')}
+          dataTestId="language-selector-open-button"
+          onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
+        />
+        {isLanguageSelectorOpen && (
+          <LanguageSelector setLanguageSelectorOpen={setIsLanguageSelectorOpen} />
+        )}
 
-      <MapButton
-        icon={<HiOutlineEyeOff size={21} className="opacity-50" />}
-        className="mt-2"
-        dataTestId="colorblind-layer-button"
-        tooltipText={__('legends.colorblindmode')}
-        onClick={() => {
-          console.log('toggle colorblind mode');
-        }}
-      />
-      {areWeatherLayersAllowed && (
-        <>
-          <WeatherButton type="wind" />
-          <WeatherButton type="solar" />
-        </>
-      )}
+        <MapButton
+          icon={
+            <HiOutlineEyeOff
+              size={21}
+              className={`${isColorblindModeEnabled ? '' : 'opacity-50'}`}
+            />
+          }
+          dataTestId="colorblind-layer-button"
+          tooltipText={__('legends.colorblindmode')}
+          onClick={handleColorblindModeToggle}
+        />
+        {areWeatherLayersAllowed && (
+          <>
+            <WeatherButton type="wind" />
+            <WeatherButton type="solar" />
+          </>
+        )}
+      </div>
     </div>
   );
 }
