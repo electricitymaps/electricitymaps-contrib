@@ -7,13 +7,13 @@ capacity:
   battery storage: 2
   biomass: 30.8
   coal: 2946.6
-  gas: 6510
+  gas: 6426
   geothermal: 0
-  hydro: 55.2
+  hydro: 53.7
   hydro storage: 300
   nuclear: 0
   oil: 33.2
-  solar: 876
+  solar: 881.6
   unknown: 0
   wind: 4490.8
 comment: Public Service Company Of Colorado

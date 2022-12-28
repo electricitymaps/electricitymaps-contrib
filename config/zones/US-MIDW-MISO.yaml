@@ -4,18 +4,18 @@ bounding_box:
   - - -81.9130970652477
     - 49.884274119856
 capacity:
-  battery storage: 68.2
-  biomass: 2487.4
-  coal: 57162.9
-  gas: 83349.6
+  battery storage: 73.1
+  biomass: 2367.5
+  coal: 57073.2
+  gas: 84794.8
   geothermal: 0
-  hydro: 2467.3
+  hydro: 2487.1
   hydro storage: 2416.8
-  nuclear: 13080.8
-  oil: 5025.3
-  solar: 3414.8
+  nuclear: 12269
+  oil: 5104.8
+  solar: 4131.8
   unknown: 605.8
-  wind: 29061
+  wind: 29414.5
 comment: Midcontinent Independent Transmission System Operator, Inc..
 contributors:
   - systemcatch
