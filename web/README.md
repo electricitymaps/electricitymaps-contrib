@@ -44,6 +44,11 @@ As an eMap internal team member, you can also run the app connected to productio
 - Run `VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='YOUR TOKEN' pnpm dev`
 - Add a `?remote=true` query parameter
 
+### Building for production
+
+- Add an environment variable for `SENTRY_AUTH_TOKEN="find it here => https://sentry.io/settings/account/api/auth-tokens/"`
+- Add an environment variable for `VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='YOUR TOKEN'`
+
 ## Geometries development
 
 See [how to edit world geometries](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Edit-world-geometries).

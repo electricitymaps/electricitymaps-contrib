@@ -14,7 +14,6 @@ import {
   REFETCH_INTERVAL_FIVE_MINUTES,
 } from './helpers';
 
-
 const getZone = async (
   timeAverage: TimeAverages,
   zoneId?: string

@@ -13,6 +13,7 @@ import {
 import FAQPanel from './faq/FAQPanel';
 import { leftPanelOpenAtom } from './panelAtoms';
 import RankingPanel from './ranking-panel/RankingPanel';
+import * as Sentry from '@sentry/react';
 
 import ZoneDetails from './zone/ZoneDetails';
 
@@ -93,11 +94,11 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     </aside>
   );
 }
-
+const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
 export default function LeftPanel() {
   return (
     <OuterPanel>
-      <Routes>
+      <SentryRoutes>
         <Route path="/" element={<HandleLegacyRoutes />} />
         <Route
           path="/zone/:zoneId"
@@ -110,7 +111,7 @@ export default function LeftPanel() {
         <Route path="/faq" element={<FAQPanel />} />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
         <Route path="*" element={<RankingPanel />} />
-      </Routes>
+      </SentryRoutes>
     </OuterPanel>
   );
 }

@@ -3,12 +3,13 @@ import { useGetAppVersion } from 'api/getAppVersion';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import Toast from 'components/Toast';
-import ErrorBoundary from 'features/error-boundary/ErrorBoundary';
+import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
 import MapControls from 'features/map-controls/MapControls';
 import { lazy, ReactElement, Suspense } from 'react';
 import LegendContainer from 'components/legend/LegendContainer';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
+import * as Sentry from '@sentry/react';
 
 const isProduction = import.meta.env.PROD;
 
@@ -31,7 +32,7 @@ export default function App(): ReactElement {
         <ToastProvider duration={20_000}>
           <Header />
           <div className="relative flex flex-auto items-stretch">
-            <ErrorBoundary>
+            <Sentry.ErrorBoundary fallback={<ErrorComponent />} showDialog>
               {isSuccess && isNewVersionAvailable && (
                 <Toast
                   title="A new app version is available"
@@ -47,7 +48,7 @@ export default function App(): ReactElement {
               <TimeControllerWrapper />
               <MapControls />
               <LegendContainer />
-            </ErrorBoundary>
+            </Sentry.ErrorBoundary>
           </div>
         </ToastProvider>
       </main>

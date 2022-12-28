@@ -6,6 +6,7 @@ import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import sentryVitePlugin from '@sentry/vite-plugin';
 
 export default defineConfig(({ mode }) => ({
   optimizeDeps: {
@@ -73,6 +74,20 @@ export default defineConfig(({ mode }) => ({
                 },
               ],
             },
+          }),
+          sentryVitePlugin({
+            org: 'electricitymaps',
+            project: 'app-new',
+
+            // Specify the directory containing build artifacts
+            include: './dist',
+
+            // Auth tokens can be obtained from https://sentry.io/settings/account/api/auth-tokens/
+            // and needs the `project:releases` and `org:read` scopes
+            authToken: process.env.SENTRY_AUTH_TOKEN,
+
+            // Optionally uncomment the line below to override automatic release name detection
+            release: process.env.npm_package_version,
           }),
         ]
       : []),
