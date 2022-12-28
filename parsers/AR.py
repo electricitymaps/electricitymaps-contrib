@@ -49,7 +49,7 @@ EXCHANGE_DIRECTIONS = {  # directions are from second region -> first region
     "AR->CL-SEN": 0,
     "AR->PY": 225,
     "AR->UY": 180,
-    "AR-NEA->BR_S": 225,
+    "AR-NEA->BR-S": 225,
     "AR-BAS->AR-COM": 45,
     "AR-CEN->AR-COM": 90,
     "AR-CEN->AR-NOA": 315,
@@ -193,7 +193,8 @@ def fetch_exchange(
 
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     sorted_codes = "->".join(sorted_zone_keys)
-    flow: Union[float, None] = None
+    flow: Optional[float] = None
+    returned_datetime: datetime
 
     if sorted_codes in SUPPORTED_EXCHANGES:
         current_session = session or Session()
