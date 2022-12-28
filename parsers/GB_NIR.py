@@ -1,3 +1,12 @@
+"""
+Parser for Northern Ireland, uses the SONI / EirGrid SmartGrid dashboard. The
+following data types are available:
+
+Consumption
+Production
+Exchanges GB->GB-NIR and GB-NIR->IE
+"""
+
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
@@ -10,7 +19,12 @@ from parsers.lib.exceptions import ParserException
 
 TZ = "Europe/Dublin"
 
+
 def _parse_effective_time(time_str: str):
+    """
+    Parses the EffectiveTime timestamps (e.g. 27-Dec-2022 00:00:00) from
+    SmartGrid dashboard into TZ-aware datetime objects.
+    """
     naive_dt = datetime.strptime(time_str, "%d-%b-%Y %H:%M:%S")
     return naive_dt.replace(tzinfo=tz.gettz(name=TZ))
 
@@ -21,6 +35,19 @@ def _fetch_json_data(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
 ) -> dict:
+    """
+    Fetches the requested json records for the specified date between 00:00 and
+    23:59 from the SmartGrid monitor.
+
+    Parameters:
+        region: name of the region, options "NI", "ROI" or "ALL".
+
+        dataset: name of the dataset, e.g. demandactual, interconnection etc.
+        Examine the SmartGrid dashboard for available options.
+
+    Returns:
+        The fetched rows of data as a list of dictionaries.
+    """
     DATA_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data"
     try:
         if not target_datetime:
