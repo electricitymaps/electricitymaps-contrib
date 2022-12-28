@@ -47,7 +47,7 @@ def _fetch_json_data(
 
         return response.json()["Rows"][0]
     except ConnectionError as e:
-        print("Failed to connect to SmartGrid Dashboard:" + e)
+        ParserException("GB_NIR.py", f"Failed to connect to SmartGrid Dashboard: {e}")
         raise ConnectionError
 
 
