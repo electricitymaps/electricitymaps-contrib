@@ -6,6 +6,7 @@ from dateutil import tz
 from requests import ConnectionError, Response, Session
 
 from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 TZ = "Europe/Dublin"
 DATA_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data"
