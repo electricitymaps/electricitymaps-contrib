@@ -4,7 +4,7 @@ bounding_box:
   - - -98.29803
     - 33.98024
 capacity:
-  battery storage: 0
+  battery storage: 1
   biomass: 3.2
   coal: 0
   gas: 1922.9
@@ -13,7 +13,7 @@ capacity:
   hydro storage: 0
   nuclear: 0
   oil: 0
-  solar: 130.3
+  solar: 129.8
   unknown: 0
   wind: 0
 comment: El Paso Electric Company
