@@ -9,13 +9,6 @@ from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 TZ = "Europe/Dublin"
-DATA_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data"
-
-
-def _get_previous_quarter(time: datetime):
-    last_quarter_minute = 15 * (time.minute // 15)
-    return time.replace(minute=last_quarter_minute)
-
 
 def _parse_effective_time(time_str: str):
     naive_dt = datetime.strptime(time_str, "%d-%b-%Y %H:%M:%S")
@@ -28,20 +21,25 @@ def _fetch_json_data(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
 ) -> dict:
+    DATA_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data"
     try:
         if not target_datetime:
-            # get the previous datapoint as it's usually available
-            target_datetime = datetime.now(tz.gettz(name=TZ)) - timedelta(minutes=15)
+            target_datetime = datetime.now(tz.gettz(name=TZ))
 
-        previous_quarter = _get_previous_quarter(target_datetime)
+        # get all available data for a single day
+        date_from = target_datetime.replace(hour=0, minute=0, second=0)
+        date_to = target_datetime.replace(hour=23, minute=59, second=59)
 
-        date = previous_quarter.strftime("%d-%b-%Y+%H:%M")
-
-        params = {"area": dataset, "region": region, "datefrom": date, "dateto": date}
+        params = {
+            "area": dataset,
+            "region": region,
+            "datefrom": date_from,
+            "dateto": date_to,
+        }
 
         response: Response = session.get(DATA_URL, params=params)
 
-        return response.json()["Rows"][0]
+        return response.json()["Rows"]
     except ConnectionError as e:
         ParserException("GB_NIR.py", f"Failed to connect to SmartGrid Dashboard: {e}")
         raise ConnectionError
@@ -55,15 +53,23 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     try:
-        demand = _fetch_json_data("NI", "demandactual", session, target_datetime)
-        demand_mw = float(demand["Value"])
+        demand_json = _fetch_json_data("NI", "demandactual", session, target_datetime)
+        consumption_list = []
 
-        return {
-            "zoneKey": zone_key,
-            "datetime": _parse_effective_time(demand["EffectiveTime"]),
-            "consumption": demand_mw,
-            "source": "smartgriddashboard.com",
-        }
+        for row in demand_json:
+            if row["Value"]:
+                consumption_list.append(
+                    {
+                        "zoneKey": zone_key,
+                        "datetime": _parse_effective_time(row["EffectiveTime"]),
+                        "consumption": float(row["Value"]),
+                        "source": "smartgriddashboard.com",
+                    }
+                )
+            else:
+                return consumption_list
+
+        return consumption_list
     except TypeError as e:
         ParserException(
             "GB_NIR.py", f"Failed to retrieve consumption at requested timestamp: {e}"
@@ -79,33 +85,47 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     try:
-        production = _fetch_json_data(
+        generation_json = _fetch_json_data(
             "NI", "generationactual", session, target_datetime
         )
-        wind = _fetch_json_data("NI", "windactual", session, target_datetime)
+        wind_json = _fetch_json_data("NI", "windactual", session, target_datetime)
 
-        total_production_mw = float(production["Value"])
-        wind_mw = float(wind["Value"])
+        production_list = []
 
-        unknown_mw = total_production_mw - wind_mw  # remaining generation
+        for generation_row, wind_row in zip(generation_json, wind_json):
+            if generation_row["Value"] and wind_row["Value"]:
+                total_generation_mw = float(generation_row["Value"])
+                wind_generation_mw = float(wind_row["Value"])
 
-        return {
-            "zoneKey": zone_key,
-            "datetime": _parse_effective_time(production["EffectiveTime"]),
-            "production": {
-                "biomass": None,
-                "coal": None,
-                "gas": None,
-                "hydro": None,
-                "nuclear": None,
-                "oil": None,
-                "solar": None,
-                "wind": wind_mw,
-                "geothermal": None,
-                "unknown": unknown_mw,
-            },
-            "source": "smartgriddashboard.com",
-        }
+                unknown_generation_mw = (
+                    total_generation_mw - wind_generation_mw
+                )  # remaining generation
+
+                production_list.append(
+                    {
+                        "zoneKey": zone_key,
+                        "datetime": _parse_effective_time(
+                            generation_row["EffectiveTime"]
+                        ),
+                        "production": {
+                            "biomass": None,
+                            "coal": None,
+                            "gas": None,
+                            "hydro": None,
+                            "nuclear": None,
+                            "oil": None,
+                            "solar": None,
+                            "wind": wind_generation_mw,
+                            "geothermal": None,
+                            "unknown": unknown_generation_mw,
+                        },
+                        "source": "smartgriddashboard.com",
+                    }
+                )
+            else:
+                return production_list
+
+        return production_list
 
     except TypeError as e:
         ParserException(
@@ -123,36 +143,54 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    interconnection = _fetch_json_data(
-        "NI", "interconnection", session, target_datetime
-    )
+    moyle_json = _fetch_json_data("NI", "interconnection", session, target_datetime)
 
-    moyle_mw = float(interconnection["Value"])
+    interconnection_list = []
 
     if sortedZoneKeys == "GB->GB-NIR":
-        return {
-            "sortedZoneKeys": sortedZoneKeys,
-            "datetime": _parse_effective_time(interconnection["EffectiveTime"]),
-            "netFlow": moyle_mw,
-            "source": "smartgriddashboard.com",
-        }
+        for moyle_row in moyle_json:
+            if moyle_row["Value"]:
+                interconnection_list.append(
+                    {
+                        "sortedZoneKeys": sortedZoneKeys,
+                        "datetime": _parse_effective_time(moyle_row["EffectiveTime"]),
+                        "netFlow": moyle_row["Value"],
+                        "source": "smartgriddashboard.com",
+                    }
+                )
+            else:
+                return interconnection_list
+
     elif sortedZoneKeys == "GB-NIR->IE":
-        production = _fetch_json_data(
+        production_json = _fetch_json_data(
             "NI", "generationactual", session, target_datetime
         )
-        production_mw = float(production["Value"])
 
-        demand = _fetch_json_data("NI", "demandactual", session, target_datetime)
-        demand_mw = float(demand["Value"])
+        demand_json = _fetch_json_data("NI", "demandactual", session, target_datetime)
 
-        power_flow_mw = demand_mw - production_mw - moyle_mw  # power flow gb_nir -> ie
+        for production_row, demand_row, moyle_row in zip(
+            production_json, demand_json, moyle_json
+        ):
+            production_mw = production_row["Value"]
+            demand_mw = demand_row["Value"]
+            moyle_mw = moyle_row["Value"]
 
-        return {
-            "sortedZoneKeys": sortedZoneKeys,
-            "datetime": _parse_effective_time(interconnection["EffectiveTime"]),
-            "netFlow": power_flow_mw,
-            "source": "smartgriddashboard.com",
-        }
+            if production_mw and demand_mw and moyle_mw:
+                power_flow_mw = (
+                    production_mw + moyle_mw - demand_mw
+                )  # power flow gb_nir -> ie
+                interconnection_list.append(
+                    {
+                        "sortedZoneKeys": sortedZoneKeys,
+                        "datetime": _parse_effective_time(moyle_row["EffectiveTime"]),
+                        "netFlow": power_flow_mw,
+                        "source": "smartgriddashboard.com",
+                    }
+                )
+            else:
+                return interconnection_list
+
+        return interconnection_list
 
 
 if __name__ == "__main__":
