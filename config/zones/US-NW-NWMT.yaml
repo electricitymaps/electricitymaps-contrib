@@ -9,13 +9,13 @@ capacity:
   coal: 1814.7
   gas: 259.6
   geothermal: 0
-  hydro: 668.7
+  hydro: 716.4
   hydro storage: 0
   nuclear: 0
   oil: 72.7
-  solar: 17
+  solar: 97
   unknown: 0
-  wind: 452.9
+  wind: 851.9
 comment: Northwestern Energy (Nwmt)
 contributors:
   - systemcatch
