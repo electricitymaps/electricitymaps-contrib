@@ -111,6 +111,22 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
+    """
+    Fetches the exchange information for either the GB->GB-NIR (by default) or
+    GB-NIR->IE interconnections. All values are in MW.
+
+    GB->GB-NIR data is retrieved directly from the SmartGrid monitor based on
+    the available data for the Moyle interconnector between NI and Scotland.
+
+    GB-NIR->IE data is computed based on the available data from the NI grid
+    with the following formula:
+
+        production_NI + moyle_powerflows_to_NI - demand_NI
+
+    where production_NI is the total electricity production in Northern Ireland,
+    demand_NI is the demand and moyle_powerflows_to_NI describes the power flow
+    from the Scottish grid.
+    """
     try:
         generation_json = _fetch_json_data(
             "NI", "generationactual", session, target_datetime
