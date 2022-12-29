@@ -41,6 +41,10 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
   const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
   const isEnabled = enabled === ToggleOptions.ON;
   const Icon = weatherButtonMap[type].icon;
+  const tooltipTexts = {
+    wind: isEnabled ? __('tooltips.hideWindLayer') : __('tooltips.showWindLayer'),
+    solar: isEnabled ? __('tooltips.hideSolarLayer') : __('tooltips.showSolarLayer'),
+  };
 
   const onToggle = () => {
     if (!isEnabled) {
@@ -58,7 +62,7 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
           <Icon size={weatherButtonMap[type].iconSize} color={isEnabled ? '' : 'gray'} />
         )
       }
-      tooltipText={__(`tooltips.${type}}`)}
+      tooltipText={tooltipTexts[type]}
       dataTestId={`${type}-layer-button`}
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={!isLoadingLayer ? onToggle : () => {}}
