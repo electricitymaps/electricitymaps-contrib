@@ -57,12 +57,12 @@ def _fetch_json_data(
     # get all available data for the last 48 hours
     date_from = date_to - timedelta(days=2)
 
-        params = {
-            "area": dataset,
-            "region": region,
-            "datefrom": date_from,
-            "dateto": date_to,
-        }
+    params = {
+        "area": dataset,
+        "region": region,
+        "datefrom": date_from,
+        "dateto": date_to,
+    }
     try:
         response: Response = session.get(DATA_URL, params=params)
         return response.json()["Rows"]
@@ -78,31 +78,26 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    try:
-        demand_json = _fetch_json_data("NI", "demandactual", session, target_datetime)
-        consumption_list = []
+    demand_json = _fetch_json_data("NI", "demandactual", session, target_datetime)
+    consumption_list = []
 
-        for row in demand_json:
-            if row["Value"]:
-                consumption_list.append(
-                    {
-                        "zoneKey": zone_key,
-                        "datetime": _parse_effective_time(row["EffectiveTime"]),
-                        "consumption": float(row["Value"]),
-                        "source": "smartgriddashboard.com",
-                    }
-                )
+    for row in demand_json:
+        if row["Value"]:
+            consumption_list.append(
+                {
+                    "zoneKey": zone_key,
+                    "datetime": _parse_effective_time(row["EffectiveTime"]),
+                    "consumption": float(row["Value"]),
+                    "source": "smartgriddashboard.com",
+                }
+            )
 
-        if consumption_list != []:
-            return consumption_list
-        else:
-            raise ParserException(
-            "GB_NIR.py", "No valid data was able to be parsed."
-        )
-    except TypeError as e:
+    if consumption_list != []:
+        return consumption_list
+    else:
         raise ParserException(
-            "GB_NIR.py", f"Failed to retrieve consumption at requested timestamp: {e}"
-        )
+        "GB_NIR.py", "No valid data was able to be parsed."
+    )
 
 
 @refetch_frequency(timedelta(minutes=15))
@@ -128,56 +123,50 @@ def fetch_production(
     demand_NI is the demand and moyle_powerflows_to_NI describes the power flow
     from the Scottish grid.
     """
-    try:
-        generation_json = _fetch_json_data(
-            "NI", "generationactual", session, target_datetime
-        )
-        wind_json = _fetch_json_data("NI", "windactual", session, target_datetime)
+    generation_json = _fetch_json_data(
+        "NI", "generationactual", session, target_datetime
+    )
+    wind_json = _fetch_json_data("NI", "windactual", session, target_datetime)
 
-        production_list = []
+    production_list = []
 
-        for generation_row, wind_row in zip(generation_json, wind_json):
-            if generation_row["Value"] and wind_row["Value"]:
-                total_generation_mw = float(generation_row["Value"])
-                wind_generation_mw = float(wind_row["Value"])
+    for generation_row, wind_row in zip(generation_json, wind_json):
+        if generation_row["Value"] and wind_row["Value"]:
+            total_generation_mw = float(generation_row["Value"])
+            wind_generation_mw = float(wind_row["Value"])
 
-                unknown_generation_mw = (
-                    total_generation_mw - wind_generation_mw
-                )  # remaining generation
+            unknown_generation_mw = (
+                total_generation_mw - wind_generation_mw
+            )  # remaining generation
 
-                production_list.append(
-                    {
-                        "zoneKey": zone_key,
-                        "datetime": _parse_effective_time(
-                            generation_row["EffectiveTime"]
-                        ),
-                        "production": {
-                            "biomass": None,
-                            "coal": None,
-                            "gas": None,
-                            "hydro": None,
-                            "nuclear": None,
-                            "oil": None,
-                            "solar": None,
-                            "wind": wind_generation_mw,
-                            "geothermal": None,
-                            "unknown": unknown_generation_mw,
-                        },
-                        "source": "smartgriddashboard.com",
-                    }
-                )
+            production_list.append(
+                {
+                    "zoneKey": zone_key,
+                    "datetime": _parse_effective_time(
+                        generation_row["EffectiveTime"]
+                    ),
+                    "production": {
+                        "biomass": None,
+                        "coal": None,
+                        "gas": None,
+                        "hydro": None,
+                        "nuclear": None,
+                        "oil": None,
+                        "solar": None,
+                        "wind": wind_generation_mw,
+                        "geothermal": None,
+                        "unknown": unknown_generation_mw,
+                    },
+                    "source": "smartgriddashboard.com",
+                }
+            )
 
-        if production_list != []:
-            return production_list
-        else:
-            raise ParserException(
-            "GB_NIR.py", "No valid data was able to be parsed."
-        )
-
-    except TypeError as e:
+    if production_list != []:
+        return production_list
+    else:
         raise ParserException(
-            "GB_NIR.py", f"Failed to retrieve production at requested timestamp: {e}"
-        )
+        "GB_NIR.py", "No valid data was able to be parsed."
+    )
 
 
 @refetch_frequency(timedelta(minutes=15))
@@ -232,12 +221,12 @@ def fetch_exchange(
                     }
                 )
 
-        if interconnection_list != []:
-            return interconnection_list
-        else:
-            raise ParserException(
-            "GB_NIR.py", "No valid data was able to be parsed."
-        )
+    if interconnection_list != []:
+        return interconnection_list
+    else:
+        raise ParserException(
+        "GB_NIR.py", "No valid data was able to be parsed."
+    )
 
 
 if __name__ == "__main__":
