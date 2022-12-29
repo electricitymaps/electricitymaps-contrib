@@ -8,9 +8,9 @@ capacity:
   hydro storage: 0
   nuclear: 0
   oil: 0
-  solar: 10
+  solar: 160
   unknown: 0
-  wind: 1496.4
+  wind: 1697.7
 comment: Avangrid Renewables Cooperative
 contributors:
   - systemcatch

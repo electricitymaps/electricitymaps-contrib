@@ -4,8 +4,8 @@ bounding_box:
   - - -75.53103
     - 37.04465
 capacity:
-  battery storage: 0
-  biomass: 409.1
+  battery storage: 11.8
+  biomass: 390.9
   coal: 3321.4
   gas: 6489.8
   geothermal: 0
@@ -13,7 +13,7 @@ capacity:
   hydro storage: 0
   nuclear: 3722.7
   oil: 282.1
-  solar: 1749.1
+  solar: 1882.8
   unknown: 54
   wind: 0
 comment: Duke Energy Progress East

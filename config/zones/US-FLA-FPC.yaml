@@ -4,16 +4,16 @@ bounding_box:
   - - -79.99125
     - 31.214009
 capacity:
-  battery storage: 0
-  biomass: 255.2
+  battery storage: 30.3
+  biomass: 253.6
   coal: 1478.4
-  gas: 11223.9
+  gas: 11203.9
   geothermal: 0
   hydro: 0
   hydro storage: 0
   nuclear: 0
   oil: 1329.7
-  solar: 745.3
+  solar: 960.4
   unknown: 18.8
   wind: 0
 comment: Duke Energy Florida Inc
