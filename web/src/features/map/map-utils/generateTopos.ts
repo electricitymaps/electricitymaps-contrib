@@ -38,9 +38,19 @@ const generateTopos = (theme: MapTheme, spatialAggregate: string): MapGeometries
     }
 
     // Exclude if spatial aggregate is on and the feature is not highest granularity
+    // I.e excludes SE if spatialAggregate is off.
     if (
       spatialAggregate === ToggleOptions.OFF &&
       !topography.objects[k].properties.isHighestGranularity
+    ) {
+      continue;
+    }
+
+    // Exclude if spatial aggregate is off and the feature is aggregated view,
+    // I.e excludes SE-SE4 if spatialAggregate is on.
+    if (
+      spatialAggregate === ToggleOptions.ON &&
+      !topography.objects[k].properties.isAggregatedView
     ) {
       continue;
     }
