@@ -325,7 +325,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Norway:
   - Solar: [NVE Excel report](https://www.nve.no/media/13861/oversikt-over-solcelleanlegg-i-norge_2021.xlsx)
   - Other: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
-- Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Northern Ireland
+  - Thermal capacity, battery storage: [Connections Register, April 2022](https://www.soni.ltd.uk/media/documents/20220414-Connections-Register-14-April-2022.pdf)
+  - Renewables, smaller scale generation: [All-Island Generation Capacity Statement 2022-2031](https://www.soni.ltd.uk/media/documents/EirGrid_SONI_2022_Generation_Capacity_Statement_2022-2031.pdf)
 - Oman: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Panama:
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
