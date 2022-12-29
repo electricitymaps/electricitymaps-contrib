@@ -90,7 +90,7 @@ const SettingButton = styled(Button).attrs({
 const SettingsView = () => {
   const { __, i18n } = useTranslation();
   const [languageSelectOpen, setLanguageSelectOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
+  const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGE_NAMES[i18n.language]);
 
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();

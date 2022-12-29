@@ -54,9 +54,9 @@ const LanguageSelectContainer = styled.ul`
 `;
 
 const LanguageSelect = () => {
-  const [languagesVisible, setLanguagesVisible] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
   const { __, i18n } = useTranslation();
+  const [languagesVisible, setLanguagesVisible] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGE_NAMES[i18n.language]);
 
   const toggleLanguagesVisible = () => {
     setLanguagesVisible(!languagesVisible);
