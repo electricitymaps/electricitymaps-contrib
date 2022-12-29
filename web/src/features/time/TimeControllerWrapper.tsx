@@ -5,8 +5,7 @@ import { useBreakpoint } from 'utils/styling';
 import TimeController from './TimeController';
 import TimeHeader from './TimeHeader';
 
-// These snap points should leave enough "safe area" at the bottom
-const SNAP_POINTS = [80, 200];
+const SNAP_POINTS = [60, 160];
 
 function BottomSheetWrappedTimeController() {
   const [isLoadingMap] = useAtom(loadingMapAtom);

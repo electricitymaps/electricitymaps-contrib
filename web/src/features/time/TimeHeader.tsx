@@ -21,7 +21,9 @@ export default function TimeHeader({ className }: TimeHeaderProps) {
 
   return (
     <div
-      className={`flex flex-row items-center justify-between sm:pb-2 ${className || ''}`}
+      className={`flex flex-row items-baseline justify-between sm:pb-2 ${
+        className || ''
+      }`}
     >
       <p className="select-none text-base font-bold">{__('time-controller.title')}</p>
       <div
