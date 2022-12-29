@@ -1,21 +1,37 @@
 #!/usr/bin/env python3
 
 import urllib
-from datetime import datetime
+from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Optional
+from typing import Dict, List, Optional
 
 import arrow
 import pandas as pd
+import pytz
 from bs4 import BeautifulSoup
 from dateutil import tz
 from requests import Session
+
+from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 MX_PRODUCTION_URL = (
     "https://www.cenace.gob.mx/SIM/VISTA/REPORTES/EnergiaGenLiqAgregada.aspx"
 )
 MX_EXCHANGE_URL = "https://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
+
+ZONE_TO_REGION_MAPPING = {
+    "MX-BCN": "BCA",
+    "MX-BCS": "BCS",  # TODO Create it.
+    "MX-NW": "NOR",
+    "MX-NO": "NTE",
+    "MX-NE": "NES",
+    "MX-OC": "OCC",
+    "MX-CE": "CEL",
+    "MX-OR": "ORI",
+    "MX-PN": "PEN"
+}
 
 EXCHANGES = {
     "MX-NO->MX-NW": "IntercambioNTE-NOR",
@@ -116,6 +132,34 @@ def fetch_csv_for_date(dt, session: Optional[Session] = None):
     return pd.read_csv(
         StringIO(csv_str), parse_dates={"instante": [1, 2]}, date_parser=parse_date
     )
+
+@refetch_frequency(timedelta(hours=1))
+def fetch_consumption(
+    zone_key: str,
+    session: Session = Session(),
+    target_datetime = None,
+    logger: Logger = getLogger(__name__)
+) -> List[Dict]:
+    if target_datetime:
+        raise ParserException("MX.py", "MX parser fetch_consumption only supports live data for now. Historical data is not available.", zone_key)
+
+    response = session.get(MX_EXCHANGE_URL)
+    soup = BeautifulSoup(response.text, "html.parser")
+    date = soup.find("td", attrs={"id": "DemandaSIN-MAX-DIARIAHora"})
+    consumption_datetime = datetime.combine(
+        datetime.now(tz=pytz.timezone("America/Mexico_City")).date(),
+        datetime.strptime(date.text, "%H:%M:%S hrs").time(),
+        tzinfo=pytz.timezone("America/Mexico_City")
+    )
+    td = soup.find("td", attrs={"id": f"Demanda{ZONE_TO_REGION_MAPPING[zone_key]}"})
+    return [{
+      "datetime": consumption_datetime,
+      "source": "cenace.gob.mx",
+      "zoneKey": zone_key,
+      "consumption": float(td.text.replace(",",""))
+    }]
+
+
 
 
 def convert_production(series):
@@ -229,6 +273,7 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
+    print(fetch_consumption("MX-BCN"))
     print(fetch_production("MX", target_datetime=datetime(year=2019, month=7, day=1)))
     print("fetch_exchange(MX-NO, MX-NW)")
     print(fetch_exchange("MX-NO", "MX-NW"))
