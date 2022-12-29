@@ -93,12 +93,16 @@ def fetch_consumption(
                     }
                 )
 
-        return consumption_list
+        if consumption_list != []:
+            return consumption_list
+        else:
+            raise ParserException(
+            "GB_NIR.py", "No valid data was able to be parsed."
+        )
     except TypeError as e:
-        ParserException(
+        raise ParserException(
             "GB_NIR.py", f"Failed to retrieve consumption at requested timestamp: {e}"
         )
-        raise TypeError
 
 
 @refetch_frequency(timedelta(minutes=15))
@@ -163,13 +167,17 @@ def fetch_production(
                     }
                 )
 
-        return production_list
+        if production_list != []:
+            return production_list
+        else:
+            raise ParserException(
+            "GB_NIR.py", "No valid data was able to be parsed."
+        )
 
     except TypeError as e:
-        ParserException(
+        raise ParserException(
             "GB_NIR.py", f"Failed to retrieve production at requested timestamp: {e}"
         )
-        raise TypeError
 
 
 @refetch_frequency(timedelta(minutes=15))
@@ -224,7 +232,12 @@ def fetch_exchange(
                     }
                 )
 
-        return interconnection_list
+        if interconnection_list != []:
+            return interconnection_list
+        else:
+            raise ParserException(
+            "GB_NIR.py", "No valid data was able to be parsed."
+        )
 
 
 if __name__ == "__main__":
