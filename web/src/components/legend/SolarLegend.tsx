@@ -1,7 +1,7 @@
-import { useCo2ColorScale } from 'hooks/theme';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'translation/translation';
 import HorizontalColorbar from './ColorBar';
+import { solarColor } from '../../features/weather-layers/solar/utils';
 
 function LegendItem({
   label,
@@ -9,7 +9,7 @@ function LegendItem({
   children,
 }: {
   label: string;
-  unit: string;
+  unit: string | ReactElement;
   children: ReactElement;
 }) {
   return (
@@ -22,13 +22,12 @@ function LegendItem({
   );
 }
 
-export default function Co2Legend(): ReactElement {
+export default function SolarLegend(): ReactElement {
   const { __ } = useTranslation();
-  const co2ColorScale = useCo2ColorScale();
   return (
     <div>
-      <LegendItem label={__('legends.carbonintensity')} unit="gCO₂eq/kWh">
-        <HorizontalColorbar colorScale={co2ColorScale} ticksCount={5} id={'co2'} />
+      <LegendItem label={__('legends.solarpotential')} unit="W/m²">
+        <HorizontalColorbar colorScale={solarColor} id="solar" ticksCount={5} />
       </LegendItem>
     </div>
   );

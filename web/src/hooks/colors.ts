@@ -8,7 +8,7 @@ const colorblindCo2Scale = {
   colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
 };
 
-interface Theme {
+interface ThemeColor {
   co2Scale: {
     steps: number[];
     colors: string[];
@@ -20,13 +20,13 @@ interface Theme {
   nonClickableFill: string;
 }
 
-interface Themes {
-  colorblindDark: Theme;
-  dark: Theme;
-  colorblindBright: Theme;
-  bright: Theme;
+interface Colors {
+  colorblindDark: ThemeColor;
+  dark: ThemeColor;
+  colorblindBright: ThemeColor;
+  bright: ThemeColor;
 }
-export const themes: Themes = {
+export const colors: Colors = {
   colorblindDark: {
     co2Scale: colorblindCo2Scale,
     oceanColor: '#33414A',

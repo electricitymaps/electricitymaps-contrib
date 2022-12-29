@@ -10,9 +10,11 @@ const spreadOverDomain = (scale: any, count: number) => {
 
 function HorizontalColorbar({
   colorScale,
+  id,
   ticksCount = 5,
 }: {
   colorScale: ScaleLinear<string, string, string>;
+  id: string;
   ticksCount?: number;
 }) {
   const width = 176;
@@ -25,12 +27,12 @@ function HorizontalColorbar({
   return (
     <svg className="flex h-10 w-full flex-col  px-2">
       <g transform={`translate(8,0)`}>
-        <linearGradient id={`co2-gradient`} x2="100%">
+        <linearGradient id={`${id}-gradient`} x2="100%">
           {spreadOverDomain(colorScale, 10).map((value, index) => (
             <stop key={value} offset={index / 9} stopColor={colorScale(value)} />
           ))}
         </linearGradient>
-        <rect fill={`url(#co2-gradient)`} width={width} height={height} />
+        <rect fill={`url(#${id}-gradient)`} width={width} height={height} />
 
         <rect
           className="border"

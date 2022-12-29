@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import AreaGraph from 'features/charts/elements/AreaGraph';
 import { getLayerFill } from 'features/charts/hooks/useBreakdownChartData';
-import { themes } from 'hooks/oldThemes';
+import { colors } from 'hooks/colors';
 import { getCo2ColorScale } from 'hooks/theme';
 import { TimeAverages } from 'utils/constants';
 
@@ -493,7 +493,7 @@ const chartData = [
 const includesStorageData = [...chartData];
 const exchangeKeys = ['ES'];
 
-const layerFill = getLayerFill(exchangeKeys, getCo2ColorScale(themes.bright));
+const layerFill = getLayerFill(exchangeKeys, getCo2ColorScale(colors.bright));
 
 export const IncludesStorage: Story = {
   // More on args: https://storybook.js.org/docs/react/writing-stories/args
