@@ -95,9 +95,7 @@ def fetch_consumption(
     if consumption_list != []:
         return consumption_list
     else:
-        raise ParserException(
-        "GB_NIR.py", "No valid data was able to be parsed."
-    )
+        raise ParserException("GB_NIR.py", "No valid data was able to be parsed.")
 
 
 @refetch_frequency(timedelta(minutes=15))
@@ -142,9 +140,7 @@ def fetch_production(
             production_list.append(
                 {
                     "zoneKey": zone_key,
-                    "datetime": _parse_effective_time(
-                        generation_row["EffectiveTime"]
-                    ),
+                    "datetime": _parse_effective_time(generation_row["EffectiveTime"]),
                     "production": {
                         "biomass": None,
                         "coal": None,
@@ -164,9 +160,7 @@ def fetch_production(
     if production_list != []:
         return production_list
     else:
-        raise ParserException(
-        "GB_NIR.py", "No valid data was able to be parsed."
-    )
+        raise ParserException("GB_NIR.py", "No valid data was able to be parsed.")
 
 
 @refetch_frequency(timedelta(minutes=15))
@@ -224,9 +218,7 @@ def fetch_exchange(
     if interconnection_list != []:
         return interconnection_list
     else:
-        raise ParserException(
-        "GB_NIR.py", "No valid data was able to be parsed."
-    )
+        raise ParserException("GB_NIR.py", "No valid data was able to be parsed.")
 
 
 if __name__ == "__main__":
