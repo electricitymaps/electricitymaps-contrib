@@ -4,11 +4,20 @@ bounding_box:
   - - 22.9523771502
     - 42.3202595078
 capacity:
+  biomass: 7
   coal: 824
   gas: 251
-  hydro: 506
+  hydro: 644
   nuclear: 0
-  wind: 35
+  solar: 22
+  wind: 37
+delays:
+  consumption: 24
+  consumptionForecast: 24
+  generationForecast: 24
+  price: 24
+  production: 24
+  productionPerModeForecast: 24
 emissionFactors:
   direct:
     battery discharge:
@@ -181,10 +190,10 @@ fallbackZoneMixes:
         unknown: 0.000786094652001343
         wind: 0.038732684412767976
 parsers:
-  consumption: ENTSOE.fetch_consumption
-  consumptionForecast: ENTSOE.fetch_consumption_forecast
-  generationForecast: ENTSOE.fetch_generation_forecast
-  price: ENTSOE.fetch_price
-  production: ENTSOE.fetch_production
-  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  consumption: MK_wrapper.fetch_consumption
+  consumptionForecast: MK_wrapper.fetch_consumption_forecast
+  generationForecast: MK_wrapper.fetch_generation_forecast
+  price: MK_wrapper.fetch_price
+  production: MK_wrapper.fetch_production
+  productionPerModeForecast: MK_wrapper.fetch_wind_solar_forecasts
 timezone: Europe/Skopje

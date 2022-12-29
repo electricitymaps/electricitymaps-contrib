@@ -4,17 +4,17 @@ bounding_box:
   - - -80.251429
     - 35.5013030000001
 capacity:
-  battery storage: 42.2
-  biomass: 1979.5
-  coal: 16164.8
-  gas: 34941.7
+  battery storage: 82.2
+  biomass: 1923.2
+  coal: 14138.7
+  gas: 37049.2
   geothermal: 0
-  hydro: 3310.4
+  hydro: 3309.4
   hydro storage: 1306.6
   nuclear: 6054.4
   oil: 1284.8
-  solar: 3662
-  unknown: 0
+  solar: 3869
+  unknown: 45
   wind: 0
 comment: Southern Company Services, Inc. - Trans
 contributors:

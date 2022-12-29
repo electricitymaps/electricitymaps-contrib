@@ -72,6 +72,9 @@ API_PARAMETER_GROUPS = {
         "unknown": ["bagasse_charbon_mwh", "charbon_bagasse_mw"],
     },
     "storage": {},
+    "price": {
+        "price": ["cout_moyen_de_production_eur_mwh"],
+    },
 }
 
 PRODUCTION_MAPPING = {
@@ -84,6 +87,13 @@ PRODUCTION_MAPPING = {
 STORAGE_MAPPING = {
     API_TYPE: type
     for key in ["storage"]
+    for type, groups in API_PARAMETER_GROUPS[key].items()
+    for API_TYPE in groups
+}
+
+PRICE_MAPPING = {
+    API_TYPE: type
+    for key in ["price"]
     for type, groups in API_PARAMETER_GROUPS[key].items()
     for API_TYPE in groups
 }
@@ -199,7 +209,36 @@ def fetch_production(
                 "production": production,
                 "storage": storage,
                 "source": "edf.fr",
-                "estimated": True if production_object["statut"] == "Estimé" else False,
+                # TODO: Should be re-enabled when the changes discussed in #4828 are implemented
+                # "estimated": True if production_object["statut"] == "Estimé" else False,
+            }
+        )
+    return return_list
+
+
+def fetch_price(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger=getLogger(__name__),
+):
+    data_objects, date_string = fetch_data(zone_key, session, target_datetime, logger)
+
+    return_list: List[Dict[str, Any]] = []
+    for data_object in data_objects:
+        price: Union[float, int, None] = None
+        for mode_key in data_object:
+            if mode_key in PRICE_MAPPING:
+                price = data_object[mode_key]
+                break
+
+        return_list.append(
+            {
+                "zoneKey": zone_key,
+                "currency": "EUR",
+                "datetime": datetime.fromisoformat(data_object[f"{date_string}"]),
+                "source": "edf.fr",
+                "price": price,
             }
         )
     return return_list

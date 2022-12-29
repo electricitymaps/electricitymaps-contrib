@@ -5,15 +5,15 @@ bounding_box:
     - 47.5893300000001
 capacity:
   battery storage: 0
-  biomass: 161
-  coal: 2441.9
-  gas: 621.2
+  biomass: 156.2
+  coal: 0
+  gas: 1245.1
   geothermal: 3.7
-  hydro: 1127.6
+  hydro: 1132.8
   hydro storage: 0
   nuclear: 0
   oil: 0
-  solar: 411.7
+  solar: 407.4
   unknown: 0
   wind: 694.3
 comment: Pacificorp - West

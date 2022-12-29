@@ -7,13 +7,13 @@ capacity:
   battery storage: 90
   biomass: 0
   coal: 0
-  gas: 2407.3
+  gas: 2776.7
   geothermal: 0
-  hydro: 5610.5
-  hydro storage: 65.2
+  hydro: 3789.5
+  hydro storage: 40
   nuclear: 0
-  oil: 4.5
-  solar: 302.2
+  oil: 1.5
+  solar: 322.2
   unknown: 0
   wind: 350
 comment: Western Area Power Administration - Desert Southwest Region

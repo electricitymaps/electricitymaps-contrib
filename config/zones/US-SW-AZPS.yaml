@@ -6,16 +6,16 @@ bounding_box:
 capacity:
   battery storage: 2
   biomass: 33.4
-  coal: 2062.1
+  coal: 1749.8
   gas: 2714.6
   geothermal: 0
   hydro: 0
   hydro storage: 0
   nuclear: 0
   oil: 123.8
-  solar: 756.6
+  solar: 772
   unknown: 0
-  wind: 374.3
+  wind: 319.3
 comment: Arizona Public Service Company
 contributors:
   - systemcatch
