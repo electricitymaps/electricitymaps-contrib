@@ -92,8 +92,6 @@ def fetch_consumption(
                         "source": "smartgriddashboard.com",
                     }
                 )
-            else:
-                return consumption_list
 
         return consumption_list
     except TypeError as e:
@@ -164,8 +162,6 @@ def fetch_production(
                         "source": "smartgriddashboard.com",
                     }
                 )
-            else:
-                return production_list
 
         return production_list
 
@@ -200,8 +196,6 @@ def fetch_exchange(
                         "source": "smartgriddashboard.com",
                     }
                 )
-            else:
-                return interconnection_list
 
     elif sortedZoneKeys == "GB-NIR->IE":
         production_json = _fetch_json_data(
@@ -229,8 +223,6 @@ def fetch_exchange(
                         "source": "smartgriddashboard.com",
                     }
                 )
-            else:
-                return interconnection_list
 
         return interconnection_list
 
