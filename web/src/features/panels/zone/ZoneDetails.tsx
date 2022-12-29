@@ -74,7 +74,7 @@ function ZoneDetailsContent({
   if (isLoading) {
     return (
       <div className={`flex h-full w-full items-center justify-center`}>
-        <div className="z-50 h-[50px] w-[50px] bg-[url('/loading-icon.svg')] bg-[length:60px] bg-center bg-no-repeat dark:bg-gray-900 dark:bg-[url('/loading-icon-darkmode.svg')]"></div>
+        <div className="z-50 h-[50px] w-[50px] bg-[url('/loading-icon.svg')] bg-[length:60px] bg-center bg-no-repeat dark:bg-[url('/loading-icon-darkmode.svg')]"></div>
       </div>
     );
   }
