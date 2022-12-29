@@ -49,13 +49,13 @@ def _fetch_json_data(
         The fetched rows of data as a list of dictionaries.
     """
     DATA_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data"
-    try:
-        if not target_datetime:
-            target_datetime = datetime.now(tz.gettz(name=TZ))
 
-        # get all available data for a single day
-        date_from = target_datetime.replace(hour=0, minute=0, second=0)
-        date_to = target_datetime.replace(hour=23, minute=59, second=59)
+    if target_datetime is None:
+        date_to = datetime.now(tz.gettz(name=TZ))
+    else:
+        date_to = target_datetime.astimezone(tz.gettz(name=TZ))
+    # get all available data for the last 48 hours
+    date_from = date_to - timedelta(days=2)
 
         params = {
             "area": dataset,
@@ -63,9 +63,8 @@ def _fetch_json_data(
             "datefrom": date_from,
             "dateto": date_to,
         }
-
+    try:
         response: Response = session.get(DATA_URL, params=params)
-
         return response.json()["Rows"]
     except ConnectionError as e:
         ParserException("GB_NIR.py", f"Failed to connect to SmartGrid Dashboard: {e}")
