@@ -77,7 +77,7 @@ def fetch_consumption(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list:
     try:
         demand_json = _fetch_json_data("NI", "demandactual", session, target_datetime)
         consumption_list = []
@@ -109,7 +109,7 @@ def fetch_production(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list:
     """
     Fetches the exchange information for either the GB->GB-NIR (by default) or
     GB-NIR->IE interconnections. All values are in MW.
@@ -183,7 +183,7 @@ def fetch_exchange(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list:
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     moyle_json = _fetch_json_data("NI", "interconnection", session, target_datetime)
 
