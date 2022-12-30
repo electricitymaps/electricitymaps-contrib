@@ -1,255 +1,255 @@
 {
   "info-modal": {
     "title": "Info",
-    "intro-text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
-    "open-source-text": "This app is <a href=\"%s\" target=\"_blank\">Open Source</a> (<a href=\"%s\" target=\"_blank\">see data sources</a>) and powered by the community.",
-    "feedback-button": "Share feedback",
-    "github-button": "View our GitHub",
-    "twitter-button": "Share on Twitter",
-    "slack-button": "Join the Slack community",
-    "privacy-policy": "Privacy Policy",
-    "legal-notice": "Legal Notice"
+    "intro-text": "Aplikacija Electricity Maps zagotavlja vpoglede v realnem času na spletu in mobilnih napravah za državljane, energetske strokovnjake, nevladne organizacije in oblikovalce politik, ki spodbujajo globlje razumevanje izzivov energetskega prehoda.",
+    "open-source-text": "Ta aplikacija je <a href=\"%s\" target=\"_blank\">odprtokodna</a> (<a href=\"%s\" target= '_blank'>glej vire podatkov</a>) .",
+    "feedback-button": "Deli povratne informacije",
+    "github-button": "Oglejte si naš GitHub",
+    "twitter-button": "Deli na Twitterju",
+    "slack-button": "Pridruži se skupnosti Slack",
+    "privacy-policy": "Politika zasebnosti",
+    "legal-notice": "Pravno obvestilo"
   },
   "settings-modal": {
-    "title": "Settings"
+    "title": "Nastavitve"
   },
   "panel-initial-text": {
-    "thisproject": "This app is",
-    "opensource": "Open Source",
-    "see": "see",
-    "datasources": "data sources",
-    "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
+    "thisproject": "Ta aplikacija je",
+    "opensource": "Odprtokodna",
+    "see": "poglej",
+    "datasources": "Viri podatkov",
+    "contribute": "Prispevaj in <a href=\"%s\" target=\"_blank\">dodaj svoj teritorij</a>"
   },
   "mobile-main-menu": {
-    "map": "Electricity Maps",
-    "areas": "Areas",
-    "about": "About"
+    "map": "Mapa elektrike",
+    "areas": "Območja",
+    "about": "O nas"
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Mapping the climate impact of electricity"
+      "subtitle": "Kartiranje vpliva električne energije na podnebje"
     },
     "view2": {
-      "header": "See how much CO₂ is emitted to produce your electricity, in real-time.",
-      "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. The greener the color, the more climate-friendly the electricity."
+      "header": "Sprotno si oglejte, koliko CO₂ se izpusti za proizvodnjo vaše električne energije.",
+      "text": "Območja po vsem svetu obarvamo glede na njihovo ogljično intenzivnost (vključuje vse toplogredne pline) tam porabljene električne energije. Bolj kot je barva bližje zeleni, podnebju prijaznejša je elektrika."
     },
     "view3": {
-      "header": "Know where your electricity comes from",
-      "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
+      "header": "Vedite, od kod prihaja vaša elektrika",
+      "text": "Puščice na zemljevidu označujejo pretok električne energije med različnimi območji. Kliknite na območje, da vidite več informacij o izvoru električne energije."
     },
     "view4": {
-      "header": "Real-time wind and solar conditions",
-      "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
+      "header": "Vetrne in sončne razmere v realnem času",
+      "text": "Proizvodnja vetrne in sončne energije je odvisna od vremena. Pritisnite gumba za sonce in veter, da prikažete moč vetra in sonca po vsem svetu v realnem času."
     }
   },
   "country-panel": {
-    "source": "Source",
-    "carbonintensity": "Carbon Intensity",
-    "lowcarbon": "Low-carbon",
-    "renewable": "Renewable",
-    "electricityproduction": "Electricity production",
-    "electricityconsumption": "Electricity consumption",
-    "bysource": "by source",
-    "averagebysource": "average by source",
-    "emissions": "Carbon emissions",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-    "helpfrom": "with help from",
-    "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
-    "noLiveData": "Live data is temporarily unavailable for this area",
-    "dataIsDelayed": "Data for this region can be up to %s hours delayed. Live data cannot be displayed.",
-    "estimated": "estimated",
-    "aggregated": "aggregated",
-    "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">here</a>.",
-    "exchangesAreMissing": "Exchanges are accounted for in the calculations but not currently shown. Read more about our historical aggregations <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">here</a>.",
-    "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
-    "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
-    "helpUs": "Help us identify the problem by taking a look at the <a href=\"%s\" target=\"_blank\">runtime logs</a> or contact the data provider.",
-    "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
-    "now": "Now"
+    "source": "Vir",
+    "carbonintensity": "Intenzivnost ogljika",
+    "lowcarbon": "nozkoogljična",
+    "renewable": "obnovljiva",
+    "electricityproduction": "Proizvodnja električne energije",
+    "electricityconsumption": "Poraba električne energije",
+    "bysource": "po viru",
+    "averagebysource": "povprečje glede na vir",
+    "emissions": "ogljične emisije",
+    "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj ali uredi vir</a>",
+    "helpfrom": "s pomočjo od",
+    "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",
+    "noLiveData": "Podatki v živo za to območje začasno niso na voljo",
+    "dataIsDelayed": "Podatki za to regijo lahko zamujajo do %s ur. Podatkov v živo ni mogoče prikazati.",
+    "estimated": "ocenjeno",
+    "aggregated": "zbrano",
+    "dataIsEstimated": "Nekateri podatki za to regijo so ocenjeni. Preberite več o naši metodologiji ocenjevanja <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target= \"_blank\">tukaj</a>.",
+    "exchangesAreMissing": "Izmenjave so upoštevane v izračunih, vendar trenutno niso prikazane. Preberite več o naših zgodovinskih združevanjih <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">tukaj</a>..",
+    "estimatedTooltip": "Podatki v realnem času za to območje so ocenjeni na podlagi podatkov iz vira in predpostavk modela.",
+    "aggregatedTooltip": "Podatki za to območje so združeni na podlagi zgodovinskih urnih vrednosti",
+    "helpUs": "Pomagajte nam prepoznati težavo tako, da si ogledate <a href=\"%s\" target=\"_blank\">dnevnike izvajalnega časa</a> ali se obrnete na ponudnika podatkov.",
+    "noParserInfo": "Nimamo še nobenih informacij o tem območju.<br/> Želite pomagati popraviti to? Lahko prispevate tako, da <a href=\"%s\" target=\"_blank\">dodate območje podatki</a>.",
+    "now": "Zdaj"
   },
   "time-controller": {
-    "title": "Display data from the past"
+    "title": "Prikaži podatke iz preteklosti"
   },
   "left-panel": {
-    "zone-list-header-title": "Climate Impact by Area",
-    "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas"
+    "zone-list-header-title": "Vpliv na podnebje glede na območje",
+    "zone-list-header-subtitle": "Razvrščeno glede na ogljično intenzivnost porabljene električne energije (gCO₂eq/kWh)",
+    "search": "Območja iskanja"
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Carbon intensity in the last %1$s",
-      "hourly": "Carbon intensity in the last 24 hours",
-      "daily": "Carbon intensity in the last month",
-      "monthly": "Carbon intensity in the last year",
-      "yearly": "Carbon intensity in the last 5 years"
+      "default": "Intenzivnost ogljika v zadnjih%1$s",
+      "hourly": "Intenzivnost ogljika v zadnjih 24 urah",
+      "daily": "Intenzivnost ogljika v zadnjem mesecu",
+      "monthly": "Intenzivnost ogljika v zadnjem letu",
+      "yearly": "Intenzivnost ogljika v zadnjih 5 letih"
     },
     "emissions": {
-      "default": "Emissions in the last %1$s"
+      "default": "Emisije v zadnji(h) %1$s"
     },
     "emissionsorigin": {
-      "default": "Emissions in the last %1$s"
+      "default": "Emisije v zadnji(h) %1$s"
     },
     "emissionsproduction": {
-      "default": "Origin of emissions in the last %1$s"
+      "default": "Izvor emisij v zadnji(h) %1$s"
     },
     "electricityorigin": {
-      "default": "Origin of electricity in the last %1$s"
+      "default": "Izvor elektrike v zadnji(h) %1$s"
     },
     "electricityproduction": {
-      "default": "Electricity production in the last %1$s"
+      "default": "Produkcija elektrike v zadnji(h) %1$s"
     },
     "electricityprices": {
-      "default": "Electricity prices in the last %1$s"
+      "default": "Cena elektrike v zadnji(h) %1$s"
     },
-    "Getdata": "Get hourly historical, live, and forecast data with Electricity Maps API"
+    "Getdata": "Z API-jem za zemljevide električne energije pridobite vsako uro zgodovinske podatke, podatke v živo in napovedi"
   },
   "footer": {
-    "foundbugs": "Found bugs or have ideas? Report them",
-    "faq-text": "Anything unclear? Check out our",
-    "faq": "frequently asked questions.",
-    "here": "here"
+    "foundbugs": "Ste našli hrošča, ali imate idejo? Pišite nam.",
+    "faq-text": "Nejasnosti? Oglejte si naša",
+    "faq": "pogosto postavljena vprašanja",
+    "here": "tukaj"
   },
   "legends": {
-    "windpotential": "Wind power potential",
-    "solarpotential": "Solar power potential",
-    "colorblindmode": "color blind mode",
-    "carbonintensity": "Carbon intensity"
+    "windpotential": "Potencial vetrne energije",
+    "solarpotential": "Potencial sončne energije",
+    "colorblindmode": "Barvno slep način",
+    "carbonintensity": "Intenzivnost ogljika"
   },
   "tooltips": {
-    "carbonintensity": "Carbon intensity",
-    "lowcarbon": "Low-carbon",
-    "renewable": "Renewable",
-    "crossborderexport": "Cross-border export",
-    "carbonintensityexport": "Carbon intensity of export",
-    "ofinstalled": "of installed capacity",
-    "utilizing": "utilizing",
-    "representing": "representing",
-    "ofemissions": "of emissions",
-    "withcarbonintensity": "with a carbon intensity of",
-    "zoomIn": "Zoom in",
-    "zoomOut": "Zoom out",
-    "showWindLayer": "Show wind layer",
-    "hideWindLayer": "Hide wind layer",
-    "showSolarLayer": "Show solar layer",
-    "hideSolarLayer": "Hide solar layer",
-    "weatherDisabled": "Weather data is not available at this time",
-    "toggleDarkMode": "Toggle dark-mode",
-    "noParserInfo": "No data available",
-    "temporaryDataOutage": "Live data temporarily unavailable",
-    "production": "production",
-    "consumption": "consumption",
-    "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
-    "aggregateinfo": "Countries are aggregated when the annual zone capacity is greater than 90% of the total capacity",
-    "selectLanguage": "Select language",
-    "lowCarbDescription": "Includes renewables and nuclear",
-    "dataIsDelayed": "Data is delayed"
+    "carbonintensity": "Intenzivnost ogljika",
+    "lowcarbon": "Nizkoogljična",
+    "renewable": "Obnovljivo",
+    "crossborderexport": "Čezmejni izvoz",
+    "carbonintensityexport": "Ogljična intenzivnost izvoza",
+    "ofinstalled": "inštalirane moči",
+    "utilizing": "uporaba",
+    "representing": "zastopanje",
+    "ofemissions": "izpustov",
+    "withcarbonintensity": "z ogljično intenzivnostjo",
+    "zoomIn": "Približaj",
+    "zoomOut": "Pomanjšaj",
+    "showWindLayer": "Prikaži sloj vetra",
+    "hideWindLayer": "Skrij sloj vetra",
+    "showSolarLayer": "Prikaži sončno plast",
+    "hideSolarLayer": "Skrij sončno plast",
+    "weatherDisabled": "Vremenski podatki trenutno niso na voljo",
+    "toggleDarkMode": "Preklopi na temni način",
+    "noParserInfo": "Ni podatkov",
+    "temporaryDataOutage": "Podatki v živo trenutno niso na voljo",
+    "production": "Proizvodnja",
+    "consumption": "Poraba",
+    "cpinfo": "<b>Potrošnja</b> upošteva uvoz in izvoz, <b>proizvodnja</b> ju ne upošteva",
+    "aggregateinfo": "Države se združijo, ko je letna zmogljivost cone večja od 90 % celotne zmogljivosti",
+    "selectLanguage": "Izberi jezik",
+    "lowCarbDescription": "Vključuje obnovljive vire in jedrsko energijo",
+    "dataIsDelayed": "Podatki zamujajo"
   },
   "aggregateButtons": {
-    "country": "country",
-    "zone": "zone"
+    "country": "država",
+    "zone": "območje"
   },
   "misc": {
-    "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
-    "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-    "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
-    "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
-    "retrynow": "Retry now",
-    "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-    "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
-    "legend": "Legend",
-    "faq": "Frequently Asked Questions",
-    "privacyPolicy": "Privacy Policy",
-    "legalNotice": "Legal Notice"
+    "maintitle": "Trenutne 24/7 emisije CO₂ porabe električne energije",
+    "oops": "Ups! Imamo težave pri doseganju strežnika. Poskusili bomo znova čez nekaj sekund.",
+    "newversion": "Na voljo je nova različica! Pritisnite <a onClick=\"location.reload(true);\">tukaj</a> za ponovno nalaganje.",
+    "webgl-not-supported":"Zemljevida ni mogoče upodobiti, ker ta brskalnik ne podpira WebGL.",
+    "retrynow": "Poskusi ponovno",
+    "database-ad": "Iščete zgodovinske podatke? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preverite našo bazo podatkov!</a>",
+    "api-ad": "želite podatke v živo v svoji aplikaciji? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preizkusi naš API!</a>",
+    "legend": "Legenda",
+    "faq": "Pogosto postavljena vprašanja",
+    "privacyPolicy": "Politika zasebnosti",
+    "legalNotice": "Pravno obvestilo"
   },
-  "wind": "wind",
-  "windDataError": "Wind data is currently unavailable",
-  "solar": "solar",
-  "solarDataError": "Solar data is currently unavailable",
-  "hydro": "hydro",
-  "hydro storage": "hydro storage",
-  "battery storage": "battery storage",
-  "biomass": "biomass",
-  "nuclear": "nuclear",
-  "geothermal": "geothermal",
-  "gas": "gas",
-  "coal": "coal",
-  "oil": "oil",
-  "unknown": "unknown",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
+  "wind": "veter",
+  "windDataError": "Podatki o vetrni energiji trenutno niso na voljo",
+  "solar": "sončna energija",
+  "solarDataError": "Podatki o sončni energiji trenutno niso na voljo",
+  "hydro": "vodna energija",
+  "hydro storage": "hidro shranjevanje",
+  "battery storage": "shranjeno v baterijah",
+  "biomass": "biomasa",
+  "nuclear": "nuklearna",
+  "geothermal": "geotermalna",
+  "gas": "plin",
+  "coal": "premog",
+  "oil": "olje",
+  "unknown": "neznano",
+  "electricityComesFrom": "<b>%1$s %%</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b> prihaja iz %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> emisij iz električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b> prihaja iz %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, je shranjena z %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> emisij iz električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, so shranjene z %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, se izvozi v <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> emisij iz električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, se izvozi v <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> emisij električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, so uvožene iz<img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "ofCO2eqPerMinute": "CO₂eq na minuto",
   "theMap": {
-    "groupName": "The map",
-    "mapColors-question": "What do the colors on the map mean?",
-    "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). The greener the colour, the more climate-friendly the electricity consumption.",
-    "mapArrows-question": "What do the arrows between areas on the map indicate?",
-    "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
-    "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
-    "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunshine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells is also dependent on many other factors.",
-    "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
-    "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
-    "mapColorBlind-question": "I am color blind. How can I read your map?",
-    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
+    "groupName": "Mapa",
+    "mapColors-question": "Kaj pomenijo barve na zemljevidu?",
+    "mapColors-answer": "Območja na zemljevidu obarvamo glede na količine toplogrednih plinov, ki se izpustijo za vsako tam porabljeno enoto električne energije (njena <a href=\"#carbonIntensity\" class=\"entry-link\">ogljična intenzivnost</a> ). Bolj kot je zelena barva, podnebju prijaznejša je poraba električne energije",
+    "mapArrows-question": "Kaj označujejo puščice med območji na zemljevidu?",
+    "mapArrows-answer": "Puščice med območji označujejo fizični pretok (uvoz in izvoz) električne energije med območji: hitreje utripajo, hitrejši je pretok. Pretok električne energije je pomemben, saj ko nekaj električne energije uvozite iz sosednjih območij, uvozite tudi emisije ogljika, povezane z njeno proizvodnjo.",
+    "mapSolarWindButtons-question": "kaj počneta gumba 'sonce' in 'veter' na zemljevidu?",
+    "mapSolarWindButtons-answer": "Ti gumbi preklapljajo med prikazovanjem hitrosti vetra in moči sonca v realnem času, kar kaže na možnost prehoda na alternativne vire energije iz sonca in vetra na različnih območjih. Upoštevajte, da je to le površen pokazatelj, saj je dejanski potencial pri namestitvi vetrnih turbin in sončnih celic odvisen tudi od številnih drugih dejavnikov.",
+    "mapNuclearColors-question": "Zakaj so države z jedrsko energijo na zemljevidu označene z zeleno?",
+    "mapNuclearColors-answer": "Proizvodnja jedrske energije ima zelo nizko intenzivnost ogljika (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >vir</ a>), zato so države z jedrsko energijo na zemljevidu prikazane z zeleno barvo. To ne pomeni, da z jedrsko energijo ni povezanih drugih okoljskih izzivov (kot velja tudi za druge oblike proizvodnje energije), vendar ti izzivi niso povezani z izpusti toplogrednih plinov in so zato izven obsega tega zemljevida.",
+    "mapColorBlind-question": "Sem barvno slep(a), kako lahko berem vašo mapo?",
+    "mapColorBlind-answer": "Barve, prikazane na zemljevidu, lahko spremenite tako, da omogočite nastavitev »barvno slepi način«. Nahaja se na dnu leve plošče na namizju in v zavihku z informacijami v mobilni aplikaciji."
   },
   "mapAreas": {
-    "groupName": "Areas in the map",
-    "noData-question": "Why is data for my area not available?",
-    "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>.",
-    "whySmallAreas-question": "Why do you divide the world into smaller areas and not simply show country averages?",
-    "whySmallAreas-answer": "The areas are the smallest geographical areas we have data for. By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.",
-    "divideExistingArea-question": "Can you divide my area into smaller parts?",
-    "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
-    "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-    "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>."
+    "groupName": "Območja na mapi",
+    "noData-question": "Zakaj podatki za moje območje niso na voljo?",
+    "noData-answer": " Bodisi zato, ker viri podatkov za območje začasno niso na voljo, bodisi zato, ker še nimamo nastavljenih virov podatkov za to območje. Lahko nam <a href=\"#contribute\" class=\"entry-link\">pomagate pri dodajanju novih virov podatkov.",
+    "whySmallAreas-question": "Zakaj delite svet na manjša območja in ne prikazujete le povprečja držav?",
+    "whySmallAreas-answer": "Območja so najmanjša geografska območja, za katera imamo podatke. Z dostopom do informacij na najvišji stopnji razdrobljenosti lahko odjemalci električne energije na različnih območjih natančneje vedo o izvoru električne energije, ki jo porabijo.",
+    "divideExistingArea-question": "Ali lahko moje območje razdelite na manjše dele?",
+    "divideExistingArea-answer": "Seveda, če obstajajo ločeni viri podatkov za vsak del območja. Lahko <a href=\"#contribute\" class=\"entry-link\">pomagate nam pri dodajanju novih podatkovnih virov</a>",
+    "seeHistoricalData-question": "Ali lahko vidim zgodovino za obmmočje starejše od 24 ur?",
+    "seeHistoricalData-answer": "Dostop do vseh naših zgodovinskih podatkov lahko kupite prek naše <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">zbirke podatkov</a>."
   },
   "methodology": {
     "groupName": "Our methods",
-    "carbonIntensity-question": "What is \"carbon intensity\"?",
-    "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
-    "consumptionFocus-question": "Why do you calculate the carbon intensity of electricity consumption instead of production?",
-    "consumptionFocus-answer": "We believe citizens should be responsible for the electricity they consume, and not for the electricity that is produced in the area that they happen to live in. Furthermore, we believe areas should not be able to 'fake' a low climate impact simply by relocating dirty energy production to other areas, and then importing the electricity from those areas.",
-    "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
-    "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
-    "importsAndExports-question": "Do you take into account imports and exports of electricity?",
-    "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small <a href=\"#mapArrows\" class=\"entry-link\">arrows between different areas</a>. Detailed information can be seen in the charts shown when you click on an area.",
-    "emissionsOfStored-question": "What about emissions from generating electricity which is then stored in batteries or used to fill reservoirs?",
-    "emissionsOfStored-answer": "As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.",
-    "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
-    "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
-    "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
-    "otherSources-answer": "This would be outside of the scope of this project. However, at Electricity Maps we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
-    "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
-    "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
-    "emissionsPerCapita-question": "Why don't you show emissions per capita?",
-    "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used for manufacturing physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, are driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
+    "carbonIntensity-question": "Kaj je \"ogljična intenzivnost\"?",
+    "carbonIntensity-answer": "Intenzivnost ogljika je merilo emisij toplogrednih plinov, povezanih s proizvodnjo električne energije, ki jo porabite (v gCO₂eq/kWh – gramih ekvivalentov ogljikovega dioksida, izpuščenih na kilovatno uro porabljene električne energije). <br><br>Merimo emisije porabe električne energije (ne proizvodnje), kar pomeni vse emisije toplogrednih plinov (tako CO₂ kot drugih toplogrednih plinov, kot je metan), ki so šli v proizvodnjo električne energije, ki se porablja na območju, ob upoštevanju upoštevati ogljične intenzivnosti električne energije, uvožene z drugih območij. Uporabljamo pristop analize življenjskega cikla (LCA), kar pomeni, da upoštevamo emisije, ki izhajajo iz celotnega življenjskega cikla elektrarn (gradnja, proizvodnja goriva, obratovalne emisije in razgradnja).",
+    "consumptionFocus-question": "Zakaj izračunavate ogljično intenzivnost porabe električne energije namesto proizvodnje?",
+    "consumptionFocus-answer": "Prepričani smo, da bi morali biti državljani odgovorni za električno energijo, ki jo porabijo, in ne za električno energijo, ki je proizvedena na območju, kjer slučajno živijo.",
+    "renewableLowCarbonDifference-question": "Kakšna je razlika med 'obnovljivo' in 'nizkoogljičnio' energijo?",
+    "renewableLowCarbonDifference-answer": "Proizvodnja obnovljive energije temelji na obnovljivih virih energije, kot so veter in vodni tokovi, sonce in geotermalna energija. Nizkoogljična proizvodnja energije pomeni, da proizvodnja vključuje zelo nizko raven emisij toplogrednih plinov, na primer pri proizvodnji jedrske energije.",
+    "importsAndExports-question": "Ali upoštevate uvoz in izvoz električne energije?",
+    "importsAndExports-answer": "Da. Uvoze in izvoze lahko na zemljevidu vidite kot majhne <a href=\"#mapArrows\" class=\"entry-link\">puščice med različnimi območji</a>. Podrobne informacije si lahko ogledate v grafikonih, prikazanih, ko kliknete na območje.",
+    "emissionsOfStored-question": "Kaj pa emisije pri proizvodnji električne energije, ki se nato shrani v baterije ali uporabi za polnjenje rezervoarjev?",
+    "emissionsOfStored-answer": "Ker je trenutno shranjen le majhen delež električne energije, netočnosti pri modeliranju teh emisij ne bi smele bistveno vplivati ​​na sedanje skupne vrednosti. Vendar glede na vse večji pomen shranjevanja upamo, da ga bomo v našem modelu kmalu bolj upoštevali.",
+    "guaranteesOfOrigin-question": "Kaj so zeleni certifikati in kako se upoštevajo?",
+    "guaranteesOfOrigin-answer": "Ko proizvajalci obnovljive energije proizvajajo električno energijo, lahko ustvarijo garancije o izvoru (ali potrdila o obnovljivi energiji) - dokaz, da je bila električna energija iz obnovljivih virov proizvedena in distribuirana v električno omrežje. Ta jamstva je nato mogoče prodati, kar trgovcem z električno energijo na drobno omogoči, da trdijo, da električna energija, ki jo preprodajajo, prihaja iz obnovljivih virov, ne glede na njen dejanski, fizični vir.<br><br> To pomeni, da lahko potrošnikom električne energije povedo, da njihova električna energija prihaja pred soncem in vetrom, tudi v brezvetrju. To je problematično, saj odpravlja spodbude potrošnikov za porabo električne energije ob najboljšem času (na primer, ko je količina obnovljive električne energije v omrežju dejansko največja). Ta zemljevid torej izključuje jamstva o izvoru, namesto tega ponuja lokacijsko fizično sliko električnega omrežja, da bi okrepili moč potrošnikov.",
+    "otherSources-question": "Zakaj ne prikažete drugih virov emisij poleg proizvodnje električne energije?",
+    "otherSources-answer": "To bi bilo izven obsega tega projekta. Vendar pri Electricity Maps aktivno delamo na razvoju <a href=\"#whoAreYou\" class=\"entry-link\">novih rešitev za količinsko opredelitev vpliva vaših vsakodnevnih odločitev na podnebje</a>.",
+    "homeSolarPanel-question": "Kaj pa če imam na svojem domu nameščene sončne celice?",
+    "homeSolarPanel-answer": "Intenzivnost ogljika merimo v lokalnem električnem omrežju, zato električna energija, ki jo porabite neposredno iz sončne celice (izven omrežja), ni del naših meritev. Če pa vaša sončna plošča napaja vaše lokalno električno omrežje, je njena proizvodnja vključena v naše statistike na območjih, kjer so ocene lokalne proizvodnje sončne energije javno dostopne (na primer v Franciji in Združenem kraljestvu).",
+    "emissionsPerCapita-question": "Zakaj ne prikažete količine emisij na prebivalca?",
+    "emissionsPerCapita-answer": "Nekaj ​električne energije, porabljene na območju, se porabi za proizvodnjo fizičnega blaga in izdelkov, ki se kasneje izvozijo in porabijo na drugih območjih. To proizvodnjo ter s tem tudi njeno porabo električne energije in z njo povezane emisije poganja poraba izdelkov na <em>območjih uvoza</em>, ne na območju, kjer poteka proizvodnja. Verjamemo, da bi morali biti ljudje odgovorni le za tisto, kar zaužijejo, ne pa za izdelke, proizvedene na območju, kjer živijo, ki pa jih sami ne zaužijejo. V tem smislu je prikaz emisij porabe električne energije na prebivalca za območja zavajajoč."
   },
   "data": {
-    "groupName": "Our data",
-    "dataOrigins-question": "How do you get your data?",
-    "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
-    "dataDownload-question": "Can I download your data?",
-    "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>.",
-    "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
-    "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+    "groupName": "Naši podatki",
+    "dataOrigins-question": "Kako dobite vaše podatke?",
+    "dataOrigins-answer": "Vse naše podatke izračunavamo iz javno dostopnih podatkov, ki jih objavljajo operaterji elektroenergetskega omrežja, uradne agencije in drugi. Lahko kliknete območje, če si želite ogledati več podrobnosti o izvoru njegovih podatkov.",
+    "dataDownload-question": "Ali imam dostop do vaših popdat?",
+    "dataDownload-answer": "Imate možnost kupiti dostop do vseh naših podatkov v <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">bazi</a>.",
+    "dataIntegration-question": "Ali lahko vaše podatke v realnem času integriram v svojo aplikacijo ali napravo?",
+    "dataIntegration-answer": "Da! Prodajamo dostop do <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API-ja</a>, kateri vključuje prihodnje napovedi."
   },
   "aboutUs": {
-    "groupName": "About us",
-    "whoAreYou-question": "Who are you?",
-    "whoAreYou-answer": "The app is developed and maintained by <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
-    "feedback-question": "Can I give you some feedback?",
-    "feedback-answer": "Please do! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymaps.com\">send us an email!</a>",
-    "contribute-question": "Can I contribute to your project?",
-    "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">github</a>.",
-    "workTogether-question": "Can we work together?",
-    "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymaps.com\">Send us an email!</a>",
+    "groupName": "O nas",
+    "whoAreYou-question": "Kdo ste?",
+    "whoAreYou-answer": "Aplikacijo razvija in vzdržuje <a href=\"https://electricitymaps.com/\" target=\"_blank\">Električni zemljevidi</a>, dansko startup podjetje. Naš cilj je pomagati človeštvu doseči trajnostno stanje obstoja, tako, da kvalificiramo vpliv vsakodnevnih odločitev na podnebje it podatke naredimo široko dostopne.",
+    "feedback-question": "Vam lahko dam nekaj povratnih informacij?",
+    "feedback-answer": "Da! Prosim izpolnite <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymaps.com\">Pošlji mail!</a>",
+    "contribute-question": "Ali lahko pomagam pri vašem projektu?",
+    "contribute-answer": "Aplikacija je odprtokodni projekt, ki so ga omogočili naši prostovoljci. Če želite pomagati pri razvoju zemljevida, bodisi z dodajanjem virov podatkov za nova območja, dodajanjem novih funkcij ali odpravljanjem napak, se nam pridružite v našem <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">github</a>.",
+    "workTogether-question": "Lahko delamo skupaj?",
+    "workTogether-answer": "Aktivno iščemo nove priložnosti za sodelovanje. <a href=\"mailto:app@electricitymaps.com\">Pošlji mail!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Električni zemljevidi</a> v informativne namene. Ne garantiramo pravilnosti in ne zagotavljamo nobenih jamstev o podatkih. Pridružujemo si pravico, da lahko kadarkoli spremenimo ali odstranimo dele vsebine, ne da bi vas o tem obvestili. Električni zemljevidi ne prevzemajo nobene odgovornosti za kakršno koli škodo ali stroške, kateri bi lahko nastali zaradi netočnosti, nepopolnosti, neažurnosti ali zastarelosti informacij pridobljenih iz zemljevidov. Te spletne strani ali katerega koli njenega posameznega elementa ni dovoljeno vključiti v drugo spletno stran brez uradnega predhodnega pisnega soglasja.<br><br> Vse pravice intelektualne lastnine pripadajo zakonitim lastnikom in dajalcem licence. Kopiranje, distribucija in kakršna koli druga uporaba teh materialov, zlasti energetskih podatkov, ni dovoljena brez pisnega dovoljenja Elektrokarte, razen in samo v obsegu, ki je drugače določen s predpisi prisilnega prava (kot je pravica do citiranja), razen če je za določene materiale določeno drugače.  <br><br> Ta izjava se lahko občasno posodobi."
   },
   "zoneShortName": {
     "AD": {
