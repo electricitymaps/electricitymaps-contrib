@@ -8,17 +8,17 @@ bounding_box:
   - - 3.6474609375
     - 43.6758180933
 capacity:
-  biomass: 1489
+  biomass: 1219
   coal: 3223
-  gas: 30155
+  gas: 30148
   geothermal: 0
   hydro: 17093
   hydro storage: 5645
   nuclear: 7117
-  oil: 678
-  solar: 19588
-  unknown: 402
-  wind: 28946
+  oil: 670
+  solar: 20821
+  unknown: 403
+  wind: 29157
 contributors:
   - brandongalbraith
   - corradio
