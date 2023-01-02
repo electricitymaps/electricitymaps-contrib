@@ -14,7 +14,7 @@ import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
-import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 import {
@@ -131,6 +131,7 @@ export default function MapPage(): ReactElement {
   }, [mapReference, geometries, data, getCo2colorScale, selectedDatetime]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
+    setHoveredZone(hoveredZone);
     const map = mapReference.current?.getMap();
     if (!map || !event.features) {
       return;

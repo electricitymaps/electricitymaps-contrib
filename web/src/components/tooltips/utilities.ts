@@ -42,7 +42,7 @@ export const getOffsetTooltipPosition = ({
   if (!isBiggerThanMobile) {
     return {
       x: 0,
-      y: 40, // Provides space for the header to still be visible
+      y: 0,
     };
   }
 

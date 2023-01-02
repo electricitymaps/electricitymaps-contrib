@@ -2,6 +2,7 @@ import * as Portal from '@radix-ui/react-portal';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
+import { HiXMark } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 import { ZoneDetail } from 'types';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
@@ -79,7 +80,7 @@ function BarBreakdownChart() {
       <BySource />
       {tooltipData && (
         <Portal.Root
-          className="absolute left-0 top-0 h-full w-full bg-black/20 p-2 sm:h-0 sm:w-0 sm:p-0"
+          className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col items-center gap-y-1 bg-black/20 p-2 pt-14 sm:block sm:h-0 sm:w-0 sm:p-0"
           style={{
             left: tooltipData?.x,
             top: tooltipData?.y,
@@ -89,6 +90,9 @@ function BarBreakdownChart() {
             selectedLayerKey={tooltipData?.selectedLayerKey}
             zoneDetail={currentZoneDetail}
           />
+          <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900 sm:hidden">
+            <HiXMark size="24" />
+          </button>
         </Portal.Root>
       )}
       {displayByEmissions ? (

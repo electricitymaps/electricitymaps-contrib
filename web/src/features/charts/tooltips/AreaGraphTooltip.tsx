@@ -1,5 +1,6 @@
 import * as Portal from '@radix-ui/react-portal';
 import type { ReactElement } from 'react';
+import { HiXMark } from 'react-icons/hi2';
 import { ZoneDetail } from 'types';
 import { getOffsetTooltipPosition } from '../../../components/tooltips/utilities';
 import { AreaGraphElement, InnerAreaGraphTooltipProps } from '../types';
@@ -42,15 +43,18 @@ export default function AreaGraphTooltip(
   });
 
   return (
-    <Portal.Root className="pointer-events-none absolute left-0 top-0 h-full w-full bg-black/20 sm:h-0 sm:w-0">
+    <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full bg-black/20 sm:h-0 sm:w-0">
       <div
         style={{
           left: tooltipWithDataPositon.x,
           top: tooltipWithDataPositon.y,
         }}
-        className="relative flex p-2 sm:block sm:p-0"
+        className="relative flex flex-col items-center gap-y-1 p-2 pt-14 sm:block sm:p-0"
       >
         {children({ zoneDetail, selectedLayerKey })}
+        <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900 sm:hidden">
+          <HiXMark size="24" />
+        </button>
       </div>
     </Portal.Root>
   );
