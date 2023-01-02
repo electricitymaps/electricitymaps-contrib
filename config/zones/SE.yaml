@@ -407,10 +407,8 @@ parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
-  price: ENTSOE.fetch_price
-  production: ENTSOE.fetch_production_aggregate
+  production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-  productionPerUnit: ENTSOE.fetch_production_per_units
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

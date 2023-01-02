@@ -174,7 +174,6 @@ ENTSOE_EIC_MAPPING: Dict[str, str] = {
 # Define zone_keys to an array of zone_keys for aggregated production data
 ZONE_KEY_AGGREGATES: Dict[str, List[str]] = {
     "IT-SO": ["IT-CA", "IT-SO"],
-    "SE": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
 }
 
 # Some exchanges require specific domains
