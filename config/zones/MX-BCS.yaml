@@ -1,0 +1,8 @@
+bounding_box:
+  - - -118.98
+    - 20.09
+  - - -105.38
+    - 29.45
+timezone: null
+parsers:
+  consumption: MX.fetch_consumption

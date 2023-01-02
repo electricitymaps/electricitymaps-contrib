@@ -16,13 +16,16 @@ from requests import Session
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
+
 MX_PRODUCTION_URL = (
     "https://www.cenace.gob.mx/SIM/VISTA/REPORTES/EnergiaGenLiqAgregada.aspx"
 )
 MX_EXCHANGE_URL = "https://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
 
+MX_INTERMITTENT_GENERATION_FORECAST = "https://www.cenace.gob.mx/Paginas/SIM/Reportes/PronosticoGeneracionInter.aspx"
+
 ZONE_TO_REGION_MAPPING = {
-    "MX-BCN": "BCA",
+    "MX-BC": "BCA",
     "MX-BCS": "BCS",  # TODO Create it.
     "MX-NW": "NOR",
     "MX-NO": "NTE",
@@ -159,6 +162,14 @@ def fetch_consumption(
       "consumption": float(td.text.replace(",",""))
     }]
 
+def fetch_intermittent_forecast(
+    zone_key: str,
+    session: Session = Session(),
+    target_datetime = None,
+    logger: Logger = getLogger(__name__)
+)
+    session.post()
+def fetch_consumption_forecast():
 
 
 

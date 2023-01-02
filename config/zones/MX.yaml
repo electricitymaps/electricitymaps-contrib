@@ -3,7 +3,22 @@ bounding_box:
     - 14.5388286402
   - - -86.811982388
     - 32.72083
-capacity: {}
+
+# https://www.gob.mx/cms/uploads/attachment/file/649611/PRODESEN_CAP_TULO_1_-_2_-_3.pdf
+# https://www.gob.mx/cms/uploads/attachment/file/649444/PRODESEN_CAP_TULO_8.pdf
+capacity:
+  battery storage: null
+  biomass: 408
+  coal: null
+  gas: null
+  geothermal: 976
+  hydro: 12614
+  hydro storage: null
+  nuclear: 1608
+  oil: null
+  solar: 7026
+  unknown: null
+  wind: 7691
 contributors:
   - scriptator
 parsers:
