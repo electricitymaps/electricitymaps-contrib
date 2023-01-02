@@ -7,7 +7,7 @@ type BadgeProps = {
 export default function Badge({ children, type = 'default', className }: BadgeProps) {
   // set background and text color classes depending on type
   const bgColorClasses = {
-    default: 'bg-gray-400 dark:bg-gray-300',
+    default: 'bg-gray-300 dark:bg-gray-300',
     warning: 'bg-yellow-400 dark:bg-yellow-500',
   }[type];
   const textColorClasses = {

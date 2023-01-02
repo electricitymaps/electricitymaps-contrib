@@ -2,6 +2,7 @@ import useGetZone from 'api/getZone';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { Navigate, useParams } from 'react-router-dom';
+import { TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   selectedDatetimeIndexAtom,
@@ -36,7 +37,12 @@ export default function ZoneDetails(): JSX.Element {
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
   return (
     <>
-      <ZoneHeader zoneId={zoneId} {...selectedData} />
+      <ZoneHeader
+        zoneId={zoneId}
+        {...selectedData}
+        isAggregated={timeAverage !== TimeAverages.HOURLY}
+        isEstimated={selectedData?.estimationMethod !== undefined}
+      />
       <DisplayByEmissionToggle />
       <div className="h-[calc(100%-290px)] overflow-y-scroll p-4 pt-0 pb-48">
         <ZoneDetailsContent

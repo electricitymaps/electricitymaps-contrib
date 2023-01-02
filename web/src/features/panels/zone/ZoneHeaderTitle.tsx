@@ -3,7 +3,7 @@ import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
-import { getCountryName, getZoneName } from 'translation/translation';
+import { getCountryName, getZoneName, useTranslation } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
 import { CountryTag } from './CountryTag';
 
@@ -18,6 +18,7 @@ export default function ZoneHeaderTitle({
   isAggregated,
   isEstimated,
 }: ZoneHeaderTitleProps) {
+  const { __ } = useTranslation();
   const title = getZoneName(zoneId);
   const isSubZone = zoneId.includes('-');
   const countryName = getCountryName(zoneId);
@@ -46,13 +47,15 @@ export default function ZoneHeaderTitle({
             </span>
           </h2>
         </div>
-        <div className="flex flex-wrap items-center gap-1 text-center">
+        <div className="flex h-3 flex-wrap items-center gap-1 text-center">
           {isEstimated && (
             <Badge type="warning" key={'badge-est'}>
-              Estimated
+              {__('country-panel.estimated')}
             </Badge>
           )}
-          {isAggregated && <Badge key={'badge-agg'}>Aggregated</Badge>}
+          {isAggregated && (
+            <Badge key={'badge-agg'}>{__('country-panel.aggregated')}</Badge>
+          )}
           <TimeDisplay className="whitespace-nowrap text-xs" />
         </div>
       </div>
