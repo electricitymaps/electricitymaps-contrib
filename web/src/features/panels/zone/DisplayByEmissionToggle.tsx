@@ -1,6 +1,7 @@
 import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
+import trackEvent from 'utils/analytics';
 import { Mode } from 'utils/constants';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
@@ -21,6 +22,12 @@ export default function EmissionToggle(): ReactElement {
   ];
 
   const onSetCurrentMode = () => {
+    if (displayByEmissions) {
+      trackEvent('PanelProductionButton Clicked');
+    } else {
+      trackEvent('PanelEmissionButton Clicked');
+    }
+
     setDisplayByEmissions(!displayByEmissions);
   };
 

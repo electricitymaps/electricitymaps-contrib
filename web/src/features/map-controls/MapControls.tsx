@@ -5,6 +5,7 @@ import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
 import { HiLanguage } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
+import trackEvent from 'utils/analytics';
 import { TimeAverages, ToggleOptions } from 'utils/constants';
 import {
   colorblindModeAtom,
@@ -46,10 +47,16 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
     solar: isEnabled ? __('tooltips.hideSolarLayer') : __('tooltips.showSolarLayer'),
   };
 
+  const weatherId = `${type.charAt(0).toUpperCase() + type.slice(1)}`; // Capitalize first letter
+
   const onToggle = () => {
     if (!isEnabled) {
       setIsLoadingLayer(true);
+      trackEvent(`${weatherId} Enabled`);
+    } else {
+      trackEvent(`${weatherId} Disabled`);
     }
+
     setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
   };
 

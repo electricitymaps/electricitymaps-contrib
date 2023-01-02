@@ -3,6 +3,7 @@ import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
+import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { dateToDatetimeString } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
@@ -44,6 +45,7 @@ export default function TimeController({ className }: { className?: string }) {
 
   const onToggleGroupClick = (timeAverage: TimeAverages) => {
     setTimeAverage(timeAverage);
+    trackEvent('AggregateButton Clicked', { timeAverage });
   };
 
   return (

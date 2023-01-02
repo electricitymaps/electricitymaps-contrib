@@ -1,12 +1,14 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import trackEvent from 'utils/analytics';
 import Logo from './Logo';
 
 interface MenuLinkProps {
   href: string;
   children: React.ReactNode;
   active?: boolean;
+  id: string;
 }
-function MenuLink({ children, href, active }: MenuLinkProps): JSX.Element {
+function MenuLink({ children, href, active, id }: MenuLinkProps): JSX.Element {
   return (
     <div className="relative flex py-2 ">
       <NavigationMenu.Item
@@ -14,6 +16,7 @@ function MenuLink({ children, href, active }: MenuLinkProps): JSX.Element {
         className="rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
       >
         <NavigationMenu.Link
+          onClick={() => trackEvent('HeaderLink Clicked', { linkId: id })}
           active={active}
           href={href}
           className={`px-2 py-2  ${active && 'font-bold'}`}
@@ -34,19 +37,31 @@ export default function Header(): JSX.Element {
       <Logo className="h-12 w-56 fill-black dark:fill-white" />
       <NavigationMenu.Root className="hidden md:block">
         <NavigationMenu.List className="flex space-x-2">
-          <MenuLink href="/" active>
+          <MenuLink href="/" active id="live">
             Live
           </MenuLink>
-          <MenuLink href="https://electricitymaps.com/open-source/?utm_source=app.electricitymaps.com&utm_medium=referral">
+          <MenuLink
+            href="https://electricitymaps.com/open-source/?utm_source=app.electricitymaps.com&utm_medium=referral"
+            id="jobs"
+          >
             We&apos;re hiring!
           </MenuLink>
-          <MenuLink href="https://electricitymaps.com/open-source/?utm_source=app.electricitymaps.com&utm_medium=referral">
+          <MenuLink
+            href="https://electricitymaps.com/open-source/?utm_source=app.electricitymaps.com&utm_medium=referral"
+            id="open-source"
+          >
             Open Source
           </MenuLink>
-          <MenuLink href="https://electricitymaps.com/blog/?utm_source=app.electricitymaps.com&utm_medium=referral">
+          <MenuLink
+            href="https://electricitymaps.com/blog/?utm_source=app.electricitymaps.com&utm_medium=referral"
+            id="blog"
+          >
             Blog
           </MenuLink>
-          <MenuLink href="https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral">
+          <MenuLink
+            href="https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral"
+            id="get-data"
+          >
             Get our data
           </MenuLink>
         </NavigationMenu.List>
