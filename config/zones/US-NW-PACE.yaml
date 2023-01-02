@@ -6,16 +6,16 @@ bounding_box:
 capacity:
   battery storage: 0
   biomass: 15.3
-  coal: 5015.6
-  gas: 3792.1
+  coal: 7457.5
+  gas: 3801.5
   geothermal: 83.8
   hydro: 271.7
   hydro storage: 0
   nuclear: 0
   oil: 30.4
-  solar: 1627.9
+  solar: 1629.4
   unknown: 52.8
-  wind: 3193.3
+  wind: 3451.9
 comment: Pacificorp - East
 contributors:
   - systemcatch

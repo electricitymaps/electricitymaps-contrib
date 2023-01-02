@@ -4,16 +4,16 @@ bounding_box:
   - - -111.0849
     - 42.5017700000001
 capacity:
-  battery storage: 100
-  biomass: 35.2
+  battery storage: 110
+  biomass: 15.2
   coal: 809
   gas: 7828.2
-  geothermal: 785.8
+  geothermal: 833.2
   hydro: 12.8
   hydro storage: 0
   nuclear: 0
-  oil: 21
-  solar: 2346.7
+  oil: 23
+  solar: 2356.3
   unknown: 7.5
   wind: 150
 comment: Nevada Power Company
