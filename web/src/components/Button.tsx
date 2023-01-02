@@ -2,7 +2,7 @@ import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
 // This value is selected based on appropriate size given most labels in most languages.
-const FULL_BUTTON_WIDTH = 232;
+const BUTTON_MIN_WIDTH_CLASS = 'min-w-[232px]';
 
 // TODO: This should extend either HTMLButtonElement or HTMLAnchorElement, but I could not get it
 // to properly select the correct one based on given props.
@@ -34,8 +34,8 @@ export function Button({
   return (
     <As
       className={twMerge(
-        `my-3 mx-2 flex w-fit items-center justify-center gap-x-2 rounded-full bg-white py-2 px-2 text-md font-bold shadow-[0px_0px_13px_rgb(0_0_0/12%)] transition duration-200 hover:shadow-[0px_0px_23px_rgb(0_0_0/20%)] dark:bg-gray-600 dark:hover:shadow-[0px_0px_23px_rgb(0_0_0/50%)]`,
-        !isIconOnly && `min-w-[${FULL_BUTTON_WIDTH}px]`,
+        `my-3 mx-2 flex w-fit items-center justify-center gap-x-2 rounded-full bg-white py-3 px-2 text-md font-bold shadow-[0px_0px_13px_rgb(0_0_0/12%)] transition duration-200 hover:shadow-[0px_0px_23px_rgb(0_0_0/20%)] dark:bg-gray-600 dark:hover:shadow-[0px_0px_23px_rgb(0_0_0/50%)]`,
+        !isIconOnly && BUTTON_MIN_WIDTH_CLASS,
         `${disabled ? 'opacity-60 hover:shadow-[0px_0px_13px_rgb(0_0_0/12%)]' : ''}`,
         className
       )}

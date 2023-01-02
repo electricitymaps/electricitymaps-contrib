@@ -1,15 +1,16 @@
 import { ToastProvider } from '@radix-ui/react-toast';
+import * as Sentry from '@sentry/react';
 import { useGetAppVersion } from 'api/getAppVersion';
 import LoadingOverlay from 'components/LoadingOverlay';
-import { OnboardingModal } from 'components/modals/OnboardingModal';
 import Toast from 'components/Toast';
+import LegendContainer from 'components/legend/LegendContainer';
+import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
 import MapControls from 'features/map-controls/MapControls';
-import { lazy, ReactElement, Suspense } from 'react';
-import LegendContainer from 'components/legend/LegendContainer';
+import SettingsModal from 'features/modals/SettingsModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
-import * as Sentry from '@sentry/react';
+import { ReactElement, Suspense, lazy } from 'react';
 
 const isProduction = import.meta.env.PROD;
 
@@ -43,6 +44,7 @@ export default function App(): ReactElement {
               )}
               <LoadingOverlay />
               <OnboardingModal />
+              <SettingsModal />
               <LeftPanel />
               <MapWrapper />
               <TimeControllerWrapper />
