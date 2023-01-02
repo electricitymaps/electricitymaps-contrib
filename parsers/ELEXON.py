@@ -262,7 +262,7 @@ def parse_production_FUELINST(
     mapping = {1: "Settlement Date", 2: "Settlement Period", 3: "Spot Time"}
     for index, fuel in enumerate(FUEL_INST_MAPPING.values()):
         mapping[index + 4] = fuel
-    df.rename(columns=mapping, inplace=True)
+    df = df.rename(columns=mapping)
     df["Settlement Date"] = df["Settlement Date"].apply(
         lambda x: datetime.strptime(str(x), "%Y%m%d")
     )
@@ -281,7 +281,7 @@ def parse_additional_eso_production(raw_data: List[dict]) -> pd.DataFrame:
         lambda x: datetime_from_date_sp(x["SETTLEMENT_DATE"], x["SETTLEMENT_PERIOD"]),
         axis=1,
     )
-    df.rename(columns=ESO_FUEL_MAPPING, inplace=True)
+    df = df.rename(columns=ESO_FUEL_MAPPING)
     return df.set_index("datetime")
 
 
@@ -290,7 +290,7 @@ def process_production_events(
 ) -> List[dict]:
     """Combine FUELINST report and ESO data together to get the full picture and to EM Format."""
     df = fuel_inst_data.join(eso_data, rsuffix="_eso")
-    df.rename(columns={"wind_eso": "wind", "solar_eso": "solar"}, inplace=True)
+    df = df.rename(columns={"wind_eso": "wind", "solar_eso": "solar"})
     df = df.groupby(df.columns, axis=1).sum()
     data_points = list()
     for time in pd.unique(df.index):
