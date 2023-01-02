@@ -26,7 +26,7 @@ export default function ToggleButton({
           ' flex-start flex h-[26px] flex-grow flex-row items-center justify-between self-center rounded-full    bg-gray-100 shadow-inner   dark:bg-gray-700'
         }
         type="multiple"
-        aria-label="Font settings"
+        aria-label="Toggle between modes"
       >
         {options.map((option, key) => (
           <ToggleGroupPrimitive.Item
@@ -56,7 +56,7 @@ export default function ToggleButton({
             </Tooltip.Trigger>
             <Tooltip.Portal>
               <Tooltip.Content
-                className="TooltipContent relative right-[48px] max-w-[164px] rounded border bg-gray-100 p-2  text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-gray-100 p-2  text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
                 sideOffset={10}
                 side="bottom"
               >

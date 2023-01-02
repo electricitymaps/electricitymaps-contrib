@@ -1,7 +1,7 @@
-import { useState, ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 
-import { useTranslation } from 'translation/translation';
 import { HiCheck, HiChevronLeft, HiChevronRight, HiXMark } from 'react-icons/hi2';
+import { useTranslation } from 'translation/translation';
 
 interface Page {
   headerImage: { pathname: string };
@@ -95,8 +95,10 @@ function Modal({
             </button>
           </div>
           <div
-            className="flex h-1/2 max-h-[264px]
-              w-full flex-grow rounded-t-xl bg-auto bg-center bg-no-repeat dark:invert"
+            className={`flex h-1/2 max-h-[264px]
+              w-full flex-grow rounded-t-xl bg-auto bg-center bg-no-repeat ${
+                isOnFirstView() ? 'dark:invert' : ''
+              }`}
             style={
               currentView.headerImage && {
                 backgroundImage: `url("${currentView.headerImage.pathname}")`,
