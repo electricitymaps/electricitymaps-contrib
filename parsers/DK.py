@@ -33,7 +33,7 @@ def fetch_data(
     if target_datetime.tzinfo:
         # Data source doesn't support timezone aware
         # datetimes.
-        target_datetime.replace(tzinfo=None)
+        target_datetime = target_datetime.replace(tzinfo=None)
 
     params = {
         "limit": 144,
