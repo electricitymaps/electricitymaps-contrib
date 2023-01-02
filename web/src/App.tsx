@@ -8,6 +8,7 @@ import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
 import MapControls from 'features/map-controls/MapControls';
+import InfoModal from 'features/modals/InfoModal';
 import SettingsModal from 'features/modals/SettingsModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { ReactElement, Suspense, lazy } from 'react';
@@ -44,6 +45,7 @@ export default function App(): ReactElement {
               )}
               <LoadingOverlay />
               <OnboardingModal />
+              <InfoModal />
               <SettingsModal />
               <LeftPanel />
               <MapWrapper />
