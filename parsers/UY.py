@@ -169,7 +169,7 @@ def fetch_consumption(
     for dt in consumption:
         data_point = {
             "zoneKey": "UY",
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(tz)),
+            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
             "consumption": round(consumption[dt]["consumption"], 3),
             "source": "pronos.adme.com.uy",
         }
@@ -210,7 +210,7 @@ def fetch_exchange(
         data_point = {
             "netFlow": round(exchange[dt][sortedZoneKeys], 3),
             "sortedZoneKeys": sortedZoneKeys,
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(tz)),
+            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
             "source": "pronos.adme.com.uy",
         }
         all_data_points += [data_point]
