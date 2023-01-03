@@ -4,6 +4,17 @@ BUCKET_NAME="gs://beta.electricitymaps.com"
 
 echo "Starting deployment..."
 
+
+# Ensure required environment variables are set
+if [ -z "$VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN" ]; then
+  echo "VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN is not set"
+  exit 1
+fi
+if [ -z "$SENTRY_AUTH_TOKEN" ]; then
+  echo "SENTRY_AUTH_TOKEN is not set"
+  exit 1
+fi
+
 #Create bucket (already done): 
 # gsutil mb -p tmrow-152415 -c regional -l europe-west1 $BUCKET_NAME
 

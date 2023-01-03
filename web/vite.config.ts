@@ -1,12 +1,12 @@
 /// <reference types="vitest" />
 import eslintPlugin from '@nabla/vite-plugin-eslint';
+import sentryVitePlugin from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react';
 import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
 import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import sentryVitePlugin from '@sentry/vite-plugin';
 
 export default defineConfig(({ mode }) => ({
   optimizeDeps: {
@@ -75,9 +75,10 @@ export default defineConfig(({ mode }) => ({
               ],
             },
           }),
+          // Used to upload sourcemaps to Sentry
           sentryVitePlugin({
             org: 'electricitymaps',
-            project: 'app-new',
+            project: 'app-web',
 
             // Specify the directory containing build artifacts
             include: './dist',
