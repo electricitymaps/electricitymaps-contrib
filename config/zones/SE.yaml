@@ -45,10 +45,10 @@ emissionFactors:
         value: 47.31267597911351
     biomass:
       datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
+      source: BEIS 2021
       value: 0.0
     coal:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
       value: 1057.262766
     gas:
@@ -158,17 +158,17 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 42.07081808517848
     biomass:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 133.9240359
+      datetime: '2014-01-01'
+      source: BEIS 2021; IPCC 2014
+      value: 230.0
     coal:
-      datetime: '2020-01-01'
+      datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
         hotspots of coal power generation."
       value: 1153.629975
     gas:
       datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS, ENTSO-E 2021
+      source: EU-ETS, ENTSO-E 2021; IPCC 2014
       value: 567.9740216
     hydro:
       datetime: '2020-01-01'
@@ -202,7 +202,7 @@ emissionFactors:
       value: 5.13
     oil:
       datetime: '2021-01-01'
-      source: IPCC 2014; EU-ETS, ENTSO-E 2021
+      source: EU-ETS, ENTSO-E 2021; IPCC 2014
       value: 1124.903938
     solar:
       datetime: '2021-01-01'
@@ -255,11 +255,11 @@ emissionFactors:
         datetime: '2021-01-01'
         source: assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat,
           0.01% coal
-        value: 162.4
+        value: 245.8
       - _comment: Uses the 2020 with 2021 emission factors minus solar and gas
         datetime: '2022-01-01'
         source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
-        value: 151.3
+        value: 245.7
     wind:
       datetime: '2021-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the

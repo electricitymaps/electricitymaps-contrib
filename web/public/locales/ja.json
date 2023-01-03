@@ -249,7 +249,7 @@
       "countryName": "オーストラリア",
       "zoneName": "ニューサウスウェールズ州"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "オーストラリア",
       "zoneName": "ノーザンテリトリー"
     },
@@ -324,6 +324,9 @@
     },
     "BQ": {
       "zoneName": "ボネール、シント・ユースタティウスおよびサバ"
+    },
+    "BR": {
+      "zoneName": "ブラジル"
     },
     "BR-CS": {
       "countryName": "ブラジル",
@@ -599,10 +602,6 @@
     "GB-ORK": {
       "countryName": "イギリス",
       "zoneName": "オークニー諸島"
-    },
-    "GB-ZET": {
-      "countryName": "イギリス",
-      "zoneName": "シェットランド諸島"
     },
     "GB-ZET": {
       "countryName": "イギリス",

@@ -242,7 +242,7 @@
       "countryName": "Australia",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Northern Territory"
     },
@@ -317,6 +317,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius dan Saba"
+    },
+    "BR": {
+      "zoneName": "Brazil"
     },
     "BR-CS": {
       "countryName": "Brazil",
@@ -600,10 +603,6 @@
     "GB-ORK": {
       "countryName": "Britania Raya",
       "zoneName": "Pulau Orkney"
-    },
-    "GB-ZET": {
-      "countryName": "Britania Raya",
-      "zoneName": "Pulau Shetland"
     },
     "GB-ZET": {
       "countryName": "Britania Raya",

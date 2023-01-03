@@ -289,7 +289,7 @@
       "countryName": "Australia",
       "zoneName": "Nueva Gales del Sur"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Territorio del Norte"
     },
@@ -365,6 +365,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, San Eustaquio y Saba"
+    },
+    "BR": {
+      "zoneName": "Brasil"
     },
     "BR-CS": {
       "countryName": "Brasil",
@@ -652,10 +655,6 @@
     "GB-ORK": {
       "countryName": "Reino Unido",
       "zoneName": "Islas Orcadas"
-    },
-    "GB-ZET": {
-      "countryName": "Reino Unido",
-      "zoneName": "Islas Shetland"
     },
     "GB-ZET": {
       "countryName": "Reino Unido",
