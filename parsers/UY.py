@@ -1,13 +1,11 @@
 #!/usr/bin/python3
 
 import io
-import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-import dateutil
 import pandas as pd
 import pytz
 
@@ -19,18 +17,7 @@ from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-tz = "America/Montevideo"
-
-MAP_GENERATION = {
-    "Hidráulica": "hydro",
-    "Eólica": "wind",
-    "Fotovoltaica": "solar",
-    "Biomasa": "biomass",
-    "Térmica": "oil",
-}
-INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
-
-SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
+UY_TZ = "America/Montevideo"
 
 ADME_URL = "https://pronos.adme.com.uy/gpf.php?fecha_ini="
 PRODUCTION_MODE_MAPPING = {
@@ -51,81 +38,6 @@ EXCHANGES_MAPPING = {
     "Imp_Intercon_BR_MELO": "BR-S->UY",
     "Imp_Intercon_BR_RIVERA": "BR-S->UY",
 }
-
-
-def get_salto_grande(session: Optional[Session]) -> float:
-    """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
-
-    current_time = arrow.now("UTC-3")
-    if current_time.minute < 30:
-        # Data for current hour seems to be available after 30mins.
-        current_time = current_time.shift(hours=-1)
-    lookup_time = current_time.floor("hour").format("DD/MM/YYYY HH:mm")
-
-    s = session or Session()
-    url = SALTO_GRANDE_URL + lookup_time
-    response = s.get(url)
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    tie = soup.find("div", style="position:absolute; top:143; left:597")
-    generation = float(tie.text)
-
-    return generation
-
-
-def parse_page(session: Optional[Session]):
-    r = session or Session()
-    url = "https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx"
-    response = r.get(url)
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    datefield = soup.find(
-        "span", attrs={"id": "ctl00_ContentPlaceHolder1_lblUltFecScada"}
-    )
-    datestr = re.findall("\d\d/\d\d/\d\d\d\d \d+:\d\d", str(datefield.contents[0]))[0]
-    date = arrow.get(datestr, "DD/MM/YYYY h:mm").replace(tzinfo=dateutil.tz.gettz(tz))
-
-    table = soup.find(
-        "table", attrs={"id": "ctl00_ContentPlaceHolder1_gridPotenciasNivel1"}
-    )
-
-    obj = {"datetime": date.datetime}
-
-    for tr in table.find_all("tr"):
-        tds = tr.find_all("td")
-        if not len(tds):
-            continue
-
-        key = tds[0].find_all("b")
-        # Go back one level up if the b tag is not there
-        if not len(key):
-            key = tds[0].find_all("font")
-        k = key[0].contents[0]
-
-        value = tds[1].find_all("b")
-        # Go back one level up if the b tag is not there
-        if not len(value):
-            value = tds[1].find_all("font")
-        v_str = value[0].contents[0]
-        if v_str.find(",") > -1 and v_str.find(".") > -1:
-            # there can be values like "1.012,5"
-            v_str = v_str.replace(".", "")
-            v_str = v_str.replace(",", ".")
-        else:
-            # just replace decimal separator, like "125,2"
-            v_str = v_str.replace(",", ".")
-        v = float(v_str)
-
-        # solar reports -0.1 at night, make it at least 0
-        v = max(v, 0)
-
-        obj[k] = v
-
-    # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
-    salto_grande = get_salto_grande(session)
-    obj["Hidráulica"] = obj.get("Hidráulica", 0.0) + salto_grande
-
-    return obj
 
 
 def get_adme_url(target_datetime: datetime, session: Optional[Session] = None) -> str:
@@ -224,7 +136,7 @@ def fetch_production(
                 production_dict[mode] = round(row.get("value"), 3)
         data_point = {
             "zoneKey": "UY",
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(tz)),
+            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
             "production": production_dict,
             "source": "pronos.adme.com.uy",
         }
