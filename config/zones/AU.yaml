@@ -28,15 +28,15 @@ contributors:
   - brandongalbraith
 estimation_method: RECONSTRUCT_BREAKDOWN
 subZoneNames:
-  - AUS-NSW
+  - AU-NSW
   - AU-NT
-  - AUS-QLD
-  - AUS-SA
-  - AUS-TAS
+  - AU-QLD
+  - AU-SA
+  - AU-TAS
   - AU-TAS-CBI
-  - AUS-TAS-FI
-  - AUS-TAS-KI
-  - AUS-VIC
-  - AUS-WA
-  - AUS-WA-RI
+  - AU-TAS-FI
+  - AU-TAS-KI
+  - AU-VIC
+  - AU-WA
+  - AU-WA-RI
 timezone: Australia/Sydney

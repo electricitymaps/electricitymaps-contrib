@@ -18,7 +18,7 @@ from requests import Session
 from signalr import Connection
 
 ZONE_PARAMS = {
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
         "hub": "TagHub",
         "method": "Dashboard",
         "tz": "Australia/Currie",
@@ -27,7 +27,7 @@ ZONE_PARAMS = {
     # Flinders Island
     # https://github.com/tmrowco/electricitymap-contrib/issues/2533
     # https://en.wikipedia.org/wiki/Flinders_Island
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
         "hub": "flindershub",
         "method": "SendDashboard",
         "tz": "Australia/Hobart",
@@ -36,7 +36,7 @@ ZONE_PARAMS = {
     # Rottnest Island
     # https://github.com/tmrowco/electricitymap-contrib/issues/2534
     # https://en.wikipedia.org/wiki/Rottnest_Island
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
         "hub": "HogsHub",
         "method": "SendDashboard",
         "tz": "Australia/Perth",
@@ -130,7 +130,7 @@ def sum_storage_techs(technologies_parsed):
 
 
 def fetch_production(
-    zone_key: str = "AUS-TAS-KI",
+    zone_key: str = "AU-TAS-KI",
     session: Optional[Session] = None,
     target_datetime=None,
     logger: Logger = getLogger(__name__),

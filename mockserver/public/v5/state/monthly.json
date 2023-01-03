@@ -229,11 +229,11 @@
           "stateDatetime": "2022-07-01T00:00:00Z"
         }
       ],
-      "AUS-NSW": [
+      "AU-NSW": [
         {
           "co2intensity": 667.72,
           "co2intensityProduction": 676.81,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.8145,
           "fossilFuelRatioProduction": 0.8245,
           "renewableRatio": 0.1855,
@@ -243,7 +243,7 @@
         {
           "co2intensity": 635.43,
           "co2intensityProduction": 641.31,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7759999999999999,
           "fossilFuelRatioProduction": 0.7829,
           "renewableRatio": 0.22399999999999998,
@@ -253,7 +253,7 @@
         {
           "co2intensity": 617.64,
           "co2intensityProduction": 619.89,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7505,
           "fossilFuelRatioProduction": 0.7529,
           "renewableRatio": 0.2495,
@@ -263,7 +263,7 @@
         {
           "co2intensity": 625.92,
           "co2intensityProduction": 614.62,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7605,
           "fossilFuelRatioProduction": 0.7674,
           "renewableRatio": 0.2395,
@@ -273,7 +273,7 @@
         {
           "co2intensity": 579.85,
           "co2intensityProduction": 571.51,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7017,
           "fossilFuelRatioProduction": 0.7015,
           "renewableRatio": 0.2983,
@@ -283,7 +283,7 @@
         {
           "co2intensity": 580.39,
           "co2intensityProduction": 580.22,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7078,
           "fossilFuelRatioProduction": 0.7076,
           "renewableRatio": 0.2922,
@@ -293,7 +293,7 @@
         {
           "co2intensity": 568.36,
           "co2intensityProduction": 567.83,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.6937000000000001,
           "fossilFuelRatioProduction": 0.693,
           "renewableRatio": 0.3063,
@@ -303,7 +303,7 @@
         {
           "co2intensity": 578.24,
           "co2intensityProduction": 578.3,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7137,
           "fossilFuelRatioProduction": 0.7138,
           "renewableRatio": 0.2863,
@@ -313,7 +313,7 @@
         {
           "co2intensity": 599.06,
           "co2intensityProduction": 598.3,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7354999999999999,
           "fossilFuelRatioProduction": 0.7332,
           "renewableRatio": 0.2645,
@@ -323,7 +323,7 @@
         {
           "co2intensity": 595.21,
           "co2intensityProduction": 596.32,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7434000000000001,
           "fossilFuelRatioProduction": 0.7443000000000001,
           "renewableRatio": 0.2566,
@@ -333,7 +333,7 @@
         {
           "co2intensity": 602.1,
           "co2intensityProduction": 604.16,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7634000000000001,
           "fossilFuelRatioProduction": 0.7665000000000001,
           "renewableRatio": 0.2366,
@@ -343,7 +343,7 @@
         {
           "co2intensity": 631.54,
           "co2intensityProduction": 632.25,
-          "countryCode": "AUS-NSW",
+          "countryCode": "AU-NSW",
           "fossilFuelRatio": 0.7854000000000001,
           "fossilFuelRatioProduction": 0.785,
           "renewableRatio": 0.2146,
@@ -352,11 +352,11 @@
         }
       ],
       "AU-NT": [],
-      "AUS-QLD": [
+      "AU-QLD": [
         {
           "co2intensity": 651.35,
           "co2intensityProduction": 648.76,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8134999999999999,
           "fossilFuelRatioProduction": 0.81,
           "renewableRatio": 0.1865,
@@ -366,7 +366,7 @@
         {
           "co2intensity": 683.33,
           "co2intensityProduction": 681.7,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8490000000000001,
           "fossilFuelRatioProduction": 0.8466,
           "renewableRatio": 0.151,
@@ -376,7 +376,7 @@
         {
           "co2intensity": 690.06,
           "co2intensityProduction": 688.9,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8637,
           "fossilFuelRatioProduction": 0.8618000000000001,
           "renewableRatio": 0.1363,
@@ -386,7 +386,7 @@
         {
           "co2intensity": 677.23,
           "co2intensityProduction": 654.32,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8465,
           "fossilFuelRatioProduction": 0.8451000000000001,
           "renewableRatio": 0.1535,
@@ -396,7 +396,7 @@
         {
           "co2intensity": 639.83,
           "co2intensityProduction": 631.71,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8014,
           "fossilFuelRatioProduction": 0.8001,
           "renewableRatio": 0.1986,
@@ -406,7 +406,7 @@
         {
           "co2intensity": 623.13,
           "co2intensityProduction": 622.63,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.7811,
           "fossilFuelRatioProduction": 0.7803,
           "renewableRatio": 0.2189,
@@ -416,7 +416,7 @@
         {
           "co2intensity": 672.52,
           "co2intensityProduction": 671.97,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8436,
           "fossilFuelRatioProduction": 0.8427,
           "renewableRatio": 0.1564,
@@ -426,7 +426,7 @@
         {
           "co2intensity": 674.13,
           "co2intensityProduction": 673.44,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.848,
           "fossilFuelRatioProduction": 0.8469,
           "renewableRatio": 0.152,
@@ -436,7 +436,7 @@
         {
           "co2intensity": 663.91,
           "co2intensityProduction": 662.49,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8323999999999999,
           "fossilFuelRatioProduction": 0.8301999999999999,
           "renewableRatio": 0.16760000000000003,
@@ -446,7 +446,7 @@
         {
           "co2intensity": 669.36,
           "co2intensityProduction": 668.52,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8593000000000001,
           "fossilFuelRatioProduction": 0.8578,
           "renewableRatio": 0.1407,
@@ -456,7 +456,7 @@
         {
           "co2intensity": 665.12,
           "co2intensityProduction": 663.74,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8562000000000001,
           "fossilFuelRatioProduction": 0.853,
           "renewableRatio": 0.1438,
@@ -466,7 +466,7 @@
         {
           "co2intensity": 687.81,
           "co2intensityProduction": 685.48,
-          "countryCode": "AUS-QLD",
+          "countryCode": "AU-QLD",
           "fossilFuelRatio": 0.8785,
           "fossilFuelRatioProduction": 0.8742,
           "renewableRatio": 0.1215,
@@ -474,11 +474,11 @@
           "stateDatetime": "2022-07-01T00:00:00Z"
         }
       ],
-      "AUS-SA": [
+      "AU-SA": [
         {
           "co2intensity": 278.44,
           "co2intensityProduction": 239.28,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.5025999999999999,
           "fossilFuelRatioProduction": 0.46759999999999996,
           "renewableRatio": 0.4974,
@@ -488,7 +488,7 @@
         {
           "co2intensity": 228.64,
           "co2intensityProduction": 194.23,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.4082,
           "fossilFuelRatioProduction": 0.3735,
           "renewableRatio": 0.5918,
@@ -498,7 +498,7 @@
         {
           "co2intensity": 221.05,
           "co2intensityProduction": 168.27,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.36979999999999996,
           "fossilFuelRatioProduction": 0.3175,
           "renewableRatio": 0.6302,
@@ -508,7 +508,7 @@
         {
           "co2intensity": 196.35,
           "co2intensityProduction": 140.3,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.31670000000000004,
           "fossilFuelRatioProduction": 0.2637,
           "renewableRatio": 0.6833,
@@ -518,7 +518,7 @@
         {
           "co2intensity": 137.15,
           "co2intensityProduction": 125.58,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.22870000000000001,
           "fossilFuelRatioProduction": 0.2177,
           "renewableRatio": 0.7713,
@@ -528,7 +528,7 @@
         {
           "co2intensity": 148.58,
           "co2intensityProduction": 148.29,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.2646,
           "fossilFuelRatioProduction": 0.2642,
           "renewableRatio": 0.7354,
@@ -538,7 +538,7 @@
         {
           "co2intensity": 147.22,
           "co2intensityProduction": 146.77,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.2705,
           "fossilFuelRatioProduction": 0.2699,
           "renewableRatio": 0.7295,
@@ -548,7 +548,7 @@
         {
           "co2intensity": 154.86,
           "co2intensityProduction": 151.93,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.28190000000000004,
           "fossilFuelRatioProduction": 0.2774,
           "renewableRatio": 0.7181000000000001,
@@ -558,7 +558,7 @@
         {
           "co2intensity": 247.42,
           "co2intensityProduction": 181.58,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.4105,
           "fossilFuelRatioProduction": 0.34090000000000004,
           "renewableRatio": 0.5895,
@@ -568,7 +568,7 @@
         {
           "co2intensity": 257.5,
           "co2intensityProduction": 202.82,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.44049999999999995,
           "fossilFuelRatioProduction": 0.3846,
           "renewableRatio": 0.5595,
@@ -578,7 +578,7 @@
         {
           "co2intensity": 270.99,
           "co2intensityProduction": 246.59,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.4979,
           "fossilFuelRatioProduction": 0.47740000000000005,
           "renewableRatio": 0.5021,
@@ -588,7 +588,7 @@
         {
           "co2intensity": 269.34,
           "co2intensityProduction": 245.28,
-          "countryCode": "AUS-SA",
+          "countryCode": "AU-SA",
           "fossilFuelRatio": 0.5062,
           "fossilFuelRatioProduction": 0.48090000000000005,
           "renewableRatio": 0.4938,
@@ -596,11 +596,11 @@
           "stateDatetime": "2022-07-01T00:00:00Z"
         }
       ],
-      "AUS-TAS": [
+      "AU-TAS": [
         {
           "co2intensity": 35.08,
           "co2intensityProduction": 22.31,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.0165,
           "fossilFuelRatioProduction": 0,
           "renewableRatio": 0.9834999999999999,
@@ -610,7 +610,7 @@
         {
           "co2intensity": 45.53,
           "co2intensityProduction": 22.45,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.029900000000000003,
           "fossilFuelRatioProduction": 0.0001,
           "renewableRatio": 0.9701000000000001,
@@ -620,7 +620,7 @@
         {
           "co2intensity": 52.58,
           "co2intensityProduction": 22.45,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.0388,
           "fossilFuelRatioProduction": 0,
           "renewableRatio": 0.9612,
@@ -630,7 +630,7 @@
         {
           "co2intensity": 59.81,
           "co2intensityProduction": 23.14,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.0466,
           "fossilFuelRatioProduction": 0.0001,
           "renewableRatio": 0.9534,
@@ -640,7 +640,7 @@
         {
           "co2intensity": 47.02,
           "co2intensityProduction": 22.64,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.0308,
           "fossilFuelRatioProduction": 0.0001,
           "renewableRatio": 0.9692000000000001,
@@ -650,7 +650,7 @@
         {
           "co2intensity": 25.23,
           "co2intensityProduction": 25.23,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.0052,
           "fossilFuelRatioProduction": 0.0052,
           "renewableRatio": 0.9948,
@@ -660,7 +660,7 @@
         {
           "co2intensity": 25.59,
           "co2intensityProduction": 25.59,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.0067,
           "fossilFuelRatioProduction": 0.0067,
           "renewableRatio": 0.9933,
@@ -670,7 +670,7 @@
         {
           "co2intensity": 38.47,
           "co2intensityProduction": 27.06,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.023700000000000002,
           "fossilFuelRatioProduction": 0.009399999999999999,
           "renewableRatio": 0.9763,
@@ -680,7 +680,7 @@
         {
           "co2intensity": 102.81,
           "co2intensityProduction": 40.39,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.1157,
           "fossilFuelRatioProduction": 0.0384,
           "renewableRatio": 0.8843000000000001,
@@ -690,7 +690,7 @@
         {
           "co2intensity": 44.72,
           "co2intensityProduction": 24.39,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.0297,
           "fossilFuelRatioProduction": 0.0042,
           "renewableRatio": 0.9703,
@@ -700,7 +700,7 @@
         {
           "co2intensity": 27.92,
           "co2intensityProduction": 23.75,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.0089,
           "fossilFuelRatioProduction": 0.0036,
           "renewableRatio": 0.9911,
@@ -710,7 +710,7 @@
         {
           "co2intensity": 62.67,
           "co2intensityProduction": 23.38,
-          "countryCode": "AUS-TAS",
+          "countryCode": "AU-TAS",
           "fossilFuelRatio": 0.0521,
           "fossilFuelRatioProduction": 0.0023,
           "renewableRatio": 0.9479000000000001,
@@ -719,11 +719,11 @@
         }
       ],
       "AU-TAS-CBI": [],
-      "AUS-TAS-FI": [
+      "AU-TAS-FI": [
         {
           "co2intensity": 204.88,
           "co2intensityProduction": 204.51,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.2995,
           "fossilFuelRatioProduction": 0.3015,
           "renewableRatio": 0.7005,
@@ -733,7 +733,7 @@
         {
           "co2intensity": 194.31,
           "co2intensityProduction": 193.58,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.28300000000000003,
           "fossilFuelRatioProduction": 0.284,
           "renewableRatio": 0.7170000000000001,
@@ -743,7 +743,7 @@
         {
           "co2intensity": 215.55,
           "co2intensityProduction": 213.38,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.3155,
           "fossilFuelRatioProduction": 0.3153,
           "renewableRatio": 0.6845,
@@ -753,7 +753,7 @@
         {
           "co2intensity": 283.27,
           "co2intensityProduction": 280.72,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.4202,
           "fossilFuelRatioProduction": 0.4199,
           "renewableRatio": 0.5798,
@@ -763,7 +763,7 @@
         {
           "co2intensity": 268.27,
           "co2intensityProduction": 265.09,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.3957,
           "fossilFuelRatioProduction": 0.39520000000000005,
           "renewableRatio": 0.6043,
@@ -773,7 +773,7 @@
         {
           "co2intensity": 221.72,
           "co2intensityProduction": 220.53,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.32270000000000004,
           "fossilFuelRatioProduction": 0.3261,
           "renewableRatio": 0.6773,
@@ -783,7 +783,7 @@
         {
           "co2intensity": 205.29,
           "co2intensityProduction": 202.21,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.2982,
           "fossilFuelRatioProduction": 0.2975,
           "renewableRatio": 0.7018000000000001,
@@ -793,7 +793,7 @@
         {
           "co2intensity": 290.09,
           "co2intensityProduction": 289.38,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.43170000000000003,
           "fossilFuelRatioProduction": 0.434,
           "renewableRatio": 0.5683,
@@ -803,7 +803,7 @@
         {
           "co2intensity": 319.73,
           "co2intensityProduction": 318.39,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.47840000000000005,
           "fossilFuelRatioProduction": 0.47950000000000004,
           "renewableRatio": 0.5216,
@@ -813,7 +813,7 @@
         {
           "co2intensity": 342.39,
           "co2intensityProduction": 342.1,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.516,
           "fossilFuelRatioProduction": 0.5166,
           "renewableRatio": 0.484,
@@ -823,7 +823,7 @@
         {
           "co2intensity": 228.37,
           "co2intensityProduction": 227.22,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.337,
           "fossilFuelRatioProduction": 0.3373,
           "renewableRatio": 0.6629999999999999,
@@ -833,7 +833,7 @@
         {
           "co2intensity": 377.58,
           "co2intensityProduction": 376.85,
-          "countryCode": "AUS-TAS-FI",
+          "countryCode": "AU-TAS-FI",
           "fossilFuelRatio": 0.5708,
           "fossilFuelRatioProduction": 0.5711999999999999,
           "renewableRatio": 0.4292,
@@ -841,11 +841,11 @@
           "stateDatetime": "2022-07-01T00:00:00Z"
         }
       ],
-      "AUS-TAS-KI": [
+      "AU-TAS-KI": [
         {
           "co2intensity": 177.86,
           "co2intensityProduction": 174.13,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.2559,
           "fossilFuelRatioProduction": 0.2545,
           "renewableRatio": 0.7441,
@@ -855,7 +855,7 @@
         {
           "co2intensity": 250.11,
           "co2intensityProduction": 246.36,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.3701,
           "fossilFuelRatioProduction": 0.368,
           "renewableRatio": 0.6299,
@@ -865,7 +865,7 @@
         {
           "co2intensity": 286.74,
           "co2intensityProduction": 283.89,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.42619999999999997,
           "fossilFuelRatioProduction": 0.4264,
           "renewableRatio": 0.5738,
@@ -875,7 +875,7 @@
         {
           "co2intensity": 319.7,
           "co2intensityProduction": 316.77,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.47590000000000005,
           "fossilFuelRatioProduction": 0.4768,
           "renewableRatio": 0.5241,
@@ -885,7 +885,7 @@
         {
           "co2intensity": 386.35,
           "co2intensityProduction": 388.16,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.583,
           "fossilFuelRatioProduction": 0.5871,
           "renewableRatio": 0.41700000000000004,
@@ -895,7 +895,7 @@
         {
           "co2intensity": 194.98,
           "co2intensityProduction": 193.26,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.28300000000000003,
           "fossilFuelRatioProduction": 0.2841,
           "renewableRatio": 0.7170000000000001,
@@ -905,7 +905,7 @@
         {
           "co2intensity": 296.9,
           "co2intensityProduction": 298.01,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.44380000000000003,
           "fossilFuelRatioProduction": 0.4476,
           "renewableRatio": 0.5562,
@@ -915,7 +915,7 @@
         {
           "co2intensity": 389.01,
           "co2intensityProduction": 389.46,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.5891,
           "fossilFuelRatioProduction": 0.5912,
           "renewableRatio": 0.41090000000000004,
@@ -925,7 +925,7 @@
         {
           "co2intensity": 429.22,
           "co2intensityProduction": 428.02,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.653,
           "fossilFuelRatioProduction": 0.652,
           "renewableRatio": 0.34700000000000003,
@@ -935,7 +935,7 @@
         {
           "co2intensity": 383.48,
           "co2intensityProduction": 381.03,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.5804,
           "fossilFuelRatioProduction": 0.5783,
           "renewableRatio": 0.41960000000000003,
@@ -945,7 +945,7 @@
         {
           "co2intensity": 319.88,
           "co2intensityProduction": 319.95,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.4825,
           "fossilFuelRatioProduction": 0.4828,
           "renewableRatio": 0.5175,
@@ -955,7 +955,7 @@
         {
           "co2intensity": 383.26,
           "co2intensityProduction": 383.25,
-          "countryCode": "AUS-TAS-KI",
+          "countryCode": "AU-TAS-KI",
           "fossilFuelRatio": 0.5804,
           "fossilFuelRatioProduction": 0.5819,
           "renewableRatio": 0.41960000000000003,
@@ -963,11 +963,11 @@
           "stateDatetime": "2022-07-01T00:00:00Z"
         }
       ],
-      "AUS-VIC": [
+      "AU-VIC": [
         {
           "co2intensity": 536.2,
           "co2intensityProduction": 572.22,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6625,
           "fossilFuelRatioProduction": 0.7064,
           "renewableRatio": 0.3375,
@@ -977,7 +977,7 @@
         {
           "co2intensity": 519.29,
           "co2intensityProduction": 554.69,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6314,
           "fossilFuelRatioProduction": 0.6735,
           "renewableRatio": 0.3686,
@@ -987,7 +987,7 @@
         {
           "co2intensity": 556.72,
           "co2intensityProduction": 587.44,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6747,
           "fossilFuelRatioProduction": 0.7109000000000001,
           "renewableRatio": 0.32530000000000003,
@@ -997,7 +997,7 @@
         {
           "co2intensity": 510.26,
           "co2intensityProduction": 523.01,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6129,
           "fossilFuelRatioProduction": 0.643,
           "renewableRatio": 0.3871,
@@ -1007,7 +1007,7 @@
         {
           "co2intensity": 539.5,
           "co2intensityProduction": 537.47,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.649,
           "fossilFuelRatioProduction": 0.652,
           "renewableRatio": 0.35100000000000003,
@@ -1017,7 +1017,7 @@
         {
           "co2intensity": 546.46,
           "co2intensityProduction": 546.47,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6624,
           "fossilFuelRatioProduction": 0.6626000000000001,
           "renewableRatio": 0.33759999999999996,
@@ -1027,7 +1027,7 @@
         {
           "co2intensity": 538.42,
           "co2intensityProduction": 538.46,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6527,
           "fossilFuelRatioProduction": 0.653,
           "renewableRatio": 0.34729999999999994,
@@ -1037,7 +1037,7 @@
         {
           "co2intensity": 573.57,
           "co2intensityProduction": 574.03,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6970000000000001,
           "fossilFuelRatioProduction": 0.6977,
           "renewableRatio": 0.303,
@@ -1047,7 +1047,7 @@
         {
           "co2intensity": 562.58,
           "co2intensityProduction": 577.54,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.7038,
           "fossilFuelRatioProduction": 0.7226,
           "renewableRatio": 0.2962,
@@ -1057,7 +1057,7 @@
         {
           "co2intensity": 546.19,
           "co2intensityProduction": 569.67,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6801999999999999,
           "fossilFuelRatioProduction": 0.7095999999999999,
           "renewableRatio": 0.31980000000000003,
@@ -1067,7 +1067,7 @@
         {
           "co2intensity": 516.36,
           "co2intensityProduction": 531.64,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6546,
           "fossilFuelRatioProduction": 0.6722,
           "renewableRatio": 0.3454,
@@ -1077,7 +1077,7 @@
         {
           "co2intensity": 538.13,
           "co2intensityProduction": 549.74,
-          "countryCode": "AUS-VIC",
+          "countryCode": "AU-VIC",
           "fossilFuelRatio": 0.6781999999999999,
           "fossilFuelRatioProduction": 0.691,
           "renewableRatio": 0.3218,
@@ -1085,11 +1085,11 @@
           "stateDatetime": "2022-07-01T00:00:00Z"
         }
       ],
-      "AUS-WA": [
+      "AU-WA": [
         {
           "co2intensity": 499.84,
           "co2intensityProduction": 499.82,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.7151000000000001,
           "fossilFuelRatioProduction": 0.7151000000000001,
           "renewableRatio": 0.2849,
@@ -1099,7 +1099,7 @@
         {
           "co2intensity": 451.06,
           "co2intensityProduction": 450.85,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.6566,
           "fossilFuelRatioProduction": 0.6566,
           "renewableRatio": 0.34340000000000004,
@@ -1109,7 +1109,7 @@
         {
           "co2intensity": 439.3,
           "co2intensityProduction": 439.18,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.6354,
           "fossilFuelRatioProduction": 0.6354,
           "renewableRatio": 0.36460000000000004,
@@ -1119,7 +1119,7 @@
         {
           "co2intensity": 394.85,
           "co2intensityProduction": 394.64,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.5745,
           "fossilFuelRatioProduction": 0.5745,
           "renewableRatio": 0.4255,
@@ -1129,7 +1129,7 @@
         {
           "co2intensity": 419.77,
           "co2intensityProduction": 419.76,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.6012,
           "fossilFuelRatioProduction": 0.6012,
           "renewableRatio": 0.39880000000000004,
@@ -1139,7 +1139,7 @@
         {
           "co2intensity": 410.16,
           "co2intensityProduction": 410.16,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.5731,
           "fossilFuelRatioProduction": 0.5731,
           "renewableRatio": 0.4269,
@@ -1149,7 +1149,7 @@
         {
           "co2intensity": 460.17,
           "co2intensityProduction": 460.17,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.657,
           "fossilFuelRatioProduction": 0.657,
           "renewableRatio": 0.34299999999999997,
@@ -1159,7 +1159,7 @@
         {
           "co2intensity": 460.77,
           "co2intensityProduction": 460.77,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.6388,
           "fossilFuelRatioProduction": 0.6388,
           "renewableRatio": 0.36119999999999997,
@@ -1169,7 +1169,7 @@
         {
           "co2intensity": 452.9,
           "co2intensityProduction": 452.9,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.6587000000000001,
           "fossilFuelRatioProduction": 0.6587000000000001,
           "renewableRatio": 0.34130000000000005,
@@ -1179,7 +1179,7 @@
         {
           "co2intensity": 511.98,
           "co2intensityProduction": 511.98,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.7254999999999999,
           "fossilFuelRatioProduction": 0.7254999999999999,
           "renewableRatio": 0.27449999999999997,
@@ -1189,7 +1189,7 @@
         {
           "co2intensity": 462.32,
           "co2intensityProduction": 462.32,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.7289,
           "fossilFuelRatioProduction": 0.7289,
           "renewableRatio": 0.2711,
@@ -1199,7 +1199,7 @@
         {
           "co2intensity": 469.97,
           "co2intensityProduction": 469.97,
-          "countryCode": "AUS-WA",
+          "countryCode": "AU-WA",
           "fossilFuelRatio": 0.7486,
           "fossilFuelRatioProduction": 0.7486,
           "renewableRatio": 0.2514,
@@ -1207,11 +1207,11 @@
           "stateDatetime": "2022-07-01T00:00:00Z"
         }
       ],
-      "AUS-WA-RI": [
+      "AU-WA-RI": [
         {
           "co2intensity": 461.71,
           "co2intensityProduction": 461.71,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.7006999999999999,
           "fossilFuelRatioProduction": 0.7006999999999999,
           "renewableRatio": 0.2993,
@@ -1221,7 +1221,7 @@
         {
           "co2intensity": 467.06,
           "co2intensityProduction": 467.06,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.7081000000000001,
           "fossilFuelRatioProduction": 0.7081000000000001,
           "renewableRatio": 0.2919,
@@ -1231,7 +1231,7 @@
         {
           "co2intensity": 440.73,
           "co2intensityProduction": 440.73,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.6667000000000001,
           "fossilFuelRatioProduction": 0.6667000000000001,
           "renewableRatio": 0.3333,
@@ -1241,7 +1241,7 @@
         {
           "co2intensity": 430.85,
           "co2intensityProduction": 430.85,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.6506000000000001,
           "fossilFuelRatioProduction": 0.6506000000000001,
           "renewableRatio": 0.3494,
@@ -1251,7 +1251,7 @@
         {
           "co2intensity": 443.94,
           "co2intensityProduction": 443.94,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.6725,
           "fossilFuelRatioProduction": 0.6725,
           "renewableRatio": 0.3275,
@@ -1261,7 +1261,7 @@
         {
           "co2intensity": 453.48,
           "co2intensityProduction": 453.48,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.6870999999999999,
           "fossilFuelRatioProduction": 0.6870999999999999,
           "renewableRatio": 0.3129,
@@ -1271,7 +1271,7 @@
         {
           "co2intensity": 460.99,
           "co2intensityProduction": 460.99,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.6989,
           "fossilFuelRatioProduction": 0.6989,
           "renewableRatio": 0.3011,
@@ -1281,7 +1281,7 @@
         {
           "co2intensity": 471.41,
           "co2intensityProduction": 471.41,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.7156999999999999,
           "fossilFuelRatioProduction": 0.7156999999999999,
           "renewableRatio": 0.2843,
@@ -1291,7 +1291,7 @@
         {
           "co2intensity": 477.11,
           "co2intensityProduction": 477.11,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.7245,
           "fossilFuelRatioProduction": 0.7245,
           "renewableRatio": 0.2755,
@@ -1301,7 +1301,7 @@
         {
           "co2intensity": 494.64,
           "co2intensityProduction": 494.64,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.7529,
           "fossilFuelRatioProduction": 0.7529,
           "renewableRatio": 0.24710000000000001,
@@ -1311,7 +1311,7 @@
         {
           "co2intensity": 465.81,
           "co2intensityProduction": 465.81,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.7084,
           "fossilFuelRatioProduction": 0.7084,
           "renewableRatio": 0.2916,
@@ -1321,7 +1321,7 @@
         {
           "co2intensity": 467.6,
           "co2intensityProduction": 467.6,
-          "countryCode": "AUS-WA-RI",
+          "countryCode": "AU-WA-RI",
           "fossilFuelRatio": 0.7112999999999999,
           "fossilFuelRatioProduction": 0.7112999999999999,
           "renewableRatio": 0.2887,

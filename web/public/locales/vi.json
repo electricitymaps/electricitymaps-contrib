@@ -238,7 +238,7 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Úc",
       "zoneName": "New South Wales"
     },
@@ -246,27 +246,27 @@
       "countryName": "Úc",
       "zoneName": "Lãnh thổ phía Bắc"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Úc",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Úc",
       "zoneName": "Nam Úc"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Úc",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmania",
       "zoneName": "Đảo King"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Úc",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Úc",
       "zoneName": "Tây Úc"
     },

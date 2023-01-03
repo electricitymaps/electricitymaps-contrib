@@ -237,7 +237,7 @@
     "AT": {
       "zoneName": "Austria"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "Nowa Południowa Walia"
     },
@@ -245,23 +245,23 @@
       "countryName": "Australia",
       "zoneName": "Terytorium Północne"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australia",
       "zoneName": "Australia Południowa"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australia",
       "zoneName": "Wiktoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australia",
       "zoneName": "Australia Zachodnia"
     },
@@ -1130,7 +1130,7 @@
     "AS": {
       "zoneName": "Samoa Amerykańskie"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmania"
     },
     "AW": {

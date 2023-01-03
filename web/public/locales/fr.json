@@ -271,7 +271,7 @@
     "AR": {
       "zoneName": "Argentine"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australie",
       "zoneName": "Nouvelle-Galles du Sud"
     },
@@ -279,31 +279,31 @@
       "countryName": "Australie",
       "zoneName": "Territoire du Nord"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australie",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australie",
       "zoneName": "Australie-Méridionale"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australie",
       "zoneName": "Tasmanie"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australie",
       "zoneName": "Tasmanie (Île King)"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australie",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australie",
       "zoneName": "Australie-Occidentale"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australie",
       "zoneName": "Île Rottnest"
     },
@@ -1522,7 +1522,7 @@
       "countryName": "Australie",
       "zoneName": "Île du Cap Barren"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australie",
       "zoneName": "Île Flinders"
     },

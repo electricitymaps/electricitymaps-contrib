@@ -1,11 +1,10 @@
 import unittest
 from datetime import datetime
 
+from parsers import NTESMO
 from pytz import timezone
 from requests import Session
 from requests_mock import ANY, Adapter
-
-from parsers import NTESMO
 
 australia = timezone("Australia/Darwin")
 
@@ -15,7 +14,7 @@ class TestNTESMO(unittest.TestCase):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
-        data = open("parsers/test/mocks/AUS/NTESMO.xlsx", "rb")
+        data = open("parsers/test/mocks/AU/NTESMO.xlsx", "rb")
         self.adapter.register_uri(ANY, ANY, content=data.read())
         index_page = """<div class="smp-tiles-article__item">
                 <a href="https://ntesmo.com.au/__data/assets/excel_doc/0013/116113/Market-Information_System-Control-daily-trading-day_220401.xlsx">

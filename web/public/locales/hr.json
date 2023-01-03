@@ -232,7 +232,7 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australija",
       "zoneName": "Novi Južni Wales"
     },
@@ -240,27 +240,27 @@
       "countryName": "Australija",
       "zoneName": "Sjeverni teritorij"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australija",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australija",
       "zoneName": "Južna Australija"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australija",
       "zoneName": "Tasmanija"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmanija",
       "zoneName": "King Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australija",
       "zoneName": "Viktorija"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australija",
       "zoneName": "Zapadna Australija"
     },

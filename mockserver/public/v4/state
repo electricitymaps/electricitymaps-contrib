@@ -28,10 +28,10 @@
         "renewableRatioProduction": 0.7767000000000001,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
-      "AUS-NSW": {
+      "AU-NSW": {
         "co2intensity": 562.94,
         "co2intensityProduction": 562.94,
-        "countryCode": "AUS-NSW",
+        "countryCode": "AU-NSW",
         "exchange": {},
         "exchangeCapacities": {},
         "exchangeCo2Intensities": {},
@@ -41,10 +41,10 @@
         "renewableRatioProduction": 0.3091,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
-      "AUS-QLD": {
+      "AU-QLD": {
         "co2intensity": 657.21,
         "co2intensityProduction": 657.21,
-        "countryCode": "AUS-QLD",
+        "countryCode": "AU-QLD",
         "exchange": {},
         "exchangeCapacities": {},
         "exchangeCo2Intensities": {},
@@ -54,10 +54,10 @@
         "renewableRatioProduction": 0.1487,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
-      "AUS-SA": {
+      "AU-SA": {
         "co2intensity": 40.48,
         "co2intensityProduction": 40.48,
-        "countryCode": "AUS-SA",
+        "countryCode": "AU-SA",
         "exchange": {},
         "exchangeCapacities": {},
         "exchangeCo2Intensities": {},
@@ -67,10 +67,10 @@
         "renewableRatioProduction": 0.9615,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
-      "AUS-TAS": {
+      "AU-TAS": {
         "co2intensity": 20.51,
         "co2intensityProduction": 20.51,
-        "countryCode": "AUS-TAS",
+        "countryCode": "AU-TAS",
         "exchange": {},
         "exchangeCapacities": {},
         "exchangeCo2Intensities": {},
@@ -80,10 +80,10 @@
         "renewableRatioProduction": 1,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
-      "AUS-TAS-FI": {
+      "AU-TAS-FI": {
         "co2intensity": 11.04,
         "co2intensityProduction": 11.04,
-        "countryCode": "AUS-TAS-FI",
+        "countryCode": "AU-TAS-FI",
         "exchange": {},
         "exchangeCapacities": {},
         "exchangeCo2Intensities": {},
@@ -93,10 +93,10 @@
         "renewableRatioProduction": 1,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
-      "AUS-VIC": {
+      "AU-VIC": {
         "co2intensity": 480.21,
         "co2intensityProduction": 480.57,
-        "countryCode": "AUS-VIC",
+        "countryCode": "AU-VIC",
         "exchange": {},
         "exchangeCapacities": {},
         "exchangeCo2Intensities": {},
@@ -106,10 +106,10 @@
         "renewableRatioProduction": 0.4253,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
-      "AUS-WA": {
+      "AU-WA": {
         "co2intensity": 372.79,
         "co2intensityProduction": 372.79,
-        "countryCode": "AUS-WA",
+        "countryCode": "AU-WA",
         "exchange": {},
         "exchangeCapacities": {},
         "exchangeCo2Intensities": {},
@@ -119,10 +119,10 @@
         "renewableRatioProduction": 0.4954,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
-      "AUS-WA-RI": {
+      "AU-WA-RI": {
         "co2intensity": 381.25,
         "co2intensityProduction": 381.25,
-        "countryCode": "AUS-WA-RI",
+        "countryCode": "AU-WA-RI",
         "exchange": {},
         "exchangeCapacities": {},
         "exchangeCo2Intensities": {},
@@ -3865,41 +3865,41 @@
         "netFlow": 498.75,
         "sortedCountryCodes": "AT->SI"
       },
-      "AUS-NSW->AUS-QLD": {
+      "AU-NSW->AU-QLD": {
         "co2intensity": null,
         "countryCodes": [
-          "AUS-NSW",
-          "AUS-QLD"
+          "AU-NSW",
+          "AU-QLD"
         ],
         "netFlow": null,
-        "sortedCountryCodes": "AUS-NSW->AUS-QLD"
+        "sortedCountryCodes": "AU-NSW->AU-QLD"
       },
-      "AUS-NSW->AUS-VIC": {
+      "AU-NSW->AU-VIC": {
         "co2intensity": null,
         "countryCodes": [
-          "AUS-NSW",
-          "AUS-VIC"
+          "AU-NSW",
+          "AU-VIC"
         ],
         "netFlow": null,
-        "sortedCountryCodes": "AUS-NSW->AUS-VIC"
+        "sortedCountryCodes": "AU-NSW->AU-VIC"
       },
-      "AUS-SA->AUS-VIC": {
+      "AU-SA->AU-VIC": {
         "co2intensity": null,
         "countryCodes": [
-          "AUS-SA",
-          "AUS-VIC"
+          "AU-SA",
+          "AU-VIC"
         ],
         "netFlow": null,
-        "sortedCountryCodes": "AUS-SA->AUS-VIC"
+        "sortedCountryCodes": "AU-SA->AU-VIC"
       },
-      "AUS-TAS->AUS-VIC": {
+      "AU-TAS->AU-VIC": {
         "co2intensity": null,
         "countryCodes": [
-          "AUS-TAS",
-          "AUS-VIC"
+          "AU-TAS",
+          "AU-VIC"
         ],
         "netFlow": null,
-        "sortedCountryCodes": "AUS-TAS->AUS-VIC"
+        "sortedCountryCodes": "AU-TAS->AU-VIC"
       },
       "AX->FI": {
         "co2intensity": 202.69,

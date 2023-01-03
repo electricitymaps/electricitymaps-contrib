@@ -168,7 +168,7 @@
     "AT": {
       "zoneName": "Австрия"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Австралия",
       "zoneName": "Новый Южный Уэльс"
     },
@@ -176,23 +176,23 @@
       "countryName": "Австралия",
       "zoneName": "Северная территория"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Австралия",
       "zoneName": "Квинсленд"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Австралия",
       "zoneName": "Южная Австралия"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Австралия",
       "zoneName": "Тасмания"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Австралия",
       "zoneName": "Виктория"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Австралия",
       "zoneName": "Западная Австралия"
     },
@@ -1193,7 +1193,7 @@
     "ZW": {
       "zoneName": "Зимбабве"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Тасмания",
       "zoneName": "Кинг"
     },

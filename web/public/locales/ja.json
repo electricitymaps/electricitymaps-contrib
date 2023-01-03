@@ -245,7 +245,7 @@
     "AR": {
       "zoneName": "アルゼンチン"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "オーストラリア",
       "zoneName": "ニューサウスウェールズ州"
     },
@@ -253,27 +253,27 @@
       "countryName": "オーストラリア",
       "zoneName": "ノーザンテリトリー"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "オーストラリア",
       "zoneName": "クイーンズランド州"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "オーストラリア",
       "zoneName": "南 オーストラリア"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "オーストラリア",
       "zoneName": "タスマニア"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "オーストラリア",
       "zoneName": "キング島"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "オーストラリア",
       "zoneName": "ビクトリア州"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "オーストラリア",
       "zoneName": "西 オーストラリア"
     },

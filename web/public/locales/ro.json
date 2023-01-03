@@ -251,7 +251,7 @@
     "AT": {
       "zoneName": "Austria"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "New South Wales"
     },
@@ -259,15 +259,15 @@
       "countryName": "Australia",
       "zoneName": "Northern Territory"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australia",
       "zoneName": "South Australia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
@@ -275,23 +275,23 @@
       "countryName": "Australia",
       "zoneName": "Cape Barren Island"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australia",
       "zoneName": "King Island"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australia",
       "zoneName": "Flinders Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australia",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australia",
       "zoneName": "Western Australia"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australia",
       "zoneName": "Rottnest Island"
     },

@@ -145,7 +145,7 @@
     "AT": {
       "zoneName": "奥地利"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "zoneName": "澳大利亚（新南威尔士州）",
       "countryName": "澳大利亚"
     },
@@ -153,23 +153,23 @@
       "zoneName": "澳大利亚（北领地）",
       "countryName": "澳大利亚"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "zoneName": "澳大利亚（昆士兰州）",
       "countryName": "澳大利亚"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "zoneName": "澳大利亚（南澳大利亚）",
       "countryName": "澳大利亚"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "zoneName": "澳大利亚（塔斯马尼亚）",
       "countryName": "澳大利亚"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "zoneName": "澳大利亚（维多利亚）",
       "countryName": "澳大利亚"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "zoneName": "澳大利亚（西澳大利亚）",
       "countryName": "澳大利亚"
     },
@@ -431,7 +431,7 @@
     "AR": {
       "zoneName": "美属萨摩亚阿根廷"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "塔斯马尼亚",
       "zoneName": "国王岛"
     },
