@@ -93,7 +93,6 @@ def fetch_data(
 
 def fix_solar_production(dt: datetime, row: pd.Series) -> int:
     """sets solar production to 0 during the night as there is only solar PV in UY"""
-    print(row.get("value"))
     if (5 >= dt.hour or dt.hour >= 20) and row.get("value") != 0:
         return 0
     else:
@@ -218,8 +217,8 @@ def fetch_exchange(
     return all_data_points
 
 
-# if __name__ == "__main__":
-#     print("fetch_production() ->")
-#     print(fetch_production())
-#     print("fetch_exchange(UY, BR) ->")
-#     print(fetch_exchange("UY", "BR"))
+if __name__ == "__main__":
+    print("fetch_production() ->")
+    print(fetch_production())
+    # print("fetch_exchange(UY, BR) ->")
+    # print(fetch_exchange("UY", "BR"))
