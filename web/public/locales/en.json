@@ -1466,6 +1466,7 @@
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
     },
+    "US-AK": { "countryName": "USA", "zoneName": "Alaska" },
     "US-HI-HA": {
       "countryName": "USA",
       "zoneName": "Hawaii"
