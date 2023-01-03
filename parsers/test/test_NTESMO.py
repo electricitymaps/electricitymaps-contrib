@@ -1,10 +1,11 @@
 import unittest
 from datetime import datetime
 
-from parsers import NTESMO
 from pytz import timezone
 from requests import Session
 from requests_mock import ANY, Adapter
+
+from parsers import NTESMO
 
 australia = timezone("Australia/Darwin")
 

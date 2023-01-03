@@ -5,8 +5,9 @@ from typing import Dict, List, Mapping, Optional, Tuple, Union
 import arrow
 import pandas as pd
 import requests
-from parsers.lib.config import refetch_frequency
 from requests import Session
+
+from parsers.lib.config import refetch_frequency
 
 REFETCH_FREQUENCY = timedelta(days=21)
 
