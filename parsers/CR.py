@@ -7,112 +7,13 @@ from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-import pandas as pd
 from requests import Session
 
 TIMEZONE = "America/Costa_Rica"
-# POWER_PLANTS = {
-#     "Aeroenergía": "wind",
-#     "Altamira": "wind",
-#     "Angostura": "hydro",
-#     "Arenal": "hydro",
-#     "Balsa Inferior": "hydro",
-#     "Barranca": "oil",
-#     "Barro Morado": "geothermal",
-#     "Belén": "hydro",
-#     "Bijagua": "hydro",
-#     "Birris12": "hydro",
-#     "Birris3": "hydro",
-#     "Boca de Pozo": "hydro",
-#     "CNFL": "hydro",
-#     "Cachí": "hydro",
-#     "Campos Azules": "wind",
-#     "Canalete": "hydro",
-#     "Cariblanco": "hydro",
-#     "Carrillos": "hydro",
-#     "Caño Grande": "hydro",
-#     "Caño Grande III": "hydro",
-#     "Chiripa": "wind",
-#     "Chocosuelas": "hydro",
-#     "Chucás": "hydro",
-#     "Cote": "hydro",
-#     "Cubujuquí": "hydro",
-#     "Daniel Gutiérrez": "hydro",
-#     "Dengo": "hydro",
-#     "Don Pedro": "hydro",
-#     "Doña Julia": "hydro",
-#     "Echandi": "hydro",
-#     "Electriona": "hydro",
-#     "El Encanto": "hydro",
-#     "El Angel": "hydro",
-#     "El Angel Ampliación": "hydro",
-#     "El Embalse": "hydro",
-#     "El General": "hydro",
-#     "El Viejo": "biomass",
-#     "Garabito": "oil",
-#     "Garita": "hydro",
-#     "Guápiles": "oil",
-#     "Hidrozarcas": "hydro",
-#     "Jorge Manuel Dengo": "hydro",
-#     "La Esperanza (CoopeL)": "hydro",
-#     "La Joya": "hydro",
-#     "Las Pailas II": "geothermal",
-#     "Los Negros": "hydro",
-#     "Los Negros II": "hydro",
-#     "Los Santos": "wind",
-#     "MOVASA": "wind",
-#     "Matamoros": "hydro",
-#     "Miravalles I": "geothermal",
-#     "Miravalles II": "geothermal",
-#     "Miravalles III": "geothermal",
-#     "Miravalles V": "geothermal",
-#     "Moín I": "oil",
-#     "Moín II": "oil",
-#     "Moín III": "oil",
-#     "Orosí": "wind",
-#     "Orotina": "oil",
-#     "Otros": "hydra",
-#     "PE Cacao": "wind",
-#     "PE Mogote": "wind",
-#     "PE Río Naranjo": "hydro",
-#     "PEG": "wind",
-#     "Pailas": "geothermal",
-#     "Parque Solar Juanilama": "solar",
-#     "Parque Solar Miravalles": "solar",
-#     "Peñas Blancas": "hydro",
-#     "Pirrís": "hydro",
-#     "Plantas Eólicas": "wind",
-#     "Platanar": "hydro",
-#     "Pocosol": "hydro",
-#     "Poás I y II": "hydro",
-#     "Reventazón": "hydro",
-#     "Río Lajas": "hydro",
-#     "Río Macho": "hydro",
-#     "Río Segundo": "hydro",
-#     "San Antonio": "oil",
-#     "San Lorenzo (C)": "hydro",
-#     "Sandillal": "hydro",
-#     "Suerkata": "hydro",
-#     "Taboga": "biomass",
-#     "Tacares": "hydro",
-#     "Tejona": "wind",
-#     "Tilawind": "wind",
-#     "Torito": "hydro",
-#     "Toro I": "hydro",
-#     "Toro II": "hydro",
-#     "Toro III": "hydro",
-#     "Tuis (JASEC)": "hydro",
-#     "Valle Central": "wind",
-#     "Vara Blanca": "hydro",
-#     "Ventanas": "hydro",
-#     "Ventanas-Garita": "hydro",
-#     "Vientos de La Perla": "wind",
-#     "Vientos de Miramar": "wind",
-#     "Vientos del Este": "wind",
-#     "Volcán": "hydro",
-# }
+EXCHANGE_URL = (
+    "https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/generic"
+)
 
-# Note: Ignoring Intercambio deliberately
 SPANISH_TO_ENGLISH = {
     "Bagazo": "biomass",
     "Eólica": "wind",
@@ -120,6 +21,11 @@ SPANISH_TO_ENGLISH = {
     "Hidroeléctrica": "hydro",
     "Solar": "solar",
     "Térmica": "oil",
+}
+
+EXCHANGE_JSON_MAPPING = {
+    "CR->NI": "5SISTEMA.LT230.INTER_NET_CR.CMW.MW",
+    "CR->PA": "6SISTEMA.LT230.INTER_NET_PAN.CMW.MW",
 }
 
 
@@ -144,6 +50,25 @@ def empty_record(zone_key: str):
     }
 
 
+def extract_exchange(raw_data, exchange) -> Optional[float]:
+    """Extracts flow value and direction for a given exchange."""
+    search_value = EXCHANGE_JSON_MAPPING[exchange]
+
+    interconnection = None
+    for datapoint in raw_data:
+        if datapoint["nombre"] == search_value:
+            interconnection = float(datapoint["value"])
+
+    if interconnection is None:
+        return None
+
+    # positive and negative flow directions do not always correspond to EM ordering of exchanges
+    if exchange in ["GT->SV", "GT->HN", "HN->SV", "CR->NI", "HN->NI"]:
+        interconnection *= -1
+
+    return interconnection
+
+
 def fetch_production(
     zone_key: str = "CR",
     session: Optional[Session] = None,
@@ -152,32 +77,32 @@ def fetch_production(
 ):
     # ensure we have an arrow object.
     # if no target_datetime is specified, this defaults to now.
-    target_datetime = arrow.get(target_datetime).to(TIMEZONE)
+    arw_datetime = arrow.get(target_datetime).to(TIMEZONE)
 
     # if before 01:30am on the current day then fetch previous day due to
     # data lag.
     today = arrow.get().to(TIMEZONE).date()
-    if target_datetime.date() == today:
-        target_datetime = (
-            target_datetime
-            if target_datetime.time() >= time(1, 30)
-            else target_datetime.shift(days=-1)
+    if arw_datetime.date() == today:
+        arw_datetime = (
+            arw_datetime
+            if arw_datetime.time() >= time(1, 30)
+            else arw_datetime.shift(days=-1)
         )
 
-    if target_datetime < arrow.get("2012-07-01"):
+    if arw_datetime < arrow.get("2012-07-01"):
         # data availability limit found by manual trial and error
         logger.error(
             "CR API does not provide data before 2012-07-01, "
-            "{} was requested".format(target_datetime),
+            "{} was requested".format(arw_datetime),
             extra={"key": zone_key},
         )
         return None
 
     # Do not use existing session as some amount of cache is taking place
     r = Session()
-    day = target_datetime.format("DD")
-    month = target_datetime.format("MM")
-    year = target_datetime.format("YYYY")
+    day = arw_datetime.format("DD")
+    month = arw_datetime.format("MM")
+    year = arw_datetime.format("YYYY")
     url = f"https://apps.grupoice.com/CenceWeb/data/sen/json/EnergiaHorariaFuentePlanta?anno={year}&mes={month}&dia={day}"
 
     response = r.get(url)
@@ -200,40 +125,36 @@ def fetch_production(
     return [results[k] for k in sorted(results.keys())]
 
 
-# TODO: Source not available anymore. Need to find a new source for this.
-# --------------------------------------------------------------------------------
-# def fetch_exchange(
-#     zone_key1: str = "CR",
-#     zone_key2: str = "NI",
-#     session: Optional[Session] = None,
-#     target_datetime: Optional[datetime] = None,
-#     logger: Logger = getLogger(__name__),
-# ) -> dict:
-#     """Requests the last known power exchange (in MW) between two regions."""
-#     if target_datetime:
-#         raise NotImplementedError("This parser is not yet able to parse past dates")
+def fetch_exchange(
+    zone_key1: str = "CR",
+    zone_key2: str = "PA",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    """Gets an exchange pair from the SIEPAC system."""
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-#     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zones = "->".join(sorted([zone_key1, zone_key2]))
 
-#     df = pd.read_csv(
-#         "http://www.enteoperador.org/newsite/flash/data.csv", index_col=False
-#     )
+    if sorted_zones not in EXCHANGE_JSON_MAPPING.keys():
+        raise NotImplementedError("This exchange is not implemented.")
 
-#     if sorted_zone_keys == "CR->NI":
-#         flow = df["NICR"][0]
-#     elif sorted_zone_keys == "CR->PA":
-#         flow = -1 * df["CRPA"][0]
-#     else:
-#         raise NotImplementedError("This exchange pair is not implemented")
+    s = session or Session()
 
-#     data = {
-#         "datetime": arrow.now(TIMEZONE).datetime,
-#         "sortedZoneKeys": sorted_zone_keys,
-#         "netFlow": flow,
-#         "source": "enteoperador.org",
-#     }
+    raw_data = s.get(EXCHANGE_URL).json()
+    flow = round(extract_exchange(raw_data, sorted_zones), 1)
+    dt = arrow.now("UTC-6").floor("minute")
 
-#     return data
+    exchange = {
+        "sortedZoneKeys": sorted_zones,
+        "datetime": dt.datetime,
+        "netFlow": flow,
+        "source": "enteoperador.org",
+    }
+
+    return exchange
 
 
 if __name__ == "__main__":
@@ -255,5 +176,5 @@ if __name__ == "__main__":
     # print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
     # pprint(fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z")))
 
-    # print("fetch_exchange() ->")
-    # print(fetch_exchange())
+    print("fetch_exchange() ->")
+    print(fetch_exchange())
