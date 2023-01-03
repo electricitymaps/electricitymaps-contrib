@@ -4,8 +4,8 @@ from typing import List, Optional, Union
 
 from requests import Response, Session
 
-from electricitymap.contrib.parsers.lib.config import refetch_frequency
-from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 EXCHANGE_MAPPING = {
     "DE->DK-DK1": {"id": "ExchangeGermany", "direction": 1, "priceArea": "DK1"},
