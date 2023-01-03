@@ -65,23 +65,23 @@ SUPPORTED_EXCHANGES = {
     "AR-NEA->AR-NOA": "NEA-NOA",
 }
 
-EXCHANGE_DIRECTIONS = {  # directions are from second region -> first region
-    "AR->CL-SEN": 0,
-    "AR->PY": 225,
-    "AR->UY": 180,
-    "AR-NEA->BR-S": 225,
-    "AR-BAS->AR-COM": 45,
-    "AR-CEN->AR-COM": 90,
-    "AR-CEN->AR-NOA": 315,
-    "AR-CUY->AR-COM": 135,
-    "AR-CEN->AR-CUY": 45,
-    "AR-LIT->AR-NEA": 225,
-    "AR-BAS->AR-LIT": 270,
+EXCHANGE_DIRECTIONS = {  # directions are from first region -> second region
+    "AR->CL-SEN": 180,
+    "AR->PY": 45,
+    "AR->UY": 0,
+    "AR-NEA->BR-S": 45,
+    "AR-BAS->AR-COM": 225,
+    "AR-CEN->AR-COM": 270,
+    "AR-CEN->AR-NOA": 135,
+    "AR-CUY->AR-COM": 315,
+    "AR-CEN->AR-CUY": 225,
+    "AR-LIT->AR-NEA": 45,
+    "AR-BAS->AR-LIT": 90,
     "AR-CUY->AR-NOA": 45,
-    "AR-LIT->AR-CEN": 45,
+    "AR-LIT->AR-CEN": 225,
     "AR-LIT->AR-NOA": 135,
     "AR-BAS->AR-CEN": 135,
-    "AR-COM->AR-PAT": 90,
+    "AR-COM->AR-PAT": 270,
     "AR-NEA->AR-NOA": 180,
 }
 
