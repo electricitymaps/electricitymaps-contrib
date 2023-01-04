@@ -87,33 +87,26 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 57.47323263502428
+    gas:
+      datetime: '2015-01-01'
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
+        generation in the province of Ontario, Canada." (2013)
+      value: 497 
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 53.48322359927377
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 53.48323094170299
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 53.03166247658179
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 48.27082098236083
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 47.473184887281725
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 48.54750352993932
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 57.47323263502428
+      datetime: '2015-01-01'
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
+        generation in the province of Ontario, Canada." (2013)
+      value: 22
     nuclear:
-      datetime: '2013-01-01'
+      datetime: '2015-01-01'
       source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
         generation in the province of Ontario, Canada." (2013)
       value: 4.8
+    wind:
+      datetime: '2015-01-01'
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
+        generation in the province of Ontario, Canada." (2013)
+      value: 10.69
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
