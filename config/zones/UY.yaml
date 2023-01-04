@@ -13,6 +13,8 @@ contributors:
   - jarek
   - corradio
   - nessie2013
+  - ZachEichen
+  - ananyasharma20
 emissionFactors:
   direct:
     battery discharge:
@@ -213,4 +215,5 @@ fallbackZoneMixes:
         wind: 0.2860454342790785
 parsers:
   production: UY.fetch_production
+  consumption: UY.fetch_consumption
 timezone: America/Montevideo
