@@ -421,6 +421,9 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
     "RS": {
         "required": ["coal"],
     },
+    "SE": {
+        "required": ["hydro", "nuclear", "wind", "unknown"],
+    },
     "SE-SE1": {
         "required": ["hydro", "wind", "unknown", "solar"],
     },
