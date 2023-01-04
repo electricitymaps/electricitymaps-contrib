@@ -106,7 +106,7 @@ def fetch_production(
 ) -> list:
     """collects production data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+        target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
     session = session or Session()
 
     data = fetch_data(
@@ -150,7 +150,7 @@ def fetch_consumption(
 ) -> list:
     """collects consumption data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+        target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
     session = session or Session()
 
     data = fetch_data(
@@ -185,7 +185,7 @@ def fetch_exchange(
 ) -> list:
     """collects exchanges data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+        target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
     session = session or Session()
 
     data = fetch_data(
