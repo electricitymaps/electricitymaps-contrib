@@ -40,18 +40,15 @@ EXCHANGES_MAPPING = {
 }
 
 
-def get_adme_url(target_datetime: datetime, session: Optional[Session] = None) -> str:
+def get_adme_url(target_datetime: datetime, session: Session) -> str:
     """"""
-    session = session or Session()
     next_day = target_datetime + timedelta(days=1)
-    date_format = "{day}%2F{month}%2F{year}".format(
-        day=target_datetime.day, month=target_datetime.month, year=target_datetime.year
+    date_format = (
+        f"{target_datetime.day}%2F{target_datetime.month}%2F{target_datetime.year}"
     )
-    next_day_format = "{day}%2F{month}%2F{year}".format(
-        day=next_day.day, month=next_day.month, year=next_day.year
-    )
+    next_day_format = f"{next_day.day}%2F{next_day.month}%2F{next_day.year}"
 
-    link = ADME_URL + date_format + "&fecha_fin=" + next_day_format + "&send=MOSTRAR"
+    link = f"{ADME_URL}{date_format}&fecha_fin={next_day_format}&send=MOSTRAR"
     r = session.get(url=link)
     soup = BeautifulSoup(r.content, "html.parser")
     href_tags = soup.find_all("a", href=True)
