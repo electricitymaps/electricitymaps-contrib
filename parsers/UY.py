@@ -99,7 +99,7 @@ def fix_solar_production(dt: datetime, row: pd.Series) -> int:
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "UY",
-    session: Optional[Session] = None,
+    session: Session = Session()
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
