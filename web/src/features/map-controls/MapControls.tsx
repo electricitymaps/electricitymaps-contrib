@@ -124,7 +124,7 @@ function DesktopMapControls() {
   };
 
   return (
-    <div className="pointer-events-none absolute right-3 top-3 z-50 hidden flex-col items-end md:flex">
+    <div className="pointer-events-none absolute right-3 top-3 z-30 hidden flex-col items-end md:flex">
       <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-1">
         <ConsumptionProductionToggle />
         <SpatialAggregatesToggle />

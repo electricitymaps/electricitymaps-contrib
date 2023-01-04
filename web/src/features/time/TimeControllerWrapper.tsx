@@ -1,6 +1,7 @@
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtom } from 'jotai';
 import { BottomSheet } from 'react-spring-bottom-sheet';
+import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import TimeController from './TimeController';
 import TimeHeader from './TimeHeader';
@@ -9,12 +10,18 @@ const SNAP_POINTS = [60, 160];
 
 function BottomSheetWrappedTimeController() {
   const [isLoadingMap] = useAtom(loadingMapAtom);
+  const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
+
+  // Don't show the time controller until the onboarding has been seen
+  // But it still has to be rendered to avoid re-querying data and showing loading
+  // indicators again. Therefore we set the snap points to 0 until modal is closed.
+  const snapPoints = hasOnboardingBeenSeen ? SNAP_POINTS : [0];
 
   return (
     <BottomSheet
       scrollLocking={false} // Ensures scrolling is not blocked on IOS
       open={!isLoadingMap}
-      snapPoints={() => SNAP_POINTS}
+      snapPoints={() => snapPoints}
       blocking={false}
       header={<TimeHeader />}
     >

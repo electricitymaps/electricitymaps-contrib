@@ -44,17 +44,17 @@ function Modal({
 
   const RightButton = isOnLastView() ? (
     <button
-      className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-green"
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green shadow"
       onClick={onDismiss}
     >
-      <HiCheck size="32" color="white" />
+      <HiCheck size="24" color="white" />
     </button>
   ) : (
     <button
-      className="flex h-12 w-12 items-center justify-center rounded-full bg-white pl-1 dark:bg-gray-900"
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-white pl-1 shadow dark:bg-gray-900"
       onClick={handleForward}
     >
-      <HiChevronRight size="32" />
+      <HiChevronRight size="24" />
     </button>
   );
 
@@ -67,37 +67,33 @@ function Modal({
         role="presentation"
       />
       <div
-        className="pointer-events-none  absolute top-auto z-50 flex w-full min-w-[500px]
-       items-center justify-center self-center"
+        className="px-auto pointer-events-none  absolute top-auto z-50 mx-auto flex w-full items-center justify-center
+       self-center sm:top-20 sm:min-w-[500px]"
         data-test-id={modalName}
       >
-        <div className="pointer-events-auto flex w-full max-w-[75px] flex-col justify-around">
+        <div className="pointer-events-auto z-10 flex w-full max-w-[35px] shrink flex-col justify-around px-2 sm:max-w-[60px]">
           {!isOnFirstView() && (
             <button
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-white pr-1 dark:bg-gray-900"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white pr-1 shadow dark:bg-gray-900"
               onClick={handleBack}
             >
-              <HiChevronLeft size="32" />
+              <HiChevronLeft size="24" />
             </button>
           )}
         </div>
-        <div
-          className={
-            'color-white pointer-events-auto relative flex h-[500px] w-1/2 max-w-[700px] flex-col rounded-3xl bg-gray-50 shadow  dark:bg-gray-700'
-          }
-        >
+        <div className="color-white pointer-events-auto relative flex h-[450px] w-auto max-w-[500px] flex-col rounded-3xl bg-gray-50 shadow-lg dark:bg-gray-700  sm:h-[500px]">
           <div className="absolute self-end p-4 align-baseline">
             <button
-              className="p-auto pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900"
+              className="p-auto pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900"
               onClick={onDismiss}
             >
               <HiXMark size="28" />
             </button>
           </div>
           <div
-            className={`flex h-1/2 max-h-[264px]
-              w-full flex-grow rounded-t-xl bg-auto bg-center bg-no-repeat ${
-                isOnFirstView() ? 'dark:invert' : ''
+            className={`flex h-1/2 max-h-[264px] w-full flex-grow
+              self-center rounded-t-xl bg-auto bg-center bg-no-repeat ${
+                isOnFirstView() ? 'max-w-[12rem] dark:invert' : ''
               }`}
             style={
               currentView.headerImage && {
@@ -108,7 +104,7 @@ function Modal({
           >
             <div>{currentView.title && <h1>{currentView.title(__)}</h1>}</div>
           </div>
-          <div className="flex flex-col justify-center px-4 pt-6 text-center dark:bg-gray-700">
+          <div className="flex w-auto flex-col justify-center px-4 pt-6 text-center dark:bg-gray-700">
             {currentView.renderContent(__)}
           </div>
         </div>
@@ -122,7 +118,7 @@ function Modal({
             />
           ))}
         </div>
-        <div className="pointer-events-auto flex w-full max-w-[75px] flex-col items-end  ">
+        <div className="pointer-events-auto z-10 flex w-full max-w-[35px] flex-col items-end px-2 sm:max-w-[60px]">
           {RightButton}
         </div>
       </div>
