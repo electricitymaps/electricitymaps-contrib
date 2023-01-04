@@ -52,6 +52,7 @@ def get_adme_url(target_datetime: datetime, session: Session) -> str:
     r = session.get(url=link)
     soup = BeautifulSoup(r.content, "html.parser")
     href_tags = soup.find_all("a", href=True)
+    data_url: str = ""
     for tag in href_tags:
         if tag.button is not None:
             if tag.button.string == "Archivo Scada Detalle 10minutal":
