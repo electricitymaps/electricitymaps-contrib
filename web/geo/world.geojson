@@ -1460,7 +1460,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-NSW", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-NSW", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1725,7 +1725,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-QLD", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-QLD", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1942,7 +1942,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-SA", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-SA", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2057,7 +2057,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-TAS", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-TAS", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2125,7 +2125,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-TAS-KI", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-TAS-KI", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2145,7 +2145,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-TAS-FI", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-TAS-FI", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2183,7 +2183,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-VIC", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-VIC", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2270,7 +2270,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-WA", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-WA", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -52207,7 +52207,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AUS-WA-RI", "countryKey": "AU", "countryName": "Australia" },
+      "properties": { "zoneName": "AU-WA-RI", "countryKey": "AU", "countryName": "Australia" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
