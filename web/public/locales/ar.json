@@ -80,7 +80,7 @@
     "AR": {
       "zoneName": "الأرجنتين"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "أستراليا",
       "zoneName": "نيو ساوث ويلز"
     },
@@ -88,23 +88,23 @@
       "countryName": "أستراليا",
       "zoneName": "الإقليم الشمالي"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "أستراليا",
       "zoneName": "كوينزلاند"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "أستراليا",
       "zoneName": "جنوب أستراليا"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "أستراليا",
       "zoneName": "تاسمانيا"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "أستراليا",
       "zoneName": "فيكتوريا"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "أستراليا",
       "zoneName": "أستراليا الغربية"
     },

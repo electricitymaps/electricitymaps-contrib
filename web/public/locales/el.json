@@ -245,7 +245,7 @@
     "AR": {
       "zoneName": "Αργεντινή"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Αυστραλία",
       "zoneName": "New South Wales"
     },
@@ -253,27 +253,27 @@
       "countryName": "Αυστραλία",
       "zoneName": "Northern Territory"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Αυστραλία",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Αυστραλία",
       "zoneName": "South Australia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Αυστραλία",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmania",
       "zoneName": "King Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Αυστραλία",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Αυστραλία",
       "zoneName": "Western Australia"
     },

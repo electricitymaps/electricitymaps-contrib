@@ -83,7 +83,7 @@ class ProductionTestCase(unittest.TestCase):
     def test_missing_types_allowed(self):
         self.assertFalse(
             validate_production(p7, "CH"),
-            msg="CH, NO, AUS-TAS, US-NEISO don't require Coal/Oil/Unknown!",
+            msg="CH, NO, AU-TAS, US-NEISO don't require Coal/Oil/Unknown!",
         )
 
     def test_negative_production(self):
