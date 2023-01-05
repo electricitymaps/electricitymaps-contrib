@@ -12,13 +12,15 @@ https://www.elexon.co.uk/wp-content/uploads/2017/06/
 bmrs_api_data_push_user_guide_v1.1.pdf
 """
 
+import re
 from datetime import date, datetime, time, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 import arrow
 import pandas as pd
+import pytz
 from requests import Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
@@ -28,6 +30,13 @@ from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
 
 ELEXON_ENDPOINT = "https://api.bmreports.com/BMRS/{}/v1"
+
+ESO_NATIONAL_GRID_ENDPOINT = (
+    "https://api.nationalgrideso.com/api/3/action/datastore_search_sql"
+)
+
+# A specific report to query most recent data (within 1 month time span + forecast ahead)
+ESO_DEMAND_DATA_UPDATE_ID = "177f6fa4-ae49-4182-81ea-0c6b35f26ca6"
 
 REPORT_META = {
     "B1620": {"expected_fields": 13, "skiprows": 5},
@@ -50,7 +59,7 @@ RESOURCE_TYPE_TO_FUEL = {
     "Wind Offshore": "wind",
     "Other": "unknown",
 }
-# Mapping is ordered to match the FUELINST output file.
+# Mapping is ordered to match the FUELINST output file as there's no header.
 FUEL_INST_MAPPING = {
     "CCGT": "gas",
     "OIL": "oil",
@@ -72,6 +81,12 @@ FUEL_INST_MAPPING = {
     "INTNSL": "exchange",
 }
 
+ESO_FUEL_MAPPING = {
+    "EMBEDDED_WIND_GENERATION": "wind",
+    "EMBEDDED_SOLAR_GENERATION": "solar",
+    "PUMP_STORAGE_PUMPING": "hydro storage",
+}
+
 EXCHANGES = {
     "FR->GB": [3, 8, 9],  # IFA, Eleclink, IFA2
     "GB->GB-NIR": [4],
@@ -80,6 +95,38 @@ EXCHANGES = {
     "BE->GB": [7],
     "GB->NO-NO2": [10],  # North Sea Link
 }
+
+
+def _create_eso_historical_demand_index(session: Session) -> Dict[int, str]:
+    """Get the ids of all historical_demand_data reports"""
+    index = {}
+    response = session.get(
+        "https://data.nationalgrideso.com/demand/historic-demand-data/datapackage.json"
+    )
+    data = response.json()
+    pattern = re.compile("historic_demand_data_(?P<year>\d+)")
+    for resource in data["resources"]:
+        match = pattern.match(resource["name"])
+        if match is not None:
+            index[int(match["year"])] = resource["id"]
+    return index
+
+
+def query_additional_eso_data(
+    target_datetime: datetime, session: Session
+) -> List[dict]:
+    begin = (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d")
+    end = (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d")
+    if target_datetime > (datetime.now(tz=pytz.UTC) - timedelta(days=30)):
+        report_id = ESO_DEMAND_DATA_UPDATE_ID
+    else:
+        index = _create_eso_historical_demand_index(session)
+        report_id = index[target_datetime.year]
+    params = {
+        "sql": f'''SELECT * FROM "{report_id}" WHERE "SETTLEMENT_DATE" BETWEEN '{begin}' AND '{end}' ORDER BY "SETTLEMENT_DATE"'''
+    }
+    response = session.get(ESO_NATIONAL_GRID_ENDPOINT, params=params)
+    return response.json()["result"]["records"]
 
 
 def query_ELEXON(report, session: Session, params):
@@ -191,7 +238,7 @@ def parse_production_FUELINST(
     csv_data: str,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-):
+) -> pd.DataFrame:
     """A temporary parser for the FUELINST report.
     This report will be decomissioned sometime in 2023.
     We use it as a replacement for B1620 that doesn't work
@@ -215,7 +262,7 @@ def parse_production_FUELINST(
     mapping = {1: "Settlement Date", 2: "Settlement Period", 3: "Spot Time"}
     for index, fuel in enumerate(FUEL_INST_MAPPING.values()):
         mapping[index + 4] = fuel
-    df.rename(columns=mapping, inplace=True)
+    df = df.rename(columns=mapping)
     df["Settlement Date"] = df["Settlement Date"].apply(
         lambda x: datetime.strptime(str(x), "%Y%m%d")
     )
@@ -224,11 +271,30 @@ def parse_production_FUELINST(
         lambda x: datetime_from_date_sp(x["Settlement Date"], x["Settlement Period"]),
         axis=1,
     )
-    df = df.groupby(df.columns, axis=1).sum()
+    return df.set_index("datetime")
 
+
+def parse_additional_eso_production(raw_data: List[dict]) -> pd.DataFrame:
+    """Parse additional eso data for embedded wind/solar and hydro storage."""
+    df = pd.DataFrame.from_records(raw_data)
+    df["datetime"] = df.apply(
+        lambda x: datetime_from_date_sp(x["SETTLEMENT_DATE"], x["SETTLEMENT_PERIOD"]),
+        axis=1,
+    )
+    df = df.rename(columns=ESO_FUEL_MAPPING)
+    return df.set_index("datetime")
+
+
+def process_production_events(
+    fuel_inst_data: pd.DataFrame, eso_data: pd.DataFrame
+) -> List[dict]:
+    """Combine FUELINST report and ESO data together to get the full picture and to EM Format."""
+    df = fuel_inst_data.join(eso_data, rsuffix="_eso")
+    df = df.rename(columns={"wind_eso": "wind", "solar_eso": "solar"})
+    df = df.groupby(df.columns, axis=1).sum()
     data_points = list()
-    for time in pd.unique(df["datetime"]):
-        time_df = df[df["datetime"] == time]
+    for time in pd.unique(df.index):
+        time_df = df[df.index == time]
 
         data_point = {
             "zoneKey": "GB",
@@ -243,6 +309,11 @@ def parse_production_FUELINST(
             for key in electricity_production.keys():
                 if key in PRODUCTION_MODES:
                     data_point["production"][key] = electricity_production[key]
+                elif key == "hydro storage":
+                    # According to National Grid Eso:
+                    # The demand due to pumping at hydro pump storage units; the -ve signifies pumping load.
+                    # We store the pump loading as a positive value and discharge as negative.
+                    data_point["storage"]["hydro"] = -electricity_production[key]
 
         data_points.append(data_point)
     return data_points
@@ -423,7 +494,10 @@ def fetch_production(
     # modes at the moment. (16/12/2022) FUELINST will be decomissioned in 2023, so we should
     # switch back to B1620 at some point.
     response = query_production(session, target_datetime, "FUELINST")
-    data = parse_production_FUELINST(response, target_datetime, logger)
+    fuel_inst_data = parse_production_FUELINST(response, target_datetime, logger)
+    raw_additional_data = query_additional_eso_data(target_datetime, session)
+    additional_data = parse_additional_eso_production(raw_additional_data)
+    data = process_production_events(fuel_inst_data, additional_data)
     # We are fetching from FUELINST directly.
     if False:
         # At times B1620 has had poor quality data for wind so fetch from FUELINST
