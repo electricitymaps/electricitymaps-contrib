@@ -111,7 +111,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-i18next: ^12.0.0
-  react-icons: ^4.6.0
+  react-icons: ^4.7.0
   react-map-gl: ^7.0.19
   react-router-dom: 6.3.0
   react-spinners: ^0.13.6
@@ -179,7 +179,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-i18next: 12.0.0_e52s5leb62x5eudkmfoztpifde
-  react-icons: 4.6.0_react@18.2.0
+  react-icons: 4.7.1_react@18.2.0
   react-map-gl: 7.0.19_6eczaga5xxiwzxtfiyk6fioasq
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
   react-spinners: 0.13.6_biqbaboplfbrettd7655fr4n2y
@@ -4351,7 +4351,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-alpha.47
       '@storybook/csf-tools': 7.0.0-alpha.47
       '@storybook/docs-tools': 7.0.0-alpha.47_yalvw3r2waubxycyb7k7qsruca
-      '@storybook/mdx2-csf': 1.0.0-next.2
+      '@storybook/mdx2-csf': 1.0.0-next.3
       '@storybook/node-logger': 7.0.0-alpha.47
       '@storybook/postinstall': 7.0.0-alpha.47
       '@storybook/preview-web': 7.0.0-alpha.47_biqbaboplfbrettd7655fr4n2y
@@ -4390,7 +4390,7 @@ packages:
       '@storybook/components': 7.0.0-alpha.54_biqbaboplfbrettd7655fr4n2y
       '@storybook/csf-plugin': 7.0.0-alpha.54
       '@storybook/csf-tools': 7.0.0-alpha.54
-      '@storybook/mdx2-csf': 1.0.0-next.2
+      '@storybook/mdx2-csf': 1.0.0-next.3
       '@storybook/node-logger': 7.0.0-alpha.54
       '@storybook/postinstall': 7.0.0-alpha.54
       '@storybook/preview-api': 7.0.0-alpha.54
@@ -4897,7 +4897,7 @@ packages:
       '@storybook/client-api': 7.0.0-alpha.54
       '@storybook/client-logger': 7.0.0-alpha.54
       '@storybook/core-common': 7.0.0-alpha.54_yalvw3r2waubxycyb7k7qsruca
-      '@storybook/mdx2-csf': 1.0.0-next.2
+      '@storybook/mdx2-csf': 1.0.0-next.3
       '@storybook/node-logger': 7.0.0-alpha.54
       '@storybook/preview': 7.0.0-alpha.54
       '@storybook/preview-api': 7.0.0-alpha.54
@@ -5417,8 +5417,8 @@ packages:
     resolution: {integrity: sha512-lMRKO083NQSSvO/FgOETzn0sf6eZ5YPirvp1+KD+sWkwzPTib8p+g14fbbH/88MV1GpMaXIHP/FD/pEc1jf4Cw==}
     dev: true
 
-  /@storybook/mdx2-csf/1.0.0-next.2:
-    resolution: {integrity: sha512-Mg6pYKhuuMrzF/DcCI5dEA36jx7156bBnCk9uFInthFrr1sLYlj+HfRMibFa/VdJx8L0Wsf/15cIu3xPWriinA==}
+  /@storybook/mdx2-csf/1.0.0-next.3:
+    resolution: {integrity: sha512-obodj5cDa943eAPNmawzwviiaheWLvI39/o36O+fwkW8jxxXgyEMgad0mLTiwKjlvitLVoHa4Znm5aIN6TW08A==}
     dev: true
 
   /@storybook/node-logger/6.5.13:
@@ -14549,8 +14549,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /react-icons/4.6.0_react@18.2.0:
-    resolution: {integrity: sha512-rR/L9m9340yO8yv1QT1QurxWQvWpbNHqVX0fzMln2HEb9TEIrQRGsqiNFQfiv9/JEUbyHmHPlNTB2LWm2Ttz0g==}
+  /react-icons/4.7.1_react@18.2.0:
+    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
     peerDependencies:
       react: '*'
     dependencies:
