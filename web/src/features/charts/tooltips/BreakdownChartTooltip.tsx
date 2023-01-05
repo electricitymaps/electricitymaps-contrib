@@ -7,8 +7,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import AreaGraphToolTipHeader from 'stories/tooltips/AreaGraphTooltipHeader';
 import { getZoneName, useTranslation } from 'translation/translation';
-import { ZoneDetail } from 'types';
-import { modeColor, modeOrder, TimeAverages } from 'utils/constants';
+import { ElectricityModeType, ZoneDetail } from 'types';
+import { TimeAverages, modeColor, modeOrder } from 'utils/constants';
 import { formatCo2, formatPower } from 'utils/formatting';
 import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
 import { getRatioPercent } from '../graphUtils';
@@ -16,7 +16,7 @@ import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalc
 import { InnerAreaGraphTooltipProps } from '../types';
 
 function calculateTooltipContentData(
-  selectedLayerKey: string,
+  selectedLayerKey: ElectricityModeType,
   zoneDetail: ZoneDetail,
   displayByEmissions: boolean
 ) {

@@ -32,7 +32,7 @@ export function getProductionTooltipData(
     ? (dischargeCo2IntensitySources || {})[storageKey]
     : (productionCo2IntensitySources || {})[generationType];
 
-  const generationTypeCapacity = capacity[generationType];
+  const generationTypeCapacity = capacity ? capacity[generationType] : undefined;
   const generationTypeProduction = production[generationType];
 
   const generationTypeStorage = storageKey ? storage[storageKey] : 0;
@@ -43,12 +43,12 @@ export function getProductionTooltipData(
     generationTypeStorage,
     generationTypeProduction,
   });
-  const isExport = electricity < 0;
+  const isExport = electricity ? electricity < 0 : false;
 
-  let usage = Number.NaN;
-  let emissions = Number.NaN;
+  let usage = electricity === 0 ? 0 : Number.NaN;
+  let emissions = electricity === 0 ? 0 : Number.NaN;
 
-  if (Number.isFinite(electricity)) {
+  if (electricity && Number.isFinite(electricity)) {
     usage = Math.abs(
       displayByEmissions ? electricity * co2Intensity * 1000 : electricity
     );

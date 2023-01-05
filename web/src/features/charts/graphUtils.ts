@@ -5,7 +5,7 @@ import { bisectLeft } from 'd3-array';
 
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
-import { ElectricityStorageType, GenerationType, ZoneDetail } from 'types';
+import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { modeOrder } from 'utils/constants';
 
 export const detectHoveredDatapointIndex = (
@@ -101,7 +101,7 @@ export function getRatioPercent(value: number, total: number) {
   if (value === 0 && total === 0) {
     return 0;
   }
-  if (!Number.isFinite(value) || !Number.isFinite(total)) {
+  if (!Number.isFinite(value) || !Number.isFinite(total) || total === 0) {
     return '?';
   }
   return Math.round((value / total) * 10_000) / 100;
@@ -113,12 +113,15 @@ export function getElectricityProductionValue({
   generationTypeProduction,
   generationTypeStorage,
 }: {
-  generationTypeCapacity: number;
+  generationTypeCapacity: Maybe<number>;
   isStorage: boolean;
-  generationTypeProduction: number;
-  generationTypeStorage: number;
+  generationTypeProduction: Maybe<number>;
+  generationTypeStorage: Maybe<number>;
 }) {
-  const value = isStorage ? -generationTypeStorage : generationTypeProduction;
+  const value =
+    isStorage && generationTypeStorage
+      ? -generationTypeStorage
+      : generationTypeProduction;
   // If the value is not defined but the capacity
   // is zero, assume the value is also zero.
   if (!Number.isFinite(value) && generationTypeCapacity === 0) {

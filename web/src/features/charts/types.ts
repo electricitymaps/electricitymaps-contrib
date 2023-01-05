@@ -1,4 +1,4 @@
-import { ZoneDetail } from 'types';
+import { ElectricityModeType, ZoneDetail } from 'types';
 
 export interface AreaGraphElement {
   datetime: Date;
@@ -8,5 +8,5 @@ export interface AreaGraphElement {
 
 export interface InnerAreaGraphTooltipProps {
   zoneDetail: ZoneDetail;
-  selectedLayerKey: string;
+  selectedLayerKey: ElectricityModeType;
 }

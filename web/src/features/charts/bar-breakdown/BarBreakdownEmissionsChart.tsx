@@ -4,13 +4,13 @@ import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
-import { ZoneDetail } from 'types';
+import { ElectricityModeType, ZoneDetail } from 'types';
 import { modeColor } from 'utils/constants';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
-import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
+import { ExchangeDataType, ProductionDataType, getDataBlockPositions } from './utils';
 
 interface BarBreakdownEmissionsChartProps {
   height: number;
@@ -20,13 +20,13 @@ interface BarBreakdownEmissionsChartProps {
   productionData: ProductionDataType[];
   isMobile: boolean;
   onProductionRowMouseOver: (
-    mode: string,
+    mode: ElectricityModeType,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
-    mode: string,
+    mode: ElectricityModeType,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;

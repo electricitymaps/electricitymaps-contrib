@@ -81,7 +81,7 @@ export type Exchange = { [key: string]: number };
 
 export interface ZoneDetail extends ZoneOverview {
   _isFinestGranularity: boolean;
-  capacity: { [key in ElectricityModeType]: Maybe<number> };
+  capacity?: { [key in ElectricityModeType]: Maybe<number> };
   dischargeCo2Intensities: { [key in ElectricityStorageKeyType]: number };
   dischargeCo2IntensitySources: { [key in ElectricityStorageKeyType]: string };
   exchange: Exchange;

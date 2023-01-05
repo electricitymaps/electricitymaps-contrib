@@ -13,9 +13,9 @@ import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import {
   ExchangeDataType,
+  ProductionDataType,
   getDataBlockPositions,
   getElectricityProductionValue,
-  ProductionDataType,
 } from './utils';
 
 interface BarBreakdownProductionChartProps {
@@ -33,7 +33,7 @@ interface BarBreakdownProductionChartProps {
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
-    mode: string,
+    mode: ElectricityModeType,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;

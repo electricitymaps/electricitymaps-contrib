@@ -168,11 +168,52 @@ describe('getProductionTooltipData', () => {
   it('returns 0 usage for zero production', () => {
     const actual = getProductionTooltipData('solar', zoneDetailsData, false);
     expect(actual.usage).toEqual(0);
+    expect(actual.emissions).toEqual(0);
   });
 
   it('returns nan usage for null production', () => {
     const actual = getProductionTooltipData('geothermal', zoneDetailsData, false);
     expect(actual.usage).toEqual(Number.NaN);
+  });
+
+  it('handles data with all production modes missing', () => {
+    const zoneDetailsDataWithMissingProductionModes = {
+      ...zoneDetailsData,
+      production: Object.fromEntries(
+        Object.keys(zoneDetailsData.production).map((key) => [key, null])
+      ),
+    } as unknown as ZoneDetail;
+    const data = getProductionTooltipData(
+      'nuclear',
+      zoneDetailsDataWithMissingProductionModes,
+      false
+    );
+    const expectedData = {
+      capacity: 61_370,
+      co2Intensity: 5.13,
+      co2IntensitySource: 'UNECE 2022',
+      displayByEmissions: false,
+      totalElectricity: 84_545.75,
+      totalEmissions: 13_208_019_616.973_745,
+      production: null,
+      zoneKey: 'FR',
+      storage: undefined,
+      isExport: false,
+      emissions: Number.NaN,
+      usage: Number.NaN,
+    };
+    expect(data).toEqual(expectedData);
+  });
+
+  it('handles missing capacity', () => {
+    const { capacity: _, ...zoneDetailsDataWithoutCapacity } = zoneDetailsData;
+    const actual = getProductionTooltipData(
+      'nuclear',
+      zoneDetailsDataWithoutCapacity,
+      false
+    );
+
+    expect(actual.usage).toEqual(41_161);
   });
 });
 
