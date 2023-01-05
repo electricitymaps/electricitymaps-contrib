@@ -1,10 +1,7 @@
 import { useMemo } from 'react';
-import source from 'react-map-gl/dist/esm/components/source';
 import { useTranslation } from 'translation/translation';
 import { formatDataSources } from 'utils/formatting';
-import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
 import { getContributors } from './util';
-const zonesConfig: Record<string, any> = zonesConfigJSON;
 
 export function removeDuplicateSources(source: string | undefined) {
   if (!source) {

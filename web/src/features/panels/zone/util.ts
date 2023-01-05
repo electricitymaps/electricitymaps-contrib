@@ -4,6 +4,7 @@ import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve ho
 type zoneConfigItem = {
   contributors?: string[];
   capacity?: any;
+  disclaimer?: string;
   timezone?: string | null;
   bounding_box?: any;
   parsers?: any;
@@ -57,4 +58,9 @@ export const getZoneDataStatus = (
 export function getContributors(zoneId: string) {
   const config = zonesConfig[zoneId];
   return config?.contributors;
+}
+
+export function getDisclaimer(zoneId: string) {
+  const config = zonesConfig[zoneId];
+  return config?.disclaimer;
 }
