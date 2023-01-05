@@ -254,7 +254,7 @@
     "AR": {
       "zoneName": "Argentinien"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australien",
       "zoneName": "New South Wales"
     },
@@ -262,23 +262,23 @@
       "countryName": "Australien",
       "zoneName": "Northern Territory"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australien",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australien",
       "zoneName": "South Australia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australien",
       "zoneName": "Tasmania"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australien",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australien",
       "zoneName": "Western Australia"
     },
@@ -1463,7 +1463,7 @@
       "countryName": "Spanien",
       "zoneName": "Menorca"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmanien",
       "zoneName": "King Island"
     },
@@ -1765,7 +1765,7 @@
     "XK": {
       "zoneName": "Kosovo"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australien",
       "zoneName": "Flinders Island"
     },
@@ -1773,7 +1773,7 @@
       "countryName": "Australien",
       "zoneName": "Cape Barren Island"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australien",
       "zoneName": "Rottnest Island"
     },

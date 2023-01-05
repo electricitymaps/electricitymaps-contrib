@@ -234,7 +234,7 @@
     "AR": {
       "zoneName": "Argentína"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Austrália",
       "zoneName": "Nový Južný Wales"
     },
@@ -242,23 +242,23 @@
       "countryName": "Austrália",
       "zoneName": "Severné teritórium"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Austrália",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Austrália",
       "zoneName": "Juzná Austrália"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Austrália",
       "zoneName": "Tasmánia"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Austrália",
       "zoneName": "Viktória"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Austrália",
       "zoneName": "Západná Austrália"
     },
