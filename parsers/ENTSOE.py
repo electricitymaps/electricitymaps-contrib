@@ -330,10 +330,7 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
     "AT": {
         "required": ["hydro"],
     },
-    "BA": {
-        "required": ["coal", "hydro", "wind"],
-        "expected_range": (500, 5500)
-    },
+    "BA": {"required": ["coal", "hydro", "wind"], "expected_range": (500, 5500)},
     "BE": {
         "required": ["gas", "nuclear"],
         "expected_range": (3000, 25000),
@@ -410,9 +407,7 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
         "required": ["coal"],
         "expected_range": (5000, 50000),
     },
-    "LT": {
-        "required": ["biomass", "gas", "hydro", "solar", "wind"]
-    },
+    "LT": {"required": ["biomass", "gas", "hydro", "solar", "wind"]},
     "PL": {
         # usual load is in 10-20 GW range and coal is always present
         "required": ["coal"],
