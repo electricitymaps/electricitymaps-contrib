@@ -12,13 +12,14 @@ TIMEZONE = "Africa/Johannesburg"
 
 
 def get_url() -> str:
+    """Returns the formatted URL"""
     date = datetime.utcnow()
     return f"https://www.eskom.co.za/dataportal/wp-content/uploads/{date.strftime('%Y')}/{date.strftime('%m')}/Station_Build_Up.csv"
 
 
 def fetch_production(
     zone_key: str = "ZA",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -32,12 +33,10 @@ def fetch_production(
                 f"No production data is available for {local_target_datetime}."
             )
 
-    r = session or Session()
-
-    res: Response = r.get(get_url())
+    res: Response = session.get(get_url())
     assert res.status_code == 200, (
         "Exception when fetching production for "
-        f"{zone_key}: error when calling url={get_url}"
+        f"{zone_key}: error when calling url={get_url()}"
     )
 
     csv_data = res.text.split("\r\n")
