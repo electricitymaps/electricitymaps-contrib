@@ -40,7 +40,12 @@ export default function MapPage(): ReactElement {
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
-
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const initialView = {
+    latitude: 50.905,
+    longitude: 6.528,
+    zoom: 2.5,
+  };
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
   const theme = useTheme();
@@ -81,7 +86,7 @@ export default function MapPage(): ReactElement {
     [theme]
   );
 
-  const { isLoading, isError, data } = useGetState();
+  const { isLoading, isSuccess, isError, data } = useGetState();
   const mapReference = useRef<MapRef>(null);
   const geometries = useGetGeometries();
 
@@ -130,6 +135,16 @@ export default function MapPage(): ReactElement {
     }
   }, [mapReference, geometries, data, getCo2colorScale, selectedDatetime]);
 
+  useEffect(() => {
+    const map = mapReference.current?.getMap();
+    if (!map || isError || !isFirstLoad) {
+      return;
+    }
+    if (data?.callerLocation) {
+      map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
+      setIsFirstLoad(false);
+    }
+  }, [isSuccess]);
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     setHoveredZone(hoveredZone);
     const map = mapReference.current?.getMap();
@@ -150,10 +165,9 @@ export default function MapPage(): ReactElement {
     if (feature && feature.properties) {
       setSelectedFeatureId(feature.id);
       map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { selected: true });
-      //TODO If panel is closed and user clicks on zone, reopen panel
       setLeftPanelOpen(true);
       const zoneId = feature.properties.zoneId;
-      // TODO: Consider using flyTo zone?
+      map.flyTo({ center: JSON.parse(feature.properties.center), zoom: 3.5 });
       navigate(createToWithState(`/zone/${zoneId}`));
     } else {
       setSelectedFeatureId(undefined);
@@ -246,12 +260,7 @@ export default function MapPage(): ReactElement {
   return (
     <Map
       ref={mapReference}
-      initialViewState={{
-        // TODO: Make these dynamic depending on callerLocation from v6/state
-        latitude: 37.8,
-        longitude: -122.4,
-        zoom: 2,
-      }}
+      initialViewState={initialView}
       interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
       cursor={hoveredZone ? 'pointer' : 'grab'}
       onClick={onClick}
