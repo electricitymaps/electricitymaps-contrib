@@ -17,7 +17,7 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
     (styles, isVisible) =>
       isVisible && (
         <animated.div
-          className="fixed z-50 h-full w-full bg-gray-100 bg-[url('/loading-icon.svg')] bg-[length:100px] bg-center bg-no-repeat dark:bg-gray-900 dark:bg-[url('/loading-icon-darkmode.svg')]"
+          className="fixed z-50 h-full w-full bg-gray-100 bg-[url('/images/loading-icon.svg')] bg-[length:100px] bg-center bg-no-repeat dark:bg-gray-900 dark:bg-[url('/images/loading-icon-darkmode.svg')]"
           style={styles}
         />
       )

@@ -13,8 +13,8 @@ import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
 import NoInformationMessage from './NoInformationMessage';
-import { getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeader } from './ZoneHeader';
+import { ZoneDataStatus, getZoneDataStatus } from './util';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
@@ -80,7 +80,7 @@ function ZoneDetailsContent({
   if (isLoading) {
     return (
       <div className={`flex h-full w-full items-center justify-center`}>
-        <div className="z-50 h-[50px] w-[50px] bg-[url('/loading-icon.svg')] bg-[length:60px] bg-center bg-no-repeat dark:bg-[url('/loading-icon-darkmode.svg')]"></div>
+        <div className="z-50 h-[50px] w-[50px] bg-[url('/images/loading-icon.svg')] bg-[length:60px] bg-center bg-no-repeat dark:bg-[url('/images/loading-icon-darkmode.svg')]"></div>
       </div>
     );
   }

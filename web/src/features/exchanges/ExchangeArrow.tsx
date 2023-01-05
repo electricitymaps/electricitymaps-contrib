@@ -28,7 +28,8 @@ function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArr
     const prefix = colorBlindModeEnabled ? 'colorblind-' : '';
     const intensity = quantizedCo2IntensityScale(co2intensity);
     const speed = quantizedExchangeSpeedScale(Math.abs(netFlow));
-    return resolvePath(`arrows/${prefix}arrow-${intensity}-animated-${speed}`).pathname;
+    return resolvePath(`images/arrows/${prefix}arrow-${intensity}-animated-${speed}`)
+      .pathname;
   }, [colorBlindModeEnabled, co2intensity, netFlow]);
 
   const projection = map.project(lonlat);

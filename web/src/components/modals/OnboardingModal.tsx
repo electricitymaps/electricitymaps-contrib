@@ -6,7 +6,7 @@ import Modal from './OnboardingModalInner';
 
 const views = [
   {
-    headerImage: resolvePath('electricitymaps-icon.svg'),
+    headerImage: resolvePath('images/electricitymaps-icon.svg'),
     isMainTitle: true,
     renderContent: (__: (translationKey: string) => string) => (
       <>
@@ -20,7 +20,7 @@ const views = [
     ),
   },
   {
-    headerImage: resolvePath('onboarding/mapExtract.png'),
+    headerImage: resolvePath('images/onboarding/mapExtract.png'),
     renderContent: (__: (translationKey: string) => string) => (
       <>
         <div>
@@ -33,7 +33,7 @@ const views = [
     ),
   },
   {
-    headerImage: resolvePath('onboarding/exchangeArrows.png'),
+    headerImage: resolvePath('images/onboarding/exchangeArrows.png'),
     renderContent: (__: (translationKey: string) => string) => (
       <>
         <div>
@@ -46,7 +46,7 @@ const views = [
     ),
   },
   {
-    headerImage: resolvePath('onboarding/splitLayers.png'),
+    headerImage: resolvePath('images/onboarding/splitLayers.png'),
     renderContent: (__: (translationKey: string) => string) => (
       <>
         <div>

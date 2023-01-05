@@ -52,23 +52,23 @@ export default defineConfig(({ mode }) => ({
               maximumFileSizeToCacheInBytes: 3_500_000,
             },
             includeAssets: [
-              'favicon.png',
+              'icons/*.{svg,png}',
               'robots.txt',
-              'apple-touch-icon.png',
-              'icons/*.svg',
+              // Consider if we should also add subdirectories below
+              'images/*.{svg,png}',
               'fonts/*.woff2',
             ],
             manifest: {
-              theme_color: '#BD34FE',
+              theme_color: '#000000',
               icons: [
                 {
-                  src: '/android-chrome-192x192.png',
+                  src: '/icons/android-chrome-192x192.png',
                   sizes: '192x192',
                   type: 'image/png',
                   purpose: 'any maskable',
                 },
                 {
-                  src: '/android-chrome-512x512.png',
+                  src: '/icons/android-chrome-512x512.png',
                   sizes: '512x512',
                   type: 'image/png',
                 },
