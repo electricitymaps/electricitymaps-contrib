@@ -14,7 +14,7 @@ import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
-import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 import {
@@ -24,6 +24,7 @@ import {
   mousePositionAtom,
 } from './mapAtoms';
 import { FeatureId } from './mapTypes';
+import { Mode } from 'utils/constants';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -66.947_193;
@@ -44,6 +45,8 @@ export default function MapPage(): ReactElement {
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
   const theme = useTheme();
+  const [currentMode] = useAtom(productionConsumptionAtom);
+  const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -104,7 +107,7 @@ export default function MapPage(): ReactElement {
       const zone = data.data?.zones[zoneId];
       const co2intensity =
         zone && zone[selectedDatetime.datetimeString]
-          ? getCO2IntensityByMode(zone[selectedDatetime.datetimeString], 'consumption')
+          ? getCO2IntensityByMode(zone[selectedDatetime.datetimeString], mixMode)
           : undefined;
 
       const fillColor = co2intensity
@@ -128,7 +131,7 @@ export default function MapPage(): ReactElement {
         );
       }
     }
-  }, [mapReference, geometries, data, getCo2colorScale, selectedDatetime]);
+  }, [mapReference, geometries, data, getCo2colorScale, selectedDatetime, mixMode]);
 
   useEffect(() => {
     const map = mapReference.current?.getMap();
