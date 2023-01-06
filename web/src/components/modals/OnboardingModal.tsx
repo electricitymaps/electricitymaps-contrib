@@ -68,7 +68,7 @@ export function OnboardingModal() {
   const visible = !hasOnboardingBeenSeen && !skipOnboarding;
 
   const handleDismiss = () => {
-    setHasOnboardingBeenSeen('true');
+    setHasOnboardingBeenSeen(true);
   };
   return (
     <Modal
