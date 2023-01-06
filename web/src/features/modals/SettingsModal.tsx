@@ -11,7 +11,11 @@ import { HiLanguage } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
 import { TimeAverages, ToggleOptions } from 'utils/constants';
-import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+import {
+  colorblindModeAtom,
+  selectedDatetimeIndexAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import { isSettingsModalOpenAtom } from './modalAtoms';
 
 function WeatherToggleButton({
@@ -43,16 +47,13 @@ function WeatherToggleButton({
 
       <Button
         onClick={!isLoadingLayer ? onToggle : () => {}}
-        textColor={isEnabled ? '#000' : '#999'}
+        className={isEnabled ? 'bg-brand-green text-white dark:bg-brand-green' : ''}
         disabled={!allowed}
         icon={
           isLoadingLayer ? (
-            <MoonLoader size={14} color="#135836" className="mr-1" />
+            <MoonLoader size={14} color="white" className="mr-1" />
           ) : (
-            <Icon
-              size={weatherButtonMap[type].iconSize}
-              color={isEnabled ? '' : 'gray'}
-            />
+            <Icon size={weatherButtonMap[type].iconSize} />
           )
         }
       >
@@ -70,6 +71,8 @@ export function SettingsModalContent() {
   const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
+    useAtom(colorblindModeAtom);
 
   // We are currently only supporting and fetching weather data for the latest hourly value
   const areWeatherLayersAllowed =
@@ -95,7 +98,13 @@ export function SettingsModalContent() {
 
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="solar" />
-      <Button onClick={() => {}} icon={<HiOutlineEyeOff size={21} />}>
+      <Button
+        className={
+          isColorblindModeEnabled ? 'bg-brand-green text-white dark:bg-brand-green' : ''
+        }
+        onClick={() => setIsColorblindModeEnabled(!isColorblindModeEnabled)}
+        icon={<HiOutlineEyeOff size={21} />}
+      >
         {__('legends.colorblindmode')}
       </Button>
     </div>
