@@ -40,7 +40,7 @@ class GenType(Enum):
 # (Unknown capacity value not given in data, estimated as 135% of actual generation
 # as this is the average ratio for plants with known capacity).
 # (B1)ISGS(HPSLDC WEB PORTAL): 4483.02 MW Hydro.
-# Total (for zones.json): 5475.47 MW Hydro, 608.26 MW Unknown.
+# Total (for zones/IN_HP.yaml): 5475.47 MW Hydro, 608.26 MW Unknown.
 PLANT_NAMES_TO_TYPES = {
     ### Plants in GENERATION OF HP(Z) table ###
     # Listed as ISGS in type source but state in data source

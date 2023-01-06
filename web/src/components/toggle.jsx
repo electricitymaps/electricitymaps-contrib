@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   &:hover {
     box-shadow: 2px 0px 20px 0px rgba(0, 0, 0, 0.25);
   }
-  width: 250px;
+  min-width: 250px;
 `;
 
 const Options = styled.div`

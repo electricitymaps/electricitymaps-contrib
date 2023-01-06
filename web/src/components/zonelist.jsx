@@ -56,10 +56,81 @@ const mapStateToProps = (state) => ({
   searchQuery: state.application.searchQuery,
 });
 
+const ZoneListContainer = styled(List)`
+  overflow-y: scroll;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+
+  p {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  a {
+    color: var(--black);
+    display: flex;
+    font-size: 1rem;
+    justify-content: end;
+    align-items: center;
+    box-sizing: content-box;
+
+    /* formatting */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1rem;
+
+    &:hover {
+      text-decoration: none;
+      background: rgb(235, 235, 235);
+    }
+
+    &.selected {
+      background-color: rgb(235, 235, 235);
+    }
+  }
+`;
+
 const Flag = styled.img`
   margin-right: 10px;
   margin-left: 10px;
   vertical-align: middle;
+`;
+
+const CO2IntensityTag = styled.div`
+  border-radius: 3px;
+  margin-right: 10px;
+  height: 17px;
+  width: 17px;
+`;
+
+const Ranking = styled.div`
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+`;
+
+const RowName = styled.div`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  flex: 1;
+`;
+
+const CountryName = styled.div`
+  font-size: 0.7rem;
+`;
+
+const ZoneName = styled.div`
+  font-size: 0.9rem;
+  margin-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const ZoneList = ({ electricityMixMode, searchQuery }) => {
@@ -149,22 +220,19 @@ const ZoneList = ({ electricityMixMode, searchQuery }) => {
         onClick={() => enterZone(zones[index])}
         className={selectedItemIndex === index ? 'selected' : undefined}
       >
-        <div className="ranking">{zones[index].ranking}</div>
+        <Ranking>{zones[index].ranking}</Ranking>
         <Flag src={flagUri(zones[index].countryCode, 32)} height={32} width={32} alt={zones[index].countryCode} />
-        <div className="name">
-          <div className="zone-name">{getZoneName(zones[index].countryCode)}</div>
-          <div className="country-name">{getCountryName(zones[index].countryCode)}</div>{' '}
-        </div>
-        <div
-          className="co2-intensity-tag"
-          style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zones[index])) }}
-        />
+        <RowName>
+          <ZoneName>{getZoneName(zones[index].countryCode)}</ZoneName>
+          <CountryName>{getCountryName(zones[index].countryCode)}</CountryName>{' '}
+        </RowName>
+        <CO2IntensityTag style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zones[index])) }} />
       </Link>
     );
   }, areEqual);
 
   return (
-    <List
+    <ZoneListContainer
       className="zone-list"
       ref={listRef}
       height={height}
@@ -175,7 +243,7 @@ const ZoneList = ({ electricityMixMode, searchQuery }) => {
       }}
     >
       {Row}
-    </List>
+    </ZoneListContainer>
   );
 };
 

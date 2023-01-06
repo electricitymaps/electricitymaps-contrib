@@ -11,26 +11,110 @@ contributors:
   - systemcatch
   - gopikrishna1793
 emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 655.7137340694026
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 616.6763356484563
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 605.8048490716371
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 622.1542087942669
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 655.7137340694026
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 616.6763356484563
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 605.8048490716371
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 622.1542087942669
   lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 685.1544880148955
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 629.270158494957
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 609.8366487824223
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 623.8608749425698
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 685.1544880148955
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 629.270158494957
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 609.8366487824223
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 623.8608749425698
     unknown:
       source: assumes 43% solar PV and 57% wind
       value: 26
 fallbackZoneMixes:
-  _source: electricityMap
   powerOriginRatios:
-    value:
-      battery discharge: 0
-      biomass: 0.0
-      coal: 0.739788531237817
-      gas: 0.03592277014733543
-      geothermal: 0.0
-      hydro: 0.1233011541061651
-      hydro discharge: 0.0
-      nuclear: 0.02956120063948037
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.07142634386920217
-      wind: 0.0
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.8089872269900487
+        gas: 0.037422744593654036
+        geothermal: 0.0
+        hydro: 0.07886209808899303
+        hydro discharge: 0.0
+        nuclear: 0.027707077841435432
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.04702085079812528
+        wind: 0.0
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.7396355796865115
+        gas: 0.035903591947817
+        geothermal: 0.0
+        hydro: 0.12315478740878912
+        hydro discharge: 0.0
+        nuclear: 0.029533910596758597
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.07177212935296305
+        wind: 0.0
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.7133026005915483
+        gas: 0.03918849273359453
+        geothermal: 0.0
+        hydro: 0.1298550483645379
+        hydro discharge: 0.0
+        nuclear: 0.03209713780119373
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.08555672082678238
+        wind: 0.0
 parsers:
   production: IN.fetch_production
 timezone: Asia/Kolkata

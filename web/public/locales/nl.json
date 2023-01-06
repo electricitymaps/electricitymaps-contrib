@@ -6,7 +6,11 @@
     "datasources": "databronnen",
     "contribute": "Draag bij door <a href=\"%s\" target=\"_blank\">jouw land toe te voegen</a>"
   },
-  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Gebieden", "about": "Over" },
+  "mobile-main-menu": {
+    "map": "Electricity Maps",
+    "areas": "Gebieden",
+    "about": "Over"
+  },
   "country-panel": {
     "source": "bron",
     "lowcarbon": "Lage-uitstoot",
@@ -29,14 +33,29 @@
   },
   "country-history": {
     "Getdata": "Krijg toegang tot historische, huidige en voorspelde data via de API",
-    "carbonintensity": { "hourly": "Koolstofintensiteit laatste 24 uur" },
-    "emissionsorigin": { "hourly": "Bron van uitstoot laatste 24 uur" },
-    "emissionsproduction": { "hourly": "Uitstoot laatste 24 uur" },
-    "electricityorigin": { "hourly": "Bron van elektriciteit laatste 24 uur" },
-    "electricityproduction": { "hourly": "Elektriciteitsproductie laatste 24 uur" },
-    "electricityprices": { "hourly": "Elektriciteitsprijs laatste 24 uur" }
+    "carbonintensity": {
+      "hourly": "Koolstofintensiteit laatste 24 uur"
+    },
+    "emissionsorigin": {
+      "hourly": "Bron van uitstoot laatste 24 uur"
+    },
+    "emissionsproduction": {
+      "hourly": "Uitstoot laatste 24 uur"
+    },
+    "electricityorigin": {
+      "hourly": "Bron van elektriciteit laatste 24 uur"
+    },
+    "electricityproduction": {
+      "hourly": "Elektriciteitsproductie laatste 24 uur"
+    },
+    "electricityprices": {
+      "hourly": "Elektriciteitsprijs laatste 24 uur"
+    }
   },
-  "footer": { "foundbugs": "Ondervind je problemen of heb je ideëen? Meld ze", "here": "hier" },
+  "footer": {
+    "foundbugs": "Ondervind je problemen of heb je ideëen? Meld ze",
+    "here": "hier"
+  },
   "legends": {
     "windpotential": "potentieel aan windenergie",
     "solarpotential": "potentieel aan zonne-energie",
@@ -95,58 +114,166 @@
   "emissionsImportedFrom": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> wordt ingevoerd vanuit <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq per minuut",
   "zoneShortName": {
-    "AL": { "zoneName": "Albanië" },
-    "AT": { "zoneName": "Oostenrijk" },
-    "AX": { "zoneName": "Åland" },
-    "BA": { "zoneName": "Bosnië-Herzegovina" },
-    "BE": { "zoneName": "België" },
-    "BG": { "zoneName": "Bulgarije" },
-    "BY": { "zoneName": "Wit-Rusland" },
-    "CH": { "zoneName": "Zwitserland" },
-    "CZ": { "zoneName": "Tsjechië" },
-    "DE": { "zoneName": "Duitsland" },
-    "DK": { "zoneName": "Denemarken" },
-    "EE": { "zoneName": "Estland" },
-    "ES": { "zoneName": "Spanje" },
-    "ES-CE": { "countryName": "Spanje", "zoneName": "Ceuta" },
-    "ES-ML": { "countryName": "Spanje", "zoneName": "Melilla" },
-    "FI": { "zoneName": "Finland" },
-    "FR": { "zoneName": "Frankrijk" },
-    "GB": { "zoneName": "Groot-Brittannië" },
-    "GB-NIR": { "zoneName": "Noord-Ierland" },
-    "GR": { "zoneName": "Griekenland" },
-    "HR": { "zoneName": "Kroatië" },
-    "HU": { "zoneName": "Hongarije" },
-    "IE": { "zoneName": "Ierland" },
-    "IS": { "zoneName": "IJsland" },
-    "IT": { "zoneName": "Italië" },
-    "LT": { "zoneName": "Litouwen" },
-    "LU": { "zoneName": "Luxemburg" },
-    "LV": { "zoneName": "Letland" },
-    "MD": { "zoneName": "Moldavië" },
-    "ME": { "zoneName": "Montenegro" },
-    "MK": { "zoneName": "Noord-Macedonië" },
-    "MT": { "zoneName": "Malta" },
-    "NKR": { "zoneName": "Nagorno-Karabach" },
-    "NL": { "zoneName": "Nederland" },
-    "NO": { "zoneName": "Noorwegen" },
-    "PE": { "zoneName": "Peru" },
-    "PL": { "zoneName": "Polen" },
-    "PT": { "zoneName": "Portugal" },
-    "RO": { "zoneName": "Roemenië" },
-    "RS": { "zoneName": "Servië" },
-    "RU": { "zoneName": "Rusland" },
-    "SE": { "zoneName": "Zweden" },
-    "SG": { "zoneName": "Singapore" },
-    "SI": { "zoneName": "Slovenië" },
-    "SK": { "zoneName": "Slowakije" },
-    "TR": { "zoneName": "Turkije" },
-    "TW": { "zoneName": "Taiwan" },
-    "UA": { "zoneName": "Oekraïne" },
-    "PF": { "zoneName": "Frans-Polynesië" },
-    "DO": { "zoneName": "Dominicaanse Republiek" },
-    "IL": { "zoneName": "Israël" },
-    "KW": { "zoneName": "Koeweit" },
-    "GE": { "zoneName": "Georgië" }
+    "AL": {
+      "zoneName": "Albanië"
+    },
+    "AT": {
+      "zoneName": "Oostenrijk"
+    },
+    "AX": {
+      "zoneName": "Åland"
+    },
+    "BA": {
+      "zoneName": "Bosnië-Herzegovina"
+    },
+    "BE": {
+      "zoneName": "België"
+    },
+    "BG": {
+      "zoneName": "Bulgarije"
+    },
+    "BY": {
+      "zoneName": "Wit-Rusland"
+    },
+    "CH": {
+      "zoneName": "Zwitserland"
+    },
+    "CZ": {
+      "zoneName": "Tsjechië"
+    },
+    "DE": {
+      "zoneName": "Duitsland"
+    },
+    "DK": {
+      "zoneName": "Denemarken"
+    },
+    "EE": {
+      "zoneName": "Estland"
+    },
+    "ES": {
+      "zoneName": "Spanje"
+    },
+    "ES-CE": {
+      "countryName": "Spanje",
+      "zoneName": "Ceuta"
+    },
+    "ES-ML": {
+      "countryName": "Spanje",
+      "zoneName": "Melilla"
+    },
+    "FI": {
+      "zoneName": "Finland"
+    },
+    "FR": {
+      "zoneName": "Frankrijk"
+    },
+    "GB": {
+      "zoneName": "Groot-Brittannië"
+    },
+    "GB-NIR": {
+      "zoneName": "Noord-Ierland"
+    },
+    "GR": {
+      "zoneName": "Griekenland"
+    },
+    "HR": {
+      "zoneName": "Kroatië"
+    },
+    "HU": {
+      "zoneName": "Hongarije"
+    },
+    "IE": {
+      "zoneName": "Ierland"
+    },
+    "IS": {
+      "zoneName": "IJsland"
+    },
+    "IT": {
+      "zoneName": "Italië"
+    },
+    "LT": {
+      "zoneName": "Litouwen"
+    },
+    "LU": {
+      "zoneName": "Luxemburg"
+    },
+    "LV": {
+      "zoneName": "Letland"
+    },
+    "MD": {
+      "zoneName": "Moldavië"
+    },
+    "ME": {
+      "zoneName": "Montenegro"
+    },
+    "MK": {
+      "zoneName": "Noord-Macedonië"
+    },
+    "MT": {
+      "zoneName": "Malta"
+    },
+    "NKR": {
+      "zoneName": "Nagorno-Karabach"
+    },
+    "NL": {
+      "zoneName": "Nederland"
+    },
+    "NO": {
+      "zoneName": "Noorwegen"
+    },
+    "PE": {
+      "zoneName": "Peru"
+    },
+    "PL": {
+      "zoneName": "Polen"
+    },
+    "PT": {
+      "zoneName": "Portugal"
+    },
+    "RO": {
+      "zoneName": "Roemenië"
+    },
+    "RS": {
+      "zoneName": "Servië"
+    },
+    "RU": {
+      "zoneName": "Rusland"
+    },
+    "SE": {
+      "zoneName": "Zweden"
+    },
+    "SG": {
+      "zoneName": "Singapore"
+    },
+    "SI": {
+      "zoneName": "Slovenië"
+    },
+    "SK": {
+      "zoneName": "Slowakije"
+    },
+    "TR": {
+      "zoneName": "Turkije"
+    },
+    "TW": {
+      "zoneName": "Taiwan"
+    },
+    "UA": {
+      "zoneName": "Oekraïne"
+    },
+    "PF": {
+      "zoneName": "Frans-Polynesië"
+    },
+    "DO": {
+      "zoneName": "Dominicaanse Republiek"
+    },
+    "IL": {
+      "zoneName": "Israël"
+    },
+    "KW": {
+      "zoneName": "Koeweit"
+    },
+    "GE": {
+      "zoneName": "Georgië"
+    }
   }
 }

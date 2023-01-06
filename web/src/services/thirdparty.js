@@ -29,7 +29,7 @@ class ConnectionsService {
   }
 
   trackEvent(eventName, context) {
-    console.log(`Tracking event ${eventName}`); // eslint-disable-line no-console
+    console.info(`Tracking event ${eventName}`);
     this.connections.forEach((conn) => {
       try {
         conn.track(eventName, context);

@@ -8,10 +8,16 @@ import styled from 'styled-components';
 export const CarbonIntensity = ({ intensity }) => {
   const co2ColorScale = useCo2ColorScale();
 
+  const EmissionRect = styled.div`
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+  `;
+
   return (
     <>
-      <div className="emission-rect" style={{ backgroundColor: co2ColorScale(intensity) }} />{' '}
-      <b>{Math.round(intensity) || '?'}</b> gCO₂eq/kWh
+      <EmissionRect style={{ backgroundColor: co2ColorScale(intensity) }} /> <b>{Math.round(intensity) || '?'}</b>{' '}
+      gCO₂eq/kWh
     </>
   );
 };

@@ -6,8 +6,9 @@ src-files:
   COPY electricitymap ./electricitymap
   COPY parsers ./parsers
   COPY validators ./validators
-  COPY config ./config
+  COPY ./config+src-files/* ./config
   COPY scripts ./scripts
+  COPY web/public/locales/en.json ./web/public/locales/en.json
   COPY __init__.py ./__init__.py
   COPY pyproject.toml .
   SAVE ARTIFACT .

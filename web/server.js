@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Modules
@@ -172,5 +171,5 @@ if (isProduction) {
 
 // Start the application
 server.listen(process.env.PORT, () => {
-  console.log(`Listening on *:${process.env.PORT}`);
+  console.info(`Listening on *:${process.env.PORT}`);
 });

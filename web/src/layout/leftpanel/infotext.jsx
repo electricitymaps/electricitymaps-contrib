@@ -10,6 +10,11 @@ const Container = styled.div`
   @media (max-width: 767px) {
     display: none !important;
   }
+
+  p {
+    margin: 0.4rem 0;
+    line-height: 1.2rem;
+  }
 `;
 
 export default () => {

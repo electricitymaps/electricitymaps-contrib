@@ -6,7 +6,7 @@ export default {
   mount: {
     public: { url: '/', static: true },
     src: '/dist',
-    // Mounts parent config folder so we can import zones.json etc. in the src code
+    // Mounts parent config folder so we can import zones/*.yaml etc. in the src code
     '../config': '/config',
   },
   routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],

@@ -77,7 +77,7 @@ export default React.memo(({ data, mouseMoveHandler, mouseOutHandler, project, v
       onBlur={mouseOutHandler}
     >
       <source srcSet={`${imageSource}.webp`} type="image/webp" />
-      <img src={`${imageSource}.gif`} alt="" />
+      <img src={`${imageSource}.gif`} alt="" draggable={false} />
     </ArrowPicture>
   );
 });

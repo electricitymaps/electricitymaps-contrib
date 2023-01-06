@@ -1,6 +1,6 @@
 class DebugConsole {
   track(event, data) {
-    console.log('TRACK', event, data); // eslint-disable-line no-console
+    console.info('TRACK', event, data);
   }
 }
 

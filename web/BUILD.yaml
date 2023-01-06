@@ -17,7 +17,7 @@ steps:
       # geometries
       - geo
       # source code
-      - ../config/{exchanges,zones}.json
+      - ../config
       - ./{locales-config.json,translation-status.js}
       - public/{fonts,images,locales,apple-app-site-association,browserconfig.xml,electricityMap.webmanifest,client-version.json}
       - src
@@ -29,9 +29,8 @@ steps:
       - yarn build-release
       - yarn verify-zones-config
     outputs:
-      - src/world.json
-      - src/world-aggregated.json
-      - src/excluded-aggregated-exchanges.json
+      - src/config/world.json
+      - src/config/excluded-aggregated-exchanges.json
       - public/dist
     tag: eu.gcr.io/tmrow-152415/electricitymap_web
 

@@ -20,7 +20,9 @@ const prepareGraphData = (historyData) => {
 
   const priceMaxValue = d3Max(historyData.map((d) => d.price?.value));
   const priceMinValue = d3Min(historyData.map((d) => d.price?.value));
-  const priceColorScale = scaleLinear().domain([priceMinValue, priceMaxValue]).range(['lightgray', '#616161']);
+  const priceColorScale = scaleLinear()
+    .domain([priceMinValue, 0, priceMaxValue])
+    .range(['brown', 'lightgray', '#616161']);
 
   const data = historyData.map((d) => ({
     price: d.price && d.price.value,

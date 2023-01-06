@@ -65,7 +65,7 @@ zonesGeo.features.forEach((zone) => {
 });
 
 for (const [zoneKey, bbox] of Object.entries(boundingBoxes)) {
-  // do not add new entries to zones.json, do not add RU because it crosses the 180th meridian
+  // do not add new entries to zones/*.yaml, do not add RU because it crosses the 180th meridian
   if (!(zoneKey in zones) || zoneKey === 'RU' || zoneKey === 'RU-FE') {
     continue;
   }

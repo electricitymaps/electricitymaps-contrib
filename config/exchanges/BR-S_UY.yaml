@@ -1,0 +1,6 @@
+lonlat:
+  - -54.982242
+  - -31.301863
+parsers:
+  exchange: UY.fetch_exchange
+rotation: -150

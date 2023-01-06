@@ -1,5 +1,4 @@
 // Requires `brew install imagemagick`
-/* eslint-disable no-console */
 
 const child_process = require('child_process');
 const fs = require('fs');
@@ -18,7 +17,7 @@ function generateArrows(prefix, scaleTheme) {
 
   for (const co2value in colors) {
     // generate specific color
-    console.log([
+    console.info([
       'public/images/arrow-template.png',
       '+level-colors',
       `transparent,${colors[co2value]}`,
@@ -33,7 +32,7 @@ function generateArrows(prefix, scaleTheme) {
       ])
       .on('close', (code) => {
         if (code !== 0) {
-          console.log('child exited with code', code);
+          console.error('child exited with code', code);
           return;
         }
         const outlineSize = 2;
@@ -51,7 +50,7 @@ function generateArrows(prefix, scaleTheme) {
         //   '-composite', `public/images/arrow-${co2value}-outline.png`
         // ]).on('close', code => {
         //   if(code !== 0) {
-        //     console.log('child exited with code', code);
+        //     console.error('child exited with code', code);
         //     return;
         //   }
 
@@ -79,8 +78,8 @@ function generateArrows(prefix, scaleTheme) {
           const child = child_process.spawn('convert', args);
           child.on('close', (code) => {
             if (code !== 0) {
-              console.log('child exited with code', code, 'for args', args);
-              console.log('command: ', `convert ${args.join(' ')}`);
+              console.error('child exited with code', code, 'for args', args);
+              console.error('command: ', `convert ${args.join(' ')}`);
               return;
             }
 
@@ -89,7 +88,7 @@ function generateArrows(prefix, scaleTheme) {
           });
 
           child.stderr.on('data', (data) => {
-            console.log('stderr:', data);
+            console.info('stderr:', data);
           });
         });
       });

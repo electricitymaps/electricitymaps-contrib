@@ -40,7 +40,7 @@ jobs:
       - run:
           command: |
             npm install -g jsonlint-mod
-            jsonlint -q config/*.json web/public/locales/*.json
+            jsonlint -q web/public/locales/*.json
 
   verify_web_js:
     executor: js-exec

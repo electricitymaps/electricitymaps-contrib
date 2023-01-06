@@ -105,22 +105,17 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
 
           <Countryhistorymixgraph isOverlayEnabled={isMixGraphOverlayEnabled} />
         </div>
-
-        {selectedTimeAggregate === TIME.HOURLY && (
-          <>
-            <CountryHistoryTitle translationKey={'country-history.electricityprices'} />
-            <Countryhistorypricesgraph />
-          </>
-        )}
+        {selectedTimeAggregate !== TIME.HOURLY && <CountryDataInfo text={__('country-panel.exchangesAreMissing')} />}
+        <CountryHistoryTitle translationKey={'country-history.electricityprices'} />
+        <Countryhistorypricesgraph />
       </div>
       <hr />
       <StyledSources>
         {isDataEstimated && <CountryDataInfo text={__('country-panel.dataIsEstimated')} />}
-        {selectedTimeAggregate !== TIME.HOURLY && <CountryDataInfo text={__('country-panel.exchangesAreMissing')} />}
         {__('country-panel.source')}
         {': '}
         <a
-          href="https://github.com/electricitymaps/electricitymaps-contrib#data-sources/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
+          href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
           target="_blank"
           rel="noreferrer"
         >
