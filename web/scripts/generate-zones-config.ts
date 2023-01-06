@@ -4,12 +4,14 @@ import * as yaml from 'js-yaml';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
+const BASE_CONFIG_PATH = '../../config';
+
 const config = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
 const mergeZones = () => {
-  const basePath = path.resolve(__dirname, '../config/zones');
+  const basePath = path.resolve(__dirname, BASE_CONFIG_PATH, 'zones');
 
   const zoneFiles = fs.readdirSync(basePath);
   const filesWithDirectory = zoneFiles.map((file) => `${basePath}/${file}`);
@@ -35,7 +37,7 @@ const mergeZones = () => {
 };
 
 const mergeExchanges = () => {
-  const basePath = path.resolve(__dirname, '../config/exchanges');
+  const basePath = path.resolve(__dirname, BASE_CONFIG_PATH, 'exchanges');
 
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDirectory = exchangeFiles.map((file) => `${basePath}/${file}`);
@@ -103,7 +105,7 @@ const writeJSON = (fileName: any, object: any) => {
 const zonesConfig = mergeZones();
 const exchangesConfig = mergeExchanges();
 
-const autogenConfigPath = path.resolve(__dirname, 'config');
+const autogenConfigPath = path.resolve(__dirname, '../config');
 
 if (config.verifyNoUpdates) {
   const zonesConfigPrevious = JSON.parse(

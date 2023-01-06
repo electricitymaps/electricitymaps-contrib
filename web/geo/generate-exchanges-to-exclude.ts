@@ -1,10 +1,10 @@
-import { mergeExchanges } from '../generate-zones-config';
+import { mergeExchanges } from '../scripts/generate-zones-config';
 import { fileExists, getJSON, writeJSON } from './utilities';
 
 const exchangeConfig = mergeExchanges();
 
 const generateExchangesToIgnore = (OUT_PATH, zonesConfig) => {
-  console.info(`Generating new excluded-aggregated-exchanges.json...`);
+  console.info(`Generating new excludedAggregatedExchanges.json...`);
   const countryKeysToExclude = new Set(
     Object.keys(zonesConfig).filter((key) => {
       if (zonesConfig[key].subZoneNames?.length > 0) {
@@ -47,7 +47,7 @@ const generateExchangesToIgnore = (OUT_PATH, zonesConfig) => {
   };
   const existingExchanges = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(exchanges) === JSON.stringify(existingExchanges)) {
-    console.info(`No changes to excluded-aggregated-exchanges.json`);
+    console.info(`No changes to excludedAggregatedExchanges.json`);
     return;
   }
 

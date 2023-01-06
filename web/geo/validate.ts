@@ -1,19 +1,19 @@
 import {
+  Feature,
+  Polygon,
   area,
   bbox,
   bboxPolygon,
   convex,
   dissolve,
-  Feature,
   featureCollection,
   featureEach,
   getGeom,
   intersect,
-  Polygon,
 } from '@turf/turf';
 import { getHoles, getPolygons, log, writeJSON } from './utilities';
 
-import { mergeZones } from '../generate-zones-config';
+import { mergeZones } from '../scripts/generate-zones-config';
 
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.

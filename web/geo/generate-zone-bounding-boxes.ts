@@ -2,7 +2,7 @@ import path from 'path';
 
 const args = process.argv.slice(2);
 
-import { mergeZones } from '../generate-zones-config';
+import { mergeZones } from '../scripts/generate-zones-config';
 import { saveZoneYaml } from './files';
 import { getJSON } from './utilities';
 
