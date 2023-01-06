@@ -41,11 +41,6 @@ export default function MapPage(): ReactElement {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const initialView = {
-    latitude: 50.905,
-    longitude: 6.528,
-    zoom: 2.5,
-  };
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
   const theme = useTheme();
@@ -260,7 +255,11 @@ export default function MapPage(): ReactElement {
   return (
     <Map
       ref={mapReference}
-      initialViewState={initialView}
+      initialViewState={{
+        latitude: 50.905,
+        longitude: 6.528,
+        zoom: 2.5,
+      }}
       interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
       cursor={hoveredZone ? 'pointer' : 'grab'}
       onClick={onClick}
