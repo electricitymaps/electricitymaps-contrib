@@ -407,7 +407,10 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
         "required": ["coal"],
         "expected_range": (5000, 50000),
     },
-    "LT": {"required": ["biomass", "gas", "hydro", "solar", "wind"]},
+    "LT": {
+        "required": ["biomass", "gas", "hydro", "solar", "wind"],
+        "expected_range": {"gas": (1, 2000)},
+    },
     "PL": {
         # usual load is in 10-20 GW range and coal is always present
         "required": ["coal"],
