@@ -46304,6 +46304,2148 @@
       "2022-08-24T09:00:00Z"
     ],
     "exchanges": {
+      "AR->CL-SEN": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+        "AR->BR": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+          "AR->UY": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR->PY": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-NOA->CL-SEN": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-NEA->PY": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-NEA->BR-S": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-NEA->AR-NOA": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-LIT->UY": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-LIT->AR-NOA": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-LIT->AR-NEA": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-LIT->AR-CEN": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-CUY->AR-NOA": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-CUY->AR-COM": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-COM->AR-PAT": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-CEN->AR-NOA": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-CEN->AR-CUY": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-CEN->AR-COM": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-BAS->AR-LIT": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-BAS->AR-COM": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
+            "AR-BAS->AR-CEN": [
+        {
+          "co2intensity": 460.86,
+          "netFlow": 390
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 337
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 313
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 254
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 253
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 190
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 182
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 235
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 292
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 361
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 420
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 382
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 445
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 407
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 422
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 430
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 426
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 444
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 416
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 348
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 342
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 376
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        },
+        {
+          "co2intensity": 460.86,
+          "netFlow": 398
+        }
+      ],
       "AL->ME": [
         {
           "co2intensity": 460.86,
