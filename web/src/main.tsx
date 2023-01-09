@@ -1,21 +1,20 @@
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { REFETCH_INTERVAL_FIVE_MINUTES } from 'api/helpers';
 import App from 'App';
+import { REFETCH_INTERVAL_FIVE_MINUTES } from 'api/helpers';
 import { useAtomsDevtools } from 'jotai/devtools';
 import { createRoot } from 'react-dom/client';
 import {
   BrowserRouter,
-  useLocation,
-  useNavigationType,
   createRoutesFromChildren,
   matchRoutes,
+  useLocation,
+  useNavigationType,
 } from 'react-router-dom';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
-import { registerSW } from 'virtual:pwa-register';
-import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
+//import { registerSW } from 'virtual:pwa-register';
 
 const isProduction = import.meta.env.PROD;
 
@@ -51,7 +50,14 @@ const AtomsDevtools = ({ children }: { children: JSX.Element }) => {
   return children;
 };
 
-registerSW();
+// Temporarily disabled to ensure we can more easily rollback
+// Also removes existing service workers to ensure they don't interfer
+navigator.serviceWorker.getRegistrations().then(function (registrations) {
+  for (const registration of registrations) {
+    registration.unregister();
+  }
+});
+// registerSW();
 createConsoleGreeting();
 
 if (import.meta.env.DEV) {
@@ -79,7 +85,6 @@ if (container) {
             <App />
           </AtomsDevtools>
         </BrowserRouter>
-        <ReactQueryDevtools position="top-right" initialIsOpen={false} />
       </QueryClientProvider>
     </StrictMode>
   );

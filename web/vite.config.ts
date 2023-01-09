@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
 import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import { defineConfig } from 'vite';
-import { VitePWA } from 'vite-plugin-pwa';
+// import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(({ mode }) => ({
@@ -46,35 +46,36 @@ export default defineConfig(({ mode }) => ({
     ...(mode !== 'test'
       ? [
           eslintPlugin(),
-          VitePWA({
-            registerType: 'autoUpdate',
-            workbox: {
-              maximumFileSizeToCacheInBytes: 3_500_000,
-            },
-            includeAssets: [
-              'icons/*.{svg,png}',
-              'robots.txt',
-              // Consider if we should also add subdirectories below
-              'images/*.{svg,png}',
-              'fonts/*.woff2',
-            ],
-            manifest: {
-              theme_color: '#000000',
-              icons: [
-                {
-                  src: '/icons/android-chrome-192x192.png',
-                  sizes: '192x192',
-                  type: 'image/png',
-                  purpose: 'any maskable',
-                },
-                {
-                  src: '/icons/android-chrome-512x512.png',
-                  sizes: '512x512',
-                  type: 'image/png',
-                },
-              ],
-            },
-          }),
+          // Temporarily disabled to ensure we can more easily rollback
+          // VitePWA({
+          //   registerType: 'autoUpdate',
+          //   workbox: {
+          //     maximumFileSizeToCacheInBytes: 3_500_000,
+          //   },
+          //   includeAssets: [
+          //     'icons/*.{svg,png}',
+          //     'robots.txt',
+          //     // Consider if we should also add subdirectories below
+          //     'images/*.{svg,png}',
+          //     'fonts/*.woff2',
+          //   ],
+          //   manifest: {
+          //     theme_color: '#000000',
+          //     icons: [
+          //       {
+          //         src: '/icons/android-chrome-192x192.png',
+          //         sizes: '192x192',
+          //         type: 'image/png',
+          //         purpose: 'any maskable',
+          //       },
+          //       {
+          //         src: '/icons/android-chrome-512x512.png',
+          //         sizes: '512x512',
+          //         type: 'image/png',
+          //       },
+          //     ],
+          //   },
+          // }),
           // Used to upload sourcemaps to Sentry
           sentryVitePlugin({
             org: 'electricitymaps',
