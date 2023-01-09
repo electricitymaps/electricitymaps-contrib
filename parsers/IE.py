@@ -43,7 +43,7 @@ def fetch_data(
         data = resp.json().get("Rows", {})
     except:
         raise ParserException(
-            parser="IN_WE.py",
+            parser="IE.py",
             message=f"{target_datetime}: {kind} data is not available",
         )
     filtered_data = [item for item in data if item["Value"] is not None]
