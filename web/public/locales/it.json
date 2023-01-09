@@ -83,48 +83,12 @@
       "monthly": "Intensità di carbonio nell'ultimo anno",
       "yearly": "Intensità di carbonio negli ultimi 5 anni"
     },
-    "emissions": {
-      "default": "Emissioni nell'ultimo %1$s",
-      "hourly": "Emissioni nelle ultime 24 ore",
-      "daily": "Emissioni nell'ultimo mese",
-      "monthly": "Emissioni nell'ultimo anno",
-      "yearly": "Emissioni negli ultimi 5 anni"
-    },
-    "emissionsorigin": {
-      "default": "Origine delle emissioni nell' ultimo %1$s",
-      "hourly": "Origine delle emissioni nelle ultime 24 ore",
-      "daily": "Origine delle emissioni nell'ultimo mese",
-      "monthly": "Origine delle emissioni nell'ultimo anno",
-      "yearly": "Origine delle emissioni negli ultimi 5 anni"
-    },
-    "emissionsproduction": {
-      "default": "Emissioni prodotte nell' ultimo %1$s",
-      "hourly": "Emissioni prodotte nelle ultime 24 ore",
-      "daily": "Emissioni prodotte nell'ultimo mese",
-      "monthly": "Emissioni prodotte nell'ultimo anno",
-      "yearly": "Emissioni prodotte negli ultimi 5 anni"
-    },
-    "electricityorigin": {
-      "default": "Origine dell'elettricità nell' ultimo %1$s",
-      "hourly": "Origine dell'elettricità nelle ultime 24 ore",
-      "daily": "Origine dell'elettricità nell'ultimo mese",
-      "monthly": "Origine dell'elettricità nell'ultimo anno",
-      "yearly": "Origine dell'elettricità negli ultimi 5 anni"
-    },
-    "electricityproduction": {
-      "default": "Produzione elettrica nell' ultimo %1$s",
-      "hourly": "Produzione elettrica nelle ultime 24 ore",
-      "daily": "Produzione elettrica nell'ultimo mese",
-      "monthly": "Produzione elettrica nell'ultimo anno",
-      "yearly": "Produzione elettrica negli ultimi 5 anni"
-    },
-    "electricityprices": {
-      "default": "Prezzi dell'elettricità nell' ultimo %1$s",
-      "hourly": "Prezzi dell'elettricità nelle ultime 24 ore",
-      "daily": "Prezzi dell'elettricità nell'ultimo mese",
-      "monthly": "Prezzi dell'elettricità nell'ultimo anno",
-      "yearly": "Prezzi dell'elettricità negli ultimi 5 anni"
-    },
+    "emissions": { "default": "Emissioni nell'ultimo %1$s" },
+    "emissionsorigin": { "default": "Origine delle emissioni nell' ultimo %1$s" },
+    "emissionsproduction": { "default": "Emissioni prodotte nell' ultimo %1$s" },
+    "electricityorigin": { "default": "Origine dell'elettricità nell' ultimo %1$s" },
+    "electricityproduction": { "default": "Produzione elettrica nell' ultimo %1$s" },
+    "electricityprices": { "hourly": "Prezzi dell'elettricità nell' ultimo %1$s" },
     "Getdata": "Ottieni dati orari storici, in tempo reale e previsioni con le API di Electricity Maps"
   },
   "footer": {
@@ -194,14 +158,14 @@
   "coal": "Carbone",
   "oil": "Petrolio",
   "unknown": "Sconosciuto",
-  "electricityComesFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
-  "emissionsComeFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
-  "electricityStoredUsing": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
-  "emissionsStoredUsing": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
-  "electricityExportedTo": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "Il <b>%1$s %%</b> dell'elettricità di %4$s <b>%2$s</b> proviene dal/dalla %3$s",
+  "emissionsComeFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di %4$s <b>%2$s</b> proviene dal/dalla %3$s",
+  "electricityStoredUsing": "Il <b>%1$s %%</b> dell'elettricità di %4$s <b>%2$s</b> è accumulato usando il/la %3$s",
+  "emissionsStoredUsing": "Il <b>%1$s %%</b> delle emissioni di CO₂ di %4$s <b>%2$s</b> è accumulato usando il/la %3$s",
+  "electricityExportedTo": "Il <b>%1$s %%</b> dell'elettricità di %4$s <b>%2$s</b> è esportata in %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "Il <b>%1$s %%</b> delle emissioni di CO₂ di %4$s <b>%2$s</b> è esportata in %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "Il <b>%1$s %%</b> dell'elettricità di %4$s <b>%2$s</b> è importato da %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di %4$s <b>%2$s</b> è importato da %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "di CO₂eq per minuto",
   "theMap": {
     "groupName": "La mappa",
@@ -307,47 +271,47 @@
     "AT": {
       "zoneName": "Austria"
     },
-    "AU-NSW": {
+    "AUS-NSW": {
       "countryName": "Australia",
       "zoneName": "Nuovo Galles del Sud"
     },
-    "AU-NT": {
+    "AUS-NT": {
       "countryName": "Australia",
       "zoneName": "Territorio del Nord"
     },
-    "AU-QLD": {
+    "AUS-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AU-SA": {
+    "AUS-SA": {
       "countryName": "Australia",
       "zoneName": "Australia meridionale"
     },
-    "AU-TAS": {
+    "AUS-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AU-TAS-CBI": {
+    "AUS-TAS-CBI": {
       "countryName": "Australia",
       "zoneName": "Cape Barren Island"
     },
-    "AU-TAS-FI": {
+    "AUS-TAS-FI": {
       "countryName": "Australia",
       "zoneName": "Flinders Island"
     },
-    "AU-TAS-KI": {
+    "AUS-TAS-KI": {
       "countryName": "Australia",
       "zoneName": "King"
     },
-    "AU-VIC": {
+    "AUS-VIC": {
       "countryName": "Australia",
       "zoneName": "Victoria"
     },
-    "AU-WA": {
+    "AUS-WA": {
       "countryName": "Australia",
       "zoneName": "Australia occidentale"
     },
-    "AU-WA-RI": {
+    "AUS-WA-RI": {
       "countryName": "Australia",
       "zoneName": "Isola Rottnest"
     },
@@ -399,12 +363,13 @@
     "BQ": {
       "zoneName": "Paesi Bassi caraibici"
     },
-    "BR": {
-      "zoneName": "Brasile"
-    },
     "BR-CS": {
       "countryName": "Brasile",
       "zoneName": "Centro Brasile"
+    },
+    "BR-I": {
+      "countryName": "Brazil",
+      "zoneName": "Sistemi Isolati"
     },
     "BR-N": {
       "countryName": "Brasile",
@@ -704,6 +669,10 @@
     "GB-ORK": {
       "countryName": "Gran Bretagna",
       "zoneName": "Isole Orcadi"
+    },
+    "GB-SHI": {
+      "countryName": "Gran Bretagna",
+      "zoneName": "Isole Shetland"
     },
     "GB-ZET": {
       "countryName": "Gran Bretagna",
@@ -1475,9 +1444,6 @@
     "UM": {
       "zoneName": "Isole minori esterne degli Stati Uniti d'America"
     },
-    "US": {
-      "zoneName": "Contigui Stati Uniti d'America"
-    },
     "US-HI-HA": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Hawaii"
@@ -1586,6 +1552,10 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "Jacksonville Electric Authority"
     },
+    "US-FLA-NSB": {
+      "countryName": "Stati Uniti d'America",
+      "zoneName": "Utilities Commission Of New Smyrna Beach"
+    },
     "US-FLA-SEC": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Seminole Electric Cooperative"
@@ -1605,6 +1575,10 @@
     "US-MIDW-AECI": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Associated Electric Cooperative, Inc."
+    },
+    "US-MIDW-GLHB": {
+      "countryName": "Stati Uniti d'America",
+      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Stati Uniti d'America",
@@ -1706,6 +1680,10 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "New York Independent System Operator"
     },
+    "US-SE-AEC": {
+      "countryName": "Stati Uniti d'America",
+      "zoneName": "Powersouth Energy Cooperative"
+    },
     "US-SE-SEPA": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Southeastern Power Administration"
@@ -1729,6 +1707,10 @@
     "US-SW-GRIF": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Griffith Energy, LLC"
+    },
+    "US-SW-GRMA": {
+      "countryName": "Stati Uniti d'America",
+      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Stati Uniti d'America",

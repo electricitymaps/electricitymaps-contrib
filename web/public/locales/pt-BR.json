@@ -161,14 +161,14 @@
   "coal": "carvão",
   "oil": "petróleo",
   "unknown": "desconhecida",
-  "electricityComesFrom": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> provém de energia %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> provêm de energia %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é armazenada utilizando %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são armazenadas utilizando %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é exportada para <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são exportadas para <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é importada de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são importadas de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> provém de energia %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> provêm de energia %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> é armazenada utilizando %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são armazenadas utilizando %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> é exportada para %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são exportadas para %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> é importada de %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são importadas de %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "de CO₂eq por minuto",
   "theMap": {
     "groupName": "O mapa",
@@ -279,35 +279,35 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AU-NSW": {
+    "AUS-NSW": {
       "countryName": "Austrália",
       "zoneName": "Nova Gales do Sul"
     },
-    "AU-NT": {
+    "AUS-NT": {
       "countryName": "Austrália",
       "zoneName": "Território do Norte"
     },
-    "AU-QLD": {
+    "AUS-QLD": {
       "countryName": "Austrália",
       "zoneName": "Queensland"
     },
-    "AU-SA": {
+    "AUS-SA": {
       "countryName": "Austrália",
       "zoneName": "Austrália do Sul"
     },
-    "AU-TAS": {
+    "AUS-TAS": {
       "countryName": "Austrália",
       "zoneName": "Tasmânia"
     },
-    "AU-TAS-KI": {
+    "AUS-TAS-KI": {
       "countryName": "Tasmânia",
       "zoneName": "King Island"
     },
-    "AU-VIC": {
+    "AUS-VIC": {
       "countryName": "Austrália",
       "zoneName": "Victoria"
     },
-    "AU-WA": {
+    "AUS-WA": {
       "countryName": "Austrália",
       "zoneName": "Austrália Ocidental"
     },
@@ -358,9 +358,6 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Santo Eustáquio e Saba"
-    },
-    "BR": {
-      "zoneName": "Brasil"
     },
     "BR-CS": {
       "countryName": "Brasil",
@@ -648,6 +645,10 @@
     "GB-ORK": {
       "countryName": "Grã-Bretanha",
       "zoneName": "Ilhas Orkney"
+    },
+    "GB-SHI": {
+      "countryName": "Grã-Bretanha",
+      "zoneName": "Ilhas Shetland"
     },
     "GB-ZET": {
       "countryName": "Grã-Bretanha",
@@ -1411,9 +1412,6 @@
     "UM": {
       "zoneName": "Ilhas Menores Distantes dos Estados Unidos"
     },
-    "US": {
-      "zoneName": "Estados Unidos da América Contíguos"
-    },
     "US-HI-HA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Havaí"
@@ -1522,6 +1520,10 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "JEA"
     },
+    "US-FLA-NSB": {
+      "countryName": "Estados Unidos da América",
+      "zoneName": "Comissão de serviços públicos de New Smyrna Beach"
+    },
     "US-FLA-SEC": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Seminole Electric Cooperative"
@@ -1541,6 +1543,10 @@
     "US-MIDW-AECI": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Associated Electric Cooperative, Inc."
+    },
+    "US-MIDW-GLHB": {
+      "countryName": "Estados Unidos da América",
+      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Estados Unidos da América",
@@ -1642,6 +1648,10 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "Operador de sistema independente de Nova York"
     },
+    "US-SE-AEC": {
+      "countryName": "Estados Unidos da América",
+      "zoneName": "Powersouth Energy Cooperative"
+    },
     "US-SE-SEPA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Southeastern Power Administration"
@@ -1665,6 +1675,10 @@
     "US-SW-GRIF": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Griffith Energy, LLC"
+    },
+    "US-SW-GRMA": {
+      "countryName": "Estados Unidos da América",
+      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Estados Unidos da América",
@@ -1747,15 +1761,15 @@
     "ZW": {
       "zoneName": "Zimbábue"
     },
-    "AU-TAS-CBI": {
+    "AUS-TAS-CBI": {
       "countryName": "Austrália",
       "zoneName": "Ilha Cape Barren"
     },
-    "AU-TAS-FI": {
+    "AUS-TAS-FI": {
       "countryName": "Austrália",
       "zoneName": "Ilha Flinders"
     },
-    "AU-WA-RI": {
+    "AUS-WA-RI": {
       "countryName": "Austrália",
       "zoneName": "Ilha Rottnest"
     },
