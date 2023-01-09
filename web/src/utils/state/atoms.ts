@@ -5,7 +5,7 @@ import { Mode, ThemeOptions, TimeAverages, ToggleOptions } from '../constants';
 // TODO: Move these atoms to relevant features
 // TODO: Make some of these atoms also sync with URL (see atomWithCustomStorage.ts)
 
-export const timeAverageAtom = atomWithStorage('average', TimeAverages.HOURLY);
+export const timeAverageAtom = atom(TimeAverages.HOURLY);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetimeString: '', index: 0 });
