@@ -24,11 +24,16 @@ const getTimeScale = (width, startTime, endTime) =>
     .range([0, width]);
 
 const getTotalValues = (layers) => {
-  const values = layers.flatMap((layer) => layer.datapoints.map((d) => d[1])).filter(Number.isFinite);
+  const topValues = layers
+    .flatMap((layer) => layer.datapoints.map((d) => d[1]))
+    .filter(Number.isFinite);
+  const bottomValues = layers
+    .flatMap((layer) => layer.datapoints.map((d) => d[0]))
+    .filter(Number.isFinite);
 
   return {
-    min: Number.isFinite(Math.min(...values)) ? Math.min(...values) : 0,
-    max: Number.isFinite(Math.max(...values)) ? Math.max(...values) : 0,
+    min: Number.isFinite(Math.min(...bottomValues)) ? Math.min(...bottomValues) : 0,
+    max: Number.isFinite(Math.max(...topValues)) ? Math.max(...topValues) : 0,
   };
 };
 
@@ -116,23 +121,37 @@ const AreaGraph = React.memo(
 
     // Generate graph scales
     const totalValues = useMemo(() => getTotalValues(layers), [layers]);
-    const valueScale = useMemo(() => getValueScale(containerHeight, totalValues), [containerHeight, totalValues]);
+    const valueScale = useMemo(
+      () => getValueScale(containerHeight, totalValues),
+      [containerHeight, totalValues]
+    );
     const datetimes = useCurrentZoneHistoryDatetimes();
 
     const startTime = datetimes.at(0);
     const lastTime = datetimes.at(-1);
-    const intervalMs = datetimes.length > 1 ? lastTime.getTime() - datetimes.at(-2).getTime() : undefined;
+    const intervalMs =
+      datetimes.length > 1 ? lastTime.getTime() - datetimes.at(-2).getTime() : undefined;
     // The endTime needs to include the last interval so it can be shown
-    const endTime = useMemo(() => new Date(lastTime.getTime() + intervalMs), [lastTime, intervalMs]);
-    const datetimesWithNext = useMemo(() => [...datetimes, endTime], [datetimes, endTime]);
+    const endTime = useMemo(
+      () => new Date(lastTime.getTime() + intervalMs),
+      [lastTime, intervalMs]
+    );
+    const datetimesWithNext = useMemo(
+      () => [...datetimes, endTime],
+      [datetimes, endTime]
+    );
 
     const timeScale = useMemo(
       () => getTimeScale(containerWidth, startTime, endTime),
       [containerWidth, startTime, endTime]
     );
 
-    const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
-    const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
+    const selectedTimeAggregate = useSelector(
+      (state) => state.application.selectedTimeAggregate
+    );
+    const selectedZoneTimeIndex = useSelector(
+      (state) => state.application.selectedZoneTimeIndex
+    );
 
     const [graphIndex, setGraphIndex] = useState(null);
     const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
@@ -167,7 +186,12 @@ const AreaGraph = React.memo(
     }
 
     return (
-      <svg data-test-id={testId} height={height} ref={ref} style={{ overflow: 'visible' }}>
+      <svg
+        data-test-id={testId}
+        height={height}
+        ref={ref}
+        style={{ overflow: 'visible' }}
+      >
         <GraphBackground
           timeScale={timeScale}
           valueScale={valueScale}
@@ -196,7 +220,12 @@ const AreaGraph = React.memo(
             datetimes={datetimesWithNext}
           />
         )}
-        <ValueAxis scale={valueScale} label={valueAxisLabel} width={containerWidth} height={containerHeight} />
+        <ValueAxis
+          scale={valueScale}
+          label={valueAxisLabel}
+          width={containerWidth}
+          height={containerHeight}
+        />
         <GraphHoverLine
           layers={layers}
           timeScale={timeScale}

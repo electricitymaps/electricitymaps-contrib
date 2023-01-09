@@ -1,0 +1,88 @@
+bounding_box:
+  - - 60.05127
+    - 11.027472
+  - - 92.944336
+    - 27.332735
+capacity:
+  biomass: 3154.24
+  coal: 85586.0
+  gas: 10806.49
+  hydro: 8578.23
+  nuclear: 1840.0
+  oil: 0
+  solar: 15029.55
+  unknown: 0
+  wind: 17655.64
+contributors:
+  - GitMatze
+  - alixunderplatz
+  - systemcatch
+  - Manu1400
+  - gopikrishna1793
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 601.2119051545803
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 627.9931454444911
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 601.2119051545803
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 627.9931454444911
+  lifecycle:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 662.3555549847445
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 688.6162960224434
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 662.3555549847445
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 688.6162960224434
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0050087911386137
+        coal: 0.7431716886398929
+        gas: 0.08525191213105113
+        geothermal: 0.0008813815471824027
+        hydro: 0.05897907403714744
+        hydro discharge: 0.0
+        nuclear: 0.07582834005123346
+        oil: 0.008582084223009696
+        solar: 0.006283804197769785
+        unknown: 0.0022107434127088058
+        wind: 0.013650090505405369
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.003979734141315539
+        coal: 0.7876068205096145
+        gas: 0.06889152713651356
+        geothermal: 0.0007003004552504755
+        hydro: 0.045683653850865834
+        hydro discharge: 0.0
+        nuclear: 0.06851703493122113
+        oil: 0.006818894955722726
+        solar: 0.004992795111794922
+        unknown: 0.0017565472292090639
+        wind: 0.010845681494329525
+parsers:
+  consumption: IN_WE.fetch_consumption
+  production: IN_WE.fetch_production
+timezone: Asia/Kolkata

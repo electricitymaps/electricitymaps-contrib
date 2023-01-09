@@ -37,20 +37,28 @@ const StyledSources = styled.div`
 `;
 
 export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data }) => {
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const selectedTimeAggregate = useSelector(
+    (state) => state.application.selectedTimeAggregate
+  );
   const { __, i18n } = useTranslation();
 
   // Disable mix graph on aggregated consumption data because we do not
   // show exchanges yet.
   const isMixGraphOverlayEnabled =
-    selectedTimeAggregate && selectedTimeAggregate !== TIME.HOURLY && electricityMixMode == 'consumption';
+    selectedTimeAggregate &&
+    selectedTimeAggregate !== TIME.HOURLY &&
+    electricityMixMode == 'consumption';
 
   const isDataEstimated = data.estimationMethod ? true : false;
 
   return (
     <React.Fragment>
       <BySource>
-        {__(selectedTimeAggregate !== TIME.HOURLY ? 'country-panel.averagebysource' : 'country-panel.bysource')}
+        {__(
+          selectedTimeAggregate !== TIME.HOURLY
+            ? 'country-panel.averagebysource'
+            : 'country-panel.bysource'
+        )}
       </BySource>
 
       <Countrytable />
@@ -58,7 +66,11 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
       <hr />
       <div className="country-history">
         <CountryHistoryTitle
-          translationKey={tableDisplayEmissions ? 'country-history.emissions' : 'country-history.carbonintensity'}
+          translationKey={
+            tableDisplayEmissions
+              ? 'country-history.emissions'
+              : 'country-history.carbonintensity'
+          }
         />
         <br />
         <ProContainer>
@@ -71,12 +83,20 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
             {__('country-history.Getdata')}
           </a>
         </ProContainer>
-        {tableDisplayEmissions ? <Countryhistoryemissionsgraph /> : <Countryhistorycarbongraph />}
+        {tableDisplayEmissions ? (
+          <Countryhistoryemissionsgraph />
+        ) : (
+          <Countryhistorycarbongraph />
+        )}
         <CountryHistoryTitle
           translationKey={
             tableDisplayEmissions
-              ? `country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
-              : `country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
+              ? `country-history.emissions${
+                  electricityMixMode === 'consumption' ? 'origin' : 'production'
+                }`
+              : `country-history.electricity${
+                  electricityMixMode === 'consumption' ? 'origin' : 'production'
+                }`
           }
         />
         <br />
@@ -105,21 +125,27 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
 
           <Countryhistorymixgraph isOverlayEnabled={isMixGraphOverlayEnabled} />
         </div>
-        {selectedTimeAggregate !== TIME.HOURLY && <CountryDataInfo text={__('country-panel.exchangesAreMissing')} />}
+        {selectedTimeAggregate !== TIME.HOURLY && (
+          <CountryDataInfo text={__('country-panel.exchangesAreMissing')} />
+        )}
         <CountryHistoryTitle translationKey={'country-history.electricityprices'} />
         <Countryhistorypricesgraph />
       </div>
       <hr />
       <StyledSources>
-        {isDataEstimated && <CountryDataInfo text={__('country-panel.dataIsEstimated')} />}
+        {isDataEstimated && (
+          <CountryDataInfo text={__('country-panel.dataIsEstimated')} />
+        )}
         {__('country-panel.source')}
         {': '}
         <a
-          href="https://github.com/electricitymaps/electricitymaps-contrib#data-sources/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
+          href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
           target="_blank"
           rel="noreferrer"
         >
-          <span className="country-data-source">{formatDataSources(data.source, i18n.language) || '?'}</span>
+          <span className="country-data-source">
+            {formatDataSources(data.source, i18n.language) || '?'}
+          </span>
         </a>
         <small>
           {' '}

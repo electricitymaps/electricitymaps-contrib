@@ -65,7 +65,18 @@ const StyledLanguageSelectWrapper = styled.ul`
     padding: 8px;
     cursor: pointer;
     &:hover {
-      background-color: #f5f5f5;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    &.preferred-language {
+      background-color: rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    &.other-language {
+      position: relative;
+      left: 0;
+      top: 33px;
     }
   }
 `;
@@ -76,25 +87,10 @@ const SettingButton = styled(Button).attrs({
   color: ${(props) => (props.active ? '#000' : '#999')};
 `;
 
-const LanguageSelect = ({ isOpen, onSelect }) => {
-  if (!isOpen) {
-    return null;
-  }
-
-  return (
-    <StyledLanguageSelectWrapper>
-      {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
-        <li key={key}>
-          <button onClick={() => onSelect(key)}>{language}</button>
-        </li>
-      ))}
-    </StyledLanguageSelectWrapper>
-  );
-};
-
 const SettingsView = () => {
   const { __, i18n } = useTranslation();
   const [languageSelectOpen, setLanguageSelectOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGE_NAMES[i18n.language]);
 
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
@@ -107,16 +103,20 @@ const SettingsView = () => {
   const showSolarErrorMessage = solarEnabled && solarDataError;
 
   const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
-  const colorBlindModeEnabled = useSelector((state) => state.application.colorBlindModeEnabled);
+  const colorBlindModeEnabled = useSelector(
+    (state) => state.application.colorBlindModeEnabled
+  );
   const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
 
-  const handleLanguageChange = (language) => {
-    i18n.changeLanguage(language);
-    setLanguageSelectOpen(false);
-  };
   const toggleSetting = (name, currentValue) => {
     dispatchApplication(name, !currentValue);
     saveKey(name, !currentValue);
+  };
+
+  const handleLanguageChange = (languageKey, preferredLanguage) => {
+    i18n.changeLanguage(languageKey);
+    setSelectedLanguage(preferredLanguage);
+    setLanguageSelectOpen(false);
   };
 
   const history = useHistory();
@@ -148,18 +148,49 @@ const SettingsView = () => {
       />
 
       <SettingsWrapper>
-        <SettingButton active icon="language" onClick={() => setLanguageSelectOpen(!languageSelectOpen)}>
+        <SettingButton
+          active
+          icon="language"
+          onClick={() => setLanguageSelectOpen(!languageSelectOpen)}
+        >
           {__('tooltips.selectLanguage')}
         </SettingButton>
 
-        <LanguageSelect isOpen={languageSelectOpen} onSelect={handleLanguageChange} />
+        {languageSelectOpen && (
+          <StyledLanguageSelectWrapper>
+            {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
+              <li key={key}>
+                <button
+                  onClick={() => handleLanguageChange(key, language)}
+                  className={
+                    selectedLanguage === language
+                      ? 'preferred-language'
+                      : 'other-language'
+                  }
+                >
+                  {language}
+                </button>
+              </li>
+            ))}
+          </StyledLanguageSelectWrapper>
+        )}
 
-        <SettingButton to={windToggledLocation} icon="wind" active={windEnabled} disabled={windDataError}>
+        <SettingButton
+          to={windToggledLocation}
+          icon="wind"
+          active={windEnabled}
+          disabled={windDataError}
+        >
           {__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
         </SettingButton>
         {showWindErrorMessage && <LayerErrorMessage>{windDataError}</LayerErrorMessage>}
 
-        <SettingButton to={solarToggledLocation} icon="sun" active={solarEnabled} disabled={solarDataError}>
+        <SettingButton
+          to={solarToggledLocation}
+          icon="sun"
+          active={solarEnabled}
+          disabled={solarDataError}
+        >
           {__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
         </SettingButton>
         {showSolarErrorMessage && <LayerErrorMessage>{solarDataError}</LayerErrorMessage>}

@@ -279,35 +279,35 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Austrália",
       "zoneName": "Nova Gales do Sul"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Austrália",
       "zoneName": "Território do Norte"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Austrália",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Austrália",
       "zoneName": "Austrália do Sul"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Austrália",
       "zoneName": "Tasmânia"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmânia",
       "zoneName": "King Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Austrália",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Austrália",
       "zoneName": "Austrália Ocidental"
     },
@@ -358,6 +358,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Santo Eustáquio e Saba"
+    },
+    "BR": {
+      "zoneName": "Brasil"
     },
     "BR-CS": {
       "countryName": "Brasil",
@@ -645,10 +648,6 @@
     "GB-ORK": {
       "countryName": "Grã-Bretanha",
       "zoneName": "Ilhas Orkney"
-    },
-    "GB-SHI": {
-      "countryName": "Grã-Bretanha",
-      "zoneName": "Ilhas Shetland"
     },
     "GB-ZET": {
       "countryName": "Grã-Bretanha",
@@ -1412,6 +1411,9 @@
     "UM": {
       "zoneName": "Ilhas Menores Distantes dos Estados Unidos"
     },
+    "US": {
+      "zoneName": "Estados Unidos da América Contíguos"
+    },
     "US-HI-HA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Havaí"
@@ -1520,10 +1522,6 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "JEA"
     },
-    "US-FLA-NSB": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Comissão de serviços públicos de New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Seminole Electric Cooperative"
@@ -1543,10 +1541,6 @@
     "US-MIDW-AECI": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "Estados Unidos da América",
@@ -1648,10 +1642,6 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "Operador de sistema independente de Nova York"
     },
-    "US-SE-AEC": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Southeastern Power Administration"
@@ -1675,10 +1665,6 @@
     "US-SW-GRIF": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "Estados Unidos da América",
@@ -1761,15 +1747,15 @@
     "ZW": {
       "zoneName": "Zimbábue"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Austrália",
       "zoneName": "Ilha Cape Barren"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Austrália",
       "zoneName": "Ilha Flinders"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Austrália",
       "zoneName": "Ilha Rottnest"
     },

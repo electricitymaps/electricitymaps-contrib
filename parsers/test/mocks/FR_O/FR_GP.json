@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2022-07-19T23:56:00+00:00",
+    "turbines_a_combustion": 1,
+    "charbon": 2,
+    "diesel": 3,
+    "hydraulique": 4,
+    "geothermie": 5,
+    "eolien": 6,
+    "photovoltaique": 7,
+    "bioenergies": 8,
+    "total": 9,
+    "statut": "Estimé",
+    "solde_stockage": -1
+  },
+  {
+    "date": "2022-07-20T00:11:00+00:00",
+    "turbines_a_combustion": 10,
+    "charbon": 11,
+    "diesel": 12,
+    "hydraulique": 13,
+    "geothermie": 14,
+    "eolien": 15,
+    "photovoltaique": 16,
+    "bioenergies": 17,
+    "total": 18,
+    "statut": "Estimé",
+    "solde_stockage": -0.0094
+  }
+]

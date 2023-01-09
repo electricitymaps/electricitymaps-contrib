@@ -14,9 +14,17 @@ import TimeController from './timeController';
 // Modules
 import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useHeaderVisible, useAggregatesToggle, useAggregatesEnabled } from '../hooks/router';
+import {
+  useHeaderVisible,
+  useAggregatesToggle,
+  useAggregatesEnabled,
+} from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
-import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
+import {
+  useGridDataPolling,
+  useConditionalWindDataPolling,
+  useConditionalSolarDataPolling,
+} from '../hooks/fetch';
 import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import InfoModal from '../components/infomodal';
@@ -49,6 +57,10 @@ const MapContainer = styled.div`
 
 const NewVersionInner = styled.div`
   background-color: #3f51b5;
+  & > span > a {
+    color: inherit;
+    text-decoration: underline;
+  }
 `;
 
 const NewVersionButton = styled.button`
@@ -112,7 +124,8 @@ const Main = ({ electricityMixMode }) => {
     <React.Fragment>
       <div
         style={{
-          position: 'fixed' /* This is done in order to ensure that dragging will not affect the body */,
+          position:
+            'fixed' /* This is done in order to ensure that dragging will not affect the body */,
           width: '100vw',
           height: 'inherit',
           display: 'flex',
@@ -143,7 +156,9 @@ const Main = ({ electricityMixMode }) => {
 
                 <Toggle
                   infoHTML={__('tooltips.aggregateinfo')}
-                  onChange={(value) => value !== isAggregated && history.push(toggleAggregates)}
+                  onChange={(value) =>
+                    value !== isAggregated && history.push(toggleAggregates)
+                  }
                   options={[
                     { value: 'country', label: __('aggregateButtons.country') },
                     { value: 'zone', label: __('aggregateButtons.zone') },
@@ -163,14 +178,20 @@ const Main = ({ electricityMixMode }) => {
               <TimeController />
             )}
           </ErrorBoundary>
-          {failedRequestType === 'grid' && <RetryBanner failedRequestType={failedRequestType} />}
+          {failedRequestType === 'grid' && (
+            <RetryBanner failedRequestType={failedRequestType} />
+          )}
           <div
             id="new-version"
-            className={`flash-message ${isClientVersionOutdated && !isClientVersionForceHidden ? 'active' : ''}`}
+            className={`flash-message ${
+              isClientVersionOutdated && !isClientVersionForceHidden ? 'active' : ''
+            }`}
           >
             <NewVersionInner className="inner">
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
-              <NewVersionButton onClick={() => setIsClientVersionForceHidden(true)}>&#x2715;</NewVersionButton>
+              <NewVersionButton onClick={() => setIsClientVersionForceHidden(true)}>
+                &#x2715;
+              </NewVersionButton>
             </NewVersionInner>
           </div>
 

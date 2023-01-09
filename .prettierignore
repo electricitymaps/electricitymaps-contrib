@@ -2,6 +2,7 @@
 .prettierignore
 yarn.lock
 pnpm-lock.yaml
+.eartlyignore
 
 .venv
 **/parsers/test/mocks
@@ -11,7 +12,19 @@ web/config/zones.json
 world-aggregated.json
 
 # disabling index.html as we want to keep longer lines to make scanning easier
+# TODO: Move this to .prettierrc overwrites instead
 web/index.html
+
+mobileapp/plugins
+mobileapp/platforms
+mobileapp/src
+mobileapp/ul_web_hooks
+mobileapp/www/electricitymap
+
+web/public/dist/
+web/public/images/
+web/src/config/
+web/.husky/_
 
 mockserver/public
 

@@ -29,7 +29,9 @@ const modeOrder = [
   'unknown',
 ];
 const PRODUCTION_MODES = modeOrder.filter((d) => d.indexOf('storage') === -1);
-const STORAGE_MODES = modeOrder.filter((d) => d.indexOf('storage') !== -1).map((d) => d.replace(' storage', ''));
+const STORAGE_MODES = modeOrder
+  .filter((d) => d.indexOf('storage') !== -1)
+  .map((d) => d.replace(' storage', ''));
 
 const DEFAULT_FLAG_SIZE = 16;
 
@@ -60,9 +62,9 @@ const LANGUAGE_NAMES = {
   sk: 'Slovenčina',
   sv: 'Svenska',
   vi: 'Tiếng Việt',
-  'zh-cn': '中文 (Mainland China)',
-  'zh-hk': '中文 (Hong Kong)',
-  'zh-tw': '中文 (Taiwan)',
+  'zh-CN': '中文 (Mainland China)',
+  'zh-HK': '中文 (Hong Kong)',
+  'zh-TW': '中文 (Taiwan)',
 };
 const LOCALE_TO_FACEBOOK_LOCALE = {
   ar: 'ar_AR',

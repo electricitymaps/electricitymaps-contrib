@@ -46,8 +46,11 @@ const LegendsContainer = styled.div`
 `;
 
 const LegendItemWrapper = styled.div`
-  width: 15em;
+  width: 16em;
   padding-top: 7px;
+  & > div {
+    text-align: center;
+  }
 `;
 
 const ToggleLegendButton = styled.i`
@@ -97,7 +100,12 @@ const mapStateToProps = (state) => ({
   windColorbarValue: state.application.windColorbarValue,
 });
 
-const Legend = ({ co2ColorbarValue, legendVisible, solarColorbarValue, windColorbarValue }) => {
+const Legend = ({
+  co2ColorbarValue,
+  legendVisible,
+  solarColorbarValue,
+  windColorbarValue,
+}) => {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const solarEnabled = useSolarEnabled();
@@ -109,10 +117,18 @@ const Legend = ({ co2ColorbarValue, legendVisible, solarColorbarValue, windColor
 
   return (
     <LegendsContainer isCollapsed={!legendVisible}>
-      <MobileHeader label={__('misc.legend')} onToggle={toggleLegend} isOpen={legendVisible} />
+      <MobileHeader
+        label={__('misc.legend')}
+        onToggle={toggleLegend}
+        isOpen={legendVisible}
+      />
       {legendVisible && (
         <React.Fragment>
-          <LegendItem label={__('legends.windpotential')} unit="m/s" isEnabled={windEnabled}>
+          <LegendItem
+            label={__('legends.windpotential')}
+            unit="m/s"
+            isEnabled={windEnabled}
+          >
             <HorizontalColorbar
               id="wind-potential-bar"
               colorScale={windColor}
@@ -144,7 +160,7 @@ const Legend = ({ co2ColorbarValue, legendVisible, solarColorbarValue, windColor
               colorScale={co2ColorScale}
               currentValue={co2ColorbarValue}
               markerColor="white"
-              ticksCount={5}
+              ticksCount={6}
             />
           </LegendItem>
         </React.Fragment>

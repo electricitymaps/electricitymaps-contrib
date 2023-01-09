@@ -10,6 +10,11 @@ const Container = styled.div`
   @media (max-width: 767px) {
     display: none !important;
   }
+
+  p {
+    margin: 0.4rem 0;
+    line-height: 1.2rem;
+  }
 `;
 
 export default () => {
@@ -21,7 +26,11 @@ export default () => {
       <ColorBlindCheckbox />
       <p>
         {__('panel-initial-text.thisproject')}{' '}
-        <a href="https://github.com/electricitymaps/electricitymaps-contrib" target="_blank" rel="noreferrer">
+        <a
+          href="https://github.com/electricitymaps/electricitymaps-contrib"
+          target="_blank"
+          rel="noreferrer"
+        >
           {__('panel-initial-text.opensource')}
         </a>{' '}
         ({__('panel-initial-text.see')}{' '}

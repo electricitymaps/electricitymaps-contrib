@@ -32,11 +32,17 @@ const generateAggregates = (geojson, zones) => {
       },
       geometry: { type: 'MultiPolygon', coordinates: [] },
     };
-    const [multiZoneCountry] = unCombinedZones.filter((feature) => feature.properties.zoneName === country[0]);
+    const [multiZoneCountry] = unCombinedZones.filter(
+      (feature) => feature.properties.zoneName === country[0]
+    );
     for (let i = 0; i < country.length; i++) {
-      const [zoneToAdd] = unCombinedZones.filter((feature) => feature.properties.zoneName === country[i]);
-
-      combinedCountry.geometry = union(combinedCountry.geometry, zoneToAdd.geometry).geometry;
+      const [zoneToAdd] = unCombinedZones.filter(
+        (feature) => feature.properties.zoneName === country[i]
+      );
+      combinedCountry.geometry = union(
+        combinedCountry.geometry,
+        zoneToAdd.geometry
+      ).geometry;
     }
     combinedCountry.properties.countryKey = multiZoneCountry.properties.countryKey;
     combinedCountry.properties.zoneName = multiZoneCountry.properties.countryKey;

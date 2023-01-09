@@ -9,16 +9,20 @@ from logging import Logger, getLogger
 from typing import Optional
 
 import pandas as pd
-from dateutil import parser, tz
+from dateutil import parser
+from pytz import utc
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
-HISTORIC_GENERATION_BASE_URL = "https://marketplace.spp.org/file-browser-api/download/generation-mix-historical?path=%2F"
+US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
+HOST_PARAMETER = "host=https://marketplace.spp.org"
 
-GENERATION_URL = "https://marketplace.spp.org/chart-api/gen-mix/asFile"
+HISTORIC_GENERATION_BASE_URL = f"{US_PROXY}/file-browser-api/download/generation-mix-historical?{HOST_PARAMETER}&path="
 
-EXCHANGE_URL = "https://marketplace.spp.org/chart-api/interchange-trend/asFile"
+GENERATION_URL = f"{US_PROXY}/chart-api/gen-mix/asFile?{HOST_PARAMETER}"
+
+EXCHANGE_URL = f"{US_PROXY}/chart-api/interchange-trend/asFile?{HOST_PARAMETER}"
 
 MAPPING = {
     "Wind": "wind",
@@ -98,14 +102,15 @@ def data_processor(df, logger: Logger) -> list:
     keys_to_remove = keys_to_remove | unknown_keys
 
     processed_data = []
-    for index, row in df.iterrows():
-        production = row.to_dict()
+    for index in range(len(df)):
+        production = df.loc[index].to_dict()
         production["unknown"] = sum([production[k] for k in unknown_keys])
 
         dt_aware = production["GMT MKT Interval"].to_pydatetime()
         for k in keys_to_remove:
             production.pop(k, None)
 
+        production = {k: float(v) for k, v in production.items()}
         mapped_production = {MAPPING.get(k, k): v for k, v in production.items()}
 
         processed_data.append((dt_aware, mapped_production))
@@ -158,7 +163,7 @@ def fetch_production(
 
     data = []
     for item in processed_data:
-        dt = item[0].replace(tzinfo=tz.gettz("Etc/GMT"))
+        dt = item[0].replace(tzinfo=utc)
         datapoint = {
             "zoneKey": zone_key,
             "datetime": dt,
@@ -171,51 +176,11 @@ def fetch_production(
     return data
 
 
-# NOTE disabled until discrepancy in MISO SPP flows is resolved.
-def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    """
-    Requests the last 24 hours of power exchange (in MW) between two zones."""
-
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    raw_data = get_data(EXCHANGE_URL, session=session)
-    sorted_codes = "->".join(sorted([zone_key1, zone_key2]))
-
+def _NaN_safe_get(forecast: dict, key: str) -> Optional[float]:
     try:
-        exchange_ties = TIE_MAPPING[sorted_codes]
-    except KeyError as e:
-        raise NotImplementedError(
-            "The exchange {} is not implemented".format(sorted_codes)
-        )
-
-    # TODO check glossary for flow direction.
-
-    exchange_data = []
-    for index, row in raw_data.iterrows():
-        all_exchanges = row.to_dict()
-
-        dt_aware = parser.parse(all_exchanges["GMTTime"])
-
-        flows = [all_exchanges[tie] for tie in exchange_ties]
-        netflow = sum(flows)
-
-        exchange = {
-            "sortedZoneKeys": sorted_codes,
-            "datetime": dt_aware,
-            "netFlow": netflow,
-            "source": "spp.org",
-        }
-
-        exchange_data.append(exchange)
-
-    return exchange_data
+        return float(forecast[key])
+    except ValueError:
+        return None
 
 
 def fetch_load_forecast(
@@ -233,20 +198,20 @@ def fetch_load_forecast(
         dt = target_datetime
     else:
         dt = parser.parse(target_datetime)
-    LOAD_URL = "https://marketplace.spp.org/file-api/download/mtlf-vs-actual?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTLF-{0}{1:02d}{2:02d}0000.csv".format(
-        dt.year, dt.month, dt.day
-    )
+    LOAD_URL = f"{US_PROXY}/chart-api/load-forecast/asFile?{HOST_PARAMETER}"
 
     raw_data = get_data(LOAD_URL)
 
     data = []
-    for index, row in raw_data.iterrows():
-        forecast = row.to_dict()
+    for index in range(len(raw_data)):
+        forecast = raw_data.loc[index].to_dict()
 
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(
-            tzinfo=tz.gettz("Etc/GMT")
-        )
-        load = float(forecast["MTLF"])
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=utc)
+        load = _NaN_safe_get(forecast, "STLF")
+        if load is None:
+            load = _NaN_safe_get(forecast, "MTLF")
+        if load is None:
+            logger.info(f"fetch_load_forecast: {dt} has no forecasted load")
 
         datapoint = {
             "datetime": dt,
@@ -276,36 +241,53 @@ def fetch_wind_solar_forecasts(
         dt = target_datetime
     else:
         dt = parser.parse(target_datetime)
-    FORECAST_URL = "https://marketplace.spp.org/file-browser-api/download/midterm-resource-forecast?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTRF-{0}{1:02d}{2:02d}0000.csv".format(
-        dt.year, dt.month, dt.day
+
+    FORECAST_URL_PATH = (
+        "%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTRF-{0}{1:02d}{2:02d}0000.csv".format(
+            dt.year, dt.month, dt.day
+        )
+    )
+    FORECAST_URL = (
+        f"{US_PROXY}/file-browser-api/download/midterm-resource-forecast?{HOST_PARAMETER}&path="
+        + FORECAST_URL_PATH
     )
 
-    raw_data = get_data(FORECAST_URL)
+    try:
+        raw_data = get_data(FORECAST_URL)
+    except pd.errors.ParserError:
+        logger.error(
+            f"fetch_wind_solar_forecasts: {dt} has no forecast for url: {FORECAST_URL}"
+        )
+        return []
 
     # sometimes there is a leading whitespace in column names
     raw_data.columns = raw_data.columns.str.lstrip()
 
     data = []
-    for index, row in raw_data.iterrows():
-        forecast = row.to_dict()
+    for index in range(len(raw_data)):
+        forecast = raw_data.loc[index].to_dict()
 
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(
-            tzinfo=tz.gettz("Etc/GMT")
-        )
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=utc)
 
-        try:
-            solar = float(forecast["Wind Forecast MW"])
-            wind = float(forecast["Solar Forecast MW"])
-        except ValueError:
-            # can be NaN
+        # Get short term forecast if available, else medium term
+        solar = _NaN_safe_get(forecast, "Solar Forecast MW")
+        wind = _NaN_safe_get(forecast, "Wind Forecast MW")
+
+        production = {}
+        if solar is not None:
+            production["solar"] = solar
+        if wind is not None:
+            production["wind"] = wind
+
+        if production == {}:
+            logger.info(
+                f"fetch_wind_solar_forecasts: {dt} has no solar nor wind forecasted production"
+            )
             continue
 
         datapoint = {
             "datetime": dt,
-            "production": {
-                "solar": solar,
-                "wind": wind,
-            },
+            "production": production,
             "zoneKey": zone_key,
             "source": "spp.org",
         }
@@ -318,9 +300,7 @@ def fetch_wind_solar_forecasts(
 if __name__ == "__main__":
     print("fetch_production() -> ")
     print(fetch_production())
-    # print('fetch_exchange() -> ')
-    # print(fetch_exchange('US-MISO', 'US-SPP'))
     print("fetch_load_forecast() -> ")
     print(fetch_load_forecast(target_datetime="20190125"))
     print("fetch_wind_solar_forecasts() -> ")
-    print(fetch_wind_solar_forecasts(target_datetime="20190125"))
+    print(fetch_wind_solar_forecasts(target_datetime="20221118"))

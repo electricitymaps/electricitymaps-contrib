@@ -82,6 +82,10 @@ class Parsers(ParsersBaseModel):
     productionPerUnit: Optional[str]
 
 
+class Source(StrictBaseModel):
+    link: str
+
+
 class Delays(StrictBaseModel):
     consumption: Optional[PositiveInt]
     consumptionForecast: Optional[PositiveInt]
@@ -94,6 +98,9 @@ class Delays(StrictBaseModel):
 
 class Zone(StrictBaseModelWithAlias):
     bounding_box: Optional[List[Point]]
+    bypass_aggregation_checks: Optional[List[ZoneKey]] = Field(
+        [], alias="bypassedSubZones"
+    )
     capacity: Optional[Capacity]
     comment: Optional[str] = Field(None, alias="_comment")
     contributors: Optional[List[str]]
@@ -101,10 +108,11 @@ class Zone(StrictBaseModelWithAlias):
     disclaimer: Optional[str]
     flag_file_name: Optional[str]
     parsers: Parsers = Parsers()
-    sub_zone_names: Optional[List[str]] = Field(None, alias="subZoneNames")
+    sub_zone_names: Optional[List[ZoneKey]] = Field(None, alias="subZoneNames")
     timezone: Optional[str]
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
     estimation_method: Optional[str]
+    sources: Optional[Dict[str, Source]]
 
     def neighbors(self) -> List[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])

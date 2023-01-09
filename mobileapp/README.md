@@ -10,7 +10,20 @@ Xcode
 
 Android Studio
 
-Homebrew
+- install JDK v8 <-- to avoid having to create an Oracle account(!), you can find a `jdk-8u321-macosx-x64.dmg` in our internal Google Drive.
+- `brew install gradle`
+- install Android Studio - make sure you open it and go through the install wizard in the start
+  - Also go to Tools > SDK Manager and install SDK v29
+- Follow the steps here: https://www.brainfever.co.uk/2022/02/04/build-tool-32-1-0-rc1-is-missing-dx-at/
+  - instead of last step, add the following to your `.zshrc` file:
+  ```bash
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
+  export PATH=$JAVA_HOME/bin:$PATH
+  export PATH=$PATH:/Library/Android/sdk/platform-tools
+  export PATH=$PATH:/Library/Android/sdk/tools
+  export ANDROID_SDK_ROOT=~/Library/Android/sdk
+  export ANDROID_HOME=~/Library/Android/sdk
+  ```
 
 Node 18+
 

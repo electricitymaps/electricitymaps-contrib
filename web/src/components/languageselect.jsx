@@ -43,14 +43,20 @@ const LanguageSelectContainer = styled.ul`
     }
     &.preferred-language {
       background-color: rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 0;
+    }
+    &.other-language {
+      position: relative;
+      top: 27px;
     }
   }
 `;
 
 const LanguageSelect = () => {
-  const [languagesVisible, setLanguagesVisible] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
   const { __, i18n } = useTranslation();
+  const [languagesVisible, setLanguagesVisible] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGE_NAMES[i18n.language]);
 
   const toggleLanguagesVisible = () => {
     setLanguagesVisible(!languagesVisible);
@@ -76,7 +82,9 @@ const LanguageSelect = () => {
             <li key={key}>
               <button
                 onClick={() => handleLanguageSelect(key, language)}
-                className={selectedLanguage === language ? 'preferred-language' : null}
+                className={
+                  selectedLanguage === language ? 'preferred-language' : 'other-language'
+                }
               >
                 {language}
               </button>

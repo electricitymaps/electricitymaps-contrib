@@ -15,7 +15,8 @@ function getPolygons(input) {
   /* Transform the feature collection of polygons and multi-polygons into a feature collection of polygons only */
   /* all helper functions should rely on its output */
   const handlePolygon = (feature, props) => polygon(getCoords(feature), props);
-  const handleMultiPolygon = (feature, props) => getCoords(feature).map((coord) => polygon(coord, props));
+  const handleMultiPolygon = (feature, props) =>
+    getCoords(feature).map((coord) => polygon(coord, props));
 
   const polygons = [];
   let fc;
@@ -39,7 +40,7 @@ function getPolygons(input) {
     }
   });
 
-  return truncate(featureCollection(polygons), { precision: 6 });
+  return truncate(featureCollection(polygons), { precision: 4 });
 }
 
 function isSliver(polygon, polArea, sliverRatio) {
@@ -66,7 +67,8 @@ function getHoles(fc, minArea, sliverRatio) {
 
 const fileExists = (fileName) => fs.existsSync(fileName);
 
-const getJSON = (fileName, encoding = 'utf8') => JSON.parse(fs.readFileSync(fileName, encoding));
+const getJSON = (fileName, encoding = 'utf8') =>
+  JSON.parse(fs.readFileSync(fileName, encoding));
 
 const writeJSON = (fileName, obj, encoding = 'utf8') =>
   fs.writeFileSync(fileName, JSON.stringify(obj), { encoding, flag: 'w' });
@@ -85,4 +87,34 @@ const round = (number, decimals = 2) => {
   return Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
 };
 
-module.exports = { getPolygons, getHoles, isSliver, writeJSON, getJSON, log, round, fileExists };
+/**
+ * Rounds the all the coordinates in the geojson to a specific amount of decimals and returns a new geojson.
+ * @param {GeoJSON} geojson
+ * @param {int} precision
+ * @returns
+ */
+const roundGeoPoints = (geojson, precision = 4) => {
+  geojson.features.forEach((feature) => {
+    feature.geometry.coordinates.forEach((group) => {
+      group.forEach((area) => {
+        area.forEach((point) => {
+          point[0] = round(point[0], precision);
+          point[1] = round(point[1], precision);
+        });
+      });
+    });
+  });
+  return geojson;
+};
+
+module.exports = {
+  getPolygons,
+  getHoles,
+  isSliver,
+  writeJSON,
+  getJSON,
+  log,
+  round,
+  roundGeoPoints,
+  fileExists,
+};

@@ -23,14 +23,24 @@ function isUsingLocalEndpoint() {
 }
 
 async function sha256(message) {
-  const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
-  return Array.from(new Uint8Array(hashBuffer))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+  try {
+    const hashBuffer = await crypto.subtle.digest(
+      'SHA-256',
+      new TextEncoder().encode(message)
+    );
+    return Array.from(new Uint8Array(hashBuffer))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+  } catch (error) {
+    console.error(error);
+    return '';
+  }
 }
 
 export function getEndpoint() {
-  return isUsingLocalEndpoint() ? 'http://localhost:8001' : 'https://app-backend.electricitymap.org';
+  return isUsingLocalEndpoint()
+    ? 'http://localhost:8001'
+    : 'https://app-backend.electricitymap.org';
 }
 
 export async function protectedJsonRequest(path) {
@@ -80,7 +90,9 @@ export function handleRequestError(err) {
         return;
       }
 
-      thirdPartyServices.trackError(new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`));
+      thirdPartyServices.trackError(
+        new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`)
+      );
     } else {
       thirdPartyServices.trackError(err);
     }

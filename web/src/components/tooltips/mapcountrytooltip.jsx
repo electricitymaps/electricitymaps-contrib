@@ -19,6 +19,11 @@ const CountryTableHeaderInner = styled.div`
   display: flex;
   flex-basis: 33.3%;
   justify-content: space-between;
+  margin-bottom: 5px;
+
+  & .country-col:not(:first-of-type) {
+    margin-left: 1.25rem;
+  }
 `;
 
 const StyledTooltipTimeDisplay = styled(TooltipTimeDisplay)`
@@ -27,7 +32,13 @@ const StyledTooltipTimeDisplay = styled(TooltipTimeDisplay)`
 `;
 
 const TooltipContent = React.memo(
-  ({ isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
+  ({
+    isDataDelayed,
+    hasParser,
+    co2intensity,
+    fossilFuelPercentage,
+    renewablePercentage,
+  }) => {
     const { __ } = useTranslation();
     if (!hasParser) {
       return (
@@ -45,9 +56,13 @@ const TooltipContent = React.memo(
     }
     if (!co2intensity) {
       if (isDataDelayed) {
-        return <div className="temporary-outage-text">{__('tooltips.dataIsDelayed')}</div>;
+        return (
+          <div className="temporary-outage-text">{__('tooltips.dataIsDelayed')}</div>
+        );
       }
-      return <div className="temporary-outage-text">{__('tooltips.temporaryDataOutage')}</div>;
+      return (
+        <div className="temporary-outage-text">{__('tooltips.temporaryDataOutage')}</div>
+      );
     }
     return (
       <div className="zone-details">
@@ -72,7 +87,17 @@ const TooltipContent = React.memo(
   }
 );
 
-const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose, isZoneNameDisplayed }) => {
+const ZoneNameHeader = styled.div`
+  margin-bottom: 5px;
+`;
+
+const MapCountryTooltip = ({
+  electricityMixMode,
+  position,
+  zoneData,
+  onClose,
+  isZoneNameDisplayed,
+}) => {
   if (!zoneData) {
     return null;
   }
@@ -82,19 +107,28 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose, is
   const co2intensity = getCO2IntensityByMode(zoneData, electricityMixMode);
 
   const fossilFuelRatio =
-    electricityMixMode === 'consumption' ? zoneData.fossilFuelRatio : zoneData.fossilFuelRatioProduction;
-  const fossilFuelPercentage = fossilFuelRatio !== null ? Math.round(100 * (1 - fossilFuelRatio)) : '?';
+    electricityMixMode === 'consumption'
+      ? zoneData.fossilFuelRatio
+      : zoneData.fossilFuelRatioProduction;
+  const fossilFuelPercentage =
+    fossilFuelRatio !== null ? Math.round(100 * (1 - fossilFuelRatio)) : '?';
 
   const renewableRatio =
-    electricityMixMode === 'consumption' ? zoneData.renewableRatio : zoneData.renewableRatioProduction;
-  const renewablePercentage = renewableRatio !== null ? Math.round(100 * renewableRatio) : '?';
+    electricityMixMode === 'consumption'
+      ? zoneData.renewableRatio
+      : zoneData.renewableRatioProduction;
+  const renewablePercentage =
+    renewableRatio !== null ? Math.round(100 * renewableRatio) : '?';
 
   return (
     <Tooltip id="country-tooltip" position={position} onClose={onClose}>
-      <div className="zone-name-header">
+      <ZoneNameHeader>
         {isZoneNameDisplayed && <ZoneName zone={zoneData.countryCode} />}
-        <StyledTooltipTimeDisplay date={zoneData.stateDatetime} isZoneNameDisplayed={isZoneNameDisplayed} />
-      </div>
+        <StyledTooltipTimeDisplay
+          date={zoneData.stateDatetime}
+          isZoneNameDisplayed={isZoneNameDisplayed}
+        />
+      </ZoneNameHeader>
       <TooltipContent
         hasParser={zoneData.hasParser}
         isDataDelayed={isDataDelayed}

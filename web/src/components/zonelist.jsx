@@ -7,7 +7,11 @@ import styled from 'styled-components';
 import { dispatchApplication } from '../store';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getCenteredLocationViewport } from '../helpers/map';
-import { getZoneNameWithCountry, getZoneName, getCountryName } from '../helpers/translation';
+import {
+  getZoneNameWithCountry,
+  getZoneName,
+  getCountryName,
+} from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 import { ascending } from 'd3-array';
 import { values } from 'd3-collection';
@@ -23,7 +27,8 @@ function withZoneRankings(zones) {
 }
 
 function getCo2IntensityAccessor(electricityMixMode) {
-  return (d) => (electricityMixMode === 'consumption' ? d.co2intensity : d.co2intensityProduction);
+  return (d) =>
+    electricityMixMode === 'consumption' ? d.co2intensity : d.co2intensityProduction;
 }
 
 function sortAndValidateZones(zones, accessor) {
@@ -47,7 +52,10 @@ function zoneMatchesQuery(zone, queryString) {
   }
   const queries = queryString.split(' ');
   return queries.every(
-    (query) => getZoneNameWithCountry(zone.countryCode).toLowerCase().indexOf(query.toLowerCase()) !== -1
+    (query) =>
+      getZoneNameWithCountry(zone.countryCode)
+        .toLowerCase()
+        .indexOf(query.toLowerCase()) !== -1
   );
 }
 
@@ -56,17 +64,90 @@ const mapStateToProps = (state) => ({
   searchQuery: state.application.searchQuery,
 });
 
+const ZoneListContainer = styled(List)`
+  overflow-y: scroll;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+
+  p {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  a {
+    color: var(--black);
+    display: flex;
+    font-size: 1rem;
+    justify-content: end;
+    align-items: center;
+    box-sizing: content-box;
+
+    /* formatting */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1rem;
+
+    &:hover {
+      text-decoration: none;
+      background: rgb(235, 235, 235);
+    }
+
+    &.selected {
+      background-color: rgb(235, 235, 235);
+    }
+  }
+`;
+
 const Flag = styled.img`
   margin-right: 10px;
   margin-left: 10px;
   vertical-align: middle;
 `;
 
+const CO2IntensityTag = styled.div`
+  border-radius: 3px;
+  margin-right: 10px;
+  height: 17px;
+  width: 17px;
+`;
+
+const Ranking = styled.div`
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+`;
+
+const RowName = styled.div`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  flex: 1;
+`;
+
+const CountryName = styled.div`
+  font-size: 0.7rem;
+`;
+
+const ZoneName = styled.div`
+  font-size: 0.9rem;
+  margin-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
 const ZoneList = ({ electricityMixMode, searchQuery }) => {
   const zonesList = useCurrentZoneList();
   const co2ColorScale = useCo2ColorScale();
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
-  const zones = processZones(zonesList, co2IntensityAccessor).filter((z) => zoneMatchesQuery(z, searchQuery));
+  const zones = processZones(zonesList, co2IntensityAccessor).filter((z) =>
+    zoneMatchesQuery(z, searchQuery)
+  );
 
   const listRef = React.createRef();
   const history = useHistory();
@@ -95,12 +176,16 @@ const ZoneList = ({ electricityMixMode, searchQuery }) => {
             zones[selectedItemIndex] && enterZone(zones[selectedItemIndex]);
             break;
           case 'ArrowUp':
-            prevItemIndex = selectedItemIndex === null ? 0 : Math.max(0, selectedItemIndex - 1);
+            prevItemIndex =
+              selectedItemIndex === null ? 0 : Math.max(0, selectedItemIndex - 1);
             listRef.current?.scrollToItem(prevItemIndex);
             setSelectedItemIndex(prevItemIndex);
             break;
           case 'ArrowDown':
-            nextItemIndex = selectedItemIndex === null ? 0 : Math.min(zones.length - 1, selectedItemIndex + 1);
+            nextItemIndex =
+              selectedItemIndex === null
+                ? 0
+                : Math.min(zones.length - 1, selectedItemIndex + 1);
             listRef.current?.scrollToItem(nextItemIndex);
             setSelectedItemIndex(nextItemIndex);
             break;
@@ -149,14 +234,18 @@ const ZoneList = ({ electricityMixMode, searchQuery }) => {
         onClick={() => enterZone(zones[index])}
         className={selectedItemIndex === index ? 'selected' : undefined}
       >
-        <div className="ranking">{zones[index].ranking}</div>
-        <Flag src={flagUri(zones[index].countryCode, 32)} height={32} width={32} alt={zones[index].countryCode} />
-        <div className="name">
-          <div className="zone-name">{getZoneName(zones[index].countryCode)}</div>
-          <div className="country-name">{getCountryName(zones[index].countryCode)}</div>{' '}
-        </div>
-        <div
-          className="co2-intensity-tag"
+        <Ranking>{zones[index].ranking}</Ranking>
+        <Flag
+          src={flagUri(zones[index].countryCode, 32)}
+          height={32}
+          width={32}
+          alt={zones[index].countryCode}
+        />
+        <RowName>
+          <ZoneName>{getZoneName(zones[index].countryCode)}</ZoneName>
+          <CountryName>{getCountryName(zones[index].countryCode)}</CountryName>{' '}
+        </RowName>
+        <CO2IntensityTag
           style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zones[index])) }}
         />
       </Link>
@@ -164,7 +253,7 @@ const ZoneList = ({ electricityMixMode, searchQuery }) => {
   }, areEqual);
 
   return (
-    <List
+    <ZoneListContainer
       className="zone-list"
       ref={listRef}
       height={height}
@@ -175,7 +264,7 @@ const ZoneList = ({ electricityMixMode, searchQuery }) => {
       }}
     >
       {Row}
-    </List>
+    </ZoneListContainer>
   );
 };
 

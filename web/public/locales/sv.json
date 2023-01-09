@@ -170,6 +170,10 @@
     "detailed": "detaljerad",
     "aggregateinfo": "Länder med zoner som sakanar data kan inte bli aggregerade"
   },
+  "aggregateButtons": {
+    "country": "land",
+    "zone": "zon"
+  },
   "misc": {
     "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
     "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
@@ -310,47 +314,47 @@
     "AT": {
       "zoneName": "Österrike"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australien",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australien",
       "zoneName": "Northern Territory"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australien",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australien",
       "zoneName": "South Australia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australien",
       "zoneName": "Tasmanien"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australien",
       "zoneName": "Cape Barren Island"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australien",
       "zoneName": "King Island"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australien",
       "zoneName": "Flinders Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australien",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australien",
       "zoneName": "Western Australia"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australien",
       "zoneName": "Rottnest Island"
     },
@@ -402,13 +406,12 @@
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius och Saba"
     },
+    "BR": {
+      "zoneName": "Brasilien"
+    },
     "BR-CS": {
       "countryName": "Brasilien",
       "zoneName": "Centrala Brasilien"
-    },
-    "BR-I": {
-      "countryName": "Brasilien",
-      "zoneName": "Isolerade system"
     },
     "BR-N": {
       "countryName": "Brasilien",
@@ -708,10 +711,6 @@
     "GB-ORK": {
       "countryName": "Storbritannien",
       "zoneName": "Orkneyöarna"
-    },
-    "GB-SHI": {
-      "countryName": "Storbritannien",
-      "zoneName": "Shetlandsöarna"
     },
     "GB-ZET": {
       "countryName": "Storbritannien",
@@ -1219,6 +1218,9 @@
     "NL": {
       "zoneName": "Nederländerna"
     },
+    "NO": {
+      "zoneName": "Norge"
+    },
     "NO-NO1": {
       "countryName": "Norge",
       "zoneName": "Sydöstra Norge"
@@ -1607,10 +1609,6 @@
       "countryName": "USA",
       "zoneName": "Jacksonville Electric Authority"
     },
-    "US-FLA-NSB": {
-      "countryName": "USA",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "USA",
       "zoneName": "Seminole Electric Cooperative"
@@ -1630,10 +1628,6 @@
     "US-MIDW-AECI": {
       "countryName": "USA",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "USA",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",
@@ -1735,10 +1729,6 @@
       "countryName": "USA",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "USA",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "USA",
       "zoneName": "Southeastern Power Administration"
@@ -1762,10 +1752,6 @@
     "US-SW-GRIF": {
       "countryName": "USA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "USA",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "USA",
@@ -1850,6 +1836,13 @@
     },
     "ZW": {
       "zoneName": "Zimbabwe"
+    },
+    "US": {
+      "zoneName": "Sammanhängande Amerikas förenta stater"
+    },
+    "US-AK": {
+      "countryName": "USA",
+      "zoneName": "Alaska"
     }
   }
 }

@@ -46,44 +46,6 @@
   pointer-events: none;
 }
 
-#country-tooltip {
-  .zone-name-header {
-    margin-bottom: 12px;
-  }
-  .zone-details > div {
-    margin-bottom: 5px;
-  }
-
-  .country-col:not(:first-of-type) {
-    margin-left: 1.25rem;
-  }
-
-  &.country-tooltip-visible {
-    @include respond-to('small') {
-      display: none;
-    }
-  }
-}
-
-.country-spot-price,
-.emission-intensity,
-.fossil-fuel-percentage,
 #exchange-tooltip .flow {
   font-weight: bold;
-}
-
-.emission-rect {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-}
-
-.circular-gauge {
-  .background {
-    fill: $light-gray;
-  }
-
-  .foreground {
-    fill: #78cde8;
-  }
 }

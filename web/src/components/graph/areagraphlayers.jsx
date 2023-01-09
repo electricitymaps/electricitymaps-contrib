@@ -5,7 +5,16 @@ import { area, curveStepAfter } from 'd3-shape';
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const AreaGraphLayers = React.memo(
-  ({ layers, datetimes, timeScale, valueScale, mouseMoveHandler, mouseOutHandler, isMobile, svgNode }) => {
+  ({
+    layers,
+    datetimes,
+    timeScale,
+    valueScale,
+    mouseMoveHandler,
+    mouseOutHandler,
+    isMobile,
+    svgNode,
+  }) => {
     const [x1, x2] = timeScale.range();
     const [y2, y1] = valueScale.range();
     if (x1 >= x2 || y1 >= y2) {
@@ -43,16 +52,34 @@ const AreaGraphLayers = React.memo(
         {layers.map((layer, ind) => {
           const isGradient = typeof layer.fill === 'function';
           const gradientId = `areagraph-gradient-${layer.key}`;
-          // The datapoint valid until the next point
-          // However, for the last point, we won't have a next point
-          // Therefore, we add one here in order to make sure
-          // the last point is visible for the following interval
-          const lastDataPoint = [...layer.datapoints.at(-1)];
-          lastDataPoint.data = {
-            ...layer.datapoints.at(-1)?.data,
-            datetime: datetimes[layer.datapoints.length],
-          };
-          const datapoints = [...layer.datapoints, lastDataPoint];
+          // A datapoint valid until the next one
+          // However, for the last point (or for missing points),
+          // we won't have a next point.
+          // This affects the way step curves are plotted.
+          // Therefore, we copy all datapoints and make sure
+          // both a start and an end are present to ensure
+          // proper display of missing points
+          const datapoints = [
+            ...layer.datapoints.map((d, i) => [
+              {
+                ...d,
+                data: {
+                  ...d.data,
+                  datetime: d.data.datetime,
+                },
+              },
+              {
+                ...d,
+                data: {
+                  ...d.data,
+                  // Here we use a different array which
+                  // will contain the last datetime.
+                  datetime: datetimes[i + 1],
+                },
+                isEnd: true,
+              },
+            ]),
+          ].flat();
 
           return (
             <React.Fragment key={layer.key}>
@@ -71,11 +98,18 @@ const AreaGraphLayers = React.memo(
                 onBlur={handleLayerMouseOut}
               />
               {isGradient && (
-                <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1={x1} x2={x2}>
+                <linearGradient
+                  id={gradientId}
+                  gradientUnits="userSpaceOnUse"
+                  x1={x1}
+                  x2={x2}
+                >
                   {datapoints.map((d) => (
                     <stop
-                      key={d.data.datetime}
-                      offset={`${((timeScale(d.data.datetime) - x1) / (x2 - x1)) * 100.0}%`}
+                      key={`${d.data.datetime}${d.isEnd}`}
+                      offset={`${
+                        ((timeScale(d.data.datetime) - x1) / (x2 - x1)) * 100.0
+                      }%`}
                       stopColor={layer.fill(d)}
                     />
                   ))}
