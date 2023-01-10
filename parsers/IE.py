@@ -9,6 +9,8 @@ from requests import Response, Session
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
+IE_TZ = pytz.timezone("Europe/Dublin")
+
 DEMAND_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=demandactual&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
 DEMAND_FORECAST_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=demandforecast&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
 WIND_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=windactual&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
@@ -41,6 +43,7 @@ def fetch_data(
     """
     assert type(target_datetime) == datetime
     assert kind != ""
+    assert session is not None
 
     resp: Response = session.get(
         KINDS_URL[kind].format(
@@ -67,7 +70,10 @@ def fetch_production(
 ) -> list:
     """Gets values for wind production and estimates unknwon production as demand - wind - exchange"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+        target_datetime = datetime.now().replace(tzinfo=IE_TZ)
+
+    if session is None:
+        session = Session()
 
     demand_data = fetch_data(
         target_datetime=target_datetime,
@@ -126,7 +132,10 @@ def fetch_exchange(
 ) -> list:
     """gets exchanges values for the East-West interconnector (GB->IE)"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+        target_datetime = datetime.now().replace(tzinfo=IE_TZ)
+
+    if session is None:
+        session = Session()
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     exchange_data = fetch_data(
@@ -165,7 +174,10 @@ def fetch_consumption(
 ) -> list:
     """gets consumption values for ROI"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+        target_datetime = datetime.now().replace(tzinfo=IE_TZ)
+
+    if session is None:
+        session = Session()
 
     demand_data = fetch_data(
         target_datetime=target_datetime,
@@ -198,6 +210,13 @@ def fetch_consumption_forecast(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """gets forecasted consumption values for ROI"""
+
+    if target_datetime is None:
+        target_datetime = datetime.now().replace(tzinfo=IE_TZ)
+
+    if session is None:
+        session = Session()
+
     demand_forecast_data = fetch_data(
         target_datetime=target_datetime,
         zone_key=zone_key,
@@ -232,7 +251,10 @@ def fetch_wind_forecasts(
     Gets values and corresponding datetimes for forecasted wind produciton.
     """
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+        target_datetime = datetime.now().replace(tzinfo=IE_TZ)
+
+    if session is None:
+        session = Session()
 
     wind_forecast_data = fetch_data(
         target_datetime=target_datetime,
