@@ -54,7 +54,7 @@ def fetch_data(
     except:
         raise ParserException(
             parser="IE.py",
-            message=f"{target_datetime}: {kind} data is not available",
+            message=f"{target_datetime}: {kind} data is not available for {zone_key}",
         )
     filtered_data = [item for item in data if item["Value"] is not None]
     return filtered_data
