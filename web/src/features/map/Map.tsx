@@ -144,7 +144,7 @@ export default function MapPage(): ReactElement {
     }
   }, [isSuccess]);
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
-    setHoveredZone(hoveredZone);
+    setHoveredZone(null);
     const map = mapReference.current?.getMap();
     if (!map || !event.features) {
       return;
