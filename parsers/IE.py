@@ -10,11 +10,11 @@ from requests import Response, Session
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-DEMAND_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=demandactual&region=ROI&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
-DEMAND_FORECAST_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=demandforecast&region=ROI&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
-WIND_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=windactual&region=ROI&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
-WIND_FORECAST_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=windforecast&region=ROI&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
-EXCHANGE_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=interconnection&region=ROI&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
+DEMAND_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=demandactual&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
+DEMAND_FORECAST_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=demandforecast&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
+WIND_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=windactual&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
+WIND_FORECAST_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=windforecast&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
+EXCHANGE_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=interconnection&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
 
 KINDS_URL = {
     "demand": DEMAND_URL,
@@ -24,9 +24,15 @@ KINDS_URL = {
     "exchange": EXCHANGE_URL,
 }
 
+ZONE_MAPPING = {
+    "IE": {"key": "ROI", "exchange": "INTER_EWIC"},
+    "GB-NIR": {"key": "NI", "exchange": "INTER_MOYLE"},
+}
+
 
 def fetch_data(
     target_datetime: datetime,
+    zone_key: str,
     kind: str,
     session: Optional[Session] = None,
 ) -> dict:
@@ -38,7 +44,11 @@ def fetch_data(
     assert kind != ""
 
     r = session or Session()
-    resp: Response = r.get(KINDS_URL[kind].format(dt=target_datetime.strftime("%d-%b-%Y")))
+    resp: Response = r.get(
+        KINDS_URL[kind].format(
+            dt=target_datetime.strftime("%d-%b-%Y"), zone=ZONE_MAPPING[zone_key]["key"]
+        )
+    )
     try:
         data = resp.json().get("Rows", {})
     except:
@@ -52,7 +62,7 @@ def fetch_data(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "IE",
+    zone_key: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -62,13 +72,19 @@ def fetch_production(
         target_datetime = arrow.utcnow().datetime
 
     demand_data = fetch_data(
-        target_datetime=target_datetime, kind="demand", session=session
+        target_datetime=target_datetime,
+        zone_key=zone_key,
+        kind="demand",
+        session=session,
     )
     wind_data = fetch_data(
-        target_datetime=target_datetime, kind="wind", session=session
+        target_datetime=target_datetime, zone_key=zone_key, kind="wind", session=session
     )
     exchange_data = fetch_data(
-        target_datetime=target_datetime, kind="exchange", session=session
+        target_datetime=target_datetime,
+        zone_key=zone_key,
+        kind="exchange",
+        session=session,
     )
     assert len(demand_data) > 0
     assert len(wind_data) > 0
@@ -116,12 +132,17 @@ def fetch_exchange(
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     exchange_data = fetch_data(
-        target_datetime=target_datetime, kind="exchange", session=session
+        target_datetime=target_datetime,
+        zone_key=zone_key1,
+        kind="exchange",
+        session=session,
     )
 
     assert len(exchange_data) > 0
     filtered_exchanges = [
-        item for item in exchange_data if item["FieldName"] == "INTER_EWIC"
+        item
+        for item in exchange_data
+        if item["FieldName"] == ZONE_MAPPING[zone_key1]["exchange"]
     ]
     exchange = []
     for item in filtered_exchanges:
@@ -139,7 +160,7 @@ def fetch_exchange(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "IE",
+    zone_key: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -149,7 +170,10 @@ def fetch_consumption(
         target_datetime = arrow.utcnow().datetime
 
     demand_data = fetch_data(
-        target_datetime=target_datetime, kind="demand", session=session
+        target_datetime=target_datetime,
+        zone_key=zone_key,
+        kind="demand",
+        session=session,
     )
 
     assert len(demand_data) > 0
@@ -170,14 +194,17 @@ def fetch_consumption(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
-    zone_key: str = "IE",
+    zone_key: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """gets forecasted consumption values for ROI"""
     demand_forecast_data = fetch_data(
-        target_datetime=target_datetime, kind="demand_forecast", session=session
+        target_datetime=target_datetime,
+        zone_key=zone_key,
+        kind="demand_forecast",
+        session=session,
     )
 
     assert len(demand_forecast_data) > 0
@@ -198,7 +225,7 @@ def fetch_consumption_forecast(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
-    zone_key: str = "IE",
+    zone_key: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -210,7 +237,10 @@ def fetch_wind_solar_forecasts(
         target_datetime = arrow.utcnow().datetime
 
     wind_forecast_data = fetch_data(
-        target_datetime=target_datetime, kind="wind_forecast", session=session
+        target_datetime=target_datetime,
+        zone_key=zone_key,
+        kind="wind_forecast",
+        session=session,
     )
 
     assert len(wind_forecast_data) > 0

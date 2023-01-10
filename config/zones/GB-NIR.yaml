@@ -216,9 +216,9 @@ fallbackZoneMixes:
         wind: 0.3270871783294076
 flag_file_name: _Northern%20Ireland.png
 parsers:
-  consumption: ENTSOE.fetch_consumption
-  consumptionForecast: ENTSOE.fetch_consumption_forecast
-  generationForecast: ENTSOE.fetch_generation_forecast
+  consumption: IE.fetch_consumption
+  consumptionForecast: IE.fetch_consumption_forecast
   price: ENTSOE.fetch_price
-  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecast: IE.fetch_wind_solar_forecasts
+  production: IE.fetch_production
 timezone: null
