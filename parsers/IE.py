@@ -223,7 +223,7 @@ def fetch_consumption_forecast(
 
 
 @refetch_frequency(timedelta(days=1))
-def fetch_wind_solar_forecasts(
+def fetch_wind_forecasts(
     zone_key: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
