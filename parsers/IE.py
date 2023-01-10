@@ -33,7 +33,7 @@ def fetch_data(
     target_datetime: datetime,
     zone_key: str,
     kind: str,
-    session: Optional[Session] = None,
+    session: Session,
 ) -> dict:
     """
     Gets values and corresponding datetimes for the specified data kind in ROI.
