@@ -4,12 +4,11 @@ import json
 import unittest
 from unittest.mock import patch
 
+from parsers import ajenti
 from pkg_resources import resource_string
 from requests import Session
 from requests_mock import Adapter
 from testfixtures import LogCapture
-
-from parsers import ajenti
 
 
 class TestAusTasKi(unittest.TestCase):
@@ -19,7 +18,7 @@ class TestAusTasKi(unittest.TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_parsing_payload(self):
-        filename = "parsers/test/mocks/AUS_RI_payload1.json"
+        filename = "parsers/test/mocks/AU/AU_TAS_FI_payload1.json"
         with open(filename) as f:
             fake_data = json.load(f)
         with patch("parsers.ajenti.SignalR.get_value") as f:
@@ -27,12 +26,9 @@ class TestAusTasKi(unittest.TestCase):
             data = ajenti.fetch_production()
 
         self.assertIsNotNone(data["production"])
-        self.assertEqual(data["production"]["wind"], 0.148)
-        self.assertEqual(data["production"]["solar"], 0)
-
-        self.assertEqual(data["production"]["oil"], 0.683)
-
-        # there is no biomass on that island
+        self.assertEqual(data["production"]["wind"], 0.595)
+        self.assertEqual(data["production"]["solar"], 0.004)
+        self.assertEqual(data["production"]["oil"], 0.283)
         self.assertEqual(data["production"]["biomass"], 0)
 
 

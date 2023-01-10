@@ -4,12 +4,11 @@ import json
 import unittest
 from unittest.mock import patch
 
+from parsers import ajenti
 from pkg_resources import resource_string
 from requests import Session
 from requests_mock import Adapter
 from testfixtures import LogCapture
-
-from parsers import ajenti
 
 
 class TestAusTasKi(unittest.TestCase):
@@ -19,7 +18,7 @@ class TestAusTasKi(unittest.TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_parsing_payload(self):
-        filename = "parsers/test/mocks/AUS_TAS_KI_payload1.json"
+        filename = "parsers/test/mocks/AU/AU_TAS_KI_payload1.json"
         with open(filename) as f:
             fake_data = json.load(f)
         with patch("parsers.ajenti.SignalR.get_value") as f:
@@ -37,7 +36,7 @@ class TestAusTasKi(unittest.TestCase):
 
     # This test will fetch the payload from the webservice
     # def test_parsing_payload_real(self):
-    #     data = AUS_TAS_KI.fetch_production()
+    #     data = AU_TAS_KI.fetch_production()
 
     #     self.assertIsNotNone(data['production'])
     #     self.assertIsNotNone(data['production']['wind'])
