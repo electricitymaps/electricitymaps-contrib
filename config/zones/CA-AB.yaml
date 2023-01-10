@@ -14,89 +14,89 @@ emissionFactors:
   direct:
     battery discharge:
       - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 514.0081284201448
+        source: Electricity Maps, 2017 average
+        value: 514.006628869557
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 473.7598655851236
+        source: Electricity Maps, 2018 average
+        value: 474.32094058480646
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 480.690733045079
+        source: Electricity Maps, 2019 average
+        value: 482.2922242593385
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 435.2353252392007
+        source: Electricity Maps, 2020 average
+        value: 437.58837392763695
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 480.9062885348112
+        source: Electricity Maps, 2021 average
+        value: 483.05444890890203
     hydro discharge:
       - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 514.0081284201448
+        source: Electricity Maps, 2017 average
+        value: 514.006628869557
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 473.7598655851236
+        source: Electricity Maps, 2018 average
+        value: 474.32094058480646
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 480.690733045079
+        source: Electricity Maps, 2019 average
+        value: 482.2922242593385
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 435.2353252392007
+        source: Electricity Maps, 2020 average
+        value: 437.58837392763695
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 480.9062885348112
+        source: Electricity Maps, 2021 average
+        value: 483.05444890890203
   lifecycle:
     battery discharge:
       - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 597.1657157481017
+        source: Electricity Maps, 2017 average
+        value: 597.1641329020657
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 562.6336853455309
+        source: Electricity Maps, 2018 average
+        value: 563.1123375006265
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 571.1314214469331
+        source: Electricity Maps, 2019 average
+        value: 572.4897252419628
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 524.1975108439722
+        source: Electricity Maps, 2020 average
+        value: 526.21366252643
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 480.9062885348112
+        source: Electricity Maps, 2021 average
+        value: 483.05444890890203
     hydro discharge:
       - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 597.1657157481017
+        source: Electricity Maps, 2017 average
+        value: 597.1641329020657
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 562.6336853455309
+        source: Electricity Maps, 2018 average
+        value: 563.1123375006265
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 571.1314214469331
+        source: Electricity Maps, 2019 average
+        value: 572.4897252419628
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 524.1975108439722
+        source: Electricity Maps, 2020 average
+        value: 526.21366252643
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 480.9062885348112
+        source: Electricity Maps, 2021 average
+        value: 483.05444890890203
     unknown:
       source: 'Battle River dual fuel power plant: 50% coal and 50% natural gas'
       value: 655
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2019 average
+    - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0001502252262962537
-        coal: 0.3426864860223168
-        gas: 0.554206554409324
-        geothermal: 4.736823928909027e-06
-        hydro: 0.02533348976149992
-        hydro discharge: 2.9211883435035454e-07
-        nuclear: 0.00016205527915291037
-        oil: 0.00017140976927600905
-        solar: 4.39473179969166e-05
-        unknown: 0.02695024424824794
-        wind: 0.050784730162938586
+        biomass: 0.00015009254172685313
+        coal: 0.3428059922630129
+        gas: 0.5542073341021545
+        geothermal: 4.717825565592796e-06
+        hydro: 0.025380072076495345
+        hydro discharge: 1.6581771502405662e-07
+        nuclear: 0.0001618175716310977
+        oil: 0.00017397971587852217
+        solar: 4.635281476656439e-05
+        unknown: 0.02695033437648351
+        wind: 0.05061339866691943
 flag_file_name: ca.png
 parsers:
   price: CA_AB.fetch_price

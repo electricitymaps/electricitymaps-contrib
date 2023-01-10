@@ -238,35 +238,35 @@
     "AR": {
       "zoneName": "아르헨티나"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "호주",
       "zoneName": "뉴사우스웨일스 주"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "호주",
       "zoneName": "노던 준주"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "호주",
       "zoneName": "퀸즐랜드 주"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "호주",
       "zoneName": "사우스오스트레일리아 주"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "호주",
       "zoneName": "태즈메이니아 주"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "태즈메이니아 주",
       "zoneName": "킹섬"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "호주",
       "zoneName": "빅토리아 주"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "호주",
       "zoneName": "웨스턴 오스트레일리아 주"
     },
@@ -317,6 +317,9 @@
     },
     "BQ": {
       "zoneName": "보네르섬, 신트외스타티위스섬, 사바섬 제도"
+    },
+    "BR": {
+      "zoneName": "브라질"
     },
     "BR-CS": {
       "countryName": "브라질",
@@ -592,10 +595,6 @@
     "GB-ORK": {
       "countryName": "영국",
       "zoneName": "오크니 제도"
-    },
-    "GB-SHI": {
-      "countryName": "영국",
-      "zoneName": "셰틀랜드 제도"
     },
     "GB-ZET": {
       "countryName": "영국",
@@ -1358,7 +1357,7 @@
       "zoneName": "미국령 군소 제도"
     },
     "US": {
-      "zoneName": "미국"
+      "zoneName": "인접한 미국"
     },
     "US-HI-HA": {
       "countryName": "미국",

@@ -19,9 +19,6 @@ test('zones should have initial state with correct structure', () => {
       geography: expect.any(Object),
       config: {
         hasParser: true,
-        capacity: {
-          nuclear: 0,
-        },
         contributors: expect.arrayContaining(['corradio']),
         timezone: 'Europe/Copenhagen',
       },

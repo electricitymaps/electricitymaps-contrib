@@ -14,13 +14,31 @@ const mergeZones = () => {
   const zoneFiles = fs.readdirSync(basePath);
   const filesWithDir = zoneFiles.map((file) => `${basePath}/${file}`);
 
-  const UNNECESSARY_ZONE_FIELDS = ['fallbackZoneMixes', 'isLowCarbon', 'isRenewable', 'emissionFactors'];
+  const UNNECESSARY_ZONE_FIELDS = [
+    'fallbackZoneMixes',
+    'isLowCarbon',
+    'isRenewable',
+    'emissionFactors',
+    'capacity',
+    'comment',
+    '_comment',
+    'sources',
+  ];
   const zones = filesWithDir.reduce((zones, filepath) => {
     const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8'));
     for (const key in zoneConfig) {
       if (UNNECESSARY_ZONE_FIELDS.includes(key)) {
         delete zoneConfig[key];
       }
+    }
+    /*
+     * The parsers object is only used to check if there is a production parser in the frontend.
+     * This moves this check to the build step, so we can minimize the size of the frontend bundle.
+     */
+    if (zoneConfig?.parsers?.production?.length > 0) {
+      zoneConfig.parsers = true;
+    } else {
+      zoneConfig.parsers = false;
     }
     Object.assign(zones, { [path.parse(filepath).name]: zoneConfig });
     return zones;
@@ -35,9 +53,17 @@ const mergeExchanges = () => {
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDir = exchangeFiles.map((file) => `${basePath}/${file}`);
 
+  const UNNECESSARY_EXCHANGE_FIELDS = ['capacity', 'comment', '_comment', 'parsers'];
+
   const exchanges = filesWithDir.reduce((exchanges, filepath) => {
+    const exchangeConfig = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    for (const key in exchangeConfig) {
+      if (UNNECESSARY_EXCHANGE_FIELDS.includes(key)) {
+        delete exchangeConfig[key];
+      }
+    }
     const exchangeKey = path.parse(filepath).name.split('_').join('->');
-    Object.assign(exchanges, { [exchangeKey]: yaml.load(fs.readFileSync(filepath, 'utf8')) });
+    Object.assign(exchanges, { [exchangeKey]: exchangeConfig });
     return exchanges;
   }, {});
 

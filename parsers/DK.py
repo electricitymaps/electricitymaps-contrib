@@ -4,8 +4,8 @@ from typing import List, Optional, Union
 
 from requests import Response, Session
 
-from .lib.config import refetch_frequency
-from .lib.exceptions import ParserException
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 EXCHANGE_MAPPING = {
     "DE->DK-DK1": {"id": "ExchangeGermany", "direction": 1, "priceArea": "DK1"},
@@ -29,6 +29,11 @@ def fetch_data(
     Helper function to fetch data from the API.
     """
     ses = session or Session()
+
+    if target_datetime and target_datetime.tzinfo:
+        # Data source doesn't support timezone aware
+        # datetimes.
+        target_datetime = target_datetime.replace(tzinfo=None)
 
     params = {
         "limit": 144,

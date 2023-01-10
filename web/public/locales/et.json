@@ -247,47 +247,47 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Austraalia",
       "zoneName": "Uus-Lõuna-Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Austraalia",
       "zoneName": "Põhjaterritoorium"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Austraalia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Austraalia",
       "zoneName": "Lõuna-Austraalia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Austraalia",
       "zoneName": "Tasmaania"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Austraalia",
       "zoneName": "King' saar"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Austraalia",
       "zoneName": "Flindersi saar"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Austraalia",
       "zoneName": "Cape Barreni saar"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Austraalia",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Austraalia",
       "zoneName": "Lääne-Austraalia"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Austraalia",
       "zoneName": "Rottnesti saar"
     },
@@ -338,6 +338,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius ja Saba"
+    },
+    "BR": {
+      "zoneName": "Brasiilia"
     },
     "BR-CS": {
       "countryName": "Brasiilia",
@@ -633,10 +636,6 @@
     "GB-ORK": {
       "countryName": "Suurbritannia",
       "zoneName": "Orkney saared"
-    },
-    "GB-SHI": {
-      "countryName": "Suurbritannia",
-      "zoneName": "Shetlandi saared"
     },
     "GB-ZET": {
       "countryName": "Suurbritannia",
@@ -1403,7 +1402,7 @@
       "zoneName": "Ühendriikide hajasaared"
     },
     "US": {
-      "zoneName": "Ameerika Ühendriigid"
+      "zoneName": "Külgnevad Ameerika Ühendriigid"
     },
     "US-HI-HA": {
       "countryName": "Ameerika Ühendriigid",

@@ -126,8 +126,8 @@
     "selectLanguage": "Choisissez une langue",
     "lowCarbDescription": "Inclut les énergies renouvelables et nucléaire",
     "dataIsDelayed": "Données en retard",
-    "representing": "représentation",
-    "ofemissions": "d'émissions",
+    "representing": "représentant",
+    "ofemissions": "des émissions",
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
     "weatherDisabled": "Les données météo ne sont pas disponible actuellement",
@@ -271,39 +271,39 @@
     "AR": {
       "zoneName": "Argentine"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australie",
       "zoneName": "Nouvelle-Galles du Sud"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australie",
       "zoneName": "Territoire du Nord"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australie",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australie",
       "zoneName": "Australie-Méridionale"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australie",
       "zoneName": "Tasmanie"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australie",
       "zoneName": "Tasmanie (Île King)"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australie",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australie",
       "zoneName": "Australie-Occidentale"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australie",
       "zoneName": "Île Rottnest"
     },
@@ -354,6 +354,9 @@
     },
     "BQ": {
       "zoneName": "Pays-Bas caribéens"
+    },
+    "BR": {
+      "zoneName": "Brésil"
     },
     "BR-CS": {
       "countryName": "Brésil",
@@ -649,10 +652,6 @@
     "GB-ORK": {
       "countryName": "Grande Bretagne",
       "zoneName": "Orcades"
-    },
-    "GB-SHI": {
-      "countryName": "Grande Bretagne",
-      "zoneName": "Shetland"
     },
     "GB-ZET": {
       "countryName": "Grande Bretagne",
@@ -1426,7 +1425,7 @@
       "zoneName": "Îles mineures éloignées des États-Unis"
     },
     "US": {
-      "zoneName": "États-Unis d’Amérique"
+      "zoneName": "États-Unis d’Amérique Contigus"
     },
     "US-HI": {
       "countryName": "États-Unis d’Amérique",
@@ -1519,11 +1518,11 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australie",
       "zoneName": "Île du Cap Barren"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australie",
       "zoneName": "Île Flinders"
     },

@@ -4,4 +4,4 @@ lonlat:
 
 parsers:
   exchange: IN_WE.fetch_exchange
-rotation: 0
+rotation: -30

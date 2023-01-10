@@ -27,4 +27,4 @@ fc.features = aggregates;
 
 validateGeometry(fc, config);
 generateTopojson(fc, config);
-generateExchangesToIgnore(EXCHANGE_OUT_PATH, zoneConfig);
+generateExchangesToIgnore(EXCHANGE_OUT_PATH, zoneConfig, config.verifyNoUpdates);

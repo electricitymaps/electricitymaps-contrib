@@ -26,36 +26,36 @@ emissionFactors:
   direct:
     battery discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 128.40787872056865
+        source: Electricity Maps, 2020 average
+        value: 127.11476751073597
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 234.9086357355117
+        source: Electricity Maps, 2021 average
+        value: 234.9079158157338
     hydro discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 128.40787872056865
+        source: Electricity Maps, 2020 average
+        value: 127.11476751073597
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 234.9086357355117
+        source: Electricity Maps, 2021 average
+        value: 234.9079158157338
   lifecycle:
     battery discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 128.40787872056865
+        source: Electricity Maps, 2020 average
+        value: 127.11476751073597
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 234.9086357355117
+        source: Electricity Maps, 2021 average
+        value: 234.9079158157338
     hydro discharge:
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 128.40787872056865
+        source: Electricity Maps, 2020 average
+        value: 127.11476751073597
       - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 234.9086357355117
+        source: Electricity Maps, 2021 average
+        value: 234.9079158157338
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2021 average
+    - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.013766739653774968
