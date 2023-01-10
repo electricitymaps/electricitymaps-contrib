@@ -34,7 +34,7 @@ def fetch_data(
     zone_key: str,
     kind: str,
     session: Session,
-) -> dict:
+) -> list:
     """
     Gets values and corresponding datetimes for the specified data kind in ROI.
     Removes any values that are in the future or don't have a datetime associated with them.
