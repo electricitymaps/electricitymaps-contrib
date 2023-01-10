@@ -32,7 +32,7 @@ ZONE_MAPPING = {
 
 
 def fetch_data(
-    target_datetime: datetime,
+    target_datetime: Optional[datetime],
     zone_key: str,
     kind: str,
     session: Session,
