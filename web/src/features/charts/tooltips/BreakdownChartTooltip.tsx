@@ -127,7 +127,9 @@ export function BreakdownChartTooltipContent(
         __(selectedLayerKey),
         renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />)
       ); // Eg: "20 % of electricity in Denmark comes from biomass"
-
+  const title = isExchange
+    ? getZoneName(selectedLayerKey)
+    : __(selectedLayerKey).charAt(0).toUpperCase() + __(selectedLayerKey).slice(1);
   return (
     <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:bg-gray-900 sm:w-[410px]">
       <AreaGraphToolTipHeader
@@ -136,7 +138,7 @@ export function BreakdownChartTooltipContent(
         }
         datetime={datetime}
         timeAverage={timeAverage}
-        title={isExchange ? getZoneName(selectedLayerKey) : __(selectedLayerKey)}
+        title={title}
       />
       <div
         className="inline-flex flex-wrap items-center gap-x-1"
