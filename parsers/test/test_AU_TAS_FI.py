@@ -4,11 +4,12 @@ import json
 import unittest
 from unittest.mock import patch
 
-from parsers import ajenti
 from pkg_resources import resource_string
 from requests import Session
 from requests_mock import Adapter
 from testfixtures import LogCapture
+
+from parsers import ajenti
 
 
 class TestAusTasKi(unittest.TestCase):
