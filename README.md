@@ -23,7 +23,6 @@ Here are some of the ways you can contribute:
 - [Translating the app](https://github.com/electricitymap/electricitymap-contrib/wiki/Translating-electricitymaps.com)
 - [Updating region capacities](https://github.com/electricitymap/electricitymap-contrib/wiki/Update-region-capacities)
 
-
 Join us on [Slack](https://slack.electricitymaps.com) if you wish to discuss development or need help to get started.
 
 We would love your feedback on how to improve the contribution experience, please feel free to fill out this [form](https://forms.gle/VRWvEFwhtnhpzPVX8)
