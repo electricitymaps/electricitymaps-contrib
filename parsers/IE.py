@@ -42,8 +42,7 @@ def fetch_data(
     assert type(target_datetime) == datetime
     assert kind != ""
 
-    r = session or Session()
-    resp: Response = r.get(
+    resp: Response = session.get(
         KINDS_URL[kind].format(
             dt=target_datetime.strftime("%d-%b-%Y"), zone=ZONE_MAPPING[zone_key]["key"]
         )
