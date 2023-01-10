@@ -94,12 +94,12 @@ def fetch_production(
     for item in demand_data:
         dt = item["EffectiveTime"]
         wind_dt = [item for item in wind_data if item["EffectiveTime"] == dt]
-        if len(wind_dt) > 0:
+        if len(wind_dt) == 1:
             wind_prod = wind_dt[0]["Value"]
         else:
             wind_prod = 0
         exchange_dt = [item for item in exchange_data if item["EffectiveTime"] == dt]
-        if len(exchange_dt) > 0:
+        if len(exchange_dt) == 1:
             exchange = exchange_dt[0]["Value"]
         else:
             exchange = 0
