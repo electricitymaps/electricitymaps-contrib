@@ -36,13 +36,14 @@ export default function Attribution({
   }, [dataSources, i18n.language]);
 
   return (
-    <div className="message text-sm no-underline">
+    <div className="whitespace-nowrap text-sm ">
       <span>{__('country-panel.source')}:</span>
       <a
         style={{ textDecoration: 'none' }}
         href="https://github.com/electricitymaps/electricitymaps-contrib#data-sources/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
         target="_blank"
         rel="noreferrer"
+        className="text-sky-600 no-underline hover:underline dark:invert"
       >
         {' '}
         <span className="hover:underline">{formattedDataSources || '?'}</span>
@@ -51,8 +52,7 @@ export default function Attribution({
         {' '}
         (
         <span
-          className="text-sm"
-          style={{ textDecoration: 'none' }}
+          className="text-sm text-sky-600 no-underline hover:underline dark:invert"
           dangerouslySetInnerHTML={{
             __html: __(
               'country-panel.addeditsource',

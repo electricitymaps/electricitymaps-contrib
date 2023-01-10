@@ -1,4 +1,3 @@
-import { PulseLoader } from 'react-spinners';
 import { TimeAverages } from 'utils/constants';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -22,6 +21,9 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   const { chartData, layerFill, layerKeys, layerStroke, valueAxisLabel, markerFill } =
     data;
 
+  if (!chartData[0]?.layerData?.price) {
+    return null;
+  }
   return (
     <>
       <ChartTitle translationKey="country-history.electricityprices" />

@@ -5,7 +5,7 @@ export default function NoInformationMessage() {
   return (
     <div data-test-id="no-parser-message" className="pt-4 text-base">
       <span
-        className="message"
+        className="text-sm text-sky-600 no-underline hover:underline dark:invert"
         dangerouslySetInnerHTML={{
           __html: __(
             'country-panel.noParserInfo',
