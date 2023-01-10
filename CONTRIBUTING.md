@@ -74,6 +74,7 @@ If these jobs fail and you need to format the code you can run `yarn lint --fix`
 Check the [wiki page][wiki js code formatting] on formatting for more details and tips.
 
 <!-- Link definitions to keep the text clean -->
+
 [poetry homepage]: https://python-poetry.org/
 [python homepage]: https://www.python.org/
 [python install guide]: https://wiki.python.org/moin/BeginnersGuide/Download
