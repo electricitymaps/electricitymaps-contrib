@@ -168,7 +168,7 @@ def fetch_exchange(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
