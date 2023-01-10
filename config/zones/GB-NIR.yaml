@@ -219,6 +219,6 @@ parsers:
   consumption: IE.fetch_consumption
   consumptionForecast: IE.fetch_consumption_forecast
   price: ENTSOE.fetch_price
-  productionPerModeForecast: IE.fetch_wind_solar_forecasts
+  productionPerModeForecast: IE.fetch_wind_forecasts
   production: IE.fetch_production
 timezone: null
