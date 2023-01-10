@@ -14,7 +14,7 @@ function LegendItem({
 }) {
   return (
     <div className="text-center">
-      <p className="py-1  text-base">
+      <p className="mr-2 py-1 font-poppins text-sm">
         {label} <small>({unit})</small>
       </p>
       {children}
@@ -28,7 +28,7 @@ export default function Co2Legend(): ReactElement {
   return (
     <div>
       <LegendItem label={__('legends.carbonintensity')} unit="gCO₂eq/kWh">
-        <HorizontalColorbar colorScale={co2ColorScale} ticksCount={5} id={'co2'} />
+        <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
       </LegendItem>
     </div>
   );

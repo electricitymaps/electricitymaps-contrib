@@ -275,6 +275,8 @@ export default function MapPage(): ReactElement {
       onZoomEnd={onDragOrZoomEnd}
       dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
       onDragEnd={onDragOrZoomEnd}
+      dragRotate={false}
+      touchZoomRotate={false}
       minZoom={0.7}
       maxBounds={[
         [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
