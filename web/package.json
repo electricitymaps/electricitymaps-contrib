@@ -1,6 +1,6 @@
 {
   "name": "electricitymap-web",
-  "version": "1.1.0-beta.27",
+  "version": "1.1.0-beta.29",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "GPL-3.0-or-later",
   "engines": {
@@ -14,10 +14,12 @@
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
     "update-world": "ts-node ./geo/update-world.ts",
+    "generate-index-files": "ts-node ./scripts/generate-index-files.ts",
     "generate-zones-config": "ts-node ./scripts/generate-zones-config.ts",
-    "predevelop": "yarn generate-zones-config",
-    "prebuild": "yarn generate-zones-config",
-    "postinstall": "yarn generate-zones-config",
+    "predevelop": "pnpm run generate-zones-config",
+    "prebuild": "pnpm run generate-zones-config",
+    "predeploy": "pnpm run generate-zones-config",
+    "postinstall": "pnpm run generate-index-files",
     "cy:components": "cypress open --components -b electron",
     "cy:e2e": "cypress open --e2e -b electron",
     "dev": "vite --open",
