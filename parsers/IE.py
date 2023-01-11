@@ -72,8 +72,6 @@ def fetch_production(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-    if session is None:
-        session = Session()
 
     demand_data = fetch_data(
         target_datetime=target_datetime,
@@ -134,8 +132,6 @@ def fetch_exchange(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-    if session is None:
-        session = Session()
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     exchange_data = fetch_data(
@@ -176,8 +172,6 @@ def fetch_consumption(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-    if session is None:
-        session = Session()
 
     demand_data = fetch_data(
         target_datetime=target_datetime,
@@ -214,8 +208,6 @@ def fetch_consumption_forecast(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-    if session is None:
-        session = Session()
 
     demand_forecast_data = fetch_data(
         target_datetime=target_datetime,
@@ -253,8 +245,6 @@ def fetch_wind_forecasts(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-    if session is None:
-        session = Session()
 
     wind_forecast_data = fetch_data(
         target_datetime=target_datetime,
