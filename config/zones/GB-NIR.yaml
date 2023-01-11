@@ -13,12 +13,12 @@ capacity:
   solar: 285
   wind: 1430
 contributors:
-  - msaynevirta
   - corradio
   - systemcatch
   - brunolajoie
   - alixunderplatz
   - nessie2013
+  - msaynevirta
 emissionFactors:
   direct:
     battery discharge:

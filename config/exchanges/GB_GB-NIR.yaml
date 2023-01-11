@@ -5,5 +5,5 @@ lonlat:
   - -5.428149
   - 54.87826
 parsers:
-  exchange: GB_NIR.fetch_exchange
+  exchange: IE.fetch_exchange
 rotation: -110
