@@ -52,11 +52,13 @@ const AtomsDevtools = ({ children }: { children: JSX.Element }) => {
 
 // Temporarily disabled to ensure we can more easily rollback
 // Also removes existing service workers to ensure they don't interfer
-navigator.serviceWorker.getRegistrations().then(function (registrations) {
-  for (const registration of registrations) {
-    registration.unregister();
-  }
-});
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    for (const registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
 // registerSW();
 createConsoleGreeting();
 
