@@ -42,11 +42,11 @@ export default function ZoneHeaderTitle({
               <CountryFlag
                 zoneId={zoneId}
                 size={18}
-                className="mr-1 shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+                className="mr-2 shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
               />
               <div className="flex flex-row">
                 <h2
-                  className="max-w-[300px] overflow-hidden truncate font-medium sm:max-w-[230px] md:max-w-[270px]"
+                  className="max-w-[300px] overflow-hidden truncate text-lg font-medium sm:max-w-[230px] md:max-w-[270px]"
                   data-test-id="zone-name"
                 >
                   {title}
