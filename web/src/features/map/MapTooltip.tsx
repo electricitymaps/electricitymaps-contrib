@@ -47,10 +47,12 @@ function TooltipInner({
 
   return (
     <div className="w-full p-4 text-center">
-      <ZoneName zone={zoneId} textStyle="text-base" />
-      <div className="flex self-start text-xs">{date}</div>
-      <div className=" flex w-full flex-grow p-1 sm:pr-4">
-        <div className="flex w-full  flex-grow flex-row content-between justify-between">
+      <div className="pl-1">
+        <ZoneName zone={zoneId} textStyle="text-base" />
+        <div className="flex self-start text-xs">{date}</div>{' '}
+      </div>
+      <div className="flex w-full flex-grow py-1 sm:pr-2">
+        <div className="flex w-full flex-grow flex-row justify-start">
           <CarbonIntensitySquare
             co2intensity={isConsumption ? co2intensity : co2intensityProduction}
           />
@@ -103,7 +105,7 @@ export default function MapTooltip() {
     return (
       <Portal.Root className="absolute left-0 top-0 h-0 w-0">
         <div
-          className="relative h-[176px] w-[276px] rounded border bg-gray-100  text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+          className="relative h-[176px] w-[276px] rounded border bg-zinc-50  text-sm shadow-lg dark:border-0 dark:bg-gray-900"
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>

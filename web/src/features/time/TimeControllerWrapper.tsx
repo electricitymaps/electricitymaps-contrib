@@ -32,7 +32,7 @@ function BottomSheetWrappedTimeController() {
 
 function FloatingTimeController() {
   return (
-    <div className="fixed bottom-3 left-3 z-20 w-[calc(14vw_+_16rem)] rounded-xl bg-white p-5 shadow-md dark:bg-gray-900  md:w-[calc((14vw_+_16rem)_-_30px)]">
+    <div className="fixed bottom-3 left-3 z-20 w-[calc(14vw_+_16rem)] rounded-xl bg-white px-5 py-3 shadow-lg dark:bg-gray-900  md:w-[calc((14vw_+_16rem)_-_30px)]">
       <TimeController />
     </div>
   );

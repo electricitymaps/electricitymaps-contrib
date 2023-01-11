@@ -17,7 +17,6 @@ import ZoneList from './ZoneList';
 export default function RankingPanel(): ReactElement {
   const { __ } = useTranslation();
   const getCo2colorScale = useCo2ColorScale();
-  const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [searchTerm, setSearchTerm] = useState('');
   const [electricityMode] = useAtom(productionConsumptionAtom);

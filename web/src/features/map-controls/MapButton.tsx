@@ -17,7 +17,7 @@ export default function MapButton(properties: MapButtonProperties): ReactElement
     <TooltipWrapper tooltipContent={tooltipText}>
       <Toggle.Root
         onClick={onClick}
-        className={`pointer-events-auto flex h-8 w-8 items-center justify-center rounded bg-white text-left drop-shadow transition hover:bg-gray-100 dark:bg-gray-900 dark:hover:bg-gray-800 ${className}`}
+        className={`pointer-events-auto flex h-8 w-8 items-center justify-center rounded bg-white text-left shadow-lg transition hover:bg-gray-100 dark:bg-gray-900 dark:hover:bg-gray-800 ${className}`}
         aria-label="Toggle functionality" // TODO: This should be more precise!
         data-test-id={dataTestId}
       >

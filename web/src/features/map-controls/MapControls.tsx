@@ -125,13 +125,13 @@ function DesktopMapControls() {
 
   return (
     <div className="pointer-events-none absolute right-3 top-3 z-30 hidden flex-col items-end md:flex">
-      <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-1">
+      <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-2">
         <ConsumptionProductionToggle />
         <SpatialAggregatesToggle />
       </div>
       <div className="mt-5 space-y-2">
         <MapButton
-          icon={<HiLanguage size={21} />}
+          icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
           tooltipText={__('tooltips.selectLanguage')}
           dataTestId="language-selector-open-button"
           onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
@@ -143,7 +143,7 @@ function DesktopMapControls() {
         <MapButton
           icon={
             <HiOutlineEyeOff
-              size={21}
+              size={20}
               className={`${isColorblindModeEnabled ? '' : 'opacity-50'}`}
             />
           }

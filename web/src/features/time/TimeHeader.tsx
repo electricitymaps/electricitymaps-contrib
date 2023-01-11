@@ -31,7 +31,7 @@ export default function TimeHeader({ className }: TimeHeaderProps) {
         className="h-10 sm:h-8"
       >
         {!isLoading && (
-          <div className="select-none rounded-full bg-brand-green/10 py-2 px-3 text-xs text-brand-green dark:bg-gray-700 dark:text-white">
+          <div className="select-none whitespace-nowrap rounded-full bg-brand-green/10 py-1 px-3 text-sm text-brand-green dark:bg-gray-700 dark:text-white">
             {date}
           </div>
         )}

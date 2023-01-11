@@ -56,9 +56,9 @@ function CarbonIntensitySquare({
           </p>
         </animated.div>
       </div>
-      <div className="mt-3 flex flex-col items-center">
-        <div className="text-xs">{'Carbon Intensity'}</div>
-        {withSubtext && <div className="text-xs">(gCO₂eq/kWh)</div>}
+      <div className="mt-2 flex flex-col items-center">
+        <div className="text-sm">{'Carbon Intensity'}</div>
+        {withSubtext && <div className="text-sm">(gCO₂eq/kWh)</div>}
       </div>
     </div>
   );

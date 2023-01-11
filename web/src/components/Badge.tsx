@@ -17,7 +17,7 @@ export default function Badge({ children, type = 'default', className }: BadgePr
 
   return (
     <span
-      className={`rounded-full py-[1px] px-2 text-xs font-medium ${bgColorClasses} ${textColorClasses} ${className}`}
+      className={`rounded-full py-[1px] px-2 text-sm font-medium ${bgColorClasses} ${textColorClasses} ${className}`}
     >
       {children}
     </span>

@@ -52,7 +52,7 @@ export default function ZoneHeaderTitle({
                   {title}
                 </h2>
                 {isSubZone && (
-                  <p className="ml-2 flex w-auto items-center whitespace-nowrap rounded-full bg-gray-200 py-0.5 px-2  text-xs dark:bg-gray-900">
+                  <p className="ml-2 flex w-auto items-center whitespace-nowrap rounded-full bg-gray-200 py-0.5 px-2  text-sm dark:bg-gray-900">
                     {countryName || zoneId}
                   </p>
                 )}
@@ -76,7 +76,7 @@ export default function ZoneHeaderTitle({
           {isAggregated && (
             <Badge key={'badge-agg'}>{__('country-panel.aggregated')}</Badge>
           )}
-          <TimeDisplay className="whitespace-nowrap text-xs" />
+          <TimeDisplay className="whitespace-nowrap text-sm" />
         </div>
       </div>
     </div>
