@@ -32,7 +32,7 @@ ZONE_MAPPING = {
 
 
 def fetch_data(
-    target_datetime: Optional[datetime],
+    target_datetime: datetime,
     zone_key: str,
     kind: str,
     session: Session,
@@ -71,7 +71,6 @@ def fetch_production(
     """Gets values for wind production and estimates unknwon production as demand - wind - exchange"""
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
-
 
     demand_data = fetch_data(
         target_datetime=target_datetime,
@@ -132,7 +131,6 @@ def fetch_exchange(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     exchange_data = fetch_data(
         target_datetime=target_datetime,
@@ -172,7 +170,6 @@ def fetch_consumption(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-
     demand_data = fetch_data(
         target_datetime=target_datetime,
         zone_key=zone_key,
@@ -208,7 +205,6 @@ def fetch_consumption_forecast(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-
     demand_forecast_data = fetch_data(
         target_datetime=target_datetime,
         zone_key=zone_key,
@@ -235,7 +231,7 @@ def fetch_consumption_forecast(
 @refetch_frequency(timedelta(days=1))
 def fetch_wind_forecasts(
     zone_key: str,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
@@ -244,7 +240,6 @@ def fetch_wind_forecasts(
     """
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
-
 
     wind_forecast_data = fetch_data(
         target_datetime=target_datetime,
