@@ -245,8 +245,6 @@ def fetch_wind_forecasts(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-    if session is None:
-        session = Session()
 
     wind_forecast_data = fetch_data(
         target_datetime=target_datetime,
