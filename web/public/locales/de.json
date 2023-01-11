@@ -55,6 +55,9 @@
     "zone-list-header-subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
     "search": "Land oder Region suchen"
   },
+  "time-controller": {
+    "title": "Historische Daten anzeigen"
+  },
   "country-history": {
     "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
     "carbonintensity": {
