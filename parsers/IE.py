@@ -172,8 +172,6 @@ def fetch_consumption(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-    if session is None:
-        session = Session()
 
     demand_data = fetch_data(
         target_datetime=target_datetime,
