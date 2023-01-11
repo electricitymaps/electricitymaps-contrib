@@ -10,8 +10,8 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 Thank you for your interest. Check out the [Wiki](https://github.com/electricityMaps/electricitymaps-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/electricityMaps/electricitymaps-contrib/issues) and [discussions](https://github.com/electricityMaps/electricitymaps-contrib/discussions).
 
->**Note**
->You can see the status of all parsers [on our Grafana dashboard](https://electricitymap.grafana.net/public-dashboards/4f775c8021324f5cb8682c4fedd3207e).
+> **Note**
+> You can see the status of all parsers [on our Grafana dashboard](https://electricitymap.grafana.net/public-dashboards/4f775c8021324f5cb8682c4fedd3207e).
 
 Here are some of the ways you can contribute:
 
