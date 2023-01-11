@@ -41,7 +41,7 @@ export default function Header(): JSX.Element {
             Live
           </MenuLink>
           <MenuLink
-            href="https://electricitymaps.com/open-source/?utm_source=app.electricitymaps.com&utm_medium=referral"
+            href="https://www.electricitymaps.com/jobs/?utm_source=app.electricitymaps.com&utm_medium=referral"
             id="jobs"
           >
             We&apos;re hiring!
