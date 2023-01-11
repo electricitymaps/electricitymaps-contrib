@@ -35,7 +35,7 @@ export default function App(): ReactElement {
         <ToastProvider duration={20_000}>
           <Header />
           <div className="relative flex flex-auto items-stretch">
-            <Sentry.ErrorBoundary fallback={<ErrorComponent />} showDialog>
+            <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               {isSuccess && isNewVersionAvailable && (
                 <Toast
                   title="A new app version is available"
