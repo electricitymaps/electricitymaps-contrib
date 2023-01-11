@@ -53,7 +53,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Honduras: [ENTE](https://www.enteoperador.org/flujos-regionales-en-tiempo-real/)
 - Hungary: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Iceland: [LANDSNET](https://amper.landsnet.is/generation/api/Values)
-- Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Ireland: [Eirgrid](https://www.smartgriddashboard.com/)
 - Israel: [IEC](https://www.iec.co.il/en/pages/default.aspx)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - India: [meritindia](http://meritindia.in/)
