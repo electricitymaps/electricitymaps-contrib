@@ -134,8 +134,6 @@ def fetch_exchange(
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
-    if session is None:
-        session = Session()
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     exchange_data = fetch_data(
