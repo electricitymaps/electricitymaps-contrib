@@ -4,18 +4,21 @@ bounding_box:
   - - -4.930775519999884
     - 55.81134674700017
 capacity:
-  biomass: 35
+  battery storage: 150
+  biomass: 82
   coal: 514
-  gas: 1549
-  oil: 316
-  solar: 92
-  wind: 995
+  gas: 1008
+  hydro: 6
+  oil: 394
+  solar: 285
+  wind: 1430
 contributors:
   - corradio
   - systemcatch
   - brunolajoie
   - alixunderplatz
   - nessie2013
+  - msaynevirta
 emissionFactors:
   direct:
     battery discharge:
@@ -216,9 +219,9 @@ fallbackZoneMixes:
         wind: 0.34781314616395964
 flag_file_name: _Northern%20Ireland.png
 parsers:
-  consumption: ENTSOE.fetch_consumption
-  consumptionForecast: ENTSOE.fetch_consumption_forecast
-  generationForecast: ENTSOE.fetch_generation_forecast
+  consumption: IE.fetch_consumption
+  consumptionForecast: IE.fetch_consumption_forecast
   price: ENTSOE.fetch_price
-  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecast: IE.fetch_wind_forecasts
+  production: IE.fetch_production
 timezone: null
