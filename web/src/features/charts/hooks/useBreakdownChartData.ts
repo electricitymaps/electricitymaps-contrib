@@ -4,11 +4,17 @@ import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
 import { ElectricityStorageType, ZoneDetail } from 'types';
 
-import { Mode, modeColor, modeOrder } from 'utils/constants';
+import { Mode, ToggleOptions, modeColor, modeOrder } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
-import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
+import {
+  displayByEmissionsAtom,
+  productionConsumptionAtom,
+  selectedDatetimeIndexAtom,
+  spatialAggregateAtom,
+} from 'utils/state/atoms';
 import { getGenerationTypeKey } from '../graphUtils';
 import { AreaGraphElement } from '../types';
+import { getExchangesToDisplay } from '../bar-breakdown/utils';
 
 export const getLayerFill = (exchangeKeys: string[], co2ColorScale: any) => {
   const layerFill = (key: string) => {
@@ -29,10 +35,19 @@ export default function useBreakdownChartData() {
   const co2ColorScale = useCo2ColorScale();
   const [mixMode] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const [aggregateToggle] = useAtom(spatialAggregateAtom);
+  const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
+  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
 
   if (isLoading || isError) {
     return { isLoading, isError };
   }
+  const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
+  const exchangesForSelectedAggregate = getExchangesToDisplay(
+    currentData.zoneKey,
+    isAggregateToggled,
+    currentData.exchange
+  );
 
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
@@ -40,7 +55,7 @@ export default function useBreakdownChartData() {
   );
 
   const chartData: AreaGraphElement[] = [];
-  const exchangeKeys: string[] = [];
+  const exchangeKeys: string[] = exchangesForSelectedAggregate;
 
   for (const [datetimeString, value] of Object.entries(zoneData.zoneStates)) {
     const datetime = new Date(datetimeString);
@@ -80,9 +95,6 @@ export default function useBreakdownChartData() {
           // in tCO₂eq/min
           entry.layerData[key] *= (value.exchangeCo2Intensities || {})[key] / 1e3 / 60;
         }
-
-        // add exchange key to layerKeys if does not exist
-        !exchangeKeys.includes(key) && exchangeKeys.push(key);
       }
     }
     chartData.push(entry);
