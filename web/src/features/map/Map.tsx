@@ -164,8 +164,12 @@ export default function MapPage(): ReactElement {
       setSelectedFeatureId(feature.id);
       map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { selected: true });
       setLeftPanelOpen(true);
+
+      const center = JSON.parse(feature.properties.center);
+      const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
+      map.flyTo({ center: centerMinusLeftPanelWidth, zoom: 3.5 });
+
       const zoneId = feature.properties.zoneId;
-      map.flyTo({ center: JSON.parse(feature.properties.center), zoom: 3.5 });
       navigate(createToWithState(`/zone/${zoneId}`));
     } else {
       setSelectedFeatureId(undefined);
