@@ -80,7 +80,7 @@ interface AreagraphProps {
   height: string;
   datetimes: Date[];
   selectedTimeAggregate: TimeAverages; // TODO: Graph does not need to know about this
-  tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element;
+  tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
   tooltipSize?: 'small' | 'large';
 }
 
