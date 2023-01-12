@@ -38,11 +38,11 @@ export default function useBreakdownChartData() {
   const [aggregateToggle] = useAtom(spatialAggregateAtom);
   const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-
-  if (isLoading || isError) {
+  const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
+  if (isLoading || isError || !currentData) {
     return { isLoading, isError };
   }
-  const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
+
   const exchangesForSelectedAggregate = getExchangesToDisplay(
     currentData.zoneKey,
     isAggregateToggled,
