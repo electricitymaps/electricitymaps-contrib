@@ -1,7 +1,7 @@
 import useGetZone from 'api/getZone';
 import { useAtom } from 'jotai';
 import { useParams } from 'react-router-dom';
-import { ToggleOptions } from 'utils/constants';
+import { Mode, ToggleOptions } from 'utils/constants';
 import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
@@ -25,7 +25,7 @@ export default function useBarBreakdownChartData() {
   const [mixMode] = useAtom(productionConsumptionAtom);
   const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
   const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
-
+  const isConsumption = mixMode === Mode.CONSUMPTION;
   if (isLoading) {
     return { isLoading };
   }
@@ -48,13 +48,16 @@ export default function useBarBreakdownChartData() {
   );
 
   const productionData = getProductionData(currentData); // TODO: Consider memoing this
-  const exchangeData = getExchangeData(currentData, exchangeKeys, mixMode); // TODO: Consider memoing this
+  const exchangeData = isConsumption
+    ? getExchangeData(currentData, exchangeKeys, mixMode)
+    : []; // TODO: Consider memoing this
 
   const { exchangeY, exchangeHeight } = getDataBlockPositions(
+    //TODO this naming could be more descriptive
     productionData.length,
     exchangeData
   );
-  const height = exchangeY + exchangeHeight;
+  const height = isConsumption ? exchangeY + exchangeHeight : exchangeY;
 
   return {
     height,

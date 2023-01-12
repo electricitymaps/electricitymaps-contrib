@@ -8,10 +8,10 @@ import { ElectricityModeType, ZoneDetail } from 'types';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
-import useBarBreakdownChartData from '../hooks/useBarBreakdownProductionChartData';
+import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
-import BarBreakdownProductionChart from './BarBreakdownProductionChart';
+import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
@@ -113,7 +113,7 @@ function BarBreakdownChart() {
           isMobile={false}
         />
       ) : (
-        <BarBreakdownProductionChart
+        <BarElectricityBreakdownChart
           data={zoneDetails}
           currentData={currentZoneDetail}
           productionData={productionData}

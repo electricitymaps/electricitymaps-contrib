@@ -18,7 +18,7 @@ import {
   getElectricityProductionValue,
 } from './utils';
 
-interface BarBreakdownProductionChartProps {
+interface BarElectricityBreakdownChartProps {
   height: number;
   width: number;
   data: ZoneDetails;
@@ -40,7 +40,7 @@ interface BarBreakdownProductionChartProps {
   onExchangeRowMouseOut: () => void;
 }
 
-function BarBreakdownProductionChart({
+function BarElectricityBreakdownChart({
   data,
   currentData,
   exchangeData,
@@ -52,7 +52,7 @@ function BarBreakdownProductionChart({
   onExchangeRowMouseOver,
   onExchangeRowMouseOut,
   width,
-}: BarBreakdownProductionChartProps) {
+}: BarElectricityBreakdownChartProps) {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const { productionY, exchangeY } = getDataBlockPositions(
@@ -170,4 +170,4 @@ function BarBreakdownProductionChart({
   );
 }
 
-export default BarBreakdownProductionChart;
+export default BarElectricityBreakdownChart;
