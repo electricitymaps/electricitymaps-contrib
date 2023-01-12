@@ -55,6 +55,7 @@ function CarbonIntensitySquare({
             <animated.span className="font-bold">
               {number.to((x) => `${Math.round(x) || '?'}`)}
             </animated.span>
+            &nbsp;
             <span>g</span>
           </p>
         </animated.div>

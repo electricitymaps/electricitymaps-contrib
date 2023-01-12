@@ -9,7 +9,10 @@ export const formatPower = function (d: number, numberDigits = DEFAULT_NUM_DIGIT
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
-  return `${d3.format(`.${numberDigits}s`)(d * 1e6)}W`;
+  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}W` //Add a space between the number and the unit
+    .replace(/([A-Z])/, ' $1')
+    .trim();
+  return power;
 };
 
 export const formatCo2 = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
