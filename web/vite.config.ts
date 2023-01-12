@@ -8,6 +8,17 @@ import { defineConfig } from 'vite';
 // import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
+const manualChunkMap = {
+  '@sentry': 'sentry',
+  '@radix-ui': 'radix',
+  'country-flag-icons': 'flags',
+  recharts: 'recharts',
+  'world.json': 'world',
+  'zones.json': 'config',
+  'exchanges.json': 'config',
+  'excludedAggregatedExchanges.json': 'config',
+};
+
 export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     disabled: false,
@@ -19,6 +30,17 @@ export default defineConfig(({ mode }) => ({
     sourcemap: true,
     commonjsOptions: {
       include: [],
+    },
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          for (const [searchString, value] of Object.entries(manualChunkMap)) {
+            if (id.includes(searchString)) {
+              return value;
+            }
+          }
+        },
+      },
     },
   },
   test: {
