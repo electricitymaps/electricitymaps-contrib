@@ -78,7 +78,7 @@ export default function MapTooltip() {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [isMapMoving] = useAtom(mapMovingAtom);
-  const { i18n } = useTranslation();
+  const { i18n, __ } = useTranslation();
   const { data } = useGetState();
 
   if (!hoveredZone || isMapMoving) {
@@ -128,7 +128,7 @@ export default function MapTooltip() {
         <div>
           <ZoneName zone={hoveredZone.zoneId} textStyle="text-base" />
           <div className="flex self-start text-xs">{formattedDate}</div>
-          <p className="text-start">No data available</p>
+          <p className="text-start">{__('tooltips.noParserInfo')}</p>
         </div>
       </div>
     </Portal.Root>
