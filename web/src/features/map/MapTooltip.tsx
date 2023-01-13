@@ -7,6 +7,7 @@ import { CircularGauge } from 'components/CircularGauge';
 import { ZoneName } from 'components/ZoneName';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { useTranslation } from 'translation/translation';
+import { StateZoneData } from 'types';
 import { Mode } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 import {
@@ -23,16 +24,7 @@ function TooltipInner({
 }: {
   date: string;
   zoneId: string;
-  zoneData: {
-    co2intensity: number;
-    co2intensityProduction: number;
-    zoneKey: string;
-    fossilFuelRatio: number;
-    fossilFuelRatioProduction: number;
-    renewableRatio: number;
-    renewableRatioProduction: number;
-    stateDatetime: number;
-  };
+  zoneData: StateZoneData;
 }) {
   const {
     co2intensity,
@@ -121,7 +113,7 @@ export default function MapTooltip() {
   return (
     <Portal.Root className="absolute left-0 top-0 h-0 w-0">
       <div
-        className="relative h-[80px] w-[176px] rounded border bg-gray-100 p-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+        className="relative h-[80px] w-[176px] rounded border bg-zinc-50 p-3 text-center text-sm shadow-lg dark:border-0 dark:bg-gray-900"
         style={{ left: emptyTooltipPosition.x, top: emptyTooltipPosition.y }}
       >
         <div>

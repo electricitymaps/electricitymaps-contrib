@@ -7,13 +7,28 @@ export type ZoneKey = string;
 export interface GridState {
   callerLocation?: [number, number];
   data: {
-    zones: { [key: string]: ZoneResponse };
+    zones: { [key: string]: StateZoneDataForTimePeriod };
     createdAt: string;
     datetime: string;
     datetimes: Array<string>;
     exchanges: { [key: string]: ExchangeResponse };
     stateAggregation: string;
   };
+}
+
+interface StateZoneDataForTimePeriod {
+  [timestamp: string]: StateZoneData;
+}
+
+export interface StateZoneData {
+  co2intensity: number; //TODO https://linear.app/electricitymaps/issue/ELE-1495/update-app-backend-variable-naming-to-use-camel-case-update-the
+  co2intensityProduction: number;
+  fossilFuelRatio: number;
+  fossilFuelRatioProduction: number;
+  renewableRatio: number;
+  renewableRatioProduction: number;
+  stateDatetime: number;
+  zoneKey: string;
 }
 
 export interface ExchangeResponse {
@@ -32,19 +47,6 @@ export interface ExchangeArrowData extends ExchangeOverview {
   rotation: number;
   lonlat: [number, number];
   key: string;
-}
-
-export interface ZoneResponse {
-  [key: string]: {
-    co2intensity: number; //TODO https://linear.app/electricitymaps/issue/ELE-1495/update-app-backend-variable-naming-to-use-camel-case-update-the
-    co2intensityProduction: number;
-    zoneKey: string;
-    fossilFuelRatio: number;
-    fossilFuelRatioProduction: number;
-    renewableRatio: number;
-    renewableRatioProduction: number;
-    stateDatetime: number;
-  };
 }
 
 export interface ZoneOverviewForTimePeriod {
