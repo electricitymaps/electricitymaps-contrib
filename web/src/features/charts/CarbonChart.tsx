@@ -31,7 +31,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         markerUpdateHandler={noop}
         markerHideHandler={noop}
         isMobile={false}
-        isOverlayEnabled={false}
         height="8em"
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}

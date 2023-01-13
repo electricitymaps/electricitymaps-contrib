@@ -36,7 +36,7 @@ export default function Attribution({
   }, [dataSources, i18n.language]);
 
   return (
-    <div className="whitespace-nowrap text-sm ">
+    <div className="text-sm">
       <span>{__('country-panel.source')}:</span>
       <a
         style={{ textDecoration: 'none' }}
@@ -64,9 +64,7 @@ export default function Attribution({
       </small>
       {'  '}
       {__('country-panel.helpfrom')}
-      <div className="flex flex-wrap gap-1">
-        <ContributorList zoneId={zoneId} />
-      </div>
+      <ContributorList zoneId={zoneId} />
     </div>
   );
 }
@@ -78,7 +76,7 @@ function ContributorList({ zoneId }: { zoneId: string }) {
   }
 
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className="mt-1 flex flex-wrap gap-1">
       {contributors.map((contributor) => {
         return (
           <a

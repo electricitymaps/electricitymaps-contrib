@@ -1,4 +1,4 @@
-import { PulseLoader } from 'react-spinners';
+import { useTranslation } from 'translation/translation';
 import { Mode, TimeAverages } from 'utils/constants';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -18,10 +18,14 @@ function BreakdownChart({
   timeAverage,
 }: BreakdownChartProps) {
   const { data, mixMode } = useBreakdownChartData();
+  const { __ } = useTranslation();
 
   if (!data) {
-    return <PulseLoader />;
+    return null;
   }
+
+  const isBreakdownGraphOverlayEnabled =
+    mixMode === Mode.CONSUMPTION && timeAverage !== TimeAverages.HOURLY;
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
 
@@ -30,22 +34,39 @@ function BreakdownChart({
   return (
     <>
       <ChartTitle translationKey={`country-history.${titleDisplayMode}${titleMixMode}`} />
-      <AreaGraph
-        testId="history-mix-graph"
-        data={chartData}
-        layerKeys={layerKeys}
-        layerFill={layerFill}
-        valueAxisLabel={valueAxisLabel}
-        markerUpdateHandler={noop}
-        markerHideHandler={noop}
-        isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
-        height="10em"
-        isOverlayEnabled={false} // TODO: create overlay https://linear.app/electricitymaps/issue/ELE-1499/implement-chart-overlay-for-unavailable-data
-        datetimes={datetimes}
-        selectedTimeAggregate={timeAverage}
-        tooltip={BreakdownChartTooltip}
-        tooltipSize={displayByEmissions ? 'small' : 'large'}
-      />
+      <div className="relative">
+        {isBreakdownGraphOverlayEnabled && (
+          <div className="absolute top-0 h-full w-full">
+            <div className=" h-full w-full bg-white opacity-50" />
+            <div className="absolute top-[50%] left-[50%] z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-sm dark:bg-gray-900">
+              Temporarily disabled for consumption. <br /> Switch to production view
+            </div>
+          </div>
+        )}
+
+        <AreaGraph
+          testId="history-mix-graph"
+          data={chartData}
+          layerKeys={layerKeys}
+          layerFill={layerFill}
+          valueAxisLabel={valueAxisLabel}
+          markerUpdateHandler={noop}
+          markerHideHandler={noop}
+          isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
+          height="10em"
+          isOverlayEnabled={isBreakdownGraphOverlayEnabled}
+          datetimes={datetimes}
+          selectedTimeAggregate={timeAverage}
+          tooltip={BreakdownChartTooltip}
+          tooltipSize={displayByEmissions ? 'small' : 'large'}
+        />
+      </div>
+      {isBreakdownGraphOverlayEnabled && (
+        <div
+          className="prose my-1 rounded bg-gray-200 p-2 text-sm leading-snug"
+          dangerouslySetInnerHTML={{ __html: __('country-panel.exchangesAreMissing') }}
+        />
+      )}
     </>
   );
 }

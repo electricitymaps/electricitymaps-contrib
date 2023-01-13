@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-no-target-blank */
 import { useAtom } from 'jotai';
+import { HiOutlineArrowDownTray } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 import { formatTimeRange } from 'utils/formatting';
 import { timeAverageAtom } from 'utils/state/atoms';
-import { HiOutlineArrowDownTray } from 'react-icons/hi2';
 
 type Props = {
   translationKey: string;
@@ -23,7 +24,7 @@ export function ChartTitle({ translationKey }: Props) {
   */
   return (
     <>
-      <h3 className="text-md font-bold">
+      <h3 className="mt-3 text-md font-bold">
         {localExists
           ? __(`${translationKey}.${timeAverage}`)
           : __(
@@ -31,13 +32,13 @@ export function ChartTitle({ translationKey }: Props) {
               formatTimeRange(localDefaultExists ? i18n.language : 'en', timeAverage)
             )}
       </h3>
-      <div className=" flex flex-row items-center pb-2 text-center text-sm  ">
+      <div className="flex flex-row items-center pb-2 text-center text-[0.7rem]">
         <HiOutlineArrowDownTray className="min-w-[12px]" size={12} />
         <a
           href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
           target="_blank"
           rel="noreferrer"
-          className="whitespace-nowrap pl-0.5 text-sky-600 no-underline hover:underline  dark:invert"
+          className="pl-0.5 text-left text-[#4178ac] no-underline hover:underline dark:invert"
         >
           {__('country-history.Getdata')}
         </a>

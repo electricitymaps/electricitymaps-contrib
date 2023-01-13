@@ -31,7 +31,6 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         valueAxisLabel="tCO₂eq / min"
         markerUpdateHandler={noop}
         markerHideHandler={noop}
-        isOverlayEnabled={false}
         datetimes={datetimes}
         isMobile={false}
         selectedTimeAggregate={timeAverage}

@@ -41,7 +41,6 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
         height="6em"
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}
-        isOverlayEnabled={false}
         tooltip={PriceChartTooltip}
       />
     </>
