@@ -44,7 +44,6 @@ function TooltipInner({
   } = zoneData;
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
-
   return (
     <div className="w-full p-4 text-center">
       <div className="pl-1">
@@ -59,7 +58,7 @@ function TooltipInner({
           <div className="px-4">
             <CircularGauge
               name="Low-carbon"
-              ratio={isConsumption ? fossilFuelRatio : fossilFuelRatioProduction}
+              ratio={1 - (isConsumption ? fossilFuelRatio : fossilFuelRatioProduction)}
             />
           </div>
           <CircularGauge

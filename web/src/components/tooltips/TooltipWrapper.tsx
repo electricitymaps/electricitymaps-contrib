@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
 import * as Tooltip from '@radix-ui/react-tooltip';
+import { ReactElement } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface TooltipWrapperProperties {
   tooltipContent?: string | ReactElement;
@@ -22,10 +23,10 @@ export default function TooltipWrapper(
         <Tooltip.Trigger asChild>{children}</Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className={
-              tooltipClassName ??
-              'relative   h-auto max-w-[164px] rounded border bg-gray-100 p-1 px-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900'
-            }
+            className={twMerge(
+              'relative h-auto max-w-[164px] rounded border bg-gray-100 p-1 px-3 text-center text-sm shadow-md dark:border-0 dark:bg-gray-900',
+              tooltipClassName
+            )}
             sideOffset={sideOffset ?? 3}
             side={side ?? 'left'}
           >
