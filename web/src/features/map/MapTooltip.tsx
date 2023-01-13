@@ -4,8 +4,8 @@ import { useAtom } from 'jotai';
 import useGetState from 'api/getState';
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
-import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { ZoneName } from 'components/ZoneName';
+import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { useTranslation } from 'translation/translation';
 import { Mode } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
@@ -105,7 +105,7 @@ export default function MapTooltip() {
     return (
       <Portal.Root className="absolute left-0 top-0 h-0 w-0">
         <div
-          className="relative h-[176px] w-[276px] rounded border bg-zinc-50  text-sm shadow-lg dark:border-0 dark:bg-gray-900"
+          className="relative h-[176px] w-[276px] rounded border bg-zinc-50 shadow-lg dark:border-0 dark:bg-gray-900"
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>

@@ -12,7 +12,8 @@ import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import CustomLayer from './map-utils/CustomLayer';
@@ -24,7 +25,6 @@ import {
   mousePositionAtom,
 } from './mapAtoms';
 import { FeatureId } from './mapTypes';
-import { Mode } from 'utils/constants';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -66.947_193;
@@ -42,6 +42,7 @@ export default function MapPage(): ReactElement {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
   const theme = useTheme();
@@ -134,6 +135,21 @@ export default function MapPage(): ReactElement {
   }, [mapReference, geometries, data, getCo2colorScale, selectedDatetime, mixMode]);
 
   useEffect(() => {
+    // Run when path changes
+    const map = mapReference.current?.getMap();
+    // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
+    if (map && location.pathname === '/map' && selectedFeatureId) {
+      map.setFeatureState(
+        { source: ZONE_SOURCE, id: selectedFeatureId },
+        { selected: false, hover: false }
+      );
+      setSelectedFeatureId(undefined);
+      setHoveredZone(null);
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
+    // Run when there is data
     const map = mapReference.current?.getMap();
     if (!map || isError || !isFirstLoad) {
       return;
