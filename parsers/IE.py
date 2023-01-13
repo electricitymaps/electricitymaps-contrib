@@ -105,7 +105,7 @@ def fetch_production(
         else:
             exchange = 0
         data_point = {
-            "zoneKey": "IE",
+            "zoneKey": zone_key,
             "datetime": datetime.strptime(dt, "%d-%b-%Y %H:%M:%S").replace(
                 tzinfo=pytz.timezone("Europe/Dublin")
             ),
