@@ -71,7 +71,7 @@ API_PARAMETER_GROUPS = {
         ],
         "unknown": ["bagasse_charbon_mwh", "charbon_bagasse_mw"],
     },
-    "storage": {},
+    "storage": {"battery": ["solde_stockage"]},
     "price": {
         "price": ["cout_moyen_de_production_eur_mwh"],
     },
