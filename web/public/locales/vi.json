@@ -238,35 +238,35 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Úc",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Úc",
       "zoneName": "Lãnh thổ phía Bắc"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Úc",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Úc",
       "zoneName": "Nam Úc"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Úc",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmania",
       "zoneName": "Đảo King"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Úc",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Úc",
       "zoneName": "Tây Úc"
     },
@@ -317,6 +317,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius và Saba"
+    },
+    "BR": {
+      "zoneName": "Brazil"
     },
     "BR-CS": {
       "countryName": "Brazil",
@@ -600,10 +603,6 @@
     "GB-ORK": {
       "countryName": "Great Britain",
       "zoneName": "Quần đảo Orkney"
-    },
-    "GB-ZET": {
-      "countryName": "Great Britain",
-      "zoneName": "Quần đảo Shetland"
     },
     "GB-ZET": {
       "countryName": "Great Britain",

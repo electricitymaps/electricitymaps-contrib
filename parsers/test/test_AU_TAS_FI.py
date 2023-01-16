@@ -19,7 +19,7 @@ class TestAusTasKi(unittest.TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_parsing_payload(self):
-        filename = "parsers/test/mocks/AUS_TAS_FI_payload1.json"
+        filename = "parsers/test/mocks/AU/AU_TAS_FI_payload1.json"
         with open(filename) as f:
             fake_data = json.load(f)
         with patch("parsers.ajenti.SignalR.get_value") as f:

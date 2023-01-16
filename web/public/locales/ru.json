@@ -168,31 +168,31 @@
     "AT": {
       "zoneName": "Австрия"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Австралия",
       "zoneName": "Новый Южный Уэльс"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Австралия",
       "zoneName": "Северная территория"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Австралия",
       "zoneName": "Квинсленд"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Австралия",
       "zoneName": "Южная Австралия"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Австралия",
       "zoneName": "Тасмания"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Австралия",
       "zoneName": "Виктория"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Австралия",
       "zoneName": "Западная Австралия"
     },
@@ -243,6 +243,9 @@
     },
     "BQ": {
       "zoneName": "Бонайр, Синт Эстатиус и Саба"
+    },
+    "BR": {
+      "zoneName": "Бразилия"
     },
     "BR-CS": {
       "countryName": "Бразилия",
@@ -1190,7 +1193,7 @@
     "ZW": {
       "zoneName": "Зимбабве"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Тасмания",
       "zoneName": "Кинг"
     },
@@ -1217,10 +1220,6 @@
     "GB-ORK": {
       "countryName": "Великобритания",
       "zoneName": "Оркнейские острова"
-    },
-    "GB-ZET": {
-      "countryName": "Великобритания",
-      "zoneName": "Шетландские острова"
     },
     "GB-ZET": {
       "countryName": "Великобритания",

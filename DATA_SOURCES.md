@@ -53,7 +53,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Honduras: [ENTE](https://www.enteoperador.org/flujos-regionales-en-tiempo-real/)
 - Hungary: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Iceland: [LANDSNET](https://amper.landsnet.is/generation/api/Values)
-- Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Ireland: [Eirgrid](https://www.smartgriddashboard.com/)
 - Israel: [IEC](https://www.iec.co.il/en/pages/default.aspx)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - India: [meritindia](http://meritindia.in/)
@@ -98,7 +98,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - [Energy Market Services](https://em6live.co.nz)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Nigeria: [TCN ISO grid data portal](https://www.niggrid.com/GenerationProfile)
-- Northern Ireland: [SONI](http://www.soni.ltd.uk/InformationCentre/)
+- Northern Ireland: [Eirgrid](https://www.smartgriddashboard.com/)
 - Norway: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Oman: [GCCIA](https://www.gccia.com.sa/)
 - Panama: [CND](http://sitr.cnd.com.pa/m/pub/gen.html)
@@ -240,6 +240,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Finland:
   - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=FI)
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+  - Wind: [Fingrid](https://data.fingrid.fi/en/dataset/total-wind-production-capacity)
+  - Solar: [Fingrid](https://data.fingrid.fi/en/dataset/total-solar-production-capacity)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France:
   - Geothermal: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -323,7 +325,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Norway:
   - Solar: [NVE Excel report](https://www.nve.no/media/13861/oversikt-over-solcelleanlegg-i-norge_2021.xlsx)
   - Other: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
-- Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Northern Ireland
+  - Thermal capacity, battery storage: [Connections Register, April 2022](https://www.soni.ltd.uk/media/documents/20220414-Connections-Register-14-April-2022.pdf)
+  - Renewables, smaller scale generation: [All-Island Generation Capacity Statement 2022-2031](https://www.soni.ltd.uk/media/documents/EirGrid_SONI_2022_Generation_Capacity_Statement_2022-2031.pdf)
 - Oman: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Panama:
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -430,7 +434,8 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - [Denmark (West) ⇄ Sweden](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - [Denmark (West) ⇄ Netherlands](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Estonia ⇄ European Russia And Ural [2464 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
-- [Estonia ⇄ Finnland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Estonia ⇄ Finland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- Finland ⇄ Norway: ["Joint operation between the Norwegian and Finnish subsystems, Appendix 3 to SOA Annex OS (FI and NO)": 120 MW (NO4 -> FI) 100 MW (FI -> NO4)](https://www.fingrid.fi/globalassets/dokumentit/fi/kantaverkko/sahkonsiirto/appendix-1-8-to-soa-annex-os.pdf)
 - Georgia ⇄ Turkey: ["Black Sea Transmission Network Project (BSTN)": 700 MW](http://www.gse.com.ge/M9Ltvi2EQCCNYg7LvHW0JQ.html 'Two additional connections are planned/under construction, Batumi-Muratli and Akhalstikhe-Tortum, to double capacity to 1400MW; see http://www.gse.com.ge/sw/static/file/TYNDP_GE-2020-2030_ENG.pdf. Another interconnector (Batumi-Khopa) is only used in emergencies, according to http://www.gse.com.ge/about-us/international-affairs')
 - [Germany ⇄ Sweden](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - [Germany ⇄ Norway](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
@@ -440,6 +445,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - Great Britain ⇄ Ireland: ["East-West Interconnector": 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
 - Great Britain ⇄ France: ["Cross-Channel": 2000 MW](https://en.wikipedia.org/wiki/HVDC_Cross-Channel) & ["IFA2": 1000 MW](https://en.wikipedia.org/wiki/IFA-2)
 - Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
+- Great Britain ⇄ Orkney: ["33kV SHEPD cables": 40 MW](https://www.ofgem.gov.uk/sites/default/files/docs/2018/12/orkney_final_needs_case_consultation.pdf)
 - Greece ⇄ Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
 - Greece ⇄ Turkey: [1900 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Italy Central South ⇄ Italy Sardinia: ["SAPEI": 1000 MW](https://en.wikipedia.org/wiki/SAPEI)

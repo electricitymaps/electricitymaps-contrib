@@ -45,7 +45,7 @@ emissionFactors:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 364.34324580709017
+        value: 364.3432458070902
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 369.3563058085057
@@ -58,7 +58,7 @@ emissionFactors:
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 364.34324580709017
+        value: 364.3432458070902
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 369.3563058085057

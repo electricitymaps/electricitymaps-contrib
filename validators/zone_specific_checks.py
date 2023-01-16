@@ -8,7 +8,7 @@ from validators.lib.config import validator
     not_zone_keys=[  # zone_keys where we allow fossil fuel production to be 0
         "CH",
         "NO",
-        "AUS-TAS",
+        "AU-TAS",
         "DK-BHM",
         "US-CAR-YAD",
         "US-NW-SCL",

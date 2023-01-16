@@ -285,35 +285,35 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "Nueva Gales del Sur"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Territorio del Norte"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australia",
       "zoneName": "Australia Meridional"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmania",
       "zoneName": "Isla King"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australia",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australia",
       "zoneName": "Australia Occidental"
     },
@@ -365,6 +365,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, San Eustaquio y Saba"
+    },
+    "BR": {
+      "zoneName": "Brasil"
     },
     "BR-CS": {
       "countryName": "Brasil",
@@ -652,10 +655,6 @@
     "GB-ORK": {
       "countryName": "Reino Unido",
       "zoneName": "Islas Orcadas"
-    },
-    "GB-ZET": {
-      "countryName": "Reino Unido",
-      "zoneName": "Islas Shetland"
     },
     "GB-ZET": {
       "countryName": "Reino Unido",

@@ -49,6 +49,10 @@ const MapContainer = styled.div`
 
 const NewVersionInner = styled.div`
   background-color: #3f51b5;
+  & > span > a {
+    color: inherit;
+    text-decoration: underline;
+  }
 `;
 
 const NewVersionButton = styled.button`

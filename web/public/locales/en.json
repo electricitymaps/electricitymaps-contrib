@@ -288,47 +288,50 @@
     "AT": {
       "zoneName": "Austria"
     },
-    "AUS-NSW": {
+    "AU": {
+      "zoneName": "Australia"
+    },
+    "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Northern Territory"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australia",
       "zoneName": "South Australia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australia",
       "zoneName": "Cape Barren Island"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australia",
       "zoneName": "King Island"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australia",
       "zoneName": "Flinders Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australia",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australia",
       "zoneName": "Western Australia"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australia",
       "zoneName": "Rottnest Island"
     },
@@ -380,13 +383,12 @@
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius and Saba"
     },
+    "BR": {
+      "zoneName": "Brazil"
+    },
     "BR-CS": {
       "countryName": "Brazil",
       "zoneName": "Central Brazil"
-    },
-    "BR-I": {
-      "countryName": "Brazil",
-      "zoneName": "Isolated Systems"
     },
     "BR-N": {
       "countryName": "Brazil",
@@ -691,10 +693,6 @@
       "countryName": "Great Britain",
       "zoneName": "Shetland Islands"
     },
-    "GB-ZET": {
-      "countryName": "Great Britain",
-      "zoneName": "Shetland Islands"
-    },
     "GD": {
       "zoneName": "Grenada"
     },
@@ -779,6 +777,29 @@
     },
     "IM": {
       "zoneName": "Isle of Man"
+    },
+    "IN": {
+      "zoneName": "India"
+    },
+    "IN-EA": {
+      "countryName": "India",
+      "zoneName": "Eastern"
+    },
+    "IN-NE": {
+      "countryName": "India",
+      "zoneName": "North Eastern"
+    },
+    "IN-NO": {
+      "countryName": "India",
+      "zoneName": "Northern"
+    },
+    "IN-SO": {
+      "countryName": "India",
+      "zoneName": "Southern"
+    },
+    "IN-WE": {
+      "countryName": "India",
+      "zoneName": "Western"
     },
     "IN-AN": {
       "countryName": "India",

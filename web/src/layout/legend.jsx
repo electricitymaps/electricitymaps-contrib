@@ -46,8 +46,11 @@ const LegendsContainer = styled.div`
 `;
 
 const LegendItemWrapper = styled.div`
-  width: 15em;
+  width: 16em;
   padding-top: 7px;
+  & > div {
+    text-align: center;
+  }
 `;
 
 const ToggleLegendButton = styled.i`
@@ -144,7 +147,7 @@ const Legend = ({ co2ColorbarValue, legendVisible, solarColorbarValue, windColor
               colorScale={co2ColorScale}
               currentValue={co2ColorbarValue}
               markerColor="white"
-              ticksCount={5}
+              ticksCount={6}
             />
           </LegendItem>
         </React.Fragment>

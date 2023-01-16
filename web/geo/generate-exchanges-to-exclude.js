@@ -10,7 +10,6 @@ const generateExchangesToIgnore = (OUT_PATH, zonesConfig, verifyNoUpdates) => {
       return key;
     }
   });
-
   //Create a list of the exchange keys that we don't want to display in a country view
   const unCombinedExchanges = Object.keys(exchangeConfig).filter((key) => {
     const split = key.split('->');
