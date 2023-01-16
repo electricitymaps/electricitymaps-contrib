@@ -1,4 +1,5 @@
 import json
+from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, NewType, Tuple
 
@@ -19,8 +20,32 @@ for zone_id, zone_config in ZONES_CONFIG.items():
     if "bounding_box" in zone_config:
         ZONE_BOUNDING_BOXES[zone_id] = zone_config["bounding_box"]
 
+# Add link from subzone to the full zone
+ZONE_PARENT: Dict[ZoneKey, ZoneKey] = {}
+for zone_id, zone_config in ZONES_CONFIG.items():
+    if "subZoneNames" in zone_config:
+        for sub_zone_id in zone_config["subZoneNames"]:
+            ZONE_PARENT[sub_zone_id] = zone_id
+
 # Prepare zone neighbours
 ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = {}
+
+
+# This object represents all neighbours regardless of granularity
+def generate_all_neighbours(exchanges_config) -> Dict[ZoneKey, List[ZoneKey]]:
+    zone_neighbours = defaultdict(set)
+    for k, v in exchanges_config.items():
+        zone_1, zone_2 = k.split("->")
+        pairs = [(zone_1, zone_2), (zone_2, zone_1)]
+        for zone_name_1, zone_name_2 in pairs:
+            zone_neighbours[zone_name_1].add(zone_name_2)
+    # Sort
+    return {k: sorted(v) for k, v in zone_neighbours.items()}
+
+
+ALL_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_all_neighbours(EXCHANGES_CONFIG)
+
+
 for k, v in EXCHANGES_CONFIG.items():
     zone_names = k.split("->")
     pairs = [(zone_names[0], zone_names[1]), (zone_names[1], zone_names[0])]
