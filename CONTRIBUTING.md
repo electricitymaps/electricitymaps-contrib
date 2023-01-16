@@ -13,6 +13,7 @@ There are several ways to help out without coding, these are primarily:
 - Opening issues for data problems.
 - Opening and/or participating in discussions about new data sources, features, and more.
 - Opening issues when capacity data sources have been updated or changed.
+- Adding new or updating our existing translations, for more detailed instructions take a look at our wiki page: [Translating the App][wiki translating the app]
 - And more!
 
 ## Parser guidelines
@@ -34,6 +35,28 @@ There are no clear cut model or template that works for all parsers as all data 
 - They need to return valid data from a credible source.
 - They need to return the date for when the data was collected together with the data.
 - They need to return at least one valid Electricity Maps data object (production, consumption, exchange, price, etc).
+  Example of a production return object:
+
+```python
+{'datetime': datetime.datetime(2023, 1, 16, 15, 0, tzinfo=tzutc()),
+  'production': {'biomass': 542.0,
+                 'coal': 192.0,
+                 'gas': 142.0,
+                 'geothermal': None,
+                 'hydro': None,
+                 'nuclear': None,
+                 'oil': 34.0,
+                 'solar': 0.0,
+                 'unknown': None,
+                 'wind': 1164.0},
+  'source': 'entsoe.eu',
+  'storage': {'hydro': None},
+  'zoneKey': 'DK-DK2'}
+```
+
+Note: If data from a production mode is missing it should be omitted or returned as `None` like the above example, _NOT_ `0`.
+
+<!-- TODO: Create wiki pages for all types of return types and provide more examples then link them here. -->
 
 #### Example parser:
 
@@ -60,6 +83,34 @@ Note: This requires you to have [node.js][node homepage] and [pnpm][pnpm homepag
 - [pnpm installation][pnpm installation guide]
 
 ### Frontend structure
+
+The frontend can be broken down to 2 main parts, the web app built [Vite](vitejs) and the mobile app built with [capacitor][capacitorjs].
+Both of these share a common code base that is built upon [react][reactjs].
+
+As a result we have a frontend folder structure that looks like this:
+
+```
+mobileapp
+├── android
+├── assets
+├── icons
+└──ios
+web
+├── config
+├── cypress
+├── geo
+├── public
+├── scripts
+└── src
+    ├── api
+    ├── components
+    ├── features
+    ├── hooks
+    ├── stories
+    ├── testing
+    ├── translation
+    └── utils
+```
 
 ### State management
 
@@ -91,3 +142,7 @@ Check the [wiki page][wiki js code formatting] on formatting for more details an
 [eslint homepage]: https://eslint.org/
 [prettier homepage]: https://prettier.io/
 [wiki js code formatting]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#js-code-formatting
+[wiki translating the app]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Translating-app.electricitymaps.com
+[reactjs]: https://reactjs.org/
+[vitejs]: https://vitejs.dev/
+[capacitorjs]: https://capacitorjs.com/
