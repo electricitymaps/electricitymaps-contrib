@@ -1,4 +1,4 @@
-import { multiPolygon } from '@turf/turf';
+import { multiPolygon } from '@turf/helpers';
 import { merge } from 'topojson-client';
 import { MapGeometries, MapTheme } from 'types';
 import { ToggleOptions } from 'utils/constants';
