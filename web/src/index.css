@@ -22,6 +22,8 @@
     @apply antialiased;
     @apply bg-white dark:bg-gray-800;
     @apply text-gray-900 dark:text-gray-200;
+    /* Disables mobile touch specific blue user select effect */
+    -webkit-tap-highlight-color: transparent;
   }
 }
 *::-webkit-scrollbar {
@@ -109,7 +111,6 @@ body,
 #root {
   @apply h-full;
 }
-
 
 noscript div {
   height: 100vh;

@@ -96,7 +96,7 @@ export default function MapPage(): ReactElement {
     if (!map || isLoading || isError) {
       return;
     }
-
+    map.touchZoomRotate.disableRotation();
     // An issue where the map has not loaded source yet causing map errors
     const isSourceLoaded = map.getSource('zones-clickable') != undefined;
     if (!isSourceLoaded) {
@@ -296,7 +296,6 @@ export default function MapPage(): ReactElement {
       dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
       onDragEnd={onDragOrZoomEnd}
       dragRotate={false}
-      touchZoomRotate={false}
       minZoom={0.7}
       maxBounds={[
         [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
