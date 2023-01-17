@@ -29,6 +29,7 @@ export interface StateZoneData {
   renewableRatioProduction: number;
   stateDatetime: number;
   zoneKey: string;
+  // TODO: Add spatial aggregate info to the request so we can use it for filtering in ranking panel
 }
 
 export interface ExchangeResponse {
