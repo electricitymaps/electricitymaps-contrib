@@ -1,0 +1,14 @@
+capacity:
+  biomass: 265.59
+  coal: 13685
+  gas: 516.1
+  geothermal: 4320
+  hydro: 2321.9
+  nuclear: 2440
+  oil: 211.7
+  solar: 5518.153
+  wind: 8618.07
+contributors:
+  - gopikrishna1793
+flag_file_name: in.png
+timezone: Asia/Kolkata

@@ -1,0 +1,9 @@
+capacity:
+  - -1400
+  - 1400
+lonlat:
+  - 2.44819
+  - 57.266334
+parsers:
+  exchange: ELEXON.fetch_exchange
+rotation: 50

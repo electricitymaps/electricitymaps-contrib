@@ -1,0 +1,333 @@
+fallbackZoneMixes:
+  powerOriginRatios:
+    _comment: https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html, https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Jul/IRENA_Renewable_Energy_Statistics_2018.pdf
+    _source: BP Statistical Review of World Energy 2019, values from 2018, and Electricity Maps Avg for average carbon intensity, and IRENA report for Biomass and geothermal
+    value:
+      battery charge: 0
+      battery discharge: 0
+      biomass: 0.017509
+      coal: 0.38
+      gas: 0.232
+      geothermal: 0.003081
+      hydro: 0.158
+      hydro charge: 0
+      hydro discharge: 0
+      nuclear: 0.102
+      oil: 0.03
+      solar: 0.021966
+      unknown: 0.007728
+      wind: 0.047716
+isLowCarbon:
+  battery charge:
+    _comment: Battery charge does not contribute to the production/consumption mix
+    source: Electricity Maps
+    value: 0
+  battery discharge:
+    _comment: Battery discharge is assumed to be powered by low-carbon. Ideally this should be overriden per zone.
+    source: Electricity Maps
+    value: 1
+  biomass:
+    _comment: biomass is considered low-carbon.
+    source: Electricity Maps
+    value: 1
+  coal:
+    _comment: coal is a fossil fuel.
+    source: Electricity Maps
+    value: 0
+  gas:
+    _comment: gas is a fossil fuel.
+    source: Electricity Maps
+    value: 0
+  geothermal:
+    _comment: geothermal is considered low-carbon.
+    source: Electricity Maps
+    value: 1
+  hydro:
+    _comment: hydro is considered low-carbon.
+    source: Electricity Maps
+    value: 1
+  hydro charge:
+    _comment: Battery charge does not contribute to the production/consumption mix
+    source: Electricity Maps
+    value: 0
+  hydro discharge:
+    _comment: Hydro discharge is assumed to be powered by low-carbon. Ideally this should be overriden per zone.
+    source: Electricity Maps
+    value: 1
+  nuclear:
+    _comment: nuclear is considered low-carbon.
+    source: Electricity Maps
+    value: 1
+  oil:
+    _comment: oil is a fossil fuel.
+    source: Electricity Maps
+    value: 0
+  solar:
+    _comment: solar is considered low-carbon.
+    source: Electricity Maps
+    value: 1
+  unknown:
+    _comment: By default unknown is assumed to be made up of fossil fuel based modes.
+    datetime: '2020-01-01'
+    source: Electricity Maps
+    value: 0
+  wind:
+    _comment: wind is considered low-carbon.
+    source: Electricity Maps
+    value: 1
+isRenewable:
+  battery charge:
+    _comment: Battery charge does not contribute to the production/consumption mix
+    source: Electricity Maps
+    value: 0
+  battery discharge:
+    _comment: Battery discharge is assumed to be powered by renewables. Ideally this should be overriden per zone.
+    source: Electricity Maps
+    value: 1
+  biomass:
+    _comment: biomass is considered renewable.
+    source: Electricity Maps
+    value: 1
+  coal:
+    _comment: coal is a fossil fuel.
+    source: Electricity Maps
+    value: 0
+  gas:
+    _comment: gas is a fossil fuel.
+    source: Electricity Maps
+    value: 0
+  geothermal:
+    _comment: geothermal is considered renewable.
+    source: Electricity Maps
+    value: 1
+  hydro:
+    _comment: hydro is considered renewable.
+    source: Electricity Maps
+    value: 1
+  hydro charge:
+    _comment: Battery charge does not contribute to the production/consumption mix
+    source: Electricity Maps
+    value: 0
+  hydro discharge:
+    _comment: Hydro discharge is assumed to be powered by renewables. Ideally this should be overriden per zone.
+    source: Electricity Maps
+    value: 1
+  nuclear:
+    _comment: nuclear is a not renewable.
+    source: Electricity Maps
+    value: 0
+  oil:
+    _comment: oil is a fossil fuel.
+    source: Electricity Maps
+    value: 0
+  solar:
+    _comment: solar is considered renewable.
+    source: Electricity Maps
+    value: 1
+  unknown:
+    _comment: By default unknown is assumed to be made up of fossil fuel based modes.
+    source: Electricity Maps
+    value: 0
+  wind:
+    _comment: wind is considered renewable.
+    source: Electricity Maps
+    value: 1
+emissionFactors:
+  direct:
+    battery charge:
+      _comment: Emissions are counted at discharge
+      source: Electricity Maps
+      value: 0
+    battery discharge:
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2015-01-01'
+        source: 2015 annual mean carbon intensity by Electricity Maps
+        value: 307.04
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2016-01-01'
+        source: 2016 annual mean carbon intensity by Electricity Maps
+        value: 295.25
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2017-01-01'
+        source: 2017 annual mean carbon intensity by Electricity Maps
+        value: 311.04
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2018-01-01'
+        source: 2018 annual mean carbon intensity by Electricity Maps
+        value: 331.14
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2019-01-01'
+        source: 2019 annual mean carbon intensity by Electricity Maps
+        value: 326.32
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2020-01-01'
+        source: 2020 annual mean carbon intensity by Electricity Maps
+        value: 310.58
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2021-01-01'
+        source: 2021 annual mean carbon intensity by Electricity Maps
+        value: 324.69
+    biomass:
+      source: BEIS 2021
+      value: 0
+    coal:
+      source: IPCC 2014
+      value: 760
+    gas:
+      source: IPCC 2014
+      value: 370
+    geothermal:
+      source: IPCC 2014
+      value: 0
+    hydro:
+      source: IPCC 2014
+      value: 0
+    hydro charge:
+      _comment: Emissions are counted at discharge
+      source: Electricity Maps
+      value: 0
+    hydro discharge:
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2015-01-01'
+        source: 2015 annual mean carbon intensity by Electricity Maps
+        value: 307.04
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2016-01-01'
+        source: 2016 annual mean carbon intensity by Electricity Maps
+        value: 295.25
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2017-01-01'
+        source: 2017 annual mean carbon intensity by Electricity Maps
+        value: 311.04
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2018-01-01'
+        source: 2018 annual mean carbon intensity by Electricity Maps
+        value: 331.14
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2019-01-01'
+        source: 2019 annual mean carbon intensity by Electricity Maps
+        value: 326.32
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2020-01-01'
+        source: 2020 annual mean carbon intensity by Electricity Maps
+        value: 310.58
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2021-01-01'
+        source: 2021 annual mean carbon intensity by Electricity Maps
+        value: 324.69
+    nuclear:
+      source: IPCC 2014
+      value: 0
+    oil:
+      _comment: A blended average of US and UK direct emission factor figures
+      source: EIA 2020/BEIS 2021
+      value: 406
+    solar:
+      source: IPCC 2014
+      value: 0
+    unknown:
+      _comment: assume conventional
+      source: assumes thermal (coal, gas, or oil)
+      value: 575
+    wind:
+      source: IPCC 2014
+      value: 0
+  lifecycle:
+    battery charge:
+      _comment: Emissions are counted at discharge
+      source: Electricity Maps
+      value: 0
+    battery discharge:
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2015-01-01'
+        source: 2015 annual mean carbon intensity by Electricity Maps
+        value: 363.85
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2016-01-01'
+        source: 2016 annual mean carbon intensity by Electricity Maps
+        value: 354.12
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2017-01-01'
+        source: 2017 annual mean carbon intensity by Electricity Maps
+        value: 370.7
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2018-01-01'
+        source: 2018 annual mean carbon intensity by Electricity Maps
+        value: 407.34
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2019-01-01'
+        source: 2019 annual mean carbon intensity by Electricity Maps
+        value: 391.46
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2020-01-01'
+        source: 2020 annual mean carbon intensity by Electricity Maps
+        value: 375.63
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2021-01-01'
+        source: 2021 annual mean carbon intensity by Electricity Maps
+        value: 391.33
+    biomass:
+      source: IPCC 2014
+      value: 230
+    coal:
+      source: IPCC 2014
+      value: 820
+    gas:
+      source: IPCC 2014
+      value: 490
+    geothermal:
+      source: IPCC 2014
+      value: 38
+    hydro:
+      source: IPCC 2014
+      value: 24
+    hydro charge:
+      _comment: Emissions are counted at discharge
+      source: Electricity Maps
+      value: 0
+    hydro discharge:
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2015-01-01'
+        source: 2015 annual mean carbon intensity by Electricity Maps
+        value: 363.85
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2016-01-01'
+        source: 2016 annual mean carbon intensity by Electricity Maps
+        value: 354.12
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2017-01-01'
+        source: 2017 annual mean carbon intensity by Electricity Maps
+        value: 370.7
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2018-01-01'
+        source: 2018 annual mean carbon intensity by Electricity Maps
+        value: 407.34
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2019-01-01'
+        source: 2019 annual mean carbon intensity by Electricity Maps
+        value: 391.46
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2020-01-01'
+        source: 2020 annual mean carbon intensity by Electricity Maps
+        value: 375.63
+      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
+        datetime: '2021-01-01'
+        source: 2021 annual mean carbon intensity by Electricity Maps
+        value: 391.33
+    nuclear:
+      source: IPCC 2014
+      value: 12
+    oil:
+      _comment: UK Parliamentary Office of Science and Technology (2006) 'Carbon footprint of electricity generation'
+      source: UK POST 2014
+      value: 650
+    solar:
+      source: IPCC 2014
+      value: 45
+    unknown:
+      _comment: assume conventional
+      source: assumes thermal (coal, gas, oil or biomass)
+      value: 700
+    wind:
+      source: IPCC 2014
+      value: 11

@@ -1,0 +1,10 @@
+capacity:
+  - -700
+  - 700
+lonlat:
+  - 42.814
+  - 41.562
+parsers:
+  exchange: GE.fetch_exchange
+  exchangeForecast: ENTSOE.fetch_exchange_forecast
+rotation: -135

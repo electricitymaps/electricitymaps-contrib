@@ -1,0 +1,10 @@
+capacity:
+  - -696
+  - 696
+lonlat:
+  - 27.7336
+  - 56.87436
+parsers:
+  exchange: ENTSOE.fetch_exchange
+  exchangeForecast: ENTSOE.fetch_exchange_forecast
+rotation: 45
