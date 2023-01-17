@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
@@ -13,9 +14,27 @@ import {
 import FAQPanel from './faq/FAQPanel';
 import { leftPanelOpenAtom } from './panelAtoms';
 import RankingPanel from './ranking-panel/RankingPanel';
-import * as Sentry from '@sentry/react';
 
 import ZoneDetails from './zone/ZoneDetails';
+
+// Remove index.html from URL
+function RedirectIndexWrapper({ children }: { children: JSX.Element }) {
+  const location = useLocation();
+
+  if (location.pathname.includes('/index.html')) {
+    console.log('Removing index.html from', location.pathname);
+    const pathWithoutIndex = location.pathname.replace('/index.html', '');
+    return (
+      <Navigate
+        to={{
+          pathname: pathWithoutIndex,
+        }}
+      />
+    );
+  }
+
+  return children;
+}
 
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
@@ -108,7 +127,14 @@ export default function LeftPanel() {
         />
         <Route path="/faq" element={<FAQPanel />} />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route path="*" element={<RankingPanel />} />
+        <Route
+          path="*"
+          element={
+            <RedirectIndexWrapper>
+              <RankingPanel />
+            </RedirectIndexWrapper>
+          }
+        />
       </SentryRoutes>
     </OuterPanel>
   );

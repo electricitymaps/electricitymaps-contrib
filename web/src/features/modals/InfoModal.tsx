@@ -81,6 +81,7 @@ export function InfoModalContent() {
           {__('info-modal.legal-notice')}
         </a>
       </div>
+      <p className="text mt-2  text-sm">Version: {APP_VERSION}</p>
     </div>
   );
 }
