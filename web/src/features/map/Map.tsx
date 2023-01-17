@@ -160,7 +160,6 @@ export default function MapPage(): ReactElement {
     }
   }, [isSuccess]);
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
-    setHoveredZone(null);
     const map = mapReference.current?.getMap();
     if (!map || !event.features) {
       return;
@@ -176,6 +175,13 @@ export default function MapPage(): ReactElement {
       );
     }
 
+    if (hoveredZone && (!feature || hoveredZone.featureId !== feature.id)) {
+      map.setFeatureState(
+        { source: ZONE_SOURCE, id: hoveredZone.featureId },
+        { hover: false }
+      );
+    }
+    setHoveredZone(null);
     if (feature && feature.properties) {
       setSelectedFeatureId(feature.id);
       map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { selected: true });
