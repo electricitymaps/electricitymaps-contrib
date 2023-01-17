@@ -1,0 +1,21 @@
+bounding_box:
+  - - 128.50011587536375
+    - -26.499911390797962
+  - - 138.50018768629417
+    - -10.468357028999876
+capacity:
+  biomass: 1.1
+  gas: 471.4
+  solar: 158
+contributors:
+  - unitrium
+delays:
+  consumption: 30
+  price: 30
+  production: 30
+flag_file_name: au.png
+parsers:
+  consumption: NTESMO.fetch_consumption
+  price: NTESMO.fetch_price
+  production: NTESMO.fetch_production_mix
+timezone: Australia/Darwin

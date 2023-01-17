@@ -1,0 +1,84 @@
+bounding_box:
+  - - 46.155
+    - 28.3985
+  - - 48.7948
+    - 30.4747
+capacity:
+  gas: 6525
+  oil: 8550
+  solar: 93
+  wind: 12
+contributors:
+  - alixunderplatz
+  - nessie2013
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 575.0
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 575.0
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 575.0
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 575.0
+  lifecycle:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 550.0
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 550.0
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 550.0
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 550.0
+    unknown:
+      _url: https://www.iea.org/fuels-and-technologies/electricity
+      source: IEA 2019; assumes 62.3% gas, 37.7% oil
+      value: 550
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 1.0
+        wind: 0.0
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 1.0
+        wind: 0.0
+parsers:
+  consumption: KW.fetch_consumption
+  production: KW.fetch_production
+timezone: Asia/Kuwait

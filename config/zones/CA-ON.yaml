@@ -1,0 +1,218 @@
+bounding_box:
+  - - -95.66119498965699
+    - 41.229466804384714
+  - - -73.84780324445131
+    - 57.36127350500004
+capacity:
+  biomass: 296
+  coal: 0
+  gas: 10482
+  hydro: 8868
+  nuclear: 13089
+  solar: 478
+  wind: 4883
+contributors:
+  - corradio
+  - jarek
+  - scriptator
+  - felixvanoost
+  - misterclean
+  - christopheradlam
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 29.431231035827615
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 29.43125619394837
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 28.895469972234196
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 25.2470538727056
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 24.48486910930771
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 25.3061525281097
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 32.100176825682105
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 29.431231035827615
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 29.43125619394837
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 28.895469972234196
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 25.2470538727056
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 24.48486910930771
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 25.3061525281097
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 32.100176825682105
+  lifecycle:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 53.48322359927377
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 53.48323094170299
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 53.03166247658179
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 48.27082098236083
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 47.473184887281725
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 48.54750352993932
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 57.47323263502428
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 53.48322359927377
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 53.48323094170299
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 53.03166247658179
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 48.27082098236083
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 47.473184887281725
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 48.54750352993932
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 57.47323263502428
+    nuclear:
+      datetime: '2013-01-01'
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
+        generation in the province of Ontario, Canada." (2013)
+      value: 4.8
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2015 average
+      datetime: '2015-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0021372333899431534
+        coal: 4.162119708056519e-05
+        gas: 0.07945883633135135
+        geothermal: 0.0
+        hydro: 0.24429247456773798
+        hydro discharge: 0.0
+        nuclear: 0.5908084439161816
+        oil: 0.0
+        solar: 0.0045278627754536315
+        unknown: 0.0
+        wind: 0.07873335574334984
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.002137235334713046
+        coal: 4.162123495366381e-05
+        gas: 0.07945890863471013
+        geothermal: 0.0
+        hydro: 0.24429269686103158
+        hydro discharge: 0.0
+        nuclear: 0.5908089815207686
+        oil: 0.0
+        solar: 0.004526957006340299
+        unknown: 0.0
+        wind: 0.07873342738655946
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0025007834799039854
+        coal: 4.148576536595492e-05
+        gas: 0.07800422955303413
+        geothermal: 4.851187871630446e-07
+        hydro: 0.25800973676617983
+        hydro discharge: 0.0
+        nuclear: 0.579780133971988
+        oil: 4.851187871630446e-07
+        solar: 0.004457584310946655
+        unknown: 3.965094554694506e-06
+        wind: 0.07808640687054952
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.002445632594056148
+        coal: 2.3952523186687794e-05
+        gas: 0.06816539657859817
+        geothermal: 4.388560871142144e-07
+        hydro: 0.25491924235371344
+        hydro discharge: 0.0
+        nuclear: 0.6091694168986547
+        oil: 4.4108926812218226e-07
+        solar: 0.003939569528042316
+        unknown: 4.615120686305342e-06
+        wind: 0.061793971670518824
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.00278779135675747
+        coal: 1.6145193365017258e-06
+        gas: 0.06615783386471316
+        geothermal: 8.533143903381702e-07
+        hydro: 0.26432123324185447
+        hydro discharge: 0.0
+        nuclear: 0.5891168082217787
+        oil: 8.543560157165585e-07
+        solar: 0.00414977799489738
+        unknown: 7.361092147256739e-06
+        wind: 0.07389446663212358
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 5.246005859666389e-10
+        biomass: 0.003308911750891661
+        coal: 3.5777460191161355e-05
+        gas: 0.08659659371046442
+        geothermal: 7.324173609502802e-07
+        hydro: 0.2684266723798568
+        hydro discharge: 7.494294085237698e-10
+        nuclear: 0.5549845749984755
+        oil: 8.643169368504636e-07
+        solar: 0.004738808598367428
+        unknown: 2.8767372446770864e-05
+        wind: 0.08265783000861422
+flag_file_name: ca.png
+parsers:
+  price: CA_ON.fetch_price
+  production: CA_ON.fetch_production
+sources:
+  ? "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation\
+    \ in the province of Ontario, Canada.\" Int J Life Cycle Assess 18, 377\u2013\
+    391 (2013)"
+  : link: https://doi.org/10.1007/s11367-012-0501-0
+timezone: America/Toronto

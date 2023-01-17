@@ -1,0 +1,20 @@
+bounding_box:
+  - - -61.252194
+    - 14.364404
+  - - -60.732382
+    - 14.888562
+capacity:
+  biomass: 15.082
+  gas: 129
+  geothermal: 0
+  hydro: 0
+  oil: 292
+  solar: 53.97
+  wind: 1.1
+contributors:
+  - PETILLON-Sebastien
+  - VIKTORVAV99
+parsers:
+  production: FR_O.fetch_production
+  price: FR_O.fetch_price
+timezone: Europe/Paris

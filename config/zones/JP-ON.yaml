@@ -1,0 +1,13 @@
+bounding_box:
+  - - 122.43816165500004
+    - 23.756984768000052
+  - - 131.82789147200003
+    - 28.368963934000078
+contributors:
+  - tmslaine
+  - lorrieq
+parsers:
+  consumptionForecast: JP.fetch_consumption_forecast
+  price: JP.fetch_price
+  production: JP.fetch_production
+timezone: Asia/Tokyo

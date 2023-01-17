@@ -1,0 +1,18 @@
+bounding_box:
+  - - 166.91871178500003
+    - -47.777601820999905
+  - - 168.76099694100003
+    - -46.18303801899992
+capacity:
+  biomass: 0
+  coal: 0
+  gas: 0
+  hydro: 0
+  nuclear: 0
+  oil: 1.096
+  solar: 0
+  wind: 0
+contributors:
+  - madsnedergaard
+flag_file_name: nz.png
+timezone: Pacific/Auckland

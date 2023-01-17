@@ -1,0 +1,20 @@
+bounding_box:
+  - - -117.12776
+    - 14.5388286402
+  - - -86.811982388
+    - 32.72083
+capacity: {}
+contributors:
+  - scriptator
+parsers:
+  production: MX.fetch_production
+subZoneNames:
+  - MX-BC
+  - MX-CE
+  - MX-NE
+  - MX-NO
+  - MX-NW
+  - MX-OC
+  - MX-OR
+  - MX-PN
+timezone: null

@@ -1,0 +1,57 @@
+bounding_box:
+  - - 75.07784712064807
+    - 29.88217682520036
+  - - 79.49706994002565
+    - 33.7328555360541
+capacity:
+  biomass: 9.2
+  coal: 0
+  gas: 0
+  hydro: 10263.02
+  nuclear: 0
+  oil: 0
+  solar: 45
+  wind: 0
+contributors:
+  - willbeaufoy
+  - gopikrishna1793
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 58.41386868435291
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 58.41386868435291
+  lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 92.67451046028728
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 92.67451046028728
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.898529923602576
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.10160972395107282
+        wind: 0.0
+flag_file_name: in.png
+parsers:
+  production: IN_HP.fetch_production
+timezone: Asia/Kolkata

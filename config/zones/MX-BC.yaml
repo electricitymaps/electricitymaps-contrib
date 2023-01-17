@@ -1,0 +1,14 @@
+bounding_box:
+  - - -118.86880422899992
+    - 22.37215511800008
+  - - -108.91362465499992
+    - 33.21283640500009
+fallbackZoneMixes:
+  comment: Only for exports from Baja California to California, assumes 92.3% gas,
+    7.7% wind, see issue 1497
+  powerOriginRatios:
+    value:
+      gas: 0.923
+      wind: 0.077
+  source: "Electricity Maps & Dra. Gabriela Mu\xF1oz Mel\xE9ndez"
+timezone: null

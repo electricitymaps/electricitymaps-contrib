@@ -1,0 +1,22 @@
+bounding_box:
+  - - 77.611412
+    - 28.542876
+  - - 80.940177
+    - 31.292794
+capacity:
+  biomass: 130.2
+  coal: 0
+  gas: 450
+  hydro: 3855.35
+  nuclear: 0
+  oil: 0
+  solar: 398.3
+  wind: 0
+contributors:
+  - alixunderplatz
+  - lorrieq
+  - gopikrishna1793
+flag_file_name: in.png
+parsers:
+  production: IN_UT.fetch_production
+timezone: Asia/Kolkata

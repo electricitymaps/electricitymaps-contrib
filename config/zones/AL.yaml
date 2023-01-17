@@ -1,0 +1,22 @@
+bounding_box:
+  - - 19.3044861183
+    - 39.624997667
+  - - 21.0200403175
+    - 42.6882473822
+capacity:
+  biomass: 1
+  gas: 98
+  hydro: 2484
+  solar: 23
+contributors:
+  - corradio
+  - nessie2013
+  - autipial
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  production: ENTSOE.fetch_production
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+timezone: Europe/Tirane

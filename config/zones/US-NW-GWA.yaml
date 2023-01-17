@@ -1,0 +1,161 @@
+bounding_box:
+  - - -113.660743713
+    - 47.4742527010001
+  - - -111.05112648
+    - 49.491411209
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 0
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 210
+comment: Naturener Power Watch, Llc (Gwa)
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 0.0
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 0.0
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 0.0
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 0.0
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 0.0
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 0.0
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 11.0
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 11.0
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 11.0
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 11.0
+    coal:
+      datetime: '2014-01-01'
+      source: IPCC 2014
+      value: 820.0
+    gas:
+      datetime: '2014-01-01'
+      source: IPCC 2014
+      value: 490.0
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 11.0
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 11.0
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 11.0
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 11.0
+    oil:
+      datetime: '2014-01-01'
+      source: IPCC 2014; EIA 2020/BEIS 2021
+      value: 650.0
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 1.0
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 1.0
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 1.0
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 1.0
+flag_file_name: us.png
+parsers:
+  production: EIA.fetch_production_mix
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+timezone: US/Mountain

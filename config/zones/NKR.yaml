@@ -1,0 +1,13 @@
+bounding_box:
+  - - 45.2
+    - 38.6
+  - - 47.6
+    - 40.7
+fallbackZoneMixes:
+  _comment: Average carbon intensity using 2016 mean production per fuel source (100%
+    hydro) and IPCC 2014 default lifecycle emission factor
+  powerOriginRatios:
+    value:
+      hydro: 1
+flag_file_name: _Nagorno-Karabakh.png
+timezone: null

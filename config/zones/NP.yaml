@@ -1,0 +1,18 @@
+bounding_box:
+  - - 26.33196174127239
+    - 83.31609381672638
+  - - 29.2389869272311
+    - 84.17810344629932
+capacity:
+  biomass: 0
+  coal: 0
+  gas: 0
+  hydro: 1016
+  nuclear: 0
+  oil: 0
+  solar: 0.7804
+  wind: 0
+contributors:
+  - Subarna578
+flag_file_name: np.png
+timezone: null

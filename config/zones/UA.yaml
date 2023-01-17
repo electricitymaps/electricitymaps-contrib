@@ -1,0 +1,140 @@
+bounding_box:
+  - - 21.63283980300011
+    - 44.713568427000055
+  - - 40.65954309100019
+    - 52.86894928000005
+capacity:
+  biomass: 230
+  coal: 17242
+  gas: 4600
+  hydro: 4829
+  hydro storage: 1488
+  nuclear: 13835
+  oil: 756.6
+  solar: 6226
+  wind: 1529
+contributors:
+  - amkozlov
+  - denplis
+  - corradio
+  - MariusKroon
+  - alixunderplatz
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 318.09882554851464
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 297.52677918830636
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 281.4515250173106
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.922150686734
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 239.8490653738602
+    hydro discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 318.09882554851464
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 297.52677918830636
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 281.4515250173106
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.922150686734
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 239.8490653738602
+  lifecycle:
+    battery discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 318.09882554851464
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 297.52677918830636
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 281.4515250173106
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.922150686734
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 239.8490653738602
+    hydro discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 318.09882554851464
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 297.52677918830636
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 281.4515250173106
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.922150686734
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 239.8490653738602
+    unknown:
+      _comment: estimated yearly share of solar & wind in this mixed renewable category
+        based on installed capacity in 2018
+      _url: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
+      source: renewable mix; assumes 50% solar, 50% wind
+      value: 28
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0007416371779313488
+        coal: 0.2686626471972847
+        gas: 0.10042408006462065
+        geothermal: 2.7690480179726907e-07
+        hydro: 0.05361742676730891
+        hydro discharge: 0.00023814217786146712
+        nuclear: 0.518956269684856
+        oil: 0.00025378648949984966
+        solar: 0.0004416904665969649
+        unknown: 0.056123897046762
+        wind: 0.0007921110642819194
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0004021960718665264
+        coal: 0.23791664327483503
+        gas: 0.06650146098510705
+        geothermal: 6.000317656003105e-08
+        hydro: 0.06828666966330395
+        hydro discharge: 0.00014778294225299224
+        nuclear: 0.5554786279123949
+        oil: 0.0001382531496114688
+        solar: 0.00028188305844411286
+        unknown: 0.07014892235240369
+        wind: 0.0007033784570991284
+isLowCarbon:
+  unknown:
+    value: 1
+isRenewable:
+  unknown:
+    value: 1
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  production: UA.fetch_production
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+timezone: Europe/Kiev

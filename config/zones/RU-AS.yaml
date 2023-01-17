@@ -1,0 +1,54 @@
+bounding_box:
+  - - 105.0401526228452
+    - 41.79511139500006
+  - - 163.3469389183963
+    - 77.62579987200007
+contributors:
+  - JeanBaptisteScellier
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 309.8348229839063
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 309.8348229839063
+  lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 381.25297139291115
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 381.25297139291115
+    unknown:
+      _comment: 'Assumes weighted average emission factor based on estimated 2021
+        fuel consumption: 59.6% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 40.1%
+        * 490 g/kWh (gas) = 687 g/kWh, Source: https://minenergo.gov.ru/node/11323
+        2018-06-26 Table 7.3., p.80, Extreme East zone'
+      source: assumes 60% coal, 40% gas, <1% oil
+      value: 687
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.4611569304202878
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.53884309309525
+        wind: 0.0
+flag_file_name: ru.png
+parsers:
+  production: RU.fetch_production
+timezone: Europe/Moscow

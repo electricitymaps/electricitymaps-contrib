@@ -1,0 +1,78 @@
+bounding_box:
+  - - 38.27451135200005
+    - 28.56313669900004
+  - - 49.059255405000044
+    - 37.562000619000116
+capacity: {}
+contributors:
+  - alixunderplatz
+  - systemcatch
+  - byronwilliams
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 374.8163447132109
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 360.451540676338
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 374.8163447132109
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 360.451540676338
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 528.320345426762
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 502.5211622995701
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 528.320345426762
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 502.5211622995701
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0006325315939337422
+        coal: 0.013727988465248843
+        gas: 0.6551241194152981
+        geothermal: 0.00011130361328720822
+        hydro: 0.023850436758265828
+        hydro discharge: 0.0
+        nuclear: 0.0036848708827511545
+        oil: 0.2999781095078047
+        solar: 0.0007935436625338994
+        unknown: 0.0002791744563251922
+        wind: 0.0017238001125249299
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0010754231547066416
+        coal: 0.023339851111398822
+        gas: 0.655559749186187
+        geothermal: 0.00018924348761007503
+        hydro: 0.06277511874669825
+        hydro discharge: 0.0
+        nuclear: 0.006264913234998379
+        oil: 0.2458396392663287
+        solar: 0.0013491621174001674
+        unknown: 0.0004746672484962591
+        wind: 0.002930743203856084
+flag_file_name: iq.png
+parsers:
+  consumption: IQ.fetch_consumption
+  production: IQ.fetch_production
+timezone: Asia/Baghdad

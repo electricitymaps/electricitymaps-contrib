@@ -1,0 +1,15 @@
+bounding_box:
+  - - 51.069346550000034
+    - 22.120945943000052
+  - - 56.88363691500007
+    - 26.574791972000085
+capacity:
+  biomass: 1
+  hydro: 0
+  solar: 2705
+  wind: 0
+contributors:
+  - q--
+parsers:
+  consumption: GCCIA.fetch_consumption
+timezone: Asia/Dubai

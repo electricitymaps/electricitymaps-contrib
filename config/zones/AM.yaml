@@ -1,0 +1,82 @@
+bounding_box:
+  - - 43
+    - 38.6
+  - - 46.3
+    - 41.6
+capacity:
+  biomass: 0
+  gas: 1832
+  hydro: 1336
+  nuclear: 440
+  solar: 183
+  wind: 3
+contributors:
+  - tmslaine
+  - systemcatch
+  - alixunderplatz
+  - nessie2013
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 165.83930160839466
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 171.59539678085844
+    hydro discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 165.83930160839466
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 171.59539678085844
+  lifecycle:
+    battery discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 230.2839924469498
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 235.97485082659796
+    hydro discharge:
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 230.2839924469498
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 235.97485082659796
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 5.269446440699319e-07
+        gas: 0.44802996436622095
+        geothermal: 0.0
+        hydro: 0.33765433172171194
+        hydro discharge: 0.0
+        nuclear: 0.21408260839892573
+        oil: 4.663653829667453e-05
+        solar: 1.3754805047413668e-07
+        unknown: 8.436538735278456e-05
+        wind: 5.5352435185169484e-05
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.46377516996269275
+        geothermal: 0.0
+        hydro: 0.19084097045703635
+        hydro discharge: 0.0
+        nuclear: 0.3454011583392152
+        oil: 1.8951088677709353e-05
+        solar: 0.0
+        unknown: 4.115911610833948e-07
+        wind: 1.592678840714006e-06
+parsers: {}
+timezone: Asia/Yerevan

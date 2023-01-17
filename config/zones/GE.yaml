@@ -1,0 +1,95 @@
+_comment: source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas
+  incl. 13 MW of coal
+bounding_box:
+  - - 39.9550085793
+    - 41.0644446885
+  - - 46.6379081561
+    - 43.553104153
+capacity:
+  gas: 1189
+  hydro: 3439
+  nuclear: 0
+  wind: 21
+contributors:
+  - alixunderplatz
+  - kruschk
+  - tmslaine
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 83.53645581935011
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 116.76540083865869
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 122.11809791380031
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 114.63672406601766
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 83.53645581935011
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 116.76540083865869
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 122.11809791380031
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 114.63672406601766
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 130.36549321911326
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 175.19815025068294
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 179.5237710098411
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 166.26279322149986
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 130.36549321911326
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 175.19815025068294
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 179.5237710098411
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 166.26279322149986
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 2.7215020577818173e-07
+        coal: 2.727629416216006e-05
+        gas: 0.2603032463111034
+        geothermal: 2.514604240523551e-07
+        hydro: 0.683282051587297
+        hydro discharge: 0.0
+        nuclear: 0.0014670583104415488
+        oil: 0.04417932779185647
+        solar: 1.0262927496845647e-05
+        unknown: 0.0043276116166376345
+        wind: 0.007139605209362369
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  production: GE.fetch_production
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+timezone: Asia/Tbilisi

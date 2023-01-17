@@ -1,0 +1,180 @@
+bounding_box:
+  - - 128.29
+    - 27.03
+  - - 131.89
+    - 35.11
+capacity:
+  geothermal: 210.2
+  hydro: 1247
+  hydro storage: 2350
+  nuclear: 5258
+  unknown: 9976.94
+  wind: 3.25
+contributors:
+  - tmslaine
+  - lorrieq
+  - nessie2013
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 289.8940045325389
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 306.5874931991598
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 371.52541092288993
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 311.5124591762403
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 408.70340083342444
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 405.35996543455053
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 359.4123098524982
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 305.9693624906424
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 371.52541092288993
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 311.5124591762403
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 289.8940045325389
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 306.5874931991598
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 371.52541092288993
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 311.5124591762403
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 408.70340083342444
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 405.35996543455053
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 359.4123098524982
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 305.9693624906424
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 371.52541092288993
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 311.5124591762403
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 365.06690265540993
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 387.15115204183274
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 460.3606162230115
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 388.75244760996026
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 504.86404052782575
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 501.0605061866396
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 447.4085111237463
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 387.1009867101464
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 460.3606162230115
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 388.75244760996026
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 365.06690265540993
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 387.15115204183274
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 460.3606162230115
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 388.75244760996026
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 504.86404052782575
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 501.0605061866396
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 447.4085111237463
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 387.1009867101464
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 460.3606162230115
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 388.75244760996026
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 9.937840244449973e-09
+        coal: 2.1579310245091368e-07
+        gas: 1.3177318038420026e-07
+        geothermal: 1.8068800444454498e-09
+        hydro: 8.969868792068482e-08
+        hydro discharge: 0.0
+        nuclear: 0.2380381478396036
+        oil: 1.703629756191424e-08
+        solar: 0.11582916955766827
+        unknown: 0.6461348224649524
+        wind: 2.7103200666681745e-08
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 3.535409141699427e-07
+        coal: 7.676470442569983e-06
+        gas: 4.6864895939727375e-06
+        geothermal: 6.217443662988649e-08
+        hydro: 3.191742990994231e-06
+        hydro discharge: 0.0
+        nuclear: 0.3363740816412832
+        oil: 6.060178911513053e-07
+        solar: 0.12186437326301121
+        unknown: 0.5417491644586233
+        wind: 9.639475890833575e-07
+parsers:
+  consumptionForecast: JP.fetch_consumption_forecast
+  price: JP.fetch_price
+  production: JP-KY.fetch_production
+timezone: Asia/Tokyo

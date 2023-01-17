@@ -1,0 +1,50 @@
+bounding_box:
+  - - -155.0369766919999
+    - -28.14120859199994
+  - - -134.44298255099994
+    - -7.450127862999921
+capacity:
+  hydro: 49.4
+  oil: 201.86
+  solar: 41.077
+contributors:
+  - autipial
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 268.5319609262505
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 268.5319609262505
+  lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 439.50962905975496
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 439.50962905975496
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.2686986555465958
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.6614068571719289
+        solar: 0.06989146565888447
+        unknown: 0.0
+        wind: 0.0
+parsers:
+  production: PF.fetch_production
+timezone: Pacific/Tahiti

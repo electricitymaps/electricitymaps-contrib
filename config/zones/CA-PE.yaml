@@ -1,0 +1,82 @@
+bounding_box:
+  - - -64.9168188139999
+    - 45.4507510440001
+  - - -61.47695878799993
+    - 47.567328192000076
+capacity:
+  oil: 179
+  wind: 203.6
+contributors:
+  - reinvented
+  - jarek
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 57.52722988627153
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 105.44682025475119
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 107.73859770406132
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 106.34151356372638
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 113.32483679178162
+    hydro discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 57.52722988627153
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 105.44682025475119
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 107.73859770406132
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 106.34151356372638
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 113.32483679178162
+  lifecycle:
+    battery discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 78.86046111501221
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 135.16296103271537
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 137.61686656267293
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 135.94815788143666
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 144.3121912959054
+    hydro discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 78.86046111501221
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 135.16296103271537
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 137.61686656267293
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 135.94815788143666
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 144.3121912959054
+flag_file_name: ca.png
+parsers:
+  production: CA_PE.fetch_production
+timezone: America/Halifax

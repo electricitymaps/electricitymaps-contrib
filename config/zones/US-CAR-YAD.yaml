@@ -1,0 +1,167 @@
+bounding_box:
+  - - -80.825586319
+    - 34.797960281
+  - - -79.4523525239999
+    - 36.2042064670001
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 0
+  geothermal: 0
+  hydro: 215.2
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 0
+comment: Alcoa Power Generating, Inc. - Yadkin Division
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 0.0
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 0.0
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 4.860599602648283
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 9.456393441343087
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 17.085653743344107
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 4.141408136628568
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 22.118072015409005
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 0.0
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 0.0
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 4.860599602648283
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 9.456393441343087
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 17.085653743344107
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 4.141408136628568
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 22.118072015409005
+  lifecycle:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 23.999999999999996
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 23.999999999999996
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 29.37642856724735
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 34.5572155470143
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 42.966245059602784
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 28.62525371553447
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 48.10877028658318
+    coal:
+      datetime: '2014-01-01'
+      source: IPCC 2014
+      value: 820.0
+    gas:
+      datetime: '2014-01-01'
+      source: IPCC 2014
+      value: 490.0
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 23.999999999999996
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 23.999999999999996
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 29.37642856724735
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 34.5572155470143
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 42.966245059602784
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 28.62525371553447
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 48.10877028658318
+    oil:
+      datetime: '2014-01-01'
+      source: IPCC 2014; EIA 2020/BEIS 2021
+      value: 650.0
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2015 average
+      datetime: '2015-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 1.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 1.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+flag_file_name: us.png
+parsers:
+  production: EIA.fetch_production_mix
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+timezone: US/Eastern

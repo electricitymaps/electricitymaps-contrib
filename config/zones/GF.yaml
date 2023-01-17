@@ -1,0 +1,18 @@
+bounding_box:
+  - - -54.708003
+    - 2.10212
+  - - -51.595232
+    - 5.78601
+capacity:
+  biomass: 1.976
+  gas: 80
+  hydro: 119.13
+  oil: 108
+  solar: 44.879
+contributors:
+  - PETILLON-Sebastien
+  - VIKTORVAV99
+parsers:
+  production: FR_O.fetch_production
+  price: FR_O.fetch_price
+timezone: Europe/Paris

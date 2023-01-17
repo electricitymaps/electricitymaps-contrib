@@ -1,0 +1,171 @@
+bounding_box:
+  - - -230.800781
+    - -23.885838
+  - - -32.34375
+    - 74.019543
+bypassedSubZones:
+  - US-FLA-HST
+  - US-SE-SEPA
+  - US-CAR-YAD
+capacity:
+  battery storage: 7582.6
+  biomass: 13868.9
+  coal: 218508
+  gas: 562644.1
+  geothermal: 3910.8
+  hydro: 79543.4
+  hydro storage: 22008.1
+  nuclear: 99148.5
+  oil: 28194.5
+  solar: 69336
+  unknown: 1712.2
+  wind: 139655.7
+contributors:
+  - kepiej
+  - KabelWlan
+  - robertahunt
+  - danielmatsuda
+  - brandongalbraith
+  - systemcatch
+  - VIKTORVAV99
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 989.615358
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 406.0342962
+    geothermal:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 70.87985131
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 803.8986689
+  lifecycle:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 285.8412641
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1049.615358
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 526.0342962
+    geothermal:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 108.87985131
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1047.8986688999998
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 26.22100877
+estimation_method: RECONSTRUCT_BREAKDOWN
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+subZoneNames:
+  - US-CAL-BANC
+  - US-CAL-CISO
+  - US-CAL-IID
+  - US-CAL-LDWP
+  - US-CAL-TIDC
+  - US-CAR-CPLE
+  - US-CAR-CPLW
+  - US-CAR-DUK
+  - US-CAR-SC
+  - US-CAR-SCEG
+  - US-CAR-YAD
+  - US-CENT-SPA
+  - US-CENT-SWPP
+  - US-FLA-FMPP
+  - US-FLA-FPC
+  - US-FLA-FPL
+  - US-FLA-GVL
+  - US-FLA-HST
+  - US-FLA-JEA
+  - US-FLA-SEC
+  - US-FLA-TAL
+  - US-FLA-TEC
+  - US-MIDA-PJM
+  - US-MIDW-AECI
+  - US-MIDW-LGEE
+  - US-MIDW-MISO
+  - US-NE-ISNE
+  - US-NW-AVA
+  - US-NW-BPAT
+  - US-NW-CHPD
+  - US-NW-DOPD
+  - US-NW-GCPD
+  - US-NW-GRID
+  - US-NW-IPCO
+  - US-NW-NEVP
+  - US-NW-NWMT
+  - US-NW-PACE
+  - US-NW-PACW
+  - US-NW-PGE
+  - US-NW-PSCO
+  - US-NW-PSEI
+  - US-NW-SCL
+  - US-NW-TPWR
+  - US-NW-WACM
+  - US-NW-WAUW
+  - US-NY-NYIS
+  - US-SE-SEPA
+  - US-SE-SOCO
+  - US-SW-AZPS
+  - US-SW-EPE
+  - US-SW-PNM
+  - US-SW-SRP
+  - US-SW-TEPC
+  - US-SW-WALC
+  - US-TEN-TVA
+  - US-TEX-ERCO
+timezone: US/Central

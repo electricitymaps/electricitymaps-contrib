@@ -1,0 +1,183 @@
+bounding_box:
+  - - -92.2292486234
+    - 13.7353376327
+  - - -88.2250227526
+    - 17.8193260767
+capacity:
+  biomass: 1025.009
+  coal: 584.7
+  gas: 250.85
+  geothermal: 49.2
+  hydro: 1417.043
+  oil: 711.218
+  solar: 91
+  wind: 75.9
+contributors:
+  - corradio
+  - igorarduin
+  - kruschk
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 97.84508384924474
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 293.6952019257576
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.6187929820843
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 124.29277033293447
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 5.539504998391972
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 340.6398752234597
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.6478450016261
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 97.84508384924474
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 293.6952019257576
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.6187929820843
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 124.29277033293447
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 5.539504998391972
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 340.6398752234597
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.6478450016261
+    unknown:
+      _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
+      source: Guatemala AMM 2021-2022 and IEA 2020
+      value: 383.240577
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 220.83700299654305
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 374.066880936666
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 311.96960860247304
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 181.42758260014966
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 30.940010953482037
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 411.55337384273463
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 311.9991841222269
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 220.83700299654305
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 374.066880936666
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 311.96960860247304
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 181.42758260014966
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 30.940010953482037
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 411.55337384273463
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 311.9991841222269
+    unknown:
+      _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
+      source: Guatemala AMM 2021-2022 and IEA 2020
+      value: 549.9988504
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.10281174966249966
+        coal: 0.1481592866529251
+        gas: 0.00021183222375891294
+        geothermal: 0.02016698810709332
+        hydro: 0.6623828271852077
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.028604227036569348
+        solar: 0.015172797026249117
+        unknown: 0.0
+        wind: 0.022490236976010727
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.004852599812626857
+        coal: 0.00693440519222716
+        gas: 3.3112094168302676e-06
+        geothermal: 0.00043518123294307946
+        hydro: 0.9862339649136561
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0006615754440213553
+        solar: 0.00032051710939075024
+        unknown: 0.0
+        wind: 0.000558552467545246
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.10739703974744741
+        coal: 0.425955275340774
+        gas: 0.00015175964819214848
+        geothermal: 0.021465427592427876
+        hydro: 0.35918632854157356
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.04157509541438052
+        solar: 0.017164195905425738
+        unknown: 2.8932292813808485e-05
+        wind: 0.027200360413057942
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0012667362350007403
+        coal: 0.3399749732985906
+        gas: 0.0012022532471483419
+        geothermal: 0.025261531613986855
+        hydro: 0.5629151873667574
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.025395136525346678
+        solar: 0.017429416935882045
+        unknown: 0.0009137061026630706
+        wind: 0.02567292271398894
+parsers:
+  consumption: GT.fetch_consumption
+  production: GT.fetch_production
+timezone: null

@@ -1,0 +1,14 @@
+bounding_box:
+  - - 0.9064563390001013
+    - 41.92867747000005
+  - - 2.2650907800001505
+    - 43.14936167400003
+capacity:
+  biomass: 5
+  gas: 1.7
+  hydro: 46
+  solar: 0.231
+contributors:
+  - Manu1400
+  - autipial
+timezone: Europe/Andorra

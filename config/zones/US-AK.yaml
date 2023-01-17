@@ -1,0 +1,40 @@
+bounding_box:
+  - - -179.64350338399993
+    - 50.71539948100022
+  - - 180.28093509200022
+    - 71.91250234600014
+emissionFactors:
+  direct:
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 1054.589992
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 470.7986093
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 713.1828107
+  lifecycle:
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
+      value: 1061.619377
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 590.7986093
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 957.1828107
+flag_file_name: us.png
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+timezone: null

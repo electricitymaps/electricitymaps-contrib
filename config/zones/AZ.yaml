@@ -1,0 +1,14 @@
+bounding_box:
+  - - 44.27455855300013
+    - 37.892644755000035
+  - - 51.125743035000085
+    - 42.390441590000094
+fallbackZoneMixes:
+  _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~AZE
+  powerOriginRatios:
+    value:
+      gas: 0.46
+      hydro: 0.07
+      oil: 0.46
+      unknown: 0.01
+timezone: null

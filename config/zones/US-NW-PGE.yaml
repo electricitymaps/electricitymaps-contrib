@@ -1,0 +1,202 @@
+bounding_box:
+  - - -124.225142777
+    - 44.2721814650001
+  - - -121.156917718
+    - 46.4057731890001
+capacity:
+  battery storage: 5
+  biomass: 15.9
+  coal: 0
+  gas: 2115.3
+  geothermal: 0
+  hydro: 676.2
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 149.3
+  unknown: 0
+  wind: 716.5
+comment: Portland General Electric Company
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 262.0002398503522
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 327.68012616806976
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 327.68012616806976
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 166.21855249358939
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 163.37247128333274
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 115.66745843333453
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 151.69710209539352
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 1040.946037
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020
+      value: 465.3652195
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 262.0002398503522
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 327.68012616806976
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 327.68012616806976
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 166.21855249358939
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 163.37247128333274
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 115.66745843333453
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 151.69710209539352
+  lifecycle:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 353.15871563732975
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 418.84067817607627
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 418.84067817607627
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 211.96168535881318
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 208.2004613187704
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 159.36077665105674
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 200.41626737941024
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1100.946037
+    gas:
+      datetime: '2021-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 585.3652195
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 353.15871563732975
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 418.84067817607627
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 418.84067817607627
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 211.96168535881318
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 208.2004613187704
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 159.36077665105674
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 200.41626737941024
+    oil:
+      datetime: '2014-01-01'
+      source: IPCC 2014; EIA 2020/BEIS 2021
+      value: 650.0
+    solar:
+      datetime: '2021-01-01'
+      source: INCER ACV
+      value: 30.16666667
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2015 average
+      datetime: '2015-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0010741020124494648
+        gas: 0.6855501497321558
+        geothermal: 0.0
+        hydro: 0.29920227169981184
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.013088996745911958
+        wind: 0.0010741020124494648
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0010741020124494646
+        gas: 0.6855501497321557
+        geothermal: 0.0
+        hydro: 0.29920227169981184
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.013088996745911956
+        wind: 0.0010741020124494646
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0010741020124494648
+        gas: 0.6855501497321558
+        geothermal: 0.0
+        hydro: 0.29920227169981184
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.013088996745911958
+        wind: 0.0010741020124494648
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+sources:
+  INCER ACV:
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+timezone: US/Pacific

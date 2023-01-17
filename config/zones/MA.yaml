@@ -1,0 +1,30 @@
+bounding_box:
+  - - -17.51374332534519
+    - 20.919971097581723
+  - - -0.5319994709999492
+    - 36.426519149000015
+capacity:
+  biomass: 0
+  coal: 4116
+  gas: 1944
+  geothermal: 0
+  hydro: 1306
+  hydro storage: 464
+  nuclear: 0
+  oil: 916
+  solar: 711
+  wind: 1220
+contributors:
+  - veqtrus
+fallbackZoneMixes:
+  _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~MAR
+  powerOriginRatios:
+    value:
+      coal: 0.4157
+      gas: 0.2443
+      hydro: 0.0379
+      oil: 0.114
+      solar: 0.0474
+      wind: 0.1409
+parsers: {}
+timezone: Africa/Casablanca

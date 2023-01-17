@@ -1,0 +1,254 @@
+bounding_box:
+  - - -68.43781490799995
+    - 17.42291901200015
+  - - -64.74461829299992
+    - 19.022772528000033
+capacity:
+  battery storage: 30.5
+  biomass: 4.8
+  coal: 510
+  gas: 1421.6
+  geothermal: 0
+  hydro: 98.1
+  hydro storage: 0
+  nuclear: 0
+  oil: 4047.1
+  solar: 157.7
+  unknown: 0
+  wind: 125.2
+contributors:
+  - q--
+  - systemcatch
+  - veqtrus
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 448.99621840545547
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 698.4810101077925
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 698.4810101077924
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 697.9827697209355
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 697.9827697209355
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 716.3495131110815
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 691.6232949567844
+    biomass:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 995.61187
+    gas:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 480.1222048
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 448.99621840545547
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 698.4810101077925
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 698.4810101077924
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 697.9827697209355
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 697.9827697209355
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 716.3495131110815
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 691.6232949567844
+    oil:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 786.0859158
+  lifecycle:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 609.9695887631431
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 609.9695887631431
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 609.9695887631431
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 609.5049770315596
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 609.5049770315596
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 621.6104257036576
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 604.8374514356746
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 609.9695887631431
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 609.9695887631431
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 609.9695887631431
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 609.5049770315596
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 609.5049770315596
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 621.6104257036576
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 604.8374514356746
+    unknown:
+      _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
+      source: Based on average renewable generation October 2019-September 2020 (12%
+        hydro, 57% solar, 31% wind)
+      value: 31.94
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2015 average
+      datetime: '2015-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0005742682323169587
+        coal: 0.18427892687377626
+        gas: 0.3499544725964571
+        geothermal: 0.0
+        hydro: 0.0031429015858308127
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.44076215223572934
+        solar: 0.012578880283258412
+        unknown: 0.0008892857848935563
+        wind: 0.00781817985133559
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0005742682323169587
+        coal: 0.18427892687377628
+        gas: 0.3499544725964571
+        geothermal: 0.0
+        hydro: 0.0031429015858308127
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.4407621522357294
+        solar: 0.012578880283258414
+        unknown: 0.0008892857848935564
+        wind: 0.00781817985133559
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0005742682323169587
+        coal: 0.18427892687377626
+        gas: 0.3499544725964571
+        geothermal: 0.0
+        hydro: 0.0031429015858308127
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.44076215223572934
+        solar: 0.012578880283258412
+        unknown: 0.0008892857848935563
+        wind: 0.00781817985133559
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0006837538305405383
+        coal: 0.18413403067386008
+        gas: 0.3496553838265327
+        geothermal: 0.0003086117043813385
+        hydro: 0.0032091144622262385
+        hydro discharge: 0.0
+        nuclear: 0.0003086117043813385
+        oil: 0.440393374785567
+        solar: 0.012457313839119685
+        unknown: 0.0010301965590700723
+        wind: 0.007816113220687029
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0006837538305405383
+        coal: 0.18413403067386008
+        gas: 0.3496553838265327
+        geothermal: 0.0003086117043813385
+        hydro: 0.0032091144622262385
+        hydro discharge: 0.0
+        nuclear: 0.0003086117043813385
+        oil: 0.440393374785567
+        solar: 0.012457313839119685
+        unknown: 0.0010301965590700723
+        wind: 0.007816113220687029
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0006379169879835717
+        coal: 0.2124950039033078
+        gas: 0.31813944350982
+        geothermal: 0.0002735992944884686
+        hydro: 0.00347189673798742
+        hydro discharge: 0.0
+        nuclear: 0.0002735992944884686
+        oil: 0.44770883887283686
+        solar: 0.01188191907521845
+        unknown: 0.0009760792011967666
+        wind: 0.004771029037593347
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0007066304908926925
+        coal: 0.18341052141931616
+        gas: 0.36254281549275963
+        geothermal: 0.00013555981409766826
+        hydro: 0.004039114053495066
+        hydro discharge: 0.0
+        nuclear: 0.00013555981409766826
+        oil: 0.4242839401782749
+        solar: 0.012345607699868429
+        unknown: 0.002485333110272757
+        wind: 0.009913517715532442
+flag_file_name: pr.png
+isLowCarbon:
+  unknown:
+    value: 1
+isRenewable:
+  unknown:
+    value: 1
+parsers:
+  production: US_PREPA.fetch_production
+sources:
+  eGrid 2020:
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+timezone: America/Puerto_Rico

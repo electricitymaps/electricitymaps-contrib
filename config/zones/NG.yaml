@@ -1,0 +1,54 @@
+bounding_box:
+  - - 2.1710819900001184
+    - 3.7721621770000695
+  - - 15.16993615700008
+    - 14.380290832000114
+capacity:
+  gas: 11972
+  hydro: 2062
+  solar: 7
+  unknown: 2333
+  wind: 10
+contributors:
+  - byronwilliams
+  - kruschk
+  - nessie2013
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 280.82249604736285
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 280.82249604736285
+  lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 377.6844057534393
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 377.6844057534393
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.7589794653377564
+        geothermal: 0.0
+        hydro: 0.24102053466224352
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+parsers:
+  production: NG.fetch_production
+timezone: Africa/Lagos

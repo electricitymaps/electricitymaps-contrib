@@ -1,0 +1,187 @@
+bounding_box:
+  - - -38.74484351301771
+    - -12.068905937658784
+  - - -35.90615240593988
+    - -9.026808362815672
+capacity:
+  hydro: 11048
+  solar: 3620
+  unknown: 8287
+  wind: 19316
+contributors:
+  - alexanmtz
+  - corradio
+  - systemcatch
+  - nessie2013
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 96.49297390182245
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 96.49298451375526
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 188.62284580965976
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 134.04133974269885
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 109.05626815490538
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 74.51588261866031
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 116.85246931379795
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 96.49297390182245
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 96.49298451375526
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 188.62284580965976
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 134.04133974269885
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 109.05626815490538
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 74.51588261866031
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 116.85246931379795
+  lifecycle:
+    battery discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 131.55198435194288
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 131.55199389943078
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 239.85916221253024
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 176.57499132765568
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 147.0114439477639
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 107.06836689044742
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 155.94944947156952
+    hydro discharge:
+      - datetime: '2015-01-01'
+        source: Electricity Maps, 2015 average
+        value: 131.55198435194288
+      - datetime: '2016-01-01'
+        source: Electricity Maps, 2016 average
+        value: 131.55199389943078
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 239.85916221253024
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 176.57499132765568
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 147.0114439477639
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 107.06836689044742
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 155.94944947156952
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2015 average
+      datetime: '2015-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.2752383584945799
+        hydro discharge: 0.0
+        nuclear: 5.9309434182619766e-05
+        oil: 0.0
+        solar: 0.03970537167826751
+        unknown: 0.16781432490568843
+        wind: 0.5171823489682759
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.2752383887120969
+        hydro discharge: 0.0
+        nuclear: 5.9309440694008085e-05
+        oil: 0.0
+        solar: 0.03970526625066874
+        unknown: 0.16781434332947293
+        wind: 0.5171824057480303
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 5.879997864424583e-07
+        coal: 5.923834237784187e-10
+        gas: 2.2747523473091277e-08
+        geothermal: 0.0
+        hydro: 0.1864176412591138
+        hydro discharge: 0.0
+        nuclear: 0.0006104400998719783
+        oil: 9.478134780454699e-10
+        solar: 0.012226296620140641
+        unknown: 0.3280203713588748
+        wind: 0.47266162500950765
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 2.8365637587402727e-07
+        coal: 1.4923421424075243e-08
+        gas: 1.0522125792139024e-06
+        geothermal: 0.0
+        hydro: 0.33042242324218873
+        hydro discharge: 2.5614827817442585e-09
+        nuclear: 0.0014645939335393389
+        oil: 7.628763936933986e-08
+        solar: 0.019322446245841042
+        unknown: 0.23288298758933598
+        wind: 0.4152201106020689
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 3.3015595244153756e-08
+        coal: 2.264789307906889e-08
+        gas: 1.5084503363685617e-06
+        geothermal: 0.0
+        hydro: 0.2723208949475237
+        hydro discharge: 1.801765716068147e-08
+        nuclear: 0.0003450704456211763
+        oil: 5.475757260005988e-08
+        solar: 0.040545295362994845
+        unknown: 0.20315444640053434
+        wind: 0.48304371118414346
+flag_file_name: br.png
+parsers:
+  production: BR.fetch_production
+timezone: null
