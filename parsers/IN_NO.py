@@ -157,6 +157,23 @@ def fetch_live_consumption(
         total_demand += state_demand
     return total_demand
 
+def fetch_consumption(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+    live_demand =fetch_live_consumption(session=session)
+    data_point = {
+            "zone_key": zone_key,
+            "consumption": live_demand,
+            "datetime": target_datetime.replace(tzinfo=IN_NO_TZ),
+            "source": "meritindia.in",
+        }
+    return data_point
+
 
 def fetch_solar_forecast(
     zone_key: str = "IN-WE",
@@ -234,3 +251,20 @@ def fetch_sem_data(
         data_production = data_production.groupby(
             [data_production.index, "production_mode"]
         ).sum()
+        all_data_points = []
+        for dt in data_production.index.get_level_values(0).unique():
+            df_dt = data_production.loc[data_production.index.get_level_values(0) == dt]
+            production = {}
+            for i in range(len(df_dt)):
+                row = df_dt.iloc[i]
+                mode = row.name[1]
+                value = row.get("value")
+                production[mode] = value if value >= 0 else 0
+            data_point = {
+                "zoneKey": zone_key,
+                "datetime": arrow.get(dt).datetime.replace(tzinfo=IN_NO_TZ),
+                "production": production,
+                "source": "nrldc.in",
+            }
+            all_data_points += [data_point]
+        return all_data_points
