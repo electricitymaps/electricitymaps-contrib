@@ -288,6 +288,9 @@
     "AT": {
       "zoneName": "Austria"
     },
+    "AU": {
+      "zoneName": "Australia"
+    },
     "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "New South Wales"
@@ -774,6 +777,29 @@
     },
     "IM": {
       "zoneName": "Isle of Man"
+    },
+    "IN": {
+      "zoneName": "India"
+    },
+    "IN-EA": {
+      "countryName": "India",
+      "zoneName": "Eastern"
+    },
+    "IN-NE": {
+      "countryName": "India",
+      "zoneName": "North Eastern"
+    },
+    "IN-NO": {
+      "countryName": "India",
+      "zoneName": "Northern"
+    },
+    "IN-SO": {
+      "countryName": "India",
+      "zoneName": "Southern"
+    },
+    "IN-WE": {
+      "countryName": "India",
+      "zoneName": "Western"
     },
     "IN-AN": {
       "countryName": "India",
