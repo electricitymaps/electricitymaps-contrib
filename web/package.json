@@ -18,7 +18,7 @@
     "generate-zones-config": "ts-node ./scripts/generate-zones-config.ts",
     "predevelop": "pnpm run generate-zones-config",
     "prebuild": "pnpm run generate-zones-config",
-    "postinstall": "pnpm run generate-index-files",
+    "postinstall": "pnpm run generate-zones-config",
     "cy:components": "cypress open --components -b electron",
     "cy:e2e": "cypress open --e2e -b electron",
     "dev": "vite --open",
