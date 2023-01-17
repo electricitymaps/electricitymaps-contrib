@@ -45,6 +45,7 @@ const ZoneMap = ({
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
+  const [screenshotDataId, setScreenshotDataId] = useState('data-not-ready');
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
@@ -179,13 +180,20 @@ const ZoneMap = ({
     [hoveredZoneId],
   );
 
+  useEffect(() => {
+    // Check if DK-DK1 has a color - if yes, then data is ready
+    if (sources.zonesClickable.features[75].properties.color) {
+      setScreenshotDataId('data-ready');
+    }
+  }, [sources]);
+
   // Don't render map nor any of the layers if WebGL is not supported.
   if (!isSupported) {
     return null;
   }
 
   return (
-    <div className="zone-map" style={style} ref={wrapperRef}>
+    <div className="zone-map" style={style} ref={wrapperRef} id={screenshotDataId}>
       <ReactMapGL
         ref={ref}
         width="100%"
