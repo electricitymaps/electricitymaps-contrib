@@ -37,9 +37,9 @@ function TooltipInner({
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
   return (
-    <div className="w-full p-4 text-center">
-      <div className="pl-1">
-        <ZoneName zone={zoneId} textStyle="text-base" />
+    <div className="w-full text-center">
+      <div className="pl-2">
+        <ZoneName zone={zoneId} textStyle="text-base font-medium" />
         <div className="flex self-start text-xs">{date}</div>{' '}
       </div>
       <div className="flex w-full flex-grow py-1 sm:pr-2">
@@ -96,7 +96,7 @@ export default function MapTooltip() {
     return (
       <Portal.Root className="absolute left-0 top-0 h-0 w-0">
         <div
-          className="relative h-[176px] w-[276px] rounded border bg-zinc-50 shadow-lg dark:border-0 dark:bg-gray-900"
+          className="relative h-[176px] w-[276px] rounded border bg-zinc-50 p-3  text-sm shadow-lg dark:border-0 dark:bg-gray-900"
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>
@@ -113,11 +113,11 @@ export default function MapTooltip() {
   return (
     <Portal.Root className="absolute left-0 top-0 h-0 w-0">
       <div
-        className="relative h-[80px] w-[176px] rounded border bg-zinc-50 p-3 text-center text-sm shadow-lg dark:border-0 dark:bg-gray-900"
+        className="relative h-[80px] w-[176px] rounded border bg-zinc-50 p-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
         style={{ left: emptyTooltipPosition.x, top: emptyTooltipPosition.y }}
       >
         <div>
-          <ZoneName zone={hoveredZone.zoneId} textStyle="text-base" />
+          <ZoneName zone={hoveredZone.zoneId} textStyle="font-medium" />
           <div className="flex self-start text-xs">{formattedDate}</div>
           <p className="text-start">{__('tooltips.noParserInfo')}</p>
         </div>

@@ -14,7 +14,7 @@ export function CarbonIntensity({ intensity }: { intensity?: number }) {
         className="mr-1 h-3 w-3"
         style={{ backgroundColor: co2ColorScale(intensity ?? 0) }}
       />
-      <b className="flex items-center">{Math.round(intensity ?? 0) || '?'}</b>
+      <b className="flex items-center font-bold">{Math.round(intensity ?? 0) || '?'}</b>
       <p className="pl-0.5"> gCO₂eq/kWh</p>
     </div>
   );
@@ -35,14 +35,17 @@ export default function ExchangeTooltip(
   const zoneTo = key.split('->')[!isExporting ? 0 : 1];
 
   return (
-    <div className="p-1">
+    <div className="text-start text-base font-medium">
       {__('tooltips.crossborderexport')}:
-      <div className="flex items-center p-1">
-        <ZoneName zone={zoneFrom} /> <p className="m-2">→</p> <ZoneName zone={zoneTo} />
-        <b className="pt-0 text-xs ">: {formatPower(roundedNetFlow)}</b>
+      <div>
+        <div className="flex items-center pb-2">
+          <ZoneName zone={zoneFrom} textStyle="max-w-[165px]" /> <p className="mx-2">→</p>{' '}
+          <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
+          <b className="font-bold">: {formatPower(roundedNetFlow)}</b>
+        </div>
       </div>
       {__('tooltips.carbonintensityexport')}:
-      <div className="p-1">
+      <div className="pt-1">
         {Boolean(co2intensity) && <CarbonIntensity intensity={co2intensity} />}
       </div>
     </div>

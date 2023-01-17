@@ -24,7 +24,7 @@ export function ChartTitle({ translationKey }: Props) {
   */
   return (
     <>
-      <h3 className="mt-3 text-md font-bold">
+      <h3 className="pt-4 text-md font-bold">
         {localExists
           ? __(`${translationKey}.${timeAverage}`)
           : __(

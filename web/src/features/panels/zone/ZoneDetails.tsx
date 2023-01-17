@@ -44,7 +44,7 @@ export default function ZoneDetails(): JSX.Element {
         isEstimated={selectedData?.estimationMethod !== undefined}
       />
       <DisplayByEmissionToggle />
-      <div className="h-[calc(100%-290px)] overflow-y-scroll p-4 pt-2 pb-48">
+      <div className="h-[calc(100%-290px)] overflow-y-scroll p-4 pt-2 pb-40">
         <ZoneDetailsContent
           isLoading={isLoading}
           isError={isError}

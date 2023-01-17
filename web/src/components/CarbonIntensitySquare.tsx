@@ -51,7 +51,7 @@ function CarbonIntensitySquare({
           }}
           className="mx-auto flex h-[65px] w-[65px] flex-col items-center justify-center rounded-2xl"
         >
-          <p className="select-none" data-test-id="co2-square-value">
+          <p className="select-none text-[1rem]" data-test-id="co2-square-value">
             <animated.span className="font-bold">
               {number.to((x) => `${Math.round(x) || '?'}`)}
             </animated.span>

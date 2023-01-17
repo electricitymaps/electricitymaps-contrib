@@ -42,7 +42,7 @@ export function CircularGauge({ ratio, name, tooltipContent }: CircularGaugeProp
               strokeWidth={0}
             >
               <Label
-                className="select-none fill-gray-900 font-bold dark:fill-gray-300"
+                className="select-none fill-gray-900 text-[1rem] font-bold dark:fill-gray-300"
                 position="center"
                 offset={0}
                 formatter={(value: number) =>

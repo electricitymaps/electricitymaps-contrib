@@ -70,7 +70,7 @@ function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArr
 
   return (
     <TooltipWrapper
-      tooltipClassName="flex max-h-[256px] max-w-[512px] top-[-76px]  px-1 text-left"
+      tooltipClassName="flex max-h-[256px] max-w-[512px] top-[-76px]"
       tooltipContent={<ExchangeTooltip exchangeData={data} />}
       side="right"
       sideOffset={10}

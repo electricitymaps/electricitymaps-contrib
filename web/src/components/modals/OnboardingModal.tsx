@@ -13,8 +13,10 @@ const views = [
         <div>
           <h1 className="font-poppins text-lg sm:text-2xl">Electricity Maps</h1>
         </div>
-        <div className=" py-6 text-base sm:text-xl">
-          <h2>{__('onboarding-modal.view1.subtitle')}</h2>
+        <div className=" py-6">
+          <h2 className="mb-2 text-base sm:text-xl">
+            {__('onboarding-modal.view1.subtitle')}
+          </h2>
         </div>
       </>
     ),
