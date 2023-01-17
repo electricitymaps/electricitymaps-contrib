@@ -439,7 +439,7 @@ var Windy = function( params ){
 
   var windy;
 
-  var start = function( bounds, width, height, extent ){
+  var start = function( bounds, width, height, extent, onStarted ){
 
 
     var mapBounds = {
@@ -462,6 +462,9 @@ var Windy = function( params ){
         // animate the canvas with random points
         windy.field = field;
         animate( bounds, field );
+        if (onStarted) {
+            onStarted();
+        }
       });
 
     });

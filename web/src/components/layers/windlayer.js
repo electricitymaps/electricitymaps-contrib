@@ -25,6 +25,7 @@ export default ({ project, unproject }) => {
   const enabled = useWindEnabled();
 
   const [windy, setWindy] = useState(null);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const isMapLoaded = useSelector((state) => !state.application.isLoadingMap);
   const isMoving = useSelector((state) => state.application.isMovingMap);
@@ -58,7 +59,8 @@ export default ({ project, unproject }) => {
         project,
         unproject,
       });
-      w.start(...viewport);
+      const onStarted = () => setHasStarted(true);
+      w.start(...viewport, onStarted);
       // Set in the next render cycle.
       setTimeout(() => {
         setWindy(w);
@@ -69,11 +71,9 @@ export default ({ project, unproject }) => {
     }
   }, [windy, isVisible, node, interpolatedData]);
 
-  const windyIsStarted = windy && windy.started;
-
   return (
     <Canvas
-      id={windyIsStarted ? 'windlayer-started' : 'windlayer'}
+      id={hasStarted ? 'windlayer-started' : 'windlayer'}
       width={width}
       height={height}
       ref={ref}
