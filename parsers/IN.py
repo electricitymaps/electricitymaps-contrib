@@ -12,7 +12,7 @@ import pandas as pd
 import pytz
 import requests
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
 
@@ -192,7 +192,7 @@ def fetch_npp_production(
     npp_url = "https://npp.gov.in/public-reports/cea/daily/dgr/{date:%d-%m-%Y}/dgr2-{date:%Y-%m-%d}.xls".format(
         date=target_datetime
     )
-    r = session.get(npp_url)
+    r: Response= session.get(npp_url)
     if r.status_code == 200:
         df_npp = pd.read_excel(r.content, header=3)
         df_npp = df_npp.rename(
@@ -227,7 +227,7 @@ def fetch_npp_production(
     else:
         raise ParserException(
             parser="IN.py",
-            message=f"{target_datetime}: {zone_key} data is not available",
+            message=f"{target_datetime}: {zone_key} conventional production data is not available",
         )
 
 
@@ -239,27 +239,32 @@ def fetch_cea_production(
 ) -> dict:
 
     cea_link = "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%b_%Y}_Daily_Report.xlsx"
-    r = session.get(cea_link.format(date=target_datetime))
-    df_ren = pd.read_excel(r.url, engine="openpyxl", header=5)
-    df_ren = df_ren.rename(
-        columns={
-            df_ren.columns[1]: "region",
-            df_ren.columns[2]: "wind",
-            df_ren.columns[3]: "solar",
-            df_ren.columns[4]: "unknown",
+    r: Response = session.get(cea_link.format(date=target_datetime))
+    if r.status_code==200:
+        df_ren = pd.read_excel(r.url, engine="openpyxl", header=5)
+        df_ren = df_ren.rename(
+            columns={
+                df_ren.columns[1]: "region",
+                df_ren.columns[2]: "wind",
+                df_ren.columns[3]: "solar",
+                df_ren.columns[4]: "unknown",
+            }
+        )
+
+        df_ren.region = df_ren.region.str.strip()
+        df_ren.region = df_ren.region.map(CEA_REGION_MAPPING)
+        df_ren = df_ren.loc[df_ren.region == zone_key][["wind", "solar", "unknown"]]
+
+        dict_zone = df_ren.to_dict(orient="records")[0]
+        renewable_production = {
+            key: round(dict_zone[key] / CONVERSION_MWH_MW, 3) for key in dict_zone
         }
-    )
-
-    df_ren.region = df_ren.region.str.strip()
-    df_ren.region = df_ren.region.map(CEA_REGION_MAPPING)
-    df_ren = df_ren.loc[df_ren.region == zone_key][["wind", "solar", "unknown"]]
-
-    dict_zone = df_ren.to_dict(orient="records")[0]
-    renewable_production = {
-        key: round(dict_zone[key] / CONVERSION_MWH_MW, 3) for key in dict_zone
-    }
-    return renewable_production
-
+        return renewable_production
+    else:
+        raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: {zone_key} renewable production data is not available",
+        )
 
 def fetch_production(
     zone_key: str,
