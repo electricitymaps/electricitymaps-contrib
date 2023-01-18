@@ -17,7 +17,7 @@ from requests import Session
 from parsers.lib.exceptions import ParserException
 
 IN_NO_TZ = pytz.timezone("Asia/Kolkata")
-CONVERSION_MWH_MW = 0.024
+
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
     "GAS GENERATION": "gas",
@@ -27,28 +27,6 @@ GENERATION_MAPPING = {
 }
 
 GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
-NPP_MODE_MAPPING = {
-    "THER (GT)": "gas",
-    "THERMAL": "coal",
-    "HYDRO": "hydro",
-    "THER (DG)": "oil",
-    "NUCLEAR": "nuclear",
-}
-NPP_REGION_MAPPING = {
-    "NORTHERN": "IN-NO",
-    "EASTERN": "IN-EA",
-    "WESTERN": "IN-WE",
-    "SOUTERN": "IN-SO",
-    "NORTH EASTERN": "IN-NE",
-}
-
-CEA_REGION_MAPPING = {
-    "उत्तरी क्षेत्र / Northern Region": "IN-NO",
-    "पश्चिमी क्षेत्र / Western Region": "IN-WE",
-    "दक्षिणी क्षेत्र / Southern Region": "IN-SO",
-    "पूर्वी क्षेत्र/ Eastern Region": "IN-EA",
-    "उत्तर-पूर्वी क्षेत्र  / North-Eastern Region": "IN-NE",
-}
 
 DEMAND_URL = "https://vidyutpravah.in/state-data/{state}"
 STATES_MAPPING = {
@@ -149,6 +127,8 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
+    """Fetches live consumption from government dashboard. Consumption is available per state and is then aggregated at regional level.
+    Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep  """
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -179,110 +159,6 @@ def fetch_consumption(
     return data
 
 
-def fetch_npp_production(
-    zone_key: str,
-    session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    # TODO data is delayed by 1 day so should we add delay if target_datetime is None?
-    if target_datetime is None:
-        target_datetime = datetime.now(tz=IN_NO_TZ)
-
-    npp_url = "https://npp.gov.in/public-reports/cea/daily/dgr/{date:%d-%m-%Y}/dgr2-{date:%Y-%m-%d}.xls".format(
-        date=target_datetime
-    )
-    r = session.get(npp_url)
-    if r.status_code == 200:
-        df_npp = pd.read_excel(r.content, header=3)
-        df_npp = df_npp.rename(
-            columns={
-                df_npp.columns[0]: "power_station",
-                df_npp.columns[2]: "production_mode",
-                "TODAY'S\nACTUAL\n": "value",
-            }
-        )
-        df_npp = df_npp[["power_station", "production_mode", "value"]]
-        df_npp = df_npp.iloc[1:].copy()
-        df_npp["production_mode"] = df_npp["production_mode"].ffill()
-
-        df_npp["region"] = (
-            df_npp["power_station"]
-            .apply(lambda x: NPP_REGION_MAPPING[x] if x in NPP_REGION_MAPPING else None)
-            .ffill()
-        )
-        df_zone = df_npp.loc[df_npp["region"] == zone_key].copy()
-        df_zone = df_zone.loc[~df_zone.power_station.isna()]
-        df_zone = df_zone[df_zone.power_station.str.contains("TYPE:")]
-        df_zone = df_zone[["production_mode", "value"]]
-        df_zone = df_zone.groupby(["production_mode"]).sum()
-        production = {}
-        for mode in df_zone.index:
-            production[NPP_MODE_MAPPING[mode]] = round(
-                df_zone.iloc[df_zone.index.get_indexer_for([mode])[0]].get("value")
-                / CONVERSION_MWH_MW,
-                3,
-            )
-        return production
-    else:
-        raise ParserException(
-            parser="IN.py",
-            message=f"{target_datetime}: {zone_key} data is not available",
-        )
-
-
-def fetch_cea_production(
-    zone_key: str,
-    session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-
-    cea_link = "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%b_%Y}_Daily_Report.xlsx"
-    r = session.get(cea_link.format(date=target_datetime))
-    df_ren = pd.read_excel(r.url, engine="openpyxl", header=5)
-    df_ren = df_ren.rename(
-        columns={
-            df_ren.columns[1]: "region",
-            df_ren.columns[2]: "wind",
-            df_ren.columns[3]: "solar",
-            df_ren.columns[4]: "unknown",
-        }
-    )
-
-    df_ren.region = df_ren.region.str.strip()
-    df_ren.region = df_ren.region.map(CEA_REGION_MAPPING)
-    df_ren = df_ren.loc[df_ren.region == zone_key][["wind","solar","unknown"]]
-
-    dict_zone = df_ren.to_dict(orient="records")[0]
-    renewable_production = {key: round(dict_zone[key] / CONVERSION_MWH_MW, 3) for key in dict_zone}
-    return renewable_production
-
-
-def fetch_regional_production(
-    zone_key: str,
-    session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    if target_datetime is None:
-        target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime - timedelta(days=1)
-
-    renewable_production = fetch_cea_production(
-        zone_key=zone_key, session=session, target_datetime=target_datetime
-    )
-    conventional_production = fetch_npp_production(
-        zone_key=zone_key, session=session, target_datetime=target_datetime
-    )
-    data_point = {
-        "zoneKey": zone_key,
-        "datetime": target_datetime,
-        "production": {**conventional_production, **renewable_production},
-        "source": "npp.gov.in, cea.nic.in",
-    }
-    return data_point
-
-
 if __name__ == "__main__":
-    print("fetch_production() -> ")
-    print(fetch_regional_production(zone_key="IN-NO"))
+    print("fetch_consumption() -> ")
+    print(fetch_consumption(zone_key="IN-NO"))

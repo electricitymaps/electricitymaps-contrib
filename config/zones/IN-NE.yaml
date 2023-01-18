@@ -14,3 +14,5 @@ capacity:
   unknown: 0
   wind: 0
 timezone: Asia/Kolkata
+parsers:
+  consumption: IN.fetch_consumption
