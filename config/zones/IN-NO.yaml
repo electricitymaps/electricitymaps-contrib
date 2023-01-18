@@ -21,3 +21,5 @@ contributors:
   - sahitya-pavurala
   - willbeaufoy
 timezone: Asia/Kolkata
+parsers:
+  consumption: IN.fetch_consumption
