@@ -71,7 +71,7 @@ API_PARAMETER_GROUPS = {
         ],
         "unknown": ["bagasse_charbon_mwh", "charbon_bagasse_mw"],
     },
-    "storage": {},
+    "storage": {"battery": ["solde_stockage"]},
     "price": {
         "price": ["cout_moyen_de_production_eur_mwh"],
     },
@@ -209,7 +209,8 @@ def fetch_production(
                 "production": production,
                 "storage": storage,
                 "source": "edf.fr",
-                "estimated": True if production_object["statut"] == "Estimé" else False,
+                # TODO: Should be re-enabled when the changes discussed in #4828 are implemented
+                # "estimated": True if production_object["statut"] == "Estimé" else False,
             }
         )
     return return_list

@@ -4,18 +4,18 @@ bounding_box:
   - - -66.45013
     - 47.9598300000001
 capacity:
-  battery storage: 192.2
-  biomass: 1613.9
+  battery storage: 297.7
+  biomass: 1428.4
   coal: 559.2
-  gas: 19886
+  gas: 19936.5
   geothermal: 0
-  hydro: 1918.6
+  hydro: 1920
   hydro storage: 1799
   nuclear: 3404.9
-  oil: 5444.9
-  solar: 1831.3
+  oil: 5373.2
+  solar: 2199
   unknown: 0
-  wind: 1519.7
+  wind: 1524.2
 comment: Iso New England Inc.
 contributors:
   - systemcatch

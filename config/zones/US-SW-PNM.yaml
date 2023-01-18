@@ -4,18 +4,18 @@ bounding_box:
   - - -101.52796
     - 44.59554275
 capacity:
-  battery storage: 1.8
+  battery storage: 13.8
   biomass: 14.6
-  coal: 573
-  gas: 1833.9
+  coal: 516.3
+  gas: 1683.9
   geothermal: 19.2
   hydro: 0
   hydro storage: 0
   nuclear: 0
-  oil: 30.4
-  solar: 419.9
+  oil: 180.4
+  solar: 486.5
   unknown: 1.1
-  wind: 2424
+  wind: 2569
 comment: Public Service Company Of New Mexico
 contributors:
   - systemcatch

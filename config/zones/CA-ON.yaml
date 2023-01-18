@@ -6,11 +6,11 @@ bounding_box:
 capacity:
   biomass: 296
   coal: 0
-  gas: 10515
-  hydro: 8918
+  gas: 10482
+  hydro: 8868
   nuclear: 13089
   solar: 478
-  wind: 4783
+  wind: 4883
 contributors:
   - corradio
   - jarek

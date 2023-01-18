@@ -13,9 +13,9 @@ capacity:
   hydro storage: 0
   nuclear: 0
   oil: 2.7
-  solar: 0.5
+  solar: 10.5
   unknown: 0
-  wind: 502.9
+  wind: 868.4
 comment: Puget Sound Energy
 contributors:
   - systemcatch

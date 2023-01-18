@@ -6,16 +6,16 @@ bounding_box:
 capacity:
   battery storage: 8.2
   biomass: 3.2
-  coal: 4294.3
-  gas: 1931.8
+  coal: 4372.3
+  gas: 1792
   geothermal: 0
   hydro: 704.3
   hydro storage: 208.5
   nuclear: 0
   oil: 158.8
-  solar: 199.2
+  solar: 219.2
   unknown: 11.5
-  wind: 1091.2
+  wind: 1236.9
 comment: Western Area Power Administration - Rocky Mountain Region
 contributors:
   - systemcatch

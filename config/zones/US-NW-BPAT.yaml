@@ -4,18 +4,18 @@ bounding_box:
   - - -105.50971
     - 49.50244
 capacity:
-  battery storage: 3
-  biomass: 419.5
-  coal: 729.9
-  gas: 2277.5
+  battery storage: 34
+  biomass: 369.4
+  coal: 0
+  gas: 2283.7
   geothermal: 18
   hydro: 21708.1
   hydro storage: 314
   nuclear: 1200
   oil: 0
-  solar: 87.9
+  solar: 137.9
   unknown: 0
-  wind: 3397.5
+  wind: 5314.8
 comment: Bonneville Power Administration
 contributors:
   - systemcatch

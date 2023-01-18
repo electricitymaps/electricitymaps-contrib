@@ -4,18 +4,18 @@ bounding_box:
   - - -113.631212
     - 41.965851
 capacity:
-  battery storage: 2283.9
-  biomass: 1179.8
+  battery storage: 4174.3
+  biomass: 1147.1
   coal: 62.5
-  gas: 33077
-  geothermal: 2103.5
+  gas: 33062.9
+  geothermal: 2128.5
   hydro: 6705.6
-  hydro storage: 2094.4
+  hydro storage: 2119.6
   nuclear: 2323
   oil: 391.5
-  solar: 15842.4
-  unknown: 99.7
-  wind: 6140.2
+  solar: 17474.8
+  unknown: 66.7
+  wind: 6134.5
 comment: California Independent System Operator
 contributors:
   - systemcatch

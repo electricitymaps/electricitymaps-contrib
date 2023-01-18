@@ -5,15 +5,15 @@ bounding_box:
     - 37.963081
 capacity:
   battery storage: 23.5
-  biomass: 56
+  biomass: 34.1
   coal: 1640
-  gas: 5005.5
+  gas: 5028.3
   geothermal: 0
-  hydro: 328.3
+  hydro: 324.6
   hydro storage: 1626
   nuclear: 0
   oil: 0
-  solar: 988.1
+  solar: 994.8
   unknown: 31.9
   wind: 440.5
 comment: Los Angeles Department Of Water And Power

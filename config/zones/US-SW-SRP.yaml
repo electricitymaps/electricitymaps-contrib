@@ -7,7 +7,7 @@ capacity:
   battery storage: 45
   biomass: 0
   coal: 821.8
-  gas: 8265.6
+  gas: 10453.7
   geothermal: 0
   hydro: 92.3
   hydro storage: 154.1
@@ -15,7 +15,7 @@ capacity:
   oil: 0
   solar: 460
   unknown: 0
-  wind: 63
+  wind: 113.4
 comment: Salt River Project
 contributors:
   - systemcatch

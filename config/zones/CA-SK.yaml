@@ -4,9 +4,12 @@ bounding_box:
   - - -100.86433964677866
     - 60.50005890629359
 capacity:
-  coal: 1530
-  gas: 1824
+  biomass: 16
+  coal: 1389
+  gas: 2160
   hydro: 864
-  wind: 221
+  solar: 81
+  wind: 617
+  unknown: 26
 flag_file_name: ca.png
 timezone: America/Regina

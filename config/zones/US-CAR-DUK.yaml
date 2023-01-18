@@ -5,15 +5,15 @@ bounding_box:
     - 37.0883200000001
 capacity:
   battery storage: 0
-  biomass: 90.9
-  coal: 7045.1
+  biomass: 80.4
+  coal: 6603.9
   gas: 10719
   geothermal: 0
   hydro: 1180.7
-  hydro storage: 2166
+  hydro storage: 2262
   nuclear: 7517.5
   oil: 143.4
-  solar: 2252.8
+  solar: 2254.7
   unknown: 0
   wind: 0
 comment: Duke Energy Carolinas

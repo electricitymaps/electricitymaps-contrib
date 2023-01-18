@@ -7,15 +7,15 @@ capacity:
   battery storage: 27.9
   biomass: 344.2
   coal: 22064.3
-  gas: 36281.3
+  gas: 36117.8
   geothermal: 0
   hydro: 3104.1
   hydro storage: 259.2
   nuclear: 2068.7
-  oil: 2185.4
-  solar: 409.8
+  oil: 2447.3
+  solar: 428.8
   unknown: 62
-  wind: 29163.9
+  wind: 30945.7
 comment: Southwest Power Pool
 contributors:
   - systemcatch

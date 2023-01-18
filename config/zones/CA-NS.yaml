@@ -6,11 +6,12 @@ bounding_box:
   - - -59.188628709999904
     - 47.53481679900011
 capacity:
-  biomass: 90.1
-  coal: 1232
-  gas: 637
+  biomass: 60
+  coal: 1252
+  gas: 500
   hydro: 418
-  wind: 567
+  oil: 222
+  wind: 568
 contributors:
   - jarek
   - corradio
