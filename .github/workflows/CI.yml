@@ -143,7 +143,7 @@ jobs:
     if: >-
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate_config_filenames.yml
+    uses: ./.github/workflows/validate_filenames.yml
 
   # Code quality checks
   codeql:
