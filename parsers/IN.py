@@ -108,7 +108,7 @@ def get_data(session: Optional[Session]):
     return generation
 
 
-def fetch_production(
+def fetch_live_production(
     zone_key: str = "IN",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
@@ -252,21 +252,25 @@ def fetch_cea_production(
 
     df_ren.region = df_ren.region.str.strip()
     df_ren.region = df_ren.region.map(CEA_REGION_MAPPING)
-    df_ren = df_ren.loc[df_ren.region == zone_key][["wind","solar","unknown"]]
+    df_ren = df_ren.loc[df_ren.region == zone_key][["wind", "solar", "unknown"]]
 
     dict_zone = df_ren.to_dict(orient="records")[0]
-    renewable_production = {key: round(dict_zone[key] / CONVERSION_MWH_MW, 3) for key in dict_zone}
+    renewable_production = {
+        key: round(dict_zone[key] / CONVERSION_MWH_MW, 3) for key in dict_zone
+    }
     return renewable_production
 
 
-def fetch_regional_production(
+def fetch_production(
     zone_key: str,
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime is None:
-        target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime - timedelta(days=1)
+        target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime - timedelta(
+            days=1
+        )
 
     renewable_production = fetch_cea_production(
         zone_key=zone_key, session=session, target_datetime=target_datetime
@@ -280,9 +284,10 @@ def fetch_regional_production(
         "production": {**conventional_production, **renewable_production},
         "source": "npp.gov.in, cea.nic.in",
     }
+
     return data_point
 
 
 if __name__ == "__main__":
     print("fetch_production() -> ")
-    print(fetch_regional_production(zone_key="IN-NO"))
+    print(fetch_production(zone_key="IN-NO"))
