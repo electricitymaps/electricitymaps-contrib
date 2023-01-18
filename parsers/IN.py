@@ -133,7 +133,7 @@ def fetch_consumption(
 
     total_consumption = 0
     for state in STATES_MAPPING[zone_key]:
-        r = session.get(DEMAND_URL.format(state=state))
+        r: Response = session.get(DEMAND_URL.format(state=state))
         soup = BeautifulSoup(r.content, "html.parser")
         try:
             state_consumption = int(
