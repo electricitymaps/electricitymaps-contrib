@@ -1,13 +1,13 @@
+import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
-import Co2Legend from './Co2Legend';
+import { ToggleOptions } from 'utils/constants';
 import {
   selectedDatetimeIndexAtom,
   solarLayerEnabledAtom,
   windLayerAtom,
 } from 'utils/state/atoms';
-import { useAtom } from 'jotai';
+import Co2Legend from './Co2Legend';
 import SolarLegend from './SolarLegend';
-import { ToggleOptions } from 'utils/constants';
 import WindLegend from './WindLegend';
 
 export default function LegendContainer(): ReactElement {
@@ -21,7 +21,7 @@ export default function LegendContainer(): ReactElement {
     windLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
 
   return (
-    <div className="invisible fixed bottom-4 right-4 z-50 flex w-[224px]  flex-col rounded bg-white px-1 py-2 shadow dark:bg-gray-900 sm:visible ">
+    <div className="invisible fixed bottom-4 right-4 z-20 flex w-[224px]  flex-col rounded bg-white px-1 py-2 shadow-xl dark:bg-gray-900 sm:visible ">
       {isSolarLayerEnabled && <SolarLegend />}
       {isWindLayerEnabled && <WindLegend />}
       <Co2Legend />

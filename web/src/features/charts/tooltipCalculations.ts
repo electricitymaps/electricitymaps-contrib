@@ -1,9 +1,14 @@
-import { ElectricityStorageKeyType, GenerationType, ZoneDetail } from 'types';
+import {
+  ElectricityModeType,
+  ElectricityStorageKeyType,
+  GenerationType,
+  ZoneDetail,
+} from 'types';
 import { getProductionCo2Intensity } from 'utils/helpers';
 import { getElectricityProductionValue, getTotalElectricity } from './graphUtils';
 
 export function getProductionTooltipData(
-  selectedLayerKey: string,
+  selectedLayerKey: ElectricityModeType,
   zoneDetail: ZoneDetail,
   displayByEmissions: boolean
 ) {
@@ -32,7 +37,7 @@ export function getProductionTooltipData(
     ? (dischargeCo2IntensitySources || {})[storageKey]
     : (productionCo2IntensitySources || {})[generationType];
 
-  const generationTypeCapacity = capacity ? capacity[generationType] : undefined;
+  const generationTypeCapacity = capacity ? capacity[selectedLayerKey] : undefined;
   const generationTypeProduction = production[generationType];
 
   const generationTypeStorage = storageKey ? storage[storageKey] : 0;
@@ -89,7 +94,7 @@ export function getExchangeTooltipData(
   const totalElectricity = getTotalElectricity(zoneDetail, displayByEmissions);
   const totalCapacity = exchangeCapacityRange
     ? Math.abs(exchangeCapacityRange[isExport ? 0 : 1])
-    : Number.NaN;
+    : undefined;
   const emissions = Math.abs(exchange * 1000 * co2Intensity);
   const totalEmissions = getTotalElectricity(zoneDetail, true);
 

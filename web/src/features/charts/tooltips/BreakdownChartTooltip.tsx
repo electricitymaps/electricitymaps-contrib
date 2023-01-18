@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 import { renderToString } from 'react-dom/server';
 import AreaGraphToolTipHeader from 'stories/tooltips/AreaGraphTooltipHeader';
 import { getZoneName, useTranslation } from 'translation/translation';
-import { ElectricityModeType, ZoneDetail } from 'types';
+import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
 import { TimeAverages, modeColor, modeOrder } from 'utils/constants';
 import { formatCo2, formatPower } from 'utils/formatting';
 import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
@@ -70,7 +70,7 @@ export default function BreakdownChartTooltip(props: InnerAreaGraphTooltipProps)
 interface BreakdownChartTooltipContentProperties {
   datetime: Date;
   usage: number;
-  capacity: number;
+  capacity: Maybe<number>;
   totalElectricity: number;
   totalEmissions: number;
   co2Intensity: number;
@@ -82,8 +82,8 @@ interface BreakdownChartTooltipContentProperties {
   isExchange: boolean;
   selectedLayerKey: string;
   co2IntensitySource?: string;
-  storage?: number;
-  production?: number;
+  storage?: Maybe<number>;
+  production?: Maybe<number>;
 }
 
 export function BreakdownChartTooltipContent(
