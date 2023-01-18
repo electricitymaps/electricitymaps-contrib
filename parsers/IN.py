@@ -128,7 +128,7 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetches live consumption from government dashboard. Consumption is available per state and is then aggregated at regional level.
-    Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep  """
+    Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep"""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
