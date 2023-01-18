@@ -8,9 +8,14 @@ from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
+import pytz
 import requests
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Response, Session
+
+from parsers.lib.exceptions import ParserException
+
+IN_NO_TZ = pytz.timezone("Asia/Kolkata")
 
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
@@ -21,6 +26,39 @@ GENERATION_MAPPING = {
 }
 
 GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
+
+DEMAND_URL = "https://vidyutpravah.in/state-data/{state}"
+STATES_MAPPING = {
+    "IN-NO": [
+        "delhi",
+        "haryana",
+        "himachal-pradesh",
+        "jammu-kashmir",
+        "punjab",
+        "rajasthan",
+        "uttar-pradesh",
+        "uttarakhand",
+    ],
+    "IN-WE": ["gujarat", "madya-pradesh", "maharashtra", "goa", "chhattisgarh"],
+    "IN-EA": ["bihar", "west-bengal", "odisha", "sikkim"],
+    "IN-NE": [
+        "arunachal-pradesh",
+        "assam",
+        "meghalaya",
+        "tripura",
+        "mizoram",
+        "nagaland",
+        "manipur",
+    ],
+    "IN-SO": [
+        "karnataka",
+        "kerala",
+        "tamil-nadu",
+        "andhra-pradesh",
+        "telangana",
+        "puducherry",
+    ],
+}
 
 
 def get_data(session: Optional[Session]):
@@ -82,6 +120,47 @@ def fetch_production(
     return data
 
 
+def fetch_consumption(
+    zone_key: str,
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    """Fetches live consumption from government dashboard. Consumption is available per state and is then aggregated at regional level.
+    Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep"""
+    if target_datetime is not None:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    total_consumption = 0
+    for state in STATES_MAPPING[zone_key]:
+        r: Response = session.get(DEMAND_URL.format(state=state))
+        soup = BeautifulSoup(r.content, "html.parser")
+        try:
+            state_consumption = int(
+                soup.find(
+                    "span", attrs={"class": "value_DemandMET_en value_StateDetails_en"}
+                )
+                .text.strip()
+                .split()[0]
+                .replace(",", "")
+            )
+        except:
+            raise ParserException(
+                parser="IN.py",
+                message=f"{target_datetime}: consumption data is not available for {zone_key}",
+            )
+        total_consumption += state_consumption
+
+    data = {
+        "zoneKey": zone_key,
+        "datetime": datetime.now(tz=IN_NO_TZ),
+        "consumption": total_consumption,
+        "source": "vidyupravah.in",
+    }
+
+    return data
+
+
 if __name__ == "__main__":
-    print("fetch_production() -> ")
-    print(fetch_production())
+    print("fetch_consumption() -> ")
+    print(fetch_consumption(zone_key="IN-NO"))
