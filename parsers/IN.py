@@ -3,7 +3,7 @@
 """Parser for all of India"""
 
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from logging import Logger, getLogger
 from typing import Optional
 
@@ -13,8 +13,6 @@ import pytz
 import requests
 from bs4 import BeautifulSoup
 from requests import Session
-
-from parsers.lib.exceptions import ParserException
 
 IN_NO_TZ = pytz.timezone("Asia/Kolkata")
 
