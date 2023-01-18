@@ -123,7 +123,7 @@ def get_data(session: Optional[Session]):
     Returns a dictionary.
     """
 
-    s = session or requests.Session()
+    s = session or Session()
     req = s.get(GENERATION_URL)
     soup = BeautifulSoup(req.text, "lxml")
     tables = soup.findAll("table")
