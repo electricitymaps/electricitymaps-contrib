@@ -13,6 +13,8 @@ import requests
 from bs4 import BeautifulSoup
 from requests import Session
 
+from parsers.lib.exceptions import ParserException
+
 IN_NO_TZ = pytz.timezone("Asia/Kolkata")
 
 GENERATION_MAPPING = {
@@ -143,7 +145,10 @@ def fetch_consumption(
                 .replace(",", "")
             )
         except:
-            state_consumption = 0
+            raise ParserException(
+                parser="IE.py",
+                message=f"{target_datetime}: consumption data is not available for {zone_key}",
+            )
         total_consumption += state_consumption
 
     data = {
