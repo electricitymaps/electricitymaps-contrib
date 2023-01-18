@@ -146,7 +146,7 @@ def fetch_consumption(
             )
         except:
             raise ParserException(
-                parser="IE.py",
+                parser="IN.py",
                 message=f"{target_datetime}: consumption data is not available for {zone_key}",
             )
         total_consumption += state_consumption
