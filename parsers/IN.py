@@ -224,14 +224,15 @@ def fetch_npp_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-    # TODO data is delayed by 1 day so should we add delay if target_datetime is None?
+    """Gets production for conventional thermal, nuclear and hydro from NPP daily reports
+    This data most likely doesn't inlcude distributed generation"""
     if target_datetime is None:
         target_datetime = datetime.now(tz=IN_NO_TZ)
 
     npp_url = "https://npp.gov.in/public-reports/cea/daily/dgr/{date:%d-%m-%Y}/dgr2-{date:%Y-%m-%d}.xls".format(
         date=target_datetime
     )
-    r: Response= session.get(npp_url)
+    r: Response = session.get(npp_url)
     if r.status_code == 200:
         df_npp = pd.read_excel(r.content, header=3)
         df_npp = df_npp.rename(
@@ -276,10 +277,11 @@ def fetch_cea_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-
+    """Gets production data for wind, solar and other renewables
+    Other renewables includes a share of hydro, biomass and others and will categorized as unknown"""
     cea_link = "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%b_%Y}_Daily_Report.xlsx"
     r: Response = session.get(cea_link.format(date=target_datetime))
-    if r.status_code==200:
+    if r.status_code == 200:
         df_ren = pd.read_excel(r.url, engine="openpyxl", header=5)
         df_ren = df_ren.rename(
             columns={
@@ -304,6 +306,7 @@ def fetch_cea_production(
             parser="IN.py",
             message=f"{target_datetime}: {zone_key} renewable production data is not available",
         )
+
 
 def fetch_production(
     zone_key: str,
@@ -335,4 +338,3 @@ def fetch_production(
 if __name__ == "__main__":
     print("fetch_production() -> ")
     print(fetch_production(zone_key="IN-NO"))
-
