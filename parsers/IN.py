@@ -8,7 +8,6 @@ from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-import pandas as pd
 import pytz
 import requests
 from bs4 import BeautifulSoup
