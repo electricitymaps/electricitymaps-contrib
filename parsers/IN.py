@@ -277,7 +277,8 @@ def fetch_cea_production(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Gets production data for wind, solar and other renewables
-    Other renewables includes a share of hydro, biomass and others and will categorized as unknown"""
+    Other renewables includes a share of hydro, biomass and others and will categorized as unknown
+    DISCLAIMER: this data is only available since 2020/12/17"""
     cea_link = "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%b_%Y}_Daily_Report.xlsx"
     r: Response = session.get(cea_link.format(date=target_datetime))
     if r.status_code == 200:
