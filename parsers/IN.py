@@ -11,7 +11,7 @@ import arrow
 import pytz
 import requests
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
 
