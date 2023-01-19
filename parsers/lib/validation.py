@@ -120,7 +120,7 @@ def validate_consumption(
     consumption: Dict[str, Any] = datapoint["consumption"]
     if consumption == 0:
         logger.warning(
-            "{} reported total of {}MW, excpected consumption cannot be null".format(
+            "{} reported total of {}MW, expected consumption cannot be null".format(
                 datapoint["zoneKey"], consumption
             ),
             extra={"key": datapoint["zoneKey"]},
