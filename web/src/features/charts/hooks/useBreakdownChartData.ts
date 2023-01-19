@@ -12,9 +12,9 @@ import {
   selectedDatetimeIndexAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
+import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import { getGenerationTypeKey } from '../graphUtils';
 import { AreaGraphElement } from '../types';
-import { getExchangesToDisplay } from '../bar-breakdown/utils';
 
 export const getLayerFill = (exchangeKeys: string[], co2ColorScale: any) => {
   const layerFill = (key: string) => {

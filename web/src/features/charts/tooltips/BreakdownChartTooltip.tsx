@@ -1,4 +1,4 @@
-import { CarbonIntensityDisplayWithSquare } from 'components/CarbonIntensity';
+import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { CountryFlag } from 'components/Flag';
 import { MetricRatio } from 'components/MetricRatio';
 import { useCo2ColorScale } from 'hooks/theme';
@@ -177,7 +177,7 @@ export function BreakdownChartTooltipContent(
           <br />
           <div className="flex-wrap">
             <div className="inline-flex items-center gap-x-1">
-              <CarbonIntensityDisplayWithSquare co2Intensity={co2Intensity} />
+              <CarbonIntensityDisplay withSquare co2Intensity={co2Intensity} />
             </div>
             {!isExchange && (
               <small>

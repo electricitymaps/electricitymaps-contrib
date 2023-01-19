@@ -1,24 +1,9 @@
+import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { ZoneName } from 'components/ZoneName';
-import { useCo2ColorScale } from 'hooks/theme';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ExchangeArrowData } from 'types';
 import { formatPower } from 'utils/formatting';
-
-export function CarbonIntensity({ intensity }: { intensity?: number }) {
-  const co2ColorScale = useCo2ColorScale();
-
-  return (
-    <div className="flex h-3 items-center">
-      <div
-        className="mr-1 h-3 w-3"
-        style={{ backgroundColor: co2ColorScale(intensity ?? 0) }}
-      />
-      <b className="flex items-center font-bold">{Math.round(intensity ?? 0) || '?'}</b>
-      <p className="pl-0.5"> gCO₂eq/kWh</p>
-    </div>
-  );
-}
 
 interface ExchangeTooltipProperties {
   exchangeData: ExchangeArrowData;
@@ -46,7 +31,11 @@ export default function ExchangeTooltip(
       </div>
       {__('tooltips.carbonintensityexport')}:
       <div className="pt-1">
-        {Boolean(co2intensity) && <CarbonIntensity intensity={co2intensity} />}
+        {co2intensity > 0 && (
+          <div className="inline-flex items-center gap-x-1">
+            <CarbonIntensityDisplay withSquare co2Intensity={co2intensity} />
+          </div>
+        )}
       </div>
     </div>
   );
