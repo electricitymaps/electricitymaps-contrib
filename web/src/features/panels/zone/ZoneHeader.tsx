@@ -41,6 +41,7 @@ export function ZoneHeader({
   renewableRatioProduction,
   fossilFuelRatioProduction,
 }: ZoneHeaderProps) {
+  const { __ } = useTranslation();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
   const intensity = isConsumption ? co2intensity : co2intensityProduction;
@@ -57,11 +58,14 @@ export function ZoneHeader({
       <div className="flex flex-row justify-evenly">
         <CarbonIntensitySquare co2intensity={intensity ?? Number.NaN} withSubtext />
         <CircularGauge
-          name="Low-carbon"
+          name={__('country-panel.lowcarbon')}
           ratio={1 - fossilFuel}
           tooltipContent={<LowCarbonTooltip />}
         />
-        <CircularGauge name="Renewable" ratio={renewable ?? Number.NaN} />
+        <CircularGauge
+          name={__('country-panel.renewable')}
+          ratio={renewable ?? Number.NaN}
+        />
       </div>
     </div>
   );
