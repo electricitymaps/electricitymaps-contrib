@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
+from parsers.lib.validation import validate_consumption
 
 IN_NO_TZ = pytz.timezone("Asia/Kolkata")
 CONVERSION_MWH_MW = 0.024
@@ -124,7 +125,8 @@ def get_data(session: Optional[Session]):
     """
 
     s = session or Session()
-    req = s.get(GENERATION_URL)
+    req: Response = s.get(GENERATION_URL)
+
     soup = BeautifulSoup(req.text, "lxml")
     tables = soup.findAll("table")
 
@@ -213,7 +215,7 @@ def fetch_consumption(
         "consumption": total_consumption,
         "source": "vidyupravah.in",
     }
-
+    data = validate_consumption(data, logger)
     return data
 
 
