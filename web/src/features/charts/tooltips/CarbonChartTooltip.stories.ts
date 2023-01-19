@@ -1,23 +1,27 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import BarElectricityBreakdownChart from 'features/charts/bar-breakdown/BarElectricityBreakdownChart';
+/* eslint-disable unicorn/no-null */
+import { Meta, StoryObj } from '@storybook/react';
+import { ZoneDetail } from '../../../types';
+import CarbonChartTooltip from './CarbonChartTooltip';
 
-const meta: Meta<typeof BarElectricityBreakdownChart> = {
-  title: 'charts/BarElectricityBreakdownChart',
-  component: BarElectricityBreakdownChart,
+const meta: Meta<typeof CarbonChartTooltip> = {
+  title: 'tooltips/CarbonChartTooltip',
+  component: CarbonChartTooltip,
 };
 
-type Story = StoryObj<typeof BarElectricityBreakdownChart>;
+export default meta;
 
-const data = {
+type Story = StoryObj<typeof CarbonChartTooltip>;
+
+const zoneDetailMock = {
   co2intensity: 187.32,
   co2intensityProduction: 190.6,
   countryCode: 'PT',
-  fossilFuelRatio: 0.3,
+  fossilFuelRatio: 0.4,
   fossilFuelRatioProduction: 0.3,
   renewableRatio: 0.7,
   renewableRatioProduction: 0.7,
   stateDatetime: '2022-11-28T07:00:00.000Z',
-  _isFinestGranularity: true,
+  // _isFinestGranularity: true,
   capacity: {
     'battery storage': null,
     biomass: 700,
@@ -104,99 +108,14 @@ const data = {
   totalStorage: 0,
   hasParser: true,
   center: [-7.8, 39.6],
-};
+  totalco2intensity: null,
+  estimationMethod: null,
+} as unknown as ZoneDetail;
 
-const productionData = [
-  { isStorage: false, production: null, capacity: 0, mode: 'nuclear', tCo2eqPerMin: 0 },
-  {
-    isStorage: false,
-    production: null,
-    capacity: 0,
-    mode: 'geothermal',
-    tCo2eqPerMin: 0,
-  },
-  {
-    isStorage: false,
-    production: 350,
-    capacity: 700,
-    mode: 'biomass',
-    tCo2eqPerMin: 2.561_683_868_333_333,
-  },
-  { isStorage: false, production: 0, capacity: 0, mode: 'coal', tCo2eqPerMin: 0 },
-  {
-    isStorage: false,
-    production: 2365,
-    capacity: 5389,
-    mode: 'wind',
-    tCo2eqPerMin: 0.497_438_333_333_333_3,
-  },
-  {
-    isStorage: false,
-    production: 17,
-    capacity: 1616,
-    mode: 'solar',
-    tCo2eqPerMin: 0.007_253_333_333_333_333,
-  },
-  {
-    isStorage: false,
-    storage: -395,
-    production: 1445,
-    capacity: 4578,
-    mode: 'hydro',
-    tCo2eqPerMin: 0.257_691_666_666_666_65,
-  },
-  {
-    isStorage: true,
-    storage: -395,
-    production: 1445,
-    capacity: 3585,
-    mode: 'hydro storage',
-    tCo2eqPerMin: -0.898_247_560_136_053_7,
-  },
-  {
-    isStorage: true,
-    storage: null,
-    capacity: null,
-    mode: 'battery storage',
-    tCo2eqPerMin: 0,
-  },
-  {
-    isStorage: false,
-    production: 1930,
-    capacity: 4520,
-    mode: 'gas',
-    tCo2eqPerMin: 15.829_517_778_833_331,
-  },
-  { isStorage: false, production: null, capacity: 0, mode: 'oil', tCo2eqPerMin: 0 },
-  {
-    isStorage: false,
-    production: 29,
-    capacity: null,
-    mode: 'unknown',
-    tCo2eqPerMin: 0.338_333_333_333_333_3,
-  },
-];
-
-const exchangeData = [
-  { exchange: -934, mode: 'ES', gCo2eqPerkWh: 187.32, tCo2eqPerMin: -2.915_948 },
-  { exchange: 200, mode: 'FR', gCo2eqPerkWh: 999.32, tCo2eqPerMin: 45.915_948 },
-];
-
-export const IncludesStorage: Story = {
+export const Primary: Story = {
   // More on args: https://storybook.js.org/docs/react/writing-stories/args
   args: {
-    //testId: 'none',
-    data: data,
-    productionData: productionData,
-    exchangeData: exchangeData,
-    onExchangeRowMouseOut: () => {},
-    onExchangeRowMouseOver: () => {},
-    onProductionRowMouseOut: () => {},
-    onProductionRowMouseOver: () => {},
-    width: 300,
-    height: 300,
-    isMobile: false,
+    selectedLayerKey: 'carbonIntensity',
+    zoneDetail: zoneDetailMock,
   },
 };
-
-export default meta;

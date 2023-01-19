@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { BreakdownChartTooltipContent } from 'features/charts/tooltips/BreakdownChartTooltip';
-import { ZoneDetail } from 'types';
-import { TimeAverages } from 'utils/constants';
+import { ZoneDetail } from '../../../types';
+import { TimeAverages } from '../../../utils/constants';
+import { BreakdownChartTooltipContent } from './BreakdownChartTooltip';
 
 const meta: Meta<typeof BreakdownChartTooltipContent> = {
   title: 'tooltips/BreakdownChartTooltipContent',

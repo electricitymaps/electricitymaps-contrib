@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import AreaGraph from 'features/charts/elements/AreaGraph';
-import { getFills } from 'features/charts/hooks/usePriceChartData';
-import { TimeAverages } from 'utils/constants';
+import { TimeAverages } from '../../utils/constants';
+import AreaGraph from './elements/AreaGraph';
+import { getFills } from './hooks/usePriceChartData';
 
 const meta: Meta<typeof AreaGraph> = {
   title: 'charts/PriceChart',

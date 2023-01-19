@@ -4,7 +4,6 @@ import { MetricRatio } from 'components/MetricRatio';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
 import { renderToString } from 'react-dom/server';
-import AreaGraphToolTipHeader from 'stories/tooltips/AreaGraphTooltipHeader';
 import { getZoneName, useTranslation } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
 import { TimeAverages, modeColor, modeOrder } from 'utils/constants';
@@ -13,6 +12,7 @@ import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
 import { getRatioPercent } from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
 import { InnerAreaGraphTooltipProps } from '../types';
+import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 function calculateTooltipContentData(
   selectedLayerKey: ElectricityModeType,

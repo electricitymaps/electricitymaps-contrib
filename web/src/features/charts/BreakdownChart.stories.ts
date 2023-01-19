@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import AreaGraph from 'features/charts/elements/AreaGraph';
-import { getLayerFill } from 'features/charts/hooks/useBreakdownChartData';
-import { colors } from 'hooks/colors';
-import { getCo2ColorScale } from 'hooks/theme';
-import { TimeAverages } from 'utils/constants';
+import { colors } from '../../hooks/colors';
+import { getCo2ColorScale } from '../../hooks/theme';
+import { TimeAverages } from '../../utils/constants';
+import AreaGraph from './elements/AreaGraph';
+import { getLayerFill } from './hooks/useBreakdownChartData';
 
 const meta: Meta<typeof AreaGraph> = {
   title: 'charts/BreakdownChart',

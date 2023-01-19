@@ -1,16 +1,15 @@
-/* eslint-disable unicorn/no-null */
 import { Meta, StoryObj } from '@storybook/react';
-import CarbonChartTooltip from 'features/charts/tooltips/CarbonChartTooltip';
-import { ZoneDetail } from 'types';
+import { ZoneDetail } from '../../../types';
+import PriceChartTooltip from './PriceChartTooltip';
 
-const meta: Meta<typeof CarbonChartTooltip> = {
-  title: 'tooltips/CarbonChartTooltip',
-  component: CarbonChartTooltip,
+const meta: Meta<typeof PriceChartTooltip> = {
+  title: 'tooltips/PriceChartTooltip',
+  component: PriceChartTooltip,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof CarbonChartTooltip>;
+type Story = StoryObj<typeof PriceChartTooltip>;
 
 const zoneDetailMock = {
   co2intensity: 187.32,

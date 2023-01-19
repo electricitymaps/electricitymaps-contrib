@@ -12,8 +12,8 @@ import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartDa
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
-import BySource from './BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
+import BySource from './elements/BySource';
 
 const X_PADDING = 9;
 

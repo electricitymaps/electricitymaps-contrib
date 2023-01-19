@@ -1,9 +1,9 @@
 import { useAtom } from 'jotai';
-import AreaGraphToolTipHeader from 'stories/tooltips/AreaGraphTooltipHeader';
 import { useTranslation } from 'translation/translation';
 import { timeAverageAtom } from 'utils/state/atoms';
 import { getTotalElectricity, tonsPerHourToGramsPerMinute } from '../graphUtils';
 import { InnerAreaGraphTooltipProps } from '../types';
+import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function EmissionChartTooltip(props: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);

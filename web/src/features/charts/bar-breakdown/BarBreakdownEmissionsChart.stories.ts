@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import BarBreakdownEmissionsChart from 'features/charts/bar-breakdown/BarBreakdownEmissionsChart';
+import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 
 const meta: Meta<typeof BarBreakdownEmissionsChart> = {
   title: 'charts/BarBreakdownEmissionsChart',

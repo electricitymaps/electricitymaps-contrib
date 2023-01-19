@@ -1,9 +1,9 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { useAtom } from 'jotai';
-import AreaGraphToolTipHeader from 'stories/tooltips/AreaGraphTooltipHeader';
 import { useTranslation } from 'translation/translation';
 import { timeAverageAtom } from 'utils/state/atoms';
 import { InnerAreaGraphTooltipProps } from '../types';
+import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function PriceChartTooltip(props: InnerAreaGraphTooltipProps) {
   const { zoneDetail } = props;
