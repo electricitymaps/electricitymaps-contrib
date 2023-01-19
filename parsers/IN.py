@@ -9,11 +9,11 @@ from typing import Optional
 
 import arrow
 import pytz
-import requests
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
+from parsers.lib.validation import validate_consumption
 
 IN_NO_TZ = pytz.timezone("Asia/Kolkata")
 
@@ -67,8 +67,8 @@ def get_data(session: Optional[Session]):
     Returns a dictionary.
     """
 
-    s = session or requests.Session()
-    req = s.get(GENERATION_URL)
+    s = session or Session()
+    req: Response = s.get(GENERATION_URL)
     soup = BeautifulSoup(req.text, "lxml")
     tables = soup.findAll("table")
 
@@ -157,7 +157,7 @@ def fetch_consumption(
         "consumption": total_consumption,
         "source": "vidyupravah.in",
     }
-
+    data = validate_consumption(data, logger)
     return data
 
 

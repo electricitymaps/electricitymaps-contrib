@@ -108,6 +108,27 @@ def validate_production_diffs(
     return [datapoints[i] for i in ok_diff[ok_diff].index]
 
 
+def validate_consumption(
+    datapoint: Dict, logger: Union[Logger, None]
+) -> Union[Dict[str, Any], None]:
+    """
+    Validates a production datapoint based on given constraints.
+    If the datapoint is found to be invalid then None is returned.
+    """
+    if logger is None:
+        logger = getLogger(__name__)
+    consumption: Dict[str, Any] = datapoint["consumption"]
+    if consumption == 0:
+        logger.warning(
+            "{} reported total of {}MW, expected consumption cannot be null".format(
+                datapoint["zoneKey"], consumption
+            ),
+            extra={"key": datapoint["zoneKey"]},
+        )
+        return
+    return datapoint
+
+
 def validate(
     datapoint: Dict, logger: Union[Logger, None], **kwargs
 ) -> Union[Dict[str, Any], None]:
@@ -255,13 +276,14 @@ test_datapoint = {
     "source": "mysource.com",
 }
 
+
+test_datapoint_consumption = {
+    "zoneKey": "IN-NO",
+    "datetime": "2017-01-01T00:00:00Z",
+    "consumption": 0,
+    "source": "mysource.com",
+}
+
+
 if __name__ == "__main__":
-    print(
-        validate(
-            test_datapoint,
-            None,
-            required=["gas"],
-            expected_range=(100, 2000),
-            remove_negative=True,
-        )
-    )
+    print(validate_consumption(test_datapoint_consumption, None))
