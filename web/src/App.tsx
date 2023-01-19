@@ -14,7 +14,6 @@ import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { ReactElement, Suspense, lazy } from 'react';
 
 const isProduction = import.meta.env.PROD;
-
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 const handleReload = () => {

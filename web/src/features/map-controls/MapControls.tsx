@@ -27,14 +27,11 @@ function MobileMapControls() {
   const setIsInfoModalOpen = useSetAtom(isInfoModalOpenAtom);
   const setIsSettingsModalOpen = useSetAtom(isSettingsModalOpenAtom);
 
-  // TODO: add safe area insets
-  // top: env(safe-area-inset-top, 10px);
-
   const handleOpenInfoModal = () => setIsInfoModalOpen(true);
   const handleOpenSettingsModal = () => setIsSettingsModalOpen(true);
 
   return (
-    <div className="absolute top-2 right-2 flex space-x-3 sm:hidden">
+    <div className="absolute top-2 right-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
       <Button
         className="m-0 p-3"
         aria-label="open info modal"
