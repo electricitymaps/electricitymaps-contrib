@@ -94,6 +94,12 @@ function TimeAxis({
     );
   }
 
+  // The svg transform attribute is different from the CSS transform property,
+  // so we need to replace the commas with spaces and remove the 'px' suffix.
+  const svgTransform = transform
+    ? transform.replaceAll('px', '').replaceAll(',', ' ')
+    : undefined;
+
   const scale = getTimeScale(
     scaleWidth ?? width,
     datetimes[0],
@@ -102,7 +108,7 @@ function TimeAxis({
   const [x1, x2] = scale.range();
 
   return (
-    <svg className={className} transform={transform} ref={ref}>
+    <svg className={className} transform={svgTransform} ref={ref}>
       <g fill="none" textAnchor="middle" style={{ pointerEvents: 'none', transform }}>
         <path stroke="none" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
         {datetimes.map((v, index) =>

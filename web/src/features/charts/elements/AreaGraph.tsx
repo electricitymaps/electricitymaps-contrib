@@ -41,7 +41,7 @@ const getValueScale = (height: number, totalValues: { min: number; max: number }
 const getLayers = (
   data: AreaGraphElement[],
   layerKeys: string[],
-  layerFill: (key: string) => (d: AreaGraphElement) => number,
+  layerFill: (key: string) => (d: AreaGraphElement) => string,
   markerFill: (key: string) => string,
   layerStroke?: (key: string) => string
 ) => {
@@ -70,7 +70,7 @@ interface AreagraphProps {
   testId: string;
   layerKeys: string[];
   layerStroke?: (key: string) => string;
-  layerFill: (key: string) => (d: any) => number | string;
+  layerFill: (key: string) => (d: AreaGraphElement) => string;
   markerFill?: any;
   valueAxisLabel: any;
   markerUpdateHandler: any;

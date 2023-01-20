@@ -15,24 +15,18 @@ interface AreaGraphTooltipProperties {
   isBiggerThanMobile: boolean;
 }
 
-export default function AreaGraphTooltip(
-  properties: AreaGraphTooltipProperties
-): ReactElement | null {
-  const {
-    children,
-    zoneDetail,
-    selectedLayerKey,
-    position,
-    tooltipSize,
-    isBiggerThanMobile,
-  } = properties;
-
-  if (
-    children === undefined ||
-    selectedLayerKey === undefined ||
-    zoneDetail === undefined
-  ) {
-    return null;
+export default function AreaGraphTooltip({
+  children,
+  zoneDetail,
+  selectedLayerKey,
+  position,
+  tooltipSize,
+  isBiggerThanMobile,
+}: AreaGraphTooltipProperties): ReactElement | null {
+  if (selectedLayerKey === undefined || zoneDetail === undefined) {
+    // We need to always render children here, otherwise we will get an error like this:
+    // Warning: Internal React error: Expected static flag was missing.
+    return children({ zoneDetail, selectedLayerKey });
   }
 
   const tooltipWithDataPositon = getOffsetTooltipPosition({

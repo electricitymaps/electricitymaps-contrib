@@ -26,10 +26,17 @@ function calculateTooltipContentData(
     : getProductionTooltipData(selectedLayerKey, zoneDetail, displayByEmissions);
 }
 
-export default function BreakdownChartTooltip(props: InnerAreaGraphTooltipProps) {
-  const { zoneDetail, selectedLayerKey } = props;
+export default function BreakdownChartTooltip({
+  zoneDetail,
+  selectedLayerKey,
+}: InnerAreaGraphTooltipProps) {
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
+
+  if (!zoneDetail || !selectedLayerKey) {
+    return null;
+  }
+
   // If layer key is not a generation type, it is an exchange
   const isExchange = !modeOrder.includes(selectedLayerKey);
 
@@ -86,26 +93,22 @@ interface BreakdownChartTooltipContentProperties {
   production?: Maybe<number>;
 }
 
-export function BreakdownChartTooltipContent(
-  props: BreakdownChartTooltipContentProperties
-) {
-  const {
-    datetime,
-    usage,
-    totalElectricity,
-    displayByEmissions,
-    timeAverage,
-    capacity,
-    emissions,
-    totalEmissions,
-    co2Intensity,
-    co2IntensitySource,
-    zoneKey,
-    originTranslateKey,
-    isExchange,
-    selectedLayerKey,
-  } = props;
-
+export function BreakdownChartTooltipContent({
+  datetime,
+  usage,
+  totalElectricity,
+  displayByEmissions,
+  timeAverage,
+  capacity,
+  emissions,
+  totalEmissions,
+  co2Intensity,
+  co2IntensitySource,
+  zoneKey,
+  originTranslateKey,
+  isExchange,
+  selectedLayerKey,
+}: BreakdownChartTooltipContentProperties) {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   // Dynamically generate the translated headline HTML based on the exchange or generation type

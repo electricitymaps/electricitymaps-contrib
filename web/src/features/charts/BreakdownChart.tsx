@@ -37,8 +37,8 @@ function BreakdownChart({
       <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
           <div className="absolute top-0 h-full w-full">
-            <div className=" h-full w-full bg-white opacity-50" />
-            <div className="absolute top-[50%] left-[50%] z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-sm dark:bg-gray-900">
+            <div className=" h-full w-full bg-white opacity-50 dark:bg-gray-700" />
+            <div className="absolute top-[50%] left-[50%] z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
               Temporarily disabled for consumption. <br /> Switch to production view
             </div>
           </div>
@@ -63,7 +63,7 @@ function BreakdownChart({
       </div>
       {isBreakdownGraphOverlayEnabled && (
         <div
-          className="prose my-1 rounded bg-gray-200 p-2 text-sm leading-snug"
+          className="prose my-1 rounded bg-gray-200 p-2 text-sm leading-snug dark:bg-gray-700 dark:text-white dark:prose-a:text-white"
           dangerouslySetInnerHTML={{ __html: __('country-panel.exchangesAreMissing') }}
         />
       )}

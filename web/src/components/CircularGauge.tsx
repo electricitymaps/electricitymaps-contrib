@@ -7,16 +7,22 @@ export interface CircularGaugeProps {
   ratio: number;
   name: string;
   tooltipContent?: string | JSX.Element;
+  testId?: string;
 }
 
-export function CircularGauge({ ratio, name, tooltipContent }: CircularGaugeProps) {
+export function CircularGauge({
+  ratio,
+  name,
+  tooltipContent,
+  testId,
+}: CircularGaugeProps) {
   // TODO: To improve performance, the background pie does not need to rerender on percentage change
   const data = [{ value: ratio }];
   const percentageAsAngle = ratio * 360;
   const endAngle = PIE_START_ANGLE - percentageAsAngle;
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center" data-test-id={testId}>
       <TooltipWrapper
         side="right"
         tooltipContent={tooltipContent}
@@ -67,9 +73,7 @@ export function CircularGauge({ ratio, name, tooltipContent }: CircularGaugeProp
           </PieChart>
         </div>
       </TooltipWrapper>
-      <div className="mt-2 text-center text-sm text-gray-900 dark:text-gray-300">
-        {name}
-      </div>
+      <p className="mt-2 text-center text-sm text-gray-900 dark:text-gray-300">{name}</p>
     </div>
   );
 }

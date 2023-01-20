@@ -8,13 +8,11 @@ import { formatDate } from 'utils/formatting';
 import { productionConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
 import { InnerAreaGraphTooltipProps } from '../types';
 
-export default function CarbonChartTooltip(props: InnerAreaGraphTooltipProps) {
+export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);
   const { i18n, __ } = useTranslation();
-  const { zoneDetail } = props;
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
-
   const co2ColorScale = useCo2ColorScale();
 
   if (!zoneDetail) {

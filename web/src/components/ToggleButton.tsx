@@ -34,8 +34,9 @@ export default function ToggleButton({
         className={
           'flex-start flex h-[26px] flex-grow flex-row items-center justify-between self-center rounded-full bg-gray-100 shadow-inner dark:bg-gray-700'
         }
-        type="multiple"
+        type="single"
         aria-label="Toggle between modes"
+        value={selectedOption}
       >
         {options.map((option, key) => (
           <ToggleGroupPrimitive.Item

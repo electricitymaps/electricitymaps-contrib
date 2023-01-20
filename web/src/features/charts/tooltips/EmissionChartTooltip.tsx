@@ -5,10 +5,9 @@ import { getTotalElectricity, tonsPerHourToGramsPerMinute } from '../graphUtils'
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
-export default function EmissionChartTooltip(props: InnerAreaGraphTooltipProps) {
+export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);
   const { __ } = useTranslation();
-  const { zoneDetail } = props;
 
   if (!zoneDetail) {
     return null;
