@@ -317,10 +317,17 @@ def fetch_production(
         target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime - timedelta(
             days=2
         )
+    elif target_datetime < datetime(2020,12,17):
+        raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: {zone_key} renewable production data is not available before 2020/12/17, data is not collected prior to this data",
+        )
     else:
         target_datetime = (
             arrow.get(target_datetime).floor("day").datetime.replace(tzinfo=IN_NO_TZ)
         )
+
+
 
     renewable_production = fetch_cea_production(
         zone_key=zone_key, session=session, target_datetime=target_datetime
