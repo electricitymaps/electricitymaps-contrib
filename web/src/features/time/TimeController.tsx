@@ -2,7 +2,7 @@ import useGetState from 'api/getState';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom } from 'jotai';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { dateToDatetimeString } from 'utils/helpers';
@@ -13,6 +13,7 @@ import TimeHeader from './TimeHeader';
 export default function TimeController({ className }: { className?: string }) {
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading } = useGetState();
 
   // TODO: Figure out whether we want to work with datetimes as strings
@@ -24,6 +25,9 @@ export default function TimeController({ className }: { className?: string }) {
 
   useEffect(() => {
     if (datetimes) {
+      // This value is stored in state to avoid flickering when switching between time averages
+      // as this effect means index will be one render behind if using datetimes directly
+      setNumberOfEntries(datetimes.length - 1);
       // Reset the selected datetime when data changes
       setSelectedDatetime({
         datetimeString: dateToDatetimeString(datetimes[datetimes.length - 1]),
@@ -44,6 +48,11 @@ export default function TimeController({ className }: { className?: string }) {
   };
 
   const onToggleGroupClick = (timeAverage: TimeAverages) => {
+    // Set time slider to latest value before switching aggregate to avoid flickering
+    setSelectedDatetime({
+      datetimeString: selectedDatetime.datetimeString,
+      index: numberOfEntries,
+    });
     setTimeAverage(timeAverage);
     trackEvent('AggregateButton Clicked', { timeAverage });
   };
@@ -60,7 +69,7 @@ export default function TimeController({ className }: { className?: string }) {
       />
       <TimeSlider
         onChange={onTimeSliderChange}
-        numberOfEntries={datetimes ? datetimes.length - 1 : 0}
+        numberOfEntries={numberOfEntries}
         selectedIndex={selectedDatetime.index}
       />
       <TimeAxis
