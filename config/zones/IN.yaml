@@ -116,5 +116,5 @@ fallbackZoneMixes:
         unknown: 0.08555672082678238
         wind: 0.0
 parsers:
-  production: IN.fetch_production
+  production: IN.fetch_live_production
 timezone: Asia/Kolkata
