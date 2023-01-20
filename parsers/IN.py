@@ -216,6 +216,11 @@ def fetch_consumption(
         "source": "vidyupravah.in",
     }
     data = validate_consumption(data, logger)
+    if data is None:
+        raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: No valid consumption data found for {zone_key}",
+        )
     return data
 
 
