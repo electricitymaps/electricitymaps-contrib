@@ -1,7 +1,8 @@
 {
-  "name": "mobileapp",
+  "name": "electricitymaps-mobile",
   "version": "1.5.0",
-  "description": "",
+  "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
+  "license": "AGPL-3.0-or-later",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,9 +12,6 @@
     "dev-ios": "NODE_ENV=dev pnpm exec cap run ios",
     "dev-android": "NODE_ENV=dev pnpm exec cap run android"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@capacitor/android": "^4.4.0",
     "@capacitor/core": "^4.4.0",

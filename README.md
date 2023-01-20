@@ -1,6 +1,6 @@
 # Electricity Maps
 
-[![Slack Status](https://slack.electricitymaps.com/badge.svg)](https://slack.electricitymaps.com) [![Twitter Follow](https://img.shields.io/twitter/follow/ElectricityMaps.svg?style=social&label=Follow)](https://twitter.com/ElectricityMaps)
+<img src="https://img.shields.io/github/license/electricitymaps/electricitymaps-contrib-rewrite" alt="Electricity Maps is released under the GNU-AGPLv3 license." /> [![Slack Status](https://slack.electricitymaps.com/badge.svg)](https://slack.electricitymaps.com) [![Twitter Follow](https://img.shields.io/twitter/follow/ElectricityMaps.svg?style=social&label=Follow)](https://twitter.com/ElectricityMaps)
 
 A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption around the world. Try it out at [app.electricitymaps.com](https://app.electricitymaps.com), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github).
 
@@ -8,10 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 ## Contribute
 
-Thank you for your interest. Check out the [Wiki](https://github.com/electricityMaps/electricitymaps-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/electricityMaps/electricitymaps-contrib/issues) and [discussions](https://github.com/electricityMaps/electricitymaps-contrib/discussions).
-
-> **Note**
-> You can see the status of all parsers [on our Grafana dashboard](https://electricitymap.grafana.net/public-dashboards/4f775c8021324f5cb8682c4fedd3207e).
+Thank you for your interest. Check out our general [contribution guidelines](Add link to the contribution guidelines). 
 
 Here are some of the ways you can contribute:
 
@@ -26,6 +23,18 @@ Here are some of the ways you can contribute:
 Join us on [Slack](https://slack.electricitymaps.com) if you wish to discuss development or need help to get started.
 
 We would love your feedback on how to improve the contribution experience, please feel free to fill out this [form](https://forms.gle/VRWvEFwhtnhpzPVX8)
+
+## Contributions workflow
+
+If you wonder what happens to your contributions, check out this workflow of contributions review and acceptance. 
+
+![image](https://github.com/electricitymaps/electricitymaps-contrib/blob/master/EMaps_contrib_workflow.png)
+
+We would love your feedback on how to improve the contribution experience, please feel free to fill out this [form](https://forms.gle/VRWvEFwhtnhpzPVX8)
+
+## License
+
+Electricity Maps is licensed under GNU-AGPLv3. Find our license [here](https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE.md)
 
 ## Frequently asked questions
 
