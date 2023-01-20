@@ -3,6 +3,13 @@
 Welcome to the Electricity Maps open source contribution repository. </br>
 Any and all contributions however big or small are welcome.
 
+# Links
+
+- [README][readme]
+- [Code of Conduct][code of conduct]
+- [License][license]
+- [Wiki][wiki]
+
 # Contribution Guidelines
 
 ## Non-code contributions
@@ -13,8 +20,13 @@ There are several ways to help out without coding, these are primarily:
 - Opening issues for data problems.
 - Opening and/or participating in discussions about new data sources, features, and more.
 - Opening issues when capacity data sources have been updated or changed.
-- Adding new or updating our existing translations, for more detailed instructions take a look at our wiki page: [Translating the App][wiki translating the app]
+- Finding new data sources, wiki page: [Find data sources][wiki find data sources]
+- Verify existing data sources, wiki page: [Verify data sources][wiki verify data sources]
+- Adding new or updating our existing translations, wiki page: [Translating app.electricitymaps.com][wiki translating the app]
 - And more!
+
+>**Note**
+>Take a look at the wiki pages for more detailed instructions
 
 ## Parser guidelines
 
@@ -84,7 +96,7 @@ Note: This requires you to have [node.js][node homepage] and [pnpm][pnpm homepag
 
 ### Frontend structure
 
-The frontend can be broken down to 2 main parts, the web app built [Vite](vitejs) and the mobile app built with [capacitor][capacitorjs].
+The frontend can be broken down to 2 main parts, the web app built [Vite][vitejs] and the mobile app built with [capacitor][capacitorjs].
 Both of these share a common code base that is built upon [react][reactjs].
 
 As a result we have a frontend folder structure that looks like this:
@@ -146,3 +158,9 @@ Check the [wiki page][wiki js code formatting] on formatting for more details an
 [reactjs]: https://reactjs.org/
 [vitejs]: https://vitejs.dev/
 [capacitorjs]: https://capacitorjs.com/
+[readme]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/README.md
+[code of conduct]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/CODE_OF_CONDUCT.md
+[license]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE.md
+[wiki]: https://github.com/electricitymaps/electricitymaps-contrib/wiki
+[wiki find data sources]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources
+[wiki verify data sources]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Verify-data-sources
