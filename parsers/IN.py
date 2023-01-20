@@ -265,7 +265,7 @@ def fetch_npp_production(
     else:
         raise ParserException(
             parser="IN.py",
-            message=f"{target_datetime}: {zone_key} conventional production data is not available",
+            message=f"{target_datetime}: {zone_key} conventional production data is not available : [{r.status_code}]",
         )
 
 
