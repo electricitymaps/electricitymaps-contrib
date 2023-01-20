@@ -268,6 +268,7 @@ def fetch_npp_production(
             message=f"{target_datetime}: {zone_key} conventional production data is not available",
         )
 
+
 def fetch_cea_production(
     zone_key: str,
     target_datetime: datetime,
@@ -305,6 +306,7 @@ def fetch_cea_production(
             message=f"{target_datetime}: {zone_key} renewable production data is not available",
         )
 
+
 def fetch_production(
     zone_key: str,
     session: Session = Session(),
@@ -316,7 +318,9 @@ def fetch_production(
             days=2
         )
     else:
-        target_datetime = arrow.get(target_datetime).floor("day").datetime.replace(tzinfo=IN_NO_TZ)
+        target_datetime = (
+            arrow.get(target_datetime).floor("day").datetime.replace(tzinfo=IN_NO_TZ)
+        )
 
     renewable_production = fetch_cea_production(
         zone_key=zone_key, session=session, target_datetime=target_datetime
