@@ -338,6 +338,6 @@ def fetch_production(
     return data_point
 
 
-# if __name__ == "__main__":
-#     print("fetch_production() -> ")
-#     print(fetch_production(zone_key="IN-NO"))
+if __name__ == "__main__":
+    print("fetch_production() -> ")
+    print(fetch_production(zone_key="IN-NO"))
