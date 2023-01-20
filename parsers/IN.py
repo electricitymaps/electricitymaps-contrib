@@ -232,13 +232,7 @@ def fetch_npp_production(
     )
     r: Response = session.get(npp_url)
     if r.status_code == 200:
-        try:
-            df_npp = pd.read_excel(r.content, header=3)
-        except:
-            raise ParserException(
-                parser="IN.py",
-                message=f"{target_datetime}: {zone_key} conventional production data is not available",
-            )
+        df_npp = pd.read_excel(r.content, header=3)
         df_npp = df_npp.rename(
             columns={
                 df_npp.columns[0]: "power_station",
@@ -268,7 +262,11 @@ def fetch_npp_production(
                 3,
             )
         return production
-
+    else:
+        raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: {zone_key} conventional production data is not available",
+        )
 
 def fetch_cea_production(
     zone_key: str,
@@ -282,13 +280,7 @@ def fetch_cea_production(
     cea_link = "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%b_%Y}_Daily_Report.xlsx"
     r: Response = session.get(cea_link.format(date=target_datetime))
     if r.status_code == 200:
-        try:
-            df_ren = pd.read_excel(r.url, engine="openpyxl", header=5)
-        except:
-            raise ParserException(
-                parser="IN.py",
-                message=f"{target_datetime}: {zone_key} renewable production data is not available",
-            )
+        df_ren = pd.read_excel(r.url, engine="openpyxl", header=5)
         df_ren = df_ren.rename(
             columns={
                 df_ren.columns[1]: "region",
@@ -307,7 +299,11 @@ def fetch_cea_production(
             key: round(dict_zone[key] / CONVERSION_MWH_MW, 3) for key in dict_zone
         }
         return renewable_production
-
+    else:
+        raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: {zone_key} renewable production data is not available",
+        )
 
 def fetch_production(
     zone_key: str,
@@ -317,10 +313,10 @@ def fetch_production(
 ) -> dict:
     if target_datetime is None:
         target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime - timedelta(
-            days=1
+            days=2
         )
     else:
-        target_datetime = arrow.get(target_datetime).floor("day").datetime
+        target_datetime = arrow.get(target_datetime).floor("day").datetime.replace(tzinfo=IN_NO_TZ)
 
     renewable_production = fetch_cea_production(
         zone_key=zone_key, session=session, target_datetime=target_datetime
@@ -338,6 +334,6 @@ def fetch_production(
     return data_point
 
 
-if __name__ == "__main__":
-    print("fetch_production() -> ")
-    print(fetch_production(zone_key="IN-NO"))
+# if __name__ == "__main__":
+#     print("fetch_production() -> ")
+#     print(fetch_production(zone_key="IN-NO"))
