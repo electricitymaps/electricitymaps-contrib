@@ -25,7 +25,9 @@ export default function ZoneDetails(): JSX.Element {
     enabled: Boolean(zoneId),
   });
 
-  if (!zoneId) {
+  // TODO: App-backend should not return an empty array as "data" if the zone does not
+  // exist.
+  if (!zoneId || Array.isArray(data)) {
     return <Navigate to="/" replace />;
   }
 
