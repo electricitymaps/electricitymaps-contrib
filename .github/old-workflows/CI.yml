@@ -4,6 +4,8 @@ on:
     branches:
       - master
   pull_request:
+    branches:
+      - master
 
 jobs:
   # This job is used to determine what files have changed and is used by later jobs to determine if they should run.
@@ -68,7 +70,7 @@ jobs:
       - name: Log outputs
         run: |
           echo "frontend changed: ${{ steps.check-frontend.outputs.any_changed }}"
-          echo "geometries changed: ${{ steps.check-geometries.outputs.any_changed }}"
+          echo "config changed: ${{ steps.check-config.outputs.any_changed }}"
           echo "markdown changed: ${{ steps.check-markdown.outputs.any_changed }}"
           echo "json changed: ${{ steps.check-json.outputs.any_changed }}"
           echo "python changed: ${{ steps.check-python.outputs.any_changed }}"
