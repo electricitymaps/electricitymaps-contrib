@@ -202,11 +202,14 @@ def fetch_exchange(
     data = data.rename(columns=EXCHANGES_MAPPING)
     data = data.groupby(data.columns, axis=1).sum()
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    exchange = data[[sortedZoneKeys]].to_dict(orient="index")
+    dataKey = sortedZoneKeys
+    if sortedZoneKeys == "AR-LIT->UY":
+        dataKey = "AR->UY"
+    exchange = data[[dataKey]].to_dict(orient="index")
     all_data_points = []
     for dt in exchange:
         data_point = {
-            "netFlow": round(exchange[dt][sortedZoneKeys], 3),
+            "netFlow": round(exchange[dt][dataKey], 3),
             "sortedZoneKeys": sortedZoneKeys,
             "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
             "source": "pronos.adme.com.uy",
