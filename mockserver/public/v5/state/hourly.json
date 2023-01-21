@@ -47426,7 +47426,7 @@
           "netFlow": 398
         }
       ],
-            "AR-LIT->AR-CEN": [
+            "AR-CEN->AR-LIT": [
         {
           "co2intensity": 460.86,
           "netFlow": 390
@@ -47630,7 +47630,7 @@
           "netFlow": 398
         }
       ],
-            "AR-CUY->AR-COM": [
+            "AR-COM->AR-CUY": [
         {
           "co2intensity": 460.86,
           "netFlow": 390
