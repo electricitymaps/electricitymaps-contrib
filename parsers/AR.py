@@ -141,19 +141,17 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
     """Retrieves production mix for renewables using CAMMESA's API"""
 
     now = arrow.now(tz="America/Argentina/Buenos_Aires").floor("minute")
+    today = now.format("DD-MM-YYYY")
+    endpoint = CAMMESA_RENEWABLES_REGIONAL_ENDPOINT
+    params = {}
+    minute = int(now.format("mm"))
+    rounded = minute - minute % 5
+    time = now.replace(minute=rounded).format("YYYY-MM-DDTHH:mm:ss.SSSZ")
+    region_name = zone_key[3:]
 
     if zone_key == "AR":
-        today = now.format("DD-MM-YYYY")
         params = {"desde": today, "hasta": today}
         endpoint = CAMMESA_RENEWABLES_ENDPOINT
-
-    else:
-        endpoint = CAMMESA_RENEWABLES_REGIONAL_ENDPOINT
-        params = {}
-        minute = int(now.format("mm"))
-        rounded = minute - minute % 5
-        time = now.replace(minute=rounded).format("YYYY-MM-DDTHH:mm:ss.SSSZ")
-        region_name = zone_key[3:]
 
     renewables_response = session.get(endpoint, params=params)
     assert (
@@ -161,6 +159,7 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
     ), f"Exception when fetching production for {zone_key}: error when calling url={endpoint} with payload={params}"
 
     production_list = renewables_response.json()
+    sorted_production_list = []
 
     if zone_key != "AR":
         sorted_production_list = list(
@@ -236,6 +235,7 @@ def fetch_exchange(
     sorted_codes = "->".join(sorted_zone_keys)
     flow: Optional[float] = None
     returned_datetime: datetime
+    exchange = {}
 
     if sorted_codes in SUPPORTED_EXCHANGES:
         current_session = session or Session()
@@ -258,22 +258,20 @@ def fetch_exchange(
                 returned_datetime = datetime.fromisoformat(
                     properties["fecha"][:-2] + ":" + properties["fecha"][-2:]
                 )
-                break
-        if flow is None:
-            raise ParserException(
-                "AR.py",
-                f"Failed fetching exchange for {sorted_zone_keys}",
-                sorted_codes,
-            )
+                if flow is None:
+                    raise ParserException(
+                        "AR.py",
+                        f"Failed fetching exchange for {sorted_zone_keys}",
+                        sorted_codes,
+                    )
+                exchange = {
+                    "sortedZoneKeys": sorted_codes,
+                    "datetime": returned_datetime,
+                    "netFlow": flow,
+                    "source": "cammesaweb.cammesa.com",
+                }
     else:
         raise NotImplementedError("This exchange is not currently implemented")
-
-    exchange = {
-        "sortedZoneKeys": sorted_codes,
-        "datetime": returned_datetime,
-        "netFlow": flow,
-        "source": "cammesaweb.cammesa.com",
-    }
 
     return exchange
 
