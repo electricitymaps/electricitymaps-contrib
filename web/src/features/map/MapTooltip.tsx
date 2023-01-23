@@ -48,7 +48,7 @@ function TooltipInner({
       <div className="flex w-full flex-grow py-1 sm:pr-2">
         <div className="flex w-full flex-grow flex-row justify-start">
           <CarbonIntensitySquare
-            co2intensity={isConsumption ? co2intensity : co2intensityProduction}
+            intensity={isConsumption ? co2intensity : co2intensityProduction}
           />
           <div className="px-4">
             <CircularGauge name={__('country-panel.lowcarbon')} ratio={1 - fossilFuel} />
