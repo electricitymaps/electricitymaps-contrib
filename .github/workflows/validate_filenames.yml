@@ -1,0 +1,15 @@
+name: Validate config filenames
+
+on:
+  workflow_call:
+
+jobs:
+  validate_config_filenames:
+    name: Validate config filenames
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Validate config filenames
+        run: python scripts/validate_config_filenames.py
