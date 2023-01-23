@@ -75,7 +75,7 @@ function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArr
       side="right"
       sideOffset={10}
     >
-      <div
+      <picture
         id={key}
         style={{
           transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
@@ -90,7 +90,7 @@ function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArr
       >
         <source srcSet={`${imageSource}.webp`} type="image/webp" />
         <img src={`${imageSource}.gif`} alt="" draggable={false} />
-      </div>
+      </picture>
     </TooltipWrapper>
   );
 }
