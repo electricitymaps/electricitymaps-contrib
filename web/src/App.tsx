@@ -22,10 +22,9 @@ const handleReload = () => {
 export default function App(): ReactElement {
   const currentAppVersion = APP_VERSION;
   const { data, isSuccess } = useGetAppVersion();
-  const isNewVersionAvailable =
-    data?.version && currentAppVersion && isProduction
-      ? data.version !== currentAppVersion
-      : false;
+  const latestAppVersion = data?.version || '0';
+  const isNewVersionAvailable = isProduction && latestAppVersion > currentAppVersion;
+  console.log('New app version available:', latestAppVersion);
 
   return (
     <Suspense fallback={<div />}>

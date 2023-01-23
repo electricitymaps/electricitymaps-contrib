@@ -15,4 +15,5 @@ export const useGetAppVersion = () =>
   useQuery<{ version: string }>([], async () => getVersion(), {
     refetchInterval: REFETCH_INTERVAL_ONE_HOUR,
     refetchOnWindowFocus: false,
+    cacheTime: 0,
   });

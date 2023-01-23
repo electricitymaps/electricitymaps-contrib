@@ -39,7 +39,7 @@ if (isProduction) {
         ),
       }),
     ],
-    tracesSampleRate: 1, //This will send 100% of errors to Sentry
+    tracesSampleRate: 0.1, //This will send 10% of transactions to Sentry
   });
 }
 /**
