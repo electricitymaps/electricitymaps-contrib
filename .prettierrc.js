@@ -10,5 +10,11 @@ module.exports = {
         printWidth: 90,
       },
     },
+    {
+      files: 'config/*.yaml',
+      options: {
+        printWidth: 120,
+      },
+    },
   ],
 };

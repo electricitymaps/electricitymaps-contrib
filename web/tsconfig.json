@@ -22,6 +22,6 @@
     "transpileOnly": true
   },
   "include": ["src", "./cypress/cypress.d.ts", "viteEnvironment.d.ts"],
-  "exclude": ["node_modules", "dist", "src/**/*.stories.*"],
+  "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

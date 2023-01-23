@@ -8,11 +8,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
       - name: Cypress run
         uses: cypress-io/github-action@v5
         env:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
-          start: yarn develop
-          wait-on: 'http://localhost:8080'
+          start: pnpm dev
+          wait-on: 'http://localhost:5173'
