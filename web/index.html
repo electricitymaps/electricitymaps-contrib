@@ -29,7 +29,7 @@
     <link rel="mask-icon" href="/icons/favicon.svg" color="#000000">
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 
-    
+
     <!-- Mobile linking -->
     <meta name="apple-itunes-app" content="app-id=1224594248" />
     <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/app.electricitymaps.com" />
@@ -111,6 +111,11 @@
 
     <!-- Plausible -->
     <script defer data-domain="app.electricitymaps.com" src="https://plausible.io/js/plausible.local.js"></script>
+    <script>
+      if (![].at) {
+      Array.prototype.at = function(pos) { return this.slice(pos, pos + 1)[0] }
+    };
+    </script>
   </head>
   <body>
     <noscript>

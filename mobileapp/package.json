@@ -13,9 +13,9 @@
     "dev-android": "NODE_ENV=dev pnpm exec cap run android"
   },
   "dependencies": {
-    "@capacitor/android": "^4.4.0",
-    "@capacitor/core": "^4.4.0",
-    "@capacitor/ios": "^4.4.0"
+    "@capacitor/android": "^4.6.2",
+    "@capacitor/core": "^4.6.2",
+    "@capacitor/ios": "^4.6.2"
   },
   "devDependencies": {
     "@capacitor/assets": "^1.0.14",

@@ -9,8 +9,8 @@ use_frameworks!
 install! 'cocoapods', :disable_input_output_paths => true
 
 def capacitor_pods
-  pod 'Capacitor', :path => '../../node_modules/.pnpm/@capacitor+ios@4.4.0_@capacitor+core@4.4.0/node_modules/@capacitor/ios'
-  pod 'CapacitorCordova', :path => '../../node_modules/.pnpm/@capacitor+ios@4.4.0_@capacitor+core@4.4.0/node_modules/@capacitor/ios'
+  pod 'Capacitor', :path => '../../node_modules/.pnpm/@capacitor+ios@4.6.2_@capacitor+core@4.6.2/node_modules/@capacitor/ios'
+  pod 'CapacitorCordova', :path => '../../node_modules/.pnpm/@capacitor+ios@4.6.2_@capacitor+core@4.6.2/node_modules/@capacitor/ios'
 
 end
 

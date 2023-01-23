@@ -5220,7 +5220,7 @@ packages:
       '@storybook/core-events': 7.0.0-alpha.54
       '@storybook/csf': 0.0.2-next.8
       '@storybook/csf-tools': 7.0.0-alpha.54
-      '@storybook/docs-mdx': 0.0.1-next.5
+      '@storybook/docs-mdx': 0.0.1-next.6
       '@storybook/node-logger': 7.0.0-alpha.54
       '@storybook/preview-api': 7.0.0-alpha.54
       '@storybook/telemetry': 7.0.0-alpha.54_yalvw3r2waubxycyb7k7qsruca
@@ -5326,8 +5326,8 @@ packages:
       type-fest: 2.19.0
     dev: true
 
-  /@storybook/docs-mdx/0.0.1-next.5:
-    resolution: {integrity: sha512-EowXFPq4TBZQguKCdU8y7EzpuSv2vSu5gy7pgF/1P5mq7LG9h8YIrerOW9DL4zfp9E0GHIWlSXR5KuFIqqKc/Q==}
+  /@storybook/docs-mdx/0.0.1-next.6:
+    resolution: {integrity: sha512-DjoSIXADmLJtdroXAjUotFiZlcZ2usWhqrS7aeOtZs0DVR0Ws5WQjnwtpDUXt8gryTSd+OZJ0cNsDcqg4JDEvQ==}
     dev: true
 
   /@storybook/docs-tools/7.0.0-alpha.47_yalvw3r2waubxycyb7k7qsruca:

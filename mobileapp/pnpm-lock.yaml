@@ -1,18 +1,18 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@capacitor/android': ^4.4.0
+  '@capacitor/android': ^4.6.2
   '@capacitor/assets': ^1.0.14
   '@capacitor/cli': ^4.4.0
-  '@capacitor/core': ^4.4.0
-  '@capacitor/ios': ^4.4.0
+  '@capacitor/core': ^4.6.2
+  '@capacitor/ios': ^4.6.2
   '@types/node': ^18.11.7
   typescript: ^4.8.4
 
 dependencies:
-  '@capacitor/android': 4.4.0_@capacitor+core@4.4.0
-  '@capacitor/core': 4.4.0
-  '@capacitor/ios': 4.4.0_@capacitor+core@4.4.0
+  '@capacitor/android': 4.6.2_@capacitor+core@4.6.2
+  '@capacitor/core': 4.6.2
+  '@capacitor/ios': 4.6.2_@capacitor+core@4.6.2
 
 devDependencies:
   '@capacitor/assets': 1.0.14_evej5wzm4hojmu6uzxwpspdmsu
@@ -43,12 +43,12 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@capacitor/android/4.4.0_@capacitor+core@4.4.0:
-    resolution: {integrity: sha512-vPoUcoJ1CZ5pxjceN/HVnq5FuNo+V1/kBj/NH48nAiMzBbZPEDmplguGC8Dj2qbKjhkJ+LMSL26VTfnsyHMJbA==}
+  /@capacitor/android/4.6.2_@capacitor+core@4.6.2:
+    resolution: {integrity: sha512-PQpOJnMi0i/d4UrT8bPdfkwlKAlQLgsyo2YKj+iUYjEIu8sKQvqDirLYnpeKhj4cflIG2u9mh/eFncooA+u2gw==}
     peerDependencies:
-      '@capacitor/core': ^4.3.0
+      '@capacitor/core': ^4.6.0
     dependencies:
-      '@capacitor/core': 4.4.0
+      '@capacitor/core': 4.6.2
     dev: false
 
   /@capacitor/assets/1.0.14_evej5wzm4hojmu6uzxwpspdmsu:
@@ -128,18 +128,18 @@ packages:
       - supports-color
     dev: true
 
-  /@capacitor/core/4.4.0:
-    resolution: {integrity: sha512-9k6EJTCMlHhr6g2oGo2FJM2byRyX5GEfB24Bv2e4fnemiiHrQEeAKdg++6Hj7jNNZtI1q+5EImTrcpXzPkiX7Q==}
+  /@capacitor/core/4.6.2:
+    resolution: {integrity: sha512-M/KpAg+peft/HTb7svLiKHxjbll67ybs1vEqhZuvjXlwro53NxNXR4YJS7+wNXZSiA4Kxjtf+a754xGgZcMarA==}
     dependencies:
       tslib: 2.4.0
     dev: false
 
-  /@capacitor/ios/4.4.0_@capacitor+core@4.4.0:
-    resolution: {integrity: sha512-x1i9WgaeUANBgXmCHcXoMrqZC49Ef0eu+kaRmcQ0/UkI2r31/PMGr3BVTlHRJLeBsodzwR4TiEeKRK044WX+Hw==}
+  /@capacitor/ios/4.6.2_@capacitor+core@4.6.2:
+    resolution: {integrity: sha512-3hQzbAOk+drCLyFjnytvkc20Mr077/9tQrv6iTghDXESDGR6EgcaYUXzKdVwuJscb0R459+5UQ2mYtkx6ES4TQ==}
     peerDependencies:
-      '@capacitor/core': ^4.3.0
+      '@capacitor/core': ^4.6.0
     dependencies:
-      '@capacitor/core': 4.4.0
+      '@capacitor/core': 4.6.2
     dev: false
 
   /@cspotcode/source-map-support/0.8.1:

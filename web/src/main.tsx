@@ -23,6 +23,7 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
 
 // Init polyfills
+
 import { StrictMode, useEffect } from 'react';
 if (isProduction) {
   Sentry.init({
