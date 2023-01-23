@@ -24,7 +24,6 @@ export default function App(): ReactElement {
   const { data, isSuccess } = useGetAppVersion();
   const latestAppVersion = data?.version || '0';
   const isNewVersionAvailable = isProduction && latestAppVersion > currentAppVersion;
-  console.log('New app version available:', latestAppVersion);
 
   return (
     <Suspense fallback={<div />}>
