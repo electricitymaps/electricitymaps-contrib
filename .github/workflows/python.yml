@@ -17,7 +17,7 @@ jobs:
       - name: Get poetry version
         id: get-poetry-version
         run: |
-          echo "::set-output name=poetry-version::$(poetry --version | grep -oP '(?<=Poetry ).*')"
+          echo "{poetry-version}={$(poetry --version | grep -oP '(?<=Poetry ).*')}" >> $GITHUB_OUTPUT
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -52,7 +52,7 @@ jobs:
       - name: Get poetry version
         id: get-poetry-version
         run: |
-          echo "::set-output name=poetry-version::$(poetry --version | grep -oP '(?<=Poetry ).*')"
+          echo "{poetry-version}={$(poetry --version | grep -oP '(?<=Poetry ).*')}" >> $GITHUB_OUTPUT
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
