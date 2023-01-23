@@ -19,15 +19,16 @@ import ZoneDetails from './zone/ZoneDetails';
 
 // Remove index.html from URL
 function RedirectIndexWrapper({ children }: { children: JSX.Element }) {
+  const [searchParameters] = useSearchParams();
   const location = useLocation();
 
   if (location.pathname.includes('/index.html')) {
-    console.log('Removing index.html from', location.pathname);
     const pathWithoutIndex = location.pathname.replace('/index.html', '');
     return (
       <Navigate
         to={{
           pathname: pathWithoutIndex,
+          search: searchParameters.toString(),
         }}
       />
     );
