@@ -166,7 +166,7 @@ function isValidDate(date: Date) {
     return false;
   }
 
-  if (!date.getTime() || date.getTime() <= 1) {
+  if (!date?.getTime() || date?.getTime() <= 1) {
     return false;
   }
 

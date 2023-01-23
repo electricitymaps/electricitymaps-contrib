@@ -91,7 +91,7 @@ export function getTotalElectricity(zoneData: ZoneDetail, displayByEmissions: bo
 }
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
-  const index = datetimes.findIndex((d) => d.getTime() === currentDate.getTime());
+  const index = datetimes.findIndex((d) => d?.getTime() === currentDate?.getTime());
   return datetimes[index + 1];
 };
 

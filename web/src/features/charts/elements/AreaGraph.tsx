@@ -128,17 +128,26 @@ function AreaGraph({
     () => getValueScale(containerHeight, totalValues),
     [containerHeight, totalValues]
   );
-  const startTime = datetimes.at(0);
-  const lastTime = datetimes.at(-1);
+  const startTime = datetimes?.at(0);
+  const lastTime = datetimes?.at(-1);
+  const interval = datetimes?.at(-2);
+
+  if (!startTime || !lastTime || !interval) {
+    return null;
+  }
   const intervalMs =
-    datetimes.length > 1 ? lastTime.getTime() - datetimes.at(-2).getTime() : undefined;
+    datetimes.length > 1 && interval && lastTime
+      ? lastTime.getTime() - interval.getTime()
+      : 0;
   // The endTime needs to include the last interval so it can be shown
   const endTime = useMemo(
     () => new Date(lastTime.getTime() + intervalMs),
     [lastTime, intervalMs]
   );
   const datetimesWithNext = useMemo(() => [...datetimes, endTime], [datetimes, endTime]);
-
+  if (!endTime) {
+    return null;
+  }
   const timeScale = useMemo(
     () => getTimeScale(containerWidth, startTime, endTime),
     [containerWidth, startTime, endTime]
