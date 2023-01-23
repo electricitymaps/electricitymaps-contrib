@@ -127,8 +127,6 @@ body,
   --sal: env(safe-area-inset-left);
 }
 
-
-
 noscript div {
   height: 100vh;
   width: 100vw;

@@ -158,9 +158,20 @@
       }
     },
     {
-      "files": ["vite.config.ts", "cypress.config.ts"],
+      "files": [
+        "vite.config.ts",
+        "cypress.config.ts",
+        "scripts/**/*.{mjs,js,ts}",
+        "geo/*.ts"
+      ],
       "parserOptions": {
         "project": ["./tsconfig.node.json"]
+      }
+    },
+    {
+      "files": ["src/**/*.stories.ts?(x)"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
       }
     },
     {

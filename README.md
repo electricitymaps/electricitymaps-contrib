@@ -8,7 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 ## Contribute
 
-Thank you for your interest. Check out our general [contribution guidelines](Add link to the contribution guidelines). 
+Thank you for your interest. Check out our general [contribution guidelines](Add link to the contribution guidelines).
 
 Here are some of the ways you can contribute:
 
@@ -26,7 +26,7 @@ We would love your feedback on how to improve the contribution experience, pleas
 
 ## Contributions workflow
 
-If you wonder what happens to your contributions, check out this workflow of contributions review and acceptance. 
+If you wonder what happens to your contributions, check out this workflow of contributions review and acceptance.
 
 ![image](https://github.com/electricitymaps/electricitymaps-contrib/blob/master/EMaps_contrib_workflow.png)
 

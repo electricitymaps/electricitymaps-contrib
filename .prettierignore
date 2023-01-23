@@ -1,34 +1,31 @@
-# Needed for lint staged.
+# Files and paths to ignore
+
 .prettierignore
-yarn.lock
 pnpm-lock.yaml
-.eartlyignore
+.earthlyignore
 
 .venv
 **/parsers/test/mocks
-web/config/world.json
-web/config/exchanges.json
-web/config/zones.json
-world-aggregated.json
+.pytest_cache/
 
-# disabling index.html as we want to keep longer lines to make scanning easier
-# TODO: Move this to .prettierrc overwrites instead
-web/index.html
+# Temporarily disables folder
+web-old
 
-mobileapp/plugins
-mobileapp/platforms
-mobileapp/src
-mobileapp/ul_web_hooks
-mobileapp/www/electricitymap
 
+mobileapp/android
+mobileapp/ios
+
+web/public/client-version.json
 web/public/dist/
-web/public/images/
-web/src/config/
+web/config/
+
 web/.husky/_
 
 mockserver/public
 
 .github/ISSUE_TEMPLATE/
+
+LICENSE.md
 
 dist
 node_modules

@@ -65,7 +65,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
             }`}
         >
           {timeAverage === value && (
-            <HiOutlineClock className="min-[370px]:block mr-1 hidden text-[0.87rem] sm:hidden xl:block" />
+            <HiOutlineClock className="mr-1 hidden text-[0.87rem] min-[370px]:block sm:hidden xl:block" />
           )}
           <p className="w-15">{label}</p>
         </ToggleGroupPrimitive.Item>

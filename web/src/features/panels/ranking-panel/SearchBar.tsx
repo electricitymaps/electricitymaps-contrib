@@ -12,7 +12,7 @@ function SearchBar({ placeholder, searchHandler, value }: any) {
       <HiMagnifyingGlass />
       <input
         data-test-id="zone-search-bar"
-        className="font w-full bg-inherit pl-2 text-base h-8 "
+        className="font h-8 w-full bg-inherit pl-2 text-base "
         placeholder={placeholder}
         onChange={onHandleInput}
         value={value}
