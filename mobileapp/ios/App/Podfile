@@ -14,7 +14,7 @@ def capacitor_pods
 
 end
 
-target 'App' do
+target 'Electricity Maps' do
   capacitor_pods
   # Add your Pods here
 end

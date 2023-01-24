@@ -6,7 +6,7 @@ android {
         applicationId "com.tmrow.electricitymap"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10500
+        versionCode 10502
         versionName "1.5.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
