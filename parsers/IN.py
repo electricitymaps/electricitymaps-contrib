@@ -320,6 +320,8 @@ def fetch_cea_production(
     cea_links = [
         "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%b_%Y}_Daily_Report.xlsx",
         "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%m_%Y}_Daily_Report.xlsx",
+        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%b_%Y}_Daily_Report.xlsx",
+        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date.month}_{date.year}_Daily_Report.xlsx",
         "https://cea.nic.in/wp-content/uploads/daily_reports/DailyRE{date:%d_%m_%Y}.xlsx",
         "https://cea.nic.in/wp-content/uploads/daily_reports/DailyRE{date:%d%m%Y}.xlsx",
         "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%B__%Y}.xlsx",
@@ -327,7 +329,6 @@ def fetch_cea_production(
         "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%B_%Y}_Daily_Report.xlsx",
         "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%b__%Y}.xlsx",
         "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%b_%Y}.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date.month}_{date.year}_Daily_Report.xlsx",
     ]
     i = 0
     link_found = False
@@ -407,7 +408,7 @@ def fetch_production(
         target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime - timedelta(
             days=2
         )
-    elif target_datetime < datetime(2020, 5, 1).replace(tzinfo=IN_NO_TZ):
+    elif target_datetime < datetime(2020, 12, 18).replace(tzinfo=IN_NO_TZ):
         raise ParserException(
             parser="IN.py",
             message=f"{target_datetime}: {zone_key} renewable production data is not available before 2020/12/17, data is not collected prior to this data",
