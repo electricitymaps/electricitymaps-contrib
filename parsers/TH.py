@@ -186,8 +186,5 @@ if __name__ == "__main__":
     print("fetch_generation_forecast() ->")
     print(fetch_generation_forecast())
 
-    print("fetch_generation_forecast() ->")
-    print(fetch_generation_forecast())
-
     print("fetch_price() ->")
     print(fetch_price())
