@@ -97,7 +97,7 @@ function TimeAxis({
   // The svg transform attribute is different from the CSS transform property,
   // so we need to replace the commas with spaces and remove the 'px' suffix.
   const svgTransform = transform
-    ? transform.replaceAll('px', '').replaceAll(',', ' ')
+    ? transform.replace(/px/g, '').replace(/,/g, ' ')
     : undefined;
 
   const scale = getTimeScale(

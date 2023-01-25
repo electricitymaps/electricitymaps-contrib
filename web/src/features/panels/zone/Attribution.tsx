@@ -12,9 +12,7 @@ export function removeDuplicateSources(source: string | undefined) {
     ...new Set(
       source
         .split('","')
-        .flatMap((x) =>
-          x.split(',').map((x) => x.replaceAll('\\', '').replaceAll('"', ''))
-        )
+        .flatMap((x) => x.split(',').map((x) => x.replace(/\\/g, '').replace(/"/g, '')))
     ),
   ];
 
