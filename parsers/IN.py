@@ -315,25 +315,25 @@ def fetch_cea_production(
     """Gets production data for wind, solar and other renewables
     Other renewables includes a share of hydro, biomass and others and will categorized as unknown
     DISCLAIMER: this data is only available since 2020/12/17"""
-
+    main_cea_url = "https://cea.nic.in/wp-content/uploads/daily_reports"
     # the following list of links is a combination of possible names for renewable reports. NB: this doesn't include all possible links but covers the majority
-    cea_links = [
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%b_%Y}_Daily_Report.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%m_%Y}_Daily_Report.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%b_%Y}_Daily_Report.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date.month}_{date.year}_Daily_Report.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/DailyRE{date:%d_%m_%Y}.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/DailyRE{date:%d%m%Y}.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%B__%Y}.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%B_%Y}.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%B_%Y}_Daily_Report.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%b__%Y}.xlsx",
-        "https://cea.nic.in/wp-content/uploads/daily_reports/{date.day}_{date:%b_%Y}.xlsx",
+    filename_format = [
+        "{date:%d_%b_%Y}_Daily_Report.xlsx",
+        "{date:%d_%m_%Y}_Daily_Report.xlsx",
+        "{date.day}_{date:%b_%Y}_Daily_Report.xlsx",
+        "{date.day}_{date.month}_{date.year}_Daily_Report.xlsx",
+        "DailyRE{date:%d_%m_%Y}.xlsx",
+        "DailyRE{date:%d%m%Y}.xlsx",
+        "{date.day}_{date:%B__%Y}.xlsx",
+        "{date.day}_{date:%B_%Y}.xlsx",
+        "{date.day}_{date:%B_%Y}_Daily_Report.xlsx",
+        "{date.day}_{date:%b__%Y}.xlsx",
+        "{date.day}_{date:%b_%Y}.xlsx",
     ]
     i = 0
     link_found = False
-    while i in range(len(cea_links)) and not link_found:
-        r = session.get(cea_links[i].format(date=target_datetime))
+    while i in range(len(filename_format)) and not link_found:
+        r = session.get("/".join((main_cea_url, filename_format[i])).format(date=target_datetime))
         if r.status_code == 200:
             link_found = True
         i += 1
