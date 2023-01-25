@@ -274,12 +274,11 @@ def fetch_npp_production(
             message=f"{target_datetime}: {zone_key} conventional production data is not available : [{r.status_code}]",
         )
 
-def format_ren_production_data(url: str, zone_key:str) -> dict:
+
+def format_ren_production_data(url: str, zone_key: str) -> dict:
     """Formats daily renewable production data for each zone"""
-    df_ren = pd.read_excel(
-        url, engine="openpyxl", header=5, skipfooter=2
-    )
-    df_ren = df_ren.dropna(axis=0, how='all')
+    df_ren = pd.read_excel(url, engine="openpyxl", header=5, skipfooter=2)
+    df_ren = df_ren.dropna(axis=0, how="all")
     df_ren = df_ren.rename(
         columns={
             df_ren.columns[1]: "region",
@@ -289,9 +288,7 @@ def format_ren_production_data(url: str, zone_key:str) -> dict:
         }
     )
     df_ren.loc[:, "zone_key"] = (
-        df_ren["region"]
-        .apply(lambda x: x if "Region" in x else np.nan)
-        .backfill()
+        df_ren["region"].apply(lambda x: x if "Region" in x else np.nan).backfill()
     )
     df_ren["zone_key"] = df_ren["zone_key"].str.strip()
     df_ren["zone_key"] = df_ren["zone_key"].map(CEA_REGION_MAPPING)
@@ -301,10 +298,10 @@ def format_ren_production_data(url: str, zone_key:str) -> dict:
     ][["wind", "solar", "unknown"]].sum()
 
     renewable_production = {
-        key: round(zone_data.get(key) / CONVERSION_MWH_MW, 3)
-        for key in zone_data.index
+        key: round(zone_data.get(key) / CONVERSION_MWH_MW, 3) for key in zone_data.index
     }
     return renewable_production
+
 
 def fetch_cea_production(
     zone_key: str,
@@ -333,12 +330,14 @@ def fetch_cea_production(
     i = 0
     link_found = False
     while i in range(len(filename_format)) and not link_found:
-        r = session.get("/".join((main_cea_url, filename_format[i])).format(date=target_datetime))
+        r = session.get(
+            "/".join((main_cea_url, filename_format[i])).format(date=target_datetime)
+        )
         if r.status_code == 200:
             link_found = True
         i += 1
     if link_found:
-       renewable_production= format_ren_production_data(url=r.url, zone_key=zone_key)
+        renewable_production = format_ren_production_data(url=r.url, zone_key=zone_key)
     else:
         renewable_production = fetch_renewablesindia_production(
             zone_key=zone_key, target_datetime=target_datetime
@@ -380,17 +379,12 @@ def fetch_renewablesindia_production(
             if ".xlsx" in elem.get("href"):
                 excel_elems += [elem.get("href")]
         target_dt_file = [
-                    elem
-                    for elem in excel_elems
-                    if target_datetime.strftime("%d%m%Y") in elem
-                ]
+            elem for elem in excel_elems if target_datetime.strftime("%d%m%Y") in elem
+        ]
         if len(target_dt_file) > 0:
-            target_url = (
-                main_url
-                + target_dt_file[0]
-            )
+            target_url = main_url + target_dt_file[0]
             r_excel = session.get(target_url)
-            return format_ren_production_data(url = r_excel.url, zone_key=zone_key)
+            return format_ren_production_data(url=r_excel.url, zone_key=zone_key)
         else:
             raise ParserException(
                 parser="IN.py",
