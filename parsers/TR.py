@@ -9,6 +9,7 @@ from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
+from parsers.lib.validation import validate
 
 TR_TZ = pytz.timezone("Europe/Istanbul")
 
@@ -27,7 +28,6 @@ KINDS_MAPPING = {
 PRODUCTION_MAPPING = {
     "biomass": ["biomass"],
     "solar": ["sun"],
-    "nuclear": ["nucklear"],
     "geothermal": ["geothermal"],
     "oil": ["fueloil", "gasOil", "naphta"],
     "gas": ["naturalGas", "lng"],
@@ -40,8 +40,8 @@ PRODUCTION_MAPPING = {
 def fetch_data(session: Session, target_datetime: datetime, kind: str) -> Response:
     url = "/".join((EPIAS_MAIN_URL, KINDS_MAPPING[kind]["url"]))
     params = {
-        "startDate": target_datetime.strftime("%Y-%m-%d"),
-        "endDate": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
+        "startDate": (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d"),
+        "endDate": target_datetime.strftime("%Y-%m-%d"),
     }
     r: Response = session.get(url=url, params=params)
     if r.status_code == 200:
@@ -55,13 +55,13 @@ def fetch_data(session: Session, target_datetime: datetime, kind: str) -> Respon
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str,
+    zone_key: str="TR",
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
-        target_datetime = datetime.now(tz=TR_TZ)
+        target_datetime = datetime.now(tz=TR_TZ) - timedelta(hours=2)
 
     data = fetch_data(
         session=session, target_datetime=target_datetime, kind="production"
@@ -81,18 +81,30 @@ def fetch_production(
         }
 
         all_data_points += [data_point]
-    return all_data_points
+    required = [mode for mode in PRODUCTION_MAPPING]
+    expected_range = {
+        "coal": (1000, 60000),
+        "gas": (1000, 60000),
+
+    }
+    all_data_points_validated = [
+        x
+        for x in all_data_points
+        if validate(x, logger, required=required, expected_range=expected_range)
+    ]
+
+    return all_data_points_validated
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str,
+    zone_key: str="TR",
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
-        target_datetime = datetime.now(tz=TR_TZ)
+        target_datetime = datetime.now(tz=TR_TZ) - timedelta(hours=2)
 
     data = fetch_data(
         session=session, target_datetime=target_datetime, kind="consumption"
@@ -114,7 +126,7 @@ def fetch_consumption(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
-    zone_key: str,
+    zone_key: str= "TR",
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -138,12 +150,12 @@ def fetch_price(
     return all_data_points
 
 
-if __name__ == "__main__":
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
+# if __name__ == "__main__":
+#     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print("fetch_production() ->")
-    print(fetch_production())
-    print("fetch_price() ->")
-    print(fetch_price())
-    print("fetch_consumption() ->")
-    print(fetch_consumption())
+#     print("fetch_production() ->")
+#     print(fetch_production())
+#     print("fetch_price() ->")
+#     print(fetch_price())
+#     print("fetch_consumption() ->")
+#     print(fetch_consumption())
