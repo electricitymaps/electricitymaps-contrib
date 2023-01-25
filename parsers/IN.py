@@ -358,7 +358,8 @@ def fetch_renewablesindia_production(
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
 ) -> dict:
-    """gets data from India Renewable dashboard, delayed but naming is consistent unlike CEA reports"""
+    """gets data from India Renewable dashboard, delayed but naming is consistent unlike CEA reports
+    It seems like reports are availble since 2020/05/01 but there are gaps in the time series"""
     main_url = "https://www.renewablesindia.in"
     params = {
         "utf8": "✓",
