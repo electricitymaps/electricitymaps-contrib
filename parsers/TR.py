@@ -40,8 +40,8 @@ PRODUCTION_MAPPING = {
 def fetch_data(session: Session, target_datetime: datetime, kind: str) -> Response:
     url = "/".join((EPIAS_MAIN_URL, KINDS_MAPPING[kind]["url"]))
     params = {
-        "startDate": (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d"),
-        "endDate": target_datetime.strftime("%Y-%m-%d"),
+        "startDate": target_datetime.strftime("%Y-%m-%d"),
+        "endDate": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
     }
     r: Response = session.get(url=url, params=params)
     if r.status_code == 200:
