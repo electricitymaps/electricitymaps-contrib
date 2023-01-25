@@ -150,12 +150,12 @@ def fetch_price(
     return all_data_points
 
 
-# if __name__ == "__main__":
-#     """Main method, never used by the Electricity Map backend, but handy for testing."""
+if __name__ == "__main__":
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-#     print("fetch_production() ->")
-#     print(fetch_production())
-#     print("fetch_price() ->")
-#     print(fetch_price())
-#     print("fetch_consumption() ->")
-#     print(fetch_consumption())
+    print("fetch_production() ->")
+    print(fetch_production())
+    print("fetch_price() ->")
+    print(fetch_price())
+    print("fetch_consumption() ->")
+    print(fetch_consumption())
