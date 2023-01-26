@@ -369,7 +369,7 @@ def fetch_renewablesindia_production(
         "daily_end_date": (target_datetime + timedelta(days=20)).strftime("%Y-%m-%d"),
         "commit": "Apply",
     }
-
+    formated_data = {}
     r: Response = session.get(main_url + "/reports?", params=params)
     if r.status_code == 200:
         soup = BeautifulSoup(r.content, "html.parser")
@@ -384,12 +384,13 @@ def fetch_renewablesindia_production(
         if len(target_dt_file) > 0:
             target_url = main_url + target_dt_file[0]
             r_excel = session.get(target_url)
-            return format_ren_production_data(url=r_excel.url, zone_key=zone_key)
+            formated_data = format_ren_production_data(url=r_excel.url, zone_key=zone_key)
         else:
             raise ParserException(
                 parser="IN.py",
                 message=f"{target_datetime}: {zone_key} renewable production data is not available",
             )
+    return formated_data
 
 
 def fetch_production(
