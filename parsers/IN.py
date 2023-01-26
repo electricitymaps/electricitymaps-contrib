@@ -309,88 +309,36 @@ def fetch_cea_production(
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
 ) -> dict:
-    """Gets production data for wind, solar and other renewables
-    Other renewables includes a share of hydro, biomass and others and will categorized as unknown
-    DISCLAIMER: this data is only available since 2020/12/17"""
-    main_cea_url = "https://cea.nic.in/wp-content/uploads/daily_reports"
-    # the following list of links is a combination of possible names for renewable reports. NB: this doesn't include all possible links but covers the majority
-    filename_format = [
-        "{date:%d_%b_%Y}_Daily_Report.xlsx",
-        "{date:%d_%m_%Y}_Daily_Report.xlsx",
-        "{date.day}_{date:%b_%Y}_Daily_Report.xlsx",
-        "{date.day}_{date.month}_{date.year}_Daily_Report.xlsx",
-        "DailyRE{date:%d_%m_%Y}.xlsx",
-        "DailyRE{date:%d%m%Y}.xlsx",
-        "{date.day}_{date:%B__%Y}.xlsx",
-        "{date.day}_{date:%B_%Y}.xlsx",
-        "{date.day}_{date:%B_%Y}_Daily_Report.xlsx",
-        "{date.day}_{date:%b__%Y}.xlsx",
-        "{date.day}_{date:%b_%Y}.xlsx",
-    ]
-    i = 0
-    link_found = False
-    while i in range(len(filename_format)) and not link_found:
-        r = session.get(
-            "/".join((main_cea_url, filename_format[i])).format(date=target_datetime)
-        )
-        if r.status_code == 200:
-            link_found = True
-        i += 1
-    if link_found:
-        renewable_production = format_ren_production_data(url=r.url, zone_key=zone_key)
-    else:
-        renewable_production = fetch_renewablesindia_production(
-            zone_key=zone_key, target_datetime=target_datetime
-        )
-
-    if len(renewable_production):
-        return renewable_production
+    cea_data_url = (
+        "https://cea.nic.in/wp-admin/admin-ajax.php?action=getpostsfordatatables"
+    )
+    r_all_data: Response = session.get(cea_data_url)
+    if r_all_data.status_code == 200:
+        all_data = r_all_data.json()["data"]
+        target_elem = [
+            elem
+            for elem in all_data
+            if target_datetime.strftime("%Y-%m-%d") in elem["date"]
+        ]
+        if len(target_elem) > 0:
+            if target_elem[0]["link"] == "file_not_found":
+                raise ParserException(
+                    parser="IN.py",
+                    message=f"{target_datetime}: {zone_key} renewable production data is not available",
+                )
+            else:
+                target_url = target_elem[0]["link"].split(": ")[0]
+                formatted_url = target_url.split("^")[0]
+                r: Response = session.get(formatted_url)
+                renewable_production = format_ren_production_data(
+                    url=r.url, zone_key=zone_key
+                )
+                return renewable_production
     else:
         raise ParserException(
             parser="IN.py",
-            message=f"{target_datetime}: {zone_key} renewable production data is not available, {r.status_code}",
+            message=f"{target_datetime}: {zone_key} renewable production data is not available, {r_all_data.status_code}",
         )
-
-
-def fetch_renewablesindia_production(
-    zone_key: str,
-    target_datetime: datetime,
-    session: Session = Session(),
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    """gets data from India Renewable dashboard, delayed but naming is consistent unlike CEA reports
-    It seems like reports are availble since 2020/05/01 but there are gaps in the time series"""
-    main_url = "https://www.renewablesindia.in"
-    params = {
-        "utf8": "✓",
-        "report_type": "daily",
-        "sub_report_type": "state_isgs",
-        "daily_start_date": (target_datetime - timedelta(days=20)).strftime("%Y-%m-%d"),
-        "daily_end_date": (target_datetime + timedelta(days=20)).strftime("%Y-%m-%d"),
-        "commit": "Apply",
-    }
-    formated_data = {}
-    r: Response = session.get(main_url + "/reports?", params=params)
-    if r.status_code == 200:
-        soup = BeautifulSoup(r.content, "html.parser")
-        href_tags = soup.find_all("a", href=True, attrs={"target": "_blank", "alt": ""})
-        excel_elems = []
-        for elem in href_tags:
-            if ".xlsx" in elem.get("href"):
-                excel_elems += [elem.get("href")]
-        target_dt_file = [
-            elem for elem in excel_elems if target_datetime.strftime("%d%m%Y") in elem
-        ]
-        if len(target_dt_file) > 0:
-            target_url = main_url + target_dt_file[0]
-            r_excel = session.get(target_url)
-            formated_data = format_ren_production_data(url=r_excel.url, zone_key=zone_key)
-        else:
-            raise ParserException(
-                parser="IN.py",
-                message=f"{target_datetime}: {zone_key} renewable production data is not available",
-            )
-    return formated_data
 
 
 def fetch_production(
