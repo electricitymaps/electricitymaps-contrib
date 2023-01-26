@@ -309,6 +309,9 @@ def fetch_cea_production(
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
 ) -> dict:
+    """Gets production data for wind, solar and other renewables
+    Other renewables includes a share of hydro, biomass and others and will categorized as unknown
+    DISCLAIMER: this data is only available since 2020/12/17"""
     cea_data_url = (
         "https://cea.nic.in/wp-admin/admin-ajax.php?action=getpostsfordatatables"
     )
