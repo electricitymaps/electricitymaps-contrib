@@ -10,7 +10,16 @@ Any and all contributions however big or small are welcome.
 - [License][license]
 - [Wiki][wiki]
 
-# Contribution Guidelines
+# Code of Conduct
+
+This repository and by extension its community have adopted the [Contributor Covenant][contributor covenant] v2.1 as it's code of conduct.
+If you have any questions about the code of conduct or feel the need to report an incident you can do so by emailing us at codeofconduct@electricitymaps.com. For the full code of conduct see [CODE_OF_CONDUCT.md][code of conduct].
+
+# License
+
+We use the GNU Affero General Public License v3.0 for this repository, check the [LICENSE.md][license] file details about what exactly this entails.
+
+# Getting Started
 
 ## Non-code contributions
 
@@ -25,8 +34,8 @@ There are several ways to help out without coding, these are primarily:
 - Adding new or updating our existing translations, wiki page: [Translating app.electricitymaps.com][wiki translating the app]
 - And more!
 
->**Note**
->Take a look at the wiki pages for more detailed instructions
+> **Note**
+> Take a look at the wiki pages for more detailed instructions
 
 ## Parser guidelines
 
@@ -164,3 +173,4 @@ Check the [wiki page][wiki js code formatting] on formatting for more details an
 [wiki]: https://github.com/electricitymaps/electricitymaps-contrib/wiki
 [wiki find data sources]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources
 [wiki verify data sources]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Verify-data-sources
+[contributor covenant]: https://www.contributor-covenant.org/
