@@ -37,7 +37,7 @@ PRODUCTION_MAPPING = {
 }
 
 
-def fetch_data(session: Session, target_datetime: datetime, kind: str) -> Response:
+def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
     url = "/".join((EPIAS_MAIN_URL, KINDS_MAPPING[kind]["url"]))
     params = {
         "startDate": target_datetime.strftime("%Y-%m-%d"),
@@ -51,6 +51,24 @@ def fetch_data(session: Session, target_datetime: datetime, kind: str) -> Respon
             parser="TR.py",
             message=f"{target_datetime}: {kind} data is not available for TR",
         )
+
+
+def validate_production_data(
+    data: list,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """detects outliers: for real-time data the latest data point can be completely out of the expected range and needs to be excluded"""
+    required = [mode for mode in PRODUCTION_MAPPING]
+    expected_range = {
+        "coal": (1000, 60000),
+        "gas": (1000, 60000),
+    }
+    all_data_points_validated = [
+        x
+        for x in data
+        if validate(x, logger, required=required, expected_range=expected_range)
+    ]
+    return all_data_points_validated
 
 
 @refetch_frequency(timedelta(days=1))
@@ -81,16 +99,10 @@ def fetch_production(
         }
 
         all_data_points += [data_point]
-    required = [mode for mode in PRODUCTION_MAPPING]
-    expected_range = {
-        "coal": (1000, 60000),
-        "gas": (1000, 60000),
-    }
-    all_data_points_validated = [
-        x
-        for x in all_data_points
-        if validate(x, logger, required=required, expected_range=expected_range)
-    ]
+
+    all_data_points_validated = validate_production_data(
+        data=all_data_points, logger=logger
+    )
 
     return all_data_points_validated
 
@@ -111,11 +123,10 @@ def fetch_consumption(
 
     all_data_points = []
     for item in data:
-        data_point = {}
         data_point = {
             "zoneKey": zone_key,
             "datetime": arrow.get(item.get("date")).datetime.replace(tzinfo=TR_TZ),
-            "production": item.get("consumption"),
+            "consumption": item.get("consumption"),
             "source": "epias.com.tr",
         }
 
@@ -136,11 +147,10 @@ def fetch_price(
     data = fetch_data(session=session, target_datetime=target_datetime, kind="price")
     all_data_points = []
     for item in data:
-        data_point = {}
         data_point = {
             "zoneKey": zone_key,
             "datetime": arrow.get(item.get("date")).datetime.replace(tzinfo=TR_TZ),
-            "production": item.get("price"),
+            "price": item.get("price"),
             "source": "epias.com.tr",
             "currency": "TRY",
         }
