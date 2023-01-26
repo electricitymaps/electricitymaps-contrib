@@ -40,7 +40,7 @@ PRODUCTION_MAPPING = {
 def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
     url = "/".join((EPIAS_MAIN_URL, KINDS_MAPPING[kind]["url"]))
     params = {
-        "startDate": target_datetime.strftime("%Y-%m-%d"),
+        "startDate": (target_datetime).strftime("%Y-%m-%d"),
         "endDate": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
     }
     r: Response = session.get(url=url, params=params)
@@ -59,15 +59,13 @@ def validate_production_data(
 ) -> list:
     """detects outliers: for real-time data the latest data point can be completely out of the expected range and needs to be excluded"""
     required = [mode for mode in PRODUCTION_MAPPING]
-    expected_range = {
-        "coal": (1000, 60000),
-        "gas": (1000, 60000),
-    }
+    floor = (
+        17000  # as seen during the Covid-19 pandemic, the minimum production was 17 GW
+    )
     all_data_points_validated = [
-        x
-        for x in data
-        if validate(x, logger, required=required, expected_range=expected_range)
+        x for x in data if validate(x, logger, required=required, floor=floor)
     ]
+
     return all_data_points_validated
 
 
@@ -79,7 +77,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
-        target_datetime = datetime.now(tz=TR_TZ) - timedelta(hours=2)
+        target_datetime = datetime.now(tz=TR_TZ)
 
     data = fetch_data(
         session=session, target_datetime=target_datetime, kind="production"
@@ -103,8 +101,8 @@ def fetch_production(
     all_data_points_validated = validate_production_data(
         data=all_data_points, logger=logger
     )
-
-    return all_data_points_validated
+    # the last data point seems to but continously updated thoughout the hour and will be excluded as not final
+    return all_data_points_validated[:-1]
 
 
 @refetch_frequency(timedelta(days=1))
