@@ -55,6 +55,7 @@ def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
 
 def validate_production_data(
     data: list,
+    exclude_last_data_point: bool,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """detects outliers: for real-time data the latest data point can be completely out of the expected range and needs to be excluded"""
@@ -65,7 +66,8 @@ def validate_production_data(
     all_data_points_validated = [
         x for x in data if validate(x, logger, required=required, floor=floor)
     ]
-
+    if exclude_last_data_point:
+        all_data_points_validated = all_data_points_validated[:-1]
     return all_data_points_validated
 
 
@@ -76,8 +78,11 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    # For real-time data, the last data point seems to but continously updated thoughout the hour and will be excluded as not final
+    exclude_last_data_point = False
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ)
+        exclude_last_data_point = True
 
     data = fetch_data(
         session=session, target_datetime=target_datetime, kind="production"
@@ -99,10 +104,12 @@ def fetch_production(
         all_data_points += [data_point]
 
     all_data_points_validated = validate_production_data(
-        data=all_data_points, logger=logger
+        data=all_data_points,
+        exclude_last_data_point=exclude_last_data_point,
+        logger=logger,
     )
-    # the last data point seems to but continously updated thoughout the hour and will be excluded as not final
-    return all_data_points_validated[:-1]
+
+    return all_data_points_validated
 
 
 @refetch_frequency(timedelta(days=1))
