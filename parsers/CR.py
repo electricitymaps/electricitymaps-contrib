@@ -33,18 +33,7 @@ def empty_record(zone_key: str):
     return {
         "zoneKey": zone_key,
         "capacity": {},
-        "production": {
-            "biomass": 0.0,
-            "coal": 0.0,
-            "gas": 0.0,
-            "hydro": 0.0,
-            "nuclear": 0.0,
-            "oil": 0.0,
-            "solar": 0.0,
-            "wind": 0.0,
-            "geothermal": 0.0,
-            "unknown": 0.0,
-        },
+        "production": {},
         "storage": {},
         "source": "grupoice.com",
     }
@@ -118,6 +107,10 @@ def fetch_production(
         results[hourly_item["fecha"]]["datetime"] = arrow.get(
             hourly_item["fecha"], tzinfo=TIMEZONE
         ).datetime
+
+        if SPANISH_TO_ENGLISH[hourly_item["fuente"]] not in results[hourly_item["fecha"]]["production"]:
+            results[hourly_item["fecha"]]["production"][SPANISH_TO_ENGLISH[hourly_item["fuente"]]] = 0.0
+
         results[hourly_item["fecha"]]["production"][
             SPANISH_TO_ENGLISH[hourly_item["fuente"]]
         ] += hourly_item["dato"]
