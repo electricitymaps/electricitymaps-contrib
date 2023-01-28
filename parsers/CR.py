@@ -108,8 +108,13 @@ def fetch_production(
             hourly_item["fecha"], tzinfo=TIMEZONE
         ).datetime
 
-        if SPANISH_TO_ENGLISH[hourly_item["fuente"]] not in results[hourly_item["fecha"]]["production"]:
-            results[hourly_item["fecha"]]["production"][SPANISH_TO_ENGLISH[hourly_item["fuente"]]] = 0.0
+        if (
+            SPANISH_TO_ENGLISH[hourly_item["fuente"]]
+            not in results[hourly_item["fecha"]]["production"]
+        ):
+            results[hourly_item["fecha"]]["production"][
+                SPANISH_TO_ENGLISH[hourly_item["fuente"]]
+            ] = 0.0
 
         results[hourly_item["fecha"]]["production"][
             SPANISH_TO_ENGLISH[hourly_item["fuente"]]
