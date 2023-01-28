@@ -11,7 +11,7 @@ import arrow
 from bs4 import BeautifulSoup
 from requests import Session, get
 
-from . import occtonet
+from parsers import occtonet
 
 
 def fetch_production(
@@ -49,23 +49,13 @@ def fetch_production(
     soup = BeautifulSoup(html, "lxml")
     # get hours, minutes
     ts = soup.find("p", class_="puProgressNow__time").get_text()
-    hours = re.findall(r"[\d]+(?=時)", ts)[0]
-    minutes = re.findall(r"(?<=時)[\d]+(?=分)", ts)[0]
+    hours = int(re.findall(r"[\d]+(?=時)", ts)[0])
+    minutes = int(re.findall(r"(?<=時)[\d]+(?=分)", ts)[0])
     # get date
     ds = soup.find("div", class_="puChangeGraph")
     date = re.findall(r"(?<=chart/chart)[\d]+(?=.gif)", str(ds))[0]
     # parse datetime
-    dt = "".join(
-        [
-            date[:4],
-            "-",
-            date[4:6],
-            "-",
-            date[6:],
-            " ",
-            "{0:02d}:{1:02d}".format(int(hours), int(minutes)),
-        ]
-    )
+    dt = f"{date[:4]}-{date[4:6]}-{date[6:]} {hours:02d}:{minutes:02d}"
     dt = arrow.get(dt).replace(tzinfo="Asia/Tokyo").datetime
     data["datetime"] = dt
     # consumption
