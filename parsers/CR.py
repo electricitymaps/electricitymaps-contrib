@@ -144,7 +144,11 @@ def fetch_exchange(
     s = session or Session()
 
     raw_data = s.get(EXCHANGE_URL).json()
-    flow = round(extract_exchange(raw_data, sorted_zones), 1)
+    raw_flow = extract_exchange(raw_data, sorted_zones)
+    if raw_flow is None:
+        raise ValueError("No flow value found for exchange {}".format(sorted_zones))
+
+    flow = round(raw_flow, 1)
     dt = arrow.now("UTC-6").floor("minute")
 
     exchange = {
