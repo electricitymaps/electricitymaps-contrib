@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 import re
 from datetime import datetime
 from logging import Logger, getLogger
@@ -50,11 +49,11 @@ def fetch_production(
     soup = BeautifulSoup(html, "lxml")
     # get hours, minutes
     ts = soup.find("p", class_="puProgressNow__time").get_text()
-    hours = re.findall("[\d]+(?=時)", ts)[0]
-    minutes = re.findall("(?<=時)[\d]+(?=分)", ts)[0]
+    hours = re.findall(r"[\d]+(?=時)", ts)[0]
+    minutes = re.findall(r"(?<=時)[\d]+(?=分)", ts)[0]
     # get date
     ds = soup.find("div", class_="puChangeGraph")
-    date = re.findall("(?<=chart/chart)[\d]+(?=.gif)", str(ds))[0]
+    date = re.findall(r"(?<=chart/chart)[\d]+(?=.gif)", str(ds))[0]
     # parse datetime
     dt = "".join(
         [
@@ -72,7 +71,7 @@ def fetch_production(
     # consumption
     cons = soup.find("p", class_="puProgressNow__useAmount").get_text()
     cons = re.findall(
-        "(?<=使用量\xa0)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*" + "(?:[eE][-+]?\d+)?(?=万kW／)",
+        r"(?<=使用量\xa0)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?(?=万kW／)",
         cons,
     )
     cons = cons[0].replace(",", "")
@@ -99,12 +98,12 @@ def fetch_production(
     )
     sendai = get(url_s).text
     sendai = re.findall(
-        "(?<=gouki=)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*" + "(?:[eE][-+]?\d+)?(?=&)",
+        r"(?<=gouki=)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*" + r"(?:[eE][-+]?\d+)?(?=&)",
         sendai,
     )
     genkai = get(url_g).text
     genkai = re.findall(
-        "(?<=gouki=)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*" + "(?:[eE][-+]?\d+)?(?=&)",
+        r"(?<=gouki=)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*" + r"(?:[eE][-+]?\d+)?(?=&)",
         genkai,
     )
     nuclear = 0
