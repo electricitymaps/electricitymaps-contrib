@@ -81,19 +81,11 @@ jobs:
 
   validate_local_links:
     name: Validate
-    needs: [setup, prettier]
+    needs: [setup]
     if: >-
       needs.setup.outputs.markdown != 'false' ||
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/validate-local-links-in-md.yml
-
-  unit_test:
-    name: Unit test
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/unit_test.yml
 
   jsonlint:
     name: JSONLint
@@ -104,6 +96,14 @@ jobs:
     uses: ./.github/workflows/jsonlint.yml
 
   # Frontend checks
+  unit_test:
+    name: Unit test
+    needs: [setup, prettier]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/unit_test.yml
+
   # eslint:
   #   name: ESLint
   #   needs: [setup, prettier]
@@ -111,15 +111,6 @@ jobs:
   #     needs.setup.outputs.frontend != 'false' ||
   #     needs.setup.outputs.workflows != 'false'
   #   uses: ./.github/workflows/eslint.yml
-
-  validate_generated_files:
-    name: Validate
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.config != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate_generated_files.yml
 
   # cypress:
   #   name: Cypress
@@ -144,6 +135,15 @@ jobs:
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/validate_filenames.yml
+
+  validate_generated_files:
+    name: Validate
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.config != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/validate_generated_files.yml
 
   # Code quality checks
   codeql:

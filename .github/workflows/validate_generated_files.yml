@@ -3,7 +3,7 @@ on:
 
 jobs:
   validate_generated_files:
-    name: Generated config files
+    name: Generated files
     runs-on: ubuntu-latest
     timeout-minutes: 2
     defaults:
