@@ -5,7 +5,7 @@ on:
 
 jobs:
   verify:
-    name: Geometries
+    name: Verify config files
     runs-on: ubuntu-latest
     timeout-minutes: 2
     defaults:
