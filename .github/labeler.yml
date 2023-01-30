@@ -7,9 +7,9 @@ dependencies:
   - poetry.lock
   - pyproject.toml
   - mobileapp/package.json
-  - mobileapp/package-lock.json
+  - mobileapp/pnpm-lock.yaml
   - mockserver/package.json
-  - mockserver/yarn.lock
+  - mockserver/pnpm-lock.yaml
   - web/package.json
   - web/pnpm-lock.yaml
 
