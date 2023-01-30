@@ -1,4 +1,3 @@
-
 from csv import reader
 from requests import Response, Session
 
@@ -23,10 +22,20 @@ def fetch_production(
     parsed_csv = reader(csv_file.splitlines())
     for row in parsed_csv:
         data = {
-          "date": row[0],
-          "power_plant": row[1],
-          "production_per_hour": [None if x == '' else float(x) for x in row[2:]],
+            "date": row[0],
+            "power_plant": row[1],
+            "production_per_hour": [None if x == "" else float(x) for x in row[2:]],
         }
-        print(data)
+        plant_production_list = []
+        for i, production in enumerate(data["production_per_hour"]):
+            plant_production_list.append(
+                {
+                    "power_plant": data["power_plant"],
+                    "date": data["date"],
+                    "hour": i + 1,
+                    "production": production,
+                }
+            )
+        print(plant_production_list)
 
     return production_list
