@@ -54,7 +54,7 @@ export default function TimeController({ className }: { className?: string }) {
       index: numberOfEntries,
     });
     setTimeAverage(timeAverage);
-    trackEvent('AggregateButton Clicked', { timeAverage });
+    trackEvent('Time Aggregate Button Clicked', { timeAverage });
   };
 
   return (

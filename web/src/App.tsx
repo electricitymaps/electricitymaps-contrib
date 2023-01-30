@@ -12,8 +12,18 @@ import InfoModal from 'features/modals/InfoModal';
 import SettingsModal from 'features/modals/SettingsModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { ReactElement, Suspense, lazy } from 'react';
+import { Capacitor } from '@capacitor/core';
+import trackEvent from 'utils/analytics';
 
 const isProduction = import.meta.env.PROD;
+
+if (isProduction) {
+  trackEvent('App Loaded', {
+    isNative: Capacitor.isNativePlatform(),
+    platform: Capacitor.getPlatform(),
+  });
+}
+
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 const handleReload = () => {

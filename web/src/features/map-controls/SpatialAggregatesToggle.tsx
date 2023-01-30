@@ -1,6 +1,7 @@
 import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
+import trackEvent from 'utils/analytics';
 import { SpatialAggregate, ToggleOptions } from 'utils/constants';
 import { spatialAggregateAtom } from 'utils/state/atoms';
 
@@ -17,6 +18,7 @@ export default function SpatialAggregatesToggle(): ReactElement {
     ) {
       return;
     }
+    trackEvent('Spatial Aggregate Clicked', { spatialAggregate: option });
     setCurrentMode(
       currentMode === ToggleOptions.OFF ? ToggleOptions.ON : ToggleOptions.OFF
     );
