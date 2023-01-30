@@ -1,8 +1,9 @@
 [tool.poetry]
-name = "electricitymap-contrib"
-version = "0.1.0"
+name = "electricitymaps-contrib"
+version = "1.0.0"
 description = ""
-authors = ["Electricity Maps team <app@electricityMaps.com>"]
+license = "AGPL-3.0-or-later"
+authors = ["Electricity Maps <app@electricitymaps.com>"]
 packages = [
     { include = "electricitymap" }
 ]

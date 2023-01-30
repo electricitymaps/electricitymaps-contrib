@@ -1,5 +1,4 @@
 infrastructure:
-  - .circleci/*
   - .github/**/*
   - docker-compose.yml
   - web/Dockerfile
