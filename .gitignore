@@ -17,5 +17,8 @@ Thumbs.db
 mobileapp/*.zip
 dist
 
+# Ignore top level vscode folder as it is symlinked
+.vscode
+
 ## Pycharm IDE
 .idea
