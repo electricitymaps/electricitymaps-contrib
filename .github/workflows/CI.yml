@@ -138,7 +138,6 @@ jobs:
 
   # Config checks
   validate_config_filenames:
-    name: Validate config filenames
     needs: [setup]
     if: >-
       needs.setup.outputs.config != 'false' ||
