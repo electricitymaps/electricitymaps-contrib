@@ -1,2 +1,15 @@
-dist/*
+# All files in here should also be included in .prettierignore at the top level.
+
+# Needed for lint staged.
+.prettierignore
+Earthfile
+yarn.lock
+.earthlyignore
+
+dist/
+config/
+public/images/
+.husky/_
+
+LICENSE.md
 LICENSE
