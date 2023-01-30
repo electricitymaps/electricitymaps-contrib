@@ -11,11 +11,12 @@ Prerequisites:
 - Ensure you have `NodeJS` and `pnpm` installed locally (`brew install pnpm`)
 - Run `pnpm install` in both the web and mockserver directories
 
-1. Start the mockserver: `yarn run mockserver`
-2. Run app in another tab: `yarn develop`
+1. Start the mockserver: `pnpm run mockserver`
+2. Run app in another tab: `pnpm dev`
 
 ## Scripts
 
+- `pnpm mockserver` - starts the mockserver.
 - `pnpm dev` - start a development server with hot reload.
 - `pnpm build` - build for production. The generated files will be on the `dist` folder.
 - `pnpm preview` - locally preview the production build.

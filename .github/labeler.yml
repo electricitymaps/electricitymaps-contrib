@@ -11,7 +11,7 @@ dependencies:
   - mockserver/package.json
   - mockserver/yarn.lock
   - web/package.json
-  - web/yarn.lock
+  - web/pnpm-lock.yaml
 
 frontend 🎨:
   - any: ['web/**/*', '!web/public/locales/**/*']
