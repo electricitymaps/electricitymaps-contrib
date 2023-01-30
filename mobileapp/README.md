@@ -86,3 +86,5 @@ Android emulator not working?
 
 Android studio will need a virtual device, shown here in the Android Studio opening screen:
 ![](./VDM.png)
+
+empty change
