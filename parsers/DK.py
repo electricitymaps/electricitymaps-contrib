@@ -30,7 +30,7 @@ def fetch_data(
     """
     ses = session or Session()
 
-    if target_datetime.tzinfo:
+    if target_datetime and target_datetime.tzinfo:
         # Data source doesn't support timezone aware
         # datetimes.
         target_datetime = target_datetime.replace(tzinfo=None)

@@ -1,8 +1,0 @@
-/* Set breakpoints */
-@mixin respond-to($name) {
-  @if map-has-key($breakpoints, $name) {
-    @media #{map-get($breakpoints, $name)} {
-      @content;
-    }
-  }
-}

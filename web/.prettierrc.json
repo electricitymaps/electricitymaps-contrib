@@ -1,0 +1,15 @@
+{
+  "plugins": ["./node_modules/prettier-plugin-tailwindcss"],
+  "printWidth": 90,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": "index.html",
+      "options": {
+        "printWidth": 200
+      }
+    }
+  ]
+}
