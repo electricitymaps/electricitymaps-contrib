@@ -3,7 +3,6 @@ import { BrowserTracing } from '@sentry/tracing';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
 import { REFETCH_INTERVAL_FIVE_MINUTES } from 'api/helpers';
-import { useAtomsDevtools } from 'jotai/devtools';
 import { createRoot } from 'react-dom/client';
 import {
   BrowserRouter,
@@ -46,10 +45,10 @@ if (isProduction) {
  * DevTools for Jotai which makes atoms appear in Redux Dev Tools.
  * Only enabled on import.meta.env.DEV
  */
-const AtomsDevtools = ({ children }: { children: JSX.Element }) => {
-  useAtomsDevtools('demo');
-  return children;
-};
+// const AtomsDevtools = ({ children }: { children: JSX.Element }) => {
+//   useAtomsDevtools('demo');
+//   return children;
+// };
 
 // Temporarily disabled to ensure we can more easily rollback
 // Also removes existing service workers to ensure they don't interfer
@@ -84,9 +83,7 @@ if (container) {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <AtomsDevtools>
-            <App />
-          </AtomsDevtools>
+          <App />
         </BrowserRouter>
       </QueryClientProvider>
     </StrictMode>
