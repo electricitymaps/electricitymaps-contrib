@@ -80,7 +80,7 @@ jobs:
     uses: ./.github/workflows/prettier.yml
 
   validate_local_links:
-    name: Validate Markdown
+    name: Validate
     needs: [setup, prettier]
     if: >-
       needs.setup.outputs.markdown != 'false' ||
@@ -113,7 +113,7 @@ jobs:
   #   uses: ./.github/workflows/eslint.yml
 
   validate_generated_files:
-    name: Validate generated files
+    name: Validate
     needs: [setup, prettier]
     if: >-
       needs.setup.outputs.frontend != 'false' ||
@@ -138,7 +138,7 @@ jobs:
 
   # Config checks
   validate_config_filenames:
-    name: Validate config filenames
+    name: Validate
     needs: [setup]
     if: >-
       needs.setup.outputs.config != 'false' ||
