@@ -34,6 +34,6 @@ jobs:
         env:
           VERIFY_NO_UPDATES: 1
       - name: world.json
-        run: pnpm run update-world
+        run: pnpm run generate-world
         env:
           VERIFY_NO_UPDATES: 1

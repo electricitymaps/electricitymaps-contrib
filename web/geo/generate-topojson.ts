@@ -71,7 +71,7 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
 
   if (verifyNoUpdates) {
     console.error(
-      'Did not expect any updates to world.json. Please run "pnpm update-world"'
+      'Did not expect any updates to world.json. Please run "pnpm generate-world"'
     );
     process.exit(1);
   }
