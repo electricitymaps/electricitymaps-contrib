@@ -34,4 +34,4 @@ jobs:
         if: steps.cache.outputs.cache-hit == 'true'
         run: pnpm generate-zones-config
       - name: Run test
-        run: pnpm run test
+        run: pnpm run test:ci

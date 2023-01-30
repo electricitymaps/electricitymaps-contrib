@@ -87,13 +87,13 @@ jobs:
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/validate-local-links-in-md.yml
 
-  # unit_test:
-  #   name: Unit test
-  #   needs: [setup, prettier]
-  #   if: >-
-  #     needs.setup.outputs.frontend != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  #   uses: ./.github/workflows/unit_test.yml
+  unit_test:
+    name: Unit test
+    needs: [setup, prettier]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/unit_test.yml
 
   jsonlint:
     name: JSONLint
