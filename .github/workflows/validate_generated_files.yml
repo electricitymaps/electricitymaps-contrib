@@ -29,11 +29,11 @@ jobs:
       - name: Install web dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
-      - name: zones.json
+      - name: zones + exchanges
         run: pnpm run generate-zones-config
         env:
           VERIFY_NO_UPDATES: 1
-      - name: world.json
-        run: pnpm run update-world
+      - name: world
+        run: pnpm run generate-world
         env:
           VERIFY_NO_UPDATES: 1
