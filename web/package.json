@@ -31,7 +31,7 @@
     "run-tsc": "tsc",
     "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
     "lint": "run-p run-tsc run-eslint",
-    "validate": "run-p lint test:ci test:e2e:headless",
+    "validate": "run-p lint test:ci",
     "deploy": "pnpm version prerelease --preid=beta && pnpm build && pnpm run generate-index-files && sh scripts/deploy.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

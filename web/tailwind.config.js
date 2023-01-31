@@ -47,7 +47,6 @@ const config = {
       '2xl': '3rem',
     },
   },
-  experimental: { optimizeUniversalDefaults: true },
   plugins: [formsPlugin, typography, radix()],
 };
 module.exports = config;

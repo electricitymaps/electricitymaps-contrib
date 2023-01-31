@@ -18,7 +18,7 @@ Prerequisites:
 
 - `pnpm mockserver` - starts the mockserver.
 - `pnpm dev` - start a development server with hot reload.
-- `pnpm build` - build for production. The generated files will be on the `dist` folder.
+- `pnpm build` - build for production. The generated files will be in the `dist` folder.
 - `pnpm preview` - locally preview the production build.
 - `pnpm test` - run unit and integration tests related to changed files based on git.
 - `pnpm cy:e2e` - work with integration tests. Remember to run `pnpm dev` before!

@@ -15,7 +15,6 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    debug: import.meta.env.DEV,
     backend: {
       loadPath: `/${LOCALES_PATH}/{{lng}}.json`,
       crossDomain: true,
