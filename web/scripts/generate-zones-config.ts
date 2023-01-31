@@ -145,13 +145,13 @@ if (config.verifyNoUpdates) {
   );
   if (JSON.stringify(zonesConfigPrevious) !== JSON.stringify(zonesConfig)) {
     console.error(
-      'Did not expect any updates to zones.json. Please run "yarn generate-zones-config" to update.'
+      'Did not expect any updates to zones.json. Please run "pnpm generate-zones-config" to update.'
     );
     process.exit(1);
   }
   if (JSON.stringify(exchangesConfigPrevious) !== JSON.stringify(exchangesConfig)) {
     console.error(
-      'Did not expect any updates to exchanges.json. Please run "yarn generate-zones-config" to update.'
+      'Did not expect any updates to exchanges.json. Please run "pnpm generate-zones-config" to update.'
     );
     process.exit(1);
   }
