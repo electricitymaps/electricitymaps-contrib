@@ -86,7 +86,10 @@
     "cpinfo": "<b>forbrug</b> regner import og eksport med, <b>produktion</b> ignorer dem",
     "selectLanguage": "Skift sprog",
     "lowCarbDescription": "Inkluderer vedvarende og atomkraft",
-    "dataIsDelayed": "Data er forsinket"
+    "dataIsDelayed": "Data er forsinket",
+    "representing": "forårsager",
+    "ofemissions": "af CO₂-udledninger",
+    "price": "Pris"
   },
   "misc": {
     "maintitle": "Realtids-CO₂-udledning fra elforbruget",
@@ -112,14 +115,14 @@
   "coal": "Kul",
   "oil": "Olie",
   "unknown": "Ukendt",
-  "electricityComesFrom": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> lagres vha. %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> lagres vha. %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> kommer fra %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> kommer fra %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> lagres vha. %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> lagres vha. %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "af CO₂-ækvivalenter per minut",
   "zoneShortName": {
     "AL": {
