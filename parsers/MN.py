@@ -32,11 +32,12 @@ def fetch_production(
     wind_MW = float(NDC_SOUP.find_all("td")[8].text.strip(" МВт"))
     # Импортын чадал # exchange balance - positive=import; negative=export
     exchanges_MW = float(NDC_SOUP.find_all("td")[9].text.strip(" МВт"))
-    # calculated coal production from the 4 values above. Oil + hydro make up <1% of yearly production.
-    coal_MW = round(consumption_MW - exchanges_MW - solar_MW - wind_MW, 2)
+    # Calculated 'unknown' production from the 4 values above.
+    # 'unknown' consists of 92.8% coal, 5.8% oil and 1.4% hydro as per 2020; sources: IEA and IRENA statistics.
+    unknown_MW = round(consumption_MW - exchanges_MW - solar_MW - wind_MW, 2)
 
     dataset_production = {
-        'coal': coal_MW,
+        'unknown': unknown_MW,
         'solar': solar_MW,
         'wind': wind_MW
     }
