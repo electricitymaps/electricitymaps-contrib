@@ -6,6 +6,8 @@ from typing import Union
 from pytz import timezone
 from requests import Response, Session
 
+from parsers.lib.exceptions import ParserException
+
 INDEX_TO_TYPE_MAP = {
     1: "hydro",
     2: "wind",
@@ -26,6 +28,10 @@ def fetch_production(
     target_datetime=None,
     logger=getLogger(__name__),
 ):
+    if target_datetime is not None:
+        raise ParserException(
+            "HN.py", "This parser is not yet able to parse past dates"
+        )
     production_list = []
     CSV_data = []
     PLANT_TO_TYPE_MAP = {}
