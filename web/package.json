@@ -11,6 +11,7 @@
     "url": "https://github.com/electricityMaps/electricitymaps-contrib.git"
   },
   "scripts": {
+    "mockserver": "nodemon ../mockserver/server.js",
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
     "update-world": "ts-node ./geo/update-world.ts",
