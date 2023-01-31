@@ -18,3 +18,7 @@ emissionFactors:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2020; assumes 92.8% coal, 5.8%% oil, 1.4% hydro in unknown
       value: 800
+parsers:
+  consumption: MN.fetch_consumption
+  production: MN.fetch_production
+timezone: Asia/Ulaanbaatar
