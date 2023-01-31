@@ -117,13 +117,34 @@ def validate_consumption(
     """
     if logger is None:
         logger = getLogger(__name__)
-    consumption: Dict[str, Any] = datapoint["consumption"]
+    consumption: float = datapoint["consumption"]
     if consumption == 0:
         logger.warning(
             "{} reported total of {}MW, expected consumption cannot be null".format(
                 datapoint["zoneKey"], consumption
             ),
             extra={"key": datapoint["zoneKey"]},
+        )
+        return
+    return datapoint
+
+
+def validate_exchange(
+    datapoint: Dict, logger: Union[Logger, None]
+) -> Union[Dict[str, Any], None]:
+    """
+    Validates a production datapoint based on given constraints.
+    If the datapoint is found to be invalid then None is returned.
+    """
+    if logger is None:
+        logger = getLogger(__name__)
+    exchange: float = datapoint["netFlow"]
+    if exchange is None:
+        logger.warning(
+            "{}: expected exchange cannot be null".format(
+                datapoint["sortedZoneKeys"], exchange
+            ),
+            extra={"key": datapoint["sortedZoneKeys"]},
         )
         return
     return datapoint
