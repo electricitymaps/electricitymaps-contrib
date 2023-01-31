@@ -2,9 +2,9 @@ from csv import reader
 from datetime import datetime, timedelta
 from logging import getLogger
 from typing import Union
-from requests import Response, Session
-from pytz import timezone
 
+from pytz import timezone
+from requests import Response, Session
 
 INDEX_TO_TYPE_MAP = {
     1: "hydro",
@@ -31,7 +31,7 @@ def fetch_production(
     PLANT_TO_TYPE_MAP = {}
 
     for index in range(1, 11):
-        if index == 7: # Skip exchanges
+        if index == 7:  # Skip exchanges
             continue
         params = {
             "request": "CSV_N_",
