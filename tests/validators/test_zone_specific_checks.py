@@ -18,3 +18,4 @@ def test_validate_hydro_production_is_possible():
     events = load_fixture("US-CAR-YAD_production_with_0_hydro")
     res = validate_hydro_production_is_possible(events)
     assert res["2022-01-01 00:00:00+00:00"] == 0
+    assert res["2022-01-01 01:00:00+00:00"] == 1
