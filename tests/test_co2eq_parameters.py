@@ -16,25 +16,26 @@ from electricitymap.contrib.config import (
 def get_possible_modes():
     """Get the set of possible modes."""
     modes = set()
-    with open("web/src/helpers/constants.js", encoding="utf-8") as file_:
+    with open("web/src/utils/constants.ts", encoding="utf-8") as file_:
         # The call to `eval` is a hack to parse the `modeOrder` array from the
         # JavaScript source file.
-        for mode in eval(
-            re.search(
-                r"^const modeOrder = (\[$.*?^]);$",
-                file_.read(),
-                flags=re.DOTALL | re.MULTILINE,
-            ).group(1)
-        ):
-            if mode.endswith(" storage"):
-                modes.update(
-                    (
-                        mode.replace("storage", "charge"),
-                        mode.replace("storage", "discharge"),
+        search = re.search(
+            r"^export const modeOrder = (\[$.*?^]) as const;$",
+            file_.read(),
+            flags=re.DOTALL | re.MULTILINE,
+        )
+        if search is not None:
+            group = search.group(1)
+            for mode in eval(group):
+                if mode.endswith(" storage"):
+                    modes.update(
+                        (
+                            mode.replace("storage", "charge"),
+                            mode.replace("storage", "discharge"),
+                        )
                     )
-                )
-            else:
-                modes.add(mode)
+                else:
+                    modes.add(mode)
     return modes
 
 

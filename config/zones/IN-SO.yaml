@@ -17,3 +17,5 @@ contributors:
   - hectorespert
   - gopikrishna1793
 timezone: Asia/Kolkata
+parsers:
+  consumption: IN.fetch_consumption
