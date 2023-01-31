@@ -149,7 +149,7 @@ describe('getProductionTooltipData', () => {
   it('returns correct data for hydro storage', () => {
     const actual = getProductionTooltipData('hydro storage', zoneDetailsData, false);
     const expected = {
-      capacity: 20_222.25,
+      capacity: 5053.47,
       co2Intensity: 54.190_888_929_032_22,
       co2IntensitySource: 'Electricity Maps, 2021 average',
       displayByEmissions: false,
@@ -235,10 +235,10 @@ describe('getExchangeTooltipData', () => {
   });
 
   it('returns correct data for non-existing exchange', () => {
-    const actual = getExchangeTooltipData('XX', zoneDetailsData, false);
+    const actual = getExchangeTooltipData('XXX', zoneDetailsData, false);
     const expected = {
-      capacity: Number.NaN,
-      co2Intensity: undefined, // TODO: should perhaps be nan?
+      capacity: undefined,
+      co2Intensity: undefined,
       displayByEmissions: false,
       totalElectricity: 84_545.75,
       totalEmissions: 13_208_019_616.973_745,
