@@ -98,7 +98,7 @@ jobs:
   # Frontend checks
   unit_test:
     name: Unit test
-    needs: [setup, prettier]
+    needs: [setup]
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
