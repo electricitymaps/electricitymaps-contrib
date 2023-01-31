@@ -43,7 +43,7 @@ def fetch_production(
     }
 
     date_raw = NDC_SOUP.find_all("td")[0].text.strip("Хоногийн ачаалал: ")
-    date_pretty = datetime.strptime(date_raw, '%Y-%M-%d')
+    date_pretty = datetime.strptime(date_raw, '%Y-%m-%d')
     time_raw = NDC_SOUP.find_all("td")[14].text.strip("Импортын чадал ")
     time_time = datetime.strptime(time_raw, '%H:%M:%S')
     time_pretty = datetime.time(time_time)
@@ -81,7 +81,7 @@ def fetch_consumption(
     }
 
     date_raw = NDC_SOUP.find_all("td")[0].text.strip("Хоногийн ачаалал: ")
-    date_pretty = datetime.strptime(date_raw, '%Y-%M-%d')
+    date_pretty = datetime.strptime(date_raw, '%Y-%m-%d')
     time_raw = NDC_SOUP.find_all("td")[14].text.strip("Импортын чадал ")
     time_time = datetime.strptime(time_raw, '%H:%M:%S')
     time_pretty = datetime.time(time_time)
