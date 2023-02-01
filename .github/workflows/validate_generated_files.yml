@@ -1,11 +1,9 @@
-name: Verify
-
 on:
   workflow_call:
 
 jobs:
-  verify:
-    name: Geometries
+  validate_generated_files:
+    name: Generated files
     runs-on: ubuntu-latest
     timeout-minutes: 2
     defaults:
@@ -31,11 +29,11 @@ jobs:
       - name: Install web dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
-      - name: Generate zone config
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: pnpm generate-zones-config
-      - name: Verify geometries
-        run: |
-          pnpm run update-world
+      - name: zones + exchanges
+        run: pnpm run generate-zones-config
+        env:
+          VERIFY_NO_UPDATES: 1
+      - name: world
+        run: pnpm run generate-world
         env:
           VERIFY_NO_UPDATES: 1
