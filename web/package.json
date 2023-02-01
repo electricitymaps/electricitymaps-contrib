@@ -4,7 +4,7 @@
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "engines": {
-    "node": ">=14.15"
+    "node": ">=14.18"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "run-tsc": "tsc",
     "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
     "lint": "run-p run-tsc run-eslint",
+    "verify:ci": "VERIFY_NO_UPDATES=1 pnpm generate-world && pnpm generate-zones-config",
     "validate": "run-p lint test:ci test:e2e:headless",
     "deploy": "pnpm version prerelease --preid=beta && pnpm build && pnpm run generate-index-files && sh scripts/deploy.sh",
     "storybook": "storybook dev -p 6006",
