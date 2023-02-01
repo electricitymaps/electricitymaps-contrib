@@ -54,10 +54,7 @@ def fetch_production(
             if row[0] == "Fecha" or row[1] == "Planta":
                 continue
             PLANT_TO_TYPE_MAP[row[1]] = INDEX_TO_TYPE_MAP[index]
-        CSV_data.append(parsed_csv)
-
-    # Flatten the CSV_data list
-    CSV_data = [item for sublist in CSV_data for item in sublist]
+            CSV_data.append(row)
 
     production_by_hour = {}
     for index in range(0, 24):
