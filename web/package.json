@@ -11,9 +11,10 @@
     "url": "https://github.com/electricityMaps/electricitymaps-contrib.git"
   },
   "scripts": {
+    "mockserver": "nodemon ../mockserver/server.js",
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
-    "update-world": "ts-node ./geo/update-world.ts",
+    "generate-world": "ts-node ./geo/generate-world.ts",
     "generate-index-files": "ts-node ./scripts/generate-index-files.ts",
     "generate-zones-config": "ts-node ./scripts/generate-zones-config.ts",
     "predevelop": "pnpm run generate-zones-config",

@@ -3,7 +3,6 @@
 # Needed for lint staged.
 .prettierignore
 Earthfile
-yarn.lock
 .earthlyignore
 
 dist/
