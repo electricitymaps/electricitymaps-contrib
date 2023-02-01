@@ -9,6 +9,6 @@ You can see tutorials and more information on our [wiki](https://github.com/elec
 To update geographies on the app
 
 1. Create manual changes on world.geojson
-2. Run `node update-world.js`
+2. Run `pnpm generate-world` from web folder
 
 This will validate and generate the new world.json which is a compressed version of the world.geojson.
