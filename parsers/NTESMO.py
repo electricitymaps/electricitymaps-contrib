@@ -20,6 +20,7 @@ from parsers.lib.exceptions import ParserException
 australia_tz = timezone("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
+DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
 # Data is published for the previous day only.
 DELAY = 30
 
@@ -63,7 +64,11 @@ PLANT_MAPPING = {
 def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
     """Browse all links on a yearly historical daily data and index them."""
     index = {}
-    year_index_page = session.get(INDEX_URL.format(year))
+    # For the current we need to go to the default page.
+    url = DEFAULT_URL
+    if not year == datetime.now(tz=australia_tz).year:
+        url = INDEX_URL.format(year)
+    year_index_page = session.get(url)
     soup = BeautifulSoup(year_index_page.text, "html.parser")
     for month in range(1, 13):
         index[month] = {}

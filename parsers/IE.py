@@ -127,14 +127,17 @@ def fetch_exchange(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """gets exchanges values for the East-West interconnector (GB->IE)"""
+    """
+    Fetches exchanges values for the East-West (GB->IE) and Moyle (GB->GB-NIR)
+    interconnectors.
+    """
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     exchange_data = fetch_data(
         target_datetime=target_datetime,
-        zone_key=zone_key1,
+        zone_key=zone_key2,
         kind="exchange",
         session=session,
     )
@@ -143,7 +146,7 @@ def fetch_exchange(
     filtered_exchanges = [
         item
         for item in exchange_data
-        if item["FieldName"] == ZONE_MAPPING[zone_key1]["exchange"]
+        if item["FieldName"] == ZONE_MAPPING[zone_key2]["exchange"]
     ]
     exchange = []
     for item in filtered_exchanges:

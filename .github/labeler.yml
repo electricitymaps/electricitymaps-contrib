@@ -1,5 +1,4 @@
 infrastructure:
-  - .circleci/*
   - .github/**/*
   - docker-compose.yml
   - web/Dockerfile
@@ -8,11 +7,11 @@ dependencies:
   - poetry.lock
   - pyproject.toml
   - mobileapp/package.json
-  - mobileapp/package-lock.json
+  - mobileapp/pnpm-lock.yaml
   - mockserver/package.json
-  - mockserver/yarn.lock
+  - mockserver/pnpm-lock.yaml
   - web/package.json
-  - web/yarn.lock
+  - web/pnpm-lock.yaml
 
 frontend 🎨:
   - any: ['web/**/*', '!web/public/locales/**/*']
