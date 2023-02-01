@@ -3,7 +3,8 @@ file to enable easy importing within web/ */
 import * as yaml from 'js-yaml';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { round } from '../geo/utilities';
+import { fileURLToPath } from 'node:url';
+import { round } from '../geo/utilities.js';
 
 const BASE_CONFIG_PATH = '../../config';
 
@@ -12,7 +13,7 @@ const config = {
 };
 
 const mergeZones = () => {
-  const basePath = path.resolve(__dirname, BASE_CONFIG_PATH, 'zones');
+  const basePath = fileURLToPath(new URL(BASE_CONFIG_PATH + '/zones', import.meta.url));
 
   const zoneFiles = fs.readdirSync(basePath);
   const filesWithDirectory = zoneFiles.map((file) => `${basePath}/${file}`);
@@ -45,11 +46,7 @@ const mergeZones = () => {
      * The parsers object is only used to check if there is a production parser in the frontend.
      * This moves this check to the build step, so we can minimize the size of the frontend bundle.
      */
-    if (zoneConfig?.parsers?.production?.length > 0) {
-      zoneConfig.parsers = true;
-    } else {
-      zoneConfig.parsers = false;
-    }
+    zoneConfig.parsers = zoneConfig?.parsers?.production?.length > 0 ? true : false;
     Object.assign(zones, { [path.parse(filepath).name]: zoneConfig });
     return zones;
   }, {});
@@ -58,19 +55,21 @@ const mergeZones = () => {
 };
 
 const mergeExchanges = () => {
-  const basePath = path.resolve(__dirname, BASE_CONFIG_PATH, 'exchanges');
+  const basePath = fileURLToPath(
+    new URL(BASE_CONFIG_PATH + '/exchanges', import.meta.url)
+  );
 
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDirectory = exchangeFiles.map((file) => `${basePath}/${file}`);
 
-  const UNNECESSARY_EXCHANGE_FIELDS = ['comment', '_comment', 'parsers'];
+  const UNNECESSARY_EXCHANGE_FIELDS = new Set(['comment', '_comment', 'parsers']);
 
   const exchanges = filesWithDirectory.reduce((exchanges, filepath) => {
     const exchangeConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
     exchangeConfig.lonlat[0] = round(exchangeConfig.lonlat[0], 3);
     exchangeConfig.lonlat[1] = round(exchangeConfig.lonlat[1], 3);
     for (const key in exchangeConfig) {
-      if (UNNECESSARY_EXCHANGE_FIELDS.includes(key)) {
+      if (UNNECESSARY_EXCHANGE_FIELDS.has(key)) {
         delete exchangeConfig[key];
       }
     }
@@ -84,7 +83,9 @@ const mergeExchanges = () => {
 
 const mergeRatioParameters = () => {
   // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
-  const basePath = path.resolve(__dirname, '../config');
+  const basePath = fileURLToPath(
+    new URL(BASE_CONFIG_PATH + '../config', import.meta.url)
+  );
 
   const defaultParameters: any = yaml.load(
     fs.readFileSync(`${basePath}/defaults.yaml`, 'utf8')
@@ -134,7 +135,7 @@ const writeJSON = (fileName: any, object: any) => {
 const zonesConfig = mergeZones();
 const exchangesConfig = mergeExchanges();
 
-const autogenConfigPath = path.resolve(__dirname, '../config');
+const autogenConfigPath = fileURLToPath(new URL('../config', import.meta.url));
 
 if (config.verifyNoUpdates) {
   const zonesConfigPrevious = JSON.parse(

@@ -1,17 +1,21 @@
 import * as turf from '@turf/turf';
 import { topology } from 'topojson-server';
-import { fileExists, getJSON, round, writeJSON } from './utilities';
+import { fileExists, getJSON, round, writeJSON } from './utilities.js';
 
 function getCenter(geojson, zoneName) {
   switch (zoneName) {
-    case 'US-AK':
+    case 'US-AK': {
       return [-151.77, 65.32];
-    case 'FJ':
+    }
+    case 'FJ': {
       return [178.09, -17.78];
-    case 'RU-FE':
+    }
+    case 'RU-FE': {
       return [171.57, 66.26];
-    default:
+    }
+    default: {
       [0, 0];
+    }
   }
   const geojsonFeatures = geojson.features.filter(
     (f) => f.properties.zoneName === zoneName

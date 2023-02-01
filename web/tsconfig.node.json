@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "moduleDetection": "force",
     "allowSyntheticDefaultImports": true,
     "composite": true,
     "forceConsistentCasingInFileNames": true,

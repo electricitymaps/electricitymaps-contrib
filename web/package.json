@@ -3,6 +3,7 @@
   "version": "1.1.0-beta.60",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
+  "type": "module",
   "engines": {
     "node": ">=14.15"
   },
@@ -13,10 +14,10 @@
   "scripts": {
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
-    "update-world": "ts-node ./geo/update-world.ts",
-    "generate-index-files": "ts-node ./scripts/generate-index-files.ts",
-    "generate-zones-config": "ts-node ./scripts/generate-zones-config.ts",
-    "predevelop": "pnpm run generate-zones-config",
+    "update-world": "ts-node --esm ./geo/updateWorld.ts",
+    "generate-index-files": "ts-node --esm ./scripts/generateIndexFiles.ts",
+    "generate-zones-config": "ts-node --esm ./scripts/generateZonesConfig.ts",
+    "predev": "pnpm run generate-zones-config",
     "prebuild": "pnpm run generate-zones-config",
     "cy:components": "cypress open --components -b electron",
     "cy:e2e": "cypress open --e2e -b electron",
@@ -28,7 +29,7 @@
     "test:ci": "vitest run",
     "format": "prettier -uw --cache --ignore-path ../.prettierignore .",
     "run-tsc": "tsc",
-    "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
+    "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx . --quiet",
     "lint": "run-p run-tsc run-eslint",
     "validate": "run-p lint test:ci test:e2e:headless",
     "deploy": "pnpm version prerelease --preid=beta && pnpm build && pnpm run generate-index-files && sh scripts/deploy.sh",

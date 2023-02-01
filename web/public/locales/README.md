@@ -2,7 +2,7 @@
 
 ## See translation status
 
-Use the `translation-status.js` tool in `web/scripts` folder.
+Use the `translationStatus.js` tool in `web/scripts` folder.
 
 ## Creating a new locale
 
@@ -12,4 +12,4 @@ See more info and examples here: https://www.w3.org/International/articles/langu
 
 Create a file named YOUR_LOCALE.json in this directory with this content: "{}" (without the Double Quotation Marks). You will also need to update the files [../../src/translation/locales.ts](../../src/translation/locales.ts).
 
-Then start using the `translation-helper.js` tool in `web/scripts` folder.
+Then start using the `translationHelper.js` tool in `web/scripts` folder.
