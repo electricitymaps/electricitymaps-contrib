@@ -158,14 +158,14 @@
   "coal": "charbon",
   "oil": "fioul",
   "unknown": "inconnu",
-  "electricityComesFrom": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est produite par %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont produites par %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est stockée par %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont stockées par %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est exportée vers <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont exportées vers <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est importée depuis <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont importées depuis <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est produite par %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont produites par %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est stockée par %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont stockées par %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est exportée vers %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont exportées vers %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est importée depuis %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont importées depuis %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "de CO₂eq par minute",
   "theMap": {
     "groupName": "La carte",
@@ -271,7 +271,7 @@
     "AR": {
       "zoneName": "Argentine"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australie",
       "zoneName": "Nouvelle-Galles du Sud"
     },
@@ -279,31 +279,31 @@
       "countryName": "Australie",
       "zoneName": "Territoire du Nord"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australie",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australie",
       "zoneName": "Australie-Méridionale"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australie",
       "zoneName": "Tasmanie"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australie",
       "zoneName": "Tasmanie (Île King)"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australie",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australie",
       "zoneName": "Australie-Occidentale"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australie",
       "zoneName": "Île Rottnest"
     },
@@ -354,6 +354,9 @@
     },
     "BQ": {
       "zoneName": "Pays-Bas caribéens"
+    },
+    "BR": {
+      "zoneName": "Brésil"
     },
     "BR-CS": {
       "countryName": "Brésil",
@@ -649,10 +652,6 @@
     "GB-ORK": {
       "countryName": "Grande Bretagne",
       "zoneName": "Orcades"
-    },
-    "GB-ZET": {
-      "countryName": "Grande Bretagne",
-      "zoneName": "Shetland"
     },
     "GB-ZET": {
       "countryName": "Grande Bretagne",
@@ -1523,7 +1522,7 @@
       "countryName": "Australie",
       "zoneName": "Île du Cap Barren"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australie",
       "zoneName": "Île Flinders"
     },

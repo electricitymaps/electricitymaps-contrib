@@ -125,14 +125,14 @@
   "coal": "석탄",
   "oil": "오일",
   "unknown": "알 수 없음",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> comes from %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> come from %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is stored using %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are stored using %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is exported to %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "지도",
@@ -238,7 +238,7 @@
     "AR": {
       "zoneName": "아르헨티나"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "호주",
       "zoneName": "뉴사우스웨일스 주"
     },
@@ -246,27 +246,27 @@
       "countryName": "호주",
       "zoneName": "노던 준주"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "호주",
       "zoneName": "퀸즐랜드 주"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "호주",
       "zoneName": "사우스오스트레일리아 주"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "호주",
       "zoneName": "태즈메이니아 주"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "태즈메이니아 주",
       "zoneName": "킹섬"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "호주",
       "zoneName": "빅토리아 주"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "호주",
       "zoneName": "웨스턴 오스트레일리아 주"
     },
@@ -317,6 +317,9 @@
     },
     "BQ": {
       "zoneName": "보네르섬, 신트외스타티위스섬, 사바섬 제도"
+    },
+    "BR": {
+      "zoneName": "브라질"
     },
     "BR-CS": {
       "countryName": "브라질",
@@ -592,10 +595,6 @@
     "GB-ORK": {
       "countryName": "영국",
       "zoneName": "오크니 제도"
-    },
-    "GB-ZET": {
-      "countryName": "영국",
-      "zoneName": "셰틀랜드 제도"
     },
     "GB-ZET": {
       "countryName": "영국",

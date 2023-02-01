@@ -1,0 +1,63 @@
+_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads).
+  Parsing for production is done on instantaneous measurements : this is not reliable
+  at all. Battery storage is composed of 0.5 battery+0.2 of flywheel'
+bounding_box:
+  - - 147.25766035200024
+    - -40.770603122999844
+  - - 148.83375084700015
+    - -39.211683851999794
+capacity:
+  battery storage: 0.7
+  biomass: 0
+  coal: 0
+  gas: 0
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 2.1
+  solar: 4.1
+  wind: 1.5
+contributors:
+  - chuqtas
+  - ajoga
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 222.3430624603678
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 222.3430624603678
+  lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 222.3430624603678
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 222.3430624603678
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.008755639165674524
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.3132555277375678
+        solar: 0.02173952324832005
+        unknown: 0.0
+        wind: 0.6558537902621875
+flag_file_name: au.png
+parsers:
+  production: ajenti.fetch_production
+timezone: null

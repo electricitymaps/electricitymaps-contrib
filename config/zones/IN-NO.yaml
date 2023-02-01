@@ -20,5 +20,7 @@ contributors:
   - pierresegonne
   - sahitya-pavurala
   - willbeaufoy
-
 timezone: Asia/Kolkata
+parsers:
+  consumption: IN.fetch_consumption
+  production: IN.fetch_production

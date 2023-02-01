@@ -4,5 +4,6 @@ capacity:
 lonlat:
   - -5.428149
   - 54.87826
-parsers: {}
+parsers:
+  exchange: IE.fetch_exchange
 rotation: -110

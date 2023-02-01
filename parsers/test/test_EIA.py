@@ -1,9 +1,11 @@
 import os
 import unittest
+from datetime import datetime
 from json import loads
 from typing import Dict, List, Union
 
 from pkg_resources import resource_string
+from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 
@@ -183,6 +185,33 @@ class TestEIA(unittest.TestCase):
             self.assertIsNotNone(data["datetime"])
             for key, value in data["production"].items():
                 self.assertEqual(value, expected[i]["production"][key])
+
+    def test_fetch_production_mix_discards_null(self):
+        null_avrn_data = resource_string(
+            "parsers.test.mocks.EIA", "US-NW-PGE-with-nulls.json"
+        )
+        self.adapter.register_uri(GET, ANY, json=loads(null_avrn_data.decode("utf-8")))
+        data_list = EIA.fetch_production_mix("US-NW-PGE", self.session)
+        expected = [
+            {
+                "zoneKey": "US-NW-PGE",
+                "source": "eia.gov",
+                "production": {
+                    "gas": 400,
+                    "coal": 400,
+                    "wind": 400,
+                    "hydro": 400,
+                    "nuclear": 400,
+                    "oil": 400,
+                    "unknown": 400,
+                    "solar": 400,
+                },
+            },
+        ]
+        self.assertEqual(
+            datetime(2022, 10, 31, 11, 0, tzinfo=utc), data_list[0]["datetime"]
+        )
+        self.check_production_matches(data_list, expected)
 
 
 if __name__ == "__main__":

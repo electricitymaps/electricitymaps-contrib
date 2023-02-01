@@ -3,6 +3,8 @@ bounding_box:
     - -39.64495208099984
   - - 150.47207507627593
     - -33.486452325214685
+bypassedSubZones:
+  - AU-TAS-CBI
 capacity:
   battery storage: 157.2
   biomass: 384.1
@@ -24,19 +26,17 @@ contributors:
   - jarek
   - ajoga
   - brandongalbraith
-subZoneNames:
-  - AUS-NSW
-  - AU-NT
-  - AUS-QLD
-  - AUS-SA
-  - AUS-TAS
-  - AU-TAS-CBI
-  - AUS-TAS-FI
-  - AUS-TAS-KI
-  - AUS-VIC
-  - AUS-WA
-  - AUS-WA-RI
-bypassedSubZones:
-  - AU-TAS-CBI
-timezone: Australia/Sydney
 estimation_method: RECONSTRUCT_BREAKDOWN
+subZoneNames:
+  - AU-NSW
+  - AU-NT
+  - AU-QLD
+  - AU-SA
+  - AU-TAS
+  - AU-TAS-CBI
+  - AU-TAS-FI
+  - AU-TAS-KI
+  - AU-VIC
+  - AU-WA
+  - AU-WA-RI
+timezone: Australia/Sydney

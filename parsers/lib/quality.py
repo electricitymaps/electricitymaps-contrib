@@ -113,7 +113,7 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
         not in [
             "CH",
             "NO",
-            "AUS-TAS",
+            "AU-TAS",
             "DK-BHM",
             "US-CAR-YAD",
             "US-NW-SCL",
@@ -133,6 +133,12 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
             "Coal, gas or oil or unknown production value is required for"
             " %s" % zone_key
         )
+
+    if obj.get("production", {}).get("hydro", 0) < 5 and zone_key in ["US-CAR-YAD"]:
+        raise ValidationError(
+            "Hydro production value is required to be greater than 5 for %s" % zone_key
+        )
+
     if obj.get("storage"):
         if not isinstance(obj["storage"], dict):
             raise ValidationError(

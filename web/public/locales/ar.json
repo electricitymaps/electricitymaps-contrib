@@ -55,14 +55,14 @@
   "coal": "فحم",
   "oil": "نفط",
   "unknown": "غير معروف",
-  "electricityComesFrom": "<b>%1$s %%</b> من الكهرباء <img id=\"country-flag\"></img> <b>%2$s</b> مصدره  %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> من الانبعاثات<img id=\"country-flag\"></img> <b>%2$s</b> مصدره %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b>مخزنة باستخدام  %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> مخزنة باستخدام %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> من الكهرباء %4$s <b>%2$s</b> مصدره  %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> من الانبعاثات%4$s <b>%2$s</b> مصدره %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> من الكهرباء في %4$s <b>%2$s</b>مخزنة باستخدام  %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> من الانبعاثات في %4$s <b>%2$s</b> مخزنة باستخدام %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> من الكهرباء في %4$s <b>%2$s</b> تصدر إلى %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> من الانبعاثات في %4$s <b>%2$s</b> تصدر إلى %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> من الكهرباء في %4$s <b>%2$s</b> تستورد من %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> من الانبعاثات في %4$s <b>%2$s</b> تستورد من %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "of CO₂eq per minute",
   "zoneShortName": {
     "AD": {
@@ -80,7 +80,7 @@
     "AR": {
       "zoneName": "الأرجنتين"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "أستراليا",
       "zoneName": "نيو ساوث ويلز"
     },
@@ -88,23 +88,23 @@
       "countryName": "أستراليا",
       "zoneName": "الإقليم الشمالي"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "أستراليا",
       "zoneName": "كوينزلاند"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "أستراليا",
       "zoneName": "جنوب أستراليا"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "أستراليا",
       "zoneName": "تاسمانيا"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "أستراليا",
       "zoneName": "فيكتوريا"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "أستراليا",
       "zoneName": "أستراليا الغربية"
     },

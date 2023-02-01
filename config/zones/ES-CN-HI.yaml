@@ -15,16 +15,16 @@ emissionFactors:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 85.1146852278433
+        value: 141.55183256804253
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 106.15959591418171
+        value: 178.2122761644179
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 133.81042522350103
+        value: 226.36203583322924
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 117.7976781548657
+        value: 198.47674260721914
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -40,16 +40,16 @@ emissionFactors:
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 85.1146852278433
+        value: 141.55183256804253
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 106.15959591418171
+        value: 178.2122761644179
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 133.81042522350103
+        value: 226.36203583322924
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 117.7976781548657
+        value: 198.47674260721914
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -58,16 +58,16 @@ emissionFactors:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 85.1146852278433
+        value: 141.55183256804253
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 106.15959591418171
+        value: 178.2122761644179
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 133.81042522350103
+        value: 226.36203583322924
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 117.7976781548657
+        value: 198.47674260721914
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -88,16 +88,16 @@ emissionFactors:
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 85.1146852278433
+        value: 141.55183256804253
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 106.15959591418171
+        value: 178.2122761644179
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 133.81042522350103
+        value: 226.36203583322924
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 117.7976781548657
+        value: 198.47674260721914
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -177,6 +177,7 @@ sources:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
     for 2022-2026" Wind Europe Proceedings (2021)
-  : link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
+  : link:
+      https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Atlantic/Canary

@@ -91,7 +91,7 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.30061348529862986
-        hydro: 0.6991014487009918
+        hydro: 0.6991014487009919
         hydro discharge: 0.0
         nuclear: 0.0
         oil: 0.00028519348429995267

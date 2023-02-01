@@ -98,7 +98,7 @@ def main():
     print(
         f"NOTE: There is still a bit of cleaning up to do. Try searching for files and references."
     )
-    print('Please rerun "yarn update-world" inside the web folder.')
+    print('Please rerun "pnpm generate-world" inside the web folder.')
 
 
 if __name__ == "__main__":

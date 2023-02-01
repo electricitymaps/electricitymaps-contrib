@@ -52,14 +52,14 @@
   "coal": "煤炭",
   "oil": "石油",
   "unknown": "未知",
-  "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的電力來自 %3$s",
-  "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量來自 %3$s",
-  "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的電力使用 %3$s 儲存",
-  "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量使用 %3$s 儲存",
-  "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的電力被匯出到 <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量被匯出到 <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的電力從 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 匯入",
-  "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量從 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 匯入",
+  "electricityComesFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力來自 %3$s",
+  "emissionsComeFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量來自 %3$s",
+  "electricityStoredUsing": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力使用 %3$s 儲存",
+  "emissionsStoredUsing": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量使用 %3$s 儲存",
+  "electricityExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力被匯出到 %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量被匯出到 %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力從 %5$s <b>%3$s</b> 匯入",
+  "emissionsImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量從 %5$s <b>%3$s</b> 匯入",
   "ofCO2eqPerMinute": "of CO₂eq per minute",
   "zoneShortName": {
     "AL": {
@@ -71,25 +71,25 @@
     "AT": {
       "zoneName": "奧地利"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "zoneName": "澳大利亞（新南威爾士州）"
     },
     "AU-NT": {
       "zoneName": "澳大利亞（北領地）"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "zoneName": "澳大利亞（昆士蘭州）"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "zoneName": "澳大利亞（南澳大利亞）"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "zoneName": "澳大利亞（塔斯馬尼亞）"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "zoneName": "澳大利亞（維多利亞）"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "zoneName": "澳大利亞（西澳大利亞）"
     },
     "AX": {

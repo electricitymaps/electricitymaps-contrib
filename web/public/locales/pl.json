@@ -212,14 +212,14 @@
   "coal": "węglowa",
   "oil": "naftowa",
   "unknown": "nieznana",
-  "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> energii elektrycznej",
-  "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> emisji",
-  "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> energii elektrycznej",
-  "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> emisji",
-  "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisji jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "%4$s <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> energii elektrycznej",
+  "emissionsComeFrom": "%4$s <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> emisji",
+  "electricityStoredUsing": "%4$s <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> energii elektrycznej",
+  "emissionsStoredUsing": "%4$s <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> emisji",
+  "electricityExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest eksportowane do %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisji jest eksportowane do %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest importowane z %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisji jest importowane z %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq na minutę",
   "zoneShortName": {
     "AE": {
@@ -237,7 +237,7 @@
     "AT": {
       "zoneName": "Austria"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "Nowa Południowa Walia"
     },
@@ -245,23 +245,23 @@
       "countryName": "Australia",
       "zoneName": "Terytorium Północne"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australia",
       "zoneName": "Australia Południowa"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australia",
       "zoneName": "Wiktoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australia",
       "zoneName": "Australia Zachodnia"
     },
@@ -288,6 +288,9 @@
     },
     "BO": {
       "zoneName": "Boliwia"
+    },
+    "BR": {
+      "zoneName": "Brazylia"
     },
     "BR-CS": {
       "countryName": "Brazylia",
@@ -1127,7 +1130,7 @@
     "AS": {
       "zoneName": "Samoa Amerykańskie"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmania"
     },
     "AW": {

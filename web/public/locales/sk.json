@@ -121,14 +121,14 @@
   "coal": "uhlie",
   "oil": "ropa",
   "unknown": "neznáme",
-  "electricityComesFrom": "<b>%1$s %%</b> elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> pochádza z %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> emisii z elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> pochádza z %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> je uchovávaných použitím %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> emisii z elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> je uchovávaných použitím %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> emisii z elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> emisii z elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> elektriny dostupnej v %4$s <b>%2$s</b> pochádza z %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> emisii z elektriny dostupnej v %4$s <b>%2$s</b> pochádza z %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> elektriny dostupnej v %4$s <b>%2$s</b> je uchovávaných použitím %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> emisii z elektriny dostupnej v %4$s <b>%2$s</b> je uchovávaných použitím %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> elektriny dostupnej v %4$s <b>%2$s</b> je exportovaných do %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> emisii z elektriny dostupnej v %4$s <b>%2$s</b> je exportovaných do %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> elektriny dostupnej v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> emisii z elektriny dostupnej v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂ za minútu",
   "theMap": {
     "groupName": "Mapa",
@@ -234,7 +234,7 @@
     "AR": {
       "zoneName": "Argentína"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Austrália",
       "zoneName": "Nový Južný Wales"
     },
@@ -242,23 +242,23 @@
       "countryName": "Austrália",
       "zoneName": "Severné teritórium"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Austrália",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Austrália",
       "zoneName": "Juzná Austrália"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Austrália",
       "zoneName": "Tasmánia"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Austrália",
       "zoneName": "Viktória"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Austrália",
       "zoneName": "Západná Austrália"
     },
@@ -309,6 +309,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius and Saba"
+    },
+    "BR": {
+      "zoneName": "Brazília"
     },
     "BR-CS": {
       "countryName": "Brazília",
@@ -595,10 +598,6 @@
     },
     "GB-ZET": {
       "countryName": "Veľká Británia",
-      "zoneName": "Shetlandy"
-    },
-    "GB-ZET": {
-      "countryName": "Velká Británia",
       "zoneName": "Shetlandy"
     },
     "GD": {
