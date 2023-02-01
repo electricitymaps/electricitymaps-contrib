@@ -8,8 +8,8 @@ src-files:
   COPY pnpm-lock.yaml .
 
 api-files:
-  COPY web/geo/world.geojson ./web/geo/world.geojson
-  COPY web/public/locales/en.json ./web/public/locales/en.json
+  COPY geo/world.geojson ./geo/world.geojson
+  COPY public/locales/en.json ./public/locales/en.json
   SAVE ARTIFACT .
 
 prepare:
