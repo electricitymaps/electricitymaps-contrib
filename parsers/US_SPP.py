@@ -414,12 +414,16 @@ def fetch_exchange(
 ) -> list:
 
     now = datetime.now(tz=utc)
-    if target_datetime is None or target_datetime > (now - timedelta(days=1)):
-        target_datetime = datetime.now(tz=utc)
+    if (
+        target_datetime is None
+        or target_datetime > arrow.get(now).floor("day").datetime
+    ):
+        target_datetime = now
         exchanges = fetch_live_exchange(zone_key1, zone_key2, session, target_datetime)
-    elif target_datetime < datetime(2014, 1, 1, tzinfo=utc):
-        raise NotImplementedError("Data before 2011 not available from this source")
-
+    elif target_datetime < datetime(2014, 3, 1, tzinfo=utc):
+        raise NotImplementedError(
+            "Exchange data is not available from this sourc before 03/2014"
+        )
     else:
         exchanges = fetch_historical_exchange(
             zone_key1, zone_key2, session, target_datetime
@@ -427,10 +431,10 @@ def fetch_exchange(
     return exchanges
 
 
-# if __name__ == "__main__":
-#     print("fetch_production() -> ")
-#     print(fetch_production())
-#     print("fetch_load_forecast() -> ")
-#     print(fetch_load_forecast(target_datetime="20190125"))
-#     print("fetch_wind_solar_forecasts() -> ")
-#     print(fetch_wind_solar_forecasts(target_datetime="20221118"))
+if __name__ == "__main__":
+    print("fetch_production() -> ")
+    print(fetch_production())
+    print("fetch_load_forecast() -> ")
+    print(fetch_load_forecast(target_datetime="20190125"))
+    print("fetch_wind_solar_forecasts() -> ")
+    print(fetch_wind_solar_forecasts(target_datetime="20221118"))
