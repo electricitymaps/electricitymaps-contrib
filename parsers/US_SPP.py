@@ -77,7 +77,7 @@ def get_data(url, session: Optional[Session] = None):
     """Returns a pandas dataframe."""
 
     s = session or Session()
-    req = s.get(url, verify=False)
+    req = s.get(url)
     df = pd.read_csv(StringIO(req.text))
 
     return df
