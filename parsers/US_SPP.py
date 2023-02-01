@@ -358,7 +358,7 @@ def fetch_historical_exchange(
 ) -> list:
 
     filename = target_datetime.strftime("TieFlows_%b%Y.csv")
-    file_url = HISTORICAL_EXCHANGE_URL + filename
+    file_url = f"{US_PROXY}/file-browser-api/download/historical-tie-flow?{HOST_PARAMETER}&path={filename}"
 
     data = get_data(file_url, session)
 
@@ -398,7 +398,7 @@ def format_exchange_data(
             "netFlow": round(data_dt.values[0], 4),
             "datetime": arrow.get(dt).datetime,
         }
-        all_data_points += [data_point]
+        all_data_points.append(data_point)
     validated_data_points = [x for x in all_data_points if validate_exchange(x, logger)]
 
     return validated_data_points
@@ -434,6 +434,8 @@ def fetch_exchange(
 if __name__ == "__main__":
     print("fetch_production() -> ")
     print(fetch_production())
+    print("fetch_exchange() -> ")
+    print(fetch_exchange("US-CENT-SWPP", "US-MIDW-MISO"))
     print("fetch_load_forecast() -> ")
     print(fetch_load_forecast(target_datetime="20190125"))
     print("fetch_wind_solar_forecasts() -> ")

@@ -130,14 +130,12 @@ def validate_consumption(
 
 
 def validate_exchange(
-    datapoint: Dict, logger: Union[Logger, None]
+    datapoint: Dict, logger: Logger = getLogger(__name__)
 ) -> Union[Dict[str, Any], None]:
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.
     """
-    if logger is None:
-        logger = getLogger(__name__)
     exchange: float = datapoint["netFlow"]
     if exchange is None:
         logger.warning(
