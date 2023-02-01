@@ -152,7 +152,7 @@
     "maintitle": "Trenutne 24/7 emisije CO₂ porabe električne energije",
     "oops": "Ups! Imamo težave pri doseganju strežnika. Poskusili bomo znova čez nekaj sekund.",
     "newversion": "Na voljo je nova različica! Pritisnite <a onClick=\"location.reload(true);\">tukaj</a> za ponovno nalaganje.",
-    "webgl-not-supported":"Zemljevida ni mogoče upodobiti, ker ta brskalnik ne podpira WebGL.",
+    "webgl-not-supported": "Zemljevida ni mogoče upodobiti, ker ta brskalnik ne podpira WebGL.",
     "retrynow": "Poskusi ponovno",
     "database-ad": "Iščete zgodovinske podatke? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preverite našo bazo podatkov!</a>",
     "api-ad": "želite podatke v živo v svoji aplikaciji? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preizkusi naš API!</a>",
