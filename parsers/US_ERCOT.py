@@ -3,7 +3,7 @@
 
 import gzip
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 from logging import Logger, getLogger
 from typing import Optional
 
@@ -12,7 +12,6 @@ import pytz
 from requests import Response, Session
 
 import parsers.EIA as EIA
-from parsers.lib.config import refetch_frequency
 from parsers.lib.validation import validate_exchange
 
 TX_TZ = pytz.timezone("US/Central")
@@ -138,7 +137,6 @@ def fetch_live_exchange(
     return validated_data_points
 
 
-@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-TEX-ERCO",
     session: Session = Session(),
@@ -164,7 +162,6 @@ def fetch_production(
     return production
 
 
-@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "US-TEX-ERCO",
     session: Session = Session(),
@@ -190,7 +187,6 @@ def fetch_consumption(
     return consumption
 
 
-@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
