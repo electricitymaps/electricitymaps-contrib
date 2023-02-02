@@ -4,12 +4,10 @@
 import gzip
 import json
 from datetime import datetime, timedelta
-from io import StringIO
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-import pandas as pd
 import pytz
 from requests import Response, Session
 
@@ -126,7 +124,7 @@ def fetch_live_exchange(
 
     # aggregate data points in the same minute interval
     aggregated_data_points = []
-    for dt in pd.unique([item["datetime"] for item in all_data_points]):
+    for dt in sorted(list(set([item["datetime"] for item in all_data_points]))):
         agg_data_point = {}
         agg_data_point["datetime"] = dt
         values_dt = [
