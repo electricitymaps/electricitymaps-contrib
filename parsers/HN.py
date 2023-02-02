@@ -1,6 +1,6 @@
 from csv import reader
 from datetime import datetime, timedelta
-from logging import Logger, getLogger
+from logging import getLogger
 from typing import Union
 
 from pytz import timezone
