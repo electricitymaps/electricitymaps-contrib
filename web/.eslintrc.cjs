@@ -170,6 +170,7 @@ module.exports = {
       rules: {
         'unicorn/no-process-exit': 'off',
         'import/no-extraneous-dependencies': 'off',
+        'unicorn/no-array-reduce': 'off',
       },
       parserOptions: {
         project: ['./tsconfig.node.json'],
