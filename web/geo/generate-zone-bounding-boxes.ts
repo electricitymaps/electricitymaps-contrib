@@ -1,6 +1,6 @@
-import path from 'path';
+import path from 'node:path';
 
-const args = process.argv.slice(2);
+const arguments_ = process.argv.slice(2);
 
 import { mergeZones } from '../scripts/generate-zones-config';
 import { saveZoneYaml } from './files';
@@ -9,14 +9,14 @@ import { getJSON } from './utilities';
 const zonesGeo = getJSON(path.resolve(__dirname, './world.geojson'));
 const zones = mergeZones();
 
-if (args.length <= 0) {
+if (arguments_.length <= 0) {
   console.error(
     'ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE")'
   );
   process.exit(1);
 }
 
-const zoneKey = args[0];
+const zoneKey = arguments_[0];
 
 if (!(zoneKey in zones)) {
   console.error(`ERROR: Zone ${zoneKey} does not exist in configuration`);
@@ -28,12 +28,12 @@ zonesGeo.features = zonesGeo.features.filter((d) => d.properties.zoneName === zo
 let allCoords: number[] = [];
 const boundingBoxes: { [key: string]: any } = {};
 
-zonesGeo.features.forEach((zone) => {
+for (const zone of zonesGeo.features) {
   allCoords = [];
   const geometryType = zone.geometry.type;
-  zone.geometry.coordinates.forEach((coords1) => {
-    coords1[0].forEach((coord) => allCoords.push(coord));
-  });
+  for (const coords1 of zone.geometry.coordinates) {
+    for (const coord of coords1[0]) {allCoords.push(coord);}
+  }
 
   let minLat = 200;
   let maxLat = -200;
@@ -41,7 +41,7 @@ zonesGeo.features.forEach((zone) => {
   let maxLon = -200;
 
   if (geometryType == 'MultiPolygon') {
-    allCoords.forEach((coord) => {
+    for (const coord of allCoords) {
       const lon = coord[0];
       const lat = coord[1];
 
@@ -49,7 +49,7 @@ zonesGeo.features.forEach((zone) => {
       maxLon = Math.max(maxLon, lon);
       minLat = Math.min(minLat, lat);
       maxLat = Math.max(maxLat, lat);
-    });
+    }
   } else {
     const lon = allCoords[0];
     const lat = allCoords[1];
@@ -64,7 +64,7 @@ zonesGeo.features.forEach((zone) => {
     [minLon - 0.5, minLat - 0.5],
     [maxLon + 0.5, maxLat + 0.5],
   ];
-});
+}
 
 for (const [zoneKey, bbox] of Object.entries(boundingBoxes)) {
   // do not add new entries to zones/*.yaml, do not add RU because it crosses the 180th meridian
