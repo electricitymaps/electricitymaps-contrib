@@ -242,7 +242,7 @@
     "feedback-question": "¿Os puedo dejar algún comentario o crítica?",
     "feedback-answer": "¡Faltaría más! Solo tienes que rellenar <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">este formulario</a> o <a href=\"mailto:hello@electricity.com\">escribirnos un correo!</a>",
     "contribute-question": "¿Puedo contribuir a este proyecto?",
-    "contribute-answer": " ¡Claro! Electricity Map es un proyecto de código abierto que mantienen voluntarios. Si quieres ayudarnos a mejorarlo, ya sea añadiendo datos para una zona que no tenga, añadiendo nuevas opciones o arreglando bugs, echa un vistazo al <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": " ¡Claro! Electricity Map es un proyecto de código abierto que mantienen voluntarios. Si quieres ayudarnos a mejorarlo, ya sea añadiendo datos para una zona que no tenga, añadiendo nuevas opciones o arreglando bugs, echa un vistazo al <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
     "workTogether-question": "¿Podemos trabajar juntos?",
     "workTogether-answer": "Siempre estamos abiertos a nuevas oportunidades de colaborar. <a href=\"mailto:app@electricitymaps.com\">¡Mándanos un correo!</a>",
     "disclaimer-question": "Aviso legal",

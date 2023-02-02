@@ -189,7 +189,7 @@
     "feedback-question": "Mogu li vam dati povratne informacije?",
     "feedback-answer": "Naravno! Jednostavno ispuni <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">naš osvrtni obrazac</a> ili nam <a href=\"mailto:app@electricitymaps.com\">pošalji email!</a>",
     "contribute-question": "Mogu li doprinijeti projektu?",
-    "contribute-answer": " Možeš! Electricity Map je open-source projekt baziran na dobrovoljnom doprinosu. Ako nam želiš pomoći razviti mapu, bilo dodavajući nove izvore podataka, nove mogućnosti ili ispravljajući greške, slobodno nam se pridruži na našem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Githubu</a>.",
+    "contribute-answer": " Možeš! Electricity Map je open-source projekt baziran na dobrovoljnom doprinosu. Ako nam želiš pomoći razviti mapu, bilo dodavajući nove izvore podataka, nove mogućnosti ili ispravljajući greške, slobodno nam se pridruži na našem <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">Githubu</a>.",
     "workTogether-question": "Možemo li surađivati?",
     "workTogether-answer": "Aktivno tražimo nove mogućnosti surađivanja. <a href=\"mailto:app@electricitymaps.com\">Pošalji nam email!</a>",
     "disclaimer-question": "Izjava o odricanju odgovornosti",
