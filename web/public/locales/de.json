@@ -55,6 +55,9 @@
     "zone-list-header-subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
     "search": "Land oder Region suchen"
   },
+  "time-controller": {
+    "title": "Historische Daten anzeigen"
+  },
   "country-history": {
     "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
     "carbonintensity": {
@@ -141,14 +144,14 @@
   "coal": "Kohle",
   "oil": "Öl",
   "unknown": "unbekannt",
-  "electricityComesFrom": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
-  "emissionsExportedTo": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
-  "electricityImportedFrom": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
-  "emissionsImportedFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
+  "electricityComesFrom": "<b>%1$s %%</b> der Elektrizität der Region %4$s <b>%2$s</b> stammen aus %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> stammen aus %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> der Elektrizität der Region %4$s <b>%2$s</b> werden gespeichert in %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> werden gespeichert in %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> der Elektrizität der Region %4$s <b>%2$s</b> werden in die Region %5$s <b>%3$s</b> exportiert",
+  "emissionsExportedTo": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> werden in die Region %5$s <b>%3$s</b> exportiert",
+  "electricityImportedFrom": "<b>%1$s %%</b> der Elektrizität der Region %4$s <b>%2$s</b> werden aus der Region %5$s <b>%3$s</b> importiert",
+  "emissionsImportedFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> werden aus der Region %5$s <b>%3$s</b> importiert",
   "ofCO2eqPerMinute": "CO₂äq pro Minute",
   "theMap": {
     "groupName": "Die Karte",
@@ -211,7 +214,7 @@
     "feedback-question": "Kann ich Ihnen Feedback geben?",
     "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:app@electricitymaps.com\">senden Sie uns eine E-Mail!</a>",
     "contribute-question": "Kann ich zu Ihrem Projekt beitragen?",
-    "contribute-answer": "Ja, gerne! Die Electricity Maps ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Github</a> anschließen.",
+    "contribute-answer": "Ja, gerne! Die Electricity Maps ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">Github</a> anschließen.",
     "workTogether-question": "Können wir zusammenarbeiten?",
     "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:app@electricitymaps.com\">Schicken Sie uns eine E-Mail!</a>",
     "disclaimer-question": "Haftungsausschluss",

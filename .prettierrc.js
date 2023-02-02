@@ -2,12 +2,18 @@ module.exports = {
   semi: true,
   singleQuote: true,
   trailingComma: 'es5',
-  printWidth: 120,
+  printWidth: 90,
   overrides: [
     {
       files: '*.md',
       options: {
-        printWidth: 80,
+        printWidth: 90,
+      },
+    },
+    {
+      files: 'config/*.yaml',
+      options: {
+        printWidth: 120,
       },
     },
   ],
