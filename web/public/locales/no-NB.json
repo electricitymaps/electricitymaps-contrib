@@ -189,7 +189,7 @@
     "feedback-question": "Kan jeg gi tilbakemeldinger?",
     "feedback-answer": "Gjerne! Vennligst fyll ut <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt tilbakemeldingsskjema</a> eller <a href=\"mailto:app@electricitymaps.com\">eller send oss en e-post</a>.",
     "contribute-question": "Kan jeg bidra til prosjektet?",
-    "contribute-answer": "Ja! The Electricity Map er et åpen kildekode-prosjekt som er muliggjort av frivillige bidragsytere. Hvis du ønsker å hjelpe til med utviklingen av kartet, enten ved å legge til nye datakilder, forbedre det eller fikse bugs, bli med oss på <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ja! The Electricity Map er et åpen kildekode-prosjekt som er muliggjort av frivillige bidragsytere. Hvis du ønsker å hjelpe til med utviklingen av kartet, enten ved å legge til nye datakilder, forbedre det eller fikse bugs, bli med oss på <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
     "workTogether-question": "Kan vi samarbeide?",
     "workTogether-answer": "Vi er på jakt etter muligheter for å samarbeide. <a href=\"mailto:app@electricitymaps.com\">Send oss en e-post!</a>",
     "disclaimer-question": "Ansvarsfraskrivelse",
