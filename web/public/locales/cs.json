@@ -195,7 +195,7 @@
     "feedback-question": "Můžu vám nechat zpětnou vazbu?",
     "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:app@electricitymaps.com\">nám poslat email!</a>",
     "contribute-question": "Můžu se zapojit do vašeho projektu?",
-    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
     "workTogether-question": "Můžeme pracovat společně?",
     "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href=\"mailto:app@electricitymaps.com\">Pošlete nám email!</a>",
     "disclaimer-question": "Oznámení",
