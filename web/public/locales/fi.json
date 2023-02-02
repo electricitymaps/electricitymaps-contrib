@@ -199,7 +199,7 @@
     "feedback-question": "Voinko antaa palautetta?",
     "feedback-answer": "Kiitos kyllä! Täytâ <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">lomake</a> tai <a href=\"mailto:app@electricitymaps.com\">lähetä meille sähköpostia!</a>",
     "contribute-question": "Voinko osallistua projektiisi?",
-    "contribute-answer": " Kyllä! The Electricity Map on avoid lähdekoodi, jonka ovat tehneet mahdolliseksi vapaaehtoiset avustajat. Jos haluat auttaa kartan kehittämisessä joko lisäämällä tietolähteitä uusille alueille, lisäämällä uusia ominaisuuksia tai korjaamalla virheitä, liity meidän <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">GitHub</a> projektiin.",
+    "contribute-answer": " Kyllä! The Electricity Map on avoid lähdekoodi, jonka ovat tehneet mahdolliseksi vapaaehtoiset avustajat. Jos haluat auttaa kartan kehittämisessä joko lisäämällä tietolähteitä uusille alueille, lisäämällä uusia ominaisuuksia tai korjaamalla virheitä, liity meidän <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">GitHub</a> projektiin.",
     "workTogether-question": "Voimmeko työskennellä yhdessä?",
     "workTogether-answer": "Etsimme aktiivisesti uusia mahdollisuuksia yhteistyöhön. <a href=\"mailto:app@electricitymaps.com\">Lähetä meille sähköpostia!</a>",
     "disclaimer-question": "Vastuuvapauslauseke",

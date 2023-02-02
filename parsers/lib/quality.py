@@ -59,7 +59,7 @@ def validate_exchange(item, k) -> None:
         raise ValidationError("netFlow was not returned for %s" % k)
     # Verify that the exchange flow is not greater than the interconnector
     # capacity and has physical sense (no exchange should exceed 100GW)
-    # Use https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/example.py for expected format
+    # Use https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/example.py for expected format
     if item.get("sortedZoneKeys", None) and item.get("netFlow", None):
         zone_names: List[str] = item["sortedZoneKeys"]
         if abs(item.get("netFlow", 0)) > 100000:

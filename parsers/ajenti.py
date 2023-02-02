@@ -1,6 +1,6 @@
 """
-Initial PR https://github.com/tmrowco/electricitymap-contrib/pull/2456
-Discussion thread https://github.com/tmrowco/electricitymap-contrib/issues/636
+Initial PR https://github.com/electricitymaps/electricitymaps-contrib/pull/2456
+Discussion thread https://github.com/electricitymaps/electricitymaps-contrib/issues/636
 A promotion webpage for King's Island energy production is here: https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island
 As of 09/2020, it embeds with <iframe> the URI https://data.ajenti.com.au/KIREIP/index.html
 
@@ -25,7 +25,7 @@ ZONE_PARAMS = {
         "source": "https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island",  # Iframe: https://data.ajenti.com.au/KIREIP/index.html
     },
     # Flinders Island
-    # https://github.com/tmrowco/electricitymap-contrib/issues/2533
+    # https://github.com/electricitymaps/electricitymaps-contrib/issues/2533
     # https://en.wikipedia.org/wiki/Flinders_Island
     "AU-TAS-FI": {
         "hub": "flindershub",
@@ -34,7 +34,7 @@ ZONE_PARAMS = {
         "source": "https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/flinders-island",
     },
     # Rottnest Island
-    # https://github.com/tmrowco/electricitymap-contrib/issues/2534
+    # https://github.com/electricitymaps/electricitymaps-contrib/issues/2534
     # https://en.wikipedia.org/wiki/Rottnest_Island
     "AU-WA-RI": {
         "hub": "HogsHub",

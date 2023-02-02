@@ -208,7 +208,7 @@
     "feedback-question": "Pot oferi feedback?",
     "feedback-answer": "Te rugăm! Te rugăm să completezi <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">formularul nostru de feedback </a> sau <a href=\"mailto:app@electricitymaps.com\">trimite-ne un email!</a>",
     "contribute-question": "Pot să contribui la proiect?",
-    "contribute-answer": "Da! Electricity Map e un proiect open-source, făcut posibil de voluntarii noștri. Dacă vrei să ajuți să dezvolți harta, fie prin surse noi de date, zone noi, componente noi sau bugfixes, nu ezitați să explorați pagina noastră de <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Da! Electricity Map e un proiect open-source, făcut posibil de voluntarii noștri. Dacă vrei să ajuți să dezvolți harta, fie prin surse noi de date, zone noi, componente noi sau bugfixes, nu ezitați să explorați pagina noastră de <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
     "workTogether-question": "Putem lucra împreună?",
     "workTogether-answer": "Căutăm în mod activ noi oportunități de colaborare. <a href=\"mailto:app@electricitymaps.com\">Trimite-ne un email!</a>",
     "disclaimer-question": "Disclaimer",
