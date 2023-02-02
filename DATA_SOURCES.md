@@ -2,7 +2,7 @@
 
 ### Real-time electricity data sources
 
-Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
+Real-time electricity data is obtained using [parsers](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/parsers).
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
@@ -403,7 +403,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - NYISO: [NYISO Gold Book](https://www.nyiso.com/documents/20142/2226333/2021-Gold-Book-Final-Public.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
   - PNM
-    - Coal: [Github|electricitymap-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
+    - Coal: [Github|electricitymaps-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
     - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
