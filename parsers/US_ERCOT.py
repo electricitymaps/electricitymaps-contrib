@@ -132,6 +132,7 @@ def fetch_live_exchange(
         ]
         agg_data_point["netFlow"] = sum(values_dt) / len(values_dt)
         agg_data_point["sortedZoneKeys"] = sortedZoneKeys
+        agg_data_point["source"] = "ercot.com"
         aggregated_data_points.append(agg_data_point)
     validated_data_points = [x for x in all_data_points if validate_exchange(x, logger)]
     return validated_data_points
