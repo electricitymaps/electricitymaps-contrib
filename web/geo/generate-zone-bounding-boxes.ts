@@ -32,7 +32,9 @@ for (const zone of zonesGeo.features) {
   allCoords = [];
   const geometryType = zone.geometry.type;
   for (const coords1 of zone.geometry.coordinates) {
-    for (const coord of coords1[0]) {allCoords.push(coord);}
+    for (const coord of coords1[0]) {
+      allCoords.push(coord);
+    }
   }
 
   let minLat = 200;
