@@ -397,7 +397,7 @@ def format_exchange_data(
             "sortedZoneKeys": sorted_zone_keys,
             "netFlow": round(data_dt.values[0], 4),
             "datetime": arrow.get(dt).datetime,
-            "source": "spp.org"
+            "source": "spp.org",
         }
         all_data_points.append(data_point)
     validated_data_points = [x for x in all_data_points if validate_exchange(x, logger)]
