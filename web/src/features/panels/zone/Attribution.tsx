@@ -38,7 +38,7 @@ export default function Attribution({
       <span>{__('country-panel.source')}:</span>
       <a
         style={{ textDecoration: 'none' }}
-        href="https://github.com/electricitymaps/electricitymaps-contrib#data-sources/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
+        href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
         target="_blank"
         rel="noreferrer"
         className="text-sky-600 no-underline hover:underline dark:invert"
