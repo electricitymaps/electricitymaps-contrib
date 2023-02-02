@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "electricitymaps-contrib"
+name = "electricitymap-contrib"
 version = "1.0.0"
 description = ""
 license = "AGPL-3.0-or-later"
