@@ -1,0 +1,264 @@
+{
+    "response":
+    {
+        "total": 25,
+        "dateFormat": "YYYY-MM-DD\"T\"HH24",
+        "frequency": "hourly",
+        "data":
+        [
+            {
+                "period": "2022-02-28T00",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 19405,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T01",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 25216,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T02",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 26891,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T03",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 26523,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T04",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 25909,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T05",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 23923,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T06",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 22116,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T07",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 20755,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T08",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 20274,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T09",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 20336,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T10",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 20750,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T11",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 22388,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T12",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 25372,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T13",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 30145,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T14",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 30589,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T15",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 24638,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T16",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 22539,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T17",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 20033,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T18",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 18706,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T19",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 17591,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T20",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 17369,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T21",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 17504,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T22",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 18504,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-02-28T23",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 19588,
+                "value-units": "megawatthours"
+            },
+            {
+                "period": "2022-03-01T00",
+                "respondent": "ERCO",
+                "respondent-name": "Electric Reliability Council of Texas, Inc.",
+                "fueltype": "NG",
+                "type-name": "Natural gas",
+                "value": 21356,
+                "value-units": "megawatthours"
+            }
+        ],
+        "description": "Hourly net generation by balancing authority and energy source.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
+    },
+    "request":
+    {
+        "command": "/v2/electricity/rto/fuel-type-data/data/",
+        "params":
+        {
+            "data":
+            [
+                "value"
+            ],
+            "facets":
+            {
+                "respondent":
+                [
+                    "ERCO"
+                ],
+                "fueltype":
+                [
+                    "NG"
+                ]
+            },
+            "frequency": "hourly",
+            "api_key": "e36b66258fd3e86e1be559504a49b3cf",
+            "start": "2022-02-28T00",
+            "end": "2022-03-01T00"
+        }
+    },
+    "apiVersion": "2.1.2"
+}

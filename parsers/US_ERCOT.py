@@ -15,6 +15,7 @@ from requests import Response, Session
 
 import parsers.EIA as EIA
 from parsers.lib.config import refetch_frequency
+from parsers.lib.validation import validate_exchange
 
 TX_TZ = pytz.timezone("US/Central")
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
@@ -61,7 +62,7 @@ def fetch_live_consumption(
     all_data_points = []
     for key in ["previousDay", "currentDay"]:
         data_dict = data_json[key]
-        dt = arrow.get(data_dict["dayDate"]).replace(tzinfo=TX_TZ).datetime
+        dt = arrow.get(data_dict["dayDate"]).datetime.replace(tzinfo=TX_TZ)
         for item in data_dict["data"]:
             if "systemLoad" in item:
                 data_point = {
@@ -134,8 +135,8 @@ def fetch_live_exchange(
         agg_data_point["netFlow"] = sum(values_dt) / len(values_dt)
         agg_data_point["sortedZoneKeys"] = sortedZoneKeys
         aggregated_data_points.append(agg_data_point)
-    validated_data_points = []
-    return aggregated_data_points
+    validated_data_points = [x for x in all_data_points if validate_exchange(x, logger)]
+    return validated_data_points
 
 
 @refetch_frequency(timedelta(days=1))
@@ -146,7 +147,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
 
-    now = datetime.now(tz=pytz.UTC)
+    now = datetime.now(tz=pytz.utc)
     if (
         target_datetime is None
         or target_datetime > arrow.get(now).floor("day").shift(days=-1).datetime
@@ -177,14 +178,36 @@ def fetch_consumption(
         target_datetime is None
         or target_datetime > arrow.get(now).floor("day").shift(days=-1).datetime
     ):
-        production = fetch_live_consumption(
+        consumption = fetch_live_consumption(
             zone_key=zone_key, session=session, logger=logger
         )
     else:
-        production = EIA.fetch_consumption(
+        consumption = EIA.fetch_consumption(
             zone_key=zone_key,
             session=session,
             target_datetime=target_datetime,
             logger=logger,
         )
-    return production
+    return consumption
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_exchange(
+    zone_key1: str,
+    zone_key2: str,
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+
+    now = datetime.now(tz=TX_TZ)
+    if (
+        target_datetime is None
+        or target_datetime > arrow.get(now).floor("day").datetime
+    ):
+        target_datetime = now
+        exchanges = fetch_live_exchange(zone_key1, zone_key2, session, target_datetime)
+
+    else:
+        exchanges = EIA.fetch_exchange(zone_key1, zone_key2, session, target_datetime)
+    return exchanges
