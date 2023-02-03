@@ -268,3 +268,10 @@ sources:
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: US/Eastern
+outage:
+  github: https://github.com/electricitymaps/electricitymaps-contrib/issues/4835
+  description: The datasource is currently down.
+  status: Waiting for the datasource to come online again.
+  estimation_available: false
+  workaround_available: false
+  known_limitations: Nothing

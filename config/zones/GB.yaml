@@ -235,3 +235,10 @@ sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: null
+outage:
+  github: https://github.com/electricitymaps/electricitymaps-contrib/issues/4835
+  description: The BMRS report is currently down. Switching to another source.
+  status: We switch the parser to use several other data sources.
+  estimation_available: true
+  workaround_available: true
+  known_limitations: The datasource we used is supposed to be retired at some point in 2023.
