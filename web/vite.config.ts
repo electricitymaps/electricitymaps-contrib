@@ -20,9 +20,6 @@ const manualChunkMap = {
 };
 
 export default defineConfig(({ mode }) => ({
-  optimizeDeps: {
-    disabled: false,
-  },
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },
