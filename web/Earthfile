@@ -18,7 +18,6 @@ prepare:
   RUN pnpm install --frozen-lockfile
   COPY index.html .postcssrc.json tailwind.config.js tsconfig.json tsconfig.node.json vite.config.ts .
   COPY scripts/generate-zones-config.ts ./scripts/generate-zones-config.ts
-  COPY scripts/generate-index-files.ts ./scripts/generate-index-files.ts
   COPY --dir config geo public src ./
 
 test:
@@ -32,7 +31,6 @@ build:
   FROM +prepare
   RUN pnpm version minor
   RUN --secret SENTRY_AUTH_TOKEN=+secrets/SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
-  RUN pnpm run generate-index-files
 
   # Local outputs for debugging
   SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json
