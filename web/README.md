@@ -47,6 +47,8 @@ As an eMap internal team member, you can also run the app connected to productio
 
 ### Building for production
 
+new build
+
 - Add an environment variable for `SENTRY_AUTH_TOKEN="find it here => https://sentry.io/settings/account/api/auth-tokens/"`
 - Add an environment variable for `VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='YOUR TOKEN'`
 
