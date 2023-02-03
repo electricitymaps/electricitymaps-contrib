@@ -31,7 +31,7 @@ test:
 build:
   FROM +prepare
   RUN pnpm version minor
-  RUN --secret SENTRY_AUTH_TOKEN=+secrets/SENTRY_AUTH_TOKEN VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
+  RUN --secret SENTRY_AUTH_TOKEN=+secrets/SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
   RUN pnpm run generate-index-files
 
   # Local outputs for debugging
