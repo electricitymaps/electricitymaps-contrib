@@ -9,6 +9,7 @@ dist/
 config/
 public/images/
 .husky/_
+pnpm-lock.yaml
 
 LICENSE.md
 LICENSE

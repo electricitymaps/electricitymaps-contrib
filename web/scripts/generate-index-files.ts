@@ -13,13 +13,13 @@ const allPaths = [...generalPaths, ...zonePaths];
 let filesGenerated = 0;
 const indexHtml = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf8');
 for (const filePath of allPaths) {
-  const dir = path.resolve(__dirname, `../dist${filePath}`);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
+  const directory = path.resolve(__dirname, `../dist${filePath}`);
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory, { recursive: true });
   }
-  const file = path.resolve(dir, 'index.html');
+  const file = path.resolve(directory, 'index.html');
   if (!fs.existsSync(file)) {
-    fs.writeFileSync(path.resolve(dir, 'index.html'), indexHtml);
+    fs.writeFileSync(path.resolve(directory, 'index.html'), indexHtml);
     console.log(`Created index.html for ${filePath}`);
     filesGenerated++;
   }
