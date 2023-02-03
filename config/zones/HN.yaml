@@ -83,5 +83,5 @@ fallbackZoneMixes:
         unknown: 0.9430300483911978
         wind: 0.006018144944581141
 parsers:
-  production: ENTE.fetch_production
+  production: HN.fetch_production
 timezone: America/Tegucigalpa

@@ -10,13 +10,13 @@ type Story = StoryObj<typeof CarbonIntensitySquare>;
 
 export const Primary: Story = {
   args: {
-    intensity: 234.123123123,
+    intensity: 234.123_123_123,
   },
 };
 
 export const WithLabel: Story = {
   args: {
-    intensity: 234.0,
+    intensity: 234,
     withSubtext: true,
   },
 };
