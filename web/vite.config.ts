@@ -25,9 +25,6 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     sourcemap: true,
-    commonjsOptions: {
-      include: [],
-    },
     rollupOptions: {
       output: {
         manualChunks(id) {
