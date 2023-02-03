@@ -16,7 +16,7 @@ prepare:
   FROM +src-files
   RUN npm install -g pnpm
   RUN pnpm install --frozen-lockfile
-  COPY index.html tsconfig.json tsconfig.node.json vite.config.ts .
+  COPY index.html .postcssrc.json tailwind.config.js tsconfig.json tsconfig.node.json vite.config.ts .
   COPY scripts/generate-zones-config.ts ./scripts/generate-zones-config.ts
   COPY scripts/generate-index-files.ts ./scripts/generate-index-files.ts
   COPY --dir config geo public src ./
@@ -31,7 +31,7 @@ test:
 build:
   FROM +prepare
   RUN pnpm version minor
-  RUN --secret SENTRY_AUTH_TOKEN=+secrets/SENTRY_AUTH_TOKEN VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
+  RUN --secret SENTRY_AUTH_TOKEN=+secrets/SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
   RUN pnpm run generate-index-files
 
   # Local outputs for debugging
@@ -62,7 +62,7 @@ deploy:
         # Copy assets first to ensure they are available when the new index.html is served
         gsutil -m cp -a public-read -r dist/assets/* gs://app.electricitymaps.com/assets && \
         gsutil -m cp -a public-read -r dist/* gs://app.electricitymaps.com && \
-        gsutil web set -m index.html -e index.html gs://beta.electricitymaps.com && \
-        gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://app.electricitymaps.com/index.html && \
+        gsutil web set -m index.html -e index.html gs://app.electricitymaps.com && \
+        gsutil -m setmeta -h "Cache-Control:no-cache,no-store,max-age=0" gs://app.electricitymaps.com/**/index.html && \
         gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://app.electricitymaps.com/client-version.json && \
         gcloud auth revoke
