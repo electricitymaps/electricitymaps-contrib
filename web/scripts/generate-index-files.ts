@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { mergeZones } from './generate-zones-config';
 console.log('Generating index files...');
@@ -12,7 +12,7 @@ const allPaths = [...generalPaths, ...zonePaths];
 // Generate index.html files for all paths
 let filesGenerated = 0;
 const indexHtml = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf8');
-allPaths.forEach((filePath) => {
+for (const filePath of allPaths) {
   const dir = path.resolve(__dirname, `../dist${filePath}`);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
@@ -23,6 +23,6 @@ allPaths.forEach((filePath) => {
     console.log(`Created index.html for ${filePath}`);
     filesGenerated++;
   }
-});
+}
 
 console.log(`Generated ${filesGenerated} new files.`);

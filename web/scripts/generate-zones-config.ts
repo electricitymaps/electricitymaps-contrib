@@ -45,11 +45,7 @@ const mergeZones = () => {
      * The parsers object is only used to check if there is a production parser in the frontend.
      * This moves this check to the build step, so we can minimize the size of the frontend bundle.
      */
-    if (zoneConfig?.parsers?.production?.length > 0) {
-      zoneConfig.parsers = true;
-    } else {
-      zoneConfig.parsers = false;
-    }
+    zoneConfig.parsers = zoneConfig?.parsers?.production?.length > 0 ? true : false;
     Object.assign(zones, { [path.parse(filepath).name]: zoneConfig });
     return zones;
   }, {});
@@ -63,14 +59,14 @@ const mergeExchanges = () => {
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDirectory = exchangeFiles.map((file) => `${basePath}/${file}`);
 
-  const UNNECESSARY_EXCHANGE_FIELDS = ['comment', '_comment', 'parsers'];
+  const UNNECESSARY_EXCHANGE_FIELDS = new Set(['comment', '_comment', 'parsers']);
 
   const exchanges = filesWithDirectory.reduce((exchanges, filepath) => {
     const exchangeConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
     exchangeConfig.lonlat[0] = round(exchangeConfig.lonlat[0], 3);
     exchangeConfig.lonlat[1] = round(exchangeConfig.lonlat[1], 3);
     for (const key in exchangeConfig) {
-      if (UNNECESSARY_EXCHANGE_FIELDS.includes(key)) {
+      if (UNNECESSARY_EXCHANGE_FIELDS.has(key)) {
         delete exchangeConfig[key];
       }
     }
