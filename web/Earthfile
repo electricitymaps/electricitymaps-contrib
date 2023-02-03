@@ -1,5 +1,5 @@
 VERSION 0.6
-FROM node:14.18
+FROM node:18.13
 WORKDIR /contrib/web
 
 src-files:
