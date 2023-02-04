@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Dict, List, Optional
 
 import arrow
+from pytz import timezone
 from requests import Session
 
 from .lib.exceptions import ParserException
@@ -140,13 +141,13 @@ def merged_production_mix(non_renewables_mix: dict, renewables_mix: dict) -> dic
 def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
     """Retrieves production mix for renewables using CAMMESA's API"""
 
-    now = arrow.now(tz="America/Argentina/Buenos_Aires").floor("minute")
-    today = now.format("DD-MM-YYYY")
+    now = datetime.now(tz=timezone("America/Argentina/Buenos_Aires"))
+    today = now.strftime("%d-%m-%Y")
     endpoint = CAMMESA_RENEWABLES_REGIONAL_ENDPOINT
     params = {}
-    minute = int(now.format("mm"))
+    minute = now.minute
     rounded = minute - minute % 5
-    time = now.replace(minute=rounded).format("YYYY-MM-DDTHH:mm:ss.SSSZ")
+    time = (now - timedelta(minutes=rounded - 5)).replace(second=0, microsecond=0)
     region_name = zone_key[3:]
 
     if zone_key == "AR":
@@ -167,7 +168,7 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
         )
 
     renewables_production: Dict[str, dict] = {
-        (production_info["momento"] if zone_key == "AR" else time): {
+        (production_info["momento"] if zone_key == "AR" else time.isoformat()): {
             "biomass": production_info["biocombustible"],
             "hydro": production_info["hidraulica"],
             "solar": production_info["fotovoltaica"],
@@ -192,7 +193,9 @@ def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, 
     sorted_production_list = sorted(production_list, key=lambda d: d["fecha"])
 
     non_renewables_production: Dict[str, dict] = {
-        production_info["fecha"]: {
+        datetime.strptime(
+            production_info["fecha"], "%Y-%m-%dT%H:%M:%S.%f%z"
+        ).isoformat(): {
             "hydro": production_info["hidraulico"],
             "nuclear": production_info["nuclear"],
             # As of 2022 thermal energy is mostly natural gas but
