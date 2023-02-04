@@ -1,0 +1,23 @@
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Await CF Pages
+        id: await-deploy
+        uses: WalshyDev/cf-pages-await@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 'bf6a387f54840aae4b206754fbd33cea'
+          project: 'electricitymaps-app'
+          # Add this if you want to wait for a deployment triggered by a specfied commit
+          #commitHash: ${{ github.sha }}
+      - name: Lighthouse
+        uses: foo-software/lighthouse-check-action@master
+        with:
+          # setting this token enables posting comment to PR
+          gitHubAccessToken: ${{ secrets.CONTRIB_GH_TOKEN }}
+          urls: '${{ steps.await-deploy.outputs.url }}'
