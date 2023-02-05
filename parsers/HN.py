@@ -1,7 +1,7 @@
 from csv import reader
 from datetime import datetime, timedelta
-from logging import getLogger
-from typing import Union
+from logging import Logger, getLogger
+from typing import Optional, Union
 
 from pytz import timezone
 from requests import Response, Session
@@ -19,6 +19,18 @@ INDEX_TO_TYPE_MAP = {
     8: "oil",
     9: "oil",
     10: "hydro",
+}
+
+EXCHANGE_MAP = {
+    "Guatemala": "GT->HN",
+    "Nicaragua": "HN->NI",
+    "El Salvador": "HN->SV",
+}
+
+EXCHANGE_DIRECTION_MAP = {
+    "GT->HN": -1,
+    "HN->NI": 1,
+    "HN->SV": 1,
 }
 
 
@@ -53,42 +65,55 @@ def get_data(
     return CSV_data, PLANT_TO_TYPE_MAP
 
 
-def get_values(CSV_data: list, PLANT_TO_TYPE_MAP: dict):
+def get_values(CSV_data: list, PLANT_TO_TYPE_MAP: dict, kind: str = "production"):
     """
-    Gets the values from the CSV data and returns a dictionary with the production by hour and the date
+    Gets the values from the CSV data and returns a dictionary with the values by hour and the date
     """
-    production_by_hour = {i: {} for i in range(0, 24)}
+    values_by_hour = {i: {} for i in range(0, 24)}
     date: Union[str, None] = None
     for row in CSV_data:
         if date is None:
             date = row[0] if row[0] != "Fecha" else None
         if row[1] == "Planta":
             continue
-        plant_production_by_hour = row[2:]
+        row_production_by_hour = row[2:]
         index = 0
-        for production in plant_production_by_hour:
+        for value in row_production_by_hour:
             if row[0] == "Fecha":
                 continue
             if (
-                PLANT_TO_TYPE_MAP[row[1]] in production_by_hour[index].keys()
-                and production != ""
+                PLANT_TO_TYPE_MAP[row[1]] in values_by_hour[index].keys()
+                and value != ""
+                and kind == "production"
             ):
-                production_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] += (
-                    float(production) if float(production) > 0 else 0
+                values_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] += (
+                    float(value) if float(value) > 0 else 0
                 )
-            elif production != "":
-                production_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] = (
-                    float(production) if float(production) > 0 else 0
+            elif value != "" and kind == "production":
+                values_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] = (
+                    float(value) if float(value) > 0 else 0
+                )
+            elif (
+                PLANT_TO_TYPE_MAP[row[1]] in values_by_hour[index].keys()
+                and value != ""
+                and kind == "exchange"
+            ):
+                values_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] += (
+                    float(value) * EXCHANGE_DIRECTION_MAP[PLANT_TO_TYPE_MAP[row[1]]]
+                )
+            elif value != "" and kind == "exchange":
+                values_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] = (
+                    float(value) * EXCHANGE_DIRECTION_MAP[PLANT_TO_TYPE_MAP[row[1]]]
                 )
             index += 1
-    return production_by_hour, date
+    return values_by_hour, date
 
 
 def fetch_production(
-    zone_key="HN",
-    session=Session(),
-    target_datetime=None,
-    logger=getLogger(__name__),
+    zone_key: str = "HN",
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime is not None:
         raise ParserException(
@@ -116,3 +141,51 @@ def fetch_production(
                 )
 
     return production_list
+
+
+def fetch_exchange(
+    zone_key1: str,
+    zone_key2: str,
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
+    if target_datetime is not None:
+        raise ParserException(
+            "HN.py", "This parser is not yet able to parse past dates"
+        )
+
+    params = {
+        "request": "CSV_N_",
+        "p8_indx": 7,
+    }
+    response: Response = session.get(
+        "https://otr.ods.org.hn:3200/odsprd/ods_prd/r/operador-del-sistema-ods/producci%C3%B3n-horaria",
+        params=params,
+        verify=False,
+    )
+
+    csv_file = response.text
+    parsed_csv = list(reader(csv_file.splitlines()))
+
+    exchange_per_hour, date = get_values(parsed_csv, EXCHANGE_MAP, "exchange")
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+
+    exchange_list = []
+    if date is not None:
+        for index in range(0, 24):
+            exchange_datetime = datetime.strptime(date, "%m/%d/%Y")
+            exchange_datetime = exchange_datetime.replace(
+                tzinfo=timezone("America/Tegucigalpa")
+            ) + timedelta(hours=index + 1)
+            if exchange_per_hour[index] != {}:
+                exchange_list.append(
+                    {
+                        "sortedZoneKeys": sorted_zone_keys,
+                        "datetime": exchange_datetime,
+                        "netFlow": exchange_per_hour[index][sorted_zone_keys],
+                        "source": "ods.org.hn",
+                    }
+                )
+
+    return exchange_list
