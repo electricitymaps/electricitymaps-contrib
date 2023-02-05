@@ -870,7 +870,11 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AR-COM", "countryKey": "AR", "countryName": "Argentina" },
+      "properties": {
+        "zoneName": "AR-COM",
+        "countryKey": "AR",
+        "countryName": "Argentina"
+      },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1027,7 +1031,11 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AR-LIT", "countryKey": "AR", "countryName": "Argentina" },
+      "properties": {
+        "zoneName": "AR-LIT",
+        "countryKey": "AR",
+        "countryName": "Argentina"
+      },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1212,7 +1220,11 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AR-NEA", "countryKey": "AR", "countryName": "Argentina" },
+      "properties": {
+        "zoneName": "AR-NEA",
+        "countryKey": "AR",
+        "countryName": "Argentina"
+      },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1411,7 +1423,11 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AR-NOA", "countryKey": "AR", "countryName": "Argentina" },
+      "properties": {
+        "zoneName": "AR-NOA",
+        "countryKey": "AR",
+        "countryName": "Argentina"
+      },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1583,7 +1599,11 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AR-PAT", "countryKey": "AR", "countryName": "Argentina" },
+      "properties": {
+        "zoneName": "AR-PAT",
+        "countryKey": "AR",
+        "countryName": "Argentina"
+      },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1775,7 +1795,11 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AR-CUY", "countryKey": "AR", "countryName": "Argentina" },
+      "properties": {
+        "zoneName": "AR-CUY",
+        "countryKey": "AR",
+        "countryName": "Argentina"
+      },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2026,7 +2050,11 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AR-CEN", "countryKey": "AR", "countryName": "Argentina" },
+      "properties": {
+        "zoneName": "AR-CEN",
+        "countryKey": "AR",
+        "countryName": "Argentina"
+      },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -53914,7 +53942,11 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "AR-BAS", "countryKey": "AR", "countryName": "Argentina" },
+      "properties": {
+        "zoneName": "AR-BAS",
+        "countryKey": "AR",
+        "countryName": "Argentina"
+      },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
