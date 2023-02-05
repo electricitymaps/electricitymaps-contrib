@@ -1,24 +1,33 @@
-# Needed for lint staged.
+# Files and paths to ignore
+
 .prettierignore
-yarn.lock
-.eartlyignore
+pnpm-lock.yaml
+.earthlyignore
 
 .venv
 **/parsers/test/mocks
-world.json
-world-aggregated.json
+.pytest_cache/
 
-mobileapp/plugins
-mobileapp/platforms
-mobileapp/src
-mobileapp/ul_web_hooks
-mobileapp/www/electricitymap
+mobileapp/android
+mobileapp/ios
 
-web/public/dist/
-web/public/images/
-web/src/config/
+web/dist/
+web/config/
+web/public/client-version.json
+
 web/.husky/_
 
 mockserver/public
 
 .github/ISSUE_TEMPLATE/
+
+LICENSE.md
+LICENSE
+
+node_modules
+.DS_Store
+.eslintcache
+coverage
+.nyc_output
+cypress/videos
+cypress/screenshots

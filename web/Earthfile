@@ -1,61 +1,45 @@
 VERSION 0.6
-FROM node:16.15
+FROM node:18.13
 WORKDIR /contrib/web
 
 src-files:
-  COPY generate-zones-config.js .
-  COPY geo/utilities.js ./geo/utilities.js
-  COPY locales-config.json .
-  COPY translation-status.js .
-  COPY public/locales ./public/locales
   COPY ../config+src-files/* ../config
   COPY package.json .
-  COPY yarn.lock .
-  SAVE ARTIFACT .
+  COPY pnpm-lock.yaml .
 
-geo-files:
-  COPY geo ./geo
+api-files:
+  COPY geo/world.geojson ./geo/world.geojson
+  COPY public/locales/en.json ./public/locales/en.json
   SAVE ARTIFACT .
 
 prepare:
   FROM +src-files
-  RUN yarn
-  COPY geo ./geo
-  COPY locales-config.json translation-status.js ./
-  COPY --dir src views public ./
-  COPY .babelrc .eslintrc.js server.js webpack.config.js ./
+  RUN npm install -g pnpm
+  RUN pnpm install --frozen-lockfile
+  COPY index.html .postcssrc.json tailwind.config.js tsconfig.json tsconfig.node.json vite.config.ts .
+  COPY scripts/generate-zones-config.ts ./scripts/generate-zones-config.ts
+  COPY --dir config geo public src ./
 
 test:
   FROM +prepare
-  RUN echo 'no tests'
+  COPY cypress.config.ts .
+  COPY cypress ./cypress
+  RUN pnpm run verify:ci
+  # TODO: Run tests
 
 build:
   FROM +prepare
-
-  ARG EARTHLY_GIT_HASH
-  ENV COMMIT_SHA=$EARTHLY_GIT_HASH
-
-  RUN mkdir -p public/dist
-  RUN yarn update-version
-  RUN --secret ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN yarn build-release
-  RUN yarn verify-zones-config
+  RUN pnpm version minor
+  RUN --secret SENTRY_AUTH_TOKEN=+secrets/SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
 
   # Local outputs for debugging
-  SAVE ARTIFACT ./src/config/world.json AS LOCAL ./src/config/world.json
-  SAVE ARTIFACT ./src/config/excluded-aggregated-exchanges.json AS LOCAL ./src/config/excluded-aggregated-exchanges.json
-  SAVE ARTIFACT ./public/dist AS LOCAL ./public/dist
-
-  # Artifact to be deployed
-  SAVE ARTIFACT ./public
-  SAVE IMAGE --push eu.gcr.io/tmrow-152415/electricitymap_web
+  SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json
+  SAVE ARTIFACT ./config/excludedAggregatedExchanges.json AS LOCAL ./config/excludedAggregatedExchanges.json
+  # NOTE: We could consider dropping source maps from dist since it has already been uploaded to Sentry at this point
+  SAVE ARTIFACT ./dist AS LOCAL ./dist
 
 deploy:
-  BUILD +build
-  FROM google/cloud-sdk:243.0.0
-  COPY +build/public ./public
-  RUN --push --mount=type=secret,target=./GCP_KEY.JSON,id=GCP_KEY \
-        gcloud auth activate-service-account --key-file=GCP_KEY.JSON && \
-        gsutil -m cp -a public-read -r public/* gs://static.electricitymap.org/public_web && \
-        gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://static.electricitymap.org/public_web/client-version.json && \
-        gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://static.electricitymap.org/public_web/dist/manifest.json && \
-        gcloud auth revoke
+  FROM +prepare
+  COPY +build/dist ./dist
+  RUN npm install -g wrangler
+  RUN --push --secret CLOUDFLARE_API_TOKEN=+secrets/CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID=+secrets/CLOUDFLARE_ACCOUNT_ID wrangler pages publish ./dist --project-name electricitymaps-app --branch master

@@ -2,7 +2,7 @@
 
 ### Real-time electricity data sources
 
-Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
+Real-time electricity data is obtained using [parsers](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/parsers).
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
@@ -57,10 +57,13 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Israel: [IEC](https://www.iec.co.il/en/pages/default.aspx)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - India: [meritindia](http://meritindia.in/)
+- India: [Vidyut PRAVAH](https://vidyutpravah.in/)
+- India: [National Power Portal](https://npp.gov.in/dgrReports)
+- India: [Central Electricity Authority](https://cea.nic.in/daily-renewable-generation-report/?lang=en)
 - India (Andhra Pradesh): [CORE Dashboard](https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx)
 - India (Chhattisgarh): [cspc.co.in](http://117.239.199.203/csptcl/GEN.aspx)
 - India (Delhi): [delhisldc](http://www.delhisldc.org/Redirect.aspx?Loc=0804)
-- India (Gujarat): [sldcguj](https://www.sldcguj.com/RealTimeData/RealTimeDemand.php)
+- India (Gujarat): [sldcguj](https://www.sldcguj.com/RealTimeData/RealTsimeDemand.php)
 - India (Himachal Pradesh): [HPSLDC](https://hpsldc.com/intra-state-power-transaction/)
 - India (Maharashtra) [mahasldc](https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg)
 - India (Karnataka): [kptclsldc.in](http://kptclsldc.in/StateGen.aspx)
@@ -400,7 +403,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - NYISO: [NYISO Gold Book](https://www.nyiso.com/documents/20142/2226333/2021-Gold-Book-Final-Public.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
   - PNM
-    - Coal: [Github|electricitymap-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
+    - Coal: [Github|electricitymaps-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
     - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)

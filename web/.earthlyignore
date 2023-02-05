@@ -1,3 +1,0 @@
-# To prevent server.js from serving this file instead of redirecting to /map
-# TODO: Remove this when we deprecate server.js and switch to a fully static site
-public/index.html
