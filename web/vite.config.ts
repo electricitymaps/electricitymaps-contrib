@@ -75,6 +75,7 @@ export default defineConfig(({ mode }) => ({
               'images/*.{svg,png,webp}',
               'images/arrows/*.webp',
               'fonts/*.woff2',
+              'locales/*.json',
             ],
             manifest: {
               name: 'Electricity Maps',
