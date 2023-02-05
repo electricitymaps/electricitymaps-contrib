@@ -6,7 +6,7 @@ import Modal from './OnboardingModalInner';
 
 const views = [
   {
-    headerImage: resolvePath('images/electricitymaps-icon.svg'),
+    headerImage: resolvePath('icons/electricitymaps-icon.svg'),
     isMainTitle: true,
     renderContent: (__: (translationKey: string) => string) => (
       <>
