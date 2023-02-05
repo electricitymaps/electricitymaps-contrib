@@ -147,7 +147,7 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
     params = {}
     minute = now.minute
     rounded = minute - minute % 5
-    time = (now - timedelta(minutes=rounded - 5)).replace(second=0, microsecond=0)
+    time = now.replace(minute=rounded, second=0, microsecond=0) - timedelta(minutes=5)
     region_name = zone_key[3:]
 
     if zone_key == "AR":
