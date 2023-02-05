@@ -73,6 +73,7 @@ export default defineConfig(({ mode }) => ({
               'robots.txt',
               // Consider if we should also add subdirectories below
               'images/*.{svg,png,webp}',
+              'images/arrows/*.webp',
               'fonts/*.woff2',
             ],
             manifest: {
