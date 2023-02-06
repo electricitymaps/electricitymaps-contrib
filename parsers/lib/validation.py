@@ -7,27 +7,6 @@ from typing import Any, Dict, List, Tuple, Union
 import numpy as np
 import pandas as pd
 
-from electricitymap.contrib.config import ZoneKey
-from parsers.lib.quality import ValidationError
-
-
-def validate_data_point(datapoint: Dict[str, Any], kind:str, zone_key: ZoneKey):
-    """
-    Checks that a datapoint has the required keys. A parser can only be merged if the datapoints for each function have the correct format.
-    """
-    standard_keys = ["datetime","source"]
-    keys_dict= {"production":["zoneKey", "production"]+standard_keys,
-                "consumption":["zoneKey", "consumption"]+standard_keys,
-                "exchange":["sortedZoneKeys", "netFlow"] +standard_keys,
-                "price":["zoneKey","currency","price"]+standard_keys}
-    for key in keys_dict[kind]:
-        if key not in datapoint.keys():
-            raise ValidationError(
-                "{} - data point does not have the required keys:  {} is missing".format(zone_key,
-                    [key for key in keys_dict[kind] if key not in datapoint.keys()]
-                ),
-            )
-
 
 def has_value_for_key(datapoint: Dict[str, Any], key: str, logger: Logger):
     """

@@ -20,7 +20,6 @@ from parsers.lib.quality import (
     validate_exchange,
     validate_production,
 )
-from parsers.lib.validation import validate_data_point
 
 logger = getLogger(__name__)
 basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s")
@@ -118,12 +117,6 @@ def test_parser(zone: ZoneKey, data_type, target_datetime):
 
     if isinstance(res, dict):
         res = [res]
-    for event in res:
-        try:
-            validate_data_point(event, data_type, zone)
-        except ValidationError as e:
-            logger.warning("Data point validation failed @ {}: {}".format(event["datetime"], e))
-
     for event in res:
         try:
             if data_type == "production":
