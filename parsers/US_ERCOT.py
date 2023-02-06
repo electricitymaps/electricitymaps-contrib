@@ -35,7 +35,7 @@ GENERATION_MAPPING = {
     "Natural Gas": "gas",
     "Nuclear": "nuclear",
     "Other": "unknown",
-    "Power Storage": "battery",
+    "Power Storage": "unknown",  # we lose this information in the EIA parser and have no easy way to split it when we run fetch_production for past dates. As it is a minor share of the production mix, it will be categorized as unknown
     "Solar": "solar",
     "Wind": "wind",
 }
@@ -82,24 +82,23 @@ def fetch_live_production(
     for key in data_json:
         data_dict = {**data_dict, **data_json[key]}
     all_data_points = []
-    for item in data_dict:
-        production = {}
-        storage = {}
-        dt = arrow.get(item).datetime.replace(tzinfo=TX_TZ)
-        for mode in data_dict[item]:
-            value = data_dict[item][mode]["gen"]
-            if mode == "Power Storage":
-                storage[GENERATION_MAPPING[mode]] = value
-            else:
-                production[GENERATION_MAPPING[mode]] = value
-        data_point = {
-            "zoneKey": zone_key,
-            "datetime": dt,
-            "production": production,
-            "storage": storage,
-            "source": "ercot.com",
-        }
-        all_data_points.append(data_point)
+    for date_key in data_json:
+        date_dict = data_json[date_key]
+        for date_key in data_json:
+            date_dict = data_json[date_key]
+            for item in date_dict:
+                production = {}
+                dt = arrow.get(item).datetime.replace(tzinfo=TX_TZ)
+                for mode in date_dict[item]:
+                    value = date_dict[item][mode]["gen"]
+                    production[GENERATION_MAPPING[mode]] = value
+                data_point = {
+                    "zoneKey": zone_key,
+                    "datetime": dt,
+                    "production": production,
+                    "source": "ercot.com",
+                }
+                all_data_points.append(data_point)
     return all_data_points
 
 
