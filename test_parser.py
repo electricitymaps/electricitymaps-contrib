@@ -17,6 +17,7 @@ from parsers.lib.parsers import PARSER_KEY_TO_DICT
 from parsers.lib.quality import (
     ValidationError,
     validate_consumption,
+    validate_data_point,
     validate_exchange,
     validate_production,
 )
@@ -117,6 +118,12 @@ def test_parser(zone: ZoneKey, data_type, target_datetime):
 
     if isinstance(res, dict):
         res = [res]
+    for event in res:
+        try:
+            validate_data_point(event, data_type, zone)
+        except ValidationError as e:
+            logger.warning("Data point validation failed @ {}: {}".format(event["datetime"], e))
+
     for event in res:
         try:
             if data_type == "production":
