@@ -17,10 +17,10 @@ from parsers.lib.parsers import PARSER_KEY_TO_DICT
 from parsers.lib.quality import (
     ValidationError,
     validate_consumption,
-    validate_data_point,
     validate_exchange,
     validate_production,
 )
+from parsers.lib.validation import validate_data_point
 
 logger = getLogger(__name__)
 basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s")

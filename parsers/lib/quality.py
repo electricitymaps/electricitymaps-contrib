@@ -172,22 +172,3 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
             )
 
     validate_reasonable_time(obj, zone_key)
-
-
-
-def validate_data_point(datapoint: Dict[str, Any], kind:str, zone_key: ZoneKey):
-    """
-    Checks that a datapoint has the required keys. A parser can only be merged if the datapoints for each function have the correct format.
-    """
-    standard_keys = ["datetime","source"]
-    keys_dict= {"production":["zoneKey", "production"]+standard_keys,
-                "consumption":["zoneKey", "consumption"]+standard_keys,
-                "exchange":["sortedZoneKeys", "netFlow"] +standard_keys,
-                "price":["zoneKey","currency","price"]+standard_keys}
-    if  datapoint.keys() != keys_dict[kind] :
-        raise ValidationError(
-              "{} - data point does not have the required keys:  {} is missing".format(zone_key,
-                [key for key in keys_dict[kind] if key not in datapoint.keys()]
-            ),
-        )
-
