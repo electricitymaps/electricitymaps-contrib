@@ -78,9 +78,6 @@ def fetch_live_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
-    data_dict = {}
-    for key in data_json:
-        data_dict = {**data_dict, **data_json[key]}
     all_data_points = []
     for date_key in data_json:
         date_dict = data_json[date_key]
