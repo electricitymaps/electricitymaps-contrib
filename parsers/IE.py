@@ -44,7 +44,6 @@ def fetch_data(
     assert type(target_datetime) == datetime
     assert kind != ""
     assert session is not None
-    assert zone_key is not None or zone_key != ""
 
     resp: Response = session.get(
         KINDS_URL[kind].format(
