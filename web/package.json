@@ -14,7 +14,7 @@
     "mockserver": "nodemon ../mockserver/server.js",
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
-    "generate-world": "ts-node ./geo/generate-world.ts",
+    "generate-world": "ts-node ./geo/generateWorld.ts",
     "generate-zones-config": "ts-node ./scripts/generate-zones-config.ts",
     "predevelop": "pnpm run generate-zones-config",
     "prebuild": "pnpm run generate-zones-config",
