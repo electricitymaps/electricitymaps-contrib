@@ -1,22 +1,18 @@
-from __future__ import annotations
-
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import List, Optional, Union
 
-# The arrow library is used to handle datetimes
-import arrow
+from pytz import timezone
 
 # The request library is used to fetch content through HTTP
-from requests import Session
+from requests import Response, Session
 
-# please try to write PEP8 compliant code (use a linter). One of PEP8's
-# requirement is to limit your line length to 79 characters.
+from parsers.lib.exceptions import ParserException
 
 
 def fetch_production(
-    zone_key: str = "FR",
-    session: Optional[Session] = None,
+    zone_key: str,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
@@ -49,7 +45,7 @@ def fetch_production(
 
     A dictionary in the form:
     {
-      'zoneKey': 'FR',
+      'zoneKey': 'XX',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -71,7 +67,7 @@ def fetch_production(
     or a list of dictionaries in the form:
     [
       {
-        'zoneKey': 'FR',
+        'zoneKey': 'XX',
         'datetime': '2017-01-01T00:00:00Z',
         'production': {
             'biomass': 0.0,
@@ -91,7 +87,7 @@ def fetch_production(
         'source': 'mysource.com'
       },
       {
-        'zoneKey': 'FR',
+        'zoneKey': 'XX',
         'datetime': '2017-01-01T01:00:00Z',
         'production': {
             'biomass': 0.0,
@@ -113,52 +109,63 @@ def fetch_production(
       ...
     ]
     """
-    r = session or Session()
     if target_datetime is None:
         url = "https://api.someservice.com/v1/productionmix/latest"
-    else:
+    elif target_datetime > datetime(year=2000, month=1, day=1):
         # WHEN HISTORICAL DATA IS AVAILABLE
         # convert target datetime to local datetime
-        url_date = arrow.get(target_datetime).to("America/Argentina/Buenos_Aires")
-        url = "https://api.someservice.com/v1/productionmix/{}".format(url_date)
-
+        url_date = target_datetime.astimezone(
+            timezone("America/Argentina/Buenos_Aires")
+        ).strftime("%Y-%m-%d")
+        url = f"https://api.someservice.com/v1/productionmix/{url_date}"
+    else:
         # WHEN HISTORICAL DATA IS NOT AVAILABLE
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+        raise ParserException(
+            "example_parser.py",
+            "This parser is not yet able to parse dates before 2000-01-01",
+            zone_key,
+        )
 
-    res = r.get(url)
-    assert res.status_code == 200, (
-        "Exception when fetching production for "
-        "{}: error when calling url={}".format(zone_key, url)
-    )
+    res: Response = session.get(url)
+    assert (
+        res.status_code == 200
+    ), f"Exception when fetching production for {zone_key}: error when calling url={url}"
 
     obj = res.json()
 
-    data = {
-        "zoneKey": zone_key,
-        "production": {},
-        "storage": {},
-        "source": "someservice.com",
-    }
+    production_data_list: List[dict] = []
     for item in obj["productionMix"]:
-        # All production values should be >= 0
-        data["production"][item["key"]] = item[
-            "value"
-        ]  # Should be a floating point value
+        production_data_list.append(
+            {
+                "zoneKey": zone_key,
+                "datetime": datetime.fromisoformat(item["datetime"]),
+                "production": {
+                    "biomass": item["biomass"],
+                    "coal": item["coal"],
+                    "gas": item["gas"],
+                    "hydro": item["hydro"],
+                    "nuclear": item["nuclear"],
+                    "oil": item["oil"],
+                    "solar": item["solar"],
+                    "wind": item["wind"],
+                    "geothermal": item["geothermal"],
+                    "unknown": item["unknown"]
+                    if item["unknown"] > 0
+                    else 0 + item["other"]
+                    if item["other"] > 0
+                    else 0,
+                },
+                "storage": {"hydro": item["hydroStorage"] * -1},
+                "source": "someservice.com",
+            }
+        )
 
-    for item in obj["storage"]:
-        # Positive storage means energy is stored
-        # Negative storage means energy is generated from the storage system
-        data["storage"][item["key"]] = item["value"]  # Should be a floating point value
-
-    # Parse the datetime and return a python datetime object
-    data["datetime"] = arrow.get(obj["datetime"]).datetime
-
-    return data
+    return production_data_list
 
 
 def fetch_price(
-    zone_key: str = "FR",
-    session: Optional[Session] = None,
+    zone_key: str,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
@@ -219,22 +226,22 @@ def fetch_price(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or Session()
-    assert r.status_code == 200
     url = "https://api.someservice.com/v1/price/latest"
 
-    response = r.get(url)
+    response = session.get(url)
+    assert (
+        response.status_code == 200
+    ), f"Exception when fetching price for {zone_key}: error when calling url={url}"
+
     obj = response.json()
 
     data = {
         "zoneKey": zone_key,
+        "datetime": datetime.fromisoformat(obj["datetime"]),
         "currency": "EUR",
         "price": obj["price"],
         "source": "someservice.com",
     }
-
-    # Parse the datetime and return a python datetime object
-    data["datetime"] = arrow.get(obj["datetime"]).datetime
 
     return data
 
