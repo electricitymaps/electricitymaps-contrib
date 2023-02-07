@@ -46,11 +46,11 @@ function TooltipInner({
         <div className="flex self-start text-xs">{date}</div>{' '}
       </div>
       <div className="flex w-full flex-grow py-1 sm:pr-2">
-        <div className="flex w-full flex-grow flex-row justify-start">
+        <div className="flex w-full flex-grow flex-row justify-around">
           <CarbonIntensitySquare
             intensity={isConsumption ? co2intensity : co2intensityProduction}
           />
-          <div className="px-4">
+          <div className="pl-2 pr-6">
             <CircularGauge name={__('country-panel.lowcarbon')} ratio={1 - fossilFuel} />
           </div>
           <CircularGauge
