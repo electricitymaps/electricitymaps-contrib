@@ -118,14 +118,22 @@ export function getElectricityProductionValue({
   generationTypeProduction: Maybe<number>;
   generationTypeStorage: Maybe<number>;
 }) {
-  const value =
-    isStorage && generationTypeStorage
-      ? -generationTypeStorage
-      : generationTypeProduction;
+  const value = isStorage ? generationTypeStorage : generationTypeProduction;
+
   // If the value is not defined but the capacity
   // is zero, assume the value is also zero.
   if (!Number.isFinite(value) && generationTypeCapacity === 0) {
     return 0;
   }
-  return value;
+
+  if (!isStorage) {
+    return value;
+  }
+
+  // Handle storage scenarios
+  if (generationTypeStorage === null || generationTypeStorage === undefined) {
+    return null;
+  }
+  // Do not negate value if it is zero
+  return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }

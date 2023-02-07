@@ -44,6 +44,26 @@ describe('getElectricityProductionValue', () => {
     expect(actual).toEqual(3738.75);
   });
 
+  it('handles missing storage', () => {
+    const actual = getElectricityProductionValue({
+      generationTypeCapacity: 123,
+      isStorage: true,
+      generationTypeStorage: null,
+      generationTypeProduction: 999,
+    });
+    expect(actual).toEqual(null);
+  });
+
+  it('handles zero storage', () => {
+    const actual = getElectricityProductionValue({
+      generationTypeCapacity: 123,
+      isStorage: true,
+      generationTypeStorage: 0,
+      generationTypeProduction: 999,
+    });
+    expect(actual).toEqual(0);
+  });
+
   it('handles zero production', () => {
     const actual = getElectricityProductionValue({
       generationTypeCapacity: 123,
