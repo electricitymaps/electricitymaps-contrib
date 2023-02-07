@@ -86,10 +86,10 @@ export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
   });
 
 interface GetElectricityProductionValueType {
-  capacity: number;
+  capacity: Maybe<number>;
   isStorage: boolean;
-  production: number;
-  storage: number;
+  production: Maybe<number>;
+  storage: Maybe<number>;
 }
 export function getElectricityProductionValue({
   capacity,
@@ -97,13 +97,24 @@ export function getElectricityProductionValue({
   production,
   storage,
 }: GetElectricityProductionValueType) {
-  const value = isStorage ? -storage : production;
+  const value = isStorage ? storage : production;
+
   // If the value is not defined but the capacity
   // is zero, assume the value is also zero.
   if (!Number.isFinite(value) && capacity === 0) {
     return 0;
   }
-  return value;
+
+  if (!isStorage) {
+    return value;
+  }
+
+  // Handle storage scenarios
+  if (storage === null || storage === undefined) {
+    return null;
+  }
+  // Do not negate value if it is zero
+  return storage === 0 ? 0 : -storage;
 }
 
 export const getDataBlockPositions = (
