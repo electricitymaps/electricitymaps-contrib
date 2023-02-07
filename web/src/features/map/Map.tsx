@@ -23,8 +23,8 @@ import {
   loadingMapAtom,
   mapMovingAtom,
   mousePositionAtom,
+  zoneIdAtom,
 } from './mapAtoms';
-import { FeatureId } from './mapTypes';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
@@ -34,7 +34,6 @@ const isMobile = window.innerWidth < 768;
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage(): ReactElement {
-  const [selectedFeatureId, setSelectedFeatureId] = useState<FeatureId>();
   const setIsMoving = useSetAtom(mapMovingAtom);
   const setMousePosition = useSetAtom(mousePositionAtom);
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
@@ -48,6 +47,7 @@ export default function MapPage(): ReactElement {
   const theme = useTheme();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
+  const [zoneId, setZoneId] = useAtom(zoneIdAtom);
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -143,30 +143,41 @@ export default function MapPage(): ReactElement {
   ]);
 
   useEffect(() => {
-    // Run when path changes
-    const map = mapReference.current?.getMap();
-    // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
-    if (map && location.pathname === '/map' && selectedFeatureId) {
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: selectedFeatureId },
-        { selected: false, hover: false }
-      );
-      setSelectedFeatureId(undefined);
-      setHoveredZone(null);
-    }
-  }, [location.pathname]);
-
-  useEffect(() => {
     // Run when there is data
     const map = mapReference.current?.getMap();
     if (!map || isError || !isFirstLoad) {
       return;
     }
-    if (data?.callerLocation) {
+    if (data?.callerLocation && !zoneId) {
       map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
       setIsFirstLoad(false);
     }
-  }, [isSuccess]);
+  }, [isSuccess, zoneId]);
+
+  useEffect(() => {
+    // Run when path changes
+    const map = mapReference.current?.getMap();
+    // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
+    if (map && location.pathname === '/map' && zoneId) {
+      map.setFeatureState(
+        { source: ZONE_SOURCE, id: zoneId },
+        { selected: false, hover: false }
+      );
+      setZoneId(undefined);
+      setHoveredZone(null);
+    }
+    if (map) {
+      const feature = geometries.features.find(
+        (feature) => feature.properties.zoneId === zoneId
+      );
+      const center = feature?.properties.center;
+      if (!center) {
+        return;
+      }
+      const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
+      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
+    }
+  }, [location.pathname, isLoadingMap, zoneId]);
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();
     if (!map || !event.features) {
@@ -176,11 +187,8 @@ export default function MapPage(): ReactElement {
 
     // Remove state from old feature if we are no longer hovering anything,
     // or if we are hovering a different feature than the previous one
-    if (selectedFeatureId && (!feature || selectedFeatureId !== feature.id)) {
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: selectedFeatureId },
-        { selected: false }
-      );
+    if (zoneId && (!feature || zoneId !== feature.id)) {
+      map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: false });
     }
 
     if (hoveredZone && (!feature || hoveredZone.featureId !== feature.id)) {
@@ -191,18 +199,14 @@ export default function MapPage(): ReactElement {
     }
     setHoveredZone(null);
     if (feature && feature.properties) {
-      setSelectedFeatureId(feature.id);
+      setZoneId(feature.id);
       map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { selected: true });
       setLeftPanelOpen(true);
-
-      const center = JSON.parse(feature.properties.center);
-      const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
-      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
 
       const zoneId = feature.properties.zoneId;
       navigate(createToWithState(`/zone/${zoneId}`));
     } else {
-      setSelectedFeatureId(undefined);
+      setZoneId(undefined);
       navigate(createToWithState('/map'));
     }
   };

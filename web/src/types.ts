@@ -146,6 +146,7 @@ export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   properties: {
     zoneId: string;
     color: string;
+    center?: [number, number];
   };
 }
 
