@@ -1,4 +1,10 @@
-import { Feature, FeatureCollection, Geometry, MultiPolygon, Polygon } from '@turf/turf';
+import type {
+  Feature,
+  FeatureCollection,
+  Geometry,
+  MultiPolygon,
+  Polygon,
+} from '@turf/turf';
 
 export type Maybe<T> = T | null | undefined;
 

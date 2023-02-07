@@ -65,7 +65,7 @@ const generateAggregates = (geojson, zones: ZoneConfig) => {
     })
     .filter((zone) => zone !== null);
 
-  return unCombinedZones.concat(combinedZones);
+  return [...unCombinedZones, ...combinedZones];
 };
 
 export { generateAggregates };
