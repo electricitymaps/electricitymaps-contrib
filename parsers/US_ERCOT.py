@@ -44,8 +44,8 @@ EXCHANGE_MAPPING = {"US-CENT-SWPP": ["dcE", "dcN"], "MX-NE": ["dcL"], "MX-NO": [
 
 def get_data(url: str, session: Session):
     """requests ERCOT url and return json"""
-    r: Response = session.get(url)
-    response_text = gzip.decompress(r.content).decode("utf-8")
+    resp: Response = session.get(url, verify=False)
+    response_text = gzip.decompress(resp.content).decode("utf-8")
     data_json = json.loads(response_text)
     return data_json
 
