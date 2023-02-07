@@ -169,7 +169,8 @@
         "project": ["./tsconfig.node.json"]
       },
       "rules": {
-        "unicorn/no-array-reduce": "off"
+        "unicorn/no-array-reduce": "off",
+        "unicorn/no-process-exit": "off"
       }
     },
     {
