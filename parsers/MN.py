@@ -76,9 +76,6 @@ def fetch_consumption(
     # Нийлбэр ачаалал
     consumption_MW = float(NDC_SOUP.find_all("td")[6].text.strip(" МВт"))
 
-    dataset_consumption = {
-        'consumption': consumption_MW
-    }
 
     date_raw = NDC_SOUP.find_all("td")[0].text.strip("Хоногийн ачаалал: ")
     date_pretty = datetime.strptime(date_raw, '%Y-%m-%d')
