@@ -1,0 +1,4 @@
+datetime,storage.hydro,production.gas,production.oil,production.coal,production.wind,production.hydro,production.solar,production.biomass,production.nuclear,production.unknown,production.geothermal
+2022-01-01 00:00:00+00:00,,,,,,1,,,,,
+2022-01-01 01:00:00+00:00,,,,,,100,,,,,
+2022-01-01 02:00:00+00:00,,,,,,120,,,,,

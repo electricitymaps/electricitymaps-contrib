@@ -11,8 +11,32 @@ Prerequisites:
 - Ensure you have `NodeJS` and `pnpm` installed locally (`brew install pnpm`)
 - Run `pnpm install` in both the web and mockserver directories
 
-1. Start the mockserver: `yarn run mockserver`
-2. Run app in another tab: `yarn develop`
+1. Start the mockserver: `pnpm run mockserver`
+2. Run app in another tab: `pnpm dev`
+
+## Scripts
+
+- `pnpm mockserver` - starts the mockserver.
+- `pnpm dev` - start a development server with hot reload.
+- `pnpm build` - build for production. The generated files will be in the `dist` folder.
+- `pnpm preview` - locally preview the production build.
+- `pnpm test` - run unit and integration tests related to changed files based on git.
+- `pnpm cy:e2e` - work with integration tests. Remember to run `pnpm dev` before!
+- `pnpm cy:components` - work with component tests.
+  <!-- - `pnpm test:ci` - run all unit and integration tests in CI mode. -->
+  <!-- - `pnpm test:e2e` - run all e2e tests with the Cypress Test Runner. -->
+  <!-- - `pnpm test:e2e:headless` - run all e2e tests headlessly. -->
+- `pnpm format` - format all files with Prettier.
+- `pnpm lint` - runs TypeScript and ESLint.
+- `pnpm validate` - runs `lint`, `test:ci` and `test:e2e:ci`.
+
+### TODO: Scripts currently disabled until we're ready
+
+```
+    "test:e2e": "pnpm preview:test 'cypress open'",
+    "test:e2e:headless": "pnpm preview:test 'cypress run'",
+    "test:e2e:ci": "vite build && pnpm preview:test 'cypress run --record'",
+```
 
 ## Scripts
 

@@ -195,7 +195,7 @@
     "feedback-question": "Bisakah saya memberi Anda umpan balik?",
     "feedback-answer": "Lakukan! Silahkan isi  <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">form umpan balik kami</a> atau <a href=\"mailto:app@electricitymaps.com\">kirim via Email!</a>",
     "contribute-question": "Dapatkah saya berkontribusi pada proyek Anda?",
-    "contribute-answer": " Iya! Electricity Map adalah proyek sumber terbuka, dimungkinkan oleh kontributor sukarela kami. Jika Anda ingin membantu mengembangkan peta, baik dengan menambahkan sumber data untuk area baru, menambahkan fitur baru atau memperbaiki bug, silakan bergabung dengan kami di <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": " Iya! Electricity Map adalah proyek sumber terbuka, dimungkinkan oleh kontributor sukarela kami. Jika Anda ingin membantu mengembangkan peta, baik dengan menambahkan sumber data untuk area baru, menambahkan fitur baru atau memperbaiki bug, silakan bergabung dengan kami di <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
     "workTogether-question": "Bisakah kita bekerja bersama?",
     "workTogether-answer": "Kami secara aktif mencari peluang baru untuk berkolaborasi. <a href=\"mailto:app@electricitymaps.com\">Kirimkan pada kami via email!</a>",
     "disclaimer-question": "Disclaimer",

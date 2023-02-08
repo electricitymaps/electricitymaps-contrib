@@ -27,7 +27,14 @@ Android Studio
 
 Node 18+
 
-## First make sure you have installed and built the web app:
+## If you have the web app installed and running and want to do production builds the following commands will run everything you need
+
+Navigate to mobileapp
+
+`pnpm build-ios`
+`pnpm build-android`
+
+## Detailed instruction if the above doesn't work. First make sure you have installed and built the web app:
 
 Navigate to the web directory then:
 

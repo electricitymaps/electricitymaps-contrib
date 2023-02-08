@@ -17,26 +17,6 @@ import RankingPanel from './ranking-panel/RankingPanel';
 
 import ZoneDetails from './zone/ZoneDetails';
 
-// Remove index.html from URL
-function RedirectIndexWrapper({ children }: { children: JSX.Element }) {
-  const [searchParameters] = useSearchParams();
-  const location = useLocation();
-
-  if (location.pathname.includes('/index.html')) {
-    const pathWithoutIndex = location.pathname.replace('/index.html', '');
-    return (
-      <Navigate
-        to={{
-          pathname: pathWithoutIndex,
-          search: searchParameters.toString(),
-        }}
-      />
-    );
-  }
-
-  return children;
-}
-
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
 
@@ -128,14 +108,7 @@ export default function LeftPanel() {
         />
         <Route path="/faq" element={<FAQPanel />} />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route
-          path="*"
-          element={
-            <RedirectIndexWrapper>
-              <RankingPanel />
-            </RedirectIndexWrapper>
-          }
-        />
+        <Route path="*" element={<RankingPanel />} />
       </SentryRoutes>
     </OuterPanel>
   );
