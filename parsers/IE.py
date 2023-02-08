@@ -221,7 +221,7 @@ def fetch_consumption_forecast(
     for item in demand_forecast_data:
         data_point = {
             "zoneKey": zone_key,
-            "consumption": item["Value"],
+            "value": item["Value"],
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
             ).replace(tzinfo=pytz.timezone("Europe/Dublin")),

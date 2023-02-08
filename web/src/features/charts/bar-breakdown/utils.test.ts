@@ -1,9 +1,13 @@
-import { getDataBlockPositions, getProductionData } from './utils';
+import {
+  getDataBlockPositions,
+  getProductionData,
+  getElectricityProductionValue,
+} from './utils';
 
 const zoneDetailsData = {
   co2intensity: 187.32,
   co2intensityProduction: 190.6,
-  countryCode: 'PT',
+  zoneKey: 'PT',
   fossilFuelRatio: 0.3,
   fossilFuelRatioProduction: 0.3,
   renewableRatio: 0.7,
@@ -32,6 +36,7 @@ const zoneDetailsData = {
     battery: 'electricityMap, 2021 average',
     hydro: 'electricityMap, 2021 average',
   },
+  estimationMethod: 'MEASURED',
   exchange: { ES: -934 },
   exchangeCapacities: {},
   exchangeCo2Intensities: { ES: 187.32 },
@@ -39,7 +44,9 @@ const zoneDetailsData = {
   maxCapacity: 5389,
   maxDischarge: 395,
   maxExport: 934,
+  maxExportCapacity: 3000,
   maxImport: 0,
+  maxImportCapacity: 500,
   maxProduction: 2365,
   maxStorage: 0,
   maxStorageCapacity: 3585,
@@ -80,7 +87,7 @@ const zoneDetailsData = {
     unknown: 'assumes thermal (coal, gas, oil or biomass)',
     wind: 'UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)',
   },
-  source: ['entsoe.eu'],
+  source: 'entsoe.eu',
   storage: { battery: null, hydro: -395 },
   totalCo2Discharge: 53_894_853.608_163_215,
   totalCo2Export: 174_956_880,
@@ -207,6 +214,65 @@ describe('getProductionData', () => {
     const result = getProductionData(zoneDetailsData);
     // TODO: Match snapshot
     expect(result).toStrictEqual(productionData);
+  });
+});
+
+describe('getElectricityProductionValue', () => {
+  it('handles production value', () => {
+    const result = getElectricityProductionValue({
+      capacity: 1000,
+      isStorage: false,
+      production: 500,
+      storage: 0,
+    });
+    expect(result).toStrictEqual(500);
+  });
+  it('handles missing production value with zero capacity', () => {
+    const result = getElectricityProductionValue({
+      capacity: 0,
+      isStorage: false,
+      production: null,
+      storage: 0,
+    });
+    expect(result).toStrictEqual(0);
+  });
+
+  it('handles missing production value', () => {
+    const result = getElectricityProductionValue({
+      capacity: 100,
+      isStorage: false,
+      production: null,
+      storage: 0,
+    });
+
+    expect(result).toStrictEqual(null);
+  });
+  it('handles storage', () => {
+    const result = getElectricityProductionValue({
+      capacity: 100,
+      isStorage: true,
+      production: null,
+      storage: 300,
+    });
+    expect(result).toStrictEqual(-300);
+  });
+  it('handles zero storage', () => {
+    const result = getElectricityProductionValue({
+      capacity: 100,
+      isStorage: true,
+      production: null,
+      storage: 0,
+    });
+    expect(result).toStrictEqual(0);
+  });
+  it('handles missing storage', () => {
+    const result = getElectricityProductionValue({
+      capacity: 100,
+      isStorage: true,
+      production: null,
+      storage: null,
+    });
+    expect(result).toStrictEqual(null);
   });
 });
 

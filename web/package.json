@@ -14,8 +14,8 @@
     "mockserver": "nodemon ../mockserver/server.js",
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
-    "generate-world": "ts-node ./geo/generate-world.ts",
-    "generate-zones-config": "ts-node ./scripts/generate-zones-config.ts",
+    "generate-world": "ts-node ./geo/generateWorld.ts",
+    "generate-zones-config": "ts-node ./scripts/generateZonesConfig.ts",
     "predevelop": "pnpm run generate-zones-config",
     "prebuild": "pnpm run generate-zones-config",
     "cy:components": "cypress open --components -b electron",
@@ -185,7 +185,6 @@
   "lint-staged": {
     "*": "prettier -uw --cache",
     "*.{ts,tsx}": [
-      "eslint --cache --fix",
       "vitest related --run --coverage=false"
     ]
   }

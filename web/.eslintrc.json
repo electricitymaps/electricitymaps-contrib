@@ -75,7 +75,8 @@
           "src/testing/setupTests.ts",
           "src/testing/testUtils.tsx",
           "src/testing/mocks/**",
-          "src/**/*.test.{ts,tsx}"
+          "src/**/*.test.{ts,tsx}",
+          "geo/**/*.{ts,tsx}"
         ]
       }
     ],
@@ -166,6 +167,10 @@
       ],
       "parserOptions": {
         "project": ["./tsconfig.node.json"]
+      },
+      "rules": {
+        "unicorn/no-array-reduce": "off",
+        "unicorn/no-process-exit": "off"
       }
     },
     {
