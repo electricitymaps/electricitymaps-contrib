@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@capacitor/app': ^4.1.1
   '@capacitor/core': ^4.6.2
   '@mapbox/point-geometry': ^0.1.0
   '@mdx-js/react': ^2.1.5
@@ -140,6 +141,7 @@ specifiers:
   workbox-window: 6.5.4
 
 dependencies:
+  '@capacitor/app': 4.1.1_@capacitor+core@4.6.2
   '@capacitor/core': 4.6.2
   '@mapbox/point-geometry': 0.1.0
   '@radix-ui/react-accordion': 1.0.1_biqbaboplfbrettd7655fr4n2y
@@ -2755,6 +2757,14 @@ packages:
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
+
+  /@capacitor/app/4.1.1_@capacitor+core@4.6.2:
+    resolution: {integrity: sha512-SJcJA1rhFQyeH6eLfUEbdKkHzAwzahJNVPNXmU88fdmXpMgM2dJGzZj1vrm6e21aQq+Z4aBVLJ2RCdj92zD7wg==}
+    peerDependencies:
+      '@capacitor/core': ^4.0.0
+    dependencies:
+      '@capacitor/core': 4.6.2
+    dev: false
 
   /@capacitor/core/4.6.2:
     resolution: {integrity: sha512-M/KpAg+peft/HTb7svLiKHxjbll67ybs1vEqhZuvjXlwro53NxNXR4YJS7+wNXZSiA4Kxjtf+a754xGgZcMarA==}
