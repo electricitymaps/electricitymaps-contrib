@@ -37,27 +37,30 @@
 The parser should either return a dictionary or a list of dictionaries matching the following object:
 
 ```python
-     {
-      'zoneKey': zone_key,
-      'datetime': datetime.datetime(2023, 2, 8, 17, 0, tzinfo=tzutc()), # Easiest passed as a datetime object parsed from the source.
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': None, # Can also be omitted if it's not available.
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'capacity': {
-          'hydro': 0.0 # If the same API provides capacities then you can return those as well, but you should not add additional API dependencies for it.
-      },
-      'storage': {
-          'hydro': 0.0, #NOTE: For storage negative values indicate discharge (production) and positive numbers charging (input).
-      },
-      'source': 'mysource.com'
-    }
+{
+  'zoneKey': zone_key,
+  # datetime is easiest passed as a datetime object parsed from the source.
+  'datetime': datetime.datetime(2023, 2, 8, 17, 0, tzinfo=tzutc()),
+  'production': {
+      'biomass': 0.0,
+      'coal': 0.0,
+      'gas': 0.0,
+      'hydro': 0.0,
+      'nuclear': None, # Can also be omitted if it's not available.
+      'oil': 0.0,
+      'solar': 0.0,
+      'wind': 0.0,
+      'geothermal': 0.0,
+      'unknown': 0.0
+  },
+  'capacity': {
+      # If the same API provides capacities then you can return those as well, but you should not add additional API dependencies for it.
+      'hydro': 0.0
+  },
+  'storage': {
+      #NOTE: For storage negative values indicate discharge (production) and positive numbers charging (input).
+      'hydro': 0.0,
+  },
+  'source': 'mysource.com'
+}
 ```
