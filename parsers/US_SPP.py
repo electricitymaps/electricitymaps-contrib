@@ -8,12 +8,14 @@ from io import StringIO
 from logging import Logger, getLogger
 from typing import Optional
 
+import arrow
 import pandas as pd
 from dateutil import parser
 from pytz import utc
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
+from parsers.lib.validation import validate_exchange
 
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "host=https://marketplace.spp.org"
@@ -23,6 +25,9 @@ HISTORIC_GENERATION_BASE_URL = f"{US_PROXY}/file-browser-api/download/generation
 GENERATION_URL = f"{US_PROXY}/chart-api/gen-mix/asFile?{HOST_PARAMETER}"
 
 EXCHANGE_URL = f"{US_PROXY}/chart-api/interchange-trend/asFile?{HOST_PARAMETER}"
+HISTORICAL_EXCHANGE_URL = (
+    f"{US_PROXY}/file-browser-api/download/historical-tie-flow?{HOST_PARAMETER}&path="
+)
 
 MAPPING = {
     "Wind": "wind",
@@ -37,6 +42,32 @@ MAPPING = {
 
 TIE_MAPPING = {"US-MISO->US-SPP": ["AMRN", "DPC", "GRE", "MDU", "MEC", "NSP", "OTP"]}
 
+EXCHANGE_MAPPING = {
+    "AECI": "US-MIDW-AECI",
+    "AMRN": "US-MIDW-MISO",
+    "BLKW": "US-NW-PNM",
+    "CLEC": "US-MIDW-MISO",
+    "EDDY": "US-SW-EPE",
+    "EES": "US-MIDW-MISO",
+    "ERCOTE": "US-TEX-ERCO",
+    "ERCOTN": "US-TEX-ERCO",
+    "LAMAR": "US-NW-PSCO",
+    "MEC": "US-MIDW-MISO",
+    "SCSE": "US-NW-WACM",
+    "SOUC": "US-SE-SOCO",
+    "SPA": "US-CENT-SPA",
+    "TVA": "US-TEN-TVA",
+    "RCEAST": "US-NW-WAUW",
+    "SPC": "CA-SK",
+    "MCWEST": "US-NW-WAUW",
+    "SGE": "US-NW-WACM",
+    "ALTW": "US-MIDW-MISO",
+    "DPC": "US-MIDW-MISO",
+    "GRE": "US-MIDW-MISO",
+    "MDU": "US-MIDW-MISO",
+    "NSP": "US-MIDW-MISO",
+    "OTP": "US-MIDW-MISO",
+}
 # NOTE
 # Data sources return timestamps in GMT.
 # Energy storage situation unclear as of 16/03/2018, likely to change quickly in future.
@@ -46,7 +77,7 @@ def get_data(url, session: Optional[Session] = None):
     """Returns a pandas dataframe."""
 
     s = session or Session()
-    req = s.get(url, verify=False)
+    req = s.get(url)
     df = pd.read_csv(StringIO(req.text))
 
     return df
@@ -297,9 +328,115 @@ def fetch_wind_solar_forecasts(
     return data
 
 
+def fetch_live_exchange(
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+
+    data = get_data(EXCHANGE_URL, session)
+
+    data = data.dropna(axis=0)
+    data["GMTTime"] = pd.to_datetime(data["GMTTime"], utc=True)
+    data = data.loc[data["GMTTime"] <= target_datetime]
+    data = data.set_index("GMTTime")
+
+    exchanges = format_exchange_data(
+        data=data, zone_key1=zone_key1, zone_key2=zone_key2, logger=logger
+    )
+    return exchanges
+
+
+def fetch_historical_exchange(
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+
+    filename = target_datetime.strftime("TieFlows_%b%Y.csv")
+    file_url = f"{US_PROXY}/file-browser-api/download/historical-tie-flow?{HOST_PARAMETER}&path={filename}"
+
+    data = get_data(file_url, session)
+
+    data["GMTTIME"] = pd.to_datetime(data["GMTTIME"], utc=True)
+    data = data.loc[
+        (data["GMTTIME"] >= target_datetime - timedelta(days=1))
+        & (data["GMTTIME"] <= target_datetime)
+    ]
+    data = data.set_index("GMTTIME")
+
+    exchanges = format_exchange_data(
+        data=data, zone_key1=zone_key1, zone_key2=zone_key2, logger=logger
+    )
+    return exchanges
+
+
+def format_exchange_data(
+    data: pd.DataFrame,
+    zone_key1: str,
+    zone_key2: str,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """format exchanges data into list of data points"""
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    data = data[[col for col in EXCHANGE_MAPPING]]
+    data = data.melt(var_name="zone_key2", value_name="exchange", ignore_index=False)
+    data.zone_key2 = data.zone_key2.map(EXCHANGE_MAPPING)
+
+    data_filtered = data.loc[data["zone_key2"] == zone_key2]
+    data_filtered = data_filtered.groupby([data_filtered.index])["exchange"].sum()
+
+    all_data_points = []
+    for dt in data_filtered.index:
+        data_dt = data_filtered.loc[data_filtered.index == dt]
+        data_point = {
+            "sortedZoneKeys": sorted_zone_keys,
+            "netFlow": round(data_dt.values[0], 4),
+            "datetime": arrow.get(dt).datetime,
+            "source": "spp.org",
+        }
+        all_data_points.append(data_point)
+    validated_data_points = [x for x in all_data_points if validate_exchange(x, logger)]
+
+    return validated_data_points
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_exchange(
+    zone_key1: str,
+    zone_key2: str,
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+
+    now = datetime.now(tz=utc)
+    if (
+        target_datetime is None
+        or target_datetime > arrow.get(now).floor("day").datetime
+    ):
+        target_datetime = now
+        exchanges = fetch_live_exchange(zone_key1, zone_key2, session, target_datetime)
+    elif target_datetime < datetime(2014, 3, 1, tzinfo=utc):
+        raise NotImplementedError(
+            "Exchange data is not available from this sourc before 03/2014"
+        )
+    else:
+        exchanges = fetch_historical_exchange(
+            zone_key1, zone_key2, session, target_datetime
+        )
+    return exchanges
+
+
 if __name__ == "__main__":
     print("fetch_production() -> ")
     print(fetch_production())
+    print("fetch_exchange() -> ")
+    print(fetch_exchange("US-CENT-SWPP", "US-MIDW-MISO"))
     print("fetch_load_forecast() -> ")
     print(fetch_load_forecast(target_datetime="20190125"))
     print("fetch_wind_solar_forecasts() -> ")

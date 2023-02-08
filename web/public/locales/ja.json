@@ -202,7 +202,7 @@
     "feedback-question": "フィードバックしてもいいですか?",
     "feedback-answer": "ぜひどうぞ! <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">フィードバックフォーム</a>もしくは<a href=\"mailto:app@electricitymaps.com\">メール</a>でお願いします!",
     "contribute-question": "プロジェクトに貢献できますか?",
-    "contribute-answer": "できます! Electricity Map はオープンソースプロジェクトで、ボランティアの貢献者によって成り立っています。新しい地域への新規データソースの追加、新機能追加、バグ修正などで地図の開発をお手伝いいただける際は気軽に私たちの<a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>へアクセスしてください。",
+    "contribute-answer": "できます! Electricity Map はオープンソースプロジェクトで、ボランティアの貢献者によって成り立っています。新しい地域への新規データソースの追加、新機能追加、バグ修正などで地図の開発をお手伝いいただける際は気軽に私たちの<a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>へアクセスしてください。",
     "workTogether-question": "私たちと一緒に仕事できますか?",
     "workTogether-answer": "私たちはコラボレーションできる機会を積極的に探しています。<a href=\"mailto:app@electricitymaps.com\">email</a>を送ってください!",
     "disclaimer-question": "免責事項",

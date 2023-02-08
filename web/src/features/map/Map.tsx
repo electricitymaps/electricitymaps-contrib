@@ -37,7 +37,7 @@ export default function MapPage(): ReactElement {
   const [selectedFeatureId, setSelectedFeatureId] = useState<FeatureId>();
   const setIsMoving = useSetAtom(mapMovingAtom);
   const setMousePosition = useSetAtom(mousePositionAtom);
-  const setIsLoadingMap = useSetAtom(loadingMapAtom);
+  const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
@@ -100,10 +100,9 @@ export default function MapPage(): ReactElement {
 
     // An issue where the map has not loaded source yet causing map errors
     const isSourceLoaded = map.getSource('zones-clickable') != undefined;
-    if (!isSourceLoaded) {
+    if (!isSourceLoaded || isLoadingMap) {
       return;
     }
-
     for (const feature of geometries.features) {
       const { zoneId } = feature.properties;
       const zone = data.data?.zones[zoneId];
@@ -133,7 +132,15 @@ export default function MapPage(): ReactElement {
         );
       }
     }
-  }, [mapReference, geometries, data, getCo2colorScale, selectedDatetime, mixMode]);
+  }, [
+    mapReference,
+    geometries,
+    data,
+    getCo2colorScale,
+    selectedDatetime,
+    mixMode,
+    isLoadingMap,
+  ]);
 
   useEffect(() => {
     // Run when path changes
