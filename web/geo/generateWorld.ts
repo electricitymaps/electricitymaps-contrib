@@ -1,9 +1,9 @@
 import { coordEach } from '@turf/turf';
 import * as path from 'node:path';
-import { mergeZones } from '../scripts/generate-zones-config';
-import { generateAggregates } from './generate-aggregates';
-import { generateExchangesToIgnore } from './generate-exchanges-to-exclude';
-import { generateTopojson } from './generate-topojson';
+import { mergeZones } from '../scripts/generateZonesConfig';
+import { generateAggregates } from './generateAggregates';
+import { generateExchangesToIgnore } from './generateExchangesToExclude';
+import { generateTopojson } from './generateTopojson';
 import { getJSON, round } from './utilities';
 import { validateGeometry } from './validate';
 
