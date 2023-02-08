@@ -25,10 +25,9 @@ def fetch_production(
     session: request session passed in order to re-use an existing session
     target_datetime: the datetime for which we want production data. If not
       provided, we should default it to now. If past data is not available,
-      raise a NotImplementedError. Beware that the provided target_datetime is
+      raise a ParserException. Beware that the provided target_datetime is
       UTC. To convert to local timezone, you can use
-      `target_datetime = arrow.get(target_datetime).to('America/New_York')`.
-      Note that `arrow.get(None)` returns UTC now.
+      `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
     logger: an instance of a `logging.Logger` that will be passed by the
       backend. Information logged will be publicly available so that correct
       execution of the logger can be checked. All Exceptions will automatically
@@ -41,7 +40,7 @@ def fetch_production(
     --------
     If no data can be fetched, any falsy value (None, [], False) will be
       ignored by the backend. If there is no data because the source may have
-      changed or is not available, raise an Exception.
+      changed or is not available, raise an ParserException.
 
     A dictionary in the form:
     {
@@ -178,10 +177,9 @@ def fetch_price(
     session: request session passed in order to re-use an existing session
     target_datetime: the datetime for which we want production data. If not
       provided, we should default it to now. If past data is not available,
-      raise a NotImplementedError. Beware that the provided target_datetime is
+      raise a ParserException. Beware that the provided target_datetime is
       UTC. To convert to local timezone, you can use
-      `target_datetime = arrow.get(target_datetime).to('America/New_York')`.
-      Note that `arrow.get(None)` returns UTC now.
+      `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
     logger: an instance of a `logging.Logger` that will be passed by the
       backend. Information logged will be publicly available so that correct
       execution of the logger can be checked. All Exceptions will automatically
@@ -198,7 +196,7 @@ def fetch_price(
 
     A dictionary in the form:
     {
-      'zoneKey': 'FR',
+      'zoneKey': 'XX',
       'currency': EUR,
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
@@ -207,14 +205,14 @@ def fetch_price(
     or a list of dictionaries in the form:
     [
       {
-        'zoneKey': 'FR',
+        'zoneKey': 'XX',
         'currency': EUR,
         'datetime': '2017-01-01T00:00:00Z',
         'price': 0.0,
         'source': 'mysource.com'
       },
       {
-        'zoneKey': 'FR',
+        'zoneKey': 'XX',
         'currency': EUR,
         'datetime': '2017-01-01T01:00:00Z',
         'price': 0.0,
@@ -224,7 +222,11 @@ def fetch_price(
     ]
     """
     if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+        raise ParserException(
+            "example_parser.py",
+            "This parser is not yet able to parse past dates",
+            zone_key,
+        )
 
     url = "https://api.someservice.com/v1/price/latest"
 
@@ -235,21 +237,26 @@ def fetch_price(
 
     obj = response.json()
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": datetime.fromisoformat(obj["datetime"]),
-        "currency": "EUR",
-        "price": obj["price"],
-        "source": "someservice.com",
-    }
+    price_list: List[dict] = []
 
-    return data
+    for item in obj:
+        price_list.append(
+            {
+                "zoneKey": zone_key,
+                "currency": "EUR",
+                "datetime": datetime.fromisoformat(item["datetime"]),
+                "price": item["price"],
+                "source": "someservice.com",
+            }
+        )
+
+    return price_list
 
 
 def fetch_exchange(
-    zone_key1: str = "DK",
-    zone_key2: str = "NO",
-    session: Optional[Session] = None,
+    zone_key1: str = "XX",
+    zone_key2: str = "YY",
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
@@ -258,14 +265,14 @@ def fetch_exchange(
 
     Arguments:
     ----------
-    zone_key: used in case a parser is able to fetch multiple countries
+    zone_key1: used is used to identify the first zone of a exchange pair.
+    zone_key2: used is used to identify the second zone of a exchange pair.
     session: request session passed in order to re-use an existing session
     target_datetime: the datetime for which we want production data. If not
       provided, we should default it to now. If past data is not available,
-      raise a NotImplementedError. Beware that the provided target_datetime is
+      raise a ParserException. Beware that the provided target_datetime is
       UTC. To convert to local timezone, you can use
-      `target_datetime = arrow.get(target_datetime).to('America/New_York')`.
-      Note that `arrow.get(None)` returns UTC now.
+      `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
     logger: an instance of a `logging.Logger` that will be passed by the
       backend. Information logged will be publicly available so that correct
       execution of the logger can be checked. All Exceptions will automatically
@@ -282,7 +289,7 @@ def fetch_exchange(
 
     A dictionary in the form:
     {
-      'sortedZoneKeys': 'DK->NO',
+      'sortedZoneKeys': 'XX->YY',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -290,13 +297,13 @@ def fetch_exchange(
     or a list of dictionaries in the form:
     [
       {
-        'sortedZoneKeys': 'DK->NO',
+        'sortedZoneKeys': 'XX->YY',
         'datetime': '2017-01-01T00:00:00Z',
         'netFlow': 0.0,
         'source': 'mysource.com'
       },
       {
-        'sortedZoneKeys': 'DK->NO',
+        'sortedZoneKeys': 'XX->YY',
         'datetime': '2017-01-01T01:00:00Z',
         'netFlow': 0.0,
         'source': 'mysource.com'
@@ -307,43 +314,44 @@ def fetch_exchange(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or Session()
-    url = "https://api.someservice.com/v1/exchange/latest?" "from={}&to={}".format(
-        zone_key1, zone_key2
-    )
-
-    response = r.get(url)
-    assert response.status_code == 200
-    obj = response.json()
-
-    data = {
-        "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
-        "source": "someservice.com",
+    url = f"https://api.someservice.com/v1/exchange/latest"
+    params = {
+        "from": zone_key1,
+        "to": zone_key2,
     }
 
-    # Zone keys are sorted in order to enable easier indexing in the database
-    sorted_zone_keys = sorted([zone_key1, zone_key2])
-    # Here we assume that the net flow returned by the api is the flow from
-    # country1 to country2. A positive flow indicates an export from country1
-    # to country2. A negative flow indicates an import.
-    net_flow = obj["exchange"]
-    # The net flow to be reported should be from the first country to the
-    # second (sorted alphabetically). This is NOT necessarily the same
-    # direction as the flow from country1 to country2
-    data["netFlow"] = net_flow if zone_key1 == sorted_zone_keys[0] else -1 * net_flow
+    response = session.get(url, params=params)
+    assert (
+        response.status_code == 200
+    ), f"Exception when fetching exchange for {zone_key1} -> {zone_key2}: error when calling url={url}"
+    obj = response.json()
 
-    # Parse the datetime and return a python datetime object
-    data["datetime"] = arrow.get(obj["datetime"]).datetime
+    exchange_list: List[dict] = []
 
-    return data
+    for item in obj:
+        exchange_list.append(
+            {
+                # Zone keys are sorted in order to enable easier indexing in the database
+                "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
+                # Parse the datetime and return a python datetime object
+                "datetime": datetime.fromisoformat(item["datetime"]),
+                # Here we assume that the net flow returned by the api is the flow from
+                # country1 to country2. A positive flow indicates an export from country1
+                # to country2. A negative flow indicates an import.
+                "netFlow": item["exchange"],
+                "source": "someservice.com",
+            }
+        )
+
+    return exchange_list
 
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print("fetch_production() ->")
-    print(fetch_production())
-    print("fetch_price() ->")
-    print(fetch_price())
-    print("fetch_exchange(DK, NO) ->")
-    print(fetch_exchange("DK", "NO"))
+    print("fetch_production(DK-DK1) ->")
+    print(fetch_production("DK-DK1"))
+    print("fetch_price(DK-DK1) ->")
+    print(fetch_price("DK-DK1"))
+    print("fetch_exchange(DK-DK1, DK-DK2) ->")
+    print(fetch_exchange("DK-DK1", "DK-DK2"))
