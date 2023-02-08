@@ -15,7 +15,7 @@ TZ = "Asia/Ulaanbaatar"  # UTC+8
 
 def fetch_production(
     zone_key: str = "MN",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
