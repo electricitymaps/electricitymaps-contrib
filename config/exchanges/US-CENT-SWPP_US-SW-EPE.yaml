@@ -1,5 +1,5 @@
 lonlat:
-  - -1000.4
+  - -103.81455
   - 32.96495
 parsers:
   exchange: US_SPP.fetch_exchange
