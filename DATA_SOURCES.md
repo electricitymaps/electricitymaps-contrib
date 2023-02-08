@@ -353,6 +353,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Solar: [Energy Market Authority Statistics](https://www.ema.gov.sg/statistic.aspx?sta_sid=20170711hc85chOLVvWp)
   - Other: [Energy Market Authority](https://www.ema.gov.sg/statistic.aspx?sta_sid=20140730XofavKNX5Ti7)
 - Slovakia:
+  - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=SK)
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Other: [SEPS](https://www.sepsas.sk/media/4951/rocenka-sed-2020.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
