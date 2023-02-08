@@ -349,9 +349,9 @@ def fetch_exchange(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print("fetch_production(DK-DK1) ->")
-    print(fetch_production("DK-DK1"))
-    print("fetch_price(DK-DK1) ->")
-    print(fetch_price("DK-DK1"))
-    print("fetch_exchange(DK-DK1, DK-DK2) ->")
-    print(fetch_exchange("DK-DK1", "DK-DK2"))
+    print("fetch_production(XX) ->")
+    print(fetch_production("XX"))
+    print("fetch_price(XX) ->")
+    print(fetch_price("XX"))
+    print("fetch_exchange(XX, YY) ->")
+    print(fetch_exchange("XX", "YY"))
