@@ -31,12 +31,14 @@ const mergeZones = () => {
   ]);
   const zones = filesWithDirectory.reduce((zones, filepath) => {
     const zoneConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
-    zoneConfig.bounding_box?.forEach((point: number[]) => {
-      point[0] = round(point[0], 4);
-      point[1] = round(point[1], 4);
-    });
+    if (zoneConfig?.bounding_box) {
+      for (const point of zoneConfig.bounding_box) {
+        point[0] = round(point[0], 4);
+        point[1] = round(point[1], 4);
+      }
+    }
 
-    for (const key in zoneConfig) {
+    for (const key of Object.keys(zoneConfig)) {
       if (UNNECESSARY_ZONE_FIELDS.has(key)) {
         delete zoneConfig[key];
       }
@@ -65,7 +67,7 @@ const mergeExchanges = () => {
     const exchangeConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
     exchangeConfig.lonlat[0] = round(exchangeConfig.lonlat[0], 3);
     exchangeConfig.lonlat[1] = round(exchangeConfig.lonlat[1], 3);
-    for (const key in exchangeConfig) {
+    for (const key of Object.keys(exchangeConfig)) {
       if (UNNECESSARY_EXCHANGE_FIELDS.has(key)) {
         delete exchangeConfig[key];
       }
@@ -107,7 +109,7 @@ const mergeRatioParameters = () => {
   for (const filepath of filesWithDirectory) {
     const zoneConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
     const zoneKey = path.parse(filepath).name;
-    for (const key in ratioParameters) {
+    for (const key of Object.keys(ratioParameters)) {
       if (zoneConfig[key] !== undefined) {
         ratioParameters[key].zoneOverrides[zoneKey] = zoneConfig[key];
       }
