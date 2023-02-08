@@ -25,6 +25,10 @@ def validate_datapoint_format(datapoint: Dict[str, Any], kind: str, zone_key: Zo
         "consumption": ["zoneKey", "consumption"] + standard_keys,
         "exchange": ["sortedZoneKeys", "netFlow"] + standard_keys,
         "price": ["zoneKey", "currency", "price"] + standard_keys,
+        "consumptionForecast": ["zoneKey", "value"] + standard_keys,
+        "productionPerModeForecast": ["zoneKey", "production"] + standard_keys,
+        "generationForecast": ["zoneKey", "value"] + standard_keys,
+        "exchangeForecast": ["zoneKey", "netFlow"] + standard_keys,
     }
     for key in keys_dict[kind]:
         if key not in datapoint.keys():
