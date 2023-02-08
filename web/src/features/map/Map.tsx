@@ -23,7 +23,7 @@ import {
   loadingMapAtom,
   mapMovingAtom,
   mousePositionAtom,
-  zoneIdAtom,
+  selectedZoneIdAtom,
 } from './mapAtoms';
 
 const ZONE_SOURCE = 'zones-clickable';
@@ -47,7 +47,7 @@ export default function MapPage(): ReactElement {
   const theme = useTheme();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
-  const [zoneId, setZoneId] = useAtom(zoneIdAtom);
+  const [zoneId, setZoneId] = useAtom(selectedZoneIdAtom);
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.

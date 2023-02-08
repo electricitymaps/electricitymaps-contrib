@@ -12,4 +12,4 @@ export const hoveredZoneAtom = atom<HoveredZone | null>(null);
 
 export const mapMovingAtom = atom(false);
 
-export const zoneIdAtom = atom<FeatureId>(undefined);
+export const selectedZoneIdAtom = atom<FeatureId>(undefined);

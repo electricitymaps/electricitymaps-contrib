@@ -15,7 +15,7 @@ import Divider from './Divider';
 import NoInformationMessage from './NoInformationMessage';
 import { ZoneHeader } from './ZoneHeader';
 import { ZoneDataStatus, getZoneDataStatus } from './util';
-import { zoneIdAtom } from 'features/map/mapAtoms';
+import { selectedZoneIdAtom } from 'features/map/mapAtoms';
 import { useEffect } from 'react';
 
 export default function ZoneDetails(): JSX.Element {
@@ -23,7 +23,7 @@ export default function ZoneDetails(): JSX.Element {
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const setZoneId = useSetAtom(zoneIdAtom);
+  const setZoneId = useSetAtom(selectedZoneIdAtom);
   const { data, isError, isLoading } = useGetZone({
     enabled: Boolean(zoneId),
   });
