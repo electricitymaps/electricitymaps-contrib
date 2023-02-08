@@ -129,14 +129,14 @@
   "coal": "hiili",
   "oil": "öljy",
   "unknown": "tuntematon",
-  "electricityComesFrom": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevasta sähköstä tulee %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevista sähkön päästöistä tulee %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevasta sähköstä varastoidaan %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevista sähkön päästöistä varastoidaan %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevasta sähköstä viedään %3$s",
-  "emissionsExportedTo": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevista sähkön päästöistä viedään %3$s",
-  "electricityImportedFrom": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevasta sähköstä tuodaan %3$s",
-  "emissionsImportedFrom": "<b>%1$s %%</b> <img id=\"country-flag\"></img> <b>%2$s</b> saatavilla olevista sähkön päästöistä tuodaan %3$s",
+  "electricityComesFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä tulee %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä tulee %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä varastoidaan %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä varastoidaan %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä viedään %3$s",
+  "emissionsExportedTo": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä viedään %3$s",
+  "electricityImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä tuodaan %3$s",
+  "emissionsImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä tuodaan %3$s",
   "ofCO2eqPerMinute": "hiilidioksiidia minuutissa",
   "theMap": {
     "groupName": "Kartta",
@@ -199,7 +199,7 @@
     "feedback-question": "Voinko antaa palautetta?",
     "feedback-answer": "Kiitos kyllä! Täytâ <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">lomake</a> tai <a href=\"mailto:app@electricitymaps.com\">lähetä meille sähköpostia!</a>",
     "contribute-question": "Voinko osallistua projektiisi?",
-    "contribute-answer": " Kyllä! The Electricity Map on avoid lähdekoodi, jonka ovat tehneet mahdolliseksi vapaaehtoiset avustajat. Jos haluat auttaa kartan kehittämisessä joko lisäämällä tietolähteitä uusille alueille, lisäämällä uusia ominaisuuksia tai korjaamalla virheitä, liity meidän <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">GitHub</a> projektiin.",
+    "contribute-answer": " Kyllä! The Electricity Map on avoid lähdekoodi, jonka ovat tehneet mahdolliseksi vapaaehtoiset avustajat. Jos haluat auttaa kartan kehittämisessä joko lisäämällä tietolähteitä uusille alueille, lisäämällä uusia ominaisuuksia tai korjaamalla virheitä, liity meidän <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">GitHub</a> projektiin.",
     "workTogether-question": "Voimmeko työskennellä yhdessä?",
     "workTogether-answer": "Etsimme aktiivisesti uusia mahdollisuuksia yhteistyöhön. <a href=\"mailto:app@electricitymaps.com\">Lähetä meille sähköpostia!</a>",
     "disclaimer-question": "Vastuuvapauslauseke",
@@ -242,35 +242,35 @@
     "AR": {
       "zoneName": "Argentiina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "Uusi Etelä-Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Pohjois-territorio"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australia",
       "zoneName": "Etelä-Australia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmania",
       "zoneName": "King Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australia",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australia",
       "zoneName": "Länsi-Australia"
     },
@@ -321,6 +321,9 @@
     },
     "BQ": {
       "zoneName": "Alankomaiden Karibia"
+    },
+    "BR": {
+      "zoneName": "Brasilia"
     },
     "BR-CS": {
       "countryName": "Brasilia",
@@ -604,10 +607,6 @@
     "GB-ORK": {
       "countryName": "Iso-Britannia",
       "zoneName": "Orkneysaaret"
-    },
-    "GB-ZET": {
-      "countryName": "Iso-Britannia",
-      "zoneName": "Shetlandinsaaret"
     },
     "GB-ZET": {
       "countryName": "Iso-Britannia",

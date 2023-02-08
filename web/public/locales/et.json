@@ -134,14 +134,14 @@
   "coal": "süsi",
   "oil": "õli",
   "unknown": "teadmata",
-  "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> tuleb allikast %3$s",
-  "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> tuleb allikast %3$s",
-  "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> hoiustatakse kasutades %3$s",
-  "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> hoiustatakse kasutades %3$s",
-  "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> eksporditakse riiki <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> eksporditakse riiki <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> imporditakse riigist <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> imporditakse riigist <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> tuleb allikast %3$s",
+  "emissionsComeFrom": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> tuleb allikast %3$s",
+  "electricityStoredUsing": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> hoiustatakse kasutades %3$s",
+  "emissionsStoredUsing": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> hoiustatakse kasutades %3$s",
+  "electricityExportedTo": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> eksporditakse riiki %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> eksporditakse riiki %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq minutis",
   "theMap": {
     "groupName": "Kaart",
@@ -204,7 +204,7 @@
     "feedback-question": "Kas ma saan teile saata tagasisidet?",
     "feedback-answer": "Jah, palun! Täitke <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">meie tagasiside vorm</a> või <a href=\"mailto:app@electricitymaps.com\">saatke meile e-kiri!</a>",
     "contribute-question": "Kas ma saan aidata teie projektile kaasa?",
-    "contribute-answer": " Jah! The Electricity Map on avatud lähtekoodiga projekt, mille tegid võimalikuks meie vabatahtlikud panustajad. Kui soovite aidata kaardi väljatöötamisel, kas siis lisades uute piirkondadele andmeallikaid, lisades uued funktsioonid või parandades esinevad vead, siis liituge julgelt meie <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a> platvormiga.",
+    "contribute-answer": " Jah! The Electricity Map on avatud lähtekoodiga projekt, mille tegid võimalikuks meie vabatahtlikud panustajad. Kui soovite aidata kaardi väljatöötamisel, kas siis lisades uute piirkondadele andmeallikaid, lisades uued funktsioonid või parandades esinevad vead, siis liituge julgelt meie <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a> platvormiga.",
     "workTogether-question": "Kas me saaksime koos töötada?",
     "workTogether-answer": "Otsime aktiivselt uusi koostöövõimalusi. <a href=\"mailto:app@electricitymaps.com\">Saatke meile e-kiri!</a>",
     "disclaimer-question": "Vastutusest loobumine",
@@ -247,47 +247,47 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Austraalia",
       "zoneName": "Uus-Lõuna-Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Austraalia",
       "zoneName": "Põhjaterritoorium"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Austraalia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Austraalia",
       "zoneName": "Lõuna-Austraalia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Austraalia",
       "zoneName": "Tasmaania"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Austraalia",
       "zoneName": "King' saar"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Austraalia",
       "zoneName": "Flindersi saar"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Austraalia",
       "zoneName": "Cape Barreni saar"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Austraalia",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Austraalia",
       "zoneName": "Lääne-Austraalia"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Austraalia",
       "zoneName": "Rottnesti saar"
     },
@@ -338,6 +338,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius ja Saba"
+    },
+    "BR": {
+      "zoneName": "Brasiilia"
     },
     "BR-CS": {
       "countryName": "Brasiilia",
@@ -633,10 +636,6 @@
     "GB-ORK": {
       "countryName": "Suurbritannia",
       "zoneName": "Orkney saared"
-    },
-    "GB-ZET": {
-      "countryName": "Suurbritannia",
-      "zoneName": "Shetlandi saared"
     },
     "GB-ZET": {
       "countryName": "Suurbritannia",

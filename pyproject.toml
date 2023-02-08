@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "electricitymap-contrib"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
-authors = ["Electricity Maps team <app@electricityMaps.com>"]
+license = "AGPL-3.0-or-later"
+authors = ["Electricity Maps <app@electricitymaps.com>"]
 packages = [
     { include = "electricitymap" }
 ]
@@ -31,8 +32,8 @@ tablib = {version="~0.12.1", optional=true}
 tqdm = {version="^4.64.0", optional=true}
 xlrd = {version="^2.0.1", optional=true}
 xmltodict = {version = "^0.13.0", optional=true}
-black = "21.6b0"
-isort = "5.9.3"
+black = "22.12.0"
+isort = "5.12.0"
 deepdiff = "^5.8.1"
 PyYAML = "^6.0"
 

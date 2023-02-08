@@ -1,6 +1,6 @@
 """
-Initial PR https://github.com/tmrowco/electricitymap-contrib/pull/2456
-Discussion thread https://github.com/tmrowco/electricitymap-contrib/issues/636
+Initial PR https://github.com/electricitymaps/electricitymaps-contrib/pull/2456
+Discussion thread https://github.com/electricitymaps/electricitymaps-contrib/issues/636
 A promotion webpage for King's Island energy production is here: https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island
 As of 09/2020, it embeds with <iframe> the URI https://data.ajenti.com.au/KIREIP/index.html
 
@@ -18,25 +18,25 @@ from requests import Session
 from signalr import Connection
 
 ZONE_PARAMS = {
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
         "hub": "TagHub",
         "method": "Dashboard",
         "tz": "Australia/Currie",
         "source": "https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island",  # Iframe: https://data.ajenti.com.au/KIREIP/index.html
     },
     # Flinders Island
-    # https://github.com/tmrowco/electricitymap-contrib/issues/2533
+    # https://github.com/electricitymaps/electricitymaps-contrib/issues/2533
     # https://en.wikipedia.org/wiki/Flinders_Island
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
         "hub": "flindershub",
         "method": "SendDashboard",
         "tz": "Australia/Hobart",
         "source": "https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/flinders-island",
     },
     # Rottnest Island
-    # https://github.com/tmrowco/electricitymap-contrib/issues/2534
+    # https://github.com/electricitymaps/electricitymaps-contrib/issues/2534
     # https://en.wikipedia.org/wiki/Rottnest_Island
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
         "hub": "HogsHub",
         "method": "SendDashboard",
         "tz": "Australia/Perth",
@@ -130,7 +130,7 @@ def sum_storage_techs(technologies_parsed):
 
 
 def fetch_production(
-    zone_key: str = "AUS-TAS-KI",
+    zone_key: str = "AU-TAS-KI",
     session: Optional[Session] = None,
     target_datetime=None,
     logger: Logger = getLogger(__name__),

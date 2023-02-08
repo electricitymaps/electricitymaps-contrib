@@ -201,14 +201,14 @@
   "coal": "kol",
   "oil": "olja",
   "unknown": "okänd",
-  "electricityComesFrom": "<b>%1$s %%</b> av elen i <img id=\"country-flag\"></img> <b>%2$s</b> kommer från %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> kommer från %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> av elen i <img id=\"country-flag\"></img> <b>%2$s</b> lagras med %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> lagras med %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> av elen i <img id=\"country-flag\"></img> <b>%2$s</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> av elen i <img id=\"country-flag\"></img> <b>%2$s</b> importeras från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> importeras från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> av elen i %4$s <b>%2$s</b> kommer från %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> kommer från %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> av elen i %4$s <b>%2$s</b> lagras med %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> lagras med %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> av elen i %4$s <b>%2$s</b> exporteras till %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> exporteras till %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> av elen i %4$s <b>%2$s</b> importeras från %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> importeras från %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "av CO₂eq per minut",
   "theMap": {
     "groupName": "Kartan",
@@ -314,47 +314,47 @@
     "AT": {
       "zoneName": "Österrike"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australien",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australien",
       "zoneName": "Northern Territory"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australien",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australien",
       "zoneName": "South Australia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australien",
       "zoneName": "Tasmanien"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australien",
       "zoneName": "Cape Barren Island"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australien",
       "zoneName": "King Island"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australien",
       "zoneName": "Flinders Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australien",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australien",
       "zoneName": "Western Australia"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australien",
       "zoneName": "Rottnest Island"
     },
@@ -406,13 +406,12 @@
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius och Saba"
     },
+    "BR": {
+      "zoneName": "Brasilien"
+    },
     "BR-CS": {
       "countryName": "Brasilien",
       "zoneName": "Centrala Brasilien"
-    },
-    "BR-I": {
-      "countryName": "Brasilien",
-      "zoneName": "Isolerade system"
     },
     "BR-N": {
       "countryName": "Brasilien",
@@ -712,10 +711,6 @@
     "GB-ORK": {
       "countryName": "Storbritannien",
       "zoneName": "Orkneyöarna"
-    },
-    "GB-ZET": {
-      "countryName": "Storbritannien",
-      "zoneName": "Shetlandsöarna"
     },
     "GB-ZET": {
       "countryName": "Storbritannien",

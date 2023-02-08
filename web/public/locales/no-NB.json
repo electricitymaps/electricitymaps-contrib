@@ -189,7 +189,7 @@
     "feedback-question": "Kan jeg gi tilbakemeldinger?",
     "feedback-answer": "Gjerne! Vennligst fyll ut <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt tilbakemeldingsskjema</a> eller <a href=\"mailto:app@electricitymaps.com\">eller send oss en e-post</a>.",
     "contribute-question": "Kan jeg bidra til prosjektet?",
-    "contribute-answer": "Ja! The Electricity Map er et åpen kildekode-prosjekt som er muliggjort av frivillige bidragsytere. Hvis du ønsker å hjelpe til med utviklingen av kartet, enten ved å legge til nye datakilder, forbedre det eller fikse bugs, bli med oss på <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ja! The Electricity Map er et åpen kildekode-prosjekt som er muliggjort av frivillige bidragsytere. Hvis du ønsker å hjelpe til med utviklingen av kartet, enten ved å legge til nye datakilder, forbedre det eller fikse bugs, bli med oss på <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
     "workTogether-question": "Kan vi samarbeide?",
     "workTogether-answer": "Vi er på jakt etter muligheter for å samarbeide. <a href=\"mailto:app@electricitymaps.com\">Send oss en e-post!</a>",
     "disclaimer-question": "Ansvarsfraskrivelse",
@@ -209,14 +209,14 @@
   "coal": "Kull",
   "oil": "Olje",
   "unknown": "Ukjent energikilde",
-  "electricityComesFrom": "<b>%1$s %%</b> av elektrisitet i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> av CO₂-utslipp i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> av elektrisitet i <img id=\"country-flag\"></img> <b>%2$s</b> lagres gjennom %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> av CO₂-utslipp i <img id=\"country-flag\"></img> <b>%2$s</b> lagres gjennom %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> av elektrisitet i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> av CO₂-utslipp i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> av elektrisitet i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> av CO₂-utslipp i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> kommer fra %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> kommer fra %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> lagres gjennom %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> lagres gjennom %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "av CO₂-ekvivalenter per minutt",
   "zoneShortName": {
     "AD": {
@@ -255,47 +255,47 @@
     "AT": {
       "zoneName": "Østerrike"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Northern Territory"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australia",
       "zoneName": "South Australia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australia",
       "zoneName": "Cape Barren Island"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australia",
       "zoneName": "King Island"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australia",
       "zoneName": "Flinders Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australia",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australia",
       "zoneName": "Western Australia"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australia",
       "zoneName": "Rottnest Island"
     },
@@ -346,6 +346,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius og Saba"
+    },
+    "BR": {
+      "zoneName": "Brasil"
     },
     "BR-CS": {
       "countryName": "Brasil",
@@ -641,10 +644,6 @@
     "GB-ORK": {
       "countryName": "Storbritannia",
       "zoneName": "Orkenøyene"
-    },
-    "GB-ZET": {
-      "countryName": "Storbritannia",
-      "zoneName": "Shetland"
     },
     "GB-ZET": {
       "countryName": "Storbritannia",

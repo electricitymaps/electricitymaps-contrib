@@ -125,14 +125,14 @@
   "coal": "석탄",
   "oil": "오일",
   "unknown": "알 수 없음",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> comes from %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> come from %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is stored using %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are stored using %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is exported to %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "지도",
@@ -195,7 +195,7 @@
     "feedback-question": "어떻게 피드백을 줄 수 있나요?",
     "feedback-answer": "모든 피드백은 환영입니다! <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">피드백 양식</a> 혹은 <a href=\"mailto:app@electricitymaps.com\">에서 작성하신 후 이메일을 보내주세요!</a>",
     "contribute-question": "저도 프로젝트에 기여할 수 있을까요?",
-    "contribute-answer": "네! The Electricity Map 은 자원자 분들의 도움으로 만들어진 오픈 소스 프로젝트입니다. 새로운 분야의 데이터 소스를 추가하거나, 버그 수정, 새 기능 추가 등 지도 개발을 돕고 싶으신 경우, <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>에서 참여하세요.",
+    "contribute-answer": "네! The Electricity Map 은 자원자 분들의 도움으로 만들어진 오픈 소스 프로젝트입니다. 새로운 분야의 데이터 소스를 추가하거나, 버그 수정, 새 기능 추가 등 지도 개발을 돕고 싶으신 경우, <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>에서 참여하세요.",
     "workTogether-question": "함께 일할 수 있나요?",
     "workTogether-answer": "저희는 협력할 기회를 항상 찾고 있습니다. <a href=\"mailto:app@electricitymaps.com\">이메일을 보내주세요!</a>",
     "disclaimer-question": "고지 사항",
@@ -238,35 +238,35 @@
     "AR": {
       "zoneName": "아르헨티나"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "호주",
       "zoneName": "뉴사우스웨일스 주"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "호주",
       "zoneName": "노던 준주"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "호주",
       "zoneName": "퀸즐랜드 주"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "호주",
       "zoneName": "사우스오스트레일리아 주"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "호주",
       "zoneName": "태즈메이니아 주"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "태즈메이니아 주",
       "zoneName": "킹섬"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "호주",
       "zoneName": "빅토리아 주"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "호주",
       "zoneName": "웨스턴 오스트레일리아 주"
     },
@@ -317,6 +317,9 @@
     },
     "BQ": {
       "zoneName": "보네르섬, 신트외스타티위스섬, 사바섬 제도"
+    },
+    "BR": {
+      "zoneName": "브라질"
     },
     "BR-CS": {
       "countryName": "브라질",
@@ -592,10 +595,6 @@
     "GB-ORK": {
       "countryName": "영국",
       "zoneName": "오크니 제도"
-    },
-    "GB-ZET": {
-      "countryName": "영국",
-      "zoneName": "셰틀랜드 제도"
     },
     "GB-ZET": {
       "countryName": "영국",

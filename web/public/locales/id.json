@@ -125,14 +125,14 @@
   "coal": "batu bara",
   "oil": "minyak",
   "unknown": "tidak diketahui",
-  "electricityComesFrom": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> berasal dari %3$s",
-  "emissionsComeFrom": "%1$s %% emisi dari energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> berasal dari %3$s",
-  "electricityStoredUsing": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> tersimpan menggunakan %3$s",
-  "emissionsStoredUsing": "%1$s %% emisi dari energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> tersimpan menggunakan %3$s",
-  "electricityExportedTo": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diekspor ke <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "%1$s %% emisi dari energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diekspor ke <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diimport dari <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "%1$s %% emisi energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diimport dari <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> berasal dari %3$s",
+  "emissionsComeFrom": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> berasal dari %3$s",
+  "electricityStoredUsing": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> tersimpan menggunakan %3$s",
+  "emissionsStoredUsing": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> tersimpan menggunakan %3$s",
+  "electricityExportedTo": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> diekspor ke %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> diekspor ke %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "%1$s %% emisi energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq per menit",
   "theMap": {
     "groupName": "Peta",
@@ -195,7 +195,7 @@
     "feedback-question": "Bisakah saya memberi Anda umpan balik?",
     "feedback-answer": "Lakukan! Silahkan isi  <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">form umpan balik kami</a> atau <a href=\"mailto:app@electricitymaps.com\">kirim via Email!</a>",
     "contribute-question": "Dapatkah saya berkontribusi pada proyek Anda?",
-    "contribute-answer": " Iya! Electricity Map adalah proyek sumber terbuka, dimungkinkan oleh kontributor sukarela kami. Jika Anda ingin membantu mengembangkan peta, baik dengan menambahkan sumber data untuk area baru, menambahkan fitur baru atau memperbaiki bug, silakan bergabung dengan kami di <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": " Iya! Electricity Map adalah proyek sumber terbuka, dimungkinkan oleh kontributor sukarela kami. Jika Anda ingin membantu mengembangkan peta, baik dengan menambahkan sumber data untuk area baru, menambahkan fitur baru atau memperbaiki bug, silakan bergabung dengan kami di <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
     "workTogether-question": "Bisakah kita bekerja bersama?",
     "workTogether-answer": "Kami secara aktif mencari peluang baru untuk berkolaborasi. <a href=\"mailto:app@electricitymaps.com\">Kirimkan pada kami via email!</a>",
     "disclaimer-question": "Disclaimer",
@@ -238,35 +238,35 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Northern Territory"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australia",
       "zoneName": "Australia Selatan"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmania",
       "zoneName": "Pulau King"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australia",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australia",
       "zoneName": "Australia Barat"
     },
@@ -317,6 +317,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius dan Saba"
+    },
+    "BR": {
+      "zoneName": "Brazil"
     },
     "BR-CS": {
       "countryName": "Brazil",
@@ -600,10 +603,6 @@
     "GB-ORK": {
       "countryName": "Britania Raya",
       "zoneName": "Pulau Orkney"
-    },
-    "GB-ZET": {
-      "countryName": "Britania Raya",
-      "zoneName": "Pulau Shetland"
     },
     "GB-ZET": {
       "countryName": "Britania Raya",

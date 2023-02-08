@@ -1,0 +1,18 @@
+capacity:
+  hydro: 108940
+  nuclear: 1990
+  solar: 4960
+  unknown: 37727
+  wind: 21772
+contributors:
+  - alexanmtz
+  - corradio
+  - systemcatch
+  - nessie2013
+  - VIKTORVAV99
+subZoneNames:
+  - BR-CS
+  - BR-N
+  - BR-NE
+  - BR-S
+estimation_method: RECONSTRUCT_BREAKDOWN

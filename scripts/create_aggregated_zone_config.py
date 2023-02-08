@@ -64,7 +64,8 @@ def create_aggregated_config(zoneKey: str, timezone: str):
         "battery_storage"
     )
     for key, value in zoneDict["capacity"].items():
-        zoneDict["capacity"][key] = round(value, 1)
+        if value is not None:
+            zoneDict["capacity"][key] = round(value, 1)
 
     with open(f"config/zones/{zoneKey}.yaml", "w") as file:
         yaml.safe_dump(zoneDict, file)

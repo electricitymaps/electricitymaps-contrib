@@ -125,14 +125,14 @@
   "coal": "uhlí",
   "oil": "ropa",
   "unknown": "neznámé",
-  "electricityComesFrom": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> pochází z %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> pochází z %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je ukládáno do %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je ukládáno do %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> pochází z %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> pochází z %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je ukládáno do %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je ukládáno do %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je exportovaných do %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je exportovaných do %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq za minutu",
   "theMap": {
     "groupName": "Mapa",
@@ -195,7 +195,7 @@
     "feedback-question": "Můžu vám nechat zpětnou vazbu?",
     "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:app@electricitymaps.com\">nám poslat email!</a>",
     "contribute-question": "Můžu se zapojit do vašeho projektu?",
-    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
     "workTogether-question": "Můžeme pracovat společně?",
     "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href=\"mailto:app@electricitymaps.com\">Pošlete nám email!</a>",
     "disclaimer-question": "Oznámení",
@@ -238,31 +238,31 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Austrálie",
       "zoneName": "Nový Jižní Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Austrálie",
       "zoneName": "Severní teritorium"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Austrálie",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Austrálie",
       "zoneName": "Jižní Austrálie"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Austrálie",
       "zoneName": "Tasmánie"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Austrálie",
       "zoneName": "Viktorie"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Austrálie",
       "zoneName": "Západní Austrálie"
     },
@@ -313,6 +313,9 @@
     },
     "BQ": {
       "zoneName": "Bonaire, Svatý Eustach a Saba"
+    },
+    "BR": {
+      "zoneName": "Brazílie"
     },
     "BR-CS": {
       "countryName": "Brazílie",
@@ -596,10 +599,6 @@
     "GB-ORK": {
       "countryName": "Velká Británie",
       "zoneName": "Orkneje"
-    },
-    "GB-ZET": {
-      "countryName": "Velká Británie",
-      "zoneName": "Shetlandy"
     },
     "GB-ZET": {
       "countryName": "Velká Británie",
@@ -1418,7 +1417,7 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmánie",
       "zoneName": "King Island"
     }

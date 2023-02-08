@@ -28,7 +28,7 @@ def fetch_production(
 
     # Kuwait very rarely imports power, so we assume that production is equal to consumption
     # "Kuwait imports power in an emergency and only for a few hours at a time"
-    # See https://github.com/tmrowco/electricitymap-contrib/pull/2457#pullrequestreview-408781556
+    # See https://github.com/electricitymaps/electricitymaps-contrib/pull/2457#pullrequestreview-408781556
     consumption_dict = fetch_consumption(
         zone_key=zone_key, session=session, logger=logger
     )

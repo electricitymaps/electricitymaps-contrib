@@ -1,33 +1,25 @@
 bounding_box:
   - - -230.800781
     - -23.885838
-  - - -32.343750
+  - - -32.34375
     - 74.019543
 bypassedSubZones:
-  # - US-AK
   - US-FLA-HST
   - US-SE-SEPA
-  # - US-HI-HA
-  # - US-HI-KA
-  # - US-HI-KH
-  # - US-HI-LA
-  # - US-HI-MA
-  # - US-HI-MO
-  # - US-HI-NI
-  # - US-HI-OA
+  - US-CAR-YAD
 capacity:
-  battery storage: 4832.0
-  biomass: 14487.1
-  coal: 224217.6
-  gas: 557820.4
-  geothermal: 3838.4
-  hydro: 79372.6
-  hydro storage: 21969.3
-  nuclear: 99886.8
-  oil: 29535.9
-  solar: 64209.1
-  unknown: 1684.2
-  wind: 134695.0
+  battery storage: 7582.6
+  biomass: 13868.9
+  coal: 218508
+  gas: 562644.1
+  geothermal: 3910.8
+  hydro: 79543.4
+  hydro storage: 22008.1
+  nuclear: 99148.5
+  oil: 28194.5
+  solar: 69336
+  unknown: 1712.2
+  wind: 139655.7
 contributors:
   - kepiej
   - KabelWlan
@@ -38,6 +30,13 @@ contributors:
   - VIKTORVAV99
 emissionFactors:
   direct:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -54,11 +53,25 @@ emissionFactors:
       datetime: '2021-01-01'
       source: eGrid 2020
       value: 70.87985131
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020
       value: 803.8986689
   lifecycle:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -75,6 +88,13 @@ emissionFactors:
       datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
       value: 108.87985131
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 441.964248935829
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 454.8664414713558
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
@@ -83,6 +103,7 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 26.22100877
+estimation_method: RECONSTRUCT_BREAKDOWN
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
@@ -91,7 +112,6 @@ sources:
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 subZoneNames:
-  # - US-AK
   - US-CAL-BANC
   - US-CAL-CISO
   - US-CAL-IID
@@ -114,14 +134,6 @@ subZoneNames:
   - US-FLA-SEC
   - US-FLA-TAL
   - US-FLA-TEC
-  # - US-HI-HA
-  # - US-HI-KA
-  # - US-HI-KH
-  # - US-HI-LA
-  # - US-HI-MA
-  # - US-HI-MO
-  # - US-HI-NI
-  # - US-HI-OA
   - US-MIDA-PJM
   - US-MIDW-AECI
   - US-MIDW-LGEE
@@ -157,4 +169,3 @@ subZoneNames:
   - US-TEN-TVA
   - US-TEX-ERCO
 timezone: US/Central
-estimation_method: RECONSTRUCT_BREAKDOWN

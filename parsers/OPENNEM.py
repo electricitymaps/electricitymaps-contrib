@@ -13,35 +13,35 @@ REFETCH_FREQUENCY = timedelta(days=21)
 
 
 ZONE_KEY_TO_REGION = {
-    "AUS-NSW": "NSW1",
-    "AUS-QLD": "QLD1",
-    "AUS-SA": "SA1",
-    "AUS-TAS": "TAS1",
-    "AUS-VIC": "VIC1",
-    "AUS-WA": "WEM",
+    "AU-NSW": "NSW1",
+    "AU-QLD": "QLD1",
+    "AU-SA": "SA1",
+    "AU-TAS": "TAS1",
+    "AU-VIC": "VIC1",
+    "AU-WA": "WEM",
 }
 ZONE_KEY_TO_NETWORK = {
-    "AUS-NSW": "NEM",
-    "AUS-QLD": "NEM",
-    "AUS-SA": "NEM",
-    "AUS-TAS": "NEM",
-    "AUS-VIC": "NEM",
-    "AUS-WA": "WEM",
+    "AU-NSW": "NEM",
+    "AU-QLD": "NEM",
+    "AU-SA": "NEM",
+    "AU-TAS": "NEM",
+    "AU-VIC": "NEM",
+    "AU-WA": "WEM",
 }
 EXCHANGE_MAPPING_DICTIONARY = {
-    "AUS-NSW->AUS-QLD": {
+    "AU-NSW->AU-QLD": {
         "region_id": "NSW1->QLD1",
         "direction": 1,
     },
-    "AUS-NSW->AUS-VIC": {
+    "AU-NSW->AU-VIC": {
         "region_id": "NSW1->VIC1",
         "direction": 1,
     },
-    "AUS-SA->AUS-VIC": {
+    "AU-SA->AU-VIC": {
         "region_id": "SA1->VIC1",
         "direction": 1,
     },
-    "AUS-TAS->AUS-VIC": {
+    "AU-TAS->AU-VIC": {
         "region_id": "TAS1->VIC1",
         "direction": 1,
     },
@@ -408,12 +408,12 @@ def fetch_exchange(
 
 if __name__ == "__main__":
     """Main method, never used by the electricityMap backend, but handy for testing."""
-    # print(fetch_price('AUS-SA'))
-    # print(fetch_production('AUS-WA'))
-    # print(fetch_production('AUS-SA', target_datetime=arrow.get('2020-01-01T00:00:00Z').datetime))
+    # print(fetch_price('AU-SA'))
+    # print(fetch_production('AU-WA'))
+    # print(fetch_production('AU-SA', target_datetime=arrow.get('2020-01-01T00:00:00Z').datetime))
     # print(
     #     fetch_production(
-    #         "AUS-SA", target_datetime=arrow.get("2020-01-01T00:00:00Z").datetime
+    #         "AU-SA", target_datetime=arrow.get("2020-01-01T00:00:00Z").datetime
     #     )
     # )
-    print(fetch_production("AUS-NSW"))
+    print(fetch_production("AU-NSW"))

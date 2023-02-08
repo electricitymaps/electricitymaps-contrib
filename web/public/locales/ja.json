@@ -132,14 +132,14 @@
   "coal": "石炭",
   "oil": "石油",
   "unknown": "不明",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> comes from %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> come from %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> is stored using %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are stored using %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> is exported to %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "地図",
@@ -202,7 +202,7 @@
     "feedback-question": "フィードバックしてもいいですか?",
     "feedback-answer": "ぜひどうぞ! <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">フィードバックフォーム</a>もしくは<a href=\"mailto:app@electricitymaps.com\">メール</a>でお願いします!",
     "contribute-question": "プロジェクトに貢献できますか?",
-    "contribute-answer": "できます! Electricity Map はオープンソースプロジェクトで、ボランティアの貢献者によって成り立っています。新しい地域への新規データソースの追加、新機能追加、バグ修正などで地図の開発をお手伝いいただける際は気軽に私たちの<a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>へアクセスしてください。",
+    "contribute-answer": "できます! Electricity Map はオープンソースプロジェクトで、ボランティアの貢献者によって成り立っています。新しい地域への新規データソースの追加、新機能追加、バグ修正などで地図の開発をお手伝いいただける際は気軽に私たちの<a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>へアクセスしてください。",
     "workTogether-question": "私たちと一緒に仕事できますか?",
     "workTogether-answer": "私たちはコラボレーションできる機会を積極的に探しています。<a href=\"mailto:app@electricitymaps.com\">email</a>を送ってください!",
     "disclaimer-question": "免責事項",
@@ -245,35 +245,35 @@
     "AR": {
       "zoneName": "アルゼンチン"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "オーストラリア",
       "zoneName": "ニューサウスウェールズ州"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "オーストラリア",
       "zoneName": "ノーザンテリトリー"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "オーストラリア",
       "zoneName": "クイーンズランド州"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "オーストラリア",
       "zoneName": "南 オーストラリア"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "オーストラリア",
       "zoneName": "タスマニア"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "オーストラリア",
       "zoneName": "キング島"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "オーストラリア",
       "zoneName": "ビクトリア州"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "オーストラリア",
       "zoneName": "西 オーストラリア"
     },
@@ -324,6 +324,9 @@
     },
     "BQ": {
       "zoneName": "ボネール、シント・ユースタティウスおよびサバ"
+    },
+    "BR": {
+      "zoneName": "ブラジル"
     },
     "BR-CS": {
       "countryName": "ブラジル",
@@ -599,10 +602,6 @@
     "GB-ORK": {
       "countryName": "イギリス",
       "zoneName": "オークニー諸島"
-    },
-    "GB-ZET": {
-      "countryName": "イギリス",
-      "zoneName": "シェットランド諸島"
     },
     "GB-ZET": {
       "countryName": "イギリス",

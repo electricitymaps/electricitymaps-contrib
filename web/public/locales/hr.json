@@ -125,14 +125,14 @@
   "coal": "ugljen",
   "oil": "naftna",
   "unknown": "nepoznata",
-  "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> dostupne električne energije",
-  "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija električne energije",
-  "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> pohranjene električne energije",
-  "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija pohranjene električne energije",
-  "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "%4$s <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> dostupne električne energije",
+  "emissionsComeFrom": "%4$s <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija električne energije",
+  "electricityStoredUsing": "%4$s <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> pohranjene električne energije",
+  "emissionsStoredUsing": "%4$s <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija pohranjene električne energije",
+  "electricityExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> električne energije se izvozi u %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se izvozi u %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> električne energije se uvozi iz %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se uvozi iz %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq po minuti",
   "theMap": {
     "groupName": "Karta",
@@ -189,7 +189,7 @@
     "feedback-question": "Mogu li vam dati povratne informacije?",
     "feedback-answer": "Naravno! Jednostavno ispuni <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">naš osvrtni obrazac</a> ili nam <a href=\"mailto:app@electricitymaps.com\">pošalji email!</a>",
     "contribute-question": "Mogu li doprinijeti projektu?",
-    "contribute-answer": " Možeš! Electricity Map je open-source projekt baziran na dobrovoljnom doprinosu. Ako nam želiš pomoći razviti mapu, bilo dodavajući nove izvore podataka, nove mogućnosti ili ispravljajući greške, slobodno nam se pridruži na našem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Githubu</a>.",
+    "contribute-answer": " Možeš! Electricity Map je open-source projekt baziran na dobrovoljnom doprinosu. Ako nam želiš pomoći razviti mapu, bilo dodavajući nove izvore podataka, nove mogućnosti ili ispravljajući greške, slobodno nam se pridruži na našem <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">Githubu</a>.",
     "workTogether-question": "Možemo li surađivati?",
     "workTogether-answer": "Aktivno tražimo nove mogućnosti surađivanja. <a href=\"mailto:app@electricitymaps.com\">Pošalji nam email!</a>",
     "disclaimer-question": "Izjava o odricanju odgovornosti",
@@ -232,35 +232,35 @@
     "AR": {
       "zoneName": "Argentina"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australija",
       "zoneName": "Novi Južni Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australija",
       "zoneName": "Sjeverni teritorij"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australija",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australija",
       "zoneName": "Južna Australija"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australija",
       "zoneName": "Tasmanija"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Tasmanija",
       "zoneName": "King Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australija",
       "zoneName": "Viktorija"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australija",
       "zoneName": "Zapadna Australija"
     },
@@ -311,6 +311,9 @@
     },
     "BQ": {
       "zoneName": "Karipska Nizozemska"
+    },
+    "BR": {
+      "zoneName": "Brazil"
     },
     "BR-CS": {
       "countryName": "Brazil",
@@ -598,10 +601,6 @@
     "GB-ORK": {
       "countryName": "Velika Britanija",
       "zoneName": "Otočje Orkney"
-    },
-    "GB-ZET": {
-      "countryName": "Velika Britanija",
-      "zoneName": "Shetland Otoci"
     },
     "GB-ZET": {
       "countryName": "Velika Britanija",
