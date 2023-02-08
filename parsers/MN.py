@@ -89,7 +89,7 @@ def fetch_consumption(
     data = {
         "zoneKey": zone_key,
         "datetime": time_arrow.datetime,
-        "consumption": dataset_consumption,
+        "consumption": consumption_mw,
         "storage": {},
         "source": "https://ndc.energy.mn/",
     }
