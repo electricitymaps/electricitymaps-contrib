@@ -44,6 +44,9 @@
     "noParserInfo": "Zatím nemáme žádné informace pro tuto oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href=\"%s\" target=\"_blank\">přidáním dat</a>.",
     "now": "Teď"
   },
+  "time-controller": {
+    "title": "Zobrazit data za minulé období"
+  },
   "left-panel": {
     "zone-list-header-title": "Dopad na klima podle oblasti",
     "zone-list-header-subtitle": "Hodnocené podle uhlíkové intenzity spotřebované elektřiny (gCO₂eq/kWh)",
