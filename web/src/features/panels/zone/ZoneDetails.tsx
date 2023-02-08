@@ -16,6 +16,7 @@ import NoInformationMessage from './NoInformationMessage';
 import { ZoneHeader } from './ZoneHeader';
 import { ZoneDataStatus, getZoneDataStatus } from './util';
 import { zoneIdAtom } from 'features/map/mapAtoms';
+import { useEffect } from 'react';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
@@ -32,7 +33,10 @@ export default function ZoneDetails(): JSX.Element {
   if (!zoneId || Array.isArray(data)) {
     return <Navigate to="/" replace />;
   }
-  setZoneId(zoneId);
+  useEffect(() => {
+    setZoneId(zoneId);
+  }, [zoneId]);
+
   // TODO: Fix rendering issue where this is shortly unavailable for some reason
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
 
