@@ -21,7 +21,7 @@ def fetch_production(
 ):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates.")
-    with get(NDC_GENERATION) as response:
+    with session.get(NDC_GENERATION) as response:
         NDC_SOUP = BeautifulSoup(response.content, "html.parser")
 
     # Нийлбэр ачаалал / total load/demand
