@@ -143,7 +143,7 @@ export default function MapPage(): ReactElement {
   ]);
 
   useEffect(() => {
-    // Run when there is data
+    // Run on first load to center the map on the user's location
     const map = mapReference.current?.getMap();
     if (!map || isError || !isFirstLoad) {
       return;
@@ -152,34 +152,45 @@ export default function MapPage(): ReactElement {
       map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
       setIsFirstLoad(false);
     }
-  }, [isSuccess, selectedZoneId]);
+  }, [isSuccess]);
 
   useEffect(() => {
-    // Run when path changes
-    const map = mapReference.current?.getMap();
+    //Isolated useEffect to sync the selectedZoneId with the path
     const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
     setSelectedZoneId(zoneId);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    // Run when the selected zone changes
+    const map = mapReference.current?.getMap();
+
     // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
     if (map && location.pathname === '/map' && selectedZoneId) {
       map.setFeatureState(
-        { source: ZONE_SOURCE, id: zoneId },
+        { source: ZONE_SOURCE, id: selectedZoneId },
         { selected: false, hover: false }
       );
-      setSelectedZoneId(undefined);
       setHoveredZone(null);
     }
+    // Center the map on the selected zone
     if (map && selectedZoneId) {
       const feature = geometries.features.find(
-        (feature) => feature.properties.zoneId === zoneId
+        (feature) => feature.properties.zoneId === selectedZoneId
       );
       const center = feature?.properties.center;
       if (!center) {
         return;
       }
+      map.setFeatureState(
+        { source: ZONE_SOURCE, id: selectedZoneId },
+        { selected: true }
+      );
+      setLeftPanelOpen(true);
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
       map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
-  }, [location.pathname, isLoadingMap]);
+  }, [selectedZoneId, isLoadingMap]);
+
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();
     if (!map || !event.features) {
@@ -204,14 +215,9 @@ export default function MapPage(): ReactElement {
     }
     setHoveredZone(null);
     if (feature && feature.properties) {
-      setSelectedZoneId(feature.id);
-      map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { selected: true });
-      setLeftPanelOpen(true);
-
       const zoneId = feature.properties.zoneId;
       navigate(createToWithState(`/zone/${zoneId}`));
     } else {
-      setSelectedZoneId(undefined);
       navigate(createToWithState('/map'));
     }
   };
@@ -223,7 +229,6 @@ export default function MapPage(): ReactElement {
       return;
     }
     const feature = event.features[0];
-
     const isHoveringAZone = feature?.id !== undefined;
     const isHoveringANewZone = isHoveringAZone && hoveredZone?.featureId !== feature?.id;
 
