@@ -29,7 +29,7 @@
     "noLiveData": "Актуализированные данные временно недоступны для данной зоны",
     "estimated": "приближенные данные",
     "aggregated": "сводные данные",
-    "dataIsEstimated": "Некоторые данные по этому региону приблизительные. Мы описали нашу методологию оценки <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">здесь</a>.",
+    "dataIsEstimated": "Некоторые данные по этому региону приблизительные. Мы описали нашу методологию оценки <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">здесь</a>.",
     "estimatedTooltip": "Данные в реальном времени для этой зоны приближены на основе данных из источника и допущений модели",
     "aggregatedTooltip": "Данные для этой зоны агрегируются на основе исторических почасовых значений",
     "noParserInfo": "У нас пока нет данных для данного региона.<br/> Хотите помочь нам исправить это? Вы поможете помочь <a href=\"%s\" target=\"_blank\">добавив данные для этого региона</a>.",

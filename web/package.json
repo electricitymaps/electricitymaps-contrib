@@ -1,10 +1,10 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "engines": {
-    "node": ">=14.18"
+    "node": ">=18"
   },
   "repository": {
     "type": "git",
@@ -14,9 +14,8 @@
     "mockserver": "nodemon ../mockserver/server.js",
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
-    "generate-world": "ts-node ./geo/generate-world.ts",
-    "generate-index-files": "ts-node ./scripts/generate-index-files.ts",
-    "generate-zones-config": "ts-node ./scripts/generate-zones-config.ts",
+    "generate-world": "ts-node ./geo/generateWorld.ts",
+    "generate-zones-config": "ts-node ./scripts/generateZonesConfig.ts",
     "predevelop": "pnpm run generate-zones-config",
     "prebuild": "pnpm run generate-zones-config",
     "cy:components": "cypress open --components -b electron",
@@ -33,7 +32,6 @@
     "lint": "run-p run-tsc run-eslint",
     "verify:ci": "VERIFY_NO_UPDATES=1 pnpm generate-world && pnpm generate-zones-config",
     "validate": "run-p lint test:ci",
-    "deploy": "pnpm version prerelease --preid=beta && pnpm build && pnpm run generate-index-files && sh scripts/deploy.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -187,7 +185,6 @@
   "lint-staged": {
     "*": "prettier -uw --cache",
     "*.{ts,tsx}": [
-      "eslint --cache --fix",
       "vitest related --run --coverage=false"
     ]
   }

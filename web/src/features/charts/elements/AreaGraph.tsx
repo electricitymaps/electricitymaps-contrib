@@ -248,7 +248,7 @@ function AreaGraph({
           selectedTimeAggregate={selectedTimeAggregate}
           datetimes={datetimesWithNext}
           scaleWidth={containerWidth}
-          transform={`translate(0px, ${containerHeight}px)`}
+          transform={`translate(5 ${containerHeight})`}
           className="h-[22px] w-full overflow-visible opacity-50"
         />
       )}

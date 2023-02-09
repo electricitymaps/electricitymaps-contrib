@@ -8,7 +8,7 @@ import { useCo2ColorScale } from '../hooks/theme';
  * I changed the original formula from Math.sqrt(1.05 * 0.05) - 0.05 to
  * Math.sqrt(1.05 * 0.18) - 0.05. Because this expression is a constant
  * I replaced it with it's approached value (0.3847...) to avoid useless computations.
- * See https://github.com/tmrowco/electricitymap-contrib/issues/3365 for more informations.
+ * See https://github.com/electricitymaps/electricitymaps-contrib/issues/3365 for more informations.
  * @param {string} rgbColor a string with the background color (e.g. "rgb(0,5,4)")
  */
 const getTextColor = (rgbColor: string) => {

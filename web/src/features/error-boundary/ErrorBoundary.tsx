@@ -18,7 +18,7 @@ export default function ErrorComponent({ error }: Props) {
         <a href="https://github.com/electricityMaps/electricitymaps-contrib">on Github</a>{' '}
         so we can fix this!
       </p>
-      <pre className="rounded-lg bg-gray-300 p-2 text-xs">
+      <pre className="rounded-lg bg-gray-300 p-2 text-xs dark:bg-black">
         Error message: {error?.toString()}
         <br />
         Url: {url}

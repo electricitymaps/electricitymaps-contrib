@@ -204,7 +204,7 @@
     "feedback-question": "Kas ma saan teile saata tagasisidet?",
     "feedback-answer": "Jah, palun! Täitke <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">meie tagasiside vorm</a> või <a href=\"mailto:app@electricitymaps.com\">saatke meile e-kiri!</a>",
     "contribute-question": "Kas ma saan aidata teie projektile kaasa?",
-    "contribute-answer": " Jah! The Electricity Map on avatud lähtekoodiga projekt, mille tegid võimalikuks meie vabatahtlikud panustajad. Kui soovite aidata kaardi väljatöötamisel, kas siis lisades uute piirkondadele andmeallikaid, lisades uued funktsioonid või parandades esinevad vead, siis liituge julgelt meie <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a> platvormiga.",
+    "contribute-answer": " Jah! The Electricity Map on avatud lähtekoodiga projekt, mille tegid võimalikuks meie vabatahtlikud panustajad. Kui soovite aidata kaardi väljatöötamisel, kas siis lisades uute piirkondadele andmeallikaid, lisades uued funktsioonid või parandades esinevad vead, siis liituge julgelt meie <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a> platvormiga.",
     "workTogether-question": "Kas me saaksime koos töötada?",
     "workTogether-answer": "Otsime aktiivselt uusi koostöövõimalusi. <a href=\"mailto:app@electricitymaps.com\">Saatke meile e-kiri!</a>",
     "disclaimer-question": "Vastutusest loobumine",

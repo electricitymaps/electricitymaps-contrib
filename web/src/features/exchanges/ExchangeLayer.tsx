@@ -13,7 +13,7 @@ function ExchangeLayer({ map }: { map?: MapboxMap }) {
 
   return (
     <div className="h-full w-full" ref={ref}>
-      {/* Don't render arrows when moving map - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
+      {/* Don't render arrows when moving map - see https://github.com/electricitymaps/electricitymaps-contrib/issues/1590. */}
       {!isMapMoving &&
         map &&
         arrows.map((arrow) => (

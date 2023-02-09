@@ -177,6 +177,7 @@ fallbackZoneMixes:
 parsers:
   price: ENTSOE.fetch_price
   production: DK_BHM.fetch_production
+price_displayed: false
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
