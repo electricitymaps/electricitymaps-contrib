@@ -1,7 +1,0 @@
-{
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
-  "plugins": [
-    ["babel-plugin-styled-components", { "ssr": false, "pure": true }],
-    ["@babel/plugin-transform-runtime", { "corejs": { "version": 3, "proposals": true } }]
-  ]
-}

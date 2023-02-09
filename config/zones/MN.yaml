@@ -3,4 +3,21 @@ bounding_box:
     - 41.086144918000016
   - - 120.40702681500011
     - 52.62958404600003
-timezone: null
+capacity:
+  hydro: 29
+  solar: 95
+  wind: 156
+  unknown: 1320
+contributors:
+  - q--
+  - alixunderplatz
+emissionFactors:
+  direct:
+    unknown:
+      _url: https://www.iea.org/fuels-and-technologies/electricity
+      source: IEA 2020; assumes 92.8% coal, 5.8%% oil, 1.4% hydro in unknown
+      value: 800
+parsers:
+  consumption: MN.fetch_consumption
+  production: MN.fetch_production
+timezone: Asia/Ulaanbaatar

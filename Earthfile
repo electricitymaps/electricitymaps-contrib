@@ -6,8 +6,9 @@ src-files:
   COPY electricitymap ./electricitymap
   COPY parsers ./parsers
   COPY validators ./validators
-  COPY config ./config
+  COPY ./config+src-files/* ./config
   COPY scripts ./scripts
+  COPY web/public/locales/en.json ./web/public/locales/en.json
   COPY __init__.py ./__init__.py
   COPY pyproject.toml .
   SAVE ARTIFACT .
@@ -25,6 +26,6 @@ build:
 test:
   FROM +build
   COPY tests ./tests
-  COPY web/src/helpers/constants.js ./web/src/helpers/constants.js # TODO: python tests should not depend on this js file
+  COPY web/src/utils/constants.ts ./web/src/utils/constants.ts # TODO: python tests should not depend on this js file
   COPY web/geo/world.geojson ./web/geo/world.geojson
   RUN poetry run check

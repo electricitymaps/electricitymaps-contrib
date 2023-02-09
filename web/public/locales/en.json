@@ -84,7 +84,7 @@
       "yearly": "Carbon intensity in the last 5 years"
     },
     "emissions": { "default": "Emissions in the last %1$s" },
-    "emissionsorigin": { "default": "Emissions in the last %1$s" },
+    "emissionsorigin": { "default": "Origin of emissions in the last %1$s" },
     "emissionsproduction": { "default": "Origin of emissions in the last %1$s" },
     "electricityorigin": { "default": "Origin of electricity in the last %1$s" },
     "electricityproduction": { "default": "Electricity production in the last %1$s" },
@@ -130,9 +130,13 @@
     "aggregateinfo": "Countries are aggregated when the annual zone capacity is greater than 90% of the total capacity",
     "selectLanguage": "Select language",
     "lowCarbDescription": "Includes renewables and nuclear",
-    "dataIsDelayed": "Data is delayed"
+    "dataIsDelayed": "Data is delayed",
+    "price": "Price"
   },
-  "aggregateButtons": { "country": "country", "zone": "zone" },
+  "aggregateButtons": {
+    "country": "country",
+    "zone": "zone"
+  },
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
     "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
@@ -160,14 +164,14 @@
   "coal": "coal",
   "oil": "oil",
   "unknown": "unknown",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> comes from %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> come from %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is stored using %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are stored using %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is exported to %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "The map",
@@ -273,47 +277,50 @@
     "AT": {
       "zoneName": "Austria"
     },
-    "AUS-NSW": {
+    "AU": {
+      "zoneName": "Australia"
+    },
+    "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "New South Wales"
     },
-    "AUS-NT": {
+    "AU-NT": {
       "countryName": "Australia",
       "zoneName": "Northern Territory"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australia",
       "zoneName": "South Australia"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australia",
       "zoneName": "Tasmania"
     },
-    "AUS-TAS-CBI": {
+    "AU-TAS-CBI": {
       "countryName": "Australia",
       "zoneName": "Cape Barren Island"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australia",
       "zoneName": "King Island"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australia",
       "zoneName": "Flinders Island"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australia",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australia",
       "zoneName": "Western Australia"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Australia",
       "zoneName": "Rottnest Island"
     },
@@ -365,13 +372,12 @@
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius and Saba"
     },
+    "BR": {
+      "zoneName": "Brazil"
+    },
     "BR-CS": {
       "countryName": "Brazil",
       "zoneName": "Central Brazil"
-    },
-    "BR-I": {
-      "countryName": "Brazil",
-      "zoneName": "Isolated Systems"
     },
     "BR-N": {
       "countryName": "Brazil",
@@ -676,10 +682,6 @@
       "countryName": "Great Britain",
       "zoneName": "Shetland Islands"
     },
-    "GB-ZET": {
-      "countryName": "Great Britain",
-      "zoneName": "Shetland Islands"
-    },
     "GD": {
       "zoneName": "Grenada"
     },
@@ -764,6 +766,29 @@
     },
     "IM": {
       "zoneName": "Isle of Man"
+    },
+    "IN": {
+      "zoneName": "India"
+    },
+    "IN-EA": {
+      "countryName": "India",
+      "zoneName": "Eastern India"
+    },
+    "IN-NE": {
+      "countryName": "India",
+      "zoneName": "North Eastern India"
+    },
+    "IN-NO": {
+      "countryName": "India",
+      "zoneName": "Northern India"
+    },
+    "IN-SO": {
+      "countryName": "India",
+      "zoneName": "Southern India"
+    },
+    "IN-WE": {
+      "countryName": "India",
+      "zoneName": "Western India"
     },
     "IN-AN": {
       "countryName": "India",
@@ -914,15 +939,15 @@
     },
     "IT-CNO": {
       "countryName": "Italy",
-      "zoneName": "Central North"
+      "zoneName": "Central North Italy"
     },
     "IT-CSO": {
       "countryName": "Italy",
-      "zoneName": "Central South"
+      "zoneName": "Central South Italy"
     },
     "IT-NO": {
       "countryName": "Italy",
-      "zoneName": "North"
+      "zoneName": "North Italy"
     },
     "IT-SAR": {
       "countryName": "Italy",
@@ -1465,6 +1490,13 @@
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
     },
+    "US": {
+      "zoneName": "Contiguous United States"
+    },
+    "US-AK": {
+      "countryName": "USA",
+      "zoneName": "Alaska"
+    },
     "US-HI-HA": {
       "countryName": "USA",
       "zoneName": "Hawaii"
@@ -1573,10 +1605,6 @@
       "countryName": "USA",
       "zoneName": "Jacksonville Electric Authority"
     },
-    "US-FLA-NSB": {
-      "countryName": "USA",
-      "zoneName": "Utilities Commission Of New Smyrna Beach"
-    },
     "US-FLA-SEC": {
       "countryName": "USA",
       "zoneName": "Seminole Electric Cooperative"
@@ -1596,10 +1624,6 @@
     "US-MIDW-AECI": {
       "countryName": "USA",
       "zoneName": "Associated Electric Cooperative, Inc."
-    },
-    "US-MIDW-GLHB": {
-      "countryName": "USA",
-      "zoneName": "GridLiance"
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",
@@ -1701,10 +1725,6 @@
       "countryName": "USA",
       "zoneName": "New York Independent System Operator"
     },
-    "US-SE-AEC": {
-      "countryName": "USA",
-      "zoneName": "Powersouth Energy Cooperative"
-    },
     "US-SE-SEPA": {
       "countryName": "USA",
       "zoneName": "Southeastern Power Administration"
@@ -1728,10 +1748,6 @@
     "US-SW-GRIF": {
       "countryName": "USA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-GRMA": {
-      "countryName": "USA",
-      "zoneName": "Gila River Power, LLC"
     },
     "US-SW-HGMA": {
       "countryName": "USA",

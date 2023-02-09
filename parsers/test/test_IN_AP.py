@@ -4,7 +4,7 @@ from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, Adapter
 
-from parsers import IN_AP
+from parsers.archived import IN_AP
 
 
 class Test_IN_AP(unittest.TestCase):

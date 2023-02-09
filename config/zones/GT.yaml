@@ -20,24 +20,48 @@ emissionFactors:
   direct:
     battery discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 97.84508384924474
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 293.6952019257576
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 269.6187929820843
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 124.29277033293447
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 5.539504998391972
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 340.6398752234597
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.6478450016261
     hydro discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 97.84508384924474
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 293.6952019257576
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 269.6187929820843
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 124.29277033293447
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 5.539504998391972
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 340.6398752234597
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 269.6478450016261
     unknown:
       _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
       source: Guatemala AMM 2021-2022 and IEA 2020
@@ -45,60 +69,114 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 220.83700299654305
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 374.066880936666
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 311.96960860247304
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 181.42758260014966
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 30.940010953482037
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 411.55337384273463
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 311.9991841222269
     hydro discharge:
       - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
+        source: Electricity Maps, 2018 average
         value: 220.83700299654305
       - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
+        source: Electricity Maps, 2019 average
         value: 374.066880936666
       - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
+        source: Electricity Maps, 2020 average
         value: 311.96960860247304
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 181.42758260014966
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 30.940010953482037
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 411.55337384273463
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 311.9991841222269
     unknown:
       _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
       source: Guatemala AMM 2021-2022 and IEA 2020
       value: 549.9988504
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2020 average
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.10281174966249966
+        coal: 0.1481592866529251
+        gas: 0.00021183222375891294
+        geothermal: 0.02016698810709332
+        hydro: 0.6623828271852077
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.028604227036569348
+        solar: 0.015172797026249117
+        unknown: 0.0
+        wind: 0.022490236976010727
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.004852599812626857
+        coal: 0.00693440519222716
+        gas: 3.3112094168302676e-06
+        geothermal: 0.00043518123294307946
+        hydro: 0.9862339649136561
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0006615754440213553
+        solar: 0.00032051710939075024
+        unknown: 0.0
+        wind: 0.000558552467545246
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.10739703974744741
+        coal: 0.425955275340774
+        gas: 0.00015175964819214848
+        geothermal: 0.021465427592427876
+        hydro: 0.35918632854157356
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.04157509541438052
+        solar: 0.017164195905425738
+        unknown: 2.8932292813808485e-05
+        wind: 0.027200360413057942
+    - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0012676873185594973
-        coal: 0.3400364919083082
-        gas: 0.0012026758515586381
-        geothermal: 0.02526573088581222
-        hydro: 0.5630126925737751
-        hydro discharge: 0.0
-        nuclear: 9.167483938310305e-08
-        oil: 0.025399210725215678
-        solar: 0.017432617525619358
-        unknown: 0.0009149683740330085
-        wind: 0.02567862035651548
-    - _source: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
-      datetime: '2022-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.1074378076
-        coal: 0.1350671987
-        gas: 0.001306638142
-        geothermal: 0.02177293507
-        hydro: 0.4812964633
+        biomass: 0.0012667362350007403
+        coal: 0.3399749732985906
+        gas: 0.0012022532471483419
+        geothermal: 0.025261531613986855
+        hydro: 0.5629151873667574
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.01855281961
-        solar: 0.01684046773
-        unknown: 0.1899458688
-        wind: 0.02777980104
+        oil: 0.025395136525346678
+        solar: 0.017429416935882045
+        unknown: 0.0009137061026630706
+        wind: 0.02567292271398894
 parsers:
   consumption: GT.fetch_consumption
   production: GT.fetch_production

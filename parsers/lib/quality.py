@@ -15,6 +15,31 @@ class ValidationError(ValueError):
     pass
 
 
+def validate_datapoint_format(datapoint: Dict[str, Any], kind: str, zone_key: ZoneKey):
+    """
+    Checks that a datapoint has the required keys. A parser can only be merged if the datapoints for each function have the correct format.
+    """
+    standard_keys = ["datetime", "source"]
+    keys_dict = {
+        "production": ["zoneKey", "production"] + standard_keys,
+        "consumption": ["zoneKey", "consumption"] + standard_keys,
+        "exchange": ["sortedZoneKeys", "netFlow"] + standard_keys,
+        "price": ["zoneKey", "currency", "price"] + standard_keys,
+        "consumptionForecast": ["zoneKey", "value"] + standard_keys,
+        "productionPerModeForecast": ["zoneKey", "production"] + standard_keys,
+        "generationForecast": ["zoneKey", "value"] + standard_keys,
+        "exchangeForecast": ["zoneKey", "netFlow"] + standard_keys,
+    }
+    for key in keys_dict[kind]:
+        if key not in datapoint.keys():
+            raise ValidationError(
+                "{} - data point does not have the required keys:  {} is missing".format(
+                    zone_key,
+                    [key for key in keys_dict[kind] if key not in datapoint.keys()],
+                ),
+            )
+
+
 def validate_reasonable_time(item, k):
     data_time = arrow.get(item["datetime"])
     if data_time.year < 2000:
@@ -31,6 +56,7 @@ def validate_reasonable_time(item, k):
 
 
 def validate_consumption(obj: Dict, zone_key: ZoneKey) -> None:
+    validate_datapoint_format(datapoint=obj, kind="consumption", zone_key=zone_key)
     if (obj.get("consumption") or 0) < 0:
         raise ValidationError(
             "%s: consumption has negative value " "%s" % (zone_key, obj["consumption"])
@@ -45,6 +71,7 @@ def validate_consumption(obj: Dict, zone_key: ZoneKey) -> None:
 
 
 def validate_exchange(item, k) -> None:
+    validate_datapoint_format(datapoint=item, kind="exchange", zone_key=k)
     if item.get("sortedZoneKeys", None) != k:
         raise ValidationError(
             "Sorted country codes %s and %s don't "
@@ -59,7 +86,7 @@ def validate_exchange(item, k) -> None:
         raise ValidationError("netFlow was not returned for %s" % k)
     # Verify that the exchange flow is not greater than the interconnector
     # capacity and has physical sense (no exchange should exceed 100GW)
-    # Use https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/example.py for expected format
+    # Use https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/example.py for expected format
     if item.get("sortedZoneKeys", None) and item.get("netFlow", None):
         zone_names: List[str] = item["sortedZoneKeys"]
         if abs(item.get("netFlow", 0)) > 100000:
@@ -85,6 +112,7 @@ def validate_exchange(item, k) -> None:
 
 
 def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
+    validate_datapoint_format(datapoint=obj, kind="production", zone_key=zone_key)
     if "datetime" not in obj:
         raise ValidationError("datetime was not returned for %s" % zone_key)
     if "countryCode" in obj:
@@ -113,7 +141,7 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
         not in [
             "CH",
             "NO",
-            "AUS-TAS",
+            "AU-TAS",
             "DK-BHM",
             "US-CAR-YAD",
             "US-NW-SCL",
@@ -133,6 +161,12 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
             "Coal, gas or oil or unknown production value is required for"
             " %s" % zone_key
         )
+
+    if obj.get("production", {}).get("hydro", 0) < 5 and zone_key in ["US-CAR-YAD"]:
+        raise ValidationError(
+            "Hydro production value is required to be greater than 5 for %s" % zone_key
+        )
+
     if obj.get("storage"):
         if not isinstance(obj["storage"], dict):
             raise ValidationError(

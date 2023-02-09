@@ -1,7 +1,10 @@
-build
-
-## Netbeans folder
-nbproject
-
-## Automatically generated zones config
-src/config/*.json
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.eslintcache
+coverage
+.nyc_output
+cypress/videos
+cypress/screenshots

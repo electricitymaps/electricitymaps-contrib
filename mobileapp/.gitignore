@@ -1,14 +1,1 @@
-.code-push.config
-node_modules
-
-plugins
-platforms
-
-www/electricitymap
-
-src
-ul_web_hooks/
-GoogleService-Info.plist
-google-services.json
-locales-config.json
-electricitymap.keystore
+*.keystore

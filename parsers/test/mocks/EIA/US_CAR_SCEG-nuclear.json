@@ -1,0 +1,31 @@
+{
+  "response": {
+    "query execution": 0.013917043,
+    "count query execution": 0.013379965,
+    "total": 3,
+    "dateFormat": "YYYY-MM-DD\"T\"HH24",
+    "frequency": "hourly",
+    "data": [
+      {
+        "period": "2022-10-31T11",
+        "respondent": "SCEG",
+        "respondent-name": "Dominion Energy South Carolina, Inc.",
+        "fueltype": "NUC",
+        "type-name": "Nuclear",
+        "value": 992,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2022-10-31T12",
+        "respondent": "SCEG",
+        "respondent-name": "Dominion Energy South Carolina, Inc.",
+        "fueltype": "NUC",
+        "type-name": "Nuclear",
+        "value": 991,
+        "value-units": "megawatthours"
+      }
+    ],
+    "description": "Hourly net generation by balancing authority and energy source.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
+  },
+  "apiVersion": "2.0.3"
+}
