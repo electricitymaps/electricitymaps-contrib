@@ -155,12 +155,6 @@ export default function MapPage(): ReactElement {
   }, [isSuccess]);
 
   useEffect(() => {
-    //Isolated useEffect to sync the selectedZoneId with the path
-    const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
-    setSelectedZoneId(zoneId);
-  }, [location.pathname]);
-
-  useEffect(() => {
     // Run when the selected zone changes
     const map = mapReference.current?.getMap();
 
@@ -173,23 +167,22 @@ export default function MapPage(): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    if (map && selectedZoneId) {
+    const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    setSelectedZoneId(zoneId);
+    if (map && zoneId) {
       const feature = geometries.features.find(
-        (feature) => feature.properties.zoneId === selectedZoneId
+        (feature) => feature.properties.zoneId === zoneId
       );
       const center = feature?.properties.center;
       if (!center) {
         return;
       }
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: selectedZoneId },
-        { selected: true }
-      );
+      map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
       setLeftPanelOpen(true);
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
       map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
-  }, [selectedZoneId, isLoadingMap]);
+  }, [location.pathname, isLoadingMap]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();
