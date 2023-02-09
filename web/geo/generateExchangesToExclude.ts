@@ -1,4 +1,4 @@
-import { mergeExchanges } from '../scripts/generate-zones-config';
+import { mergeExchanges } from '../scripts/generateZonesConfig';
 import { fileExists, getJSON, writeJSON } from './utilities';
 
 const exchangeConfig = mergeExchanges();
