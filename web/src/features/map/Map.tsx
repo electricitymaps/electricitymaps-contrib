@@ -12,7 +12,7 @@ import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
@@ -23,8 +23,8 @@ import {
   loadingMapAtom,
   mapMovingAtom,
   mousePositionAtom,
-  selectedZoneIdAtom,
 } from './mapAtoms';
+import { FeatureId } from './mapTypes';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
@@ -47,7 +47,7 @@ export default function MapPage(): ReactElement {
   const theme = useTheme();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
-  const [zoneId, setZoneId] = useAtom(selectedZoneIdAtom);
+  const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -148,25 +148,27 @@ export default function MapPage(): ReactElement {
     if (!map || isError || !isFirstLoad) {
       return;
     }
-    if (data?.callerLocation && !zoneId) {
+    if (data?.callerLocation && !selectedZoneId) {
       map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
       setIsFirstLoad(false);
     }
-  }, [isSuccess, zoneId]);
+  }, [isSuccess, selectedZoneId]);
 
   useEffect(() => {
     // Run when path changes
     const map = mapReference.current?.getMap();
+    const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    setSelectedZoneId(zoneId);
     // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
-    if (map && location.pathname === '/map' && zoneId) {
+    if (map && location.pathname === '/map' && selectedZoneId) {
       map.setFeatureState(
         { source: ZONE_SOURCE, id: zoneId },
         { selected: false, hover: false }
       );
-      setZoneId(undefined);
+      setSelectedZoneId(undefined);
       setHoveredZone(null);
     }
-    if (map) {
+    if (map && selectedZoneId) {
       const feature = geometries.features.find(
         (feature) => feature.properties.zoneId === zoneId
       );
@@ -177,7 +179,7 @@ export default function MapPage(): ReactElement {
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
       map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
-  }, [location.pathname, isLoadingMap, zoneId]);
+  }, [location.pathname, isLoadingMap]);
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();
     if (!map || !event.features) {
@@ -187,8 +189,11 @@ export default function MapPage(): ReactElement {
 
     // Remove state from old feature if we are no longer hovering anything,
     // or if we are hovering a different feature than the previous one
-    if (zoneId && (!feature || zoneId !== feature.id)) {
-      map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: false });
+    if (selectedZoneId && (!feature || selectedZoneId !== feature.id)) {
+      map.setFeatureState(
+        { source: ZONE_SOURCE, id: selectedZoneId },
+        { selected: false }
+      );
     }
 
     if (hoveredZone && (!feature || hoveredZone.featureId !== feature.id)) {
@@ -199,14 +204,14 @@ export default function MapPage(): ReactElement {
     }
     setHoveredZone(null);
     if (feature && feature.properties) {
-      setZoneId(feature.id);
+      setSelectedZoneId(feature.id);
       map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { selected: true });
       setLeftPanelOpen(true);
 
       const zoneId = feature.properties.zoneId;
       navigate(createToWithState(`/zone/${zoneId}`));
     } else {
-      setZoneId(undefined);
+      setSelectedZoneId(undefined);
       navigate(createToWithState('/map'));
     }
   };

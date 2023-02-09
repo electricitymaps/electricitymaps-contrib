@@ -1,6 +1,6 @@
 import useGetZone from 'api/getZone';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { Navigate, useParams } from 'react-router-dom';
 import { TimeAverages } from 'utils/constants';
 import {
@@ -15,15 +15,12 @@ import Divider from './Divider';
 import NoInformationMessage from './NoInformationMessage';
 import { ZoneHeader } from './ZoneHeader';
 import { ZoneDataStatus, getZoneDataStatus } from './util';
-import { selectedZoneIdAtom } from 'features/map/mapAtoms';
-import { useEffect } from 'react';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const setZoneId = useSetAtom(selectedZoneIdAtom);
   const { data, isError, isLoading } = useGetZone({
     enabled: Boolean(zoneId),
   });
@@ -33,9 +30,6 @@ export default function ZoneDetails(): JSX.Element {
   if (!zoneId || Array.isArray(data)) {
     return <Navigate to="/" replace />;
   }
-  useEffect(() => {
-    setZoneId(zoneId);
-  }, [zoneId]);
 
   // TODO: Fix rendering issue where this is shortly unavailable for some reason
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
