@@ -114,11 +114,11 @@ def fetch_production(
         ):
             results[hourly_item["fecha"]]["production"][
                 SPANISH_TO_ENGLISH[hourly_item["fuente"]]
-            ] = 0.0
-
-        results[hourly_item["fecha"]]["production"][
-            SPANISH_TO_ENGLISH[hourly_item["fuente"]]
-        ] += hourly_item["dato"]
+            ] = hourly_item["dato"]
+        else:
+            results[hourly_item["fecha"]]["production"][
+                SPANISH_TO_ENGLISH[hourly_item["fuente"]]
+            ] += hourly_item["dato"]
 
     return [results[k] for k in sorted(results.keys())]
 
