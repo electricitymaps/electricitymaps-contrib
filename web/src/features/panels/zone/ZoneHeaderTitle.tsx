@@ -28,7 +28,7 @@ export default function ZoneHeaderTitle({
   return (
     <div className="flex w-full grow flex-row pl-2">
       <Link
-        className="text-3xl mr-4 self-center"
+        className="text-3xl self-center py-4 pr-4"
         to={returnToMapLink}
         data-test-id="left-panel-back-button"
       >

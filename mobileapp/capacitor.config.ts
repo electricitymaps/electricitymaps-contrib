@@ -15,7 +15,8 @@ switch (process.env.NODE_ENV) {
     config = {
       ...baseConfig,
       server: {
-        url: 'http://localhost:5173/',
+        url: 'use address from pnpm dev --host',
+        cleartext: true,
       },
     };
     break;
