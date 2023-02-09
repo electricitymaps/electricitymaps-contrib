@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@capacitor/android': ^4.6.2
+  '@capacitor/app': ^4.1.1
   '@capacitor/assets': ^1.0.14
   '@capacitor/cli': ^4.4.0
   '@capacitor/core': ^4.6.2
@@ -11,6 +12,7 @@ specifiers:
 
 dependencies:
   '@capacitor/android': 4.6.2_@capacitor+core@4.6.2
+  '@capacitor/app': 4.1.1_@capacitor+core@4.6.2
   '@capacitor/core': 4.6.2
   '@capacitor/ios': 4.6.2_@capacitor+core@4.6.2
 
@@ -47,6 +49,14 @@ packages:
     resolution: {integrity: sha512-PQpOJnMi0i/d4UrT8bPdfkwlKAlQLgsyo2YKj+iUYjEIu8sKQvqDirLYnpeKhj4cflIG2u9mh/eFncooA+u2gw==}
     peerDependencies:
       '@capacitor/core': ^4.6.0
+    dependencies:
+      '@capacitor/core': 4.6.2
+    dev: false
+
+  /@capacitor/app/4.1.1_@capacitor+core@4.6.2:
+    resolution: {integrity: sha512-SJcJA1rhFQyeH6eLfUEbdKkHzAwzahJNVPNXmU88fdmXpMgM2dJGzZj1vrm6e21aQq+Z4aBVLJ2RCdj92zD7wg==}
+    peerDependencies:
+      '@capacitor/core': ^4.0.0
     dependencies:
       '@capacitor/core': 4.6.2
     dev: false
