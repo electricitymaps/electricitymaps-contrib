@@ -200,7 +200,7 @@ export default function MapPage(): ReactElement {
       );
     }
 
-    if (hoveredZone && (!feature || hoveredZone.featureId !== feature.id)) {
+    if (hoveredZone && (!feature || hoveredZone.featureId !== selectedZoneId)) {
       map.setFeatureState(
         { source: ZONE_SOURCE, id: hoveredZone.featureId },
         { hover: false }
