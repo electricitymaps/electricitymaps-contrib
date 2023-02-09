@@ -1,11 +1,13 @@
 /* eslint-disable unicorn/no-null */
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
 import ExchangeTooltip from './ExchangeTooltip';
 import { quantizedCo2IntensityScale, quantizedExchangeSpeedScale } from './scales';
+import { mapMovingAtom } from 'features/map/mapAtoms';
+import { useSetAtom } from 'jotai';
 
 interface ExchangeArrowProps {
   data: ExchangeArrowData;
@@ -19,10 +21,16 @@ function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArr
   const colorBlindModeEnabled = false; // TODO: FIX https://linear.app/electricitymaps/issue/ELE-1384/set-up-colorblind-mode-that-changes-co2-scale
   const absFlow = Math.abs(data.netFlow ?? 0);
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
-
+  const setIsMoving = useSetAtom(mapMovingAtom);
   if (!lonlat) {
     return null;
   }
+
+  useEffect(() => {
+    const cancelWheel = (event: WheelEvent) => event.preventDefault();
+    document.body.addEventListener('wheel', cancelWheel, { passive: false });
+    return () => document.body.removeEventListener('wheel', cancelWheel);
+  }, []);
 
   const imageSource = useMemo(() => {
     const prefix = colorBlindModeEnabled ? 'colorblind-' : '';
@@ -87,6 +95,7 @@ function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArr
           left: '-25px',
           top: '-41px',
         }}
+        onWheel={() => setIsMoving(true)}
       >
         <source srcSet={`${imageSource}.webp`} type="image/webp" />
         <img src={`${imageSource}.gif`} alt="" draggable={false} />
