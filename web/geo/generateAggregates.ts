@@ -73,7 +73,9 @@ const generateAggregates = (geojson, zones: ZoneConfig) => {
 
   if (skippedZones.length > 0) {
     for (const zone of skippedZones) {
-      console.error(`ERROR: Could not find geometry feature for ${zone}, make sure it has geometry in world.geojson.`);
+      console.error(
+        `ERROR: Could not find geometry feature for ${zone}, make sure it has geometry in world.geojson.`
+      );
     }
     process.exit(1);
   }
