@@ -14,16 +14,15 @@ import {
 } from '@turf/turf';
 import * as fs from 'node:fs';
 
-function getPolygons(input) {
-  /* Transform the feature collection of polygons and multi-polygons into a feature collection of polygons only */
-  /* all helper functions should rely on its output */
-  const handlePolygon = (feature, props) => polygon(getCoords(feature), props);
-  const handleMultiPolygon = (feature, props) =>
-    getCoords(feature).map((coord) => polygon(coord, props));
+/* Transform the feature collection of polygons and multi-polygons into a feature collection of polygons only */
+/* all helper functions should rely on its output */
+const handlePolygon = (feature, props) => polygon(getCoords(feature), props);
+const handleMultiPolygon = (feature, props) =>
+  getCoords(feature).map((coord) => polygon(coord, props));
 
+function getPolygons(input) {
   const polygons: Feature<Polygon, Properties>[] = [];
-  let fc;
-  fc = getType(input) !== 'FeatureCollection' ? featureCollection([input]) : input;
+  const fc = getType(input) !== 'FeatureCollection' ? featureCollection([input]) : input;
 
   featureEach(fc, (feature) => {
     const type = getType(feature);
@@ -84,8 +83,6 @@ function log(message) {
  * @param {number} decimals - Defaults to 2 decimals.
  * @returns {number} Rounded number.
  */
-const round = (number, decimals = 2) => {
-  return Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
-};
-
+const round = (number: number, decimals = 2): number =>
+  Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
 export { getPolygons, getHoles, isSliver, writeJSON, getJSON, log, round, fileExists };

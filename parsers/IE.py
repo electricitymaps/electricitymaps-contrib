@@ -185,7 +185,7 @@ def fetch_consumption(
     demand = []
     for item in demand_data:
         data_point = {
-            "zone_key": zone_key,
+            "zoneKey": zone_key,
             "consumption": item["Value"],
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
@@ -220,8 +220,8 @@ def fetch_consumption_forecast(
     demand_forecast = []
     for item in demand_forecast_data:
         data_point = {
-            "zone_key": zone_key,
-            "consumption": item["Value"],
+            "zoneKey": zone_key,
+            "value": item["Value"],
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
             ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
@@ -256,7 +256,7 @@ def fetch_wind_forecasts(
     wind_forecast = []
     for item in wind_forecast_data:
         data_point = {
-            "zone_key": zone_key,
+            "zoneKey": zone_key,
             "production": {"wind": item["Value"]},
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"

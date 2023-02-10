@@ -11,8 +11,9 @@ import FAQModal from 'features/modals/FAQModal';
 import InfoModal from 'features/modals/InfoModal';
 import SettingsModal from 'features/modals/SettingsModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
-import { ReactElement, Suspense, lazy } from 'react';
+import { ReactElement, Suspense, lazy, useEffect } from 'react';
 import { Capacitor } from '@capacitor/core';
+import { App as Cap } from '@capacitor/app';
 import trackEvent from 'utils/analytics';
 
 const isProduction = import.meta.env.PROD;
@@ -34,7 +35,18 @@ export default function App(): ReactElement {
   const { data, isSuccess } = useGetAppVersion();
   const latestAppVersion = data?.version || '0';
   const isNewVersionAvailable = isProduction && latestAppVersion > currentAppVersion;
-
+  // Handle back button on Android
+  useEffect(() => {
+    if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
+      Cap.addListener('backButton', () => {
+        if (window.location.pathname === '/map') {
+          Cap.exitApp();
+        } else {
+          window.history.back();
+        }
+      });
+    }
+  }, []);
   return (
     <Suspense fallback={<div />}>
       <main className="fixed flex h-screen w-screen flex-col">

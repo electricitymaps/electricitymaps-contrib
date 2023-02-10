@@ -2,7 +2,7 @@ import path from 'node:path';
 
 const arguments_ = process.argv.slice(2);
 
-import { mergeZones } from '../scripts/generate-zones-config';
+import { mergeZones } from '../scripts/generateZonesConfig';
 import { saveZoneYaml } from './files';
 import { getJSON } from './utilities';
 
@@ -11,7 +11,7 @@ const zones = mergeZones();
 
 if (arguments_.length <= 0) {
   console.error(
-    'ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE")'
+    'ERROR: Please add a zoneName parameter ("ts-node generateZoneBoundingBoxes.ts DE")'
   );
   process.exit(1);
 }

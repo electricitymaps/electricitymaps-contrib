@@ -231,6 +231,7 @@ parsers:
   price: GB.fetch_price
   production: ELEXON.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+price_displayed: false
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
