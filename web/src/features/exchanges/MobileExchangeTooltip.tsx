@@ -24,8 +24,8 @@ export default function MobileExchangeTooltip(
       {__('tooltips.crossborderexport')}:
       <div>
         <div className="flex-col items-center pb-2">
-          <ZoneName zone={zoneFrom} textStyle="max-w-[165px]" /> <p>→</p>{' '}
-          <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
+          <ZoneName zone={zoneFrom} textStyle="max-w-[165px]" />{' '}
+          <p className="ml-0.5">↓</p> <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
           <b className="font-bold">{formatPower(roundedNetFlow)}</b>
         </div>
       </div>
