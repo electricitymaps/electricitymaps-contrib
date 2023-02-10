@@ -28,6 +28,7 @@ import LanguageSelector from './LanguageSelector';
 import MapButton from './MapButton';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 import DarkModeSelector from './DarkModeSelector';
+import { BsMoonStars } from 'react-icons/bs';
 
 function MobileMapControls() {
   const setIsInfoModalOpen = useSetAtom(isInfoModalOpenAtom);
@@ -162,9 +163,8 @@ function DesktopMapControls() {
           </>
         )}
         <MapButton
-          icon={<HiOutlineMoon size={20} style={{ strokeWidth: '0.5' }} />}
-          tooltipText={__('tooltips.selectLanguage')}
-          dataTestId="language-selector-open-button"
+          icon={<BsMoonStars size={15} style={{ strokeWidth: '0.2' }} />}
+          tooltipText={__('tooltips.toggleDarkMode')}
           onClick={() => setIsDarkModeSelectorOpen(!isDarkModeSelectorOpen)}
         />
         {isDarkModeSelectorOpen && (

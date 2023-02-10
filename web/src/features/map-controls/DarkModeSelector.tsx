@@ -15,39 +15,38 @@ export default function DarkModeSelector({
   className,
 }: DarkModeSelectorProperties): ReactElement {
   const { __, i18n } = useTranslation();
-  const languageKeys = Object.keys(languageNames) as Array<LanguageNamesKey>;
-  const currentLanguageKey = i18n.language as LanguageNamesKey;
-  const [selectedLanguage, setSelectedLanguage] = useState(
-    languageNames[currentLanguageKey] ?? 'English'
+  const darkModeKeys: Array<string> = ['light', 'dark', 'system'];
+  const [selectedThemeMode, setSelectedThemeMode] = useState(
+    localStorage.getItem('theme') || 'system'
   );
 
-  const handleLanguageSelect = (languageKey: LanguageNamesKey) => {
-    i18n.changeLanguage(languageKey);
-    setSelectedLanguage(languageKey);
+  const handleSetDarkMode = (mode: string) => {
+    localStorage.setItem('theme', mode);
+    setSelectedThemeMode(mode);
     setDarkModeSelectorOpen(false);
   };
-  const languageOptions = languageKeys.map((key) => {
+  const darkModeOptions = darkModeKeys.map((option) => {
     return (
       <button
-        key={key}
-        onKeyDown={() => handleLanguageSelect(key)}
-        onClick={() => handleLanguageSelect(key)}
+        key={option}
+        onKeyDown={() => handleSetDarkMode(option)}
+        onClick={() => handleSetDarkMode(option)}
         className={`w-full cursor-pointer px-2 py-1 text-start text-sm ${
-          languageNames[key] === selectedLanguage && 'bg-gray-200   dark:bg-gray-500'
+          option === selectedThemeMode && 'bg-gray-200   dark:bg-gray-500'
         }`}
       >
-        {languageNames[key]}
+        {option}
       </button>
     );
   });
   return (
     <div
       className={twMerge(
-        'pointer-events-auto absolute top-[160px] right-10 h-[256px] w-[140px] overflow-auto rounded bg-white py-1 dark:bg-gray-900 dark:[color-scheme:dark]',
+        'pointer-events-auto absolute top-[290px] right-10 h-[88px] w-[140px] overflow-auto rounded bg-white py-1 dark:bg-gray-900 dark:[color-scheme:dark]',
         className
       )}
     >
-      {languageOptions}
+      {darkModeOptions}
     </div>
   );
 }
