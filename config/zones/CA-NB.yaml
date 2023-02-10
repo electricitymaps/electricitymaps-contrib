@@ -51,8 +51,16 @@ fallbackZoneMixes:
         nuclear: 0.3754
         oil: 0.0138
         wind: 0.0665
-
-flag_file_name: ca.png
+isLowCarbon:
+  unknown:
+    - datetime: 2019-01-01
+      _comment: Sum of low carbon sources
+      value: 0.7038
+isRenewable:
+  unknown:
+    - datetime: 2019-01-01
+      _comment: Sum of renewable sources
+      value: 0.3284
 parsers:
   production: CA_NB.fetch_production
 timezone: America/Moncton
