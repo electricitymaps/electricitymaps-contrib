@@ -30,27 +30,27 @@ emissionFactors:
         value: 211.9
 fallbackZoneMixes:
   powerOriginRatios:
-  - datetime: 2018-01-01
-    _source: Canada NEB yearly data for 2018
-    _url: https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html
-    value:
-      biomass: 0.03
-      coal: 0.18
-      gas: 0.12
-      hydro: 0.21
-      nuclear: 0.39
-      wind: 0.07
-  - datetime: 2019-01-01
-    _source: Open Canada data for 2019
-    _url: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2
-    value:
-      biomass: 0.0378
-      coal: 0.1371
-      gas: 0.1453
-      hydro: 0.2241
-      nuclear: 0.3754
-      oil: 0.0138
-      wind: 0.0665
+    - datetime: 2018-01-01
+      _source: Canada NEB yearly data for 2018
+      _url: https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html
+      value:
+        biomass: 0.03
+        coal: 0.18
+        gas: 0.12
+        hydro: 0.21
+        nuclear: 0.39
+        wind: 0.07
+    - datetime: 2019-01-01
+      _source: Open Canada data for 2019
+      _url: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2
+      value:
+        biomass: 0.0378
+        coal: 0.1371
+        gas: 0.1453
+        hydro: 0.2241
+        nuclear: 0.3754
+        oil: 0.0138
+        wind: 0.0665
 
 flag_file_name: ca.png
 parsers:
