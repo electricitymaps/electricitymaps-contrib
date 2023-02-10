@@ -81,10 +81,10 @@ function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArr
   return (
     <>
       <MobileTooltipWrapper
-        tooltipClassName="flex max-h-[256px] max-w-[512px] top-[-76px] "
+        tooltipClassName="flex max-h-[256px] max-w-[512px]"
         tooltipContent={<MobileExchangeTooltip exchangeData={data} />}
         side="top"
-        sideOffset={0}
+        sideOffset={10}
       >
         <picture
           id={key}
