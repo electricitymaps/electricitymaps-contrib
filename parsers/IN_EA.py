@@ -7,6 +7,7 @@ import pytz
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
+from parsers.lib.quality import validate_datapoint_format
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 IN_EA_TZ = pytz.timezone("Asia/Kolkata")
@@ -50,6 +51,7 @@ def fetch_exchange(
             "netFlow": imports + exports,
             "source": "erldc.in",
         }
+        validate_datapoint_format(datapoint=data_point, zone_key=zone_key1, kind="exchange")
         return data_point
     else:
         raise ParserException(
