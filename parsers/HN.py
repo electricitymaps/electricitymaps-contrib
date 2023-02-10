@@ -131,6 +131,15 @@ def get_values(CSV_data: list, mapping: dict, kind: str = "production"):
     return values_by_hour, date
 
 
+def get_datetime(date: str, hour: int) -> datetime:
+    """
+    Returns a datetime object with the given date and hour
+    """
+    return datetime.strptime(date, "%m/%d/%Y").replace(
+        tzinfo=timezone("America/Tegucigalpa")
+    ) + timedelta(hours=hour + 1)
+
+
 def fetch_production(
     zone_key: str = "HN",
     session: Session = Session(),
@@ -148,15 +157,11 @@ def fetch_production(
     production_list = []
     if date is not None:
         for index in range(0, 24):
-            production_datetime = datetime.strptime(date, "%m/%d/%Y")
-            production_datetime = production_datetime.replace(
-                tzinfo=timezone("America/Tegucigalpa")
-            ) + timedelta(hours=index + 1)
             if production_by_hour[index] != {}:
                 production_list.append(
                     {
                         "zoneKey": zone_key,
-                        "datetime": production_datetime,
+                        "datetime": get_datetime(date, index),
                         "production": production_by_hour[index],
                         "source": "ods.org.hn",
                     }
@@ -184,15 +189,11 @@ def fetch_exchange(
     exchange_list = []
     if date is not None:
         for index in range(0, 24):
-            exchange_datetime = datetime.strptime(date, "%m/%d/%Y")
-            exchange_datetime = exchange_datetime.replace(
-                tzinfo=timezone("America/Tegucigalpa")
-            ) + timedelta(hours=index + 1)
             if exchange_per_hour[index] != {}:
                 exchange_list.append(
                     {
                         "sortedZoneKeys": sorted_zone_keys,
-                        "datetime": exchange_datetime,
+                        "datetime": get_datetime(date, index),
                         "netFlow": exchange_per_hour[index][sorted_zone_keys],
                         "source": "ods.org.hn",
                     }
