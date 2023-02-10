@@ -51,7 +51,9 @@ def fetch_exchange(
             "netFlow": imports + exports,
             "source": "erldc.in",
         }
-        validate_datapoint_format(datapoint=data_point, zone_key=zone_key1, kind="exchange")
+        validate_datapoint_format(
+            datapoint=data_point, zone_key=zone_key1, kind="exchange"
+        )
         return data_point
     else:
         raise ParserException(
