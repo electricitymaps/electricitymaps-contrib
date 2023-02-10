@@ -1,12 +1,14 @@
 from csv import reader
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pytz import timezone
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
+
+DATA_URL = "https://otr.ods.org.hn:3200/odsprd/ods_prd/r/operador-del-sistema-ods/producci%C3%B3n-horaria"
 
 INDEX_TO_TYPE_MAP = {
     1: "hydro",
@@ -35,37 +37,72 @@ EXCHANGE_DIRECTION_MAP = {
 
 
 def get_data(
-    session: Session,
-):
+    session: Session, type: str = "production"
+) -> Tuple[List[Any], Dict[str, str]]:
     """
-    Gets the data from the individual CSV files and returns a list with
-    the combined data and a dictionary with the plant to type mapping.
+    Gets the data from otr.ods.org.hn and returns it as a list with
+    the data and a dictionary with the plant to type mapping or an exchange mapping.
     """
     CSV_data = []
     PLANT_TO_TYPE_MAP = {}
-    for index in range(1, 11):
-        if index == 7:  # Skip exchanges
-            continue
+    if type == "production":
+        for index in range(1, 11):
+            if index == 7:  # Skip exchanges
+                continue
+            params = {
+                "request": "CSV_N_",
+                "p8_indx": index,
+            }
+            response: Response = session.get(
+                DATA_URL,
+                params=params,
+                verify=False,
+            )
+
+            parsed_csv = list(reader(response.text.splitlines()))
+            for row in parsed_csv:
+                if row[0] == "Fecha" or row[1] == "Planta":
+                    continue
+                PLANT_TO_TYPE_MAP[row[1]] = INDEX_TO_TYPE_MAP[index]
+                CSV_data.append(row)
+        return CSV_data, PLANT_TO_TYPE_MAP
+    elif type == "exchange":
         params = {
             "request": "CSV_N_",
-            "p8_indx": index,
+            "p8_indx": 7,
         }
-        response: Response = session.get(
-            "https://otr.ods.org.hn:3200/odsprd/ods_prd/r/operador-del-sistema-ods/producci%C3%B3n-horaria",
-            params=params,
-            verify=False,
+        response: Response = session.get(DATA_URL, params=params, verify=False)
+        CSV_data = list(reader(response.text.splitlines()))
+        return CSV_data, EXCHANGE_MAP
+    else:
+        raise ParserException("HN.py", f"Invalid data type: {type}")
+
+
+def format_values(
+    values_by_hour: Dict[int, Any],
+    mapping: dict,
+    value: str,
+    kind: str,
+    id: str,
+    index: int,
+):
+    if kind == "production":
+        if mapping[id] in values_by_hour[index].keys():
+            values_by_hour[index][mapping[id]] += (
+                float(value) if float(value) > 0 else 0
+            )
+        else:
+            values_by_hour[index][mapping[id]] = float(value) if float(value) > 0 else 0
+    elif kind == "exchange":
+        values_by_hour[index][mapping[id]] = (
+            float(value) * EXCHANGE_DIRECTION_MAP[mapping[id]]
         )
-        csv_file = response.text
-        parsed_csv = list(reader(csv_file.splitlines()))
-        for row in parsed_csv:
-            if row[0] == "Fecha" or row[1] == "Planta":
-                continue
-            PLANT_TO_TYPE_MAP[row[1]] = INDEX_TO_TYPE_MAP[index]
-            CSV_data.append(row)
-    return CSV_data, PLANT_TO_TYPE_MAP
+    else:
+        raise ParserException("HN.py", f"Invalid data type: {kind}")
+    return values_by_hour
 
 
-def get_values(CSV_data: list, PLANT_TO_TYPE_MAP: dict, kind: str = "production"):
+def get_values(CSV_data: list, mapping: dict, kind: str = "production"):
     """
     Gets the values from the CSV data and returns a dictionary with the values by hour and the date
     """
@@ -81,29 +118,14 @@ def get_values(CSV_data: list, PLANT_TO_TYPE_MAP: dict, kind: str = "production"
         for value in row_production_by_hour:
             if row[0] == "Fecha":
                 continue
-            if (
-                PLANT_TO_TYPE_MAP[row[1]] in values_by_hour[index].keys()
-                and value != ""
-                and kind == "production"
-            ):
-                values_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] += (
-                    float(value) if float(value) > 0 else 0
-                )
-            elif value != "" and kind == "production":
-                values_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] = (
-                    float(value) if float(value) > 0 else 0
-                )
-            elif (
-                PLANT_TO_TYPE_MAP[row[1]] in values_by_hour[index].keys()
-                and value != ""
-                and kind == "exchange"
-            ):
-                values_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] += (
-                    float(value) * EXCHANGE_DIRECTION_MAP[PLANT_TO_TYPE_MAP[row[1]]]
-                )
-            elif value != "" and kind == "exchange":
-                values_by_hour[index][PLANT_TO_TYPE_MAP[row[1]]] = (
-                    float(value) * EXCHANGE_DIRECTION_MAP[PLANT_TO_TYPE_MAP[row[1]]]
+            if value != "":
+                values_by_hour = format_values(
+                    values_by_hour=values_by_hour,
+                    mapping=mapping,
+                    value=value,
+                    kind=kind,
+                    id=row[1],
+                    index=index,
                 )
             index += 1
     return values_by_hour, date
@@ -120,7 +142,7 @@ def fetch_production(
             "HN.py", "This parser is not yet able to parse past dates"
         )
 
-    CSV_data, PLANT_TO_TYPE_MAP = get_data(session)
+    CSV_data, PLANT_TO_TYPE_MAP = get_data(session, "production")
     production_by_hour, date = get_values(CSV_data, PLANT_TO_TYPE_MAP)
 
     production_list = []
@@ -155,20 +177,8 @@ def fetch_exchange(
             "HN.py", "This parser is not yet able to parse past dates"
         )
 
-    params = {
-        "request": "CSV_N_",
-        "p8_indx": 7,
-    }
-    response: Response = session.get(
-        "https://otr.ods.org.hn:3200/odsprd/ods_prd/r/operador-del-sistema-ods/producci%C3%B3n-horaria",
-        params=params,
-        verify=False,
-    )
-
-    csv_file = response.text
-    parsed_csv = list(reader(csv_file.splitlines()))
-
-    exchange_per_hour, date = get_values(parsed_csv, EXCHANGE_MAP, "exchange")
+    CSV_data, EXCHANGE_MAP = get_data(session, "exchange")
+    exchange_per_hour, date = get_values(CSV_data, EXCHANGE_MAP, "exchange")
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     exchange_list = []
