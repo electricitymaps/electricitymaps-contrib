@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 """
 Parser that uses the ELEXON API to return the following data types.
@@ -104,7 +103,7 @@ def _create_eso_historical_demand_index(session: Session) -> Dict[int, str]:
         "https://data.nationalgrideso.com/demand/historic-demand-data/datapackage.json"
     )
     data = response.json()
-    pattern = re.compile("historic_demand_data_(?P<year>\d+)")
+    pattern = re.compile(r"historic_demand_data_(?P<year>\d+)")
     for resource in data["resources"]:
         match = pattern.match(resource["name"])
         if match is not None:
