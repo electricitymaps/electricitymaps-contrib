@@ -237,6 +237,7 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+price_displayed: false
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

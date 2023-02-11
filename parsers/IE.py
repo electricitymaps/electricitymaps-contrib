@@ -127,14 +127,17 @@ def fetch_exchange(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """gets exchanges values for the East-West interconnector (GB->IE)"""
+    """
+    Fetches exchanges values for the East-West (GB->IE) and Moyle (GB->GB-NIR)
+    interconnectors.
+    """
     if target_datetime is None:
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     exchange_data = fetch_data(
         target_datetime=target_datetime,
-        zone_key=zone_key1,
+        zone_key=zone_key2,
         kind="exchange",
         session=session,
     )
@@ -143,7 +146,7 @@ def fetch_exchange(
     filtered_exchanges = [
         item
         for item in exchange_data
-        if item["FieldName"] == ZONE_MAPPING[zone_key1]["exchange"]
+        if item["FieldName"] == ZONE_MAPPING[zone_key2]["exchange"]
     ]
     exchange = []
     for item in filtered_exchanges:
@@ -182,7 +185,7 @@ def fetch_consumption(
     demand = []
     for item in demand_data:
         data_point = {
-            "zone_key": zone_key,
+            "zoneKey": zone_key,
             "consumption": item["Value"],
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
@@ -217,8 +220,8 @@ def fetch_consumption_forecast(
     demand_forecast = []
     for item in demand_forecast_data:
         data_point = {
-            "zone_key": zone_key,
-            "consumption": item["Value"],
+            "zoneKey": zone_key,
+            "value": item["Value"],
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
             ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
@@ -253,7 +256,7 @@ def fetch_wind_forecasts(
     wind_forecast = []
     for item in wind_forecast_data:
         data_point = {
-            "zone_key": zone_key,
+            "zoneKey": zone_key,
             "production": {"wind": item["Value"]},
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"

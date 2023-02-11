@@ -1,0 +1,39 @@
+on:
+  workflow_call:
+
+jobs:
+  validate_generated_files:
+    name: Generated files
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: Setup Node v18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Restore node_modules
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+      - name: zones + exchanges
+        run: pnpm run generate-zones-config
+        env:
+          VERIFY_NO_UPDATES: 1
+      - name: world
+        run: pnpm run generate-world
+        env:
+          VERIFY_NO_UPDATES: 1

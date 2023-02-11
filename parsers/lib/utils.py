@@ -1,7 +1,9 @@
 import math
 import os
 
-TOKEN_WIKI_URL = "https://github.com/tmrowco/electricitymap-contrib/wiki/Create-tokens"
+TOKEN_WIKI_URL = (
+    "https://github.com/electricitymaps/electricitymaps-contrib/wiki/Create-tokens"
+)
 
 
 def get_token(token):

@@ -6,7 +6,7 @@ on:
 jobs:
   # This workflow contains a single job
   check_broken_internal_links_in_md:
-    name: Internal links
+    name: Markdown links
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
