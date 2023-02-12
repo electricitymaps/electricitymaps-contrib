@@ -11,13 +11,14 @@
     "url": "https://github.com/electricityMaps/electricitymaps-contrib.git"
   },
   "scripts": {
-    "mockserver": "nodemon ../mockserver/server.js",
+    "mockserver": "cd ../mockserver && pnpm run start",
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
+    "create-generated-files": "pnpm run generate-world && pnpm run generate-zones-config",
     "generate-world": "ts-node ./geo/generateWorld.ts",
     "generate-zones-config": "ts-node ./scripts/generateZonesConfig.ts",
-    "predevelop": "pnpm run generate-zones-config",
-    "prebuild": "pnpm run generate-zones-config",
+    "predev": "pnpm run create-generated-files",
+    "prebuild": "pnpm run create-generated-files",
     "cy:components": "cypress open --components -b electron",
     "cy:e2e": "cypress open --e2e -b electron",
     "dev": "vite --open",
