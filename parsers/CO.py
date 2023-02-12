@@ -24,9 +24,9 @@ def fetch_consumption(
         raise NotImplementedError("This parser is not yet able to parse past dates.")
     with session.get(colombia_demand_URL, verify=False) as response:
         demand_json = json.loads(response.content)
-        demand_pretty = demand_json['Variables'][0]['Datos']
+        demand_data = demand_json['Variables'][0]['Datos']
 
-        for datapoint in demand_pretty:
+        for datapoint in demand_data:
             demand_list.append(
                 {
                 "zoneKey": zone_key,
