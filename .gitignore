@@ -1,7 +1,7 @@
 *.pyc
 *.env
 web/public/dist
-web/config/*.json
+web/config
 **/node_modules
 .ipynb_checkpoints/
 *.pyproj
