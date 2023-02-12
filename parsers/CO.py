@@ -32,7 +32,6 @@ def fetch_consumption(
                 "zoneKey": zone_key,
                 "datetime": arrow.get(datapoint['Fecha'], tzinfo=TZ).datetime,
                 "consumption": round(datapoint['Valor'], 1),
-                "storage": {},
                 "source": "xm.com.co"
                 }
             )
