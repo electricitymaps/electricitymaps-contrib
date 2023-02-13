@@ -18,19 +18,19 @@ contributors:
 emissionFactors:
   direct:
     unknown:
-      - datetime: 2019-01-01
+      - datetime: '2019-01-01'
         _url: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2
         source: assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
         value: 163.5
   lifecycle:
     unknown:
-      - datetime: 2019-01-01
+      - datetime: '2019-01-01'
         _url: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2
         source: assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
         value: 211.9
 fallbackZoneMixes:
   powerOriginRatios:
-    - datetime: 2018-01-01
+    - datetime: '2018-01-01'
       _source: Canada NEB yearly data for 2018
       _url: https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html
       value:
@@ -53,12 +53,12 @@ fallbackZoneMixes:
         wind: 0.0665
 isLowCarbon:
   unknown:
-    - datetime: 2019-01-01
+    - datetime: '2019-01-01'
       _comment: Sum of low carbon sources
       value: 0.7038
 isRenewable:
   unknown:
-    - datetime: 2019-01-01
+    - datetime: '2019-01-01'
       _comment: Sum of renewable sources
       value: 0.3284
 parsers:
