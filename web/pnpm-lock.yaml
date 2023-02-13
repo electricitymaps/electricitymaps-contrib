@@ -109,7 +109,7 @@ specifiers:
   msw: 0.47.4
   npm-run-all: 4.1.5
   postcss: 8.4.18
-  prettier: 2.7.1
+  prettier: 2.8.4
   prettier-plugin-tailwindcss: 0.1.13
   react: 18.2.0
   react-dom: 18.2.0
@@ -267,8 +267,8 @@ devDependencies:
   msw: 0.47.4_typescript@4.8.4
   npm-run-all: 4.1.5
   postcss: 8.4.18
-  prettier: 2.7.1
-  prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
+  prettier: 2.8.4
+  prettier-plugin-tailwindcss: 0.1.13_prettier@2.8.4
   readline-sync: 1.4.10
   start-server-and-test: 1.14.0
   storybook: 7.0.0-alpha.54_yalvw3r2waubxycyb7k7qsruca
@@ -5081,7 +5081,7 @@ packages:
       globby: 11.1.0
       jscodeshift: 0.13.1_@babel+preset-env@7.20.2
       lodash: 4.17.21
-      prettier: 2.7.1
+      prettier: 2.8.4
       recast: 0.19.1
       util: 0.12.4
     transitivePeerDependencies:
@@ -5667,7 +5667,7 @@ packages:
       '@storybook/types': 7.0.0-alpha.54
       estraverse: 5.3.0
       lodash: 4.17.21
-      prettier: 2.7.1
+      prettier: 2.8.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     transitivePeerDependencies:
@@ -14287,17 +14287,17 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-tailwindcss/0.1.13_prettier@2.7.1:
+  /prettier-plugin-tailwindcss/0.1.13_prettier@2.8.4:
     resolution: {integrity: sha512-/EKQURUrxLu66CMUg4+1LwGdxnz8of7IDvrSLqEtDqhLH61SAlNNUSr90UTvZaemujgl3OH/VHg+fyGltrNixw==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
       prettier: '>=2.2.0'
     dependencies:
-      prettier: 2.7.1
+      prettier: 2.8.4
     dev: true
 
-  /prettier/2.7.1:
-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
+  /prettier/2.8.4:
+    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
