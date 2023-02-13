@@ -2,5 +2,5 @@ lonlat:
   - -88.429
   - 13.859
 parsers:
-  exchange: ENTE.fetch_exchange
+  exchange: HN.fetch_exchange
 rotation: 180
