@@ -43,7 +43,7 @@ export default function LanguageSelector({
   return (
     <div
       className={twMerge(
-        'pointer-events-auto absolute top-[160px] right-10 h-[256px] w-[140px] overflow-auto rounded bg-white py-1 dark:bg-gray-900 dark:[color-scheme:dark]',
+        'pointer-events-auto absolute top-[160px] right-10 h-[256px] w-[120px] overflow-auto rounded bg-white py-1 dark:bg-gray-900 dark:[color-scheme:dark]',
         className
       )}
     >

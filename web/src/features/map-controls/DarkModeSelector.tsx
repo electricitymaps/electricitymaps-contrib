@@ -1,6 +1,7 @@
 import { ReactElement, useState } from 'react';
+import { BsMoonStars } from 'react-icons/bs';
+import { HiOutlineComputerDesktop, HiOutlineSun } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
-import { languageNames } from 'translation/locales';
 import { useTranslation } from 'translation/translation';
 
 interface DarkModeSelectorProperties {
@@ -8,7 +9,27 @@ interface DarkModeSelectorProperties {
   className?: string;
 }
 
-type LanguageNamesKey = keyof typeof languageNames;
+function getIcon(key: string) {
+  switch (key) {
+    case 'light': {
+      return <HiOutlineSun size={20} />;
+    }
+    case 'dark': {
+      return (
+        <BsMoonStars
+          size={14}
+          style={{ strokeWidth: '0.2', marginLeft: 3, marginRight: 2 }}
+        />
+      );
+    }
+    case 'system': {
+      return <HiOutlineComputerDesktop size={18} />;
+    }
+    default: {
+      return null;
+    }
+  }
+}
 
 export default function DarkModeSelector({
   setDarkModeSelectorOpen,
@@ -26,6 +47,7 @@ export default function DarkModeSelector({
     setDarkModeSelectorOpen(false);
   };
   const darkModeOptions = darkModeKeys.map((option) => {
+    const icon = getIcon(option);
     return (
       <button
         key={option}
@@ -35,14 +57,17 @@ export default function DarkModeSelector({
           option === selectedThemeMode && 'bg-gray-200   dark:bg-gray-500'
         }`}
       >
-        {option}
+        <div className="flex">
+          <div className="mr-2"> {icon}</div>
+          {__(`darkModeButtons.${option}`)}
+        </div>
       </button>
     );
   });
   return (
     <div
       className={twMerge(
-        'pointer-events-auto absolute top-[290px] right-10 h-[88px] w-[140px] overflow-auto rounded bg-white py-1 dark:bg-gray-900 dark:[color-scheme:dark]',
+        'pointer-events-auto absolute top-[290px] right-10 h-[96px] w-[120px] overflow-auto rounded bg-white py-1 dark:bg-gray-900 dark:[color-scheme:dark]',
         className
       )}
     >

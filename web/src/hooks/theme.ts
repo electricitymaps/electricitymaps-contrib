@@ -9,7 +9,8 @@ import { colorblindModeAtom } from 'utils/state/atoms';
 export function useTheme(): MapTheme {
   const [isColorBlindModeEnabled] = useAtom(colorblindModeAtom);
   const darkThemeMediaQuery = window.matchMedia('(prefers-color-scheme: light)');
-  const isBrightModeEnabled = darkThemeMediaQuery.matches;
+  const isBrightModeEnabled =
+    darkThemeMediaQuery.matches && localStorage.theme !== 'dark';
 
   return useMemo(() => {
     if (isBrightModeEnabled) {
