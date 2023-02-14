@@ -40,7 +40,7 @@ fallbackZoneMixes:
         hydro: 0.21
         nuclear: 0.39
         wind: 0.07
-    - datetime: 2019-01-01
+    - datetime: '2019-01-01'
       _source: Open Canada data for 2019
       _url: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2
       value:
