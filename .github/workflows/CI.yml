@@ -129,7 +129,7 @@ jobs:
 
   python_tests:
     name: Python
-    needs: [setup, python_formatting]
+    needs: [setup]
     if: >-
       needs.setup.outputs.python != 'false' ||
       needs.setup.outputs.config != 'false'
