@@ -188,6 +188,7 @@
   "lint-staged": {
     "*": "prettier -uw --cache",
     "*.{ts,tsx}": [
+      "eslint --cache --fix",
       "vitest related --run --coverage=false"
     ]
   }
