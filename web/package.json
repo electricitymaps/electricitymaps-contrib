@@ -6,6 +6,7 @@
   "engines": {
     "node": ">=18"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/electricityMaps/electricitymaps-contrib.git"
@@ -14,8 +15,8 @@
     "mockserver": "nodemon ../mockserver/server.js",
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
-    "generate-world": "ts-node ./geo/generateWorld.ts",
-    "generate-zones-config": "ts-node ./scripts/generateZonesConfig.ts",
+    "generate-world": "ts-node --esm ./geo/generateWorld.ts",
+    "generate-zones-config": "ts-node --esm ./scripts/generateZonesConfig.ts",
     "predevelop": "pnpm run generate-zones-config",
     "prebuild": "pnpm run generate-zones-config",
     "cy:components": "cypress open --components -b electron",
