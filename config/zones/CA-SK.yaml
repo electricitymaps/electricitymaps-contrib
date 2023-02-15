@@ -4,12 +4,16 @@ bounding_box:
   - - -100.86433964677866
     - 60.50005890629359
 capacity:
-  biomass: 16
+  _source: SaskPower
+  _url: https://www.saskpower.com/Our-Power-Future/Our-Electricity/Electrical-System/System-Map
+  biomass: 8
   coal: 1389
   gas: 2160
   hydro: 864
-  solar: 81
+  solar: 82
   wind: 617
   unknown: 26
 flag_file_name: ca.png
+parsers:
+  consumption: CA_SK.fetch_consumption
 timezone: America/Regina
