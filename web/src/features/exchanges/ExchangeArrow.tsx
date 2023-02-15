@@ -11,7 +11,6 @@ import ExchangeTooltip from './ExchangeTooltip';
 import MobileTooltipWrapper from 'components/tooltips/MobileTooltipWrapper';
 import MobileExchangeTooltip from './MobileExchangeTooltip';
 
-
 interface ExchangeArrowProps {
   data: ExchangeArrowData;
   viewportWidth: number;
