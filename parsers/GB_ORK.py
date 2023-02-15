@@ -16,7 +16,7 @@ from requests import Response, Session
 # http://www.oref.co.uk/orkneys-energy/innovations-2/
 
 TZ = "Europe/London"
-DATETIME_LINK = "https://distribution.ssen.co.uk/anm/orkney/"
+DATETIME_LINK = "https://distribution.ssen.co.uk/anmorkneygraph/"
 GENERATION_LINK = "https://distribution.ssen.co.uk/Sse_Components/Views/Controls/FormControls/Handlers/ActiveNetworkManagementHandler.ashx?action=graph&contentId=14973&_=1537467858726"
 
 GENERATION_MAPPING = {
