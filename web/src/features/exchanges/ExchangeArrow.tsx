@@ -1,13 +1,16 @@
 /* eslint-disable unicorn/no-null */
-import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { useEffect, useMemo } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
-import ExchangeTooltip from './ExchangeTooltip';
 import { quantizedCo2IntensityScale, quantizedExchangeSpeedScale } from './scales';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useSetAtom } from 'jotai';
+import TooltipWrapper from 'components/tooltips/TooltipWrapper';
+import ExchangeTooltip from './ExchangeTooltip';
+import MobileTooltipWrapper from 'components/tooltips/MobileTooltipWrapper';
+import MobileExchangeTooltip from './MobileExchangeTooltip';
+
 
 interface ExchangeArrowProps {
   data: ExchangeArrowData;
@@ -77,30 +80,58 @@ function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArr
   }
 
   return (
-    <TooltipWrapper
-      tooltipClassName="flex max-h-[256px] max-w-[512px] top-[-76px]"
-      tooltipContent={<ExchangeTooltip exchangeData={data} />}
-      side="right"
-      sideOffset={10}
-    >
-      <picture
-        id={key}
-        style={{
-          transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
-          cursor: 'pointer',
-          overflow: 'hidden',
-          position: 'absolute',
-          pointerEvents: 'all',
-          imageRendering: 'crisp-edges',
-          left: '-25px',
-          top: '-41px',
-        }}
-        onWheel={() => setIsMoving(true)}
+    <>
+      <MobileTooltipWrapper
+        tooltipClassName="flex max-h-[256px] max-w-[512px]"
+        tooltipContent={<MobileExchangeTooltip exchangeData={data} />}
+        side="top"
+        sideOffset={10}
       >
-        <source srcSet={`${imageSource}.webp`} type="image/webp" />
-        <img src={`${imageSource}.gif`} alt="" draggable={false} />
-      </picture>
-    </TooltipWrapper>
+        <picture
+          id={key}
+          className="md:hidden"
+          style={{
+            transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
+            cursor: 'pointer',
+            overflow: 'hidden',
+            position: 'absolute',
+            pointerEvents: 'all',
+            imageRendering: 'crisp-edges',
+            left: '-25px',
+            top: '-41px',
+          }}
+          onWheel={() => setIsMoving(true)}
+        >
+          <source srcSet={`${imageSource}.webp`} type="image/webp" />
+          <img src={`${imageSource}.gif`} alt="" draggable={false} />
+        </picture>
+      </MobileTooltipWrapper>
+      <TooltipWrapper
+        tooltipClassName="max-h-[256px] max-w-[512px] top-[-76px] hidden md:flex"
+        tooltipContent={<ExchangeTooltip exchangeData={data} />}
+        side="right"
+        sideOffset={10}
+      >
+        <picture
+          id={key}
+          className="hidden md:block"
+          style={{
+            transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
+            cursor: 'pointer',
+            overflow: 'hidden',
+            position: 'absolute',
+            pointerEvents: 'all',
+            imageRendering: 'crisp-edges',
+            left: '-25px',
+            top: '-41px',
+          }}
+          onWheel={() => setIsMoving(true)}
+        >
+          <source srcSet={`${imageSource}.webp`} type="image/webp" />
+          <img src={`${imageSource}.gif`} alt="" draggable={false} />
+        </picture>
+      </TooltipWrapper>
+    </>
   );
 }
 
