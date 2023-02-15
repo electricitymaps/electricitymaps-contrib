@@ -1,4 +1,4 @@
 name: 'CodeQL config'
-query-filters:
-  - exclude:
-      id: js/missing-rate-limiting
+paths-ignore:
+  - mockserver
+  - 'web/**/*.test.ts'

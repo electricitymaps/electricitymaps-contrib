@@ -25,6 +25,10 @@ def validate_datapoint_format(datapoint: Dict[str, Any], kind: str, zone_key: Zo
         "consumption": ["zoneKey", "consumption"] + standard_keys,
         "exchange": ["sortedZoneKeys", "netFlow"] + standard_keys,
         "price": ["zoneKey", "currency", "price"] + standard_keys,
+        "consumptionForecast": ["zoneKey", "value"] + standard_keys,
+        "productionPerModeForecast": ["zoneKey", "production"] + standard_keys,
+        "generationForecast": ["zoneKey", "value"] + standard_keys,
+        "exchangeForecast": ["zoneKey", "netFlow"] + standard_keys,
     }
     for key in keys_dict[kind]:
         if key not in datapoint.keys():
@@ -158,10 +162,12 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
             " %s" % zone_key
         )
 
-    if obj.get("production", {}).get("hydro", 0) < 5 and zone_key in ["US-CAR-YAD"]:
-        raise ValidationError(
-            "Hydro production value is required to be greater than 5 for %s" % zone_key
-        )
+    if zone_key in ["US-CAR-YAD"]:
+        if obj.get("production", {}).get("hydro", 0) < 5:
+            raise ValidationError(
+                "Hydro production value is required to be greater than 5 for %s"
+                % zone_key
+            )
 
     if obj.get("storage"):
         if not isinstance(obj["storage"], dict):
