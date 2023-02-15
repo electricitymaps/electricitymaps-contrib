@@ -97,6 +97,7 @@
   },
   "devDependencies": {
     "@mdx-js/react": "^2.1.5",
+    "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@nabla/vite-plugin-eslint": "1.4.1",
     "@sentry/vite-plugin": "^0.3.0",
     "@storybook/addon-actions": "7.0.0-alpha.47",
