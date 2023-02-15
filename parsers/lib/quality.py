@@ -163,9 +163,10 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
         )
 
     if zone_key in ["US-CAR-YAD"]:
-        if obj.get("production", {}).get("hydro", 0) <5:
+        if obj.get("production", {}).get("hydro", 0) < 5:
             raise ValidationError(
-                "Hydro production value is required to be greater than 5 for %s" % zone_key
+                "Hydro production value is required to be greater than 5 for %s"
+                % zone_key
             )
 
     if obj.get("storage"):
