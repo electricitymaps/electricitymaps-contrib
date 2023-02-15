@@ -12,7 +12,9 @@ const sortObjectByKey = (object: any) =>
     }, {});
 
 const saveZoneYaml = (zoneKey: string, zone: any) => {
-  const zonePath = path.resolve(fileURLToPath(new URL(`../../config/zones/${zoneKey}.yaml`, import.meta.url)));
+  const zonePath = path.resolve(
+    fileURLToPath(new URL(`../../config/zones/${zoneKey}.yaml`, import.meta.url))
+  );
   fs.writeFile(zonePath, yaml.dump(sortObjectByKey(zone)), (error) => {
     if (error) {
       console.error(error);
