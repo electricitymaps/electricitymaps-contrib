@@ -31,7 +31,6 @@ emissionFactors:
     unknown:
       source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
       value: 192
-estimation_method: MODE_BREAKDOWN
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
