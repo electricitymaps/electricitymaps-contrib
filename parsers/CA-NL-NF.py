@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
+import arrow
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Optional
 
 from bs4 import BeautifulSoup
-from pytz import timezone
 from requests import Session
 
 # This parser fetches demand data for Canada-Newfoundland. The source-website https://nlhydro.com/ states:
@@ -32,11 +32,11 @@ def fetch_consumption(
     consumption_MW = float(NF_DEMAND_SOUP.find_all("p")[1].text.strip(" MW"))
 
     timestamp_raw = NF_DEMAND_SOUP.find_all("p")[2].text.strip("AS OF ")
-    timestamp = datetime.strptime(timestamp_raw, "%m/%d/%Y %H:%M %p")
+    timestamp = arrow.get(timestamp_raw, "M/D/YYYY H:m A", tzinfo=TZ)
 
     data = {
         "zoneKey": zone_key,
-        "datetime": timestamp.replace(tzinfo=timezone(TZ)),
+        "datetime": timestamp,
         "consumption": consumption_MW,
         "source": "https://nlhydro.com/",
     }
