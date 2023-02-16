@@ -36,7 +36,7 @@ isLowCarbon:
     value: 0.92
 isRenewable:
   unknown:
-    value: 1
+    value: 0.92
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
