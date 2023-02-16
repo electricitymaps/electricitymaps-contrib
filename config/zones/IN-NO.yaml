@@ -33,7 +33,7 @@ emissionFactors:
       value: 192
 isLowCarbon:
   unknown:
-    value: 1
+    value: 0.92
 isRenewable:
   unknown:
     value: 1
