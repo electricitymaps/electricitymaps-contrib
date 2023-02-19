@@ -7,7 +7,7 @@ capacity:
   biomass: 92
   coal: 14681
   gas: 18365
-  geothermal: 5
+  geothermal: 5.4
   hydro: 2094
   hydro storage: 2609
   nuclear: 2865
@@ -19,6 +19,7 @@ contributors:
   - corradio
   - MariusKroon
   - nessie2013
+  - Manu1400
 emissionFactors:
   direct:
     battery discharge:

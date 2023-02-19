@@ -73,9 +73,10 @@ def fetch_production(
     check_values = production.output <= production.capacity
     modes_with_capacity_exceeded = production[~check_values].index.tolist()
     for mode in modes_with_capacity_exceeded:
-        logger.warning(
-            f"Capacity exceeded for {mode} in {zone_key} at {dumpDate.datetime}"
-        )
+        if mode != "Geothermal":
+            logger.warning(
+                f"Capacity exceeded for {mode} in {zone_key} at {dumpDate.datetime}"
+            )
 
     coal_capacity = (
         production.loc["Coal"].capacity + production.loc["IPP-Coal"].capacity
@@ -96,6 +97,7 @@ def fetch_production(
         "production": {
             "coal": coal_production,
             "gas": gas_production,
+            "geothermal": production.loc["Geothermal"].capacity,
             "oil": oil_production,
             "hydro": production.loc["Hydro"].output,
             "nuclear": production.loc["Nuclear"].output,
@@ -106,6 +108,7 @@ def fetch_production(
         "capacity": {
             "coal": coal_capacity,
             "gas": gas_capacity,
+            "geothermal": production.loc["Geothermal"].capacity,
             "oil": oil_capacity,
             "hydro": production.loc["Hydro"].capacity,
             "hydro storage": production.loc["Pumping Gen"].capacity,
