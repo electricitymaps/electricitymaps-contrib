@@ -119,13 +119,22 @@ jobs:
   #   secrets: inherit
 
   # Python checks
-  python:
+  python_formatting:
     name: Python
     needs: [setup]
     if: >-
       needs.setup.outputs.python != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/python.yml
+    uses: ./.github/workflows/python_formatting.yml
+
+  python_tests:
+    name: Python
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.python != 'false' ||
+      needs.setup.outputs.config != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/python_tests.yml
 
   # Config checks
   validate_config_filenames:
