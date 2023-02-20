@@ -83,8 +83,8 @@ export default function MapTooltip() {
     : undefined;
 
   const screenWidth = window.innerWidth;
-  const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 290, 176);
-  const emptyTooltipPosition = getSafeTooltipPosition(x, y, screenWidth, 176, 80);
+  const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 300, 170);
+  const emptyTooltipPosition = getSafeTooltipPosition(x, y, screenWidth, 176, 70);
 
   const formattedDate = formatDate(
     new Date(selectedDatetime.datetimeString),
