@@ -29,9 +29,15 @@ function ExchangeArrow({ data, viewportWidth, viewportHeight, map }: ExchangeArr
   }
 
   useEffect(() => {
-    const cancelWheel = (event: WheelEvent) => event.preventDefault();
-    document.body.addEventListener('wheel', cancelWheel, { passive: false });
-    return () => document.body.removeEventListener('wheel', cancelWheel);
+    const cancelWheel = (event: Event) => event.preventDefault();
+    const exchangeLayer = document.querySelector('#exchange-layer');
+    if (!exchangeLayer) {
+      return;
+    }
+    exchangeLayer.addEventListener('wheel', cancelWheel, {
+      passive: false,
+    });
+    return () => exchangeLayer.removeEventListener('wheel', cancelWheel);
   }, []);
 
   const imageSource = useMemo(() => {
