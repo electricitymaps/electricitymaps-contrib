@@ -69,7 +69,6 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-    length: str = "1",
 ) -> Union[List[dict], dict]:
 
     if not target_datetime:
@@ -92,7 +91,6 @@ def fetch_production(
             </soap12:Envelope>'''.format(from_datetime, target_datetime, "QH", "AVG", "RT", "all")
 
     content = make_request(session, payload, zone_key).content
-
     xml = BeautifulSoup(content, 'xml')
     mapper = get_mapper(xml)
 
@@ -116,9 +114,6 @@ def fetch_production(
                 data["storage"][generator] = float(values[v])
 
         data_list.append(data)
-
-    for i in data_list:
-        print(i)
 
     return data_list
 
@@ -149,7 +144,8 @@ def fetch_exchange(
   </soap12:Body>
 </soap12:Envelope>'''.format(from_datetime, target_datetime, "QH", "AVG", "RT")
 
-    xml = BeautifulSoup(make_request(session, payload, zone_key1).content, 'xml')
+    content = make_request(session, payload, zone_key1).content
+    xml = BeautifulSoup(content, 'xml')
     mapper = get_mapper(xml)
 
     data_tag = xml.find('data')
@@ -165,54 +161,16 @@ def fetch_exchange(
 
         for k, v in mapper.items():
             country = ''.join([c for key, c in translate_table_dist.items() if key in k and mode in k])
-            if country != '':
-                # if country in data["distribution"]:
-                #     data["distribution"][country] = str(float(data["distribution"][country])+float(values[v]))
-                # else:
-                #     data["distribution"][country] = values[v]
-                if country == zone_key2:
-                    data['netFlow'] += float(values[v])
+            if country != '' and country == zone_key2:
+                data['netFlow'] += float(values[v])
 
         data_list.append(data)
-
-    for i in data_list:
-        print(i)
 
     return data_list
 
 
 def fetch_exchange_forecast():
     fetch_exchange('CZ', 'DE', mode='Planned')
-
-
-def fetch_price(zone_key: str = "CZ",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-    ):
-
-    if not target_datetime:
-        target_datetime = arrow.now() \
-            .replace(minute=0, second=0)
-    from_datetime = target_datetime.shift(days=-5)
-
-    payload = u'''<?xml version="1.0" encoding="utf-8"?>
-<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-  <soap12:Body>
-    <OfferPrices xmlns="https://www.ceps.cz/CepsData/">
-      <dateFrom>{0}</dateFrom>
-      <dateTo>{1}</dateTo>
-      <version>{2}</version>
-      <param1>(3)</param1>
-    </OfferPrices>
-  </soap12:Body>
-</soap12:Envelope>'''.format(from_datetime, target_datetime, "RT", "all")
-
-    xml = BeautifulSoup(make_request(session, payload, zone_key).content, 'xml')
-    mapper = get_mapper(xml)
-
-    data_tag = xml.find('data')
-    data_list = []
 
 
 if __name__ == "__main__":
@@ -224,5 +182,5 @@ if __name__ == "__main__":
     # print(fetch_price())
     # print("fetch_exchange_planned() ->")
     # print(fetch_exchange_planned())
-    print("fetch_exchange('CZ', 'DE') ->")
-    print(fetch_exchange())
+    # print("fetch_exchange('CZ', 'DE') ->")
+    # print(fetch_exchange())

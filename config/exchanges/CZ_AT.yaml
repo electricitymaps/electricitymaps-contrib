@@ -1,0 +1,7 @@
+lonlat:
+  - 15.486554
+  - 48.909846
+parsers:
+  exchange: CZ.fetch_exchange
+  exchangeForecast: CZ.fetch_exchange_forecast
+rotation: 0
