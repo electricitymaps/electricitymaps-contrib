@@ -119,7 +119,8 @@
     "representing": "macht",
     "ofemissions": "der Emissionen aus",
     "zoomIn": "Rein zoomen",
-    "zoomOut": "Raus zoomen"
+    "zoomOut": "Raus zoomen",
+    "aggregateInfo": "Wechsel zwischen spezifischer Zonenansicht und aggregierter Länderansicht"
   },
   "misc": {
     "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",

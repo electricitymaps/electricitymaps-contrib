@@ -127,7 +127,7 @@
     "production": "production",
     "consumption": "consumption",
     "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
-    "aggregateinfo": "Toggle between a granular zone view and an aggregated country view",
+    "aggregateInfo": "Toggle between a granular zone view and an aggregated country view",
     "selectLanguage": "Select language",
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed",
