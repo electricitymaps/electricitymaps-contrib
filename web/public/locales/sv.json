@@ -168,7 +168,7 @@
     "dataIsDelayed": "Data är fördröjd",
     "aggregated": "aggregerad",
     "detailed": "detaljerad",
-    "aggregateinfo": "Växla mellan en detaljerad zon vy och en aggregerad lands vy"
+    "aggregateInfo": "Växla mellan en detaljerad zon vy och en aggregerad lands vy"
   },
   "aggregateButtons": {
     "country": "land",

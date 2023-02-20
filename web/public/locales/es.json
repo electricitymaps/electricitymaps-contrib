@@ -61,7 +61,7 @@
     "dataIsEstimated": "Algunos de los datos de esta región son estimados. Lee más sobre la metodología de estimación <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">aquí</a>.",
     "exchangesAreMissing": "Los intercambios son considerados en los cálculos pero no son mostrados actualmente. Lee más acerca de nuestros agregados históricos <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">aquí</a>.",
     "estimatedTooltip": "Los datos en tiempo real para esta zona son estimados basados en datos de las fuentes y suposiciones del modelo.",
-    "aggregatedTooltip": "Alternar entre visualización a nivel de zona o vista agregada de país",
+    "aggregatedTooltip": "Los datos para esta zona son agregados basados en valores horarios históricos",
     "helpUs": "Ayúdanos a identificar el problema revisando los <a href=\"%s\" target=\"_blank\">registros de ejecución</a> o contactando al proveedor de datos.",
     "noParserInfo": "No tenemos aún información para esta zona.<br/> ¿Quieres ayudarnos a solucionarlo? Contribuye si quieres <a href=\"%s\" target=\"_blank\">añadiendo los datos de la zona</a>.",
     "now": "Ahora"
@@ -140,7 +140,7 @@
     "cpinfo": "El <b>consumo</b> tiene en cuenta las importaciones y exportaciones de energía, la <b>producción</b> no",
     "aggregated": "agregado",
     "detailed": "detallado",
-    "aggregateInfo": "Los países con datos zonales no disponibles no pueden ser agregados",
+    "aggregateInfo": "Alternar entre visualización a nivel de zona o vista agregada de país",
     "selectLanguage": "Cambiar de idioma",
     "lowCarbDescription": "Incluye renovables y nuclear",
     "dataIsDelayed": "Datos con retraso"
