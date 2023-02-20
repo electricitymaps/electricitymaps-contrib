@@ -4,10 +4,9 @@ from datetime import datetime
 from logging import Logger, getLogger
 from typing import List, Optional, Union
 
-from bs4 import BeautifulSoup
-
 # The arrow library is used to handle datetimes
 import arrow
+from bs4 import BeautifulSoup
 
 # The request library is used to fetch content through HTTP
 from requests import Session
@@ -26,7 +25,7 @@ translate_table_gen = {
     "ApPP": "unknown",  # factory
     "PVPP": "solar",  # photovoltaic
     "WPP": "wind",  # wind
-    "unknown": "unknown"
+    "unknown": "unknown",
 }
 translate_table_dist = {
     "SEPS": "SVK",
@@ -39,11 +38,11 @@ url = "https://wwwtest.ceps.cz/_layouts/CepsData.asmx"
 
 
 def get_mapper(xmlload):
-    series = xmlload.find('series')
+    series = xmlload.find("series")
     mapping = {}
     for tag in series:
-        generator = tag['name'].replace(' [MW]', '')
-        mapping[generator] = tag['id']
+        generator = tag["name"].replace(" [MW]", "")
+        mapping[generator] = tag["id"]
 
     return mapping
 
@@ -51,7 +50,7 @@ def get_mapper(xmlload):
 def make_request(session, payload, zone_key):
     headers = {
         "Content-Type": "application/soap+xml; charset=utf-8",
-        "Content-Length": "1"
+        "Content-Length": "1",
     }
 
     r = session or Session()
@@ -72,11 +71,10 @@ def fetch_production(
 ) -> Union[List[dict], dict]:
 
     if not target_datetime:
-        target_datetime = arrow.now() \
-            .replace(minute=0, second=0)
+        target_datetime = arrow.now().replace(minute=0, second=0)
     from_datetime = target_datetime.shift(hours=-1)
 
-    payload = u'''<?xml version="1.0" encoding="utf-8"?>
+    payload = """<?xml version="1.0" encoding="utf-8"?>
             <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
               <soap12:Body>
                 <Generation xmlns="https://www.ceps.cz/CepsData/">
@@ -88,13 +86,15 @@ def fetch_production(
                   <para1>{5}</para1>
                 </Generation>
               </soap12:Body>
-            </soap12:Envelope>'''.format(from_datetime, target_datetime, "QH", "AVG", "RT", "all")
+            </soap12:Envelope>""".format(
+        from_datetime, target_datetime, "QH", "AVG", "RT", "all"
+    )
 
     content = make_request(session, payload, zone_key).content
-    xml = BeautifulSoup(content, 'xml')
+    xml = BeautifulSoup(content, "xml")
     mapper = get_mapper(xml)
 
-    data_tag = xml.find('data')
+    data_tag = xml.find("data")
     data_list = []
 
     for values in data_tag:
@@ -103,12 +103,12 @@ def fetch_production(
             "production": {},
             "storage": {},
             "source": url,
-            "datetime": arrow.get(values['date']).to("UTC").datetime,
+            "datetime": arrow.get(values["date"]).to("UTC").datetime,
         }
 
         for k, v in mapper.items():
             generator = translate_table_gen[k]
-            if k != 'PsPP':
+            if k != "PsPP":
                 data["production"][generator] = float(values[v])
             else:
                 data["storage"][generator] = float(values[v])
@@ -124,14 +124,13 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-    mode: Optional[str] = "Actual"
+    mode: Optional[str] = "Actual",
 ):
     if not target_datetime:
-        target_datetime = arrow.now() \
-            .replace(minute=0, second=0)
+        target_datetime = arrow.now().replace(minute=0, second=0)
     from_datetime = target_datetime.shift(hours=-1)
 
-    payload = u'''<?xml version="1.0" encoding="utf-8"?>
+    payload = """<?xml version="1.0" encoding="utf-8"?>
 <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
   <soap12:Body>
     <CrossborderPowerFlows xmlns="https://www.ceps.cz/CepsData/">
@@ -142,27 +141,31 @@ def fetch_exchange(
       <version>{4}</version>
     </CrossborderPowerFlows>
   </soap12:Body>
-</soap12:Envelope>'''.format(from_datetime, target_datetime, "QH", "AVG", "RT")
+</soap12:Envelope>""".format(
+        from_datetime, target_datetime, "QH", "AVG", "RT"
+    )
 
     content = make_request(session, payload, zone_key1).content
-    xml = BeautifulSoup(content, 'xml')
+    xml = BeautifulSoup(content, "xml")
     mapper = get_mapper(xml)
 
-    data_tag = xml.find('data')
+    data_tag = xml.find("data")
     data_list = []
 
     for values in data_tag:
         data = {
-            "sortedZoneKeys": f'{zone_key1}->{zone_key2}',
-            "datetime": arrow.get(values['date']).to("UTC").datetime,
+            "sortedZoneKeys": f"{zone_key1}->{zone_key2}",
+            "datetime": arrow.get(values["date"]).to("UTC").datetime,
             "netFlow": 0.0,
             "source": url,
         }
 
         for k, v in mapper.items():
-            country = ''.join([c for key, c in translate_table_dist.items() if key in k and mode in k])
-            if country != '' and country == zone_key2:
-                data['netFlow'] += float(values[v])
+            country = "".join(
+                [c for key, c in translate_table_dist.items() if key in k and mode in k]
+            )
+            if country != "" and country == zone_key2:
+                data["netFlow"] += float(values[v])
 
         data_list.append(data)
 
@@ -170,7 +173,39 @@ def fetch_exchange(
 
 
 def fetch_exchange_forecast():
-    fetch_exchange('CZ', 'DE', mode='Planned')
+    fetch_exchange("CZ", "DE", mode="Planned")
+
+
+def fetch_price(
+    zone_key: str = "CZ",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
+
+    if not target_datetime:
+        target_datetime = arrow.now().replace(minute=0, second=0)
+    from_datetime = target_datetime.shift(days=-5)
+
+    payload = """<?xml version="1.0" encoding="utf-8"?>
+<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <soap12:Body>
+    <OfferPrices xmlns="https://www.ceps.cz/CepsData/">
+      <dateFrom>{0}</dateFrom>
+      <dateTo>{1}</dateTo>
+      <version>{2}</version>
+      <param1>(3)</param1>
+    </OfferPrices>
+  </soap12:Body>
+</soap12:Envelope>""".format(
+        from_datetime, target_datetime, "RT", "all"
+    )
+
+    xml = BeautifulSoup(make_request(session, payload, zone_key).content, "xml")
+    mapper = get_mapper(xml)
+
+    data_tag = xml.find("data")
+    data_list = []
 
 
 if __name__ == "__main__":
