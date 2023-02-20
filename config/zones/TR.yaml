@@ -2,9 +2,8 @@ _comment: https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not econo
   viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769
   says battery will be tendered summer 2018 so below battery storage will need to
   be updated when built.
-  Akın, S., Örücü, Y., & Frıdrıksson, T. (2020). Characterizing the declining CO2 emissions from Turkish geothermal power plants. 
-  https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2020/Akin.pdf
-  Value for geothermal: The average emission of these GPPs is 595.92 CO2/kWh respectively, which is significantly lower than 2015 average (887 g/kWh).
+ 
+  
 bounding_box:
   - - 25.16325931100002
     - 35.319778545000034
@@ -125,11 +124,14 @@ emissionFactors:
       source: INCER ACV
       value: 26.15
     geothermal:
-      datetime: '2020-01-01'
-      source: Akın, Serhat, Yasemin Örücü, and Thrainn Frıdrıksson. "Characterizing the declining CO2 emissions from \n
-      Turkish geothermal power plants." (2020)
-      url: https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2020/Akin.pdf
+      datetime: '2019-08-01'
+      source: 'Akın, Serhat, Yasemin Örücü, and Thrainn Frıdrıksson. "Characterizing the declining CO2 emissions from Turkish geothermal power plants." (2020)'
       value: 595.92
+    unknown:
+      _comment: 'Source: 2020 Characterizing the declining CO2 emissions from Turkish geothermal power plants'
+      _url: https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2020/Akin.pdf
+      source: Akin 2020, Power weighted average and arithmetic average CO2 emissions of these GPP’s are 582.16 and 595.92 g CO2/kWh. 
+      Value for geothermal: The average emission of these GPPs is 595.92 CO2/kWh respectively, which is significantly lower than 2015 average (887 g/kWh).
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
