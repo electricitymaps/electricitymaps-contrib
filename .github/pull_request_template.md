@@ -1,7 +1,6 @@
 ## Issue
 
-<!-- If you want to close a issue with your PR use magic words such as closes, fixes or resolves "issue number" to autmatically link a PR to an issue. For example: Closes #0000, Fix: #0000 or Resolves: #0000 -->
-
+<!-- If you want to close an issue automatically when your PR is merged, write "Closes X" where X is the PR number. For example: Closes #000 -->
 ## Description
 
 <!-- Explains the goal of this PR -->
