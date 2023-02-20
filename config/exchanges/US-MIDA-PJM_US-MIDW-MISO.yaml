@@ -1,6 +1,6 @@
 lonlat:
-  - -86.82069
-  - 40.21487
+  - -84.8
+  - 39.21487
 parsers:
   exchange: US_PJM.fetch_exchange
-rotation: -84
+rotation: -90

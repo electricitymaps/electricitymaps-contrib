@@ -14,6 +14,7 @@ capacity:
   wind: 225
 contributors:
   - alixunderplatz
+  - VIKTORVAV99
 emissionFactors:
   direct:
     battery discharge:
