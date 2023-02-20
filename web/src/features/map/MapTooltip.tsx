@@ -96,7 +96,7 @@ export default function MapTooltip() {
     return (
       <Portal.Root className="absolute left-0 top-0 h-0 w-0">
         <div
-          className="relative w-[300px] rounded border bg-zinc-50 p-3  text-sm shadow-lg dark:border-0 dark:bg-gray-900"
+          className="relative pointer-events-none w-[300px] rounded border bg-zinc-50 p-3  text-sm shadow-lg dark:border-0 dark:bg-gray-900"
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>
@@ -113,7 +113,7 @@ export default function MapTooltip() {
   return (
     <Portal.Root className="absolute left-0 top-0 h-0 w-0">
       <div
-        className="relative h-[80px] w-[176px] rounded border bg-zinc-50 p-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+        className="relative pointer-events-none w-[176px] rounded border bg-zinc-50 p-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
         style={{ left: emptyTooltipPosition.x, top: emptyTooltipPosition.y }}
       >
         <div>
