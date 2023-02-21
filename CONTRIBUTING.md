@@ -17,7 +17,7 @@ If you have any questions about the code of conduct or feel the need to report a
 
 # License
 
-We use the GNU Affero General Public License v3.0 for this repository, check the [LICENSE.md][license] file details about what exactly this entails.
+We use the GNU Affero General Public License v3.0 for this repository, check the [LICENSE.md][license] file details about what exactly this entails. Contributions prior to commit [cb9664f][commit cb9664f] where licensed under [MIT license][old_license]
 
 # Getting Started
 
@@ -81,7 +81,7 @@ Note: If data from a production mode is missing it should be omitted or returned
 
 #### Example parser:
 
-For a example on how a parser can look we have an example here: </br> [parsers/example.py][example parser]
+For a example on how a parser can look we have an example here: </br> [parsers/examples/example_parser.py][example parser]
 
 ### Formatting the parsers
 
@@ -151,7 +151,7 @@ Check the [wiki page][wiki js code formatting] on formatting for more details an
 [python homepage]: https://www.python.org/
 [python install guide]: https://wiki.python.org/moin/BeginnersGuide/Download
 [poetry install guide]: https://python-poetry.org/docs/#installation
-[example parser]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/example.py
+[example parser]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/examples/example_parser.py
 [black homepage]: https://github.com/psf/black
 [isort homepage]: https://pycqa.github.io/isort/
 [wiki python code formatting]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#python-code-formatting
@@ -174,3 +174,5 @@ Check the [wiki page][wiki js code formatting] on formatting for more details an
 [wiki find data sources]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources
 [wiki verify data sources]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Verify-data-sources
 [contributor covenant]: https://www.contributor-covenant.org/
+[commit cb9664f]: https://github.com/electricitymaps/electricitymaps-contrib/commit/cb9664f43f0597bedf13e832047c3fc10e67ba4e
+[old_license]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE_MIT.txt
