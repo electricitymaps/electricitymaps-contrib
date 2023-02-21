@@ -37,6 +37,11 @@ There are several ways to help out without coding, these are primarily:
 > **Note**
 > Take a look at the wiki pages for more detailed instructions
 
+## Zone and exchange configurations
+
+Static information about zones and exchanges are located at [config/zones][config zones] and [config/exchanges][config exchanges] respectively.
+The zone configurations hold information such as the installed capacity, which parsers to use, fallback mixes, contributors and other keys that are required by our frontend and internal systems; and while similar the exchange configs hold the the location, capacity, direction and parsers required.
+
 ## Parser guidelines
 
 To get stated with editing the parsers use the following steps:
@@ -176,3 +181,5 @@ Check the [wiki page][wiki js code formatting] on formatting for more details an
 [contributor covenant]: https://www.contributor-covenant.org/
 [commit cb9664f]: https://github.com/electricitymaps/electricitymaps-contrib/commit/cb9664f43f0597bedf13e832047c3fc10e67ba4e
 [old_license]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE_MIT.txt
+[config zones]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones
+[config exchanges]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges
