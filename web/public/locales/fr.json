@@ -131,7 +131,7 @@
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
     "weatherDisabled": "Les données météo ne sont pas disponible actuellement",
-    "aggregateinfo": "Les pays sont agrégés lorsque la capacité annuelle de la zone est supérieure à 90 % de la capacité totale."
+    "aggregateInfo": "Visualiser la donnée par zone ou aggrégée par pays"
   },
   "misc": {
     "maintitle": "Émissions CO₂ de la consommation électrique en temps réel",

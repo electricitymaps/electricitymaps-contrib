@@ -27,7 +27,7 @@ export default function SpatialAggregatesToggle(): ReactElement {
   return (
     <ToggleButton
       options={options}
-      tooltipKey="tooltips.aggregateinfo"
+      tooltipKey="tooltips.aggregateInfo"
       selectedOption={
         currentMode === ToggleOptions.OFF ? options[1].value : options[0].value
       }

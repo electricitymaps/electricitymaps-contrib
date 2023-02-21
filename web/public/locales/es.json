@@ -140,7 +140,7 @@
     "cpinfo": "El <b>consumo</b> tiene en cuenta las importaciones y exportaciones de energía, la <b>producción</b> no",
     "aggregated": "agregado",
     "detailed": "detallado",
-    "aggregateinfo": "Los países con datos zonales no disponibles no pueden ser agregados",
+    "aggregateInfo": "Alternar entre visualización a nivel de zona o vista agregada de país",
     "selectLanguage": "Cambiar de idioma",
     "lowCarbDescription": "Incluye renovables y nuclear",
     "dataIsDelayed": "Datos con retraso"
