@@ -71,9 +71,11 @@ def fetch_production(
 
     # check output values coincide with total capacity by fuel type
     check_values = production.output <= production.capacity
-    assert check_values.loc[
-        ~check_values.index.isin(["Co-Gen"])
-    ].all(), "output > capacity"  # HACK: Co-Gen capacity is underestimated
+    modes_with_capacity_exceeded = production[~check_values].index.tolist()
+    for mode in modes_with_capacity_exceeded:
+        logger.warning(
+            f"Capacity exceeded for {mode} in {zone_key} at {dumpDate.datetime}"
+        )
 
     coal_capacity = (
         production.loc["Coal"].capacity + production.loc["IPP-Coal"].capacity

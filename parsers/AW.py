@@ -55,7 +55,7 @@ def fetch_production(
     missing_from_total = reported_total - sources_total
     unknown = missing_from_total if missing_from_total > 0 else 0
     # We're using Fossil data to get timestamp in correct time zone
-    local_date_time = datetime.strptime(fossil["timestamp"], "%Y-%m-%d %H:%M:%S.%f")
+    local_date_time = datetime.strptime(biogas["timestamp"], "%Y-%m-%d %H:%M:%S.%f")
     zone_date_time = arrow.Arrow.fromdatetime(local_date_time, "America/Aruba")
 
     data = {

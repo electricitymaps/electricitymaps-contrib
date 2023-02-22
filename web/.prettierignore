@@ -3,13 +3,13 @@
 # Needed for lint staged.
 .prettierignore
 Earthfile
-yarn.lock
 .earthlyignore
 
-world.json
-world-aggregated.json
-excluded-aggregated-exchanges.json
-public/dist/
+dist/
+config/
 public/images/
-src/config/
 .husky/_
+pnpm-lock.yaml
+
+LICENSE.md
+LICENSE

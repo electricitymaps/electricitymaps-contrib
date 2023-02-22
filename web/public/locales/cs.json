@@ -44,6 +44,9 @@
     "noParserInfo": "Zatím nemáme žádné informace pro tuto oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href=\"%s\" target=\"_blank\">přidáním dat</a>.",
     "now": "Teď"
   },
+  "time-controller": {
+    "title": "Zobrazit data za minulé období"
+  },
   "left-panel": {
     "zone-list-header-title": "Dopad na klima podle oblasti",
     "zone-list-header-subtitle": "Hodnocené podle uhlíkové intenzity spotřebované elektřiny (gCO₂eq/kWh)",
@@ -125,14 +128,14 @@
   "coal": "uhlí",
   "oil": "ropa",
   "unknown": "neznámé",
-  "electricityComesFrom": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> pochází z %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> pochází z %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je ukládáno do %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je ukládáno do %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> pochází z %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> pochází z %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je ukládáno do %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je ukládáno do %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je exportovaných do %5$s <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je exportovaných do %5$s <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
   "ofCO2eqPerMinute": "CO₂eq za minutu",
   "theMap": {
     "groupName": "Mapa",
@@ -195,7 +198,7 @@
     "feedback-question": "Můžu vám nechat zpětnou vazbu?",
     "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:app@electricitymaps.com\">nám poslat email!</a>",
     "contribute-question": "Můžu se zapojit do vašeho projektu?",
-    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
     "workTogether-question": "Můžeme pracovat společně?",
     "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href=\"mailto:app@electricitymaps.com\">Pošlete nám email!</a>",
     "disclaimer-question": "Oznámení",
