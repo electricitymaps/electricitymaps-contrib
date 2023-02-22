@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import List, Optional, Union
 
@@ -71,8 +71,8 @@ def fetch_production(
 ) -> Union[List[dict], dict]:
 
     if not target_datetime:
-        target_datetime = arrow.now().replace(minute=0, second=0)
-    from_datetime = target_datetime.shift(hours=-1)
+        target_datetime = datetime.now().replace(minute=0, second=0, microsecond=0)
+    from_datetime = target_datetime - timedelta(hours=1)
 
     payload = """<?xml version="1.0" encoding="utf-8"?>
             <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
@@ -87,7 +87,7 @@ def fetch_production(
                 </Generation>
               </soap12:Body>
             </soap12:Envelope>""".format(
-        from_datetime, target_datetime, "QH", "AVG", "RT", "all"
+        from_datetime.isoformat(), target_datetime.isoformat(), "QH", "AVG", "RT", "all"
     )
 
     content = make_request(session, payload, zone_key).content
@@ -103,7 +103,7 @@ def fetch_production(
             "production": {},
             "storage": {},
             "source": url,
-            "datetime": arrow.get(values["date"]).to("UTC").datetime,
+            "datetime": datetime.fromisoformat(values["date"]).isoformat(),
         }
 
         for k, v in mapper.items():
@@ -127,8 +127,8 @@ def fetch_exchange(
     mode: Optional[str] = "Actual",
 ):
     if not target_datetime:
-        target_datetime = arrow.now().replace(minute=0, second=0)
-    from_datetime = target_datetime.shift(hours=-1)
+        target_datetime = datetime.now().replace(minute=0, second=0, microsecond=0)
+    from_datetime = target_datetime - timedelta(hours=1)
 
     payload = """<?xml version="1.0" encoding="utf-8"?>
 <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
@@ -142,7 +142,7 @@ def fetch_exchange(
     </CrossborderPowerFlows>
   </soap12:Body>
 </soap12:Envelope>""".format(
-        from_datetime, target_datetime, "QH", "AVG", "RT"
+        from_datetime.isoformat(), target_datetime.isoformat(), "QH", "AVG", "RT"
     )
 
     content = make_request(session, payload, zone_key1).content
@@ -155,7 +155,7 @@ def fetch_exchange(
     for values in data_tag:
         data = {
             "sortedZoneKeys": f"{zone_key1}->{zone_key2}",
-            "datetime": arrow.get(values["date"]).to("UTC").datetime,
+            "datetime": datetime.fromisoformat(values["date"]).isoformat(),
             "netFlow": 0.0,
             "source": url,
         }
@@ -164,7 +164,7 @@ def fetch_exchange(
             country = "".join(
                 [c for key, c in translate_table_dist.items() if key in k and mode in k]
             )
-            if country != "" and country == zone_key2:
+            if country != "" and country in (zone_key1, zone_key2):
                 data["netFlow"] += float(values[v])
 
         data_list.append(data)
@@ -211,11 +211,11 @@ def fetch_price(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print("fetch_production() ->")
-    print(fetch_production())
+    # print("fetch_production() ->")
+    # print(fetch_production())
     # print("fetch_price() ->")
     # print(fetch_price())
     # print("fetch_exchange_planned() ->")
     # print(fetch_exchange_planned())
-    # print("fetch_exchange('CZ', 'DE') ->")
-    # print(fetch_exchange())
+    print("fetch_exchange('CZ', 'DE') ->")
+    print(fetch_exchange('AT', 'CZ'))
