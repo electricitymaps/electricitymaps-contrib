@@ -304,6 +304,11 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - Solar: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
     - Biomass: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
     - Geothermal: [TSO - HEPCO](https://wwwc.hepco.co.jp/hepcowwwsite/english/ir/pdf/hepco_group_report_2022.pdf)
+  - Chūbu
+    - Biomass, hydro storage & geothermal: [TSO - Chuden](https://www.chuden.co.jp/english/energy/renewable/initiatives/)
+    - Hydro & Nuclear: [TSO - Chuden](https://www.chuden.co.jp/english/corporate/outline/)
+    - Solar & Wind: [TSO - Chuden](https://www.chuden.co.jp/english/resource/corporate/ecsr_report_2022_all.pdf)
+    - Coal & gas & oil: [Power Plants](https://en.wikipedia.org/wiki/Chubu_Electric_Power)
 - Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
