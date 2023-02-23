@@ -155,9 +155,12 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
         endpoint = CAMMESA_RENEWABLES_ENDPOINT
 
     renewables_response = session.get(endpoint, params=params)
-    assert (
-        renewables_response.status_code == 200
-    ), f"Exception when fetching production for {zone_key}: error when calling url={endpoint} with payload={params}"
+    if renewables_response.status_code != 200:
+        raise ParserException(
+            "AR.py",
+            f"Exception when fetching production for {zone_key}: error when calling renewables endpoint: [{renewables_response.status_code}]  {renewables_response.text}",
+            zone_key,
+        )
 
     production_list = renewables_response.json()
     sorted_production_list = []
@@ -185,9 +188,12 @@ def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, 
     id = get_region_id(zone_key, session)
     params = {"id_region": id}
     api_cammesa_response = session.get(CAMMESA_DEMANDA_ENDPOINT, params=params)
-    assert (
-        api_cammesa_response.status_code == 200
-    ), f"Exception when fetching production for {zone_key}: error when calling url={CAMMESA_DEMANDA_ENDPOINT} with payload={params}"
+    if api_cammesa_response.status_code != 200:
+        raise ParserException(
+            "AR.py",
+            f"Exception when fetching production for {zone_key}: error when calling non-renewables endpoint: [{api_cammesa_response.status_code}]  {api_cammesa_response.text}",
+            zone_key,
+        )
 
     production_list = api_cammesa_response.json()
     sorted_production_list = sorted(production_list, key=lambda d: d["fecha"])
@@ -212,9 +218,12 @@ def get_region_id(zone_key, session: Session) -> int:
     """Fetches the region id for the zone that is required to get the production of that zone."""
     regions_response = session.get(CAMMESA_REGIONS_ENDPOINT)
 
-    assert (
-        regions_response.status_code == 200
-    ), f"Exception when fetching regions for AR: error when calling url={CAMMESA_REGIONS_ENDPOINT}"
+    if regions_response.status_code != 200:
+        raise ParserException(
+            "AR.py",
+            f"Exception when fetching regions for AR: error when calling regions endpoint: [{regions_response.status_code}]  {regions_response.text}",
+            zone_key,
+        )
 
     regions = regions_response.json()
     region_to_id = {region["nombre"]: region["id"] for region in regions}
@@ -244,9 +253,12 @@ def fetch_exchange(
         current_session = session or Session()
 
         api_cammesa_response = current_session.get(CAMMESA_EXCHANGE_ENDPOINT)
-        assert (
-            api_cammesa_response.status_code == 200
-        ), f"Exception when fetching exchange for {sorted_codes}: error when calling url={CAMMESA_EXCHANGE_ENDPOINT}"
+        if api_cammesa_response.status_code != 200:
+            raise ParserException(
+                "AR.py",
+                f"Exception when fetching exchange for {sorted_codes}: error when calling exchange endpoint: [{api_cammesa_response.status_code}]  {api_cammesa_response.text}",
+                sorted_zone_keys,
+            )
 
         exchange_name = SUPPORTED_EXCHANGES[sorted_codes]
         exchange_list = api_cammesa_response.json()
