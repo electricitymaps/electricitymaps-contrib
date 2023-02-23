@@ -155,14 +155,18 @@ function getGenerationValue(
   }
 
   const modeProduction = value.production[generationKey];
-  let scaledValue =
-    modeProduction !== undefined ? modeProduction / valueFactor : undefined;
 
-  if (displayByEmissions && scaledValue !== undefined) {
+  if (modeProduction === undefined || modeProduction === null) {
+    return Number.NaN;
+  }
+
+  let scaledValue = modeProduction / valueFactor;
+
+  if (displayByEmissions) {
     scaledValue *= value.productionCo2Intensities[generationKey] / 1e3 / 60;
   }
 
-  return scaledValue ?? Number.NaN;
+  return scaledValue;
 }
 
 interface ValuesInfo {
