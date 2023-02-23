@@ -70,7 +70,7 @@ interface AreagraphProps {
   testId: string;
   layerKeys: string[];
   layerStroke?: (key: string) => string;
-  layerFill: (key: string) => (d: AreaGraphElement) => string;
+  layerFill: (key: string) => (d: { data: AreaGraphElement }) => string;
   markerFill?: any;
   valueAxisLabel: any;
   markerUpdateHandler: any;

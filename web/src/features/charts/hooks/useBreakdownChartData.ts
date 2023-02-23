@@ -1,3 +1,4 @@
+import type { ScaleLinear } from 'd3-scale';
 import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
 import { useCo2ColorScale } from 'hooks/theme';
@@ -16,7 +17,10 @@ import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import { getGenerationTypeKey } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
-export const getLayerFill = (exchangeKeys: string[], co2ColorScale: any) => {
+export const getLayerFill = (
+  exchangeKeys: string[],
+  co2ColorScale: ScaleLinear<string, string, string>
+) => {
   const layerFill = (key: string) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
     if (exchangeKeys.includes(key)) {
