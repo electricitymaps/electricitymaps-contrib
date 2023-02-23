@@ -3,9 +3,23 @@ bounding_box:
     - 33.82
   - - 138.72
     - 37.17
+capacity:
+  biomass: 352.6
+  geothermal: 2
+  coal: 5170
+  gas: 14136
+  hydro: 2180
+  hydro storage: 3320
+  nuclear: 3617
+  oil: 2275
+  solar: 550
+  wind: 210
 contributors:
   - tmslaine
   - lorrieq
+  - pierresegonne
+  - wobniarin
+disclaimer: The data provider (Chubu Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 emissionFactors:
   lifecycle:
     unknown:
