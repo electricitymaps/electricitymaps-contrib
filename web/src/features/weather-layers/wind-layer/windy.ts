@@ -532,8 +532,8 @@ var Windy = function (params: any) {
     started: any;
     field?: any;
     params?: any;
-    start?: (bounds: any, width: any, height: any, extent: any) => void;
-    stop?: () => void;
+    start: (bounds: any, width: any, height: any, extent: any) => void;
+    stop: () => void;
   };
 
   var start = function (bounds: any, width: any, height: any, extent: any[][]) {
