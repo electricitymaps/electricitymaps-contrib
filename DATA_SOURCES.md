@@ -293,6 +293,17 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Japan:
   - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
   - Kyūshū: [Electrical Japan](https://agora-ex-nii-ac-jp.translate.goog/earthquake/201103-eastjapan/energy/electrical-japan/operator/9.html.ja?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp&_x_tr_sch=http)
+  - Tohoku
+    - Wind: [The Wind Power](https://www.thewindpower.net/country_zones_en_11_japan.php)
+  - Hokkaidō
+    - Wind: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
+    - Hydro [TSO - HEPCO](https://www.hepco.co.jp/english/ir/datadownloads.html)
+    - Hydro storage [TSO - HEPCO](https://wwwc.hepco.co.jp/hepcowwwsite/english/ir/pdf/hepco_group_report_2022.pdf)
+    - Oil & coal & gas: [TSO - HEPCO](https://www.hepco.co.jp/english/ir/datadownloads.html)
+    - Nuclear: [TSO - HEPCO](https://www.hepco.co.jp/english/ir/datadownloads.html)
+    - Solar: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
+    - Biomass: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
+    - Geothermal: [TSO - HEPCO](https://wwwc.hepco.co.jp/hepcowwwsite/english/ir/pdf/hepco_group_report_2022.pdf)
 - Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
