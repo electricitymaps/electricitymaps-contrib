@@ -1,5 +1,5 @@
 import { Feature, MultiPolygon, Polygon, Properties, union } from '@turf/turf';
-import type { ZoneConfig } from './types';
+import { ZoneConfig } from './types';
 
 const generateAggregates = (geojson, zones: ZoneConfig) => {
   const skippedZones: string[] = []; // Holds skipped subZones that are not in the geojson

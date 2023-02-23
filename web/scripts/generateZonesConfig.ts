@@ -3,8 +3,7 @@ file to enable easy importing within web/ */
 import * as yaml from 'js-yaml';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { round } from '../geo/utilities.js';
+import { round } from '../geo/utilities';
 
 const BASE_CONFIG_PATH = '../../config';
 
@@ -13,9 +12,7 @@ const config = {
 };
 
 const mergeZones = () => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/zones'), import.meta.url))
-  );
+  const basePath = path.resolve(__dirname, BASE_CONFIG_PATH, 'zones');
 
   const zoneFiles = fs.readdirSync(basePath);
   const filesWithDirectory = zoneFiles.map((file) => `${basePath}/${file}`);
@@ -59,9 +56,7 @@ const mergeZones = () => {
 };
 
 const mergeExchanges = () => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/exchanges'), import.meta.url))
-  );
+  const basePath = path.resolve(__dirname, BASE_CONFIG_PATH, 'exchanges');
 
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDirectory = exchangeFiles.map((file) => `${basePath}/${file}`);
@@ -87,7 +82,7 @@ const mergeExchanges = () => {
 
 const mergeRatioParameters = () => {
   // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
-  const basePath = path.resolve(fileURLToPath(new URL('../config', import.meta.url)));
+  const basePath = path.resolve(__dirname, '../config');
 
   const defaultParameters: any = yaml.load(
     fs.readFileSync(`${basePath}/defaults.yaml`, 'utf8')
@@ -137,9 +132,7 @@ const writeJSON = (fileName: any, object: any) => {
 const zonesConfig = mergeZones();
 const exchangesConfig = mergeExchanges();
 
-const autogenConfigPath = path.resolve(
-  fileURLToPath(new URL('../config', import.meta.url))
-);
+const autogenConfigPath = path.resolve(__dirname, '../config');
 
 if (config.verifyNoUpdates) {
   const zonesConfigPrevious = JSON.parse(

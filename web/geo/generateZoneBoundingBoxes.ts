@@ -1,15 +1,12 @@
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 const arguments_ = process.argv.slice(2);
 
-import { mergeZones } from '../scripts/generateZonesConfig.js';
-import { saveZoneYaml } from './files.js';
-import { getJSON } from './utilities.js';
+import { mergeZones } from '../scripts/generateZonesConfig';
+import { saveZoneYaml } from './files';
+import { getJSON } from './utilities';
 
-const zonesGeo = getJSON(
-  path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url)))
-);
+const zonesGeo = getJSON(path.resolve(__dirname, './world.geojson'));
 const zones = mergeZones();
 
 if (arguments_.length <= 0) {

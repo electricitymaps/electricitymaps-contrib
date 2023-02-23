@@ -11,9 +11,9 @@ import {
   getGeom,
   intersect,
 } from '@turf/turf';
-import { getHoles, getPolygons, log, writeJSON } from './utilities.js';
+import { getHoles, getPolygons, log, writeJSON } from './utilities';
 
-import { mergeZones } from '../scripts/generateZonesConfig.js';
+import { mergeZones } from '../scripts/generateZonesConfig';
 
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.

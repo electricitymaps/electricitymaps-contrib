@@ -1,17 +1,16 @@
 import { coordEach } from '@turf/turf';
 import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { mergeZones } from '../scripts/generateZonesConfig.js';
-import { generateAggregates } from './generateAggregates.js';
-import { generateExchangesToIgnore } from './generateExchangesToExclude.js';
-import { generateTopojson } from './generateTopojson.js';
-import { getJSON, round } from './utilities.js';
-import { validateGeometry } from './validate.js';
+import { mergeZones } from '../scripts/generateZonesConfig';
+import { generateAggregates } from './generateAggregates';
+import { generateExchangesToIgnore } from './generateExchangesToExclude';
+import { generateTopojson } from './generateTopojson';
+import { getJSON, round } from './utilities';
+import { validateGeometry } from './validate';
 
 const config = {
-  WORLD_PATH: path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url))),
-  OUT_PATH: path.resolve(fileURLToPath(new URL('../config/world.json', import.meta.url))),
-  ERROR_PATH: path.resolve(fileURLToPath(new URL('.', import.meta.url))),
+  WORLD_PATH: path.resolve(__dirname, './world.geojson'),
+  OUT_PATH: path.resolve(__dirname, '../config/world.json'),
+  ERROR_PATH: path.resolve(__dirname, '.'),
   MIN_AREA_HOLES: 5_000_000,
   MAX_CONVEX_DEVIATION: 0.708,
   MIN_AREA_INTERSECTION: 6_000_000,
@@ -20,7 +19,8 @@ const config = {
 };
 
 const EXCHANGE_OUT_PATH = path.resolve(
-  fileURLToPath(new URL('../config/excludedAggregatedExchanges.json', import.meta.url))
+  __dirname,
+  '../config/excludedAggregatedExchanges.json'
 );
 
 const fc = getJSON(config.WORLD_PATH);
