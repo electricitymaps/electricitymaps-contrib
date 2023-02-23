@@ -1,4 +1,3 @@
-
 export const zoneDetailMock = {
   co2intensity: 187.32,
   co2intensityProduction: 190.6,

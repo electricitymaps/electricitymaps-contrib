@@ -11,7 +11,6 @@ export default meta;
 
 type Story = StoryObj<typeof BreakdownChartTooltipContent>;
 
-
 export const Example: Story = {
   // More on args: https://storybook.js.org/docs/react/writing-stories/args
   args: {

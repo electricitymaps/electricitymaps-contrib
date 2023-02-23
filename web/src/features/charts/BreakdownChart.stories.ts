@@ -4,7 +4,7 @@ import { getCo2ColorScale } from '../../hooks/theme';
 import { TimeAverages } from '../../utils/constants';
 import AreaGraph from './elements/AreaGraph';
 import { getLayerFill } from './hooks/useBreakdownChartData';
-import {zoneDetailMock} from 'stories/mockData';
+import { zoneDetailMock } from 'stories/mockData';
 
 const meta: Meta<typeof AreaGraph> = {
   title: 'charts/BreakdownChart',
