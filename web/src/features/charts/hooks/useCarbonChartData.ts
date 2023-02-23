@@ -18,10 +18,17 @@ export function useCarbonChartData() {
   const chartData: AreaGraphElement[] = Object.entries(data.zoneStates).map(
     ([datetimeString, value]) => {
       const datetime = new Date(datetimeString);
+      const carbonIntensity = getCO2IntensityByMode(
+        {
+          co2intensity: value.co2intensity || 0,
+          co2intensityProduction: value.co2intensityProduction || 0,
+        },
+        mixMode
+      );
       return {
         datetime,
         layerData: {
-          carbonIntensity: getCO2IntensityByMode(value, mixMode),
+          carbonIntensity,
         },
         meta: value,
       };

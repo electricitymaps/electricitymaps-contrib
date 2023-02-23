@@ -9,7 +9,6 @@ import {
   ZoneKey,
 } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
-import { getCO2IntensityByMode } from 'utils/helpers';
 import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json'; // TODO: do something globally
 
 const LABEL_MAX_WIDTH = 102;
@@ -39,15 +38,24 @@ export function getProductionCo2Intensity(
   return storage && storage > 0 ? storageCo2Intensity : dischargeCo2Intensity;
 }
 
-export function getExchangeCo2Intensity(mode, zoneData, electricityMixMode) {
-  const exchange = (zoneData.exchange || {})[mode];
-  const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[mode];
+export function getExchangeCo2Intensity(
+  zoneKey: ZoneKey,
+  zoneData: ZoneDetail,
+  electricityMixMode: Mode
+) {
+  const exchange = (zoneData.exchange || {})[zoneKey];
+  const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[zoneKey];
 
   if (exchange >= 0) {
     return exchangeCo2Intensity;
   }
 
-  return getCO2IntensityByMode(zoneData, electricityMixMode);
+  // We don't use getCO2IntensityByMode in order to more easily return 0 for invalid numbers
+  if (electricityMixMode === Mode.CONSUMPTION) {
+    return zoneData.co2intensity || 0;
+  }
+
+  return zoneData.co2intensityProduction || 0;
 }
 
 export interface ProductionDataType {
@@ -148,10 +156,10 @@ export interface ExchangeDataType {
 }
 export const getExchangeData = (
   data: ZoneDetail,
-  exchangeKeys: string[],
+  exchangeKeys: ZoneKey[],
   electricityMixMode: Mode
 ): ExchangeDataType[] =>
-  exchangeKeys.map((mode) => {
+  exchangeKeys.map((mode: ZoneKey) => {
     // Power in MW
     const exchange = (data.exchange || {})[mode];
     const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
