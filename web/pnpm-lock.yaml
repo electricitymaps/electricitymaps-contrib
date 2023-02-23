@@ -5,6 +5,7 @@ specifiers:
   '@capacitor/core': ^4.6.2
   '@mapbox/point-geometry': ^0.1.0
   '@mdx-js/react': ^2.1.5
+  '@microsoft/eslint-formatter-sarif': ^3.0.0
   '@nabla/vite-plugin-eslint': 1.4.1
   '@radix-ui/react-accordion': ^1.0.1
   '@radix-ui/react-dialog': ^1.0.2
@@ -201,6 +202,7 @@ dependencies:
 
 devDependencies:
   '@mdx-js/react': 2.1.5_react@18.2.0
+  '@microsoft/eslint-formatter-sarif': 3.0.0
   '@nabla/vite-plugin-eslint': 1.4.1_eslint@8.26.0+vite@3.1.8
   '@sentry/vite-plugin': 0.3.0
   '@storybook/addon-actions': 7.0.0-alpha.47_biqbaboplfbrettd7655fr4n2y
@@ -3238,6 +3240,18 @@ packages:
       '@types/mdx': 2.0.3
       '@types/react': 18.0.22
       react: 18.2.0
+    dev: true
+
+  /@microsoft/eslint-formatter-sarif/3.0.0:
+    resolution: {integrity: sha512-KIKkT44hEqCzqxODYwFMUvYEK0CrdHx/Ll9xiOWgFbBSRuzbxmVy4d/tzfgoucGz72HJZNOMjuyzFTBKntRK5Q==}
+    engines: {node: '>= 14'}
+    dependencies:
+      eslint: 8.26.0
+      jschardet: 3.0.0
+      lodash: 4.17.21
+      utf8: 3.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@mswjs/cookies/0.2.2:
@@ -12718,6 +12732,11 @@ packages:
     resolution: {integrity: sha512-UVU9dibq2JcFWxQPA6KCqj5O42VOmAY3zQUfEKxU0KpTGXwNoCjkX1e13eHNvw/xPynt6pU0rZ1htjWTNTSXsg==}
     dev: true
 
+  /jschardet/3.0.0:
+    resolution: {integrity: sha512-lJH6tJ77V8Nzd5QWRkFYCLc13a3vADkh3r/Fi8HupZGWk2OVVDfnZP8V/VgQgZ+lzW0kG2UGb5hFgt3V3ndotQ==}
+    engines: {node: '>=0.1.90'}
+    dev: true
+
   /jscodeshift/0.13.1_@babel+preset-env@7.20.2:
     resolution: {integrity: sha512-lGyiEbGOvmMRKgWk4vf+lUrCWO/8YR8sUR3FKF1Cq5fovjZDlIcw3Hu5ppLHAnEXshVffvaM0eyuY/AbOeYpnQ==}
     hasBin: true
@@ -16632,6 +16651,10 @@ packages:
   /use/3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /utf8/3.0.0:
+    resolution: {integrity: sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==}
     dev: true
 
   /util-deprecate/1.0.2:
