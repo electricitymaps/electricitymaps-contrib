@@ -10,7 +10,7 @@ export const formatPower = function (d: number, numberDigits = DEFAULT_NUM_DIGIT
     return d;
   }
   const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}W` //Add a space between the number and the unit
-    .replace(/([A-Z])/, ' $1')
+    .replace(/([A-Za-z])/, ' $1')
     .trim();
   return power;
 };
@@ -24,14 +24,9 @@ export const formatCo2 = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
     return d;
   }
 
-  if (d >= 1) {
-    // a ton or more
-    return `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}`;
-  } else {
-    return `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate(
-      'ofCO2eqPerMinute'
-    )}`;
-  }
+  return d >= 1
+    ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
+    : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
 };
 
 const scalePower = function (maxPower: number | undefined) {

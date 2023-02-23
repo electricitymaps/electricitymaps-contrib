@@ -1,17 +1,20 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const arguments_ = process.argv.slice(2);
 
-import { mergeZones } from '../scripts/generate-zones-config';
-import { saveZoneYaml } from './files';
-import { getJSON } from './utilities';
+import { mergeZones } from '../scripts/generateZonesConfig.js';
+import { saveZoneYaml } from './files.js';
+import { getJSON } from './utilities.js';
 
-const zonesGeo = getJSON(path.resolve(__dirname, './world.geojson'));
+const zonesGeo = getJSON(
+  path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url)))
+);
 const zones = mergeZones();
 
 if (arguments_.length <= 0) {
   console.error(
-    'ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE")'
+    'ERROR: Please add a zoneName parameter ("ts-node generateZoneBoundingBoxes.ts DE")'
   );
   process.exit(1);
 }

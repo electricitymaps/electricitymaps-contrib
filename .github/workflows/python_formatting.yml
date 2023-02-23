@@ -1,0 +1,39 @@
+name: Python Formatting
+
+on:
+  workflow_call:
+
+jobs:
+  formatting:
+    name: Formatting
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install poetry
+        run: |
+          pipx install poetry
+      - name: Get poetry version
+        id: get-poetry-version
+        run: |
+          echo "{poetry-version}={$(poetry --version | grep -oP '(?<=Poetry ).*')}" >> $GITHUB_OUTPUT
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version-file: '.python-version'
+          cache: 'poetry'
+      - name: Restore cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
+          restore-keys: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          poetry install -E parsers --sync
+      - name: Linting
+        run: |
+          poetry run lint

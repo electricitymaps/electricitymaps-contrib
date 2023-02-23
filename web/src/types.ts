@@ -1,4 +1,10 @@
-import { Feature, FeatureCollection, Geometry, MultiPolygon, Polygon } from '@turf/turf';
+import type {
+  Feature,
+  FeatureCollection,
+  Geometry,
+  MultiPolygon,
+  Polygon,
+} from '@turf/turf';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -146,6 +152,7 @@ export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   properties: {
     zoneId: string;
     color: string;
+    center: [number, number];
   };
 }
 

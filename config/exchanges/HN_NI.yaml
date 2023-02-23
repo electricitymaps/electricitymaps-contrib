@@ -2,5 +2,5 @@ lonlat:
   - -85.5782
   - 14.0209
 parsers:
-  exchange: NI.fetch_exchange
+  exchange: HN.fetch_exchange
 rotation: 180
