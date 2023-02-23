@@ -141,7 +141,7 @@ def fetch_exchange(
             parser="IE.py",
             message=f"the GB-NIR_IE interconnection is unsupported.",
         )
-    
+
     exchange_data = fetch_data(
         target_datetime=target_datetime,
         zone_key=zone_key2,
