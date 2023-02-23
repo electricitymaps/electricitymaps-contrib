@@ -7,7 +7,6 @@ interface MetricRatioProps {
 }
 
 export function MetricRatio({ value, total, format }: MetricRatioProps) {
-
   const formattedValue = Number.isFinite(value) && value ? format(value) : '?';
   const formattedTotal = Number.isFinite(total) && total ? format(total) : '?';
 
