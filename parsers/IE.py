@@ -151,7 +151,7 @@ def fetch_exchange(
     exchange = []
     for item in filtered_exchanges:
         data_point = {
-            "netFlow": -item["Value"],
+            "netFlow": item["Value"],
             "sortedZoneKeys": sortedZoneKeys,
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
