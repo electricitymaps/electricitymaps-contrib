@@ -135,6 +135,13 @@ def fetch_exchange(
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
+
+    if sortedZoneKeys == "GB-NIR->IE":
+        raise ParserException(
+            parser="IE.py",
+            message=f"the GB-NIR_IE interconnection is unsupported.",
+        )
+    
     exchange_data = fetch_data(
         target_datetime=target_datetime,
         zone_key=zone_key2,
