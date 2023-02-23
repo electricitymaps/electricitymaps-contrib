@@ -4,7 +4,7 @@ bounding_box:
   - - 146
     - 45.97
 capacity:
-  biomass: 290
+  biomass: 300
   coal: 2250
   geothermal: 25
   gas: 569
