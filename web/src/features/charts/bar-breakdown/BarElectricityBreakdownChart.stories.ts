@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import type { ZoneDetails } from 'types';
-import { ProductionDataType } from './utils';
+import { ExchangeDataType, ProductionDataType } from './utils';
 import { zoneDetailMock } from 'stories/mockData';
 
 const meta: Meta<typeof BarElectricityBreakdownChart> = {
@@ -121,9 +121,21 @@ const productionData: ProductionDataType[] = [
   },
 ];
 
-const exchangeData = [
-  { exchange: -934, mode: 'ES', gCo2eqPerkWh: 187.32, tCo2eqPerMin: -2.915_948 },
-  { exchange: 200, mode: 'FR', gCo2eqPerkWh: 999.32, tCo2eqPerMin: 45.915_948 },
+const exchangeData: ExchangeDataType[] = [
+  {
+    exchange: -934,
+    zoneKey: 'ES',
+    gCo2eqPerkWh: 187.32,
+    tCo2eqPerMin: -2.915_948,
+    exchangeCapacityRange: [-1000, 500],
+  },
+  {
+    exchange: 200,
+    zoneKey: 'FR',
+    gCo2eqPerkWh: 999.32,
+    tCo2eqPerMin: 45.915_948,
+    exchangeCapacityRange: [-200, 500],
+  },
 ];
 
 export const IncludesStorage: Story = {

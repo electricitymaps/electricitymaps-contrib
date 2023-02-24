@@ -4,7 +4,7 @@ import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
-import { ElectricityModeType, ZoneDetail } from 'types';
+import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
@@ -20,13 +20,13 @@ interface BarBreakdownEmissionsChartProps {
   productionData: ProductionDataType[];
   isMobile: boolean;
   onProductionRowMouseOver: (
-    mode: ElectricityModeType,
+    rowKey: ElectricityModeType,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
-    mode: ElectricityModeType,
+    rowKey: ZoneKey,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
@@ -103,17 +103,17 @@ function BarBreakdownEmissionsChart({
       <g transform={`translate(0, ${exchangeY})`}>
         {exchangeData.map((d, index) => (
           <Row
-            key={d.mode}
+            key={d.zoneKey}
             index={index}
-            label={d.mode}
+            label={d.zoneKey}
             width={width}
             scale={co2Scale}
             value={d.exchange}
-            onMouseOver={(event) => onExchangeRowMouseOver(d.mode, data, event)}
+            onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, data, event)}
             onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
           >
-            <CountryFlag zoneId={d.mode} className="pointer-events-none" />
+            <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
             <HorizontalBar
               className="exchange"
               fill={'gray'}
