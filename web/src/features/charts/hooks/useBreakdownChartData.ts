@@ -3,7 +3,7 @@ import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { ElectricityStorageType, ZoneDetail } from 'types';
+import { ElectricityStorageType, ElectricityStorageKeyType, ZoneDetail } from 'types';
 
 import { Mode, ToggleOptions, modeColor, modeOrder } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
@@ -128,19 +128,24 @@ export default function useBreakdownChartData() {
 }
 
 function getStorageValue(
-  key: string,
+  key: ElectricityStorageType,
   value: ZoneDetail,
   valueFactor: number,
   displayByEmissions: boolean
 ) {
-  const storageKey = key.replace(' storage', '') as ElectricityStorageType;
-  let scaledValue = (-1 * Math.min(0, (value.storage || {})[storageKey])) / valueFactor;
+  const storageKey = key.replace(' storage', '') as ElectricityStorageKeyType;
+  const storageValue = (value.storage || {})[storageKey];
+  if (storageValue === undefined || storageValue === null) {
+    return Number.NaN;
+  }
+
+  let scaledValue = (-1 * Math.min(0, storageValue)) / valueFactor;
 
   if (displayByEmissions) {
     scaledValue *= value.dischargeCo2Intensities[storageKey] / 1e3 / 60;
   }
 
-  return scaledValue ?? Number.NaN;
+  return scaledValue;
 }
 
 function getGenerationValue(

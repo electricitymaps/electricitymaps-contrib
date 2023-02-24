@@ -5,7 +5,7 @@ import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
-import { ElectricityModeType, ZoneDetail, ZoneDetails } from 'types';
+import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
@@ -33,7 +33,7 @@ interface BarElectricityBreakdownChartProps {
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
-    mode: ElectricityModeType,
+    mode: ZoneKey,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;

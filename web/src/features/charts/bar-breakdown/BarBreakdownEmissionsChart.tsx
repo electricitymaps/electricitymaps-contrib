@@ -4,7 +4,7 @@ import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
-import { ElectricityModeType, ZoneDetail } from 'types';
+import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
@@ -26,7 +26,7 @@ interface BarBreakdownEmissionsChartProps {
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
-    mode: ElectricityModeType,
+    mode: ZoneKey,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
