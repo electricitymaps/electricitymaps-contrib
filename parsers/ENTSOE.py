@@ -20,6 +20,8 @@ from logging import Logger, getLogger
 from random import shuffle
 from typing import Any, Dict, List, Optional, Tuple, Union
 
+from pytz import utc
+
 import arrow
 import numpy as np
 import pandas as pd
@@ -525,7 +527,6 @@ def query_ENTSOE(
 def query_consumption(
     domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A65",
         "processType": "A16",
@@ -562,7 +563,6 @@ def query_production_per_units(
     session: Session,
     target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A73",
         "processType": "A16",
@@ -585,7 +585,6 @@ def query_exchange(
     session: Session,
     target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A11",
         "in_Domain": in_domain,
@@ -623,7 +622,6 @@ def query_exchange_forecast(
 def query_price(
     domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A44",
         "in_Domain": domain,
@@ -711,7 +709,6 @@ def parse_scalar(
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
 ) -> Union[Tuple[List[float], List[datetime]], None]:
-
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -740,7 +737,6 @@ def parse_scalar(
 def parse_production(
     xml_text,
 ) -> Union[Tuple[List[Dict[str, Any]], List[datetime]], None]:
-
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -882,7 +878,6 @@ def parse_exchange(
     quantities: Optional[List[float]] = None,
     datetimes: Optional[List[datetime]] = None,
 ) -> Union[Tuple[List[float], List[datetime]], None]:
-
     if not xml_text:
         return None
     quantities = quantities or []
@@ -922,7 +917,6 @@ def parse_exchange(
 def parse_price(
     xml_text: str,
 ) -> Union[Tuple[List[float], List[str], List[datetime]], None]:
-
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -1187,13 +1181,22 @@ def fetch_production_aggregate(
 @refetch_frequency(timedelta(days=1))
 def fetch_production_per_units(
     zone_key: str,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Returns all production units and production values."""
-    if not session:
-        session = Session()
+
+    # If no target_datetime is specified, or the target datetime is less
+    # than 5 days ago we set the target_datetime to 5 days ago.
+    if target_datetime is None or target_datetime > datetime.now(tz=utc) - timedelta(
+        days=5
+    ):
+        logger.info(
+            "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
+        )
+        target_datetime = datetime.now(tz=utc) - timedelta(days=5)
+
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
     # Iterate over all psr types
