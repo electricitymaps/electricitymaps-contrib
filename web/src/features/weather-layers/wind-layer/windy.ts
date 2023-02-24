@@ -1,10 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 /* eslint-disable unicorn/no-abusive-eslint-disable */
 /* eslint-disable */
-// TODO: remove once refactored
-// This file was taken from https://github.com/esri/wind-js, and modified
+// @ts-nocheck
 // TODO: Rewrite completely
+// This file was taken from https://github.com/esri/wind-js, and modified
 
 /*  Global class for simulating the movement of particle through a 1km wind grid
 
