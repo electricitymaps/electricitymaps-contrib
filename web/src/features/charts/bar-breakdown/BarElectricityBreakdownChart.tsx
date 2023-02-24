@@ -27,13 +27,13 @@ interface BarElectricityBreakdownChartProps {
   productionData: ProductionDataType[];
   isMobile: boolean;
   onProductionRowMouseOver: (
-    mode: ElectricityModeType,
+    rowKey: ElectricityModeType,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
-    mode: ZoneKey,
+    rowKey: ZoneKey,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
@@ -124,7 +124,7 @@ function BarElectricityBreakdownChart({
             <HorizontalBar
               className="text-black/10 dark:text-white/10"
               fill="currentColor"
-              range={d.isStorage ? [-d.capacity, d.capacity] : [0, d.capacity]}
+              range={d.isStorage ? [-(d.capacity || 0), d.capacity] : [0, d.capacity]}
               scale={powerScale}
             />
             <HorizontalBar
@@ -139,17 +139,17 @@ function BarElectricityBreakdownChart({
       <g transform={`translate(0, ${exchangeY})`}>
         {exchangeData.map((d, index) => (
           <Row
-            key={d.mode}
+            key={d.zoneKey}
             index={index}
-            label={d.mode}
+            label={d.zoneKey}
             width={width}
             scale={powerScale}
             value={d.exchange}
-            onMouseOver={(event) => onExchangeRowMouseOver(d.mode, currentData, event)}
+            onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, currentData, event)}
             onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
           >
-            <CountryFlag zoneId={d.mode} className="pointer-events-none" />
+            <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
 
             <HorizontalBar
               className="capacity"
