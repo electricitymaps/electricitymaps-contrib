@@ -153,6 +153,7 @@ export interface ExchangeDataType {
   mode: ZoneKey; // TODO: Weird that this is called "mode"
   gCo2eqPerkWh: number;
   tCo2eqPerMin: number;
+  exchangeCapacityRange: number[];
 }
 export const getExchangeData = (
   data: ZoneDetail,
