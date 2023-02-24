@@ -20,12 +20,11 @@ from logging import Logger, getLogger
 from random import shuffle
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pytz import utc
-
 import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
+from pytz import utc
 from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
