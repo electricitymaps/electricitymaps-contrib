@@ -1,5 +1,7 @@
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 
+export type LayerKey = ZoneKey | ElectricityModeType;
+
 export interface AreaGraphElement {
   datetime: Date;
   meta: ZoneDetail;
@@ -10,5 +12,3 @@ export interface InnerAreaGraphTooltipProps {
   zoneDetail?: ZoneDetail;
   selectedLayerKey?: LayerKey;
 }
-
-export type LayerKey = ZoneKey | ElectricityModeType;
