@@ -47,7 +47,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-eslint_cache-${{ github.ref_name }}
             ${{ runner.os }}-eslint_cache-master
-            ${{ runner.os }}-eslint_cache
       - name: ESLint
         run: node_modules/.bin/eslint .
           --ignore-path .gitignore
