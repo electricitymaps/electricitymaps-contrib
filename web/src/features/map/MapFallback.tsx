@@ -9,12 +9,6 @@ export function isOldIOSVersion() {
 
   // If version is less than 14.7 Maplibre won't work
   const lowestSupportedVersion = '14_7';
-  console.group('isOldIOSVersion');
-  console.log('isIos', isIos);
-  console.log('!isDevelopmentTools', !isDevelopmentTools);
-  console.log('iosVersion', iosVersion);
-  console.log('iosVersion < lowestSupportedVersio', iosVersion < lowestSupportedVersion);
-  console.groupEnd();
 
   return (
     isIos && !isDevelopmentTools && iosVersion && iosVersion < lowestSupportedVersion

@@ -4,7 +4,10 @@ import { TimeAverages } from './constants';
 
 const DEFAULT_NUM_DIGITS = 3;
 
-export const formatPower = function (d: number, numberDigits = DEFAULT_NUM_DIGITS) {
+export const formatPower = function (
+  d: number,
+  numberDigits: number = DEFAULT_NUM_DIGITS
+) {
   // Assume MW input
   if (d == undefined || Number.isNaN(d)) {
     return d;
@@ -15,7 +18,7 @@ export const formatPower = function (d: number, numberDigits = DEFAULT_NUM_DIGIT
   return power;
 };
 
-export const formatCo2 = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
+export const formatCo2 = function (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) {
   let value = d;
   // Assume gCO₂ / h input
   value /= 60; // Convert to gCO₂ / min
