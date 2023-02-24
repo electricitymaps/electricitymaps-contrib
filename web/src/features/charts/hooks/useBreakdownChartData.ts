@@ -134,7 +134,7 @@ function getStorageValue(
   displayByEmissions: boolean
 ) {
   const storageKey = key.replace(' storage', '') as ElectricityStorageKeyType;
-  const storageValue = (value.storage || {})[storageKey];
+  const storageValue = value.storage?.[storageKey];
   if (storageValue === undefined || storageValue === null) {
     return Number.NaN;
   }

@@ -163,7 +163,7 @@ export const getExchangeData = (
   exchangeKeys.map((zoneKey: ZoneKey) => {
     // Power in MW
     const exchange = data.exchange?.[zoneKey];
-    const exchangeCapacityRange = (data.exchangeCapacities || {})[zoneKey];
+    const exchangeCapacityRange = data.exchangeCapacities?.[zoneKey] ?? [0, 0];
 
     // Exchange CO₂ intensity
     const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, electricityMixMode);
