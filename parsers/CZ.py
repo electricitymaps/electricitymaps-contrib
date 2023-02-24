@@ -4,12 +4,12 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import List, Optional, Union
 
-# The arrow library is used to handle datetimes
-import arrow
 from bs4 import BeautifulSoup
 
 # The request library is used to fetch content through HTTP
 from requests import Session
+
+from parsers.lib.exceptions import ParserException
 
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
@@ -34,7 +34,8 @@ translate_table_dist = {
     "TenneT": "DE",
     "50HzT": "DE",
 }
-url = "https://wwwtest.ceps.cz/_layouts/CepsData.asmx"
+
+url = "https://www.ceps.cz/_layouts/CepsData.asmx"
 
 
 def get_mapper(xmlload):
@@ -69,10 +70,9 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
-
     if not target_datetime:
         target_datetime = datetime.now().replace(minute=0, second=0, microsecond=0)
-    from_datetime = target_datetime - timedelta(hours=1)
+    from_datetime = target_datetime - timedelta(hours=48)
 
     payload = """<?xml version="1.0" encoding="utf-8"?>
             <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
@@ -97,23 +97,32 @@ def fetch_production(
     data_tag = xml.find("data")
     data_list = []
 
-    for values in data_tag:
-        data = {
-            "zoneKey": zone_key,
-            "production": {},
-            "storage": {},
-            "source": url,
-            "datetime": datetime.fromisoformat(values["date"]).isoformat(),
-        }
+    if data_tag is not None:
 
-        for k, v in mapper.items():
-            generator = translate_table_gen[k]
-            if k != "PsPP":
-                data["production"][generator] = float(values[v])
-            else:
-                data["storage"][generator] = float(values[v])
+        for values in data_tag:
+            data = {
+                "zoneKey": zone_key,
+                "production": {},
+                "storage": {},
+                "source": url,
+                "datetime": datetime.fromisoformat(values["date"]),
+            }
 
-        data_list.append(data)
+            for k, v in mapper.items():
+                generator = translate_table_gen[k]
+                if k != "PsPP":
+                    data["production"][generator] = float(values[v])
+                else:
+                    data["storage"][generator] = float(values[v]) * -1
+
+            data_list.append(data)
+
+    else:
+        ParserException(
+            "CZ.py",
+            f"There was no data returned for {zone_key} at {target_datetime}",
+            zone_key,
+        )
 
     return data_list
 
@@ -124,11 +133,10 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-    mode: Optional[str] = "Actual",
-):
+) -> Union[List[dict], dict]:
     if not target_datetime:
         target_datetime = datetime.now().replace(minute=0, second=0, microsecond=0)
-    from_datetime = target_datetime - timedelta(hours=1)
+    from_datetime = target_datetime - timedelta(hours=48)
 
     payload = """<?xml version="1.0" encoding="utf-8"?>
 <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
@@ -152,70 +160,47 @@ def fetch_exchange(
     data_tag = xml.find("data")
     data_list = []
 
-    for values in data_tag:
-        data = {
-            "sortedZoneKeys": f"{zone_key1}->{zone_key2}",
-            "datetime": datetime.fromisoformat(values["date"]).isoformat(),
-            "netFlow": 0.0,
-            "source": url,
-        }
+    if data_tag is not None:
+        for values in data_tag:
+            data = {
+                "sortedZoneKeys": f"{zone_key1}->{zone_key2}",
+                "datetime": datetime.fromisoformat(values["date"]),
+                "netFlow": 0.0,
+                "source": url,
+            }
 
-        for k, v in mapper.items():
-            country = "".join(
-                [c for key, c in translate_table_dist.items() if key in k and mode in k]
-            )
-            if country != "" and country in (zone_key1, zone_key2):
-                data["netFlow"] += float(values[v])
+            for k, v in mapper.items():
+                country = "".join(
+                    [
+                        c
+                        for key, c in translate_table_dist.items()
+                        if key in k and "Actual" in k
+                    ]
+                )
+                if country != "" and country in (zone_key1, zone_key2):
+                    data["netFlow"] += float(values[v])
 
-        data_list.append(data)
+            data_list.append(data)
+
+    else:
+        zone_key = f"{zone_key1}->{zone_key2}"
+        ParserException(
+            "CZ.py",
+            f"There was no data returned for {zone_key1} and {zone_key2} at {target_datetime}",
+            zone_key,
+        )
 
     return data_list
-
-
-def fetch_exchange_forecast():
-    fetch_exchange("CZ", "DE", mode="Planned")
-
-
-def fetch_price(
-    zone_key: str = "CZ",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-):
-
-    if not target_datetime:
-        target_datetime = arrow.now().replace(minute=0, second=0)
-    from_datetime = target_datetime.shift(days=-5)
-
-    payload = """<?xml version="1.0" encoding="utf-8"?>
-<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-  <soap12:Body>
-    <OfferPrices xmlns="https://www.ceps.cz/CepsData/">
-      <dateFrom>{0}</dateFrom>
-      <dateTo>{1}</dateTo>
-      <version>{2}</version>
-      <param1>(3)</param1>
-    </OfferPrices>
-  </soap12:Body>
-</soap12:Envelope>""".format(
-        from_datetime, target_datetime, "RT", "all"
-    )
-
-    xml = BeautifulSoup(make_request(session, payload, zone_key).content, "xml")
-    mapper = get_mapper(xml)
-
-    data_tag = xml.find("data")
-    data_list = []
 
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    # print("fetch_production() ->")
-    # print(fetch_production())
+    print("fetch_production() ->")
+    print(fetch_production())
     # print("fetch_price() ->")
     # print(fetch_price())
     # print("fetch_exchange_planned() ->")
     # print(fetch_exchange_planned())
-    print("fetch_exchange('CZ', 'DE') ->")
-    print(fetch_exchange('AT', 'CZ'))
+    print("fetch_exchange('AT', 'CZ') ->")
+    print(fetch_exchange("AT", "CZ"))
