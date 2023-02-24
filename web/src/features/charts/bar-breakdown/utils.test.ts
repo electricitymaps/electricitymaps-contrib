@@ -101,8 +101,6 @@ const zoneDetailsData = {
   totalImport: 0,
   totalProduction: 6136,
   totalStorage: 0,
-  hasParser: true,
-  center: [-7.8, 39.6],
 };
 
 const productionData = [
