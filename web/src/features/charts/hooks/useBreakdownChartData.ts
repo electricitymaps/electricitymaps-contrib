@@ -74,7 +74,7 @@ export default function useBreakdownChartData() {
 
       if (isStorage) {
         entry.layerData[mode] = getStorageValue(
-          mode,
+          mode as ElectricityStorageType,
           value,
           valueFactor,
           displayByEmissions
