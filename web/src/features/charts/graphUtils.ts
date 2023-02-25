@@ -100,7 +100,12 @@ export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
   if (value === 0 && total === 0) {
     return 0;
   }
-  if (typeof value !== 'number' || typeof total !== 'number' || total === 0) {
+  if (
+    Number.isNaN(value) ||
+    typeof value !== 'number' ||
+    typeof total !== 'number' ||
+    total === 0
+  ) {
     return '?';
   }
   return Math.round((value / total) * 10_000) / 100;
