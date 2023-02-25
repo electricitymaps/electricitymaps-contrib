@@ -30,12 +30,10 @@ export function getProductionCo2Intensity(
   }
 
   const storage = zoneData.storage?.[generationMode as ElectricityStorageKeyType];
-  // TODO: Find out how this worked before if the data is never available
-  const storageCo2Intensity = zoneData.storageCo2Intensities?.[generationMode];
   const dischargeCo2Intensity =
     zoneData.dischargeCo2Intensities?.[generationMode as ElectricityStorageKeyType];
 
-  return storage && storage > 0 ? storageCo2Intensity : dischargeCo2Intensity;
+  return storage && dischargeCo2Intensity;
 }
 
 export function getExchangeCo2Intensity(
@@ -43,8 +41,8 @@ export function getExchangeCo2Intensity(
   zoneData: ZoneDetail,
   electricityMixMode: Mode
 ) {
-  const exchange = (zoneData.exchange || {})[zoneKey];
-  const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[zoneKey];
+  const exchange = zoneData.exchange?.[zoneKey];
+  const exchangeCo2Intensity = zoneData.exchangeCo2Intensities?.[zoneKey];
 
   if (exchange >= 0) {
     return exchangeCo2Intensity;
@@ -78,7 +76,7 @@ export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
     const storage = data.storage?.[generationMode as ElectricityStorageKeyType];
 
     // Production CO₂ intensity
-    const gCo2eqPerkWh = getProductionCo2Intensity(mode, data);
+    const gCo2eqPerkWh = getProductionCo2Intensity(mode, data) || 0;
     const value = isStorage && storage ? storage : production || 0;
     const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * value;
     const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60;
@@ -126,10 +124,10 @@ export function getElectricityProductionValue({
 }
 
 export const getDataBlockPositions = (
-  prouductionLength: number,
+  productionLength: number,
   exchangeData: ExchangeDataType[]
 ) => {
-  const productionHeight = prouductionLength * (ROW_HEIGHT + PADDING_Y);
+  const productionHeight = productionLength * (ROW_HEIGHT + PADDING_Y);
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
 
   const exchangeMax = d3Max(exchangeData, (d) => d.zoneKey.length) || 0;
