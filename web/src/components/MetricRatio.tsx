@@ -1,5 +1,3 @@
-import type { Maybe } from 'types';
-
 interface MetricRatioProps {
   value: number;
   total: number;
