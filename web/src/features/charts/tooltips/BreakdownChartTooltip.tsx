@@ -165,7 +165,7 @@ export function BreakdownChartTooltipContent({
               {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
               {__('tooltips.ofinstalled')}
               <br />
-              <MetricRatio value={usage} total={capacity ??= 0} format={formatPower} />
+              <MetricRatio value={usage} total={(capacity ??= 0)} format={formatPower} />
               <br />
             </>
           )}
