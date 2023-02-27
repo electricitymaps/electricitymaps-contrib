@@ -201,4 +201,7 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
                 % (key, zone_key)
             )
 
+    if all((obj["production"][key]==0) or (obj["production"][key] is None) for key in obj.get("production", {})):
+        raise ValidationError(f"{zone_key}, {obj.get('datetime')}: unrealistic datapoint, all production values are 0.0 MW or null")
+
     validate_reasonable_time(obj, zone_key)
