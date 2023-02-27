@@ -3,7 +3,7 @@ bounding_box:
     - 33.585
   - - 134.54
     - 35.74
-capacities:
+capacity:
   geothermal: 0
   oil: 850
   coal: 3850
