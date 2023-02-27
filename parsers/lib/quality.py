@@ -200,14 +200,14 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
                 "Couldn't find emission factor for '%s' in '%s'. Maybe you misspelled one of the production keys?"
                 % (key, zone_key)
             )
-
-    if all(
-        (obj.get("production").get(key) == 0)
-        or (obj.get("production").get(key) is None)
-        for key in obj.get("production", {})
-    ):
-        raise ValidationError(
-            f"{zone_key}, {obj.get('datetime')}: unrealistic datapoint, all production values are 0.0 MW or null"
-        )
+    if "production" in obj.keys():
+        if all(
+            (val== 0)
+            or (val is None)
+            for val in obj.get("production",{}).values()
+        ):
+            raise ValidationError(
+                f"{zone_key}, {obj.get('datetime')}: unrealistic datapoint, all production values are 0.0 MW or null"
+            )
 
     validate_reasonable_time(obj, zone_key)
