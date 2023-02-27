@@ -22,12 +22,14 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Belgium: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Brazil: [ONS](http://www.ons.org.br/paginas/energia-agora/carga-e-geracao)
 - Bulgaria: [TSO](http://tso.bg/default.aspx/page-707/bg)
-- Canada (Alberta): [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet)
-- Canada (New Brunswick): [NB Power](https://tso.nbpower.com/Public/en/op/market/data.aspx)
-- Canada (Nova Scotia): [Nova Scotia Power](https://www.nspower.ca/clean-energy/todays-energy-stats)
-- Canada (Ontario): [IESO](http://www.ieso.ca/power-data)
-- Canada (Prince Edward Island): [Government of PEI](https://www.princeedwardisland.ca/en/feature/pei-wind-energy/)
-- Canada (Yukon): [Yukon Energy](http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption)
+- Canada:
+  - Alberta: [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet)
+  - New Brunswick: [NB Power](https://tso.nbpower.com/Public/en/op/market/data.aspx)
+  - Nova Scotia: [Nova Scotia Power](https://www.nspower.ca/clean-energy/todays-energy-stats)
+  - Ontario: [IESO](http://www.ieso.ca/power-data)
+  - Québec: [Hydro-Québec](https://www.hydroquebec.com/residentiel/)
+  - Prince Edward Island: [Government of PEI](https://www.princeedwardisland.ca/en/feature/pei-wind-energy/)
+  - Yukon: [Yukon Energy](http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption)
 - Chile (SING/SIC): [Coordinador](https://sipub.coordinador.cl/api/v1/recursos/generacion_centrales_tecnologia_horario?)
 - Czech Republic: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Costa Rica: [ICE](https://apps.grupoice.com/CenceWeb/data/sen/json/EnergiaHorariaFuentePlanta?anno=2022&mes=12&dia=27)
@@ -291,6 +293,41 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Japan:
   - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
   - Kyūshū: [Electrical Japan](https://agora-ex-nii-ac-jp.translate.goog/earthquake/201103-eastjapan/energy/electrical-japan/operator/9.html.ja?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp&_x_tr_sch=http)
+  - Tohoku
+    - Wind: [The Wind Power](https://www.thewindpower.net/country_zones_en_11_japan.php)
+  - Hokkaidō
+    - Wind: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
+    - Hydro [TSO - HEPCO](https://www.hepco.co.jp/english/ir/datadownloads.html)
+    - Hydro storage [TSO - HEPCO](https://wwwc.hepco.co.jp/hepcowwwsite/english/ir/pdf/hepco_group_report_2022.pdf)
+    - Oil & coal & gas: [TSO - HEPCO](https://www.hepco.co.jp/english/ir/datadownloads.html)
+    - Nuclear: [TSO - HEPCO](https://www.hepco.co.jp/english/ir/datadownloads.html)
+    - Solar: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
+    - Biomass: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
+    - Geothermal: [TSO - HEPCO](https://wwwc.hepco.co.jp/hepcowwwsite/english/ir/pdf/hepco_group_report_2022.pdf)
+  - Hokuriku
+    - Hydro, coal, oil, gas, nuclear & solar: [TSO - Rikuden](https://www.rikuden.co.jp/csr/attach/integratedreport2021EN.pdf)
+    - Wind: [The Wind Power](https://www.thewindpower.net/developer_en_1636_hokuriku-electric-power-group.php)
+    - Biomass: [Global Energy Monitor](https://www.gem.wiki/Tsuruga_power_station)
+  - Chūbu
+    - Biomass, hydro storage & geothermal: [TSO - Chuden](https://www.chuden.co.jp/english/energy/renewable/initiatives/)
+    - Hydro & Nuclear: [TSO - Chuden](https://www.chuden.co.jp/english/corporate/outline/)
+    - Solar & Wind: [TSO - Chuden](https://www.chuden.co.jp/english/resource/corporate/ecsr_report_2022_all.pdf)
+    - Coal & gas & oil: [Power Plants](https://en.wikipedia.org/wiki/Chubu_Electric_Power)
+  - Chūgoku
+    - Nuclear, hydro & hydro storage: [TSO - Energia](https://www.energia.co.jp/e/business/int_business/skills/renewable-energy.html)
+    - Solar: [Sonnedix](https://sonnedix.jp/power-plants/list-of-plants/)
+    - Wind: [The Wind Power](https://www.thewindpower.net/country_zones_en_11_japan.php)
+    - Coal, gas & oil: [TSO - Energia](https://www.energia.co.jp/e/business/int_business/skills/thermal-pg.html)
+  - Shikoku
+    - Wind: [The Wind Power](https://www.thewindpower.net/country_zones_en_11_japan.php)
+    - Hydro & Nuclear: [TSO - Yonden](https://www.yonden.co.jp/english/profile/profile.html)
+    - Hydro storage, coal, oil & gas: [TSO - Yonden](https://www.yonden.co.jp/english/assets/pdf/ir/tools/ann_r/annual_e_2022.pdf)
+    - Biomass: [Global Energy Monitor](https://www.gem.wiki/Saijo_power_station)
+    - Solar: [ISEP](https://www.isep.or.jp/en/411/)
+  - Okinawa
+    - Wind: [The Wind Power](https://www.thewindpower.net/zones_en_11_985.php)
+    - Coal, oil & gas: [TSO - Okiden](https://www.okiden.co.jp/shared/pdf/ir/ar/ar2021/oepc_ar21_00.pdf)
+    - Biomass: [Erex](https://www.erex.co.jp/en/business/power-generation/plant/)
 - Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)

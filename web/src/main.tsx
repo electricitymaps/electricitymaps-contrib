@@ -52,7 +52,9 @@ if (isProduction) {
 
 // Temporarily disabled to ensure we can more easily rollback
 // Also removes existing service workers to ensure they don't interfer
+
 if (navigator.serviceWorker) {
+  // eslint-disable-next-line unicorn/prefer-top-level-await
   navigator.serviceWorker.getRegistrations().then(function (registrations) {
     for (const registration of registrations) {
       registration.unregister();

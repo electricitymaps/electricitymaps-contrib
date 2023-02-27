@@ -1,7 +1,8 @@
 import { Feature, MultiPolygon, Polygon, Properties, union } from '@turf/turf';
-import { ZoneConfig } from './types';
+import type { ZoneConfig } from './types';
 
 const generateAggregates = (geojson, zones: ZoneConfig) => {
+  const skippedZones: string[] = []; // Holds skipped subZones that are not in the geojson
   const { features } = geojson;
 
   const countryZonesToCombine = Object.values(zones)
@@ -42,17 +43,22 @@ const generateAggregates = (geojson, zones: ZoneConfig) => {
       const multiZoneCountry = unCombinedZones.find(
         (feature) => feature.properties.zoneName === country[0]
       );
-      for (const element of country) {
+      for (const subZone of country) {
         const zoneToAdd = unCombinedZones.find(
-          (feature) => feature.properties.zoneName === element
+          (feature) => feature.properties.zoneName === subZone
         );
 
         const combinedCountryPolygon = combinedCountry.geometry as MultiPolygon;
-
-        const unionGeometry = union(combinedCountryPolygon, zoneToAdd.geometry)?.geometry;
-
-        if (unionGeometry) {
-          combinedCountry.geometry = unionGeometry;
+        if (zoneToAdd) {
+          const unionGeometry = union(
+            combinedCountryPolygon,
+            zoneToAdd.geometry
+          )?.geometry;
+          if (unionGeometry) {
+            combinedCountry.geometry = unionGeometry;
+          }
+        } else {
+          skippedZones.push(subZone);
         }
       }
 
@@ -65,6 +71,14 @@ const generateAggregates = (geojson, zones: ZoneConfig) => {
     })
     .filter((zone) => zone !== null);
 
+  if (skippedZones.length > 0) {
+    for (const zone of skippedZones) {
+      console.error(
+        `ERROR: Could not find geometry feature for ${zone}, make sure it has geometry in world.geojson.`
+      );
+    }
+    process.exit(1);
+  }
   return [...unCombinedZones, ...combinedZones];
 };
 

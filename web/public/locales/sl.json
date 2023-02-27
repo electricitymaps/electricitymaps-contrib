@@ -139,7 +139,7 @@
     "production": "Proizvodnja",
     "consumption": "Poraba",
     "cpinfo": "<b>Potrošnja</b> upošteva uvoz in izvoz, <b>proizvodnja</b> ju ne upošteva",
-    "aggregateinfo": "Države se združijo, ko je letna zmogljivost cone večja od 90 % celotne zmogljivosti",
+    "aggregateInfo": "Države se združijo, ko je letna zmogljivost cone večja od 90 % celotne zmogljivosti",
     "selectLanguage": "Izberi jezik",
     "lowCarbDescription": "Vključuje obnovljive vire in jedrsko energijo",
     "dataIsDelayed": "Podatki zamujajo"

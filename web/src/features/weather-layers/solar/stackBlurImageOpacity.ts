@@ -1,5 +1,7 @@
-// @ts-nocheck
+/* eslint-disable unicorn/no-abusive-eslint-disable */
 /* eslint-disable */
+// @ts-nocheck
+
 // TODO: remove once refactored
 
 const mul_table = [
@@ -42,34 +44,38 @@ function BlurStack() {
 
 // Derived from http://www.quasimondo.com/StackBlurForCanvas/StackBlur.js
 export function stackBlurImageOpacity(imageData, top_x, top_y, width, height, radius) {
-  if (isNaN(radius) || radius < 1) return;
-  radius |= 0;
+  if (Number.isNaN(radius) || radius < 1) {
+    return;
+  }
+  radius = Math.trunc(radius);
 
-  var pixels = imageData.data;
+  const pixels = imageData.data;
 
-  var x, y, i, p, yp, yi, yw, a_sum, a_out_sum, a_in_sum, pa, rbs;
+  let x, y, index, p, yp, yi, yw, a_sum, a_out_sum, a_in_sum, pa, rbs;
 
-  var div = radius + radius + 1;
-  var w4 = width << 2;
-  var widthMinus1 = width - 1;
-  var heightMinus1 = height - 1;
-  var radiusPlus1 = radius + 1;
-  var sumFactor = (radiusPlus1 * (radiusPlus1 + 1)) / 2;
+  const div = radius + radius + 1;
+  const w4 = width << 2;
+  const widthMinus1 = width - 1;
+  const heightMinus1 = height - 1;
+  const radiusPlus1 = radius + 1;
+  const sumFactor = (radiusPlus1 * (radiusPlus1 + 1)) / 2;
 
-  var stackStart = new BlurStack();
-  var stack = stackStart;
-  for (i = 1; i < div; i++) {
+  const stackStart = new BlurStack();
+  let stack = stackStart;
+  for (index = 1; index < div; index++) {
     stack = stack.next = new BlurStack();
-    if (i == radiusPlus1) var stackEnd = stack;
+    if (index == radiusPlus1) {
+      var stackEnd = stack;
+    }
   }
   stack.next = stackStart;
-  var stackIn = null;
-  var stackOut = null;
+  let stackIn = null;
+  let stackOut = null;
 
   yw = yi = 0;
 
-  var mul_sum = mul_table[radius];
-  var shg_sum = shg_table[radius];
+  const mul_sum = mul_table[radius];
+  const shg_sum = shg_table[radius];
 
   for (y = 0; y < height; y++) {
     a_in_sum = a_sum = 0;
@@ -78,14 +84,14 @@ export function stackBlurImageOpacity(imageData, top_x, top_y, width, height, ra
     a_sum += sumFactor * pa;
     stack = stackStart;
 
-    for (i = 0; i < radiusPlus1; i++) {
+    for (index = 0; index < radiusPlus1; index++) {
       stack.a = pa;
       stack = stack.next;
     }
 
-    for (i = 1; i < radiusPlus1; i++) {
-      p = yi + ((widthMinus1 < i ? widthMinus1 : i) << 2);
-      a_sum += (stack.a = pa = pixels[p + 3]) * (rbs = radiusPlus1 - i);
+    for (index = 1; index < radiusPlus1; index++) {
+      p = yi + ((widthMinus1 < index ? widthMinus1 : index) << 2);
+      a_sum += (stack.a = pa = pixels[p + 3]) * (rbs = radiusPlus1 - index);
       a_in_sum += pa;
       stack = stack.next;
     }
@@ -124,14 +130,14 @@ export function stackBlurImageOpacity(imageData, top_x, top_y, width, height, ra
 
     stack = stackStart;
 
-    for (i = 0; i < radiusPlus1; i++) {
+    for (index = 0; index < radiusPlus1; index++) {
       stack.a = pa;
       stack = stack.next;
     }
 
     yp = width;
 
-    for (i = 1; i <= radius; i++) {
+    for (index = 1; index <= radius; index++) {
       yi = (yp + x) << 2;
 
       a_sum += (stack.a = pa = pixels[yi + 3]) * rbs;
@@ -140,7 +146,7 @@ export function stackBlurImageOpacity(imageData, top_x, top_y, width, height, ra
 
       stack = stack.next;
 
-      if (i < heightMinus1) {
+      if (index < heightMinus1) {
         yp += width;
       }
     }

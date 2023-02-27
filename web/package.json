@@ -1,11 +1,12 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.5.1",
+  "version": "1.12.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "engines": {
     "node": ">=18"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/electricityMaps/electricitymaps-contrib.git"
@@ -15,8 +16,8 @@
     "build": "pnpm update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
     "create-generated-files": "pnpm run generate-world && pnpm run generate-zones-config",
-    "generate-world": "ts-node ./geo/generateWorld.ts",
-    "generate-zones-config": "ts-node ./scripts/generateZonesConfig.ts",
+    "generate-world": "ts-node --esm ./geo/generateWorld.ts",
+    "generate-zones-config": "ts-node --esm ./scripts/generateZonesConfig.ts",
     "predev": "pnpm run create-generated-files",
     "prebuild": "pnpm run create-generated-files",
     "cy:components": "cypress open --components -b electron",
@@ -99,6 +100,7 @@
   },
   "devDependencies": {
     "@mdx-js/react": "^2.1.5",
+    "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@nabla/vite-plugin-eslint": "1.4.1",
     "@sentry/vite-plugin": "^0.3.0",
     "@storybook/addon-actions": "7.0.0-alpha.47",
@@ -165,7 +167,7 @@
     "msw": "0.47.4",
     "npm-run-all": "4.1.5",
     "postcss": "8.4.18",
-    "prettier": "2.7.1",
+    "prettier": "2.8.4",
     "prettier-plugin-tailwindcss": "0.1.13",
     "readline-sync": "^1.4.10",
     "start-server-and-test": "1.14.0",
@@ -189,6 +191,7 @@
   "lint-staged": {
     "*": "prettier -uw --cache",
     "*.{ts,tsx}": [
+      "eslint --cache --fix",
       "vitest related --run --coverage=false"
     ]
   }
