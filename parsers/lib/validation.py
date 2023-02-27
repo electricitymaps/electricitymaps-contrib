@@ -223,7 +223,8 @@ def validate(
     required: list[Any] = kwargs.pop("required", [])
     floor: Union[float, int, None] = kwargs.pop("floor", None)
     expected_range: Union[Tuple, Dict, None] = kwargs.pop("expected_range", None)
-    check_fake_zeros:  bool = kwargs.pop("check_fake_zeros", False)
+    fake_zeros:  bool = kwargs.pop("fake_zeros", False)
+
     if kwargs:
         raise TypeError("Unexpected **kwargs: %r" % kwargs)
 
