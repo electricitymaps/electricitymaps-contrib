@@ -38,7 +38,11 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {
     if (map && node && isVisible && solarData && width && height) {
-      const canvas = node.getContext('2d');
+      const canvas = (node as HTMLCanvasElement).getContext('2d');
+      if (!canvas) {
+        return;
+      }
+
       const image = canvas.createImageData(width, height);
 
       const { lng: minLon, lat: minLat } = map.unproject([0, 0]);

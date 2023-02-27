@@ -7,7 +7,7 @@ import { REFETCH_INTERVAL_FIVE_MINUTES, getBasePath, getHeaders } from './helper
 
 export type WeatherType = 'wind' | 'solar';
 
-interface ForecastEntry {
+export interface ForecastEntry {
   data: number[];
   header: {
     dx: number;
