@@ -9,7 +9,6 @@ import {
   ZoneKey,
 } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
-import { getCO2IntensityByMode } from 'utils/helpers';
 import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json'; // TODO: do something globally
 
 const LABEL_MAX_WIDTH = 102;
@@ -39,15 +38,24 @@ export function getProductionCo2Intensity(
   return storage && storage > 0 ? storageCo2Intensity : dischargeCo2Intensity;
 }
 
-export function getExchangeCo2Intensity(mode, zoneData, electricityMixMode) {
-  const exchange = (zoneData.exchange || {})[mode];
-  const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[mode];
+export function getExchangeCo2Intensity(
+  zoneKey: ZoneKey,
+  zoneData: ZoneDetail,
+  electricityMixMode: Mode
+) {
+  const exchange = (zoneData.exchange || {})[zoneKey];
+  const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[zoneKey];
 
   if (exchange >= 0) {
     return exchangeCo2Intensity;
   }
 
-  return getCO2IntensityByMode(zoneData, electricityMixMode);
+  // We don't use getCO2IntensityByMode in order to more easily return 0 for invalid numbers
+  if (electricityMixMode === Mode.CONSUMPTION) {
+    return zoneData.co2intensity || 0;
+  }
+
+  return zoneData.co2intensityProduction || 0;
 }
 
 export interface ProductionDataType {
@@ -124,7 +132,7 @@ export const getDataBlockPositions = (
   const productionHeight = prouductionLength * (ROW_HEIGHT + PADDING_Y);
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
 
-  const exchangeMax = d3Max(exchangeData, (d) => d.mode.length) || 0;
+  const exchangeMax = d3Max(exchangeData, (d) => d.zoneKey.length) || 0;
 
   const exchangeFlagX =
     LABEL_MAX_WIDTH - 4 * PADDING_X - DEFAULT_FLAG_SIZE - exchangeMax * 8;
@@ -142,29 +150,30 @@ export const getDataBlockPositions = (
 
 export interface ExchangeDataType {
   exchange: number;
-  mode: ZoneKey; // TODO: Weird that this is called "mode"
+  zoneKey: ZoneKey;
   gCo2eqPerkWh: number;
   tCo2eqPerMin: number;
+  exchangeCapacityRange: [number, number];
 }
 export const getExchangeData = (
   data: ZoneDetail,
-  exchangeKeys: string[],
+  exchangeKeys: ZoneKey[],
   electricityMixMode: Mode
 ): ExchangeDataType[] =>
-  exchangeKeys.map((mode) => {
+  exchangeKeys.map((zoneKey: ZoneKey) => {
     // Power in MW
-    const exchange = (data.exchange || {})[mode];
-    const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
+    const exchange = data.exchange?.[zoneKey];
+    const exchangeCapacityRange = data.exchangeCapacities?.[zoneKey] ?? [0, 0];
 
     // Exchange CO₂ intensity
-    const gCo2eqPerkWh = getExchangeCo2Intensity(mode, data, electricityMixMode);
+    const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, electricityMixMode);
     const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * exchange;
     const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60;
 
     return {
       exchange,
       exchangeCapacityRange,
-      mode,
+      zoneKey,
       gCo2eqPerkWh,
       tCo2eqPerMin,
     };
