@@ -223,7 +223,7 @@ def validate(
     required: list[Any] = kwargs.pop("required", [])
     floor: Union[float, int, None] = kwargs.pop("floor", None)
     expected_range: Union[Tuple, Dict, None] = kwargs.pop("expected_range", None)
-    fake_zeros:  bool = kwargs.pop("fake_zeros", False)
+    fake_zeros: bool = kwargs.pop("fake_zeros", False)
 
     if kwargs:
         raise TypeError("Unexpected **kwargs: %r" % kwargs)
@@ -276,13 +276,10 @@ def validate(
                 return
 
     if fake_zeros:
-        if all(
-            (val== 0)
-            or (val is None)
-            for val in generation.values()
-        ):
+        if all((val == 0) or (val is None) for val in generation.values()):
             logger.warning(
-            f"{datapoint['zoneKey']} - {datapoint['datetime']}: unrealistic datapoint, all production values are 0.0 MW or null")
+                f"{datapoint['zoneKey']} - {datapoint['datetime']}: unrealistic datapoint, all production values are 0.0 MW or null"
+            )
             return
 
     return datapoint
