@@ -313,6 +313,11 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - Hydro & Nuclear: [TSO - Chuden](https://www.chuden.co.jp/english/corporate/outline/)
     - Solar & Wind: [TSO - Chuden](https://www.chuden.co.jp/english/resource/corporate/ecsr_report_2022_all.pdf)
     - Coal & gas & oil: [Power Plants](https://en.wikipedia.org/wiki/Chubu_Electric_Power)
+  - Chūgoku
+    - Nuclear, hydro & hydro storage: [TSO - Energia](https://www.energia.co.jp/e/business/int_business/skills/renewable-energy.html)
+    - Solar: [Sonnedix](https://sonnedix.jp/power-plants/list-of-plants/)
+    - Wind: [The Wind Power](https://www.thewindpower.net/country_zones_en_11_japan.php)
+    - Coal, gas & oil: [TSO - Energia](https://www.energia.co.jp/e/business/int_business/skills/thermal-pg.html)
 - Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
