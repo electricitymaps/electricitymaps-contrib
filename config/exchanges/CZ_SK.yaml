@@ -3,5 +3,5 @@ lonlat:
   - 49.089498
 parsers:
   exchange: CZ.fetch_exchange
-  exchangeForecast: CZ.fetch_exchange_forecast
+  exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 135

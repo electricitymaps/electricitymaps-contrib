@@ -7,7 +7,7 @@ from typing import List, Optional, Union
 from bs4 import BeautifulSoup
 
 # The request library is used to fetch content through HTTP
-from requests import Session
+from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
 
@@ -36,6 +36,7 @@ translate_table_dist = {
 }
 
 url = "https://www.ceps.cz/_layouts/CepsData.asmx"
+source = "ceps.cz"
 
 
 def get_mapper(xmlload):
@@ -54,19 +55,17 @@ def make_request(session, payload, zone_key):
         "Content-Length": "1",
     }
 
-    r = session or Session()
-    res = r.post(url, headers=headers, data=payload)
-    assert res.status_code == 200, (
-        "Exception when fetching production for "
-        "{}: error when calling url={}".format(zone_key, url)
-    )
+    res: Response = session.post(url, headers=headers, data=payload)
+    assert (
+        res.status_code == 200
+    ), f"Exception when fetching production for {zone_key}: error when calling {url}"
 
     return res
 
 
 def fetch_production(
     zone_key: str = "CZ",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
@@ -104,7 +103,7 @@ def fetch_production(
                 "zoneKey": zone_key,
                 "production": {},
                 "storage": {},
-                "source": url,
+                "source": source,
                 "datetime": datetime.fromisoformat(values["date"]),
             }
 
@@ -130,7 +129,7 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "CZ",
     zone_key2: str = "DE",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
@@ -166,7 +165,7 @@ def fetch_exchange(
                 "sortedZoneKeys": f"{zone_key1}->{zone_key2}",
                 "datetime": datetime.fromisoformat(values["date"]),
                 "netFlow": 0.0,
-                "source": url,
+                "source": source,
             }
 
             for k, v in mapper.items():
