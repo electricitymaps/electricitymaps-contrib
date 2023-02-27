@@ -6,6 +6,16 @@ bounding_box:
 contributors:
   - tmslaine
   - lorrieq
+capacity:
+  biomass: 49
+  geothermal: 0
+  coal: 1629
+  gas: 326
+  hydro storage: 0
+  nuclear: 0
+  oil: 189.78
+  wind: 28
+disclaimer: The data provider (Okiden Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
