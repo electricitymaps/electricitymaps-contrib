@@ -286,12 +286,9 @@ p14 = {
     "source": "entsoe.eu",
 }
 
-p15 = {"zoneKey": "IS",
- "datetime": dt,
- "production": {
-  "coal": None,
-  "hydro": 0.0,
-  "oil": 0.0,
-  "geothermal":0.0},
-
- "source": "mysource.com"}
+p15 = {
+    "zoneKey": "IS",
+    "datetime": dt,
+    "production": {"coal": None, "hydro": 0.0, "oil": 0.0, "geothermal": 0.0},
+    "source": "mysource.com",
+}

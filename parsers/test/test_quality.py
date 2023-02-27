@@ -96,8 +96,11 @@ class ProductionTestCase(unittest.TestCase):
         self.assertFalse(validate_production(p9, "FR"), msg="This datapoint is good!")
 
     def test_all_zeros_or_null(self):
-        with self.assertRaises(Exception, msg="Suspicious data point, all zeros or null"):
+        with self.assertRaises(
+            Exception, msg="Suspicious data point, all zeros or null"
+        ):
             validate_production(p15, "IS")
+
 
 if __name__ == "__main__":
     unittest.main()
