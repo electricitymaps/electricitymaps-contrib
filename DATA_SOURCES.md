@@ -304,6 +304,10 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - Solar: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
     - Biomass: [TSO - HEPCO](https://www.hepco.co.jp/english/environment/renewable_energy.html)
     - Geothermal: [TSO - HEPCO](https://wwwc.hepco.co.jp/hepcowwwsite/english/ir/pdf/hepco_group_report_2022.pdf)
+  - Hokuriku
+    - Hydro, coal, oil, gas, nuclear & solar: [TSO - Rikuden](https://www.rikuden.co.jp/csr/attach/integratedreport2021EN.pdf)
+    - Wind: [The Wind Power](https://www.thewindpower.net/developer_en_1636_hokuriku-electric-power-group.php)
+    - Biomass: [Global Energy Monitor](https://www.gem.wiki/Tsuruga_power_station)
   - Chūbu
     - Biomass, hydro storage & geothermal: [TSO - Chuden](https://www.chuden.co.jp/english/energy/renewable/initiatives/)
     - Hydro & Nuclear: [TSO - Chuden](https://www.chuden.co.jp/english/corporate/outline/)
