@@ -318,6 +318,16 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - Solar: [Sonnedix](https://sonnedix.jp/power-plants/list-of-plants/)
     - Wind: [The Wind Power](https://www.thewindpower.net/country_zones_en_11_japan.php)
     - Coal, gas & oil: [TSO - Energia](https://www.energia.co.jp/e/business/int_business/skills/thermal-pg.html)
+  - Shikoku
+    - Wind: [The Wind Power](https://www.thewindpower.net/country_zones_en_11_japan.php)
+    - Hydro & Nuclear: [TSO - Yonden](https://www.yonden.co.jp/english/profile/profile.html)
+    - Hydro storage, coal, oil & gas: [TSO - Yonden](https://www.yonden.co.jp/english/assets/pdf/ir/tools/ann_r/annual_e_2022.pdf)
+    - Biomass: [Global Energy Monitor](https://www.gem.wiki/Saijo_power_station)
+    - Solar: [ISEP](https://www.isep.or.jp/en/411/)
+  - Okinawa
+    - Wind: [The Wind Power](https://www.thewindpower.net/zones_en_11_985.php)
+    - Coal, oil & gas: [TSO - Okiden](https://www.okiden.co.jp/shared/pdf/ir/ar/ar2021/oepc_ar21_00.pdf)
+    - Biomass: [Erex](https://www.erex.co.jp/en/business/power-generation/plant/)
 - Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
