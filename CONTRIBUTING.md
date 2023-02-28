@@ -49,40 +49,14 @@ To get stated with editing the parsers use the following steps:
 1. Run `poetry install -E parsers` to install all needed dependencies.
 2. Use `poetry run test_parser ZONE_KEY` to test any parser changes.
 
-Note: This requires you to have [Python][python homepage] and [Poetry][poetry homepage] installed, you can see their respective installation guides here:
+Note: This requires you to have [Python 3.8][python homepage] and [Poetry][poetry homepage] installed, you can see their respective installation guides here:
 
 - [Downloading Python][python install guide]
 - [poetry installation][poetry install guide]
 
-### Parser requirements
+### Parser information
 
-There are no clear cut model or template that works for all parsers as all data are different and unique but there are some basic requirements all parsers need to follow:
-
-- They need to return valid data from a credible source.
-- They need to return the date for when the data was collected together with the data.
-- They need to return at least one valid Electricity Maps data object (production, consumption, exchange, price, etc).
-  Example of a production return object:
-
-```python
-{'datetime': datetime.datetime(2023, 1, 16, 15, 0, tzinfo=tzutc()),
-  'production': {'biomass': 542.0,
-                 'coal': 192.0,
-                 'gas': 142.0,
-                 'geothermal': None,
-                 'hydro': None,
-                 'nuclear': None,
-                 'oil': 34.0,
-                 'solar': 0.0,
-                 'unknown': None,
-                 'wind': 1164.0},
-  'source': 'entsoe.eu',
-  'storage': {'hydro': None},
-  'zoneKey': 'DK-DK2'}
-```
-
-Note: If data from a production mode is missing it should be omitted or returned as `None` like the above example, _NOT_ `0`.
-
-<!-- TODO: Create wiki pages for all types of return types and provide more examples then link them here. -->
+For more detailed information about parsers specifically you can look at the parser [README][parser readme] located at [parsers/README.md][parser readme] with specific information about the parser functions located in the [parser/example][parser examples folder] folder
 
 #### Example parser:
 
@@ -183,3 +157,5 @@ Check the [wiki page][wiki js code formatting] on formatting for more details an
 [old_license]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE_MIT.txt
 [config zones]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones
 [config exchanges]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges
+[parser readme]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/parsers/README.md
+[parser examples folder]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/examples/
