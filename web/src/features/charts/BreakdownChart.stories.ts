@@ -4,6 +4,7 @@ import { getCo2ColorScale } from '../../hooks/theme';
 import { TimeAverages } from '../../utils/constants';
 import AreaGraph from './elements/AreaGraph';
 import { getLayerFill } from './hooks/useBreakdownChartData';
+import { zoneDetailMock } from 'stories/mockData';
 
 const meta: Meta<typeof AreaGraph> = {
   title: 'charts/BreakdownChart',
@@ -15,7 +16,7 @@ type Story = StoryObj<typeof AreaGraph>;
 const chartData = [
   {
     datetime: '2022-11-27T12:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 207.54 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 207.54 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -34,7 +35,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T13:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 215.99 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 215.99 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -53,7 +54,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T14:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 241.49 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 241.49 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -72,7 +73,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T15:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 229.06 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 229.06 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -91,7 +92,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T16:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 196.43 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 196.43 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -110,7 +111,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T17:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 173.56 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 173.56 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -129,7 +130,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T18:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 164.68 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 164.68 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -148,7 +149,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T19:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 162.84 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 162.84 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -167,7 +168,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T20:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 168.19 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 168.19 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -186,7 +187,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T21:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 175.13 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 175.13 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -205,7 +206,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T22:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 188.99 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 188.99 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -224,7 +225,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-27T23:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 179.01 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 179.01 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -243,7 +244,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T00:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 175.39 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 175.39 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -262,7 +263,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T01:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 171.54 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 171.54 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -281,7 +282,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T02:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 138.41 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 138.41 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -300,7 +301,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T03:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 136.08 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 136.08 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -319,7 +320,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T04:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 138.39 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 138.39 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -338,7 +339,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T05:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 138.58 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 138.58 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -357,7 +358,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T06:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 203.46 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 203.46 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -376,7 +377,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T07:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 187.37 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 187.37 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -395,7 +396,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T08:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 113.91 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 113.91 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -414,7 +415,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T09:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 101.18 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 101.18 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -433,7 +434,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T10:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 96.02 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 96.02 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -452,7 +453,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T11:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 99.52 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 99.52 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
@@ -471,7 +472,7 @@ const chartData = [
   },
   {
     datetime: '2022-11-28T12:00:00.000Z',
-    meta: { exchangeCo2Intensities: { ES: 88.99 } },
+    meta: { ...zoneDetailMock, exchangeCo2Intensities: { ES: 88.99 } },
     layerData: {
       nuclear: Number.NaN,
       geothermal: Number.NaN,
