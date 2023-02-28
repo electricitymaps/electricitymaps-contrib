@@ -32,7 +32,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 This project aims to provide a free, open-source, and transparent visualisation of the carbon intensity of electricity consumption around the world.
 
-We get the raw production data from a variety of sources, including official government data, and then run [our flow-tracing algorithm](https://www.electricitymaps.com/blog/flow-tracing) to calculate the actual carbon intensity of a country's electricity consumption.
+We fetch the raw production data from public, free, and official sources. They include official government and transmission system operators' data. We then run [our flow-tracing algorithm](https://www.electricitymaps.com/blog/flow-tracing) to calculate the actual carbon intensity of a country's electricity consumption.
 
 _Try it out at [app.electricitymaps.com](https://app.electricitymaps.com), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github)._
 
