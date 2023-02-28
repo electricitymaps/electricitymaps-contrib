@@ -10,6 +10,7 @@ import {
 } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
 import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json'; // TODO: do something globally
+import { getProductionCo2Intensity } from 'utils/helpers';
 
 const LABEL_MAX_WIDTH = 102;
 const ROW_HEIGHT = 13;
@@ -17,24 +18,6 @@ const PADDING_Y = 7;
 const PADDING_X = 5;
 const X_AXIS_HEIGHT = 15;
 const DEFAULT_FLAG_SIZE = 16;
-
-export function getProductionCo2Intensity(
-  mode: ElectricityModeType,
-  zoneData: ZoneDetail
-) {
-  const isStorage = mode.includes('storage');
-  const generationMode = mode.replace(' storage', '') as GenerationType;
-
-  if (!isStorage) {
-    return zoneData.productionCo2Intensities?.[generationMode];
-  }
-
-  const storage = zoneData.storage?.[generationMode as ElectricityStorageKeyType];
-  const dischargeCo2Intensity =
-    zoneData.dischargeCo2Intensities?.[generationMode as ElectricityStorageKeyType];
-
-  return storage && dischargeCo2Intensity;
-}
 
 export function getExchangeCo2Intensity(
   zoneKey: ZoneKey,
