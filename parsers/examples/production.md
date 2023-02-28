@@ -65,4 +65,5 @@ The parser should either return a dictionary or a list of dictionaries matching 
   'source': 'mysource.com'
 }
 ```
+
 Note: If data from a production mode is missing it should be omitted or returned as `None` like the above example, _NOT_ `0`.
