@@ -64,6 +64,8 @@ This repository is licensed under GNU-AGPLv3 since v1.5.0, find our license [her
 
 ## Frequently asked questions
 
+_We also have a lot more questions answered on [app.electricitymaps.com/faq](https://app.electricitymaps.com/faq)!_
+
 **Where does the data come from?**
 The data comes from many different sources. You can check them out [here](https://github.com/electricityMaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md)
 
