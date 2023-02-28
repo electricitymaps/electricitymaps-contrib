@@ -30,6 +30,6 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate zone config
-        run: ts-node --esm ./scripts/generateZonesConfig.ts
+        run: pnpm run generate-zones-config
       - name: Generate world file
-        run: ts-node --esm ./geo/generateWorld.ts
+        run: pnpm run generate-world
