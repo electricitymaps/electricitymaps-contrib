@@ -59,7 +59,7 @@ export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
     const storage = data.storage?.[generationMode as ElectricityStorageKeyType];
 
     // Production CO₂ intensity
-    const gCo2eqPerkWh = getProductionCo2Intensity(mode, data) || 0;
+    const gCo2eqPerkWh = getProductionCo2Intensity(mode, data);
     const value = isStorage && storage ? storage : production || 0;
     const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * value;
     const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60;
