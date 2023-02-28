@@ -12,10 +12,10 @@ describe('Country Panel', () => {
 
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
-    cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').contains('152');
-    cy.get('[data-test-id=country-lowcarbon-gauge]').trigger('mousemove');
+    cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').contains('232');
+    cy.get('[data-test-id=zone-header-lowcarbon-gauge]').trigger('mouseover');
     cy.contains('Includes renewables and nuclear');
-    cy.get('[data-test-id=country-lowcarbon-gauge]').trigger('mouseout');
+    cy.get('[data-test-id=zone-header-lowcarbon-gauge]').trigger('mouseout');
 
     cy.contains('Carbon emissions').should('not.have.class', 'selected');
     cy.contains('Carbon emissions').click().should('have.class', 'selected');
@@ -56,10 +56,10 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains "no-recent-data" message', () => {
-    cy.interceptAPI('v6/details/hourly?countryCode=UA');
+    cy.interceptAPI('v6/details/hourly/UA');
     cy.visit('/zone/UA?lang=en-GB');
     cy.waitForAPISuccess('v6/state/hourly');
-    cy.waitForAPISuccess('v6/details/hourly?countryCode=UA');
+    cy.waitForAPISuccess('v6/details/hourly/UA');
 
     cy.get('[data-test-id=no-data-overlay-message]')
       .should('exist')
