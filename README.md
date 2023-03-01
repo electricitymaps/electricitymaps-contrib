@@ -8,7 +8,7 @@
 </h1>
 
 <p align="center">
-A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption around the world.<br>
+A real time and historical visualisation of the Greenhouse Gas Intensity (in terms of CO<sub>2</sub> equivalent) of electricity production and consumption around the world.<br>
   <strong><a href="https://app.electricitymaps.com">app.electricitymaps.com »</a></strong>
 </p>
 
@@ -26,7 +26,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
     ></a>
 </p>
 
-![image](https://app.electricitymaps.com/images/electricitymap_social_image.png)
+![image](https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/web/public/images/electricitymap_social_image.png)
 
 ## Introduction
 
