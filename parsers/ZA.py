@@ -137,4 +137,3 @@ if __name__ == "__main__":
 
     print("fetch_production() ->")
     pp.pprint(fetch_production())
-print(get_url())
