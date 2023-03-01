@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
 from typing import List, Optional
@@ -11,9 +11,11 @@ pp = PrettyPrinter(indent=4)
 TIMEZONE = "Africa/Johannesburg"
 
 
-def get_url() -> str:
+def get_url(
+    date_shift: int = 0
+) -> str:
     """Returns the formatted URL"""
-    date = datetime.utcnow()
+    date = datetime.utcnow() - timedelta(weeks = date_shift * 4)
     return f"https://www.eskom.co.za/dataportal/wp-content/uploads/{date.strftime('%Y')}/{date.strftime('%m')}/Station_Build_Up.csv"
 
 
@@ -34,6 +36,8 @@ def fetch_production(
             )
 
     res: Response = session.get(get_url())
+    if res.status_code == 404:
+        res = session.get(get_url(1))
     assert res.status_code == 200, (
         "Exception when fetching production for "
         f"{zone_key}: error when calling url={get_url()}"
@@ -49,7 +53,7 @@ def fetch_production(
             row_data = row.split(";")[1:]
             if row_data[0] != "":
                 production_csv_data[date] = [
-                    float(item.replace(",", ".")) for item in row.split(";")[1:]
+                    float(item.replace(",", ".")) if float(item.replace(",", ".")) >= 0 else 0 for item in row.split(";")[1:]
                 ]
 
     # Mapping columns to keys
@@ -133,3 +137,4 @@ if __name__ == "__main__":
 
     print("fetch_production() ->")
     pp.pprint(fetch_production())
+print(get_url())
