@@ -20,7 +20,7 @@ export function useInterpolatedData(
   const gribs2 = rawData[1];
   const tBefore = getTargetTime(gribs1[0]);
   const tAfter = getTargetTime(gribs2[0]);
-  const datetime = new Date();
+  const datetime = Date.now();
   const k = (datetime - tBefore) / (tAfter - tBefore);
   if (datetime > tAfter) {
     console.error(
