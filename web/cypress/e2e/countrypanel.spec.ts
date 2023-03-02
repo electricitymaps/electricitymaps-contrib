@@ -1,18 +1,14 @@
 // TODO: Convert to component test
 describe('Country Panel', () => {
-  // beforeEach(() => {
-  //   cy.interceptAPI('v6/state/hourly');
-  // });
+  beforeEach(() => {
+    cy.interceptAPI('v6/state/hourly');
+  });
 
   it('interacts with details', () => {
-    cy.interceptAPI('v6/state/hourly');
-    // cy.waitForAPISuccess('v6/state/hourly');
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(2000);
+    cy.waitForAPISuccess('v6/state/hourly');
     cy.interceptAPI('v6/details/hourly/DK-DK2');
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(2000);
-    // cy.waitForAPISuccess('v6/details/hourly/DK-DK2');
+    cy.waitForAPISuccess('v6/details/hourly/DK-DK2');
+
     cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
