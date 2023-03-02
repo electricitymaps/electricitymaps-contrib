@@ -25,5 +25,3 @@ jobs:
           working-directory: ./web
           start: pnpm dev
           wait-on: 'http://127.0.0.1:5173/'
-
-
