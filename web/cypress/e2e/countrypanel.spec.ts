@@ -1,6 +1,7 @@
 // TODO: Convert to component test
 describe('Country Panel', () => {
   beforeEach(() => {
+    cy.intercept('/dummy').as('dummy');
     cy.interceptAPI('v6/state/hourly');
   });
 
