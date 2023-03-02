@@ -1,4 +1,4 @@
-import dailyData from '../../../mockserver/public/v6/details/daily/DK-DK2.json';
+// import dailyData from '../../../mockserver/public/v6/details/daily/DK-DK2.json';
 import hourlyData from '../../../mockserver/public/v6/details/hourly/DK-DK2.json';
 import monthlyData from '../../../mockserver/public/v6/details/monthly/DK-DK2.json';
 import yearlyData from '../../../mockserver/public/v6/details/yearly/DK-DK2.json';
