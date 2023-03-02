@@ -1,17 +1,22 @@
 on:
   workflow_call:
 jobs:
-  cypress-test:
+  cypress-run:
     name: Cypress tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
           version: 7
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: node -v
       - name: Cypress run
         uses: cypress-io/github-action@v5
         env:
@@ -20,3 +25,5 @@ jobs:
           working-directory: ./web
           start: pnpm dev
           wait-on: 'http://127.0.0.1:5173/'
+
+
