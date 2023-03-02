@@ -1,16 +1,14 @@
 // TODO: Convert to component test
 describe('Country Panel', () => {
   beforeEach(() => {
-    cy.intercept('/dummy').as('dummy');
     cy.interceptAPI('v6/state/hourly');
   });
 
   it('interacts with details', () => {
     cy.interceptAPI('v6/details/hourly/DK-DK2');
-    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
     cy.waitForAPISuccess('v6/state/hourly');
     cy.waitForAPISuccess('v6/details/hourly/DK-DK2');
-
+    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
     cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').contains('232');
