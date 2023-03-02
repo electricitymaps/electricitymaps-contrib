@@ -12,11 +12,6 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 7
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: node -v
       - name: Cypress run
         uses: cypress-io/github-action@v5
         env:
