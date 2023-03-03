@@ -112,6 +112,14 @@ jobs:
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/eslint.yml
 
+  typecheck:
+    name: Typecheck
+    needs: [setup, prettier]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/typecheck.yml
+
   # cypress:
   #   name: Cypress
   #   needs: [eslint, validate_generated_files, unit_test]
