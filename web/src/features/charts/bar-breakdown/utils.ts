@@ -10,6 +10,7 @@ import {
 } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
 import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json'; // TODO: do something globally
+import { getProductionCo2Intensity } from 'utils/helpers';
 
 const LABEL_MAX_WIDTH = 102;
 const ROW_HEIGHT = 13;
@@ -18,33 +19,13 @@ const PADDING_X = 5;
 const X_AXIS_HEIGHT = 15;
 const DEFAULT_FLAG_SIZE = 16;
 
-export function getProductionCo2Intensity(
-  mode: ElectricityModeType,
-  zoneData: ZoneDetail
-) {
-  const isStorage = mode.includes('storage');
-  const generationMode = mode.replace(' storage', '') as GenerationType;
-
-  if (!isStorage) {
-    return zoneData.productionCo2Intensities?.[generationMode];
-  }
-
-  const storage = zoneData.storage?.[generationMode as ElectricityStorageKeyType];
-  // TODO: Find out how this worked before if the data is never available
-  const storageCo2Intensity = zoneData.storageCo2Intensities?.[generationMode];
-  const dischargeCo2Intensity =
-    zoneData.dischargeCo2Intensities?.[generationMode as ElectricityStorageKeyType];
-
-  return storage && storage > 0 ? storageCo2Intensity : dischargeCo2Intensity;
-}
-
 export function getExchangeCo2Intensity(
   zoneKey: ZoneKey,
   zoneData: ZoneDetail,
   electricityMixMode: Mode
 ) {
-  const exchange = (zoneData.exchange || {})[zoneKey];
-  const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[zoneKey];
+  const exchange = zoneData.exchange?.[zoneKey];
+  const exchangeCo2Intensity = zoneData.exchangeCo2Intensities?.[zoneKey];
 
   if (exchange >= 0) {
     return exchangeCo2Intensity;
@@ -126,10 +107,10 @@ export function getElectricityProductionValue({
 }
 
 export const getDataBlockPositions = (
-  prouductionLength: number,
+  productionLength: number,
   exchangeData: ExchangeDataType[]
 ) => {
-  const productionHeight = prouductionLength * (ROW_HEIGHT + PADDING_Y);
+  const productionHeight = productionLength * (ROW_HEIGHT + PADDING_Y);
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
 
   const exchangeMax = d3Max(exchangeData, (d) => d.zoneKey.length) || 0;

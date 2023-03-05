@@ -6,6 +6,19 @@ bounding_box:
 contributors:
   - tmslaine
   - lorrieq
+  - wobniarin
+capacity:
+  biomass: 406
+  geothermal: 0
+  coal: 950
+  gas: 935
+  hydro: 1153
+  hydro storage: 615
+  nuclear: 890
+  oil: 1350
+  solar: 2230
+  wind: 227
+disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
