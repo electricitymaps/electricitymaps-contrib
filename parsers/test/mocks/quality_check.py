@@ -71,7 +71,7 @@ e3 = {
     "source": "mysource.com",
 }
 
-future = datetime.datetime.utcnow() + datetime.timedelta(seconds=5 * 60)
+future = datetime.datetime.utcnow() + datetime.timedelta(minutes=55)
 
 e4 = {
     "sortedZoneKeys": "DK->NO",
@@ -284,4 +284,11 @@ p14 = {
     },
     "datetime": dt,
     "source": "entsoe.eu",
+}
+
+p15 = {
+    "zoneKey": "IS",
+    "datetime": dt,
+    "production": {"coal": None, "hydro": 0.0, "oil": 0.0, "geothermal": 0.0},
+    "source": "mysource.com",
 }

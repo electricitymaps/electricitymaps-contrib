@@ -43,7 +43,7 @@ def fetch_all() -> list:
 
     cleaned_list = []
     for value in values:
-        value = re.findall("\d+", value.text.replace(",", ""))
+        value = re.findall(r"\d+", value.text.replace(",", ""))
         cleaned_list.append(value)
 
     def flatten_list(_2d_list) -> list:

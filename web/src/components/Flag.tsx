@@ -2,13 +2,8 @@ import flags from 'country-flag-icons/react/3x2';
 
 const DEFAULT_FLAG_SIZE = 18;
 
-const SPECIAL_ZONE_NAMES = {
-  AUS: 'AU',
-} as { [index: string]: string };
-
 function getCountryName(zoneId: string) {
-  const country = zoneId.split('-')[0];
-  const flagName = SPECIAL_ZONE_NAMES[country] || country;
+  const flagName = zoneId.split('-')[0];
   return flagName.toUpperCase();
 }
 
@@ -29,7 +24,7 @@ export function CountryFlag({
   const FlagIcon = flags[countryName];
 
   if (!FlagIcon) {
-    return <span className={`text-[14px]`}>🏴‍☠️</span>;
+    return <span className="h-[12px] w-[18px] bg-gray-400 text-[14px]"></span>;
   }
   return (
     <FlagIcon

@@ -1,6 +1,6 @@
 import * as turf from '@turf/turf';
 import { topology } from 'topojson-server';
-import { fileExists, getJSON, round, writeJSON } from './utilities';
+import { fileExists, getJSON, round, writeJSON } from './utilities.js';
 
 function getCenter(geojson, zoneName) {
   switch (zoneName) {
