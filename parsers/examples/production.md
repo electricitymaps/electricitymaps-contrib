@@ -42,25 +42,28 @@ The parser should either return a dictionary or a list of dictionaries matching 
   # datetime is easiest passed as a datetime object parsed from the source.
   'datetime': datetime.datetime(2023, 2, 8, 17, 0, tzinfo=tzutc()),
   'production': {
-      'biomass': 0.0,
-      'coal': 0.0,
-      'gas': 0.0,
-      'hydro': 0.0,
-      'nuclear': None, # Can also be omitted if it's not available.
-      'oil': 0.0,
+      'biomass': 542.0,
+      'coal': 192.0,
+      'gas': 142.0,
+      'geothermal': None,
+      'hydro': None,
+      'nuclear': None, # Modes with None values can also be omitted for the same effect.
+      'oil': 34.0,
       'solar': 0.0,
-      'wind': 0.0,
-      'geothermal': 0.0,
-      'unknown': 0.0
+      'unknown': None,
+      'wind': 1164.0
   },
   'capacity': {
       # If the same API provides capacities then you can return those as well, but you should not add additional API dependencies for it.
       'hydro': 0.0
+      'hydro storage': 100
   },
   'storage': {
       #NOTE: For storage negative values indicate discharge (production) and positive numbers charging (input).
-      'hydro': 0.0,
+      'hydro': -10.0,
   },
   'source': 'mysource.com'
 }
 ```
+
+Note: If data from a production mode is missing it should be omitted or returned as `None` like the above example, _NOT_ `0`.
