@@ -112,11 +112,18 @@ jobs:
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/eslint.yml
 
+  typecheck:
+    name: Typecheck
+    needs: [setup, prettier]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/typecheck.yml
+
   cypress:
     name: Cypress
-    needs: [eslint, validate_generated_files, unit_test]
+    needs: [eslint, typecheck, validate_generated_files, unit_test]
     uses: ./.github/workflows/cypress.yml
-    secrets: inherit
 
   # Python checks
   python_formatting:
@@ -145,14 +152,14 @@ jobs:
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/validate_filenames.yml
 
-  validate_generated_files:
+  validate_generate_files:
     name: Validate
     needs: [setup]
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate_generated_files.yml
+    uses: ./.github/workflows/validate_generate_files.yml
 
   # Code quality checks
   codeql:
