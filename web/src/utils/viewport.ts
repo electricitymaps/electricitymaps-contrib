@@ -28,7 +28,7 @@ export function useReferenceWidthHeightObserver(offsetX = 0, offsetY = 0) {
       // Update container width on every resize
       window.addEventListener('resize', update);
     },
-    [offsetX, offsetY]
+    [offsetX, offsetY, window.innerWidth]
   );
 
   return {
