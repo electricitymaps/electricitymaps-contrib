@@ -30,7 +30,6 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
       - name: Run TypeScript typechecking
         run: pnpm run run-tsc
