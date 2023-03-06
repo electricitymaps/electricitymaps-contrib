@@ -2,8 +2,8 @@ import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { TimeAverages } from 'utils/constants';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import { formatDateTick } from '../../utils/formatting';
+import useResizeObserver from 'use-resize-observer';
 
 // Frequency at which values are displayed for a tick
 const TIME_TO_TICK_FREQUENCY = {
@@ -84,8 +84,8 @@ function TimeAxis({
   className,
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
-  const { ref, width } = useReferenceWidthHeightObserver(24);
-
+  const { ref, width: observerWidth = 0 } = useResizeObserver();
+  const width = observerWidth - 24;
   if (datetimes === undefined || isLoading) {
     return (
       <div className="flex h-[22px]  w-full justify-center">
