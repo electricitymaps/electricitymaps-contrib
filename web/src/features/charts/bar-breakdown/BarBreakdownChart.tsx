@@ -7,13 +7,13 @@ import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 import BySource from './elements/BySource';
+import useResizeObserver from 'use-resize-observer';
 
 const X_PADDING = 9;
 
@@ -27,10 +27,10 @@ function BarBreakdownChart() {
     height,
   } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const { ref, width } = useReferenceWidthHeightObserver(X_PADDING);
+  const { ref, width: observerWidth = 0 } = useResizeObserver();
   const { __ } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
-
+  const width = observerWidth - X_PADDING;
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
     x: number;

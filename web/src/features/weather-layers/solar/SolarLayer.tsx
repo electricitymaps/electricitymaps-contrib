@@ -2,7 +2,7 @@ import { useGetSolar } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtom, useSetAtom } from 'jotai';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { ToggleOptions } from 'utils/constants';
 import {
@@ -10,13 +10,13 @@ import {
   solarLayerEnabledAtom,
   solarLayerLoadingAtom,
 } from 'utils/state/atoms';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import { stackBlurImageOpacity } from './stackBlurImageOpacity';
 import {
   opacityToSolarIntensity,
   solarColorComponents,
   solarIntensityToOpacity,
 } from './utils';
+import useResizeObserver from 'use-resize-observer';
 
 // TODO: Figure out why the layer is "shifting" when zooming in and out on the map!
 export default function SolarLayer({ map }: { map?: MapboxMap }) {
@@ -32,13 +32,14 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   });
   const solarData = solarDataArray?.[0];
 
-  const { ref, node, width, height } = useReferenceWidthHeightObserver();
+  const ref = useRef<HTMLCanvasElement>(null);
+  const { width, height } = useResizeObserver({ ref });
   const isVisible = isSuccess && !isMapMoving && isSolarLayerEnabled;
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {
-    if (map && node && isVisible && solarData && width && height) {
-      const canvas = (node as HTMLCanvasElement).getContext('2d');
+    if (map && ref && isVisible && solarData && width && height) {
+      const canvas = (ref.current as HTMLCanvasElement).getContext('2d');
       if (!canvas) {
         return;
       }
@@ -88,7 +89,7 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
       canvas.putImageData(image, 0, 0);
       setIsLoadingSolarLayer(false);
     }
-  }, [node, isVisible, solarData, width, height, map]);
+  }, [ref, isVisible, solarData, width, height, map]);
 
   return (
     <canvas
