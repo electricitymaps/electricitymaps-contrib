@@ -1,0 +1,37 @@
+bounding_box:
+  - - 138.5
+    - 34.52
+  - - 141.16
+    - 37.17
+capacity:
+  battery storage: null
+  biomass: 2847.6
+  coal: 33620
+  gas: 92381.7
+  geothermal: 426.0
+  hydro: 17215
+  hydro storage: 22052
+  nuclear: 27019
+  oil: 28579.8
+  solar: 28577.9
+  unknown: 9976.9
+  wind: 3978.8
+contributors:
+  - kongkille
+  - lorrieq
+  - tmslaine
+  - wobniarin
+  - pierresegonne
+  - nessie2013
+subZoneNames:
+  - JP-CB
+  - JP-CG
+  - JP-HKD
+  - JP-HR
+  - JP-KN
+  - JP-KY
+  - JP-ON
+  - JP-SK
+  - JP-TH
+  - JP-TK
+timezone: Japan/Tokyo
