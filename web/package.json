@@ -196,9 +196,8 @@
     }
   },
   "lint-staged": {
-    "*": "prettier -uw --cache",
+    "*": "pretty-quick --staged",
     "*.{ts,tsx}": [
-      "pretty-quick --staged",
       "eslint --fix",
       "vitest related --run --coverage=false",
       "git add"
