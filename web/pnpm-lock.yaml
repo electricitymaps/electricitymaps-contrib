@@ -74,7 +74,7 @@ specifiers:
   country-flag-icons: ^1.5.5
   css-mediaquery: 0.1.2
   currency-symbol-map: ^5.1.0
-  cypress: 12.7.0
+  cypress: 12.6.0
   d3-array: ^3.2.0
   d3-format: ^3.1.0
   d3-interpolate: ^3.0.1
@@ -220,7 +220,7 @@ devDependencies:
   '@storybook/react-vite': 7.0.0-alpha.54_yalvw3r2waubxycyb7k7qsruca
   '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
-  '@testing-library/cypress': 8.0.3_cypress@12.7.0
+  '@testing-library/cypress': 8.0.3_cypress@12.6.0
   '@testing-library/dom': 8.19.0
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
@@ -249,7 +249,7 @@ devDependencies:
   autoprefixer: 10.4.12_postcss@8.4.18
   colors: 1.4.0
   css-mediaquery: 0.1.2
-  cypress: 12.7.0
+  cypress: 12.6.0
   eslint: 8.26.0
   eslint-config-airbnb: 19.0.4_43j2huhpnx3hffntymctaqzhgq
   eslint-config-airbnb-base: 15.0.0_mynvxvmq5qtyojffiqgev4x7mm
@@ -5892,7 +5892,7 @@ packages:
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
-  /@testing-library/cypress/8.0.3_cypress@12.7.0:
+  /@testing-library/cypress/8.0.3_cypress@12.6.0:
     resolution: {integrity: sha512-nY2YaSbmuPo5k6kL0iLj/pGPPfka3iwb3kpTx8QN/vOCns92Saz9wfACqB8FJzcR7+lfA4d5HUOWqmTddBzczg==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -5900,7 +5900,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.18.9
       '@testing-library/dom': 8.19.0
-      cypress: 12.7.0
+      cypress: 12.6.0
     dev: true
 
   /@testing-library/dom/8.19.0:
@@ -9368,8 +9368,8 @@ packages:
     resolution: {integrity: sha512-LO/lzYRw134LMDVnLyAf1dHE5tyO6axEFkR3TXjQIOmMkAM9YL6QsiUwuXzZAmFnuDJcs4hayOgyIYtViXFrLw==}
     dev: false
 
-  /cypress/12.7.0:
-    resolution: {integrity: sha512-7rq+nmhzz0u6yabCFyPtADU2OOrYt6pvUau9qV7xyifJ/hnsaw/vkr0tnLlcuuQKUAOC1v1M1e4Z0zG7S0IAvA==}
+  /cypress/12.6.0:
+    resolution: {integrity: sha512-WdHSVaS1lumSd5XpVTslZd8ui9GIGphrzvXq9+3DtVhqjRZC5M70gu5SW/Y/SLPq3D1wiXGZoHC6HJ7ESVE2lw==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
