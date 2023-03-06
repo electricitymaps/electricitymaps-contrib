@@ -3,12 +3,12 @@ import { useExchangeArrowsData } from 'hooks/arrows';
 import { useAtom } from 'jotai';
 import React from 'react';
 import { MapboxMap } from 'react-map-gl';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import ExchangeArrow from './ExchangeArrow';
+import useResizeObserver from 'use-resize-observer';
 
 function ExchangeLayer({ map }: { map?: MapboxMap }) {
   const [isMapMoving] = useAtom(mapMovingAtom);
-  const { ref, width, height } = useReferenceWidthHeightObserver();
+  const { ref, height = 0, width = 0 } = useResizeObserver();
   const arrows = useExchangeArrowsData();
 
   return (
