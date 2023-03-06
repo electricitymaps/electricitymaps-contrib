@@ -23,7 +23,7 @@ async function sha256(message: string): Promise<string> {
  * @returns
  */
 function isUsingLocalEndpoint(): boolean {
-  return import.meta.env.DEV && !window.location.href.includes('remote=true');
+  return true; // import.meta.env.DEV && !window.location.href.includes('remote=true');
 }
 
 function getToken(): string {
