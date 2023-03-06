@@ -18,7 +18,7 @@ jobs:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
-          build: pnpm run build
+          build: pnpm run build --mode testing
           start: pnpm run preview
           config: baseUrl=http://127.0.0.1:4173/
           #wait-on: 'http://127.0.0.1:5173/'
