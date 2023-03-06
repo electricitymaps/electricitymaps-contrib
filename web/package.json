@@ -199,8 +199,7 @@
     "*": "pretty-quick --staged",
     "*.{ts,tsx}": [
       "eslint --fix",
-      "vitest related --run --coverage=false",
-      "git add"
+      "vitest related --run --coverage=false"
     ]
   }
 }
