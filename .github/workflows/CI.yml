@@ -7,161 +7,162 @@ on:
 
 jobs:
   # This job is used to determine what files have changed and is used by later jobs to determine if they should run.
-  # setup:
-  #   name: Setup
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 1
-  #   outputs:
-  #     frontend: ${{ steps.check-frontend.outputs.any_changed }}
-  #     config: ${{ steps.check-config.outputs.any_changed }}
-  #     markdown: ${{ steps.check-markdown.outputs.any_changed }}
-  #     json: ${{ steps.check-json.outputs.any_changed }}
-  #     python: ${{ steps.check-python.outputs.any_changed }}
-  #     workflows: ${{ steps.check-workflows.outputs.any_changed }}
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 2
-  #     - name: Check frontend files
-  #       id: check-frontend
-  #       uses: tj-actions/changed-files@v35.6.1
-  #       with:
-  #         files: |
-  #           **/web/**/*
-  #         files_ignore: |
-  #           **/web/public/locales/*.json
-  #           **/web/**/*.md
-  #     - name: Check config files
-  #       id: check-config
-  #       uses: tj-actions/changed-files@v35.6.1
-  #       with:
-  #         files: |
-  #           **/config/**/*.yaml
-  #     - name: Check markdown files
-  #       id: check-markdown
-  #       uses: tj-actions/changed-files@v35.6.1
-  #       with:
-  #         files: |
-  #           **/*.md
-  #     - name: Check json files
-  #       id: check-json
-  #       uses: tj-actions/changed-files@v35.6.1
-  #       with:
-  #         files: |
-  #           **/*.json
-  #     - name: Check python files
-  #       id: check-python
-  #       uses: tj-actions/changed-files@v35.6.1
-  #       with:
-  #         files: |
-  #           **/*.py
-  #           pyproject.toml
-  #           poetry.lock
-  #           .python-version
-  #     - name: Check if workflows have changed
-  #       id: check-workflows
-  #       uses: tj-actions/changed-files@v35.6.1
-  #       with:
-  #         files: |
-  #           **/.github/workflows/**/*.yml
-  #     - name: Log outputs
-  #       run: |
-  #         echo "frontend changed: ${{ steps.check-frontend.outputs.any_changed }}"
-  #         echo "config changed: ${{ steps.check-config.outputs.any_changed }}"
-  #         echo "markdown changed: ${{ steps.check-markdown.outputs.any_changed }}"
-  #         echo "json changed: ${{ steps.check-json.outputs.any_changed }}"
-  #         echo "python changed: ${{ steps.check-python.outputs.any_changed }}"
-  #         echo "workflows changed: ${{ steps.check-workflows.outputs.any_changed }}"
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    outputs:
+      frontend: ${{ steps.check-frontend.outputs.any_changed }}
+      config: ${{ steps.check-config.outputs.any_changed }}
+      markdown: ${{ steps.check-markdown.outputs.any_changed }}
+      json: ${{ steps.check-json.outputs.any_changed }}
+      python: ${{ steps.check-python.outputs.any_changed }}
+      workflows: ${{ steps.check-workflows.outputs.any_changed }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Check frontend files
+        id: check-frontend
+        uses: tj-actions/changed-files@v35.6.1
+        with:
+          files: |
+            **/web/**/*
+          files_ignore: |
+            **/web/public/locales/*.json
+            **/web/**/*.md
+      - name: Check config files
+        id: check-config
+        uses: tj-actions/changed-files@v35.6.1
+        with:
+          files: |
+            **/config/**/*.yaml
+      - name: Check markdown files
+        id: check-markdown
+        uses: tj-actions/changed-files@v35.6.1
+        with:
+          files: |
+            **/*.md
+      - name: Check json files
+        id: check-json
+        uses: tj-actions/changed-files@v35.6.1
+        with:
+          files: |
+            **/*.json
+      - name: Check python files
+        id: check-python
+        uses: tj-actions/changed-files@v35.6.1
+        with:
+          files: |
+            **/*.py
+            pyproject.toml
+            poetry.lock
+            .python-version
+      - name: Check if workflows have changed
+        id: check-workflows
+        uses: tj-actions/changed-files@v35.6.1
+        with:
+          files: |
+            **/.github/workflows/**/*.yml
+      - name: Log outputs
+        run: |
+          echo "frontend changed: ${{ steps.check-frontend.outputs.any_changed }}"
+          echo "config changed: ${{ steps.check-config.outputs.any_changed }}"
+          echo "markdown changed: ${{ steps.check-markdown.outputs.any_changed }}"
+          echo "json changed: ${{ steps.check-json.outputs.any_changed }}"
+          echo "python changed: ${{ steps.check-python.outputs.any_changed }}"
+          echo "workflows changed: ${{ steps.check-workflows.outputs.any_changed }}"
 
   # Repository wide checks
-  # prettier:
-  #   name: Prettier
-  #   uses: ./.github/workflows/prettier.yml
+  prettier:
+    name: Prettier
+    uses: ./.github/workflows/prettier.yml
 
-  # validate_local_links:
-  #   name: Validate
-  #   needs: [setup]
-  #   if: >-
-  #     needs.setup.outputs.markdown != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  #   uses: ./.github/workflows/validate-local-links-in-md.yml
+  validate_local_links:
+    name: Validate
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.markdown != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/validate-local-links-in-md.yml
 
-  # jsonlint:
-  #   name: JSONLint
-  #   needs: [setup, prettier]
-  #   if: >-
-  #     needs.setup.outputs.json != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  # uses: ./.github/workflows/jsonlint.yml
+  jsonlint:
+    name: JSONLint
+    needs: [setup, prettier]
+    if: >-
+      needs.setup.outputs.json != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/jsonlint.yml
 
   # Frontend checks
-  # unit_test:
-  #   name: Unit test
-  #   needs: [setup]
-  #   if: >-
-  #     needs.setup.outputs.frontend != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  #   uses: ./.github/workflows/unit_test.yml
+  unit_test:
+    name: Unit test
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/unit_test.yml
 
-  # eslint:
-  #   name: ESLint
-  #   needs: [setup, prettier]
-  #   if: >-
-  #     needs.setup.outputs.frontend != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  #   uses: ./.github/workflows/eslint.yml
+  eslint:
+    name: ESLint
+    needs: [setup, prettier]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/eslint.yml
 
-  # typecheck:
-  #   name: Typecheck
-  #   needs: [setup, prettier]
-  #   if: >-
-  #     needs.setup.outputs.frontend != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  #   uses: ./.github/workflows/typecheck.yml
+  typecheck:
+    name: Typecheck
+    needs: [setup, prettier]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/typecheck.yml
 
   cypress:
     name: Cypress
+    needs: [eslint, typecheck, validate_generate_files, unit_test]
     uses: ./.github/workflows/cypress.yml
 
   # Python checks
-  # python_formatting:
-  #   name: Python
-  #   needs: [setup]
-  #   if: >-
-  #     needs.setup.outputs.python != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  #   uses: ./.github/workflows/python_formatting.yml
+  python_formatting:
+    name: Python
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.python != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/python_formatting.yml
 
-  # python_tests:
-  #   name: Python
-  #   needs: [setup]
-  #   if: >-
-  #     needs.setup.outputs.python != 'false' ||
-  #     needs.setup.outputs.config != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  #   uses: ./.github/workflows/python_tests.yml
+  python_tests:
+    name: Python
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.python != 'false' ||
+      needs.setup.outputs.config != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/python_tests.yml
 
-  # # Config checks
-  # validate_config_filenames:
-  #   name: Validate
-  #   needs: [setup]
-  #   if: >-
-  #     needs.setup.outputs.config != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  #   uses: ./.github/workflows/validate_filenames.yml
+  # Config checks
+  validate_config_filenames:
+    name: Validate
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.config != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/validate_filenames.yml
 
-  # validate_generate_files:
-  #   name: Validate
-  #   needs: [setup]
-  #   if: >-
-  #     needs.setup.outputs.frontend != 'false' ||
-  #     needs.setup.outputs.config != 'false' ||
-  #     needs.setup.outputs.workflows != 'false'
-  #   uses: ./.github/workflows/validate_generate_files.yml
+  validate_generate_files:
+    name: Validate
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.config != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/validate_generate_files.yml
 
-  # # Code quality checks
-  # codeql:
-  #   needs: [setup, prettier]
-  #   name: CodeQL
-  #   uses: ./.github/workflows/codeql.yml
+  # Code quality checks
+  codeql:
+    needs: [setup, prettier]
+    name: CodeQL
+    uses: ./.github/workflows/codeql.yml

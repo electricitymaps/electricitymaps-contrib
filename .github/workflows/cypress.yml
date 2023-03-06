@@ -21,4 +21,3 @@ jobs:
           build: pnpm run build --mode testing
           start: pnpm run preview
           config: baseUrl=http://127.0.0.1:4173/
-          #wait-on: 'http://127.0.0.1:5173/'
