@@ -86,6 +86,7 @@ function Modal({
             <button
               className="p-auto pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900"
               onClick={onDismiss}
+              data-test-id="close-modal"
             >
               <HiXMark size="28" />
             </button>

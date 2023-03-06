@@ -57,7 +57,11 @@ export function ZoneHeader({
         isAggregated={isAggregated}
       />
       <div className="flex flex-row justify-evenly">
-        <CarbonIntensitySquare intensity={intensity ?? Number.NaN} withSubtext />
+        <CarbonIntensitySquare
+          data-test-id="co2-square-value"
+          intensity={intensity ?? Number.NaN}
+          withSubtext
+        />
         <CircularGauge
           name={__('country-panel.lowcarbon')}
           ratio={fossilFuel ? 1 - fossilFuel : Number.NaN}
