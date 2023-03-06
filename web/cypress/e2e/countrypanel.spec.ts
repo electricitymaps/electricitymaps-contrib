@@ -3,9 +3,11 @@ describe('Country Panel', () => {
   // beforeEach(() => {
 
   // });
-  it('works without api intercept', () => {
+  it('works with dev mode', () => {
     cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
     cy.contains('East Denmark');
+
+    // cy.interceptAPI('v6/state/hourly');
   });
 
   // it('interacts with details', () => {
