@@ -1,4 +1,4 @@
-VERSION 0.6
+VERSION 0.7
 FROM node:18.13
 WORKDIR /contrib/web
 

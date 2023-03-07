@@ -1,2 +1,14 @@
-flag_file_name: co.png
 timezone: America/Bogota
+capacity:
+  biomass: 397
+  coal: 1612
+  gas: 2491
+  hydro: 12549
+  nuclear: 0
+  oil: 1346
+  solar: 297
+  wind: 18
+contributors:
+  - alixunderplatz
+parsers:
+  consumption: CO.fetch_consumption
