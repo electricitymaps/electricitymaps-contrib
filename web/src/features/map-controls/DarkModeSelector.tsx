@@ -12,27 +12,16 @@ interface DarkModeSelectorProperties {
   className?: string;
 }
 
-function getIcon(key: string) {
-  switch (key) {
-    case 'light': {
-      return <HiOutlineSun size={20} />;
-    }
-    case 'dark': {
-      return (
-        <BsMoonStars
-          size={14}
-          style={{ strokeWidth: '0.2', marginLeft: 3, marginRight: 2 }}
-        />
-      );
-    }
-    case 'system': {
-      return <HiOutlineComputerDesktop size={18} />;
-    }
-    default: {
-      return null;
-    }
-  }
-}
+const ICONS = {
+  light: <HiOutlineSun size={20} />,
+  dark: (
+    <BsMoonStars
+      size={14}
+      style={{ strokeWidth: '0.2', marginLeft: 3, marginRight: 2 }}
+    />
+  ),
+  system: <HiOutlineComputerDesktop size={18} />,
+};
 
 export default function DarkModeSelector({
   setDarkModeSelectorOpen,
@@ -46,8 +35,8 @@ export default function DarkModeSelector({
     setSelectedTheme(mode);
     setDarkModeSelectorOpen(false);
   };
-  const darkModeOptions = darkModeKeys.map((option) => {
-    const icon = getIcon(option);
+  const darkModeOptions = themeOptions.map((option) => {
+    const icon = ICONS[option];
     return (
       <button
         key={option}
