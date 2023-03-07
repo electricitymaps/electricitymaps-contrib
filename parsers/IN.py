@@ -12,9 +12,10 @@ import numpy as np
 import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
+from requests import Response, Session
+
 from parsers.lib.exceptions import ParserException
 from parsers.lib.validation import validate_consumption
-from requests import Response, Session
 
 IN_NO_TZ = pytz.timezone("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17)
