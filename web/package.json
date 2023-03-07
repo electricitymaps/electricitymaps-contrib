@@ -20,7 +20,7 @@
     "generate-zones-config": "ts-node --esm ./scripts/generateZonesConfig.ts",
     "predev": "pnpm run create-generated-files",
     "prebuild": "pnpm run create-generated-files",
-    "cy:components": "cypress open --components -b electron",
+    "cy:component": "cypress open --component -b electron",
     "cy:e2e": "cypress open --e2e -b electron",
     "dev": "vite --open",
     "prepare": "cd .. && husky install web/.husky",
