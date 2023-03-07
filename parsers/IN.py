@@ -12,12 +12,12 @@ import numpy as np
 import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
-from requests import Response, Session
-
 from parsers.lib.exceptions import ParserException
 from parsers.lib.validation import validate_consumption
+from requests import Response, Session
 
 IN_NO_TZ = pytz.timezone("Asia/Kolkata")
+START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17)
 CONVERSION_MWH_MW = 0.024
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
@@ -212,7 +212,7 @@ def fetch_consumption(
 
     data = {
         "zoneKey": zone_key,
-        "datetime": datetime.now(tz=IN_NO_TZ),
+        "datetime": IN_NO_TZ.localize(datetime.now()),
         "consumption": total_consumption,
         "source": "vidyupravah.in",
     }
@@ -351,10 +351,8 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime is None:
-        target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime - timedelta(
-            days=2
-        )
-    elif target_datetime < datetime(2020, 12, 17).replace(tzinfo=IN_NO_TZ):
+        target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime
+    elif target_datetime < IN_NO_TZ.localize(START_DATE_RENEWABLE_DATA):
         raise ParserException(
             parser="IN.py",
             message=f"{target_datetime}: {zone_key} renewable production data is not available before 2020/12/17, data is not collected prior to this data",
@@ -364,19 +362,33 @@ def fetch_production(
             arrow.get(target_datetime).floor("day").datetime.replace(tzinfo=IN_NO_TZ)
         )
 
-    renewable_production = fetch_cea_production(
-        zone_key=zone_key, session=session, target_datetime=target_datetime
-    )
-    conventional_production = fetch_npp_production(
-        zone_key=zone_key, session=session, target_datetime=target_datetime
-    )
+    days_lookback_to_try = [0, 1, 2]
+    for days_lookback in days_lookback_to_try:
+        try:
+            _target_datetime = target_datetime - timedelta(days=days_lookback)
+            renewable_production = fetch_cea_production(
+                zone_key=zone_key,
+                session=session,
+                target_datetime=_target_datetime,
+            )
+            conventional_production = fetch_npp_production(
+                zone_key=zone_key,
+                session=session,
+                target_datetime=_target_datetime,
+            )
+            break
+        except Exception as e:
+            if days_lookback == days_lookback_to_try[-1]:
+                raise e
+            else:
+                continue
+
     data_point = {
         "zoneKey": zone_key,
-        "datetime": target_datetime,
+        "datetime": _target_datetime,
         "production": {**conventional_production, **renewable_production},
         "source": "npp.gov.in, cea.nic.in",
     }
-
     return data_point
 
 
