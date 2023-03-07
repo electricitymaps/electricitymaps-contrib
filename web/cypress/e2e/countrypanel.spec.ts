@@ -60,15 +60,14 @@ describe('Country Panel', () => {
     cy.waitForAPISuccess('v6/state/hourly');
     cy.waitForAPISuccess('v6/details/hourly/UA');
 
-    //   cy.get('[data-test-id=no-data-overlay-message]')
-    //     .should('exist')
-    //     .contains('Data is temporarily unavailable for the selected time');
-    // });
+    cy.get('[data-test-id=no-data-overlay-message]')
+      .should('exist')
+      .contains('Data is temporarily unavailable for the selected time');
+  });
 
-    // it('asserts countryPanel contains no parser message when zone has no data', () => {
-    //   cy.visit('/zone/CN?lang=en-GB');
-    //   cy.waitForAPISuccess('v6/state/hourly');
-    //   cy.get('[data-test-id=no-parser-message]').should('exist');
-    // });
+  it('asserts countryPanel contains no parser message when zone has no data', () => {
+    cy.visit('/zone/CN?lang=en-GB');
+    cy.waitForAPISuccess('v6/state/hourly');
+    cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });
