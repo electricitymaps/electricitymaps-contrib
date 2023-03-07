@@ -1,8 +1,11 @@
-import { ReactElement, useState } from 'react';
+import { useAtom } from 'jotai';
+import { ReactElement } from 'react';
 import { BsMoonStars } from 'react-icons/bs';
 import { HiOutlineComputerDesktop, HiOutlineSun } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
 import { useTranslation } from 'translation/translation';
+import { ThemeOptions } from 'utils/constants';
+import { themeAtom } from 'utils/state/atoms';
 
 interface DarkModeSelectorProperties {
   setDarkModeSelectorOpen: (isOpen: boolean) => void;
@@ -35,15 +38,12 @@ export default function DarkModeSelector({
   setDarkModeSelectorOpen,
   className,
 }: DarkModeSelectorProperties): ReactElement {
-  const { __, i18n } = useTranslation();
-  const darkModeKeys: Array<string> = ['light', 'dark', 'system'];
-  const [selectedThemeMode, setSelectedThemeMode] = useState(
-    localStorage.getItem('theme') || 'system'
-  );
+  const { __ } = useTranslation();
+  const [selectedTheme, setSelectedTheme] = useAtom(themeAtom);
+  const themeOptions = Object.values(ThemeOptions);
 
-  const handleSetDarkMode = (mode: string) => {
-    localStorage.setItem('theme', mode);
-    setSelectedThemeMode(mode);
+  const handleSetDarkMode = (mode: ThemeOptions) => {
+    setSelectedTheme(mode);
     setDarkModeSelectorOpen(false);
   };
   const darkModeOptions = darkModeKeys.map((option) => {

@@ -13,6 +13,7 @@ export enum ToggleOptions {
 export enum ThemeOptions {
   LIGHT = 'light',
   DARK = 'dark',
+  SYSTEM = 'system',
 }
 
 export enum Mode {
