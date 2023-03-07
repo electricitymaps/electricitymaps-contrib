@@ -1,6 +1,7 @@
 import MapControls from './MapControls';
 
 it('can change language', () => {
+  cy.viewport(800, 500);
   cy.mount(<MapControls />);
   cy.get('[data-test-id=language-selector-open-button]').click();
   cy.contains('English').click();
@@ -23,6 +24,7 @@ it('can change language', () => {
 });
 
 it('can change theme', () => {
+  cy.viewport(800, 500);
   cy.mount(<MapControls />);
   cy.get('[data-test-id=theme-selector-open-button]').click();
   cy.contains('System');
