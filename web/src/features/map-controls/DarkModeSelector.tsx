@@ -42,8 +42,9 @@ export default function DarkModeSelector({
         key={option}
         onKeyDown={() => handleSetDarkMode(option)}
         onClick={() => handleSetDarkMode(option)}
-        className={`w-full cursor-pointer px-2 py-1 text-start text-sm ${
-          option === selectedThemeMode && 'bg-gray-200   dark:bg-gray-500'
+        className={`w-full cursor-pointer px-2 py-1 text-start text-sm transition hover:bg-gray-100 dark:hover:bg-gray-600 ${
+          option === selectedTheme &&
+          'bg-gray-200 hover:bg-gray-200   dark:bg-gray-500 dark:hover:bg-gray-500'
         }`}
       >
         <div className="flex">
