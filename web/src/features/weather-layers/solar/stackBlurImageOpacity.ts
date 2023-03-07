@@ -1,3 +1,7 @@
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 // TODO: remove once refactored
 
 const mul_table = [
@@ -60,7 +64,6 @@ export function stackBlurImageOpacity(imageData, top_x, top_y, width, height, ra
   let stack = stackStart;
   for (index = 1; index < div; index++) {
     stack = stack.next = new BlurStack();
-    // eslint-disable-next-line no-var
     if (index == radiusPlus1) {
       var stackEnd = stack;
     }

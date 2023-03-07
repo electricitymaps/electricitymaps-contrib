@@ -6,24 +6,29 @@ import { useAtom } from 'jotai';
 import { renderToString } from 'react-dom/server';
 import { getZoneName, useTranslation } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { TimeAverages, modeColor, modeOrder } from 'utils/constants';
+import { TimeAverages, modeColor } from 'utils/constants';
 import { formatCo2, formatPower } from 'utils/formatting';
 import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
-import { getRatioPercent } from '../graphUtils';
+import { getRatioPercent, getGenerationTypeKey } from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
-import { InnerAreaGraphTooltipProps } from '../types';
+import { InnerAreaGraphTooltipProps, LayerKey } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 function calculateTooltipContentData(
-  selectedLayerKey: ElectricityModeType,
+  selectedLayerKey: LayerKey,
   zoneDetail: ZoneDetail,
   displayByEmissions: boolean
 ) {
-  const isExchange = !modeOrder.includes(selectedLayerKey);
+  // If layer key is not a generation type, it is an exchange
+  const isExchange = !getGenerationTypeKey(selectedLayerKey);
 
   return isExchange
     ? getExchangeTooltipData(selectedLayerKey, zoneDetail, displayByEmissions)
-    : getProductionTooltipData(selectedLayerKey, zoneDetail, displayByEmissions);
+    : getProductionTooltipData(
+        selectedLayerKey as ElectricityModeType,
+        zoneDetail,
+        displayByEmissions
+      );
 }
 
 export default function BreakdownChartTooltip({
@@ -38,7 +43,7 @@ export default function BreakdownChartTooltip({
   }
 
   // If layer key is not a generation type, it is an exchange
-  const isExchange = !modeOrder.includes(selectedLayerKey);
+  const isExchange = !getGenerationTypeKey(selectedLayerKey);
 
   const contentData = calculateTooltipContentData(
     selectedLayerKey,
@@ -160,7 +165,7 @@ export function BreakdownChartTooltipContent({
               {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
               {__('tooltips.ofinstalled')}
               <br />
-              <MetricRatio value={usage} total={capacity} format={formatPower} />
+              <MetricRatio value={usage} total={(capacity ??= 0)} format={formatPower} />
               <br />
             </>
           )}

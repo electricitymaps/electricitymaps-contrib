@@ -3,9 +3,22 @@ bounding_box:
     - 36.65
   - - 142
     - 41.66
+capacity:
+  biomass: 600
+  coal: 6200
+  geothermal: 188.8
+  gas: 7000
+  hydro: 2000
+  hydro storage: 460
+  nuclear: 2750
+  oil: 2500
+  solar: 7000
+  wind: 1800
+  unknown: 0
 contributors:
   - tmslaine
   - lorrieq
+disclaimer: The data provider (Tohoku Electric Power Co. Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price

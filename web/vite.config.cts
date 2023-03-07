@@ -23,6 +23,7 @@ export default defineConfig(({ mode }) => ({
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },
+  server: { host: '127.0.0.1' },
   build: {
     sourcemap: true,
     rollupOptions: {
@@ -47,7 +48,7 @@ export default defineConfig(({ mode }) => ({
     coverage: {
       provider: 'istanbul',
       enabled: false,
-      '100': true,
+      100: true,
       reporter: ['text', 'lcov'],
       reportsDirectory: 'coverage',
     },
