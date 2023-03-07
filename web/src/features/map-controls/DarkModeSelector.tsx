@@ -29,13 +29,12 @@ export default function DarkModeSelector({
 }: DarkModeSelectorProperties): ReactElement {
   const { __ } = useTranslation();
   const [selectedTheme, setSelectedTheme] = useAtom(themeAtom);
-  const themeOptions = Object.values(ThemeOptions);
 
   const handleSetDarkMode = (mode: ThemeOptions) => {
     setSelectedTheme(mode);
     setDarkModeSelectorOpen(false);
   };
-  const darkModeOptions = themeOptions.map((option) => {
+  const darkModeOptions = Object.values(ThemeOptions).map((option) => {
     const icon = ICONS[option];
     return (
       <button

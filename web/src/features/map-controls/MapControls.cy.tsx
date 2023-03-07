@@ -1,6 +1,6 @@
 import MapControls from './MapControls';
 
-it('mounts', () => {
+it('can change language', () => {
   cy.mount(<MapControls />);
   cy.get('[data-test-id=language-selector-open-button]').click();
   cy.contains('English').click();
@@ -20,4 +20,21 @@ it('mounts', () => {
   cy.contains('zon');
   cy.get('[data-test-id=language-selector-open-button]').click();
   cy.contains('English').click();
+});
+
+it('can change theme', () => {
+  cy.mount(<MapControls />);
+  cy.get('[data-test-id=theme-selector-open-button]').click();
+  cy.contains('System');
+  cy.contains('Light')
+    .click()
+    .should(() => {
+      expect(localStorage.getItem('theme')).to.eq('"light"');
+    });
+  cy.get('[data-test-id=theme-selector-open-button]').click();
+  cy.contains('Dark')
+    .click()
+    .should(() => {
+      expect(localStorage.getItem('theme')).to.eq('"dark"');
+    });
 });

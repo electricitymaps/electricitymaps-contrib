@@ -166,6 +166,7 @@ function DesktopMapControls() {
           icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
           tooltipText={__('tooltips.toggleDarkMode')}
           onClick={() => setIsDarkModeSelectorOpen(!isDarkModeSelectorOpen)}
+          dataTestId="theme-selector-open-button"
         />
         {isDarkModeSelectorOpen && (
           <DarkModeSelector setDarkModeSelectorOpen={setIsDarkModeSelectorOpen} />
