@@ -111,8 +111,6 @@ def fetch_production(
                 non_renewables_production[datetime_tz_ar],
                 renewables_production[datetime_tz_ar],
             ),
-            "capacity": {},
-            "storage": {},
             "source": "cammesaweb.cammesa.com",
         }
         for datetime_tz_ar in non_renewables_production
@@ -163,7 +161,9 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
         )
 
     production_list = renewables_response.json()
-    sorted_production_list = []
+    sorted_production_list = (
+        sorted(production_list, key=lambda d: d["momento"]) if zone_key == "AR" else []
+    )
 
     if zone_key != "AR":
         sorted_production_list = list(
@@ -171,7 +171,13 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
         )
 
     renewables_production: Dict[str, dict] = {
-        (production_info["momento"] if zone_key == "AR" else time.isoformat()): {
+        (
+            datetime.strptime(
+                production_info["momento"], "%Y-%m-%dT%H:%M:%S.%f%z"
+            ).isoformat()
+            if zone_key == "AR"
+            else time.isoformat()
+        ): {
             "biomass": production_info["biocombustible"],
             "hydro": production_info["hidraulica"],
             "solar": production_info["fotovoltaica"],

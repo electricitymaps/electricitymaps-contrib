@@ -1,0 +1,26 @@
+[
+  {
+    "momento": "2023-02-27T01:25:00.000-0300",
+    "eolica": 1425.62,
+    "fotovoltaica": 0.0,
+    "biocombustible": 124.13,
+    "hidraulica": 194.41,
+    "cubrimientoDem": 11.05
+  },
+  {
+    "momento": "2023-02-27T03:20:00.000-0300",
+    "eolica": 1584.34,
+    "fotovoltaica": 0.0,
+    "biocombustible": 124.0,
+    "hidraulica": 193.94,
+    "cubrimientoDem": 12.92
+  },
+  {
+    "momento": "2023-02-27T07:15:00.000-0300",
+    "eolica": 1826.91,
+    "fotovoltaica": 0.61,
+    "biocombustible": 125.29,
+    "hidraulica": 193.95,
+    "cubrimientoDem": 14.02
+  }
+]

@@ -1,0 +1,128 @@
+[
+  { "idElemento": 540022, "nombre": "Misiones", "idPadre": 535042, "id": 2426 },
+  { "idElemento": 540024, "nombre": "Corrientes", "idPadre": 535042, "id": 1893 },
+  { "idElemento": 540025, "nombre": "Chaco", "idPadre": 535042, "id": 1892 },
+  { "idElemento": 540026, "nombre": "Formosa", "idPadre": 535042, "id": 1886 },
+  { "idElemento": 540027, "nombre": "Jujuy", "idPadre": 535043, "id": 1937 },
+  { "idElemento": 540028, "nombre": "Salta", "idPadre": 535043, "id": 1933 },
+  { "idElemento": 540029, "nombre": "Tucumán", "idPadre": 535043, "id": 1936 },
+  { "idElemento": 540030, "nombre": "Catamarca", "idPadre": 535043, "id": 1938 },
+  {
+    "idElemento": 540031,
+    "nombre": "Santiago del Estero",
+    "idPadre": 535043,
+    "id": 1905
+  },
+  { "idElemento": 540033, "nombre": "La Rioja", "idPadre": 535043, "id": 1910 },
+  { "idElemento": 540019, "nombre": "Edenor", "idPadre": 535044, "id": 1077 },
+  { "idElemento": 540277, "nombre": "Edesur", "idPadre": 535044, "id": 1078 },
+  { "idElemento": 540278, "nombre": "Edelap", "idPadre": 535044, "id": 1943 },
+  { "idElemento": 540032, "nombre": "San Luis", "idPadre": 535045, "id": 1944 },
+  { "idElemento": 540034, "nombre": "Córdoba", "idPadre": 535045, "id": 1945 },
+  { "idElemento": 540039, "nombre": "Chubut", "idPadre": 535047, "id": 2543 },
+  { "idElemento": 540040, "nombre": "Santa Cruz", "idPadre": 535047, "id": 2542 },
+  { "idElemento": 540041, "nombre": "Tierra del Fuego", "idPadre": 535047, "id": 23 },
+  { "idElemento": 540021, "nombre": "Santa Fe", "idPadre": 535048, "id": 2540 },
+  { "idElemento": 540023, "nombre": "Entre Ríos", "idPadre": 535048, "id": 2541 },
+  { "idElemento": 540037, "nombre": "Rio Negro", "idPadre": 535049, "id": 2525 },
+  { "idElemento": 540038, "nombre": "La Pampa", "idPadre": 535049, "id": 427 },
+  { "idElemento": 540042, "nombre": "Neuquén", "idPadre": 535049, "id": 2528 },
+  {
+    "idElemento": 540020,
+    "nombre": "Buenos Aires",
+    "minEscala": 1200,
+    "maxEscala": 2900,
+    "idPadre": 535050,
+    "id": 425,
+    "idRge": 9
+  },
+  { "idElemento": 540035, "nombre": "San Juan", "idPadre": 535051, "id": 1922 },
+  { "idElemento": 540036, "nombre": "Mendoza", "idPadre": 535051, "id": 1946 },
+  {
+    "idElemento": 535042,
+    "nombre": "NEA",
+    "minEscala": 500,
+    "maxEscala": 2000,
+    "idPadre": 535052,
+    "id": 418,
+    "idRge": 2
+  },
+  {
+    "idElemento": 535043,
+    "nombre": "NOA",
+    "minEscala": 800,
+    "maxEscala": 2200,
+    "idPadre": 535052,
+    "id": 419,
+    "idRge": 1
+  },
+  {
+    "idElemento": 535044,
+    "nombre": "GBA",
+    "minEscala": 2000,
+    "maxEscala": 11000,
+    "idPadre": 535052,
+    "id": 426,
+    "idRge": 6
+  },
+  {
+    "idElemento": 535045,
+    "nombre": "Centro",
+    "minEscala": 600,
+    "maxEscala": 2000,
+    "idPadre": 535052,
+    "id": 422,
+    "idRge": 4
+  },
+  {
+    "idElemento": 535047,
+    "nombre": "Patagonia",
+    "minEscala": 300,
+    "maxEscala": 1000,
+    "idPadre": 535052,
+    "id": 111,
+    "idRge": 12
+  },
+  {
+    "idElemento": 535048,
+    "nombre": "Litoral",
+    "minEscala": 900,
+    "maxEscala": 3200,
+    "idPadre": 535052,
+    "id": 417,
+    "idRge": 5
+  },
+  {
+    "idElemento": 535049,
+    "nombre": "Comahue",
+    "minEscala": 200,
+    "maxEscala": 800,
+    "idPadre": 535052,
+    "id": 420,
+    "idRge": 8
+  },
+  {
+    "idElemento": 535050,
+    "nombre": "Provincia de Buenos Aires",
+    "minEscala": 1200,
+    "maxEscala": 2900,
+    "idPadre": 535052,
+    "id": 425
+  },
+  {
+    "idElemento": 535051,
+    "nombre": "Cuyo",
+    "minEscala": 500,
+    "maxEscala": 1700,
+    "idPadre": 535052,
+    "id": 429,
+    "idRge": 3
+  },
+  {
+    "idElemento": 535052,
+    "nombre": "Total del SADI ",
+    "minEscala": 10000,
+    "maxEscala": 24000,
+    "id": 1002
+  }
+]
