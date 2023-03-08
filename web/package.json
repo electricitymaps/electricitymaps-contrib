@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.12.0",
+  "version": "1.14.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "engines": {
@@ -20,7 +20,7 @@
     "generate-zones-config": "ts-node --esm ./scripts/generateZonesConfig.ts",
     "predev": "pnpm run create-generated-files",
     "prebuild": "pnpm run create-generated-files",
-    "cy:components": "cypress open --components -b electron",
+    "cy:component": "cypress open --component -b electron",
     "cy:e2e": "cypress open --e2e -b electron",
     "dev": "vite --open",
     "prepare": "cd .. && husky install web/.husky",
@@ -170,7 +170,6 @@
     "postcss": "8.4.18",
     "prettier": "2.8.4",
     "prettier-plugin-tailwindcss": "0.1.13",
-    "pretty-quick": "^3.1.3",
     "readline-sync": "^1.4.10",
     "start-server-and-test": "1.14.0",
     "storybook": "^7.0.0-alpha.47",
@@ -190,16 +189,11 @@
     "not ie 11",
     "not op_mini all"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "*": "pretty-quick --staged",
+    "*": "prettier -uw --cache --cache-strategy metadata",
     "*.{ts,tsx}": [
       "eslint --cache --fix",
-      "pnpm exec vitest  --changed --run --coverage=false"
+      "vitest related --run --coverage=false"
     ]
   }
 }
