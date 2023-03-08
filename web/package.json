@@ -191,8 +191,8 @@
   ],
   "lint-staged": {
     "*": [
-      "prettier -uw --cache",
-      "pretty-quick --staged"
+      "echo `console.log(   'hello')` >> geo/validate.ts && prettier -uw --cache",
+      "echo `console.log(   'hello')` >> geo/validate.ts && pretty-quick --staged"
     ],
     "*.{ts,tsx}": [
       "eslint --cache --fix",
