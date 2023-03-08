@@ -23,6 +23,7 @@ export default defineConfig(({ mode }) => ({
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },
+  server: { host: '127.0.0.1' },
   build: {
     sourcemap: true,
     rollupOptions: {

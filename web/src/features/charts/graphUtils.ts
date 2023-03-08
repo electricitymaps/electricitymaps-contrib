@@ -63,7 +63,6 @@ export const getStorageKey = (name: ElectricityStorageType): string | undefined 
   }
 };
 
-// Todo: is this type of function necessary?
 export const getGenerationTypeKey = (name: string): GenerationType | undefined => {
   if (modeOrder.includes(name as GenerationType)) {
     return name as GenerationType;
@@ -95,13 +94,18 @@ export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   return datetimes[index + 1];
 };
 
-export function getRatioPercent(value: number, total: number) {
+export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
   // If both the numerator and denominator are zeros,
   // interpret the ratio as zero instead of NaN.
   if (value === 0 && total === 0) {
     return 0;
   }
-  if (!Number.isFinite(value) || !Number.isFinite(total) || total === 0) {
+  if (
+    Number.isNaN(value) ||
+    typeof value !== 'number' ||
+    typeof total !== 'number' ||
+    total === 0
+  ) {
     return '?';
   }
   return Math.round((value / total) * 10_000) / 100;

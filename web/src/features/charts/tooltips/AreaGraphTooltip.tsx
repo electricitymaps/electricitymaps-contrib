@@ -6,7 +6,7 @@ import { getOffsetTooltipPosition } from '../../../components/tooltips/utilities
 import { AreaGraphElement, InnerAreaGraphTooltipProps } from '../types';
 
 interface AreaGraphTooltipProperties {
-  children: (props: InnerAreaGraphTooltipProps) => ReactElement;
+  children: (props: InnerAreaGraphTooltipProps) => ReactElement | null;
   selectedLayerKey?: string;
   zoneDetail?: ZoneDetail;
   dataPoint?: AreaGraphElement;

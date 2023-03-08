@@ -16,5 +16,10 @@ export default function trackEvent(
   eventId: string,
   additionalProps: PlausibleEventProps = {}
 ): void {
+  const isDevelopment = import.meta.env.MODE === 'development';
+  if (isDevelopment) {
+    console.log("not sending event to plausible because we're not in production");
+    return;
+  }
   window.plausible && window.plausible(eventId, { props: additionalProps });
 }

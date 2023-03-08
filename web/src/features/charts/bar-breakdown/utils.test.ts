@@ -2,6 +2,7 @@ import {
   getDataBlockPositions,
   getProductionData,
   getElectricityProductionValue,
+  ExchangeDataType,
 } from './utils';
 
 const zoneDetailsData = {
@@ -101,8 +102,6 @@ const zoneDetailsData = {
   totalImport: 0,
   totalProduction: 6136,
   totalStorage: 0,
-  hasParser: true,
-  center: [-7.8, 39.6],
 };
 
 const productionData = [
@@ -204,9 +203,21 @@ const productionData = [
   },
 ];
 
-const exchangeData = [
-  { exchange: -934, mode: 'ES', gCo2eqPerkWh: 187.32, tCo2eqPerMin: -2.915_948 },
-  { exchange: 200, mode: 'FR', gCo2eqPerkWh: 999.32, tCo2eqPerMin: 45.915_948 },
+const exchangeData: ExchangeDataType[] = [
+  {
+    exchange: -934,
+    zoneKey: 'ES',
+    gCo2eqPerkWh: 187.32,
+    tCo2eqPerMin: -2.915_948,
+    exchangeCapacityRange: [-1000, 1000],
+  },
+  {
+    exchange: 200,
+    zoneKey: 'FR',
+    gCo2eqPerkWh: 999.32,
+    tCo2eqPerMin: 45.915_948,
+    exchangeCapacityRange: [0, 1000],
+  },
 ];
 
 describe('getProductionData', () => {

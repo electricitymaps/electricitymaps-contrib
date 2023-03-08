@@ -57,7 +57,7 @@ export default function WindLayer({ map }: { map?: MapboxMap }) {
 
   useEffect(() => {
     if (map && !windy && isVisible && node && isWindLayerEnabled && windData) {
-      createWindy(node, windData, map).then((w) => {
+      createWindy(node as HTMLCanvasElement, windData, map).then((w) => {
         const { bounds, width, height, extent } = viewport;
         w.start(bounds, width, height, extent);
         setWindy(w);
