@@ -196,7 +196,7 @@
     }
   },
   "lint-staged": {
-    "*": "prettier -w --cache",
+    "*": "prettier -uw --cache",
     "*.{ts,tsx}": [
       "eslint --cache --fix",
       "pnpm exec vitest  --changed --run --coverage=false"
