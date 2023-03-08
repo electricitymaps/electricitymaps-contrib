@@ -32,14 +32,14 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   });
   const solarData = solarDataArray?.[0];
 
-  const ref = useRef<HTMLCanvasElement>(null);
-  const { width, height } = useResizeObserver({ ref });
+  const reference = useRef<HTMLCanvasElement>(null);
+  const { width, height } = useResizeObserver({ ref: reference });
   const isVisible = isSuccess && !isMapMoving && isSolarLayerEnabled;
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {
-    if (map && ref && isVisible && solarData && width && height) {
-      const canvas = (ref.current as HTMLCanvasElement).getContext('2d');
+    if (map && reference && isVisible && solarData && width && height) {
+      const canvas = (reference.current as HTMLCanvasElement).getContext('2d');
       if (!canvas) {
         return;
       }
@@ -89,14 +89,14 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
       canvas.putImageData(image, 0, 0);
       setIsLoadingSolarLayer(false);
     }
-  }, [ref, isVisible, solarData, width, height, map]);
+  }, [reference, isVisible, solarData, width, height, map]);
 
   return (
     <canvas
       id="solar"
       width={width}
       height={height}
-      ref={ref}
+      ref={reference}
       className={`pointer-events-none absolute inset-0 h-full w-full duration-300 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
