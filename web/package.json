@@ -190,10 +190,7 @@
     "not op_mini all"
   ],
   "lint-staged": {
-    "*": [
-      "echo `console.log(   'hello')` >> geo/validate.ts && prettier -uw --cache",
-      "echo `console.log(   'hello')` >> geo/validate.ts && pretty-quick --staged"
-    ],
+    "*": "prettier -uw --cache",
     "*.{ts,tsx}": [
       "eslint --cache --fix",
       "vitest related --run --coverage=false"
