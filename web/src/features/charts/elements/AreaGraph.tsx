@@ -5,7 +5,7 @@ import { stack, stackOffsetDiverging } from 'd3-shape';
 import TimeAxis from 'features/time/TimeAxis'; // TODO: Move to a shared folder
 import useResizeObserver from 'use-resize-observer';
 import { useAtom } from 'jotai';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { ZoneDetail } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
@@ -105,11 +105,9 @@ function AreaGraph({
   tooltip,
   tooltipSize,
 }: AreagraphProps) {
-  const {
-    ref,
-    width: observerWidth = 0,
-    height: observerHeight = 0,
-  } = useResizeObserver<SVGSVGElement>();
+  const reference = useRef(null);
+  const { width: observerWidth = 0, height: observerHeight = 0 } =
+    useResizeObserver<SVGSVGElement>({ ref: reference });
 
   const containerWidth = observerWidth - Y_AXIS_WIDTH;
   const containerHeight = observerHeight - X_AXIS_HEIGHT;
@@ -222,7 +220,7 @@ function AreaGraph({
     <svg
       data-test-id={testId}
       height={height}
-      ref={ref}
+      ref={reference}
       className="w-full overflow-visible"
     >
       <GraphBackground
@@ -232,7 +230,7 @@ function AreaGraph({
         mouseMoveHandler={mouseMoveHandler}
         mouseOutHandler={mouseOutHandler}
         isMobile={isMobile}
-        svgNode={ref}
+        svgNode={reference.current}
       />
       <AreaGraphLayers
         layers={layers}
@@ -242,7 +240,7 @@ function AreaGraph({
         mouseMoveHandler={mouseMoveHandler}
         mouseOutHandler={mouseOutHandler}
         isMobile={isMobile}
-        svgNode={ref}
+        svgNode={reference.current}
       />
       {!isOverlayEnabled && (
         <TimeAxis
@@ -269,7 +267,7 @@ function AreaGraph({
         markerHideHandler={markerHideHandler}
         selectedLayerIndex={selectedLayerIndex}
         selectedTimeIndex={hoverLineTimeIndex}
-        svgNode={ref}
+        svgNode={reference.current}
       />
       {tooltip && (
         <AreaGraphTooltip
