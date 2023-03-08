@@ -191,8 +191,8 @@
   ],
   "lint-staged": {
     "*": [
-      "time prettier -uw --cache",
-      "time pretty-quick --staged"
+      "prettier -uw --cache",
+      "pretty-quick --staged"
     ],
     "*.{ts,tsx}": [
       "eslint --cache --fix",
