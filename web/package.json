@@ -190,7 +190,10 @@
     "not op_mini all"
   ],
   "lint-staged": {
-    "*": "prettier -uw --cache --cache-strategy metadata",
+    "*": [
+      "time prettier -uw --cache",
+      "time pretty-quick --staged"
+    ],
     "*.{ts,tsx}": [
       "eslint --cache --fix",
       "vitest related --run --coverage=false"
