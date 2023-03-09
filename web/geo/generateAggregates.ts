@@ -1,9 +1,22 @@
-import { Feature, MultiPolygon, Polygon, Properties, union } from '@turf/turf';
-import type { ZoneConfig } from './types';
+import { Feature, MultiPolygon, union } from '@turf/turf';
+import type { ZonesConfig, WorldFeatureCollection, FeatureProperties } from './types';
 
-const generateAggregates = (geojson, zones: ZoneConfig) => {
+const emptyFeature: Feature<MultiPolygon, FeatureProperties> = {
+  type: 'Feature',
+  properties: {
+    zoneName: '',
+    countryKey: '',
+    countryName: '',
+    isHighestGranularity: false,
+    isAggregatedView: true,
+    isCombined: true,
+  },
+  geometry: { type: 'MultiPolygon', coordinates: [] },
+};
+
+const generateAggregates = (fc: WorldFeatureCollection, zones: ZonesConfig) => {
   const skippedZones: string[] = []; // Holds skipped subZones that are not in the geojson
-  const { features } = geojson;
+  const { features } = fc;
 
   const countryZonesToCombine = Object.values(zones)
     .filter((zone) => zone.subZoneNames && zone.subZoneNames.length > 0)
@@ -29,17 +42,9 @@ const generateAggregates = (geojson, zones: ZoneConfig) => {
   const combinedZones = countryZonesToCombine
     .map((country) => {
       if (country === undefined) {
-        return null;
+        return emptyFeature;
       }
-      const combinedCountry: Feature<MultiPolygon | Polygon, Properties> = {
-        type: 'Feature',
-        properties: {
-          isHighestGranularity: false,
-          isAggregatedView: true,
-          isCombined: true,
-        },
-        geometry: { type: 'MultiPolygon', coordinates: [] },
-      };
+      const combinedCountry = { ...emptyFeature };
       const multiZoneCountry = unCombinedZones.find(
         (feature) => feature.properties.zoneName === country[0]
       );
@@ -48,12 +53,10 @@ const generateAggregates = (geojson, zones: ZoneConfig) => {
           (feature) => feature.properties.zoneName === subZone
         );
 
-        const combinedCountryPolygon = combinedCountry.geometry as MultiPolygon;
+        const combinedCountryPolygon = combinedCountry.geometry;
         if (zoneToAdd) {
-          const unionGeometry = union(
-            combinedCountryPolygon,
-            zoneToAdd.geometry
-          )?.geometry;
+          const unionGeometry = union(combinedCountryPolygon, zoneToAdd.geometry)
+            ?.geometry as MultiPolygon;
           if (unionGeometry) {
             combinedCountry.geometry = unionGeometry;
           }
@@ -62,7 +65,7 @@ const generateAggregates = (geojson, zones: ZoneConfig) => {
         }
       }
 
-      if (combinedCountry.properties) {
+      if (combinedCountry.properties && multiZoneCountry) {
         combinedCountry.properties['countryKey'] = multiZoneCountry.properties.countryKey;
         combinedCountry.properties['zoneName'] = multiZoneCountry.properties.countryKey;
       }
