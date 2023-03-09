@@ -13,6 +13,7 @@ describe('Map', () => {
     cy.contains('production').click();
     cy.contains('consumption').click();
 
+    cy.contains("something that's not there").should('exist');
     // TODO: functionality has changed to be an onhover trigger
     // rather than a click trigger for the tooltip. This may cause issues for mobile?
 
