@@ -1,8 +1,9 @@
 import * as turf from '@turf/turf';
 import { topology } from 'topojson-server';
 import { fileExists, getJSON, round, writeJSON } from './utilities.js';
+import { WorldFeatureCollection } from './types.js';
 
-function getCenter(geojson, zoneName) {
+function getCenter(geojson: WorldFeatureCollection, zoneName: string) {
   switch (zoneName) {
     case 'US-AK': {
       return [-151.77, 65.32];
