@@ -20,7 +20,6 @@ export declare type FeatureProperties = {
   isAggregatedView?: boolean;
   isHighestGranularity?: boolean;
   isCombined?: boolean;
-  [name: string]: any;
 };
 
 export interface WorldFeatureCollection extends FeatureCollection {
