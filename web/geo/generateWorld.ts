@@ -7,6 +7,7 @@ import { generateExchangesToIgnore } from './generateExchangesToExclude.js';
 import { generateTopojson } from './generateTopojson.js';
 import { getJSON, round } from './utilities.js';
 import { validateGeometry } from './validate.js';
+import { WorldFeatureCollection } from './types.js';
 
 export const config = {
   WORLD_PATH: path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url))),
