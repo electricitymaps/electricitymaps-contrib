@@ -50,32 +50,44 @@ function getCenter(geojson: WorldFeatureCollection, zoneName: string) {
   ];
 }
 
-function generateTopojson(
+function getTopojsonChanges(
   fc: WorldFeatureCollection,
-  { OUT_PATH, verifyNoUpdates }: { OUT_PATH: string; verifyNoUpdates: boolean }
-) {
-  const output = OUT_PATH.split('/').pop();
-  console.info(`Generating new ${output}`);
+  filePath: string
+): turf.GeoJSONObject | null {
   const topo = topology({
     objects: fc,
   });
-
   // We do the following to match the specific format needed for visualization
+  // TODO: We should not cast to any here ideally
   const objects = topo.objects.objects as any;
   const newObjects = {} as typeof topo.objects;
   for (const geo of objects.geometries) {
     // Precompute center for enable centering on the zone
     geo.properties.center = getCenter(fc, geo.properties.zoneName);
-
     newObjects[geo.properties.zoneName] = geo;
   }
   topo.objects = newObjects;
 
-  const currentTopo = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
+  const currentTopo = fileExists(filePath) ? getJSON(filePath) : {};
   if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
-    console.info(`No changes to ${output}`);
+    return null;
+  }
+
+  return topo;
+}
+
+function generateTopojson(
+  fc: WorldFeatureCollection,
+  { OUT_PATH, verifyNoUpdates }: { OUT_PATH: string; verifyNoUpdates: boolean }
+) {
+  const topo = getTopojsonChanges(fc, OUT_PATH);
+
+  if (topo === null) {
     return;
   }
+
+  const output = OUT_PATH.split('/').pop();
+  console.info(`Generating new ${output}`);
 
   if (verifyNoUpdates) {
     console.error(
@@ -87,4 +99,4 @@ function generateTopojson(
   writeJSON(OUT_PATH, topo);
 }
 
-export { generateTopojson };
+export { getTopojsonChanges, generateTopojson };
