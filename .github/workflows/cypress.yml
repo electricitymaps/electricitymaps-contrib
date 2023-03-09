@@ -12,7 +12,7 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 7
-      - name: Cypress run
+      - name: Cypress run e2e tests
         uses: cypress-io/github-action@v5
         env:
           TZ: Europe/Copenhagen
@@ -21,3 +21,13 @@ jobs:
           build: pnpm run build --mode testing
           start: pnpm run preview
           config: baseUrl=http://127.0.0.1:4173/
+      - name: Cypress run component tests
+        uses: cypress-io/github-action@v5
+        env:
+          TZ: Europe/Copenhagen
+        with:
+          working-directory: ./web
+          # we have already installed everything
+          install: false
+          # to run component tests we need to use "component: true"
+          component: true

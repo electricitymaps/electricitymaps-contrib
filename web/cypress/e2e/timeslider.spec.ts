@@ -48,8 +48,8 @@ describe('TimeController', () => {
     cy.interceptAPI('v6/details/yearly/DK-DK2');
 
     // Note that we force language here as CI and local machines might display dates differently otherwise
-    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
-
+    cy.visit('/zone/DK-DK2?lang=en-GB');
+    cy.get('[data-test-id=close-modal]').click();
     // Hourly
     cy.waitForAPISuccess(`v6/state/hourly`);
     cy.waitForAPISuccess(`v6/details/hourly/DK-DK2`);
@@ -138,6 +138,6 @@ describe('TimeController', () => {
   // TODO: Figure out how to get open/drag bottom sheet in Cypress on mobile
   // I have tried a bunch of combinations with mousemove, etc. without success
   it.skip('interacts with the timecontroller on mobile', () => {
-    cy.visitOnMobile('/?skip-onboarding=true');
+    cy.visitOnMobile('/zone/DK-DK2?lang=en-GB');
   });
 });

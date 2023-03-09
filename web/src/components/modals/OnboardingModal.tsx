@@ -1,4 +1,4 @@
-import { resolvePath, useSearchParams } from 'react-router-dom';
+import { resolvePath } from 'react-router-dom';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 
 import { useAtom } from 'jotai';
@@ -62,14 +62,13 @@ const views = [
   },
 ];
 
-export function OnboardingModal() {
+export function OnboardingModal({ isComponentTest }: { isComponentTest?: boolean }) {
   const [hasOnboardingBeenSeen, setHasOnboardingBeenSeen] = useAtom(
     hasOnboardingBeenSeenAtom
   );
-  const [searchParameters] = useSearchParams();
-  const skipOnboarding = searchParameters.get('skip-onboarding') === 'true';
-  const visible = !hasOnboardingBeenSeen && !skipOnboarding;
-
+  if (import.meta.env.TEST && !isComponentTest) {
+    setHasOnboardingBeenSeen(true);
+  }
   const handleDismiss = () => {
     setHasOnboardingBeenSeen(true);
   };
@@ -77,7 +76,7 @@ export function OnboardingModal() {
     <Modal
       modalName="onboarding"
       data-test-id="onboarding"
-      visible={visible}
+      visible={!hasOnboardingBeenSeen}
       onDismiss={handleDismiss}
       views={views}
     />
