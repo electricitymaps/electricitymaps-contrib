@@ -120,11 +120,10 @@ jobs:
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/typecheck.yml
 
-  # cypress:
-  #   name: Cypress
-  #   needs: [eslint, validate_generated_files, unit_test]
-  #   uses: ./.github/workflows/cypress.yml
-  #   secrets: inherit
+  cypress:
+    name: Cypress
+    needs: [eslint, typecheck, validate_generate_files, unit_test]
+    uses: ./.github/workflows/cypress.yml
 
   # Python checks
   python_formatting:
