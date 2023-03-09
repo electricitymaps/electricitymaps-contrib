@@ -62,13 +62,10 @@ const views = [
   },
 ];
 
-export function OnboardingModal({ isComponentTest }: { isComponentTest?: boolean }) {
+export function OnboardingModal() {
   const [hasOnboardingBeenSeen, setHasOnboardingBeenSeen] = useAtom(
     hasOnboardingBeenSeenAtom
   );
-  if (import.meta.env.TEST && !isComponentTest) {
-    setHasOnboardingBeenSeen(true);
-  }
   const handleDismiss = () => {
     setHasOnboardingBeenSeen(true);
   };
