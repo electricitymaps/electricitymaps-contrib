@@ -9,3 +9,5 @@ coverage
 cypress/videos
 cypress/screenshots
 config
+
+tsconfig.node.tsbuildinfo
