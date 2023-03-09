@@ -9,12 +9,12 @@ from requests_mock import ANY, GET, Adapter
 
 from parsers.AR import (
     CAMMESA_DEMANDA_ENDPOINT,
+    CAMMESA_EXCHANGE_ENDPOINT,
     CAMMESA_REGIONS_ENDPOINT,
     CAMMESA_RENEWABLES_ENDPOINT,
     CAMMESA_RENEWABLES_REGIONAL_ENDPOINT,
-    CAMMESA_EXCHANGE_ENDPOINT,
-    fetch_production,
     fetch_exchange,
+    fetch_production,
 )
 
 REGION_MAPPING = {"national": "1002", "AR-BAS": "425"}
@@ -46,7 +46,7 @@ class ProductionTest(unittest.TestCase):
             f"{CAMMESA_DEMANDA_ENDPOINT}?id_region={REGION_MAPPING['national']}",
             content=national_non_renewable_data.read(),
         )
-        
+
         national_renewable_data = open(
             "parsers/test/mocks/AR/AR_cdsrenovables.cammesa.com.json", "rb"
         )
@@ -100,6 +100,7 @@ class ProductionTest(unittest.TestCase):
         assert production[0]["production"]["nuclear"] == 349.1
         assert production[0]["production"]["unknown"] == 3474.4
 
+
 class ExchangeTestcase(unittest.TestCase):
     """
     Tests for fetch_exchange.
@@ -124,7 +125,9 @@ class ExchangeTestcase(unittest.TestCase):
             content=exchange_data.read(),
         )
 
-        exchange = fetch_exchange(zone_key1="AR-BAS", zone_key2="AR-COM", session=self.session)
+        exchange = fetch_exchange(
+            zone_key1="AR-BAS", zone_key2="AR-COM", session=self.session
+        )
         print(exchange)
         assert (
             exchange["datetime"]
