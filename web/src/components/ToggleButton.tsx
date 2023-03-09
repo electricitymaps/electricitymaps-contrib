@@ -59,7 +59,7 @@ export default function ToggleButton({
       </ToggleGroupPrimitive.Root>
       {tooltipKey && (
         <Tooltip.Provider>
-          <Tooltip.Root delayDuration={10} open={isToolTipOpen}>
+          <Tooltip.Root open={isToolTipOpen}>
             <Tooltip.Trigger asChild>
               <div
                 onClick={onToolTipClick}
