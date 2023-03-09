@@ -125,7 +125,7 @@ const mergeRatioParameters = () => {
   return ratioParameters;
 };
 
-const writeJSON = (fileName: string, object: any) => {
+const writeJSON = (fileName: string, object: unknown) => {
   const directory = path.resolve(path.dirname(fileName));
 
   if (!fs.existsSync(directory)) {

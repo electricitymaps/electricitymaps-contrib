@@ -83,7 +83,7 @@ const fileExists = (fileName: string) => fs.existsSync(fileName);
 
 const getJSON = (fileName: string) => JSON.parse(fs.readFileSync(fileName, 'utf8'));
 
-const writeJSON = (fileName: string, object: any) =>
+const writeJSON = (fileName: string, object: unknown) =>
   fs.writeFileSync(fileName, JSON.stringify(object), { encoding: 'utf8', flag: 'w' });
 
 function log(message: string) {
