@@ -8,7 +8,7 @@ import { generateTopojson } from './generateTopojson.js';
 import { getJSON, round } from './utilities.js';
 import { validateGeometry } from './validate.js';
 
-const config = {
+export const config = {
   WORLD_PATH: path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url))),
   OUT_PATH: path.resolve(fileURLToPath(new URL('../config/world.json', import.meta.url))),
   ERROR_PATH: path.resolve(fileURLToPath(new URL('.', import.meta.url))),
@@ -17,13 +17,13 @@ const config = {
   MIN_AREA_INTERSECTION: 6_000_000,
   SLIVER_RATIO: 0.0001, // ratio of length and area to determine if the polygon is a sliver and should be ignored
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
-};
+} as const;
 
 const EXCHANGE_OUT_PATH = path.resolve(
   fileURLToPath(new URL('../config/excludedAggregatedExchanges.json', import.meta.url))
 );
 
-const fc = getJSON(config.WORLD_PATH);
+const fc: WorldFeatureCollection = getJSON(config.WORLD_PATH);
 const zoneConfig = mergeZones();
 const aggregates = generateAggregates(fc, zoneConfig);
 

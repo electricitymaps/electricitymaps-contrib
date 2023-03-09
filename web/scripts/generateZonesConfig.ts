@@ -5,6 +5,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { round } from '../geo/utilities.js';
+import type { ZoneConfig, ZonesConfig } from '../geo/types.js';
 
 const BASE_CONFIG_PATH = '../../config';
 
@@ -12,7 +13,7 @@ const config = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
-const mergeZones = () => {
+const mergeZones = (): ZonesConfig => {
   const basePath = path.resolve(
     fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/zones'), import.meta.url))
   );
@@ -33,7 +34,7 @@ const mergeZones = () => {
     'bypassedSubZones',
   ]);
   const zones = filesWithDirectory.reduce((zones, filepath) => {
-    const zoneConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
     if (zoneConfig?.bounding_box) {
       for (const point of zoneConfig.bounding_box) {
         point[0] = round(point[0], 4);
@@ -112,7 +113,7 @@ const mergeRatioParameters = () => {
   };
 
   for (const filepath of filesWithDirectory) {
-    const zoneConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
     const zoneKey = path.parse(filepath).name;
     for (const key of Object.keys(ratioParameters)) {
       if (zoneConfig[key] !== undefined) {
@@ -124,7 +125,7 @@ const mergeRatioParameters = () => {
   return ratioParameters;
 };
 
-const writeJSON = (fileName: any, object: any) => {
+const writeJSON = (fileName: string, object: any) => {
   const directory = path.resolve(path.dirname(fileName));
 
   if (!fs.existsSync(directory)) {
