@@ -44,10 +44,19 @@ const generateAggregates = (fc: WorldFeatureCollection, zones: ZonesConfig) => {
       if (country === undefined) {
         return emptyFeature;
       }
-      const combinedCountry = { ...emptyFeature };
       const multiZoneCountry = unCombinedZones.find(
         (feature) => feature.properties.zoneName === country[0]
       );
+      const combinedCountry: Feature<MultiPolygon, FeatureProperties> = {
+        ...emptyFeature,
+        properties: {
+          ...emptyFeature.properties,
+          countryKey: multiZoneCountry?.properties.countryKey || '',
+          zoneName: multiZoneCountry?.properties.countryKey || '',
+          countryName: multiZoneCountry?.properties.countryName || '',
+        },
+      };
+
       for (const subZone of country) {
         const zoneToAdd = unCombinedZones.find(
           (feature) => feature.properties.zoneName === subZone
