@@ -2,6 +2,7 @@ import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { ReactElement, useState } from 'react';
 import { useTranslation } from '../translation/translation';
+import { twMerge } from 'tailwind-merge';
 
 interface ToggleButtonProperties {
   options: Array<{ value: string; translationKey: string }>;
@@ -58,21 +59,24 @@ export default function ToggleButton({
       </ToggleGroupPrimitive.Root>
       {tooltipKey && (
         <Tooltip.Provider>
-          <Tooltip.Root delayDuration={0} open={isToolTipOpen}>
+          <Tooltip.Root delayDuration={10} open={isToolTipOpen}>
             <Tooltip.Trigger asChild>
               <div
                 onClick={onToolTipClick}
                 onKeyDown={onKeyPressed}
                 role="button"
                 tabIndex={0}
-                className="b ml-2 h-6 w-6 select-none justify-center self-center rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900"
+                className={twMerge(
+                  'b ml-2 h-6 w-6 select-none justify-center self-center rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900',
+                  isToolTipOpen && 'pointer-events-none'
+                )}
               >
                 <p>i</p>
               </div>
             </Tooltip.Trigger>
             <Tooltip.Portal>
               <Tooltip.Content
-                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-gray-100 p-2  text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-zinc-50 p-2  text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
                 sideOffset={10}
                 side="bottom"
                 onPointerDownOutside={onToolTipClick}
