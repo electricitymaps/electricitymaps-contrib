@@ -1,0 +1,26 @@
+[
+    {
+        "fecha": "2023-03-08T16:30:00.000-0300",
+        "sumTotal": 4195.7,
+        "hidraulico": 0.0,
+        "termico": 3476.5,
+        "nuclear": 349.3,
+        "renovable": 369.9
+    },
+    {
+        "fecha": "2023-03-08T16:35:00.000-0300",
+        "sumTotal": 4178.6,
+        "hidraulico": 0.0,
+        "termico": 3478.8,
+        "nuclear": 348.7,
+        "renovable": 351.1
+    },
+    {
+        "fecha": "2023-03-08T16:40:00.000-0300",
+        "sumTotal": 4174.0,
+        "hidraulico": 0.0,
+        "termico": 3474.4,
+        "nuclear": 349.1,
+        "renovable": 350.5
+    }
+]

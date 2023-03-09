@@ -1,0 +1,51 @@
+{
+    "type": "FeatureCollection",
+    "features": 
+    [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-67.07486,-33.542342]
+            },
+            "properties": {
+                "id": "4220429",
+                "nombre": "CEN-CUY",
+                "fecha": "2023-03-08T16:40:00.000-0300",
+                "text": "307",
+                "internacional": false,
+                "url": "flecha45"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-63.385543,-38.76666]
+            },
+            "properties": {
+                "id": "4250420",
+                "nombre": "PBA-COM",
+                "fecha": "2023-03-08T16:40:00.000-0300",
+                "text": "3273",
+                "internacional": false,
+                "url": "flecha45"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-52.400971,-25.43659]
+            },
+            "properties": {
+                "id": "1002055",
+                "nombre": "ARG-BRA",
+                "fecha": "2023-03-08T16:40:00.000-0300",
+                "text": "1326",
+                "internacional": true,
+                "url": "flecha225"
+            }
+        }
+    ]
+}

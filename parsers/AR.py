@@ -268,8 +268,8 @@ def fetch_exchange(
 
         exchange_name = SUPPORTED_EXCHANGES[sorted_codes]
         exchange_list = api_cammesa_response.json()
-        for exchange in exchange_list["features"]:
-            properties = exchange["properties"]
+        for exchange_data in exchange_list["features"]:
+            properties = exchange_data["properties"]
             if properties["nombre"] == exchange_name:
                 angle_config = EXCHANGE_DIRECTIONS[sorted_codes]
                 given_angle = int(properties["url"][6:])

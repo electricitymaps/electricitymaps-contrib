@@ -1,0 +1,82 @@
+[
+    {
+        "idRegion": 1,
+        "nemoRegion": "NOA",
+        "fotovoltaica": 703,
+        "eolica": 158,
+        "hidraulica": 119,
+        "biocombustible": 72
+    },
+    {
+        "idRegion": 2,
+        "nemoRegion": "NEA",
+        "fotovoltaica": 0,
+        "eolica": 0,
+        "hidraulica": 0,
+        "biocombustible": 109
+    },
+    {
+        "idRegion": 3,
+        "nemoRegion": "CUY",
+        "fotovoltaica": 381,
+        "eolica": 0,
+        "hidraulica": 185,
+        "biocombustible": 0
+    },
+    {
+        "idRegion": 4,
+        "nemoRegion": "CEN",
+        "fotovoltaica": 71,
+        "eolica": 128,
+        "hidraulica": 117,
+        "biocombustible": 34
+    },
+    {
+        "idRegion": 5,
+        "nemoRegion": "LIT",
+        "fotovoltaica": 0,
+        "eolica": 0,
+        "hidraulica": 2,
+        "biocombustible": 10
+    },
+    {
+        "idRegion": 6,
+        "nemoRegion": "GBA",
+        "fotovoltaica": 0,
+        "eolica": 0,
+        "hidraulica": 0,
+        "biocombustible": 22
+    },
+    {
+        "idRegion": 8,
+        "nemoRegion": "COM",
+        "fotovoltaica": 0,
+        "eolica": 253,
+        "hidraulica": 32,
+        "biocombustible": 2
+    },
+    {
+        "idRegion": 9,
+        "nemoRegion": "BAS",
+        "fotovoltaica": 0,
+        "eolica": 1213,
+        "hidraulica": 0,
+        "biocombustible": 22
+    },
+    {
+        "idRegion": 15,
+        "nemoRegion": "PAT",
+        "fotovoltaica": 0,
+        "eolica": 1576,
+        "hidraulica": 47,
+        "biocombustible": 0
+    },
+    {
+        "idRegion": 69,
+        "nemoRegion": "BAS + GBA",
+        "fotovoltaica": 0,
+        "eolica": 1213,
+        "hidraulica": 0,
+        "biocombustible": 44
+    }
+]
