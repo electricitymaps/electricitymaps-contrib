@@ -107,7 +107,7 @@
     "hideWindLayer": "Windlayer verbergen",
     "showSolarLayer": "Solarlayer anzeigen",
     "hideSolarLayer": "Solarlayer verbergen",
-    "changeTheme": "Tag-/Nachtmodus umschalten",
+    "changeTheme": "Thema ändern",
     "noParserInfo": "Keine Daten verfügbar",
     "temporaryDataOutage": "Live-Daten sind momentan leider nicht verfügbar",
     "production": "Produktion",
@@ -121,6 +121,11 @@
     "zoomIn": "Rein zoomen",
     "zoomOut": "Raus zoomen",
     "aggregateInfo": "Wechsel zwischen spezifischer Zonenansicht und aggregierter Länderansicht"
+  },
+  "themeOptions": {
+    "dark": "Dunkel",
+    "light": "Hell",
+    "system": "System"
   },
   "misc": {
     "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
