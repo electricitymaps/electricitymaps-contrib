@@ -18,7 +18,7 @@
   }
 
   /* Set defaults */
-  html {
+  body {
     @apply antialiased;
     @apply bg-white dark:bg-gray-800;
     @apply text-gray-900 dark:text-gray-200;
