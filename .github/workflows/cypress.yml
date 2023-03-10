@@ -42,4 +42,3 @@ jobs:
           install: false
           # to run component tests we need to use "component: true"
           component: true
-
