@@ -11,6 +11,7 @@ describe('Country Panel', () => {
     cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess('v6/state/hourly');
     cy.waitForAPISuccess('v6/details/hourly/DK-DK2');
+    cy.get('[data-test-id=loading-overlay]').should('not.exist');
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
     cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').contains('232');

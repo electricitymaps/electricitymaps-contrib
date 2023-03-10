@@ -49,6 +49,7 @@ describe('TimeController', () => {
 
     // Note that we force language here as CI and local machines might display dates differently otherwise
     cy.visit('/zone/DK-DK2?lang=en-GB');
+    cy.get('[data-test-id=loading-overlay]').should('not.exist');
     cy.get('[data-test-id=close-modal]').click();
     // Hourly
     cy.waitForAPISuccess(`v6/state/hourly`);
