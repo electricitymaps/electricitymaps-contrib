@@ -32,7 +32,7 @@ export default function ThemeSelector() {
       trigger={
         <MapButton
           icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
-          tooltipText={__('tooltips.toggleDarkMode')}
+          tooltipText={__('tooltips.changeTheme')}
           dataTestId="theme-selector-open-button"
         />
       }
@@ -48,7 +48,7 @@ export default function ThemeSelector() {
         >
           <div className="flex items-center">
             <div className="mr-2">{ICONS[option]}</div>
-            <span>{__(`darkModeButtons.${option}`)}</span>
+            <span>{__(`themeOptions.${option}`)}</span>
           </div>
         </button>
       ))}

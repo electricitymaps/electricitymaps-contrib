@@ -121,7 +121,7 @@
     "showSolarLayer": "Show solar layer",
     "hideSolarLayer": "Hide solar layer",
     "weatherDisabled": "Weather data is not available at this time",
-    "toggleDarkMode": "Toggle dark-mode",
+    "changeTheme": "Toggle dark-mode",
     "noParserInfo": "No data available",
     "temporaryDataOutage": "Live data temporarily unavailable",
     "production": "production",
@@ -137,7 +137,7 @@
     "country": "country",
     "zone": "zone"
   },
-  "darkModeButtons": {
+  "themeOptions": {
     "dark": "Dark",
     "light": "Light",
     "system": "System"

@@ -101,7 +101,7 @@
     "hideWindLayer": "Peida tuulekiht",
     "showSolarLayer": "Kuva päikesekiht",
     "hideSolarLayer": "Peida päikesekiht",
-    "toggleDarkMode": "Tumerežiim sisse/välja",
+    "changeTheme": "Tumerežiim sisse/välja",
     "noParserInfo": "Andmed pole saadaval",
     "temporaryDataOutage": "Reaalajas andmed pole ajutiselt saadaval",
     "production": "tootmine",

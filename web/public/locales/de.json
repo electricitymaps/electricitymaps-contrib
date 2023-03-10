@@ -107,7 +107,7 @@
     "hideWindLayer": "Windlayer verbergen",
     "showSolarLayer": "Solarlayer anzeigen",
     "hideSolarLayer": "Solarlayer verbergen",
-    "toggleDarkMode": "Tag-/Nachtmodus umschalten",
+    "changeTheme": "Tag-/Nachtmodus umschalten",
     "noParserInfo": "Keine Daten verfügbar",
     "temporaryDataOutage": "Live-Daten sind momentan leider nicht verfügbar",
     "production": "Produktion",

@@ -78,7 +78,7 @@
     "hideWindLayer": "Skjul vind",
     "showSolarLayer": "Vis sol",
     "hideSolarLayer": "Skjul sol",
-    "toggleDarkMode": "Slå dark-mode til/fra",
+    "changeTheme": "Slå dark-mode til/fra",
     "noParserInfo": "Ingen data tilgængeligt",
     "temporaryDataOutage": "Realtidsdata er midlertidigt utilgængeligt",
     "production": "produktion",

@@ -133,7 +133,7 @@
     "showSolarLayer": "Prikaži sončno plast",
     "hideSolarLayer": "Skrij sončno plast",
     "weatherDisabled": "Vremenski podatki trenutno niso na voljo",
-    "toggleDarkMode": "Preklopi na temni način",
+    "changeTheme": "Preklopi na temni način",
     "noParserInfo": "Ni podatkov",
     "temporaryDataOutage": "Podatki v živo trenutno niso na voljo",
     "production": "Proizvodnja",

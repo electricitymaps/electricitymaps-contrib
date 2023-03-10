@@ -132,7 +132,7 @@
     "showSolarLayer": "Mostrar los rayos solares",
     "hideSolarLayer": "Ocultar los rayos solares",
     "weatherDisabled": "La información del clima no está disponible en este momento",
-    "toggleDarkMode": "Modo oscuro",
+    "changeTheme": "Modo oscuro",
     "noParserInfo": "No hay datos disponibles",
     "temporaryDataOutage": "Datos temporalmente no disponibles",
     "production": "producción",
