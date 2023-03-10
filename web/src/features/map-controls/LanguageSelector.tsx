@@ -23,7 +23,7 @@ export default function LanguageSelector({
 
   const handleLanguageSelect = (languageKey: LanguageNamesKey) => {
     i18n.changeLanguage(languageKey);
-    setSelectedLanguage(languageKey);
+    setSelectedLanguage(languageNames[languageKey]);
     setLanguageSelectorOpen(false);
   };
   const languageOptions = languageKeys.map((key) => {
