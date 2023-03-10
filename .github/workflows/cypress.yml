@@ -38,7 +38,6 @@ jobs:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
-          # we have already installed everything
-          install: false
+          install: true
           # to run component tests we need to use "component: true"
           component: true
