@@ -30,7 +30,9 @@ export default function WindLayer({ map }: { map?: MapboxMap }) {
   const [isMapMoving] = useAtom(mapMovingAtom);
   const [windy, setWindy] = useState<Maybe<WindyType>>(null);
   const reference = useRef<HTMLCanvasElement>(null);
-  const { height = 0, width = 0 } = useResizeObserver<HTMLCanvasElement>({ ref: reference });
+  const { height = 0, width = 0 } = useResizeObserver<HTMLCanvasElement>({
+    ref: reference,
+  });
   const viewport = useMemo(() => {
     const sw = map?.unproject([0, height]);
     const ne = map?.unproject([width, 0]);
