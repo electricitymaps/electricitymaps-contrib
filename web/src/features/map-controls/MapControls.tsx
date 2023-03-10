@@ -107,6 +107,7 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       dataTestId={`${type}-layer-button`}
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={!isLoadingLayer ? onToggle : () => {}}
+      asToggle
     />
   );
 }
@@ -144,6 +145,7 @@ function DesktopMapControls() {
           dataTestId="colorblind-layer-button"
           tooltipText={__('legends.colorblindmode')}
           onClick={handleColorblindModeToggle}
+          asToggle
         />
         {areWeatherLayersAllowed && (
           <>
