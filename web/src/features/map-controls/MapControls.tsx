@@ -113,8 +113,6 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
 
 function DesktopMapControls() {
   const { __ } = useTranslation();
-  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
-  const [isDarkModeSelectorOpen, setIsDarkModeSelectorOpen] = useState(false);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
@@ -135,16 +133,7 @@ function DesktopMapControls() {
         <SpatialAggregatesToggle />
       </div>
       <div className="mt-5 space-y-2">
-        <MapButton
-          icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
-          tooltipText={__('tooltips.selectLanguage')}
-          dataTestId="language-selector-open-button"
-          onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
-        />
-        {isLanguageSelectorOpen && (
-          <LanguageSelector setLanguageSelectorOpen={setIsLanguageSelectorOpen} />
-        )}
-
+        <LanguageSelector />
         <MapButton
           icon={
             <HiOutlineEyeOff
@@ -162,15 +151,7 @@ function DesktopMapControls() {
             <WeatherButton type="solar" />
           </>
         )}
-        <MapButton
-          icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
-          tooltipText={__('tooltips.toggleDarkMode')}
-          onClick={() => setIsDarkModeSelectorOpen(!isDarkModeSelectorOpen)}
-          dataTestId="theme-selector-open-button"
-        />
-        {isDarkModeSelectorOpen && (
-          <DarkModeSelector setDarkModeSelectorOpen={setIsDarkModeSelectorOpen} />
-        )}
+        <DarkModeSelector />
       </div>
     </div>
   );
