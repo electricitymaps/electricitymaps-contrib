@@ -19,11 +19,11 @@ const ICONS = {
   system: <HiOutlineComputerDesktop size={18} />,
 };
 
-export default function DarkModeSelector() {
+export default function ThemeSelector() {
   const { __ } = useTranslation();
   const [selectedTheme, setSelectedTheme] = useAtom(themeAtom);
 
-  const handleSetDarkMode = (mode: ThemeOptions) => {
+  const handleThemeChange = (mode: ThemeOptions) => {
     setSelectedTheme(mode);
   };
 
@@ -40,8 +40,8 @@ export default function DarkModeSelector() {
       {Object.values(ThemeOptions).map((option) => (
         <button
           key={option}
-          onKeyDown={() => handleSetDarkMode(option)}
-          onClick={() => handleSetDarkMode(option)}
+          onKeyDown={() => handleThemeChange(option)}
+          onClick={() => handleThemeChange(option)}
           className={`flex w-full cursor-pointer px-2 py-2 text-start text-sm transition hover:bg-gray-200 dark:hover:bg-gray-700 ${
             option === selectedTheme && 'bg-gray-100 font-bold dark:bg-gray-800'
           }`}

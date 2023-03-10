@@ -1,15 +1,9 @@
 import { Button } from 'components/Button';
 import { isInfoModalOpenAtom, isSettingsModalOpenAtom } from 'features/modals/modalAtoms';
 import { useAtom, useSetAtom } from 'jotai';
-import { useState } from 'react';
 import { FiWind } from 'react-icons/fi';
 import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
-import {
-  HiCog6Tooth,
-  HiLanguage,
-  HiOutlineInformationCircle,
-  HiOutlineMoon,
-} from 'react-icons/hi2';
+import { HiCog6Tooth, HiOutlineInformationCircle } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
 import trackEvent from 'utils/analytics';
@@ -27,8 +21,7 @@ import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import LanguageSelector from './LanguageSelector';
 import MapButton from './MapButton';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
-import DarkModeSelector from './DarkModeSelector';
-import { BsMoonStars } from 'react-icons/bs';
+import ThemeSelector from './ThemeSelector';
 
 function MobileMapControls() {
   const setIsInfoModalOpen = useSetAtom(isInfoModalOpenAtom);
@@ -153,7 +146,7 @@ function DesktopMapControls() {
             <WeatherButton type="solar" />
           </>
         )}
-        <DarkModeSelector />
+        <ThemeSelector />
       </div>
     </div>
   );
