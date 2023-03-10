@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import TooltipWrapper from '../../components/tooltips/TooltipWrapper';
 
 interface MapButtonProperties {
-  onClick: () => void;
+  onClick?: () => void;
   icon: any;
   tooltipText?: string;
   className?: string;
