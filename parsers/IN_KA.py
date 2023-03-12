@@ -181,16 +181,11 @@ def fetch_production(
         "production": {
             "biomass": biomass_value,
             "coal": coal_value,
-            "gas": 0.0,
             "hydro": hydro_value,
-            "nuclear": 0.0,
-            "oil": 0.0,
             "solar": solar_value,
             "wind": wind_value,
-            "geothermal": 0.0,
             "unknown": unknown_value,
         },
-        "storage": {"hydro": 0.0},
         "source": "kptclsldc.in",
     }
 

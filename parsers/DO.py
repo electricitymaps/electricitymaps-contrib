@@ -88,15 +88,14 @@ thermal_plants = {
 }
 
 
-def get_data(session: Optional[Session] = None) -> list:
+def get_data(session: Session) -> list:
     """
     Makes a request to source url.
     Finds main table and creates a list of all table elements in string format.
     """
 
     data = []
-    s = session or Session()
-    data_req = s.get(url)
+    data_req = session.get(url)
     soup = BeautifulSoup(data_req.content, "lxml")
 
     tbs = soup.find("table", id="PostdespachoUnidadesTermicasGrid_DXMainTable")
@@ -287,7 +286,7 @@ def merge_production(thermal, total) -> List[dict]:
 
 def fetch_production(
     zone_key: str = "DO",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -295,7 +294,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    dat = data_formatter(get_data(session=session))
+    dat = data_formatter(get_data(session))
     tot = data_parser(dat["totals"])
     th = data_parser(dat["thermal"])
     thermal = thermal_production(th, logger)
@@ -312,15 +311,10 @@ def fetch_production(
                 "coal": hour.get("coal", 0.0),
                 "gas": hour.get("gas", 0.0),
                 "hydro": hour.get("hydro", 0.0),
-                "nuclear": 0.0,
                 "oil": hour.get("oil", 0.0),
                 "solar": hour.get("solar", 0.0),
                 "wind": hour.get("wind", 0.0),
-                "geothermal": 0.0,
                 "unknown": hour.get("unknown", 0.0),
-            },
-            "storage": {
-                "hydro": None,
             },
             "source": "oc.org.do",
         }

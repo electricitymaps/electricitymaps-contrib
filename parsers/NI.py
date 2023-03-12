@@ -203,7 +203,7 @@ def get_production_from_summary(requests_obj) -> tuple:
 
 def fetch_production(
     zone_key: str = "NI",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
@@ -211,16 +211,10 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    requests_obj = session or Session()
-
     # We're currently using the summary page (SUMMARY_URL, via get_production_from_summary())
     # rather than the detailed map page (MAP_URL, via get_production_from_map())
     # in order to get solar production.
-    production, data_datetime = get_production_from_summary(requests_obj)
-
-    # Explicitly report types that are not used in Nicaragua as zero.
-    # Source for the installed capacity of Nicaragua is INE (Nicaraguan Institute of Energy -- see link in DATA_SOURCES.md).
-    production.update({"nuclear": 0, "coal": 0, "gas": 0})
+    production, data_datetime = get_production_from_summary(session)
 
     data = {
         "datetime": data_datetime,

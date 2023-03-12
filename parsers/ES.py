@@ -128,12 +128,11 @@ def fetch_island_data(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZONE_KEYS,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-    ses = session or Session()
-    island_data = fetch_island_data(zone_key, ses, target_datetime)
+    island_data = fetch_island_data(zone_key, session, target_datetime)
     data = []
     if island_data:
         for response in island_data:
@@ -158,13 +157,12 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZONE_KEYS,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
 
-    ses = session or Session()
-    island_data = fetch_island_data(zone_key, ses, target_datetime)
+    island_data = fetch_island_data(zone_key, session, target_datetime)
     data: List[Dict[str, Any]] = []
 
     # If we add more zones this should be turned into a map similar to ZONE_FlOORS mapping.
@@ -182,16 +180,15 @@ def fetch_production(
                         "biomass": response.waste,
                         "coal": response.carbon,
                         "gas": round((response.gas + response.combined), 2),
-                        "geothermal": 0.0,
                         "hydro": response.hydraulic,
-                        "nuclear": 0.0,
+                        "nuclear": response.nuclear,
                         "oil": round((response.vapor + response.diesel), 2),
                         "solar": response.solar,
                         "unknown": response.other,
                         "wind": response.wind,
                     },
                     "source": "demanda.ree.es",
-                    "storage": {"hydro": 0.0, "battery": 0.0},
+                    "storage": {"hydro": None},
                     "zoneKey": zone_key,
                 }
 
@@ -238,7 +235,7 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: ZONE_KEYS,
     zone_key2: ZONE_KEYS,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -249,11 +246,9 @@ def fetch_exchange(
 
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    ses = session or Session()
-
-    responses: List[Response] = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all(
-        date
-    )
+    responses: List[Response] = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](
+        session
+    ).get_all(date)
     if not responses:
         raise NotImplementedError(
             f'Exchange pair "{sorted_zone_keys}" is not implemented in this parser'

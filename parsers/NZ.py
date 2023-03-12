@@ -17,10 +17,9 @@ timezone = "Pacific/Auckland"
 NZ_PRICE_REGIONS = set([i for i in range(1, 14)])
 
 
-def fetch(session: Optional[Session] = None):
-    r = session or Session()
+def fetch(session: Session):
     url = "https://www.transpower.co.nz/system-operator/live-system-and-market-data/consolidated-live-data"
-    response = r.get(url)
+    response = session.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     for item in soup.find_all("script"):
         if item.attrs.get("data-drupal-selector"):
@@ -31,7 +30,7 @@ def fetch(session: Optional[Session] = None):
 
 def fetch_price(
     zone_key: str = "NZ",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
@@ -46,9 +45,8 @@ def fetch_price(
             "This parser is not able to retrieve data for past dates"
         )
 
-    r = session or Session()
     url = "https://api.em6.co.nz/ords/em6/data_api/region/price/"
-    response = r.get(url, verify=False)
+    response = session.get(url, verify=False)
     obj = response.json()
     region_prices = []
 
@@ -74,7 +72,7 @@ def fetch_price(
 
 def fetch_production(
     zone_key: str = "NZ",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
@@ -105,7 +103,6 @@ def fetch_production(
             "hydro": productions.get("Hydro", {"generation": None})["generation"],
             "solar": productions.get("Solar", {"generation": None})["generation"],
             "unknown": productions.get("Co-Gen", {"generation": None})["generation"],
-            "nuclear": 0,  # famous issue in NZ politics
         },
         "capacity": {
             "coal": productions.get("Coal", {"capacity": None})["capacity"],

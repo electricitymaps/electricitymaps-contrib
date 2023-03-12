@@ -13,7 +13,7 @@ timezone = "America/Whitehorse"
 
 def fetch_production(
     zone_key: str = "CA-YT",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
@@ -54,10 +54,8 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    requests_obj = session or Session()
-
     url = "http://www.yukonenergy.ca/consumption/chart_current.php?chart=current&width=420"
-    response = requests_obj.get(url)
+    response = session.get(url)
 
     soup = BeautifulSoup(response.text, "html.parser")
 
@@ -106,13 +104,7 @@ def fetch_production(
         "production": {
             "unknown": thermal_generation,
             "hydro": hydro_generation,
-            # specify some sources that aren't present in Yukon as zero,
-            # this allows the analyzer to better estimate CO2eq
-            "coal": 0,
-            "nuclear": 0,
-            "geothermal": 0,
         },
-        "storage": {},
         "source": "www.yukonenergy.ca",
     }
 

@@ -167,18 +167,11 @@ def fetch_production(
             "datetime": hour["datetime"],
             "production": {
                 "biomass": hour.get("biomass", 0.0),
-                "coal": 0.0,
-                "gas": 0.0,
                 "hydro": hour.get("hydro", 0.0),
-                "nuclear": 0.0,
                 "oil": hour.get("thermal", 0.0),
                 "solar": hour.get("solar", 0.0),
                 "wind": hour.get("wind", 0.0),
                 "geothermal": hour.get("geothermal", 0.0),
-                "unknown": 0.0,
-            },
-            "storage": {
-                "hydro": None,
             },
             "source": "ut.com.sv",
         }

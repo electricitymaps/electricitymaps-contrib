@@ -9,6 +9,8 @@ from typing import Any, Dict, Optional
 import arrow
 from requests import Session
 
+from .lib.exceptions import ParserException
+
 timezone = "Canada/Atlantic"
 
 
@@ -65,7 +67,7 @@ def _get_pei_info(requests_obj):
 
 def fetch_production(
     zone_key: str = "CA-PE",
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Dict[str, Any]:
@@ -73,11 +75,10 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    requests_obj = session or Session()
-    pei_info = _get_pei_info(requests_obj)
+    pei_info = _get_pei_info(session)
 
     if pei_info is None:
-        return None
+        raise ParserException("CA_PE.py, No data returned from API.", zone_key)
 
     data = {
         "datetime": pei_info["datetime"],
@@ -87,14 +88,7 @@ def fetch_production(
             # These are oil-fueled ("heavy fuel oil" and "diesel") generators
             # used as peakers and back-up
             "oil": pei_info["pei_fossil_gen"],
-            # specify some sources that definitely aren't present on PEI as zero,
-            # this allows the analyzer to better estimate CO2eq
-            "coal": 0,
-            "hydro": 0,
-            "nuclear": 0,
-            "geothermal": 0,
         },
-        "storage": {},
         "source": "princeedwardisland.ca",
     }
 

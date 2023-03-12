@@ -195,9 +195,6 @@ def fetch_production(
 
     generation_by_type["solar"] = get_solar(requests_obj, logger)
 
-    # some generation methods that are not used in Singapore
-    generation_by_type.update({"nuclear": 0, "wind": 0, "hydro": 0})
-
     return {
         "datetime": sg_data_to_datetime(data),
         "zoneKey": zone_key,
