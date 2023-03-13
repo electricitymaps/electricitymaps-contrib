@@ -39,10 +39,10 @@ export default function ToggleButton({
     }
   };
   return (
-    <div className="z-10 flex h-9 rounded-full bg-zinc-100  px-[5px] py-1  drop-shadow-lg dark:bg-gray-900">
+    <div className="z-10 flex h-9 rounded-full bg-zinc-100  px-[5px] py-1   dark:bg-gray-900">
       <ToggleGroupRoot
         className={
-          'flex-start flex h-[26px] flex-grow flex-row items-center justify-between self-center rounded-full bg-gray-100 shadow-inner dark:bg-gray-700'
+          'flex-start flex h-[26px] flex-grow flex-row items-center justify-between self-center rounded-full bg-gray-100 dark:bg-gray-700'
         }
         type="single"
         aria-label="Toggle between modes"
@@ -53,14 +53,15 @@ export default function ToggleButton({
             key={`group-item-${key}`}
             value={option.value}
             onClick={() => onToggle(option.value)}
-            className={`
-       inline-flex h-[26px] w-full  items-center whitespace-nowrap rounded-full px-4 ${fontSize} ${
+            className={twMerge(
+              'inline-flex h-[26px] w-full items-center whitespace-nowrap rounded-full px-4',
+              fontSize,
               option.value === selectedOption
-                ? ' bg-white  shadow transition duration-500 ease-in-out dark:bg-gray-500'
+                ? ' bg-white text-brand-green  shadow transition duration-500 ease-in-out dark:bg-gray-500'
                 : ''
-            }`}
+            )}
           >
-            <p className="sans flex-grow select-none  dark:text-white">
+            <p className="sans flex-grow select-none font-inter font-bold capitalize  dark:text-white">
               {__(option.translationKey)}
             </p>
           </ToggleGroupItem>
@@ -76,16 +77,16 @@ export default function ToggleButton({
                 role="button"
                 tabIndex={0}
                 className={twMerge(
-                  'b ml-2 h-6 w-6 select-none justify-center self-center rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900',
+                  'b ml-2 inline-flex h-6 w-6 select-none   justify-center self-center rounded-full bg-white shadow dark:border dark:border-gray-500 dark:bg-gray-900',
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
-                <p>i</p>
+                <p className="size  self-center font-inter text-sm font-bold ">i</p>
               </div>
             </TooltipTrigger>
             <TooltipPortal>
               <TooltipContent
-                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-zinc-50 p-2  text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-neutral-200 p-2  text-center text-sm  dark:border-0 dark:bg-gray-900"
                 sideOffset={10}
                 side="bottom"
                 onPointerDownOutside={onToolTipClick}
