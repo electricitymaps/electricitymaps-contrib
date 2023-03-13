@@ -83,7 +83,7 @@ export default function ToggleButton({
             </TooltipTrigger>
             <TooltipPortal>
               <TooltipContent
-                className="relative right-[48px] z-50 max-w-[164px] rounded border  bg-zinc-50 p-2  text-center text-sm dark:border-0 dark:bg-gray-900"
+                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-zinc-50 p-2 text-center text-sm dark:border-0 dark:bg-gray-900"
                 sideOffset={10}
                 side="bottom"
                 onPointerDownOutside={onToolTipClick}
