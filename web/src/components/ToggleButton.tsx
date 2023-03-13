@@ -37,10 +37,10 @@ export default function ToggleButton({
     }
   };
   return (
-    <div className="z-10 flex h-9 rounded-full bg-zinc-100  px-[5px] py-1   dark:bg-gray-900">
+    <div className="z-10 flex h-9 rounded-full bg-neutral-200   px-[5px] py-1   dark:bg-gray-900">
       <ToggleGroupRoot
         className={
-          'flex-start flex h-[26px] flex-grow flex-row items-center justify-between self-center rounded-full bg-gray-100 dark:bg-gray-700'
+          'flex-start flex h-[26px] flex-grow flex-row items-center justify-between self-center rounded-full bg-neutral-200  dark:bg-gray-700'
         }
         type="single"
         aria-label="Toggle between modes"
@@ -83,7 +83,7 @@ export default function ToggleButton({
             </TooltipTrigger>
             <TooltipPortal>
               <TooltipContent
-                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-neutral-200 p-2  text-center text-xs dark:border-0 dark:bg-gray-900"
+                className="relative right-[48px] z-50 max-w-[164px] rounded border  bg-zinc-50 p-2  text-center text-sm dark:border-0 dark:bg-gray-900"
                 sideOffset={10}
                 side="bottom"
                 onPointerDownOutside={onToolTipClick}
