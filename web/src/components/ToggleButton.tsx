@@ -18,7 +18,6 @@ interface ToggleButtonProperties {
   selectedOption: string;
   onToggle: (option: string) => void;
   tooltipKey?: string;
-  fontSize?: string;
 }
 
 export default function ToggleButton({
@@ -26,7 +25,6 @@ export default function ToggleButton({
   selectedOption,
   tooltipKey,
   onToggle,
-  fontSize = 'text-sm',
 }: ToggleButtonProperties): ReactElement {
   const { __ } = useTranslation();
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
@@ -54,8 +52,7 @@ export default function ToggleButton({
             value={option.value}
             onClick={() => onToggle(option.value)}
             className={twMerge(
-              'inline-flex h-[26px] w-full items-center whitespace-nowrap rounded-full px-4',
-              fontSize,
+              'inline-flex h-[26px] w-full items-center whitespace-nowrap rounded-full px-4 text-xs',
               option.value === selectedOption
                 ? ' bg-white text-brand-green  shadow transition duration-500 ease-in-out dark:bg-gray-500'
                 : ''
@@ -81,12 +78,12 @@ export default function ToggleButton({
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
-                <p className="size  self-center font-inter text-sm font-bold ">i</p>
+                <p className="size  self-center font-inter text-xs font-bold ">i</p>
               </div>
             </TooltipTrigger>
             <TooltipPortal>
               <TooltipContent
-                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-neutral-200 p-2  text-center text-sm  dark:border-0 dark:bg-gray-900"
+                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-neutral-200 p-2  text-center text-xs dark:border-0 dark:bg-gray-900"
                 sideOffset={10}
                 side="bottom"
                 onPointerDownOutside={onToolTipClick}

@@ -48,7 +48,6 @@ export default function EmissionToggle(): ReactElement {
             : LeftPanelToggleOptions.ELECTRICITY
         }
         onToggle={onSetCurrentMode}
-        fontSize="text-sm"
       />
     </div>
   );
