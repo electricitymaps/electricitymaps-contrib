@@ -7,6 +7,7 @@ import { generateExchangesToIgnore } from './generateExchangesToExclude.js';
 import { generateTopojson } from './generateTopojson.js';
 import { getJSON, round } from './utilities.js';
 import { validateGeometry } from './validate.js';
+import { createHash } from 'node:crypto';
 
 const config = {
   WORLD_PATH: path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url))),
@@ -35,6 +36,12 @@ coordEach(fc, (coord) => {
   coord[1] = round(coord[1], 4);
 });
 
-validateGeometry(fc, config);
-generateTopojson(fc, config);
+const { skipped } = generateTopojson(fc, config);
+
 generateExchangesToIgnore(EXCHANGE_OUT_PATH, zoneConfig);
+
+if (skipped === true) {
+  console.info('No changes to world.json');
+} else {
+  validateGeometry(fc, config);
+}
