@@ -17,6 +17,7 @@ capacity:
   wind: 339
 contributors:
   - corradio
+  - Frantisek12
 emissionFactors:
   direct:
     battery discharge:
