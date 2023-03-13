@@ -21,7 +21,7 @@ from requests import Session
 
 # Thanks to jarek for figuring out how to make the correct POST request to the data url.
 
-url = "http://estadistico.ut.com.sv/OperacionDiaria.aspx"
+url = "https://estadistico.ut.com.sv/OperacionDiaria.aspx"
 
 generation_map = {
     0: "biomass",
