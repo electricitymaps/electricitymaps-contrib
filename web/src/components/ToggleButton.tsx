@@ -74,7 +74,7 @@ export default function ToggleButton({
                 role="button"
                 tabIndex={0}
                 className={twMerge(
-                  'b ml-2 inline-flex h-6 w-6 select-none   justify-center self-center rounded-full bg-white shadow dark:border dark:border-gray-500 dark:bg-gray-900',
+                  'b ml-2 inline-flex h-6 w-6 select-none justify-center self-center rounded-full bg-white shadow dark:border dark:border-gray-500 dark:bg-gray-900',
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
