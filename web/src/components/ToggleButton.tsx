@@ -37,7 +37,7 @@ export default function ToggleButton({
     }
   };
   return (
-    <div className="z-10 flex h-9 rounded-full bg-neutral-200   px-[5px] py-1   dark:bg-gray-900">
+    <div className="z-10 flex h-9 rounded-full bg-neutral-200 px-[5px] py-1 dark:bg-gray-900">
       <ToggleGroupRoot
         className={
           'flex-start flex h-[26px] flex-grow flex-row items-center justify-between self-center rounded-full bg-neutral-200  dark:bg-gray-700'
@@ -52,13 +52,13 @@ export default function ToggleButton({
             value={option.value}
             onClick={() => onToggle(option.value)}
             className={twMerge(
-              'inline-flex h-[26px] w-full items-center whitespace-nowrap rounded-full px-4 text-xs',
+              'inline-flex h-[26px] w-full items-center whitespace-nowrap rounded-full px-4 text-sm',
               option.value === selectedOption
-                ? ' bg-white text-brand-green  shadow transition duration-500 ease-in-out dark:bg-gray-500'
+                ? ' bg-white font-bold text-brand-green shadow transition duration-500 ease-in-out dark:bg-gray-500'
                 : ''
             )}
           >
-            <p className="sans flex-grow select-none font-inter font-bold capitalize  dark:text-white">
+            <p className="sans flex-grow select-none capitalize dark:text-white">
               {__(option.translationKey)}
             </p>
           </ToggleGroupItem>
@@ -78,7 +78,7 @@ export default function ToggleButton({
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
-                <p className="size  self-center font-inter text-xs font-bold ">i</p>
+                <p className="size self-center text-sm font-bold ">i</p>
               </div>
             </TooltipTrigger>
             <TooltipPortal>
