@@ -1,4 +1,4 @@
-VERSION 0.6
+VERSION 0.7
 FROM python:3.8
 WORKDIR /contrib
 
@@ -26,6 +26,6 @@ build:
 test:
   FROM +build
   COPY tests ./tests
-  COPY web/src/helpers/constants.js ./web/src/helpers/constants.js # TODO: python tests should not depend on this js file
+  COPY web/src/utils/constants.ts ./web/src/utils/constants.ts # TODO: python tests should not depend on this js file
   COPY web/geo/world.geojson ./web/geo/world.geojson
   RUN poetry run check

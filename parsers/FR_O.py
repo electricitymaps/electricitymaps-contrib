@@ -199,9 +199,13 @@ def fetch_production(
                 )
             elif mode_key in STORAGE_MAPPING:
                 if STORAGE_MAPPING[mode_key] in storage.keys():
-                    storage[STORAGE_MAPPING[mode_key]] += production_object[mode_key]
+                    storage[STORAGE_MAPPING[mode_key]] += (
+                        production_object[mode_key] * -1
+                    )
                 else:
-                    storage[STORAGE_MAPPING[mode_key]] = production_object[mode_key]
+                    storage[STORAGE_MAPPING[mode_key]] = (
+                        production_object[mode_key] * -1
+                    )
         return_list.append(
             {
                 "zoneKey": zone_key,

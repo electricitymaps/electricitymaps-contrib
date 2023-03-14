@@ -3,6 +3,17 @@ bounding_box:
     - 33.585
   - - 134.54
     - 35.74
+capacity:
+  geothermal: 0
+  oil: 850
+  coal: 3850
+  gas: 2875
+  hydro: 780
+  hydro storage: 2123
+  nuclear: 920
+  solar: 55.9
+  wind: 365
+disclaimer: The data provider (Chugoku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 contributors:
   - tmslaine
   - lorrieq

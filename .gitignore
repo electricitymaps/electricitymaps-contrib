@@ -1,6 +1,7 @@
 *.pyc
 *.env
 web/public/dist
+web/config
 **/node_modules
 .ipynb_checkpoints/
 *.pyproj
@@ -17,6 +18,8 @@ Thumbs.db
 mobileapp/*.zip
 dist
 
+# Ignore top level vscode folder as it is symlinked
+#.vscode
+
 ## Pycharm IDE
 .idea
-.vscode

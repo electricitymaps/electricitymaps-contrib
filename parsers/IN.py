@@ -8,6 +8,7 @@ from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
+import numpy as np
 import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
@@ -274,6 +275,34 @@ def fetch_npp_production(
         )
 
 
+def format_ren_production_data(url: str, zone_key: str) -> dict:
+    """Formats daily renewable production data for each zone"""
+    df_ren = pd.read_excel(url, engine="openpyxl", header=5, skipfooter=2)
+    df_ren = df_ren.dropna(axis=0, how="all")
+    df_ren = df_ren.rename(
+        columns={
+            df_ren.columns[1]: "region",
+            df_ren.columns[2]: "wind",
+            df_ren.columns[3]: "solar",
+            df_ren.columns[4]: "unknown",
+        }
+    )
+    df_ren.loc[:, "zone_key"] = (
+        df_ren["region"].apply(lambda x: x if "Region" in x else np.nan).backfill()
+    )
+    df_ren["zone_key"] = df_ren["zone_key"].str.strip()
+    df_ren["zone_key"] = df_ren["zone_key"].map(CEA_REGION_MAPPING)
+
+    zone_data = df_ren.loc[
+        (df_ren.zone_key == zone_key) & (~df_ren.region.str.contains("Region"))
+    ][["wind", "solar", "unknown"]].sum()
+
+    renewable_production = {
+        key: round(zone_data.get(key) / CONVERSION_MWH_MW, 3) for key in zone_data.index
+    }
+    return renewable_production
+
+
 def fetch_cea_production(
     zone_key: str,
     target_datetime: datetime,
@@ -283,32 +312,35 @@ def fetch_cea_production(
     """Gets production data for wind, solar and other renewables
     Other renewables includes a share of hydro, biomass and others and will categorized as unknown
     DISCLAIMER: this data is only available since 2020/12/17"""
-    cea_link = "https://cea.nic.in/wp-content/uploads/daily_reports/{date:%d_%b_%Y}_Daily_Report.xlsx"
-    r: Response = session.get(cea_link.format(date=target_datetime))
-    if r.status_code == 200:
-        df_ren = pd.read_excel(r.url, engine="openpyxl", header=5)
-        df_ren = df_ren.rename(
-            columns={
-                df_ren.columns[1]: "region",
-                df_ren.columns[2]: "wind",
-                df_ren.columns[3]: "solar",
-                df_ren.columns[4]: "unknown",
-            }
-        )
-
-        df_ren.region = df_ren.region.str.strip()
-        df_ren.region = df_ren.region.map(CEA_REGION_MAPPING)
-        df_ren = df_ren.loc[df_ren.region == zone_key][["wind", "solar", "unknown"]]
-
-        dict_zone = df_ren.to_dict(orient="records")[0]
-        renewable_production = {
-            key: round(dict_zone[key] / CONVERSION_MWH_MW, 3) for key in dict_zone
-        }
-        return renewable_production
+    cea_data_url = (
+        "https://cea.nic.in/wp-admin/admin-ajax.php?action=getpostsfordatatables"
+    )
+    r_all_data: Response = session.get(cea_data_url)
+    if r_all_data.status_code == 200:
+        all_data = r_all_data.json()["data"]
+        target_elem = [
+            elem
+            for elem in all_data
+            if target_datetime.strftime("%Y-%m-%d") in elem["date"]
+        ]
+        if len(target_elem) > 0:
+            if target_elem[0]["link"] == "file_not_found":
+                raise ParserException(
+                    parser="IN.py",
+                    message=f"{target_datetime}: {zone_key} renewable production data is not available",
+                )
+            else:
+                target_url = target_elem[0]["link"].split(": ")[0]
+                formatted_url = target_url.split("^")[0]
+                r: Response = session.get(formatted_url)
+                renewable_production = format_ren_production_data(
+                    url=r.url, zone_key=zone_key
+                )
+                return renewable_production
     else:
         raise ParserException(
             parser="IN.py",
-            message=f"{target_datetime}: {zone_key} renewable production data is not available",
+            message=f"{target_datetime}: {zone_key} renewable production data is not available, {r_all_data.status_code}",
         )
 
 
