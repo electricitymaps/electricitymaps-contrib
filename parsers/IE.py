@@ -135,6 +135,13 @@ def fetch_exchange(
         target_datetime = datetime.now().replace(tzinfo=IE_TZ)
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
+
+    if sortedZoneKeys == "GB-NIR->IE":
+        raise ParserException(
+            parser="IE.py",
+            message=f"the GB-NIR_IE interconnection is unsupported.",
+        )
+
     exchange_data = fetch_data(
         target_datetime=target_datetime,
         zone_key=zone_key2,
@@ -151,7 +158,7 @@ def fetch_exchange(
     exchange = []
     for item in filtered_exchanges:
         data_point = {
-            "netFlow": -item["Value"],
+            "netFlow": item["Value"],
             "sortedZoneKeys": sortedZoneKeys,
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
