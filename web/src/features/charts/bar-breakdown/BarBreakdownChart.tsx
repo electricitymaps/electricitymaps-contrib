@@ -30,7 +30,7 @@ function BarBreakdownChart() {
   const { ref, width: observerWidth = 0 } = useResizeObserver();
   const { __ } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
-  const width = observerWidth - X_PADDING;
+  const width = Math.max(observerWidth - X_PADDING, 0);
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
     x: number;

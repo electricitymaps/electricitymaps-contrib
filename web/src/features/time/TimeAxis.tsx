@@ -85,7 +85,7 @@ function TimeAxis({
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver();
-  const width = observerWidth - 24;
+  const width = Math.max(observerWidth - 24, 0);
   if (datetimes === undefined || isLoading) {
     return (
       <div className="flex h-[22px]  w-full justify-center">

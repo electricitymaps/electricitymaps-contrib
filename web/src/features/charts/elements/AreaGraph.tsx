@@ -109,8 +109,8 @@ function AreaGraph({
   const { width: observerWidth = 0, height: observerHeight = 0 } =
     useResizeObserver<SVGSVGElement>({ ref: reference });
 
-  const containerWidth = observerWidth - Y_AXIS_WIDTH;
-  const containerHeight = observerHeight - X_AXIS_HEIGHT;
+  const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);
+  const containerHeight = Math.max(observerHeight - X_AXIS_HEIGHT, 0);
 
   const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
