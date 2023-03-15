@@ -525,7 +525,6 @@ def query_ENTSOE(
 def query_consumption(
     domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A65",
         "processType": "A16",
@@ -562,7 +561,6 @@ def query_production_per_units(
     session: Session,
     target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A73",
         "processType": "A16",
@@ -585,7 +583,6 @@ def query_exchange(
     session: Session,
     target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A11",
         "in_Domain": in_domain,
@@ -620,10 +617,31 @@ def query_exchange_forecast(
     )
 
 
+def query_exchange_capacity_dayahead(
+    in_domain: str,
+    out_domain: str,
+    session: Session,
+    target_datetime: Optional[datetime] = None,
+) -> Union[str, None]:
+    """Gets exchange the exchange capacity for an exchange between two zones."""
+
+    params = {
+        "documentType": "A61",  # Capacity
+        "in_Domain": in_domain,
+        "out_Domain": out_domain,
+        "contract_MarketAgreement.Type": "A01",  # Day ahead
+    }
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_exchange_capacity_dayahead.__name__,
+    )
+
+
 def query_price(
     domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A44",
         "in_Domain": domain,
@@ -711,7 +729,6 @@ def parse_scalar(
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
 ) -> Union[Tuple[List[float], List[datetime]], None]:
-
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -740,7 +757,6 @@ def parse_scalar(
 def parse_production(
     xml_text,
 ) -> Union[Tuple[List[Dict[str, Any]], List[datetime]], None]:
-
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -882,7 +898,6 @@ def parse_exchange(
     quantities: Optional[List[float]] = None,
     datetimes: Optional[List[datetime]] = None,
 ) -> Union[Tuple[List[float], List[datetime]], None]:
-
     if not xml_text:
         return None
     quantities = quantities or []
@@ -922,7 +937,6 @@ def parse_exchange(
 def parse_price(
     xml_text: str,
 ) -> Union[Tuple[List[float], List[str], List[datetime]], None]:
-
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -1277,19 +1291,62 @@ def fetch_exchange(
         exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
         if not len(exchange_dates):
             raise ParserException(parser="ENTSOE.py", message="No exchange data found")
+
+        # Get exchange capacity
+        capacity_hashmap = {}
+        raw_import_capacity = query_exchange_capacity_dayahead(
+            domain1, domain2, session, target_datetime
+        )
+        if raw_import_capacity is not None:
+            parsed_import_capacity = parse_exchange(raw_import_capacity, is_import=True)
+            if parsed_import_capacity != ([], []):
+                # Only query export capacity if import capacity is available
+                raw_export_capacity = query_exchange_capacity_dayahead(
+                    domain2, domain1, session, target_datetime
+                )
+                if raw_export_capacity is not None:
+                    parsed_export_capacity = parse_exchange(
+                        raw_export_capacity, is_import=False
+                    )
+                    if parsed_import_capacity and parsed_export_capacity:
+                        for i in range(len(parsed_import_capacity[0])):
+                            if (
+                                parsed_import_capacity[1][i]
+                                == parsed_export_capacity[1][i]
+                            ):
+                                capacity_hashmap[parsed_import_capacity[1][i]] = [
+                                    parsed_export_capacity[0][i],
+                                    parsed_import_capacity[0][i],
+                                ]
+            else:
+                logger.info(f"No exchange capacity data found for {key}")
+
         data = []
         for exchange_date in exchange_dates:
             net_flow = float(exchange_hashmap[exchange_date])
-            data.append(
-                {
-                    "sortedZoneKeys": key,
-                    "datetime": exchange_date,
-                    "netFlow": net_flow
-                    if zone_key1[0] == sorted_zone_keys
-                    else -1 * net_flow,
-                    "source": "entsoe.eu",
-                }
-            )
+            if exchange_date in capacity_hashmap:
+                data.append(
+                    {
+                        "sortedZoneKeys": key,
+                        "datetime": exchange_date,
+                        "netFlow": net_flow
+                        if zone_key1[0] == sorted_zone_keys
+                        else -1 * net_flow,
+                        "source": "entsoe.eu",
+                        "capacity": capacity_hashmap[exchange_date],
+                    }
+                )
+            else:
+                data.append(
+                    {
+                        "sortedZoneKeys": key,
+                        "datetime": exchange_date,
+                        "netFlow": net_flow
+                        if zone_key1[0] == sorted_zone_keys
+                        else -1 * net_flow,
+                        "source": "entsoe.eu",
+                    }
+                )
 
         return data
     else:
@@ -1548,3 +1605,8 @@ def fetch_wind_solar_forecasts(
         )
 
     return data
+
+
+if __name__ == "__main__":
+    session = Session()
+    print()
