@@ -6,10 +6,10 @@ describe('Country Panel', () => {
 
   it('interacts with details', () => {
     cy.interceptAPI('v6/details/hourly/DK-DK2');
+
     cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
     cy.waitForAPISuccess('v6/state/hourly');
     cy.waitForAPISuccess('v6/details/hourly/DK-DK2');
-
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
     cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').contains('232');
@@ -53,16 +53,17 @@ describe('Country Panel', () => {
     cy.get('[data-test-id=left-panel-back-button]').click();
   });
 
-  // it('asserts countryPanel contains "no-recent-data" message', () => { TODO bring back when we have a no recent data message
-  //   cy.interceptAPI('v6/details/hourly/UA');
-  //   cy.visit('/zone/UA?lang=en-GB');
-  //   cy.waitForAPISuccess('v6/state/hourly');
-  //   cy.waitForAPISuccess('v6/details/hourly/UA');
+  // TODO bring back when we have a no recent data message
+  it.skip('asserts countryPanel contains "no-recent-data" message', () => {
+    cy.interceptAPI('v6/details/hourly/UA');
+    cy.visit('/zone/UA?lang=en-GB');
+    cy.waitForAPISuccess('v6/state/hourly');
+    cy.waitForAPISuccess('v6/details/hourly/UA');
 
-  //   cy.get('[data-test-id=no-data-overlay-message]')
-  //     .should('exist')
-  //     .contains('Data is temporarily unavailable for the selected time');
-  // });
+    cy.get('[data-test-id=no-data-overlay-message]')
+      .should('exist')
+      .contains('Data is temporarily unavailable for the selected time');
+  });
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
     cy.visit('/zone/CN?lang=en-GB');
