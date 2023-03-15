@@ -18,6 +18,7 @@ interface ToggleButtonProperties {
   selectedOption: string;
   onToggle: (option: string) => void;
   tooltipKey?: string;
+  transparentBackground?: boolean;
 }
 
 export default function ToggleButton({
@@ -25,6 +26,7 @@ export default function ToggleButton({
   selectedOption,
   tooltipKey,
   onToggle,
+  transparentBackground,
 }: ToggleButtonProperties): ReactElement {
   const { __ } = useTranslation();
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
@@ -37,10 +39,15 @@ export default function ToggleButton({
     }
   };
   return (
-    <div className="z-10 flex h-9 rounded-full bg-neutral-200 px-[5px] py-1 dark:bg-gray-900">
+    <div
+      className={twMerge(
+        'z-10 flex h-9 rounded-full bg-gray-200/80 px-1  shadow    dark:bg-gray-900',
+        transparentBackground ? 'bg-gray-200/80 backdrop-blur-sm' : 'bg-gray-200'
+      )}
+    >
       <ToggleGroupRoot
         className={
-          'flex-start flex h-[26px] flex-grow flex-row items-center justify-between self-center rounded-full bg-neutral-200  dark:bg-gray-700'
+          'flex-start flex flex-grow flex-row items-center justify-between self-center  dark:bg-gray-700'
         }
         type="single"
         aria-label="Toggle between modes"
@@ -52,7 +59,7 @@ export default function ToggleButton({
             value={option.value}
             onClick={() => onToggle(option.value)}
             className={twMerge(
-              'inline-flex h-[26px] w-full items-center whitespace-nowrap rounded-full px-4 text-sm',
+              'inline-flex h-[29px] w-full items-center whitespace-nowrap rounded-full bg-gray-100/0 px-4 text-sm',
               option.value === selectedOption
                 ? ' bg-white font-bold text-brand-green shadow transition duration-500 ease-in-out dark:bg-gray-500'
                 : ''
@@ -74,11 +81,11 @@ export default function ToggleButton({
                 role="button"
                 tabIndex={0}
                 className={twMerge(
-                  'b ml-2 inline-flex h-6 w-6 select-none justify-center self-center rounded-full bg-white shadow dark:border dark:border-gray-500 dark:bg-gray-900',
+                  'ml-2 inline-flex h-[29px] w-[29px] select-none justify-center self-center rounded-full bg-white shadow dark:border dark:border-gray-500 dark:bg-gray-900',
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
-                <p className="size self-center text-sm font-bold ">i</p>
+                <p className="self-center text-sm font-bold">i</p>
               </div>
             </TooltipTrigger>
             <TooltipPortal>
