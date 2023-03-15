@@ -6,6 +6,7 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
+
 import arrow
 import numpy as np
 import pandas as pd
@@ -16,7 +17,7 @@ from requests import Response, Session
 from parsers.lib.exceptions import ParserException
 from parsers.lib.validation import validate_consumption
 
-IN_NO_TZ ="Asia/Kolkata"
+IN_NO_TZ = "Asia/Kolkata"
 START_DATE_RENEWABLE_DATA = arrow.get("2020-12-17").to(IN_NO_TZ).datetime
 CONVERSION_GWH_MW = 0.024
 GENERATION_MAPPING = {
@@ -212,7 +213,7 @@ def fetch_consumption(
 
     data = {
         "zoneKey": zone_key,
-        "datetime":arrow.now(tz=IN_NO_TZ).datetime,
+        "datetime": arrow.now(tz=IN_NO_TZ).datetime,
         "consumption": total_consumption,
         "source": "vidyupravah.in",
     }
@@ -360,8 +361,8 @@ def fetch_production(
                 message=f"{target_datetime}: {zone_key} renewable production data is not available before 2020/12/17, data is not collected prior to this data",
             )
 
-    all_data_points= []
-    days_lookback_to_try = list(range(1,8))
+    all_data_points = []
+    days_lookback_to_try = list(range(1, 8))
     for days_lookback in days_lookback_to_try:
         _target_datetime = target_datetime - timedelta(days=days_lookback)
         try:
@@ -375,30 +376,41 @@ def fetch_production(
                 session=session,
                 target_datetime=_target_datetime,
             )
-            production =  {**conventional_production, **renewable_production}
-            all_data_points += daily_to_hourly_production_data(target_datetime=_target_datetime, production=production, zone_key=zone_key)
+            production = {**conventional_production, **renewable_production}
+            all_data_points += daily_to_hourly_production_data(
+                target_datetime=_target_datetime,
+                production=production,
+                zone_key=zone_key,
+            )
         except:
-            logger.warning(f"{zone_key}: production not available for {_target_datetime}")
+            logger.warning(
+                f"{zone_key}: production not available for {_target_datetime}"
+            )
 
     return all_data_points
 
-def daily_to_hourly_production_data(target_datetime: datetime, production: dict, zone_key:str) -> list:
+
+def daily_to_hourly_production_data(
+    target_datetime: datetime, production: dict, zone_key: str
+) -> list:
     """convert daily power production average to hourly values"""
     all_hourly_production = []
-    for hour in list(range(0,24)):
+    for hour in list(range(0, 24)):
         hourly_production = {
-                "zoneKey": zone_key,
-                "datetime": target_datetime.replace(hour=hour),
-                "production": production,
-                "source": "npp.gov.in, cea.nic.in",
-            }
+            "zoneKey": zone_key,
+            "datetime": target_datetime.replace(hour=hour),
+            "production": production,
+            "source": "npp.gov.in, cea.nic.in",
+        }
         all_hourly_production.append(hourly_production)
     return all_hourly_production
+
 
 def get_start_of_day(dt: datetime):
     dt_localised = arrow.get(dt).to(IN_NO_TZ).datetime
     dt_start = dt_localised.replace(hour=0, minute=0, second=0, microsecond=0)
     return dt_start
+
 
 # if __name__ == "__main__":
 #     print("fetch_production() -> ")
