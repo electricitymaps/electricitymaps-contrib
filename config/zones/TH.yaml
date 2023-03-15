@@ -57,4 +57,5 @@ parsers:
   consumption: TH.fetch_consumption
   price: TH.fetch_price
   production: TH.fetch_production
+  productionPerModeForecast: TH.fetch_generation_forecast
 timezone: Asia/Bangkok
