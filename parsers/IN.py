@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
-import arrow
 import numpy as np
 import pandas as pd
 import pytz
@@ -18,7 +17,7 @@ from parsers.lib.exceptions import ParserException
 from parsers.lib.validation import validate_consumption
 
 IN_NO_TZ = pytz.timezone("Asia/Kolkata")
-START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17)
+START_DATE_RENEWABLE_DATA = IN_NO_TZ.localize(datetime(2020, 12, 17))
 CONVERSION_MWH_MW = 0.024
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
@@ -171,7 +170,7 @@ def fetch_live_production(
 
     data = {
         "zoneKey": zone_key,
-        "datetime": arrow.now("Asia/Kolkata").datetime,
+        "datetime": IN_NO_TZ.localize(datetime.now()),
         "production": mapped_production,
         "storage": {},
         "source": "meritindia.in",
@@ -352,21 +351,21 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime is None:
-        target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime
-    elif target_datetime < IN_NO_TZ.localize(START_DATE_RENEWABLE_DATA):
-        raise ParserException(
-            parser="IN.py",
-            message=f"{target_datetime}: {zone_key} renewable production data is not available before 2020/12/17, data is not collected prior to this data",
-        )
+        target_datetime = get_start_of_day(dt=datetime.now())
     else:
-        target_datetime = (
-            arrow.get(target_datetime).floor("day").datetime.replace(tzinfo=IN_NO_TZ)
-        )
+        target_datetime = get_start_of_day(dt=target_datetime)
+        if target_datetime < START_DATE_RENEWABLE_DATA:
+            raise ParserException(
+                parser="IN.py",
+                message=f"{target_datetime}: {zone_key} renewable production data is not available before 2020/12/17, data is not collected prior to this data",
+            )
 
-    days_lookback_to_try = [0, 1, 2]
+    all_data_points= []
+    days_lookback_to_try = list(range(1,9))
     for days_lookback in days_lookback_to_try:
+        _target_datetime = target_datetime - timedelta(days=days_lookback)
         try:
-            _target_datetime = target_datetime - timedelta(days=days_lookback)
+
             renewable_production = fetch_cea_production(
                 zone_key=zone_key,
                 session=session,
@@ -377,22 +376,23 @@ def fetch_production(
                 session=session,
                 target_datetime=_target_datetime,
             )
-            break
-        except Exception as e:
-            if days_lookback == days_lookback_to_try[-1]:
-                raise e
-            else:
-                continue
+            production =  {**conventional_production, **renewable_production}
+            all_data_points.append({
+                "zoneKey": zone_key,
+                "datetime": _target_datetime,
+                "production": production,
+                "source": "npp.gov.in, cea.nic.in",
+            })
+        except:
+            logger.warning(f"{zone_key}: production not available for {_target_datetime}")
 
-    data_point = {
-        "zoneKey": zone_key,
-        "datetime": _target_datetime,
-        "production": {**conventional_production, **renewable_production},
-        "source": "npp.gov.in, cea.nic.in",
-    }
-    return data_point
+    return all_data_points
 
+def get_start_of_day(dt: datetime):
+    start_dt = dt.replace(hour=0, minute=0, second=0, microsecond=0)
+    start_dt_localised = start_dt.replace(tzinfo=IN_NO_TZ)
+    return start_dt_localised
 
 if __name__ == "__main__":
     print("fetch_production() -> ")
-    print(fetch_production(zone_key="IN-NO"))
+    print(fetch_production(zone_key="IN-NO", target_datetime=datetime(2023,2,2)))
