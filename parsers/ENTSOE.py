@@ -1605,8 +1605,3 @@ def fetch_wind_solar_forecasts(
         )
 
     return data
-
-
-if __name__ == "__main__":
-    session = Session()
-    print()
