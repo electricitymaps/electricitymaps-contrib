@@ -389,9 +389,9 @@ def fetch_production(
     return all_data_points
 
 def get_start_of_day(dt: datetime):
-    start_dt = dt.replace(hour=0, minute=0, second=0, microsecond=0)
-    start_dt_localised = start_dt.replace(tzinfo=IN_NO_TZ)
-    return start_dt_localised
+    dt_localised = dt.replace(tzinfo=IN_NO_TZ)
+    dt_start = dt_localised.replace(hour=0, minute=0, second=0, microsecond=0)
+    return dt_start
 
 if __name__ == "__main__":
     print("fetch_production() -> ")
