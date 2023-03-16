@@ -351,7 +351,6 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
-    breakpoint()
     if target_datetime is None:
         target_datetime = get_start_of_day(dt=UTC.localize(datetime.now()))
     else:
