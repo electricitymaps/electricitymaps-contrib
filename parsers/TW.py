@@ -27,7 +27,8 @@ def fetch_production(
     response = s.get(url)
     if not response.status_code == 200:
         raise ParserException(
-            f"Query failed with status code {response.status_code} and {response.content}"
+            "TW",
+            f"Query failed with status code {response.status_code} and {response.content}",
         )
     data = response.json()
 
