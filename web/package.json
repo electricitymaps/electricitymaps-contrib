@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "engines": {
@@ -20,8 +20,9 @@
     "generate-zones-config": "ts-node --esm ./scripts/generateZonesConfig.ts",
     "predev": "pnpm run create-generated-files",
     "prebuild": "pnpm run create-generated-files",
-    "cy:components": "cypress open --components -b electron",
+    "cy:component": "cypress open --component -b electron",
     "cy:e2e": "cypress open --e2e -b electron",
+    "cy:test-all": "cypress run && cypress run --component",
     "dev": "vite --open",
     "prepare": "cd .. && husky install web/.husky",
     "preview": "vite preview",
