@@ -1,5 +1,6 @@
-import arrow
 import unittest
+
+import arrow
 
 from parsers.IN import get_start_of_day
 
