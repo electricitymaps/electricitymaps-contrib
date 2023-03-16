@@ -25,6 +25,11 @@ export enum SpatialAggregate {
   ZONE = 'zone',
 }
 
+export enum LeftPanelToggleOptions {
+  ELECTRICITY = 'electricity',
+  EMISSIONS = 'emissions',
+}
+
 // Production/imports-exports mode
 export const modeColor: { [key: string]: any } = {
   solar: '#f27406',

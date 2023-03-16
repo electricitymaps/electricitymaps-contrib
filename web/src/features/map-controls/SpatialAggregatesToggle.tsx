@@ -32,6 +32,7 @@ export default function SpatialAggregatesToggle(): ReactElement {
         currentMode === ToggleOptions.OFF ? options[1].value : options[0].value
       }
       onToggle={onSetCurrentMode}
+      transparentBackground
     />
   );
 }
