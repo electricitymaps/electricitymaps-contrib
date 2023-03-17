@@ -5,7 +5,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { round } from '../geo/utilities.js';
-import type { ZoneConfig, ZonesConfig } from '../geo/types.js';
+import { ZoneConfig, ZonesConfig } from '../geo/types.js';
 
 const BASE_CONFIG_PATH = '../../config';
 
