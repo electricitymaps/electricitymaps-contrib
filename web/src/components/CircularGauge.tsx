@@ -26,7 +26,7 @@ export function CircularGauge({
       <TooltipWrapper
         side="right"
         tooltipContent={tooltipContent}
-        tooltipClassName="bg-white max-w-44"
+        tooltipClassName="max-w-44"
       >
         {/* Div required to ensure Tooltip is rendered in right place */}
         <div data-test-id={testId}>

@@ -41,6 +41,9 @@ export default function MobileTooltipWrapper(
             onClick={() => {
               setIsOpen(false);
             }}
+            onPointerDownOutside={() => {
+              setIsOpen(false);
+            }}
           >
             <div>{tooltipContent}</div>
           </Tooltip.Content>
