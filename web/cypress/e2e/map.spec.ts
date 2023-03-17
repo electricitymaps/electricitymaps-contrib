@@ -3,8 +3,10 @@
 describe('Map', () => {
   it('interacts with the map', () => {
     cy.interceptAPI('v6/state/hourly');
-    cy.visit('/?skip-onboarding=true&lang=en-GB');
+    cy.visit('/?lang=en-GB');
+    cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess(`v6/state/hourly`);
+    cy.get('[data-test-id=loading-overlay]').should('not.exist');
 
     // closes left panel
     cy.get('[data-test-id=left-panel-collapse-button]').click();

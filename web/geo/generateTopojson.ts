@@ -74,7 +74,7 @@ function generateTopojson(
   const currentTopo = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
     console.info(`No changes to ${output}`);
-    return;
+    return { skipped: true };
   }
 
   if (verifyNoUpdates) {
@@ -85,6 +85,7 @@ function generateTopojson(
   }
 
   writeJSON(OUT_PATH, topo);
+  return { skipped: false };
 }
 
 export { generateTopojson };
