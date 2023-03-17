@@ -3,6 +3,7 @@ import { LanguageSelector } from './LanguageSelector';
 it('mounts', () => {
   cy.intercept('/locales/it.json').as('it');
   cy.mount(<LanguageSelector />);
+  cy.get('[data-test-id=language-selector-open-button]').click();
   cy.contains('English');
   cy.contains('Français');
   cy.contains('Deutsch');

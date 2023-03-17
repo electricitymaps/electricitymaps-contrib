@@ -25,9 +25,9 @@ export function LanguageSelector() {
         <MapButton
           icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
           tooltipText={__('tooltips.selectLanguage')}
-          dataTestId="language-selector-open-button"
         />
       }
+      testId={'language-selector-open-button'}
     >
       {languageKeys.map((key) => (
         <button
