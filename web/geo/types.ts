@@ -13,6 +13,25 @@ export interface ZoneConfig {
 export interface ZonesConfig {
   [key: string]: ZoneConfig;
 }
+
+export interface ExchangeConfig {
+  capacity?: [number, number];
+  lonlat: [number, number];
+  rotation: number;
+  [key: string]: any;
+  // The following properties are removed from the generated exchange config
+  // comment?: string;
+  // _comment?: string;
+  // parsers?: {
+  //   exchange?: string;
+  //   exchangeForecast?: string;
+  // };
+}
+
+export interface ExchangesConfig {
+  [key: string]: ExchangeConfig;
+}
+
 export declare type FeatureProperties = {
   zoneName: string;
   countryKey: string;

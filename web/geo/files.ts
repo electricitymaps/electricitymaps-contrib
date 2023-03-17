@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type { ZoneConfig } from './types';
+import { ZoneConfig } from './types';
 
 const sortObjectByKey = (object: ZoneConfig) =>
   Object.keys(object)

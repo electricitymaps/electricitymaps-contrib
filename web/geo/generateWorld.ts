@@ -36,6 +36,12 @@ coordEach(fc, (coord) => {
   coord[1] = round(coord[1], 4);
 });
 
-validateGeometry(fc, config);
-generateTopojson(fc, config);
+const { skipped } = generateTopojson(fc, config);
+
 generateExchangesToIgnore(EXCHANGE_OUT_PATH, zoneConfig);
+
+if (skipped === true) {
+  console.info('No changes to world.json');
+} else {
+  validateGeometry(fc, config);
+}

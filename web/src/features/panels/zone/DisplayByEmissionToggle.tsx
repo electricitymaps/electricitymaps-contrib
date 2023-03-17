@@ -2,7 +2,7 @@ import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
-import { Mode } from 'utils/constants';
+import { Mode, LeftPanelToggleOptions } from 'utils/constants';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
 export default function EmissionToggle(): ReactElement {
@@ -12,32 +12,42 @@ export default function EmissionToggle(): ReactElement {
   // TODO: perhaps togglebutton should accept boolean values
   const options = [
     {
-      value: false.toString(),
+      value: LeftPanelToggleOptions.ELECTRICITY,
       translationKey:
         mixMode === Mode.PRODUCTION
           ? 'country-panel.electricityproduction'
           : 'country-panel.electricityconsumption',
     },
-    { value: true.toString(), translationKey: 'country-panel.emissions' },
+    {
+      value: LeftPanelToggleOptions.EMISSIONS,
+      translationKey: 'country-panel.emissions',
+    },
   ];
 
-  const onSetCurrentMode = () => {
+  const onSetCurrentMode = (option: string) => {
     if (displayByEmissions) {
       trackEvent('PanelProductionButton Clicked');
     } else {
       trackEvent('PanelEmissionButton Clicked');
     }
-
-    setDisplayByEmissions(!displayByEmissions);
+    if (
+      (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
+      (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)
+    ) {
+      setDisplayByEmissions(!displayByEmissions);
+    }
   };
 
   return (
     <div className="px-4 pt-3 xl:px-10">
       <ToggleButton
         options={options}
-        selectedOption={displayByEmissions.toString()}
+        selectedOption={
+          displayByEmissions
+            ? LeftPanelToggleOptions.EMISSIONS
+            : LeftPanelToggleOptions.ELECTRICITY
+        }
         onToggle={onSetCurrentMode}
-        fontSize="text-sm"
       />
     </div>
   );
