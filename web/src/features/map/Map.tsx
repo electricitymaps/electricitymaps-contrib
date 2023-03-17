@@ -58,7 +58,7 @@ export default function MapPage(): ReactElement {
         'line-color': [
           'case',
           ['boolean', ['feature-state', 'selected'], false],
-          'gray',
+          'white',
           theme.strokeColor,
         ],
         // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer

@@ -9,7 +9,7 @@ import {
   ZoneKey,
 } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
-import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json'; // TODO: do something globally
+import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json';
 import { getProductionCo2Intensity } from 'utils/helpers';
 
 const LABEL_MAX_WIDTH = 102;

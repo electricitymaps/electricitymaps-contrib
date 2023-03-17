@@ -18,7 +18,7 @@ import {
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
-import LanguageSelector from './LanguageSelector';
+import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 import ThemeSelector from './ThemeSelector';

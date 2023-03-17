@@ -4518,7 +4518,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-alpha.47
       '@storybook/csf-tools': 7.0.0-alpha.47
       '@storybook/docs-tools': 7.0.0-alpha.47_yalvw3r2waubxycyb7k7qsruca
-      '@storybook/mdx2-csf': 1.0.0-next.5
+      '@storybook/mdx2-csf': 1.0.0-next.6
       '@storybook/node-logger': 7.0.0-alpha.47
       '@storybook/postinstall': 7.0.0-alpha.47
       '@storybook/preview-web': 7.0.0-alpha.47_biqbaboplfbrettd7655fr4n2y
@@ -4557,7 +4557,7 @@ packages:
       '@storybook/components': 7.0.0-alpha.54_biqbaboplfbrettd7655fr4n2y
       '@storybook/csf-plugin': 7.0.0-alpha.54
       '@storybook/csf-tools': 7.0.0-alpha.54
-      '@storybook/mdx2-csf': 1.0.0-next.5
+      '@storybook/mdx2-csf': 1.0.0-next.6
       '@storybook/node-logger': 7.0.0-alpha.54
       '@storybook/postinstall': 7.0.0-alpha.54
       '@storybook/preview-api': 7.0.0-alpha.54
@@ -5064,7 +5064,7 @@ packages:
       '@storybook/client-api': 7.0.0-alpha.54
       '@storybook/client-logger': 7.0.0-alpha.54
       '@storybook/core-common': 7.0.0-alpha.54_yalvw3r2waubxycyb7k7qsruca
-      '@storybook/mdx2-csf': 1.0.0-next.5
+      '@storybook/mdx2-csf': 1.0.0-next.6
       '@storybook/node-logger': 7.0.0-alpha.54
       '@storybook/preview': 7.0.0-alpha.54
       '@storybook/preview-api': 7.0.0-alpha.54
@@ -5582,8 +5582,8 @@ packages:
     resolution: {integrity: sha512-lMRKO083NQSSvO/FgOETzn0sf6eZ5YPirvp1+KD+sWkwzPTib8p+g14fbbH/88MV1GpMaXIHP/FD/pEc1jf4Cw==}
     dev: true
 
-  /@storybook/mdx2-csf/1.0.0-next.5:
-    resolution: {integrity: sha512-02w0sgGZaK1agT050yCVhJ+o4rLHANWvLKWjQjeAsYbjneLC5ITt+3GDB4jRiWwJboZ8dHW1fGSK1Vg5fA34aQ==}
+  /@storybook/mdx2-csf/1.0.0-next.6:
+    resolution: {integrity: sha512-m6plojocU/rmrqWd26yvm8D+oHZPZ6PtSSFmZIgpNDEPVmc8s4fBD6LXOAB5MiPI5f8KLUr2HVhOMZ97o5pDTw==}
     dev: true
 
   /@storybook/node-logger/6.5.13:

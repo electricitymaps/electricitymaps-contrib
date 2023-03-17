@@ -7,7 +7,7 @@ import { HiLanguage } from 'react-icons/hi2';
 
 type LanguageNamesKey = keyof typeof languageNames;
 
-export default function LanguageSelector() {
+export function LanguageSelector() {
   const { __, i18n } = useTranslation();
   const languageKeys = Object.keys(languageNames) as Array<LanguageNamesKey>;
   const currentLanguageKey = i18n.language as LanguageNamesKey;

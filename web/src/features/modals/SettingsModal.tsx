@@ -1,7 +1,7 @@
 import { Button } from 'components/Button';
 import Modal from 'components/Modal';
 import ConsumptionProductionToggle from 'features/map-controls/ConsumptionProductionToggle';
-import LanguageSelector from 'features/map-controls/LanguageSelector';
+import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
 import { useAtom } from 'jotai';
@@ -90,10 +90,9 @@ export function SettingsModalContent() {
         {__('tooltips.selectLanguage')}
       </Button>
       {isLanguageSelectorOpen && (
-        <LanguageSelector
-          className="top-[185px] left-auto right-auto z-10 mt-4 w-60 overflow-x-hidden shadow-lg sm:top-[200px]"
-          setLanguageSelectorOpen={setIsLanguageSelectorOpen}
-        />
+        <div className="top-[185px] left-auto right-auto z-10 mt-4 w-60 overflow-x-hidden shadow-lg sm:top-[200px]">
+          <LanguageSelector />
+        </div>
       )}
 
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />
