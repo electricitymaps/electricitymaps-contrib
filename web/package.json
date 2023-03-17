@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.15.0",
+  "version": "1.14.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "engines": {
@@ -26,19 +26,16 @@
     "dev": "vite --open",
     "prepare": "cd .. && husky install web/.husky",
     "preview": "vite preview",
-    "preview:test": "start-server-and-test preview http://localhost:4173",
     "pretest": "pnpm run create-generated-files",
     "test": "vitest",
     "pretest:ci": "pnpm run create-generated-files",
     "test:ci": "vitest run",
     "format": "prettier -uw --cache --ignore-path ../.prettierignore .",
-    "run-tsc": "tsc",
-    "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
-    "lint": "run-p run-tsc run-eslint",
-    "verify:ci": "VERIFY_NO_UPDATES=1 pnpm generate-world && pnpm generate-zones-config",
-    "validate": "run-p lint test:ci",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "typecheck": "tsc",
+    "lint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
+    "verify:ci": "VERIFY_NO_UPDATES=1 pnpm run create-generated-files",
+    "validate": "run-p typecheck lint format test:ci",
+    "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
     "@capacitor/app": "^4.1.1",
@@ -172,7 +169,6 @@
     "prettier": "2.8.4",
     "prettier-plugin-tailwindcss": "0.1.13",
     "readline-sync": "^1.4.10",
-    "start-server-and-test": "1.14.0",
     "storybook": "^7.0.0-alpha.47",
     "tailwindcss": "3.1.8",
     "ts-node": "^10.9.1",
