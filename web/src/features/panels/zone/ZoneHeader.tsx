@@ -3,6 +3,7 @@ import { CircularGauge } from 'components/CircularGauge';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { Mode } from 'utils/constants';
+import { getFossilFuelPercentage } from 'utils/helpers';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
@@ -46,8 +47,11 @@ export function ZoneHeader({
   const isConsumption = currentMode === Mode.CONSUMPTION;
   const intensity = isConsumption ? co2intensity : co2intensityProduction;
   const renewable = isConsumption ? renewableRatio : renewableRatioProduction;
-  const fossilFuel =
-    (isConsumption ? fossilFuelRatio : fossilFuelRatioProduction) ?? null;
+  const fossilFuelPercentage = getFossilFuelPercentage(
+    isConsumption,
+    fossilFuelRatio,
+    fossilFuelRatioProduction
+  );
 
   return (
     <div className="mt-1 grid w-full gap-y-5 sm:pr-4">
@@ -64,7 +68,7 @@ export function ZoneHeader({
         />
         <CircularGauge
           name={__('country-panel.lowcarbon')}
-          ratio={fossilFuel ? 1 - fossilFuel : Number.NaN}
+          ratio={fossilFuelPercentage}
           tooltipContent={<LowCarbonTooltip />}
           testId="zone-header-lowcarbon-gauge"
         />
