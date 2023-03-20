@@ -3,15 +3,17 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const sortObjectByKey = (object: any) =>
+import { ZoneConfig } from './types';
+
+const sortObjectByKey = (object: ZoneConfig) =>
   Object.keys(object)
     .sort()
     .reduce((result, key) => {
       result[key] = object[key];
       return result;
-    }, {});
+    }, {} as { [key: string]: ZoneConfig });
 
-const saveZoneYaml = (zoneKey: string, zone: any) => {
+const saveZoneYaml = (zoneKey: string, zone: ZoneConfig) => {
   const zonePath = path.resolve(
     fileURLToPath(new URL(`../../config/zones/${zoneKey}.yaml`, import.meta.url))
   );

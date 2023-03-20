@@ -18,7 +18,7 @@ prepare:
   RUN pnpm install --frozen-lockfile
   COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
-  COPY --dir config geo public src ./
+  COPY --dir geo public src ./
 
 test:
   FROM +prepare
@@ -29,6 +29,7 @@ test:
 
 build:
   FROM +prepare
+  RUN pnpm run create-generated-files
   RUN pnpm version minor
   RUN --secret SENTRY_AUTH_TOKEN=+secrets/SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
 
