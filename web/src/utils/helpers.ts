@@ -58,9 +58,9 @@ export function createToWithState(to: string) {
  */
 export function getFossilFuelPercentage(
   isConsumption: boolean,
-  fossilFuelRatio: number | undefined,
-  fossilFuelRatioProduction: number | undefined
-) {
+  fossilFuelRatio: number | null | undefined,
+  fossilFuelRatioProduction: number | null | undefined
+): number {
   const fossilFuelRatioToUse = isConsumption
     ? fossilFuelRatio
     : fossilFuelRatioProduction;
