@@ -18,7 +18,7 @@ prepare:
   RUN pnpm install --frozen-lockfile
   COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
-  COPY --dir config geo public src ./
+  COPY --dir geo public src ./
 
 test:
   FROM +prepare
