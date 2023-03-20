@@ -3,9 +3,10 @@ describe('Ranking Panel', () => {
   it('interacts with details', () => {
     cy.interceptAPI('v6/state/hourly');
     cy.interceptAPI('v6/details/hourly/DK-DK2');
-    cy.visit('/?skip-onboarding=true&lang=en-GB');
+    cy.visit('/?lang=en-GB');
+    cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess(`v6/state/hourly`);
-
+    cy.get('[data-test-id=loading-overlay]').should('not.exist');
     // See more than X countries on the list by default
     cy.get('[data-test-id=zone-list-link]').should('have.length.above', 3);
 
@@ -16,7 +17,7 @@ describe('Ranking Panel', () => {
     // Click a country and return the the ranking panel
     cy.get('[data-test-id=zone-list-link]').click();
     cy.get('[data-test-id=zone-name]').should('exist');
-    cy.get('[data-test-id=left-panel-back-button]').click({ force: true });
+    cy.get('[data-test-id=left-panel-back-button]').click();
 
     // TODO: Ideally the search result should either be reset or the typed value stay in the input
 
