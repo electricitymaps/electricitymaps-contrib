@@ -58,7 +58,7 @@ export function InfoModalContent() {
         <Button
           background="#1d9bf0"
           textColor="#fff"
-          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymaps.com"
+          href="https://twitter.com/intent/tweet?url=https://app.electricitymaps.com"
           icon={<FaTwitter size={ICON_SIZE} />}
         >
           {__('info-modal.twitter-button')}
