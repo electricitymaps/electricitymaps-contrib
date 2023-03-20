@@ -31,5 +31,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Generate config files
         run: pnpm create-generated-files
-      - name: Run TypeScript typechecking
-        run: pnpm run run-tsc
+      - name: Run TypeScript typechecking for app
+        run: pnpm run typecheck
+      - name: Run TypeScript typechecking for scripts
+        run: pnpm run typecheck --project tsconfig.node.json

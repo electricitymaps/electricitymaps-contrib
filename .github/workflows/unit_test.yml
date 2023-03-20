@@ -29,8 +29,8 @@ jobs:
       - name: Install web dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
-      - name: Generate zone config
+      - name: Generate config files
         if: steps.cache.outputs.cache-hit == 'true'
-        run: pnpm generate-zones-config
+        run: pnpm create-generated-files
       - name: Run test
         run: pnpm run test:ci
