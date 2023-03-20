@@ -9,17 +9,14 @@ it('can change language', () => {
   cy.contains('zone');
   cy.contains('production');
   cy.contains('consumption');
-  cy.get('[data-test-id=language-selector-open-button]').click();
   cy.contains('Deutsch').click();
   cy.contains('Produktion');
   cy.contains('Verbrauch');
-  cy.get('[data-test-id=language-selector-open-button]').click();
   cy.contains('Svenska').click();
   cy.contains('produktion');
   cy.contains('konsumtion');
   cy.contains('land');
   cy.contains('zon');
-  cy.get('[data-test-id=language-selector-open-button]').click();
   cy.contains('English').click();
 });
 
@@ -33,7 +30,6 @@ it('can change theme', () => {
     .should(() => {
       expect(localStorage.getItem('theme')).to.eq('"light"');
     });
-  cy.get('[data-test-id=theme-selector-open-button]').click();
   cy.contains('Dark')
     .click()
     .should(() => {

@@ -15,7 +15,9 @@ export default function MapOptionSelector({
 
   return (
     <Popover.Root>
-      <Popover.Trigger data-test-id={testId}>{trigger}</Popover.Trigger>
+      <Popover.Trigger className="pointer-events-auto" data-test-id={testId}>
+        {trigger}
+      </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content
           className="pointer-events-auto max-h-[190px] w-[120px] overflow-auto rounded bg-white dark:bg-gray-900"
