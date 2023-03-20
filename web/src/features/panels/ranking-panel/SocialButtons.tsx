@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter } from 'react-icons/fa';
 const SOCIAL_TYPES = {
   twitter: {
     icon: <FaTwitter size={13} />,
-    url: 'https://twitter.com/intent/tweet?url=https://www.app.electricitymaps.com',
+    url: 'https://twitter.com/intent/tweet?url=https://app.electricitymaps.com',
     classes: 'bg-[#1d9bf0] hover:bg-[#0c7abf]',
     text: 'Tweet',
   },
