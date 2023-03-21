@@ -303,18 +303,33 @@ describe('getDataBlockPositions', () => {
 
 describe('getExchangesToDisplay', () => {
   it('shows aggregated exchanges only when required', () => {
-    const ZoneExchanges = ['AT', 'BE', 'NO', 'NO-NO2'];
-    const result = getExchangesToDisplay('DE', true, ZoneExchanges);
+    const ZoneStates = {
+      date1: {
+        ...zoneDetailsData,
+        exchange: { AT: -934, BE: 934, NO: -934, 'NO-NO2': -500 },
+      },
+    };
+    const result = getExchangesToDisplay('DE', true, ZoneStates);
     expect(result).toEqual(['AT', 'BE', 'NO']);
   });
   it('shows non-aggregated exchanges only when required', () => {
-    const ZoneExchanges = ['AT', 'BE', 'NO', 'NO-NO2'];
-    const result = getExchangesToDisplay('DE', false, ZoneExchanges);
+    const ZoneStates = {
+      date1: {
+        ...zoneDetailsData,
+        exchange: { AT: -934, BE: 934, NO: -934, 'NO-NO2': -500 },
+      },
+    };
+    const result = getExchangesToDisplay('DE', false, ZoneStates);
     expect(result).toEqual(['AT', 'BE', 'NO-NO2']);
   });
   it('handles empty exchange', () => {
-    const ZoneExchanges = [] as string[];
-    const result = getExchangesToDisplay('DE', false, ZoneExchanges);
+    const ZoneStates = {
+      date1: {
+        ...zoneDetailsData,
+        exchange: {},
+      },
+    };
+    const result = getExchangesToDisplay('DE', false, ZoneStates);
     expect(result).toEqual([]);
   });
 });

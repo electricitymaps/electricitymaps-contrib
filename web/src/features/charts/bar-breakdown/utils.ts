@@ -162,7 +162,9 @@ export const getExchangeData = (
 export const getExchangesToDisplay = (
   currentZoneKey: ZoneKey,
   isAggregatedToggled: boolean,
-  exchangeZoneKeysForCurrentZone: ZoneKey[]
+  zoneStates: {
+    [key: string]: ZoneDetail;
+  }
 ): ZoneKey[] => {
   const exchangeKeysToRemove = isAggregatedToggled
     ? exchangesToExclude.exchangesToExcludeCountryView
@@ -178,7 +180,16 @@ export const getExchangesToDisplay = (
     })
   );
 
-  return exchangeZoneKeysForCurrentZone.filter(
+  // get all exchanges for the given period
+  const allExchangeKeys = new Set<string>();
+  for (const state of Object.values(zoneStates)) {
+    for (const key of Object.keys(state.exchange)) {
+      allExchangeKeys.add(key);
+    }
+  }
+  const uniqueExchangeKeys = [...allExchangeKeys];
+
+  return uniqueExchangeKeys.filter(
     (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
   );
 };
