@@ -42,10 +42,10 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
           <MapButton
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
             tooltipText={__('tooltips.changeTheme')}
-            dataTestId="theme-selector-open-button"
           />
         )
       }
+      testId="theme-selector-open-button"
       isMobile={isMobile}
     >
       {Object.values(ThemeOptions).map((option) => (
