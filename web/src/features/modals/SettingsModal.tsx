@@ -17,6 +17,7 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 import { isSettingsModalOpenAtom } from './modalAtoms';
+import MobileLanguageSelector from './MobileLanguageSelector';
 
 function WeatherToggleButton({
   allowed,
@@ -90,9 +91,10 @@ export function SettingsModalContent() {
         {__('tooltips.selectLanguage')}
       </Button>
       {isLanguageSelectorOpen && (
-        <div className="top-[185px] left-auto right-auto z-10 mt-4 w-60 overflow-x-hidden shadow-lg sm:top-[200px]">
-          <LanguageSelector />
-        </div>
+        <MobileLanguageSelector
+          className="top-[185px] left-auto right-auto z-10 mt-4 w-60 overflow-x-hidden shadow-lg sm:top-[200px]"
+          setLanguageSelectorOpen={setIsLanguageSelectorOpen}
+        />
       )}
 
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />
