@@ -42,6 +42,9 @@
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
     "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",
     "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href=\"%s\" target=\"_blank\">Datenquellen hinzufügst</a>.",
+    "disabledPriceReasons": {
+      "licensing": "Aufgrund von Lizenzbedingungen sind für dieses Gebiet keine Strompreise verfügbar"
+    },
     "now": "Jetzt",
     "electricity": "Elektrizität",
     "dataIsDelayed": "Die Daten in dieser Region können bis zu %s Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
