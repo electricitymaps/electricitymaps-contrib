@@ -43,6 +43,7 @@ function MobileMapControls() {
         aria-label="open settings modal"
         onClick={handleOpenSettingsModal}
         icon={<HiCog6Tooth size={20} />}
+        data-test-id="settings-button-mobile"
       />
     </div>
   );
