@@ -33,6 +33,7 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
       trigger={
         isMobile ? (
           <Button
+            renderAsDiv
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
             className="my-0"
           >
