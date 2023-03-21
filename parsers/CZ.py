@@ -63,6 +63,13 @@ def make_request(session, payload, zone_key):
     return res
 
 
+def get_target_datetime(dt: Optional[datetime]) -> datetime:
+    if dt is None:
+        now = datetime.now()
+        dt = (now - timedelta(minutes=now.minute % 15)).replace(second=0, microsecond=0)
+    return dt
+
+
 def __get_exchange_data(
     zone_key1: str = "CZ",
     zone_key2: str = "DE",
@@ -72,8 +79,7 @@ def __get_exchange_data(
     mode: str = "Actual",
 ) -> Union[List[dict], dict]:
 
-    if not target_datetime:
-        target_datetime = datetime.now().replace(minute=0, second=0, microsecond=0)
+    target_datetime = get_target_datetime(target_datetime)
     from_datetime = target_datetime - timedelta(hours=48)
 
     payload = """<?xml version="1.0" encoding="utf-8"?>
@@ -137,8 +143,8 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
-    if not target_datetime:
-        target_datetime = datetime.now().replace(minute=0, second=0, microsecond=0)
+
+    target_datetime = get_target_datetime(target_datetime)
     from_datetime = target_datetime - timedelta(hours=48)
 
     payload = """<?xml version="1.0" encoding="utf-8"?>
