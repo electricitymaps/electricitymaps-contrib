@@ -30,8 +30,8 @@ export function Button({
   ...restProps
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
-  const ButtonOrDiv = renderAsDiv ? 'div' : 'button';
-  const As = renderAsLink ? 'a' : ButtonOrDiv;
+  const buttonOrDiv = renderAsDiv ? 'div' : 'button';
+  const As = renderAsLink ? 'a' : buttonOrDiv;
 
   const isIconOnly = !children && Boolean(icon);
 
