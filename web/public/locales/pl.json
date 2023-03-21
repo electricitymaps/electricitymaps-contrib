@@ -114,7 +114,7 @@
     "hideWindLayer": "Schowaj wiatr",
     "showSolarLayer": "Pokaż nasłonecznienie",
     "hideSolarLayer": "Schowaj nasłonecznienie",
-    "toggleDarkMode": "Włącz tryb nocny",
+    "changeTheme": "Włącz tryb nocny",
     "noParserInfo": "Brak danych",
     "temporaryDataOutage": "Tymczasowy brak danych",
     "production": "produkcja",

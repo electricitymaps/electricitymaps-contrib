@@ -121,7 +121,7 @@
     "showSolarLayer": "Show solar layer",
     "hideSolarLayer": "Hide solar layer",
     "weatherDisabled": "Weather data is not available at this time",
-    "toggleDarkMode": "Toggle dark-mode",
+    "changeTheme": "Change theme",
     "noParserInfo": "No data available",
     "temporaryDataOutage": "Live data temporarily unavailable",
     "production": "production",
@@ -136,6 +136,11 @@
   "aggregateButtons": {
     "country": "country",
     "zone": "zone"
+  },
+  "themeOptions": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
   },
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",

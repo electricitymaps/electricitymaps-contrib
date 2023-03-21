@@ -117,7 +117,7 @@
     "hideWindLayer": "Cacher le calque de vent",
     "showSolarLayer": "Voir le calque d’ensoleillement",
     "hideSolarLayer": "Cacher le calque d’ensoleillement",
-    "toggleDarkMode": "Activer ou désactiver le thème sombre",
+    "changeTheme": "Changer de thème",
     "noParserInfo": "Pas de données disponible",
     "temporaryDataOutage": "Données temporairement indisponibles",
     "production": "production",
@@ -132,6 +132,11 @@
     "zoomOut": "Dézoomer",
     "weatherDisabled": "Les données météo ne sont pas disponible actuellement",
     "aggregateInfo": "Visualiser la donnée par zone ou aggrégée par pays"
+  },
+  "themeOptions": {
+    "dark": "Sombre",
+    "light": "Clair",
+    "system": "Système"
   },
   "misc": {
     "maintitle": "Émissions CO₂ de la consommation électrique en temps réel",

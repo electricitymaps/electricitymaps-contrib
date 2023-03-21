@@ -107,7 +107,7 @@
     "hideWindLayer": "Skjul vind",
     "showSolarLayer": "Vis sol",
     "hideSolarLayer": "Skjul sol",
-    "toggleDarkMode": "Skru på nattmodus",
+    "changeTheme": "Skru på nattmodus",
     "noParserInfo": "Ingen data tilgengelig",
     "temporaryDataOutage": "Sanntidsdata er midlertidig utilgjengelig",
     "production": "produksjon",

@@ -95,7 +95,7 @@
     "hideWindLayer": "Sembunyikan lapisan angin",
     "showSolarLayer": "Tampilkan lapisan matahari",
     "hideSolarLayer": "Sembunyikan lapisan matahari",
-    "toggleDarkMode": "Aktifkan mode-gelap",
+    "changeTheme": "Aktifkan mode-gelap",
     "noParserInfo": "Data tidak tersedia",
     "temporaryDataOutage": "Data belum tersedia",
     "production": "produksi",
