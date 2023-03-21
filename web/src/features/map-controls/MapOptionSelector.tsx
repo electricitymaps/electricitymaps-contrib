@@ -19,8 +19,11 @@ export default function MapOptionSelector({
   const toggleTooltip = () => {
     setIsOpen(!isOpen);
   };
+  // if (!trigger) {
+  //   return null;
+  // }
   return (
-    <Root open={isOpen} onOpenChange={toggleTooltip} modal={false}>
+    <Root open={isOpen} modal={false}>
       <Trigger
         className={isOpen ? 'pointer-events-none' : 'pointer-events-auto'}
         data-test-id={testId}
@@ -30,10 +33,11 @@ export default function MapOptionSelector({
       </Trigger>
       <Portal>
         <Content
-          className="pointer-events-auto z-30 max-h-[190px] w-[120px] overflow-auto rounded bg-white dark:bg-gray-900"
+          className="pointer-events-auto z-40 max-h-[190px] w-[120px] overflow-auto rounded bg-white dark:bg-gray-900"
           sideOffset={5}
           side={isMobile ? 'bottom' : 'left'}
           onClick={toggleTooltip}
+          onPointerDownOutside={toggleTooltip}
         >
           {children}
           <Arrow className="fill-white dark:fill-gray-900" />
