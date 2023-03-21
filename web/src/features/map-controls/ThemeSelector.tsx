@@ -7,6 +7,7 @@ import { themeAtom } from 'utils/state/atoms';
 
 import MapButton from './MapButton';
 import MapOptionSelector from './MapOptionSelector';
+import { Button } from 'components/Button';
 
 const ICONS = {
   light: <HiOutlineSun size={20} />,
@@ -19,7 +20,7 @@ const ICONS = {
   system: <HiOutlineComputerDesktop size={18} />,
 };
 
-export default function ThemeSelector() {
+export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
   const { __ } = useTranslation();
   const [selectedTheme, setSelectedTheme] = useAtom(themeAtom);
 
@@ -30,12 +31,22 @@ export default function ThemeSelector() {
   return (
     <MapOptionSelector
       trigger={
-        <MapButton
-          icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
-          tooltipText={__('tooltips.changeTheme')}
-          dataTestId="theme-selector-open-button"
-        />
+        isMobile ? (
+          <Button
+            icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
+            className="my-0"
+          >
+            {__('tooltips.changeTheme')}
+          </Button>
+        ) : (
+          <MapButton
+            icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
+            tooltipText={__('tooltips.changeTheme')}
+            dataTestId="theme-selector-open-button"
+          />
+        )
       }
+      isMobile={isMobile}
     >
       {Object.values(ThemeOptions).map((option) => (
         <button

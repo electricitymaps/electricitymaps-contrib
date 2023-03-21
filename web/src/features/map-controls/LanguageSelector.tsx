@@ -4,10 +4,11 @@ import { useTranslation } from 'translation/translation';
 import MapOptionSelector from './MapOptionSelector';
 import MapButton from './MapButton';
 import { HiLanguage } from 'react-icons/hi2';
+import { Button } from 'components/Button';
 
 type LanguageNamesKey = keyof typeof languageNames;
 
-export function LanguageSelector() {
+export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
   const { __, i18n } = useTranslation();
   const languageKeys = Object.keys(languageNames) as Array<LanguageNamesKey>;
   const currentLanguageKey = i18n.language as LanguageNamesKey;
@@ -22,12 +23,19 @@ export function LanguageSelector() {
   return (
     <MapOptionSelector
       trigger={
-        <MapButton
-          icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
-          tooltipText={__('tooltips.selectLanguage')}
-        />
+        isMobile ? (
+          <Button icon={<HiLanguage size={21} />} className="mb-0">
+            {__('tooltips.selectLanguage')}
+          </Button>
+        ) : (
+          <MapButton
+            icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
+            tooltipText={__('tooltips.selectLanguage')}
+          />
+        )
       }
       testId={'language-selector-open-button'}
+      isMobile={isMobile}
     >
       {languageKeys.map((key) => (
         <button
