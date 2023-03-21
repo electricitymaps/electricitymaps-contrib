@@ -19,9 +19,6 @@ export default function MapOptionSelector({
   const toggleTooltip = () => {
     setIsOpen(!isOpen);
   };
-  // if (!trigger) {
-  //   return null;
-  // }
   return (
     <Root open={isOpen} modal={false}>
       <Trigger
