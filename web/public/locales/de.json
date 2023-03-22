@@ -125,6 +125,10 @@
     "zoomOut": "Raus zoomen",
     "aggregateInfo": "Wechsel zwischen spezifischer Zonenansicht und aggregierter Länderansicht"
   },
+  "aggregateButtons": {
+    "country": "Land",
+    "zone": "Gebiet"
+  },
   "themeOptions": {
     "dark": "Dunkel",
     "light": "Hell",
