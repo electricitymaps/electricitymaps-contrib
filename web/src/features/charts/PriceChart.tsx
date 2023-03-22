@@ -29,11 +29,13 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     priceDisabledReason,
   } = data;
 
-  // Randomize price values to ensure the chart is not empty
-  chartData = chartData.map((layer) => ({
-    ...layer,
-    layerData: { ...layer.layerData, price: Math.random() },
-  }));
+  if (isPriceDisabled) {
+    // Randomize price values to ensure the chart is not empty
+    chartData = chartData.map((layer) => ({
+      ...layer,
+      layerData: { ...layer.layerData, price: Math.random() },
+    }));
+  }
 
   if (!chartData[0]?.layerData?.price) {
     return null;
