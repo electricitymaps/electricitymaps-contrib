@@ -3,6 +3,7 @@ import {
   getProductionData,
   getElectricityProductionValue,
   ExchangeDataType,
+  getExchangesToDisplay,
 } from './utils';
 
 const zoneDetailsData = {
@@ -297,5 +298,38 @@ describe('getDataBlockPositions', () => {
       productionY: 22,
       productionHeight: 240,
     });
+  });
+});
+
+describe('getExchangesToDisplay', () => {
+  it('shows aggregated exchanges only when required', () => {
+    const ZoneStates = {
+      date1: {
+        ...zoneDetailsData,
+        exchange: { AT: -934, BE: 934, NO: -934, 'NO-NO2': -500 },
+      },
+    };
+    const result = getExchangesToDisplay('DE', true, ZoneStates);
+    expect(result).toEqual(['AT', 'BE', 'NO']);
+  });
+  it('shows non-aggregated exchanges only when required', () => {
+    const ZoneStates = {
+      date1: {
+        ...zoneDetailsData,
+        exchange: { AT: -934, BE: 934, NO: -934, 'NO-NO2': -500 },
+      },
+    };
+    const result = getExchangesToDisplay('DE', false, ZoneStates);
+    expect(result).toEqual(['AT', 'BE', 'NO-NO2']);
+  });
+  it('handles empty exchange', () => {
+    const ZoneStates = {
+      date1: {
+        ...zoneDetailsData,
+        exchange: {},
+      },
+    };
+    const result = getExchangesToDisplay('DE', false, ZoneStates);
+    expect(result).toEqual([]);
   });
 });
