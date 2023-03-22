@@ -49,7 +49,7 @@ export default function useBreakdownChartData() {
   const exchangesForSelectedAggregate = getExchangesToDisplay(
     zoneId,
     isAggregateToggled,
-    zoneData?.zoneStates
+    zoneData.zoneStates
   );
 
   const { valueFactor, valueAxisLabel } = getValuesInfo(
