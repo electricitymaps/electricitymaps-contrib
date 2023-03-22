@@ -49,3 +49,34 @@ export function getProductionCo2Intensity(
 export function createToWithState(to: string) {
   return `${to}${location.search}${location.hash}`;
 }
+
+/**
+ * Returns the fossil fuel percentage of a zone
+ * @param isConsumption - Whether the percentage is for consumption or production
+ * @param fossilFuelRatio - The fossil fuel ratio for consumption
+ * @param fossilFuelRatioProduction - The fossil fuel ratio for production
+ */
+export function getFossilFuelPercentage(
+  isConsumption: boolean,
+  fossilFuelRatio: number | null | undefined,
+  fossilFuelRatioProduction: number | null | undefined
+): number {
+  const fossilFuelRatioToUse = isConsumption
+    ? fossilFuelRatio
+    : fossilFuelRatioProduction;
+  switch (fossilFuelRatioToUse) {
+    case 0: {
+      return 1;
+    }
+    case 1: {
+      return 0;
+    }
+    case null:
+    case undefined: {
+      return Number.NaN;
+    }
+    default: {
+      return 1 - fossilFuelRatioToUse;
+    }
+  }
+}

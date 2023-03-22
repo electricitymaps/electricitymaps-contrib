@@ -69,7 +69,6 @@ export function OnboardingModal() {
   const [searchParameters] = useSearchParams();
   const skipOnboarding = searchParameters.get('skip-onboarding') === 'true';
   const visible = !hasOnboardingBeenSeen && !skipOnboarding;
-
   const handleDismiss = () => {
     setHasOnboardingBeenSeen(true);
   };

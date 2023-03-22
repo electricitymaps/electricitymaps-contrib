@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { mergeZones } from '../scripts/generateZonesConfig.js';
 import { generateAggregates } from './generateAggregates.js';
 import { generateExchangesToIgnore } from './generateExchangesToExclude.js';
-import { generateTopojson, getTopojsonChanges } from './generateTopojson.js';
+import { generateTopojson } from './generateTopojson.js';
 import { getJSON, round } from './utilities.js';
 import { validateGeometry } from './validate.js';
 import { WorldFeatureCollection } from './types.js';
@@ -39,10 +39,12 @@ coordEach(fc, (coord) => {
   coord[1] = round(coord[1], 4);
 });
 
-// Only validate geometries if there are any changes to them
-const hasChanges = getTopojsonChanges(fc, config.OUT_PATH);
-if (hasChanges) {
+const { skipped } = generateTopojson(fc, config);
+
+generateExchangesToIgnore(EXCHANGE_OUT_PATH, zoneConfig);
+
+if (skipped === true) {
+  console.info('No changes to world.json');
+} else {
   validateGeometry(fc, config);
 }
-generateTopojson(fc, config);
-generateExchangesToIgnore(EXCHANGE_OUT_PATH, zoneConfig);

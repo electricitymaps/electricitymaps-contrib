@@ -5,7 +5,12 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { round } from '../geo/utilities.js';
-import type { ZoneConfig, ZonesConfig } from '../geo/types.js';
+import {
+  ZoneConfig,
+  ZonesConfig,
+  ExchangesConfig,
+  ExchangeConfig,
+} from '../geo/types.js';
 
 const BASE_CONFIG_PATH = '../../config';
 
@@ -59,7 +64,7 @@ const mergeZones = (): ZonesConfig => {
   return zones;
 };
 
-const mergeExchanges = () => {
+const mergeExchanges = (): ExchangesConfig => {
   const basePath = path.resolve(
     fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/exchanges'), import.meta.url))
   );
@@ -70,9 +75,10 @@ const mergeExchanges = () => {
   const UNNECESSARY_EXCHANGE_FIELDS = new Set(['comment', '_comment', 'parsers']);
 
   const exchanges = filesWithDirectory.reduce((exchanges, filepath) => {
-    const exchangeConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const exchangeConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ExchangeConfig;
     exchangeConfig.lonlat[0] = round(exchangeConfig.lonlat[0], 3);
     exchangeConfig.lonlat[1] = round(exchangeConfig.lonlat[1], 3);
+
     for (const key of Object.keys(exchangeConfig)) {
       if (UNNECESSARY_EXCHANGE_FIELDS.has(key)) {
         delete exchangeConfig[key];
@@ -125,7 +131,7 @@ const mergeRatioParameters = () => {
   return ratioParameters;
 };
 
-const writeJSON = (fileName: string, object: unknown) => {
+const writeJSON = (fileName: string, object: ZonesConfig | ExchangesConfig) => {
   const directory = path.resolve(path.dirname(fileName));
 
   if (!fs.existsSync(directory)) {

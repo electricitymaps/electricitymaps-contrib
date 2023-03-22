@@ -98,7 +98,7 @@
     "hideWindLayer": "Skryj větrnou vrstvu",
     "showSolarLayer": "Zobraz solární vrstvu",
     "hideSolarLayer": "Skryj solární vrstvu",
-    "toggleDarkMode": "Přepni na tmavý režim",
+    "changeTheme": "Přepni na tmavý režim",
     "noParserInfo": "Žádná data",
     "temporaryDataOutage": "Data momentálně nedostupná",
     "production": "výroba",

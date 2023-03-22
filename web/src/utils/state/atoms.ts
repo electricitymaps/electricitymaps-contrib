@@ -20,7 +20,7 @@ export const windLayerLoadingAtom = atom(false);
 
 export const displayByEmissionsAtom = atom(false);
 
-export const themeAtom = atomWithStorage('theme', ThemeOptions.LIGHT);
+export const themeAtom = atomWithStorage('theme', ThemeOptions.SYSTEM);
 
 export const hasOnboardingBeenSeenAtom = atomWithStorage('onboardingSeen', false);
 

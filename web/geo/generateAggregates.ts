@@ -1,5 +1,5 @@
 import { Feature, MultiPolygon, union } from '@turf/turf';
-import type { ZonesConfig, WorldFeatureCollection, FeatureProperties } from './types';
+import { ZonesConfig, WorldFeatureCollection, FeatureProperties } from './types';
 
 const emptyFeature: Feature<MultiPolygon, FeatureProperties> = {
   type: 'Feature',
@@ -41,6 +41,9 @@ const generateAggregates = (fc: WorldFeatureCollection, zones: ZonesConfig) => {
 
   const combinedZones = countryZonesToCombine
     .map((country) => {
+      // TODO: Consider if should remove this check and just fail if country is undefined.
+      // This was done to avoid having null-checks everywhere, but maybe it can be done it a
+      // better way. See discussion here: https://github.com/electricitymaps/electricitymaps-contrib/pull/5179#discussion_r1131568845
       if (country === undefined) {
         return emptyFeature;
       }

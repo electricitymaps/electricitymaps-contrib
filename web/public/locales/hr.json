@@ -95,7 +95,7 @@
     "hideWindLayer": "Sakrij vjetrove",
     "showSolarLayer": "Prikaži osunčanost",
     "hideSolarLayer": "Sakrij osunčanost",
-    "toggleDarkMode": "Promijeni tamni prikaz",
+    "changeTheme": "Promijeni tamni prikaz",
     "production": "proizvodnja",
     "consumption": "upotreba",
     "cpinfo": "<b>upotreba</b> uračunava izvor i uvoz, <b>proizvodnja</b> ih zanemaruje",

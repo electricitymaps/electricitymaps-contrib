@@ -157,7 +157,7 @@
     "showSolarLayer": "Mostra livello del sole",
     "hideSolarLayer": "Nascondi livello del sole",
     "weatherDisabled": "I dati meteo non sono disponibili in questo momento",
-    "toggleDarkMode": "Attiva/disattiva modalità scura",
+    "changeTheme": "Attiva/disattiva modalità scura",
     "noParserInfo": "Nessun dato disponibile",
     "temporaryDataOutage": "Dati temporeanamente non disponibili",
     "production": "Produzione",

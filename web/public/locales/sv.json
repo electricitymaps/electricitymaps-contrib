@@ -157,7 +157,7 @@
     "showSolarLayer": "Visa sol-lager",
     "hideSolarLayer": "Dölj sol-lager",
     "weatherDisabled": "Väderdata är ej tillgänglig för denna period",
-    "toggleDarkMode": "Växla mörkt läge",
+    "changeTheme": "Byt tema",
     "noParserInfo": "Ingen data tillgänglig",
     "temporaryDataOutage": "Aktuell data tillfälligt ej tillgänglig",
     "production": "produktion",
