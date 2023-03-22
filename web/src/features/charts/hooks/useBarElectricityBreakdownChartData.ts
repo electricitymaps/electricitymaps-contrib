@@ -44,7 +44,7 @@ export default function useBarBreakdownChartData() {
   const exchangeKeys = getExchangesToDisplay(
     zoneId,
     isAggregateToggled,
-    currentData.exchange
+    zoneData.zoneStates
   );
 
   const productionData = getProductionData(currentData); // TODO: Consider memoing this

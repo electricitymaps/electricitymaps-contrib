@@ -2,7 +2,6 @@ import { max as d3Max } from 'd3-array';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
-  Exchange,
   GenerationType,
   Maybe,
   ZoneDetail,
@@ -163,7 +162,9 @@ export const getExchangeData = (
 export const getExchangesToDisplay = (
   currentZoneKey: ZoneKey,
   isAggregatedToggled: boolean,
-  exchangeZoneKeysForCurrentZone: Exchange
+  zoneStates: {
+    [key: string]: ZoneDetail;
+  }
 ): ZoneKey[] => {
   const exchangeKeysToRemove = isAggregatedToggled
     ? exchangesToExclude.exchangesToExcludeCountryView
@@ -179,10 +180,16 @@ export const getExchangesToDisplay = (
     })
   );
 
-  const currentExchanges = Object.keys(exchangeZoneKeysForCurrentZone);
-  return currentExchanges
-    ? currentExchanges.filter(
-        (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
-      )
-    : [];
+  // get all exchanges for the given period
+  const allExchangeKeys = new Set<string>();
+  for (const state of Object.values(zoneStates)) {
+    for (const key of Object.keys(state.exchange)) {
+      allExchangeKeys.add(key);
+    }
+  }
+  const uniqueExchangeKeys = [...allExchangeKeys];
+
+  return uniqueExchangeKeys.filter(
+    (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
+  );
 };
