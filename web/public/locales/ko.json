@@ -95,7 +95,7 @@
     "hideWindLayer": "기류층 숨기기",
     "showSolarLayer": "태양광층 보이기",
     "hideSolarLayer": "태양광층 숨기기",
-    "toggleDarkMode": "다크 모드 전환",
+    "changeTheme": "다크 모드 전환",
     "noParserInfo": "해당 데이터 없음",
     "temporaryDataOutage": "데이터가 일시적으로 존재하지 않습니다",
     "production": "생산",

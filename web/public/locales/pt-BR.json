@@ -120,7 +120,7 @@
     "hideWindLayer": "Esconder a camada de vento",
     "showSolarLayer": "Mostrar a camada solar",
     "hideSolarLayer": "Esconder a camada solar",
-    "toggleDarkMode": "Alternar modo escuro",
+    "changeTheme": "Alternar modo escuro",
     "noParserInfo": "Nenhum dado disponível",
     "temporaryDataOutage": "Dados temporariamente indisponíveis",
     "production": "produção",

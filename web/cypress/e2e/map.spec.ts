@@ -33,8 +33,9 @@ describe('Map', () => {
 
     // test language selector
     cy.get('[data-test-id=language-selector-open-button]').click();
-    // cy.contains('Dansk').click();
-    // cy.contains('forbrug');
+    cy.contains('English');
+    cy.contains('Dansk').click();
+    cy.contains('forbrug');
     // cy.get('[data-test-id=language-selector]').click();
     // cy.contains('English').click();
     // cy.contains('consumption');

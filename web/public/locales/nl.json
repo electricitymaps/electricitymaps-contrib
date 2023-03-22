@@ -73,7 +73,7 @@
     "hideWindLayer": "Verberg de windintensiteit",
     "showSolarLayer": "Toon de intensiteit van de zonnestraling",
     "hideSolarLayer": "Verberg de intensiteit van de zonnestraling",
-    "toggleDarkMode": "Dark-mode aanzetten",
+    "changeTheme": "Dark-mode aanzetten",
     "noParserInfo": "Geen data beschikbaar",
     "temporaryDataOutage": "Data tijdelijk niet beschikbaar",
     "production": "productie",

@@ -1,8 +1,10 @@
-import MapControls from './MapControls';
+import { SettingsModalContent } from './SettingsModal';
 
 it('can change language', () => {
-  cy.viewport(800, 500);
-  cy.mount(<MapControls />);
+  cy.viewport(500, 500);
+  cy.mount(<SettingsModalContent />);
+  cy.contains('Wind data is currently unavailable');
+  cy.contains('Solar data is currently unavailable');
   cy.get('[data-test-id=language-selector-open-button]').click();
   cy.contains('English').click();
   cy.contains('country');
@@ -24,8 +26,8 @@ it('can change language', () => {
 });
 
 it('can change theme', () => {
-  cy.viewport(800, 500);
-  cy.mount(<MapControls />);
+  cy.viewport(500, 500);
+  cy.mount(<SettingsModalContent />);
   cy.get('[data-test-id=theme-selector-open-button]').click();
   cy.contains('System');
   cy.contains('Light')

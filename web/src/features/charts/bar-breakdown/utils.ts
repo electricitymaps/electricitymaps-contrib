@@ -2,14 +2,13 @@ import { max as d3Max } from 'd3-array';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
-  Exchange,
   GenerationType,
   Maybe,
   ZoneDetail,
   ZoneKey,
 } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
-import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json'; // TODO: do something globally
+import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json';
 import { getProductionCo2Intensity } from 'utils/helpers';
 
 const LABEL_MAX_WIDTH = 102;
@@ -163,7 +162,9 @@ export const getExchangeData = (
 export const getExchangesToDisplay = (
   currentZoneKey: ZoneKey,
   isAggregatedToggled: boolean,
-  exchangeZoneKeysForCurrentZone: Exchange
+  zoneStates: {
+    [key: string]: ZoneDetail;
+  }
 ): ZoneKey[] => {
   const exchangeKeysToRemove = isAggregatedToggled
     ? exchangesToExclude.exchangesToExcludeCountryView
@@ -179,10 +180,16 @@ export const getExchangesToDisplay = (
     })
   );
 
-  const currentExchanges = Object.keys(exchangeZoneKeysForCurrentZone);
-  return currentExchanges
-    ? currentExchanges.filter(
-        (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
-      )
-    : [];
+  // get all exchanges for the given period
+  const allExchangeKeys = new Set<string>();
+  for (const state of Object.values(zoneStates)) {
+    for (const key of Object.keys(state.exchange)) {
+      allExchangeKeys.add(key);
+    }
+  }
+  const uniqueExchangeKeys = [...allExchangeKeys];
+
+  return uniqueExchangeKeys.filter(
+    (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
+  );
 };
