@@ -10,12 +10,12 @@ import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import { getGenerationTypeKey } from '../graphUtils';
 import { AreaGraphElement } from '../types';
+import { useParams } from 'react-router-dom';
 
 export const getLayerFill = (
   exchangeKeys: string[],
@@ -37,20 +37,19 @@ export const getLayerFill = (
 export default function useBreakdownChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
+  const { zoneId } = useParams();
   const [mixMode] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [aggregateToggle] = useAtom(spatialAggregateAtom);
   const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
-  if (isLoading || isError || !currentData) {
+  if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
   }
 
   const exchangesForSelectedAggregate = getExchangesToDisplay(
-    currentData.zoneKey,
+    zoneId,
     isAggregateToggled,
-    currentData.exchange
+    zoneData.zoneStates
   );
 
   const { valueFactor, valueAxisLabel } = getValuesInfo(

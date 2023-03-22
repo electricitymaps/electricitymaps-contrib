@@ -1,10 +1,9 @@
 import { Button } from 'components/Button';
 import { isInfoModalOpenAtom, isSettingsModalOpenAtom } from 'features/modals/modalAtoms';
 import { useAtom, useSetAtom } from 'jotai';
-import { useState } from 'react';
 import { FiWind } from 'react-icons/fi';
 import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
-import { HiCog6Tooth, HiLanguage, HiOutlineInformationCircle } from 'react-icons/hi2';
+import { HiCog6Tooth, HiOutlineInformationCircle } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
 import trackEvent from 'utils/analytics';
@@ -19,9 +18,10 @@ import {
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
-import LanguageSelector from './LanguageSelector';
+import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
+import ThemeSelector from './ThemeSelector';
 
 function MobileMapControls() {
   const setIsInfoModalOpen = useSetAtom(isInfoModalOpenAtom);
@@ -43,6 +43,7 @@ function MobileMapControls() {
         aria-label="open settings modal"
         onClick={handleOpenSettingsModal}
         icon={<HiCog6Tooth size={20} />}
+        data-test-id="settings-button-mobile"
       />
     </div>
   );
@@ -100,13 +101,13 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       dataTestId={`${type}-layer-button`}
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={!isLoadingLayer ? onToggle : () => {}}
+      asToggle
     />
   );
 }
 
 function DesktopMapControls() {
   const { __ } = useTranslation();
-  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
@@ -127,16 +128,7 @@ function DesktopMapControls() {
         <SpatialAggregatesToggle />
       </div>
       <div className="mt-5 space-y-2">
-        <MapButton
-          icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
-          tooltipText={__('tooltips.selectLanguage')}
-          dataTestId="language-selector-open-button"
-          onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
-        />
-        {isLanguageSelectorOpen && (
-          <LanguageSelector setLanguageSelectorOpen={setIsLanguageSelectorOpen} />
-        )}
-
+        <LanguageSelector />
         <MapButton
           icon={
             <HiOutlineEyeOff
@@ -147,6 +139,7 @@ function DesktopMapControls() {
           dataTestId="colorblind-layer-button"
           tooltipText={__('legends.colorblindmode')}
           onClick={handleColorblindModeToggle}
+          asToggle
         />
         {areWeatherLayersAllowed && (
           <>
@@ -154,6 +147,7 @@ function DesktopMapControls() {
             <WeatherButton type="solar" />
           </>
         )}
+        <ThemeSelector />
       </div>
     </div>
   );
