@@ -62,7 +62,6 @@ export function usePriceChartData() {
     markerFill,
     valueAxisLabel,
     layerStroke: undefined,
-    isPriceDisabled: Boolean(priceDisabledReason),
     priceDisabledReason,
   };
 

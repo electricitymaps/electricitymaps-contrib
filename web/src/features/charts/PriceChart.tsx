@@ -25,9 +25,10 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     layerStroke,
     valueAxisLabel,
     markerFill,
-    isPriceDisabled,
     priceDisabledReason,
   } = data;
+
+  const isPriceDisabled = Boolean(priceDisabledReason);
 
   if (isPriceDisabled) {
     // Randomize price values to ensure the chart is not empty
