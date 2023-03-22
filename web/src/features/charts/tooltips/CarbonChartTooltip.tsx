@@ -35,7 +35,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
           ></div>
           <div className="text-base font-bold">{__('tooltips.carbonintensity')}</div>
         </div>
-        <div className="my-1 h-[32px] max-w-[160px] select-none rounded-full bg-brand-green/10 py-2 px-3 text-sm text-brand-green dark:bg-gray-700 dark:text-white">
+        <div className="my-1 h-[32px] max-w-[165px] select-none rounded-full bg-brand-green/10 py-2 px-3 text-sm text-brand-green dark:bg-gray-700 dark:text-white">
           {formatDate(new Date(stateDatetime), i18n.language, timeAverage)}
         </div>
       </div>
