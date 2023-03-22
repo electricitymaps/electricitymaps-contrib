@@ -34,7 +34,8 @@ const useGetState = (options?: UseQueryOptions<GridState>): UseQueryResult<GridS
     async () => getState(timeAverage),
     {
       refetchInterval: REFETCH_INTERVAL_FIVE_MINUTES,
-      refetchOnWindowFocus: false,
+      staleTime: REFETCH_INTERVAL_FIVE_MINUTES,
+      refetchOnWindowFocus: true,
       ...options,
     }
   );
