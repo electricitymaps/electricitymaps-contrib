@@ -80,3 +80,17 @@ export function getFossilFuelPercentage(
     }
   }
 }
+
+/**
+ * Returns the carbon intensity of a zone
+ * @param isConsumption - Whether the percentage is for consumption or production
+ * @param co2intensity - The carbon intensity for consumption
+ * @param co2intensityProduction - The carbon intensity for production
+ */
+export function getCarbonIntensity(
+  isConsumption: boolean,
+  co2intensity: number | null | undefined,
+  co2intensityProduction: number | null | undefined
+): number {
+  return (isConsumption ? co2intensity : co2intensityProduction) ?? Number.NaN;
+}

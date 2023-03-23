@@ -1,4 +1,4 @@
-import { getFossilFuelPercentage } from './helpers';
+import { getFossilFuelPercentage, getCarbonIntensity } from './helpers';
 
 describe('getFossilFuelPercentage', () => {
   // Tests for consumption
@@ -54,6 +54,44 @@ describe('getFossilFuelPercentage', () => {
     it('returns 1 - fossil fuel ratio when fossil fuel ratio is between 0 and 1', () => {
       const actual = getFossilFuelPercentage(false, 0.5, 0.3);
       expect(actual).toBe(0.7);
+    });
+  });
+});
+
+describe('getCarbonIntensity', () => {
+  // Tests for consumption
+  describe('consumption', () => {
+    it('returns carbon intensity when carbon intensity is not null', () => {
+      const actual = getCarbonIntensity(true, 100, 200);
+      expect(actual).toBe(100);
+    });
+
+    it('returns NaN when carbon intensity is null', () => {
+      const actual = getCarbonIntensity(true, null, null);
+      expect(actual).toBeNaN();
+    });
+
+    it('returns NaN when carbon intensity is undefined', () => {
+      const actual = getCarbonIntensity(true, undefined, undefined);
+      expect(actual).toBeNaN();
+    });
+  });
+
+  // Tests for production
+  describe('production', () => {
+    it('returns carbon intensity when carbon intensity is not null', () => {
+      const actual = getCarbonIntensity(false, 100, 200);
+      expect(actual).toBe(200);
+    });
+
+    it('returns NaN when carbon intensity is null', () => {
+      const actual = getCarbonIntensity(false, null, null);
+      expect(actual).toBeNaN();
+    });
+
+    it('returns NaN when carbon intensity is undefined', () => {
+      const actual = getCarbonIntensity(false, undefined, undefined);
+      expect(actual).toBeNaN();
     });
   });
 });

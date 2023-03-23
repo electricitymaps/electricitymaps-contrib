@@ -16,7 +16,7 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
-import { getFossilFuelPercentage } from 'utils/helpers';
+import { getCarbonIntensity, getFossilFuelPercentage } from 'utils/helpers';
 
 function TooltipInner({
   zoneData,
@@ -39,6 +39,11 @@ function TooltipInner({
 
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
+  const intensity = getCarbonIntensity(
+    isConsumption,
+    co2intensity,
+    co2intensityProduction
+  );
   const fossilFuelPercentage = getFossilFuelPercentage(
     isConsumption,
     fossilFuelRatio,
@@ -52,9 +57,7 @@ function TooltipInner({
       </div>
       <div className="flex w-full flex-grow py-1 sm:pr-2">
         <div className="flex w-full flex-grow flex-row justify-around">
-          <CarbonIntensitySquare
-            intensity={isConsumption ? co2intensity : co2intensityProduction}
-          />
+          <CarbonIntensitySquare intensity={intensity} />
           <div className="pl-2 pr-6">
             <CircularGauge
               name={__('country-panel.lowcarbon')}
