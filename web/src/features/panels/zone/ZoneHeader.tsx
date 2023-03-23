@@ -4,8 +4,9 @@ import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { Mode } from 'utils/constants';
 import { getFossilFuelPercentage } from 'utils/helpers';
-import { productionConsumptionAtom } from 'utils/state/atoms';
+import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
+import { ZoneDetails } from 'types';
 
 function LowCarbonTooltip() {
   const { __ } = useTranslation();
@@ -21,30 +22,27 @@ function LowCarbonTooltip() {
 
 interface ZoneHeaderProps {
   zoneId: string;
-  isEstimated?: boolean;
+  data: ZoneDetails | undefined;
   isAggregated?: boolean;
-  co2intensity?: number;
-  renewableRatio?: number;
-  fossilFuelRatio?: number;
-  co2intensityProduction?: number;
-  renewableRatioProduction?: number;
-  fossilFuelRatioProduction?: number;
 }
 
-export function ZoneHeader({
-  zoneId,
-  isEstimated,
-  isAggregated,
-  co2intensity,
-  renewableRatio,
-  fossilFuelRatio,
-  co2intensityProduction,
-  renewableRatioProduction,
-  fossilFuelRatioProduction,
-}: ZoneHeaderProps) {
+export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
   const { __ } = useTranslation();
   const [currentMode] = useAtom(productionConsumptionAtom);
+  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
+  const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
+
+  const {
+    co2intensity,
+    renewableRatio,
+    fossilFuelRatio,
+    co2intensityProduction,
+    renewableRatioProduction,
+    fossilFuelRatioProduction,
+    estimationMethod,
+  } = selectedData || {};
+
   const intensity = isConsumption ? co2intensity : co2intensityProduction;
   const renewable = isConsumption ? renewableRatio : renewableRatioProduction;
   const fossilFuelPercentage = getFossilFuelPercentage(
@@ -52,6 +50,7 @@ export function ZoneHeader({
     fossilFuelRatio,
     fossilFuelRatioProduction
   );
+  const isEstimated = estimationMethod !== undefined;
 
   return (
     <div className="mt-1 grid w-full gap-y-5 sm:pr-4">
