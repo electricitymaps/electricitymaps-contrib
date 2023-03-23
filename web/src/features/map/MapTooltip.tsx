@@ -16,7 +16,11 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
-import { getCarbonIntensity, getFossilFuelPercentage } from 'utils/helpers';
+import {
+  getCarbonIntensity,
+  getFossilFuelPercentage,
+  getRenewableRatio,
+} from 'utils/helpers';
 
 function TooltipInner({
   zoneData,
@@ -49,6 +53,11 @@ function TooltipInner({
     fossilFuelRatio,
     fossilFuelRatioProduction
   );
+  const renewable = getRenewableRatio(
+    isConsumption,
+    renewableRatio,
+    renewableRatioProduction
+  );
   return (
     <div className="w-full text-center">
       <div className="pl-2">
@@ -64,10 +73,7 @@ function TooltipInner({
               ratio={fossilFuelPercentage}
             />
           </div>
-          <CircularGauge
-            name={__('country-panel.renewable')}
-            ratio={isConsumption ? renewableRatio : renewableRatioProduction}
-          />
+          <CircularGauge name={__('country-panel.renewable')} ratio={renewable} />
         </div>
       </div>
     </div>

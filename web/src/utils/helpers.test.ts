@@ -1,4 +1,8 @@
-import { getFossilFuelPercentage, getCarbonIntensity } from './helpers';
+import {
+  getFossilFuelPercentage,
+  getCarbonIntensity,
+  getRenewableRatio,
+} from './helpers';
 
 describe('getFossilFuelPercentage', () => {
   // Tests for consumption
@@ -91,6 +95,44 @@ describe('getCarbonIntensity', () => {
 
     it('returns NaN when carbon intensity is undefined', () => {
       const actual = getCarbonIntensity(false, undefined, undefined);
+      expect(actual).toBeNaN();
+    });
+  });
+});
+
+describe('getRenewableRatio', () => {
+  // Tests for consumption
+  describe('consumption', () => {
+    it('returns renewable ratio when renewable ratio is not null', () => {
+      const actual = getRenewableRatio(true, 0.5, 0.3);
+      expect(actual).toBe(0.5);
+    });
+
+    it('returns NaN when renewable ratio is null', () => {
+      const actual = getRenewableRatio(true, null, null);
+      expect(actual).toBeNaN();
+    });
+
+    it('returns NaN when renewable ratio is undefined', () => {
+      const actual = getRenewableRatio(true, undefined, undefined);
+      expect(actual).toBeNaN();
+    });
+  });
+
+  // Tests for production
+  describe('production', () => {
+    it('returns renewable ratio when renewable ratio is not null', () => {
+      const actual = getRenewableRatio(false, 0.5, 0.3);
+      expect(actual).toBe(0.3);
+    });
+
+    it('returns NaN when renewable ratio is null', () => {
+      const actual = getRenewableRatio(false, null, null);
+      expect(actual).toBeNaN();
+    });
+
+    it('returns NaN when renewable ratio is undefined', () => {
+      const actual = getRenewableRatio(false, undefined, undefined);
       expect(actual).toBeNaN();
     });
   });

@@ -94,3 +94,17 @@ export function getCarbonIntensity(
 ): number {
   return (isConsumption ? co2intensity : co2intensityProduction) ?? Number.NaN;
 }
+
+/**
+ * Returns the renewable ratio of a zone
+ * @param isConsumption - Whether the ratio is for consumption or production
+ * @param renewableRatio - The renewable ratio for consumption
+ * @param renewableRatioProduction - The renewable ratio for production
+ */
+export function getRenewableRatio(
+  isConsumption: boolean,
+  renewableRatio: number | null | undefined,
+  renewableRatioProduction: number | null | undefined
+): number {
+  return (isConsumption ? renewableRatio : renewableRatioProduction) ?? Number.NaN;
+}
