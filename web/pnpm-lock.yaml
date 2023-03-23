@@ -18,8 +18,8 @@ specifiers:
   '@radix-ui/react-toggle-group': ^1.0.1
   '@radix-ui/react-tooltip': ^1.0.2
   '@react-spring/web': ^9.5.5
+  '@rollup/plugin-replace': ^5.0.2
   '@sentry/react': ^7.27.0
-  '@sentry/tracing': ^7.28.0
   '@sentry/vite-plugin': ^0.3.0
   '@storybook/addon-actions': 7.0.0-alpha.47
   '@storybook/addon-backgrounds': 7.0.0-alpha.47
@@ -158,7 +158,6 @@ dependencies:
   '@radix-ui/react-tooltip': 1.0.2_3sauqnnrv7lnox3glal4dmngp4
   '@react-spring/web': 9.5.5_biqbaboplfbrettd7655fr4n2y
   '@sentry/react': 7.27.0_react@18.2.0
-  '@sentry/tracing': 7.28.0
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
   '@tanstack/react-query': 4.13.0_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.13.0_vwr3yfyniquaygdm2roeczqxuu
@@ -206,6 +205,7 @@ devDependencies:
   '@mdx-js/react': 2.1.5_react@18.2.0
   '@microsoft/eslint-formatter-sarif': 3.0.0
   '@nabla/vite-plugin-eslint': 1.4.1_eslint@8.26.0+vite@3.1.8
+  '@rollup/plugin-replace': 5.0.2
   '@sentry/vite-plugin': 0.3.0
   '@storybook/addon-actions': 7.0.0-alpha.47_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-backgrounds': 7.0.0-alpha.47_biqbaboplfbrettd7655fr4n2y
@@ -4207,6 +4207,19 @@ packages:
       rollup: 2.77.3
     dev: true
 
+  /@rollup/plugin-replace/5.0.2:
+    resolution: {integrity: sha512-M9YXNekv/C/iHHK+cvORzfRYfPbq0RDD8r0G+bMiTXjNGKulPnCT9O3Ss46WfhI6ZOCgApOP7xAdmCQJ+U2LAA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2
+      magic-string: 0.27.0
+    dev: true
+
   /@rollup/pluginutils/3.1.0_rollup@2.77.3:
     resolution: {integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==}
     engines: {node: '>= 8.0.0'}
@@ -4223,6 +4236,20 @@ packages:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
     engines: {node: '>= 8.0.0'}
     dependencies:
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+    dev: true
+
+  /@rollup/pluginutils/5.0.2:
+    resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
@@ -4284,6 +4311,7 @@ packages:
       '@sentry/types': 7.28.0
       '@sentry/utils': 7.28.0
       tslib: 1.14.1
+    dev: true
 
   /@sentry/node/7.28.0:
     resolution: {integrity: sha512-vrhZf84hgXzwasLs5vB6Rh8Sd7hmBcajw02YM32bMn4EgXY0sDTxoSWcH9fkgTMpvutmH39o2tVvCah148rx9g==}
@@ -4334,6 +4362,7 @@ packages:
       '@sentry/types': 7.28.0
       '@sentry/utils': 7.28.0
       tslib: 1.14.1
+    dev: true
 
   /@sentry/types/7.27.0:
     resolution: {integrity: sha512-vapN3jchu3/WEMWQkrCOy2XDlOLj0l7IewYXKMr15Q21dlfM1QZMigU/r5rtYj5L8a2ISIHx+cRECxX5UIKH7w==}
@@ -4343,6 +4372,7 @@ packages:
   /@sentry/types/7.28.0:
     resolution: {integrity: sha512-F6tZldpvC3Lt8FPgJ6wRTcE7P9txIpHSBjyYz9wqFlVJx4IhBmrn6vZU1LvANUaK1jZZF2PW5tFRrVEnydfpqg==}
     engines: {node: '>=8'}
+    dev: true
 
   /@sentry/utils/7.27.0:
     resolution: {integrity: sha512-8e5cmjbeuxETPxPEymyyGEYlBbJO1IMveTlcxkTFySPU6nNz2oAIiqPVHv2QgFJJvRv79/i/4Tyl5gFMOW0+AA==}
@@ -4358,6 +4388,7 @@ packages:
     dependencies:
       '@sentry/types': 7.28.0
       tslib: 1.14.1
+    dev: true
 
   /@sentry/vite-plugin/0.3.0:
     resolution: {integrity: sha512-clu0yfVk9ejk3l22NHrFUPqHzR9ukYccm7Q5qBKgMyLXnWGLRf4WahmzzuW9XHDu4s3tYVjV/rTTxGxLPT9dMQ==}

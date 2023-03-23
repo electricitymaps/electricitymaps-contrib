@@ -30,6 +30,9 @@ export function usePriceChartData() {
     return { isLoading, isError };
   }
 
+  // We assume that if the first element has price disabled, all of them do
+  const priceDisabledReason = Object.values(zoneData.zoneStates)[0].price?.disabledReason;
+
   const chartData: AreaGraphElement[] = [];
 
   for (const [datetimeString, value] of Object.entries(zoneData.zoneStates)) {
@@ -59,6 +62,7 @@ export function usePriceChartData() {
     markerFill,
     valueAxisLabel,
     layerStroke: undefined,
+    priceDisabledReason,
   };
 
   return { data: result, isLoading, isError };

@@ -114,6 +114,7 @@ export interface ZoneDetail extends ZoneOverview {
   price?: {
     value: number;
     currency: string;
+    disabledReason?: string;
   };
   production: { [key in GenerationType]: Maybe<number> };
   productionCo2Intensities: { [key in GenerationType]: number };
