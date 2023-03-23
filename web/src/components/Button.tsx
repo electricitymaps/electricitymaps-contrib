@@ -15,7 +15,6 @@ interface ButtonProps {
   href?: string;
   className?: string;
   onClick?: () => void;
-  renderAsDiv?: boolean;
 }
 
 export function Button({
@@ -26,12 +25,10 @@ export function Button({
   textColor,
   href,
   className,
-  renderAsDiv,
   ...restProps
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
-  const buttonOrDiv = renderAsDiv ? 'div' : 'button';
-  const As = renderAsLink ? 'a' : buttonOrDiv;
+  const As = renderAsLink ? 'a' : 'button';
 
   const isIconOnly = !children && Boolean(icon);
 
