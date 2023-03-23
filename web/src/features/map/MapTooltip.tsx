@@ -16,11 +16,7 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
-import {
-  getCarbonIntensity,
-  getFossilFuelPercentage,
-  getRenewableRatio,
-} from 'utils/helpers';
+import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 
 function TooltipInner({
   zoneData,
@@ -48,7 +44,7 @@ function TooltipInner({
     co2intensity,
     co2intensityProduction
   );
-  const fossilFuelPercentage = getFossilFuelPercentage(
+  const fossilFuelPercentage = getFossilFuelRatio(
     isConsumption,
     fossilFuelRatio,
     fossilFuelRatioProduction

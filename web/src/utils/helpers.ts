@@ -51,12 +51,12 @@ export function createToWithState(to: string) {
 }
 
 /**
- * Returns the fossil fuel percentage of a zone
- * @param isConsumption - Whether the percentage is for consumption or production
+ * Returns the fossil fuel ratio of a zone
+ * @param isConsumption - Whether the ratio is for consumption or production
  * @param fossilFuelRatio - The fossil fuel ratio for consumption
  * @param fossilFuelRatioProduction - The fossil fuel ratio for production
  */
-export function getFossilFuelPercentage(
+export function getFossilFuelRatio(
   isConsumption: boolean,
   fossilFuelRatio: number | null | undefined,
   fossilFuelRatioProduction: number | null | undefined

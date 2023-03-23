@@ -3,11 +3,7 @@ import { CircularGauge } from 'components/CircularGauge';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { Mode } from 'utils/constants';
-import {
-  getCarbonIntensity,
-  getFossilFuelPercentage,
-  getRenewableRatio,
-} from 'utils/helpers';
+import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 import { ZoneDetails } from 'types';
@@ -57,7 +53,7 @@ export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
     renewableRatio,
     renewableRatioProduction
   );
-  const fossilFuelPercentage = getFossilFuelPercentage(
+  const fossilFuelPercentage = getFossilFuelRatio(
     isConsumption,
     fossilFuelRatio,
     fossilFuelRatioProduction
