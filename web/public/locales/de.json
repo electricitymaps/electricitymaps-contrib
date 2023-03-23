@@ -127,7 +127,7 @@
   },
   "aggregateButtons": {
     "country": "Land",
-    "zone": "Gebiet"
+    "zone": "Zone"
   },
   "themeOptions": {
     "dark": "Dunkel",
