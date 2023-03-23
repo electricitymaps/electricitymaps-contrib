@@ -1,4 +1,41 @@
-import { getFossilFuelRatio, getCarbonIntensity, getRenewableRatio } from './helpers';
+import {
+  getCO2IntensityByMode,
+  dateToDatetimeString,
+  getFossilFuelRatio,
+  getCarbonIntensity,
+  getRenewableRatio,
+} from './helpers';
+
+describe('getCO2IntensityByMode', () => {
+  // Tests for consumption
+  describe('consumption', () => {
+    it('returns 100 when the mode is consumption', () => {
+      const actual = getCO2IntensityByMode(
+        { co2intensity: 100, co2intensityProduction: 200 },
+        'consumption'
+      );
+      expect(actual).toBe(100);
+    });
+  });
+
+  // Tests for production
+  describe('production', () => {
+    it('returns 200 when the mode is production', () => {
+      const actual = getCO2IntensityByMode(
+        { co2intensity: 100, co2intensityProduction: 200 },
+        'production'
+      );
+      expect(actual).toBe(200);
+    });
+  });
+});
+
+describe('dateToDatetimeString', () => {
+  it('returns the correct datetime string', () => {
+    const actual = dateToDatetimeString(new Date('2023-01-01T12:00:00Z'));
+    expect(actual).toBe('2023-01-01T12:00:00Z');
+  });
+});
 
 describe('getFossilFuelPercentage', () => {
   // Tests for consumption
