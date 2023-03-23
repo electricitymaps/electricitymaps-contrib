@@ -8,69 +8,43 @@ Fetches data from various pages embedded as an iframe at https://aeepr.com/en-us
 The electricity authority is known in English as PREPA (Puerto Rico Electric Power Authority) and in Spanish as AEEPR (Autoridad de Energía Eléctrica Puerto Rico)
 """
 
-import json
-import re
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
+from bs4 import BeautifulSoup
 from requests import Session
 
 timezone_name = "America/Puerto_Rico"
-US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
-HOST_PARAMETER = "?host=https://aeepr.com"
-GENERATION_BREAKDOWN_URL = (
-    f"{US_PROXY}/es-pr/generacion/Documents/combustibles.aspx{HOST_PARAMETER}"
-)
-RENEWABLES_BREAKDOWN_URL = (
-    f"{US_PROXY}/es-pr/generacion/Documents/Unidades_renovables.aspx{HOST_PARAMETER}"
-)
-TIMESTAMP_URL = (
-    f"{US_PROXY}/es-pr/generacion/Documents/CostosCombustible.aspx{HOST_PARAMETER}"
-)
 
+GENERATION_BREAKDOWN_URL = f"https://lumapr.com/system-overview/?lang=en"
 
-def extract_data(html):
-    """Extracts data from the source code of an HTML page with a FusionCharts chart"""
-    dataSource = re.search(r"dataSource: (\{.+\}\]\})\}\);", html).group(
-        1
-    )  # Extract object with data
-    dataSource = re.sub(
-        r",\s*\}", "}", dataSource
-    )  # ,} is valid JavaScript but not valid JSON
-    dataSource = json.loads(dataSource)
-    sourceData = dataSource[
-        "data"
-    ]  # The rest of the dataSource object contains unnecessary stuff like chart theme, label, axis names etc.
-    return sourceData
-
-
-def convert_timestamp(
-    zone_key: str, timestamp_string: str, logger: Logger = getLogger(__name__)
-):
-    """
-    Converts timestamp fetched from website into timezone-aware datetime object
-    Arguments:
-    ----------
-    timestamp_string: timestamp in the format 06/01/2020 08:40:00 AM
-    """
-    timestamp_string = re.sub(
-        r"\s+", " ", timestamp_string
-    )  # Replace double spaces with one
-
-    logger.debug(
-        f"PARSED TIMESTAMP {arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss A', tzinfo=timezone_name)}",
-        extra={"key": zone_key},
-    )
-    return arrow.get(
-        timestamp_string, "MM/DD/YYYY HH:mm:ss A", tzinfo=timezone_name
-    ).datetime
+# https://web.archive.org/web/20221210231416/https://aeepr.com/en-us/QuienesSomos/Pages/ElectricSystem.aspx
+# "#6" appears to be a kind of heavy fuel oil, and "#2" a kind of diesel fuel
+MAP_GENERATION_UNIT_NAME_TO_TYPE = {
+    "San Juan": "oil",
+    "Palo Seco": "oil",
+    "Aguirre": "oil",
+    "Costa Sur": "oil",  # Note: actually dual-fuel according to https://www.ccj-online.com/4q-2012/plant-report-ecoelectrica-lp/
+    "Eco Eléctrica": "gas",  # https://ecoelectrica.net/sobre-nosotros/#laplanta
+    "AES": "coal",  # https://web.archive.org/web/20230323203600/https://www.aespuertorico.com/sites/default/files/2022-10/CCR%20Annual%20Inspection%20Report%202022_Final_Sept%202022.pdf - note that the LUMA website mentions a max capacity of 550MW, and this document 520MW. Gross vs net or is it because of other (small) generation facilities?
+    # Peaker plants
+    "Mayaguez": "oil",  # https://energia.pr.gov/wp-content/uploads/sites/7/2022/05/Motion-to-Inform-Approval-of-Mayaguez-Project-NEPR-MI-2020-0012-1.pdf - note that the LUMA website mentions a max capacity of 250MW, and this document 220MW
+    "Cambalache": "unknown",  # https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.CA_Cambalache-IE-Report_Final.pdf - 247.5MW (3×82.5MW)
+    "Gas Turbine": "unknown",  # In spite of the name, there are gas turbines that run on diesel; 'gas' doesn't mean 'natural gas' here
+    "Aguirre Combined Cycle": "oil",
+    # Renewables
+    "Solar": "solar",
+    "Wind": "wind",
+    "Landfill Gas": "biomass",
+    "Hydroelectric": "hydro",
+}
 
 
 def fetch_production(
-    zone_key: str = "US-PR",
+    zone_key: str = "PR",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -79,10 +53,8 @@ def fetch_production(
 
     global renewable_output
 
-    if target_datetime is not None:
-        raise NotImplementedError(
-            "The datasource currently implemented is only real time"
-        )
+    if target_datetime is not None and target_datetime < arrow.utcnow().shift(days=-1):
+        raise NotImplementedError("The datasource currently only has data for today")
 
     r = session or Session()
 
@@ -104,177 +76,52 @@ def fetch_production(
         #   'storage': {
         #        'hydro': -10.0,
         #    },
-        "source": "aeepr.com",
+        "source": "lumapr.com",
+        "datetime": arrow.now(timezone_name).datetime,
     }
 
-    renewable_output = 0.0  # Temporarily stored here. We'll subtract solar, wind and biomass (landfill gas) from it and assume the remainder, if any,  is hydro
-
-    # Step 1: fetch production by generation type
-    # Note: seems to be rounded down (to an integer)
-    # Total at the top of the page fetched in step 3 isn't rounded down, but seems to be lagging behind sometimes.
-    # Difference is only minor, so for now we will IGNORE that total (instead of trying to parse the total and addding the difference to "unknown")
-    res = r.get(GENERATION_BREAKDOWN_URL)
+    res = r.get(
+        GENERATION_BREAKDOWN_URL,
+        headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0 ElectricityMaps.com",
+        },
+    )
 
     assert res.status_code == 200, (
         "Exception when fetching production for "
         "{}: error when calling url={}".format(zone_key, GENERATION_BREAKDOWN_URL)
     )
 
-    sourceData = extract_data(res.text)
+    # sourceData = extract_data(res.text)
 
-    logger.debug(f"Raw generation breakdown: {sourceData}", extra={"key": zone_key})
+    html = res.text
+    soup = BeautifulSoup(html, "lxml")
 
-    for (
-        item
-    ) in (
-        sourceData
-    ):  # Item has a label with fuel type + generation in MW, and a value with a percentage
+    detailsContainer = soup.find("div", class_="container mt-5")
 
-        if item["label"] == "  MW":  # There's one empty item for some reason. Skip it.
-            continue
+    # Make sure the heading is indeed "Power Supply in Details" (in case the page is re-arranged)
+    detailsContainer_heading = detailsContainer.select("> h2")[0].string
+    assert "Power Supply in Details" == detailsContainer_heading, (
+        "Exception when extracting generation breakdown for {}: heading is not "
+        "'Power Supply in Details' but is instead named {}".format(
+            zone_key, thermal_production_breakdown_table_header
+        )
+    )
 
-        logger.debug(item["label"], extra={"key": zone_key})
+    generationGauges = detailsContainer.select(".gauge-container")
 
-        parsedLabel = re.search(r"^(.+?)\s+(\d+)\s+MW$", item["label"])
+    for generationGauge in generationGauges:
+        unit_name = generationGauge.select("> .label-container > .label")[0].string
+        unit_generation = float(generationGauge["data-value"])
 
-        category = parsedLabel.group(1)  # E.g. GAS NATURAL
-        outputInMW = float(parsedLabel.group(2))
-
-        if category == "BUNKER C" or category == "DIESEL CC" or category == "DIESEL GT":
-            data["production"]["oil"] += outputInMW
-        elif category == "GAS NATURAL":
-            data["production"]["gas"] += outputInMW
-        elif category == "CARBON":
-            data["production"]["coal"] += outputInMW
-        elif category == "RENOVABLES":
-            renewable_output += outputInMW  # Temporarily store aggregate renewable output. We'll subtract solar, wind and biomass (landfill gas) from it and assume the remainder, if any,  is hydro
+        if unit_name in MAP_GENERATION_UNIT_NAME_TO_TYPE:
+            if unit_generation > 0:  # Ignore self-consumption
+                unit_type = MAP_GENERATION_UNIT_NAME_TO_TYPE[unit_name]
+                data["production"][unit_type] += unit_generation
         else:
-            logger.warn(
-                f'Unknown energy type "{category}" is present for Puerto Rico',
-                extra={"key": zone_key},
-            )
-
-        logger.info(
-            f'Category "{category}" produces {outputInMW}MW', extra={"key": zone_key}
-        )
-
-    # Step 2: fetch renewable production breakdown
-    # Data from this source isn't rounded. Assume renewable production not accounted for is hydro
-    res = r.get(RENEWABLES_BREAKDOWN_URL)
-
-    assert res.status_code == 200, (
-        "Exception when fetching renewable production for "
-        "{}: error when calling url={}".format(zone_key, RENEWABLES_BREAKDOWN_URL)
-    )
-
-    sourceData = extract_data(res.text)
-    logger.debug(
-        f"Raw renewable generation breakdown: {sourceData}", extra={"key": zone_key}
-    )
-
-    original_renewable_output = renewable_output  # If nothing gets subtracted renewable_output, there probably was no data on the renewables breakdown page
-
-    logger.debug(
-        f"Total (unspecified) renewable output from total generation breakdown: {original_renewable_output}MW",
-        extra={"key": zone_key},
-    )
-
-    for (
-        item
-    ) in (
-        sourceData
-    ):  # Somewhat different from above, the item's label has the generation type and the item's value has generation in MW
-        if item["label"] == "  ":  # There's one empty item for some reason. Skip it.
-            continue
-
-        if item["label"] == "Solar":
-            data["production"]["solar"] += float(item["value"])
-        elif item["label"] == "Eolica":
-            data["production"]["wind"] += float(item["value"])
-        elif item["label"] == "Landfill Gas":
-            data["production"]["biomass"] += float(item["value"])
-        else:
-            logger.warn(
-                f"Unknown renewable type \"{item['label']}\" is present for Puerto Rico",
-                extra={"key": zone_key},
-            )
-
-        renewable_output -= float(
-            item["value"]
-        )  # Subtract production accounted for from the renewable output total
-
-        logger.info(
-            f"Renewable \"{item['label']}\" produces {item['value']}MW",
-            extra={"key": zone_key},
-        )
-        logger.debug(
-            f"Renewable output yet to be accounted for: {renewable_output}MW",
-            extra={"key": zone_key},
-        )
-
-    logger.debug(
-        "Rounding remaining renewable output to 14 decimal places to get rid of floating point errors"
-    )
-    renewable_output = round(renewable_output, 14)
-
-    logger.info(
-        f"Remaining renewable output not accounted for: {renewable_output}MW",
-        extra={"key": zone_key},
-    )
-
-    # Assume renewable generation not accounted for is hydro - if we could fetch the other renewable generation data
-    if renewable_output >= 0.0:
-        if (
-            original_renewable_output == renewable_output
-        ):  # Nothing got subtracted for Solar, Wind or Landfill gas - so the page probably didn't contain any data. Renewable type=unknown
             logger.warning(
-                f"Renewable generation breakdown page was empty, reporting unspecified renewable output ({renewable_output}MW) as 'unknown'",
                 extra={"key": zone_key},
             )
-            data["production"]["unknown"] += renewable_output
-        else:  # Otherwise, any remaining renewable output is probably hydro
-            logger.info(
-                f"Assuming remaining renewable output of {renewable_output}MW is hydro",
-                extra={"key": zone_key},
-            )
-            data["production"]["hydro"] += renewable_output
-    else:
-        logger.warn(
-            f"Renewable generation breakdown page total is greater than total renewable output, a difference of {renewable_output}MW",
-            extra={"key": zone_key},
-        )
-
-    # Step 3: fetch the timestamp, which is at the bottom of a different iframe
-    # Note: there's a race condition here when requesting data very close to <hour>:10 and <hour>:40, which is when the data gets updated
-    # Sometimes it's some seconds later, so we grab the timestamp from here to know the exact moment
-
-    res = r.get(
-        TIMESTAMP_URL
-    )  # TODO do we know for sure the timestamp on this page gets updated *every time* the generation breakdown gets updated?
-
-    assert (
-        res.status_code == 200
-    ), "Exception when fetching timestamp for " "{}: error when calling url={}".format(
-        zone_key, TIMESTAMP_URL
-    )
-
-    raw_timestamp_match = re.search(
-        r"Ultima Actualizaci�n:  ((?:0[1-9]|1[0-2])/(?:[0-2][0-9]|3[0-2])/2[01][0-9]{2}  [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [AP]M)",
-        res.text,
-    )
-
-    if raw_timestamp_match is None:
-        raise Exception(f"Could not find timestamp in {res.text}")
-
-    raw_timestamp = raw_timestamp_match.group(1)
-
-    logger.debug(f"RAW TIMESTAMP: {raw_timestamp}", extra={"key": zone_key})
-
-    data["datetime"] = convert_timestamp(zone_key, raw_timestamp)
-
-    assert (
-        data["production"]["oil"] > 0.0
-    ), "{} is missing required generation type: oil".format(zone_key)
 
     return data
 
