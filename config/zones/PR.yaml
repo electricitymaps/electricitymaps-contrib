@@ -247,7 +247,7 @@ isRenewable:
   unknown:
     value: 1
 parsers:
-  production: US_PREPA.fetch_production
+  production: PR.fetch_production
 sources:
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing

@@ -2,10 +2,6 @@
 
 """
 Real-time parser for Puerto Rico.
-
-Fetches data from various pages embedded as an iframe at https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx
-
-The electricity authority is known in English as PREPA (Puerto Rico Electric Power Authority) and in Spanish as AEEPR (Autoridad de Energía Eléctrica Puerto Rico)
 """
 
 from datetime import datetime
@@ -32,7 +28,7 @@ MAP_GENERATION_UNIT_NAME_TO_TYPE = {
     "AES": "coal",  # https://web.archive.org/web/20230323203600/https://www.aespuertorico.com/sites/default/files/2022-10/CCR%20Annual%20Inspection%20Report%202022_Final_Sept%202022.pdf - note that the LUMA website mentions a max capacity of 550MW, and this document 520MW. Gross vs net or is it because of other (small) generation facilities?
     # Peaker plants
     "Mayaguez": "oil",  # https://energia.pr.gov/wp-content/uploads/sites/7/2022/05/Motion-to-Inform-Approval-of-Mayaguez-Project-NEPR-MI-2020-0012-1.pdf - note that the LUMA website mentions a max capacity of 250MW, and this document 220MW
-    "Cambalache": "unknown",  # https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.CA_Cambalache-IE-Report_Final.pdf - 247.5MW (3×82.5MW)
+    "Cambalache": "oil",  # https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.CA_Cambalache-IE-Report_Final.pdf - 247.5MW (3×82.5MW)
     "Gas Turbine": "unknown",  # In spite of the name, there are gas turbines that run on diesel; 'gas' doesn't mean 'natural gas' here
     "Aguirre Combined Cycle": "oil",
     # Renewables
@@ -92,8 +88,6 @@ def fetch_production(
         "{}: error when calling url={}".format(zone_key, GENERATION_BREAKDOWN_URL)
     )
 
-    # sourceData = extract_data(res.text)
-
     html = res.text
     soup = BeautifulSoup(html, "lxml")
 
@@ -104,7 +98,7 @@ def fetch_production(
     assert "Power Supply in Details" == detailsContainer_heading, (
         "Exception when extracting generation breakdown for {}: heading is not "
         "'Power Supply in Details' but is instead named {}".format(
-            zone_key, thermal_production_breakdown_table_header
+            zone_key, detailsContainer_heading
         )
     )
 
