@@ -1,10 +1,13 @@
 import {
   getCO2IntensityByMode,
   dateToDatetimeString,
+  getProductionCo2Intensity,
   getFossilFuelRatio,
   getCarbonIntensity,
   getRenewableRatio,
 } from './helpers';
+
+import { zoneDetailMock } from 'stories/mockData';
 
 describe('getCO2IntensityByMode', () => {
   // Tests for consumption
@@ -37,7 +40,19 @@ describe('dateToDatetimeString', () => {
   });
 });
 
-describe('getFossilFuelPercentage', () => {
+describe('getProductionCo2Intensity', () => {
+  it('returns 10.7 when the type is hydro', () => {
+    const actual = getProductionCo2Intensity('hydro', zoneDetailMock);
+    expect(actual).toBe(10.7);
+  });
+
+  it('returns 136.442_667_362_438_53 when the type is battery storage', () => {
+    const actual = getProductionCo2Intensity('battery storage', zoneDetailMock);
+    expect(actual).toBe(136.442_667_362_438_53);
+  });
+});
+
+describe('getFossilFuelRatio', () => {
   // Tests for consumption
   describe('consumption', () => {
     it('returns 1 when fossil fuel ratio is 0', () => {
