@@ -152,8 +152,8 @@ function BarElectricityBreakdownChart({
             <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
 
             <HorizontalBar
-              className="capacity"
-              fill="rgba(0, 0, 0, 0.15)"
+              className="text-black/10 dark:text-white/10"
+              fill="currentColor"
               range={d.exchangeCapacityRange}
               scale={powerScale}
             />
