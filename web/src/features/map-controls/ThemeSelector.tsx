@@ -32,13 +32,10 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
     <MapOptionSelector
       trigger={
         isMobile ? (
-          <Button
-            renderAsDiv
-            icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
-            className="my-0"
-          >
+          <div className="flex w-fit min-w-[232px] items-center justify-center gap-x-2 ">
+            <BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />
             {__('tooltips.changeTheme')}
-          </Button>
+          </div>
         ) : (
           <MapButton
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}

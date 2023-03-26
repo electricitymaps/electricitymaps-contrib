@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-mobile",
-  "version": "1.12.0",
+  "version": "1.17.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "main": "index.js",

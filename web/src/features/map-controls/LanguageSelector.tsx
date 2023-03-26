@@ -24,9 +24,10 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
     <MapOptionSelector
       trigger={
         isMobile ? (
-          <Button renderAsDiv icon={<HiLanguage size={21} />} className="mb-0">
+          <div className="flex w-fit min-w-[232px] items-center justify-center gap-x-2 ">
+            <HiLanguage size={21} />
             {__('tooltips.selectLanguage')}
-          </Button>
+          </div>
         ) : (
           <MapButton
             icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}

@@ -15,7 +15,6 @@ interface ButtonProps {
   href?: string;
   className?: string;
   onClick?: () => void;
-  renderAsDiv?: boolean;
 }
 
 export function Button({
@@ -26,19 +25,17 @@ export function Button({
   textColor,
   href,
   className,
-  renderAsDiv,
   ...restProps
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
-  const buttonOrDiv = renderAsDiv ? 'div' : 'button';
-  const As = renderAsLink ? 'a' : buttonOrDiv;
+  const As = renderAsLink ? 'a' : 'button';
 
   const isIconOnly = !children && Boolean(icon);
 
   return (
     <As
       className={twMerge(
-        `my-3 mx-2 flex w-fit items-center justify-center gap-x-2 rounded-full bg-white py-3 px-2 text-md font-bold shadow-[0px_0px_13px_rgb(0_0_0/12%)] transition duration-200 hover:shadow-[0px_0px_23px_rgb(0_0_0/20%)] dark:bg-gray-600 dark:hover:shadow-[0px_0px_23px_rgb(0_0_0/50%)]`,
+        `my-3 mx-2 flex min-h-[45px] w-fit items-center justify-center gap-x-2 rounded-full bg-white py-3 px-2 text-md font-bold shadow-[0px_0px_13px_rgb(0_0_0/12%)] transition duration-200 hover:shadow-[0px_0px_23px_rgb(0_0_0/20%)] dark:bg-gray-600 dark:hover:shadow-[0px_0px_23px_rgb(0_0_0/50%)]`,
         !isIconOnly && BUTTON_MIN_WIDTH_CLASS,
         `${disabled ? 'opacity-60 hover:shadow-[0px_0px_13px_rgb(0_0_0/12%)]' : ''}`,
         className
