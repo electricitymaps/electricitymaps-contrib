@@ -25,8 +25,8 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: cypress-snapshots
-          path: cypress/snapshots
+          name: component-screenshots
+          path: web/cypress/screenshots
   cypress-run-e2e:
     name: Cypress e2e
     runs-on: ubuntu-22.04
@@ -51,5 +51,5 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: cypress-snapshots
-          path: cypress/snapshots
+          name: e2e-screenshots
+          path: web/cypress/screenshots
