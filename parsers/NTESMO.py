@@ -11,11 +11,12 @@ from typing import Callable, Dict, List, TypedDict
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-from parsers.lib.config import refetch_frequency
-from parsers.lib.exceptions import ParserException
 from pytz import timezone
 from requests import Session
 from requests.adapters import HTTPAdapter, Retry
+
+from parsers.lib.config import refetch_frequency, retry_policy
+from parsers.lib.exceptions import ParserException
 
 australia_tz = timezone("Australia/Darwin")
 
@@ -66,8 +67,6 @@ retry_strategy = Retry(
     total=3,
     status_forcelist=[500, 502, 503, 504],
 )
-session_with_retries = Session()
-session_with_retries.mount("https://", HTTPAdapter(max_retries=retry_strategy))
 
 
 def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
@@ -204,9 +203,10 @@ def parse_production_mix(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_consumption(
     zone_key: str = "AU-NT",
-    session: Session = session_with_retries,
+    session: Session = Session(),
     target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("UTC"),
     logger: Logger = getLogger(__name__),
 ):
@@ -215,9 +215,10 @@ def fetch_consumption(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_price(
     zone_key: str = "AU-NT",
-    session: Session = session_with_retries,
+    session: Session = Session(),
     target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("utc"),
     logger: Logger = getLogger(__name__),
 ):
@@ -226,9 +227,10 @@ def fetch_price(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_production_mix(
     zone_key: str = "AU-NT",
-    session: Session = session_with_retries,
+    session: Session = Session(),
     target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("utc"),
     logger: Logger = getLogger(__name__),
 ):
