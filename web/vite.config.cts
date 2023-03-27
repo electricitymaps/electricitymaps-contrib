@@ -8,6 +8,7 @@ import { defineConfig } from 'vite';
 // import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import replace from '@rollup/plugin-replace';
+import istanbul from 'vite-plugin-istanbul';
 
 const manualChunkMap = {
   '@sentry': 'sentry',
@@ -64,6 +65,10 @@ export default defineConfig(({ mode }) => ({
       babel: {
         plugins: [jotaiDebugLabel, jotaiReactRefresh],
       },
+    }),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
     }),
     ...(mode !== 'test'
       ? [

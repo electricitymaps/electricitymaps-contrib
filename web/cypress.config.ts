@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+import task from '@cypress/code-coverage/task';
 
 export default defineConfig({
   fileServerFolder: 'dist',
@@ -14,6 +15,15 @@ export default defineConfig({
     devServer: {
       framework: 'react',
       bundler: 'vite',
+    },
+    setupNodeEvents(on, config) {
+      task(on, config);
+      return config;
+    },
+  },
+  env: {
+    codeCoverage: {
+      exclude: 'cypress/**/*.*',
     },
   },
 });
