@@ -13,6 +13,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from pytz import timezone
 from requests import Session
+from requests.adapters import HTTPAdapter, Retry
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -59,6 +60,14 @@ PLANT_MAPPING = {
     "BP01": Generator(power_plant="", fuel_type="unknown"),
     "HP01": Generator(power_plant="", fuel_type="unknown"),
 }
+
+
+retry_strategy = Retry(
+    total=3,
+    status_forcelist=[500, 502, 503, 504],
+)
+session_with_retries = Session()
+session_with_retries.mount("https://", HTTPAdapter(max_retries=retry_strategy))
 
 
 def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
@@ -197,7 +206,7 @@ def parse_production_mix(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "AU-NT",
-    session: Session = Session(),
+    session: Session = session_with_retries,
     target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("UTC"),
     logger: Logger = getLogger(__name__),
 ):
@@ -208,7 +217,7 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str = "AU-NT",
-    session: Session = Session(),
+    session: Session = session_with_retries,
     target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("utc"),
     logger: Logger = getLogger(__name__),
 ):
@@ -219,7 +228,7 @@ def fetch_price(
 @refetch_frequency(timedelta(days=1))
 def fetch_production_mix(
     zone_key: str = "AU-NT",
-    session: Session = Session(),
+    session: Session = session_with_retries,
     target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("utc"),
     logger: Logger = getLogger(__name__),
 ):
