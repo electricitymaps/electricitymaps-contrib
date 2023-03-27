@@ -21,6 +21,12 @@ jobs:
           install: true
           # to run component tests we need to use "component: true"
           component: true
+      - name: Upload screenshots
+        uses: actions/upload-artifact@latest
+        if: failure()
+        with:
+          name: cypress-snapshots
+          path: cypress/snapshots
   cypress-run-e2e:
     name: Cypress e2e
     runs-on: ubuntu-22.04
@@ -41,3 +47,9 @@ jobs:
           build: pnpm run build --mode testing
           start: pnpm run preview
           config: baseUrl=http://127.0.0.1:4173/
+      - name: Upload screenshots
+        uses: actions/upload-artifact@latest
+        if: failure()
+        with:
+          name: cypress-snapshots
+          path: cypress/snapshots
