@@ -11,12 +11,11 @@ from typing import Callable, Dict, List, TypedDict
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 from pytz import timezone
 from requests import Session
 from requests.adapters import HTTPAdapter, Retry
-
-from parsers.lib.config import refetch_frequency
-from parsers.lib.exceptions import ParserException
 
 australia_tz = timezone("Australia/Darwin")
 
@@ -61,7 +60,8 @@ PLANT_MAPPING = {
     "HP01": Generator(power_plant="", fuel_type="unknown"),
 }
 
-
+# For some reason the page doesn't always load on first attempt.
+# Therefore we retry a few times.
 retry_strategy = Retry(
     total=3,
     status_forcelist=[500, 502, 503, 504],
