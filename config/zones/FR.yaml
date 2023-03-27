@@ -270,7 +270,7 @@ fallbackZoneMixes:
         unknown: 0.0010397123281364613
         wind: 0.07340994788077605
 parsers:
-  consumption: ENTSOE.fetch_consumption
+  consumption: FR.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
