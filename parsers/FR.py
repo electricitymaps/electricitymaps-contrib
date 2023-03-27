@@ -37,12 +37,14 @@ MAP_HYDRO = [
     "pompage",
 ]
 DATASET_RT = "eco2mix-national-tr"
-DATASET_CONSOLIDATED = "eco2mix-national-cons-def" # API called is Données éCO2mix nationales consolidées et définitives for datetimes older than 9 months
+DATASET_CONSOLIDATED = "eco2mix-national-cons-def"  # API called is Données éCO2mix nationales consolidées et définitives for datetimes older than 9 months
+
 
 def is_not_nan_and_truthy(v) -> bool:
     if isinstance(v, float) and math.isnan(v):
         return False
     return bool(v)
+
 
 def get_dataset_from_datetime(target_datetime: datetime) -> str:
     """Returns the dataset to query based on the target_datetime. The real-time API returns no values for target datetimes older than 9 months and we need to query the consolidated dataset."""
@@ -53,12 +55,14 @@ def get_dataset_from_datetime(target_datetime: datetime) -> str:
         dataset = DATASET_RT
     return dataset
 
-def get_data(session: Optional[Session] = None,
+
+def get_data(
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
-    ) -> pd.DataFrame:
+) -> pd.DataFrame:
     """Returns a DataFrame with the data from the API."""
     if target_datetime:
-        target_datetime =arrow.get(target_datetime).replace(tzinfo="Europe/Paris")
+        target_datetime = arrow.get(target_datetime).replace(tzinfo="Europe/Paris")
     else:
         target_datetime = arrow.now(tz="Europe/Paris")
 
@@ -87,6 +91,7 @@ def get_data(session: Optional[Session] = None,
     df = pd.DataFrame(data)
     return df
 
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "FR",
@@ -94,7 +99,7 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    df_production= get_data(session, target_datetime)
+    df_production = get_data(session, target_datetime)
 
     # filter out desired columns and convert values to float
     value_columns = list(MAP_GENERATION.keys()) + MAP_HYDRO
@@ -128,10 +133,12 @@ def fetch_production(
 
         # Hydro is a special case!
         has_hydro_production = all(
-            i in df_production.columns for i in ["hydraulique_lacs", "hydraulique_fil_eau_eclusee"]
+            i in df_production.columns
+            for i in ["hydraulique_lacs", "hydraulique_fil_eau_eclusee"]
         )
         has_hydro_storage = all(
-            i in df_production.columns for i in ["pompage", "hydraulique_step_turbinage"]
+            i in df_production.columns
+            for i in ["pompage", "hydraulique_step_turbinage"]
         )
         if has_hydro_production:
             production["hydro"] = (
@@ -151,7 +158,9 @@ def fetch_production(
 
         datapoint = {
             "zoneKey": zone_key,
-            "datetime": arrow.get(row[1]["date_heure"]).replace(tzinfo="Europe/Paris").datetime,
+            "datetime": arrow.get(row[1]["date_heure"])
+            .replace(tzinfo="Europe/Paris")
+            .datetime,
             "production": production,
             "storage": storage,
             "source": "opendata.reseaux-energies.fr",
@@ -171,6 +180,7 @@ def fetch_production(
 
     return datapoints
 
+
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "FR",
@@ -179,18 +189,27 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list:
     df_consumption = get_data(session, target_datetime)
-    df_consumption = df_consumption[["date_heure","consommation"]].dropna()
-    df_consumption["datetime"] = pd.to_datetime(df_consumption["date_heure"]).dt.tz_convert("Europe/Paris")
+    df_consumption = df_consumption[["date_heure", "consommation"]].dropna()
+    df_consumption["datetime"] = pd.to_datetime(
+        df_consumption["date_heure"]
+    ).dt.tz_convert("Europe/Paris")
     datapoints = []
     for row in df_consumption.itertuples():
-        datapoints.append({
-            "zoneKey": zone_key,
-            "datetime": arrow.get(row.datetime).replace(tzinfo="Europe/Paris").datetime,
-            "consumption": row.consommation,
-            "source": "opendata.reseaux-energies.fr",
-        })
-    validated_datapoints = [validate_consumption(datapoint, logger) for datapoint in datapoints]
+        datapoints.append(
+            {
+                "zoneKey": zone_key,
+                "datetime": arrow.get(row.datetime)
+                .replace(tzinfo="Europe/Paris")
+                .datetime,
+                "consumption": row.consommation,
+                "source": "opendata.reseaux-energies.fr",
+            }
+        )
+    validated_datapoints = [
+        validate_consumption(datapoint, logger) for datapoint in datapoints
+    ]
     return validated_datapoints
+
 
 if __name__ == "__main__":
     print(fetch_consumption())
