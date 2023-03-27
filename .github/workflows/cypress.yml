@@ -22,7 +22,7 @@ jobs:
           # to run component tests we need to use "component: true"
           component: true
       - name: Upload screenshots
-        uses: actions/upload-artifact@latest
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-snapshots
@@ -48,7 +48,7 @@ jobs:
           start: pnpm run preview
           config: baseUrl=http://127.0.0.1:4173/
       - name: Upload screenshots
-        uses: actions/upload-artifact@latest
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-snapshots
