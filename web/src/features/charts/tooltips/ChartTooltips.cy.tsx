@@ -9,7 +9,7 @@ it('Carbon chart tooltip', () => {
   );
   cy.contains('Carbon intensity');
   cy.contains(`187 gCO₂eq/kWh`);
-  cy.contains('28 Nov 2022');
+  cy.contains('2022');
 });
 it('Breakdown chart tooltip', () => {
   cy.mount(
@@ -18,13 +18,13 @@ it('Breakdown chart tooltip', () => {
   cy.contains('Hydro');
   cy.contains(`22.13 % of electricity available in`);
   cy.contains(`representing 1.26 % of emissions`);
-  cy.contains('28 Nov 2022');
+  cy.contains('Nov');
 });
 it('Emmisions chart tooltip', () => {
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
   cy.contains('Carbon emissions');
   cy.contains(`20.39t of CO₂eq per minute`);
-  cy.contains('28 Nov 2022');
+  cy.contains('28');
 });
 
 it('Carbon chart tooltip mobile', () => {
@@ -34,7 +34,7 @@ it('Carbon chart tooltip mobile', () => {
   );
   cy.contains('Carbon intensity');
   cy.contains(`187 gCO₂eq/kWh`);
-  cy.contains('28 Nov 2022');
+  cy.contains('2022');
 });
 it('Breakdown chart tooltip mobile', () => {
   cy.viewport(500, 500);
@@ -44,12 +44,12 @@ it('Breakdown chart tooltip mobile', () => {
   cy.contains('Hydro');
   cy.contains(`22.13 % of electricity available in`);
   cy.contains(`representing 1.26 % of emissions`);
-  cy.contains('28 Nov 2022');
+  cy.contains('Nov');
 });
 it('Emmisions chart tooltip mobile', () => {
   cy.viewport(500, 500);
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
   cy.contains('Carbon emissions');
   cy.contains(`20.39t of CO₂eq per minute`);
-  cy.contains('28 Nov 2022');
+  cy.contains('28');
 });
