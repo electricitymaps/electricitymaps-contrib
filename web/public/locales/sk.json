@@ -95,7 +95,7 @@
     "hideWindLayer": "Skry veternú vrstvu",
     "showSolarLayer": "Zobraz solárnu vrstvu",
     "hideSolarLayer": "Skry solárnu vrstvu",
-    "toggleDarkMode": "Prepni tmavý režim",
+    "changeTheme": "Prepni tmavý režim",
     "noParserInfo": "Žiadne dáta",
     "temporaryDataOutage": "Dáta momentálne nedostupné"
   },

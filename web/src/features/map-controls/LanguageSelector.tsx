@@ -1,19 +1,14 @@
-import { ReactElement, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { useState } from 'react';
 import { languageNames } from 'translation/locales';
 import { useTranslation } from 'translation/translation';
-
-interface LanguageSelectorProperties {
-  setLanguageSelectorOpen: (isOpen: boolean) => void;
-  className?: string;
-}
+import MapOptionSelector from './MapOptionSelector';
+import MapButton from './MapButton';
+import { HiLanguage } from 'react-icons/hi2';
+import { Button } from 'components/Button';
 
 type LanguageNamesKey = keyof typeof languageNames;
 
-export default function LanguageSelector({
-  setLanguageSelectorOpen,
-  className,
-}: LanguageSelectorProperties): ReactElement {
+export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
   const { __, i18n } = useTranslation();
   const languageKeys = Object.keys(languageNames) as Array<LanguageNamesKey>;
   const currentLanguageKey = i18n.language as LanguageNamesKey;
@@ -23,31 +18,39 @@ export default function LanguageSelector({
 
   const handleLanguageSelect = (languageKey: LanguageNamesKey) => {
     i18n.changeLanguage(languageKey);
-    setSelectedLanguage(languageKey);
-    setLanguageSelectorOpen(false);
+    setSelectedLanguage(languageNames[languageKey]);
   };
-  const languageOptions = languageKeys.map((key) => {
-    return (
-      <button
-        key={key}
-        onKeyDown={() => handleLanguageSelect(key)}
-        onClick={() => handleLanguageSelect(key)}
-        className={`w-full cursor-pointer px-2 py-1 text-start text-sm ${
-          languageNames[key] === selectedLanguage && 'bg-gray-200   dark:bg-gray-500'
-        }`}
-      >
-        {languageNames[key]}
-      </button>
-    );
-  });
   return (
-    <div
-      className={twMerge(
-        'pointer-events-auto absolute top-[160px] right-10 h-[256px] w-[140px] overflow-auto rounded bg-white py-1 dark:bg-gray-900 dark:[color-scheme:dark]',
-        className
-      )}
+    <MapOptionSelector
+      trigger={
+        isMobile ? (
+          <div className="flex w-fit min-w-[232px] items-center justify-center gap-x-2 ">
+            <HiLanguage size={21} />
+            {__('tooltips.selectLanguage')}
+          </div>
+        ) : (
+          <MapButton
+            icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
+            tooltipText={__('tooltips.selectLanguage')}
+          />
+        )
+      }
+      testId={'language-selector-open-button'}
+      isMobile={isMobile}
     >
-      {languageOptions}
-    </div>
+      {languageKeys.map((key) => (
+        <button
+          key={key}
+          onKeyDown={() => handleLanguageSelect(key)}
+          onClick={() => handleLanguageSelect(key)}
+          className={`w-full cursor-pointer px-2 py-1 text-start text-sm transition hover:bg-gray-200 dark:hover:bg-gray-700 ${
+            languageNames[key] === selectedLanguage &&
+            'bg-gray-100 font-bold dark:bg-gray-800'
+          }`}
+        >
+          {languageNames[key]}
+        </button>
+      ))}
+    </MapOptionSelector>
   );
 }

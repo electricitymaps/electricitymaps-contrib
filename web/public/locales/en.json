@@ -56,6 +56,9 @@
     "helpfrom": "with help from",
     "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
     "noLiveData": "Live data is temporarily unavailable for this area",
+    "disabledPriceReasons": {
+      "licensing": "Electricity prices are unavailable for this area due to licensing terms"
+    },
     "dataIsDelayed": "Data for this region can be up to %s hours delayed. Live data cannot be displayed.",
     "estimated": "estimated",
     "aggregated": "aggregated",
@@ -121,7 +124,7 @@
     "showSolarLayer": "Show solar layer",
     "hideSolarLayer": "Hide solar layer",
     "weatherDisabled": "Weather data is not available at this time",
-    "toggleDarkMode": "Toggle dark-mode",
+    "changeTheme": "Change theme",
     "noParserInfo": "No data available",
     "temporaryDataOutage": "Live data temporarily unavailable",
     "production": "production",
@@ -136,6 +139,11 @@
   "aggregateButtons": {
     "country": "country",
     "zone": "zone"
+  },
+  "themeOptions": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
   },
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",

@@ -2,7 +2,6 @@
 
 import json
 import math
-import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
@@ -12,9 +11,12 @@ import pandas as pd
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
-
-from .lib.utils import get_token
-from .lib.validation import validate, validate_production_diffs
+from parsers.lib.utils import get_token
+from parsers.lib.validation import (
+    validate,
+    validate_consumption,
+    validate_production_diffs,
+)
 
 API_ENDPOINT = "https://opendata.reseaux-energies.fr/api/records/1.0/search/"
 
@@ -34,12 +36,60 @@ MAP_HYDRO = [
     "hydraulique_step_turbinage",
     "pompage",
 ]
+DATASET_REAL_TIME = "eco2mix-national-tr"
+DATASET_CONSOLIDATED = "eco2mix-national-cons-def"  # API called is Données éCO2mix nationales consolidées et définitives for datetimes older than 9 months
 
 
 def is_not_nan_and_truthy(v) -> bool:
     if isinstance(v, float) and math.isnan(v):
         return False
     return bool(v)
+
+
+def get_dataset_from_datetime(target_datetime: datetime) -> str:
+    """Returns the dataset to query based on the target_datetime. The real-time API returns no values for target datetimes older than 9 months and we need to query the consolidated dataset."""
+    if target_datetime < arrow.now(tz="Europe/Paris").shift(months=-9):
+        # API called is Données éCO2mix régionales consolidées et définitives for datetimes that are more than 9 months in the past
+        dataset = DATASET_CONSOLIDATED
+    else:
+        dataset = DATASET_REAL_TIME
+    return dataset
+
+
+def get_data(
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+) -> pd.DataFrame:
+    """Returns a DataFrame with the data from the API."""
+    if target_datetime:
+        target_datetime_in_arrow = arrow.get(target_datetime).replace(
+            tzinfo="Europe/Paris"
+        )
+    else:
+        target_datetime_in_arrow = arrow.now(tz="Europe/Paris")
+
+    # get dataset to query
+    dataset = get_dataset_from_datetime(target_datetime_in_arrow)
+
+    # setup request
+    r = session or Session()
+    formatted_from = target_datetime_in_arrow.shift(days=-1).format("YYYY-MM-DDTHH:mm")
+    formatted_to = target_datetime_in_arrow.format("YYYY-MM-DDTHH:mm")
+
+    params = {
+        "dataset": dataset,
+        "q": f"date_heure >= {formatted_from} AND date_heure <= {formatted_to}",
+        "timezone": "Europe/Paris",
+        "rows": 100,
+    }
+
+    params["apikey"] = get_token("RESEAUX_ENERGIES_TOKEN")
+    # make request and create dataframe with response
+    response = r.get(API_ENDPOINT, params=params)
+    data = json.loads(response.content)
+    data = [d["fields"] for d in data["records"]]
+    df = pd.DataFrame(data)
+    return df
 
 
 @refetch_frequency(timedelta(days=1))
@@ -49,37 +99,12 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    if target_datetime:
-        to = arrow.get(target_datetime, "Europe/Paris")
-    else:
-        to = arrow.now(tz="Europe/Paris")
-
-    # setup request
-    r = session or Session()
-    formatted_from = to.shift(days=-1).format("YYYY-MM-DDTHH:mm")
-    formatted_to = to.format("YYYY-MM-DDTHH:mm")
-
-    params = {
-        "dataset": "eco2mix-national-tr",
-        "q": "date_heure >= {} AND date_heure <= {}".format(
-            formatted_from, formatted_to
-        ),
-        "timezone": "Europe/Paris",
-        "rows": 100,
-    }
-
-    params["apikey"] = get_token("RESEAUX_ENERGIES_TOKEN")
-
-    # make request and create dataframe with response
-    response = r.get(API_ENDPOINT, params=params)
-    data = json.loads(response.content)
-    data = [d["fields"] for d in data["records"]]
-    df = pd.DataFrame(data)
+    df_production = get_data(session, target_datetime)
 
     # filter out desired columns and convert values to float
     value_columns = list(MAP_GENERATION.keys()) + MAP_HYDRO
-    missing_fuels = [v for v in value_columns if v not in df.columns]
-    present_fuels = [v for v in value_columns if v in df.columns]
+    missing_fuels = [v for v in value_columns if v not in df_production.columns]
+    present_fuels = [v for v in value_columns if v in df_production.columns]
     if len(missing_fuels) == len(value_columns):
         logger.warning("No fuels present in the API response")
         return list()
@@ -89,11 +114,11 @@ def fetch_production(
             "Fuels [{}] are not present in the API " "response".format(mf_str)
         )
 
-    df = df.loc[:, ["date_heure"] + present_fuels]
-    df[present_fuels] = df[present_fuels].astype(float)
+    df_production = df_production.loc[:, ["date_heure"] + present_fuels]
+    df_production[present_fuels] = df_production[present_fuels].astype(float)
 
     datapoints = list()
-    for row in df.iterrows():
+    for row in df_production.iterrows():
         production = dict()
         for key, value in MAP_GENERATION.items():
             if key not in present_fuels:
@@ -108,10 +133,12 @@ def fetch_production(
 
         # Hydro is a special case!
         has_hydro_production = all(
-            i in df.columns for i in ["hydraulique_lacs", "hydraulique_fil_eau_eclusee"]
+            i in df_production.columns
+            for i in ["hydraulique_lacs", "hydraulique_fil_eau_eclusee"]
         )
         has_hydro_storage = all(
-            i in df.columns for i in ["pompage", "hydraulique_step_turbinage"]
+            i in df_production.columns
+            for i in ["pompage", "hydraulique_step_turbinage"]
         )
         if has_hydro_production:
             production["hydro"] = (
@@ -131,7 +158,9 @@ def fetch_production(
 
         datapoint = {
             "zoneKey": zone_key,
-            "datetime": arrow.get(row[1]["date_heure"]).datetime,
+            "datetime": arrow.get(row[1]["date_heure"])
+            .replace(tzinfo="Europe/Paris")
+            .datetime,
             "production": production,
             "storage": storage,
             "source": "opendata.reseaux-energies.fr",
@@ -152,5 +181,36 @@ def fetch_production(
     return datapoints
 
 
+@refetch_frequency(timedelta(days=1))
+def fetch_consumption(
+    zone_key: str = "FR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    df_consumption = get_data(session, target_datetime)
+    df_consumption = df_consumption[["date_heure", "consommation"]].dropna()
+    df_consumption["datetime"] = pd.to_datetime(
+        df_consumption["date_heure"]
+    ).dt.tz_convert("Europe/Paris")
+    datapoints = []
+    for row in df_consumption.itertuples():
+        datapoints.append(
+            {
+                "zoneKey": zone_key,
+                "datetime": arrow.get(row.datetime)
+                .replace(tzinfo="Europe/Paris")
+                .datetime,
+                "consumption": row.consommation,
+                "source": "opendata.reseaux-energies.fr",
+            }
+        )
+    validated_datapoints = [
+        validate_consumption(datapoint, logger) for datapoint in datapoints
+    ]
+    return validated_datapoints
+
+
 if __name__ == "__main__":
-    print(fetch_production())
+    print(fetch_consumption())
+    print(fetch_production(target_datetime="2023-03-01"))

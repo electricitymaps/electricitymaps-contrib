@@ -42,6 +42,9 @@
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
     "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",
     "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href=\"%s\" target=\"_blank\">Datenquellen hinzufügst</a>.",
+    "disabledPriceReasons": {
+      "licensing": "Aufgrund von Lizenzbedingungen sind für dieses Gebiet keine Strompreise verfügbar"
+    },
     "now": "Jetzt",
     "electricity": "Elektrizität",
     "dataIsDelayed": "Die Daten in dieser Region können bis zu %s Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
@@ -107,7 +110,7 @@
     "hideWindLayer": "Windlayer verbergen",
     "showSolarLayer": "Solarlayer anzeigen",
     "hideSolarLayer": "Solarlayer verbergen",
-    "toggleDarkMode": "Tag-/Nachtmodus umschalten",
+    "changeTheme": "Thema ändern",
     "noParserInfo": "Keine Daten verfügbar",
     "temporaryDataOutage": "Live-Daten sind momentan leider nicht verfügbar",
     "production": "Produktion",
@@ -121,6 +124,15 @@
     "zoomIn": "Rein zoomen",
     "zoomOut": "Raus zoomen",
     "aggregateInfo": "Wechsel zwischen spezifischer Zonenansicht und aggregierter Länderansicht"
+  },
+  "aggregateButtons": {
+    "country": "Land",
+    "zone": "Zone"
+  },
+  "themeOptions": {
+    "dark": "Dunkel",
+    "light": "Hell",
+    "system": "System"
   },
   "misc": {
     "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",

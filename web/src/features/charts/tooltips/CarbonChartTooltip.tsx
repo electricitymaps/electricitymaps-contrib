@@ -25,7 +25,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
       data-test-id="carbon-chart-tooltip"
       className="w-full rounded-md bg-white p-3 shadow-xl dark:bg-gray-900 sm:w-80"
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between whitespace-nowrap">
         <div className="inline-flex items-center gap-x-1">
           <div
             style={{
@@ -35,7 +35,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
           ></div>
           <div className="text-base font-bold">{__('tooltips.carbonintensity')}</div>
         </div>
-        <div className="my-1 h-[32px] max-w-[160px] select-none rounded-full bg-brand-green/10 py-2 px-3 text-sm text-brand-green dark:bg-gray-700 dark:text-white">
+        <div className="my-1 h-[32px] select-none rounded-full bg-brand-green/10 py-2 px-3 text-sm text-brand-green dark:bg-gray-700 dark:text-white">
           {formatDate(new Date(stateDatetime), i18n.language, timeAverage)}
         </div>
       </div>

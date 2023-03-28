@@ -95,7 +95,7 @@
     "hideWindLayer": "Hide wind layer",
     "showSolarLayer": "Show solar layer",
     "hideSolarLayer": "Hide solar layer",
-    "toggleDarkMode": "Toggle dark-mode",
+    "changeTheme": "Toggle dark-mode",
     "noParserInfo": "No data available",
     "temporaryDataOutage": "Data temporarily unavailable",
     "production": "production",

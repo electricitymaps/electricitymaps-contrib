@@ -1,13 +1,9 @@
 import { Button } from 'components/Button';
 import Modal from 'components/Modal';
 import ConsumptionProductionToggle from 'features/map-controls/ConsumptionProductionToggle';
-import LanguageSelector from 'features/map-controls/LanguageSelector';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
 import { useAtom } from 'jotai';
-import { useState } from 'react';
-import { HiOutlineEyeOff } from 'react-icons/hi';
-import { HiLanguage } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
 import { TimeAverages, ToggleOptions } from 'utils/constants';
@@ -17,6 +13,9 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 import { isSettingsModalOpenAtom } from './modalAtoms';
+import ThemeSelector from 'features/map-controls/ThemeSelector';
+import { LanguageSelector } from 'features/map-controls/LanguageSelector';
+import { HiOutlineEyeOff } from 'react-icons/hi';
 
 function WeatherToggleButton({
   allowed,
@@ -68,7 +67,6 @@ function WeatherToggleButton({
 }
 
 export function SettingsModalContent() {
-  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
@@ -83,19 +81,7 @@ export function SettingsModalContent() {
     <div className="flex flex-col items-center space-y-4">
       <ConsumptionProductionToggle />
       <SpatialAggregatesToggle />
-      <Button
-        onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
-        icon={<HiLanguage size={21} />}
-      >
-        {__('tooltips.selectLanguage')}
-      </Button>
-      {isLanguageSelectorOpen && (
-        <LanguageSelector
-          className="top-[185px] left-auto right-auto z-10 mt-4 w-60 overflow-x-hidden shadow-lg sm:top-[200px]"
-          setLanguageSelectorOpen={setIsLanguageSelectorOpen}
-        />
-      )}
-
+      <LanguageSelector isMobile />
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="solar" />
       <Button
@@ -107,6 +93,7 @@ export function SettingsModalContent() {
       >
         {__('legends.colorblindmode')}
       </Button>
+      <ThemeSelector isMobile />
     </div>
   );
 }
