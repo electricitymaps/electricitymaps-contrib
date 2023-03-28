@@ -145,7 +145,7 @@
     "autoprefixer": "10.4.12",
     "colors": "^1.4.0",
     "css-mediaquery": "0.1.2",
-    "cypress": "12.7.0",
+    "cypress": "12.9.0",
     "eslint": "8.26.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-base": "15.0.0",
