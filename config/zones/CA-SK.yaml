@@ -13,3 +13,5 @@ capacity:
   unknown: 26
 flag_file_name: ca.png
 timezone: America/Regina
+parsers:
+  production: CA_SK.fetch_production
