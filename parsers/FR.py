@@ -52,7 +52,7 @@ def get_dataset_from_datetime(target_datetime: datetime) -> str:
         # API called is Données éCO2mix régionales consolidées et définitives for datetimes that are more than 9 months in the past
         dataset = DATASET_CONSOLIDATED
     else:
-        dataset = DATASET_RT
+        dataset = DATASET_REAL_TIME
     return dataset
 
 
