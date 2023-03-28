@@ -36,7 +36,7 @@ MAP_HYDRO = [
     "hydraulique_step_turbinage",
     "pompage",
 ]
-DATASET_RT = "eco2mix-national-tr"
+DATASET_REAL_TIME = "eco2mix-national-tr"
 DATASET_CONSOLIDATED = "eco2mix-national-cons-def"  # API called is Données éCO2mix nationales consolidées et définitives for datetimes older than 9 months
 
 
