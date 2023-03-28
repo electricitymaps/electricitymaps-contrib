@@ -76,9 +76,7 @@ def get_data(
 
     params = {
         "dataset": dataset,
-        "q": "date_heure >= {} AND date_heure <= {}".format(
-            formatted_from, formatted_to
-        ),
+        "q": f"date_heure >= {formatted_from} AND date_heure <= {formatted_to}",
         "timezone": "Europe/Paris",
         "rows": 100,
     }
