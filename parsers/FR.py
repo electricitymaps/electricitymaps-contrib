@@ -62,17 +62,19 @@ def get_data(
 ) -> pd.DataFrame:
     """Returns a DataFrame with the data from the API."""
     if target_datetime:
-        target_datetime = arrow.get(target_datetime).replace(tzinfo="Europe/Paris")
+        target_datetime_in_arrow = arrow.get(target_datetime).replace(
+            tzinfo="Europe/Paris"
+        )
     else:
-        target_datetime = arrow.now(tz="Europe/Paris")
+        target_datetime_in_arrow = arrow.now(tz="Europe/Paris")
 
     # get dataset to query
-    dataset = get_dataset_from_datetime(target_datetime)
+    dataset = get_dataset_from_datetime(target_datetime_in_arrow)
 
     # setup request
     r = session or Session()
-    formatted_from = target_datetime.shift(days=-1).format("YYYY-MM-DDTHH:mm")
-    formatted_to = target_datetime.format("YYYY-MM-DDTHH:mm")
+    formatted_from = target_datetime_in_arrow.shift(days=-1).format("YYYY-MM-DDTHH:mm")
+    formatted_to = target_datetime_in_arrow.format("YYYY-MM-DDTHH:mm")
 
     params = {
         "dataset": dataset,
