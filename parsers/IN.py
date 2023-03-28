@@ -53,7 +53,6 @@ CEA_REGION_MAPPING = {
     "उत्तर-पूर्वी क्षेत्र  / North-Eastern Region": "IN-NE",
 }
 
-DEMAND_URL = "https://vidyutpravah.in/state-data/{state}"
 STATES_MAPPING = {
     "IN-NO": [
         "delhi",
