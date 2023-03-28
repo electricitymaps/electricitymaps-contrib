@@ -13,8 +13,9 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from pytz import timezone
 from requests import Session
+from requests.adapters import HTTPAdapter, Retry
 
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import refetch_frequency, retry_policy
 from parsers.lib.exceptions import ParserException
 
 australia_tz = timezone("Australia/Darwin")
@@ -59,6 +60,13 @@ PLANT_MAPPING = {
     "BP01": Generator(power_plant="", fuel_type="unknown"),
     "HP01": Generator(power_plant="", fuel_type="unknown"),
 }
+
+# For some reason the page doesn't always load on first attempt.
+# Therefore we retry a few times.
+retry_strategy = Retry(
+    total=3,
+    status_forcelist=[500, 502, 503, 504],
+)
 
 
 def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
@@ -195,6 +203,7 @@ def parse_production_mix(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_consumption(
     zone_key: str = "AU-NT",
     session: Session = Session(),
@@ -206,6 +215,7 @@ def fetch_consumption(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_price(
     zone_key: str = "AU-NT",
     session: Session = Session(),
@@ -217,6 +227,7 @@ def fetch_price(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_production_mix(
     zone_key: str = "AU-NT",
     session: Session = Session(),
