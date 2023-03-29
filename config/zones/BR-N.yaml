@@ -4,9 +4,9 @@ bounding_box:
   - - -49.37304648399993
     - 4.941122259000181
 capacity:
-  hydro: 22273
+  hydro: 22305
   solar: 3
-  unknown: 3645
+  unknown: 4031
   wind: 426
 contributors:
   - alexanmtz
