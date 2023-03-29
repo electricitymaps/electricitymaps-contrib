@@ -1,8 +1,7 @@
 """
 This script checks if the config filenames are valid.
 
-This may be run as part of CI or locally to ensure that the config filenames
-are valid.
+This is run as a part of the CI but can be run locally to ensure all filenames are valid before you commit the changes.
 
 Usage:
     poetry run python scripts/validate_config_filenames.py
