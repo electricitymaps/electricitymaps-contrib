@@ -21,7 +21,7 @@ PRODUCTION_MAPPING = {
     "Solar": "solar",
     "Natural Gas": "gas",
     "Coal": "coal",
-    "Other": "unknown",  # This is internal consumption and losses.
+    "Other": "unknown",  # This is internal consumption, losses, heat recovery facilities and small independent power producers.
 }
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36"
