@@ -11,7 +11,9 @@ capacity:
   solar: 81
   wind: 617
   unknown: 26
-flag_file_name: ca.png
+contributors:
+  - VIKTORVAV99
 timezone: America/Regina
 parsers:
   production: CA_SK.fetch_production
+  consumption: CA_SK.fetch_consumption
