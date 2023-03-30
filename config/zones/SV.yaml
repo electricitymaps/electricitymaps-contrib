@@ -4,11 +4,11 @@ bounding_box:
   - - -87.7235029772
     - 14.4241327987
 capacity:
-  biomass: 300
+  biomass: 301
   geothermal: 204
-  hydro: 573
+  hydro: 572
   oil: 756
-  solar: 478
+  solar: 664
   wind: 54
 contributors:
   - systemcatch

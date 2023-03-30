@@ -4,11 +4,11 @@ bounding_box:
   - - 28.1767094256
     - 57.9701569688
 capacity:
-  biomass: 164
-  gas: 1162
-  hydro: 1588
-  solar: 14
-  wind: 87
+  biomass: 177
+  gas: 1157
+  hydro: 1609
+  solar: 63
+  wind: 165
 contributors:
   - corradio
 emissionFactors:
