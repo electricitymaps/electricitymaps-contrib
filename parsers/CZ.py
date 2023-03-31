@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 # The request library is used to fetch content through HTTP
 from requests import Response, Session
 
+from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
@@ -97,7 +98,7 @@ def __get_exchange_data(
         from_datetime.isoformat(), target_datetime.isoformat(), "QH", "AVG", "RT"
     )
 
-    content = make_request(session, payload, zone_key1).content
+    content = make_request(session, payload, zone_key1).text
     xml = BeautifulSoup(content, "xml")
     mapper = get_mapper(xml)
 
@@ -137,6 +138,7 @@ def __get_exchange_data(
     return data_list
 
 
+@refetch_frequency(timedelta(days=2))
 def fetch_production(
     zone_key: str = "CZ",
     session: Session = Session(),
@@ -163,7 +165,7 @@ def fetch_production(
         from_datetime.isoformat(), target_datetime.isoformat(), "QH", "AVG", "RT", "all"
     )
 
-    content = make_request(session, payload, zone_key).content
+    content = make_request(session, payload, zone_key).text
     xml = BeautifulSoup(content, "xml")
     mapper = get_mapper(xml)
 
@@ -227,11 +229,11 @@ def fetch_exchange_forecast(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print("fetch_production() ->")
-    print(fetch_production())
+    # print("fetch_production() ->")
+    # print(fetch_production())
     # print("fetch_price() ->")
     # print(fetch_price())
-    print("fetch_exchange_forecast('AT', 'CZ') ->")
-    print(fetch_exchange_forecast("AT", "CZ"))
-    print("fetch_exchange('AT', 'CZ') ->")
-    print(fetch_exchange("AT", "CZ"))
+    # print("fetch_exchange_forecast('AT', 'CZ') ->")
+    # print(fetch_exchange_forecast("AT", "CZ"))
+    # print("fetch_exchange('AT', 'CZ') ->")
+    # print(fetch_exchange("AT", "CZ"))
