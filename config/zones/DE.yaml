@@ -7,7 +7,7 @@ bounding_box:
   - - 15.0732421875
     - 55.1537662685
 capacity:
-  battery storage: 3570
+  battery storage: 4530
   biomass: 9400
   coal: 37940
   gas: 32090
@@ -16,9 +16,9 @@ capacity:
   hydro storage: 9780
   nuclear: 4055
   oil: 4720
-  solar: 64920
+  solar: 69060
   unknown: 3700
-  wind: 65900
+  wind: 66460
 contributors:
   - corradio
   - bohne13
