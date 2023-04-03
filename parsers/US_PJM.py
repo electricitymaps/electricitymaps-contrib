@@ -169,9 +169,7 @@ def fetch_production(
                 production[mode] = row.get("mw")
         data_point = {
             "zoneKey": zone_key,
-            "datetime": arrow.get(dt).datetime.replace(
-                tzinfo=pytz.timezone("US/Eastern")
-            ),
+            "datetime": arrow.get(dt).replace(tzinfo="US/Eastern").datetime,
             "production": production,
             "storage": storage,
             "source": "pjm.com",
