@@ -4,10 +4,10 @@ bounding_box:
   - - -47.53248898038211
     - -22.021725762533777
 capacity:
-  hydro: 17377
-  solar: 13
-  unknown: 3872
-  wind: 2002
+  hydro: 17590
+  solar: 14
+  unknown: 4573
+  wind: 2026
 contributors:
   - alexanmtz
   - corradio
