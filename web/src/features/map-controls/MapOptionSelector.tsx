@@ -34,18 +34,16 @@ export default function MapOptionSelector({
       >
         {trigger}
       </Trigger>
-      <Portal>
-        <Content
-          className="pointer-events-auto z-40 max-h-[190px] w-[120px] overflow-auto rounded bg-white dark:bg-gray-900"
-          sideOffset={5}
-          side={isMobile ? 'bottom' : 'left'}
-          onClick={toggleTooltip}
-          onPointerDownOutside={toggleTooltip}
-        >
-          {children}
-          <Arrow className="fill-white dark:fill-gray-900" />
-        </Content>
-      </Portal>
+      <Content
+        className="pointer-events-auto z-50 max-h-[190px] w-[120px] overflow-auto rounded bg-white dark:bg-gray-900"
+        sideOffset={isMobile ? -10 : 5}
+        side={isMobile ? 'bottom' : 'left'}
+        onClick={toggleTooltip}
+        onPointerDownOutside={toggleTooltip}
+      >
+        {children}
+        <Arrow className="fill-white dark:fill-gray-900" />
+      </Content>
     </Root>
   );
 }
