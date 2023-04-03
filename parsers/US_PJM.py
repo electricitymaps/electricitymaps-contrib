@@ -391,13 +391,13 @@ def fetch_price(
 
 
 if __name__ == "__main__":
-    # print("fetch_consumption_forecast_7_days() ->")
-    # print(fetch_consumption_forecast_7_days())
+    print("fetch_consumption_forecast_7_days() ->")
+    print(fetch_consumption_forecast_7_days())
     print("fetch_production() ->")
-    print(fetch_production(target_datetime=datetime(2022, 2, 4, 23)))
-    # print("fetch_exchange(US-NY, US-PJM) ->")
-    # print(fetch_exchange("US-NY", "US-PJM"))
-    # print("fetch_exchange(US-MISO, US-PJM)")
-    # print(fetch_exchange("US-MISO", "US-PJM"))
-    # print("fetch_price() ->")
-    # print(fetch_price())
+    print(fetch_production())
+    print("fetch_exchange(US-NY, US-PJM) ->")
+    print(fetch_exchange("US-NY", "US-PJM"))
+    print("fetch_exchange(US-MISO, US-PJM)")
+    print(fetch_exchange("US-MISO", "US-PJM"))
+    print("fetch_price() ->")
+    print(fetch_price())
