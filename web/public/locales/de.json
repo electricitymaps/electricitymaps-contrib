@@ -1524,7 +1524,7 @@
     },
     "US-CAL-BANC": {
       "countryName": "Vereinigte Staaten",
-      "zoneName": "Balancing Authority Of Northern California"
+      "zoneName": "Balancing Authority of Northern California"
     },
     "US-CAL-CISO": {
       "countryName": "Vereinigte Staaten",
@@ -1536,7 +1536,7 @@
     },
     "US-CAL-LDWP": {
       "countryName": "Vereinigte Staaten",
-      "zoneName": "Los Angeles Department Of Water And Power"
+      "zoneName": "Los Angeles Department of Water and Power"
     },
     "US-CAL-TIDC": {
       "countryName": "Vereinigte Staaten",
@@ -1604,7 +1604,7 @@
     },
     "US-FLA-TAL": {
       "countryName": "Vereinigte Staaten",
-      "zoneName": "City Of Tallahassee"
+      "zoneName": "City of Tallahassee"
     },
     "US-FLA-TEC": {
       "countryName": "Vereinigte Staaten",
@@ -1620,7 +1620,7 @@
     },
     "US-MIDW-LGEE": {
       "countryName": "Vereinigte Staaten",
-      "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
+      "zoneName": "Louisville Gas and Electric Company and Kentucky Utilities"
     },
     "US-MIDW-MISO": {
       "countryName": "Vereinigte Staaten",
@@ -1688,7 +1688,7 @@
     },
     "US-NW-PSCO": {
       "countryName": "Vereinigte Staaten",
-      "zoneName": "Public Service Company Of Colorado"
+      "zoneName": "Public Service Company of Colorado"
     },
     "US-NW-PSEI": {
       "countryName": "Vereinigte Staaten",
@@ -1700,7 +1700,7 @@
     },
     "US-NW-TPWR": {
       "countryName": "Vereinigte Staaten",
-      "zoneName": "Stadt Tacoma, Department Of Public Utilities, Light Division"
+      "zoneName": "Stadt Tacoma, Department of Public Utilities, Light Division"
     },
     "US-NW-WACM": {
       "countryName": "Vereinigte Staaten",
@@ -1748,7 +1748,7 @@
     },
     "US-SW-PNM": {
       "countryName": "Vereinigte Staaten",
-      "zoneName": "Public Service Company Of New Mexico"
+      "zoneName": "Public Service Company of New Mexico"
     },
     "US-SW-SRP": {
       "countryName": "Vereinigte Staaten",
@@ -1768,7 +1768,7 @@
     },
     "US-TEX-ERCO": {
       "countryName": "Vereinigte Staaten",
-      "zoneName": "Electric Reliability Council Of Texas, Inc."
+      "zoneName": "Electric Reliability Council of Texas, Inc."
     },
     "CL-SEN": {
       "countryName": "Chile",
