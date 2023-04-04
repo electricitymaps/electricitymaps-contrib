@@ -13,6 +13,7 @@ capacity:
   unknown: 26
 contributors:
   - VIKTORVAV99
+disclaimer: The hourly production mix is estimated based on the daily average production mix.
 timezone: America/Regina
 parsers:
   production: CA_SK.fetch_production
