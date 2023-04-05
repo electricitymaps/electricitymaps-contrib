@@ -11,4 +11,6 @@ fallbackZoneMixes:
       gas: 0.923
       wind: 0.077
   source: "Electricity Maps & Dra. Gabriela Mu\xF1oz Mel\xE9ndez"
+parsers:
+  consumption: MX.fetch_consumption
 timezone: null

@@ -4,3 +4,5 @@ bounding_box:
   - - -104.88862626838755
     - 32.99936330200008
 timezone: null
+parsers:
+  consumption: MX.fetch_consumption
