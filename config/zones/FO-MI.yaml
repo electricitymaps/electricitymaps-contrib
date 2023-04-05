@@ -21,7 +21,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
-      value: 419.8221756
+      value: 336.9719859
     oil:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -41,7 +41,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 539.8221756
+      value: 456.9719859
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
