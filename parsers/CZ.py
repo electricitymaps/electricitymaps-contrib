@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import List, Optional
 
 from bs4 import BeautifulSoup
 
@@ -78,7 +78,7 @@ def __get_exchange_data(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
     mode: str = "Actual",
-) -> Union[List[dict], dict]:
+) -> List[dict]:
 
     target_datetime = get_target_datetime(target_datetime)
     from_datetime = target_datetime - timedelta(hours=48)
@@ -144,7 +144,7 @@ def fetch_production(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> List[dict]:
 
     target_datetime = get_target_datetime(target_datetime)
     from_datetime = target_datetime - timedelta(hours=48)
@@ -208,7 +208,7 @@ def fetch_exchange(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> List[dict]:
     return __get_exchange_data(
         zone_key1, zone_key2, session, target_datetime, logger, mode="Actual"
     )
@@ -220,7 +220,7 @@ def fetch_exchange_forecast(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> List[dict]:
     return __get_exchange_data(
         zone_key1, zone_key2, session, target_datetime, logger, mode="Planned"
     )
