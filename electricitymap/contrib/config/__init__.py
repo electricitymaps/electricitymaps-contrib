@@ -7,10 +7,7 @@ from typing import Dict, List
 
 import yaml
 
-from electricitymap.contrib.config.co2eq_parameters import (
-    emission_factors,
-    generate_co2eq_parameters,
-)
+from electricitymap.contrib.config.co2eq_parameters import generate_co2eq_parameters
 from electricitymap.contrib.config.config_types import BoundingBox, ZoneKey
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
 from electricitymap.contrib.config.reading import (
