@@ -5,8 +5,6 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Dict, List
 
-import yaml
-
 from electricitymap.contrib.config.co2eq_parameters import generate_co2eq_parameters
 from electricitymap.contrib.config.config_types import BoundingBox, ZoneKey
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
@@ -52,7 +50,7 @@ ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_zone_neighbours(
 ALL_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_all_neighbours(EXCHANGES_CONFIG)
 
 
-def emission_factors(zone_key):
+def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
     """Looks up the emission factors for a given zone."""
     override = CO2EQ_PARAMETERS["emissionFactors"]["zoneOverrides"].get(zone_key, {})
     defaults = CO2EQ_PARAMETERS["emissionFactors"]["defaults"]

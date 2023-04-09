@@ -3,10 +3,14 @@ config read from defaults.yaml and zones/*.yaml.
 """
 
 from copy import deepcopy
-from typing import Dict
+from typing import Any, Dict
+
+from electricitymap.contrib.config.config_types import ZoneKey
 
 
-def generate_co2eq_parameters(defaults, zones_config):
+def generate_co2eq_parameters(
+    defaults: Dict[str, Any], zones_config: Dict[ZoneKey, Any]
+) -> Dict[str, Any]:
     """Returns dicts with co2eq parameters.
 
     Args:

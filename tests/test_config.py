@@ -7,7 +7,6 @@ It doesn't check all or most values, but serves as a sanity check that the
 configs are loaded correctly.
 """
 
-
 import json
 import unittest
 from pathlib import Path
