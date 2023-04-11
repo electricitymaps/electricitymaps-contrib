@@ -196,9 +196,6 @@ def fetch_consumption(
     datapoints = []
     for row in df_consumption.itertuples():
 
-        if arrow.get(row.datetime).datetime.minute not in [0, 30]:
-            continue
-
         datapoints.append(
             {
                 "zoneKey": zone_key,
