@@ -156,10 +156,6 @@ def fetch_production(
         if not any([is_not_nan_and_truthy(v) for k, v in production.items()]):
             continue
 
-        # only keep datapoints which minutes are 0 and 30 (ignore 15 and 45)
-        if arrow.get(row[1]["date_heure"]).datetime.minute not in [0, 30]:
-            continue
-
         datapoint = {
             "zoneKey": zone_key,
             "datetime": arrow.get(row[1]["date_heure"])
