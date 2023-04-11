@@ -204,13 +204,17 @@ def fetch_consumption(
     df_consumption["datetime"] = pd.to_datetime(
         df_consumption["date_heure"]
     ).dt.tz_convert("Europe/Paris")
+    delta_15 = timedelta(minutes = 15)
+    #Average data points corresponding to the same time with 30 min granularity
+    df_consumption['datetime_30'] = df_consumption["datetime"].apply(lambda x : x if x.minute in [0, 30] else x-delta_15)
+    df_consumption_30 = df_consumption.groupby('datetime_30').mean().reset_index()
     datapoints = []
-    for row in df_consumption.itertuples():
+    for row in df_consumption_30.itertuples():
 
         datapoints.append(
             {
                 "zoneKey": zone_key,
-                "datetime": arrow.get(row.datetime)
+                "datetime": arrow.get(row.datetime_30)
                 .replace(tzinfo="Europe/Paris")
                 .datetime,
                 "consumption": row.consommation,
