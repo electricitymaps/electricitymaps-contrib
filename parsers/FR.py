@@ -117,6 +117,17 @@ def fetch_production(
     df_production = df_production.loc[:, ["date_heure"] + present_fuels]
     df_production[present_fuels] = df_production[present_fuels].astype(float)
 
+    delta_15 = timedelta(minutes = 15)
+
+    #Round dates to the lower bound with 30 minutes granularity
+    df_production['datetime'] = df_production["date_heure"].apply(lambda x : arrow.get(x).datetime)
+    df_production['datetime_30'] = df_production["datetime"].apply(lambda x : x if x.minute in [0, 30] else x-delta_15)
+
+    #Average data points corresponding to the same time with 30 min granularity
+    df_production_30 = df_production.groupby('datetime_30').mean().reset_index()
+    df_production_30 = df_production_30.merge(df_production, left_on='datetime_30', how='left',right_on='datetime',suffixes=(None,'_y'))
+    df_production = df_production_30.loc[:,['date_heure']+present_fuels]
+
     datapoints = list()
     for row in df_production.iterrows():
         production = dict()
