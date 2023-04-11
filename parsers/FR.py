@@ -182,7 +182,7 @@ def fetch_production(
 
         datapoint = {
             "zoneKey": zone_key,
-            "datetime": arrow.get(row[1]["datetime_30"])
+            "datetime": arrow.get(row[1]["date_heure"])
             .replace(tzinfo="Europe/Paris")
             .datetime,
             "production": production,
