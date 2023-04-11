@@ -125,11 +125,9 @@ def fetch_production(
 
     #Average data points corresponding to the same time with 30 min granularity
     df_production_30 = df_production.groupby('datetime_30').mean().reset_index()
-    df_production_30 = df_production_30.merge(df_production, left_on='datetime_30', how='left',right_on='datetime',suffixes=(None,'_y'))
-    df_production = df_production_30.loc[:,['date_heure']+present_fuels]
 
     datapoints = list()
-    for row in df_production.iterrows():
+    for row in df_production_30.iterrows():
         production = dict()
         for key, value in MAP_GENERATION.items():
             if key not in present_fuels:
@@ -144,11 +142,11 @@ def fetch_production(
 
         # Hydro is a special case!
         has_hydro_production = all(
-            i in df_production.columns
+            i in df_production_30.columns
             for i in ["hydraulique_lacs", "hydraulique_fil_eau_eclusee"]
         )
         has_hydro_storage = all(
-            i in df_production.columns
+            i in df_production_30.columns
             for i in ["pompage", "hydraulique_step_turbinage"]
         )
         if has_hydro_production:
@@ -169,7 +167,7 @@ def fetch_production(
 
         datapoint = {
             "zoneKey": zone_key,
-            "datetime": arrow.get(row[1]["date_heure"])
+            "datetime": arrow.get(row[1]["datetime_30"])
             .replace(tzinfo="Europe/Paris")
             .datetime,
             "production": production,
