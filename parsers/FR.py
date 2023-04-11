@@ -214,9 +214,6 @@ def fetch_consumption(
 ) -> list:
     df_consumption = get_data(session, target_datetime)
     df_consumption = df_consumption[["date_heure", "consommation"]].dropna()
-    df_consumption["datetime"] = pd.to_datetime(
-        df_consumption["date_heure"]
-    ).dt.tz_convert("Europe/Paris")
 
     # reindex df_consumption to get 1/2 hourly values
     df_consumption_reindexed = reindex_data(df_consumption)
