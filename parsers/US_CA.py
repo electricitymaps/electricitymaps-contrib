@@ -40,7 +40,7 @@ STORAGE_MAPPING = {"Batteries": "battery"}
 
 MX_EXCHANGE_URL = "http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
 
-def get_target_url(target_datetime:datetime, kind: str)->str:
+def get_target_url(target_datetime: Optional[datetime], kind: str)->str:
     if target_datetime is None:
         target_datetime = datetime.now(tz=pytz.UTC)
         target_url = REAL_TIME_URL_MAPPING[kind]
