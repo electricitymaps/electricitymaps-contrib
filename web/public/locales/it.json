@@ -1374,6 +1374,22 @@
     "SE": {
       "zoneName": "Svezia"
     },
+    "SE-SE1": {
+      "countryName": "Svezia",
+      "zoneName": "Svezia Nord"
+    },
+    "SE-SE2": {
+      "countryName": "Svezia",
+      "zoneName": "Svezia Centronord"
+    },
+    "SE-SE3": {
+      "countryName": "Svezia",
+      "zoneName": "Svezia Centrosud"
+    },
+    "SE-SE4": {
+      "countryName": "Svezia",
+      "zoneName": "Svezia Sud"
+    },
     "SG": {
       "zoneName": "Singapore"
     },
