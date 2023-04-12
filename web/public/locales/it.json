@@ -49,7 +49,7 @@
     "renewable": "Rinnovabile",
     "electricityproduction": "Produzione elettrica",
     "electricityconsumption": "Consumo elettrico",
-    "bysource": "Per fonte",
+    "bysource": "per fonte",
     "averagebysource": "media per fonte",
     "emissions": "Emissioni di carbonio",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica fonte</a>",
