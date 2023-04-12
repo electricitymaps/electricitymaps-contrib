@@ -104,7 +104,7 @@ def fetch_production(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "US-CA",
+    zone_key: str = "US-CAL-CISO",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
