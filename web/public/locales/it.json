@@ -163,9 +163,15 @@
     "production": "Produzione",
     "consumption": "Consumo",
     "cpinfo": "Il <b>consumo</b> considera importazioni ed esportazioni, la <b>produzione</b> li ignora",
+    "aggregateInfo": "Visualizza dati per zona o aggregati per nazione",
     "selectLanguage": "Seleziona la lingua",
     "lowCarbDescription": "Include rinnovabili e nucleare",
-    "dataIsDelayed": "I dati sono in ritardo"
+    "dataIsDelayed": "I dati sono in ritardo",
+    "price": "Prezzo"
+  },
+  "aggregateButtons": {
+    "country": "nazione",
+    "zone": "zona"
   },
   "misc": {
     "maintitle": "Emissioni di CO₂ in tempo reale del consumo elettrico",
@@ -1210,6 +1216,9 @@
     },
     "NL": {
       "zoneName": "Paesi Bassi"
+    },
+    "NO": {
+      "zoneName": "Norvegia"
     },
     "NO-NO1": {
       "countryName": "Norvegia",
