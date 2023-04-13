@@ -27,7 +27,7 @@ function ExchangeArrow({
   colorBlindMode,
 }: ExchangeArrowProps) {
   const mapZoom = map.getZoom();
-  const colorBlindModeEnabled = colorBlindMode; // TODO: FIX https://linear.app/electricitymaps/issue/ELE-1384/set-up-colorblind-mode-that-changes-co2-scale
+  const colorBlindModeEnabled = colorBlindMode;
   const absFlow = Math.abs(data.netFlow ?? 0);
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
   const setIsMoving = useSetAtom(mapMovingAtom);
