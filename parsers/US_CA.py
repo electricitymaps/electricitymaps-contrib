@@ -100,7 +100,7 @@ def fetch_production(
 
             production[mode] = production_value
 
-        storage["battery"] = float(row["battery"])
+        storage["battery"] = float(row["battery"]) * -1
 
         data = {
             "zoneKey": zone_key,
