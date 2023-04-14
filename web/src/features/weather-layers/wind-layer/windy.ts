@@ -183,12 +183,12 @@ var Windy = function (params: any) {
   /**
    * @returns {Boolean} true if agent is probably a mobile device. Don't really care if this is accurate.
    */
-  var isMobile = function () {
+  const isMobile = function () {
     return /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
       navigator.userAgent
     );
   };
-  var isIphone =
+  const isIphone =
     Capacitor.getPlatform() === 'ios' || /iPad|iPhone|iPod/.test(navigator.userAgent);
   /**
    * Calculate distortion of the wind vector caused by the shape of the projection at point (x, y). The wind
