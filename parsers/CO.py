@@ -34,7 +34,7 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates.")
+        return fetch_historical_consumption(zone_key, session, target_datetime, logger)
     with session.get(colombia_demand_URL, verify=False) as response:
         demand_json = json.loads(response.content)
         demand_data = demand_json["Variables"][0]["Datos"]
@@ -50,6 +50,49 @@ def fetch_consumption(
             )
 
     return demand_list
+
+def fetch_historical_consumption(
+    zone_key: str = "CO",
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    
+    #Convert datetime to local time
+    co_datetime = arrow.get(target_datetime).to(TZ)
+    
+    objetoAPI = pydataxm.ReadDB()
+    
+    #API request consumption
+    df_consumption = objetoAPI.request_data(
+                                        'DemaReal',
+                                        'Sistema',
+                                        co_datetime.date(),
+                                        co_datetime.date()
+                                        )
+    if df_consumption.empty:
+        return {
+            'zoneKey': zone_key,
+            'datetime': target_datetime,
+            'consumption': None,
+            'source': 'xm.com.co'
+        }
+    
+    else:
+    
+        #Get the consumption value for the requested hour in MW
+        consumption_hour = df_consumption.iloc[:,co_datetime.hour].values[0]/1000
+        
+        #Make sure values are positive
+        consumption_hour = consumption_hour if consumption_hour>=0 else None
+        
+        return {
+          'zoneKey': zone_key,
+          'datetime': target_datetime,
+          'consumption': consumption_hour,
+          'source': 'xm.com.co'
+        }
+
 
 def fetch_production(
     zone_key: str = "CO",
