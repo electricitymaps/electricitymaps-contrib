@@ -123,7 +123,7 @@ def fetch_production(
         for mode in ["Small hydro", "Large Hydro"]:
             production_value = float(row[mode])
             if production_value < 0:
-                storage["hydro"] += production_value
+                storage["hydro"] += production_value * -1
             else:
                 production = add_production_to_dict(mode, production_value, production)
 
