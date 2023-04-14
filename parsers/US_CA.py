@@ -55,6 +55,7 @@ def get_target_url(target_datetime: Optional[datetime], kind: str) -> str:
         target_url = f"{CAISO_PROXY}/outlook/SP/History/{target_datetime.strftime('%Y%m%d')}/{HISTORICAL_URL_MAPPING[kind]}.csv?host=https://www.caiso.com"
     return target_url
 
+
 def add_production_to_dict(mode: str, value: float, production_dict: dict) -> dict:
     """Add production to production_dict, if mode is in PRODUCTION_MODES."""
     if PRODUCTION_MODES_MAPPING[mode] not in production_dict:
@@ -62,6 +63,7 @@ def add_production_to_dict(mode: str, value: float, production_dict: dict) -> di
     else:
         production_dict[PRODUCTION_MODES_MAPPING[mode]] += value
     return production_dict
+
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
@@ -84,20 +86,32 @@ def fetch_production(
         df = csv.copy().iloc[:-1]
     else:
         df = csv.copy()
-    # df = df.rename(columns={**PRODUCTION_MODES_MAPPING, **STORAGE_MAPPING})
-    # df = df.groupby(level=0, axis=1).sum()
 
     all_data_points = []
     for index, row in df.iterrows():
         production = {}
-        storage = {"hydro":0.0, "battery":0.0}
+        storage = {"hydro": 0.0, "battery": 0.0}
         row_datetime = target_datetime.replace(
             hour=int(row["Time"][:2]), minute=int(row["Time"][-2:])
         )
-        for mode in [mode for mode in PRODUCTION_MODES_MAPPING if mode not in ["Small hydro","Large Hydro"]]:
+        for mode in [
+            mode
+            for mode in PRODUCTION_MODES_MAPPING
+            if mode not in ["Small hydro", "Large Hydro"]
+        ]:
             production_value = float(row[mode])
             if production_value < 0 and (
-                mode in ['Solar', 'Wind', 'Geothermal', 'Biomass', 'Biogas', 'Coal', 'Nuclear', 'Natural Gas']
+                mode
+                in [
+                    "Solar",
+                    "Wind",
+                    "Geothermal",
+                    "Biomass",
+                    "Biogas",
+                    "Coal",
+                    "Nuclear",
+                    "Natural Gas",
+                ]
             ):
                 logger.warn(
                     f" {mode} production for US_CA was reported as less than 0 and was clamped"
@@ -106,13 +120,12 @@ def fetch_production(
 
             production = add_production_to_dict(mode, production_value, production)
 
-        for mode in ["Small hydro","Large Hydro"]:
+        for mode in ["Small hydro", "Large Hydro"]:
             production_value = float(row[mode])
             if production_value < 0:
                 storage["hydro"] += production_value
             else:
                 production = add_production_to_dict(mode, production_value, production)
-
 
         storage["battery"] = float(row["Batteries"]) * -1
 
