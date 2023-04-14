@@ -1,4 +1,5 @@
 import { mapMovingAtom } from 'features/map/mapAtoms';
+import { colorblindModeAtom } from 'utils/state/atoms';
 import { useExchangeArrowsData } from 'hooks/arrows';
 import { useAtom } from 'jotai';
 import React from 'react';
@@ -8,6 +9,7 @@ import ExchangeArrow from './ExchangeArrow';
 
 function ExchangeLayer({ map }: { map?: MapboxMap }) {
   const [isMapMoving] = useAtom(mapMovingAtom);
+  const [isColorBlindModeEnabled] = useAtom(colorblindModeAtom);
   const { ref, width, height } = useReferenceWidthHeightObserver();
   const arrows = useExchangeArrowsData();
 
@@ -21,6 +23,7 @@ function ExchangeLayer({ map }: { map?: MapboxMap }) {
             key={arrow.key}
             data={arrow}
             map={map}
+            colorBlindMode={isColorBlindModeEnabled}
             viewportWidth={width}
             viewportHeight={height}
           />
