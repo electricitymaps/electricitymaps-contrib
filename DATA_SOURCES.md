@@ -261,7 +261,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Thermal: [service-public.pf](https://www.service-public.pf/sde/documentation-2/rapports-delegataires)
 - Germany:
   - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=DE)
-  - Nuclear [BASE](https://www.base.bund.de/EN/ns/nuclear-phase-out/nuclear-phase-out_node.html)
+  - Nuclear: [BASE](https://www.base.bund.de/EN/ns/nuclear-phase-out/nuclear-phase-out_node.html)
   - Geothermal and Unknown: [Bundesnetzagentur](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
   - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
 - Georgia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
