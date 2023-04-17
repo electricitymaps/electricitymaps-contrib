@@ -11,8 +11,13 @@ from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
 
 LOWER_DATETIME_BOUND = datetime.datetime(2000, 1, 1, tzinfo=datetime.timezone.utc)
 
+class Mix(BaseModel, ABC):
+    @root_validator
+    def _validate_mix(cls, values: Dict[str, Optional[float]]):
+        if all(v is None for v in values.values()):
+            raise ValueError("Mix is completely empty")
 
-class ProductionMix(BaseModel):
+class ProductionMix(Mix):
     biomass: Optional[float]
     coal: Optional[float]
     gas: Optional[float]
@@ -24,33 +29,18 @@ class ProductionMix(BaseModel):
     unknown: Optional[float]
     wind: Optional[float]
 
-    @root_validator
-    def _validate_production_mix(cls, values: Dict[str, Optional[float]]):
-        if all(v is None for v in values.values()):
-            raise ValueError("Production mix is completely empty")
 
-    @validator("*")
-    def _validate_production_mix_values(cls, v: Optional[float]):
-        if v is not None and v < 0:
-            raise ValueError(f"Production mix cannot be negative: {v}")
-        return v
-
-
-class StorageMix(BaseModel):
+class StorageMix(Mix):
     battery: Optional[float]
     hydro: Optional[float]
-
-    @root_validator
-    def _validate_production_mix(cls, values: Dict[str, Optional[float]]):
-        if all(v is None for v in values.values()):
-            raise ValueError("Production mix is completely empty")
 
 
 class Datapoint(BaseModel, ABC):
     zoneKey: ZoneKey
     datetime: datetime
     source: dict
-    forecasted: bool = False
+    forecasted: bool = False,
+    # TODO estimated: bool = False,
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v):
@@ -188,6 +178,14 @@ class ProductionBreakdown(Datapoint):
         logger: ParserLoggerAdapter = None,
     ) -> Optional["ProductionBreakdown"]:
         try:
+            # Correct negative production values.
+            for key, value in production.dict().items():
+                if value is not None and value < 0:
+                    production.__setattr__(key, None)
+                    logger.warning(
+                        f"Production value for {key} is negative.\
+                              This value is set to None."
+                    )
             return ProductionBreakdown(
                 zoneKey=zone_key,
                 datetime=datetime,
