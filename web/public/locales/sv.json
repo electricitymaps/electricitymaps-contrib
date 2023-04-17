@@ -950,15 +950,15 @@
     },
     "IT-CNO": {
       "countryName": "Italien",
-      "zoneName": "Centrala norra"
+      "zoneName": "Centrala norra Italien"
     },
     "IT-CSO": {
       "countryName": "Italien",
-      "zoneName": "Centrala södra"
+      "zoneName": "Centrala södra Italien"
     },
     "IT-NO": {
       "countryName": "Italien",
-      "zoneName": "Norra"
+      "zoneName": "Norra Italien"
     },
     "IT-SAR": {
       "countryName": "Italien",
@@ -970,7 +970,7 @@
     },
     "IT-SO": {
       "countryName": "Italien",
-      "zoneName": "Södra"
+      "zoneName": "Södra Italien"
     },
     "JE": {
       "zoneName": "Jersey"
