@@ -74,9 +74,16 @@ export function getShortenedZoneNameWithCountry(
     return zoneName;
   }
 
-  if (limit && zoneName.length > limit) {
-    return `${zoneName.slice(0, Math.max(0, limit))}... (${countryName})`;
+  let countryText = ` (${countryName})`;
+
+  // If zoneName contains countryName, we don't need to show countryName again
+  if (zoneName.includes(countryName)) {
+    countryText = '';
   }
 
-  return `${zoneName} (${countryName})`;
+  if (limit && zoneName.length > limit) {
+    return `${zoneName.slice(0, Math.max(0, limit))}...${countryText}`;
+  }
+
+  return `${zoneName}${countryText}`;
 }
