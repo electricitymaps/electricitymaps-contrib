@@ -6,16 +6,17 @@ from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, root_validator, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
-from electricitymap.contrib.libs.loggers.parser_logger import ParserLoggerAdapter
 from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
 
 LOWER_DATETIME_BOUND = datetime.datetime(2000, 1, 1, tzinfo=datetime.timezone.utc)
+
 
 class Mix(BaseModel, ABC):
     @root_validator
     def _validate_mix(cls, values: Dict[str, Optional[float]]):
         if all(v is None for v in values.values()):
             raise ValueError("Mix is completely empty")
+
 
 class ProductionMix(Mix):
     biomass: Optional[float]
@@ -39,7 +40,7 @@ class Datapoint(BaseModel, ABC):
     zoneKey: ZoneKey
     datetime: datetime
     source: dict
-    forecasted: bool = False,
+    forecasted: bool = (False,)
     # TODO estimated: bool = False,
 
     @validator("zoneKey")
@@ -96,12 +97,12 @@ class Exchange(Datapoint):
 
     @staticmethod
     def create(
+        logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
         source: dict,
         value: float,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ) -> Optional["Exchange"]:
         try:
             return Exchange(
@@ -136,12 +137,12 @@ class Generation(Datapoint):
 
     @staticmethod
     def create(
+        logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
         source: dict,
         value: float,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ) -> Optional["Generation"]:
         try:
             return Generation(
@@ -169,13 +170,13 @@ class ProductionBreakdown(Datapoint):
 
     @staticmethod
     def create(
+        logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
         source: dict,
         production: ProductionMix,
         storage: Optional[StorageMix] = None,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ) -> Optional["ProductionBreakdown"]:
         try:
             # Correct negative production values.
@@ -221,11 +222,11 @@ class Consumption(Datapoint):
 
     @staticmethod
     def create(
+        logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
         source: dict,
         consumption: float,
-        logger: ParserLoggerAdapter,
         forecasted: bool = False,
     ) -> Optional["Consumption"]:
         try:
@@ -267,13 +268,13 @@ class Price(Datapoint):
 
     @staticmethod
     def create(
+        logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
         source: dict,
         price: float,
         currency: str,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ) -> Optional["Price"]:
         try:
             return Price(
@@ -299,10 +300,11 @@ class Price(Datapoint):
 
 class DatapointBatch(ABC):
     """A wrapper around datapoints lists."""
-    logger: ParserLoggerAdapter
+
+    logger: Logger
     datapoints: List[Datapoint]
 
-    def __init__(self, logger: ParserLoggerAdapter):
+    def __init__(self, logger: Logger):
         self.datapoints = list()
         self.logger = logger
 
@@ -324,10 +326,9 @@ class ExchangeBatch(DatapointBatch):
         source: dict,
         value: float,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ):
         datapoint = Exchange.create(
-            zone_key, datetime, source, value, forecasted, logger
+            self.logger, zone_key, datetime, source, value, forecasted
         )
         if datapoint:
             self.datapoints.append(datapoint)
@@ -342,10 +343,9 @@ class ProductionMixBatch(DatapointBatch):
         production: ProductionMix,
         storage: Optional[StorageMix] = None,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ):
         datapoint = ProductionBreakdown.create(
-            zone_key, datetime, source, production, storage, forecasted, logger
+            self.logger, zone_key, datetime, source, production, storage, forecasted
         )
         if datapoint:
             self.datapoints.append(datapoint)
@@ -359,10 +359,9 @@ class GenerationBatch(DatapointBatch):
         source: dict,
         value: float,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ):
         datapoint = Generation.create(
-            zone_key, datetime, source, value, forecasted, logger
+            self.logger, zone_key, datetime, source, value, forecasted
         )
         if datapoint:
             self.datapoints.append(datapoint)
@@ -378,7 +377,7 @@ class ConsumptionBatch(DatapointBatch):
         forecasted: bool = False,
     ):
         datapoint = Consumption.create(
-            zone_key, datetime, source, consumption, forecasted, self.logger
+            self.logger, zone_key, datetime, source, consumption, forecasted
         )
         if datapoint:
             self.datapoints.append(datapoint)
@@ -393,10 +392,9 @@ class PriceBatch(DatapointBatch):
         price: float,
         currency: str,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ):
         datapoint = Price.create(
-            zone_key, datetime, source, price, currency, forecasted, logger
+            self.logger, zone_key, datetime, source, price, currency, forecasted
         )
         if datapoint:
             self.datapoints.append(datapoint)
