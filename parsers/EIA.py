@@ -20,7 +20,6 @@ from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
 from requests import Session
 
-from electricitymap.contrib.libs.loggers.parser_logger import ParserLoggerAdapter
 from electricitymap.contrib.libs.models.datapoints import ConsumptionBatch
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
@@ -375,7 +374,6 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
-    logger_with_adapter = ParserLoggerAdapter(logger, {"parser": "EIA.py"})
     consumption = _fetch(
         zone_key,
         CONSUMPTION.format(REGIONS[zone_key]),
@@ -383,14 +381,13 @@ def fetch_consumption(
         target_datetime=target_datetime,
         logger=logger,
     )
-    batch = ConsumptionBatch()
+    batch = ConsumptionBatch(logger)
     for point in consumption:
         batch.append(
             zone_key=point["zoneKey"],
             datetime=point["datetime"],
             source=point["source"],
             consumption=point["value"],
-            logger=logger_with_adapter
         )
 
     return batch.to_dict()
