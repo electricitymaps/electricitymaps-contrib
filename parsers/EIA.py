@@ -14,12 +14,13 @@ from typing import Any, Dict, List, Optional
 
 import arrow
 from dateutil import parser, tz
-from requests import Session
-
 from parsers.ENTSOE import merge_production_outputs
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
+from requests import Session
+
+from electricitymap.contrib.libs.models.datapoints import ConsumptionBatch
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [
@@ -380,10 +381,17 @@ def fetch_consumption(
         target_datetime=target_datetime,
         logger=logger,
     )
+    batch = ConsumptionBatch()
     for point in consumption:
-        point["consumption"] = point.pop("value")
+        batch.append(
+            zone_key=point["zoneKey"],
+            datetime=point["datetime"],
+            source=point["source"],
+            consumption=point["value"],
+            logger=logger
+        )
 
-    return consumption
+    return batch.to_dict()
 
 
 @refetch_frequency(timedelta(days=1))
