@@ -1,9 +1,11 @@
 import datetime
 from abc import ABC
+from logging import Logger
 from typing import Any, Dict, Optional
 
 from pydantic import BaseModel, root_validator, validator
 
+from electricitymap.config.libs.loggers.parser_logger import ParserLoggerAdapter
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
@@ -63,6 +65,9 @@ class Datapoint(BaseModel, ABC):
         if not values.get("forecasted", False) and v > datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1):
             raise ValueError(f"Date is in the future and this is not a forecasted point : {v}")
         return v
+    @staticmethod
+    def create(zone_key: ZoneKey, datetime: datetime, source: dict, forecasted: bool = False) -> "Datapoint":
+        pass
 
 
 class Exchange(Datapoint):
@@ -83,6 +88,13 @@ class Exchange(Datapoint):
         if abs(v) > 100000:
             raise ValueError(f"Exchange is implausibly high, above 100GW: {v}")
         return v
+    @staticmethod
+    def create(zone_key: ZoneKey, datetime: datetime, source: dict, value: float, forecasted: bool = False, logger: ParserLoggerAdapter = None) -> Optional["Exchange"]:
+        try:
+            return Exchange(zoneKey=zone_key, datetime=datetime, source=source, value=value, forecasted=forecasted)
+        except ValueError as e:
+            logger.error(f"Error creating exchange datapoint {datetime}: {e}")
+
 
 
 class Generation(Datapoint):
