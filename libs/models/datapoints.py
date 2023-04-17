@@ -3,10 +3,10 @@ from abc import ABC, abstractmethod
 from logging import Logger
 from typing import Any, Dict, List, Optional
 
-from electricitymap.config.libs.loggers.parser_logger import ParserLoggerAdapter
 from pydantic import BaseModel, root_validator, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
+from electricitymap.contrib.libs.loggers.parser_logger import ParserLoggerAdapter
 from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
 
 LOWER_DATETIME_BOUND = datetime.datetime(2000, 1, 1, tzinfo=datetime.timezone.utc)
@@ -227,8 +227,8 @@ class Consumption(Datapoint):
         datetime: datetime,
         source: dict,
         consumption: float,
+        logger: ParserLoggerAdapter,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ) -> Optional["Consumption"]:
         try:
             return Consumption(
@@ -239,7 +239,14 @@ class Consumption(Datapoint):
                 forecasted=forecasted,
             )
         except ValueError as e:
-            logger.error(f"Error creating consumption datapoint {datetime}: {e}")
+            logger.error(
+                f"Error creating consumption datapoint {datetime}: {e}",
+                extra={
+                    "zone_key": zone_key,
+                    "datetime": datetime,
+                    "kind": "consumption",
+                },
+            )
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -293,12 +300,13 @@ class Price(Datapoint):
 
 
 class DatapointBatch(ABC):
-    """A wrapper around datapoints lists"""
-
+    """A wrapper around datapoints lists."""
+    logger: ParserLoggerAdapter
     datapoints: List[Datapoint]
 
-    def __init__(self):
+    def __init__(self, logger: ParserLoggerAdapter):
         self.datapoints = list()
+        self.logger = logger
 
     @abstractmethod
     def append(self, **kwargs):
@@ -370,10 +378,9 @@ class ConsumptionBatch(DatapointBatch):
         source: dict,
         consumption: float,
         forecasted: bool = False,
-        logger: ParserLoggerAdapter = None,
     ):
         datapoint = Consumption.create(
-            zone_key, datetime, source, consumption, forecasted, logger
+            zone_key, datetime, source, consumption, forecasted, self.logger
         )
         if datapoint:
             self.datapoints.append(datapoint)
