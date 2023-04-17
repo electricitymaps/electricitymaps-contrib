@@ -1,7 +1,7 @@
 import datetime
-from abc import ABC
+from abc import ABC, abstractmethod
 from logging import Logger
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, root_validator, validator
 
@@ -66,8 +66,16 @@ class Datapoint(BaseModel, ABC):
             raise ValueError(f"Date is in the future and this is not a forecasted point : {v}")
         return v
     @staticmethod
-    def create(zone_key: ZoneKey, datetime: datetime, source: dict, forecasted: bool = False) -> "Datapoint":
+    @abstractmethod
+    def create(*args, **kwargs) -> "Datapoint":
+        """To avoid having one datapoint failure crashing the whole parser, we use a factory method to create the datapoint."""
         pass
+    @abstractmethod
+    def to_dict(self) -> Dict[str, Any]:
+        """As part of a backwards compatibility, the points will be converted to a dict before being sent to the database."""
+        pass
+
+
 
 
 class Exchange(Datapoint):
@@ -94,6 +102,13 @@ class Exchange(Datapoint):
             return Exchange(zoneKey=zone_key, datetime=datetime, source=source, value=value, forecasted=forecasted)
         except ValueError as e:
             logger.error(f"Error creating exchange datapoint {datetime}: {e}")
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "sortedZoneKeys": self.zoneKey,
+            "netFlow": self.value,
+            "source": self.source,
+        }
 
 
 
@@ -107,11 +122,38 @@ class Generation(Datapoint):
         if v > 500000:
             raise ValueError(f"Generation is implausibly high, above 500GW: {v}")
         return v
+    @staticmethod
+    def create(zone_key: ZoneKey, datetime: datetime, source: dict, value: float, forecasted: bool = False, logger: ParserLoggerAdapter = None) -> Optional["Generation"]:
+        try:
+            return Generation(zoneKey=zone_key, datetime=datetime, source=source, value=value, forecasted=forecasted)
+        except ValueError as e:
+            logger.error(f"Error creating generation datapoint {datetime}: {e}")
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "zoneKey": self.zoneKey,
+            "generation": self.value,
+            "source": self.source,
+        }
 
 
 class ProductionBreakdown(Datapoint):
     production: ProductionMix
     storage: Optional[StorageMix]
+    @staticmethod
+    def create(zone_key: ZoneKey, datetime: datetime, source: dict, production: ProductionMix, storage: Optional[StorageMix] = None, forecasted: bool = False, logger: ParserLoggerAdapter = None) -> Optional["ProductionBreakdown"]:
+        try:
+            return ProductionBreakdown(zoneKey=zone_key, datetime=datetime, source=source, production=production, storage=storage, forecasted=forecasted)
+        except ValueError as e:
+            logger.error(f"Error creating production breakdown datapoint {datetime}: {e}")
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "zoneKey": self.zoneKey,
+            "production": self.production.dict(),
+            "storage": self.storage.dict() if self.storage else None,
+            "source": self.source,
+        }
 
 
 class Consumption(Datapoint):
@@ -123,6 +165,19 @@ class Consumption(Datapoint):
             raise ValueError(f"Consumption cannot be negative: {v}")
         if v > 500000:
             raise ValueError(f"Consumption is implausibly high, above 500GW: {v}")
+    @staticmethod
+    def create(zone_key: ZoneKey, datetime: datetime, source: dict, consumption: float, forecasted: bool = False, logger: ParserLoggerAdapter = None) -> Optional["Consumption"]:
+        try:
+            return Consumption(zoneKey=zone_key, datetime=datetime, source=source, consumption=consumption, forecasted=forecasted)
+        except ValueError as e:
+            logger.error(f"Error creating consumption datapoint {datetime}: {e}")
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "zoneKey": self.zoneKey,
+            "consumption": self.consumption,
+            "source": self.source,
+        }
 
 
 class Price(Datapoint):
@@ -133,3 +188,58 @@ class Price(Datapoint):
         if v not in VALID_CURRENCIES:
             raise ValueError(f"Unknown currency: {v}")
         return v
+    @staticmethod
+    def create(zone_key: ZoneKey, datetime: datetime, source: dict, price: float, currency: str, forecasted: bool = False, logger: ParserLoggerAdapter = None) -> Optional["Price"]:
+        try:
+            return Price(zoneKey=zone_key, datetime=datetime, source=source, price=price, currency=currency, forecasted=forecasted)
+        except ValueError as e:
+            logger.error(f"Error creating price datapoint {datetime}: {e}")
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "zoneKey": self.zoneKey,
+            "currency": self.currency,
+            "price": self.price,
+            "source": self.source,
+        }
+
+class DatapointBatch(ABC):
+    """A wrapper around datapoints lists"""
+    datapoints: List[Datapoint]
+    def __init__(self):
+        self.datapoints = list()
+    @abstractmethod
+    def append(self, **kwargs):
+        """Handles creation of datapoints and adding it to the batch."""
+        pass
+    def to_dict(self) -> List[Dict[str, Any]]:
+        return [datapoint.to_dict() for datapoint in self.datapoints]
+
+class ExchangeBatch(DatapointBatch):
+    def append(self, zone_key: ZoneKey, datetime: datetime, source: dict, value: float, forecasted: bool = False, logger: ParserLoggerAdapter = None):
+        datapoint = Exchange.create(zone_key, datetime, source, value, forecasted, logger)
+        if datapoint:
+            self.datapoints.append(datapoint)
+
+class ProductionMixBatch(DatapointBatch):
+    def append(self, zone_key: ZoneKey, datetime: datetime, source: dict, production: ProductionMix, storage: Optional[StorageMix] = None, forecasted: bool = False, logger: ParserLoggerAdapter = None):
+        datapoint = ProductionBreakdown.create(zone_key, datetime, source, production, storage, forecasted, logger)
+        if datapoint:
+            self.datapoints.append(datapoint)
+
+class GenerationBatch(DatapointBatch):
+    def append(self, zone_key: ZoneKey, datetime: datetime, source: dict, value: float, forecasted: bool = False, logger: ParserLoggerAdapter = None):
+        datapoint = Generation.create(zone_key, datetime, source, value, forecasted, logger)
+        if datapoint:
+            self.datapoints.append(datapoint)
+
+class ConsumptionBatch(DatapointBatch):
+    def append(self, zone_key: ZoneKey, datetime: datetime, source: dict, consumption: float, forecasted: bool = False, logger: ParserLoggerAdapter = None):
+        datapoint = Consumption.create(zone_key, datetime, source, consumption, forecasted, logger)
+        if datapoint:
+            self.datapoints.append(datapoint)
+class PriceBatch(DatapointBatch):
+    def append(self, zone_key: ZoneKey, datetime: datetime, source: dict, price: float, currency: str, forecasted: bool = False, logger: ParserLoggerAdapter = None):
+        datapoint = Price.create(zone_key, datetime, source, price, currency, forecasted, logger)
+        if datapoint:
+            self.datapoints.append(datapoint)
