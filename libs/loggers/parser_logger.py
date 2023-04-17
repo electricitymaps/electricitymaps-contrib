@@ -17,7 +17,6 @@ class ParserLoggerAdapter(logging.LoggerAdapter):
         extra = kwargs.get("extra", {})
         new_dict = {
             "message": message,
-            "zone_key": self.extra["zone_key"],
             "parser": self.extra["parser"],
             **extra,
         }

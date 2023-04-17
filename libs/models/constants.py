@@ -1,4 +1,4 @@
-VALID_CURENCIES = [
+VALID_CURRENCIES = [
     "AFN",
     "ALL",
     "DZD",
