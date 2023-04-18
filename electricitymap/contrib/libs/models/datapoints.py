@@ -11,15 +11,7 @@ from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
-class Mix(BaseModel, ABC):
-    @root_validator
-    def _validate_mix(cls, values: Dict[str, Optional[float]]):
-        if all(v is None for v in values.values()):
-            raise ValueError("Mix is completely empty")
-        return values
-
-
-class ProductionMix(Mix):
+class ProductionMix(BaseModel):
     biomass: Optional[float] = None
     coal: Optional[float] = None
     gas: Optional[float] = None
@@ -31,8 +23,19 @@ class ProductionMix(Mix):
     unknown: Optional[float] = None
     wind: Optional[float] = None
 
+    def set_value(self, mode: str, value: float) -> None:
+        self.__setattr__(mode, value)
 
-class StorageMix(Mix):
+    # @staticmethod
+    # def create(modes: List[str], logger: Logger) -> "ProductionMix":
+    #     for mode in modes:
+    #         try:
+    #             ProductionMix.__setattr__(mode, 0)
+    #         except ValueError as e:
+    #             logger.error(f"Error creating production mix {datetime}: {e}")
+    #     pass
+
+class StorageMix(BaseModel):
     battery: Optional[float] = None
     hydro: Optional[float] = None
 
@@ -166,6 +169,13 @@ class Generation(Datapoint):
 class ProductionBreakdown(Datapoint):
     production: ProductionMix
     storage: Optional[StorageMix] = None
+
+    @validator("production", "storage")
+    def _validate_mix(cls, v):
+        if v is not None:
+            if all(value is None for value in v.dict().values()):
+                raise ValueError("Mix is completely empty")
+        return v
 
     @staticmethod
     def create(
