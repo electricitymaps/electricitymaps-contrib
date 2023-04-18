@@ -31,6 +31,8 @@ class ProductionMix(Mix):
     unknown: Optional[float] = None
     wind: Optional[float] = None
 
+    def set_value(self, mode: str, value: float) -> None:
+        self.__setattr__(mode, value)
 
 class StorageMix(Mix):
     battery: Optional[float] = None
