@@ -16,6 +16,7 @@ class ProductionMix(BaseModel):
     Containts the production mix for a zone at a given time.
     All values are in MW.
     """
+
     biomass: Optional[float] = None
     coal: Optional[float] = None
     gas: Optional[float] = None
@@ -35,11 +36,13 @@ class ProductionMix(BaseModel):
         """
         self.__setattr__(mode, value)
 
+
 class StorageMix(BaseModel):
     """
     Containts the storage mix for a zone at a given time.
     All values are in MW.
     """
+
     battery: Optional[float] = None
     hydro: Optional[float] = None
 
@@ -54,6 +57,7 @@ class Event(BaseModel, ABC):
     source: The source of the event.
     We currentlu use the root url of the datasource. Ex: edf.fr
     """
+
     forecasted: bool = False
     zoneKey: ZoneKey
     datetime: datetime
@@ -75,7 +79,9 @@ class Event(BaseModel, ABC):
         if not values.get("forecasted", False) and v > datetime.now(
             timezone.utc
         ) + timedelta(days=1):
-            raise ValueError(f"Date is in the future and this is not a forecasted point: {v}")
+            raise ValueError(
+                f"Date is in the future and this is not a forecasted point: {v}"
+            )
         return v
 
     @staticmethod
@@ -218,9 +224,7 @@ class ProductionBreakdown(Event):
                 forecasted=forecasted,
             )
         except ValueError as e:
-            logger.error(
-                f"Error creating production breakdown Event {datetime}: {e}"
-            )
+            logger.error(f"Error creating production breakdown Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
