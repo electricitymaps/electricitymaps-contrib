@@ -335,7 +335,7 @@ class ExchangeList(DatapointList):
             self.datapoints.append(datapoint)
 
 
-class ProductionMixList(DatapointList):
+class ProductionBreakdownList(DatapointList):
     def append(
         self,
         zone_key: ZoneKey,
