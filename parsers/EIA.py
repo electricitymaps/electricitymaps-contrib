@@ -14,13 +14,13 @@ from typing import Any, Dict, List, Optional
 
 import arrow
 from dateutil import parser, tz
+from requests import Session
+
+from electricitymap.contrib.libs.models.datapoints import ConsumptionList
 from parsers.ENTSOE import merge_production_outputs
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
-from requests import Session
-
-from electricitymap.contrib.libs.models.datapoints import ConsumptionList
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [
