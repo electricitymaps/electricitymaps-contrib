@@ -226,14 +226,14 @@ def fetch_production(
 
     total_production  = sum(production.values())
     if 86.6 <= total_production <= 2165:
+        production_mix = ProductionMix()
+
         for mode, value in production.items():
-            production_mix = ProductionMix()
             production_mix.set_value(mode, value)
 
-        breakpoint()
         production_list = ProductionBreakdownList(logger)
-        production_list.append(zone_key=zone_key, datetime=data_datetime, production=production, source="cndc.org.ni")
-        return production_list
+        production_list.append(zone_key=zone_key, datetime=data_datetime, production=production_mix, source="cndc.org.ni")
+        return production_list.to_list()
     else:
         return ParserException(parser="NI.py", message=f"{data_datetime}: production data not available", zone_key=zone_key)
 
@@ -279,12 +279,12 @@ def fetch_exchange(
         raise NotImplementedError("This exchange pair is not implemented")
     exchange_list = ExchangeList(logger)
     exchange_list.append(
-        sorted_zone_keys=sorted_zone_keys,
+        zone_key=sorted_zone_keys,
         datetime=get_time_from_system_map(map_html),
-        netFlow=flow,
+        value=flow,
         source="cndc.org.ni",
     )
-    return exchange_list
+    return exchange_list.to_list()
 
 
 def fetch_price(
@@ -325,7 +325,7 @@ def fetch_price(
 
     price_list = PriceList(logger)
     price_list.append(zone_key=zone_key, datetime=price_date.datetime, price=price, currency="USD", source="cndc.org.ni")
-    return price_list
+    return price_list.to_list()
 
 
 if __name__ == "__main__":
