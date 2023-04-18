@@ -39,7 +39,7 @@ class StorageMix(Mix):
 class Datapoint(BaseModel, ABC):
     zoneKey: ZoneKey
     datetime: datetime
-    source: dict
+    source: str
     forecasted: bool = (False,)
     # TODO estimated: bool = False,
 
@@ -100,7 +100,7 @@ class Exchange(Datapoint):
         logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         value: float,
         forecasted: bool = False,
     ) -> Optional["Exchange"]:
@@ -140,7 +140,7 @@ class Generation(Datapoint):
         logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         value: float,
         forecasted: bool = False,
     ) -> Optional["Generation"]:
@@ -173,7 +173,7 @@ class ProductionBreakdown(Datapoint):
         logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         production: ProductionMix,
         storage: Optional[StorageMix] = None,
         forecasted: bool = False,
@@ -225,7 +225,7 @@ class Consumption(Datapoint):
         logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         consumption: float,
         forecasted: bool = False,
     ) -> Optional["Consumption"]:
@@ -271,7 +271,7 @@ class Price(Datapoint):
         logger: Logger,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         price: float,
         currency: str,
         forecasted: bool = False,
@@ -323,7 +323,7 @@ class ExchangeBatch(DatapointBatch):
         self,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         value: float,
         forecasted: bool = False,
     ):
@@ -339,7 +339,7 @@ class ProductionMixBatch(DatapointBatch):
         self,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         production: ProductionMix,
         storage: Optional[StorageMix] = None,
         forecasted: bool = False,
@@ -356,7 +356,7 @@ class GenerationBatch(DatapointBatch):
         self,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         value: float,
         forecasted: bool = False,
     ):
@@ -372,7 +372,7 @@ class ConsumptionBatch(DatapointBatch):
         self,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         consumption: float,
         forecasted: bool = False,
     ):
@@ -388,7 +388,7 @@ class PriceBatch(DatapointBatch):
         self,
         zone_key: ZoneKey,
         datetime: datetime,
-        source: dict,
+        source: str,
         price: float,
         currency: str,
         forecasted: bool = False,
