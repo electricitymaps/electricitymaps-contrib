@@ -437,6 +437,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
+  - Florida TECO (US-FLA-TEC)
+    - Coal: [Github|electricitymaps-contrib|PR#5297](https://github.com/electricitymaps/electricitymaps-contrib/pull/5297)
   - Hawaii
     - Battery storage: [Kapolei Energy Storage Project](https://www.kapoleienergystorage.com/)
     - Coal: [The Guardian: Hawaii to close its only coal power plant in a step toward renewable energy](https://web.archive.org/web/20220902132250/https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy)
