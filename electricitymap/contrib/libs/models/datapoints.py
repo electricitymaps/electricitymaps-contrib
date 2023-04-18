@@ -16,24 +16,25 @@ class Mix(BaseModel, ABC):
     def _validate_mix(cls, values: Dict[str, Optional[float]]):
         if all(v is None for v in values.values()):
             raise ValueError("Mix is completely empty")
+        return values
 
 
 class ProductionMix(Mix):
-    biomass: Optional[float]
-    coal: Optional[float]
-    gas: Optional[float]
-    geothermal: Optional[float]
-    hydro: Optional[float]
-    nuclear: Optional[float]
-    oil: Optional[float]
-    solar: Optional[float]
-    unknown: Optional[float]
-    wind: Optional[float]
+    biomass: Optional[float] = None
+    coal: Optional[float] = None
+    gas: Optional[float] = None
+    geothermal: Optional[float] = None
+    hydro: Optional[float] = None
+    nuclear: Optional[float] = None
+    oil: Optional[float] = None
+    solar: Optional[float] = None
+    unknown: Optional[float] = None
+    wind: Optional[float] = None
 
 
 class StorageMix(Mix):
-    battery: Optional[float]
-    hydro: Optional[float]
+    battery: Optional[float] = None
+    hydro: Optional[float] = None
 
 
 class Datapoint(BaseModel, ABC):
@@ -166,7 +167,7 @@ class Generation(Datapoint):
 
 class ProductionBreakdown(Datapoint):
     production: ProductionMix
-    storage: Optional[StorageMix]
+    storage: Optional[StorageMix] = None
 
     @staticmethod
     def create(
@@ -204,8 +205,8 @@ class ProductionBreakdown(Datapoint):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "production": self.production.dict(),
-            "storage": self.storage.dict() if self.storage else None,
+            "production": self.production.dict(exclude_none=True),
+            "storage": self.storage.dict(exclude_none=True) if self.storage else None,
             "source": self.source,
         }
 
