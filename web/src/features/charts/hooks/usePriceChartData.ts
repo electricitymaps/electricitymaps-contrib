@@ -12,7 +12,7 @@ export function getFills(data: AreaGraphElement[]) {
 
   const priceColorScale = scaleLinear<string>()
     .domain([priceMinValue, 0, priceMaxValue])
-    .range(['brown', 'lightgray', '#616161']);
+    .range(['gray', 'lightgray', '#616161']);
 
   const layerFill = (key: string) => (d: { data: AreaGraphElement }) =>
     priceColorScale(d.data.layerData[key]);

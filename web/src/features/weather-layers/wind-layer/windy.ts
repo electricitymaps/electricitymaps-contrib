@@ -18,6 +18,7 @@
 
 import { Point } from 'mapbox-gl';
 import { windColor } from './scales';
+import { Capacitor } from '@capacitor/core';
 
 var Windy = function (params: any) {
   var VELOCITY_SCALE = 1 / 100000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
@@ -182,12 +183,13 @@ var Windy = function (params: any) {
   /**
    * @returns {Boolean} true if agent is probably a mobile device. Don't really care if this is accurate.
    */
-  var isMobile = function () {
+  const isMobile = function () {
     return /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
       navigator.userAgent
     );
   };
-
+  const isIphone =
+    Capacitor.getPlatform() === 'ios' || /iPad|iPhone|iPod/.test(navigator.userAgent);
   /**
    * Calculate distortion of the wind vector caused by the shape of the projection at point (x, y). The wind
    * vector is modified in place and returned by this function.
@@ -488,7 +490,7 @@ var Windy = function (params: any) {
       var b = deltaMs < 16 ? 1 : 16 / deltaMs;
 
       // Fade existing particle trails.
-      g.globalCompositeOperation = 'destination-in';
+      g.globalCompositeOperation = isIphone ? 'destination-out' : 'destination-in';
       // This is the parameter concerning the fade property/bug
       g.globalAlpha = Math.pow(0.9, b);
       g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);

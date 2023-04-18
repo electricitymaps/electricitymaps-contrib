@@ -260,6 +260,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Hydro & Solar: [service-public.pf](https://www.service-public.pf/sde/wp-content/uploads/sites/15/2021/02/BEPF-2019-VF_online_mail_light_compressed.pdf)
   - Thermal: [service-public.pf](https://www.service-public.pf/sde/documentation-2/rapports-delegataires)
 - Germany:
+  - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=DE)
+  - Nuclear: [BASE](https://www.base.bund.de/EN/ns/nuclear-phase-out/nuclear-phase-out_node.html)
   - Geothermal and Unknown: [Bundesnetzagentur](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
   - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
 - Georgia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -435,6 +437,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
+  - Florida TECO (US-FLA-TEC)
+    - Coal: [Github|electricitymaps-contrib|PR#5297](https://github.com/electricitymaps/electricitymaps-contrib/pull/5297)
   - Hawaii
     - Battery storage: [Kapolei Energy Storage Project](https://www.kapoleienergystorage.com/)
     - Coal: [The Guardian: Hawaii to close its only coal power plant in a step toward renewable energy](https://web.archive.org/web/20220902132250/https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy)
