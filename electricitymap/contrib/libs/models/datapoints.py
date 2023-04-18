@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 from logging import Logger
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, root_validator, validator
+from pydantic import BaseModel, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
 from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
@@ -45,6 +45,15 @@ class StorageMix(BaseModel):
 
 
 class Event(BaseModel, ABC):
+    """
+    An abstract class representing all types of electricity events that can occur in a zone.
+    forecasted: Whether the point is a forecasted point or not.
+    Should be set to True if the point is a forecast provided by a datasource.
+    zoneKey: The zone key of the zone the event is happening in.
+    datetime: The datetime of the event.
+    source: The source of the event.
+    We currentlu use the root url of the datasource. Ex: edf.fr
+    """
     forecasted: bool = False
     zoneKey: ZoneKey
     datetime: datetime
