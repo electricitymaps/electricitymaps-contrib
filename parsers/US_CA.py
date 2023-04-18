@@ -56,6 +56,15 @@ def get_target_url(target_datetime: Optional[datetime], kind: str) -> str:
     return target_url
 
 
+def add_production_to_dict(mode: str, value: float, production_dict: dict) -> dict:
+    """Add production to production_dict, if mode is in PRODUCTION_MODES."""
+    if PRODUCTION_MODES_MAPPING[mode] not in production_dict:
+        production_dict[PRODUCTION_MODES_MAPPING[mode]] = value
+    else:
+        production_dict[PRODUCTION_MODES_MAPPING[mode]] += value
+    return production_dict
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-CA",
@@ -77,30 +86,48 @@ def fetch_production(
         df = csv.copy().iloc[:-1]
     else:
         df = csv.copy()
-    df = df.rename(columns={**PRODUCTION_MODES_MAPPING, **STORAGE_MAPPING})
-    df = df.groupby(level=0, axis=1).sum()
 
     all_data_points = []
     for index, row in df.iterrows():
         production = {}
-        storage = {}
-
+        storage = {"hydro": 0.0, "battery": 0.0}
         row_datetime = target_datetime.replace(
             hour=int(row["Time"][:2]), minute=int(row["Time"][-2:])
         )
-        for mode in [mode for mode in PRODUCTION_MODES if mode in row]:
+        for mode in [
+            mode
+            for mode in PRODUCTION_MODES_MAPPING
+            if mode not in ["Small hydro", "Large Hydro"]
+        ]:
             production_value = float(row[mode])
             if production_value < 0 and (
-                mode in ["solar", "nuclear", "coal", "gas", "unknown", "biomass"]
+                mode
+                in [
+                    "Solar",
+                    "Wind",
+                    "Geothermal",
+                    "Biomass",
+                    "Biogas",
+                    "Coal",
+                    "Nuclear",
+                    "Natural Gas",
+                ]
             ):
                 logger.warn(
                     f" {mode} production for US_CA was reported as less than 0 and was clamped"
                 )
                 production_value = 0.0
 
-            production[mode] = production_value
+            production = add_production_to_dict(mode, production_value, production)
 
-        storage["battery"] = float(row["battery"])
+        for mode in ["Small hydro", "Large Hydro"]:
+            production_value = float(row[mode])
+            if production_value < 0:
+                storage["hydro"] += production_value * -1
+            else:
+                production = add_production_to_dict(mode, production_value, production)
+
+        storage["battery"] = float(row["Batteries"]) * -1
 
         data = {
             "zoneKey": zone_key,
