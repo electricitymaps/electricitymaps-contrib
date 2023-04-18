@@ -20,7 +20,7 @@ from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
 from requests import Session
 
-from electricitymap.contrib.libs.models.datapoints import ConsumptionBatch
+from electricitymap.contrib.libs.models.datapoints import ConsumptionList
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [
@@ -381,7 +381,7 @@ def fetch_consumption(
         target_datetime=target_datetime,
         logger=logger,
     )
-    batch = ConsumptionBatch(logger)
+    batch = ConsumptionList(logger)
     for point in consumption:
         batch.append(
             zone_key=point["zoneKey"],
@@ -390,7 +390,7 @@ def fetch_consumption(
             consumption=point["value"],
         )
 
-    return batch.to_dict()
+    return batch.to_list()
 
 
 @refetch_frequency(timedelta(days=1))

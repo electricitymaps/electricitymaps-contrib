@@ -298,7 +298,7 @@ class Price(Datapoint):
         }
 
 
-class DatapointBatch(ABC):
+class DatapointList(ABC):
     """A wrapper around datapoints lists."""
 
     logger: Logger
@@ -314,11 +314,11 @@ class DatapointBatch(ABC):
         # TODO Handle one day the creation of mixed batches.
         pass
 
-    def to_dict(self) -> List[Dict[str, Any]]:
+    def to_list(self) -> List[Dict[str, Any]]:
         return [datapoint.to_dict() for datapoint in self.datapoints]
 
 
-class ExchangeBatch(DatapointBatch):
+class ExchangeList(DatapointList):
     def append(
         self,
         zone_key: ZoneKey,
@@ -334,7 +334,7 @@ class ExchangeBatch(DatapointBatch):
             self.datapoints.append(datapoint)
 
 
-class ProductionMixBatch(DatapointBatch):
+class ProductionMixList(DatapointList):
     def append(
         self,
         zone_key: ZoneKey,
@@ -351,7 +351,7 @@ class ProductionMixBatch(DatapointBatch):
             self.datapoints.append(datapoint)
 
 
-class GenerationBatch(DatapointBatch):
+class GenerationList(DatapointList):
     def append(
         self,
         zone_key: ZoneKey,
@@ -367,7 +367,7 @@ class GenerationBatch(DatapointBatch):
             self.datapoints.append(datapoint)
 
 
-class ConsumptionBatch(DatapointBatch):
+class ConsumptionList(DatapointList):
     def append(
         self,
         zone_key: ZoneKey,
@@ -383,7 +383,7 @@ class ConsumptionBatch(DatapointBatch):
             self.datapoints.append(datapoint)
 
 
-class PriceBatch(DatapointBatch):
+class PriceList(DatapointList):
     def append(
         self,
         zone_key: ZoneKey,
