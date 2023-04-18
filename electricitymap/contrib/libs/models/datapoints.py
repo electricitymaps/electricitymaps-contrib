@@ -1,5 +1,5 @@
-import datetime
 from abc import ABC, abstractmethod
+from datetime import datetime, timedelta, timezone
 from logging import Logger
 from typing import Any, Dict, List, Optional
 
@@ -8,7 +8,7 @@ from pydantic import BaseModel, root_validator, validator
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
 from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
 
-LOWER_DATETIME_BOUND = datetime.datetime(2000, 1, 1, tzinfo=datetime.timezone.utc)
+LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
 class Mix(BaseModel, ABC):
@@ -40,7 +40,7 @@ class Datapoint(BaseModel, ABC):
     zoneKey: ZoneKey
     datetime: datetime
     source: str
-    forecasted: bool = (False,)
+    forecasted: bool = False
     # TODO estimated: bool = False,
 
     @validator("zoneKey")
@@ -55,9 +55,9 @@ class Datapoint(BaseModel, ABC):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
-        if not values.get("forecasted", False) and v > datetime.datetime.now(
-            datetime.timezone.utc
-        ) + datetime.timedelta(days=1):
+        if not values.get("forecasted", False) and v > datetime.now(
+            timezone.utc
+        ) + timedelta(days=1):
             raise ValueError(
                 f"Date is in the future and this is not a forecasted point : {v}"
             )
