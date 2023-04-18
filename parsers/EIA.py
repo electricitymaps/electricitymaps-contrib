@@ -16,7 +16,6 @@ import arrow
 from dateutil import parser, tz
 from requests import Session
 
-from electricitymap.contrib.libs.models.datapoints import ConsumptionList
 from parsers.ENTSOE import merge_production_outputs
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
@@ -381,16 +380,10 @@ def fetch_consumption(
         target_datetime=target_datetime,
         logger=logger,
     )
-    batch = ConsumptionList(logger)
-    for point in consumption:
-        batch.append(
-            zone_key=point["zoneKey"],
-            datetime=point["datetime"],
-            source=point["source"],
-            consumption=point["value"],
-        )
 
-    return batch.to_list()
+    for point in consumption:
+        point["consumption"] = point.pop("value")
+    return consumption
 
 
 @refetch_frequency(timedelta(days=1))
