@@ -232,7 +232,12 @@ def fetch_production(
             production_mix.set_value(mode, value)
 
         production_list = ProductionBreakdownList(logger)
-        production_list.append(zone_key=zone_key, datetime=data_datetime, production=production_mix, source="cndc.org.ni")
+        production_list.append(
+            zone_key=zone_key,
+            datetime=data_datetime,
+            production=production_mix,
+            source="cndc.org.ni",
+        )
         return production_list.to_list()
     else:
         return ParserException(
@@ -329,7 +334,13 @@ def fetch_price(
             price_date = price_date.replace(days=-1)
 
     price_list = PriceList(logger)
-    price_list.append(zone_key=zone_key, datetime=price_date.datetime, price=price, currency="USD", source="cndc.org.ni")
+    price_list.append(
+        zone_key=zone_key,
+        datetime=price_date.datetime,
+        price=price,
+        currency="USD",
+        source="cndc.org.ni",
+    )
     return price_list.to_list()
 
 
