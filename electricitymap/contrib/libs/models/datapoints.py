@@ -219,6 +219,7 @@ class Consumption(Datapoint):
             raise ValueError(f"Consumption cannot be negative: {v}")
         if v > 500000:
             raise ValueError(f"Consumption is implausibly high, above 500GW: {v}")
+        return v
 
     @staticmethod
     def create(
