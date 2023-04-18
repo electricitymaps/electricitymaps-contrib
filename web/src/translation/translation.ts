@@ -77,7 +77,7 @@ export function getShortenedZoneNameWithCountry(
   let countryText = ` (${countryName})`;
 
   // If zoneName contains countryName, we don't need to show countryName again
-  if (zoneName.includes(countryName)) {
+  if (zoneName.toLowerCase().includes(countryName.toLowerCase())) {
     countryText = '';
   }
 
