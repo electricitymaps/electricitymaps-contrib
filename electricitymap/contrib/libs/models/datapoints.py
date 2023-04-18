@@ -55,7 +55,7 @@ class Event(BaseModel, ABC):
     zoneKey: The zone key of the zone the event is happening in.
     datetime: The datetime of the event.
     source: The source of the event.
-    We currentlu use the root url of the datasource. Ex: edf.fr
+    We currently use the root url of the datasource. Ex: edf.fr
     """
 
     forecasted: bool = False
