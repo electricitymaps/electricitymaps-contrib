@@ -12,6 +12,10 @@ LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
 class ProductionMix(BaseModel):
+    """
+    Containts the production mix for a zone at a given time.
+    All values are in MW.
+    """
     biomass: Optional[float] = None
     coal: Optional[float] = None
     gas: Optional[float] = None
@@ -24,23 +28,23 @@ class ProductionMix(BaseModel):
     wind: Optional[float] = None
 
     def set_value(self, mode: str, value: float) -> None:
+        """
+        Sets the value of a production mode.
+        This can be used if the Production has been initialized empty
+        and is being filled in a loop.
+        """
         self.__setattr__(mode, value)
 
-    # @staticmethod
-    # def create(modes: List[str], logger: Logger) -> "ProductionMix":
-    #     for mode in modes:
-    #         try:
-    #             ProductionMix.__setattr__(mode, 0)
-    #         except ValueError as e:
-    #             logger.error(f"Error creating production mix {datetime}: {e}")
-    #     pass
-
 class StorageMix(BaseModel):
+    """
+    Containts the storage mix for a zone at a given time.
+    All values are in MW.
+    """
     battery: Optional[float] = None
     hydro: Optional[float] = None
 
 
-class Datapoint(BaseModel, ABC):
+class Event(BaseModel, ABC):
     forecasted: bool = False
     zoneKey: ZoneKey
     datetime: datetime
@@ -67,8 +71,8 @@ class Datapoint(BaseModel, ABC):
 
     @staticmethod
     @abstractmethod
-    def create(*args, **kwargs) -> "Datapoint":
-        """To avoid having one datapoint failure crashing the whole parser, we use a factory method to create the datapoint."""
+    def create(*args, **kwargs) -> "Event":
+        """To avoid having one Event failure crashing the whole parser, we use a factory method to create the Event."""
         pass
 
     @abstractmethod
@@ -77,7 +81,7 @@ class Datapoint(BaseModel, ABC):
         pass
 
 
-class Exchange(Datapoint):
+class Exchange(Event):
     value: float
 
     @validator("zoneKey")
@@ -115,7 +119,7 @@ class Exchange(Datapoint):
                 forecasted=forecasted,
             )
         except ValueError as e:
-            logger.error(f"Error creating exchange datapoint {datetime}: {e}")
+            logger.error(f"Error creating exchange Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -126,7 +130,7 @@ class Exchange(Datapoint):
         }
 
 
-class Generation(Datapoint):
+class Generation(Event):
     value: float
 
     @validator("value")
@@ -155,7 +159,7 @@ class Generation(Datapoint):
                 forecasted=forecasted,
             )
         except ValueError as e:
-            logger.error(f"Error creating generation datapoint {datetime}: {e}")
+            logger.error(f"Error creating generation Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -166,7 +170,7 @@ class Generation(Datapoint):
         }
 
 
-class ProductionBreakdown(Datapoint):
+class ProductionBreakdown(Event):
     production: ProductionMix
     storage: Optional[StorageMix] = None
 
@@ -206,7 +210,7 @@ class ProductionBreakdown(Datapoint):
             )
         except ValueError as e:
             logger.error(
-                f"Error creating production breakdown datapoint {datetime}: {e}"
+                f"Error creating production breakdown Event {datetime}: {e}"
             )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -219,7 +223,7 @@ class ProductionBreakdown(Datapoint):
         }
 
 
-class Consumption(Datapoint):
+class Consumption(Event):
     consumption: float
 
     @validator("consumption")
@@ -249,7 +253,7 @@ class Consumption(Datapoint):
             )
         except ValueError as e:
             logger.error(
-                f"Error creating consumption datapoint {datetime}: {e}",
+                f"Error creating consumption Event {datetime}: {e}",
                 extra={
                     "zone_key": zone_key,
                     "datetime": datetime,
@@ -266,7 +270,7 @@ class Consumption(Datapoint):
         }
 
 
-class Price(Datapoint):
+class Price(Event):
     price: float
     currency: str
 
@@ -296,7 +300,7 @@ class Price(Datapoint):
                 forecasted=forecasted,
             )
         except ValueError as e:
-            logger.error(f"Error creating price datapoint {datetime}: {e}")
+            logger.error(f"Error creating price Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -308,27 +312,27 @@ class Price(Datapoint):
         }
 
 
-class DatapointList(ABC):
-    """A wrapper around datapoints lists."""
+class EventList(ABC):
+    """A wrapper around Events lists."""
 
     logger: Logger
-    datapoints: List[Datapoint]
+    events: List[Event]
 
     def __init__(self, logger: Logger):
-        self.datapoints = list()
+        self.events = list()
         self.logger = logger
 
     @abstractmethod
     def append(self, **kwargs):
-        """Handles creation of datapoints and adding it to the batch."""
+        """Handles creation of events and adding it to the batch."""
         # TODO Handle one day the creation of mixed batches.
         pass
 
     def to_list(self) -> List[Dict[str, Any]]:
-        return [datapoint.to_dict() for datapoint in self.datapoints]
+        return [event.to_dict() for event in self.events]
 
 
-class ExchangeList(DatapointList):
+class ExchangeList(EventList):
     def append(
         self,
         zone_key: ZoneKey,
@@ -337,14 +341,14 @@ class ExchangeList(DatapointList):
         value: float,
         forecasted: bool = False,
     ):
-        datapoint = Exchange.create(
+        event = Exchange.create(
             self.logger, zone_key, datetime, source, value, forecasted
         )
-        if datapoint:
-            self.datapoints.append(datapoint)
+        if event:
+            self.events.append(event)
 
 
-class ProductionBreakdownList(DatapointList):
+class ProductionBreakdownList(EventList):
     def append(
         self,
         zone_key: ZoneKey,
@@ -354,14 +358,14 @@ class ProductionBreakdownList(DatapointList):
         storage: Optional[StorageMix] = None,
         forecasted: bool = False,
     ):
-        datapoint = ProductionBreakdown.create(
+        event = ProductionBreakdown.create(
             self.logger, zone_key, datetime, source, production, storage, forecasted
         )
-        if datapoint:
-            self.datapoints.append(datapoint)
+        if event:
+            self.events.append(event)
 
 
-class GenerationList(DatapointList):
+class GenerationList(EventList):
     def append(
         self,
         zone_key: ZoneKey,
@@ -370,14 +374,14 @@ class GenerationList(DatapointList):
         value: float,
         forecasted: bool = False,
     ):
-        datapoint = Generation.create(
+        event = Generation.create(
             self.logger, zone_key, datetime, source, value, forecasted
         )
-        if datapoint:
-            self.datapoints.append(datapoint)
+        if event:
+            self.events.append(event)
 
 
-class ConsumptionList(DatapointList):
+class ConsumptionList(EventList):
     def append(
         self,
         zone_key: ZoneKey,
@@ -386,14 +390,14 @@ class ConsumptionList(DatapointList):
         consumption: float,
         forecasted: bool = False,
     ):
-        datapoint = Consumption.create(
+        event = Consumption.create(
             self.logger, zone_key, datetime, source, consumption, forecasted
         )
-        if datapoint:
-            self.datapoints.append(datapoint)
+        if event:
+            self.events.append(event)
 
 
-class PriceList(DatapointList):
+class PriceList(EventList):
     def append(
         self,
         zone_key: ZoneKey,
@@ -403,8 +407,8 @@ class PriceList(DatapointList):
         currency: str,
         forecasted: bool = False,
     ):
-        datapoint = Price.create(
+        event = Price.create(
             self.logger, zone_key, datetime, source, price, currency, forecasted
         )
-        if datapoint:
-            self.datapoints.append(datapoint)
+        if event:
+            self.events.append(event)
