@@ -113,7 +113,7 @@ class Exchange(Event):
     @staticmethod
     def create(
         logger: Logger,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         value: float,
@@ -121,7 +121,7 @@ class Exchange(Event):
     ) -> Optional["Exchange"]:
         try:
             return Exchange(
-                zoneKey=zone_key,
+                zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
                 value=value,
@@ -153,7 +153,7 @@ class Generation(Event):
     @staticmethod
     def create(
         logger: Logger,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         value: float,
@@ -161,7 +161,7 @@ class Generation(Event):
     ) -> Optional["Generation"]:
         try:
             return Generation(
-                zoneKey=zone_key,
+                zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
                 value=value,
@@ -193,7 +193,7 @@ class ProductionBreakdown(Event):
     @staticmethod
     def create(
         logger: Logger,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         production: ProductionMix,
@@ -210,7 +210,7 @@ class ProductionBreakdown(Event):
                               This value is set to None."
                     )
             return ProductionBreakdown(
-                zoneKey=zone_key,
+                zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
                 production=production,
@@ -246,7 +246,7 @@ class Consumption(Event):
     @staticmethod
     def create(
         logger: Logger,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         consumption: float,
@@ -254,7 +254,7 @@ class Consumption(Event):
     ) -> Optional["Consumption"]:
         try:
             return Consumption(
-                zoneKey=zone_key,
+                zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
                 consumption=consumption,
@@ -264,7 +264,7 @@ class Consumption(Event):
             logger.error(
                 f"Error creating consumption Event {datetime}: {e}",
                 extra={
-                    "zone_key": zone_key,
+                    "zoneKey": zoneKey,
                     "datetime": datetime,
                     "kind": "consumption",
                 },
@@ -292,7 +292,7 @@ class Price(Event):
     @staticmethod
     def create(
         logger: Logger,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         price: float,
@@ -301,7 +301,7 @@ class Price(Event):
     ) -> Optional["Price"]:
         try:
             return Price(
-                zoneKey=zone_key,
+                zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
                 price=price,
@@ -344,14 +344,14 @@ class EventList(ABC):
 class ExchangeList(EventList):
     def append(
         self,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         value: float,
         forecasted: bool = False,
     ):
         event = Exchange.create(
-            self.logger, zone_key, datetime, source, value, forecasted
+            self.logger, zoneKey, datetime, source, value, forecasted
         )
         if event:
             self.events.append(event)
@@ -360,7 +360,7 @@ class ExchangeList(EventList):
 class ProductionBreakdownList(EventList):
     def append(
         self,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         production: ProductionMix,
@@ -368,7 +368,7 @@ class ProductionBreakdownList(EventList):
         forecasted: bool = False,
     ):
         event = ProductionBreakdown.create(
-            self.logger, zone_key, datetime, source, production, storage, forecasted
+            self.logger, zoneKey, datetime, source, production, storage, forecasted
         )
         if event:
             self.events.append(event)
@@ -377,14 +377,14 @@ class ProductionBreakdownList(EventList):
 class GenerationList(EventList):
     def append(
         self,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         value: float,
         forecasted: bool = False,
     ):
         event = Generation.create(
-            self.logger, zone_key, datetime, source, value, forecasted
+            self.logger, zoneKey, datetime, source, value, forecasted
         )
         if event:
             self.events.append(event)
@@ -393,14 +393,14 @@ class GenerationList(EventList):
 class ConsumptionList(EventList):
     def append(
         self,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         consumption: float,
         forecasted: bool = False,
     ):
         event = Consumption.create(
-            self.logger, zone_key, datetime, source, consumption, forecasted
+            self.logger, zoneKey, datetime, source, consumption, forecasted
         )
         if event:
             self.events.append(event)
@@ -409,7 +409,7 @@ class ConsumptionList(EventList):
 class PriceList(EventList):
     def append(
         self,
-        zone_key: ZoneKey,
+        zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         price: float,
@@ -417,7 +417,7 @@ class PriceList(EventList):
         forecasted: bool = False,
     ):
         event = Price.create(
-            self.logger, zone_key, datetime, source, price, currency, forecasted
+            self.logger, zoneKey, datetime, source, price, currency, forecasted
         )
         if event:
             self.events.append(event)
