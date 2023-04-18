@@ -29,6 +29,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
   - Ontario: [IESO](http://www.ieso.ca/power-data)
   - Québec: [Hydro-Québec](https://www.hydroquebec.com/residentiel/)
   - Prince Edward Island: [Government of PEI](https://www.princeedwardisland.ca/en/feature/pei-wind-energy/)
+  - Saskatchewan: [Saskpower ](https://www.saskpower.com/Our-Power-Future/Our-Electricity/Electrical-System/Where-Your-Power-Comes-From)(daily avg)
   - Yukon: [Yukon Energy](http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption)
 - Chile (SING/SIC): [Coordinador](https://sipub.coordinador.cl/api/v1/recursos/generacion_centrales_tecnologia_horario?)
 - Czech Republic: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -259,6 +260,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Hydro & Solar: [service-public.pf](https://www.service-public.pf/sde/wp-content/uploads/sites/15/2021/02/BEPF-2019-VF_online_mail_light_compressed.pdf)
   - Thermal: [service-public.pf](https://www.service-public.pf/sde/documentation-2/rapports-delegataires)
 - Germany:
+  - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=DE)
+  - Nuclear: [BASE](https://www.base.bund.de/EN/ns/nuclear-phase-out/nuclear-phase-out_node.html)
   - Geothermal and Unknown: [Bundesnetzagentur](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
   - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
 - Georgia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -434,6 +437,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
+  - Florida TECO (US-FLA-TEC)
+    - Coal: [Github|electricitymaps-contrib|PR#5297](https://github.com/electricitymaps/electricitymaps-contrib/pull/5297)
   - Hawaii
     - Battery storage: [Kapolei Energy Storage Project](https://www.kapoleienergystorage.com/)
     - Coal: [The Guardian: Hawaii to close its only coal power plant in a step toward renewable energy](https://web.archive.org/web/20220902132250/https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy)
@@ -508,6 +513,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - [Serbia ⇄ Bulgaria](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - [Slovakia ⇄ Ukraine](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - Spain ⇄ France: [According to "The Spanish electricity system 2019" page 65: 2800 MW](https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/InformesSistemaElectrico/2019/ISE_2019_eng.pdf)
+- [Spain ⇄ Portugal](https://www.ree.es/en/activities/operation-of-the-electricity-system/international-interconnections)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](<https://en.wikipedia.org/wiki/Cometa_(HVDC)>)
 - [Sweden ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Ukraine ⇄ Belarus, ⇄ Hungary, ⇉ Poland, ⇄ Moldova, ⇄ Slovakia, ⇄ Romania, ⇄ Russia: [Ukrenergo](https://ua.energy/activity/dispatch-information/transborder-flows/)
