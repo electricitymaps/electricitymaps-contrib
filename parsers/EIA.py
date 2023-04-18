@@ -372,7 +372,7 @@ def fetch_consumption(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+):
     consumption = _fetch(
         zone_key,
         CONSUMPTION.format(REGIONS[zone_key]),
@@ -380,9 +380,9 @@ def fetch_consumption(
         target_datetime=target_datetime,
         logger=logger,
     )
-
     for point in consumption:
         point["consumption"] = point.pop("value")
+
     return consumption
 
 
