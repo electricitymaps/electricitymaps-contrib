@@ -2,6 +2,7 @@ import logging
 import unittest
 from datetime import datetime, timezone
 
+import freezegun
 from mock import patch
 
 from electricitymap.contrib.config import ZoneKey
@@ -350,6 +351,32 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
             mock_warning.assert_called_once()
+    @freezegun.freeze_time("2023-01-01")
+    def test_forecasted_points(self):
+        mix = ProductionMix(wind=10)
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 2, 1, tzinfo=timezone.utc),
+            production=mix,
+            source="trust.me",
+            forecasted=True,
+        )
+        assert breakdown.zoneKey == ZoneKey("DE")
+        assert breakdown.datetime == datetime(2023, 2, 1, tzinfo=timezone.utc)
+        assert breakdown.production.wind == 10
+        assert breakdown.source == "trust.me"
+        assert breakdown.forecasted is True
+
+    @freezegun.freeze_time("2023-01-01")
+    def test_non_forecasted_points_in_future(self):
+        mix = ProductionMix(wind=10)
+        with self.assertRaises(ValueError):
+            breakdown = ProductionBreakdown(
+                zoneKey=ZoneKey("DE"),
+                datetime=datetime(2023, 3, 1, tzinfo=timezone.utc),
+                production=mix,
+                source="trust.me",
+            )
 
 
 class TestGeneration(unittest.TestCase):

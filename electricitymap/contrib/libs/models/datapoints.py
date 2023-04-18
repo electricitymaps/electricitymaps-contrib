@@ -38,10 +38,10 @@ class StorageMix(Mix):
 
 
 class Datapoint(BaseModel, ABC):
+    forecasted: bool = False
     zoneKey: ZoneKey
     datetime: datetime
     source: str
-    forecasted: bool = False
     # TODO estimated: bool = False,
 
     @validator("zoneKey")
@@ -59,9 +59,7 @@ class Datapoint(BaseModel, ABC):
         if not values.get("forecasted", False) and v > datetime.now(
             timezone.utc
         ) + timedelta(days=1):
-            raise ValueError(
-                f"Date is in the future and this is not a forecasted point : {v}"
-            )
+            raise ValueError(f"Date is in the future and this is not a forecasted point: {v}")
         return v
 
     @staticmethod
