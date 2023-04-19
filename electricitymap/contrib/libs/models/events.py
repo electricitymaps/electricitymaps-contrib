@@ -149,16 +149,16 @@ class Exchange(Event):
         }
 
 
-class Generation(Event):
+class TotalProduction(Event):
     value: float
 
     @validator("value")
     def _validate_value(cls, v: float):
         if v < 0:
-            raise ValueError(f"Generation cannot be negative: {v}")
+            raise ValueError(f"Total production cannot be negative: {v}")
         # TODO in the future those checks should be performed in the data quality layer.
         if v > 500000:
-            raise ValueError(f"Generation is implausibly high, above 500GW: {v}")
+            raise ValueError(f"Total production is implausibly high, above 500GW: {v}")
         return v
 
     @staticmethod
@@ -169,9 +169,9 @@ class Generation(Event):
         source: str,
         value: float,
         forecasted: bool = False,
-    ) -> Optional["Generation"]:
+    ) -> Optional["TotalProduction"]:
         try:
-            return Generation(
+            return TotalProduction(
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
@@ -179,7 +179,7 @@ class Generation(Event):
                 forecasted=forecasted,
             )
         except ValueError as e:
-            logger.error(f"Error creating generation Event {datetime}: {e}")
+            logger.error(f"Error creating total production Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -241,16 +241,16 @@ class ProductionBreakdown(Event):
         }
 
 
-class Consumption(Event):
+class TotalConsumption(Event):
     consumption: float
 
     @validator("consumption")
     def _validate_consumption(cls, v: float):
         if v < 0:
-            raise ValueError(f"Consumption cannot be negative: {v}")
+            raise ValueError(f"Total consumption cannot be negative: {v}")
         # TODO in the future those checks should be performed in the data quality layer.
         if v > 500000:
-            raise ValueError(f"Consumption is implausibly high, above 500GW: {v}")
+            raise ValueError(f"Total consumption is implausibly high, above 500GW: {v}")
         return v
 
     @staticmethod
@@ -261,9 +261,9 @@ class Consumption(Event):
         source: str,
         consumption: float,
         forecasted: bool = False,
-    ) -> Optional["Consumption"]:
+    ) -> Optional["TotalConsumption"]:
         try:
-            return Consumption(
+            return TotalConsumption(
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
@@ -272,7 +272,7 @@ class Consumption(Event):
             )
         except ValueError as e:
             logger.error(
-                f"Error creating consumption Event {datetime}: {e}",
+                f"Error creating total consumption Event {datetime}: {e}",
                 extra={
                     "zoneKey": zoneKey,
                     "datetime": datetime,
@@ -384,7 +384,7 @@ class ProductionBreakdownList(EventList):
             self.events.append(event)
 
 
-class GenerationList(EventList):
+class TotalProductionList(EventList):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -393,14 +393,14 @@ class GenerationList(EventList):
         value: float,
         forecasted: bool = False,
     ):
-        event = Generation.create(
+        event = TotalProduction.create(
             self.logger, zoneKey, datetime, source, value, forecasted
         )
         if event:
             self.events.append(event)
 
 
-class ConsumptionList(EventList):
+class TotalConsumptionList(EventList):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -409,7 +409,7 @@ class ConsumptionList(EventList):
         consumption: float,
         forecasted: bool = False,
     ):
-        event = Consumption.create(
+        event = TotalConsumption.create(
             self.logger, zoneKey, datetime, source, consumption, forecasted
         )
         if event:
