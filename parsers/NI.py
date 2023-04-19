@@ -9,6 +9,7 @@ from typing import Any, Dict, List, Optional, Union
 import arrow
 from requests import Session
 
+from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.libs.models.events import (
     ExchangeList,
     PriceList,
@@ -233,7 +234,7 @@ def fetch_production(
 
         production_list = ProductionBreakdownList(logger)
         production_list.append(
-            zone_key=zone_key,
+            zoneKey=ZoneKey(zone_key),
             datetime=data_datetime,
             production=production_mix,
             source="cndc.org.ni",
@@ -289,7 +290,7 @@ def fetch_exchange(
         raise NotImplementedError("This exchange pair is not implemented")
     exchange_list = ExchangeList(logger)
     exchange_list.append(
-        zone_key=sorted_zone_keys,
+        zoneKey=ZoneKey(sorted_zone_keys),
         datetime=get_time_from_system_map(map_html),
         value=flow,
         source="cndc.org.ni",
@@ -335,7 +336,7 @@ def fetch_price(
 
     price_list = PriceList(logger)
     price_list.append(
-        zone_key=zone_key,
+        zoneKey=ZoneKey(zone_key),
         datetime=price_date.datetime,
         price=price,
         currency="USD",
