@@ -112,6 +112,7 @@ class Exchange(Event):
 
     @validator("value")
     def _validate_value(cls, v: float):
+        # TODO in the future those checks should be performed in the data quality layer.
         if abs(v) > 100000:
             raise ValueError(f"Exchange is implausibly high, above 100GW: {v}")
         return v
@@ -152,6 +153,7 @@ class Generation(Event):
     def _validate_value(cls, v: float):
         if v < 0:
             raise ValueError(f"Generation cannot be negative: {v}")
+        # TODO in the future those checks should be performed in the data quality layer.
         if v > 500000:
             raise ValueError(f"Generation is implausibly high, above 500GW: {v}")
         return v
@@ -243,6 +245,7 @@ class Consumption(Event):
     def _validate_consumption(cls, v: float):
         if v < 0:
             raise ValueError(f"Consumption cannot be negative: {v}")
+        # TODO in the future those checks should be performed in the data quality layer.
         if v > 500000:
             raise ValueError(f"Consumption is implausibly high, above 500GW: {v}")
         return v
