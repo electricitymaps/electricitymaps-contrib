@@ -7,18 +7,18 @@ from mock import patch
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.libs.models.events import (
-    Consumption,
-    ConsumptionList,
     Exchange,
     ExchangeList,
-    Generation,
-    GenerationList,
     Price,
     PriceList,
     ProductionBreakdown,
     ProductionBreakdownList,
     ProductionMix,
     StorageMix,
+    TotalConsumption,
+    TotalConsumptionList,
+    TotalProduction,
+    TotalProductionList,
 )
 
 
@@ -115,7 +115,7 @@ class TestExchange(unittest.TestCase):
 
 class TestConsumption(unittest.TestCase):
     def test_create_consumption(self):
-        consumption = Consumption(
+        consumption = TotalConsumption(
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             consumption=1,
@@ -128,21 +128,21 @@ class TestConsumption(unittest.TestCase):
 
     def test_raises_if_invalid_consumption(self):
         with self.assertRaises(ValueError):
-            Consumption(
+            TotalConsumption(
                 zoneKey=ZoneKey("ATT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 consumption=1,
                 source="trust.me",
             )
         with self.assertRaises(ValueError):
-            Consumption(
+            TotalConsumption(
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1),
                 consumption=1,
                 source="trust.me",
             )
         with self.assertRaises(ValueError):
-            Consumption(
+            TotalConsumption(
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 consumption=-1,
@@ -150,7 +150,7 @@ class TestConsumption(unittest.TestCase):
             )
 
     def test_consumption_list(self):
-        consumption_list = ConsumptionList(logging.Logger("test"))
+        consumption_list = TotalConsumptionList(logging.Logger("test"))
         consumption_list.append(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
@@ -166,7 +166,7 @@ class TestConsumption(unittest.TestCase):
         assert len(consumption_list.events) == 2
 
     def test_append_to_list_logs_error(self):
-        consumption_list = ConsumptionList(logging.Logger("test"))
+        consumption_list = TotalConsumptionList(logging.Logger("test"))
         with patch.object(consumption_list.logger, "error") as mock_error:
             consumption_list.append(
                 zoneKey=ZoneKey("AT"),
@@ -380,9 +380,9 @@ class TestProductionBreakdown(unittest.TestCase):
             )
 
 
-class TestGeneration(unittest.TestCase):
+class TestTotalProduction(unittest.TestCase):
     def test_create_generation(self):
-        generation = Generation(
+        generation = TotalProduction(
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
@@ -394,7 +394,7 @@ class TestGeneration(unittest.TestCase):
         assert generation.value == 1
 
     def test_generation_list(self):
-        generation_list = GenerationList(logging.Logger("test"))
+        generation_list = TotalProductionList(logging.Logger("test"))
         generation_list.append(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
