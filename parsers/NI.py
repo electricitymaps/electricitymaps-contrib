@@ -10,7 +10,7 @@ import arrow
 from parsers.lib.exceptions import ParserException
 from requests import Session
 
-from electricitymap.contrib.libs.models.datapoints import (
+from electricitymap.contrib.libs.models.events import (
     ExchangeList,
     PriceList,
     ProductionBreakdownList,

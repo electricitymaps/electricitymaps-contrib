@@ -6,7 +6,7 @@ import freezegun
 from mock import patch
 
 from electricitymap.contrib.config import ZoneKey
-from electricitymap.contrib.libs.models.datapoints import (
+from electricitymap.contrib.libs.models.events import (
     Consumption,
     ConsumptionList,
     Exchange,
