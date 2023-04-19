@@ -43,6 +43,7 @@ class StorageMix(Mix):
     """
     Contains the storage mix for a zone at a given time.
     All values are in MW.
+    Values can be both positive (when storing energy) or negative (when the storage is discharged).
     """
 
     battery: Optional[float] = None
