@@ -13,7 +13,7 @@ LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 class ProductionMix(BaseModel):
     """
-    Containts the production mix for a zone at a given time.
+    Contains the production mix for a zone at a given time.
     All values are in MW.
     """
 
@@ -39,7 +39,7 @@ class ProductionMix(BaseModel):
 
 class StorageMix(BaseModel):
     """
-    Containts the storage mix for a zone at a given time.
+    Contains the storage mix for a zone at a given time.
     All values are in MW.
     """
 
