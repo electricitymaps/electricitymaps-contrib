@@ -11,7 +11,17 @@ from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
-class ProductionMix(BaseModel):
+class Mix(BaseModel, ABC):
+    def set_value(self, mode: str, value: float) -> None:
+        """
+        Sets the value of a production mode.
+        This can be used if the Production has been initialized empty
+        and is being filled in a loop.
+        """
+        self.__setattr__(mode, value)
+
+
+class ProductionMix(Mix):
     """
     Contains the production mix for a zone at a given time.
     All values are in MW.
@@ -28,16 +38,8 @@ class ProductionMix(BaseModel):
     unknown: Optional[float] = None
     wind: Optional[float] = None
 
-    def set_value(self, mode: str, value: float) -> None:
-        """
-        Sets the value of a production mode.
-        This can be used if the Production has been initialized empty
-        and is being filled in a loop.
-        """
-        self.__setattr__(mode, value)
 
-
-class StorageMix(BaseModel):
+class StorageMix(Mix):
     """
     Contains the storage mix for a zone at a given time.
     All values are in MW.
