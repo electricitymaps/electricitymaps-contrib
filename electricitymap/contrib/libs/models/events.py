@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 from logging import Logger
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, PrivateAttr, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
 from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
@@ -24,9 +24,12 @@ class Mix(BaseModel, ABC):
 class ProductionMix(Mix):
     """
     Contains the production mix for a zone at a given time.
+    All values should be positives, otherwise they will be set to None
+    and a warning will be logged.
     All values are in MW.
     """
-
+    # We use a private attribute to keep track of the modes that have been set to None.
+    _corrected_negative_values: set = PrivateAttr(set())
     biomass: Optional[float] = None
     coal: Optional[float] = None
     gas: Optional[float] = None
@@ -37,6 +40,20 @@ class ProductionMix(Mix):
     solar: Optional[float] = None
     unknown: Optional[float] = None
     wind: Optional[float] = None
+
+    def __init__(self, **data: Any):
+        """Overriding the constructor to check for negative values and set them to None."""
+        super().__init__(**data)
+        for attr, value in data.items():
+            if value is not None and value < 0:
+                self._corrected_negative_values.add(attr)
+                self.__setattr__(attr, None)
+    def set_value(self, mode: str, value: float) -> None:
+        if value < 0:
+            self._corrected_negative_values.add(mode)
+            return self.__setattr__(mode, None)
+        return super().set_value(mode, value)
+
 
 
 class StorageMix(Mix):
@@ -212,14 +229,12 @@ class ProductionBreakdown(Event):
         forecasted: bool = False,
     ) -> Optional["ProductionBreakdown"]:
         try:
-            # Correct negative production values.
-            for key, value in production.dict().items():
-                if value is not None and value < 0:
-                    production.__setattr__(key, None)
-                    logger.warning(
-                        f"Production value for {key} is negative.\
-                              This value is set to None."
-                    )
+            # Log warning if production has been corrected.
+            if len(production._corrected_negative_values)>0:
+                logger.warning(
+                    f"Negative production values were detected: {production._corrected_negative_values}.\
+                    They have been set to None."
+                )
             return ProductionBreakdown(
                 zoneKey=zoneKey,
                 datetime=datetime,
