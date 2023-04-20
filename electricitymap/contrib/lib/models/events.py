@@ -7,7 +7,7 @@ from typing import Any, Dict, Optional
 from pydantic import BaseModel, PrivateAttr, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
-from electricitymap.contrib.libs.models.constants import VALID_CURRENCIES
+from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 

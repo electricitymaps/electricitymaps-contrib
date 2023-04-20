@@ -4,7 +4,7 @@ from logging import Logger
 from typing import Any, Dict, List, Optional
 
 from electricitymap.contrib.config import ZoneKey
-from electricitymap.contrib.libs.models.events import (
+from electricitymap.contrib.lib.models.events import (
     Event,
     EventObservation,
     Exchange,

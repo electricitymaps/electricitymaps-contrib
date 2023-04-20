@@ -7,7 +7,7 @@ from mock import patch
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
-from electricitymap.contrib.libs.models.events import (
+from electricitymap.contrib.lib.models.events import (
     EventObservation,
     Exchange,
     Price,

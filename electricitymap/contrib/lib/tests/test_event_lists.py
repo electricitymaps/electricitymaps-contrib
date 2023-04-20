@@ -5,14 +5,14 @@ from datetime import datetime, timezone
 from mock import patch
 
 from electricitymap.contrib.config import ZoneKey
-from electricitymap.contrib.libs.models.event_lists import (
+from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
     TotalProductionList,
 )
-from electricitymap.contrib.libs.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import ProductionMix
 
 
 class TestExchangeList(unittest.TestCase):
