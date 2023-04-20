@@ -184,6 +184,7 @@ class Exchange(Event):
 
 class TotalProduction(Event):
     """Represents the total production of a zone at a given time. The value is in MW."""
+
     value: float
 
     @validator("value")
@@ -275,6 +276,7 @@ class ProductionBreakdown(Event):
 
 class TotalConsumption(Event):
     """Reprensent the total consumption of a zone. The total consumption is expressed in MW."""
+
     consumption: float
 
     @validator("consumption")
