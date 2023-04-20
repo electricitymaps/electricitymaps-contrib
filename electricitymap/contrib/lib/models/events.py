@@ -57,6 +57,10 @@ class ProductionMix(Mix):
             return self.__setattr__(mode, None)
         return super().set_value(mode, value)
 
+    @property
+    def has_corrected_negative_values(self) -> bool:
+        return len(self._corrected_negative_values) > 0
+
 
 class StorageMix(Mix):
     """
@@ -240,7 +244,7 @@ class ProductionBreakdown(Event):
     ) -> Optional["ProductionBreakdown"]:
         try:
             # Log warning if production has been corrected.
-            if len(production._corrected_negative_values) > 0:
+            if production.has_corrected_negative_values:
                 logger.warning(
                     f"Negative production values were detected: {production._corrected_negative_values}.\
                     They have been set to None."
