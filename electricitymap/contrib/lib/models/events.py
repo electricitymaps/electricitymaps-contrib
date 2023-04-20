@@ -69,7 +69,7 @@ class StorageMix(Mix):
     hydro: Optional[float] = None
 
 
-class EventObservation(str, Enum):
+class EventSourceType(str, Enum):
     measured = "measured"
     forecasted = "forecasted"
     estimated = "estimated"
@@ -78,7 +78,7 @@ class EventObservation(str, Enum):
 class Event(BaseModel, ABC):
     """
     An abstract class representing all types of electricity events that can occur in a zone.
-    observation: How was the event observed.
+    sourceType: How was the event observed.
     Should be set to forecasted if the point is a forecast provided by a datasource.
     Should be set to estimated if the point is an estimate or data that has not been consolidated yet by the datasource.
     zoneKey: The zone key of the zone the event is happening in.
@@ -87,11 +87,10 @@ class Event(BaseModel, ABC):
     We currently use the root url of the datasource. Ex: edf.fr
     """
 
-    observation: EventObservation = EventObservation.measured
+    sourceType: EventSourceType = EventSourceType.measured
     zoneKey: ZoneKey
     datetime: datetime
     source: str
-    # TODO estimated: bool = False,
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v):
@@ -106,8 +105,8 @@ class Event(BaseModel, ABC):
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
         if values.get(
-            "observation", EventObservation.measured
-        ) != EventObservation.forecasted and v > datetime.now(timezone.utc) + timedelta(
+            "sourceType", EventSourceType.measured
+        ) != EventSourceType.forecasted and v > datetime.now(timezone.utc) + timedelta(
             days=1
         ):
             raise ValueError(
@@ -155,7 +154,7 @@ class Exchange(Event):
         datetime: datetime,
         source: str,
         value: float,
-        observation: EventObservation = EventObservation.measured,
+        sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["Exchange"]:
         try:
             return Exchange(
@@ -163,7 +162,7 @@ class Exchange(Event):
                 datetime=datetime,
                 source=source,
                 value=value,
-                observation=observation,
+                sourceType=sourceType,
             )
         except ValueError as e:
             logger.error(f"Error creating exchange Event {datetime}: {e}")
@@ -196,7 +195,7 @@ class TotalProduction(Event):
         datetime: datetime,
         source: str,
         value: float,
-        observation: EventObservation = EventObservation.measured,
+        sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["TotalProduction"]:
         try:
             return TotalProduction(
@@ -204,7 +203,7 @@ class TotalProduction(Event):
                 datetime=datetime,
                 source=source,
                 value=value,
-                observation=observation,
+                sourceType=sourceType,
             )
         except ValueError as e:
             logger.error(f"Error creating total production Event {datetime}: {e}")
@@ -237,7 +236,7 @@ class ProductionBreakdown(Event):
         source: str,
         production: ProductionMix,
         storage: Optional[StorageMix] = None,
-        observation: EventObservation = EventObservation.measured,
+        sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["ProductionBreakdown"]:
         try:
             # Log warning if production has been corrected.
@@ -252,7 +251,7 @@ class ProductionBreakdown(Event):
                 source=source,
                 production=production,
                 storage=storage,
-                observation=observation,
+                sourceType=sourceType,
             )
         except ValueError as e:
             logger.error(f"Error creating production breakdown Event {datetime}: {e}")
@@ -286,7 +285,7 @@ class TotalConsumption(Event):
         datetime: datetime,
         source: str,
         consumption: float,
-        observation: EventObservation = EventObservation.measured,
+        sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["TotalConsumption"]:
         try:
             return TotalConsumption(
@@ -294,7 +293,7 @@ class TotalConsumption(Event):
                 datetime=datetime,
                 source=source,
                 consumption=consumption,
-                observation=observation,
+                sourceType=sourceType,
             )
         except ValueError as e:
             logger.error(
@@ -333,7 +332,7 @@ class Price(Event):
         source: str,
         price: float,
         currency: str,
-        observation: EventObservation = EventObservation.measured,
+        sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["Price"]:
         try:
             return Price(
@@ -342,7 +341,7 @@ class Price(Event):
                 source=source,
                 price=price,
                 currency=currency,
-                observation=observation,
+                sourceType=sourceType,
             )
         except ValueError as e:
             logger.error(f"Error creating price Event {datetime}: {e}")

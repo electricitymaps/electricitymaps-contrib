@@ -8,7 +8,7 @@ from mock import patch
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
-    EventObservation,
+    EventSourceType,
     Exchange,
     Price,
     ProductionBreakdown,
@@ -251,13 +251,13 @@ class TestProductionBreakdown(unittest.TestCase):
             datetime=datetime(2023, 2, 1, tzinfo=timezone.utc),
             production=mix,
             source="trust.me",
-            observation=EventObservation.forecasted,
+            sourceType=EventSourceType.forecasted,
         )
         assert breakdown.zoneKey == ZoneKey("DE")
         assert breakdown.datetime == datetime(2023, 2, 1, tzinfo=timezone.utc)
         assert breakdown.production.wind == 10
         assert breakdown.source == "trust.me"
-        assert breakdown.observation == EventObservation.forecasted
+        assert breakdown.sourceType == EventSourceType.forecasted
 
     @freezegun.freeze_time("2023-01-01")
     def test_non_forecasted_points_in_future(self):
