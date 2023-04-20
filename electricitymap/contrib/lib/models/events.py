@@ -59,14 +59,6 @@ class ProductionMix(Mix):
                 return super().__setattr__(name, None)
         return super().__setattr__(name, value)
 
-    def set_mode(self, mode: str, value: float) -> None:
-        """
-        Sets the value of a production mode.
-        This can be used if the Production has been initialized empty
-        and is being filled in a loop.
-        """
-        self.__setattr__(mode, value)
-
     @property
     def has_corrected_negative_values(self) -> bool:
         return len(self._corrected_negative_values) > 0
