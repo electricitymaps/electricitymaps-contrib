@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
+from enum import Enum
 from logging import Logger
 from typing import Any, Dict, Optional
 
@@ -28,6 +29,7 @@ class ProductionMix(Mix):
     and a warning will be logged.
     All values are in MW.
     """
+
     # We use a private attribute to keep track of the modes that have been set to None.
     _corrected_negative_values: set = PrivateAttr(set())
     biomass: Optional[float] = None
@@ -48,12 +50,12 @@ class ProductionMix(Mix):
             if value is not None and value < 0:
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
+
     def set_value(self, mode: str, value: float) -> None:
         if value < 0:
             self._corrected_negative_values.add(mode)
             return self.__setattr__(mode, None)
         return super().set_value(mode, value)
-
 
 
 class StorageMix(Mix):
@@ -67,18 +69,25 @@ class StorageMix(Mix):
     hydro: Optional[float] = None
 
 
+class EventObservation(str, Enum):
+    measured = "measured"
+    forecasted = "forecasted"
+    estimated = "estimated"
+
+
 class Event(BaseModel, ABC):
     """
     An abstract class representing all types of electricity events that can occur in a zone.
-    forecasted: Whether the point is a forecasted point or not.
-    Should be set to True if the point is a forecast provided by a datasource.
+    observation: How was the event observed.
+    Should be set to forecasted if the point is a forecast provided by a datasource.
+    Should be set to estimated if the point is an estimate or data that has not been consolidated yet by the datasource.
     zoneKey: The zone key of the zone the event is happening in.
     datetime: The datetime of the event.
     source: The source of the event.
     We currently use the root url of the datasource. Ex: edf.fr
     """
 
-    forecasted: bool = False
+    observation: EventObservation = EventObservation.measured
     zoneKey: ZoneKey
     datetime: datetime
     source: str
@@ -96,9 +105,11 @@ class Event(BaseModel, ABC):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
-        if not values.get("forecasted", False) and v > datetime.now(
-            timezone.utc
-        ) + timedelta(days=1):
+        if values.get(
+            "observation", EventObservation.measured
+        ) != EventObservation.forecasted and v > datetime.now(timezone.utc) + timedelta(
+            days=1
+        ):
             raise ValueError(
                 f"Date is in the future and this is not a forecasted point: {v}"
             )
@@ -144,7 +155,7 @@ class Exchange(Event):
         datetime: datetime,
         source: str,
         value: float,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["Exchange"]:
         try:
             return Exchange(
@@ -152,7 +163,7 @@ class Exchange(Event):
                 datetime=datetime,
                 source=source,
                 value=value,
-                forecasted=forecasted,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(f"Error creating exchange Event {datetime}: {e}")
@@ -185,7 +196,7 @@ class TotalProduction(Event):
         datetime: datetime,
         source: str,
         value: float,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["TotalProduction"]:
         try:
             return TotalProduction(
@@ -193,7 +204,7 @@ class TotalProduction(Event):
                 datetime=datetime,
                 source=source,
                 value=value,
-                forecasted=forecasted,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(f"Error creating total production Event {datetime}: {e}")
@@ -226,11 +237,11 @@ class ProductionBreakdown(Event):
         source: str,
         production: ProductionMix,
         storage: Optional[StorageMix] = None,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["ProductionBreakdown"]:
         try:
             # Log warning if production has been corrected.
-            if len(production._corrected_negative_values)>0:
+            if len(production._corrected_negative_values) > 0:
                 logger.warning(
                     f"Negative production values were detected: {production._corrected_negative_values}.\
                     They have been set to None."
@@ -241,7 +252,7 @@ class ProductionBreakdown(Event):
                 source=source,
                 production=production,
                 storage=storage,
-                forecasted=forecasted,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(f"Error creating production breakdown Event {datetime}: {e}")
@@ -275,7 +286,7 @@ class TotalConsumption(Event):
         datetime: datetime,
         source: str,
         consumption: float,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["TotalConsumption"]:
         try:
             return TotalConsumption(
@@ -283,7 +294,7 @@ class TotalConsumption(Event):
                 datetime=datetime,
                 source=source,
                 consumption=consumption,
-                forecasted=forecasted,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(
@@ -322,7 +333,7 @@ class Price(Event):
         source: str,
         price: float,
         currency: str,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["Price"]:
         try:
             return Price(
@@ -331,7 +342,7 @@ class Price(Event):
                 source=source,
                 price=price,
                 currency=currency,
-                forecasted=forecasted,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(f"Error creating price Event {datetime}: {e}")

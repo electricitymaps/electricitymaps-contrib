@@ -8,6 +8,7 @@ from mock import patch
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.libs.models.events import (
+    EventObservation,
     Exchange,
     Price,
     ProductionBreakdown,
@@ -250,13 +251,13 @@ class TestProductionBreakdown(unittest.TestCase):
             datetime=datetime(2023, 2, 1, tzinfo=timezone.utc),
             production=mix,
             source="trust.me",
-            forecasted=True,
+            observation=EventObservation.forecasted,
         )
         assert breakdown.zoneKey == ZoneKey("DE")
         assert breakdown.datetime == datetime(2023, 2, 1, tzinfo=timezone.utc)
         assert breakdown.production.wind == 10
         assert breakdown.source == "trust.me"
-        assert breakdown.forecasted is True
+        assert breakdown.observation == EventObservation.forecasted
 
     @freezegun.freeze_time("2023-01-01")
     def test_non_forecasted_points_in_future(self):
@@ -283,11 +284,13 @@ class TestTotalProduction(unittest.TestCase):
         assert generation.source == "trust.me"
         assert generation.value == 1
 
+
 class TestMixes(unittest.TestCase):
     def test_production_mix_has_all_production_modes(self):
         mix = ProductionMix()
         for mode in PRODUCTION_MODES:
             assert hasattr(mix, mode)
+
     def test_storage_mix_has_all_storage_modes(self):
         mix = StorageMix()
         for mode in STORAGE_MODES:

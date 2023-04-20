@@ -6,6 +6,7 @@ from typing import Any, Dict, List, Optional
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.libs.models.events import (
     Event,
+    EventObservation,
     Exchange,
     Price,
     ProductionBreakdown,
@@ -43,10 +44,10 @@ class ExchangeList(EventList):
         datetime: datetime,
         source: str,
         value: float,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ):
         event = Exchange.create(
-            self.logger, zoneKey, datetime, source, value, forecasted
+            self.logger, zoneKey, datetime, source, value, observation
         )
         if event:
             self.events.append(event)
@@ -60,10 +61,10 @@ class ProductionBreakdownList(EventList):
         source: str,
         production: ProductionMix,
         storage: Optional[StorageMix] = None,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ):
         event = ProductionBreakdown.create(
-            self.logger, zoneKey, datetime, source, production, storage, forecasted
+            self.logger, zoneKey, datetime, source, production, storage, observation
         )
         if event:
             self.events.append(event)
@@ -76,10 +77,10 @@ class TotalProductionList(EventList):
         datetime: datetime,
         source: str,
         value: float,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ):
         event = TotalProduction.create(
-            self.logger, zoneKey, datetime, source, value, forecasted
+            self.logger, zoneKey, datetime, source, value, observation
         )
         if event:
             self.events.append(event)
@@ -92,10 +93,10 @@ class TotalConsumptionList(EventList):
         datetime: datetime,
         source: str,
         consumption: float,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ):
         event = TotalConsumption.create(
-            self.logger, zoneKey, datetime, source, consumption, forecasted
+            self.logger, zoneKey, datetime, source, consumption, observation
         )
         if event:
             self.events.append(event)
@@ -109,10 +110,10 @@ class PriceList(EventList):
         source: str,
         price: float,
         currency: str,
-        forecasted: bool = False,
+        observation: EventObservation = EventObservation.measured,
     ):
         event = Price.create(
-            self.logger, zoneKey, datetime, source, price, currency, forecasted
+            self.logger, zoneKey, datetime, source, price, currency, observation
         )
         if event:
             self.events.append(event)
