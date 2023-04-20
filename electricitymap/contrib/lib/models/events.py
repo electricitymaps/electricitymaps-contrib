@@ -91,6 +91,8 @@ class Event(BaseModel, ABC):
     We currently use the root url of the datasource. Ex: edf.fr
     """
 
+    # The order of the attributes matters for the validation.
+    # As the validators are called in the order of the attributes, we need to make sure that the sourceType is validated before the datetime.
     sourceType: EventSourceType = EventSourceType.measured
     zoneKey: ZoneKey
     datetime: datetime
