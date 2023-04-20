@@ -31,6 +31,9 @@ class ProductionMix(Mix):
     unknown: Optional[float] = None
     wind: Optional[float] = None
 
+    def set_value(self, mode: str, value: float) -> None:
+        self.__setattr__(mode, value)
+
 
 class StorageMix(Mix):
     battery: Optional[float] = None
@@ -59,7 +62,9 @@ class Datapoint(BaseModel, ABC):
         if not values.get("forecasted", False) and v > datetime.now(
             timezone.utc
         ) + timedelta(days=1):
-            raise ValueError(f"Date is in the future and this is not a forecasted point: {v}")
+            raise ValueError(
+                f"Date is in the future and this is not a forecasted point: {v}"
+            )
         return v
 
     @staticmethod

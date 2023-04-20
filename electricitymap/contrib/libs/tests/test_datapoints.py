@@ -351,6 +351,7 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
             mock_warning.assert_called_once()
+
     @freezegun.freeze_time("2023-01-01")
     def test_forecasted_points(self):
         mix = ProductionMix(wind=10)
@@ -391,6 +392,7 @@ class TestGeneration(unittest.TestCase):
         assert generation.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
         assert generation.source == "trust.me"
         assert generation.value == 1
+
     def test_generation_list(self):
         generation_list = GenerationList(logging.Logger("test"))
         generation_list.append(

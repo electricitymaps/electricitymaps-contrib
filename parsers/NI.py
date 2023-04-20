@@ -9,13 +9,12 @@ from typing import Any, Dict, List, Optional, Union
 import arrow
 from requests import Session
 
-from electricitymap.contrib.config import ZoneKey
-from electricitymap.contrib.lib.models.event_lists import (
+from electricitymap.contrib.libs.models.datapoints import (
     ExchangeList,
     PriceList,
     ProductionBreakdownList,
+    ProductionMix,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
 
 TIMEZONE = "America/Managua"
@@ -227,21 +226,21 @@ def fetch_production(
 
     total_production = sum(production.values())
     if 86.6 <= total_production <= 2165:
-        production_mix = ProductionMix()
-
         for mode, value in production.items():
+            production_mix = ProductionMix()
             production_mix.set_value(mode, value)
 
+        breakpoint()
         production_list = ProductionBreakdownList(logger)
         production_list.append(
-            zoneKey=ZoneKey(zone_key),
+            zone_key=zone_key,
             datetime=data_datetime,
-            production=production_mix,
+            production=production,
             source="cndc.org.ni",
         )
-        return production_list.to_list()
+        return production_list
     else:
-        raise ParserException(
+        return ParserException(
             parser="NI.py",
             message=f"{data_datetime}: production data not available",
             zone_key=zone_key,
@@ -290,12 +289,12 @@ def fetch_exchange(
         raise NotImplementedError("This exchange pair is not implemented")
     exchange_list = ExchangeList(logger)
     exchange_list.append(
-        zoneKey=ZoneKey(sorted_zone_keys),
+        sorted_zone_keys=sorted_zone_keys,
         datetime=get_time_from_system_map(map_html),
-        value=flow,
+        netFlow=flow,
         source="cndc.org.ni",
     )
-    return exchange_list.to_list()
+    return exchange_list
 
 
 def fetch_price(
@@ -336,13 +335,13 @@ def fetch_price(
 
     price_list = PriceList(logger)
     price_list.append(
-        zoneKey=ZoneKey(zone_key),
+        zone_key=zone_key,
         datetime=price_date.datetime,
         price=price,
         currency="USD",
         source="cndc.org.ni",
     )
-    return price_list.to_list()
+    return price_list
 
 
 if __name__ == "__main__":
