@@ -55,7 +55,13 @@ def fetch_production(
     events. Each ProductionBreakdown event should contain a datetime, a zoneKey,
     a ProductionMix, a source and optionally a StorageMix.
     The ProductionMix should contain the production breakdown for each fuel type.
-    The StorageMix should contain the storage breakdown for each storage type.
+
+-     A  ProductionBreakdownList contains all ProductionBreakdown events. 
+-     Each ProductionBreakdown event contains a datetime, a zoneKey,
+   a ProductionMix, a source and optionally a StorageMix.
+-     The ProductionMix contains the production breakdown for each fuel type.
+-     The StorageMix contains the storage breakdown for each storage type.
+
 
     """
     if target_datetime is None:
