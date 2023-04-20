@@ -7,7 +7,6 @@ from typing import Any, Dict, Optional
 from pydantic import BaseModel, PrivateAttr, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
@@ -52,16 +51,11 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def __setattr__(self, name: str, value) -> None:
-        if name in PRODUCTION_MODES:
-            if value is not None and value < 0:
-                self._corrected_negative_values.add(name)
-                return super().__setattr__(name, None)
-        return super().__setattr__(name, value)
-
-    @property
-    def has_corrected_negative_values(self) -> bool:
-        return len(self._corrected_negative_values) > 0
+    def set_value(self, mode: str, value: float) -> None:
+        if value < 0:
+            self._corrected_negative_values.add(mode)
+            return self.__setattr__(mode, None)
+        return super().set_value(mode, value)
 
 
 class StorageMix(Mix):
@@ -75,7 +69,7 @@ class StorageMix(Mix):
     hydro: Optional[float] = None
 
 
-class EventSourceType(str, Enum):
+class EventObservation(str, Enum):
     measured = "measured"
     forecasted = "forecasted"
     estimated = "estimated"
@@ -84,7 +78,7 @@ class EventSourceType(str, Enum):
 class Event(BaseModel, ABC):
     """
     An abstract class representing all types of electricity events that can occur in a zone.
-    sourceType: How was the event observed.
+    observation: How was the event observed.
     Should be set to forecasted if the point is a forecast provided by a datasource.
     Should be set to estimated if the point is an estimate or data that has not been consolidated yet by the datasource.
     zoneKey: The zone key of the zone the event is happening in.
@@ -93,12 +87,11 @@ class Event(BaseModel, ABC):
     We currently use the root url of the datasource. Ex: edf.fr
     """
 
-    # The order of the attributes matters for the validation.
-    # As the validators are called in the order of the attributes, we need to make sure that the sourceType is validated before the datetime.
-    sourceType: EventSourceType = EventSourceType.measured
+    observation: EventObservation = EventObservation.measured
     zoneKey: ZoneKey
     datetime: datetime
     source: str
+    # TODO estimated: bool = False,
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v):
@@ -113,8 +106,8 @@ class Event(BaseModel, ABC):
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
         if values.get(
-            "sourceType", EventSourceType.measured
-        ) != EventSourceType.forecasted and v > datetime.now(timezone.utc) + timedelta(
+            "observation", EventObservation.measured
+        ) != EventObservation.forecasted and v > datetime.now(timezone.utc) + timedelta(
             days=1
         ):
             raise ValueError(
@@ -162,7 +155,7 @@ class Exchange(Event):
         datetime: datetime,
         source: str,
         value: float,
-        sourceType: EventSourceType = EventSourceType.measured,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["Exchange"]:
         try:
             return Exchange(
@@ -170,7 +163,7 @@ class Exchange(Event):
                 datetime=datetime,
                 source=source,
                 value=value,
-                sourceType=sourceType,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(f"Error creating exchange Event {datetime}: {e}")
@@ -185,8 +178,6 @@ class Exchange(Event):
 
 
 class TotalProduction(Event):
-    """Represents the total production of a zone at a given time. The value is in MW."""
-
     value: float
 
     @validator("value")
@@ -205,7 +196,7 @@ class TotalProduction(Event):
         datetime: datetime,
         source: str,
         value: float,
-        sourceType: EventSourceType = EventSourceType.measured,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["TotalProduction"]:
         try:
             return TotalProduction(
@@ -213,7 +204,7 @@ class TotalProduction(Event):
                 datetime=datetime,
                 source=source,
                 value=value,
-                sourceType=sourceType,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(f"Error creating total production Event {datetime}: {e}")
@@ -246,11 +237,11 @@ class ProductionBreakdown(Event):
         source: str,
         production: ProductionMix,
         storage: Optional[StorageMix] = None,
-        sourceType: EventSourceType = EventSourceType.measured,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["ProductionBreakdown"]:
         try:
             # Log warning if production has been corrected.
-            if production.has_corrected_negative_values:
+            if len(production._corrected_negative_values) > 0:
                 logger.warning(
                     f"Negative production values were detected: {production._corrected_negative_values}.\
                     They have been set to None."
@@ -261,7 +252,7 @@ class ProductionBreakdown(Event):
                 source=source,
                 production=production,
                 storage=storage,
-                sourceType=sourceType,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(f"Error creating production breakdown Event {datetime}: {e}")
@@ -277,8 +268,6 @@ class ProductionBreakdown(Event):
 
 
 class TotalConsumption(Event):
-    """Reprensent the total consumption of a zone. The total consumption is expressed in MW."""
-
     consumption: float
 
     @validator("consumption")
@@ -297,7 +286,7 @@ class TotalConsumption(Event):
         datetime: datetime,
         source: str,
         consumption: float,
-        sourceType: EventSourceType = EventSourceType.measured,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["TotalConsumption"]:
         try:
             return TotalConsumption(
@@ -305,7 +294,7 @@ class TotalConsumption(Event):
                 datetime=datetime,
                 source=source,
                 consumption=consumption,
-                sourceType=sourceType,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(
@@ -344,7 +333,7 @@ class Price(Event):
         source: str,
         price: float,
         currency: str,
-        sourceType: EventSourceType = EventSourceType.measured,
+        observation: EventObservation = EventObservation.measured,
     ) -> Optional["Price"]:
         try:
             return Price(
@@ -353,7 +342,7 @@ class Price(Event):
                 source=source,
                 price=price,
                 currency=currency,
-                sourceType=sourceType,
+                observation=observation,
             )
         except ValueError as e:
             logger.error(f"Error creating price Event {datetime}: {e}")
