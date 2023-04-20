@@ -46,18 +46,18 @@ class TestExchange(unittest.TestCase):
     def test_exchange_list(self):
         exchange_list = ExchangeList(logging.Logger("test"))
         exchange_list.append(
-            zone_key=ZoneKey("AT->DE"),
+            zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             value=1,
             source="trust.me",
         )
         exchange_list.append(
-            zone_key=ZoneKey("AT->DE"),
+            zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
             value=1,
             source="trust.me",
         )
-        assert len(exchange_list.datapoints) == 2
+        assert len(exchange_list.events) == 2
 
     def test_raises_if_invalid_exchange(self):
         with self.assertRaises(ValueError):
@@ -105,7 +105,7 @@ class TestExchange(unittest.TestCase):
         exchange_list = ExchangeList(logging.Logger("test"))
         with patch.object(exchange_list.logger, "error") as mock_error:
             exchange_list.append(
-                zone_key=ZoneKey("AT"),
+                zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 value=1,
                 source="trust.me",
@@ -152,24 +152,24 @@ class TestConsumption(unittest.TestCase):
     def test_consumption_list(self):
         consumption_list = ConsumptionList(logging.Logger("test"))
         consumption_list.append(
-            zone_key=ZoneKey("AT"),
+            zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             consumption=1,
             source="trust.me",
         )
         consumption_list.append(
-            zone_key=ZoneKey("AT"),
+            zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
             consumption=1,
             source="trust.me",
         )
-        assert len(consumption_list.datapoints) == 2
+        assert len(consumption_list.events) == 2
 
     def test_append_to_list_logs_error(self):
         consumption_list = ConsumptionList(logging.Logger("test"))
         with patch.object(consumption_list.logger, "error") as mock_error:
             consumption_list.append(
-                zone_key=ZoneKey("AT"),
+                zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 consumption=-1,
                 source="trust.me",
@@ -221,19 +221,19 @@ class TestPrice(unittest.TestCase):
     def test_price_list(self):
         price_list = PriceList(logging.Logger("test"))
         price_list.append(
-            zone_key=ZoneKey("AT"),
+            zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             price=1,
             source="trust.me",
             currency="EUR",
         )
-        assert len(price_list.datapoints) == 1
+        assert len(price_list.events) == 1
 
     def test_append_to_list_logs_error(self):
         price_list = PriceList(logging.Logger("test"))
         with patch.object(price_list.logger, "error") as mock_error:
             price_list.append(
-                zone_key=ZoneKey("AT"),
+                zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 price=1,
                 source="trust.me",
@@ -314,7 +314,7 @@ class TestProductionBreakdown(unittest.TestCase):
         with patch.object(logger, "warning") as mock_warning:
             breakdown = ProductionBreakdown.create(
                 logger=logger,
-                zone_key=ZoneKey("DE"),
+                zoneKey=ZoneKey("DE"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 production=mix,
                 source="trust.me",
@@ -326,18 +326,18 @@ class TestProductionBreakdown(unittest.TestCase):
     def test_production_list(self):
         production_list = ProductionBreakdownList(logging.Logger("test"))
         production_list.append(
-            zone_key=ZoneKey("AT"),
+            zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             production=ProductionMix(wind=10),
             source="trust.me",
         )
-        assert len(production_list.datapoints) == 1
+        assert len(production_list.events) == 1
 
     def test_production_list_logs_error(self):
         production_list = ProductionBreakdownList(logging.Logger("test"))
         with patch.object(production_list.logger, "error") as mock_error:
             production_list.append(
-                zone_key=ZoneKey("AT"),
+                zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1),
                 production=ProductionMix(wind=10),
                 source="trust.me",
@@ -345,7 +345,7 @@ class TestProductionBreakdown(unittest.TestCase):
             mock_error.assert_called_once()
         with patch.object(production_list.logger, "warning") as mock_warning:
             production_list.append(
-                zone_key=ZoneKey("AT"),
+                zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 production=ProductionMix(wind=-10),
                 source="trust.me",
@@ -396,9 +396,9 @@ class TestGeneration(unittest.TestCase):
     def test_generation_list(self):
         generation_list = GenerationList(logging.Logger("test"))
         generation_list.append(
-            zone_key=ZoneKey("AT"),
+            zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             value=1,
             source="trust.me",
         )
-        assert len(generation_list.datapoints) == 1
+        assert len(generation_list.events) == 1
