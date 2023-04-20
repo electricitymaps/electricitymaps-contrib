@@ -12,6 +12,8 @@ from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
     ProductionBreakdownList,
+    TotalConsumptionList,
+    TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
@@ -173,7 +175,7 @@ def fetch_price(
     if not response.status_code == 200:
         raise ParserException(
             "example_parser.py",
-            f"Exception when fetching production error code: {response.status_code}: {response.text}",
+            f"Exception when fetching price error code: {response.status_code}: {response.text}",
             zone_key,
         )
 
@@ -242,43 +244,160 @@ def fetch_exchange(
     }
 
     response = session.get(url, params=params)
-    assert (
-        response.status_code == 200
-    ), f"Exception when fetching exchange for {zone_key1} -> {zone_key2}: error when calling url={url}"
+    if not response.status_code == 200:
+        raise ParserException(
+            "example_parser.py",
+            f"Exception when fetching exchange error code: {response.status_code}: {response.text}",
+            ZoneKey("->".join(sorted([zone_key1, zone_key2]))),
+        )
     obj = response.json()
 
     exchange_list = ExchangeList(logger=logger)
 
     for item in obj:
         exchange_list.append(
-                # Zone keys are sorted in order to enable easier indexing in the database
-                zoneKey= ZoneKey("->".join(sorted([zone_key1, zone_key2]))),
-                # Parse the datetime and return a python datetime object
-                datetime= datetime.fromisoformat(item["datetime"]),
-                # Here we assume that the net flow returned by the api is the flow from
-                # country1 to country2. A positive flow indicates an export from country1
-                # to country2. A negative flow indicates an import.
-                value= item["exchange"],
-                source= "someservice.com",
+            # Zone keys are sorted in order to enable easier indexing in the database
+            zoneKey=ZoneKey("->".join(sorted([zone_key1, zone_key2]))),
+            # Parse the datetime and return a python datetime object
+            datetime=datetime.fromisoformat(item["datetime"]),
+            # Here we assume that the net flow returned by the api is the flow from
+            # country1 to country2. A positive flow indicates an export from country1
+            # to country2. A negative flow indicates an import.
+            value=item["exchange"],
+            source="someservice.com",
         )
 
     return exchange_list.to_list()
 
+
 def fetch_consumption(
-  zone_key: ZoneKey,
-  session: Session = Session(),
-  target_datetime: Optional[datetime] = None,
-  logger: Logger = getLogger(__name__),
+    zone_key: ZoneKey,
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
-    pass
+    """
+    Requests the last known power consumption (in MW) of a given zone.
+
+    Arguments:
+    ----------
+    zone_key: used is used to identify the zone to which the consumption data
+      is related to.
+    session: request session passed in order to re-use an existing session
+    target_datetime: the datetime for which we want production data. If not
+      provided, we should default it to now. If past data is not available,
+      raise a ParserException. Beware that the provided target_datetime is
+      UTC. To convert to local timezone, you can use
+      `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
+    logger: an instance of a `logging.Logger` that will be passed by the
+      backend. Information logged will be publicly available so that correct
+      execution of the logger can be checked. All Exceptions will automatically
+      be logged, so when something's wrong, simply raise an Exception (with an
+      explicit text). Use `logger.warning` or `logger.info` for information
+      that can useful to check if the parser is working correctly. A default
+      logger is used so that logger output can be seen when coding / debugging.
+
+    Returns:
+    --------
+    If no data can be fetched, any falsy value (None, [], False) will be
+      ignored by the backend. If there is no data because the source may have
+      changed or is not available, raise a ParserException.
+
+    Returns a ConsumptionList containing all consumption events.
+    """
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    url = f"https://api.someservice.com/v1/consumption/latest"
+    params = {
+        "zone": zone_key,
+    }
+
+    response = session.get(url, params=params)
+    if not response.status_code == 200:
+        raise ParserException(
+            "example_parser.py",
+            f"Exception when fetching consumption error code: {response.status_code}: {response.text}",
+            zone_key,
+        )
+    obj = response.json()
+
+    consumption_list = TotalConsumptionList(logger=logger)
+
+    for item in obj:
+        consumption_list.append(
+            zoneKey=zone_key,
+            # Parse the datetime and return a python datetime object
+            datetime=datetime.fromisoformat(item["datetime"]),
+            consumption=item["consumption"],
+            source="someservice.com",
+        )
+    return consumption_list.to_list()
+
+
+def fetch_total_production(
+    zone_key: ZoneKey,
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[dict, List[dict]]:
+    """
+    Requests the last known power production (in MW) of a given zone.
+
+    Arguments:
+    ----------
+    zone_key: used is used to identify the zone to which the production data
+      is related to.
+    session: request session passed in order to re-use an existing session
+    target_datetime: the datetime for which we want production data. If not
+        provided, we should default it to now. If past data is not available,
+        raise a ParserException. Beware that the provided target_datetime is
+        UTC. To convert to local timezone, you can use
+        `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
+    logger: an instance of a `logging.Logger` that will be passed by the
+      backend. Information logged will be publicly available so that correct
+      execution of the logger can be checked. All Exceptions will automatically
+      be logged, so when something's wrong, simply raise an Exception (with an
+      explicit text). Use `logger.warning` or `logger.info` for information
+      that can useful to check if the parser is working correctly. A default
+      logger is used so that logger output can be seen when coding / debugging.
+    """
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    url = f"https://api.someservice.com/v1/production/latest"
+    params = {
+        "zone": zone_key,
+    }
+
+    response = session.get(url, params=params)
+    if not response.status_code == 200:
+        raise ParserException(
+            "example_parser.py",
+            f"Exception when fetching total production error code: {response.status_code}: {response.text}",
+            zone_key,
+        )
+    obj = response.json()
+
+    production_list = TotalProductionList(logger=logger)
+
+    for item in obj:
+        production_list.append(
+            zoneKey=zone_key,
+            # Parse the datetime and return a python datetime object
+            datetime=datetime.fromisoformat(item["datetime"]),
+            value=item["production"],
+            source="someservice.com",
+        )
+    return production_list.to_list()
 
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Maps backend, but handy for testing."""
 
     print("fetch_production(XX) ->")
-    print(fetch_production("XX"))
+    print(fetch_production(ZoneKey("XX")))
     print("fetch_price(XX) ->")
-    print(fetch_price("XX"))
+    print(fetch_price(ZoneKey("XX")))
     print("fetch_exchange(XX, YY) ->")
-    print(fetch_exchange("XX", "YY"))
+    print(fetch_exchange(ZoneKey("XX"), ZoneKey("YY")))
