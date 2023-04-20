@@ -26,41 +26,41 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """
-    Requests the last known production mix (in MW) of a given country.
+        Requests the last known production mix (in MW) of a given country.
 
-    Arguments:
-    ----------
-    zone_key: used in case a parser is able to fetch multiple countries
-    session: request session passed in order to re-use an existing session
-    target_datetime: the datetime for which we want production data. If not
-      provided, we should default it to now. If past data is not available,
-      raise a ParserException. Beware that the provided target_datetime is
-      UTC. To convert to local timezone, you can use
-      `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
-    logger: an instance of a `logging.Logger` that will be passed by the
-      backend. Information logged will be publicly available so that correct
-      execution of the logger can be checked. All Exceptions will automatically
-      be logged, so when something's wrong, simply raise an Exception (with an
-      explicit text). Use `logger.warning` or `logger.info` for information
-      that can useful to check if the parser is working correctly. A default
-      logger is used so that logger output can be seen when coding / debugging.
+        Arguments:
+        ----------
+        zone_key: used in case a parser is able to fetch multiple countries
+        session: request session passed in order to re-use an existing session
+        target_datetime: the datetime for which we want production data. If not
+          provided, we should default it to now. If past data is not available,
+          raise a ParserException. Beware that the provided target_datetime is
+          UTC. To convert to local timezone, you can use
+          `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
+        logger: an instance of a `logging.Logger` that will be passed by the
+          backend. Information logged will be publicly available so that correct
+          execution of the logger can be checked. All Exceptions will automatically
+          be logged, so when something's wrong, simply raise an Exception (with an
+          explicit text). Use `logger.warning` or `logger.info` for information
+          that can useful to check if the parser is working correctly. A default
+          logger is used so that logger output can be seen when coding / debugging.
 
-    Returns:
-    --------
-    If no data can be fetched, any falsy value (None, [], False) will be
-      ignored by the backend. If there is no data because the source may have
-      changed or is not available, raise an ParserException.
+        Returns:
+        --------
+        If no data can be fetched, any falsy value (None, [], False) will be
+          ignored by the backend. If there is no data because the source may have
+          changed or is not available, raise an ParserException.
 
-    A  ProductionBreakdownList should be returned containing all ProductionBreakdown
-    events. Each ProductionBreakdown event should contain a datetime, a zoneKey,
-    a ProductionMix, a source and optionally a StorageMix.
-    The ProductionMix should contain the production breakdown for each fuel type.
+        A  ProductionBreakdownList should be returned containing all ProductionBreakdown
+        events. Each ProductionBreakdown event should contain a datetime, a zoneKey,
+        a ProductionMix, a source and optionally a StorageMix.
+        The ProductionMix should contain the production breakdown for each fuel type.
 
--     A  ProductionBreakdownList contains all ProductionBreakdown events. 
--     Each ProductionBreakdown event contains a datetime, a zoneKey,
-   a ProductionMix, a source and optionally a StorageMix.
--     The ProductionMix contains the production breakdown for each fuel type.
--     The StorageMix contains the storage breakdown for each storage type.
+    -     A  ProductionBreakdownList contains all ProductionBreakdown events.
+    -     Each ProductionBreakdown event contains a datetime, a zoneKey,
+       a ProductionMix, a source and optionally a StorageMix.
+    -     The ProductionMix contains the production breakdown for each fuel type.
+    -     The StorageMix contains the storage breakdown for each storage type.
 
 
     """
