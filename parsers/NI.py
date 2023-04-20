@@ -241,7 +241,7 @@ def fetch_production(
         )
         return production_list.to_list()
     else:
-        return ParserException(
+        raise ParserException(
             parser="NI.py",
             message=f"{data_datetime}: production data not available",
             zone_key=zone_key,

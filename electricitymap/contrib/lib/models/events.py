@@ -7,6 +7,7 @@ from typing import Any, Dict, Optional
 from pydantic import BaseModel, PrivateAttr, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
@@ -51,11 +52,20 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def set_value(self, mode: str, value: float) -> None:
-        if value < 0:
-            self._corrected_negative_values.add(mode)
-            return self.__setattr__(mode, None)
-        return super().set_value(mode, value)
+    def __setattr__(self, name: str, value) -> None:
+        if name in PRODUCTION_MODES:
+            if value is not None and value < 0:
+                self._corrected_negative_values.add(name)
+                return super().__setattr__(name, None)
+        return super().__setattr__(name, value)
+
+    def set_mode(self, mode: str, value: float) -> None:
+        """
+        Sets the value of a production mode.
+        This can be used if the Production has been initialized empty
+        and is being filled in a loop.
+        """
+        self.__setattr__(mode, value)
 
     @property
     def has_corrected_negative_values(self) -> bool:
