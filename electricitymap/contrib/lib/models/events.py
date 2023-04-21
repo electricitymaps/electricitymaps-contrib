@@ -237,11 +237,18 @@ class ProductionBreakdown(Event):
     production: ProductionMix
     storage: Optional[StorageMix] = None
 
-    @validator("production", "storage")
-    def _validate_mix(cls, v):
+    @validator("production")
+    def _validate_production_mix(cls, v):
         if v is not None:
             if all(value is None for value in v.dict().values()):
                 raise ValueError("Mix is completely empty")
+        return v
+
+    @validator("storage")
+    def _validate_storage_mix(cls, v):
+        if v is not None:
+            if all(value is None for value in v.dict().values()):
+                return None
         return v
 
     @staticmethod
