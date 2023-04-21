@@ -135,7 +135,13 @@ class Event(BaseModel, ABC):
 
 
 class Exchange(Event):
-    value: float
+    """
+    An event class representing the net exchange between two zones.
+    netFlow: The net flow of electricity between the two zones.
+    It should be positive if the zoneKey on the left of the arrow is exporting electricity to the zoneKey on the right of the arrow.
+    Negative otherwise.
+    """
+    netFlow: float
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v: str):
@@ -148,7 +154,7 @@ class Exchange(Event):
             raise ValueError(f"Unknown zone: {v}")
         return v
 
-    @validator("value")
+    @validator("netFlow")
     def _validate_value(cls, v: float):
         # TODO in the future those checks should be performed in the data quality layer.
         if abs(v) > 100000:
@@ -161,7 +167,7 @@ class Exchange(Event):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        value: float,
+        netFlow: float,
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["Exchange"]:
         try:
@@ -169,7 +175,7 @@ class Exchange(Event):
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
-                value=value,
+                netFlow=netFlow,
                 sourceType=sourceType,
             )
         except ValueError as e:
@@ -179,7 +185,7 @@ class Exchange(Event):
         return {
             "datetime": self.datetime,
             "sortedZoneKeys": self.zoneKey,
-            "netFlow": self.value,
+            "netFlow": self.netFlow,
             "source": self.source,
         }
 
