@@ -8,7 +8,7 @@ import arrow
 from requests import Session
 
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
-HOST_PARAM = "?host=https://www.hydroquebec.com"
+HOST_PARAM = "?host=https://hydroquebec.com"
 DATA_PATH = "data/documents-donnees/donnees-ouvertes/json"
 PRODUCTION_URL = f"{US_PROXY}/{DATA_PATH}/production.json{HOST_PARAM}"
 CONSUMPTION_URL = f"{US_PROXY}/{DATA_PATH}/demande.json{HOST_PARAM}"
