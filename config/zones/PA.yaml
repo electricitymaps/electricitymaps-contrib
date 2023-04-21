@@ -7,11 +7,11 @@ capacity:
   biomass: 33
   coal: 307.86
   gas: 449.5
-  hydro: 1786
+  hydro: 1789
   hydro storage: 0
   nuclear: 0
   oil: 243
-  solar: 465
+  solar: 522
   unknown: 0
   wind: 270
 contributors:

@@ -6,14 +6,14 @@ bounding_box:
 capacity:
   battery storage: 286.9
   biomass: 2317
-  coal: 47127.3
+  coal: 45841.2
   gas: 102352.7
   geothermal: 0
   hydro: 3338.7
   hydro storage: 5046.1
   nuclear: 34466.6
-  oil: 5617.1
-  solar: 7129.1
+  oil: 5608.2
+  solar: 7590.7
   unknown: 127.2
   wind: 10777.2
 comment: Pjm Interconnection, Llc

@@ -13,8 +13,8 @@ capacity:
   nuclear: 0
   oil: 959
   solar: 2322
-  wind: 7017
   unknown: 136
+  wind: 7017
 contributors:
   - corradio
   - Manu1400

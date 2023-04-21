@@ -8,7 +8,7 @@ capacity:
   gas: 1832
   hydro: 1336
   nuclear: 440
-  solar: 183
+  solar: 306
   wind: 3
 contributors:
   - tmslaine
