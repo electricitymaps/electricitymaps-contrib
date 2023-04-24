@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import urllib
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
 from typing import Optional
@@ -13,6 +13,7 @@ from dateutil import tz
 from requests import Session
 
 from electricitymap.contrib.config import ZONES_CONFIG, ZoneKey
+from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
@@ -73,8 +74,18 @@ def parse_date(date, hour):
     dt = dt.replace(hour=int(hour) - 1, tzinfo=tzoffset)
     return dt
 
-def parse_date_from_live_exchange_consumption_page(soup: None) -> datetime:
-    return None
+def parse_date_from_live_exchange_consumption_page(soup: BeautifulSoup, tz: timezone) -> datetime:
+    datetime_cell = soup.find("td", {"id": "DemandaSIN-MAX-DIARIAHora"})
+    if datetime_cell is None:
+        raise ParserException("MX.py", "Could not find datetime cell on consumption page")
+    datetime_str = datetime_cell.text
+    now = datetime.now(tz=tz)
+    dt = datetime.strptime(datetime_str, "%H:%M:%S hrs").replace(year=now.year, month=now.month, day=now.day, tzinfo=tz)
+    breakpoint()
+    # if the resulting datetime is in the future, it means that the hours were actually from yesterday.
+    if dt > now:
+        dt = dt.replace(day=dt.day - 1)
+    return dt
 
 def fetch_csv_for_date(dt, session: Optional[Session] = None):
     """
@@ -251,7 +262,7 @@ def fetch_consumption(
         session: Optional[Session] = None,
         target_datetime: Optional[datetime] = None,
         logger: Logger = getLogger(__name__),
-)-> dict:
+)-> list:
     """Gets the consumption data for a region using the live dashboard."""
     # TODO the calls could be improved since we can get all the data in one call.
     if session is None:
@@ -269,12 +280,14 @@ def fetch_consumption(
         raise ParserException("MX.py", f"Could not find demand cell", zone_key)
     demand = float(demand_td.text.replace(",", ""))
     timezone = ZONES_CONFIG[zone_key].get("timezone", "America/Tijuana")
-    return {
-        "zoneKey": zone_key,
-        "datetime": arrow.now(timezone).datetime,
-        "consumption": demand,
-        "source": "cenace.gob.mx",
-    }
+    consumption_list = TotalConsumptionList(logger)
+    consumption_list.append(
+        zoneKey=zone_key,
+        datetime=parse_date_from_live_exchange_consumption_page(soup, timezone),
+        consumption=demand,
+        source="cenace.gob.mx",
+    )
+    return consumption_list.to_list()
 
 
 if __name__ == "__main__":
