@@ -412,6 +412,6 @@ def get_start_of_day(dt: datetime) -> datetime:
     return dt_start
 
 
-# if __name__ == "__main__":
-#     print("fetch_production() -> ")
-#     print(fetch_production(zone_key="IN-NO"))
+if __name__ == "__main__":
+    print("fetch_production() -> ")
+    print(fetch_production(zone_key="IN-WE"))
