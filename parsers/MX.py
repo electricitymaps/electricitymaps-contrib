@@ -8,6 +8,7 @@ from typing import Optional
 
 import arrow
 import pandas as pd
+import pytz
 from bs4 import BeautifulSoup
 from dateutil import tz
 from requests import Session
@@ -72,25 +73,6 @@ def parse_date(date, hour):
     tzoffset = tz.tzoffset("CST", -3600 * 6)
     dt = datetime.strptime(date, "%d/%m/%Y")
     dt = dt.replace(hour=int(hour) - 1, tzinfo=tzoffset)
-    return dt
-
-
-def parse_date_from_live_exchange_consumption_page(
-    soup: BeautifulSoup, tz: timezone
-) -> datetime:
-    datetime_cell = soup.find("td", {"id": "DemandaSIN-MAX-DIARIAHora"})
-    if datetime_cell is None:
-        raise ParserException(
-            "MX.py", "Could not find datetime cell on consumption page"
-        )
-    datetime_str = datetime_cell.text
-    now = datetime.now(tz=tz)
-    dt = datetime.strptime(datetime_str, "%H:%M:%S hrs").replace(
-        year=now.year, month=now.month, day=now.day, tzinfo=tz
-    )
-    # if the resulting datetime is in the future, it means that the hours were actually from yesterday.
-    if dt > now:
-        dt = dt.replace(day=dt.day - 1)
     return dt
 
 
@@ -286,16 +268,18 @@ def fetch_consumption(
         )
     soup = BeautifulSoup(response.text, "html.parser")
     demand_td = soup.find(
-        "td", attrs={"id": f"Demanda{MAPPING[zone_key]}", "class": "num"}
+        "td", attrs={"id": f"Demanda{REGION_MAPPING[zone_key]}", "class": "num"}
     )
     if demand_td is None:
         raise ParserException("MX.py", f"Could not find demand cell", zone_key)
     demand = float(demand_td.text.replace(",", ""))
     timezone = ZONES_CONFIG[zone_key].get("timezone", "America/Tijuana")
+    if timezone is None:
+        timezone = "America/Tijuana"
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
         zoneKey=zone_key,
-        datetime=parse_date_from_live_exchange_consumption_page(soup, timezone),
+        datetime=datetime.now(tz=pytz.timezone(timezone)),
         consumption=demand,
         source="cenace.gob.mx",
     )
