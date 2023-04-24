@@ -22,8 +22,8 @@ australia_tz = timezone("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
-# Data is published for the previous day only.
-DELAY = 30
+# Data is being published after 5 days at the moment.
+DELAY = 24 * 5
 
 
 class Generator(TypedDict):
