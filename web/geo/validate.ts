@@ -170,27 +170,29 @@ export function zeroOverlaps(
       .map((ft) => ft.properties.countryKey)
   );
 
-  const overlaps = features
-    .filter(
-      (ft1, index1) =>
-        features.filter((ft2, index2) => {
-          if (countriesToIgnore.has(ft1.ft.properties?.countryKey)) {
-            return false;
-          }
-          if (index1 !== index2 && intersect(ft1.bbox, ft2.bbox)) {
-            const intersection = intersect(ft1.ft, ft2.ft);
-            if (intersection && area(intersection) > MIN_AREA_INTERSECTION) {
-              return true;
-            }
-          }
-        }).length
-    )
-    .map(({ ft, _ }: any) => ft.properties?.zoneName);
-  if (overlaps.length > 0) {
-    for (const x of overlaps) {
-      console.error(`${x} overlaps with another feature`);
+  // Since this code runs all the time and can be slow, we use this performance optimised version.
+  // It creates a reverse loop of features and remove the tested one from the array to avoid
+  // testing the same combination twice.
+  for (let index1 = features.length - 1; index1 >= 0; index1--) {
+    const ft1 = features[index1];
+    if (countriesToIgnore.has(ft1.ft.properties?.countryKey)) {
+      // We should not test this feature again
+      features.pop();
+      continue;
     }
-    throw new Error('Feature(s) overlap');
+
+    for (const [index2, ft2] of features.entries()) {
+      if (index1 !== index2 && intersect(ft1.bbox, ft2.bbox)) {
+        const intersection = intersect(ft1.ft, ft2.ft);
+        if (intersection && area(intersection) > MIN_AREA_INTERSECTION) {
+          throw new Error(
+            `${ft1.ft.properties?.zoneName} overlaps with ${ft2.ft.properties?.zoneName}`
+          );
+        }
+      }
+    }
+    // Remove the tested feature from the array
+    features.pop();
   }
 }
 

@@ -14,7 +14,7 @@ capacity:
   geothermal: 47
   hydro: 4940
   hydro storage: 9780
-  nuclear: 4055
+  nuclear: 0
   oil: 4720
   solar: 69060
   unknown: 3700
@@ -61,7 +61,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
-      value: 540.5939971
+      value: 472.8075167
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -123,7 +123,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 660.5939971
+      value: 592.8075167
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
