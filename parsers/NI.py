@@ -7,7 +7,6 @@ from logging import Logger, getLogger
 from typing import Any, Dict, List, Optional, Union
 
 import arrow
-from parsers.lib.exceptions import ParserException
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -17,6 +16,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
+from parsers.lib.exceptions import ParserException
 
 TIMEZONE = "America/Managua"
 

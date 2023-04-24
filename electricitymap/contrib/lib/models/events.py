@@ -141,6 +141,7 @@ class Exchange(Event):
     It should be positive if the zoneKey on the left of the arrow is exporting electricity to the zoneKey on the right of the arrow.
     Negative otherwise.
     """
+
     netFlow: float
 
     @validator("zoneKey")
