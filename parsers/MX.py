@@ -74,17 +74,25 @@ def parse_date(date, hour):
     dt = dt.replace(hour=int(hour) - 1, tzinfo=tzoffset)
     return dt
 
-def parse_date_from_live_exchange_consumption_page(soup: BeautifulSoup, tz: timezone) -> datetime:
+
+def parse_date_from_live_exchange_consumption_page(
+    soup: BeautifulSoup, tz: timezone
+) -> datetime:
     datetime_cell = soup.find("td", {"id": "DemandaSIN-MAX-DIARIAHora"})
     if datetime_cell is None:
-        raise ParserException("MX.py", "Could not find datetime cell on consumption page")
+        raise ParserException(
+            "MX.py", "Could not find datetime cell on consumption page"
+        )
     datetime_str = datetime_cell.text
     now = datetime.now(tz=tz)
-    dt = datetime.strptime(datetime_str, "%H:%M:%S hrs").replace(year=now.year, month=now.month, day=now.day, tzinfo=tz)
+    dt = datetime.strptime(datetime_str, "%H:%M:%S hrs").replace(
+        year=now.year, month=now.month, day=now.day, tzinfo=tz
+    )
     # if the resulting datetime is in the future, it means that the hours were actually from yesterday.
     if dt > now:
         dt = dt.replace(day=dt.day - 1)
     return dt
+
 
 def fetch_csv_for_date(dt, session: Optional[Session] = None):
     """
@@ -255,26 +263,31 @@ def fetch_exchange(
 
     return data
 
+
 @refetch_frequency(timedelta(hours=1))
 def fetch_consumption(
-        zone_key: ZoneKey,
-        session: Optional[Session] = None,
-        target_datetime: Optional[datetime] = None,
-        logger: Logger = getLogger(__name__),
-)-> list:
+    zone_key: ZoneKey,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
     """Gets the consumption data for a region using the live dashboard."""
     # TODO the calls could be improved since we can get all the data in one call.
     if session is None:
         session = Session()
     if target_datetime is not None:
-        raise NotImplementedError(
-            "This parser is not yet able to parse past dates"
-        )
+        raise NotImplementedError("This parser is not yet able to parse past dates")
     response = session.get(MX_EXCHANGE_URL)
     if response.status_code != 200:
-        raise ParserException("MX.py", f"[{response.status_code}] Demand dashboard could not be reached: {response.text}", zone_key)
+        raise ParserException(
+            "MX.py",
+            f"[{response.status_code}] Demand dashboard could not be reached: {response.text}",
+            zone_key,
+        )
     soup = BeautifulSoup(response.text, "html.parser")
-    demand_td = soup.find("td", attrs={"id": f"Demanda{MAPPING[zone_key]}", "class": "num"})
+    demand_td = soup.find(
+        "td", attrs={"id": f"Demanda{MAPPING[zone_key]}", "class": "num"}
+    )
     if demand_td is None:
         raise ParserException("MX.py", f"Could not find demand cell", zone_key)
     demand = float(demand_td.text.replace(",", ""))
