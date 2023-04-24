@@ -83,6 +83,6 @@ fallbackZoneMixes:
         unknown: 0.0017565472292090639
         wind: 0.010845681494329525
 parsers:
-  consumption: IN.fetch_consumption
-  production: IN_WE.fetch_production
+  consumption: IN_WE.fetch_consumption
+  production: IN.fetch_production
 timezone: Asia/Kolkata
