@@ -7,8 +7,11 @@ from typing import Optional
 import arrow
 from requests import Session
 
-PRODUCTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/production.json"
-CONSUMPTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/demande.json"
+US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
+HOST_PARAM = "?host=https://hydroquebec.com"
+DATA_PATH = "data/documents-donnees/donnees-ouvertes/json"
+PRODUCTION_URL = f"{US_PROXY}/{DATA_PATH}/production.json{HOST_PARAM}"
+CONSUMPTION_URL = f"{US_PROXY}/{DATA_PATH}/demande.json{HOST_PARAM}"
 # Reluctant to call it 'timezone', since we are importing 'timezone' from datetime
 timezone_id = "America/Montreal"
 
