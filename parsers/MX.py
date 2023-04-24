@@ -81,7 +81,6 @@ def parse_date_from_live_exchange_consumption_page(soup: BeautifulSoup, tz: time
     datetime_str = datetime_cell.text
     now = datetime.now(tz=tz)
     dt = datetime.strptime(datetime_str, "%H:%M:%S hrs").replace(year=now.year, month=now.month, day=now.day, tzinfo=tz)
-    breakpoint()
     # if the resulting datetime is in the future, it means that the hours were actually from yesterday.
     if dt > now:
         dt = dt.replace(day=dt.day - 1)
