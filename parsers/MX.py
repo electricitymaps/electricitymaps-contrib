@@ -11,7 +11,7 @@ import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import tz
-from requests import Session
+from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG, ZoneKey
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
