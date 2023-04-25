@@ -13,4 +13,4 @@ fallbackZoneMixes:
   source: "Electricity Maps & Dra. Gabriela Mu\xF1oz Mel\xE9ndez"
 parsers:
   consumption: MX.fetch_consumption
-timezone: null
+timezone: America/Tijuana

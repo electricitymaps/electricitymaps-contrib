@@ -273,9 +273,9 @@ def fetch_consumption(
     if demand_td is None:
         raise ParserException("MX.py", f"Could not find demand cell", zone_key)
     demand = float(demand_td.text.replace(",", ""))
-    timezone = ZONES_CONFIG[zone_key].get("timezone", "America/Tijuana")
+    timezone = ZONES_CONFIG[zone_key].get("timezone")
     if timezone is None:
-        timezone = "America/Tijuana"
+        timezone = "America/Mexico_City"
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
         zoneKey=zone_key,

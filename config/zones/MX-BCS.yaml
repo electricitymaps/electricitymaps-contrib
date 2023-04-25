@@ -5,3 +5,4 @@ bounding_box:
     - 33.21283640500009
 parsers:
   consumption: MX.fetch_consumption
+timezone: America/Tijuana
