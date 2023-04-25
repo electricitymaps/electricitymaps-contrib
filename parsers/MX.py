@@ -11,12 +11,12 @@ import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import tz
-from parsers.lib.config import refetch_frequency
-from parsers.lib.exceptions import ParserException
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG, ZoneKey
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 MX_PRODUCTION_URL = (
     "https://www.cenace.gob.mx/SIM/VISTA/REPORTES/EnergiaGenLiqAgregada.aspx"
