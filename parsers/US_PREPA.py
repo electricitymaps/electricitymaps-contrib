@@ -266,7 +266,7 @@ def fetch_production(
     data_js = res.text
 
     # parse datetime contained in the received .js file
-    fetch_dt = parse_datetime(data_js, zone_key)
+    fetch_dt = parse_datetime(data_js, zone_key, logger)
     if fetch_dt is None:
         raise ParserException(
             parser="US_PREPA.py",
