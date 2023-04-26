@@ -34,15 +34,15 @@ Two more endpoints, not needed here. Contain status of power plants, and 24h his
 /es-pr/generacion/Documents/DataJS/dataUnitStatus.js"
 """
 
-VAILDATION_THRESHOLD_PERCENT = 5.0
+VAILDATION_THRESHOLD_PERCENT = 2.0
 
 # Source data identifiers -> Production types. See also comments at oil/gas validation
 SRC_POWER_TYPE_TO_PRODUCTION_TYPE = {
     # fossil
     "Turbina de Gas": "gas",
-    "COGEN": "",  # see get_production_type_from_site()
-    "Vapor": "oil",
-    "Ciclo Combinado": "gas",
+    "COGEN": "gas",  # see get_production_type_from_site()
+    "Vapor": "combined",  # oil & diesel & gas, hybrid
+    "Ciclo Combinado": "combined",  # oil & diesel & gas, hybrid
     # renewables
     "Hidroelectricas": "hydro",
     "Wind": "wind",
@@ -64,9 +64,6 @@ def get_production_type_from_site(json_site):
             return "gas"  # https://www.eia.gov/state/analysis.php?sid=RQ
         elif json_site["Desc"] == "AES":
             return "coal"
-    elif json_site["Type"] == "Vapor":
-        if json_site["Desc"] == "Costa Sur":
-            return "gas"  # https://www.eia.gov/state/analysis.php?sid=RQ
 
     if json_site["Type"] in SRC_POWER_TYPE_TO_PRODUCTION_TYPE:
         return SRC_POWER_TYPE_TO_PRODUCTION_TYPE[json_site["Type"]]
@@ -211,12 +208,11 @@ def validate_fuel_type(
     The difference of expected and actual fuelType ratio in percent.
     """
 
-    if fuel_type == "Bunker":
-        acc_production_perc = (
-            100.0 * production_data["production"]["oil"] / total_production
+    if fuel_type == "Bunker" or fuel_type == "Diesel":
+        logger.warning(
+            f"Cannot validate fuel type {fuel_type} since Bunker/Diesel are aggregated."
         )
-    elif fuel_type == "Diesel":
-        acc_production_perc = 0.0 / total_production  # We do not have a Diesel source.
+        return 0.0
     elif fuel_type == "LNG":
         acc_production_perc = (
             100.0 * production_data["production"]["gas"] / total_production
@@ -306,19 +302,24 @@ def fetch_production(
     # logger.debug(f"Fuel cost breakdown: {data_fuel_cost}", extra={"key": zone_key})
 
     # DataByFuel splits source already in 5 types, but do not further specify sub-type (e.g., renewables)
-    # Therefore, accumulate data from each site, and make sanity checks at the end
+    # Accumulate data from renewables & coal. Oil & gas not clear from source, infer their ratios later.
     total_sites_mw = 0
     for site_info in data_load_per_site:
 
         production_type = get_production_type_from_site(site_info)
+
+        output_mw = site_info["SiteTotal"]
+        total_sites_mw += output_mw
+
+        if production_type in ["oil", "gas", "combined"]:
+            # Don't account in data["production"] for now
+            continue
+
         if production_type is None:
             logger.warning(
                 f"Cannot parse production type {site_info['Type']} from site. Putting it into 'unkown'."
             )
             production_type = "unknown"
-
-        output_mw = site_info["SiteTotal"]
-        total_sites_mw += output_mw
 
         site_desc = site_info["Desc"]
         logger.debug(
@@ -328,68 +329,55 @@ def fetch_production(
 
         data["production"][production_type] += output_mw
 
-        # Sanity check: iterate over units of this plant and make sure they accumuate close to SiteTotal
-        unit_sum_mw = 0
-        for unit in site_info["units"]:
-            unit_sum_mw += unit["MW"]
-        # All information in rounded to integers. Give some leeway when calculating sum.
-        if abs(unit_sum_mw - output_mw) > len(site_info["units"]):
-            logger.warning(
-                f"Sum of production units of site {site_info['Index']} ({unit_sum_mw} MW) "
-                f"does not match given SiteTotal ({output_mw} MW) in zone {zone_key} at {fetch_dt}."
-            )
-
-    # Sanity check: compare sum over power sources with given total generation
-    if abs(total_sites_mw - data_metrics_total_gen) > len(data_load_per_site):
-        logger.warning(
-            f"Sum of production of all sites sites in zone {zone_key} at {fetch_dt} "
-            f"is {total_sites_mw} MW, but given total production is {data_metrics_total_gen} MW."
-        )
-
     """
     Some of the plants in PR are capable of combusting both gas and oil. Currently, PR is in the process of 
     transforming some of the power plants from oil driven to gas or even hybrid. The data does not contain 
     information, on which mode a plant is currently operating on. However, we know the production
-    percentage of oil and gas over PR in total. Therefore, some of the extracted mappings plant -> fuelType
-    be wrong. Here, we compensate for that error, by taking the given ratios (%) of oil/gas in the data source,
-    and adjust the oil/gas amount accordingly to fulfill this ratio.
+    percentage of oil and gas over PR in total. Therefore, we infer oil/gas based on given ratios (%)
+    from the data source.
     Report of a power plant operating on both modes:
     https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.SJ_San-Juan-IE-Report_-Draft-13Nov2020.pdf
     """
 
-    # Sanity check: Compare src % of oil and gas
-    valid = (
-        validate_fuel_type(
-            "Bunker",
-            data,
-            data_metrics_total_gen,
-            get_field_value(data_by_fuel, ("fuel", "Bunker"), "value"),
-        )
-        < VAILDATION_THRESHOLD_PERCENT
-        and validate_fuel_type(
-            "LNG",
-            data,
-            data_metrics_total_gen,
-            get_field_value(data_by_fuel, ("fuel", "LNG"), "value"),
-        )
-        < VAILDATION_THRESHOLD_PERCENT
+    # our 'oil' is oil (Bunker) and diesel
+    oil_perc = get_field_value(
+        data_by_fuel, ("fuel", "Bunker"), "value"
+    ) + get_field_value(data_by_fuel, ("fuel", "Diesel"), "value")
+    gas_perc = get_field_value(data_by_fuel, ("fuel", "LNG"), "value")
+    oil_mw = data_metrics_total_gen * oil_perc / 100.0
+    gas_mw = data_metrics_total_gen * gas_perc / 100.0
+
+    data["production"]["oil"] = oil_mw
+    data["production"]["gas"] = gas_mw
+    logger.debug(
+        f"Infer type 'oil' from ratio table ({oil_perc}%) - generating {oil_mw} MW.",
+        extra={"key": zone_key},
+    )
+    logger.debug(
+        f"Infer type 'gas' from ratio table ({gas_perc}%) - generating {gas_mw} MW.",
+        extra={"key": zone_key},
     )
 
-    if not valid:
-        rel_gas_target = get_field_value(data_by_fuel, ("fuel", "LNG"), "value") / 100.0
-        current_gas = data["production"]["gas"] / data_metrics_total_gen
-        # difference to compensate
-        add_gas = rel_gas_target - current_gas
+    # Sanity check: compare sum over power sources with given total generation.
+    # Compare it with number of sites since these are round off errors.
+    total_production_mw = sum(data["production"].values())
+    if abs(total_sites_mw - data_metrics_total_gen) > len(data_load_per_site):
         logger.warning(
-            f"Correcting gas ratio by {add_gas * 100.0}%, inverse to oil ratio."
+            f"Sum of production of all sites in zone {zone_key} at {fetch_dt} "
+            f"is {total_sites_mw} MW, but given total production is {data_metrics_total_gen} MW."
         )
-
-        data["production"]["gas"] += add_gas * data_metrics_total_gen
-        data["production"]["oil"] -= add_gas * data_metrics_total_gen
+    if abs(total_production_mw - data_metrics_total_gen) > len(data_load_per_site):
+        logger.warning(
+            f"Sum of renewables, coal, and infered oil/gas in zone {zone_key} at {fetch_dt} "
+            f"is {total_production_mw} MW, but given total production is {data_metrics_total_gen} MW."
+        )
 
     # Validate again and make sure everything within bounds now.
     for fuel_type in data_by_fuel:
         fuel_type_identifier = fuel_type["fuel"]
+        if fuel_type_identifier in ["Bunker", "Diesel", "LNG"]:
+            continue  # dont need validation check, these were infered
+
         fuel_type_value_percent = fuel_type["value"]
         err_percent = validate_fuel_type(
             fuel_type_identifier, data, data_metrics_total_gen, fuel_type["value"]
@@ -400,8 +388,8 @@ def fetch_production(
                 f"of expected value ({fuel_type_value_percent}%)."
             )
 
-    # with open(fetch_dt.strftime("%Y-%m-%d-%H-%M") + ".txt", "w") as text_file:
-    #     text_file.write(data_js) # TODO debug out to file
+    with open(fetch_dt.strftime("%Y-%m-%d-%H-%M") + ".txt", "w") as text_file:
+        text_file.write(data_js)  # TODO debug out to file
 
     return data
 
