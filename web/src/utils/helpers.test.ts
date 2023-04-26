@@ -41,12 +41,12 @@ describe('dateToDatetimeString', () => {
 });
 
 describe('getProductionCo2Intensity', () => {
-  it('returns 10.7 when the type is hydro', () => {
+  it('returns the correct value when the type is hydro', () => {
     const actual = getProductionCo2Intensity('hydro', zoneDetailMock);
     expect(actual).toBe(10.7);
   });
 
-  it('returns 136.442_667_362_438_53 when the type is battery storage', () => {
+  it('returns the correct value when the type is battery storage', () => {
     const actual = getProductionCo2Intensity('battery storage', zoneDetailMock);
     expect(actual).toBe(136.442_667_362_438_53);
   });
