@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import List, Optional
@@ -103,7 +101,7 @@ def __get_exchange_data(
     mapper = get_mapper(xml)
 
     data_tag = xml.find("data")
-    data_list = []
+    data_list: List[dict] = []
 
     if data_tag is not None:
         for values in data_tag:
@@ -202,6 +200,7 @@ def fetch_production(
     return data_list
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: str = "CZ",
     zone_key2: str = "DE",
@@ -235,5 +234,5 @@ if __name__ == "__main__":
     # print(fetch_price())
     # print("fetch_exchange_forecast('AT', 'CZ') ->")
     # print(fetch_exchange_forecast("AT", "CZ"))
-    # print("fetch_exchange('AT', 'CZ') ->")
-    # print(fetch_exchange("AT", "CZ"))
+    print("fetch_exchange('AT', 'CZ') ->")
+    print(fetch_exchange("AT", "CZ"))
