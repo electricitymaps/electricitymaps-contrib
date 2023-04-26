@@ -120,7 +120,7 @@
     "hideWindLayer": "Esconder a camada de vento",
     "showSolarLayer": "Mostrar a camada solar",
     "hideSolarLayer": "Esconder a camada solar",
-    "toggleDarkMode": "Alternar modo escuro",
+    "changeTheme": "Alternar modo escuro",
     "noParserInfo": "Nenhum dado disponível",
     "temporaryDataOutage": "Dados temporariamente indisponíveis",
     "production": "produção",
@@ -134,7 +134,7 @@
     "zoomOut": "Diminuir zoom",
     "dataIsDelayed": "Dados estão atrasados",
     "weatherDisabled": "Dados meteorológicos não disponíveis no momento",
-    "aggregateinfo": "Países são agregados quando a capacidade anual da zona é maior que 90% da capacidade total"
+    "aggregateInfo": "Países são agregados quando a capacidade anual da zona é maior que 90% da capacidade total"
   },
   "misc": {
     "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",

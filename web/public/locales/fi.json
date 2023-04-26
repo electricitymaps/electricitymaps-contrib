@@ -98,7 +98,7 @@
     "hideWindLayer": "Piilota tuulikerros",
     "showSolarLayer": "Näytä aurinkokerros",
     "hideSolarLayer": "Piilota aurinkokerros",
-    "toggleDarkMode": "Vaihda tummaa moodia",
+    "changeTheme": "Vaihda tummaa moodia",
     "noParserInfo": "Tietoja ei ole saatavana",
     "temporaryDataOutage": "Live-tiedot eivät ole väliaikaisesti saatavilla",
     "production": "tuotanto",

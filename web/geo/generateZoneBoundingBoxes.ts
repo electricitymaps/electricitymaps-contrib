@@ -1,22 +1,26 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { mergeZones } from '../scripts/generateZonesConfig.js';
+import { saveZoneYaml } from './files.js';
+import { getJSON } from './utilities.js';
+import { WorldFeatureCollection } from './types.js';
+import { Position } from '@turf/turf';
 
-const arguments_ = process.argv.slice(2);
+const inputArguments = process.argv.slice(2);
 
-import { mergeZones } from '../scripts/generateZonesConfig';
-import { saveZoneYaml } from './files';
-import { getJSON } from './utilities';
-
-const zonesGeo = getJSON(path.resolve(__dirname, './world.geojson'));
+const zonesGeo: WorldFeatureCollection = getJSON(
+  path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url)))
+);
 const zones = mergeZones();
 
-if (arguments_.length <= 0) {
+if (inputArguments.length <= 0) {
   console.error(
     'ERROR: Please add a zoneName parameter ("ts-node generateZoneBoundingBoxes.ts DE")'
   );
   process.exit(1);
 }
 
-const zoneKey = arguments_[0];
+const zoneKey = inputArguments[0];
 
 if (!(zoneKey in zones)) {
   console.error(`ERROR: Zone ${zoneKey} does not exist in configuration`);
@@ -25,7 +29,7 @@ if (!(zoneKey in zones)) {
 
 zonesGeo.features = zonesGeo.features.filter((d) => d.properties.zoneName === zoneKey);
 
-let allCoords: number[] = [];
+let allCoords = [];
 const boundingBoxes: { [key: string]: any } = {};
 
 for (const zone of zonesGeo.features) {
@@ -43,7 +47,7 @@ for (const zone of zonesGeo.features) {
   let maxLon = -200;
 
   if (geometryType == 'MultiPolygon') {
-    for (const coord of allCoords) {
+    for (const coord of allCoords as Position[]) {
       const lon = coord[0];
       const lat = coord[1];
 
@@ -53,8 +57,8 @@ for (const zone of zonesGeo.features) {
       maxLat = Math.max(maxLat, lat);
     }
   } else {
-    const lon = allCoords[0];
-    const lat = allCoords[1];
+    const lon = (allCoords as Position)[0];
+    const lat = (allCoords as Position)[1];
 
     minLon = Math.min(minLon, lon);
     maxLon = Math.max(maxLon, lon);

@@ -4,14 +4,14 @@ bounding_box:
   - - 141.47762699400005
     - 6.410101630000042
 capacity:
-  biomass: 1912
+  biomass: 3005
   coal: 36668
   gas: 20762
-  geothermal: 2277
-  hydro: 6602
+  geothermal: 2343
+  hydro: 6689
   nuclear: 0
   oil: 4864
-  solar: 211
+  solar: 291
   wind: 154
 contributors:
   - nessie2013

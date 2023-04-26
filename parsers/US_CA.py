@@ -1,21 +1,68 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import List, Optional, Union
 
 import arrow
+import numpy as np
 import pandas
+import pytz
 from bs4 import BeautifulSoup
 from requests import Session
 
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.lib.config import refetch_frequency
+from parsers.lib.validation import validate_consumption
 
 CAISO_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
-FUEL_SOURCE_CSV = f"{CAISO_PROXY}/outlook/SP/fuelsource.csv?host=https://www.caiso.com"
+PRODUCTION_URL_REAL_TIME = (
+    f"{CAISO_PROXY}/outlook/SP/fuelsource.csv?host=https://www.caiso.com"
+)
+DEMAND_URL_REAL_TIME = (
+    f"{CAISO_PROXY}/outlook/SP/netdemand.csv?host=https://www.caiso.com"
+)
+
+HISTORICAL_URL_MAPPING = {"production": "fuelsource", "consumption": "netdemand"}
+REAL_TIME_URL_MAPPING = {
+    "production": PRODUCTION_URL_REAL_TIME,
+    "consumption": DEMAND_URL_REAL_TIME,
+}
+
+PRODUCTION_MODES_MAPPING = {
+    "Solar": "solar",
+    "Wind": "wind",
+    "Geothermal": "geothermal",
+    "Biomass": "biomass",
+    "Biogas": "biomass",
+    "Small hydro": "hydro",
+    "Coal": "coal",
+    "Nuclear": "nuclear",
+    "Natural Gas": "gas",
+    "Large Hydro": "hydro",
+    "Other": "unknown",
+}
+STORAGE_MAPPING = {"Batteries": "battery"}
 
 MX_EXCHANGE_URL = "http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
+
+
+def get_target_url(target_datetime: Optional[datetime], kind: str) -> str:
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=pytz.UTC)
+        target_url = REAL_TIME_URL_MAPPING[kind]
+    else:
+        target_url = f"{CAISO_PROXY}/outlook/SP/History/{target_datetime.strftime('%Y%m%d')}/{HISTORICAL_URL_MAPPING[kind]}.csv?host=https://www.caiso.com"
+    return target_url
+
+
+def add_production_to_dict(mode: str, value: float, production_dict: dict) -> dict:
+    """Add production to production_dict, if mode is in PRODUCTION_MODES."""
+    if PRODUCTION_MODES_MAPPING[mode] not in production_dict:
+        production_dict[PRODUCTION_MODES_MAPPING[mode]] = value
+    else:
+        production_dict[PRODUCTION_MODES_MAPPING[mode]] += value
+    return production_dict
 
 
 @refetch_frequency(timedelta(days=1))
@@ -26,159 +73,117 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
-    if target_datetime:
-        return fetch_historical_production(target_datetime, zone_key)
+    target_url = get_target_url(target_datetime, kind="production")
 
-    target_datetime = arrow.get(target_datetime)
+    if target_datetime is None:
+        target_datetime = arrow.now(tz="US/Pacific").floor("day").datetime
 
     # Get the production from the CSV
-    csv = pandas.read_csv(FUEL_SOURCE_CSV)
-    latest_index = len(csv) - 1
-    production_map = {
-        "Solar": "solar",
-        "Wind": "wind",
-        "Geothermal": "geothermal",
-        "Biomass": "biomass",
-        "Biogas": "biomass",
-        "Small hydro": "hydro",
-        "Coal": "coal",
-        "Nuclear": "nuclear",
-        "Natural Gas": "gas",
-        "Large Hydro": "hydro",
-        "Other": "unknown",
-    }
-    storage_map = {"Batteries": "battery"}
-    daily_data = []
-    for i in range(0, latest_index + 1):
-        h, m = map(int, csv["Time"][i].split(":"))
-        date = (
-            arrow.utcnow()
-            .to("US/Pacific")
-            .replace(hour=h, minute=m, second=0, microsecond=0)
+    csv = pandas.read_csv(target_url)
+
+    # Filter out last row if timestamp is 00:00
+    if csv.iloc[-1]["Time"] == "OO:OO":
+        df = csv.copy().iloc[:-1]
+    else:
+        df = csv.copy()
+
+    all_data_points = []
+    for index, row in df.iterrows():
+        production = {}
+        storage = {"hydro": 0.0, "battery": 0.0}
+        row_datetime = target_datetime.replace(
+            hour=int(row["Time"][:2]), minute=int(row["Time"][-2:])
         )
-        data = {
-            "zoneKey": zone_key,
-            "production": defaultdict(float),
-            "storage": defaultdict(float),
-            "source": "caiso.com",
-            "datetime": date.datetime,
-        }
-
-        # map items from names in CAISO CSV to names used in Electricity Map
-        for ca_gen_type, mapped_gen_type in production_map.items():
-            production = float(csv[ca_gen_type][i])
-
-            if production < 0 and (
-                mapped_gen_type == "solar" or mapped_gen_type == "nuclear"
+        for mode in [
+            mode
+            for mode in PRODUCTION_MODES_MAPPING
+            if mode not in ["Small hydro", "Large Hydro"]
+        ]:
+            production_value = float(row[mode])
+            if production_value < 0 and (
+                mode
+                in [
+                    "Solar",
+                    "Wind",
+                    "Geothermal",
+                    "Biomass",
+                    "Biogas",
+                    "Coal",
+                    "Nuclear",
+                    "Natural Gas",
+                ]
             ):
                 logger.warn(
-                    ca_gen_type
-                    + " production for US_CA was reported as less than 0 and was clamped"
+                    f" {mode} production for US_CA was reported as less than 0 and was clamped"
                 )
-                production = 0.0
+                production_value = 0.0
 
-            # if another mean of production created a value, sum them up
-            data["production"][mapped_gen_type] += production
+            production = add_production_to_dict(mode, production_value, production)
 
-        for ca_storage_type, mapped_storage_type in storage_map.items():
-            storage = -float(csv[ca_storage_type][i])
+        for mode in ["Small hydro", "Large Hydro"]:
+            production_value = float(row[mode])
+            if production_value < 0:
+                storage["hydro"] += production_value * -1
+            else:
+                production = add_production_to_dict(mode, production_value, production)
 
-            # if another mean of storage created a value, sum them up
-            data["storage"][mapped_storage_type] += storage
+        storage["battery"] = float(row["Batteries"]) * -1
 
-        daily_data.append(data)
-
-    return daily_data
-
-
-def fetch_historical_production(target_datetime: datetime, zone_key: str):
-    return fetch_historical_data(target_datetime, zone_key)[0]
-
-
-def fetch_historical_exchange(target_datetime: datetime):
-    return fetch_historical_data(target_datetime)[1]
+        data = {
+            "zoneKey": zone_key,
+            "production": production,
+            "storage": storage,
+            "source": "caiso.com",
+            "datetime": arrow.get(row_datetime).replace(tzinfo="US/Pacific").datetime,
+        }
+        all_data_points.append(data)
+    return all_data_points
 
 
-def fetch_historical_data(target_datetime: datetime, zone_key: str = "US-CA"):
-    # caiso.com provides daily data until the day before today
-    # get a clean date at the beginning of yesterday
-    target_date = (
-        arrow.get(target_datetime)
-        .to("US/Pacific")
-        .replace(hour=0, minute=0, second=0, microsecond=0)
-    )
+@refetch_frequency(timedelta(days=1))
+def fetch_consumption(
+    zone_key: str = "US-CAL-CISO",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Requests the last known production mix (in MW) of a given country."""
 
-    url = (
-        "http://content.caiso.com/green/renewrpt/"
-        + target_date.format("YYYYMMDD")
-        + "_DailyRenewablesWatch.txt"
-    )
+    target_url = get_target_url(target_datetime, kind="consumption")
 
-    renewable_resources = pandas.read_table(
-        url,
-        sep="\t\t",
-        skiprows=2,
-        header=None,
-        names=[
-            "Hour",
-            "GEOTHERMAL",
-            "BIOMASS",
-            "BIOGAS",
-            "SMALL HYDRO",
-            "WIND TOTAL",
-            "SOLAR PV",
-            "SOLAR THERMAL",
-        ],
-        skipfooter=27,
-        skipinitialspace=True,
-        engine="python",
-    )
-    other_resources = pandas.read_table(
-        url,
-        sep="\t\t",
-        skiprows=30,
-        header=None,
-        names=["Hour", "RENEWABLES", "NUCLEAR", "THERMAL", "IMPORTS", "HYDRO"],
-        skipinitialspace=True,
-        engine="python",
-    )
+    if target_datetime is None:
+        target_datetime = arrow.now(tz="US/Pacific").floor("day").datetime
 
-    daily_data, import_data = [], []
+    # Get the demand from the CSV
+    csv = pandas.read_csv(target_url)
 
-    for i in range(0, 24):
-        daily_data.append(
-            {
+    # Filter out last row if timestamp is 00:00
+    if csv.iloc[-1]["Time"] == "OO:OO":
+        df = csv.copy().iloc[:-1]
+    else:
+        df = csv.copy()
+
+    all_data_points = []
+    for row in df.itertuples():
+        consumption = row._3
+        row_datetime = target_datetime.replace(
+            hour=int(row.Time[:2]), minute=int(row.Time[-2:])
+        )
+        if not np.isnan(consumption):
+            data_point = {
                 "zoneKey": zone_key,
-                "storage": {},
+                "consumption": consumption,
                 "source": "caiso.com",
-                "production": {
-                    "biomass": float(renewable_resources["BIOMASS"][i]),
-                    "gas": float(renewable_resources["BIOGAS"][i])
-                    + float(other_resources["THERMAL"][i]),
-                    "hydro": float(renewable_resources["SMALL HYDRO"][i])
-                    + float(other_resources["HYDRO"][i]),
-                    "nuclear": max(float(other_resources["NUCLEAR"][i]), 0),
-                    "solar": max(
-                        float(renewable_resources["SOLAR PV"][i])
-                        + float(renewable_resources["SOLAR THERMAL"][i]),
-                        0,
-                    ),
-                    "wind": float(renewable_resources["WIND TOTAL"][i]),
-                    "geothermal": float(renewable_resources["GEOTHERMAL"][i]),
-                },
-                "datetime": target_date.shift(hours=i + 1).datetime,
+                "datetime": arrow.get(row_datetime)
+                .replace(tzinfo="US/Pacific")
+                .datetime,
             }
-        )
-        import_data.append(
-            {
-                "sortedZoneKeys": "US->US-CA",
-                "datetime": target_date.shift(hours=i + 1).datetime,
-                "netFlow": float(other_resources["IMPORTS"][i]),
-                "source": "caiso.com",
-            }
-        )
+            all_data_points.append(data_point)
 
-    return daily_data, import_data
+    validated_data_points = [
+        validate_consumption(datapoint, logger) for datapoint in all_data_points
+    ]
+    return validated_data_points
 
 
 def fetch_MX_exchange(s: Session) -> float:
@@ -221,14 +226,11 @@ def fetch_exchange(
         }
         return exchange
 
-    if isinstance(target_datetime, datetime):
-        return fetch_historical_exchange(target_datetime)
-
     # CSV has imports to California as positive.
     # Electricity Map expects A->B to indicate flow to B as positive.
     # So values in CSV can be used as-is.
-
-    csv = pandas.read_csv(FUEL_SOURCE_CSV)
+    target_url = get_target_url(target_datetime, kind="production")
+    csv = pandas.read_csv(target_url)
     latest_index = len(csv) - 1
     daily_data = []
     for i in range(0, latest_index + 1):
@@ -263,3 +265,5 @@ if __name__ == "__main__":
 
     print('fetch_exchange("MX-BC", "US-CA")')
     pprint(fetch_exchange("MX-BC", "US-CA"))
+    # pprint(fetch_production(target_datetime=datetime(2023,1,20)))s
+    pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))

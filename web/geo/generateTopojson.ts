@@ -1,8 +1,9 @@
 import * as turf from '@turf/turf';
 import { topology } from 'topojson-server';
-import { fileExists, getJSON, round, writeJSON } from './utilities';
+import { fileExists, getJSON, round, writeJSON } from './utilities.js';
+import { WorldFeatureCollection } from './types.js';
 
-function getCenter(geojson, zoneName) {
+function getCenter(geojson: WorldFeatureCollection, zoneName: string) {
   switch (zoneName) {
     case 'US-AK': {
       return [-151.77, 65.32];
@@ -49,7 +50,10 @@ function getCenter(geojson, zoneName) {
   ];
 }
 
-function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
+function generateTopojson(
+  fc: WorldFeatureCollection,
+  { OUT_PATH, verifyNoUpdates }: { OUT_PATH: string; verifyNoUpdates: boolean }
+) {
   const output = OUT_PATH.split('/').pop();
   console.info(`Generating new ${output}`);
   const topo = topology({
@@ -57,8 +61,8 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   });
 
   // We do the following to match the specific format needed for visualization
-  const objects: any = topo.objects.objects;
-  const newObjects = {};
+  const objects = topo.objects.objects as any;
+  const newObjects = {} as typeof topo.objects;
   for (const geo of objects.geometries) {
     // Precompute center for enable centering on the zone
     geo.properties.center = getCenter(fc, geo.properties.zoneName);
@@ -70,7 +74,7 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   const currentTopo = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
     console.info(`No changes to ${output}`);
-    return;
+    return { skipped: true };
   }
 
   if (verifyNoUpdates) {
@@ -81,6 +85,7 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   }
 
   writeJSON(OUT_PATH, topo);
+  return { skipped: false };
 }
 
 export { generateTopojson };

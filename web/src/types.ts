@@ -90,12 +90,13 @@ export type Exchange = { [key: string]: number };
 
 export interface ZoneDetail extends ZoneOverview {
   _isFinestGranularity: boolean;
-  capacity?: { [key in ElectricityModeType]: Maybe<number> };
+  // Capacity is only available on hourly details
+  capacity?: { [key in ElectricityModeType]: number | null };
   dischargeCo2Intensities: { [key in ElectricityStorageKeyType]: number };
   dischargeCo2IntensitySources: { [key in ElectricityStorageKeyType]: string };
   exchange: Exchange;
   exchangeCapacities?: {
-    [key: string]: number[]; // TODO: Why can I not use [number, number] here?
+    [key: ZoneKey]: [number, number];
   };
   exchangeCo2Intensities: Exchange;
   fossilFuelRatio: number;
@@ -113,6 +114,7 @@ export interface ZoneDetail extends ZoneOverview {
   price?: {
     value: number;
     currency: string;
+    disabledReason?: string;
   };
   production: { [key in GenerationType]: Maybe<number> };
   productionCo2Intensities: { [key in GenerationType]: number };
@@ -152,6 +154,7 @@ export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   properties: {
     zoneId: string;
     color: string;
+    center: [number, number];
   };
 }
 

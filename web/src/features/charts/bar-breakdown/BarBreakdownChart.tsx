@@ -4,7 +4,7 @@ import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
-import { ElectricityModeType, ZoneDetail } from 'types';
+import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
@@ -32,7 +32,7 @@ function BarBreakdownChart() {
   const isBiggerThanMobile = useBreakpoint('sm');
 
   const [tooltipData, setTooltipData] = useState<{
-    selectedLayerKey: ElectricityModeType;
+    selectedLayerKey: ElectricityModeType | ZoneKey;
     x: number;
     y: number;
   } | null>(null);
@@ -55,7 +55,7 @@ function BarBreakdownChart() {
   }
 
   const onMouseOver = (
-    layerKey: ElectricityModeType,
+    layerKey: ElectricityModeType | ZoneKey,
     _: ZoneDetail,
     event: React.MouseEvent
   ) => {

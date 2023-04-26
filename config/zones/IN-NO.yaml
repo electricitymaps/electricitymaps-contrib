@@ -20,7 +20,23 @@ contributors:
   - pierresegonne
   - sahitya-pavurala
   - willbeaufoy
+  - mathilde-daugy
 timezone: Asia/Kolkata
+emissionFactors:
+  direct:
+    unknown:
+      source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
+      value: 45
+  lifecycle:
+    unknown:
+      source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
+      value: 192
+isLowCarbon:
+  unknown:
+    value: 0.92
+isRenewable:
+  unknown:
+    value: 0.92
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production

@@ -3,9 +3,24 @@ bounding_box:
     - 41.3
   - - 146
     - 45.97
+capacity:
+  biomass: 300
+  coal: 2250
+  geothermal: 25
+  gas: 569
+  hydro: 1231
+  hydro storage: 800
+  nuclear: 2070
+  oil: 1815
+  solar: 1880
+  wind: 530
+  unknown: 0
 contributors:
   - tmslaine
   - lorrieq
+  - pierresegonne
+  - wobniarin
+disclaimer: The data provider (Hokkaido Electric Power Network HEPCO) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price

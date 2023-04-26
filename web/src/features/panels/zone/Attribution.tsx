@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
+import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { formatDataSources } from 'utils/formatting';
 import { getContributors } from './util';
-
+import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import { ZoneDetails } from 'types';
 export function removeDuplicateSources(source: string | undefined) {
   if (!source) {
     return [''];
@@ -20,13 +22,16 @@ export function removeDuplicateSources(source: string | undefined) {
 }
 
 export default function Attribution({
-  dataSources,
+  data,
   zoneId,
 }: {
   zoneId: string;
-  dataSources?: string;
+  data?: ZoneDetails;
 }) {
   const { __, i18n } = useTranslation();
+  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
+  const dataSources = selectedData?.source;
 
   // TODO: Handle sources formatting in DBT or app-backend
   const formattedDataSources = useMemo(() => {

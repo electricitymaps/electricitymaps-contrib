@@ -12,7 +12,7 @@ import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
@@ -34,7 +34,6 @@ const isMobile = window.innerWidth < 768;
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage(): ReactElement {
-  const [selectedFeatureId, setSelectedFeatureId] = useState<FeatureId>();
   const setIsMoving = useSetAtom(mapMovingAtom);
   const setMousePosition = useSetAtom(mousePositionAtom);
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
@@ -48,6 +47,9 @@ export default function MapPage(): ReactElement {
   const theme = useTheme();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
+  const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
+  const [isDragging, setIsDragging] = useState(false);
+  const [isZooming, setIsZooming] = useState(false);
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -143,30 +145,47 @@ export default function MapPage(): ReactElement {
   ]);
 
   useEffect(() => {
-    // Run when path changes
-    const map = mapReference.current?.getMap();
-    // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
-    if (map && location.pathname === '/map' && selectedFeatureId) {
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: selectedFeatureId },
-        { selected: false, hover: false }
-      );
-      setSelectedFeatureId(undefined);
-      setHoveredZone(null);
-    }
-  }, [location.pathname]);
-
-  useEffect(() => {
-    // Run when there is data
+    // Run on first load to center the map on the user's location
     const map = mapReference.current?.getMap();
     if (!map || isError || !isFirstLoad) {
       return;
     }
-    if (data?.callerLocation) {
+    if (data?.callerLocation && !selectedZoneId) {
       map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
       setIsFirstLoad(false);
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    // Run when the selected zone changes
+    const map = mapReference.current?.getMap();
+
+    // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
+    if (map && location.pathname === '/map' && selectedZoneId) {
+      map.setFeatureState(
+        { source: ZONE_SOURCE, id: selectedZoneId },
+        { selected: false, hover: false }
+      );
+      setHoveredZone(null);
+    }
+    // Center the map on the selected zone
+    const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    setSelectedZoneId(zoneId);
+    if (map && zoneId) {
+      const feature = geometries.features.find(
+        (feature) => feature.properties.zoneId === zoneId
+      );
+      const center = feature?.properties.center;
+      if (!center) {
+        return;
+      }
+      map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
+      setLeftPanelOpen(true);
+      const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
+      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
+    }
+  }, [location.pathname, isLoadingMap]);
+
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();
     if (!map || !event.features) {
@@ -176,14 +195,14 @@ export default function MapPage(): ReactElement {
 
     // Remove state from old feature if we are no longer hovering anything,
     // or if we are hovering a different feature than the previous one
-    if (selectedFeatureId && (!feature || selectedFeatureId !== feature.id)) {
+    if (selectedZoneId && (!feature || selectedZoneId !== feature.id)) {
       map.setFeatureState(
-        { source: ZONE_SOURCE, id: selectedFeatureId },
+        { source: ZONE_SOURCE, id: selectedZoneId },
         { selected: false }
       );
     }
 
-    if (hoveredZone && (!feature || hoveredZone.featureId !== feature.id)) {
+    if (hoveredZone && (!feature || hoveredZone.featureId !== selectedZoneId)) {
       map.setFeatureState(
         { source: ZONE_SOURCE, id: hoveredZone.featureId },
         { hover: false }
@@ -191,18 +210,9 @@ export default function MapPage(): ReactElement {
     }
     setHoveredZone(null);
     if (feature && feature.properties) {
-      setSelectedFeatureId(feature.id);
-      map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { selected: true });
-      setLeftPanelOpen(true);
-
-      const center = JSON.parse(feature.properties.center);
-      const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
-      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
-
       const zoneId = feature.properties.zoneId;
       navigate(createToWithState(`/zone/${zoneId}`));
     } else {
-      setSelectedFeatureId(undefined);
       navigate(createToWithState('/map'));
     }
   };
@@ -214,7 +224,6 @@ export default function MapPage(): ReactElement {
       return;
     }
     const feature = event.features[0];
-
     const isHoveringAZone = feature?.id !== undefined;
     const isHoveringANewZone = isHoveringAZone && hoveredZone?.featureId !== feature?.id;
 
@@ -281,12 +290,26 @@ export default function MapPage(): ReactElement {
     setIsLoadingMap(false);
   };
 
-  const onDragOrZoomStart = () => {
+  const onZoomStart = () => {
+    setIsZooming(true);
+    setIsMoving(true);
+  };
+  const onDragStart = () => {
+    setIsDragging(true);
     setIsMoving(true);
   };
 
-  const onDragOrZoomEnd = () => {
-    setIsMoving(false);
+  const onZoomEnd = () => {
+    setIsZooming(false);
+    if (!isDragging) {
+      setIsMoving(false);
+    }
+  };
+  const onDragEnd = () => {
+    setIsDragging(false);
+    if (!isZooming) {
+      setIsMoving(false);
+    }
   };
 
   return (
@@ -304,11 +327,11 @@ export default function MapPage(): ReactElement {
       onError={onError}
       onMouseMove={onMouseMove}
       onMouseOut={onMouseOut}
-      onDragStart={onDragOrZoomStart}
-      onZoomStart={onDragOrZoomStart}
-      onZoomEnd={onDragOrZoomEnd}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      onZoomStart={onZoomStart}
+      onZoomEnd={onZoomEnd}
       dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
-      onDragEnd={onDragOrZoomEnd}
       dragRotate={false}
       minZoom={0.7}
       maxBounds={[

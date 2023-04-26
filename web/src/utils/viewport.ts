@@ -4,11 +4,12 @@ import { useCallback, useState } from 'react';
 export function useReferenceWidthHeightObserver(offsetX = 0, offsetY = 0) {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const [node, setNode] = useState(null); // The DOM node
+  const [node, setNode] = useState<Element | null>(null); // The DOM node
 
   // See https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
   const reference = useCallback(
-    (newNode) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (newNode: Element | null) => {
       // This callback will be called once the ref
       // returned has been attached to `node`.
       const update = () => {
@@ -32,8 +33,8 @@ export function useReferenceWidthHeightObserver(offsetX = 0, offsetY = 0) {
 
   return {
     ref: reference,
-    width,
-    height,
+    width: Math.round(width),
+    height: Math.round(height),
     node,
   };
 }

@@ -1,4 +1,4 @@
-_comment: gas includes an 88 MW cogeneration plant
+_comment: gas capacity includes an 88 MW cogeneration plant
 bounding_box:
   - - -69.56355977593142
     - 44.102757112000205
@@ -14,18 +14,53 @@ capacity:
   wind: 294
 contributors:
   - jarek
+  - VIKTORVAV99
+emissionFactors:
+  direct:
+    unknown:
+      - datetime: '2019-01-01'
+        _url: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2
+        source: assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
+        value: 163.5
+  lifecycle:
+    unknown:
+      - datetime: '2019-01-01'
+        _url: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2
+        source: assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
+        value: 211.9
 fallbackZoneMixes:
-  _source: Canada NEB yearly data for 2018
-  _url: https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html
   powerOriginRatios:
-    value:
-      biomass: 0.03
-      coal: 0.18
-      gas: 0.12
-      hydro: 0.21
-      nuclear: 0.39
-      wind: 0.07
-flag_file_name: ca.png
+    - datetime: '2018-01-01'
+      _source: Canada NEB yearly data for 2018
+      _url: https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html
+      value:
+        biomass: 0.03
+        coal: 0.18
+        gas: 0.12
+        hydro: 0.21
+        nuclear: 0.39
+        wind: 0.07
+    - datetime: '2019-01-01'
+      _source: Open Canada data for 2019
+      _url: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2
+      value:
+        biomass: 0.0378
+        coal: 0.1371
+        gas: 0.1453
+        hydro: 0.2241
+        nuclear: 0.3754
+        oil: 0.0138
+        wind: 0.0665
+isLowCarbon:
+  unknown:
+    - datetime: '2019-01-01'
+      _comment: Sum of low carbon sources
+      value: 0.7038
+isRenewable:
+  unknown:
+    - datetime: '2019-01-01'
+      _comment: Sum of renewable sources
+      value: 0.3284
 parsers:
   production: CA_NB.fetch_production
-timezone: null
+timezone: America/Moncton

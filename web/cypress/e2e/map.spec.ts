@@ -3,8 +3,10 @@
 describe('Map', () => {
   it('interacts with the map', () => {
     cy.interceptAPI('v6/state/hourly');
-    cy.visit('/?skip-onboarding=true&lang=en-GB');
+    cy.visit('/?lang=en-GB');
+    cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess(`v6/state/hourly`);
+    cy.get('[data-test-id=loading-overlay]').should('not.exist');
 
     // closes left panel
     cy.get('[data-test-id=left-panel-collapse-button]').click();
@@ -31,8 +33,9 @@ describe('Map', () => {
 
     // test language selector
     cy.get('[data-test-id=language-selector-open-button]').click();
-    // cy.contains('Dansk').click();
-    // cy.contains('forbrug');
+    cy.contains('English');
+    cy.contains('Dansk').click();
+    cy.contains('forbrug');
     // cy.get('[data-test-id=language-selector]').click();
     // cy.contains('English').click();
     // cy.contains('consumption');

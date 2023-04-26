@@ -4,7 +4,7 @@ bounding_box:
   - - -93.2943099999999
     - 36.55797
 capacity:
-  battery storage: 1532.8
+  battery storage: 2822.9
   biomass: 170.1
   coal: 15261.7
   gas: 66019.7
@@ -13,9 +13,9 @@ capacity:
   hydro storage: 0
   nuclear: 5138.6
   oil: 277.2
-  solar: 10536.4
+  solar: 13171.6
   unknown: 234.7
-  wind: 34194.6
+  wind: 36247.9
 comment: Electric Reliability Council Of Texas, Inc.
 contributors:
   - systemcatch

@@ -99,7 +99,7 @@
     "hideWindLayer": "風のレイヤーを非表示に",
     "showSolarLayer": "太陽のレイヤーを表示",
     "hideSolarLayer": "太陽のレイヤーを非表示に",
-    "toggleDarkMode": "ダークモード切り替え",
+    "changeTheme": "ダークモード切り替え",
     "noParserInfo": "データがありません",
     "temporaryDataOutage": "ライブデータが一時的に利用できません",
     "production": "生産",

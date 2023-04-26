@@ -1,8 +1,22 @@
-import { Feature, MultiPolygon, Polygon, Properties, union } from '@turf/turf';
-import { ZoneConfig } from './types';
+import { Feature, MultiPolygon, union } from '@turf/turf';
+import { ZonesConfig, WorldFeatureCollection, FeatureProperties } from './types';
 
-const generateAggregates = (geojson, zones: ZoneConfig) => {
-  const { features } = geojson;
+const emptyFeature: Feature<MultiPolygon, FeatureProperties> = {
+  type: 'Feature',
+  properties: {
+    zoneName: '',
+    countryKey: '',
+    countryName: '',
+    isHighestGranularity: false,
+    isAggregatedView: true,
+    isCombined: true,
+  },
+  geometry: { type: 'MultiPolygon', coordinates: [] },
+};
+
+const generateAggregates = (fc: WorldFeatureCollection, zones: ZonesConfig) => {
+  const skippedZones: string[] = []; // Holds skipped subZones that are not in the geojson
+  const { features } = fc;
 
   const countryZonesToCombine = Object.values(zones)
     .filter((zone) => zone.subZoneNames && zone.subZoneNames.length > 0)
@@ -27,36 +41,43 @@ const generateAggregates = (geojson, zones: ZoneConfig) => {
 
   const combinedZones = countryZonesToCombine
     .map((country) => {
+      // TODO: Consider if should remove this check and just fail if country is undefined.
+      // This was done to avoid having null-checks everywhere, but maybe it can be done it a
+      // better way. See discussion here: https://github.com/electricitymaps/electricitymaps-contrib/pull/5179#discussion_r1131568845
       if (country === undefined) {
-        return null;
+        return emptyFeature;
       }
-      const combinedCountry: Feature<MultiPolygon | Polygon, Properties> = {
-        type: 'Feature',
-        properties: {
-          isHighestGranularity: false,
-          isAggregatedView: true,
-          isCombined: true,
-        },
-        geometry: { type: 'MultiPolygon', coordinates: [] },
-      };
       const multiZoneCountry = unCombinedZones.find(
         (feature) => feature.properties.zoneName === country[0]
       );
-      for (const element of country) {
+      const combinedCountry: Feature<MultiPolygon, FeatureProperties> = {
+        ...emptyFeature,
+        properties: {
+          ...emptyFeature.properties,
+          countryKey: multiZoneCountry?.properties.countryKey || '',
+          zoneName: multiZoneCountry?.properties.countryKey || '',
+          countryName: multiZoneCountry?.properties.countryName || '',
+        },
+      };
+
+      for (const subZone of country) {
         const zoneToAdd = unCombinedZones.find(
-          (feature) => feature.properties.zoneName === element
+          (feature) => feature.properties.zoneName === subZone
         );
 
-        const combinedCountryPolygon = combinedCountry.geometry as MultiPolygon;
-
-        const unionGeometry = union(combinedCountryPolygon, zoneToAdd.geometry)?.geometry;
-
-        if (unionGeometry) {
-          combinedCountry.geometry = unionGeometry;
+        const combinedCountryPolygon = combinedCountry.geometry;
+        if (zoneToAdd) {
+          const unionGeometry = union(combinedCountryPolygon, zoneToAdd.geometry)
+            ?.geometry as MultiPolygon;
+          if (unionGeometry) {
+            combinedCountry.geometry = unionGeometry;
+          }
+        } else {
+          skippedZones.push(subZone);
         }
       }
 
-      if (combinedCountry.properties) {
+      if (combinedCountry.properties && multiZoneCountry) {
         combinedCountry.properties['countryKey'] = multiZoneCountry.properties.countryKey;
         combinedCountry.properties['zoneName'] = multiZoneCountry.properties.countryKey;
       }
@@ -65,6 +86,14 @@ const generateAggregates = (geojson, zones: ZoneConfig) => {
     })
     .filter((zone) => zone !== null);
 
+  if (skippedZones.length > 0) {
+    for (const zone of skippedZones) {
+      console.error(
+        `ERROR: Could not find geometry feature for ${zone}, make sure it has geometry in world.geojson.`
+      );
+    }
+    process.exit(1);
+  }
   return [...unCombinedZones, ...combinedZones];
 };
 
