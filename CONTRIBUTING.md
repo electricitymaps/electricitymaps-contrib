@@ -21,6 +21,29 @@ We use the GNU Affero General Public License v3.0 for this repository, check the
 
 # Getting Started
 
+Pull Request Guidelines 
+
+About 
+
+Definition: A pull request is a feature that allows for proposed changes to a project made by a contributor which then sends a notification to the project’s “maintainers” who will review the request and then merge it into the main branch. Also, a pull request is a great way to keep track of a project’s version control. It is crucial that the contributor include contents in the pull request to aid the “maintainer” to understand the changes that have been made. Also, present and future contributors can also see what changes have been made to the code base.
+
+More Information can be found here: About pull requests - GitHub Docs
+
+Pull Request Structure
+Follow the Pull Request Template to ensure that you are providing an effective pull request>
+
+# What is Being Changed? - Explains what modifications have been made
+
+#Why is this Modification Being Made? - Explains the reasoning for the change 
+
+#How Did You Solve This? - Explains how you went about solving his problem 
+
+#Viability and Testing Validation? - Explains what tests did you perform to ensure functional totality
+
+#Additional Comments - Area where the contributor can add anything or comment on how the overall software architecture can be improved for future software development/functionality to further evolve the project. 
+
+#Screenshots of Work/Changes (Optional) - Insert screenshots of changes made (before and after). 
+
 ## Non-code contributions
 
 There are several ways to help out without coding, these are primarily:
