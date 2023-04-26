@@ -13,6 +13,9 @@ export const config = {
   WORLD_PATH: path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url))),
   OUT_PATH: path.resolve(fileURLToPath(new URL('../config/world.json', import.meta.url))),
   ERROR_PATH: path.resolve(fileURLToPath(new URL('.', import.meta.url))),
+  // TODO: The numbers here may not line up with the expected values in validateGeometry, as these numbers seem to be
+  // somewhat arbitrarily picked to make the validation pass. We should probably revisit these numbers and see if they
+  // can be improved.
   MIN_AREA_HOLES: 5_000_000,
   MAX_CONVEX_DEVIATION: 0.708,
   MIN_AREA_INTERSECTION: 6_000_000,

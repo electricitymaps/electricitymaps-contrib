@@ -4,7 +4,7 @@ bounding_box:
   - - -71.35625
     - 45.51097
 capacity:
-  battery storage: 117
+  battery storage: 127
   biomass: 515.3
   coal: 0
   gas: 27081.9
@@ -13,9 +13,9 @@ capacity:
   hydro storage: 1240
   nuclear: 3398.4
   oil: 3831.7
-  solar: 986.9
+  solar: 1170.9
   unknown: 20
-  wind: 2189.4
+  wind: 2420.6
 comment: New York Independent System Operator
 contributors:
   - systemcatch

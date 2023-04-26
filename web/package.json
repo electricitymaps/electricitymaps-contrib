@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.17.0",
+  "version": "1.26.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "engines": {
@@ -145,7 +145,7 @@
     "autoprefixer": "10.4.12",
     "colors": "^1.4.0",
     "css-mediaquery": "0.1.2",
-    "cypress": "12.7.0",
+    "cypress": "12.9.0",
     "eslint": "8.26.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-base": "15.0.0",
@@ -174,7 +174,7 @@
     "tailwindcss": "3.1.8",
     "ts-node": "^10.9.1",
     "typescript": "4.8.4",
-    "vite": "3.1.8",
+    "vite": "4.2.1",
     "vite-plugin-pwa": "0.13.1",
     "vite-tsconfig-paths": "3.5.2",
     "vitest": "0.24.3",

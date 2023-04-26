@@ -1,3 +1,5 @@
+"""Contains utility functions, e.g. for patching JSON files."""
+
 import json
 import pathlib
 import subprocess

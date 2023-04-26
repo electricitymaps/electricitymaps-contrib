@@ -13,16 +13,17 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from pytz import timezone
 from requests import Session
+from requests.adapters import HTTPAdapter, Retry
 
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import refetch_frequency, retry_policy
 from parsers.lib.exceptions import ParserException
 
-australia_tz = timezone("Australia/Darwin")
+AUSTRALIA_TZ = timezone("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
-# Data is published for the previous day only.
-DELAY = 30
+# Data is being published after 5 days at the moment.
+DELAY = 24 * 5
 
 
 class Generator(TypedDict):
@@ -60,13 +61,20 @@ PLANT_MAPPING = {
     "HP01": Generator(power_plant="", fuel_type="unknown"),
 }
 
+# For some reason the page doesn't always load on first attempt.
+# Therefore we retry a few times.
+retry_strategy = Retry(
+    total=3,
+    status_forcelist=[500, 502, 503, 504],
+)
+
 
 def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
     """Browse all links on a yearly historical daily data and index them."""
     index = {}
     # For the current we need to go to the default page.
     url = DEFAULT_URL
-    if not year == datetime.now(tz=australia_tz).year:
+    if not year == datetime.now(tz=AUSTRALIA_TZ).year:
         url = INDEX_URL.format(year)
     year_index_page = session.get(url)
     soup = BeautifulSoup(year_index_page.text, "html.parser")
@@ -139,7 +147,7 @@ def parse_consumption(
             timestamp = timestamp + timedelta(days=1)
         data_point = {
             "zoneKey": "AU-NT",
-            "datetime": australia_tz.localize(timestamp),
+            "datetime": AUSTRALIA_TZ.localize(timestamp),
             "source": "ntesmo.com.au",
         }
         if price:
@@ -195,10 +203,11 @@ def parse_production_mix(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_consumption(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("UTC"),
+    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
     logger: Logger = getLogger(__name__),
 ):
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
@@ -206,10 +215,11 @@ def fetch_consumption(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_price(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("utc"),
+    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
     logger: Logger = getLogger(__name__),
 ):
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
@@ -217,10 +227,11 @@ def fetch_price(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_production_mix(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to("utc"),
+    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
     logger: Logger = getLogger(__name__),
 ):
     production_mix = get_data(session, target_datetime, extract_production_data, logger)
