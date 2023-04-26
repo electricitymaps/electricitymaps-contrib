@@ -139,6 +139,7 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
         and obj.get("production", {}).get("gas", None) is None
         and zone_key
         not in [
+            "AL",
             "CH",
             "NO",
             "AU-TAS",
