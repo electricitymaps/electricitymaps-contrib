@@ -388,8 +388,8 @@ def fetch_production(
                 f"of expected value ({fuel_type_value_percent}%)."
             )
 
-    with open(fetch_dt.strftime("%Y-%m-%d-%H-%M") + ".txt", "w") as text_file:
-        text_file.write(data_js)  # TODO debug out to file
+    # with open(fetch_dt.strftime("%Y-%m-%d-%H-%M") + ".txt", "w") as text_file:
+    #     text_file.write(data_js)  # TODO debug out to file
 
     return data
 
