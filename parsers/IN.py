@@ -41,7 +41,7 @@ NPP_REGION_MAPPING = {
     "NORTHERN": "IN-NO",
     "EASTERN": "IN-EA",
     "WESTERN": "IN-WE",
-    "SOUTERN": "IN-SO",
+    "SOUTHERN": "IN-SO",
     "NORTH EASTERN": "IN-NE",
 }
 
@@ -260,11 +260,14 @@ def fetch_npp_production(
         df_zone = df_zone.loc[~df_zone.power_station.isna()]
         df_zone = df_zone[df_zone.power_station.str.contains("TYPE:")]
         df_zone = df_zone[["production_mode", "value"]]
-        df_zone = df_zone.groupby(["production_mode"]).sum()
+
+        production_in_zone = df_zone.groupby(["production_mode"]).sum()
         production = {}
-        for mode in df_zone.index:
+        for mode in production_in_zone.index:
             production[NPP_MODE_MAPPING[mode]] = round(
-                df_zone.iloc[df_zone.index.get_indexer_for([mode])[0]].get("value")
+                production_in_zone.iloc[
+                    production_in_zone.index.get_indexer_for([mode])[0]
+                ].get("value")
                 / CONVERSION_GWH_MW,
                 3,
             )
@@ -413,5 +416,5 @@ def get_start_of_day(dt: datetime) -> datetime:
 
 
 if __name__ == "__main__":
-    print("fetch_production() -> ")
+
     print(fetch_production(zone_key="IN-WE"))

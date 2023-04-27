@@ -33,7 +33,7 @@ def fetch_exchange(
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json; application/vnd.esios-api-v2+json",
-        "Authorization": 'Token token="{0}"'.format(token),
+        "x-api-key": token,
     }
 
     # Request query url
