@@ -292,7 +292,7 @@ def fetch_exchange(
     exchange_list.append(
         zoneKey=ZoneKey(sorted_zone_keys),
         datetime=get_time_from_system_map(map_html),
-        value=flow,
+        netFlow=flow,
         source="cndc.org.ni",
     )
     return exchange_list.to_list()

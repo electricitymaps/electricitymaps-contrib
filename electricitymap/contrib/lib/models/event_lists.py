@@ -43,11 +43,11 @@ class ExchangeList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        value: float,
+        netFlow: float,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Exchange.create(
-            self.logger, zoneKey, datetime, source, value, sourceType
+            self.logger, zoneKey, datetime, source, netFlow, sourceType
         )
         if event:
             self.events.append(event)
