@@ -1,6 +1,8 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import trackEvent from 'utils/analytics';
 import Logo from './Logo';
+import { Capacitor } from '@capacitor/core';
+import { twMerge } from 'tailwind-merge';
 
 interface MenuLinkProps {
   href: string;
@@ -32,8 +34,14 @@ function MenuLink({ children, href, active, id }: MenuLinkProps): JSX.Element {
 }
 
 export default function Header(): JSX.Element {
+  const isMobileApp = Capacitor.isNativePlatform();
   return (
-    <header className="z-30 hidden w-full items-center justify-between bg-white pl-4 pr-8 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-900 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] sm:flex">
+    <header
+      className={twMerge(
+        'z-30 hidden w-full items-center justify-between bg-white pl-4 pr-8 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-900 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)]',
+        !isMobileApp && 'sm:flex'
+      )}
+    >
       <Logo className="h-12 w-56 fill-black dark:fill-white" />
       <NavigationMenu.Root className="hidden md:block">
         <NavigationMenu.List className="flex space-x-2">

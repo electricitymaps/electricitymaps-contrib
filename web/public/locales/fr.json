@@ -42,6 +42,9 @@
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
     "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"%s\" target=\"_blank\">ajoutant des données de zone</a>.",
+    "disabledPriceReasons": {
+      "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
+    },
     "now": "Maintenant",
     "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à %s heures de retard. Les données temps-réel ne peuvent pas être affichées.",
     "averagebysource": "moyenne par source",
@@ -117,7 +120,7 @@
     "hideWindLayer": "Cacher le calque de vent",
     "showSolarLayer": "Voir le calque d’ensoleillement",
     "hideSolarLayer": "Cacher le calque d’ensoleillement",
-    "toggleDarkMode": "Activer ou désactiver le thème sombre",
+    "changeTheme": "Changer de thème",
     "noParserInfo": "Pas de données disponible",
     "temporaryDataOutage": "Données temporairement indisponibles",
     "production": "production",
@@ -132,6 +135,11 @@
     "zoomOut": "Dézoomer",
     "weatherDisabled": "Les données météo ne sont pas disponible actuellement",
     "aggregateInfo": "Visualiser la donnée par zone ou aggrégée par pays"
+  },
+  "themeOptions": {
+    "dark": "Sombre",
+    "light": "Clair",
+    "system": "Système"
   },
   "misc": {
     "maintitle": "Émissions CO₂ de la consommation électrique en temps réel",

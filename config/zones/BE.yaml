@@ -11,9 +11,9 @@ capacity:
   geothermal: 0
   hydro: 186
   hydro storage: 1308
-  nuclear: 4936
+  nuclear: 3928
   oil: 455
-  solar: 6475
+  solar: 7348
   wind: 5245
 contributors:
   - corradio

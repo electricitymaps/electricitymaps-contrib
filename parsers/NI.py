@@ -4,12 +4,19 @@
 from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 import arrow
 from requests import Session
 
-from .lib.validation import validate
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from parsers.lib.exceptions import ParserException
 
 TIMEZONE = "America/Managua"
 
@@ -206,7 +213,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[Dict[str, Any]]:
     """Requests the last known production mix (in MW) of Nicaragua."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -218,19 +225,27 @@ def fetch_production(
     # in order to get solar production.
     production, data_datetime = get_production_from_summary(requests_obj)
 
-    # Explicitly report types that are not used in Nicaragua as zero.
-    # Source for the installed capacity of Nicaragua is INE (Nicaraguan Institute of Energy -- see link in DATA_SOURCES.md).
-    production.update({"nuclear": 0, "coal": 0, "gas": 0})
+    total_production = sum(production.values())
+    if 86.6 <= total_production <= 2165:
+        production_mix = ProductionMix()
 
-    data = {
-        "datetime": data_datetime,
-        "zoneKey": zone_key,
-        "production": production,
-        "storage": {},
-        "source": "cndc.org.ni",
-    }
+        for mode, value in production.items():
+            production_mix.set_value(mode, value)
 
-    return validate(data, logger, expected_range=(86.6, 2165))
+        production_list = ProductionBreakdownList(logger)
+        production_list.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=data_datetime,
+            production=production_mix,
+            source="cndc.org.ni",
+        )
+        return production_list.to_list()
+    else:
+        raise ParserException(
+            parser="NI.py",
+            message=f"{data_datetime}: production data not available",
+            zone_key=zone_key,
+        )
 
 
 def fetch_exchange(
@@ -239,7 +254,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[Dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -273,15 +288,14 @@ def fetch_exchange(
         flow = -1 * (interchange_list[2] + interchange_list[3])
     else:
         raise NotImplementedError("This exchange pair is not implemented")
-
-    data = {
-        "datetime": get_time_from_system_map(map_html),
-        "sortedZoneKeys": sorted_zone_keys,
-        "netFlow": flow,
-        "source": "cndc.org.ni",
-    }
-
-    return data
+    exchange_list = ExchangeList(logger)
+    exchange_list.append(
+        zoneKey=ZoneKey(sorted_zone_keys),
+        datetime=get_time_from_system_map(map_html),
+        netFlow=flow,
+        source="cndc.org.ni",
+    )
+    return exchange_list.to_list()
 
 
 def fetch_price(
@@ -289,7 +303,7 @@ def fetch_price(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> List[Dict[str, Any]]:
     """Requests the most recent known power prices in Nicaragua grid."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -306,7 +320,6 @@ def fetch_price(
 
     hours_text = prices_html.split("<br />")
 
-    data = []
     for hour_data in hours_text:
         if not hour_data:
             # there is usually an empty item at the end of the list, ignore it
@@ -321,17 +334,15 @@ def fetch_price(
             # data for previous day is also included
             price_date = price_date.replace(days=-1)
 
-        data.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": price_date.datetime,
-                "currency": "USD",
-                "price": price,
-                "source": "cndc.org.ni",
-            }
-        )
-
-    return data
+    price_list = PriceList(logger)
+    price_list.append(
+        zoneKey=ZoneKey(zone_key),
+        datetime=price_date.datetime,
+        price=price,
+        currency="USD",
+        source="cndc.org.ni",
+    )
+    return price_list.to_list()
 
 
 if __name__ == "__main__":

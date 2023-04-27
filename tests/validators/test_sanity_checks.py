@@ -16,7 +16,7 @@ from .lib.fixtures import load_fixture
 
 def test_validate_positive_production():
     events = load_fixture("production_negative_values")
-    res = validate_positive_production(events)
+    res = validate_positive_production(events)  # pylint: disable=too-many-function-args
     assert res["2022-01-01 00:00:00+00:00"] == 1
     assert res["2022-01-01 01:00:00+00:00"] == 0
     assert res["2022-01-01 02:00:00+00:00"] == 1
@@ -24,7 +24,11 @@ def test_validate_positive_production():
 
 def test_validate_production_one_non_nan_value():
     events = load_fixture("production_with_no_values")
-    res = validate_production_one_non_nan_value(events)
+    res = (
+        validate_production_one_non_nan_value(  # pylint: disable=too-many-function-args
+            events
+        )
+    )
     assert res["2022-01-01 00:00:00+00:00"] == 1
     assert res["2022-01-01 01:00:00+00:00"] == 0
     assert res["2022-01-01 02:00:00+00:00"] == 1
@@ -32,7 +36,9 @@ def test_validate_production_one_non_nan_value():
 
 def test_validate_production_is_plausible():
     events = load_fixture("production_with_unplausible_productions")
-    res = validate_production_is_plausible(events)
+    res = validate_production_is_plausible(  # pylint: disable=too-many-function-args
+        events
+    )
     assert res["2022-01-01 00:00:00+00:00"] == 0
     assert res["2022-01-01 01:00:00+00:00"] == 1
     assert res["2022-01-01 02:00:00+00:00"] == 1
@@ -40,7 +46,9 @@ def test_validate_production_is_plausible():
 
 def test_validate_reasonable_time_production():
     events = load_fixture("production_with_unreasonable_datetimes")
-    res = validate_reasonable_time_production(events)
+    res = validate_reasonable_time_production(  # pylint: disable=too-many-function-args
+        events
+    )
     assert res["1982-01-01 00:00:00+00:00"] == 0
     assert res["2022-01-01 00:00:00+00:00"] == 1
     assert res["2082-01-01 00:00:00+00:00"] == 0
@@ -48,7 +56,9 @@ def test_validate_reasonable_time_production():
 
 def test_validate_reasonable_time_exchange():
     events = load_fixture("exchange_with_unreasonable_datetimes")
-    res = validate_reasonable_time_exchange(events)
+    res = validate_reasonable_time_exchange(  # pylint: disable=too-many-function-args
+        events
+    )
     assert res["1982-01-01 00:00:00+00:00"] == 0
     assert res["2022-01-01 00:00:00+00:00"] == 1
     assert res["2082-01-01 00:00:00+00:00"] == 0
@@ -56,7 +66,9 @@ def test_validate_reasonable_time_exchange():
 
 def test_validate_exchange_netflow_is_plausible():
     events = load_fixture("exchange_with_unplausible_netflows")
-    res = validate_exchange_netflow_is_plausible(events)
+    res = validate_exchange_netflow_is_plausible(  # pylint: disable=too-many-function-args
+        events
+    )
     assert res["2022-01-01 00:00:00+00:00"] == 0
     assert res["2022-01-01 01:00:00+00:00"] == 0
     assert res["2022-01-01 02:00:00+00:00"] == 1
@@ -68,5 +80,7 @@ def test_validate_exchange_netflow_doesnt_exceed_capacity():
 
     events = pd.DataFrame([cap, inv_cap, 0, cap * 2, inv_cap * 2], columns=["netFlow"])
 
-    res = validate_exchange_netflow_doesnt_exceed_capacity(events, "DK-DK1->DK-DK2")
+    res = validate_exchange_netflow_doesnt_exceed_capacity(  # pylint: disable=too-many-function-args
+        events, "DK-DK1->DK-DK2"
+    )
     assert (res.values == [1, 1, 1, 0, 0]).all()

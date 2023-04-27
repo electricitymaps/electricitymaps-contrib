@@ -73,7 +73,7 @@
     "hideWindLayer": "隐藏风力图层",
     "showSolarLayer": "显示太阳能图层",
     "hideSolarLayer": "隐藏太阳能图层",
-    "toggleDarkMode": "切换黑暗模式",
+    "changeTheme": "切换黑暗模式",
     "noParserInfo": "无可用数据",
     "temporaryDataOutage": "无可用实时数据",
     "production": "发电",

@@ -5,18 +5,19 @@ bounding_box:
     - 51.1172677679
 capacity:
   biomass: 510
-  coal: 8830
+  coal: 8360
   gas: 1240
   geothermal: 0
-  hydro: 1109
+  hydro: 1112
   hydro storage: 1172
   nuclear: 4040
   oil: 0
-  solar: 2053
+  solar: 2083
   unknown: 410
   wind: 339
 contributors:
   - corradio
+  - Frantisek12
 emissionFactors:
   direct:
     battery discharge:
@@ -52,7 +53,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
-      value: 481.60707
+      value: 419.8221756
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -114,7 +115,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 601.60707
+      value: 539.8221756
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -270,7 +271,7 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
-  production: ENTSOE.fetch_production
+  production: CZ.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 sources:
   EU-ETS, ENTSO-E 2021:

@@ -33,8 +33,8 @@ export function useReferenceWidthHeightObserver(offsetX = 0, offsetY = 0) {
 
   return {
     ref: reference,
-    width,
-    height,
+    width: Math.round(width),
+    height: Math.round(height),
     node,
   };
 }

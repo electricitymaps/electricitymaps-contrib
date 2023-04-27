@@ -13,7 +13,7 @@ capacity:
   oil: 1272
   solar: 136
   unknown: 647
-  wind: 4332
+  wind: 4619
 contributors:
   - corradio
   - nessie2013
@@ -52,7 +52,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
-      value: 465.9170756
+      value: 396.8903896
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -114,7 +114,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 585.9170756
+      value: 516.8903895999999
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022

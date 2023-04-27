@@ -5,8 +5,9 @@ export default defineConfig({
   fixturesFolder: '../mockserver/public',
   projectId: '9z8tgk',
   video: false,
+  watchForFileChanges: true,
   e2e: {
-    baseUrl: 'http://localhost:5173/',
+    baseUrl: 'http://127.0.0.1:5173/',
     specPattern: 'cypress/e2e/**/*.ts',
   },
   component: {

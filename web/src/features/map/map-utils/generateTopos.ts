@@ -13,7 +13,7 @@ export interface TopoObject {
     countryName?: string; //Potential bug spotted, check why aggregated view value doesn't have country name
     isAggregatedView: boolean;
     isHighestGranularity: boolean;
-    center: number[];
+    center: [number, number];
   };
 }
 
@@ -30,7 +30,8 @@ export interface Topo {
  */
 const generateTopos = (theme: MapTheme, spatialAggregate: string): MapGeometries => {
   const geometries: MapGeometries = { features: [], type: 'FeatureCollection' };
-  const topography = topo as Topo;
+  // Casting to unknown first to allow using [number, number] for center property
+  const topography = topo as unknown as Topo;
 
   for (const k of Object.keys(topography.objects)) {
     if (!topography.objects[k].arcs) {

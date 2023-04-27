@@ -157,7 +157,7 @@
     "showSolarLayer": "Visa sol-lager",
     "hideSolarLayer": "Dölj sol-lager",
     "weatherDisabled": "Väderdata är ej tillgänglig för denna period",
-    "toggleDarkMode": "Växla mörkt läge",
+    "changeTheme": "Byt tema",
     "noParserInfo": "Ingen data tillgänglig",
     "temporaryDataOutage": "Aktuell data tillfälligt ej tillgänglig",
     "production": "produktion",
@@ -950,15 +950,15 @@
     },
     "IT-CNO": {
       "countryName": "Italien",
-      "zoneName": "Centrala norra"
+      "zoneName": "Norra centrala Italien"
     },
     "IT-CSO": {
       "countryName": "Italien",
-      "zoneName": "Centrala södra"
+      "zoneName": "Södra centrala Italien"
     },
     "IT-NO": {
       "countryName": "Italien",
-      "zoneName": "Norra"
+      "zoneName": "Norra Italien"
     },
     "IT-SAR": {
       "countryName": "Italien",
@@ -970,7 +970,7 @@
     },
     "IT-SO": {
       "countryName": "Italien",
-      "zoneName": "Södra"
+      "zoneName": "Södra Italien"
     },
     "JE": {
       "zoneName": "Jersey"

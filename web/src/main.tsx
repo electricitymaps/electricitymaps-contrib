@@ -1,16 +1,10 @@
+import { StrictMode } from 'react';
 import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
 import { REFETCH_INTERVAL_FIVE_MINUTES } from 'api/helpers';
 import { createRoot } from 'react-dom/client';
-import {
-  BrowserRouter,
-  createRoutesFromChildren,
-  matchRoutes,
-  useLocation,
-  useNavigationType,
-} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 //import { registerSW } from 'virtual:pwa-register';
@@ -21,24 +15,10 @@ const isProduction = import.meta.env.PROD;
 import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
 
-// Init polyfills
-
-import { StrictMode, useEffect } from 'react';
 if (isProduction) {
   Sentry.init({
     dsn: 'https://bbe4fb6e5b3c4b96a1df95145a91e744@o192958.ingest.sentry.io/4504366922989568', //We should create a capacitor project in Sentry for the mobile app
-    integrations: [
-      new BrowserTracing({
-        routingInstrumentation: Sentry.reactRouterV6Instrumentation(
-          useEffect,
-          useLocation,
-          useNavigationType,
-          createRoutesFromChildren,
-          matchRoutes
-        ),
-      }),
-    ],
-    tracesSampleRate: 0.1, //This will send 10% of transactions to Sentry
+    tracesSampleRate: 0, // Disables tracing completely as we don't use it and sends a lot of data
   });
 }
 /**

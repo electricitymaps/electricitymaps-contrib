@@ -1,22 +1,55 @@
 on:
   workflow_call:
 jobs:
-  cypress-test:
-    name: Cypress tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+  cypress-run-component:
+    name: Cypress Component
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
           version: 7
-      - name: Cypress run
+      - name: Cypress run component tests
         uses: cypress-io/github-action@v5
         env:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
-          start: pnpm dev
-          wait-on: 'http://localhost:5173'
+          install: true
+          # to run component tests we need to use "component: true"
+          component: true
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: component-screenshots
+          path: web/cypress/screenshots
+  cypress-run-e2e:
+    name: Cypress e2e
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: Cypress run e2e tests
+        uses: cypress-io/github-action@v5
+        env:
+          TZ: Europe/Copenhagen
+        with:
+          working-directory: ./web
+          build: pnpm run build --mode testing
+          start: pnpm run preview
+          config: baseUrl=http://127.0.0.1:4173/
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: e2e-screenshots
+          path: web/cypress/screenshots
