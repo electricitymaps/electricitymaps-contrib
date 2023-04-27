@@ -21,12 +21,13 @@ from electricitymap.contrib.parsers.lib.exceptions import ParserException
 HISTORICAL_LOAD_REPORTS = "https://www.bchydro.com/content/dam/BCHydro/customer-portal/documents/corporate/suppliers/transmission-system/balancing_authority_load_data/Historical%20Transmission%20Data/BalancingAuthorityLoad{0}.xls"
 TIMEZONE = pytz.timezone("Canada/Pacific")
 
+
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-        zone_key: ZoneKey,
-        session: Optional[Session] = None,
-        target_datetime: Optional[datetime] = None,
-        logger: Logger = getLogger(__name__),
+    zone_key: ZoneKey,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     r = session or Session()
     if target_datetime is None:
@@ -37,25 +38,26 @@ def fetch_consumption(
         raise ParserException(
             "CA_BC.py",
             "Could not fetch load report for year {0}".format(target_datetime.year),
-            zone_key
+            zone_key,
         )
     df = pd.read_excel(response.content, skiprows=3)
     df = df.rename(columns={"Date ?": "Date"})
     # The first hour of each day is set at 1 and the last at 24 so we need to subtract 1
     # to correctly align dates and hours.
     # Due to DST there might be some missing hours, we use shift_backward to fill them with the previous hour.
-    df['datetime'] = pd.to_datetime(df['Date'] + " " + (df['HE'] -1 ).astype('str'), format="%m/%d/%Y %H").dt.tz_localize(TIMEZONE, nonexistent='shift_backward')
+    df["datetime"] = pd.to_datetime(
+        df["Date"] + " " + (df["HE"] - 1).astype("str"), format="%m/%d/%Y %H"
+    ).dt.tz_localize(TIMEZONE, nonexistent="shift_backward")
     selected_times = df[df.datetime.dt.date == target_datetime.date()]
     consumption_list = TotalConsumptionList(logger)
     for row in selected_times.iterrows():
         consumption_list.append(
             zoneKey=zone_key,
-            datetime=row[1]['datetime'],
+            datetime=row[1]["datetime"],
             source="bchydro.com",
-            consumption=row[1]['Control Area Load']
+            consumption=row[1]["Control Area Load"],
         )
     return consumption_list.to_list()
-
 
 
 def fetch_exchange(
@@ -103,4 +105,8 @@ if __name__ == "__main__":
     # print("fetch_exchange(CA-AB, CA-BC) ->")
     # print(fetch_exchange("CA-AB", "CA-BC"))
     print("fetch_consumption(CA-BC) ->")
-    print(fetch_consumption(ZoneKey("CA-BC"), target_datetime=datetime(2023, 3, 1, 0, 0, 0, 0, TIMEZONE)))
+    print(
+        fetch_consumption(
+            ZoneKey("CA-BC"), target_datetime=datetime(2023, 3, 1, 0, 0, 0, 0, TIMEZONE)
+        )
+    )
