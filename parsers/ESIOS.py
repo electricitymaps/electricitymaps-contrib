@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 from urllib.parse import urlencode
 
 # The arrow library is used to handle datetimes
 import arrow
+import pytz
 from requests import Response, Session
+
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import ExchangeList
 
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
+
+TIMEZONE = pytz.timezone("Europe/Madrid")
 
 
 def fetch_exchange(
@@ -21,14 +27,12 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list:
 
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
     # Get ESIOS token
     token = get_token("ESIOS_TOKEN")
 
     ses = session or Session()
-
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TIMEZONE)
     # Request headers
     headers = {
         "Content-Type": "application/json",
@@ -37,9 +41,8 @@ def fetch_exchange(
     }
 
     # Request query url
-    utc = arrow.utcnow()
-    start_date = utc.shift(hours=-24).floor("hour").isoformat()
-    end_date = utc.ceil("hour").isoformat()
+    start_date = (target_datetime - timedelta(hours=24)).isoformat()
+    end_date = target_datetime.isoformat()
     dates = {"start_date": start_date, "end_date": end_date}
     query = urlencode(dates)
     url = "https://api.esios.ree.es/indicators/10209?{0}".format(query)
@@ -54,28 +57,22 @@ def fetch_exchange(
     values = json["indicator"]["values"]
     if not values:
         raise ParserException("ESIOS", "No values received")
-    else:
-        data = []
-        sorted_zone_keys = sorted([zone_key1, zone_key2])
+    exchanges = ExchangeList(logger)
+    zone_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
-        for value in values:
-            # Get last value in datasource
-            datetime = arrow.get(value["datetime_utc"]).datetime
-            # Datasource negative value is exporting, positive value is importing
-            net_flow = -value["value"]
+    for value in values:
+        # Get last value in datasource
+        # Datasource negative value is exporting, positive value is importing
+        net_flow = -value["value"]
 
-            value_data = {
-                "sortedZoneKeys": "->".join(sorted_zone_keys),
-                "datetime": datetime,
-                "netFlow": net_flow
-                if zone_key1 == sorted_zone_keys[0]
-                else -1 * net_flow,
-                "source": "api.esios.ree.es",
-            }
+        exchanges.append(
+            zoneKey=zone_key,
+            datetime=arrow.get(value["datetime_utc"]).datetime,
+            netFlow=net_flow,
+            source="api.esios.ree.es",
+        )
 
-            data.append(value_data)
-
-        return data
+    return exchanges.to_list()
 
 
 if __name__ == "__main__":
