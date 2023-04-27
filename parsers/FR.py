@@ -195,7 +195,7 @@ def fetch_production(
     max_diffs = {
         "hydro": 5200,
         "solar": 3500,
-        "coal": 500,
+        "coal": 1200,
         "wind": 5000,
         "nuclear": 8000,
     }
