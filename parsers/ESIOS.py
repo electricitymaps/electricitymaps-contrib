@@ -18,6 +18,7 @@ from .lib.utils import get_token
 
 TIMEZONE = pytz.timezone("Europe/Madrid")
 
+
 def fetch_exchange(
     zone_key1: str = "ES",
     zone_key2: str = "MA",
