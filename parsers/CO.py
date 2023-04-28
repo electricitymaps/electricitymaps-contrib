@@ -6,6 +6,7 @@ from typing import Optional
 
 import arrow
 from requests import Session
+from pydataxm import pydataxm
 
 #   PARSER FOR COLOMBIA / DEMAND-ONLY as of 2023-02-11 / 5-minute-granularity / returns demand data of the recent day
 #   MAIN_WEBSITE = https://www.xm.com.co/consumo/demanda-en-tiempo-real
