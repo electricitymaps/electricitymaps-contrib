@@ -9,5 +9,6 @@ coverage
 cypress/videos
 cypress/screenshots
 config
+public/client-version.json
 
 tsconfig.node.tsbuildinfo
