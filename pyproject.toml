@@ -78,7 +78,8 @@ parsers = [
     "freezegun",
     "signalr-client-threads",
     "tqdm",
-    "openpyxl"
+    "openpyxl",
+    "pydataxm"
 ]
 
 validators = [
