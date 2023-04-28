@@ -91,7 +91,7 @@
     "hideWindLayer": "Скрыть слой ветра",
     "showSolarLayer": "Показать слой солнечной активности",
     "hideSolarLayer": "Скрыть слой солнечной активности",
-    "toggleDarkMode": "Включить тёмный режим",
+    "changeTheme": "Включить тёмный режим",
     "noParserInfo": "Нет доступных данных",
     "temporaryDataOutage": "Данные временно недоступны",
     "production": "производство",

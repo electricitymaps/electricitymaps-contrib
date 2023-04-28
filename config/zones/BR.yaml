@@ -1,9 +1,9 @@
 capacity:
-  hydro: 108940
+  hydro: 109298
   nuclear: 1990
-  solar: 4960
-  unknown: 37727
-  wind: 21772
+  solar: 7525
+  unknown: 39437
+  wind: 24506
 contributors:
   - alexanmtz
   - corradio

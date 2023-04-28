@@ -1,6 +1,11 @@
 """
-Poetry scripts, runable using 'poetry run'.
+Poetry scripts, runnable using 'poetry run'.
+
+For example:
+    poetry run lint
+    poetry run format
 """
+
 import subprocess
 import sys
 

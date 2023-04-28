@@ -1,4 +1,11 @@
-""" This script aims at automatically updating the data sources file with sources listed in the zones config. """
+"""
+This script generates the EMISSION_FACTORS_SOURCES.md file
+from the sources listed in the zones config.
+
+Usage:
+    poetry run python scripts/update_emission_factors_sources.py
+"""
+
 import logging
 from copy import copy
 from pathlib import Path
@@ -14,12 +21,12 @@ EMISSION_FACTORS_SOURCES_FILENAME = (
     Path(__file__).parent.parent.joinpath("EMISSION_FACTORS_SOURCES.md").resolve()
 )
 
-MD_CONTENT_HEADER = """
-# Emission factors sources
+MD_CONTENT_HEADER = """# Emission factors sources
 
-This file describes data sources used for generating the emission factors for all zones.
+This file describes data sources used for generating the emission factors for
+all zones.
 
-It only describes zone specific emission factors. Our default emission factors come  from the [IPCC (2014) Fith Assessment Report](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7) report, and are fully described in our [wiki](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Default-emission-factors).
+It only describes zone specific emission factors. Our default emission factors come from the [IPCC (2014) Fith Assessment Report](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7) report, and are fully described in our [wiki](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Default-emission-factors).
 
 ## Zone specific emission factors
 
@@ -76,7 +83,7 @@ def update_data_sources() -> None:
             zone_config
         )
 
-    # Filter out empty sources
+    # Filter out empty sources.
     all_emission_factor_sources = {
         k: v
         for k, v in all_emission_factor_sources.items()
@@ -86,43 +93,26 @@ def update_data_sources() -> None:
     md_content = copy(MD_CONTENT_HEADER)
 
     for zone_key, sources in all_emission_factor_sources.items():
-        zone_content = f"""
-* {zone_key}
-        """
+        zone_content = f"- {zone_key}\n"
         if "direct" in sources:
-            zone_content += """
-  * Direct emission factors
-            """
+            zone_content += "  - Direct emission factors\n"
             for mode, mode_sources in sources["direct"].items():
-                zone_content += f"""
-    * {mode}
-                """
+                zone_content += f"    - {mode}\n"
                 for source, link in mode_sources.items():
                     # We must be careful to not add ";" in the sources
                     for i, _s in enumerate(source.split("; ")):
-                        zone_content += f"""
-      * [{_s}]({link.split(', ')[i]})
-                """
+                        zone_content += f"      - [{_s}]({link.split(', ')[i]})\n"
         if "lifecycle" in sources:
-            zone_content += """
-  * Lifecycle emission factors
-            """
+            zone_content += "  - Lifecycle emission factors\n"
             for mode, mode_sources in sources["lifecycle"].items():
-                zone_content += f"""
-    * {mode}
-                """
+                zone_content += f"    - {mode}\n"
                 for source, link in mode_sources.items():
                     # We must be careful to not add ";" in the sources
                     for i, _s in enumerate(source.split("; ")):
-                        zone_content += f"""
-      * [{_s}]({link.split(', ')[i]})
-                """
+                        zone_content += f"      - [{_s}]({link.split(', ')[i]})\n"
         md_content += zone_content
 
-    md_content += """
-
-    &nbsp;</details>
-    """
+    md_content += "\n\n&nbsp;</details>\n"
 
     with open(EMISSION_FACTORS_SOURCES_FILENAME, "w") as f:
         f.write(md_content)

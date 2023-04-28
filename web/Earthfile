@@ -16,19 +16,20 @@ prepare:
   FROM +src-files
   RUN npm install -g pnpm
   RUN pnpm install --frozen-lockfile
-  COPY index.html .postcssrc.json tailwind.config.js tsconfig.json tsconfig.node.json vite.config.ts .
+  COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
-  COPY --dir config geo public src ./
+  COPY --dir geo public src ./
 
 test:
   FROM +prepare
   COPY cypress.config.ts .
   COPY cypress ./cypress
   RUN pnpm run verify:ci
-  # TODO: Run tests
+  RUN pnpm run cy:test-all
 
 build:
   FROM +prepare
+  RUN pnpm run create-generated-files
   RUN pnpm version minor
   RUN --secret SENTRY_AUTH_TOKEN=+secrets/SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
 
@@ -42,4 +43,5 @@ deploy:
   FROM +prepare
   COPY +build/dist ./dist
   RUN npm install -g wrangler
+  # TODO: Point to master after build and deploy has been tested to staging
   RUN --push --secret CLOUDFLARE_API_TOKEN=+secrets/CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID=+secrets/CLOUDFLARE_ACCOUNT_ID wrangler pages publish ./dist --project-name electricitymaps-app --branch master
