@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
 from pydataxm import pydataxm
 from requests import Session
+
+from .lib.config import refetch_frequency
 
 #   PARSER FOR COLOMBIA / DEMAND-ONLY as of 2023-02-11 / 5-minute-granularity / returns demand data of the recent day
 #   MAIN_WEBSITE = https://www.xm.com.co/consumo/demanda-en-tiempo-real
@@ -55,6 +57,7 @@ def fetch_consumption(
     return demand_list
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_historical_consumption(
     zone_key: str = "CO",
     session: Session = Session(),
@@ -72,29 +75,38 @@ def fetch_historical_consumption(
         "DemaReal", "Sistema", co_datetime.date(), co_datetime.date()
     )
     if df_consumption.empty:
-        return {
-            "zoneKey": zone_key,
-            "datetime": target_datetime,
-            "consumption": None,
-            "source": "xm.com.co",
-        }
+        return []
 
     else:
+        # Select the columns with the consumption values for each hours
+        df_consumption = df_consumption.iloc[:, 2:26]
 
-        # Get the consumption value for the requested hour in MW
-        consumption_hour = df_consumption.iloc[:, co_datetime.hour].values[0] / 1000
+        # Make sure values are positive and in MW
+        df_consumption = df_consumption[df_consumption >= 0] / 1000
 
-        # Make sure values are positive
-        consumption_hour = consumption_hour if consumption_hour >= 0 else None
+        hour = 0
 
-        return {
-            "zoneKey": zone_key,
-            "datetime": target_datetime,
-            "consumption": consumption_hour,
-            "source": "xm.com.co",
-        }
+        datapoints = list()
+
+        for column in df_consumption.columns:
+
+            datapoint_datetime = datetime.combine(co_datetime.date(), time(hour))
+
+            datapoint = {
+                "zoneKey": zone_key,
+                "datetime": arrow.get(datapoint_datetime).replace(tzinfo=TZ).datetime,
+                "consumption": df_consumption[column].values[0],
+                "source": "xm.com.co",
+            }
+
+            datapoints.append(datapoint)
+
+            hour += 1
+
+        return datapoints
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "CO",
     session: Session = Session(),
@@ -103,7 +115,10 @@ def fetch_production(
 ) -> dict:
 
     # Convert datetime to local time
-    co_datetime = arrow.get(target_datetime).to(TZ)
+    if target_datetime:
+        co_datetime = arrow.get(target_datetime).to(TZ)
+    else:
+        co_datetime = arrow.get(datetime.now() + timedelta(days=-3)).to(TZ)
 
     objetoAPI = pydataxm.ReadDB()
 
@@ -118,12 +133,7 @@ def fetch_production(
     )
 
     if df_generation.empty:
-        return {
-            "zoneKey": zone_key,
-            "datetime": target_datetime,
-            "production": None,
-            "source": "xm.com.co",
-        }
+        return []
 
     else:
 
@@ -142,20 +152,32 @@ def fetch_production(
         # Get the generation values per hour and per EM type of production
         df_generation_type = df_generation.groupby(["EM Type"]).sum()
 
-        # Get the generation values for the requested hour in MW
-        df_generation_type_hour = df_generation_type.iloc[:, co_datetime.hour] / 1000
+        # Make sure values are positive expressed in MW
+        df_generation_type = df_generation_type[df_generation_type >= 0] / 1000
 
-        # Make sure values are positive
-        df_generation_type_hour = df_generation_type_hour[df_generation_type_hour >= 0]
+        hour = 0
 
-        return {
-            "zoneKey": zone_key,
-            "datetime": target_datetime,
-            "production": df_generation_type_hour.to_dict(),
-            "source": "xm.com.co",
-        }
+        datapoints = list()
+
+        for column in df_generation_type.columns:
+
+            datapoint_datetime = datetime.combine(co_datetime.date(), time(hour))
+
+            datapoint = {
+                "zoneKey": zone_key,
+                "datetime": arrow.get(datapoint_datetime).replace(tzinfo=TZ).datetime,
+                "production": df_generation_type[column].to_dict(),
+                "source": "xm.com.co",
+            }
+
+            datapoints.append(datapoint)
+
+            hour += 1
+
+        return datapoints
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str = "CO",
     session: Session = Session(),
@@ -164,7 +186,10 @@ def fetch_price(
 ) -> dict:
 
     # Convert datetime to local time
-    co_datetime = target_datetime + timedelta(hours=-5)
+    if target_datetime:
+        co_datetime = arrow.get(target_datetime).to(TZ)
+    else:
+        co_datetime = arrow.get(datetime.now() + timedelta(days=-3)).to(TZ)
 
     objetoAPI = pydataxm.ReadDB()
 
@@ -173,13 +198,7 @@ def fetch_price(
         "PrecBolsNaci", "Sistema", co_datetime.date(), co_datetime.date()
     )
     if df_price.empty:
-        return {
-            "zoneKey": zone_key,
-            "datetime": target_datetime,
-            "currency": "COP",
-            "price": None,
-            "source": "xm.com.co",
-        }
+        return []
 
     else:
 
@@ -188,7 +207,7 @@ def fetch_price(
 
         return {
             "zoneKey": zone_key,
-            "datetime": target_datetime,
+            "datetime": arrow.get(co_datetime).replace(tzinfo=TZ).datetime,
             "currency": "COP",
             "price": price_hour,
             "source": "xm.com.co",
