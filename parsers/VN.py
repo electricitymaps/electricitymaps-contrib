@@ -26,7 +26,6 @@ is_price_valid = lambda price: price > 1200
 
 def fetch_latest_data(
     data_type: str,
-    zone_key: str,
     session: Session,
 ):
     """
@@ -64,7 +63,7 @@ def fetch_latest_data(
     )
 
 
-def fetch_target_data(data_type: str, target_datetime, session):
+def fetch_target_data(data_type: str, target_datetime, session: Session):
     """
     Fetch the day containing the given target_datetime.
     """
@@ -100,7 +99,7 @@ def fetch_consumption(
     request_latest = target_datetime is None
 
     if request_latest:
-        fetched_day, fetched_data = fetch_latest_data("consumption", zone_key, session)
+        fetched_day, fetched_data = fetch_latest_data("consumption", session)
 
     else:
         # TODO API bug for past data:
@@ -193,13 +192,11 @@ def fetch_price(
     request_latest = target_datetime is None
 
     if request_latest:
-        fetched_day, fetched_data = fetch_latest_data("price", session, logger)
+        fetched_day, fetched_data = fetch_latest_data("price", session)
     else:
         # TODO API bug for past data:
         # data for given date can only be retrieved until the current hour.
-        fetched_day, fetched_data = fetch_target_data(
-            "price", target_datetime, session, logger
-        )
+        fetched_day, fetched_data = fetch_target_data("price", target_datetime, session)
 
     # [0] = load of Northern Vietnam
     # [1] = load of Central Vietnam
