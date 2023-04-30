@@ -343,8 +343,8 @@ def fetch_cea_production(
                 return renewable_production
         else:
             raise ParserException(
-            parser="IN.py",
-            message=f"{target_datetime}: {zone_key} renewable production data is not available, {r_all_data.status_code}",
+                parser="IN.py",
+                message=f"{target_datetime}: {zone_key} renewable production data is not available, {r_all_data.status_code}",
             )
     else:
         raise ParserException(
