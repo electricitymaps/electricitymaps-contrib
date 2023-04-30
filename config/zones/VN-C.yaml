@@ -1,0 +1,6 @@
+
+flag_file_name: vn.png
+timezone: Asia/Ho_Chi_Minh
+parsers:
+  price: VN.fetch_price
+  consumption: VN.fetch_consumption

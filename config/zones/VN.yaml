@@ -1,2 +1,32 @@
 flag_file_name: vn.png
 timezone: Asia/Ho_Chi_Minh
+parsers:
+  price: VN.fetch_price
+  consumption: VN.fetch_consumption
+
+bounding_box:
+  - - 135.84
+    - 33.82
+  - - 138.72
+    - 37.17
+  
+# emissionFactors:
+
+capacity:
+  biomass: 356
+  coal: 25820
+  gas: 7398
+  hydro: 22345
+  oil: 1579
+  solar: 16567
+  unknown: 619
+  wind: 4667
+  
+sources:
+  EVN:
+    link: https://www.nldc.evn.vn/FullNewsg/100/Thong-tin-thi-truong-dien/default.aspx # capacities
+    
+subZoneNames:
+  - VN-N
+  - VN-C
+  - VN-S
