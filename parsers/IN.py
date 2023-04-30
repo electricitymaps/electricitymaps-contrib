@@ -11,13 +11,13 @@ import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-from pytz import UTC
+from pytz import UTC, timezone
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
 from parsers.lib.validation import validate_consumption
 
-IN_TZ = "Asia/Kolkata"
+IN_TZ = timezone("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = arrow.get("2020-12-17", tzinfo=IN_TZ).datetime
 CONVERSION_GWH_MW = 0.024
 GENERATION_MAPPING = {
@@ -28,7 +28,7 @@ GENERATION_MAPPING = {
     "RENEWABLE GENERATION": "unknown",
 }
 
-GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
+GENERATION_URL = "https://meritindia.in/Dashboard/BindAllIndiaMap"
 
 NPP_MODE_MAPPING = {
     "THER (GT)": "gas",
@@ -213,7 +213,7 @@ def fetch_consumption(
 
     data = {
         "zoneKey": zone_key,
-        "datetime": arrow.now(tz=IN_TZ).datetime,
+        "datetime": IN_TZ.localize(datetime.now()),
         "consumption": total_consumption,
         "source": "vidyupravah.in",
     }
@@ -341,6 +341,11 @@ def fetch_cea_production(
                     url=r.url, zone_key=zone_key
                 )
                 return renewable_production
+        else:
+            raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: {zone_key} renewable production data is not available, {r_all_data.status_code}",
+            )
     else:
         raise ParserException(
             parser="IN.py",
