@@ -10,7 +10,7 @@ import pandas as pd
 import pytz
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config import ZONES_CONFIG, ZoneKey
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
@@ -19,7 +19,7 @@ from electricitymap.contrib.parsers.lib.exceptions import ParserException
 # https://www.bchydro.com/energy-in-bc/our_system/transmission/transmission-system/actual-flow-data.html
 
 HISTORICAL_LOAD_REPORTS = "https://www.bchydro.com/content/dam/BCHydro/customer-portal/documents/corporate/suppliers/transmission-system/balancing_authority_load_data/Historical%20Transmission%20Data/BalancingAuthorityLoad{0}.xls"
-TIMEZONE = pytz.timezone("Canada/Pacific")
+TIMEZONE = pytz.timezone(ZONES_CONFIG.get(ZoneKey("CA-BC")).get("timezone"))
 
 
 @refetch_frequency(timedelta(days=1))
@@ -53,7 +53,7 @@ def fetch_consumption(
     for row in selected_times.iterrows():
         consumption_list.append(
             zoneKey=zone_key,
-            datetime=row[1]["datetime"],
+            datetime=row[1]["datetime"].to_pydatetime(),
             source="bchydro.com",
             consumption=row[1]["Control Area Load"],
         )
