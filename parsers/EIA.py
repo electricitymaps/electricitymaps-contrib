@@ -536,8 +536,8 @@ def fetch_production_mix(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -553,7 +553,7 @@ def fetch_exchange(
     )
     for point in exchange:
         exchange_list.append(
-            zoneKey=point["zoneKey"],
+            zoneKey=ZoneKey(point["zoneKey"]),
             datetime=point["datetime"],
             value=-point["value"]
             if sortedcodes in REVERSE_EXCHANGES
