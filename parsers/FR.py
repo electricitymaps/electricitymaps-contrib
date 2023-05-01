@@ -193,11 +193,11 @@ def fetch_production(
         datapoints.append(datapoint)
 
     max_diffs = {
-        "hydro": 1600,
-        "solar": 500,
-        "coal": 500,
-        "wind": 1000,
-        "nuclear": 1300,
+        "hydro": 5200,
+        "solar": 3500,
+        "coal": 1200,
+        "wind": 5000,
+        "nuclear": 8000,
     }
 
     datapoints = validate_production_diffs(datapoints, max_diffs, logger)
