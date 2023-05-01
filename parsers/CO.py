@@ -112,7 +112,7 @@ def fetch_production(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list:
 
     # Convert datetime to local time
     if target_datetime:
