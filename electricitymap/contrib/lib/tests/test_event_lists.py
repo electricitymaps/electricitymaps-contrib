@@ -21,13 +21,13 @@ class TestExchangeList(unittest.TestCase):
         exchange_list.append(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            value=1,
+            netFlow=1,
             source="trust.me",
         )
         exchange_list.append(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
-            value=1,
+            netFlow=1,
             source="trust.me",
         )
         assert len(exchange_list.events) == 2
@@ -38,7 +38,7 @@ class TestExchangeList(unittest.TestCase):
             exchange_list.append(
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-                value=1,
+                netFlow=1,
                 source="trust.me",
             )
             mock_error.assert_called_once()

@@ -3,4 +3,6 @@ bounding_box:
     - 17.301963603000004
   - - -86.20059160099993
     - 22.123439846000053
-timezone: null
+timezone: America/Mexico_City
+parsers:
+  consumption: MX.fetch_consumption
