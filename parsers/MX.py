@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
 
 import urllib
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
 import pandas as pd
+import pytz
 from bs4 import BeautifulSoup
 from dateutil import tz
-from requests import Session
+from requests import Response, Session
+
+from electricitymap.contrib.config import ZONES_CONFIG, ZoneKey
+from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 MX_PRODUCTION_URL = (
     "https://www.cenace.gob.mx/SIM/VISTA/REPORTES/EnergiaGenLiqAgregada.aspx"
@@ -31,6 +37,18 @@ EXCHANGES = {
     "MX-NO->US-TEX-ERCO": "IntercambioUSA-NTE",
     "MX-NE->US-TEX-ERCO": "IntercambioUSA-NES",
     "BZ->MX-PN": "IntercambioPEN-BEL",
+}
+
+REGION_MAPPING = {
+    "MX-BC": "BCA",
+    "MX-BCS": "BCS",
+    "MX-NW": "NOR",
+    "MX-NO": "NTE",
+    "MX-NE": "NES",
+    "MX-OC": "OCC",
+    "MX-CE": "CEL",
+    "MX-OR": "ORI",
+    "MX-PN": "PEN",
 }
 
 MAPPING = {
@@ -226,6 +244,46 @@ def fetch_exchange(
     }
 
     return data
+
+
+@refetch_frequency(timedelta(hours=1))
+def fetch_consumption(
+    zone_key: ZoneKey,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Gets the consumption data for a region using the live dashboard."""
+    # TODO the calls could be improved since we can get all the data in one call.
+    if session is None:
+        session = Session()
+    if target_datetime is not None:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+    response: Response = session.get(MX_EXCHANGE_URL)
+    if not response.ok:
+        raise ParserException(
+            "MX.py",
+            f"[{response.status_code}] Demand dashboard could not be reached: {response.text}",
+            zone_key,
+        )
+    soup = BeautifulSoup(response.text, "html.parser")
+    demand_td = soup.find(
+        "td", attrs={"id": f"Demanda{REGION_MAPPING[zone_key]}", "class": "num"}
+    )
+    if demand_td is None:
+        raise ParserException("MX.py", f"Could not find demand cell", zone_key)
+    demand = float(demand_td.text.replace(",", ""))
+    timezone = ZONES_CONFIG[zone_key].get("timezone")
+    if timezone is None:
+        timezone = "America/Mexico_City"
+    consumption_list = TotalConsumptionList(logger)
+    consumption_list.append(
+        zoneKey=zone_key,
+        datetime=datetime.now(tz=pytz.timezone(timezone)),
+        consumption=demand,
+        source="cenace.gob.mx",
+    )
+    return consumption_list.to_list()
 
 
 if __name__ == "__main__":
