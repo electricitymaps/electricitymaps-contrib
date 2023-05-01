@@ -24,28 +24,28 @@ class TestExchange(unittest.TestCase):
         exchange = Exchange(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            value=1,
+            netFlow=1,
             source="trust.me",
         )
         assert exchange.zoneKey == ZoneKey("AT->DE")
         assert exchange.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert exchange.value == 1
+        assert exchange.netFlow == 1
         assert exchange.source == "trust.me"
 
         exchange = Exchange(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            value=-1,
+            netFlow=-1,
             source="trust.me",
         )
-        assert exchange.value == -1
+        assert exchange.netFlow == -1
 
     def test_raises_if_invalid_exchange(self):
         with self.assertRaises(ValueError):
             Exchange(
                 zoneKey=ZoneKey("AT->DE"),
                 datetime=datetime(2023, 1, 1),
-                value=1,
+                netFlow=1,
                 source="trust.me",
             )
 
@@ -54,7 +54,7 @@ class TestExchange(unittest.TestCase):
             Exchange(
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-                value=1,
+                netFlow=1,
                 source="trust.me",
             )
 
@@ -62,7 +62,7 @@ class TestExchange(unittest.TestCase):
             Exchange(
                 zoneKey=ZoneKey("AT-DE"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-                value=1,
+                netFlow=1,
                 source="trust.me",
             )
 
@@ -70,7 +70,7 @@ class TestExchange(unittest.TestCase):
             Exchange(
                 zoneKey=ZoneKey("UNKNOWN->UNKNOWN"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-                value=1,
+                netFlow=1,
                 source="trust.me",
             )
 
@@ -78,7 +78,7 @@ class TestExchange(unittest.TestCase):
             Exchange(
                 zoneKey=ZoneKey("DE->AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-                value=1,
+                netFlow=1,
                 source="trust.me",
             )
 

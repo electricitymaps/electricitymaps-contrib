@@ -135,7 +135,14 @@ class Event(BaseModel, ABC):
 
 
 class Exchange(Event):
-    value: float
+    """
+    An event class representing the net exchange between two zones.
+    netFlow: The net flow of electricity between the two zones.
+    It should be positive if the zoneKey on the left of the arrow is exporting electricity to the zoneKey on the right of the arrow.
+    Negative otherwise.
+    """
+
+    netFlow: float
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v: str):
@@ -148,7 +155,7 @@ class Exchange(Event):
             raise ValueError(f"Unknown zone: {v}")
         return v
 
-    @validator("value")
+    @validator("netFlow")
     def _validate_value(cls, v: float):
         # TODO in the future those checks should be performed in the data quality layer.
         if abs(v) > 100000:
@@ -161,7 +168,7 @@ class Exchange(Event):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        value: float,
+        netFlow: float,
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["Exchange"]:
         try:
@@ -169,7 +176,7 @@ class Exchange(Event):
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
-                value=value,
+                netFlow=netFlow,
                 sourceType=sourceType,
             )
         except ValueError as e:
@@ -179,7 +186,7 @@ class Exchange(Event):
         return {
             "datetime": self.datetime,
             "sortedZoneKeys": self.zoneKey,
-            "netFlow": self.value,
+            "netFlow": self.netFlow,
             "source": self.source,
         }
 
@@ -231,11 +238,18 @@ class ProductionBreakdown(Event):
     production: ProductionMix
     storage: Optional[StorageMix] = None
 
-    @validator("production", "storage")
-    def _validate_mix(cls, v):
+    @validator("production")
+    def _validate_production_mix(cls, v):
         if v is not None:
             if all(value is None for value in v.dict().values()):
                 raise ValueError("Mix is completely empty")
+        return v
+
+    @validator("storage")
+    def _validate_storage_mix(cls, v):
+        if v is not None:
+            if all(value is None for value in v.dict().values()):
+                return None
         return v
 
     @staticmethod
@@ -271,7 +285,7 @@ class ProductionBreakdown(Event):
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
             "production": self.production.dict(exclude_none=True),
-            "storage": self.storage.dict(exclude_none=True) if self.storage else None,
+            "storage": self.storage.dict(exclude_none=True) if self.storage else {},
             "source": self.source,
         }
 
