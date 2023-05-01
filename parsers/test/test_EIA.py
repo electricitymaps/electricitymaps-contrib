@@ -9,16 +9,19 @@ from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 
+from electricitymap.contrib.config import ZoneKey
 from parsers import EIA
 
 
 class TestEIA(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         os.environ["EIA_KEY"] = "token"
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
 
+
+class TestEIAProduction(TestEIA):
     def test_fetch_production_mix(self):
         wind_avrn_data = resource_string(
             "parsers.test.mocks.EIA", "US_NW_AVRN-wind.json"
@@ -214,13 +217,7 @@ class TestEIA(unittest.TestCase):
         self.check_production_matches(data_list, expected)
 
 
-class TestEIAExchanges(unittest.TestCase):
-    def setUp(self):
-        os.environ["EIA_KEY"] = "token"
-        self.session = Session()
-        self.adapter = Adapter()
-        self.session.mount("https://", self.adapter)
-
+class TestEIAExchanges(TestEIA):
     def test_fetch_exchange(self):
         data = resource_string(
             "parsers.test.mocks.EIA", "US-NW-BPAT-US-NW-NWMT-exchange.json"
@@ -253,6 +250,30 @@ class TestEIAExchanges(unittest.TestCase):
             self.assertEqual(data["datetime"], expected[i]["datetime"])
             self.assertEqual(data["sortedZoneKeys"], expected[i]["sortedZoneKeys"])
             self.assertEqual(data["netFlow"], expected[i]["netFlow"])
+
+
+class TestEIAConsumption(TestEIA):
+    def test_fetch_consumption(self):
+        data = resource_string("parsers.test.mocks.EIA", "US_NW_BPAT-consumption.json")
+        self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
+        data_list = EIA.fetch_consumption(ZoneKey("US-NW-BPAT"), self.session)
+        expected = [
+            {
+                "source": "eia.gov",
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "consumption": 6215,
+            },
+            {
+                "source": "eia.gov",
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "consumption": 4792,
+            },
+        ]
+        self.assertEqual(len(data_list), len(expected))
+        for i, data in enumerate(data_list):
+            self.assertEqual(data["source"], expected[i]["source"])
+            self.assertEqual(data["datetime"], expected[i]["datetime"])
+            self.assertEqual(data["consumption"], expected[i]["consumption"])
 
 
 if __name__ == "__main__":

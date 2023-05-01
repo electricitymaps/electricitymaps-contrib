@@ -19,10 +19,8 @@ from requests import Session
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
-    ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.ENTSOE import merge_production_outputs
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
