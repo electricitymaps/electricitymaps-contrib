@@ -214,5 +214,46 @@ class TestEIA(unittest.TestCase):
         self.check_production_matches(data_list, expected)
 
 
+class TestEIAExchanges(unittest.TestCase):
+    def setUp(self):
+        os.environ["EIA_KEY"] = "token"
+        self.session = Session()
+        self.adapter = Adapter()
+        self.session.mount("https://", self.adapter)
+
+    def test_fetch_exchange(self):
+        data = resource_string(
+            "parsers.test.mocks.EIA", "US-NW-BPAT-US-NW-NWMT-exchange.json"
+        )
+        self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
+        data_list = EIA.fetch_exchange("US-NW-BPAT", "US-NW-NWMT", self.session)
+        expected = [
+            {
+                "source": "eia.gov",
+                "datetime": datetime(2022, 2, 28, 22, 0, tzinfo=utc),
+                "sortedZoneKeys": "US-NW-BPAT->US-NW-NWMT",
+                "netFlow": -12,
+            },
+            {
+                "source": "eia.gov",
+                "datetime": datetime(2022, 2, 28, 23, 0, tzinfo=utc),
+                "sortedZoneKeys": "US-NW-BPAT->US-NW-NWMT",
+                "netFlow": -11,
+            },
+            {
+                "source": "eia.gov",
+                "datetime": datetime(2022, 3, 1, 0, 0, tzinfo=utc),
+                "sortedZoneKeys": "US-NW-BPAT->US-NW-NWMT",
+                "netFlow": -2,
+            },
+        ]
+        self.assertEqual(len(data_list), len(expected))
+        for i, data in enumerate(data_list):
+            self.assertEqual(data["source"], expected[i]["source"])
+            self.assertEqual(data["datetime"], expected[i]["datetime"])
+            self.assertEqual(data["sortedZoneKeys"], expected[i]["sortedZoneKeys"])
+            self.assertEqual(data["netFlow"], expected[i]["netFlow"])
+
+
 if __name__ == "__main__":
     unittest.main()
