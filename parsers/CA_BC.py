@@ -12,8 +12,8 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG, ZoneKey
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
-from electricitymap.contrib.parsers.lib.config import refetch_frequency
-from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 # More info:
 # https://www.bchydro.com/energy-in-bc/our_system/transmission/transmission-system/actual-flow-data.html
@@ -33,7 +33,7 @@ def fetch_consumption(
     r = session or Session()
     consumption_list = TotalConsumptionList(logger)
     if target_datetime is None:
-        start_date = datetime.now(tz=TIMEZONE) - PUBLICATION_DELAY
+        start_date = datetime.now(tz=TIMEZONE) - PUBLICATION_DELAY - timedelta(days=1)
         end_date = datetime.now(tz=TIMEZONE)
     else:
         start_date = target_datetime - timedelta(days=1)
