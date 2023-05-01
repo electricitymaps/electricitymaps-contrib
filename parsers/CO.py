@@ -63,7 +63,7 @@ def fetch_historical_consumption(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list:
 
     # Convert datetime to local time
     co_datetime = arrow.get(target_datetime).to(TZ)
