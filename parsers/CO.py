@@ -37,7 +37,7 @@ def fetch_consumption(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-):
+) -> list:
     if target_datetime:
         return fetch_historical_consumption(zone_key, session, target_datetime, logger)
     with session.get(colombia_demand_URL, verify=False) as response:
