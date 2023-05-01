@@ -39,7 +39,7 @@ def fetch_consumption(
         start_date = target_datetime - timedelta(days=1)
         end_date = target_datetime
     # If the range spans multiple years, we need to fetch each year separately.
-    for year in range(start_date.year, end_date.year+1):
+    for year in range(start_date.year, end_date.year + 1):
         url = HISTORICAL_LOAD_REPORTS.format(year)
         response: Response = r.get(url)
         if not response.ok:
