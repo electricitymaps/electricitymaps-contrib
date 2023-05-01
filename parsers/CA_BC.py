@@ -108,10 +108,10 @@ def fetch_exchange(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    # print("fetch_exchange(CA-BC, US-BPA) ->")
-    # print(fetch_exchange("CA-BC", "US-BPA"))
-    # print("fetch_exchange(CA-AB, CA-BC) ->")
-    # print(fetch_exchange("CA-AB", "CA-BC"))
+    print("fetch_exchange(CA-BC, US-BPA) ->")
+    print(fetch_exchange("CA-BC", "US-BPA"))
+    print("fetch_exchange(CA-AB, CA-BC) ->")
+    print(fetch_exchange("CA-AB", "CA-BC"))
     print("fetch_consumption(CA-BC) ->")
     print(
         fetch_consumption(
