@@ -15,3 +15,6 @@ parsers:
   consumption: CO.fetch_consumption
   production: CO.fetch_production
   price: CO.fetch_price
+delays:
+  production: 48
+  prices: 48
