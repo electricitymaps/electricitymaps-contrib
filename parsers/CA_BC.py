@@ -20,6 +20,7 @@ from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 HISTORICAL_LOAD_REPORTS = "https://www.bchydro.com/content/dam/BCHydro/customer-portal/documents/corporate/suppliers/transmission-system/balancing_authority_load_data/Historical%20Transmission%20Data/BalancingAuthorityLoad{0}.xls"
 TIMEZONE = pytz.timezone(ZONES_CONFIG.get(ZoneKey("CA-BC")).get("timezone"))
+PUBLICATION_DELAY = timedelta(days=31)
 
 
 @refetch_frequency(timedelta(days=1))
@@ -30,33 +31,40 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ):
     r = session or Session()
-    if target_datetime is None:
-        target_datetime = datetime.now(tz=TIMEZONE)
-    url = HISTORICAL_LOAD_REPORTS.format(target_datetime.year)
-    response: Response = r.get(url)
-    if not response.ok:
-        raise ParserException(
-            "CA_BC.py",
-            "Could not fetch load report for year {0}".format(target_datetime.year),
-            zone_key,
-        )
-    df = pd.read_excel(response.content, skiprows=3)
-    df = df.rename(columns={"Date ?": "Date"})
-    # The first hour of each day is set at 1 and the last at 24 so we need to subtract 1
-    # to correctly align dates and hours.
-    # Due to DST there might be some missing hours, we use shift_backward to fill them with the previous hour.
-    df["datetime"] = pd.to_datetime(
-        df["Date"] + " " + (df["HE"] - 1).astype("str"), format="%m/%d/%Y %H"
-    ).dt.tz_localize(TIMEZONE, nonexistent="shift_backward")
-    selected_times = df[df.datetime.dt.date == target_datetime.date()]
     consumption_list = TotalConsumptionList(logger)
-    for row in selected_times.iterrows():
-        consumption_list.append(
-            zoneKey=zone_key,
-            datetime=row[1]["datetime"].to_pydatetime(),
-            source="bchydro.com",
-            consumption=row[1]["Control Area Load"],
-        )
+    if target_datetime is None:
+        start_date = datetime.now(tz=TIMEZONE) - PUBLICATION_DELAY
+        end_date = datetime.now(tz=TIMEZONE)
+    else:
+        start_date = target_datetime - timedelta(days=1)
+        end_date = target_datetime
+    # If the range spans multiple years, we need to fetch each year separately.
+    for year in range(start_date.year, end_date.year+1):
+        url = HISTORICAL_LOAD_REPORTS.format(year)
+        response: Response = r.get(url)
+        if not response.ok:
+            raise ParserException(
+                "CA_BC.py",
+                "Could not fetch load report for year {0}".format(year),
+                zone_key,
+            )
+        df = pd.read_excel(response.content, skiprows=3)
+        df = df.rename(columns={"Date ?": "Date"})
+        # The first hour of each day is set at 1 and the last at 24 so we need to subtract 1
+        # to correctly align dates and hours.
+        # Due to DST there might be some missing hours, we use shift_backward to fill them with the previous hour.
+        df["datetime"] = pd.to_datetime(
+            df["Date"] + " " + (df["HE"] - 1).astype("str"), format="%m/%d/%Y %H"
+        ).dt.tz_localize(TIMEZONE, nonexistent="shift_backward")
+        df = df.set_index("datetime")
+        selected_times = df[start_date:end_date]
+        for row in selected_times.iterrows():
+            consumption_list.append(
+                zoneKey=zone_key,
+                datetime=row[0].to_pydatetime(),
+                source="bchydro.com",
+                consumption=row[1]["Control Area Load"],
+            )
     return consumption_list.to_list()
 
 
