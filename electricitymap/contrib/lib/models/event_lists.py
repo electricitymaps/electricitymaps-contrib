@@ -86,6 +86,8 @@ class ProductionBreakdownList(EventList):
         """Given multiple parser outputs, sum the production and storage of corresponding datetimes to create a unique production breakdown list."""
         if len(ungrouped_production_breakdowns) == 0:
             return ProductionBreakdownList(logger)
+
+        # Create a dataframe for each parser output, then flatten the power mixes.
         prod_and_storage_dfs = [
             pd.json_normalize(breakdowns.to_list()).set_index("datetime")
             for breakdowns in ungrouped_production_breakdowns
@@ -99,6 +101,7 @@ class ProductionBreakdownList(EventList):
             for key, value in row[1].items():
                 if np.isnan(value):
                     value = None
+                # The key is in the form of "production.<mode>" or "storage.<mode>"
                 prefix, mode = key.split(".")
                 if prefix == "production":
                     production_mix.set_value(mode, value)
