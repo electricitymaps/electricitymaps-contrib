@@ -14,7 +14,7 @@ LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
 class Mix(BaseModel, ABC):
-    def set_value(self, mode: str, value: float) -> None:
+    def set_value(self, mode: str, value: Optional[float]) -> None:
         """
         Sets the value of a production mode.
         This can be used if the Production has been initialized empty
@@ -52,7 +52,7 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def __setattr__(self, name: str, value) -> None:
+    def __setattr__(self, name: str, value: Optional[float]) -> None:
         if name in PRODUCTION_MODES:
             if value is not None and value < 0:
                 self._corrected_negative_values.add(name)
