@@ -21,7 +21,6 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
-from parsers.lib.validation import validate_consumption
 
 IN_TZ = "Asia/Kolkata"
 START_DATE_RENEWABLE_DATA = arrow.get("2020-12-17", tzinfo=IN_TZ).datetime
@@ -224,10 +223,12 @@ def fetch_consumption(
         )
 
     consumption_list = TotalConsumptionList(logger=logger)
-    consumption_list.append(zoneKey= ZoneKey(zone_key),
-        datetime= arrow.now(tz=IN_TZ).datetime,
-        consumption= total_consumption,
-        source= "vidyupravah.in",)
+    consumption_list.append(
+        zoneKey=ZoneKey(zone_key),
+        datetime=arrow.now(tz=IN_TZ).datetime,
+        consumption=total_consumption,
+        source="vidyupravah.in",
+    )
 
     return consumption_list.to_list()
 
@@ -265,7 +266,10 @@ def fetch_npp_production(
         df_zone = df_npp_filtered.loc[df_npp_filtered["region"] == zone_key].copy()
         df_zone["production_mode"] = df_zone["production_mode"].map(NPP_MODE_MAPPING)
         production_in_zone = df_zone.groupby(["production_mode"])["value"].sum()
-        production_dict = { mode: round(production_in_zone.get(mode) / CONVERSION_GWH_MW, 3) for mode in production_in_zone.index}
+        production_dict = {
+            mode: round(production_in_zone.get(mode) / CONVERSION_GWH_MW, 3)
+            for mode in production_in_zone.index
+        }
         return production_dict
     else:
         raise ParserException(
@@ -397,10 +401,12 @@ def daily_to_hourly_production_data(
     for mode, value in production.items():
         production_mix.set_value(mode, value)
     for hour in list(range(0, 24)):
-        all_hourly_production.append( zoneKey= ZoneKey(zone_key),
-            datetime= target_datetime.replace(hour=hour),
-            production= production_mix,
-            source= "npp.gov.in, cea.nic.in",)
+        all_hourly_production.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=target_datetime.replace(hour=hour),
+            production=production_mix,
+            source="npp.gov.in, cea.nic.in",
+        )
     return all_hourly_production.to_list()
 
 
@@ -412,5 +418,5 @@ def get_start_of_day(dt: datetime) -> datetime:
 
 if __name__ == "__main__":
 
-    print(fetch_production(target_datetime=datetime(2021,8,16), zone_key="IN-WE"))
+    print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
     print(fetch_consumption(zone_key="IN-WE"))
