@@ -10,6 +10,8 @@ from imageio import imread
 from PIL import Image, ImageOps
 from requests import Session
 
+from .lib.exceptions import ParserException
+
 url = "https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg"
 
 # specifies locations of data in the image
@@ -146,6 +148,13 @@ def fetch_production(
     }
 
     image = imread(url)
+    # In certain scenario, the URL returns a blank image. Let's verify if the image was read is of proper size
+    if image.size == 0:
+        raise ParserException(
+            "IN_MH.py",
+            "Invalid data read from the source, the source might not be available",
+        )
+
     image = Image.fromarray(image)  # create PIL image
 
     # Read small images for each loaction's bounding box from the main image
