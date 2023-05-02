@@ -555,7 +555,7 @@ def fetch_exchange(
         exchange_list.append(
             zoneKey=ZoneKey(point["zoneKey"]),
             datetime=point["datetime"],
-            value=-point["value"]
+            netFlow=-point["value"]
             if sortedcodes in REVERSE_EXCHANGES
             else point["value"],
             source="eia.gov",
