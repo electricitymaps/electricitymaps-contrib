@@ -1,0 +1,31 @@
+{
+  "response": {
+    "query execution": 0.008633325,
+    "count query execution": 0.021634831,
+    "total": 3,
+    "dateFormat": "YYYY-MM-DD\"T\"HH24",
+    "frequency": "hourly",
+    "data": [
+      {
+        "period": "2023-05-01T11",
+        "respondent": "BPAT",
+        "respondent-name": "Bonneville Power Administration",
+        "type": "D",
+        "type-name": "Demand",
+        "value": 6215,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2023-05-01T10",
+        "respondent": "BPAT",
+        "respondent-name": "Bonneville Power Administration",
+        "type": "D",
+        "type-name": "Demand",
+        "value": 4792,
+        "value-units": "megawatthours"
+      }
+    ],
+    "description": "Hourly net generation by balancing authority and energy source.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
+  },
+  "apiVersion": "2.0.3"
+}

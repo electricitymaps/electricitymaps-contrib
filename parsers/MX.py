@@ -112,7 +112,9 @@ def fetch_csv_for_date(dt, session: Optional[Session] = None):
     response = session.post(
         MX_PRODUCTION_URL,
         data=data,
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
     )
     response.raise_for_status()
 
@@ -198,8 +200,7 @@ def fetch_production(
 
 def fetch_MX_exchange(sorted_zone_keys: str, s: Session) -> float:
     """Finds current flow between two Mexican control areas."""
-
-    req = s.get(MX_EXCHANGE_URL)
+    req = s.get(MX_EXCHANGE_URL, headers={"User-Agent": "Mozilla/5.0"})
     soup = BeautifulSoup(req.text, "html.parser")
     exchange_div = soup.find("div", attrs={"id": EXCHANGES[sorted_zone_keys]})
     val = exchange_div.text
@@ -259,7 +260,9 @@ def fetch_consumption(
         session = Session()
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
-    response: Response = session.get(MX_EXCHANGE_URL)
+    response: Response = session.get(
+        MX_EXCHANGE_URL, headers={"User-Agent": "Mozilla/5.0"}
+    )
     if not response.ok:
         raise ParserException(
             "MX.py",
