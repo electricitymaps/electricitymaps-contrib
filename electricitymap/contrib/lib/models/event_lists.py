@@ -89,11 +89,18 @@ class ProductionBreakdownList(EventList):
         """
         if len(ungrouped_production_breakdowns) == 0:
             return ProductionBreakdownList(logger)
+        if all(
+            len(breakdowns.events) == 0
+            for breakdowns in ungrouped_production_breakdowns
+        ):
+            logger.warning("All production breakdowns are empty.")
+            return ProductionBreakdownList(logger)
 
         # Create a dataframe for each parser output, then flatten the power mixes.
         prod_and_storage_dfs = [
             pd.json_normalize(breakdowns.to_list()).set_index("datetime")
             for breakdowns in ungrouped_production_breakdowns
+            if len(breakdowns.events) > 0
         ]
         df = pd.concat(prod_and_storage_dfs)
         sources = df["source"].unique()
