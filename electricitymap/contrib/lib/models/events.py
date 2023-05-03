@@ -290,7 +290,9 @@ class ProductionBreakdown(Event):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "production": self.production.dict(exclude_none=True) if self.production else {},
+            "production": self.production.dict(exclude_none=True)
+            if self.production
+            else {},
             "storage": self.storage.dict(exclude_none=True) if self.storage else {},
             "source": self.source,
             "sourceType": self.sourceType,

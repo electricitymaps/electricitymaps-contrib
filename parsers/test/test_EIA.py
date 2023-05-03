@@ -90,7 +90,7 @@ class TestEIAProduction(TestEIA):
             GET, gas_avrn_url, json=loads(gas_avrn_data.decode("utf-8"))
         )
 
-        data_list = EIA.fetch_production_mix("US-NW-PACW", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PACW"), self.session)
         expected = [
             {
                 "zoneKey": "US-NW-PACW",
@@ -100,7 +100,7 @@ class TestEIAProduction(TestEIA):
             {"zoneKey": "US-NW-PACW", "source": "eia.gov", "production": {"gas": 450}},
         ]
         self.check_production_matches(data_list, expected)
-        data_list = EIA.fetch_production_mix("US-NW-BPAT", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-NW-BPAT"), self.session)
         expected = [
             {
                 "zoneKey": "US-NW-BPAT",
@@ -133,7 +133,7 @@ class TestEIAProduction(TestEIA):
             GET, nuclear_sc_url, json=loads(nuclear_sc_data.decode("utf-8"))
         )
 
-        data_list = EIA.fetch_production_mix("US-CAR-SC", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-CAR-SC"), self.session)
         expected = [
             {
                 "zoneKey": "US-CAR-SC",
@@ -147,7 +147,7 @@ class TestEIAProduction(TestEIA):
             },
         ]
         self.check_production_matches(data_list, expected)
-        data_list = EIA.fetch_production_mix("US-CAR-SCEG", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-CAR-SCEG"), self.session)
         expected = [
             {
                 "zoneKey": "US-CAR-SCEG",
@@ -194,7 +194,7 @@ class TestEIAProduction(TestEIA):
             "parsers.test.mocks.EIA", "US-NW-PGE-with-nulls.json"
         )
         self.adapter.register_uri(GET, ANY, json=loads(null_avrn_data.decode("utf-8")))
-        data_list = EIA.fetch_production_mix("US-NW-PGE", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PGE"), self.session)
         expected = [
             {
                 "zoneKey": "US-NW-PGE",
@@ -223,7 +223,9 @@ class TestEIAExchanges(TestEIA):
             "parsers.test.mocks.EIA", "US-NW-BPAT-US-NW-NWMT-exchange.json"
         )
         self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
-        data_list = EIA.fetch_exchange("US-NW-BPAT", "US-NW-NWMT", self.session)
+        data_list = EIA.fetch_exchange(
+            ZoneKey("US-NW-BPAT"), ZoneKey("US-NW-NWMT"), self.session
+        )
         expected = [
             {
                 "source": "eia.gov",
