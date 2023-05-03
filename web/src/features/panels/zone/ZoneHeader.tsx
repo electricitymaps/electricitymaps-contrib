@@ -26,8 +26,6 @@ interface ZoneHeaderProps {
   isAggregated?: boolean;
 }
 
-import React, { useState, useEffect } from 'react';
-
 export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
   const { __ } = useTranslation();
   const [currentMode] = useAtom(productionConsumptionAtom);
@@ -53,32 +51,6 @@ export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
     fossilFuelRatioProduction
   );
   const isEstimated = estimationMethod !== undefined;
-
-  // const [outageData, setOutageData] = useState(null);
-  // const fetchData = async () => {
-  //   const id = '1C7zULJugzjFj3zw98WZYzBhEIHNYzTtTLFdTcVdzqzc';
-  //   const gid = '0';
-  //   const url =
-  //     'https://docs.google.com/spreadsheets/d/' +
-  //     id +
-  //     '/gviz/tq?tqx=out:json&tq&gid=' +
-  //     gid;
-  //   const responseText = await (await fetch(url)).text();
-  //   const table = JSON.parse(responseText.match(/(?<=.*\().*(?=\);)/s)[0]).table;
-  //   const matching = table.rows.find((d) => d.c[0].v === zoneId);
-  //   if (matching) {
-  //     setOutageData({
-  //       zoneId: matching.c[0].v,
-  //       message: matching.c[1].v,
-  //       issueId: matching.c[2].v,
-  //     });
-  //   } else {
-  //     setOutageData(null);
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  // }, [zoneId]);
   const outageData = data?.zoneMessage;
 
   return (

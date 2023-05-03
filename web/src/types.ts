@@ -143,6 +143,7 @@ export interface ZoneDetails {
   zoneStates: {
     [key: string]: ZoneDetail;
   };
+  zoneMessage?: { message: string; issue: string };
 }
 
 export interface MapGeometries extends FeatureCollection<Geometry> {
