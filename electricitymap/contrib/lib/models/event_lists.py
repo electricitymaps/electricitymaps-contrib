@@ -80,8 +80,6 @@ class ProductionBreakdownList(EventList):
     def merge_production_breakdowns(
         ungrouped_production_breakdowns: List["ProductionBreakdownList"],
         logger: Logger,
-        merge_zone_key: ZoneKey,
-        merge_source: str,
     ) -> "ProductionBreakdownList":
         """Given multiple parser outputs, sum the production and storage of corresponding datetimes to create a unique production breakdown list."""
         if len(ungrouped_production_breakdowns) == 0:
@@ -93,6 +91,14 @@ class ProductionBreakdownList(EventList):
             for breakdowns in ungrouped_production_breakdowns
         ]
         df = pd.concat(prod_and_storage_dfs)
+        sources = df["source"].unique()
+        sources = ", ".join(sources)
+        zones = df["zoneKey"].unique()
+        if len(zones) != 1:
+            raise ValueError(
+                f"Trying to merge production outputs from multiple zones \
+                , got {len(zones)}: {', '.join(zones)}"
+            )
         df = df.groupby(level=0, dropna=False).sum(numeric_only=True, min_count=1)
         result = ProductionBreakdownList(logger)
         for row in df.iterrows():
@@ -108,9 +114,9 @@ class ProductionBreakdownList(EventList):
                 elif prefix == "storage":
                     storage_mix.set_value(mode, value)
             result.append(
-                merge_zone_key,
+                zones[0],
                 row[0].to_pydatetime(),
-                merge_source,
+                sources,
                 production_mix,
                 storage_mix,
             )

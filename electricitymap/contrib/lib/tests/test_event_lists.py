@@ -153,44 +153,42 @@ class TestProductionBreakdownList(unittest.TestCase):
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             production=ProductionMix(wind=20),
-            source="trust.me",
+            source="trust2.me",
         )
         production_list_2.append(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
             production=ProductionMix(wind=21, coal=1),
-            source="trust.me",
+            source="trust2.me",
         )
         production_list_2.append(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
             production=ProductionMix(wind=22, coal=2),
-            source="trust.me",
+            source="trust2.me",
         )
         production_list_3 = ProductionBreakdownList(logging.Logger("test"))
         production_list_3.append(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             production=ProductionMix(wind=30),
-            source="trust.me",
+            source="trust3.me",
         )
         production_list_3.append(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
             production=ProductionMix(wind=31, coal=1),
-            source="trust.me",
+            source="trust3.me",
         )
         merged = ProductionBreakdownList.merge_production_breakdowns(
             [production_list_1, production_list_2, production_list_3],
             logging.Logger("test"),
-            merge_zone_key=ZoneKey("AT"),
-            merge_source="trust.me",
         )
         assert len(merged.events) == 3
         assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
         assert merged.events[0].production.wind == 60
         assert merged.events[0].production.coal is None
-        assert merged.events[0].source == "trust.me"
+        assert merged.events[0].source == "trust.me, trust2.me, trust3.me"
         assert merged.events[0].zoneKey == ZoneKey("AT")
         assert merged.events[0].storage is None
 
@@ -261,8 +259,6 @@ class TestProductionBreakdownList(unittest.TestCase):
         merged = ProductionBreakdownList.merge_production_breakdowns(
             [production_list_1, production_list_2, production_list_3],
             logging.Logger("test"),
-            merge_zone_key=ZoneKey("AT"),
-            merge_source="trust.me",
         )
         assert len(merged.events) == 3
         assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
