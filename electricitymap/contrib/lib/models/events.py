@@ -241,6 +241,7 @@ class ProductionBreakdown(Event):
     storage: Optional[StorageMix] = None
     """
     An event representing the production and storage breakdown of a zone at a given time.
+    If a production mix is supplied it should not be fully empty.
     """
 
     @validator("production")
