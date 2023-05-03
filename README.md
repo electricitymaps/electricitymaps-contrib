@@ -20,7 +20,7 @@ A real time and historical visualisation of the Greenhouse Gas Intensity (in ter
     <a href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE.md">
     <img src="https://img.shields.io/github/license/electricitymaps/electricitymaps-contrib" alt="Electricity Maps is released under the GNU-AGPLv3 license." /></a>
   <a href="https://slack.electricitymaps.com">
-    <img src="https://img.shields.io/badge/slack-3700%2B-%23E01563" alt="Join our Slack" /></a>
+    <img src="https://img.shields.io/badge/slack-3700%2B-%23126945" alt="Join our Slack" /></a>
   <a href="https://slack.electricitymaps.com">
     <img src="https://img.shields.io/twitter/follow/ElectricityMaps" alt="Twitter Follow"
     ></a>
