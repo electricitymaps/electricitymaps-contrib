@@ -14,7 +14,7 @@ LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
 class Mix(BaseModel, ABC):
-    def set_value(self, mode: str, value: float) -> None:
+    def set_value(self, mode: str, value: Optional[float]) -> None:
         """
         Sets the value of a production mode.
         This can be used if the Production has been initialized empty
@@ -52,7 +52,7 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def __setattr__(self, name: str, value) -> None:
+    def __setattr__(self, name: str, value: Optional[float]) -> None:
         if name in PRODUCTION_MODES:
             if value is not None and value < 0:
                 self._corrected_negative_values.add(name)
@@ -188,6 +188,7 @@ class Exchange(Event):
             "sortedZoneKeys": self.zoneKey,
             "netFlow": self.netFlow,
             "source": self.source,
+            "sourceType": self.sourceType,
         }
 
 
@@ -231,6 +232,7 @@ class TotalProduction(Event):
             "zoneKey": self.zoneKey,
             "generation": self.value,
             "source": self.source,
+            "sourceType": self.sourceType,
         }
 
 
@@ -287,6 +289,7 @@ class ProductionBreakdown(Event):
             "production": self.production.dict(exclude_none=True),
             "storage": self.storage.dict(exclude_none=True) if self.storage else {},
             "source": self.source,
+            "sourceType": self.sourceType,
         }
 
 
@@ -337,6 +340,7 @@ class TotalConsumption(Event):
             "zoneKey": self.zoneKey,
             "consumption": self.consumption,
             "source": self.source,
+            "sourceType": self.sourceType,
         }
 
 
@@ -379,4 +383,5 @@ class Price(Event):
             "currency": self.currency,
             "price": self.price,
             "source": self.source,
+            "sourceType": self.sourceType,
         }
