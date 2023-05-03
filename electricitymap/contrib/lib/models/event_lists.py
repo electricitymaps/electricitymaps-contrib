@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -113,14 +113,14 @@ class ProductionBreakdownList(EventList):
                 if np.isnan(value):
                     value = None
                 # The key is in the form of "production.<mode>" or "storage.<mode>"
-                prefix, mode = key.split(".")
+                prefix, mode = key.split(".") # type: ignore
                 if prefix == "production":
                     production_mix.set_value(mode, value)
                 elif prefix == "storage":
                     storage_mix.set_value(mode, value)
             result.append(
                 zones[0],
-                row[0].to_pydatetime(),
+                row[0].to_pydatetime(), # type: ignore
                 sources,
                 production_mix,
                 storage_mix,
