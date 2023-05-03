@@ -81,7 +81,12 @@ class ProductionBreakdownList(EventList):
         ungrouped_production_breakdowns: List["ProductionBreakdownList"],
         logger: Logger,
     ) -> "ProductionBreakdownList":
-        """Given multiple parser outputs, sum the production and storage of corresponding datetimes to create a unique production breakdown list."""
+        """
+        Given multiple parser outputs, sum the production and storage
+        of corresponding datetimes to create a unique production breakdown list.
+        Sources will be aggregated in a comma-separated string. Ex: "entsoe, eia".
+        There should be only one zone in the list of production breakdowns.
+        """
         if len(ungrouped_production_breakdowns) == 0:
             return ProductionBreakdownList(logger)
 
