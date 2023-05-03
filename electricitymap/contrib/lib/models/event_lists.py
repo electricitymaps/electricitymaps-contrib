@@ -111,6 +111,12 @@ class ProductionBreakdownList(EventList):
                 f"Trying to merge production outputs from multiple zones \
                 , got {len(zones)}: {', '.join(zones)}"
             )
+        source_types = df["sourceType"].unique()
+        if len(source_types) != 1:
+            raise ValueError(
+                f"Trying to merge production outputs from multiple source types \
+                , got {len(source_types)}: {', '.join(source_types)}"
+            )
         df = df.groupby(level=0, dropna=False).sum(numeric_only=True, min_count=1)
         result = ProductionBreakdownList(logger)
         for row in df.iterrows():
@@ -131,6 +137,7 @@ class ProductionBreakdownList(EventList):
                 sources,
                 production_mix,
                 storage_mix,
+                source_types[0],
             )
         return result
 
