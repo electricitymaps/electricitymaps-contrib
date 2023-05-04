@@ -1,24 +1,31 @@
 #!/usr/bin/env python3
 import json
-from datetime import datetime, time, timedelta
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-from pydataxm import pydataxm
+from pydataxm import *
 from requests import Session
 
-from .lib.config import refetch_frequency
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    PriceList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 #   PARSER FOR COLOMBIA / DEMAND-ONLY as of 2023-02-11 / 5-minute-granularity / returns demand data of the recent day
 #   MAIN_WEBSITE = https://www.xm.com.co/consumo/demanda-en-tiempo-real
 colombia_demand_URL = "https://serviciosfacturacion.xm.com.co/XM.Portal.Indicadores/api/Operacion/DemandaTiempoReal"
 
 TZ = "America/Bogota"  # UTC-5
-demand_list = []
 
 # dictionnary of plant types XM to EMaps https://www.xm.com.co/generacion/tipos
-TYPES_XM_EM = {
+PRODUCTION_MAPPING = {
     "AGUA": "hydro",
     "BIOGAS": "biomass",
     "CARBON": "coal",
@@ -31,79 +38,97 @@ TYPES_XM_EM = {
     "JET-A1": "oil",
 }
 
+XM_DELAY = 2
 
+def check_valid_target_datetime(target_datetime: datetime) -> bool:
+    """checks if data is available for the considered target_datetime"""
+    valid_datetime = True
+    if target_datetime is None:
+        valid_datetime = False
+    if target_datetime>=datetime.utcnow()-timedelta(days=XM_DELAY):
+         valid_datetime = False
+    return valid_datetime
+
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "CO",
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    if target_datetime:
-        return fetch_historical_consumption(zone_key, session, target_datetime, logger)
-    with session.get(colombia_demand_URL, verify=False) as response:
-        demand_json = json.loads(response.content)
-        demand_data = demand_json["Variables"][0]["Datos"]
-
-        for datapoint in demand_data:
-            demand_list.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": arrow.get(datapoint["Fecha"], tzinfo=TZ).datetime,
-                    "consumption": round(datapoint["Valor"], 1),
-                    "source": "xm.com.co",
-                }
+    if target_datetime is None:
+        return fetch_live_consumption(zone_key, session, target_datetime, logger)
+    else:
+        if target_datetime<=datetime.utcnow()-timedelta(days=XM_DELAY):
+            return fetch_historical_consumption(zone_key, session, target_datetime, logger)
+        else:
+            raise ParserException(
+                parser="CO",
+                message=f"{target_datetime}: no consumption data available because data is delayed by 48h",
+                zone_key=zone_key,
             )
 
-    return demand_list
-
-
-@refetch_frequency(timedelta(days=1))
-def fetch_historical_consumption(
+def fetch_live_consumption(
     zone_key: str = "CO",
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    demand_list = TotalConsumptionList(logger)
+    response = session.get(colombia_demand_URL, verify=False)
 
+    demand_json = json.loads(response.content)
+    demand_data = demand_json["Variables"][0]["Datos"]
+
+    for datapoint in demand_data:
+        demand_list.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=arrow.get(datapoint["Fecha"], tzinfo=TZ).datetime,
+            consumption=round(datapoint["Valor"], 1),
+            source="xm.com.co",
+        )
+    return demand_list.to_list()
+
+
+def fetch_historical_consumption(
+    zone_key: str = "CO",
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    demand_list = TotalConsumptionList(logger)
     # Convert datetime to local time
-    co_datetime = arrow.get(target_datetime).to(TZ)
+    target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
 
     objetoAPI = pydataxm.ReadDB()
 
     # API request consumption
     df_consumption = objetoAPI.request_data(
-        "DemaReal", "Sistema", co_datetime.date(), co_datetime.date()
+        "DemaReal", "Sistema", target_arrow_in_tz.date(), target_arrow_in_tz.date()
     )
-    if df_consumption.empty:
-        return []
 
+    if not df_consumption.empty:
+        hour_columns = [col for col in df_consumption.columns if "Hour" in col]
+        for hour_col in hour_columns:
+
+                target_datetime_in_tz = target_arrow_in_tz.datetime.replace(
+                    hour=int(hour_col[-2:]) - 1
+                )
+                consumption = float(df_consumption[hour_col]) / 1000
+                demand_list.append(
+                    zoneKey=zone_key,
+                    datetime=target_datetime_in_tz,
+                    consumption=consumption,
+                    source="xm.com.co",
+                )
+        return demand_list.to_list()
     else:
-        # Select the columns with the consumption values for each hours
-        df_consumption = df_consumption.iloc[:, 2:26]
+        raise ParserException(
+            parser="CO",
+            message=f"{target_datetime} : no consumption data available",
+            zone_key=zone_key,
+                )
 
-        # Make sure values are positive and in MW
-        df_consumption = df_consumption[df_consumption >= 0] / 1000
-
-        hour = 0
-
-        datapoints = list()
-
-        for column in df_consumption.columns:
-
-            datapoint_datetime = datetime.combine(co_datetime.date(), time(hour))
-
-            datapoint = {
-                "zoneKey": zone_key,
-                "datetime": arrow.get(datapoint_datetime).replace(tzinfo=TZ).datetime,
-                "consumption": df_consumption[column].values[0],
-                "source": "xm.com.co",
-            }
-
-            datapoints.append(datapoint)
-
-            hour += 1
-
-        return datapoints
 
 
 @refetch_frequency(timedelta(days=1))
@@ -112,69 +137,74 @@ def fetch_production(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> list:
-
-    # Convert datetime to local time
-    if target_datetime:
-        co_datetime = arrow.get(target_datetime).to(TZ)
+) -> dict:
+    if  check_valid_target_datetime(target_datetime):
+        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
     else:
-        co_datetime = arrow.get(datetime.now() + timedelta(days=-3)).to(TZ)
+        target_arrow_in_tz = arrow.now().floor('day').to(TZ).shift(days=-XM_DELAY)
 
     objetoAPI = pydataxm.ReadDB()
 
     # API request list of power plants with ID (column 1) and type (column 7)
     df_recursos = objetoAPI.request_data(
-        "ListadoRecursos", "Sistema", co_datetime.date(), co_datetime.date()
+        "ListadoRecursos",
+        "Sistema",
+        target_arrow_in_tz.date(),
+        target_arrow_in_tz.date(),
     )
 
     # API request generation per power plant
     df_generation = objetoAPI.request_data(
-        "Gene", "Recurso", co_datetime.date(), co_datetime.date()
+        "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
     )
 
-    if df_generation.empty:
-        return []
+    if not df_generation.empty and not df_recursos.empty:
+        df_units = (
+            df_recursos[["Values_Code", "Values_EnerSource"]]
+            .copy()
+            .set_index("Values_Code")
+        )
+        df_generation = df_generation.set_index("Values_code")
+        df_generation_mapped = df_generation.join(df_units, how="left").reset_index()
+        df_generation_mapped["Values_EnerSource"] = df_generation_mapped[
+            "Values_EnerSource"
+        ].map(PRODUCTION_MAPPING)
 
+        filtered_columns = [
+            col
+            for col in df_generation_mapped.columns
+            if "Hour" in col or "Values_EnerSource" in col
+        ]
+        df_generation_aggregated = (
+            df_generation_mapped[filtered_columns].groupby("Values_EnerSource").sum()
+        )
+
+        production_list = ProductionBreakdownList(logger)
+        for col in df_generation_aggregated.columns:
+            production_kw = df_generation_aggregated[col].to_dict()
+            # convert to MW
+            production_mw = {mode: production_kw[mode] / 1000 for mode in production_kw}
+            # convert to ProductionMix
+            production_mix = ProductionMix()
+
+            for mode, value in production_mw.items():
+                production_mix.set_value(mode, value)
+
+            co_datetime = target_arrow_in_tz.datetime.replace(hour=int(col[-2:]) - 1)
+            production_list.append(
+                zoneKey=ZoneKey(zone_key),
+                datetime=co_datetime,
+                production=production_mix,
+                source="xm.com.co",
+            )
+
+        return production_list.to_list()
     else:
-
-        # Add column with XM type
-        df_generation["XM Type"] = df_generation["Values_code"].apply(
-            lambda x: df_recursos.loc[
-                df_recursos["Values_Code"] == x, "Values_EnerSource"
-            ].values[0]
+        raise ParserException(
+            parser="CO",
+            message=f"{target_arrow_in_tz.datetime}: no production data available",
+            zone_key=zone_key,
         )
-
-        # Add column with EMaps type from types dict
-        df_generation["EM Type"] = df_generation["XM Type"].apply(
-            lambda x: TYPES_XM_EM.get(x) if x in TYPES_XM_EM else "unknown"
-        )
-
-        # Get the generation values per hour and per EM type of production
-        df_generation_type = df_generation.groupby(["EM Type"]).sum()
-
-        # Make sure values are positive expressed in MW
-        df_generation_type = df_generation_type[df_generation_type >= 0] / 1000
-
-        hour = 0
-
-        datapoints = list()
-
-        for column in df_generation_type.columns:
-
-            datapoint_datetime = datetime.combine(co_datetime.date(), time(hour))
-
-            datapoint = {
-                "zoneKey": zone_key,
-                "datetime": arrow.get(datapoint_datetime).replace(tzinfo=TZ).datetime,
-                "production": df_generation_type[column].to_dict(),
-                "source": "xm.com.co",
-            }
-
-            datapoints.append(datapoint)
-
-            hour += 1
-
-        return datapoints
 
 
 @refetch_frequency(timedelta(days=1))
@@ -183,37 +213,49 @@ def fetch_price(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> list:
-
-    # Convert datetime to local time
-    if target_datetime:
-        co_datetime = arrow.get(target_datetime).to(TZ)
+) -> dict:
+    if not check_valid_target_datetime(target_datetime):
+        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
     else:
-        co_datetime = arrow.get(datetime.now() + timedelta(days=-3)).to(TZ)
+        target_arrow_in_tz = arrow.now().floor('day').to(TZ).shift(days=-XM_DELAY)
 
     objetoAPI = pydataxm.ReadDB()
 
     # API request consumption
     df_price = objetoAPI.request_data(
-        "PrecBolsNaci", "Sistema", co_datetime.date(), co_datetime.date()
+        "PrecBolsNaci", "Sistema", target_arrow_in_tz.date(), target_arrow_in_tz.date()
     )
-    if df_price.empty:
-        return []
+    price_list = PriceList(logger)
+    if not df_price.empty:
+        hour_columns = [col for col in df_price.columns if "Hour" in col]
+        for col in hour_columns:
+            target_datetime_in_tz = target_arrow_in_tz.datetime.replace(
+                hour=int(col[-2:]) - 1
+            )
+            price = float(df_price[col]) * 1000
 
+            price_list.append(
+                zoneKey=zone_key,
+                datetime=target_datetime_in_tz,
+                currency="COP",
+                price=price,
+                source="xm.com.co",
+            )
+        return price_list.to_list()
     else:
+        raise ParserException(
+            parser="CO",
+            message=f"{target_datetime}: no price data available",
+            zone_key=zone_key,
+        )
 
-        # Get the price value for the requested hour in COP/MWh
-        price_hour = df_price.iloc[:, co_datetime.hour].values[0] * 1000
-
-        return {
-            "zoneKey": zone_key,
-            "datetime": arrow.get(co_datetime).replace(tzinfo=TZ).datetime,
-            "currency": "COP",
-            "price": price_hour,
-            "source": "xm.com.co",
-        }
 
 
 if __name__ == "__main__":
-    print("fetch_consumption() ->")
-    print(fetch_consumption())
+    # print("fetch_consumption() ->")
+    # print(fetch_consumption())
+
+    # print("fetch_live_production() ->")
+    # print(fetch_production())
+    print("fetch_production() ->")
+    print(fetch_production(target_datetime=datetime(2020, 1, 1)))
