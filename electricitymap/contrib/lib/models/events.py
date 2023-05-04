@@ -264,7 +264,7 @@ class ProductionBreakdown(Event):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        production: Optional[ProductionMix],
+        production: Optional[ProductionMix] = None,
         storage: Optional[StorageMix] = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["ProductionBreakdown"]:
