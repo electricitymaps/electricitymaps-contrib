@@ -192,6 +192,7 @@ CONSUMPTION_SQL_QUERY = """
 CONSUMPTION_DATETIME_COLUMN_NAME = "current_datetime"
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "IN-WE",
     session: Optional[Session] = None,
