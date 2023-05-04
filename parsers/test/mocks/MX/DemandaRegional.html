@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+<!-- PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	Demanda Regional
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta http-equiv="imagetoolbar" content="no" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300" rel="stylesheet" type="text/css" /><link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" /><link rel="stylesheet" href="/styles/layout.css" type="text/css" /><link rel="stylesheet" href="/styles/responsiveslides.css" type="text/css" /><link rel="stylesheet" href="/styles/megaOne.css" type="text/css" /><link rel="stylesheet" href="/styles/jquery-ui.css" type="text/css" /><link rel="stylesheet" href="/SIM/VISTA/styles/arbol.css" type="text/css" /><link rel="stylesheet" href="/styles/jquery.modal.css" type="text/css" /><link rel="stylesheet" href="/styles/directorio.css" type="text/css" /><link href="https://framework-gb.cdn.gob.mx/favicon.ico" rel="shortcut icon" />
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <script src="/scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/scripts/jquery.scrollTo-min.js"></script>
+
+    <script type="text/javascript" src="/scripts/jquery.min.js"></script> <!-- la active nuevamente para capacitacion -->
+    <script type="text/javascript" src="/scripts/jquery-ui-1.8.13.custom.min.js"></script>
+
+
+    <script src="/scripts/jquery-ui.js"></script>
+    <script type="text/javascript" src="/scripts/tabcontent.js"></script>
+    <script type="text/javascript" src="/scripts/ddimgtooltip.js"></script>
+    <!-- Homepage Only Scripts -->
+
+
+    <script type="text/javascript" src="/scripts/responsiveslides.js"></script>
+    <script type="text/javascript" src="scripts/jquery.modal.js"></script>
+    <!--<script src=“https://framework-gb.cdn.gob.mx/scripts/modal_sgb.js"></script>-->
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="https://framework-gb.cdn.gob.mx/scripts/modal_sgb.js"></script>  -->
+
+    <!-- Respond.js soporte de media queries para Internet Explorer 8 -->
+    <!-- ie8.js EventTarget para cada nodo en Internet Explorer 8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.2.2/ie8.js"></script>
+    <![endif]-->
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/af-2.3.3/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.5.0/r-2.2.2/rg-1.1.0/rr-1.2.4/sc-2.0.0/sl-1.3.0/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/af-2.3.3/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.5.0/r-2.2.2/rg-1.1.0/rr-1.2.4/sc-2.0.0/sl-1.3.0/datatables.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".rslides").responsiveSlides();
+
+        });
+        function removeClassName(elem, className) {
+            elem.className = elem.className.replace(className, "").trim();
+        }
+        function addCSSClass(elem, className) {
+            removeClassName(elem, className);
+            elem.className = (elem.className + " " + className).trim();
+        }
+        String.prototype.trim = function () {
+            return this.replace(/^\s+|\s+$/, "");
+        }
+        function stripedTable() {
+            if (document.getElementById && document.getElementsByTagName) {
+                var allTables = document.getElementsByTagName('table');
+                if (!allTables) { return; }
+                for (var i = 0; i < allTables.length; i++) {
+                    if (allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)) {
+                        var trs = allTables[i].getElementsByTagName("tr");
+                        for (var j = 0; j < trs.length; j++) {
+                            removeClassName(trs[j], 'alternateRow');
+                            addCSSClass(trs[j], 'normalRow');
+                        }
+                        for (var k = 0; k < trs.length; k += 2) {
+                            removeClassName(trs[k], 'normalRow');
+                            addCSSClass(trs[k], 'alternateRow');
+                        }
+                    }
+                }
+            }
+        }
+        function addIEonScroll() {
+            var thisContainer = document.getElementById('tableContainer');
+            if (!thisContainer) { return; }
+            var onClickAction = 'toggleSelectBoxes();';
+            thisContainer.onscroll = new Function(onClickAction);
+        }
+        function toggleSelectBoxes() {
+            var thisContainer = document.getElementById('tableContainer');
+            var thisHeader = document.getElementById('fixedHeader');
+            if (!thisContainer || !thisHeader) { return; }
+            var selectBoxes = thisContainer.getElementsByTagName('select');
+            if (!selectBoxes) { return; }
+            for (var i = 0; i < selectBoxes.length; i++) {
+                if (thisContainer.scrollTop >= eval(selectBoxes[i].parentNode.offsetTop - thisHeader.offsetHeight)) {
+                    selectBoxes[i].style.visibility = 'hidden';
+                } else {
+                    selectBoxes[i].style.visibility = 'visible';
+                }
+            }
+        }
+        window.onload = function () {
+             stripedTable(); addIEonScroll();
+        }
+
+        $(document).ready(function () {
+            $('#zebra tbody tr:even').addClass('zebra');
+            /*HOVER's: start*/
+            $('#zebra tbody tr:even').mouseover(function () {
+                $(this).removeClass('zebra');
+                $(this).addClass('blue');
+
+                $('#zebra tbody tr:even').mouseout(function () {
+                    $(this).removeClass('blue');
+                    $(this).addClass('zebra');
+                });
+            });
+            $('#zebra tbody tr:odd').mouseover(function () {
+                $(this).addClass('grey');
+
+                $('#zebra tbody tr:odd').mouseout(function () {
+                    $(this).removeClass('grey');
+                });
+
+            });
+            /*HOVER's: end*/
+            $(".menuIzq").find('a[href="#"]').attr("title", "Próximamente estará disponible");
+
+            $(".menuIzq").find('a[href="#"]').click(function () {
+                return false;
+            });
+        });
+
+
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $('#LoadPage').load('http://google.com', function (data) {
+                $(this).html(data)
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+           $('#ContentPlaceHolder1_DrpAnio').addClass('btn btn-default dropdown-toggle');
+            $(".submenuIzq").on('click', function (event) {
+
+                var sub = $(this);
+                if (sub.hasClass("submenuOculto")) {
+                    sub.addClass("submenuVisible").removeClass("submenuOculto");
+                    return false;
+                }
+
+                else {
+
+                    if ($(event.target).first().parents("li").first().hasClass("submenuVisible")) {
+                        sub.addClass("submenuOculto").removeClass("submenuVisible");
+                        // return false;
+
+
+                    }
+                }
+            });
+        });
+
+   //Capitaliza todos los titulos de las páginas
+        //Capitaliza todos los titulos de las páginas
+        $(document).ready(function () {
+            minLength = 2;
+            var words = $('.titulo').text().split(' ');
+            var titulos = '';
+
+                 $.each(words, function (i, word) {
+
+                     if ($.trim(word) == "CENACE" || $.trim(word) == "MEM" || $.trim(word) == "SENER" || $.trim(word) == "CRE" || $.trim(word) == "RNT"
+                         || $.trim(word) == "GCRBC" || $.trim(word) == "GCRNE" || $.trim(word) == "GCRNO" || $.trim(word) == "GCRC" || $.trim(word) == "GCRNT"
+                         || $.trim(word) == "GCRP" || $.trim(word) == "GCROR" || $.trim(word) == "SEN" || $.trim(word) == "BCA" || $.trim(word) == "I" || $.trim(word) == "II"
+                          || $.trim(word) == "CCARM" || $.trim(word) == "OSEN" || $.trim(word) == "PER" || $.trim(word) == "CILs" || $.trim(word) == "Paz" ) {
+                          titulos += words[i] + ' ';
+                    }
+
+                     else if ($.trim(word).length <= minLength || $.trim(word) == "SOBRE" || $.trim(word) == "PARA" || $.trim(word) == "LAS" || $.trim(word) == "DEL" || $.trim(word) == "FORMA"
+                     || $.trim(word) == "POR" || $.trim(word) == "CON")
+
+                     {
+                         titulos += words[i].toLowerCase() + ' ';
+                     }
+
+                     else
+                     {
+                         titulos += words[i].charAt(0) + words[i].slice(1).toLowerCase() + ' ';
+                     }
+
+
+
+                });
+
+               //  $('.titulo').append
+                 $('.titulo').html(titulos).append("<hr class='red' style='margin-bottom: 40px;' />");
+        });
+    </script>
+
+    <!-- SCRIPT DE GOOGLE ANALYTICS PARA ESTADISTICAS -->
+    <script type="text/javascript">
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-62147574-1', 'auto');
+        ga('send', 'pageview');
+
+        $(document).ready(function () {
+            $('ul.nav li.dropdown').hover(function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
+            }, function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
+            });
+        });
+    </script>
+   <style>
+	.alert{
+	  margin-bottom: 0;
+	  border-radius: 0;
+	  width:100%;
+	  position:fixed;
+	  z-index:1030;
+	  top:86px;
+	}
+   </style>
+
+    <meta name="description" content="Demanda Regional del Sistema Interconectado nacional" />
+    <link href="/styles/DemandaRegional.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("area").mouseenter(function (event) {
+                var id = $(this).attr("id");
+                id = id.substr(4, 3);
+                $("#demanda" + id).children(".datosDemanda").removeAttr("style");
+                $("#demanda" + id).removeClass('divOculto');
+            });
+            $("area").mouseleave(function () {
+                var id = $(this).attr("id");
+                id = id.substr(4, 3);
+                $("#demanda" + id).addClass('divOculto');
+                $("#demanda" + id).children(".datosDemanda").removeAttr("style");
+            });
+            $("area").mousemove(function (event) {
+                var id = $(this).attr("id");
+                id = id.substr(4, 3);
+                var posx = event.clientX;
+                var posy = event.clientY;
+                var parentOffset = $("#demanda" + id).offset();
+                var posxMove = 0;
+                var posyMove = 0;
+                if (id == "NTE" || id == "ORI" || id == "PEN") {
+                    posxMove = 35;
+                    posyMove = 130;
+                }
+                else if (id == "NOR" || id == "BCN" || id == "NES") {
+                    posxMove = -3;
+                    posyMove = 35;
+                }
+                else if (id == "BCS" || id == "CEL") {
+                    posxMove = 35;
+                    posyMove = 0;
+                }
+                else if (id == "OCC") {
+                    posxMove = 176;
+                    posyMove = 35;
+                }
+                posx = posx - parentOffset.left - posxMove;
+                posy = posy - parentOffset.top - posyMove;
+                posx = posx + $(document).scrollLeft();
+                posy = posy + $(document).scrollTop();
+                var style = "left:" + posx + "px; top:" + posy + "px; display:block; visibility:visible;";
+                $("#demanda" + id).children(".datosDemanda").attr("style", style);
+            });
+
+            var actualiza = function () {
+                var options = {
+                    url: './DemandaRegional.aspx/actualizaValores',
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+                };
+                $.ajax(options).done(function (data) {
+                    try {
+                        var resultado = $.parseJSON(data.d);
+                        $.each(resultado, function (key, value) {
+                            $("#" + value.id).html(value.valor);
+                        });
+                    }
+                    catch (e) {
+                        if (window.console) {
+                            try { console.log(e); } catch (ex) { }
+                        }
+                    }
+                }).error(function () {
+
+                }).always(function () {
+                    setTimeout(function () { actualiza(); }, 300000);
+                });
+            }
+
+            $(".botonIntercambio").click(function () {
+                if ($(this).hasClass("activo")) {
+                    //El mapa de intercambio esta visible
+                    $(".mapaDemandaInferior").removeClass("divOculto");
+                    $(".mapaIntercambio").addClass("divOculto");
+                    $(this).removeClass("activo");
+                }
+                else {
+                    //el mapa de intercambio esta oculto
+                    $(".mapaIntercambio").removeClass("divOculto");
+                    $(".mapaDemandaInferior").addClass("divOculto");
+                    $(this).addClass("activo");
+                }
+            });
+
+            setTimeout(function () { actualiza(); }, 300000);
+
+
+        });
+
+    </script>
+</head>
+<!--INICIA ENCABEZADO -->
+<body id="top" style="margin: 0px; padding: 41px 0px 0px 0px;">
+     <nav class="navbar navbar-inverse navbar-fixed-top navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-target="#navbarMainCollapse" data-toggle="collapse">
+                    <span class="sr-only">Interruptor de Navegación</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="https://www.gob.mx/" style="padding-left: 6px;" class="navbar-brand" title="Ir a la página inicial Gob.Mx">
+                   <img src="/images/iconos/logoheader.svg" width="75" height="23" alt="Página de inicio, Gobierno de México"/></a>
+            </div>
+            <div id="navbarMainCollapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://www.gob.mx/tramites" title="Trámites">Trámites</a></li>
+                    <li><a href="https://www.gob.mx/gobierno" title="Gobierno">Gobierno</a></li>
+
+                    <li><a href="https://datos.gob.mx" title="Datos Abiertos">Datos</a></li>
+                   <li><a href="https://www.gob.mx/busqueda"><span class="sr-only">Búsqueda</span><i class="icon-search"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-inverse sub-navbar fixed-top" style="margin-top: 0px;  position:fixed">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subenlaces">
+                    <span class="sr-only">Interruptor de Navegación</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="subenlaces">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://www.gob.mx/cenace/archivo/articulos">Blog</a></li>
+                    <li><a href="http://www.gob.mx/cenace/archivo/multimedia">Multimedia</a></li>
+                    <li><a href="http://www.gob.mx/cenace/archivo/prensa">Prensa</a></li>
+                    <li><a href="http://www.gob.mx/cenace/archivo/acciones_y_programas">Acciones y Programas</a></li>
+                    <li><a href="http://www.gob.mx/cenace/archivo/documentos">Documentos</a></li>
+                    <li><a href="/Transparencia.aspx">Transparencia</a></li>
+                    <li><a href="/ProteccionDatosPersonales.aspx">Protección de Datos Personales</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <form method="post" action="./DemandaRegional.aspx" id="form2" style="padding-top:70px">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTM3MTU3MDQ3MGRkAMUiaGkUQTvaPtANx4wTMp2IKdnowkQdcPvbxEWgWaY=" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="383DEF29" />
+</div>
+            <div id="espacioentremenutitulocontacto">
+            </div>
+            <div id="contenido" class="wrapper col4">
+
+    <div class="breadcrumbGrafica" style="margin:0px;padding-bottom:30px;padding-left: 0px;">
+        <div class="breadcrumb" style="text-align: left; margin-left: 50px; margin-bottom:0px;">
+    <span id="ContentPlaceHolder1_graficasBreadcrumb_smpMapPath" style="display:inline-block;height:30px;"><a href="#ContentPlaceHolder1_graficasBreadcrumb_smpMapPath_SkipLink"><img alt="Skip Navigation Links" src="/WebResource.axd?d=m_gpC38WsyEnxokFzTvIQdzhxkuAz-klE-fs_46F6nThda_B35yQwghiOPB1h0a1mIAakDgQ3KsmG3bzWRwFHQqhU-9wAoBYgFtkczSERag1&amp;t=637823149705833095" width="0" height="0" style="border-width:0px;" /></a><span>
+            <a href="http://www.gob.mx/cenace" title="Inicio"><i class="icon icon-home"></i></a>
+        </span><span>
+            <span class="divider"></span>
+        </span><span><a title="CENACE" href="/CENACE.aspx">CENACE</a></span><span>
+            <span class="divider"></span>
+        </span><span style="color:#545454;font-weight:bold;">Demanda del Sistema El&#233;ctrico Nacional</span><a id="ContentPlaceHolder1_graficasBreadcrumb_smpMapPath_SkipLink"></a></span><br />
+     <span id="ContentPlaceHolder1_graficasBreadcrumb_SIM_AP" style="font-weight:600; font-size:20px;"></span>
+</div>
+
+    </div>
+    <div class="containerGrafica" style="height: 460px; display: inline-block; width: 1040px">
+        <div class="chartContainer" style="width: 100%; margin-top: 0px;">
+            <div id="tituloContacto" class="titulo" style="margin-left: 0;">Demanda del Sistema Eléctrico Nacional</div>
+            <div class="mapaDemanda">
+                <div class="mapaDemandaInferior">
+                    <div class="instruccion">Al pasar por cada zona del mapa podrás visualizar la generación y demanda actual de la región.</div>
+                    <img alt="mapa" src="/images/MapaInteractivo/MapaAreas3.png" style="width: 803px; height: 568px;" />
+                </div>
+                <div id="demandaBCN" class="demandaRegion divOculto">
+                    <img alt="BCN" src="/images/MapaInteractivo/BCN2.png" />
+                    <div class="datosDemanda">
+                        <table class="datosEncabezado">
+                            <tr>
+                                <th colspan="2">Baja California Norte</th>
+                            </tr>
+                        </table>
+                        <table class="datosCelda">
+                            <tr>
+                                <td>Generación Neta</td>
+                                <td class="num" id="GeneracionBCA">1,564</td>
+                            </tr>
+                            <tr>
+                                <td>Intercambio Neto</td>
+                                <td class="num" id="IntercambioBCA">23</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Demanda Neta</td>
+                                <td class="num" id="DemandaBCA" style="border: none;">1,587</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="demandaBCS" class="demandaRegion divOculto">
+                    <img alt="BCS" src="/images/MapaInteractivo/BCS.png" />
+                    <div class="datosDemanda">
+                        <table class="datosEncabezado">
+                            <tr>
+                                <th colspan="2">Baja California Sur</th>
+                            </tr>
+                        </table>
+                        <table class="datosCelda">
+                            <tr>
+                                <td>Generación Neta</td>
+                                <td class="num" id="GeneracionBCS">340</td>
+                            </tr>
+                            <tr>
+                                <td>Intercambio Neto</td>
+
+                                <td class="num" id="IntercambioBCS">N/A</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Demanda Neta</td>
+                                <td class="num" id="DemandaBCS" style="border: none;">0</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="demandaNOR" class="demandaRegion divOculto">
+                    <img alt="NOR" src="/images/MapaInteractivo/NOR.png" />
+                    <div class="datosDemanda">
+                        <table class="datosEncabezado">
+                            <tr>
+                                <th colspan="2">Noroeste</th>
+                            </tr>
+                        </table>
+                        <table class="datosCelda">
+                            <tr>
+                                <td>Generación Neta</td>
+                                <td class="num" id="GeneracionNOR">2,759</td>
+                            </tr>
+                            <tr>
+                                <td>Intercambio Neto</td>
+                                <td class="num" id="IntercambioNOR">&#8208;470</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Demanda Neta</td>
+                                <td class="num" id="DemandaNOR" style="border: none;">2,295</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="demandaNTE" class="demandaRegion divOculto">
+                    <img alt="NTE" src="/images/MapaInteractivo/NTE.png" />
+                    <div class="datosDemanda">
+                        <table class="datosEncabezado">
+                            <tr>
+                                <th colspan="2">Norte</th>
+                            </tr>
+                        </table>
+                        <table class="datosCelda">
+                            <tr>
+                                <td>Generación Neta</td>
+                                <td class="num" id="GeneracionNTE">3,988</td>
+                            </tr>
+                            <tr>
+                                <td>Intercambio Neto</td>
+                                <td class="num" id="IntercambioNTE">&#8208;561</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Demanda Neta</td>
+                                <td class="num" id="DemandaNTE" style="border: none;">3,426</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="demandaNES" class="demandaRegion divOculto">
+                    <img alt="NES" src="/images/MapaInteractivo/NES.png" />
+                    <div class="datosDemanda">
+                        <table class="datosEncabezado">
+                            <tr>
+                                <th colspan="2">Noreste</th>
+                            </tr>
+                        </table>
+                        <table class="datosCelda">
+                            <tr>
+                                <td>Generación Neta</td>
+                                <td class="num" id="GeneracionNES">9,113</td>
+                            </tr>
+                            <tr>
+                                <td>Intercambio Neto</td>
+                                <td class="num" id="IntercambioNES">&#8208;3,444</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Demanda Neta</td>
+                                <td class="num" id="DemandaNES" style="border: none;">5,677</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="demandaOCC" class="demandaRegion divOculto">
+                    <img alt="OCC" src="/images/MapaInteractivo/OCC.png" />
+                    <div class="datosDemanda">
+                        <table class="datosEncabezado">
+                            <tr>
+                                <th colspan="2">Occidental</th>
+                            </tr>
+                        </table>
+                        <table class="datosCelda">
+                            <tr>
+                                <td>Generación Neta</td>
+                                <td class="num" id="GeneracionOCC">7,023</td>
+                            </tr>
+                            <tr>
+                                <td>Intercambio Neto</td>
+                                <td class="num" id="IntercambioOCC">1,514</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Demanda Neta</td>
+                                <td class="num" id="DemandaOCC" style="border: none;">8,519</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="demandaCEL" class="demandaRegion divOculto">
+                    <img alt="CEL" src="/images/MapaInteractivo/CEL.png" />
+                    <div class="datosDemanda">
+                        <table class="datosEncabezado">
+                            <tr>
+                                <th colspan="2">Central</th>
+                            </tr>
+                        </table>
+                        <table class="datosCelda">
+                            <tr>
+                                <td>Generación Neta</td>
+                                <td class="num" id="GeneracionCEL">4,190</td>
+                            </tr>
+                            <tr>
+                                <td>Intercambio Neto</td>
+                                <td class="num" id="IntercambioCEL">2,379</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Demanda Neta</td>
+                                <td class="num" id="DemandaCEL" style="border: none;">6,573</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="demandaORI" class="demandaRegion divOculto">
+                    <img alt="ORI" src="/images/MapaInteractivo/ORI.png" />
+                    <div class="datosDemanda">
+                        <table class="datosEncabezado">
+                            <tr>
+                                <th colspan="2">Oriental</th>
+                            </tr>
+                        </table>
+                        <table class="datosCelda">
+                            <tr>
+                                <td>Generación Neta</td>
+                                <td class="num" id="GeneracionORI">6,106</td>
+                            </tr>
+                            <tr>
+                                <td>Intercambio Neto</td>
+                                <td class="num" id="IntercambioORI">57</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Demanda Neta</td>
+                                <td class="num" id="DemandaORI" style="border: none;">6,163</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="demandaPEN" class="demandaRegion divOculto">
+                    <img alt="PEN" src="/images/MapaInteractivo/PEN2.png" />
+                    <div class="datosDemanda">
+                        <table class="datosEncabezado">
+                            <tr>
+                                <th colspan="2">Peninsular</th>
+                            </tr>
+                        </table>
+                        <table class="datosCelda">
+                            <tr>
+                                <td>Generación Neta</td>
+                                <td class="num" id="GeneracionPEN">1,283</td>
+                            </tr>
+                            <tr>
+                                <td>Intercambio Neto</td>
+                                <td class="num" id="IntercambioPEN">333</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Demanda Neta</td>
+                                <td class="num" id="DemandaPEN" style="border: none;">1,616</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="mapaDemandaSuperior">
+                    <img alt="" src="/images/MapaInteractivo/capaVacia.png" usemap="#mapRegiones" />
+                    <map id="mapRegiones" name="mapRegiones">
+                        <area id="areaBCN" href="javascript:void(0);" alt="" title="" shape="poly" coords="2,3,60,3,59,10,57,19,55,27,51,33,51,40,61,50,62,55,60,60,59,65,59,70,60,75,62,78,62,83,63,90,62,97,64,104,68,107,69,112,72,112,76,118,86,126,88,133,89,139,92,138,93,142,97,142,99,153,105,154,104,158,106,162,105,165,70,163,72,159,71,156,72,149,65,137,61,130,53,121,48,120,40,112,36,108,34,102,34,93,31,87,29,88,29,76,23,71,23,62,20,57,16,55,18,45,12,39,12,31,9,28" />
+                        <area id="areaBCS" href="javascript:void(0);" alt="" title="" shape="poly" coords="69,165,107,168,106,172,111,179,117,181,117,190,123,195,124,199,135,208,137,214,135,222,139,225,144,243,147,244,155,262,154,272,156,280,161,284,166,285,167,280,172,286,177,290,177,301,184,303,187,310,185,315,181,317,175,325,172,324,169,317,167,308,164,301,156,297,145,285,136,278,129,270,126,272,121,261,120,265,115,259,118,250,120,242,119,233,115,225,113,219,106,218,92,205,87,204,83,209,77,197,73,197,67,189,61,186,60,180,49,172,59,175,64,172" />
+                        <area id="areaNOR" href="javascript:void(0);" alt="" title="" shape="poly" coords="62,12,57,27,53,33,53,40,57,44,64,50,69,54,85,62,92,69,103,72,104,85,112,103,111,111,119,123,123,138,140,158,161,178,164,191,174,200,179,201,184,211,197,218,190,233,191,243,202,250,214,254,225,267,226,273,253,296,265,311,271,322,289,341,297,334,287,322,285,298,270,296,264,284,256,277,256,250,229,231,226,221,214,205,216,183,216,155,218,133,218,117,217,104,223,69,222,63,200,63,177,62,157,59,144,56,134,52" />
+                        <area id="areaNTE" href="javascript:void(0);" alt="" title="" shape="poly" coords="226,62,224,63,224,73,222,84,220,96,219,108,220,129,218,147,218,164,218,178,217,189,217,204,227,220,231,228,257,249,258,276,266,282,272,294,287,296,289,320,299,333,290,340,304,353,310,353,313,345,314,321,316,317,320,316,326,294,326,293,349,293,353,277,365,273,351,260,355,228,348,219,343,200,342,184,346,175,355,165,364,148,381,129,384,119,366,125,362,137,355,145,331,133,318,121,312,97,302,88,297,88,293,80,287,70,273,62,273,57,271,55,267,55,259,50,227,50" />
+                        <area id="areaNES" href="javascript:void(0);" alt="" title="" shape="poly" coords="386,118,383,131,366,150,357,167,348,177,344,185,345,201,351,219,358,228,354,259,367,273,375,279,379,285,386,289,391,295,391,304,388,311,391,314,390,321,388,324,388,327,397,332,394,340,400,340,405,342,410,342,414,348,416,357,419,361,422,366,424,373,431,388,434,396,435,400,444,410,447,407,446,405,450,403,455,407,461,408,462,411,462,414,463,417,466,416,471,412,479,408,490,407,494,411,496,416,501,410,510,409,519,406,530,403,531,398,524,392,523,387,513,372,520,365,505,349,504,334,508,325,507,269,511,265,519,245,520,232,515,232,512,237,506,232,492,232,480,225,465,219,460,211,454,205,450,184,440,179,438,171,428,157,422,141,413,131,407,126,403,120,396,120,391,116" />
+                        <area id="areaOCC" href="javascript:void(0);" alt="" title="" shape="poly" coords="366,275,356,279,351,295,328,296,323,316,320,319,316,321,315,346,312,355,305,355,290,343,290,353,295,365,302,368,300,374,301,381,298,382,301,396,298,398,298,406,305,414,302,419,303,428,318,441,319,439,324,440,325,442,341,453,349,461,385,475,388,470,391,462,394,458,397,457,399,454,404,454,414,449,417,447,424,445,430,445,433,442,436,442,440,438,442,430,443,428,444,426,448,426,449,424,453,424,454,422,457,422,458,420,461,419,460,415,460,411,454,409,449,405,450,409,447,410,443,413,432,401,431,396,428,392,428,388,421,373,420,367,413,360,413,351,408,343,405,344,400,343,394,342,391,339,394,333,385,328,386,322,388,320,389,315,385,311,388,304,389,295,376,285,373,281" />
+                        <area id="areaCEL" href="javascript:void(0);" alt="" title="" shape="poly" coords="387,475,388,473,391,470,393,465,394,462,399,459,401,456,406,456,410,453,414,452,418,449,424,448,431,448,434,444,439,444,442,440,444,432,446,428,451,428,451,427,455,426,456,424,459,424,460,422,464,421,465,419,468,418,472,414,478,411,482,409,488,409,494,413,494,417,497,419,493,420,493,422,489,424,489,428,487,432,487,434,488,436,489,443,490,450,492,454,489,457,483,456,482,459,474,460,473,463,470,461,468,462,461,462,462,460,457,461,454,458,445,460,445,457,430,457,430,460,426,461,421,461,414,465,411,467,408,471,402,470,401,473,395,472,393,474,393,477" />
+                        <area id="areaORI" href="javascript:void(0);" alt="" title="" shape="poly" coords="399,482,395,476,398,475,403,475,410,473,415,470,419,467,423,465,429,465,433,462,433,460,443,459,444,463,454,461,461,465,475,465,477,462,485,462,486,459,492,460,495,455,493,449,492,443,491,435,489,433,491,430,492,426,496,424,496,421,500,420,499,417,500,414,503,412,512,412,522,409,529,405,533,405,534,400,546,415,548,424,552,431,556,432,556,443,559,443,560,449,570,454,580,454,585,458,592,459,603,469,613,470,621,468,629,464,637,462,646,460,651,460,658,449,667,447,678,445,682,451,686,449,697,461,700,462,702,486,691,486,699,492,709,496,713,503,720,506,721,518,685,518,672,542,678,548,674,551,676,560,671,566,657,551,633,532,613,523,595,521,582,523,578,528,558,538,551,538,547,540,535,534,525,532,511,532,498,523,487,522,482,514,470,512,456,511,451,506,418,495" />
+                        <area id="areaPEN" href="javascript:void(0);" alt="" title="" shape="poly" coords="687,447,699,459,703,460,704,469,748,463,748,458,757,459,762,453,762,448,767,442,771,442,773,440,774,432,778,430,780,434,780,441,786,448,792,421,787,419,791,410,786,410,791,401,790,396,789,385,799,370,801,354,797,352,774,348,770,350,762,351,757,355,728,363,722,365,713,372,713,377,710,379,711,402,707,409,706,422,696,431,688,435,686,438,693,440,690,445" />
+                    </map>
+                </div>
+                <div class="mapaIntercambio divOculto">
+                    <img alt="" src="/images/MapaInteractivo/mapaTrazo.png" />
+                    <div id="IntNTE-NOR" class="divIntercambio">
+                        <div id="IntercambioNTE-NOR" class="datoIntercambio">54</div>
+                        <div class="flechaNTE-NOR"></div>
+                    </div>
+                    <div id="IntNES-NTE" class="divIntercambio">
+                        <div id="IntercambioNES-NTE" class="datoIntercambio">&#8208;352</div>
+                        <div class="flechaNES-NTE"></div>
+                    </div>
+                    <div id="IntNES-ORI">
+                        <div id="IntercambioNES-ORI" class="datoIntercambio">1,433</div>
+                        <div class="flechaNES-ORI"></div>
+                    </div>
+                    <div id="IntORI-PEN">
+                        <div id="IntercambioORI-PEN" class="datoIntercambio">380</div>
+                        <div class="flechaORI-PEN"></div>
+                    </div>
+                    <div id="IntORI-CEL">
+                        <div id="IntercambioORI-CEL" class="datoIntercambio">758</div>
+                        <div class="flechaORI-CEL"></div>
+                    </div>
+                    <div id="IntOCC-ORI">
+                        <div id="IntercambioOCC-ORI" class="datoIntercambio">262</div>
+                        <div class="flechaOCC-ORI"></div>
+                    </div>
+                    <div id="IntOCC-CEL">
+                        <div id="IntercambioOCC-CEL" class="datoIntercambio">1,625</div>
+                        <div class="flechaOCC-CEL"></div>
+                    </div>
+                    <div id="IntNES-OCC">
+                        <div id="IntercambioNES-OCC" class="datoIntercambio">2,456</div>
+                        <div class="flechaNES-OCC"></div>
+                    </div>
+                    <div id="IntNTE-OCC">
+                        <div id="IntercambioNTE-OCC" class="datoIntercambio">0</div>
+                        <div class="flechaNTE-OCC"></div>
+                    </div>
+                    <div id="IntNOR-OCC">
+                        <div id="IntercambioNOR-OCC" class="datoIntercambio">519</div>
+                        <div class="flechaNOR-OCC"></div>
+                    </div>
+                    <div id="IntUSA-BCA" class="divIntercambio">
+                        <div id="IntercambioUSA-BCA" class="datoIntercambio">&#8208;23</div>
+                        <div class="flechaUSA-BCA"></div>
+                    </div>
+                    <div id="IntUSA-NTE" class="divIntercambio">
+                        <div id="IntercambioUSA-NTE" class="datoIntercambio">0</div>
+                        <div class="flechaUSA-NTE"></div>
+                    </div>
+                    <div id="IntUSA-NES" class="divIntercambio">
+                        <div id="IntercambioUSA-NES" class="datoIntercambio">&#8208;31</div>
+                        <div class="flechaUSA-NES"></div>
+                    </div>
+                    <div id="IntPEN-BEL" class="divIntercambio">
+                        <div id="IntercambioPEN-BEL" class="datoIntercambio">48</div>
+                        <div class="flechaPEN-BEL"></div>
+                    </div>
+                    <div id="IntORI-GUA" class="divIntercambio">
+                        <div id="IntercambioORI-GUA" class="datoIntercambio">241</div>
+                        <div class="flechaORI-GUA"></div>
+                    </div>
+                </div>
+                 <table style="width:120%">
+                    <tr >
+                        <td style="width:50%">
+                            <div class="nota">
+                                <span>SIN:</span> Sistema Interconectado Nacional, no incluye las regiones de Baja California y Baja California Sur.<br />
+                                <span>Intercambio neto:</span> intercambio total entre esa región y las vecinas.
+                            </div>
+                        </td>
+                        <td style="width:50%">
+                            <div class="nota">
+                                La información que aquí se presenta es de carácter indicativo, su objetivo es únicamente mostrar el comportamiento de la Operación del Sistema Eléctrico Nacional.
+                                Por lo que esta información no puede ser utilizada para otros efectos diferentes a los demostrativos a los que aquí se mencionan.
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tablaResumen" style="float: right">
+
+
+                <div>
+                    <table>
+                        <tr>
+                            <th colspan="4" class="headerDiario">Demanda Neta máxima instantánea en el día de hoy del SIN</th>
+                        </tr>
+                        <tr>
+                            <td class="celdaMargen"></td>
+                            <td colspan="2"><span id="DemandaSIN-MAX-DIARIAValor">34,935 MW</span></td>
+                            <td class="celdaMargen"></td>
+                        </tr>
+                        <tr>
+                            <td class="celdaMargen"></td>
+                            <td class="ultimaFila">Hora</td>
+                            <td class="ultimaFila num" id="DemandaSIN-MAX-DIARIAHora">12:04:43 hrs</td>
+                            <td class="celdaMargen"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="botonIntercambio">Intercambio entre regiones</div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 280px;">&nbsp;</div>
+
+            </div>
+            <script src="/scripts/funciones.js" type="text/javascript"></script>
+            <script type="text/javascript" src="/scripts/classie.js"></script>
+            <script type="text/javascript">
+                var buttons7Click = Array.prototype.slice.call(document.querySelectorAll('#btn-click a')),
+                    totalButtons7Click = buttons7Click.length;
+
+                buttons7Click.forEach(function (el, i) { el.addEventListener('click', activate, false); });
+
+                function activate() {
+                    var self = this, activatedClass = 'btn-activated';
+
+                    if (!classie.has(this, activatedClass)) {
+                        classie.add(this, activatedClass);
+                        setTimeout(function () { classie.remove(self, activatedClass) }, 1000);
+                    }
+                }
+
+            </script>
+              <div style="height: 50px;">&nbsp;</div>
+        </form>
+<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+<script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
+</body>
+</html>
