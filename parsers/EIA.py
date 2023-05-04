@@ -632,25 +632,6 @@ def _fetch(
     ]
 
 
-def _index_by_timestamp(datapoints: List[dict]) -> Dict[str, dict]:
-    indexed_data = {}
-    for datapoint in datapoints:
-        indexed_data[datapoint["datetime"]] = datapoint
-    return indexed_data
-
-
-def _merge_production_mix(mixes: List[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
-    merged_data = {}
-    for mix in mixes:
-        indexed_mix = _index_by_timestamp(mix)
-        for timestamp, mix_value in indexed_mix.items():
-            if not timestamp in merged_data.keys():
-                merged_data[timestamp] = mix_value
-            else:
-                merged_data[timestamp]["value"] += mix_value["value"]
-    return list(merged_data.values())
-
-
 def _conform_timestamp_convention(dt: datetime):
     # The timestamp given by EIA represents the end of the time interval.
     # ElectricityMap using another convention,
