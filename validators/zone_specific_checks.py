@@ -34,9 +34,10 @@ def validate_production_has_fossil_fuel(events: pd.DataFrame) -> pd.Series:
         "production.oil",
         "production.gas",
     ]
-    fossil_fuel_cols_in_event = set.intersection(
+
+    fossil_fuel_cols_in_event = list(set.intersection(
         set(fossil_fuel_cols), set(events.columns)
-    )
+    ))
 
     res = (events[fossil_fuel_cols_in_event] > 0).any(axis=1).astype(int)
     return res
