@@ -103,6 +103,8 @@ def fetch_exchange(
     dataframe = get_dataframe_from_exchange_url(
         EXCHANGE_URL, EXCHANGE_DATETIME_COLUMN_NAME, target_datetime, session
     )
+    if dataframe is None:
+        return {}
     result = psql.sqldf(
         EXCHANGE_SQL_QUERY.format(zone_id=zone_key_matching_source_data), locals()
     )
@@ -205,9 +207,12 @@ def fetch_consumption(
     dataframe = get_dataframe_from_exchange_url(
         CONSUMPTION_URL, CONSUMPTION_DATETIME_COLUMN_NAME, target_datetime, session
     )
+    if dataframe is None:
+        return {}
+
     result = psql.sqldf(CONSUMPTION_SQL_QUERY, locals())
-    exchanges = convert_result_to_consumption(zone_key, result)
-    return exchanges
+    consumptions = convert_result_to_consumption(zone_key, result)
+    return consumptions
 
 
 def convert_result_to_consumption(zone_key, result):
@@ -232,7 +237,7 @@ def get_dataframe_from_exchange_url(
     datetime_column_name: str,
     target_datetime: datetime,
     session: Optional[Session] = None,
-) -> pd.DataFrame:
+) -> pd.DataFrame | None:
     """
     Given a URL and a timestamp, this method reads the JSON from the source, adds missing AM/PM in the timestamp field
     and then reads the corrected JSON as @DataFrame with correct timestamp
@@ -242,6 +247,8 @@ def get_dataframe_from_exchange_url(
 
     resp: Response = s.post(url=url, json=payload)
     data = json.loads(resp.json().get("d", {}))
+    if len(data) == 0:
+        return None
     fix_timestamp_for_data(data, datetime_column_name)
 
     dataframe = pd.json_normalize(data)
