@@ -61,7 +61,7 @@ export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
   const isEstimated = estimationMethod !== undefined;
 
   return (
-    <div className="mt-1 grid w-full gap-y-5 sm:pr-4">
+    <div className="mt-1 grid w-full gap-y-5 sm:pr-4" style={{ overflowY: 'auto' }}>
       <ZoneHeaderTitle
         zoneId={zoneId}
         isEstimated={isEstimated}
