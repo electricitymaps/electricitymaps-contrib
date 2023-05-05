@@ -237,7 +237,7 @@ def get_dataframe_from_exchange_url(
     datetime_column_name: str,
     target_datetime: datetime,
     session: Optional[Session] = None,
-) -> pd.DataFrame | None:
+):
     """
     Given a URL and a timestamp, this method reads the JSON from the source, adds missing AM/PM in the timestamp field
     and then reads the corrected JSON as @DataFrame with correct timestamp
