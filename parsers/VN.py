@@ -86,6 +86,18 @@ def fetch_target_data(data_type: str, target_datetime, session: Session):
     )
 
 
+def data_index_to_valid_time(base_day: datetime, idx: int):
+    """
+    Convert index in fetched data to associated time, given base date (day)
+    Valid time of indices is: [0:30, 1:00, 1:30, ..., 23:30, 24:00]
+    """
+    idx_datetime = base_day.replace(
+        hour=int((idx + 1) / 2), minute=(0 if idx % 2 else 30)
+    ).floor("minute")
+
+    return idx_datetime
+
+
 def fetch_consumption(
     zone_key: str,
     session: Session = Session(),
@@ -119,11 +131,8 @@ def fetch_consumption(
     result_list = []
 
     for i in range(len(per_zone_load[zone_key])):
-        # Convert to datetime. Data is for [0:30, 1:00, 1:30, ..., 23:30, 24:00]
-        # Or only up to latest available time
-        i_datetime = fetched_day.replace(
-            hour=int((i + 1) / 2), minute=(0 if i % 2 else 30)
-        ).floor("minute")
+        # Convert i to datetime
+        i_datetime = data_index_to_valid_time(fetched_day, i)
 
         # Data also goes ~2h into the future! Seems to be some kind of prediction, since these
         # future values are changing until their valid time is reached.
@@ -146,27 +155,6 @@ def fetch_consumption(
         )
 
     return result_list
-
-
-def compute_national_average(per_zone_price):
-    """
-    Prices only given for each of the 3 zones, compute mean of the three zones as national average.
-    Also handle if some of these are None.
-    """
-
-    averaged_vn_prices = []
-    # average of all non-nan items
-    for i in range(len(per_zone_price["VN-N"])):
-        zone_prices = [
-            ps[i] for zone, ps in per_zone_price.items() if ps[i] is not None
-        ]
-
-        if len(zone_prices):
-            averaged_vn_prices.append(mean(zone_prices))
-        else:
-            averaged_vn_prices.append(None)
-
-    return averaged_vn_prices
 
 
 def fetch_price(
@@ -195,17 +183,11 @@ def fetch_price(
         # no total VN data
     }
 
-    # filter out faulty values
-    per_zone_price["VN"] = compute_national_average(per_zone_price)
-
     result_list = []
 
     for i in range(len(per_zone_price[zone_key])):
-        # Convert to datetime. Data is for [0:30, 1:00, 1:30, ..., 23:30, 24:00]
-        # Or only up to latest available time
-        i_datetime = fetched_day.replace(
-            hour=int((i + 1) / 2), minute=(0 if i % 2 else 30)
-        ).floor("minute")
+        # Convert i to datetime
+        i_datetime = data_index_to_valid_time(fetched_day, i)
 
         # Data also goes ~2h into the future! Seems to be some kind of prediction, since these
         # future values are changing until their valid time is reached.
