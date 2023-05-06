@@ -32,9 +32,17 @@ class TestFetchProduction(TestCase):
                 datetime(2023, 4, 25, 15, 11, 5), "America/Puerto_Rico"
             ).datetime
             self.assertEqual(data["datetime"], expected_dt)
+        # % information is rounded to nearest %, use delta of 1%
+        total_gen = 2119
         with self.subTest():
-            self.assertAlmostEqual(data["production"]["coal"], 395.0, delta=0.5)
+            self.assertAlmostEqual(
+                data["production"]["coal"], 395.0, delta=total_gen / 100
+            )
         with self.subTest():
-            self.assertAlmostEqual(data["production"]["gas"], 1017.12, delta=0.5)
+            self.assertAlmostEqual(
+                data["production"]["gas"], 1017.12, delta=total_gen / 100
+            )
         with self.subTest():
-            self.assertAlmostEqual(data["production"]["solar"], 80.0, delta=0.5)
+            self.assertAlmostEqual(
+                data["production"]["solar"], 80.0, delta=total_gen / 100
+            )
