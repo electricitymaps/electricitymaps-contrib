@@ -38,7 +38,7 @@ def fetch_latest_data(
     today_response: Response = session.get(base_url + today_dt_str)
 
     # Check if today's data is there.
-    if today_response.status_code == 200 and today_response.json() is not None:
+    if today_response.ok and today_response.json() is not None:
         return fetched_day.floor("day"), today_response.json()
 
     # If it is too early in the day, it might not contain data yet. Get from yesterday.
@@ -47,7 +47,7 @@ def fetch_latest_data(
 
     yesterday_response: Response = session.get(base_url + yesterday_dt_str)
     # Check if yesterday's data is there.
-    if yesterday_response.status_code == 200 and yesterday_response.json() is not None:
+    if yesterday_response.ok and yesterday_response.json() is not None:
         return fetched_day.floor("day"), yesterday_response.json()
 
     # Also no data from yesterday, cant fetch recent data.
@@ -74,7 +74,7 @@ def fetch_target_data(data_type: str, target_datetime, session: Session):
     target_response: Response = session.get(
         base_url_from_type[data_type] + target_dt_str
     )
-    if target_response.status_code == 200 and target_response.json() is not None:
+    if target_response.ok and target_response.json() is not None:
         return fetched_day, target_response.json()
 
     # Requested data not available.
