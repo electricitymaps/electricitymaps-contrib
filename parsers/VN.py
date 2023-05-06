@@ -19,9 +19,6 @@ base_url_from_type = {
     "consumption": "https://www.nldc.evn.vn/PhuTaiHandle.ashx?d=",  # + dd/mm/yyyy
     "price": "https://www.nldc.evn.vn/GiaBienHandle.ashx?d=",  # + dd/mm/yyyy
 }
-# Prices are sometimes randomly 0₫, 1₫, or other small values.
-# We use here 1200 Đồng/kWh as threshold to accept price. Seems to be ~1700 in 2023.
-is_price_valid = lambda price: price > 1200
 
 
 def fetch_latest_data(
@@ -151,16 +148,6 @@ def fetch_consumption(
     return result_list
 
 
-def filter_prices(per_zone_price):
-    """
-    Filter the prices for each zone is_price_valid lambda function. If they seem wrong, replace them with None.
-    """
-    for z, prices in per_zone_price.items():
-        per_zone_price[z] = [(p if is_price_valid(p) else None) for p in prices]
-
-    return per_zone_price
-
-
 def compute_national_average(per_zone_price):
     """
     Prices only given for each of the 3 zones, compute mean of the three zones as national average.
@@ -209,7 +196,6 @@ def fetch_price(
     }
 
     # filter out faulty values
-    per_zone_price = filter_prices(per_zone_price)
     per_zone_price["VN"] = compute_national_average(per_zone_price)
 
     result_list = []
