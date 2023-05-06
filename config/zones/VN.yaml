@@ -8,8 +8,6 @@ bounding_box:
     - 33.82
   - - 138.72
     - 37.17
-  
-# emissionFactors:
 
 capacity:
   biomass: 356
@@ -20,10 +18,6 @@ capacity:
   solar: 16567
   unknown: 619
   wind: 4667
-  
-sources:
-  EVN:
-    link: https://www.nldc.evn.vn/FullNewsg/100/Thong-tin-thi-truong-dien/default.aspx # capacities
     
 subZoneNames:
   - VN-N
