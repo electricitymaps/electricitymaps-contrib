@@ -3,9 +3,11 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any, Dict, List, NewType, Tuple
 
-import yaml
+from ruamel.yaml import YAML
 
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
+
+yaml = YAML(typ="safe")
 
 ZoneKey = NewType("ZoneKey", str)
 Point = NewType("Point", Tuple[float, float])
@@ -13,12 +15,12 @@ BoundingBox = NewType("BoundingBox", List[Point])
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
-defaults = yaml.safe_load(open(CONFIG_DIR.joinpath("defaults.yaml"), encoding="utf-8"))
+defaults = yaml.load(open(CONFIG_DIR.joinpath("defaults.yaml"), encoding="utf-8"))
 
 zones_config: Dict[ZoneKey, Any] = {}
 for zone_path in CONFIG_DIR.joinpath("zones").glob("*.yaml"):
     zone_key = ZoneKey(zone_path.stem)
-    zones_config[zone_key] = yaml.safe_load(open(zone_path, encoding="utf-8"))
+    zones_config[zone_key] = yaml.load(open(zone_path, encoding="utf-8"))
 
 exchanges_config = {}
 for exchange_path in CONFIG_DIR.joinpath("exchanges").glob("*.yaml"):
@@ -26,10 +28,7 @@ for exchange_path in CONFIG_DIR.joinpath("exchanges").glob("*.yaml"):
     _zone_keys = _exchange_key_unicode.split(EXCHANGE_FILENAME_ZONE_SEPARATOR)
     assert len(_zone_keys) == 2
     exchange_key = "->".join(_zone_keys)
-    exchanges_config[exchange_key] = yaml.safe_load(
-        open(exchange_path, encoding="utf-8")
-    )
-
+    exchanges_config[exchange_key] = yaml.load(open(exchange_path, encoding="utf-8"))
 
 co2eq_parameters_all = {
     k: {
@@ -89,6 +88,7 @@ for zone_id, zone_config in ZONES_CONFIG.items():
         for sub_zone_id in zone_config["subZoneNames"]:
             ZONE_PARENT[sub_zone_id] = zone_id
 
+
 # This object represents the edges of the flow-tracing graph
 def generate_zone_neighbours(
     zones_config, exchanges_config
@@ -115,6 +115,7 @@ def generate_zone_neighbours(
 ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_zone_neighbours(
     ZONES_CONFIG, EXCHANGES_CONFIG
 )
+
 
 # This object represents all neighbours regardless of granularity
 def generate_all_neighbours(exchanges_config) -> Dict[ZoneKey, List[ZoneKey]]:
