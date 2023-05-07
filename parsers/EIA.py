@@ -16,6 +16,11 @@ import arrow
 from dateutil import parser, tz
 from requests import Session
 
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    TotalConsumptionList,
+)
 from parsers.ENTSOE import merge_production_outputs
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
@@ -39,6 +44,8 @@ REVERSE_EXCHANGES = [
     "US-SW-PNM->US-SW-SRP",  # For some reason EBA.SRP-PNM.ID.H exists in EIA, but PNM-SRP does not. Probably because it is unidirectional
 ]
 
+# Those threshold correspond to the ranges where the negative values are most likely
+# self consumption and should be set to 0 for production that is being injected into the grid.
 NEGATIVE_PRODUCTION_THRESHOLDS_TYPE = {
     "default": -10,
     "coal": -50,
@@ -368,11 +375,12 @@ def fetch_production(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-):
+) -> List[Dict[str, Any]]:
+    consumption_list = TotalConsumptionList(logger)
     consumption = _fetch(
         zone_key,
         CONSUMPTION.format(REGIONS[zone_key]),
@@ -381,9 +389,14 @@ def fetch_consumption(
         logger=logger,
     )
     for point in consumption:
-        point["consumption"] = point.pop("value")
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=point["datetime"],
+            consumption=point["value"],
+            source="eia.gov",
+        )
 
-    return consumption
+    return consumption_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
@@ -523,13 +536,14 @@ def fetch_production_mix(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-):
+) -> List[Dict[str, Any]]:
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
+    exchange_list = ExchangeList(logger)
     exchange = _fetch(
         sortedcodes,
         url_prefix=EXCHANGE.format(EXCHANGES[sortedcodes]),
@@ -538,16 +552,16 @@ def fetch_exchange(
         logger=logger,
     )
     for point in exchange:
-        point.update(
-            {
-                "sortedZoneKeys": point.pop("zoneKey"),
-                "netFlow": point.pop("value"),
-            }
+        exchange_list.append(
+            zoneKey=ZoneKey(point["zoneKey"]),
+            datetime=point["datetime"],
+            netFlow=-point["value"]
+            if sortedcodes in REVERSE_EXCHANGES
+            else point["value"],
+            source="eia.gov",
         )
-        if sortedcodes in REVERSE_EXCHANGES:
-            point["netFlow"] = -point["netFlow"]
 
-    return exchange
+    return exchange_list.to_list()
 
 
 def _fetch(
