@@ -1257,28 +1257,6 @@ requests = ">=2.9"
 six = "*"
 
 [[package]]
-name = "tablib"
-version = "0.12.1"
-description = "Format agnostic tabular data library (XLS, JSON, YAML, CSV)"
-category = "main"
-optional = true
-python-versions = "*"
-files = [
-    {file = "tablib-0.12.1.tar.gz", hash = "sha256:b8cf50a61d66655229993f2ee29220553fb2c80403479f8e6de77c0c24649d87"},
-]
-
-[package.dependencies]
-odfpy = "*"
-openpyxl = "*"
-pyyaml = "*"
-unicodecsv = "*"
-xlrd = "*"
-xlwt = "*"
-
-[package.extras]
-pandas = ["pandas"]
-
-[[package]]
 name = "testfixtures"
 version = "7.1.0"
 description = "A collection of helpers and mock objects for unit tests and doc tests."
@@ -1350,17 +1328,6 @@ python-versions = ">=3.7"
 files = [
     {file = "typing_extensions-4.5.0-py3-none-any.whl", hash = "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"},
     {file = "typing_extensions-4.5.0.tar.gz", hash = "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb"},
-]
-
-[[package]]
-name = "unicodecsv"
-version = "0.14.1"
-description = "Python2's stdlib csv module is nice, but it doesn't support unicode. This module is a drop-in replacement which *does*."
-category = "main"
-optional = true
-python-versions = "*"
-files = [
-    {file = "unicodecsv-0.14.1.tar.gz", hash = "sha256:018c08037d48649a0412063ff4eda26eaa81eff1546dbffa51fa5293276ff7fc"},
 ]
 
 [[package]]
@@ -1512,18 +1479,6 @@ docs = ["sphinx"]
 test = ["pytest", "pytest-cov"]
 
 [[package]]
-name = "xlwt"
-version = "1.3.0"
-description = "Library to create spreadsheet files compatible with MS Excel 97/2000/XP/2003 XLS files, on any platform, with Python 2.6, 2.7, 3.3+"
-category = "main"
-optional = true
-python-versions = "*"
-files = [
-    {file = "xlwt-1.3.0-py2.py3-none-any.whl", hash = "sha256:a082260524678ba48a297d922cc385f58278b8aa68741596a87de01a9c628b2e"},
-    {file = "xlwt-1.3.0.tar.gz", hash = "sha256:c59912717a9b28f1a3c2a98fd60741014b06b043936dcecbc113eaaada156c88"},
-]
-
-[[package]]
 name = "xmltodict"
 version = "0.13.0"
 description = "Makes working with XML feel like you are working with JSON"
@@ -1543,4 +1498,4 @@ validators = ["arrow", "pandas"]
 [metadata]
 lock-version = "2.0"
 python-versions = '>= 3.8, < 4.0'
-content-hash = "8e3917390104be0db69ceab1bfd890cc3a8494c2745b18eb9f8a0c8d48eb09b3"
+content-hash = "3c7d6ed04cd16f43881c41d644c360c3bbb59cca2caa9b8e4010447f9a82b324"
