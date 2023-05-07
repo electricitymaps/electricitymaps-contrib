@@ -2,7 +2,6 @@
 config read from defaults.yaml and zones/*.yaml.
 """
 
-from copy import deepcopy
 from typing import Any, Dict
 
 from electricitymap.contrib.config.config_types import ZoneKey

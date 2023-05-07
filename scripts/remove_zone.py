@@ -13,7 +13,7 @@ from glob import glob
 
 from utils import LOCALE_FILE_PATHS, ROOT_PATH, JsonFilePatcher, run_shell_command
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
 
 

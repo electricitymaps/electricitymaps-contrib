@@ -1,8 +1,8 @@
-import json
+
 import unittest
 from pathlib import Path
 
-from deepdiff import DeepDiff
+
 
 from electricitymap.contrib.config import (
     generate_all_neighbours,

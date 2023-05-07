@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,

@@ -10,7 +10,7 @@ import arrow
 import pytz
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
 
 from .lib.exceptions import ParserException

@@ -16,7 +16,7 @@ import arrow
 from dateutil import parser, tz
 from requests import Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     TotalConsumptionList,

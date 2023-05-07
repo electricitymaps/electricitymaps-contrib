@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 from pytz import UTC
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,

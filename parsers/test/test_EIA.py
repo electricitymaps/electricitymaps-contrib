@@ -9,7 +9,7 @@ from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.config_types import ZoneKey
 from parsers import EIA
 
 

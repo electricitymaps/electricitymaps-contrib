@@ -6,7 +6,8 @@ from typing import Any, Dict, Optional
 
 from pydantic import BaseModel, PrivateAttr, validator
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
+from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
+from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 

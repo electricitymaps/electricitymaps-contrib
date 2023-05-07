@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Union
 import arrow
 import click
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.config_types import ZoneKey
 from parsers.lib.parsers import PARSER_KEY_TO_DICT
 from parsers.lib.quality import (
     ValidationError,
