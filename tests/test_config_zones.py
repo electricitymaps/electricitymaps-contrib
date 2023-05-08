@@ -1,8 +1,6 @@
-
 import unittest
 from pathlib import Path
-
-
+from typing import Any, Dict
 
 from electricitymap.contrib.config import (
     generate_all_neighbours,
@@ -10,33 +8,34 @@ from electricitymap.contrib.config import (
     zone_bounding_boxes,
     zone_parents,
 )
+from electricitymap.contrib.config.config_types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.joinpath("config").resolve()
 
 
 class TestConfigZones(unittest.TestCase):
     def test_bounding_boxes_basic(self):
-        zones = {
-            "AD": {
+        zones: Dict[ZoneKey, Any] = {
+            ZoneKey("AD"): {
                 "bounding_box": [[0.906, 41.928], [2.265, 43.149]],
             },
-            "XX": {},
+            ZoneKey("XX"): {},
         }
         self.assertDictEqual(
             zone_bounding_boxes(zones),
             {
-                "AD": [[0.906, 41.928], [2.265, 43.149]],
+                ZoneKey("AD"): [[0.906, 41.928], [2.265, 43.149]],
             },
         )
 
     def test_zone_parents_basic(self):
-        zones = {
-            "DE": {},
-            "SE": {
+        zones: Dict[ZoneKey, Any] = {
+            ZoneKey("DE"): {},
+            ZoneKey("SE"): {
                 "subZoneNames": ["SE-SE1", "SE-SE2"],
             },
-            "SE-SE1": {},
-            "SE-SE2": {},
+            ZoneKey("SE-SE1"): {},
+            ZoneKey("SE-SE2"): {},
         }
         self.assertDictEqual(zone_parents(zones), {"SE-SE1": "SE", "SE-SE2": "SE"})
 
@@ -56,22 +55,24 @@ class TestConfigZones(unittest.TestCase):
             "DE->FR": {"parsers": {"exchange": "source"}},
         }
         zones = {
-            "DE": {},
-            "FR": {},
+            ZoneKey("DE"): {},
+            ZoneKey("FR"): {},
         }
         zone_neighbours = generate_zone_neighbours(zones, exchanges)
-        self.assertDictEqual(zone_neighbours, {"DE": ["FR"], "FR": ["DE"]})
+        self.assertDictEqual(
+            zone_neighbours, {ZoneKey("DE"): ["FR"], ZoneKey("FR"): ["DE"]}
+        )
 
     def test_generate_zone_neighbours_one_country_one_subzone(self):
         exchanges = {
             "DE->SE-SE4": {"parsers": {"exchange": "source"}},
         }
-        zones = {
-            "DE": {},
-            "SE": {
+        zones: Dict[ZoneKey, Any] = {
+            ZoneKey("DE"): {},
+            ZoneKey("SE"): {
                 "subZoneNames": ["SE-SE4"],
             },
-            "SE-SE4": {},
+            ZoneKey("SE-SE4"): {},
         }
         zone_neighbours = generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(zone_neighbours, {"DE": ["SE-SE4"], "SE-SE4": ["DE"]})
@@ -84,21 +85,21 @@ class TestConfigZones(unittest.TestCase):
             "NO-NO4->SE-SE2": {"parsers": {"exchange": "source"}},
         }
         zones = {
-            "NO": {
+            ZoneKey("NO"): {
                 "subZoneNames": ["NO-NO1", "NO-NO2", "NO-NO3", "NO-NO4", "NO-NO5"],
             },
-            "NO-NO1": {},
-            "NO-NO2": {},
-            "NO-NO3": {},
-            "NO-NO4": {},
-            "NO-NO5": {},
-            "SE": {
+            ZoneKey("NO-NO1"): {},
+            ZoneKey("NO-NO2"): {},
+            ZoneKey("NO-NO3"): {},
+            ZoneKey("NO-NO4"): {},
+            ZoneKey("NO-NO5"): {},
+            ZoneKey("SE"): {
                 "subZoneNames": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
             },
-            "SE-SE1": {},
-            "SE-SE2": {},
-            "SE-SE3": {},
-            "SE-SE4": {},
+            ZoneKey("SE-SE1"): {},
+            ZoneKey("SE-SE2"): {},
+            ZoneKey("SE-SE3"): {},
+            ZoneKey("SE-SE4"): {},
         }
         zone_neighbours = generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(
@@ -118,13 +119,13 @@ class TestConfigZones(unittest.TestCase):
             "SE-SE1->SE-SE2": {"parsers": {"exchange": "source"}},
         }
         zones = {
-            "SE": {
+            ZoneKey("SE"): {
                 "subZoneNames": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
             },
-            "SE-SE1": {},
-            "SE-SE2": {},
-            "SE-SE3": {},
-            "SE-SE4": {},
+            ZoneKey("SE-SE1"): {},
+            ZoneKey("SE-SE2"): {},
+            ZoneKey("SE-SE3"): {},
+            ZoneKey("SE-SE4"): {},
         }
         zone_neighbours = generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(
@@ -140,10 +141,10 @@ class TestConfigZones(unittest.TestCase):
             "GB->GB-NIR": {"parsers": {"exchange": "source"}},
             "GB->GB-ORK": {"parsers": {"exchange": "source"}},
         }
-        zones = {
-            "GB": {},
-            "GB-NIR": {},
-            "GB-ORK": {},
+        zones: Dict[ZoneKey, Any] = {
+            ZoneKey("GB"): {},
+            ZoneKey("GB-NIR"): {},
+            ZoneKey("GB-ORK"): {},
         }
         zone_neighbours = generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(
@@ -155,9 +156,9 @@ class TestConfigZones(unittest.TestCase):
         exchanges = {
             "DE->FR": {"parsers": {}},
         }
-        zones = {
-            "DE": {},
-            "FR": {},
+        zones: Dict[ZoneKey, Any] = {
+            ZoneKey("DE"): {},
+            ZoneKey("FR"): {},
         }
         zone_neighbours = generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(zone_neighbours, {})

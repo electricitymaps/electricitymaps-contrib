@@ -40,6 +40,8 @@ def generate_zone_neighbours(
             # of the flowtracing graph.
             continue
         zone_1, zone_2 = k.split("->")
+        zone_1 = ZoneKey(zone_1)
+        zone_2 = ZoneKey(zone_2)
         if zones_config[zone_1].get("subZoneNames") or zones_config[zone_2].get(
             "subZoneNames"
         ):
@@ -52,7 +54,9 @@ def generate_zone_neighbours(
     return {k: sorted(v) for k, v in zone_neighbours.items()}
 
 
-def generate_all_neighbours(exchanges_config) -> Dict[ZoneKey, List[ZoneKey]]:
+def generate_all_neighbours(
+    exchanges_config: Dict[str, Any]
+) -> Dict[ZoneKey, List[ZoneKey]]:
     """This object represents all neighbours regardless of granularity."""
     zone_neighbours = defaultdict(set)
     for k, v in exchanges_config.items():

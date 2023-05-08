@@ -1,13 +1,11 @@
 """Global config variables with data read from the config directory."""
 
-from collections import defaultdict
 from copy import deepcopy
 from pathlib import Path
 from typing import Dict, List
 
 from electricitymap.contrib.config.co2eq_parameters import generate_co2eq_parameters
 from electricitymap.contrib.config.config_types import BoundingBox, ZoneKey
-from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
 from electricitymap.contrib.config.reading import (
     read_defaults,
     read_exchanges_config,
