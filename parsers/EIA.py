@@ -427,7 +427,7 @@ def create_production_storage(
         production_mix.set_value(fuel_type, production_value)
         return production_mix, None
     if fuel_type == "hydro":
-        storage_mix.set_value("hydro", production_value)
+        storage_mix.set_value("hydro", abs(production_value))
         return None, storage_mix
     if production_value > negative_threshold:
         # This is considered to be self consumption and should be reported as 0.
