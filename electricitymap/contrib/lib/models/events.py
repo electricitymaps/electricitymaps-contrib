@@ -280,7 +280,9 @@ class ProductionBreakdown(Event):
                 sourceType=sourceType,
             )
         except ValidationError as e:
-            logger.error(f"Error(s) creating production breakdown Event {datetime}: {e}")
+            logger.error(
+                f"Error(s) creating production breakdown Event {datetime}: {e}"
+            )
 
     def to_dict(self) -> Dict[str, Any]:
         return {
