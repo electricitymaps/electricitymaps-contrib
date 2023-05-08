@@ -427,6 +427,8 @@ def create_production_storage(
         production_mix.set_value(fuel_type, production_value)
         return production_mix, None
     if fuel_type == "hydro":
+        # Negative hydro is reported by some BAs, according to the EIA those are pumped storage.
+        # https://www.eia.gov/electricity/gridmonitor/about
         storage_mix.set_value("hydro", abs(production_value))
         return None, storage_mix
     if production_value > negative_threshold:
