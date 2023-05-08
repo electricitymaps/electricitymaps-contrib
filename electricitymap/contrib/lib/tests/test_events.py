@@ -82,6 +82,18 @@ class TestExchange(unittest.TestCase):
                 source="trust.me",
             )
 
+    def test_static_create_logs_error(self):
+        logger = logging.Logger("test")
+        with patch.object(logger, "error") as mock_error:
+            Exchange.create(
+                logger=logger,
+                zoneKey=ZoneKey("DER->FR"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                netFlow=-1,
+                source="trust.me",
+            )
+            mock_error.assert_called_once()
+
 
 class TestConsumption(unittest.TestCase):
     def test_create_consumption(self):
@@ -118,6 +130,18 @@ class TestConsumption(unittest.TestCase):
                 consumption=-1,
                 source="trust.me",
             )
+
+    def test_static_create_logs_error(self):
+        logger = logging.Logger("test")
+        with patch.object(logger, "error") as mock_error:
+            TotalConsumption.create(
+                logger=logger,
+                zoneKey=ZoneKey("DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                consumption=-1,
+                source="trust.me",
+            )
+            mock_error.assert_called_once()
 
 
 class TestPrice(unittest.TestCase):
@@ -270,6 +294,18 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
 
+    def test_static_create_logs_error(self):
+        logger = logging.Logger("test")
+        with patch.object(logger, "error") as mock_error:
+            ProductionBreakdown.create(
+                logger=logger,
+                zoneKey=ZoneKey("DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                production=ProductionMix(wind=None),
+                source="trust.me",
+            )
+            mock_error.assert_called_once()
+
 
 class TestTotalProduction(unittest.TestCase):
     def test_create_generation(self):
@@ -283,6 +319,18 @@ class TestTotalProduction(unittest.TestCase):
         assert generation.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
         assert generation.source == "trust.me"
         assert generation.value == 1
+
+    def test_static_create_logs_error(self):
+        logger = logging.Logger("test")
+        with patch.object(logger, "error") as mock_error:
+            TotalProduction.create(
+                logger=logger,
+                zoneKey=ZoneKey("DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=-1,
+                source="trust.me",
+            )
+            mock_error.assert_called_once()
 
 
 class TestMixes(unittest.TestCase):
