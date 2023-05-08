@@ -4,7 +4,7 @@ from enum import Enum
 from logging import Logger
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, PrivateAttr, validator
+from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
@@ -179,8 +179,8 @@ class Exchange(Event):
                 netFlow=netFlow,
                 sourceType=sourceType,
             )
-        except ValueError as e:
-            logger.error(f"Error creating exchange Event {datetime}: {e}")
+        except ValidationError as e:
+            logger.error(f"Error(s) creating exchange Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -223,8 +223,8 @@ class TotalProduction(Event):
                 value=value,
                 sourceType=sourceType,
             )
-        except ValueError as e:
-            logger.error(f"Error creating total production Event {datetime}: {e}")
+        except ValidationError as e:
+            logger.error(f"Error(s) creating total production Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -279,8 +279,10 @@ class ProductionBreakdown(Event):
                 storage=storage,
                 sourceType=sourceType,
             )
-        except ValueError as e:
-            logger.error(f"Error creating production breakdown Event {datetime}: {e}")
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating production breakdown Event {datetime}: {e}"
+            )
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -324,9 +326,9 @@ class TotalConsumption(Event):
                 consumption=consumption,
                 sourceType=sourceType,
             )
-        except ValueError as e:
+        except ValidationError as e:
             logger.error(
-                f"Error creating total consumption Event {datetime}: {e}",
+                f"Error(s) creating total consumption Event {datetime}: {e}",
                 extra={
                     "zoneKey": zoneKey,
                     "datetime": datetime,
@@ -373,8 +375,8 @@ class Price(Event):
                 currency=currency,
                 sourceType=sourceType,
             )
-        except ValueError as e:
-            logger.error(f"Error creating price Event {datetime}: {e}")
+        except ValidationError as e:
+            logger.error(f"Error(s) creating price Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
