@@ -17,7 +17,7 @@ capacity:
   solar: 16567
   unknown: 619
   wind: 4667
-    
+
 subZoneNames:
   - VN-N
   - VN-C
