@@ -532,12 +532,13 @@ def fetch_production_mix(
                 )
             all_production_breakdowns.append(additional_breakdown)
 
-    if len(all_production_breakdowns) == 0:
-        logger.warning(f"No production mix data found for {zone_key}")
-        return ProductionBreakdownList(logger).to_list()
     all_production_breakdowns = list(
         filter(lambda x: len(x.events) > 0, all_production_breakdowns)
     )
+
+    if len(all_production_breakdowns) == 0:
+        logger.warning(f"No production mix data found for {zone_key}")
+        return ProductionBreakdownList(logger).to_list()
     # Some of the returned mixes could be for older timeframes.
     # Fx the latest oil data could be 6 months old.
     # In this case we want to discard the old data as we won't be able to merge it
