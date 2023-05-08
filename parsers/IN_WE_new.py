@@ -251,7 +251,7 @@ def get_dataframe_from_url(
 
     dataframe = pd.json_normalize(data)
     dataframe[datetime_column_name] = pd.to_datetime(
-        dataframe[datetime_column_name], format="%Y-%d-%m %H:%M:%S"
+        dataframe[datetime_column_name], format="%Y-%m-%d %H:%M:%S"
     )
 
     return dataframe
