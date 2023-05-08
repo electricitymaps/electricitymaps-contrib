@@ -265,6 +265,16 @@ class CO2eqParametersDirectAndLifecycleMixin:
             for mode, factors in modes_to_factors.items():
                 callback(mode, factors, zone)
 
+    def test_emission_factor_values_are_in_range(self):
+        """Checks all emission factors are in the allowed range."""
+
+        def callback(_mode, factors, _zone):
+            for factor in factors:
+                self.assertGreaterEqual(factor["value"], 0.0)
+                self.assertLessEqual(factor["value"], 2000.0)
+
+        self.check_emission_factors(callback)
+
     def test_emission_factor_modes_are_valid(self):
         """All specified modes must be in the allowed set of modes."""
 
