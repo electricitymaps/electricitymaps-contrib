@@ -21,7 +21,7 @@ These APIs return the data from midnight 12:00am to current time at which the pa
 """
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
-
+IN_TZ = "Asia/Kolkata"
 
 """ 
 Exchange data parser
@@ -58,7 +58,7 @@ sample data:
 
 
 EXCHANGE_URL = (
-    f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise?"
+    f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Data?"
     f"host=https://www.wrldc.in"
 )
 
@@ -100,7 +100,7 @@ def fetch_exchange(
     if target_datetime is None:
         target_datetime = arrow.now().datetime
 
-    dataframe = get_dataframe_from_exchange_url(
+    dataframe = get_dataframe_from_url(
         EXCHANGE_URL, EXCHANGE_DATETIME_COLUMN_NAME, target_datetime, session
     )
     if dataframe is None:
@@ -118,7 +118,7 @@ def convert_result_to_exchanges(exchange_zone_key, result):
             "netFlow": result["exchange_value"][index],
             "sortedZoneKeys": exchange_zone_key,
             "datetime": pd.Timestamp(
-                result["last_update_hour"][index], tz="Asia/Kolkata"
+                result["last_update_hour"][index], tz=IN_TZ
             ).to_pydatetime(),
             "source": "wrldc.in",
         }
@@ -170,8 +170,7 @@ sample data:
 
 
 CONSUMPTION_URL = (
-    f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData_state_Wise?"
-    f"host=https://www.wrldc.in"
+    f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData?host=https://www.wrldc.in"
 )
 # For each hour and state, get the average consumption and then add the values across the states to get the Total
 # consumption in West on a per-hour basis
@@ -204,7 +203,7 @@ def fetch_consumption(
     if target_datetime is None:
         target_datetime = arrow.now().datetime
 
-    dataframe = get_dataframe_from_exchange_url(
+    dataframe = get_dataframe_from_url(
         CONSUMPTION_URL, CONSUMPTION_DATETIME_COLUMN_NAME, target_datetime, session
     )
     if dataframe is None:
@@ -220,7 +219,7 @@ def convert_result_to_consumption(zone_key, result):
         {
             "zoneKey": zone_key,
             "datetime": pd.Timestamp(
-                result["last_update_hour"][index], tz="Asia/Kolkata"
+                result["last_update_hour"][index], tz=IN_TZ
             ).to_pydatetime(),
             "consumption": result["consumption_value"][index],
             "source": "wrldc.in",
@@ -232,15 +231,15 @@ def convert_result_to_consumption(zone_key, result):
 """ Utility methods for the data parser """
 
 
-def get_dataframe_from_exchange_url(
+def get_dataframe_from_url(
     url: str,
     datetime_column_name: str,
     target_datetime: datetime,
     session: Optional[Session] = None,
 ):
     """
-    Given a URL and a timestamp, this method reads the JSON from the source, adds missing AM/PM in the timestamp field
-    and then reads the corrected JSON as @DataFrame with correct timestamp
+    Given a URL and a timestamp, this method reads the JSON from the source with timestamp in 24-hour format
+    and then deserializes the JSON as @DataFrame
     """
     s = session or Session()
     payload = {"date": target_datetime.strftime("%Y-%m-%d"), "Flag": "24"}
@@ -249,49 +248,10 @@ def get_dataframe_from_exchange_url(
     data = json.loads(resp.json().get("d", {}))
     if len(data) == 0:
         return None
-    fix_timestamp_for_data(data, datetime_column_name)
 
     dataframe = pd.json_normalize(data)
     dataframe[datetime_column_name] = pd.to_datetime(
-        dataframe[datetime_column_name], format="%Y-%d-%m %I:%M:%S %p"
+        dataframe[datetime_column_name], format="%Y-%d-%m %H:%M:%S"
     )
 
     return dataframe
-
-
-def fix_timestamp_for_data(data, timestamp_column_name):
-    """
-    The data that is received from the API for both Exchange and Consumption has date fields in 12-hour format with
-    missing information about 'AM/PM'. It looks like that 12-hour datetime format was used and for some reason AM/PM was
-     simply truncated
-
-    | 12 hr format datetime | 24 hr format datetime | Current datetime format |
-    |-----------------------|-----------------------|-------------------------|
-    | 2023-05-03 7:30 PM    | 2023-05-03 19:30      | 2023-05-03 7:30         |
-    | 2023-05-03 7:30 AM    | 2023-05-03 7:30       | 2023-05-03 7:30         |
-    | 2023-05-03 12:10 AM   | 2023-05-03 00:10      | 2023-05-03 12:10        |
-    | 2023-05-03 12:10 PM   | 2023-05-03 12:10      | 2023-05-03 12:10        |
-
-    It is clear that without fixing the data, we will simply aggregate data for same hour in AM and PM
-
-    Fortunately, the data points in the JSON is ordered by timestamp
-    start-> 12am, 1am, 2am ....12pm...3pm...current time <-end
-    This method takes advantage of the fact that the data is ordered and iterates over the records from the beginning
-    and sets the correct suffix (AM or PM) as it reads through the list and sees data for every hour sequentially
-    """
-
-    suffix = "AM"
-    flipped = True
-    for d in data:
-        hour = datetime.strptime(d[timestamp_column_name], "%Y-%m-%d %H:%M:%S").hour
-        if hour == 1:
-            flipped = False
-
-        if not flipped and hour == 12:
-            if suffix == "AM":
-                suffix = "PM"
-            else:
-                suffix = "AM"
-            flipped = True
-
-        d[timestamp_column_name] = d[timestamp_column_name] + " " + suffix
