@@ -14,8 +14,13 @@ from bs4 import BeautifulSoup
 from pytz import UTC
 from requests import Response, Session
 
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
-from parsers.lib.validation import validate_consumption
 
 IN_TZ = "Asia/Kolkata"
 START_DATE_RENEWABLE_DATA = arrow.get("2020-12-17", tzinfo=IN_TZ).datetime
@@ -41,7 +46,7 @@ NPP_REGION_MAPPING = {
     "NORTHERN": "IN-NO",
     "EASTERN": "IN-EA",
     "WESTERN": "IN-WE",
-    "SOUTERN": "IN-SO",
+    "SOUTHERN": "IN-SO",
     "NORTH EASTERN": "IN-NE",
 }
 
@@ -211,19 +216,21 @@ def fetch_consumption(
             )
         total_consumption += state_consumption
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": arrow.now(tz=IN_TZ).datetime,
-        "consumption": total_consumption,
-        "source": "vidyupravah.in",
-    }
-    data = validate_consumption(data, logger)
-    if data is None:
+    if total_consumption == 0:
         raise ParserException(
             parser="IN.py",
             message=f"{target_datetime}: No valid consumption data found for {zone_key}",
         )
-    return data
+
+    consumption_list = TotalConsumptionList(logger=logger)
+    consumption_list.append(
+        zoneKey=ZoneKey(zone_key),
+        datetime=arrow.now(tz=IN_TZ).datetime,
+        consumption=total_consumption,
+        source="vidyupravah.in",
+    )
+
+    return consumption_list.to_list()
 
 
 def fetch_npp_production(
@@ -247,28 +254,23 @@ def fetch_npp_production(
                 "TODAY'S\nACTUAL\n": "value",
             }
         )
-        df_npp = df_npp[["power_station", "production_mode", "value"]]
-        df_npp = df_npp.iloc[1:].copy()
-        df_npp["production_mode"] = df_npp["production_mode"].ffill()
-
         df_npp["region"] = (
             df_npp["power_station"]
             .apply(lambda x: NPP_REGION_MAPPING[x] if x in NPP_REGION_MAPPING else None)
             .ffill()
         )
-        df_zone = df_npp.loc[df_npp["region"] == zone_key].copy()
-        df_zone = df_zone.loc[~df_zone.power_station.isna()]
-        df_zone = df_zone[df_zone.power_station.str.contains("TYPE:")]
-        df_zone = df_zone[["production_mode", "value"]]
-        df_zone = df_zone.groupby(["production_mode"]).sum()
-        production = {}
-        for mode in df_zone.index:
-            production[NPP_MODE_MAPPING[mode]] = round(
-                df_zone.iloc[df_zone.index.get_indexer_for([mode])[0]].get("value")
-                / CONVERSION_GWH_MW,
-                3,
-            )
-        return production
+        df_npp = df_npp[["region", "production_mode", "value"]]
+
+        df_npp_filtered = df_npp.loc[~df_npp["production_mode"].isna()].copy()
+
+        df_zone = df_npp_filtered.loc[df_npp_filtered["region"] == zone_key].copy()
+        df_zone["production_mode"] = df_zone["production_mode"].map(NPP_MODE_MAPPING)
+        production_in_zone = df_zone.groupby(["production_mode"])["value"].sum()
+        production_dict = {
+            mode: round(production_in_zone.get(mode) / CONVERSION_GWH_MW, 3)
+            for mode in production_in_zone.index
+        }
+        return production_dict
     else:
         raise ParserException(
             parser="IN.py",
@@ -381,29 +383,31 @@ def fetch_production(
                 target_datetime=_target_datetime,
                 production=production,
                 zone_key=zone_key,
+                logger=logger,
             )
         except:
             logger.warning(
                 f"{zone_key}: production not available for {_target_datetime}"
             )
-
     return all_data_points
 
 
 def daily_to_hourly_production_data(
-    target_datetime: datetime, production: dict, zone_key: str
+    target_datetime: datetime, production: dict, zone_key: str, logger: Logger
 ) -> List[Dict[str, Any]]:
     """convert daily power production average to hourly values"""
-    all_hourly_production = []
+    all_hourly_production = ProductionBreakdownList(logger)
+    production_mix = ProductionMix()
+    for mode, value in production.items():
+        production_mix.set_value(mode, value)
     for hour in list(range(0, 24)):
-        hourly_production = {
-            "zoneKey": zone_key,
-            "datetime": target_datetime.replace(hour=hour),
-            "production": production,
-            "source": "npp.gov.in, cea.nic.in",
-        }
-        all_hourly_production.append(hourly_production)
-    return all_hourly_production
+        all_hourly_production.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=target_datetime.replace(hour=hour),
+            production=production_mix,
+            source="npp.gov.in, cea.nic.in",
+        )
+    return all_hourly_production.to_list()
 
 
 def get_start_of_day(dt: datetime) -> datetime:
@@ -412,6 +416,7 @@ def get_start_of_day(dt: datetime) -> datetime:
     return dt_start
 
 
-# if __name__ == "__main__":
-#     print("fetch_production() -> ")
-#     print(fetch_production(zone_key="IN-NO"))
+if __name__ == "__main__":
+
+    print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
+    print(fetch_consumption(zone_key="IN-WE"))
