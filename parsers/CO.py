@@ -46,7 +46,7 @@ def fetch_consumption(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List(Dict[str, Any]):
+) -> List[Dict[str, Any]]:
     if target_datetime is None:
         return fetch_live_consumption(zone_key, session, target_datetime, logger)
     else:
@@ -57,7 +57,7 @@ def fetch_live_consumption(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) ->  List(Dict[str, Any]):
+) ->  List[Dict[str, Any]]:
     demand_list = TotalConsumptionList(logger)
     response = session.get(colombia_demand_URL, verify=False)
 
@@ -79,7 +79,7 @@ def fetch_historical_consumption(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) ->  List(Dict[str, Any]):
+) ->  List[Dict[str, Any]]:
     demand_list = TotalConsumptionList(logger)
     # Convert datetime to local time
     target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
@@ -121,7 +121,7 @@ def fetch_production(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) ->  List(Dict[str, Any]):
+) ->  List[Dict[str, Any]]:
     if  target_datetime is None:
         target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
     else:
@@ -197,7 +197,7 @@ def fetch_price(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) ->  List(Dict[str, Any]):
+) ->  List[Dict[str, Any]]:
     if target_datetime is None:
         target_arrow_in_tz = arrow.now().floor('day').to(TZ).shift(days=-XM_DELAY)
     else:
