@@ -337,7 +337,7 @@ class TotalConsumption(Event):
                 f"Error(s) creating total consumption Event {datetime}: {e}",
                 extra={
                     "zoneKey": zoneKey,
-                    "datetime": datetime,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
                     "kind": "consumption",
                 },
             )
