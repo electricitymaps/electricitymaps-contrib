@@ -66,7 +66,7 @@ class ProductionBreakdownList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        production: ProductionMix,
+        production: Optional[ProductionMix] = None,
         storage: Optional[StorageMix] = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
