@@ -16,7 +16,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Australia (Rottnest Island): [Rottnest Island Hybrid Energy Solution](https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/rottnest-island)
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bahrain: [GCCIA](https://www.gccia.com.sa/)
-- Bangladesh: [PGCB](https://pgcb.org.bd/PGCB/?a=pages/operational_daily.php)
+- Bangladesh: [PGCB](https://erp.pgcb.gov.bd/web/generations/view_generations)
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bolivia: [CNDC](http://www.cndc.bo/media/archivos/graf/gene_hora/gweb_despdia_genera.php)
 - Belgium: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
