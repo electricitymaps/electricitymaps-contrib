@@ -4,13 +4,13 @@ from datetime import datetime
 from json import loads
 from typing import Dict, List, Union
 
-from parsers import EIA
 from pkg_resources import resource_string
 from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 
 from electricitymap.contrib.config import ZoneKey
+from parsers import EIA
 
 
 class TestEIA(unittest.TestCase):
