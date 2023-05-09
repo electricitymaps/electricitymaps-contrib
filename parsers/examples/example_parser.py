@@ -16,7 +16,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from parsers.lib.exceptions import ParserException
 
 
 def fetch_production(

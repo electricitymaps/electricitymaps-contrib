@@ -37,6 +37,7 @@ deepdiff = "^5.8.1"
 PyYAML = "^6.0"
 openpyxl = {version="^3.1.2", optional=true}
 pydataxm = "^0.3.2"
+odfpy = {version="^1.4.1", optional=true}
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
@@ -79,8 +80,9 @@ parsers = [
     "signalr-client-threads",
     "tqdm",
     "openpyxl",
-    "pydataxm"
-]
+    "pydataxm",
+    "odfpy"]
+
 
 validators = [
     "arrow",

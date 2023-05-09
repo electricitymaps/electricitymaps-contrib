@@ -14,9 +14,18 @@ capacity:
   solar: 55.9
   wind: 365
 disclaimer: The data provider (Chugoku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
+emissionFactors:
+  lifecycle:
+    unknown:
+      _comment: 'Source: Enerdata 2022 Japanese National Average'
+      _url:
+        - https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
+      source: Enerdata 2022
+      value: 462
 contributors:
   - tmslaine
   - lorrieq
+  - PPsyrius
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
