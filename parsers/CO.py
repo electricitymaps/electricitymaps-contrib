@@ -236,11 +236,11 @@ def fetch_price(
 
 
 if __name__ == "__main__":
-    # print("fetch_consumption() ->")
-    # print(fetch_consumption())
+    print("fetch_consumption() ->")
+    print(fetch_consumption())
 
-    # print("fetch_live_production() ->")
-    # print(fetch_production())
-    # print("fetch_production() ->")
-    # print(fetch_production())
+    print("fetch_live_production() ->")
+    print(fetch_production())
+    print("fetch_production() ->")
+    print(fetch_production())
     print(fetch_price())
