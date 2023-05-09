@@ -217,7 +217,7 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
 }
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_MAPPINGS: Dict[str, str] = {
-    **ENTSOE_DOMAIN_MAPPINGS, # Note: This has to be first so the domains are overwritten.
+    **ENTSOE_DOMAIN_MAPPINGS,  # Note: This has to be first so the domains are overwritten.
     "AX": ENTSOE_DOMAIN_MAPPINGS["SE-SE3"],
     "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
