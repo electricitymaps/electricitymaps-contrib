@@ -10,6 +10,7 @@ from requests import Session
 from requests_mock import ANY, GET, Adapter
 
 from electricitymap.contrib.config.config_types import ZoneKey
+from electricitymap.contrib.lib.models.events import EventSourceType
 from parsers import EIA
 
 
@@ -42,6 +43,7 @@ class TestEIAProduction(TestEIA):
                     "unknown": 1,
                     "solar": 1,
                 },
+                "storage": {},
             },
             {
                 "zoneKey": "US-NW-PGE",
@@ -56,6 +58,7 @@ class TestEIAProduction(TestEIA):
                     "unknown": 2,
                     "solar": 2,
                 },
+                "storage": {},
             },
         ]
         self.check_production_matches(data_list, expected)
@@ -90,27 +93,35 @@ class TestEIAProduction(TestEIA):
             GET, gas_avrn_url, json=loads(gas_avrn_data.decode("utf-8"))
         )
 
-        data_list = EIA.fetch_production_mix("US-NW-PACW", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PACW"), self.session)
         expected = [
             {
                 "zoneKey": "US-NW-PACW",
                 "source": "eia.gov",
                 "production": {"gas": 330},
+                "storage": {},
             },
-            {"zoneKey": "US-NW-PACW", "source": "eia.gov", "production": {"gas": 450}},
+            {
+                "zoneKey": "US-NW-PACW",
+                "source": "eia.gov",
+                "production": {"gas": 450},
+                "storage": {},
+            },
         ]
         self.check_production_matches(data_list, expected)
-        data_list = EIA.fetch_production_mix("US-NW-BPAT", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-NW-BPAT"), self.session)
         expected = [
             {
                 "zoneKey": "US-NW-BPAT",
                 "source": "eia.gov",
                 "production": {"wind": 21},
+                "storage": {},
             },
             {
                 "zoneKey": "US-NW-BPAT",
                 "source": "eia.gov",
                 "production": {"wind": 42},
+                "storage": {},
             },
         ]
         self.check_production_matches(data_list, expected)
@@ -133,39 +144,45 @@ class TestEIAProduction(TestEIA):
             GET, nuclear_sc_url, json=loads(nuclear_sc_data.decode("utf-8"))
         )
 
-        data_list = EIA.fetch_production_mix("US-CAR-SC", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-CAR-SC"), self.session)
         expected = [
             {
                 "zoneKey": "US-CAR-SC",
                 "source": "eia.gov",
                 "production": {"nuclear": 330.6666336},
+                "storage": {},
             },
             {
                 "zoneKey": "US-CAR-SC",
                 "source": "eia.gov",
                 "production": {"nuclear": 330.3333003},
+                "storage": {},
             },
         ]
         self.check_production_matches(data_list, expected)
-        data_list = EIA.fetch_production_mix("US-CAR-SCEG", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-CAR-SCEG"), self.session)
         expected = [
             {
                 "zoneKey": "US-CAR-SCEG",
                 "source": "eia.gov",
                 "production": {"nuclear": 661.3333663999999},
+                "storage": {},
             },
             {
                 "zoneKey": "US-CAR-SCEG",
                 "source": "eia.gov",
                 "production": {"nuclear": 660.6666997},
+                "storage": {},
             },
         ]
         self.check_production_matches(data_list, expected)
 
     def test_check_transfer_mixes(self):
         for supplied_zone, production in EIA.PRODUCTION_ZONES_TRANSFERS.items():
-            all_production = production.pop("all", {})
+            all_production = production.get("all", {})
             for type, supplying_zones in production.items():
+                if type == "all":
+                    continue
                 for zone in supplying_zones:
                     if zone in all_production:
                         raise Exception(
@@ -173,6 +190,65 @@ class TestEIAProduction(TestEIA):
                             and exporting its {type} production. \
                             This is not possible please fix this ambiguity."
                         )
+
+    def test_hydro_transfer_mix(self):
+        """
+        Make sure that with zones that integrate production only zones
+        the hydro production events are properly handled and the storage
+        is accounted for on a zone by zone basis.
+        """
+        other_data = resource_string("parsers.test.mocks.EIA", "US_NW_AVRN-other.json")
+        self.adapter.register_uri(GET, ANY, json=loads(other_data.decode("utf-8")))
+        hydro_deaa = resource_string("parsers.test.mocks.EIA", "US_SW_DEAA-hydro.json")
+        hydro_deaa_url = EIA.PRODUCTION_MIX.format("DEAA", "WAT")
+        self.adapter.register_uri(
+            GET, hydro_deaa_url, json=loads(hydro_deaa.decode("utf-8"))
+        )
+
+        hydro_hgma = resource_string("parsers.test.mocks.EIA", "US_SW_HGMA-hydro.json")
+        hydro_hgma_url = EIA.PRODUCTION_MIX.format("HGMA", "WAT")
+        self.adapter.register_uri(
+            GET, hydro_hgma_url, json=loads(hydro_hgma.decode("utf-8"))
+        )
+
+        hydro_srp = resource_string("parsers.test.mocks.EIA", "US_SW_SRP-hydro.json")
+        hydro_srp_url = EIA.PRODUCTION_MIX.format("SRP", "WAT")
+        self.adapter.register_uri(
+            GET, hydro_srp_url, json=loads(hydro_srp.decode("utf-8"))
+        )
+        data = EIA.fetch_production_mix(ZoneKey("US-SW-SRP"), self.session)
+        expected = [
+            {
+                "zoneKey": "US-SW-SRP",
+                "source": "eia.gov",
+                "production": {"hydro": 7.0},
+                "storage": {"hydro": 5.0},
+            },
+            {
+                "zoneKey": "US-SW-SRP",
+                "source": "eia.gov",
+                "production": {"hydro": 800.0},
+                "storage": {"hydro": 900.0},
+            },
+        ]
+        self.check_production_matches(data, expected)
+
+        data = EIA.fetch_production_mix(ZoneKey("US-SW-HGMA"), self.session)
+        expected = [
+            {
+                "zoneKey": "US-SW-HGMA",
+                "source": "eia.gov",
+                "production": {"hydro": 4.0},
+                "storage": {},
+            },
+            {
+                "zoneKey": "US-SW-HGMA",
+                "source": "eia.gov",
+                "production": {"hydro": 400.0},
+                "storage": {},
+            },
+        ]
+        self.check_production_matches(data, expected)
 
     def check_production_matches(
         self,
@@ -188,13 +264,16 @@ class TestEIAProduction(TestEIA):
             self.assertIsNotNone(data["datetime"])
             for key, value in data["production"].items():
                 self.assertEqual(value, expected[i]["production"][key])
+            self.assertEqual(data.get("storage"), expected[i].get("storage"))
+            for key, value in data.get("storage", {}).items():
+                self.assertEqual(value, expected[i]["storage"][key])
 
     def test_fetch_production_mix_discards_null(self):
         null_avrn_data = resource_string(
             "parsers.test.mocks.EIA", "US-NW-PGE-with-nulls.json"
         )
         self.adapter.register_uri(GET, ANY, json=loads(null_avrn_data.decode("utf-8")))
-        data_list = EIA.fetch_production_mix("US-NW-PGE", self.session)
+        data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PGE"), self.session)
         expected = [
             {
                 "zoneKey": "US-NW-PGE",
@@ -209,6 +288,7 @@ class TestEIAProduction(TestEIA):
                     "unknown": 400,
                     "solar": 400,
                 },
+                "storage": {},
             },
         ]
         self.assertEqual(
@@ -223,7 +303,9 @@ class TestEIAExchanges(TestEIA):
             "parsers.test.mocks.EIA", "US-NW-BPAT-US-NW-NWMT-exchange.json"
         )
         self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
-        data_list = EIA.fetch_exchange("US-NW-BPAT", "US-NW-NWMT", self.session)
+        data_list = EIA.fetch_exchange(
+            ZoneKey("US-NW-BPAT"), ZoneKey("US-NW-NWMT"), self.session
+        )
         expected = [
             {
                 "source": "eia.gov",
@@ -274,6 +356,29 @@ class TestEIAConsumption(TestEIA):
             self.assertEqual(data["source"], expected[i]["source"])
             self.assertEqual(data["datetime"], expected[i]["datetime"])
             self.assertEqual(data["consumption"], expected[i]["consumption"])
+
+    def test_fetch_forecasted_consumption(self):
+        data = resource_string("parsers.test.mocks.EIA", "US_NW_BPAT-consumption.json")
+        self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
+        data_list = EIA.fetch_consumption_forecast(ZoneKey("US-NW-BPAT"), self.session)
+        expected = [
+            {
+                "source": "eia.gov",
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "consumption": 6215,
+            },
+            {
+                "source": "eia.gov",
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "consumption": 4792,
+            },
+        ]
+        self.assertEqual(len(data_list), len(expected))
+        for i, data in enumerate(data_list):
+            self.assertEqual(data["source"], expected[i]["source"])
+            self.assertEqual(data["datetime"], expected[i]["datetime"])
+            self.assertEqual(data["consumption"], expected[i]["consumption"])
+            self.assertEqual(data["sourceType"], EventSourceType.forecasted)
 
 
 if __name__ == "__main__":
