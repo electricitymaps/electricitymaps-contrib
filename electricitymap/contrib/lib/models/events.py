@@ -237,8 +237,12 @@ class TotalProduction(Event):
 
 
 class ProductionBreakdown(Event):
-    production: ProductionMix
+    production: Optional[ProductionMix] = None
     storage: Optional[StorageMix] = None
+    """
+    An event representing the production and storage breakdown of a zone at a given time.
+    If a production mix is supplied it should not be fully empty.
+    """
 
     @validator("production")
     def _validate_production_mix(cls, v):
@@ -260,13 +264,13 @@ class ProductionBreakdown(Event):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        production: ProductionMix,
+        production: Optional[ProductionMix] = None,
         storage: Optional[StorageMix] = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["ProductionBreakdown"]:
         try:
             # Log warning if production has been corrected.
-            if production.has_corrected_negative_values:
+            if production is not None and production.has_corrected_negative_values:
                 logger.warning(
                     f"Negative production values were detected: {production._corrected_negative_values}.\
                     They have been set to None."
@@ -288,7 +292,9 @@ class ProductionBreakdown(Event):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "production": self.production.dict(exclude_none=True),
+            "production": self.production.dict(exclude_none=True)
+            if self.production
+            else {},
             "storage": self.storage.dict(exclude_none=True) if self.storage else {},
             "source": self.source,
             "sourceType": self.sourceType,
