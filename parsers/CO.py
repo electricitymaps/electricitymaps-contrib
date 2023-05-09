@@ -40,15 +40,6 @@ PRODUCTION_MAPPING = {
 
 XM_DELAY = 2
 
-def check_valid_target_datetime(target_datetime: datetime) -> bool:
-    """checks if data is available for the considered target_datetime"""
-    valid_datetime = True
-    if target_datetime is None:
-        valid_datetime = False
-    if target_datetime>=datetime.utcnow()-timedelta(days=XM_DELAY):
-         valid_datetime = False
-    return valid_datetime
-
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "CO",
@@ -59,14 +50,7 @@ def fetch_consumption(
     if target_datetime is None:
         return fetch_live_consumption(zone_key, session, target_datetime, logger)
     else:
-        if target_datetime<=datetime.utcnow()-timedelta(days=XM_DELAY):
-            return fetch_historical_consumption(zone_key, session, target_datetime, logger)
-        else:
-            raise ParserException(
-                parser="CO",
-                message=f"{target_datetime}: no consumption data available because data is delayed by 48h",
-                zone_key=zone_key,
-            )
+        return fetch_historical_consumption(zone_key, session, target_datetime, logger)
 
 def fetch_live_consumption(
     zone_key: str = "CO",
@@ -138,7 +122,7 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-    if  check_valid_target_datetime(target_datetime):
+    if  target_datetime is None:
         target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
     else:
         target_arrow_in_tz = arrow.now().floor('day').to(TZ).shift(days=-XM_DELAY)
@@ -214,10 +198,10 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-    if not check_valid_target_datetime(target_datetime):
-        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
-    else:
+    if target_datetime is None:
         target_arrow_in_tz = arrow.now().floor('day').to(TZ).shift(days=-XM_DELAY)
+    else:
+        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
 
     objetoAPI = pydataxm.ReadDB()
 
@@ -232,7 +216,7 @@ def fetch_price(
             target_datetime_in_tz = target_arrow_in_tz.datetime.replace(
                 hour=int(col[-2:]) - 1
             )
-            price = float(df_price[col]) * 1000
+            price = float(df_price[col])
 
             price_list.append(
                 zoneKey=zone_key,
@@ -257,5 +241,6 @@ if __name__ == "__main__":
 
     # print("fetch_live_production() ->")
     # print(fetch_production())
-    print("fetch_production() ->")
-    print(fetch_production(target_datetime=datetime(2020, 1, 1)))
+    # print("fetch_production() ->")
+    # print(fetch_production())
+    print(fetch_price())
