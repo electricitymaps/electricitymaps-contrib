@@ -196,6 +196,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Bahrain: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+- Bangladesh: [BPDB](https://bpdb.portal.gov.bd/sites/default/files/files/bpdb.portal.gov.bd/annual_reports/7b792f67_bf50_4b3d_9bef_8f9b568005c9/2022-11-29-05-22-0dea17e09d8a84e72a63312df6b5bdc6.pdf)
 - Belarus: [belstat.gov.by](http://www.belstat.gov.by/upload/iblock/7f7/7f70938f51eb9e49abc4a6e62f831a2c.rar), [RenEn](http://director.by/zhurnal/arkhiv-zhurnala/arkhiv-nomerov-2017/375-7-2017-iyul-2017/5456-zelenaya-energetika-nabiraet-oboroty)
 - Belgium
   - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=BE)

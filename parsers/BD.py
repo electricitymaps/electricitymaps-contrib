@@ -49,9 +49,7 @@ def table_entry_to_float(entry: str):
     except ValueError:
         raise ParserException(
             parser="BD.py",
-            message=(
-                f"Failed to parse entry: \"{entry}\" to float in table."
-            ),
+            message=(f'Failed to parse entry: "{entry}" to float in table.'),
         )
 
 
@@ -119,7 +117,9 @@ def verify_table(table_header: Tag):
         )
 
 
-def query(session, target_datetime, logger):
+def query(
+    session: Optional[Session], target_datetime: Optional[datetime], logger: Logger
+) -> List[Dict[str, Any]]:
     """
     Query the table and read it into list.
     """
@@ -163,12 +163,11 @@ def fetch_production(
 ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
 
     row_data = query(session, target_datetime, logger)
-    # TODO edit DataSources with this and capacities
+
     production_data_list = []
     for row in row_data:
 
         # Sources don't add up to total generation, put rest in 'unknown'
-        # TODO unknown CO2? TODO capacities?
         unknown_source = (
             row["total_generation"]
             - row["coal"]
@@ -250,7 +249,7 @@ def fetch_exchange(
     session: Optional[Session] = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> List[Dict[str, Any]]:
 
     # Query table, contains import from india.
     row_data = query(session, target_datetime, logger)
