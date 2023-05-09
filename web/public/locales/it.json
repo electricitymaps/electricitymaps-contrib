@@ -49,7 +49,7 @@
     "renewable": "Rinnovabile",
     "electricityproduction": "Produzione elettrica",
     "electricityconsumption": "Consumo elettrico",
-    "bysource": "Per fonte",
+    "bysource": "per fonte",
     "averagebysource": "media per fonte",
     "emissions": "Emissioni di carbonio",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica fonte</a>",
@@ -163,9 +163,15 @@
     "production": "Produzione",
     "consumption": "Consumo",
     "cpinfo": "Il <b>consumo</b> considera importazioni ed esportazioni, la <b>produzione</b> li ignora",
+    "aggregateInfo": "Visualizza dati per zona o aggregati per nazione",
     "selectLanguage": "Seleziona la lingua",
     "lowCarbDescription": "Include rinnovabili e nucleare",
-    "dataIsDelayed": "I dati sono in ritardo"
+    "dataIsDelayed": "I dati sono in ritardo",
+    "price": "Prezzo"
+  },
+  "aggregateButtons": {
+    "country": "nazione",
+    "zone": "zona"
   },
   "misc": {
     "maintitle": "Emissioni di CO₂ in tempo reale del consumo elettrico",
@@ -1211,6 +1217,9 @@
     "NL": {
       "zoneName": "Paesi Bassi"
     },
+    "NO": {
+      "zoneName": "Norvegia"
+    },
     "NO-NO1": {
       "countryName": "Norvegia",
       "zoneName": "Norvegia Sudest"
@@ -1364,6 +1373,22 @@
     },
     "SE": {
       "zoneName": "Svezia"
+    },
+    "SE-SE1": {
+      "countryName": "Svezia",
+      "zoneName": "Svezia Nord"
+    },
+    "SE-SE2": {
+      "countryName": "Svezia",
+      "zoneName": "Svezia Centronord"
+    },
+    "SE-SE3": {
+      "countryName": "Svezia",
+      "zoneName": "Svezia Centrosud"
+    },
+    "SE-SE4": {
+      "countryName": "Svezia",
+      "zoneName": "Svezia Sud"
     },
     "SG": {
       "zoneName": "Singapore"
