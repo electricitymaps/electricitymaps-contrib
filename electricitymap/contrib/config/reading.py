@@ -2,8 +2,8 @@ from typing import Any, Dict
 
 import yaml
 
-from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 def read_defaults(config_dir) -> Dict[str, Any]:

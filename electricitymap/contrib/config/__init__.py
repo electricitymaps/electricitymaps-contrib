@@ -5,18 +5,19 @@ from pathlib import Path
 from typing import Dict, List
 
 from electricitymap.contrib.config.co2eq_parameters import generate_co2eq_parameters
-from electricitymap.contrib.config.config_types import BoundingBox, ZoneKey
 from electricitymap.contrib.config.reading import (
     read_defaults,
     read_exchanges_config,
     read_zones_config,
 )
+from electricitymap.contrib.config.types import BoundingBox
 from electricitymap.contrib.config.zones import (
     generate_all_neighbours,
     generate_zone_neighbours,
     zone_bounding_boxes,
     zone_parents,
 )
+from electricitymap.contrib.lib.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 

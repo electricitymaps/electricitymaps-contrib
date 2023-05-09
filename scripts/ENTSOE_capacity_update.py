@@ -23,7 +23,7 @@ import yaml
 from utils import ROOT_PATH, run_shell_command
 
 from electricitymap.contrib.config import CONFIG_DIR, ZONES_CONFIG
-from electricitymap.contrib.config.config_types import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_DESC,

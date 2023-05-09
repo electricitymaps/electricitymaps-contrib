@@ -7,9 +7,9 @@ from typing import Any, Dict, Optional
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
-from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
+from electricitymap.contrib.lib.types import ZoneKey
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 

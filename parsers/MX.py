@@ -14,8 +14,8 @@ from dateutil import tz
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
-from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 

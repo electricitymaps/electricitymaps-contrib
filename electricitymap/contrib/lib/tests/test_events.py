@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 import freezegun
 from mock import patch
 
-from electricitymap.contrib.config.config_types import ZoneKey
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
@@ -17,6 +16,7 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 class TestExchange(unittest.TestCase):
