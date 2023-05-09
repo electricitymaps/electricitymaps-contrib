@@ -1,6 +1,6 @@
 lonlat:
-  - 88.736559
-  - 23.36129
+  - 88.717802 
+  - 24.104800
 parsers:
   exchange: BD.fetch_exchange
 rotation: -90

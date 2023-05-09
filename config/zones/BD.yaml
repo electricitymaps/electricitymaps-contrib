@@ -6,6 +6,8 @@ bounding_box:
 contributors:
   - systemcatch
   - alixunderplatz
+  - MuffinCompiler
 parsers:
   production: BD.fetch_production
+  consumption: BD.fetch_consumption
 timezone: Asia/Dhaka
