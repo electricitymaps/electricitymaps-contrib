@@ -40,7 +40,7 @@ class TestFetchPrices(TestENTSOE):
             )
 
     def test_fetch_prices_integrated_zone(self):
-        with open("parsers/test/mocks/ENTSOE/FR_prices.html", "rb") as price_fr_data:
+        with open("parsers/test/mocks/ENTSOE/FR_prices.xml", "rb") as price_fr_data:
             self.adapter.register_uri(
                 GET,
                 ANY,
