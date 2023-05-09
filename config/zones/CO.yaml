@@ -17,4 +17,3 @@ parsers:
   price: CO.fetch_price
 delays:
   production: 48
-  prices: 48
