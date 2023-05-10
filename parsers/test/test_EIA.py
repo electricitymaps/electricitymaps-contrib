@@ -10,6 +10,7 @@ from requests import Session
 from requests_mock import ANY, GET, Adapter
 
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.events import EventSourceType
 from parsers import EIA
 
 
@@ -355,6 +356,29 @@ class TestEIAConsumption(TestEIA):
             self.assertEqual(data["source"], expected[i]["source"])
             self.assertEqual(data["datetime"], expected[i]["datetime"])
             self.assertEqual(data["consumption"], expected[i]["consumption"])
+
+    def test_fetch_forecasted_consumption(self):
+        data = resource_string("parsers.test.mocks.EIA", "US_NW_BPAT-consumption.json")
+        self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
+        data_list = EIA.fetch_consumption_forecast(ZoneKey("US-NW-BPAT"), self.session)
+        expected = [
+            {
+                "source": "eia.gov",
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "consumption": 6215,
+            },
+            {
+                "source": "eia.gov",
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "consumption": 4792,
+            },
+        ]
+        self.assertEqual(len(data_list), len(expected))
+        for i, data in enumerate(data_list):
+            self.assertEqual(data["source"], expected[i]["source"])
+            self.assertEqual(data["datetime"], expected[i]["datetime"])
+            self.assertEqual(data["consumption"], expected[i]["consumption"])
+            self.assertEqual(data["sourceType"], EventSourceType.forecasted)
 
 
 if __name__ == "__main__":
