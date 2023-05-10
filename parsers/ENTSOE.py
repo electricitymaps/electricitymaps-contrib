@@ -1468,7 +1468,6 @@ def fetch_wind_solar_forecasts(
 ) -> list:
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
-    Removes any values that are in the future or don't have a datetime associated with them.
     """
     if not session:
         session = Session()
