@@ -14,7 +14,7 @@ class TestOPENNEM(unittest.TestCase):
             start="2021-01-01 00:00:00+00:00",
             end="2021-01-01 01:00:00+00:00",
             freq="5T",
-            inclusive="left",
+            closed="left",
         )
         df = pd.DataFrame(index=idx)
         rdn_any_column = np.random.rand(len(idx)).astype(float)
@@ -32,7 +32,7 @@ class TestOPENNEM(unittest.TestCase):
                 start="2021-01-01 00:00:00+00:00",
                 end="2021-01-01 01:00:00+00:00",
                 freq="30T",
-                inclusive="left",
+                closed="left",
             )
         )
         assert processed_df.loc[:, "SOLAR_ROOFTOP"].iloc[0] == 84.0

@@ -1,175 +1,86 @@
-#!/usr/bin/env python3
-
-
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from typing import List, Optional
 
 import arrow
 import pandas as pd
+import pandasql as psql
 from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
+"""
+This module is used to read the exchange values on a hourly basis for a day from India West to North, East, South. 
+This module also calculates the total electricity consumption by India West.
+The data is fetched from https://www.wrldc.in using APIs which provide data in JSON format
+India West constitutes of Gujrat, Madhya Pradesh, Chattishgarh, Maharashtra, Goa, DD, DNH
+
+These APIs return the data from midnight 12:00am to current time at which the parser is run  
+"""
+
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
-EXCHANGE_URL = f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise?host=https://www.wrldc.in"
-CONSUMPTION_URL = f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData_state_Wise?host=https://www.wrldc.in"
+IN_TZ = "Asia/Kolkata"
 
-EXCHANGES_MAPPING = {
-    "WR-SR": "IN-SO->IN-WE",
-    "WR-ER": "IN-EA->IN-WE",
-    "WR-NR": "IN-NO->IN-WE",
+""" 
+Exchange data parser
+source: https://www.wrldc.in/content/166_1_FlowsonInterRegionalLinks.aspx
+API : https://www.wrldc.in/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Data
+sample data:
+[{
+    "Region_Id": 2,
+    "Region_Name": "WR-ER",
+    "Export_Ttc": 25000.0,
+    "Import_Ttc": 25000.0,
+    "Long_Term": 955.0,
+    "Short_Term": -125.0,
+    "Px_Import": 35.0,
+    "Px_Export": 0.0,
+    "Total": 322.0,
+    "Current_Loading": -1052.0,
+    "lastUpdate": "2023-05-04 00:24:09"
+  },
+  {
+    "Region_Id": 3,
+    "Region_Name": "WR-NR",
+    "Export_Ttc": 17800.0,
+    "Import_Ttc": 4000.0,
+    "Long_Term": -1418.0,
+    "Short_Term": -600.0,
+    "Px_Import": 2230.0,
+    "Px_Export": 0.0,
+    "Total": -1266.0,
+    "Current_Loading": -363.0,
+    "lastUpdate": "2023-05-04 00:24:09"
+  }
+]
+"""
+
+
+EXCHANGE_URL = (
+    f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Data?"
+    f"host=https://www.wrldc.in"
+)
+
+EXCHANGES_ZONE_DATA_MAPPING = {
+    "IN-SO->IN-WE": "WR-SR",
+    "IN-EA->IN-WE": "WR-ER",
+    "IN-NO->IN-WE": "WR-NR",
 }
 
-KIND_MAPPING = {
-    "exchange": {"url": EXCHANGE_URL, "datetime_column": "lastUpdate"},
-    "consumption": {"url": CONSUMPTION_URL, "datetime_column": "current_datetime"},
-}
+EXCHANGE_DATETIME_COLUMN_NAME = "lastUpdate"
 
-
-def get_date_range(dt: datetime):
-    return pd.date_range(
-        arrow.get(dt).floor("day").datetime,
-        arrow.get(dt).ceil("day").floor("hour").datetime,
-        freq="H",
-    ).to_pydatetime()
-
-
-def fetch_data(
-    zone_key: str = "IN-WE",
-    kind: Optional[str] = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    """- get production data from wrldc.in
-    - filter all rows with same hour as target_datetime"""
-    assert target_datetime is not None
-    assert kind is not None
-
-    r = session or Session()
-    payload = {"date": target_datetime.strftime("%Y-%m-%d")}
-
-    resp: Response = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
-
-    try:
-        data = json.loads(resp.json().get("d", {}))
-    except json.decoder.JSONDecodeError:
-        raise ParserException(
-            parser="IN_WE.py",
-            message=f"{target_datetime}: {kind} data is not available",
-        )
-
-    datetime_col = KIND_MAPPING[kind]["datetime_column"]
-    for item in data:
-        item[datetime_col] = datetime.strptime(item[datetime_col], "%Y-%d-%m %H:%M:%S")
-        dt = arrow.get(item[datetime_col])
-        if dt.second >= 30:
-            item[datetime_col] = dt.shift(minutes=1).floor("minute").datetime
-        else:
-            item[datetime_col] = dt.floor("minute").datetime
-    return data
-
-
-def format_raw_data(
-    kind: str,
-    data: dict,
-    target_datetime: datetime,
-) -> pd.DataFrame:
-    assert len(data) > 0
-    assert kind != ""
-
-    dt_12_hour = arrow.get(target_datetime.strftime("%Y-%m-%d %I:%M")).datetime
-    datetime_col = KIND_MAPPING[kind]["datetime_column"]
-    filtered_data = pd.DataFrame(
-        [item for item in data if item[datetime_col].hour == dt_12_hour.hour]
-    )
-    return filtered_data
-
-
-def format_exchanges_data(
-    data: dict, zone_key1: str, zone_key2: str, target_datetime: datetime
-) -> dict:
-    """format exchanges data:
-    - filters out correct datetimes (source data is 12 hour format)
-    - average all data points in the target_datetime hour"""
-    assert target_datetime is not None
-    assert len(data) > 0
-
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    filtered_data = format_raw_data(
-        kind="exchange", data=data, target_datetime=target_datetime
-    )
-
-    filtered_data["zone_key"] = filtered_data["Region_Name"].map(EXCHANGES_MAPPING)
-    df_exchanges = filtered_data.loc[filtered_data["zone_key"] == sortedZoneKeys]
-    exchanges = {}
-    if target_datetime.hour >= 12:
-        df_exchanges = df_exchanges.drop_duplicates(
-            subset=["Region_Name", "lastUpdate"], keep="last"
-        )
-    else:
-        df_exchanges = filtered_data.drop_duplicates(
-            subset=["Region_Name", "lastUpdate"], keep="first"
-        )
-    df_exchanges.loc[:, "target_datetime"] = target_datetime
-    df_exchanges = (
-        df_exchanges.groupby(["Region_Name", "target_datetime"])
-        .mean(numeric_only=True)
-        .reset_index()
-    )
-
-    exchanges = {
-        "netFlow": -round(df_exchanges.iloc[0]["Current_Loading"], 3),
-        "sortedZoneKeys": sortedZoneKeys,
-        "datetime": arrow.get(target_datetime).replace(tzinfo="Asia/Kolkata").datetime,
-        "source": "wrldc.in",
-    }
-    return exchanges
-
-
-def format_consumption_data(
-    data: dict, zone_key: str, target_datetime: datetime
-) -> dict:
-    """format consumption data:
-    - filters out correct datetimes (source data is 12 hour format)
-    - average all data points in the target_datetime hour"""
-    assert target_datetime is not None
-    assert len(data) > 0
-
-    filtered_data = format_raw_data(
-        kind="consumption",
-        data=data,
-        target_datetime=target_datetime,
-    )
-
-    consumption = {
-        "zoneKey": zone_key,
-        "datetime": arrow.get(target_datetime).replace(tzinfo="Asia/Kolkata").datetime,
-        "source": "wrldc.in",
-    }
-
-    if target_datetime.hour >= 12:
-        df_consumption = filtered_data.drop_duplicates(
-            subset=["StateName", "current_datetime"], keep="last"
-        )
-    else:
-        df_consumption = filtered_data.drop_duplicates(
-            subset=["StateName", "current_datetime"], keep="first"
-        )
-    df_consumption.loc[:, "target_datetime"] = target_datetime
-    df_consumption = (
-        df_consumption.groupby(["StateName", "target_datetime"])
-        .mean(numeric_only=True)
-        .reset_index()
-    )
-
-    consumption["consumption"] = round(
-        df_consumption.groupby(["target_datetime"])["Act_Drawal"].sum().values[0], 3
-    )
-    return consumption
+# For each hour, get the average of current loading value for a given exchange like IN_SO->IN_WE
+EXCHANGE_SQL_QUERY = """
+    select 
+    strftime ('%Y-%m-%d %H:00:00',lastUpdate) as last_update_hour, 
+    -round(avg(Current_Loading), 3) as exchange_value 
+    from dataframe 
+    where Region_Name = '{zone_id}' 
+    group by last_update_hour
+    order by last_update_hour
+    """
 
 
 @refetch_frequency(timedelta(days=1))
@@ -179,26 +90,109 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
-    if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
-    data = fetch_data(
-        zone_key=zone_key1,
-        kind="exchange",
-        session=session,
-        target_datetime=target_datetime,
-        logger=logger,
+) -> List[dict]:
+    """This method is called by IN-EA, IN-SO, IN-NO zone's parsers to get the exchange data with IN-WA zone.
+    This is the entrypoint to this module for the parsers to fetch Extensions"""
+
+    exchange_zone_key, zone_key_matching_source_data = get_exchange_zone_key(
+        zone_key1, zone_key2
     )
-    exchanges = [
-        format_exchanges_data(
-            zone_key1=zone_key1,
-            zone_key2=zone_key2,
-            data=data,
-            target_datetime=dt,
-        )
-        for dt in get_date_range(target_datetime)
-    ]
+
+    if target_datetime is None:
+        target_datetime = arrow.now().datetime
+
+    dataframe = get_dataframe_from_url(
+        EXCHANGE_URL, EXCHANGE_DATETIME_COLUMN_NAME, target_datetime, session
+    )
+    if dataframe is None:
+        return []
+    result = psql.sqldf(
+        EXCHANGE_SQL_QUERY.format(zone_id=zone_key_matching_source_data), locals()
+    )
+    exchanges = convert_result_to_exchanges(exchange_zone_key, result)
     return exchanges
+
+
+def convert_result_to_exchanges(exchange_zone_key, result):
+    return [
+        {
+            "netFlow": result["exchange_value"][index],
+            "sortedZoneKeys": exchange_zone_key,
+            "datetime": pd.Timestamp(
+                result["last_update_hour"][index], tz=IN_TZ
+            ).to_pydatetime(),
+            "source": "wrldc.in",
+        }
+        for index in result.index
+    ]
+
+
+def get_exchange_zone_key(zone_key1, zone_key2):
+    exchange_zone_key = "->".join(sorted([zone_key1, zone_key2]))
+    if exchange_zone_key not in EXCHANGES_ZONE_DATA_MAPPING.keys():
+        raise ParserException("IN_WE.py", "Invalid zone queried from the source")
+
+    return exchange_zone_key, EXCHANGES_ZONE_DATA_MAPPING[exchange_zone_key]
+
+
+""" 
+Consumption data parser 
+source: https://www.wrldc.in/content/164_1_StateScheduleVsActual.aspx
+API: https://www.wrldc.in/OnlinestateTest1.aspx/GetRealTimeData
+sample data:
+[{
+    "stateid": 0,
+    "StateName": "Gujrat",
+    "Sch_Drawal": 8470.0,
+    "Act_Drawal": 8651.0,
+    "current_datetime": "2023-05-04 09:02:09",
+    "Frequency": 50.13,
+    "Deviation": 181.0,
+    "Generation": 8518.0,
+    "Demand": 17169.0,
+    "Act_Data": 0.0,
+    "Sch_Data": 0.0
+  },
+  {
+    "stateid": 0,
+    "StateName": "Madhya Pradesh",
+    "Sch_Drawal": 4360.0,
+    "Act_Drawal": 4280.0,
+    "current_datetime": "2023-05-04 09:02:09",
+    "Frequency": 50.13,
+    "Deviation": -80.0,
+    "Generation": 4138.0,
+    "Demand": 8418.0,
+    "Act_Data": 0.0,
+    "Sch_Data": 0.0
+  }
+]
+    
+"""
+
+
+CONSUMPTION_URL = (
+    f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData?host=https://www.wrldc.in"
+)
+# For each hour and state, get the average consumption and then add the values across the states to get the Total
+# consumption in West on a per-hour basis
+CONSUMPTION_SQL_QUERY = """
+    select state_data.last_update_hour as last_update_hour, 
+    sum(state_data.consumption_value) as consumption_value
+    from 
+    (
+        select
+        StateName as state, 
+        strftime('%Y-%m-%d %H:00:00',current_datetime) as last_update_hour, 
+        round(avg(Act_Drawal), 3) as consumption_value 
+        from dataframe 
+        group by StateName, last_update_hour
+        order by StateName, last_update_hour
+    ) AS state_data
+    group by state_data.last_update_hour
+    order by state_data.last_update_hour
+    """
+CONSUMPTION_DATETIME_COLUMN_NAME = "current_datetime"
 
 
 @refetch_frequency(timedelta(days=1))
@@ -207,28 +201,59 @@ def fetch_consumption(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[dict]:
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
-    data = fetch_data(
-        zone_key=zone_key,
-        kind="consumption",
-        session=session,
-        target_datetime=target_datetime,
-        logger=logger,
-    )
+        target_datetime = arrow.now().datetime
 
-    consumption = [
-        format_consumption_data(
-            zone_key=zone_key,
-            data=data,
-            target_datetime=dt,
-        )
-        for dt in get_date_range(target_datetime)
+    dataframe = get_dataframe_from_url(
+        CONSUMPTION_URL, CONSUMPTION_DATETIME_COLUMN_NAME, target_datetime, session
+    )
+    if dataframe is None:
+        return []
+
+    result = psql.sqldf(CONSUMPTION_SQL_QUERY, locals())
+    consumptions = convert_result_to_consumption(zone_key, result)
+    return consumptions
+
+
+def convert_result_to_consumption(zone_key, result):
+    return [
+        {
+            "zoneKey": zone_key,
+            "datetime": pd.Timestamp(
+                result["last_update_hour"][index], tz=IN_TZ
+            ).to_pydatetime(),
+            "consumption": result["consumption_value"][index],
+            "source": "wrldc.in",
+        }
+        for index in result.index
     ]
 
-    return consumption
+
+""" Utility methods for the data parser """
 
 
-if __name__ == "__main__":
-    print(fetch_consumption())
+def get_dataframe_from_url(
+    url: str,
+    datetime_column_name: str,
+    target_datetime: datetime,
+    session: Optional[Session] = None,
+):
+    """
+    Given a URL and a timestamp, this method reads the JSON from the source with timestamp in 24-hour format
+    and then deserializes the JSON as @DataFrame
+    """
+    s = session or Session()
+    payload = {"date": target_datetime.strftime("%Y-%m-%d"), "Flag": "24"}
+
+    resp: Response = s.post(url=url, json=payload)
+    data = json.loads(resp.json().get("d", {}))
+    if len(data) == 0:
+        return None
+
+    dataframe = pd.json_normalize(data)
+    dataframe[datetime_column_name] = pd.to_datetime(
+        dataframe[datetime_column_name], format="%Y-%m-%d %H:%M:%S"
+    )
+
+    return dataframe

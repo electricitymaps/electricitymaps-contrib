@@ -19,6 +19,7 @@ contributors:
   - systemcatch
   - Manu1400
   - gopikrishna1793
+  - saurabhchatterjee23
 emissionFactors:
   direct:
     unknown:
@@ -95,6 +96,6 @@ fallbackZoneMixes:
         unknown: 0.0017565472292090639
         wind: 0.010845681494329525
 parsers:
-  consumption: IN_WE_new.fetch_consumption
+  consumption: IN_WE.fetch_consumption
   production: IN.fetch_production
 timezone: Asia/Kolkata

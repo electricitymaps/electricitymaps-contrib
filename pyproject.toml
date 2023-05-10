@@ -22,7 +22,7 @@ imageio = {version="^2.18.0", optional=true}
 lxml = {version="^4.9.1", optional=true}
 mock = {version="^2.0.0", optional=true}
 opencv-python = {version="4.6.0.66", optional=true}
-pandas = {version="^2.0.1", optional=true}
+pandas = {version="^1.5.3", optional=true}
 Pillow = {version="^9.1.1", optional=true}
 pytesseract = {version="0.2.0", optional=true}
 ree = {version = "2.3.2", optional = true}
@@ -38,6 +38,7 @@ PyYAML = "^6.0"
 openpyxl = {version="^3.1.2", optional=true}
 odfpy = {version="^1.4.1", optional=true}
 pandasql = {version="^0.7.3", optional=true}
+sqlalchemy = {version="^1.4.48", optional=true}
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
