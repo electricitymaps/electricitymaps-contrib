@@ -1598,4 +1598,4 @@ validators = ["arrow", "pandas"]
 [metadata]
 lock-version = "2.0"
 python-versions = '>= 3.8, < 4.0'
-content-hash = "96de8f2ed5d84efc719228eef113780b90b7d728260b08591ba7023ef1a5d16a"
+content-hash = "74f93d834bc6a74e7c5d3fbc483b4ab381988a8a73d7fc8a88a9cef460ace6d7"
