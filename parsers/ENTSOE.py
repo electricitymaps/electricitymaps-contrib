@@ -27,13 +27,22 @@ from bs4 import BeautifulSoup
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
-from electricitymap.contrib.lib.models.event_lists import PriceList
+from electricitymap.contrib.lib.models.event_lists import (
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
 from parsers.lib.config import refetch_frequency
 
 from .lib.exceptions import ParserException
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
+SOURCE = "entsoe.eu"
 ENTSOE_ENDPOINT = "https://web-api.tp.entsoe.eu/api"
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
@@ -71,7 +80,7 @@ ENTSOE_PARAMETER_GROUPS = {
         "wind": ["B18", "B19"],
         "unknown": ["B20", "B13", "B15"],
     },
-    "storage": {"hydro storage": ["B10"]},
+    "storage": {"hydro": ["B10"]},
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
@@ -740,17 +749,38 @@ def parse_scalar(
     return values, datetimes
 
 
-def parse_production(
-    xml_text,
-) -> Union[Tuple[List[Dict[str, Any]], List[datetime]], None]:
+def create_production_storage(
+    fuel_code: str, quantity: float
+) -> Tuple[Optional[ProductionMix], Optional[StorageMix]]:
+    production = ProductionMix()
+    storage = StorageMix()
+    fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
+    if fuel_code in ENTSOE_STORAGE_PARAMETERS:
+        # Only include consumption if it's for storage. In other cases
+        # it is power plant self-consumption which should be ignored.
+        storage.set_value(fuel_em_type, -quantity)
+        return None, storage
+    production.set_value(fuel_em_type, quantity)
+    return production, None
 
-    if not xml_text:
-        return None
-    soup = BeautifulSoup(xml_text, "html.parser")
-    # Get all points
-    productions = []
-    datetimes = []
+
+def parse_production(
+    xml: str,
+    logger: Logger,
+    zoneKey: ZoneKey,
+    forecasted: bool = False,
+) -> ProductionBreakdownList:
+    all_production_breakdowns = []
+    source_type = EventSourceType.forecasted if forecasted else EventSourceType.measured
+    if not xml:
+        return ProductionBreakdownList.merge_production_breakdowns(
+            all_production_breakdowns, logger
+        )
+    soup = BeautifulSoup(xml, "html.parser")
+
+    # Each timeserie is dedicated to a different fuel type.
     for timeseries in soup.find_all("timeseries"):
+        production_breakdowns = ProductionBreakdownList(logger)
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
         datetime_start: arrow.Arrow = arrow.get(
             timeseries.find_all("start")[0].contents[0]
@@ -758,7 +788,7 @@ def parse_production(
         is_production = (
             len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
         )
-        psr_type = str(
+        fuel_code = str(
             timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
         )
 
@@ -766,19 +796,18 @@ def parse_production(
             quantity = float(entry.find_all("quantity")[0].contents[0])
             position = int(entry.find_all("position")[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
-            try:
-                i = datetimes.index(datetime)
-                if is_production:
-                    productions[i][psr_type] += quantity
-                elif psr_type in ENTSOE_STORAGE_PARAMETERS:
-                    # Only include consumption if it's for storage. In other cases
-                    # it is power plant self-consumption which should be ignored.
-                    productions[i][psr_type] -= quantity
-            except ValueError:  # Not in list
-                datetimes.append(datetime)
-                productions.append(defaultdict(lambda: 0))
-                productions[-1][psr_type] = quantity if is_production else -1 * quantity
-    return productions, datetimes
+            production, storage = create_production_storage(fuel_code, quantity)
+            production_breakdowns.append(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                source=SOURCE,
+                sourceType=source_type,
+                production=production,
+                storage=storage,
+            )
+    return ProductionBreakdownList.merge_production_breakdowns(
+        all_production_breakdowns, logger
+    )
 
 
 def parse_self_consumption(xml_text: str):
@@ -981,11 +1010,6 @@ def validate_production(
     return True
 
 
-def get_wind(values):
-    if "Wind Onshore" in values or "Wind Offshore" in values:
-        return values.get("Wind Onshore", 0) + values.get("Wind Offshore", 0)
-
-
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption(
     zone_key: str,
@@ -1056,7 +1080,7 @@ def fetch_consumption(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_production(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -1068,65 +1092,16 @@ def fetch_production(
     if not session:
         session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Grab production
-    parsed = parse_production(
-        query_production(domain, session, target_datetime=target_datetime)
-    )
-
-    if not parsed:
+    raw_production = query_production(domain, session, target_datetime=target_datetime)
+    if raw_production is None:
         raise ParserException(
             parser="ENTSOE.py",
             message=f"No production data found for {zone_key}",
             zone_key=zone_key,
         )
+    parsed = parse_production(raw_production, logger, zone_key)
 
-    productions, production_dates = parsed
-
-    data = []
-    for i in range(len(production_dates)):
-        production_values = {k: v for k, v in productions[i].items()}
-        production_date = production_dates[i]
-
-        production_types = {"production": {}, "storage": {}}
-        for key in ["production", "storage"]:
-            parameter_groups = ENTSOE_PARAMETER_GROUPS[key]
-            multiplier = -1 if key == "storage" else 1
-
-            for fuel, groups in parameter_groups.items():
-                has_value = any(
-                    [production_values.get(grp) is not None for grp in groups]
-                )
-                if has_value:
-                    value = sum([production_values.get(grp, 0) for grp in groups])
-                    value *= multiplier
-                else:
-                    value = None
-
-                production_types[key][fuel] = value
-
-        data.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": production_date,
-                "production": production_types["production"],
-                "storage": {
-                    "hydro": production_types["storage"]["hydro storage"],
-                },
-                "source": "entsoe.eu",
-            }
-        )
-
-        for d in data:
-            for k, v in d["production"].items():
-                if v is None:
-                    continue
-                if v < 0 and v > -50:
-                    # Set small negative values to 0
-                    logger.warning(
-                        "Setting small value of %s (%s) to 0." % (k, v),
-                        extra={"key": zone_key},
-                    )
-                    d["production"][k] = 0
+    data = parsed.to_list()
 
     return list(filter(lambda x: validate_production(x, logger), data))
 
@@ -1486,7 +1461,7 @@ def fetch_consumption_forecast(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_wind_solar_forecasts(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -1498,42 +1473,20 @@ def fetch_wind_solar_forecasts(
     if not session:
         session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Grab production
-    parsed = parse_production(
-        query_wind_solar_production_forecast(
-            domain, session, target_datetime=target_datetime
-        )
-    )
 
-    if not parsed:
+    raw_renewable_forecast = query_wind_solar_production_forecast(
+        domain, session, target_datetime=target_datetime
+    )
+    if raw_renewable_forecast is None:
         raise ParserException(
             parser="ENTSOE.py",
             message=f"No production per mode forecast data found for {zone_key}",
             zone_key=zone_key,
         )
+    # Grab production
+    parsed = parse_production(raw_renewable_forecast, logger, zone_key, forecasted=True)
 
-    productions, production_dates = parsed
-
-    data = []
-    for i in range(len(production_dates)):
-        production_values = {
-            ENTSOE_PARAMETER_DESC[k]: v for k, v in productions[i].items()
-        }
-        production_date = production_dates[i]
-
-        data.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": production_date,
-                "production": {
-                    "solar": production_values.get("Solar", None),
-                    "wind": get_wind(production_values),
-                },
-                "source": "entsoe.eu",
-            }
-        )
-
-    return data
+    return parsed.to_list()
 
 
 if __name__ == "__main__":
