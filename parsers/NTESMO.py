@@ -22,6 +22,7 @@ AUSTRALIA_TZ = timezone("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
+FILE_URL_BASE = "https://ntesmo.com.au/__data/assets/excel_doc/"
 
 # Data is being published after 5 days at the moment.
 DAY_DELAY = 5
@@ -72,6 +73,7 @@ retry_strategy = Retry(
 
 # Default behaviour for datetime
 def get_default_datetime_if_not_None(target_datetime: datetime) -> datetime:
+    """Get the default datetime if the target datetime is None"""
     if target_datetime is None:
         return datetime.now(tz=AUSTRALIA_TZ) - timedelta(days=DAY_DELAY)
     return target_datetime
@@ -79,25 +81,33 @@ def get_default_datetime_if_not_None(target_datetime: datetime) -> datetime:
 
 def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
     """Browse all links on a yearly historical daily data and index them."""
-    index = {}
+    file_url_index = {}
+
     # For the current we need to go to the default page.
     url = DEFAULT_URL
     if not year == datetime.now(tz=AUSTRALIA_TZ).year:
         url = INDEX_URL.format(year)
     year_index_page = session.get(url)
+
+    # Parse the HTML
     soup = BeautifulSoup(year_index_page.text, "html.parser")
+
+    # Initialise the dictionary to ensure all months are present
     for month in range(1, 13):
-        index[month] = {}
+        file_url_index[month] = {}
+
+    # Get the links to the files
     for a in soup.find_all("a", href=True):
-        if a["href"].startswith("https://ntesmo.com.au/__data/assets/excel_doc/"):
+        if a["href"].startswith(FILE_URL_BASE):
             date = pd.to_datetime(
                 a.find("div", {"class": "smp-tiles-article__title"}).text
             )
-            index[date.month][date.day] = a["href"]
-    return index
+            file_url_index[date.month][date.day] = a["href"]
+
+    return file_url_index
 
 
-def get_historical_daily_data(link: str, session: Session) -> bytes:
+def fetch_data(link: str, session: Session) -> bytes:
     result = session.get(link)
     return result.content
 
@@ -124,9 +134,12 @@ def get_data(
     # Get the default datetime if the target datetime is None
     target_datetime = get_default_datetime_if_not_None(target_datetime)
 
+    # Get the dictionary mapping dates to file urls
     index = construct_year_index(target_datetime.year, session)
+
+    # Get the file data for the target date, or raise an error if it doesn't exist
     try:
-        data_file = get_historical_daily_data(
+        data_file = fetch_data(
             index[target_datetime.month][target_datetime.day], session
         )
     except KeyError:
@@ -149,17 +162,22 @@ def parse_consumption(
     target_datetime = get_default_datetime_if_not_None(target_datetime)
 
     for _, consumption in raw_consumption.iterrows():
+
         # Market day starts at 4:30 and reports up until 4:00 the next day.
         # Therefore timestamps between 0:00 and 4:30 excluded need to have an extra day.
         raw_timestamp = consumption[0]
         timestamp = datetime.combine(date=target_datetime.date(), time=raw_timestamp)
         if raw_timestamp < time(hour=4, minute=30):
             timestamp = timestamp + timedelta(days=1)
+
+        # Create the initial values of the data point
         data_point = {
             "zoneKey": "AU-NT",
             "datetime": AUSTRALIA_TZ.localize(timestamp),
             "source": "ntesmo.com.au",
         }
+
+        # Add the price or consumption to the data point
         if price:
             data_point["price"] = consumption["Market Price"]
             data_point["currency"] = "AUD"
@@ -172,19 +190,29 @@ def parse_consumption(
 def parse_production_mix(
     raw_production_mix: pd.DataFrame, logger: Logger
 ) -> List[dict]:
+
+    # Initialise an entry production mix array
     production_mix = []
     generation_units = set(raw_production_mix.columns)
     generation_units.remove("Period Start")
     generation_units.remove("Period End")
+
+    # Check that all generators are mapped
     if not generation_units == PLANT_MAPPING.keys():
         raise ParserException(
             "NTESMO.py",
             f"New generator {generation_units - PLANT_MAPPING.keys()} detected in AU-NT, please update the mapping of generators.",
         )
+
+    # Convert the timestamp to AU NT timezone
     raw_production_mix["Period Start"] = raw_production_mix[
         "Period Start"
     ].dt.tz_localize("Australia/Darwin")
+
+    # Go through each row of raw_production_mix and create a new data point for each generator
     for _, production in raw_production_mix.iterrows():
+
+        # Initialise default values for the data point
         data_point = {
             "zoneKey": "AU-NT",
             "datetime": production["Period Start"].to_pydatetime(),
@@ -192,13 +220,18 @@ def parse_production_mix(
             "production": dict(),
             "storage": dict(),
         }
+
+        # Add the production of each generator to the data point
         for generator_key, generator in PLANT_MAPPING.items():
+
+            # Check that all generators are mapped
             if generator_key not in production:
                 raise ParserException(
                     "NTESMO.py",
                     f"Missing generator {generator_key} detected in AU-NT, please update the mapping of generators.",
                 )
-            # Some decomissioned plants have negative production values.
+
+            # Some decomissioned plants have negative production values, so only add the ones which have positive values
             if production[generator_key] >= 0:
                 if generator["fuel_type"] in data_point["production"]:
                     data_point["production"][generator["fuel_type"]] += production[
@@ -208,7 +241,10 @@ def parse_production_mix(
                     data_point["production"][generator["fuel_type"]] = production[
                         generator_key
                     ]
+
+        # Add the data point to the production mix
         production_mix.append(data_point)
+
     return production_mix
 
 
@@ -226,7 +262,9 @@ def fetch_consumption(
         extraction_func=extract_demand_price_data,
         logger=logger,
     )
-    return parse_consumption(consumption, target_datetime, logger)
+    return parse_consumption(
+        consumption, target_datetime=target_datetime, logger=logger, price=False
+    )
 
 
 @refetch_frequency(timedelta(days=1))
