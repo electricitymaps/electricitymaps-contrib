@@ -180,11 +180,9 @@ def fetch_exchange(
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     data = fetch_data(
-        zone_key=zone_key1,
         kind="exchange",
         session=session,
         target_datetime=target_datetime,
-        logger=logger,
     )
     exchange_list = ExchangeList(logger)
     for dt in get_date_range(target_datetime):
@@ -214,11 +212,9 @@ def fetch_consumption(
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
     data = fetch_data(
-        zone_key=zone_key,
         kind="consumption",
         session=session,
         target_datetime=target_datetime,
-        logger=logger,
     )
     consumption_list = TotalConsumptionList(logger)
     for dt in get_date_range(target_datetime):
