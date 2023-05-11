@@ -5,7 +5,7 @@ from logging import Logger, getLogger
 from typing import Any, Dict, List, Optional
 
 import arrow
-from pydataxm import *
+from pydataxm import ReadDB
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
