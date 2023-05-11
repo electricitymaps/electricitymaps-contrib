@@ -54,3 +54,41 @@ class TestFetchPrices(TestENTSOE):
             self.assertEqual(
                 prices[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=utc)
             )
+
+
+class TestFetchProduction(TestENTSOE):
+    def test_fetch_production(self):
+        with open(
+            "parsers/test/mocks/ENTSOE/FI_production.xml", "rb"
+        ) as production_fi_data:
+            self.adapter.register_uri(
+                GET,
+                ANY,
+                content=production_fi_data.read(),
+            )
+            production = ENTSOE.fetch_production(ZoneKey("FI"), self.session)
+            self.assertEqual(len(production), 48)
+            self.assertEqual(production[0]["source"], "entsoe.eu")
+            self.assertEqual(
+                production[0]["datetime"], datetime(2023, 5, 8, 7, 0, tzinfo=utc)
+            )
+            self.assertEqual(production[0]["production"]["biomass"], 0.0)
+            self.assertEqual(production[0]["production"]["coal"], 0.0)
+
+    def test_fetch_production_with_storage(self):
+        with open(
+            "parsers/test/mocks/ENTSOE/FI_production.xml", "rb"
+        ) as production_fi_data:
+            self.adapter.register_uri(
+                GET,
+                ANY,
+                content=production_fi_data.read(),
+            )
+            production = ENTSOE.fetch_production(ZoneKey("FI"), self.session)
+            self.assertEqual(len(production), 48)
+            self.assertEqual(production[0]["source"], "entsoe.eu")
+            self.assertEqual(
+                production[0]["datetime"], datetime(2023, 5, 8, 7, 0, tzinfo=utc)
+            )
+            self.assertEqual(production[0]["production"]["biomass"], 0.0)
+            self.assertEqual(production[0]["production"]["coal"], 0.0)
