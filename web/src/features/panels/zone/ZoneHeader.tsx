@@ -2,11 +2,11 @@ import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
+import { ZoneDetails } from 'types';
 import { Mode } from 'utils/constants';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
-import { ZoneDetails } from 'types';
 
 function LowCarbonTooltip() {
   const { __ } = useTranslation();
@@ -61,12 +61,14 @@ export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
   const isEstimated = estimationMethod !== undefined;
 
   return (
-    <div className="mt-1 grid w-full gap-y-5 sm:pr-4">
-      <ZoneHeaderTitle
-        zoneId={zoneId}
-        isEstimated={isEstimated}
-        isAggregated={isAggregated}
-      />
+    <div>
+      <div className="mt-1 mb-4 grid w-full sm:pr-4">
+        <ZoneHeaderTitle
+          zoneId={zoneId}
+          isEstimated={isEstimated}
+          isAggregated={isAggregated}
+        />
+      </div>
       <div className="flex flex-row justify-evenly">
         <CarbonIntensitySquare
           data-test-id="co2-square-value"
