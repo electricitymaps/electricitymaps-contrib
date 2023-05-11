@@ -11,8 +11,9 @@ Prerequisites:
 - Ensure you have `NodeJS` and `pnpm` installed locally (`brew install pnpm`)
 - Run `pnpm install` in both the web and mockserver directories
 
-1. Start the mockserver: `pnpm run mockserver`
-2. Run app in another tab: `pnpm dev`
+1. Install mockserver dependencies `cd ../mockserver; pnpm install; cd ../web`
+2. Start the mockserver: `pnpm run mockserver`
+3. Run app in another tab: `pnpm dev`
 
 ## Scripts
 
