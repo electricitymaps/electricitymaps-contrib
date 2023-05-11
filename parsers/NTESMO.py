@@ -112,9 +112,16 @@ def get_data(
     extraction_func: Callable[[bytes], pd.DataFrame],
     logger: Logger,
 ) -> pd.DataFrame:
+    
+    # Check if the target datetime is None, and if it is, then initialize it to be today minus 2 days
+    if target_datetime is None:
+        target_datetime = datetime.now() - timedelta(days=2)
+
+    # TODO : remove this assert statement, as it is handled above
     assert target_datetime is not None, ParserException(
         "NTESMO.py", "Target datetime cannot be None."
     )
+    
     index = construct_year_index(target_datetime.year, session)
     try:
         data_file = get_historical_daily_data(
