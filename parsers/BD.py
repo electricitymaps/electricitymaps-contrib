@@ -118,7 +118,7 @@ def verify_table(table_header: Tag):
 
 
 def query(
-    session: Optional[Session], target_datetime: Optional[datetime], logger: Logger
+    session: Session, target_datetime: Optional[datetime], logger: Logger
 ) -> List[Dict[str, Any]]:
     """
     Query the table and read it into list.
@@ -187,15 +187,11 @@ def fetch_production(
             "zoneKey": zone_key,
             "datetime": row["time"],
             "production": {
-                "biomass": 0.0,
                 "coal": row["coal"],
                 "gas": row["gas"],
                 "hydro": row["hydro"],
-                "nuclear": 0.0,
                 "oil": row["oil"],
                 "solar": row["solar"],
-                "wind": 0.0,
-                "geothermal": 0.0,
                 "unknown": unknown_source,
             },
             "source": "erp.pgcb.gov.bd",
