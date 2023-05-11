@@ -43,7 +43,7 @@ def table_entry_to_float(entry: str):
     Helper function to handle empty cells in table.
     """
     if entry == "":
-        return 0.0
+        return None
     try:
         return float(entry)
     except ValueError:
@@ -167,35 +167,33 @@ def fetch_production(
     production_data_list = []
     for row in row_data:
 
-        # Sources don't add up to total generation, put rest in 'unknown'
-        unknown_source = (
-            row["total_generation"]
-            - row["coal"]
-            - row["gas"]
-            - row["hydro"]
-            - row["oil"]
-            - row["solar"]
-        )
-
-        if unknown_source < 0:
-            logger.warn(
-                f"Sum of production sources exceeds total generation by {-unknown_source}MW."
-                f"There is probably something wrong..."
-            )
-
+        # Create data with empty production
         data = {
             "zoneKey": zone_key,
             "datetime": row["time"],
-            "production": {
-                "coal": row["coal"],
-                "gas": row["gas"],
-                "hydro": row["hydro"],
-                "oil": row["oil"],
-                "solar": row["solar"],
-                "unknown": unknown_source,
-            },
+            "production": {},
             "source": "erp.pgcb.gov.bd",
         }
+
+        # And add sources if they are present in the table
+        known_sources_sum_mw = 0.0
+        for source_type in ["coal", "gas", "hydro", "oil", "solar"]:
+            if row[source_type] is not None:
+                # also accumulate the sources to infer 'unknown'
+                known_sources_sum_mw += row[source_type]
+                data["production"][source_type] = row[source_type]
+
+        # infer 'unknown'
+        if row["total_generation"] is not None:
+            unknown_source_mw = row["total_generation"] - known_sources_sum_mw
+            if unknown_source_mw >= 0:
+                data["production"]["unknown"] = unknown_source_mw
+            else:
+                logger.warn(
+                    f"Sum of production sources exceeds total generation by {-unknown_source_mw}MW."
+                    f"There is probably something wrong..."
+                )
+
         production_data_list.append(data)
 
     if not len(production_data_list):
@@ -220,6 +218,8 @@ def fetch_consumption(
     for row in row_data:
         # get the demand from the table
         consumption = row["total_demand"]
+        if consumption is None:
+            continue  # no data in table
 
         result_list.append(
             {
@@ -258,15 +258,19 @@ def fetch_exchange(
         # BD -> IN_xx
         if zone_key2 == "IN-NE":
             # Export to India NorthEast via Tripura
-            bd_export = -1.0 * row["bd_import_tripura"]
+            bd_import = row["bd_import_tripura"]
         elif zone_key2 == "IN-EA":
             # Export to India East via Bheramara
-            bd_export = -1.0 * row["bd_import_bheramara"]
+            bd_import = row["bd_import_bheramara"]
         else:
             raise ParserException(
                 parser="BD.py",
                 message=f"Exchange pair {sortedZoneKeys} is not implemented.",
             )
+
+        if bd_import is None:
+            continue  # no data in table
+        bd_export = -1.0 * bd_import
 
         result_list.append(
             {
