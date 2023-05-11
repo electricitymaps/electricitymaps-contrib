@@ -22,7 +22,11 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
 
@@ -401,18 +405,28 @@ def fetch_consumption(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    return _fetch(
+    consumptions = TotalConsumptionList(logger)
+    consumption_forecasts = _fetch(
         zone_key,
         CONSUMPTION_FORECAST.format(REGIONS[zone_key]),
         session=session,
         target_datetime=target_datetime,
         logger=logger,
     )
+    for forecast in consumption_forecasts:
+        consumptions.append(
+            zoneKey=zone_key,
+            datetime=forecast["datetime"],
+            consumption=forecast["value"],
+            source="eia.gov",
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumptions.to_list()
 
 
 def create_production_storage(
