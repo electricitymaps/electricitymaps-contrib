@@ -14,7 +14,6 @@ Consumption Forecast
 """
 import itertools
 import re
-from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from random import shuffle
@@ -537,7 +536,6 @@ def query_ENTSOE(
 def query_consumption(
     domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A65",
         "processType": "A16",
@@ -574,7 +572,6 @@ def query_production_per_units(
     session: Session,
     target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A73",
         "processType": "A16",
@@ -597,7 +594,6 @@ def query_exchange(
     session: Session,
     target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A11",
         "in_Domain": in_domain,
@@ -635,7 +631,6 @@ def query_exchange_forecast(
 def query_price(
     domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A44",
         "in_Domain": domain,
@@ -723,7 +718,6 @@ def parse_scalar(
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
 ) -> Union[Tuple[List[float], List[datetime]], None]:
-
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -784,9 +778,6 @@ def parse_production(
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
         datetime_start: arrow.Arrow = arrow.get(
             timeseries.find_all("start")[0].contents[0]
-        )
-        is_production = (
-            len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
         )
         fuel_code = str(
             timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
@@ -915,7 +906,6 @@ def parse_exchange(
     quantities: Optional[List[float]] = None,
     datetimes: Optional[List[datetime]] = None,
 ) -> Union[Tuple[List[float], List[datetime]], None]:
-
     if not xml_text:
         return None
     quantities = quantities or []
@@ -957,7 +947,6 @@ def parse_prices(
     zoneKey: ZoneKey,
     logger: Logger,
 ) -> PriceList:
-
     if not xml_text:
         return PriceList(logger)
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -1101,7 +1090,6 @@ def fetch_production(
             zone_key=zone_key,
         )
     parsed = parse_production(raw_production, logger, zone_key)
-    breakpoint()
     data = parsed.to_list()
 
     return list(filter(lambda x: validate_production(x, logger), data))

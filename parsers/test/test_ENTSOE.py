@@ -68,27 +68,60 @@ class TestFetchProduction(TestENTSOE):
             )
             production = ENTSOE.fetch_production(ZoneKey("FI"), self.session)
             self.assertEqual(len(production), 48)
+            self.assertEqual(production[0]["zoneKey"], "FI")
             self.assertEqual(production[0]["source"], "entsoe.eu")
             self.assertEqual(
                 production[0]["datetime"], datetime(2023, 5, 8, 7, 0, tzinfo=utc)
             )
-            self.assertEqual(production[0]["production"]["biomass"], 0.0)
-            self.assertEqual(production[0]["production"]["coal"], 0.0)
+            self.assertEqual(production[0]["production"]["biomass"], 543 + 7)
+            self.assertEqual(production[0]["production"]["coal"], 154 + 180)
+            self.assertEqual(production[0]["production"]["gas"], 254)
+            self.assertEqual(production[0]["production"]["hydro"], 2360)
+            self.assertEqual(production[0]["production"]["nuclear"], 3466)
+            self.assertEqual(production[0]["production"]["oil"], 51)
+            self.assertEqual(production[0]["production"]["wind"], 750)
+            self.assertEqual(production[0]["production"]["unknown"], 51 + 3)
+
+            self.assertEqual(production[1]["source"], "entsoe.eu")
+            self.assertEqual(
+                production[1]["datetime"], datetime(2023, 5, 8, 8, 0, tzinfo=utc)
+            )
+            self.assertEqual(production[1]["production"]["biomass"], 558 + 7)
+            self.assertEqual(production[1]["production"]["coal"], 155 + 158)
+            self.assertEqual(production[1]["production"]["gas"], 263)
+            self.assertEqual(production[1]["production"]["hydro"], 2319)
+            self.assertEqual(production[1]["production"]["nuclear"], 3466)
+            self.assertEqual(production[1]["production"]["oil"], 0)
+            self.assertEqual(production[1]["production"]["wind"], 915)
+            self.assertEqual(production[1]["production"]["unknown"], 46 + 3)
+
+            self.assertEqual(production[-1]["source"], "entsoe.eu")
+            self.assertEqual(
+                production[-1]["datetime"], datetime(2023, 5, 10, 6, 0, tzinfo=utc)
+            )
+            self.assertEqual(production[-1]["production"]["biomass"], 515 + 20)
+            self.assertEqual(production[-1]["production"]["coal"], 111 + 124)
+            self.assertEqual(production[-1]["production"]["gas"], 198)
 
     def test_fetch_production_with_storage(self):
         with open(
-            "parsers/test/mocks/ENTSOE/FI_production.xml", "rb"
+            "parsers/test/mocks/ENTSOE/NO-NO5_production.xml", "rb"
         ) as production_fi_data:
             self.adapter.register_uri(
                 GET,
                 ANY,
                 content=production_fi_data.read(),
             )
-            production = ENTSOE.fetch_production(ZoneKey("FI"), self.session)
-            self.assertEqual(len(production), 48)
+            production = ENTSOE.fetch_production(ZoneKey("NO-NO5"), self.session)
+            self.assertEqual(len(production), 47)
+            self.assertEqual(production[0]["zoneKey"], "NO-NO5")
             self.assertEqual(production[0]["source"], "entsoe.eu")
             self.assertEqual(
-                production[0]["datetime"], datetime(2023, 5, 8, 7, 0, tzinfo=utc)
+                production[0]["datetime"], datetime(2023, 5, 9, 9, 0, tzinfo=utc)
             )
-            self.assertEqual(production[0]["production"]["biomass"], 0.0)
-            self.assertEqual(production[0]["production"]["coal"], 0.0)
+            self.assertEqual(production[0]["storage"]["hydro"], -61)
+            self.assertEqual(production[0]["production"]["gas"], 0)
+            self.assertEqual(production[0]["production"]["hydro"], 296)
+
+    def test_fetch_with_negative_values(self):
+        pass
