@@ -145,11 +145,27 @@ def query(
 
     # Find the table, there is only one, and verify its headers.
     table = response_soup.find("table")
+    if table is None:
+        raise ParserException(
+            parser="BD.py",
+            message=f"Could not find table in returned HTML.",
+        )
+
     table_head = table.find("thead")
+    if table_head is None:
+        raise ParserException(
+            parser="BD.py",
+            message=("Could not find table header in returned HTML."),
+        )
     verify_table(table_head)
 
     # Table valid as we expect, parse the rows.
     table_body = table.find("tbody")
+    if table_body is None:
+        raise ParserException(
+            parser="BD.py",
+            message=("Could not find table body in returned HTML."),
+        )
     row_data = parse_table_body(table_body)
 
     return row_data
