@@ -26,8 +26,8 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import PriceList
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 
 from .lib.exceptions import ParserException
