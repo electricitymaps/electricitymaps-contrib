@@ -6,7 +6,7 @@ https://territorygeneration.com.au/about-us/our-power-stations/
 """
 from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, TypedDict
+from typing import Callable, Dict, List, Optional, TypedDict
 
 import arrow
 import pandas as pd
@@ -22,8 +22,10 @@ AUSTRALIA_TZ = timezone("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
+
 # Data is being published after 5 days at the moment.
-DELAY = 24 * 5
+DAY_DELAY = 5
+DELAY = 24 * DAY_DELAY
 
 
 class Generator(TypedDict):
@@ -71,8 +73,9 @@ retry_strategy = Retry(
 # Default behaviour for datetime
 def get_default_datetime_if_not_None(target_datetime: datetime) -> datetime:
     if target_datetime is None:
-        return datetime.now(tz=AUSTRALIA_TZ) - timedelta(days=2)
+        return datetime.now(tz=AUSTRALIA_TZ) - timedelta(days=DAY_DELAY)
     return target_datetime
+
 
 def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
     """Browse all links on a yearly historical daily data and index them."""
@@ -113,18 +116,13 @@ def extract_demand_price_data(file: bytes) -> pd.DataFrame:
 
 def get_data(
     session: Session,
-    target_datetime: datetime,
     extraction_func: Callable[[bytes], pd.DataFrame],
-    logger: Logger,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> pd.DataFrame:
 
     # Get the default datetime if the target datetime is None
     target_datetime = get_default_datetime_if_not_None(target_datetime)
-
-    # TODO : remove this, as it is handled above
-    assert target_datetime is not None, ParserException(
-        "NTESMO.py", "Target datetime cannot be None."
-    )
 
     index = construct_year_index(target_datetime.year, session)
     try:
@@ -141,8 +139,8 @@ def get_data(
 
 def parse_consumption(
     raw_consumption: pd.DataFrame,
-    target_datetime: datetime,
-    logger: Logger,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
     price: bool = False,
 ) -> List[dict]:
     data_points = []
@@ -150,10 +148,6 @@ def parse_consumption(
     # Get the default datetime if the target datetime is None
     target_datetime = get_default_datetime_if_not_None(target_datetime)
 
-    # TODO : remove this, as it is handled above
-    assert target_datetime is not None, ParserException(
-        "NTESMO.py", "Target datetime cannot be None."
-    )
     for _, consumption in raw_consumption.iterrows():
         # Market day starts at 4:30 and reports up until 4:00 the next day.
         # Therefore timestamps between 0:00 and 4:30 excluded need to have an extra day.
@@ -226,7 +220,12 @@ def fetch_consumption(
     target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
     logger: Logger = getLogger(__name__),
 ):
-    consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
+    consumption = get_data(
+        session,
+        target_datetime=target_datetime,
+        extraction_func=extract_demand_price_data,
+        logger=logger,
+    )
     return parse_consumption(consumption, target_datetime, logger)
 
 
@@ -238,8 +237,15 @@ def fetch_price(
     target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
     logger: Logger = getLogger(__name__),
 ):
-    consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
-    return parse_consumption(consumption, target_datetime, logger, price=True)
+    consumption = get_data(
+        session,
+        target_datetime=target_datetime,
+        extraction_func=extract_demand_price_data,
+        logger=logger,
+    )
+    return parse_consumption(
+        consumption, target_datetime=target_datetime, logger=logger, price=True
+    )
 
 
 @refetch_frequency(timedelta(days=1))
@@ -250,13 +256,21 @@ def fetch_production_mix(
     target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
     logger: Logger = getLogger(__name__),
 ):
-    production_mix = get_data(session, target_datetime, extract_production_data, logger)
+    production_mix = get_data(
+        session,
+        target_datetime=target_datetime,
+        extraction_func=extract_production_data,
+        logger=logger,
+    )
     return parse_production_mix(production_mix, logger)
 
 
 if __name__ == "__main__":
-    target_datetime = datetime.now() - timedelta(days=2)
+    target_datetime = datetime.now() - timedelta(days=DAY_DELAY)
     consumption = get_data(
-        Session(), target_datetime, extract_production_data, Logger("test")
+        Session(),
+        target_datetime=target_datetime,
+        extraction_func=extract_production_data,
+        logger=Logger("test"),
     )
     print(parse_production_mix(consumption, Logger("test")))
