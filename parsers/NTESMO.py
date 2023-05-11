@@ -68,6 +68,11 @@ retry_strategy = Retry(
     status_forcelist=[500, 502, 503, 504],
 )
 
+# Default behaviour for datetime
+def get_default_datetime_if_not_None(target_datetime: datetime) -> datetime:
+    if target_datetime is None:
+        return datetime.now(tz=AUSTRALIA_TZ) - timedelta(days=2)
+    return target_datetime
 
 def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
     """Browse all links on a yearly historical daily data and index them."""
@@ -113,11 +118,10 @@ def get_data(
     logger: Logger,
 ) -> pd.DataFrame:
 
-    # Check if the target datetime is None, and if it is, then initialize it to be today minus 2 days
-    if target_datetime is None:
-        target_datetime = datetime.now() - timedelta(days=2)
+    # Get the default datetime if the target datetime is None
+    target_datetime = get_default_datetime_if_not_None(target_datetime)
 
-    # TODO : remove this assert statement, as it is handled above
+    # TODO : remove this, as it is handled above
     assert target_datetime is not None, ParserException(
         "NTESMO.py", "Target datetime cannot be None."
     )
@@ -142,6 +146,11 @@ def parse_consumption(
     price: bool = False,
 ) -> List[dict]:
     data_points = []
+
+    # Get the default datetime if the target datetime is None
+    target_datetime = get_default_datetime_if_not_None(target_datetime)
+
+    # TODO : remove this, as it is handled above
     assert target_datetime is not None, ParserException(
         "NTESMO.py", "Target datetime cannot be None."
     )
