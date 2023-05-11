@@ -805,6 +805,7 @@ def parse_production(
                 production=production,
                 storage=storage,
             )
+        all_production_breakdowns.append(production_breakdowns)
     return ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
     )
@@ -1100,7 +1101,7 @@ def fetch_production(
             zone_key=zone_key,
         )
     parsed = parse_production(raw_production, logger, zone_key)
-
+    breakpoint()
     data = parsed.to_list()
 
     return list(filter(lambda x: validate_production(x, logger), data))
