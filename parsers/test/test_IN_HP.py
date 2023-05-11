@@ -3,7 +3,7 @@ import unittest
 
 from pkg_resources import resource_string
 from requests import Session
-from requests_mock import ANY, Adapter
+from requests_mock import Adapter
 from testfixtures import LogCapture
 
 from parsers import IN_HP

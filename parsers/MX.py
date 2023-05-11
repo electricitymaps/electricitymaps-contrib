@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import urllib
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
 from typing import Optional
