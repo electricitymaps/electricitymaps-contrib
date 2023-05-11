@@ -68,10 +68,16 @@ def parse_table_body(table_body: Tag):
 
         row_dict = dict()
 
-        # date and time in [0]; [1] are DD-MM-YYYY; hh:mm:ss
-        row_dict["time"] = arrow.get(
-            row_items[0] + row_items[1], "DD-MM-YYYY" + "HH:mm:ss", tzinfo=tz
-        ).datetime
+        # date and time in [0]; [1] are DD-MM-YYYY; HH:mm[:ss]
+        parsed_day = arrow.get(row_items[0], "DD-MM-YYYY", tzinfo=tz).datetime
+        try:
+            parsed_time = arrow.get(row_items[1], "HH:mm:ss", tzinfo=tz).time()
+        except arrow.parser.ParserMatchError:
+            # very old data points are sometimes in HH:mm format
+            parsed_time = arrow.get(row_items[1], "HH:mm", tzinfo=tz).time()
+
+        row_dict["time"] = datetime.combine(parsed_day, parsed_time, tzinfo=tz)
+
         # [2] is total generation in MW
         row_dict["total_generation"] = table_entry_to_float(row_items[2])
         # [3] is total demand in MW
@@ -135,10 +141,9 @@ def query(
     target_response: Response = session.get(target_url)
 
     if not target_response.ok:
-        return_status = target_response.status_code
         raise ParserException(
             parser="BD.py",
-            message=f"Data request did not succeed: {return_status}",
+            message=f"Data request did not succeed: {target_response.status_code}",
         )
 
     response_soup = BeautifulSoup(target_response.text)
