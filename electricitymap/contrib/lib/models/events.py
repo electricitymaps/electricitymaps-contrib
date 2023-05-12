@@ -46,7 +46,12 @@ class ProductionMix(Mix):
     wind: Optional[float] = None
 
     def __init__(self, **data: Any):
-        """Overriding the constructor to check for negative values and set them to None."""
+        """
+        Overriding the constructor to check for negative values and set them to None.
+        This method also keeps track of the modes that have been corrected.
+        Note: This method does NOT allow to set negative values to zero for self consumption.
+        As we want self consumption to be set to zero, on a fine grained level with the set_value method.
+        """
         super().__init__(**data)
         for attr, value in data.items():
             if value is not None and value < 0:
@@ -86,6 +91,10 @@ class ProductionMix(Mix):
         name: str,
         value: Optional[float],
     ) -> None:
+        """
+        Overriding the setattr method to check for negative values and set them to None.
+        This method also keeps track of the modes that have been corrected.
+        """
         if not name in PRODUCTION_MODES:
             raise ValueError(f"Unknown production mode: {name}")
         if value is not None and value < 0:
@@ -99,7 +108,11 @@ class ProductionMix(Mix):
         value: Optional[float],
         correct_negative_with_zero: bool = False,
     ) -> None:
-        """"""
+        """
+        Set the value of a production mode. Negative values are set to None by default.
+        If correct_negative_with_zero is set to True, negative values will be set to 0 instead of None.
+        This method keeps track of values that have been corrected.
+        """
         if correct_negative_with_zero and value is not None and value < 0:
             value = 0
             self._corrected_negative_values.add(mode)
