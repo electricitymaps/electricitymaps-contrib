@@ -7,7 +7,7 @@ from typing import AbstractSet, Any, Dict, Optional, Union
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
+from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.lib.types import ZoneKey
 
@@ -136,6 +136,14 @@ class StorageMix(Mix):
 
     battery: Optional[float] = None
     hydro: Optional[float] = None
+
+    def __setattr__(self, name: str, value: Optional[float]) -> None:
+        """
+        Overriding the setattr method to raise an error if the mode is unknown.
+        """
+        if not name in STORAGE_MODES:
+            raise ValueError(f"Unknown storage mode: {name}")
+        return super().__setattr__(name, value)
 
 
 class EventSourceType(str, Enum):

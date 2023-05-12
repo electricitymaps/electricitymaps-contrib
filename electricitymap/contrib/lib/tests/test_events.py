@@ -290,6 +290,18 @@ class TestProductionBreakdown(unittest.TestCase):
             assert breakdown.production.wind == 0
             assert breakdown.production.biomass == None
 
+    def test_unknown_production_mode_raises(self):
+        mix = ProductionMix()
+        with self.assertRaises(ValueError):
+            mix.set_value("nuke", 10)
+        with self.assertRaises(ValueError):
+            mix.nuke = 10
+        storage = StorageMix()
+        with self.assertRaises(ValueError):
+            storage.set_value("nuke", 10)
+        with self.assertRaises(ValueError):
+            storage.nuke = 10
+
     @freezegun.freeze_time("2023-01-01")
     def test_forecasted_points(self):
         mix = ProductionMix(wind=10)
