@@ -10,7 +10,6 @@ from typing import List, Optional, Union
 import arrow
 import demjson3 as demjson
 import pandas as pd
-import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
 from requests import Response, Session

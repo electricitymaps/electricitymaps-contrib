@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import urllib
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
 from typing import Optional
@@ -13,8 +13,9 @@ from bs4 import BeautifulSoup
 from dateutil import tz
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZONES_CONFIG, ZoneKey
+from electricitymap.contrib.config import ZONES_CONFIG
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
