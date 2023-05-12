@@ -178,7 +178,7 @@ def query(
 
 def fetch_production(
     zone_key: str = "BD",
-    session: Optional[Session] = Session(),
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
@@ -226,7 +226,7 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key: str,
+    zone_key: str = "BD",
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -263,7 +263,7 @@ def fetch_consumption(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = Session(),
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
