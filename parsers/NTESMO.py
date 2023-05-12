@@ -13,7 +13,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from pytz import timezone
 from requests import Session
-from requests.adapters import HTTPAdapter, Retry
+from requests.adapters import Retry
 
 from parsers.lib.config import refetch_frequency, retry_policy
 from parsers.lib.exceptions import ParserException
