@@ -77,7 +77,8 @@ class ProductionMix(Mix):
         )
         if keep_corrected_negative_values:
             for corrected_negative_mode in self._corrected_negative_values:
-                production_mix[corrected_negative_mode] = None
+                if corrected_negative_mode not in production_mix:
+                    production_mix[corrected_negative_mode] = None
         return production_mix
 
     def __setattr__(self, name: str, value: Optional[float]) -> None:
@@ -86,6 +87,9 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(name)
                 return super().__setattr__(name, None)
         return super().__setattr__(name, value)
+
+    def report_corrected_negative_values(self, mode: str):
+        self._corrected_negative_values.add(mode)
 
     @property
     def has_corrected_negative_values(self) -> bool:
