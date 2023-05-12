@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any, Dict, List, Optional, Union
 
@@ -9,6 +9,7 @@ import pytz
 from bs4 import BeautifulSoup, Tag
 from requests import Response, Session
 
+from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 # Power Grid Company of Bangladesh: erp.pgcb.gov.bd
@@ -176,6 +177,7 @@ def query(
     return row_data
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "BD",
     session: Session = Session(),
@@ -225,6 +227,7 @@ def fetch_production(
     return production_data_list
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "BD",
     session: Session = Session(),
@@ -260,6 +263,7 @@ def fetch_consumption(
     return result_list
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
