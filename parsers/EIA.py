@@ -449,6 +449,7 @@ def create_production_storage(
         # This is considered to be self consumption and should be reported as 0.
         # Lower values are set to None as they are most likely outliers.
         production_value = 0
+        production_mix.report_corrected_negative_values(fuel_type)
     production_mix.set_value(fuel_type, production_value)
     return production_mix, None
 
