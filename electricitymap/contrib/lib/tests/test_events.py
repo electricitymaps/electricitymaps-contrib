@@ -267,6 +267,24 @@ class TestProductionBreakdown(unittest.TestCase):
             assert breakdown.production.hydro == None
             assert breakdown.production.wind == 10
 
+    def test_self_report_negative_value(self):
+        mix = ProductionMix(
+            wind=0,
+        )
+        # We have manually set a 0 to avoid reporting self consumption for instance.
+        mix.report_corrected_negative_values("wind")
+        logger = logging.Logger("test")
+        with patch.object(logger, "warning") as mock_warning:
+            breakdown = ProductionBreakdown.create(
+                logger=logger,
+                zoneKey=ZoneKey("DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                production=mix,
+                source="trust.me",
+            )
+            mock_warning.assert_called_once()
+            assert breakdown.production.wind == 0
+
     @freezegun.freeze_time("2023-01-01")
     def test_forecasted_points(self):
         mix = ProductionMix(wind=10)
