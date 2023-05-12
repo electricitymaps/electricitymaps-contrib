@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
-from typing import Any, Dict, Optional, AbstractSet, Union
+from typing import AbstractSet, Any, Dict, Optional, Union
 
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
@@ -81,15 +81,29 @@ class ProductionMix(Mix):
                     production_mix[corrected_negative_mode] = None
         return production_mix
 
-    def __setattr__(self, name: str, value: Optional[float]) -> None:
-        if name in PRODUCTION_MODES:
-            if value is not None and value < 0:
-                self._corrected_negative_values.add(name)
-                return super().__setattr__(name, None)
+    def __setattr__(
+        self,
+        name: str,
+        value: Optional[float],
+    ) -> None:
+        if not name in PRODUCTION_MODES:
+            raise ValueError(f"Unknown production mode: {name}")
+        if value is not None and value < 0:
+            self._corrected_negative_values.add(name)
+            value = None
         return super().__setattr__(name, value)
 
-    def report_corrected_negative_values(self, mode: str):
-        self._corrected_negative_values.add(mode)
+    def set_value(
+        self,
+        mode: str,
+        value: Optional[float],
+        correct_negative_with_zero: bool = False,
+    ) -> None:
+        """"""
+        if correct_negative_with_zero and value is not None and value < 0:
+            value = 0
+            self._corrected_negative_values.add(mode)
+        self.__setattr__(mode, value)
 
     @property
     def has_corrected_negative_values(self) -> bool:

@@ -267,12 +267,16 @@ class TestProductionBreakdown(unittest.TestCase):
             assert breakdown.production.hydro == None
             assert breakdown.production.wind == 10
 
+            dict_form = breakdown.to_dict()
+            assert dict_form["production"]["wind"] == 10
+            assert dict_form["production"]["hydro"] == None
+
     def test_self_report_negative_value(self):
-        mix = ProductionMix(
-            wind=0,
-        )
+        mix = ProductionMix()
         # We have manually set a 0 to avoid reporting self consumption for instance.
-        mix.report_corrected_negative_values("wind")
+        mix.set_value("wind", 0)
+        # This one has been set through the attributes and should be reported as None.
+        mix.biomass = -10
         logger = logging.Logger("test")
         with patch.object(logger, "warning") as mock_warning:
             breakdown = ProductionBreakdown.create(
@@ -284,6 +288,7 @@ class TestProductionBreakdown(unittest.TestCase):
             )
             mock_warning.assert_called_once()
             assert breakdown.production.wind == 0
+            assert breakdown.production.biomass == None
 
     @freezegun.freeze_time("2023-01-01")
     def test_forecasted_points(self):
