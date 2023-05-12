@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, AbstractSet, Union
 
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
@@ -53,6 +53,33 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
+    def dict(
+        self,
+        *,
+        include: Optional[Union[set, dict]] = None,
+        exclude: Optional[Union[set, dict]] = None,
+        by_alias: bool = False,
+        skip_defaults: Optional[bool] = None,
+        exclude_unset: bool = False,
+        exclude_defaults: bool = False,
+        exclude_none: bool = False,
+        keep_corrected_negative_values: bool = False,
+    ) -> Dict[str, Any]:
+        """Overriding the dict method to add the corrected negative values as Nones."""
+        production_mix = super().dict(
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            skip_defaults=skip_defaults,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+        )
+        if keep_corrected_negative_values:
+            for corrected_negative_mode in self._corrected_negative_values:
+                production_mix[corrected_negative_mode] = None
+        return production_mix
+
     def __setattr__(self, name: str, value: Optional[float]) -> None:
         if name in PRODUCTION_MODES:
             if value is not None and value < 0:
@@ -63,6 +90,10 @@ class ProductionMix(Mix):
     @property
     def has_corrected_negative_values(self) -> bool:
         return len(self._corrected_negative_values) > 0
+
+    @property
+    def corrected_negative_modes(self) -> AbstractSet[str]:
+        return self._corrected_negative_values
 
 
 class StorageMix(Mix):
@@ -247,7 +278,7 @@ class ProductionBreakdown(Event):
 
     @validator("production")
     def _validate_production_mix(cls, v):
-        if v is not None:
+        if v is not None and not v.has_corrected_negative_values:
             if all(value is None for value in v.dict().values()):
                 raise ValueError("Mix is completely empty")
         return v
@@ -293,7 +324,9 @@ class ProductionBreakdown(Event):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "production": self.production.dict(exclude_none=True)
+            "production": self.production.dict(
+                exclude_none=True, keep_corrected_negative_values=True
+            )
             if self.production
             else {},
             "storage": self.storage.dict(exclude_none=True) if self.storage else {},
