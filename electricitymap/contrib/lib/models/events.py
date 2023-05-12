@@ -4,17 +4,18 @@ from enum import Enum
 from logging import Logger
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, PrivateAttr, validator
+from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
+from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
+from electricitymap.contrib.lib.types import ZoneKey
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
 class Mix(BaseModel, ABC):
-    def set_value(self, mode: str, value: float) -> None:
+    def set_value(self, mode: str, value: Optional[float]) -> None:
         """
         Sets the value of a production mode.
         This can be used if the Production has been initialized empty
@@ -52,7 +53,7 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def __setattr__(self, name: str, value) -> None:
+    def __setattr__(self, name: str, value: Optional[float]) -> None:
         if name in PRODUCTION_MODES:
             if value is not None and value < 0:
                 self._corrected_negative_values.add(name)
@@ -179,8 +180,8 @@ class Exchange(Event):
                 netFlow=netFlow,
                 sourceType=sourceType,
             )
-        except ValueError as e:
-            logger.error(f"Error creating exchange Event {datetime}: {e}")
+        except ValidationError as e:
+            logger.error(f"Error(s) creating exchange Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -188,6 +189,7 @@ class Exchange(Event):
             "sortedZoneKeys": self.zoneKey,
             "netFlow": self.netFlow,
             "source": self.source,
+            "sourceType": self.sourceType,
         }
 
 
@@ -222,8 +224,8 @@ class TotalProduction(Event):
                 value=value,
                 sourceType=sourceType,
             )
-        except ValueError as e:
-            logger.error(f"Error creating total production Event {datetime}: {e}")
+        except ValidationError as e:
+            logger.error(f"Error(s) creating total production Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -231,12 +233,17 @@ class TotalProduction(Event):
             "zoneKey": self.zoneKey,
             "generation": self.value,
             "source": self.source,
+            "sourceType": self.sourceType,
         }
 
 
 class ProductionBreakdown(Event):
-    production: ProductionMix
+    production: Optional[ProductionMix] = None
     storage: Optional[StorageMix] = None
+    """
+    An event representing the production and storage breakdown of a zone at a given time.
+    If a production mix is supplied it should not be fully empty.
+    """
 
     @validator("production")
     def _validate_production_mix(cls, v):
@@ -258,13 +265,13 @@ class ProductionBreakdown(Event):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        production: ProductionMix,
+        production: Optional[ProductionMix] = None,
         storage: Optional[StorageMix] = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["ProductionBreakdown"]:
         try:
             # Log warning if production has been corrected.
-            if production.has_corrected_negative_values:
+            if production is not None and production.has_corrected_negative_values:
                 logger.warning(
                     f"Negative production values were detected: {production._corrected_negative_values}.\
                     They have been set to None."
@@ -277,16 +284,21 @@ class ProductionBreakdown(Event):
                 storage=storage,
                 sourceType=sourceType,
             )
-        except ValueError as e:
-            logger.error(f"Error creating production breakdown Event {datetime}: {e}")
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating production breakdown Event {datetime}: {e}"
+            )
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "production": self.production.dict(exclude_none=True),
+            "production": self.production.dict(exclude_none=True)
+            if self.production
+            else {},
             "storage": self.storage.dict(exclude_none=True) if self.storage else {},
             "source": self.source,
+            "sourceType": self.sourceType,
         }
 
 
@@ -321,12 +333,12 @@ class TotalConsumption(Event):
                 consumption=consumption,
                 sourceType=sourceType,
             )
-        except ValueError as e:
+        except ValidationError as e:
             logger.error(
-                f"Error creating total consumption Event {datetime}: {e}",
+                f"Error(s) creating total consumption Event {datetime}: {e}",
                 extra={
                     "zoneKey": zoneKey,
-                    "datetime": datetime,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
                     "kind": "consumption",
                 },
             )
@@ -337,6 +349,7 @@ class TotalConsumption(Event):
             "zoneKey": self.zoneKey,
             "consumption": self.consumption,
             "source": self.source,
+            "sourceType": self.sourceType,
         }
 
 
@@ -369,8 +382,8 @@ class Price(Event):
                 currency=currency,
                 sourceType=sourceType,
             )
-        except ValueError as e:
-            logger.error(f"Error creating price Event {datetime}: {e}")
+        except ValidationError as e:
+            logger.error(f"Error(s) creating price Event {datetime}: {e}")
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -379,4 +392,5 @@ class Price(Event):
             "currency": self.currency,
             "price": self.price,
             "source": self.source,
+            "sourceType": self.sourceType,
         }
