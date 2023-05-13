@@ -17,7 +17,6 @@ import sys
 from copy import deepcopy
 
 import pandas as pd
-from parsers.lib.utils import get_token
 import requests
 import xmltodict
 import yaml
@@ -30,6 +29,7 @@ from parsers.ENTSOE import (
     ENTSOE_PARAMETER_DESC,
     ENTSOE_PARAMETER_GROUPS,
 )
+from parsers.lib.utils import get_token
 
 
 def update_zone(zone_key: ZoneKey, data: dict) -> None:
