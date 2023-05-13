@@ -17,6 +17,7 @@ import sys
 from copy import deepcopy
 
 import pandas as pd
+from parsers.lib.utils import get_token
 import requests
 import xmltodict
 import yaml
@@ -91,7 +92,7 @@ def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
     # TODO not sure whether selecting the date always works like that
     date = datetime.datetime.now().strftime("%Y%m%d")
     url = (
-        "https://transparency.entsoe.eu/api?securityToken={token}"
+        "https://web-api.tp.entsoe.eu/api?securityToken={token}"
         "&documentType=A68&processType=A33&in_Domain={domain}"
         "&periodStart={date}0000&periodEnd={date}0000".format(
             token=token, domain=domain, date=date
@@ -150,7 +151,7 @@ def main():
             sys.exit(1)
         data = parse_from_csv(data_file)
     else:
-        token = args.api_token
+        token = args.api_token or get_token("ENTSOE_TOKEN").split(",")[0]
         if token is None:
             print(
                 "ERROR: If no CSV file is given, the option --api-token must be provided",
