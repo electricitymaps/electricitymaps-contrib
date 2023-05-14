@@ -2,7 +2,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from statistics import mean
 from typing import Any, Dict, List, Optional, Union
 
 import arrow
