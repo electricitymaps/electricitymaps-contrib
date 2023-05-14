@@ -72,7 +72,7 @@ retry_strategy = Retry(
 )
 
 # Default behaviour for datetime
-def get_default_datetime_if_not_None(target_datetime: datetime) -> datetime:
+def get_default_datetime_if_not_None(target_datetime: Optional[datetime]) -> datetime:
     """Get the default datetime if the target datetime is None"""
     if target_datetime is None:
         return datetime.now(tz=AUSTRALIA_TZ) - timedelta(days=DAY_DELAY)
