@@ -9,13 +9,13 @@ from typing import Any, Dict, List, Optional, Union
 import arrow
 from requests import Session
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
 TIMEZONE = "America/Managua"

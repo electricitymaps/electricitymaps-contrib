@@ -11,7 +11,6 @@ import pytz
 from bs4 import BeautifulSoup
 from requests import Session
 
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.lib.config import refetch_frequency
 from parsers.lib.validation import validate_consumption
 
