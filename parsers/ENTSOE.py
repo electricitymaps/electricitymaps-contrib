@@ -744,7 +744,7 @@ def parse_scalar(
 
 
 def create_production_storage(
-    fuel_code: str, quantity: float
+    fuel_code: str, quantity: float, logger: Logger, zoneKey: ZoneKey
 ) -> Tuple[Optional[ProductionMix], Optional[StorageMix]]:
     production = ProductionMix()
     storage = StorageMix()
@@ -754,6 +754,13 @@ def create_production_storage(
         # it is power plant self-consumption which should be ignored.
         storage.set_value(fuel_em_type, -quantity)
         return None, storage
+    if 0 > quantity > -50:
+        logger.info(
+            "Self consumption value %s for %s has been set to 0."
+            % (quantity, fuel_em_type),
+            extra={"key": zoneKey, "fuel_type": fuel_em_type},
+        )
+        quantity = 0
     production.set_value(fuel_em_type, quantity)
     return production, None
 
@@ -787,7 +794,9 @@ def parse_production(
             quantity = float(entry.find_all("quantity")[0].contents[0])
             position = int(entry.find_all("position")[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
-            production, storage = create_production_storage(fuel_code, quantity)
+            production, storage = create_production_storage(
+                fuel_code, quantity, logger, zoneKey
+            )
             production_breakdowns.append(
                 zoneKey=zoneKey,
                 datetime=datetime,
@@ -1091,7 +1100,7 @@ def fetch_production(
         )
     parsed = parse_production(raw_production, logger, zone_key)
     data = parsed.to_list()
-
+    breakpoint()
     return list(filter(lambda x: validate_production(x, logger), data))
 
 

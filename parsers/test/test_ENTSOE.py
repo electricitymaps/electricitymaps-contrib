@@ -1,7 +1,9 @@
+import logging
 import os
 import unittest
 from datetime import datetime
 
+from mock import patch
 from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
@@ -103,11 +105,11 @@ class TestFetchProduction(TestENTSOE):
     def test_fetch_production_with_storage(self):
         with open(
             "parsers/test/mocks/ENTSOE/NO-NO5_production.xml", "rb"
-        ) as production_fi_data:
+        ) as production_no_data:
             self.adapter.register_uri(
                 GET,
                 ANY,
-                content=production_fi_data.read(),
+                content=production_no_data.read(),
             )
             production = ENTSOE.fetch_production(ZoneKey("NO-NO5"), self.session)
             self.assertEqual(len(production), 47)
@@ -121,4 +123,33 @@ class TestFetchProduction(TestENTSOE):
             self.assertEqual(production[0]["production"]["hydro"], 296)
 
     def test_fetch_with_negative_values(self):
-        pass
+        with open(
+            "parsers/test/mocks/ENTSOE/NO-NO5_production-negatives.xml", "rb"
+        ) as production_no_data:
+            self.adapter.register_uri(
+                GET,
+                ANY,
+                content=production_no_data.read(),
+            )
+            logger = logging.Logger("test")
+            with patch.object(logger, "info") as mock_warning:
+                production = ENTSOE.fetch_production(
+                    ZoneKey("NO-NO5"), self.session, logger=logger
+                )
+                self.assertEqual(len(production), 47)
+                self.assertEqual(production[0]["zoneKey"], "NO-NO5")
+                self.assertEqual(production[0]["source"], "entsoe.eu")
+                self.assertEqual(
+                    production[0]["datetime"], datetime(2023, 5, 9, 9, 0, tzinfo=utc)
+                )
+                # Small negative values have been set to 0.
+                self.assertEqual(production[0]["production"]["gas"], 0)
+                self.assertEqual(production[1]["production"]["gas"], 0)
+
+                # Large negative values have been set to None.
+                self.assertEqual(
+                    production[-1]["datetime"], datetime(2023, 5, 11, 7, 0, tzinfo=utc)
+                )
+                self.assertEqual(production[-1]["production"]["gas"], None)
+                # A warning has been logged for this.
+                mock_warning.assert_called()
