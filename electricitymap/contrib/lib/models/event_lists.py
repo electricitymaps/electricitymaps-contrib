@@ -117,20 +117,39 @@ class ProductionBreakdownList(EventList):
                 f"Trying to merge production outputs from multiple source types \
                 , got {len(source_types)}: {', '.join(source_types)}"
             )
-        df = df.groupby(level=0, dropna=False).sum(numeric_only=True, min_count=1)
+
+        def aggregate(value: pd.Series) -> Optional[float]:
+            """An internal aggregation function taking care of corrected modes."""
+            if value.name == "corrected_modes":
+                aggregated_modes = set()
+                for corrected_modes in value:
+                    if corrected_modes is not None:
+                        aggregated_modes.update(set(corrected_modes))
+                return list(aggregated_modes)
+            if value.isnull().all():
+                # We don't want to return a zero if all are None or NaN.
+                return None
+            return value.sum()
+
+        df = df.drop(columns=["source", "sourceType", "zoneKey"])
+        df = df.groupby(level=0, dropna=False).agg(aggregate)
         result = ProductionBreakdownList(logger)
         for row in df.iterrows():
             production_mix = ProductionMix()
             storage_mix = StorageMix()
             for key, value in row[1].items():
-                if np.isnan(value):
-                    value = None
-                # The key is in the form of "production.<mode>" or "storage.<mode>"
-                prefix, mode = key.split(".")  # type: ignore
-                if prefix == "production":
-                    production_mix.set_value(mode, value)
-                elif prefix == "storage":
-                    storage_mix.set_value(mode, value)
+                if str(key).startswith("production.") or str(key).startswith(
+                    "storage."
+                ):
+                    # The key is in the form of "production.<mode>" or "storage.<mode>"
+                    prefix, mode = key.split(".")  # type: ignore
+                    if prefix == "production":
+                        if mode in row[1]["correctedModes"]:
+                            # This is just to mark this mode as corrected, the value is not used.
+                            production_mix.set_value(mode, -1)
+                        production_mix.set_value(mode, value)
+                    elif prefix == "storage":
+                        storage_mix.set_value(mode, value)
             result.append(
                 zones[0],
                 row[0].to_pydatetime(),  # type: ignore

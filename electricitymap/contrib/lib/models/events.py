@@ -371,6 +371,7 @@ class ProductionBreakdown(Event):
             "storage": self.storage.dict(exclude_none=True) if self.storage else {},
             "source": self.source,
             "sourceType": self.sourceType,
+            "correctedModes": list(self.production._corrected_negative_values),
         }
 
 
