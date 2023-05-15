@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
 from typing import Any, Dict, List, Optional
+import numpy as np
 
 import pandas as pd
 
@@ -140,6 +141,10 @@ class ProductionBreakdownList(EventList):
                 if str(key).startswith("production.") or str(key).startswith(
                     "storage."
                 ):
+                    # NaN values can arise from the aggregation. We want to keep them as None.
+                    # We do this at the last step to avoid changing the object type of the dataframe.
+                    if value is not None and np.isnan(value):
+                        value = None
                     # The key is in the form of "production.<mode>" or "storage.<mode>"
                     prefix, mode = key.split(".")  # type: ignore
                     if prefix == "production":
