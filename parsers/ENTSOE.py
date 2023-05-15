@@ -1100,7 +1100,6 @@ def fetch_production(
         )
     parsed = parse_production(raw_production, logger, zone_key)
     data = parsed.to_list()
-    breakpoint()
     return list(filter(lambda x: validate_production(x, logger), data))
 
 
