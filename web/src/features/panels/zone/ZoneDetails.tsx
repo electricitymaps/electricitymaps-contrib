@@ -1,21 +1,29 @@
 import useGetZone from 'api/getZone';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { TimeAverages } from 'utils/constants';
-import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
+import { SpatialAggregate, TimeAverages } from 'utils/constants';
+import {
+  displayByEmissionsAtom,
+  spatialAggregateAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
 import NoInformationMessage from './NoInformationMessage';
 import { ZoneHeader } from './ZoneHeader';
-import { ZoneDataStatus, getZoneDataStatus } from './util';
+import { ZoneDataStatus, getIsAggregatedCountry, getZoneDataStatus } from './util';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const [viewMode, setViewMode] = useAtom(spatialAggregateAtom);
+  const isZoneView = viewMode === SpatialAggregate.ZONE;
+  const isAggregatedCountry = getIsAggregatedCountry(zoneId);
   const { data, isError, isLoading } = useGetZone({
     enabled: Boolean(zoneId),
   });
@@ -25,6 +33,19 @@ export default function ZoneDetails(): JSX.Element {
   if (!zoneId || Array.isArray(data)) {
     return <Navigate to="/" replace />;
   }
+
+  useEffect(() => {
+    if (isAggregatedCountry === null) {
+      return;
+    }
+    // When first hitting the map (or opening a zone from the ranking panel),
+    // set the correct matching view mode (zone or country).
+    if (isAggregatedCountry && isZoneView) {
+      setViewMode(SpatialAggregate.COUNTRY);
+    } else if (!isAggregatedCountry && !isZoneView) {
+      setViewMode(SpatialAggregate.ZONE);
+    }
+  }, []);
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data);
 
