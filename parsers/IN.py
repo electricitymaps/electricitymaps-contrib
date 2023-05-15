@@ -53,38 +53,6 @@ CEA_REGION_MAPPING = {
     "उत्तर-पूर्वी क्षेत्र  / North-Eastern Region": "IN-NE",
 }
 
-STATES_MAPPING = {
-    "IN-NO": [
-        "delhi",
-        "haryana",
-        "himachal-pradesh",
-        "jammu-kashmir",
-        "punjab",
-        "rajasthan",
-        "uttar-pradesh",
-        "uttarakhand",
-    ],
-    "IN-WE": ["gujarat", "madya-pradesh", "maharashtra", "goa", "chhattisgarh"],
-    "IN-EA": ["bihar", "west-bengal", "odisha", "sikkim"],
-    "IN-NE": [
-        "arunachal-pradesh",
-        "assam",
-        "meghalaya",
-        "tripura",
-        "mizoram",
-        "nagaland",
-        "manipur",
-    ],
-    "IN-SO": [
-        "karnataka",
-        "kerala",
-        "tamil-nadu",
-        "andhra-pradesh",
-        "telangana",
-        "puducherry",
-    ],
-}
-
 DEMAND_URL = "https://vidyutpravah.in/state-data/{state}"
 STATES_MAPPING = {
     "IN-NO": [
