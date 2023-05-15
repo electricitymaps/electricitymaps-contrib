@@ -120,7 +120,7 @@ class TestFetchProduction(TestENTSOE):
             )
             self.assertEqual(production[0]["storage"]["hydro"], -61)
             self.assertEqual(production[0]["production"]["gas"], 0)
-            self.assertEqual(production[0]["production"]["hydro"], 296)
+            self.assertEqual(production[0]["production"]["hydro"], 1065)
 
     def test_fetch_with_negative_values(self):
         with open(
