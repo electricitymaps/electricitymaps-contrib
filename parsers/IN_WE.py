@@ -30,13 +30,13 @@ API : https://www.wrldc.in/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_D
 sample data:
 [{
     "Region_Id": 2,
-    "Region_Name": "WR-ER",
-    "Export_Ttc": 25000.0,
-    "Import_Ttc": 25000.0,
+    "Region_Name": "WR-ER", #Western Region -> Eastern Region
+    "Export_Ttc": 25000.0,  #Export Total Transfer Capability
+    "Import_Ttc": 25000.0,  #Import Total Transfer Capability
     "Long_Term": 955.0,
     "Short_Term": -125.0,
-    "Px_Import": 35.0,
-    "Px_Export": 0.0,
+    "Px_Import": 35.0,      #Power Exchange Import
+    "Px_Export": 0.0,       #Power Exchange Export
     "Total": 322.0,
     "Current_Loading": -1052.0,
     "lastUpdate": "2023-05-04 00:24:09"
@@ -75,7 +75,9 @@ EXCHANGE_DATETIME_COLUMN_NAME = "lastUpdate"
 EXCHANGE_SQL_QUERY = """
     select 
     strftime ('%Y-%m-%d %H:00:00',lastUpdate) as last_update_hour, 
-    -round(avg(Current_Loading), 3) as exchange_value 
+    -round(avg(Current_Loading), 3) as exchange_value,
+    round(avg(Import_Ttc), 3) as import_capacity,
+    round(avg(Export_Ttc), 3) as export_capacity 
     from dataframe 
     where Region_Name = '{zone_id}' 
     group by last_update_hour
@@ -122,6 +124,12 @@ def convert_result_to_exchanges(exchange_zone_key, result):
                 result["last_update_hour"][index], tz=IN_TZ
             ).to_pydatetime(),
             "source": "wrldc.in",
+            "capacity": {
+                "documentType": "A61",  # Capacity
+                "in_Domain": result["import_capacity"][index],
+                "out_Domain": result["export_capacity"][index],
+                "contract_MarketAgreement.Type": "A01",  # Day ahead
+            },
         }
         for index in result.index
     ]
@@ -144,7 +152,8 @@ sample data:
     "stateid": 0,
     "StateName": "Gujrat",
     "Sch_Drawal": 8470.0,
-    "Act_Drawal": 8651.0,
+    "Act_Drawal": 8651.0, #"actual drawal" in a time-block means electricity drawn by a buyer, as the case maybe, 
+                          #measured by the interface meters; 
     "current_datetime": "2023-05-04 09:02:09",
     "Frequency": 50.13,
     "Deviation": 181.0,
@@ -184,7 +193,7 @@ CONSUMPTION_SQL_QUERY = """
         select
         StateName as state, 
         strftime('%Y-%m-%d %H:00:00',current_datetime) as last_update_hour, 
-        round(avg(Act_Drawal), 3) as consumption_value 
+        round(avg(Demand), 3) as consumption_value 
         from dataframe 
         group by StateName, last_update_hour
         order by StateName, last_update_hour
@@ -247,6 +256,9 @@ def get_dataframe_from_url(
     payload = {"date": target_datetime.strftime("%Y-%m-%d"), "Flag": "24"}
 
     resp: Response = s.post(url=url, json=payload)
+    if resp.json() is None:
+        return None
+
     data = json.loads(resp.json().get("d", {}))
     if len(data) == 0:
         return None
