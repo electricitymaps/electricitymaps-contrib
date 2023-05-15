@@ -6,6 +6,14 @@ bounding_box:
 contributors:
   - systemcatch
   - alixunderplatz
+  - MuffinCompiler
+capacity:
+  coal: 1768
+  gas: 11476
+  hydro: 230
+  oil: 7619
+  solar: 229
 parsers:
   production: BD.fetch_production
+  consumption: BD.fetch_consumption
 timezone: Asia/Dhaka
