@@ -127,8 +127,8 @@ def extract_demand_price_data(file: bytes) -> pd.DataFrame:
 def get_data(
     session: Session,
     extraction_func: Callable[[bytes], pd.DataFrame],
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
+    target_datetime: datetime,
+    logger: Logger,
 ) -> pd.DataFrame:
 
     # Get the default datetime if the target datetime is None
