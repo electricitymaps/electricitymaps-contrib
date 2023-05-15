@@ -3,6 +3,7 @@ import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import { getCountryName } from 'translation/translation';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -15,7 +16,7 @@ import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
 import NoInformationMessage from './NoInformationMessage';
 import { ZoneHeader } from './ZoneHeader';
-import { ZoneDataStatus, getIsAggregatedCountry, getZoneDataStatus } from './util';
+import { ZoneDataStatus, getHasSubZones, getZoneDataStatus } from './util';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
@@ -23,7 +24,8 @@ export default function ZoneDetails(): JSX.Element {
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [viewMode, setViewMode] = useAtom(spatialAggregateAtom);
   const isZoneView = viewMode === SpatialAggregate.ZONE;
-  const isAggregatedCountry = getIsAggregatedCountry(zoneId);
+  const hasSubZones = getHasSubZones(zoneId);
+  const isSubZone = zoneId ? getCountryName(zoneId) !== '' : true;
   const { data, isError, isLoading } = useGetZone({
     enabled: Boolean(zoneId),
   });
@@ -35,14 +37,14 @@ export default function ZoneDetails(): JSX.Element {
   }
 
   useEffect(() => {
-    if (isAggregatedCountry === null) {
+    if (hasSubZones === null) {
       return;
     }
     // When first hitting the map (or opening a zone from the ranking panel),
     // set the correct matching view mode (zone or country).
-    if (isAggregatedCountry && isZoneView) {
+    if (hasSubZones && isZoneView) {
       setViewMode(SpatialAggregate.COUNTRY);
-    } else if (!isAggregatedCountry && !isZoneView) {
+    } else if (isSubZone && !isZoneView) {
       setViewMode(SpatialAggregate.ZONE);
     }
   }, []);

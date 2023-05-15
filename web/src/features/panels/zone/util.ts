@@ -13,7 +13,7 @@ type zoneConfigItem = {
   subZoneNames?: string[];
 };
 
-export const getIsAggregatedCountry = (zoneId?: string) => {
+export const getHasSubZones = (zoneId?: string) => {
   if (!zoneId) {
     return null;
   }
