@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
 from typing import Any, Dict, List, Optional
-import numpy as np
 
+import numpy as np
 import pandas as pd
 
 from electricitymap.contrib.lib.models.events import (
