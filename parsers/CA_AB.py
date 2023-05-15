@@ -6,7 +6,6 @@
 
 # Standard library imports
 import csv
-import logging
 import re
 import urllib.parse
 from datetime import datetime
