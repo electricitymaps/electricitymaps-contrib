@@ -14,8 +14,8 @@ capacity:
   nuclear: 0
   oil: 195
   solar: 1702
-  wind: 5233
   unknown: 112
+  wind: 5233
 contributors:
   - corradio
   - tmslaine

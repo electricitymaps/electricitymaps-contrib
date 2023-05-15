@@ -48,6 +48,8 @@ export default function MapPage(): ReactElement {
   const [currentMode] = useAtom(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
+  const [isDragging, setIsDragging] = useState(false);
+  const [isZooming, setIsZooming] = useState(false);
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -288,12 +290,26 @@ export default function MapPage(): ReactElement {
     setIsLoadingMap(false);
   };
 
-  const onDragOrZoomStart = () => {
+  const onZoomStart = () => {
+    setIsZooming(true);
+    setIsMoving(true);
+  };
+  const onDragStart = () => {
+    setIsDragging(true);
     setIsMoving(true);
   };
 
-  const onDragOrZoomEnd = () => {
-    setIsMoving(false);
+  const onZoomEnd = () => {
+    setIsZooming(false);
+    if (!isDragging) {
+      setIsMoving(false);
+    }
+  };
+  const onDragEnd = () => {
+    setIsDragging(false);
+    if (!isZooming) {
+      setIsMoving(false);
+    }
   };
 
   return (
@@ -311,11 +327,11 @@ export default function MapPage(): ReactElement {
       onError={onError}
       onMouseMove={onMouseMove}
       onMouseOut={onMouseOut}
-      onDragStart={onDragOrZoomStart}
-      onZoomStart={onDragOrZoomStart}
-      onZoomEnd={onDragOrZoomEnd}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      onZoomStart={onZoomStart}
+      onZoomEnd={onZoomEnd}
       dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
-      onDragEnd={onDragOrZoomEnd}
       dragRotate={false}
       minZoom={0.7}
       maxBounds={[

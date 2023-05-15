@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+"""
+This script updates the installed capacities of a zone in the zones config.
+
+It can either parse the capacities from the ENTSOE API or from a CSV file. The
+CSV file must be in the same format as the one downloaded from the ENTSOE API.
+The script will aggregate the capacities according to the way it is stated in
+parsers.ENTSOE.ENTSOE_PARAMETER_GROUPS.
+"""
+
 import argparse
 import datetime
 import json
@@ -13,7 +22,8 @@ import xmltodict
 import yaml
 from utils import ROOT_PATH, run_shell_command
 
-from electricitymap.contrib.config import CONFIG_DIR, ZONES_CONFIG, ZoneKey
+from electricitymap.contrib.config import CONFIG_DIR, ZONES_CONFIG
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_DESC,
@@ -65,9 +75,10 @@ def parse_args():
 
 
 def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
-    """Parses installed generation capacities from the ENTSOE API,
-    see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_reference_documentation"""
+    """Parses installed generation capacities from the ENTSOE API.
 
+    See: https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_reference_documentation
+    """
     if zone_key not in ENTSOE_DOMAIN_MAPPINGS:
         print(
             f"Zone {zone_key} does not exist in the ENTSOE domain mapping",
@@ -116,8 +127,8 @@ def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
 def parse_from_csv(filepath: str) -> dict:
     data = pd.read_csv(filepath).set_index("Production Type").to_dict()
 
-    # choose the column with the most current data
-    # assume keys start with YYYY
+    # Choose the column with the most current data;
+    # assume keys start with YYYY.
     sorted_keys = list(sorted(data.keys()))
     data = data[sorted_keys[-1]]
 
