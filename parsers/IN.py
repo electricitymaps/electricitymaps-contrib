@@ -14,12 +14,12 @@ from bs4 import BeautifulSoup
 from pytz import UTC
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
 IN_TZ = "Asia/Kolkata"

@@ -2,13 +2,14 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
-from typing import Any, Dict, Optional
+from typing import AbstractSet, Any, Dict, Optional, Union
 
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG, ZoneKey
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
+from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
+from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
+from electricitymap.contrib.lib.types import ZoneKey
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -45,23 +46,85 @@ class ProductionMix(Mix):
     wind: Optional[float] = None
 
     def __init__(self, **data: Any):
-        """Overriding the constructor to check for negative values and set them to None."""
+        """
+        Overriding the constructor to check for negative values and set them to None.
+        This method also keeps track of the modes that have been corrected.
+        Note: This method does NOT allow to set negative values to zero for self consumption.
+        As we want self consumption to be set to zero, on a fine grained level with the set_value method.
+        """
         super().__init__(**data)
         for attr, value in data.items():
             if value is not None and value < 0:
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def __setattr__(self, name: str, value: Optional[float]) -> None:
-        if name in PRODUCTION_MODES:
-            if value is not None and value < 0:
-                self._corrected_negative_values.add(name)
-                return super().__setattr__(name, None)
+    def dict(
+        self,
+        *,
+        include: Optional[Union[set, dict]] = None,
+        exclude: Optional[Union[set, dict]] = None,
+        by_alias: bool = False,
+        skip_defaults: Optional[bool] = None,
+        exclude_unset: bool = False,
+        exclude_defaults: bool = False,
+        exclude_none: bool = False,
+        keep_corrected_negative_values: bool = False,
+    ) -> Dict[str, Any]:
+        """Overriding the dict method to add the corrected negative values as Nones."""
+        production_mix = super().dict(
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            skip_defaults=skip_defaults,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+        )
+        if keep_corrected_negative_values:
+            for corrected_negative_mode in self._corrected_negative_values:
+                if corrected_negative_mode not in production_mix:
+                    production_mix[corrected_negative_mode] = None
+        return production_mix
+
+    def __setattr__(
+        self,
+        name: str,
+        value: Optional[float],
+    ) -> None:
+        """
+        Overriding the setattr method to check for negative values and set them to None.
+        This method also keeps track of the modes that have been corrected.
+        """
+        if not name in PRODUCTION_MODES:
+            raise ValueError(f"Unknown production mode: {name}")
+        if value is not None and value < 0:
+            self._corrected_negative_values.add(name)
+            value = None
         return super().__setattr__(name, value)
+
+    def set_value(
+        self,
+        mode: str,
+        value: Optional[float],
+        correct_negative_with_zero: bool = False,
+    ) -> None:
+        """
+        Set the value of a production mode. Negative values are set to None by default.
+        If correct_negative_with_zero is set to True, negative values will be set to 0 instead of None.
+        This method keeps track of values that have been corrected.
+        """
+        if correct_negative_with_zero and value is not None and value < 0:
+            value = 0
+            self._corrected_negative_values.add(mode)
+        self.__setattr__(mode, value)
 
     @property
     def has_corrected_negative_values(self) -> bool:
         return len(self._corrected_negative_values) > 0
+
+    @property
+    def corrected_negative_modes(self) -> AbstractSet[str]:
+        return self._corrected_negative_values
 
 
 class StorageMix(Mix):
@@ -73,6 +136,14 @@ class StorageMix(Mix):
 
     battery: Optional[float] = None
     hydro: Optional[float] = None
+
+    def __setattr__(self, name: str, value: Optional[float]) -> None:
+        """
+        Overriding the setattr method to raise an error if the mode is unknown.
+        """
+        if not name in STORAGE_MODES:
+            raise ValueError(f"Unknown storage mode: {name}")
+        return super().__setattr__(name, value)
 
 
 class EventSourceType(str, Enum):
@@ -246,7 +317,7 @@ class ProductionBreakdown(Event):
 
     @validator("production")
     def _validate_production_mix(cls, v):
-        if v is not None:
+        if v is not None and not v.has_corrected_negative_values:
             if all(value is None for value in v.dict().values()):
                 raise ValueError("Mix is completely empty")
         return v
@@ -292,12 +363,15 @@ class ProductionBreakdown(Event):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "production": self.production.dict(exclude_none=True)
+            "production": self.production.dict(
+                exclude_none=True, keep_corrected_negative_values=True
+            )
             if self.production
             else {},
             "storage": self.storage.dict(exclude_none=True) if self.storage else {},
             "source": self.source,
             "sourceType": self.sourceType,
+            "correctedModes": list(self.production._corrected_negative_values),
         }
 
 

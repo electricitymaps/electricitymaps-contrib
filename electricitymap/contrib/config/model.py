@@ -18,9 +18,9 @@ from electricitymap.contrib.config import (
     EXCHANGES_CONFIG,
     ZONE_NEIGHBOURS,
     ZONES_CONFIG,
-    Point,
-    ZoneKey,
 )
+from electricitymap.contrib.config.types import Point
+from electricitymap.contrib.lib.types import ZoneKey
 
 # NOTE: we could cast Point to a NamedTuple with x/y accessors
 

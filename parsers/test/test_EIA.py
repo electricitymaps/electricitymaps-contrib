@@ -9,8 +9,8 @@ from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import EIA
 
 

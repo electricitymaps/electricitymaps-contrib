@@ -16,7 +16,6 @@ import arrow
 from dateutil import parser, tz
 from requests import Session
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
@@ -27,6 +26,7 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
 
@@ -445,11 +445,12 @@ def create_production_storage(
         # https://www.eia.gov/electricity/gridmonitor/about
         storage_mix.set_value("hydro", abs(production_value))
         return None, storage_mix
-    if production_value > negative_threshold:
-        # This is considered to be self consumption and should be reported as 0.
-        # Lower values are set to None as they are most likely outliers.
-        production_value = 0
-    production_mix.set_value(fuel_type, production_value)
+
+    # production_value > negative_threshold, this is considered to be self consumption and should be reported as 0.
+    # Lower values are set to None as they are most likely outliers.
+    production_mix.set_value(
+        fuel_type, production_value, production_value > negative_threshold
+    )
     return production_mix, None
 
 

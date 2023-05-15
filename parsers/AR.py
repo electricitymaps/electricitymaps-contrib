@@ -8,7 +8,7 @@ from typing import Dict, List, Optional
 import arrow
 from requests import Session
 
-from .lib.exceptions import ParserException
+from parsers.lib.exceptions import ParserException
 
 # Useful links.
 # https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
@@ -45,23 +45,24 @@ SUPPORTED_EXCHANGES = {
     "AR-NEA->AR-NOA": "NEA-NOA",
 }
 
-EXCHANGE_DIRECTIONS = {  # directions are from second region -> first region
-    "AR->CL-SEN": 0,
-    "AR->PY": 225,
-    "AR->UY": 180,
-    "AR-NEA->BR-S": 225,
-    "AR-BAS->AR-COM": 45,
-    "AR-CEN->AR-COM": 90,
-    "AR-CEN->AR-NOA": 315,
-    "AR-CUY->AR-COM": 135,
-    "AR-CEN->AR-CUY": 45,
-    "AR-LIT->AR-NEA": 225,
-    "AR-BAS->AR-LIT": 270,
+# Expected arrow direction if flow is first -> second
+EXCHANGE_DIRECTIONS = {
+    "AR->CL-SEN": 180,
+    "AR->PY": 45,
+    "AR->UY": 0,
+    "AR-NEA->BR-S": 45,
+    "AR-BAS->AR-COM": 225,
+    "AR-CEN->AR-COM": 270,
+    "AR-CEN->AR-NOA": 135,
+    "AR-CUY->AR-COM": 315,
+    "AR-CEN->AR-CUY": 225,
+    "AR-LIT->AR-NEA": 45,
+    "AR-BAS->AR-LIT": 90,
     "AR-CUY->AR-NOA": 45,
-    "AR-LIT->AR-CEN": 45,
+    "AR-LIT->AR-CEN": 225,
     "AR-LIT->AR-NOA": 135,
     "AR-BAS->AR-CEN": 135,
-    "AR-COM->AR-PAT": 90,
+    "AR-COM->AR-PAT": 270,
     "AR-NEA->AR-NOA": 180,
 }
 
@@ -124,7 +125,7 @@ def merged_production_mix(non_renewables_mix: dict, renewables_mix: dict) -> dic
 def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
     """Retrieves production mix for renewables using CAMMESA's API"""
 
-    today = arrow.now(tz="America/Argentina/Buenos Aires").format("DD-MM-YYYY")
+    today = arrow.now(tz="America/Argentina/Buenos_Aires").format("DD-MM-YYYY")
     params = {"desde": today, "hasta": today}
     renewables_response = session.get(CAMMESA_RENEWABLES_ENDPOINT, params=params)
     assert renewables_response.status_code == 200, (
@@ -212,6 +213,8 @@ def fetch_exchange(
                 angle_config = EXCHANGE_DIRECTIONS[sorted_codes]
                 given_angle = int(properties["url"][6:])
                 flow = int(properties["text"])
+
+                # inverse flow if arrow doesn't match expected direction
                 if angle_config != given_angle:
                     flow = -flow
                 returned_datetime = datetime.fromisoformat(
@@ -253,11 +256,15 @@ if __name__ == "__main__":
 
     print("fetch_production() ->")
     print(fetch_production())
-    print("fetch_price() ->")
-    print(fetch_price())
     print("fetch_exchange(AR, PY) ->")
     print(fetch_exchange("AR", "PY"))
     print("fetch_exchange(AR, UY) ->")
     print(fetch_exchange("AR", "UY"))
     print("fetch_exchange(AR, CL-SEN) ->")
     print(fetch_exchange("AR", "CL-SEN"))
+    print("fetch_exchange(AR-CEN, AR-COM) ->")
+    print(fetch_exchange("AR-CEN", "AR-COM"))
+    print("fetch_exchange(AR-BAS, AR-LIT) ->")
+    print(fetch_exchange("AR-BAS", "AR-LIT"))
+    print("fetch_exchange(AR-COM, AR-PAT) ->")
+    print(fetch_exchange("AR-COM", "AR-PAT"))
