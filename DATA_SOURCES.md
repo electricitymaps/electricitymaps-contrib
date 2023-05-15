@@ -152,6 +152,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
   - Texas: [ERCOT](http://www.ercot.com/content/cdr/html/real_time_system_conditions.html)
   - Seminole Electric Cooperative (Florida): [EIA](https://www.eia.gov/opendata/qb.php?category=2122629&sdid=EBA.SEC-ALL.NG.H), [SEC](https://www.seminole-electric.com/facilities/generation/)
 - Uruguay: [UTE](https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
+- Vietnam: [EVN](https://www.nldc.evn.vn/)
   &nbsp;</details>
 
 ### Production capacity data sources
@@ -165,7 +166,7 @@ When determining the installed capacity for a country, these sources might help 
 - Renewables: [IRENA](https://www.irena.org/Search?keywords=%22Renewable+Capacity+Statistics%22&sort=date&content_type=2803e86c173c440f840aa721825b3656)
 - Nuclear: [IAEA PRIS](https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
 - Coal: [Global Coal Plant Tracker](https://globalenergymonitor.org/projects/global-coal-plant-tracker/tracker/)
-- Gas : [Global Gas Plant Tracker](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
+- Gas: [Global Gas Plant Tracker](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
 - Various:
   - [Climatescope](https://global-climatescope.org/capacity-generation)
   - [Global Power Plant Database](https://datasets.wri.org/dataset/globalpowerplantdatabase)
@@ -451,6 +452,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
+- Vietnam: [EVN](https://www.nldc.evn.vn/FullNewsg/100/Thong-tin-thi-truong-dien/default.aspx)
   &nbsp;</details>
 
 ### Cross-border transmission capacity data sources
