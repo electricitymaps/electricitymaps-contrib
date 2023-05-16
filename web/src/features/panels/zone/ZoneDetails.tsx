@@ -3,7 +3,6 @@ import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { getCountryName } from 'translation/translation';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -25,7 +24,7 @@ export default function ZoneDetails(): JSX.Element {
   const [viewMode, setViewMode] = useAtom(spatialAggregateAtom);
   const isZoneView = viewMode === SpatialAggregate.ZONE;
   const hasSubZones = getHasSubZones(zoneId);
-  const isSubZone = zoneId ? getCountryName(zoneId) !== '' : true;
+  const isSubZone = zoneId ? zoneId.includes('-') : true;
   const { data, isError, isLoading } = useGetZone({
     enabled: Boolean(zoneId),
   });
