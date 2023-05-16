@@ -190,6 +190,7 @@ class TestProductionBreakdownList(unittest.TestCase):
         )
         assert len(merged.events) == 3
         assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert merged.events[0].production is not None
         assert merged.events[0].production.wind == 60
         assert merged.events[0].production.coal is None
         assert merged.events[0].source == "trust.me, trust2.me, trust3.me"
@@ -198,10 +199,12 @@ class TestProductionBreakdownList(unittest.TestCase):
         assert merged.events[0].sourceType == EventSourceType.measured
 
         assert merged.events[1].datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
+        assert merged.events[1].production is not None
         assert merged.events[1].production.wind == 63
         assert merged.events[1].production.coal == 3
 
         assert merged.events[2].datetime == datetime(2023, 1, 3, tzinfo=timezone.utc)
+        assert merged.events[2].production is not None
         assert merged.events[2].production.wind == 34
         assert merged.events[2].production.coal == 4
 
@@ -309,6 +312,7 @@ class TestProductionBreakdownList(unittest.TestCase):
         )
         assert len(merged.events) == 2
         assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert merged.events[0].storage is not None
         assert merged.events[0].storage.hydro == 2
         assert merged.events[0].sourceType == EventSourceType.forecasted
 
@@ -349,12 +353,14 @@ class TestProductionBreakdownList(unittest.TestCase):
         )
         assert len(merged.events) == 2
         assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert merged.events[0].production is not None
         assert merged.events[0].production.wind is None
         assert merged.events[0].production.coal == 30
         assert merged.events[0].storage.hydro == 2
         assert merged.events[0].production._corrected_negative_values == {"wind"}
 
         assert merged.events[1].datetime == datetime(2023, 1, 3, tzinfo=timezone.utc)
+        assert merged.events[1].production is not None
         assert merged.events[1].production.wind is None
         assert merged.events[1].production.coal == 34
         assert merged.events[1].storage.hydro == 2
@@ -388,6 +394,7 @@ class TestProductionBreakdownList(unittest.TestCase):
         )
         assert len(merged.events) == 1
         assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert merged.events[0].production is not None
         assert merged.events[0].production.wind is None
         assert merged.events[0].production.solar == 20
         assert merged.events[0].production.coal == 30
