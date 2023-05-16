@@ -51,3 +51,24 @@ class TestFetchPrices(TestENTSOE):
             self.assertEqual(
                 prices[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=utc)
             )
+
+
+class TestFetchExchange(TestENTSOE):
+    def test_fetch_exchange(self):
+        with open(
+            "parsers/test/mocks/ENTSOE/FR_DE_exchange.xml", "rb"
+        ) as exchange_fr_de_data:
+            self.adapter.register_uri(
+                GET,
+                ANY,
+                content=exchange_fr_de_data.read(),
+            )
+            exchanges = ENTSOE.fetch_exchange(
+                ZoneKey("FR"), ZoneKey("DE"), self.session
+            )
+            self.assertEqual(len(exchanges), 47)
+            self.assertEqual(exchanges[0]["netFlow"], -0.0)
+            self.assertEqual(exchanges[0]["source"], "entsoe.eu")
+            self.assertEqual(
+                exchanges[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=utc)
+            )
