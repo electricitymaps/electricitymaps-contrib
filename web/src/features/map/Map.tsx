@@ -18,6 +18,7 @@ import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
+import { getApproximateFeature } from './map-utils/getApproximateCenter';
 import {
   hoveredZoneAtom,
   loadingMapAtom,
@@ -172,9 +173,16 @@ export default function MapPage(): ReactElement {
     const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
     setSelectedZoneId(zoneId);
     if (map && zoneId) {
-      const feature = geometries.features.find(
+      let feature = geometries.features.find(
         (feature) => feature.properties.zoneId === zoneId
       );
+      // if no feature matches, it means that the selected zone is not in current spatial resolution.
+      // We cannot include geometries in dependencies, as we don't want to flyTo when user switches
+      // between spatial resolutions. Therefore we find an approximate feature based on the zoneId.
+      if (!feature) {
+        feature = getApproximateFeature(zoneId, geometries);
+      }
+
       const center = feature?.properties.center;
       if (!center) {
         return;
@@ -184,7 +192,7 @@ export default function MapPage(): ReactElement {
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
       map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
-  }, [geometries, location.pathname, isLoadingMap]);
+  }, [location.pathname, isLoadingMap]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();
