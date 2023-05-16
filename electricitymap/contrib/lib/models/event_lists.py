@@ -57,6 +57,52 @@ class ExchangeList(EventList):
         if event:
             self.events.append(event)
 
+    @staticmethod
+    def merge_exchanges(
+        ungrouped_exchanges: List["ExchangeList"], logger: Logger
+    ) -> "ExchangeList":
+        """
+        Given multiple parser outputs, sum the netflows of corresponding datetimes
+        to create a unique exchange list. Sources will be aggregated in a
+        comma-separated string. Ex: "entsoe, eia".
+        """
+        if len(ungrouped_exchanges) == 0:
+            return ExchangeList(logger)
+        if all(len(exchanges.events) == 0 for exchanges in ungrouped_exchanges):
+            logger.warning("All exchanges are empty.")
+            return ExchangeList(logger)
+
+        # Create a dataframe for each parser output, then flatten the exchanges.
+        exchange_dfs = [
+            pd.json_normalize(exchanges.to_list()).set_index("datetime")
+            for exchanges in ungrouped_exchanges
+        ]
+
+        exchange_df = pd.concat(exchange_dfs)
+        sources = exchange_df["source"].unique()
+        sources = ", ".join(sources)
+        zones = exchange_df["sortedZoneKeys"].unique()
+        if len(zones) != 1:
+            raise ValueError(
+                f"Trying to merge production outputs from multiple zones \
+                , got {len(zones)}: {', '.join(zones)}"
+            )
+        source_types = exchange_df["sourceType"].unique()
+        if len(source_types) != 1:
+            raise ValueError(
+                f"Trying to merge production outputs from multiple source types \
+                , got {len(source_types)}: {', '.join(source_types)}"
+            )
+        exchange_df = exchange_df.groupby(level=0, dropna=False).sum()
+
+        exchanges = ExchangeList(logger)
+        for datetime, row in exchange_df.iterrows():
+            exchanges.append(
+                zones[0], datetime, sources, row["netFlow"], source_types[0]
+            )
+
+        return exchanges
+
 
 class ProductionBreakdownList(EventList):
     events: List[ProductionBreakdown]
