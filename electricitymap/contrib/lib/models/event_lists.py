@@ -161,7 +161,9 @@ class ProductionBreakdownList(MergeableList):
         There should be only one zone in the list of production breakdowns.
         """
         production_breakdowns = ProductionBreakdownList(logger)
-        if ProductionBreakdownList.is_completly_empty(production_breakdowns, logger):
+        if ProductionBreakdownList.is_completly_empty(
+            ungrouped_production_breakdowns, logger
+        ):
             return production_breakdowns
 
         # Create a dataframe for each parser output, then flatten the power mixes.
