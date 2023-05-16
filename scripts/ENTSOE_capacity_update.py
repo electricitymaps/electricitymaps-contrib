@@ -34,6 +34,7 @@ from parsers.lib.utils import get_token
 
 ZONES_CONFIG = read_zones_config(config_dir=CONFIG_DIR)
 
+
 def update_zone(zone_key: ZoneKey, data: dict) -> None:
     if zone_key not in ZONES_CONFIG:
         raise ValueError("Zone {} does not exist in the zones config".format(zone_key))
