@@ -148,10 +148,13 @@ class ProductionBreakdownList(EventList):
                     # The key is in the form of "production.<mode>" or "storage.<mode>"
                     prefix, mode = key.split(".")  # type: ignore
                     if prefix == "production":
+                        flag_as_corrected = False
                         if mode in row[1]["correctedModes"]:
-                            # This is just to mark this mode as corrected, the value is not used.
-                            production_mix.set_value(mode, -1)
-                        production_mix.set_value(mode, value)
+                            # This is just to mark this mode as corrected, the value is not overwritten.
+                            flag_as_corrected = True
+                        production_mix.set_value(
+                            mode, value, flag_as_corrected_negative=flag_as_corrected
+                        )
                     elif prefix == "storage":
                         storage_mix.set_value(mode, value)
             result.append(
