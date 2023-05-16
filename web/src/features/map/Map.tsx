@@ -184,7 +184,7 @@ export default function MapPage(): ReactElement {
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
       map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
-  }, [location.pathname, isLoadingMap]);
+  }, [geometries, location.pathname, isLoadingMap]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();
