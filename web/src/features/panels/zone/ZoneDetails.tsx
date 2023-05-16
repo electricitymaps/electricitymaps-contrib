@@ -44,7 +44,8 @@ export default function ZoneDetails(): JSX.Element {
     // set the correct matching view mode (zone or country).
     if (hasSubZones && isZoneView) {
       setViewMode(SpatialAggregate.COUNTRY);
-    } else if (isSubZone && !isZoneView) {
+    }
+    if (isSubZone && !isZoneView) {
       setViewMode(SpatialAggregate.ZONE);
     }
   }, []);
