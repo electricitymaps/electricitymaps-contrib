@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Iterator
 
 import numpy as np
 import pandas as pd
@@ -36,12 +36,30 @@ class EventList(ABC):
         # TODO Handle one day the creation of mixed batches.
         pass
 
+    def __len__(self) -> int:
+        return len(self.events)
+
+    def __iter__(self) -> Iterator[Event]:
+        return iter(self.events)
+
+    def filter_events(self, start: Optional[datetime], end: Optional[datetime]) -> None:
+        """Filter events to keep only those between start and end."""
+        if start is None and end is None:
+            return
+        if start is None:
+            self.events = list(filter(lambda x: x.datetime <= end, self.events))
+            return
+        if end is None:
+            self.events = list(filter(lambda x: start <= x.datetime, self.events))
+            return
+        self.events = list(filter(lambda x: start <= x.datetime <= end, self.events))
+
     def to_list(self) -> List[Dict[str, Any]]:
         return [event.to_dict() for event in self.events]
 
 
 class MergeableList(EventList, ABC):
-    """A wrapper around Events lists that can be merged."""
+    """A wrapper around Events lists that can be merged together."""
 
     @classmethod
     def is_completly_empty(
