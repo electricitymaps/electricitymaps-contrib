@@ -145,22 +145,24 @@ export interface ZoneDetails {
   };
 }
 
+export interface GeometryProperties {
+  center: [number, number];
+  color: string;
+  countryKey: string;
+  countryName: string;
+  isAggregatedView: boolean;
+  isHighestGranularity: boolean;
+  zoneId: string;
+  zoneName: string;
+}
+
 export interface MapGeometries extends FeatureCollection<Geometry> {
   features: Array<MapGeometry>;
 }
 export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   geometry: MultiPolygon | Polygon;
   Id?: number;
-  properties: {
-    zoneId: string;
-    zoneName: string;
-    color: string;
-    center: [number, number];
-    countryKey: string;
-    countryName: string;
-    isAggregatedView: boolean;
-    isHighestGranularity: boolean;
-  };
+  properties: GeometryProperties;
 }
 
 export interface MapTheme {
