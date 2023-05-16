@@ -1,12 +1,18 @@
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 import arrow
 import pandas as pd
 import pandasql as psql
 from requests import Response, Session
+
+from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    TotalConsumptionList,
+)
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -75,9 +81,7 @@ EXCHANGE_DATETIME_COLUMN_NAME = "lastUpdate"
 EXCHANGE_SQL_QUERY = """
     select 
     strftime ('%Y-%m-%d %H:00:00',lastUpdate) as last_update_hour, 
-    -round(avg(Current_Loading), 3) as exchange_value,
-    round(avg(Import_Ttc), 3) as import_capacity,
-    round(avg(Export_Ttc), 3) as export_capacity 
+    -round(avg(Current_Loading), 3) as exchange_value
     from dataframe 
     where Region_Name = '{zone_id}' 
     group by last_update_hour
@@ -92,7 +96,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> List[Dict[str, Any]]:
     """This method is called by IN-EA, IN-SO, IN-NO zone's parsers to get the exchange data with IN-WA zone.
     This is the entrypoint to this module for the parsers to fetch Extensions"""
 
@@ -111,28 +115,24 @@ def fetch_exchange(
     result = psql.sqldf(
         EXCHANGE_SQL_QUERY.format(zone_id=zone_key_matching_source_data), locals()
     )
-    exchanges = convert_result_to_exchanges(exchange_zone_key, result)
+    exchanges = convert_result_to_exchanges(exchange_zone_key, result, logger)
     return exchanges
 
 
-def convert_result_to_exchanges(exchange_zone_key, result):
-    return [
-        {
-            "netFlow": result["exchange_value"][index],
-            "sortedZoneKeys": exchange_zone_key,
-            "datetime": pd.Timestamp(
+def convert_result_to_exchanges(exchange_zone_key, result, logger):
+    exchange_list = ExchangeList(logger)
+
+    for index in result.index:
+        exchange_list.append(
+            netFlow=result["exchange_value"][index],
+            zoneKey=ZoneKey(exchange_zone_key),
+            datetime=pd.Timestamp(
                 result["last_update_hour"][index], tz=IN_TZ
             ).to_pydatetime(),
-            "source": "wrldc.in",
-            "capacity": {
-                "documentType": "A61",  # Capacity
-                "in_Domain": result["import_capacity"][index],
-                "out_Domain": result["export_capacity"][index],
-                "contract_MarketAgreement.Type": "A01",  # Day ahead
-            },
-        }
-        for index in result.index
-    ]
+            source="wrldc.in",
+        )
+
+    return exchange_list.to_list()
 
 
 def get_exchange_zone_key(zone_key1, zone_key2):
@@ -206,11 +206,11 @@ CONSUMPTION_DATETIME_COLUMN_NAME = "current_datetime"
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "IN-WE",
+    zone_key: ZoneKey = ZoneKey("IN-WE"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> List[Dict[str, Any]]:
     if target_datetime is None:
         target_datetime = arrow.now().datetime
 
@@ -221,22 +221,24 @@ def fetch_consumption(
         return []
 
     result = psql.sqldf(CONSUMPTION_SQL_QUERY, locals())
-    consumptions = convert_result_to_consumption(zone_key, result)
+    consumptions = convert_result_to_consumption(zone_key, result, logger)
     return consumptions
 
 
-def convert_result_to_consumption(zone_key, result):
-    return [
-        {
-            "zoneKey": zone_key,
-            "datetime": pd.Timestamp(
+def convert_result_to_consumption(zone_key, result, logger):
+    consumption_list = TotalConsumptionList(logger)
+
+    for index in result.index:
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=pd.Timestamp(
                 result["last_update_hour"][index], tz=IN_TZ
             ).to_pydatetime(),
-            "consumption": result["consumption_value"][index],
-            "source": "wrldc.in",
-        }
-        for index in result.index
-    ]
+            consumption=result["consumption_value"][index],
+            source="wrldc.in",
+        )
+
+    return consumption_list.to_list()
 
 
 """ Utility methods for the data parser """
