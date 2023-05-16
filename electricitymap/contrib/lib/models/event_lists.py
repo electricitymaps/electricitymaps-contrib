@@ -27,7 +27,7 @@ class EventList(ABC):
     events: List[Event]
 
     def __init__(self, logger: Logger):
-        self.events = list()
+        self.events = []
         self.logger = logger
 
     @abstractmethod
