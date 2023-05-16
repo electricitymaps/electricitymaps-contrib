@@ -1,9 +1,9 @@
+"""Tests for ZONE_CONFIG, config loaded from config/zones/*.yaml."""
+
 import json
 import unittest
 
 from electricitymap.contrib.config import ZONES_CONFIG
-
-ZONE_KEYS = ZONES_CONFIG.keys()
 
 
 class ZonesJsonTestcase(unittest.TestCase):
@@ -15,10 +15,11 @@ class ZonesJsonTestcase(unittest.TestCase):
                 self.assertLess(bbox[0][1], bbox[1][1])
 
     def test_sub_zones(self):
+        zone_keys = set(ZONES_CONFIG.keys())
         for zone, values in ZONES_CONFIG.items():
             sub_zones = values.get("subZoneNames", [])
             for sub_zone in sub_zones:
-                self.assertIn(sub_zone, ZONE_KEYS)
+                self.assertIn(sub_zone, zone_keys)
 
     def test_zones_from_geometries_exist(self):
         world_geometries = json.load(open("web/geo/world.geojson"))

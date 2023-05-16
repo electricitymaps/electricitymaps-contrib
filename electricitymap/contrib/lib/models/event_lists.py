@@ -1,12 +1,11 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 import numpy as np
 import pandas as pd
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
@@ -18,6 +17,7 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 class EventList(ABC):
@@ -66,7 +66,7 @@ class ProductionBreakdownList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        production: ProductionMix,
+        production: Optional[ProductionMix] = None,
         storage: Optional[StorageMix] = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
