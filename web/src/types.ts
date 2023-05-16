@@ -153,8 +153,13 @@ export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   Id?: number;
   properties: {
     zoneId: string;
+    zoneName: string;
     color: string;
     center: [number, number];
+    countryKey: string;
+    countryName: string;
+    isAggregatedView: boolean;
+    isHighestGranularity: boolean;
   };
 }
 
