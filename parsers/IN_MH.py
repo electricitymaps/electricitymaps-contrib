@@ -34,7 +34,7 @@ locations = {
     "AEML GEN.": {"label": (922, 687, 1041, 716), "value": (1081, 692, 1175, 692 + 25)},
     "CS GEN. TTL.": {
         "label": (1341, 998, 1492, 1029),
-        "value": (1549, 1000, 1616, 1000 + 25),
+        "value": (1549, 1030, 1616, 1030 + 25),
     },
     "KK’ PARA": {"label": (1346, 708, 1457, 730), "value": (1560, 707, 1626, 707 + 25)},
     "TARPR PH-I": {
@@ -167,21 +167,18 @@ def fetch_production(
         digit_text = pytesseract.image_to_string(
             imgs[index], lang="digits_comma", config="--psm 7"
         )
-        val = 0
         try:
             val = float(digit_text)
         except ValueError:
             # If the image cannot be converted to a valid number, log an error but do not break the parser
             val = 0
-            logger.error(
-                "Error reading value for key %s, value read %s", key, digit_text
-            )
-        values[key] = val
+            logger.error(f"Error reading value for key {key}, value read {digit_text}")
+        values[key] = max(val, 0)
 
     logger.debug("values %s", values)
 
     # fraction of central state production that is exchanged with Maharashtra
-    share = values["CS EXCH"] / values["CS GEN. TTL."]
+    share = round(values["CS EXCH"] / values["CS GEN. TTL."], 2)
 
     for type, plants in generation_map.items():
         for plant in plants["add"]:
@@ -197,9 +194,7 @@ def fetch_production(
     demand_diff = sum(data["production"].values()) - values["DEMAND"]
     assert (
         abs(demand_diff) < 30
-    ), "Production types do not add up to total demand. Difference: {}".format(
-        demand_diff
-    )
+    ), f"Production types do not add up to total demand. Difference: {round(demand_diff, 2)}"
 
     return data
 
