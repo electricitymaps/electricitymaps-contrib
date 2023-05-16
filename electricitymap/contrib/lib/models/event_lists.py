@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Sequence
+
 
 import numpy as np
 import pandas as pd
@@ -30,6 +31,9 @@ class EventList(ABC):
         self.events = list()
         self.logger = logger
 
+    def __len__(self):
+        return len(self.events)
+
     @abstractmethod
     def append(self, **kwargs):
         """Handles creation of events and adding it to the batch."""
@@ -40,12 +44,12 @@ class EventList(ABC):
         return [event.to_dict() for event in self.events]
 
 
-class MergeableList(EventList, ABC):
+class MergeableEventList(EventList, ABC):
     """A wrapper around Events lists that can be merged."""
 
     @classmethod
     def is_completly_empty(
-        cls, ungrouped_events: List["MergeableList"], logger: Logger
+        cls, ungrouped_events: Sequence["MergeableEventList"], logger: Logger
     ) -> bool:
         """Merge multiple lists of events into one."""
         if len(ungrouped_events) == 0:
@@ -82,7 +86,7 @@ class MergeableList(EventList, ABC):
         return zones[0], sources, source_types[0]
 
 
-class ExchangeList(MergeableList):
+class ExchangeList(MergeableEventList):
     events: List[Exchange]
 
     def append(
@@ -124,14 +128,14 @@ class ExchangeList(MergeableList):
         zone_key, sources, source_type = ExchangeList.get_unique_zone_source(
             exchange_df
         )
-        exchange_df = exchange_df.groupby(level=0, dropna=False).sum()
+        exchange_df = exchange_df.groupby(level=0, dropna=False).sum(numeric_only=True)
         for datetime, row in exchange_df.iterrows():
-            exchanges.append(zone_key, datetime, sources, row["netFlow"], source_type)
+            exchanges.append(zone_key, datetime.to_pydatetime(), sources, row["netFlow"], source_type)  # type: ignore
 
         return exchanges
 
 
-class ProductionBreakdownList(MergeableList):
+class ProductionBreakdownList(MergeableEventList):
     events: List[ProductionBreakdown]
 
     def append(
