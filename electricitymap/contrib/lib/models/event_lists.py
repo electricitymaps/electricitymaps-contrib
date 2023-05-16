@@ -46,7 +46,7 @@ class MergeableList(EventList, ABC):
     @classmethod
     def is_completly_empty(
         cls, ungrouped_events: List["MergeableList"], logger: Logger
-    ) -> "MergeableList":
+    ) -> bool:
         """Merge multiple lists of events into one."""
         if len(ungrouped_events) == 0:
             return True
