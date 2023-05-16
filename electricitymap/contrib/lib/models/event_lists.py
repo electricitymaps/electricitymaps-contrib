@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -40,7 +40,49 @@ class EventList(ABC):
         return [event.to_dict() for event in self.events]
 
 
-class ExchangeList(EventList):
+class MergeableList(EventList, ABC):
+    """A wrapper around Events lists that can be merged."""
+
+    @classmethod
+    def is_completly_empty(
+        cls, ungrouped_events: List["MergeableList"], logger: Logger
+    ) -> "MergeableList":
+        """Merge multiple lists of events into one."""
+        if len(ungrouped_events) == 0:
+            return True
+        if all(len(exchanges.events) == 0 for exchanges in ungrouped_events):
+            logger.warning(f"All {cls.__name__} are empty.")
+            return True
+        return False
+
+    @classmethod
+    def get_unique_zone_source(
+        cls,
+        events: pd.DataFrame,
+    ) -> Tuple[ZoneKey, str, EventSourceType]:
+        """
+        Given a concatenated dataframe of events, return the unique zone, source and source type.
+        Raises an error if there are multiple zones or source types.
+        It assumes that zoneKey, source and sourceType are present in the dataframe's columns.
+        """
+        sources = events["source"].unique()
+        sources = ", ".join(sources)
+        zones = events["zoneKey"].unique()
+        if len(zones) != 1:
+            raise ValueError(
+                f"Trying to merge {cls.__name__} from multiple zones \
+                , got {len(zones)}: {', '.join(zones)}"
+            )
+        source_types = events["sourceType"].unique()
+        if len(source_types) != 1:
+            raise ValueError(
+                f"Trying to merge {cls.__name__} from multiple source types \
+                , got {len(source_types)}: {', '.join(source_types)}"
+            )
+        return zones[0], sources, source_types[0]
+
+
+class ExchangeList(MergeableList):
     events: List[Exchange]
 
     def append(
@@ -66,45 +108,30 @@ class ExchangeList(EventList):
         to create a unique exchange list. Sources will be aggregated in a
         comma-separated string. Ex: "entsoe, eia".
         """
-        if len(ungrouped_exchanges) == 0:
-            return ExchangeList(logger)
-        if all(len(exchanges.events) == 0 for exchanges in ungrouped_exchanges):
-            logger.warning("All exchanges are empty.")
-            return ExchangeList(logger)
+        exchanges = ExchangeList(logger)
+        if ExchangeList.is_completly_empty(ungrouped_exchanges, logger):
+            return exchanges
 
         # Create a dataframe for each parser output, then flatten the exchanges.
         exchange_dfs = [
             pd.json_normalize(exchanges.to_list()).set_index("datetime")
             for exchanges in ungrouped_exchanges
+            if len(exchanges.events) > 0
         ]
 
         exchange_df = pd.concat(exchange_dfs)
-        sources = exchange_df["source"].unique()
-        sources = ", ".join(sources)
-        zones = exchange_df["sortedZoneKeys"].unique()
-        if len(zones) != 1:
-            raise ValueError(
-                f"Trying to merge production outputs from multiple zones \
-                , got {len(zones)}: {', '.join(zones)}"
-            )
-        source_types = exchange_df["sourceType"].unique()
-        if len(source_types) != 1:
-            raise ValueError(
-                f"Trying to merge production outputs from multiple source types \
-                , got {len(source_types)}: {', '.join(source_types)}"
-            )
+        exchange_df = exchange_df.rename(columns={"sortedZoneKeys": "zoneKey"})
+        zone_key, sources, source_type = ExchangeList.get_unique_zone_source(
+            exchange_df
+        )
         exchange_df = exchange_df.groupby(level=0, dropna=False).sum()
-
-        exchanges = ExchangeList(logger)
         for datetime, row in exchange_df.iterrows():
-            exchanges.append(
-                zones[0], datetime, sources, row["netFlow"], source_types[0]
-            )
+            exchanges.append(zone_key, datetime, sources, row["netFlow"], source_type)
 
         return exchanges
 
 
-class ProductionBreakdownList(EventList):
+class ProductionBreakdownList(MergeableList):
     events: List[ProductionBreakdown]
 
     def append(
@@ -133,14 +160,9 @@ class ProductionBreakdownList(EventList):
         Sources will be aggregated in a comma-separated string. Ex: "entsoe, eia".
         There should be only one zone in the list of production breakdowns.
         """
-        if len(ungrouped_production_breakdowns) == 0:
-            return ProductionBreakdownList(logger)
-        if all(
-            len(breakdowns.events) == 0
-            for breakdowns in ungrouped_production_breakdowns
-        ):
-            logger.warning("All production breakdowns are empty.")
-            return ProductionBreakdownList(logger)
+        production_breakdowns = ProductionBreakdownList(logger)
+        if ProductionBreakdownList.is_completly_empty(production_breakdowns, logger):
+            return production_breakdowns
 
         # Create a dataframe for each parser output, then flatten the power mixes.
         prod_and_storage_dfs = [
@@ -149,22 +171,11 @@ class ProductionBreakdownList(EventList):
             if len(breakdowns.events) > 0
         ]
         df = pd.concat(prod_and_storage_dfs)
-        sources = df["source"].unique()
-        sources = ", ".join(sources)
-        zones = df["zoneKey"].unique()
-        if len(zones) != 1:
-            raise ValueError(
-                f"Trying to merge production outputs from multiple zones \
-                , got {len(zones)}: {', '.join(zones)}"
-            )
-        source_types = df["sourceType"].unique()
-        if len(source_types) != 1:
-            raise ValueError(
-                f"Trying to merge production outputs from multiple source types \
-                , got {len(source_types)}: {', '.join(source_types)}"
-            )
+        zoneKey, sources, source_type = ProductionBreakdownList.get_unique_zone_source(
+            df
+        )
         df = df.groupby(level=0, dropna=False).sum(numeric_only=True, min_count=1)
-        result = ProductionBreakdownList(logger)
+
         for row in df.iterrows():
             production_mix = ProductionMix()
             storage_mix = StorageMix()
@@ -177,15 +188,15 @@ class ProductionBreakdownList(EventList):
                     production_mix.set_value(mode, value)
                 elif prefix == "storage":
                     storage_mix.set_value(mode, value)
-            result.append(
-                zones[0],
+            production_breakdowns.append(
+                zoneKey,
                 row[0].to_pydatetime(),  # type: ignore
                 sources,
                 production_mix,
                 storage_mix,
-                source_types[0],
+                source_type,
             )
-        return result
+        return production_breakdowns
 
 
 class TotalProductionList(EventList):
