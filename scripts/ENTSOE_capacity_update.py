@@ -22,7 +22,8 @@ import xmltodict
 import yaml
 from utils import ROOT_PATH, run_shell_command
 
-from electricitymap.contrib.config import CONFIG_DIR, ZONES_CONFIG
+from electricitymap.contrib.config import CONFIG_DIR
+from electricitymap.contrib.config.reading import read_zones_config
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
@@ -31,6 +32,7 @@ from parsers.ENTSOE import (
 )
 from parsers.lib.utils import get_token
 
+ZONES_CONFIG = read_zones_config(config_dir=CONFIG_DIR)
 
 def update_zone(zone_key: ZoneKey, data: dict) -> None:
     if zone_key not in ZONES_CONFIG:
