@@ -47,6 +47,27 @@ class TestExchangeList(unittest.TestCase):
             )
             mock_error.assert_called_once()
 
+    def test_merge_exchanges(self):
+        exchange_list_1 = ExchangeList(logging.Logger("test"))
+        exchange_list_1.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+        exchange_list_2 = ExchangeList(logging.Logger("test"))
+        exchange_list_2.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=2,
+            source="trust.me",
+        )
+        exchanges = ExchangeList.merge_exchanges(
+            [exchange_list_1, exchange_list_2], logging.Logger("test")
+        )
+        assert len(exchanges) == 1
+        assert exchanges.events[0].netFlow == 3
+
 
 class TestConsumptionList(unittest.TestCase):
     def test_consumption_list(self):
