@@ -18,7 +18,7 @@ import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
-import { getApproximateFeature } from './map-utils/getApproximateCenter';
+import { getApproximateFeature } from './map-utils/getApproximateFeature';
 import {
   hoveredZoneAtom,
   loadingMapAtom,
