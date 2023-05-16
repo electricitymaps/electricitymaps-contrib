@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -118,7 +118,7 @@ class ProductionBreakdownList(EventList):
                 , got {len(source_types)}: {', '.join(source_types)}"
             )
 
-        def aggregate(value: pd.Series) -> Optional[float]:
+        def aggregate(value: pd.Series) -> Union[List[str], Optional[float]]:
             """An internal aggregation function taking care of corrected modes."""
             if value.name == "corrected_modes":
                 aggregated_modes = set()
