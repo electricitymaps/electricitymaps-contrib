@@ -47,7 +47,7 @@ class MergeableEventList(EventList, ABC):
     """A wrapper around Events lists that can be merged."""
 
     @classmethod
-    def is_completly_empty(
+    def is_completely_empty(
         cls, ungrouped_events: Sequence["MergeableEventList"], logger: Logger
     ) -> bool:
         """Merge multiple lists of events into one."""
@@ -112,7 +112,7 @@ class ExchangeList(MergeableEventList):
         comma-separated string. Ex: "entsoe, eia".
         """
         exchanges = ExchangeList(logger)
-        if ExchangeList.is_completly_empty(ungrouped_exchanges, logger):
+        if ExchangeList.is_completely_empty(ungrouped_exchanges, logger):
             return exchanges
 
         # Create a dataframe for each parser output, then flatten the exchanges.
@@ -164,7 +164,7 @@ class ProductionBreakdownList(MergeableEventList):
         There should be only one zone in the list of production breakdowns.
         """
         production_breakdowns = ProductionBreakdownList(logger)
-        if ProductionBreakdownList.is_completly_empty(
+        if ProductionBreakdownList.is_completely_empty(
             ungrouped_production_breakdowns, logger
         ):
             return production_breakdowns
