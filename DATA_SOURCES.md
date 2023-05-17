@@ -274,7 +274,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
 - Honduras: [ENEE](http://www.enee.hn/planificacion/2018/boletines/Boletin%20Estadistico%20Mes%20de%20Septiembre%202018%20PDF.pdf)
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
-- Hungary: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Hungary:
+  - Solar: [MAVIR](<https://www.mavir.hu/documents/10258/245818953/PV+STATISZTIKA_HU_20230213_ig_v1+(1).pdf>)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
   - Geothermal, Wind and Hydro: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -516,7 +518,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - [Serbia ⇄ Bulgaria](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - [Slovakia ⇄ Ukraine](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - Spain ⇄ France: [According to "The Spanish electricity system 2019" page 65: 2800 MW](https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/InformesSistemaElectrico/2019/ISE_2019_eng.pdf)
-- [Spain ⇄ Portugal](https://www.ree.es/en/activities/operation-of-the-electricity-system/international-interconnections)
+- [Spain ⇄ Portugal](https://web.archive.org/web/20230516184334/https://www.erse.pt/media/kevnjc3r/portugal-spain-interconnection-analysis-and-maczt-monitoring-report-english-version-2020.pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](<https://en.wikipedia.org/wiki/Cometa_(HVDC)>)
 - [Sweden ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Ukraine ⇄ Belarus, ⇄ Hungary, ⇉ Poland, ⇄ Moldova, ⇄ Slovakia, ⇄ Romania, ⇄ Russia: [Ukrenergo](https://ua.energy/activity/dispatch-information/transborder-flows/)
