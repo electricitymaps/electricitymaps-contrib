@@ -1,6 +1,7 @@
 import logging
 import unittest
 from datetime import datetime, timezone
+
 import numpy as np
 from mock import patch
 
