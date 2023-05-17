@@ -274,7 +274,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
 - Honduras: [ENEE](http://www.enee.hn/planificacion/2018/boletines/Boletin%20Estadistico%20Mes%20de%20Septiembre%202018%20PDF.pdf)
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
-- Hungary: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Hungary:
+  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/245818953/PV+STATISZTIKA_HU_20230213_ig_v1+(1).pdf)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
   - Geothermal, Wind and Hydro: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
