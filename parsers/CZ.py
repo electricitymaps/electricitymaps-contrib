@@ -27,7 +27,7 @@ translate_table_gen = {
     "unknown": "unknown",
 }
 translate_table_dist = {
-    "SEPS": "SVK",
+    "SEPS": "SK",
     "APG": "AT",
     "PSE": "PL",
     "TenneT": "DE",
@@ -77,7 +77,6 @@ def __get_exchange_data(
     logger: Logger = getLogger(__name__),
     mode: str = "Actual",
 ) -> List[dict]:
-
     target_datetime = get_target_datetime(target_datetime)
     from_datetime = target_datetime - timedelta(hours=48)
 
@@ -121,7 +120,8 @@ def __get_exchange_data(
                     ]
                 )
                 if country != "" and country in (zone_key1, zone_key2):
-                    data["netFlow"] += float(values[v])
+                    netFlow = float(values[v])
+                    data["netFlow"] += -1 * netFlow if zone_key1 == "CZ" else netFlow
 
             data_list.append(data)
 
@@ -143,7 +143,6 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-
     target_datetime = get_target_datetime(target_datetime)
     from_datetime = target_datetime - timedelta(hours=48)
 
@@ -171,7 +170,6 @@ def fetch_production(
     data_list = []
 
     if data_tag is not None:
-
         for values in data_tag:
             data = {
                 "zoneKey": zone_key,

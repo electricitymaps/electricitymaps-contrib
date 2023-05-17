@@ -4,7 +4,6 @@ from datetime import datetime, timezone
 
 from mock import patch
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
@@ -17,6 +16,7 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 class TestExchangeList(unittest.TestCase):
@@ -323,3 +323,6 @@ class TestTotalProductionList(unittest.TestCase):
             source="trust.me",
         )
         assert len(total_production.events) == 1
+
+
+print(type(ZoneKey("AT")))
