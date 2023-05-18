@@ -7,6 +7,7 @@ from pytz import utc
 from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 
 def getURL(target_datetime: Optional[datetime]) -> str:
@@ -25,7 +26,7 @@ def fetch_data(URL, session):
     session = session or Session()
     response: Response = session.get(URL)
     if not response.ok:
-        raise Exception("Invalid response")
+        raise ParserException("AL.py", "Got a non okay response from the server.")
     data = pd.read_excel(response.content, sheet_name="Publikime EN")
     return data
 
@@ -82,11 +83,6 @@ def fetch_production_per_unit(
         if column != "Hour":
             plant_data = production_data[["Hour", column]]
             for row in plant_data.iterrows():
-                print(
-                    f"Plant: {column}",
-                    f"Hour: {row[1]['Hour']}",
-                    f"Production: {row[1][str(column)]}",
-                )
                 production_per_unit.append(
                     {
                         "datetime": date.replace(hour=row[1]["Hour"] - 1, tzinfo=utc),

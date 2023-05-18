@@ -13,6 +13,9 @@ contributors:
   - nessie2013
   - autipial
   - VIKTORVAV99
+delays:
+  consumption: 960
+  productionPerUnit: 960
 parsers:
   consumption: AL.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
