@@ -12,11 +12,13 @@ contributors:
   - corradio
   - nessie2013
   - autipial
+  - VIKTORVAV99
 parsers:
-  consumption: ENTSOE.fetch_consumption
+  consumption: AL.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
-  production: AL.fetch_production
+  production: ENTSOE.fetch_production
+  productionPerUnit: AL.fetch_production_per_unit
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 timezone: Europe/Tirane

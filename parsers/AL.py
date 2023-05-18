@@ -3,8 +3,10 @@ from logging import Logger, getLogger
 from typing import Optional
 
 import pandas as pd
-from requests import Session, Response
 from pytz import utc
+from requests import Response, Session
+
+from parsers.lib.config import refetch_frequency
 
 
 def getURL(target_datetime: Optional[datetime]) -> str:
@@ -28,44 +30,14 @@ def fetch_data(URL, session):
     return data
 
 
-def fetch_production(
-    zone_key: str = "AL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-):
-    data = fetch_data(getURL(None), None)
-    production_data = data.iloc[381:406].reset_index(drop=True)
-    production_data = production_data.rename(
-        columns=production_data.iloc[0].to_dict()
-    ).drop(production_data.index[0])
-    # Sum the production of all plants in a row excluding the value for hour to get the total production and add it to a total column
-    production_data["Total"] = production_data.sum(axis=1) - production_data["Hour"]
-
-    date: datetime = data["Albania Transmission System Operator"][0]
-
-    production = []
-
-    for row in production_data.iterrows():
-        production.append(
-            {
-                "zoneKey": "AL",
-                "datetime": date.replace(hour=row[1]["Hour"] - 1, tzinfo=utc),
-                "production": {
-                    "hydro": row[1]["Total"],
-                },
-                "source": "ost.al",
-            }
-        )
-    return production
-
+@refetch_frequency(timedelta(hours=24))
 def fetch_consumption(
     zone_key: str = "AL",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    data = fetch_data(getURL(None), None)
+    data = fetch_data(getURL(target_datetime), session)
     consumption_data = data.iloc[381:406].reset_index(drop=True)
     consumption_data = consumption_data.rename(
         columns=consumption_data.iloc[0].to_dict()
@@ -89,4 +61,45 @@ def fetch_consumption(
     return consumption
 
 
-fetch_production()
+@refetch_frequency(timedelta(hours=24))
+def fetch_production_per_unit(
+    zone_key: str = "AL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
+    data = fetch_data(getURL(target_datetime), session)
+    production_data = data.iloc[381:406].reset_index(drop=True)
+    production_data = production_data.rename(
+        columns=production_data.iloc[0].to_dict()
+    ).drop(production_data.index[0])
+
+    date: datetime = data["Albania Transmission System Operator"][0]
+
+    production_per_unit = []
+
+    for column in production_data:
+        if column != "Hour":
+            plant_data = production_data[["Hour", column]]
+            for row in plant_data.iterrows():
+                print(
+                    f"Plant: {column}",
+                    f"Hour: {row[1]['Hour']}",
+                    f"Production: {row[1][str(column)]}",
+                )
+                production_per_unit.append(
+                    {
+                        "datetime": date.replace(hour=row[1]["Hour"] - 1, tzinfo=utc),
+                        "production": row[1][str(column)],
+                        "productionType": "hydro",
+                        "source": "ost.al",
+                        # "unitKey": column, # The data is not specific enough to identify the unit by its key.
+                        "unitName": column,
+                        "zoneKey": "AL",
+                    }
+                )
+    return production_per_unit
+
+
+if __name__ == "__main__":
+    fetch_production_per_unit("AL")
