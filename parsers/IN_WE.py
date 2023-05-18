@@ -6,13 +6,14 @@ from typing import Any, Dict, List, Optional
 import arrow
 import pandas as pd
 import pandasql as psql
-from requests import Response, Session
+from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib import web
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -107,7 +108,11 @@ def fetch_exchange(
         target_datetime = arrow.now().datetime
 
     dataframe = get_dataframe_from_url(
-        EXCHANGE_URL, EXCHANGE_DATETIME_COLUMN_NAME, target_datetime, session
+        exchange_zone_key,
+        EXCHANGE_URL,
+        EXCHANGE_DATETIME_COLUMN_NAME,
+        target_datetime,
+        session,
     )
     if dataframe is None:
         return []
@@ -214,7 +219,11 @@ def fetch_consumption(
         target_datetime = arrow.now().datetime
 
     dataframe = get_dataframe_from_url(
-        CONSUMPTION_URL, CONSUMPTION_DATETIME_COLUMN_NAME, target_datetime, session
+        zone_key,
+        CONSUMPTION_URL,
+        CONSUMPTION_DATETIME_COLUMN_NAME,
+        target_datetime,
+        session,
     )
     if dataframe is None:
         return []
@@ -244,6 +253,7 @@ def convert_result_to_consumption(zone_key, result, logger):
 
 
 def get_dataframe_from_url(
+    zone_key: str,
     url: str,
     datetime_column_name: str,
     target_datetime: datetime,
@@ -255,14 +265,9 @@ def get_dataframe_from_url(
     """
     s = session or Session()
     payload = {"date": target_datetime.strftime("%Y-%m-%d"), "Flag": "24"}
-
-    resp: Response = s.post(url=url, json=payload)
-    if resp.json() is None:
-        return None
-
-    data = json.loads(resp.json().get("d", {}))
-    if len(data) == 0:
-        return None
+    resp = web.post_request(zone_key=zone_key, url=url, json=payload, session=s)
+    json_data = web.read_response_json(zone_key, resp)
+    data = json.loads(json_data.get("d"))
 
     dataframe = pd.json_normalize(data)
     dataframe[datetime_column_name] = pd.to_datetime(
