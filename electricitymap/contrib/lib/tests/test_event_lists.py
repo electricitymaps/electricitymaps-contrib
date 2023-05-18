@@ -4,7 +4,6 @@ from datetime import datetime, timezone
 
 from mock import patch
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
@@ -12,7 +11,12 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
     TotalProductionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 class TestExchangeList(unittest.TestCase):
@@ -21,13 +25,13 @@ class TestExchangeList(unittest.TestCase):
         exchange_list.append(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            value=1,
+            netFlow=1,
             source="trust.me",
         )
         exchange_list.append(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
-            value=1,
+            netFlow=1,
             source="trust.me",
         )
         assert len(exchange_list.events) == 2
@@ -38,7 +42,7 @@ class TestExchangeList(unittest.TestCase):
             exchange_list.append(
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-                value=1,
+                netFlow=1,
                 source="trust.me",
             )
             mock_error.assert_called_once()
@@ -128,6 +132,186 @@ class TestProductionBreakdownList(unittest.TestCase):
             )
             mock_warning.assert_called_once()
 
+    def test_merge_production_list_production_mix_only(self):
+        production_list_1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10),
+            source="trust.me",
+        )
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            production=ProductionMix(wind=11, coal=1),
+            source="trust.me",
+        )
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
+            production=ProductionMix(wind=12, coal=2),
+            source="trust.me",
+        )
+        production_list_2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=20),
+            source="trust2.me",
+        )
+        production_list_2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            production=ProductionMix(wind=21, coal=1),
+            source="trust2.me",
+        )
+        production_list_2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
+            production=ProductionMix(wind=22, coal=2),
+            source="trust2.me",
+        )
+        production_list_3 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_3.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=30),
+            source="trust3.me",
+        )
+        production_list_3.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            production=ProductionMix(wind=31, coal=1),
+            source="trust3.me",
+        )
+        merged = ProductionBreakdownList.merge_production_breakdowns(
+            [production_list_1, production_list_2, production_list_3],
+            logging.Logger("test"),
+        )
+        assert len(merged.events) == 3
+        assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert merged.events[0].production.wind == 60
+        assert merged.events[0].production.coal is None
+        assert merged.events[0].source == "trust.me, trust2.me, trust3.me"
+        assert merged.events[0].zoneKey == ZoneKey("AT")
+        assert merged.events[0].storage is None
+        assert merged.events[0].sourceType == EventSourceType.measured
+
+        assert merged.events[1].datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
+        assert merged.events[1].production.wind == 63
+        assert merged.events[1].production.coal == 3
+
+        assert merged.events[2].datetime == datetime(2023, 1, 3, tzinfo=timezone.utc)
+        assert merged.events[2].production.wind == 34
+        assert merged.events[2].production.coal == 4
+
+    def test_merge_production_list(self):
+        production_list_1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            production=ProductionMix(wind=11, coal=1),
+            storage=StorageMix(hydro=1, battery=1),
+            source="trust.me",
+        )
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
+            production=ProductionMix(wind=12, coal=2),
+            source="trust.me",
+        )
+        production_list_2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=20),
+            storage=StorageMix(hydro=1, battery=1),
+            source="trust.me",
+        )
+        production_list_2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            production=ProductionMix(wind=21, coal=1),
+            source="trust.me",
+        )
+        production_list_2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
+            production=ProductionMix(wind=22, coal=2),
+            storage=StorageMix(hydro=1, battery=1),
+            source="trust.me",
+        )
+        production_list_3 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_3.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=30),
+            source="trust.me",
+        )
+        production_list_3.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            production=ProductionMix(wind=31, coal=1),
+            source="trust.me",
+        )
+        merged = ProductionBreakdownList.merge_production_breakdowns(
+            [production_list_1, production_list_2, production_list_3],
+            logging.Logger("test"),
+        )
+        assert len(merged.events) == 3
+        assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert merged.events[0].storage.hydro == 2
+
+    def test_merge_production_list_predicted(self):
+        production_list_1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+            sourceType=EventSourceType.forecasted,
+        )
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
+            production=ProductionMix(wind=12, coal=2),
+            source="trust.me",
+            sourceType=EventSourceType.forecasted,
+        )
+        production_list_2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=20),
+            storage=StorageMix(hydro=1, battery=1),
+            source="trust.me",
+            sourceType=EventSourceType.forecasted,
+        )
+        production_list_2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
+            production=ProductionMix(wind=22, coal=2),
+            storage=StorageMix(hydro=1, battery=1),
+            source="trust.me",
+            sourceType=EventSourceType.forecasted,
+        )
+        merged = ProductionBreakdownList.merge_production_breakdowns(
+            [production_list_1, production_list_2],
+            logging.Logger("test"),
+        )
+        assert len(merged.events) == 2
+        assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert merged.events[0].storage.hydro == 2
+        assert merged.events[0].sourceType == EventSourceType.forecasted
+
 
 class TestTotalProductionList(unittest.TestCase):
     def test_total_production_list(self):
@@ -139,3 +323,6 @@ class TestTotalProductionList(unittest.TestCase):
             source="trust.me",
         )
         assert len(total_production.events) == 1
+
+
+print(type(ZoneKey("AT")))

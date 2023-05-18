@@ -3,7 +3,9 @@ from datetime import datetime
 from logging import Logger
 from typing import Any, Dict, List, Optional
 
-from electricitymap.contrib.config import ZoneKey
+import numpy as np
+import pandas as pd
+
 from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
@@ -15,6 +17,7 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 class EventList(ABC):
@@ -38,28 +41,32 @@ class EventList(ABC):
 
 
 class ExchangeList(EventList):
+    events: List[Exchange]
+
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        value: float,
+        netFlow: float,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Exchange.create(
-            self.logger, zoneKey, datetime, source, value, sourceType
+            self.logger, zoneKey, datetime, source, netFlow, sourceType
         )
         if event:
             self.events.append(event)
 
 
 class ProductionBreakdownList(EventList):
+    events: List[ProductionBreakdown]
+
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        production: ProductionMix,
+        production: Optional[ProductionMix] = None,
         storage: Optional[StorageMix] = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
@@ -69,8 +76,75 @@ class ProductionBreakdownList(EventList):
         if event:
             self.events.append(event)
 
+    @staticmethod
+    def merge_production_breakdowns(
+        ungrouped_production_breakdowns: List["ProductionBreakdownList"],
+        logger: Logger,
+    ) -> "ProductionBreakdownList":
+        """
+        Given multiple parser outputs, sum the production and storage
+        of corresponding datetimes to create a unique production breakdown list.
+        Sources will be aggregated in a comma-separated string. Ex: "entsoe, eia".
+        There should be only one zone in the list of production breakdowns.
+        """
+        if len(ungrouped_production_breakdowns) == 0:
+            return ProductionBreakdownList(logger)
+        if all(
+            len(breakdowns.events) == 0
+            for breakdowns in ungrouped_production_breakdowns
+        ):
+            logger.warning("All production breakdowns are empty.")
+            return ProductionBreakdownList(logger)
+
+        # Create a dataframe for each parser output, then flatten the power mixes.
+        prod_and_storage_dfs = [
+            pd.json_normalize(breakdowns.to_list()).set_index("datetime")
+            for breakdowns in ungrouped_production_breakdowns
+            if len(breakdowns.events) > 0
+        ]
+        df = pd.concat(prod_and_storage_dfs)
+        sources = df["source"].unique()
+        sources = ", ".join(sources)
+        zones = df["zoneKey"].unique()
+        if len(zones) != 1:
+            raise ValueError(
+                f"Trying to merge production outputs from multiple zones \
+                , got {len(zones)}: {', '.join(zones)}"
+            )
+        source_types = df["sourceType"].unique()
+        if len(source_types) != 1:
+            raise ValueError(
+                f"Trying to merge production outputs from multiple source types \
+                , got {len(source_types)}: {', '.join(source_types)}"
+            )
+        df = df.groupby(level=0, dropna=False).sum(numeric_only=True, min_count=1)
+        result = ProductionBreakdownList(logger)
+        for row in df.iterrows():
+            production_mix = ProductionMix()
+            storage_mix = StorageMix()
+            for key, value in row[1].items():
+                if np.isnan(value):
+                    value = None
+                # The key is in the form of "production.<mode>" or "storage.<mode>"
+                prefix, mode = key.split(".")  # type: ignore
+                if prefix == "production":
+                    production_mix.set_value(mode, value)
+                elif prefix == "storage":
+                    storage_mix.set_value(mode, value)
+            result.append(
+                zones[0],
+                row[0].to_pydatetime(),  # type: ignore
+                sources,
+                production_mix,
+                storage_mix,
+                source_types[0],
+            )
+        return result
+
 
 class TotalProductionList(EventList):
+    events: List[TotalProduction]
+
     def append(
         self,
         zoneKey: ZoneKey,
@@ -87,6 +161,8 @@ class TotalProductionList(EventList):
 
 
 class TotalConsumptionList(EventList):
+    events: List[TotalConsumption]
+
     def append(
         self,
         zoneKey: ZoneKey,
@@ -103,6 +179,8 @@ class TotalConsumptionList(EventList):
 
 
 class PriceList(EventList):
+    events: List[Price]
+
     def append(
         self,
         zoneKey: ZoneKey,

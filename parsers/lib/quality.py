@@ -8,7 +8,8 @@ from warnings import warn
 
 import arrow
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZoneKey, emission_factors
+from electricitymap.contrib.config import EXCHANGES_CONFIG, emission_factors
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 class ValidationError(ValueError):

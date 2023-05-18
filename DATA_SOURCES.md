@@ -16,7 +16,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Australia (Rottnest Island): [Rottnest Island Hybrid Energy Solution](https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/rottnest-island)
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bahrain: [GCCIA](https://www.gccia.com.sa/)
-- Bangladesh: [PGCB](https://pgcb.org.bd/PGCB/?a=pages/operational_daily.php)
+- Bangladesh: [PGCB](https://erp.pgcb.gov.bd/web/generations/view_generations)
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bolivia: [CNDC](http://www.cndc.bo/media/archivos/graf/gene_hora/gweb_despdia_genera.php)
 - Belgium: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -152,6 +152,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
   - Texas: [ERCOT](http://www.ercot.com/content/cdr/html/real_time_system_conditions.html)
   - Seminole Electric Cooperative (Florida): [EIA](https://www.eia.gov/opendata/qb.php?category=2122629&sdid=EBA.SEC-ALL.NG.H), [SEC](https://www.seminole-electric.com/facilities/generation/)
 - Uruguay: [UTE](https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
+- Vietnam: [EVN](https://www.nldc.evn.vn/)
   &nbsp;</details>
 
 ### Production capacity data sources
@@ -165,7 +166,7 @@ When determining the installed capacity for a country, these sources might help 
 - Renewables: [IRENA](https://www.irena.org/Search?keywords=%22Renewable+Capacity+Statistics%22&sort=date&content_type=2803e86c173c440f840aa721825b3656)
 - Nuclear: [IAEA PRIS](https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
 - Coal: [Global Coal Plant Tracker](https://globalenergymonitor.org/projects/global-coal-plant-tracker/tracker/)
-- Gas : [Global Gas Plant Tracker](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
+- Gas: [Global Gas Plant Tracker](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
 - Various:
   - [Climatescope](https://global-climatescope.org/capacity-generation)
   - [Global Power Plant Database](https://datasets.wri.org/dataset/globalpowerplantdatabase)
@@ -196,6 +197,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Bahrain: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+- Bangladesh: [BPDB](https://bpdb.portal.gov.bd/sites/default/files/files/bpdb.portal.gov.bd/annual_reports/7b792f67_bf50_4b3d_9bef_8f9b568005c9/2022-11-29-05-22-0dea17e09d8a84e72a63312df6b5bdc6.pdf)
 - Belarus: [belstat.gov.by](http://www.belstat.gov.by/upload/iblock/7f7/7f70938f51eb9e49abc4a6e62f831a2c.rar), [RenEn](http://director.by/zhurnal/arkhiv-zhurnala/arkhiv-nomerov-2017/375-7-2017-iyul-2017/5456-zelenaya-energetika-nabiraet-oboroty)
 - Belgium
   - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=BE)
@@ -272,7 +274,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
 - Honduras: [ENEE](http://www.enee.hn/planificacion/2018/boletines/Boletin%20Estadistico%20Mes%20de%20Septiembre%202018%20PDF.pdf)
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
-- Hungary: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Hungary:
+  - Solar: [MAVIR](<https://www.mavir.hu/documents/10258/245818953/PV+STATISZTIKA_HU_20230213_ig_v1+(1).pdf>)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
   - Geothermal, Wind and Hydro: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -450,6 +454,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
+- Vietnam: [EVN](https://www.nldc.evn.vn/FullNewsg/100/Thong-tin-thi-truong-dien/default.aspx)
   &nbsp;</details>
 
 ### Cross-border transmission capacity data sources
@@ -513,7 +518,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - [Serbia ⇄ Bulgaria](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - [Slovakia ⇄ Ukraine](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - Spain ⇄ France: [According to "The Spanish electricity system 2019" page 65: 2800 MW](https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/InformesSistemaElectrico/2019/ISE_2019_eng.pdf)
-- [Spain ⇄ Portugal](https://www.ree.es/en/activities/operation-of-the-electricity-system/international-interconnections)
+- [Spain ⇄ Portugal](https://web.archive.org/web/20230516184334/https://www.erse.pt/media/kevnjc3r/portugal-spain-interconnection-analysis-and-maczt-monitoring-report-english-version-2020.pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](<https://en.wikipedia.org/wiki/Cometa_(HVDC)>)
 - [Sweden ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Ukraine ⇄ Belarus, ⇄ Hungary, ⇉ Poland, ⇄ Moldova, ⇄ Slovakia, ⇄ Romania, ⇄ Russia: [Ukrenergo](https://ua.energy/activity/dispatch-information/transborder-flows/)

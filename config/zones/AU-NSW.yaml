@@ -6,7 +6,7 @@ bounding_box:
 capacity:
   battery storage: 0
   biomass: 102
-  coal: 10240
+  coal: 8240
   gas: 2007
   hydro: 2658
   hydro storage: 840

@@ -265,6 +265,63 @@ class CO2eqParametersDirectAndLifecycleMixin:
             for mode, factors in modes_to_factors.items():
                 callback(mode, factors, zone)
 
+    def test_emission_factor_value_ranges(self):
+        """Checks all emission factors are in the allowed range.
+
+        Emission factor is measured in grams CO2eq per kWh. It is also known as
+        the carbon intensity.
+
+        This test method checks that values are within reasonable ranges for
+        different modes, to avoid accidental typos in configs. For reference,
+        most renewables are below 50 gCO2eq/kWh, and most fossil fuels are
+        above 500 gCO2eq/kWh.
+        """
+
+        # This list of ranges was made by inspecting actual ranges in config
+        # files, then rounding down and up to get the min and max.
+        ranges_by_mode = {
+            # Most fossil fuels have a factor of around 500-1500 gCO2eq/kWh.
+            "coal": (500, 1600),
+            "oil": (300, 1600),
+            "gas": (200, 1000),
+            # In practice, emission factors of low-carbon energy sources
+            # are not zero, but are set to zero in defaults.yaml.
+            "hydro": (0, 50),
+            "nuclear": (0, 50),
+            "solar": (0, 50),
+            "wind": (0, 50),
+            "geothermal": (0, 150),
+            "biomass": (0, 1500),
+            # Emission factors for unknown electricity sources are typically
+            # assigned an average for that region or time. Similar for
+            # discharge values.
+            "unknown": (0, 1200),
+            "battery discharge": (0, 1200),
+            "hydro discharge": (0, 1200),
+            # Emissions are counted at discharge.
+            "battery charge": (0, 0),
+            "hydro charge": (0, 0),
+        }
+
+        def check_range(mode, factor, zone):
+            value = factor["value"]
+            low, high = ranges_by_mode[mode]
+            msg = (
+                f"emission factor {value} not in expected range "
+                f"[{low}, {high}] for {mode} in {zone}"
+            )
+            self.assertGreaterEqual(value, low, msg)
+            self.assertLessEqual(value, high, msg)
+
+        def callback(mode, factors, zone):
+            if isinstance(factors, list):
+                for factor in factors:
+                    check_range(mode, factor, zone)
+            else:
+                check_range(mode, factors, zone)
+
+        self.check_emission_factors(callback)
+
     def test_emission_factor_modes_are_valid(self):
         """All specified modes must be in the allowed set of modes."""
 

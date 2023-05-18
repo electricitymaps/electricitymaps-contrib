@@ -10,17 +10,20 @@ from imageio import imread
 from PIL import Image, ImageOps
 from requests import Session
 
+from .lib.exceptions import ParserException
+
 url = "https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg"
 
 # specifies locations of data in the image
 # (x,y,x,y) = upper left, lower right corner of rectangle
+
 locations = {
     "MS WIND": {"label": (595, 934, 692, 961), "value": (785, 934, 844, 934 + 25)},
-    "SOLAR TTL": {"label": (592, 577, 715, 605), "value": (772, 578, 814, 578 + 25)},
+    "SOLAR TTL": {"label": (592, 577, 715, 605), "value": (772, 561, 814, 561 + 25)},
     "MS SOLAR": {"label": (595, 963, 705, 984), "value": (785, 955, 848, 955 + 25)},
     "THERMAL": {"label": (407, 982, 502, 1004), "value": (516, 987, 581, 987 + 25)},
     "GAS": {"label": (403, 1033, 493, 1056), "value": (515, 1042, 582, 1042 + 25)},
-    "HYDRO": {"label": (589, 472, 666, 496), "value": (753, 468, 813, 468 + 25)},
+    "HYDRO": {"label": (589, 472, 666, 496), "value": (753, 451, 813, 451 + 25)},
     "TPC HYD.": {"label": (926, 525, 1035, 554), "value": (1105, 524, 1173, 524 + 25)},
     "TPC THM.": {"label": (924, 578, 1030, 604), "value": (1088, 581, 1173, 581 + 25)},
     "OTHR+SMHYD": {
@@ -31,7 +34,7 @@ locations = {
     "AEML GEN.": {"label": (922, 687, 1041, 716), "value": (1081, 692, 1175, 692 + 25)},
     "CS GEN. TTL.": {
         "label": (1341, 998, 1492, 1029),
-        "value": (1549, 1000, 1616, 1000 + 25),
+        "value": (1549, 1030, 1616, 1030 + 25),
     },
     "KK’ PARA": {"label": (1346, 708, 1457, 730), "value": (1560, 707, 1626, 707 + 25)},
     "TARPR PH-I": {
@@ -54,7 +57,7 @@ locations = {
         "label": (594, 1072, 765, 1098),
         "value": (786, 1068, 849, 1068 + 25),
     },
-    "PIONEER": {"label": (592, 910, 694, 929), "value": (814, 906, 844, 906 + 25)},
+    "PIONEER": {"label": (592, 910, 694, 929), "value": (800, 885, 844, 885 + 25)},
 }
 
 generation_map = {
@@ -107,7 +110,7 @@ def RGBtoBW(pil_image):
 
 
 # returns image section
-def read(location, source):
+def read_image_sections(location, source):
     img = source.crop(location)
     img = RGBtoBW(img)
     img = ImageOps.invert(img)
@@ -145,23 +148,37 @@ def fetch_production(
     }
 
     image = imread(url)
+    # In certain scenario, the URL returns a blank image. Let's verify if the image was read is of proper size
+    if image.size == 0:
+        raise ParserException(
+            "IN_MH.py",
+            "Invalid data read from the source, the source might not be available",
+        )
+
     image = Image.fromarray(image)  # create PIL image
 
-    imgs = [read(loc["value"], image) for loc in locations.values()]
+    # Read small images for each loaction's bounding box from the main image
+    imgs = [read_image_sections(loc["value"], image) for loc in locations.values()]
 
-    # string together all image sections and recognize resulting line
-    imgs_line = np.hstack(list(np.asarray(i) for i in imgs[:]))
-    imgs_line = Image.fromarray(imgs_line)
-    text = pytesseract.image_to_string(imgs_line, lang="digits_comma", config="--psm 7")
-    text = text.split(" ")
-
-    # generate dict from string list
     values = {}
-    for count, key in enumerate(locations):
-        values[key] = max([float(text[count]), 0])
+
+    # for each location, convert the image to a float integer and add it in the map corresponding to the key
+    for index, key in enumerate(locations):
+        digit_text = pytesseract.image_to_string(
+            imgs[index], lang="digits_comma", config="--psm 7"
+        )
+        try:
+            val = float(digit_text)
+        except ValueError:
+            # If the image cannot be converted to a valid number, log an error but do not break the parser
+            val = 0
+            logger.error(f"Error reading value for key {key}, value read {digit_text}")
+        values[key] = max(val, 0)
+
+    logger.debug("values %s", values)
 
     # fraction of central state production that is exchanged with Maharashtra
-    share = values["CS EXCH"] / values["CS GEN. TTL."]
+    share = round(values["CS EXCH"] / values["CS GEN. TTL."], 2)
 
     for type, plants in generation_map.items():
         for plant in plants["add"]:
@@ -177,9 +194,7 @@ def fetch_production(
     demand_diff = sum(data["production"].values()) - values["DEMAND"]
     assert (
         abs(demand_diff) < 30
-    ), "Production types do not add up to total demand. Difference: {}".format(
-        demand_diff
-    )
+    ), f"Production types do not add up to total demand. Difference: {round(demand_diff, 2)}"
 
     return data
 
