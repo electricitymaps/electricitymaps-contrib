@@ -43,12 +43,12 @@ class EventList(ABC):
         return [event.to_dict() for event in self.events]
 
 
-class MergeableEventList(EventList, ABC):
-    """A wrapper around Events lists that can be merged."""
+class AggregatableEventList(EventList, ABC):
+    """An abstract class to supercharge event lists with aggregation capabilities."""
 
     @classmethod
     def is_completely_empty(
-        cls, ungrouped_events: Sequence["MergeableEventList"], logger: Logger
+        cls, ungrouped_events: Sequence["AggregatableEventList"], logger: Logger
     ) -> bool:
         """Checks if the lists to be merged has any data."""
         if len(ungrouped_events) == 0:
@@ -85,7 +85,7 @@ class MergeableEventList(EventList, ABC):
         return zones[0], sources, source_types[0]
 
 
-class ExchangeList(MergeableEventList):
+class ExchangeList(AggregatableEventList):
     events: List[Exchange]
 
     def append(
@@ -134,7 +134,7 @@ class ExchangeList(MergeableEventList):
         return exchanges
 
 
-class ProductionBreakdownList(MergeableEventList):
+class ProductionBreakdownList(AggregatableEventList):
     events: List[ProductionBreakdown]
 
     def append(
