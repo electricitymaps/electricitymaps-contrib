@@ -50,7 +50,7 @@ class MergeableEventList(EventList, ABC):
     def is_completely_empty(
         cls, ungrouped_events: Sequence["MergeableEventList"], logger: Logger
     ) -> bool:
-        """Merge multiple lists of events into one."""
+        """Checks if the lists to be merged has any data."""
         if len(ungrouped_events) == 0:
             return True
         if all(len(exchanges.events) == 0 for exchanges in ungrouped_events):
