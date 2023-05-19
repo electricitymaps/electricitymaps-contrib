@@ -1,7 +1,7 @@
 import useGetZone from 'api/getZone';
 import { useAtom } from 'jotai';
 import { useParams } from 'react-router-dom';
-import { Mode, ToggleOptions } from 'utils/constants';
+import { Mode, SpatialAggregate } from 'utils/constants';
 import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
@@ -20,10 +20,10 @@ export default function useBarBreakdownChartData() {
   // TODO: Create hook for using "current" selectedTimeIndex of data instead
   const { data: zoneData, isLoading } = useGetZone();
   const { zoneId } = useParams();
-  const [aggregateToggle] = useAtom(spatialAggregateAtom);
+  const [viewMode] = useAtom(spatialAggregateAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
-  const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
+  const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
   const isConsumption = mixMode === Mode.CONSUMPTION;
   if (isLoading) {
@@ -41,11 +41,7 @@ export default function useBarBreakdownChartData() {
     };
   }
 
-  const exchangeKeys = getExchangesToDisplay(
-    zoneId,
-    isAggregateToggled,
-    zoneData.zoneStates
-  );
+  const exchangeKeys = getExchangesToDisplay(zoneId, isCountryView, zoneData.zoneStates);
 
   const productionData = getProductionData(currentData); // TODO: Consider memoing this
   const exchangeData = isConsumption
