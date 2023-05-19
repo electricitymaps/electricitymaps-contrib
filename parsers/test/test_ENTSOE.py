@@ -8,6 +8,7 @@ from requests_mock import ANY, GET, Adapter
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ENTSOE
+from electricitymap.contrib.lib.models.events import EventSourceType
 
 
 class TestENTSOE(unittest.TestCase):
@@ -72,6 +73,7 @@ class TestFetchExchange(TestENTSOE):
             self.assertEqual(
                 exchanges[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=utc)
             )
+            self.assertEqual(exchanges[0]["sourceType"], EventSourceType.measured)
 
     def test_fetch_exchange_integrated_zone(self):
         with open(
@@ -83,7 +85,7 @@ class TestFetchExchange(TestENTSOE):
                 content=exchange_fr_de_data.read(),
             )
             exchanges = ENTSOE.fetch_exchange(
-                ZoneKey("DK-BHM"), ZoneKey("DE"), self.session
+                ZoneKey("DE"), ZoneKey("FR"), self.session
             )
             self.assertEqual(len(exchanges), 47)
             self.assertEqual(exchanges[0]["netFlow"], -0.0)
@@ -91,8 +93,26 @@ class TestFetchExchange(TestENTSOE):
             self.assertEqual(
                 exchanges[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=utc)
             )
+            self.assertEqual(exchanges[0]["sourceType"], EventSourceType.measured)
 
 
 class TestFetchForecastedExchanges(TestENTSOE):
     def test_fetch_forecasted_exchanges(self):
-        pass
+        with open(
+            "parsers/test/mocks/ENTSOE/FR_DE_exchange.xml", "rb"
+        ) as exchange_fr_de_data:
+            self.adapter.register_uri(
+                GET,
+                ANY,
+                content=exchange_fr_de_data.read(),
+            )
+            exchanges = ENTSOE.fetch_exchange_forecast(
+                ZoneKey("FR"), ZoneKey("DE"), self.session
+            )
+            self.assertEqual(len(exchanges), 47)
+            self.assertEqual(exchanges[0]["netFlow"], -0.0)
+            self.assertEqual(exchanges[0]["source"], "entsoe.eu")
+            self.assertEqual(
+                exchanges[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=utc)
+            )
+            self.assertEqual(exchanges[0]["sourceType"], EventSourceType.forecasted)

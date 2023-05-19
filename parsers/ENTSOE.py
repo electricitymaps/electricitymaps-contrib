@@ -19,6 +19,7 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from random import shuffle
 from typing import Any, Dict, List, Optional, Tuple, Union
+from electricitymap.contrib.config import ZONES_CONFIG
 
 import arrow
 import numpy as np
@@ -1498,4 +1499,6 @@ def fetch_wind_solar_forecasts(
 
 
 if __name__ == "__main__":
-    fetch_price(ZoneKey("FR"))
+    # fetch_price(ZoneKey("FR"))
+    for zone, config in ZONES_CONFIG.items():
+        breakpoint()

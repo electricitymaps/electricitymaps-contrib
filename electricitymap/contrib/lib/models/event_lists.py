@@ -30,9 +30,6 @@ class EventList(ABC):
         self.events = list()
         self.logger = logger
 
-    def __len__(self):
-        return len(self.events)
-
     @abstractmethod
     def append(self, **kwargs):
         """Handles creation of events and adding it to the batch."""
@@ -45,11 +42,13 @@ class EventList(ABC):
     def __iter__(self) -> Iterator[Event]:
         return iter(self.events)
 
-    def filter_events(self, start: Optional[datetime], end: Optional[datetime]) -> None:
+    def filter_events(
+        self, start: Optional[datetime] = None, end: Optional[datetime] = None
+    ) -> None:
         """Filter events to keep only those between start and end."""
-        if start is None and end is None:
-            return
         if start is None:
+            if end is None:
+                return
             self.events = list(filter(lambda x: x.datetime <= end, self.events))
             return
         if end is None:
