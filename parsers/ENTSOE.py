@@ -359,7 +359,6 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
         "required": [
             "coal",
             "gas",
-            "nuclear",
             "wind",
             "biomass",
             "hydro",
