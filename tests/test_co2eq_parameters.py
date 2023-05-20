@@ -254,8 +254,12 @@ class CO2eqParametersDirectAndLifecycleMixin:
 
     @classmethod
     def check_emission_factors(cls, callback):
-        """Apply the callback to each emission factor in the 'emissionFactors'
-        object.
+        """Apply the callback to each item in the 'emissionFactors' object.
+
+        The callback is called with the mode and factors for both the defaults
+        and the zone-specific overrides; each `factors` object is either a list
+        of factor dicts or a single factor dict, and each factor dict has the
+        key "value", and possibly other keys such as "source".
         """
         emission_factors = cls.parameters["emissionFactors"]
         for zone, modes_to_factors in (
@@ -264,6 +268,24 @@ class CO2eqParametersDirectAndLifecycleMixin:
         ):
             for mode, factors in modes_to_factors.items():
                 callback(mode, factors, zone)
+
+    @classmethod
+    def check_emission_factor_values(cls, callback):
+        """Apply the callback to each emission factor value.
+
+        Similar to check_emission_factors, but the second argument to the
+        callback is the value of the factor, not the dict or list of dicts
+        containing it.
+        """
+
+        def cb(mode, factors, zone):
+            if isinstance(factors, list):
+                for factor in factors:
+                    callback(mode, factor, zone)
+            else:
+                callback(mode, factors, zone)
+
+        cls.check_emission_factors(cb)
 
     def test_emission_factor_value_ranges(self):
         """Checks all emission factors are in the allowed range.
@@ -277,35 +299,12 @@ class CO2eqParametersDirectAndLifecycleMixin:
         above 500 gCO2eq/kWh.
         """
 
-        # This list of ranges was made by inspecting actual ranges in config
-        # files, then rounding down and up to get the min and max.
-        ranges_by_mode = {
-            # Most fossil fuels have a factor of around 500-1500 gCO2eq/kWh.
-            "coal": (500, 1600),
-            "oil": (300, 1600),
-            "gas": (200, 1000),
-            # In practice, emission factors of low-carbon energy sources
-            # are not zero, but are set to zero in defaults.yaml.
-            "hydro": (0, 50),
-            "nuclear": (0, 50),
-            "solar": (0, 50),
-            "wind": (0, 50),
-            "geothermal": (0, 150),
-            "biomass": (0, 1500),
-            # Emission factors for unknown electricity sources are typically
-            # assigned an average for that region or time. Similar for
-            # discharge values.
-            "unknown": (0, 1200),
-            "battery discharge": (0, 1200),
-            "hydro discharge": (0, 1200),
-            # Emissions are counted at discharge.
-            "battery charge": (0, 0),
-            "hydro charge": (0, 0),
-        }
-
         def check_range(mode, factor, zone):
             value = factor["value"]
-            low, high = ranges_by_mode[mode]
+            assert isinstance(value, (int, float))
+            low, high = self.ranges_by_mode[mode]
+            assert isinstance(low, (int, float))
+            assert isinstance(high, (int, float))
             msg = (
                 f"emission factor {value} not in expected range "
                 f"[{low}, {high}] for {mode} in {zone}"
@@ -384,6 +383,28 @@ class CO2eqParametersDirect(CO2eqParametersDirectAndLifecycleMixin, unittest.Tes
 
     parameters = CO2EQ_PARAMETERS_DIRECT
 
+    # Expected min and max values for emission factors, by mode.
+    ranges_by_mode = {
+        # Fossil fuels
+        "coal": (514.4743088, 1523.652468),
+        "gas": (295.9885661, 687.5901733),
+        "oil": (390.0504417, 1257.197843),
+        # Low-carbon
+        "geothermal": (0, 95.82104392),
+        "hydro": (0, 0),
+        "nuclear": (0, 0),
+        "solar": (0, 0),
+        "wind": (0, 0),
+        "biomass": (0, 0),
+        # Storage discharge and unknown
+        "battery discharge": (0.0, 895.352229390681),
+        "hydro discharge": (0.0, 895.352229390681),
+        "unknown": (0, 729.1),
+        # Storage
+        "hydro charge": (0, 0),
+        "battery charge": (0, 0),
+    }
+
 
 class CO2eqParametersLifecycle(
     CO2eqParametersDirectAndLifecycleMixin, unittest.TestCase
@@ -391,6 +412,28 @@ class CO2eqParametersLifecycle(
     """A test case for the lifecycle CO2eq parameters."""
 
     parameters = CO2EQ_PARAMETERS_LIFECYCLE
+
+    # Expected min and max values for emission factors, by mode.
+    ranges_by_mode = {
+        # Fossil fuels
+        "oil": (630, 1600),
+        "coal": (500, 1600),
+        "gas": (400, 900),
+        # Low-carbon
+        "geothermal": (30, 140),
+        "hydro": (10, 25),
+        "nuclear": (4, 12),
+        "biomass": (0.4, 1300),
+        "solar": (25, 45),
+        "wind": (10, 13),
+        # Storage
+        "battery charge": (0, 0),
+        "hydro charge": (0, 0),
+        # Unknown and discharge
+        "battery discharge": (11.0, 1200),
+        "hydro discharge": (10, 1200),
+        "unknown": (13, 800),
+    }
 
 
 if __name__ == "__main__":
