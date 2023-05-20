@@ -396,13 +396,13 @@ class CO2eqParametersDirect(CO2eqParametersDirectAndLifecycleMixin, unittest.Tes
         "solar": (0, 0),
         "wind": (0, 0),
         "biomass": (0, 0),
-        # Storage discharge and unknown
-        "battery discharge": (0.0, 895.352229390681),
-        "hydro discharge": (0.0, 895.352229390681),
-        "unknown": (0, 729.1),
         # Storage
         "hydro charge": (0, 0),
         "battery charge": (0, 0),
+        # Discharge and unknown
+        "battery discharge": (0.0, 895.352229390681),
+        "hydro discharge": (0.0, 895.352229390681),
+        "unknown": (0, 729.1),
     }
 
 
