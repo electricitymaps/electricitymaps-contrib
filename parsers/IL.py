@@ -115,7 +115,7 @@ def fetch_production(
     production = production.replace(',', '')
     reserve = reserve.replace(',', '')
 
-    production = float(production) + float(reserve)
+    production = float(production) * 1000 + float(reserve) * 1000
 
     # all mapped to unknown as there is no available breakdown
     return {
@@ -145,7 +145,7 @@ def fetch_consumption(
     return {
         "zoneKey": zone_key,
         "datetime": arrow.now(TZ).datetime,
-        "consumption": {"unknown": float(consumption)},
+        "consumption": float(consumption) * 1000,
         "source": NOGA_BASE_URL,
     }
 
