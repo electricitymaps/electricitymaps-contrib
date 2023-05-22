@@ -1,8 +1,8 @@
 """
 Israel's electricity system load parser.
 
-Source: Israel Electric Corporation
-URL: https://www.iec.co.il/en/pages/default.aspx
+Source: Noga - The Israel Independent System Operator Ltd.
+URL: https://www.noga-iso.co.il/en/
 
 Shares of Electricity production in 2019:
     64.0% Gas
@@ -16,48 +16,24 @@ import re
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Optional
-
+import base64
 import arrow
-from bs4 import BeautifulSoup
 from requests import Session, get
 
-IEC_URL = "www.iec.co.il"
+NOGA_BASE_URL = "https://www.noga-iso.co.il/"
 IEC_PRODUCTION = (
     "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
 )
-IEC_PRICE = "https://www.iec.co.il/homeclients/pages/tariffs.aspx"
+NOGA_ELECTRICITY_CONSUMPTION_API = f"{NOGA_BASE_URL}/Umbraco/Api/Documents/GetElectricalData"
+IEC_PRICE = "https://iecapi.iec.co.il//api/content/he-IL?pageRoute=content/tariffs/contentpages/businesselectricitytariff"
 TZ = "Asia/Jerusalem"
 
 
-def fetch_all() -> list:
-    """Fetch info from IEC dashboard."""
-    first = get(IEC_PRODUCTION)
-    first.cookies
-    second = get(IEC_PRODUCTION, cookies=first.cookies)
-    soup = BeautifulSoup(second.content, "lxml")
-
-    values: list = soup.find_all("span", class_="statusVal")
-    if len(values) == 0:
-        raise ValueError("Could not parse IEC dashboard")
-    del values[1]
-
-    cleaned_list = []
-    for value in values:
-        value = re.findall(r"\d+", value.text.replace(",", ""))
-        cleaned_list.append(value)
-
-    def flatten_list(_2d_list) -> list:
-        """Flatten the list."""
-        flat_list = []
-        for element in _2d_list:
-            if type(element) is list:
-                for item in element:
-                    flat_list.append(item)
-            else:
-                flat_list.append(element)
-        return flat_list
-
-    return flatten_list(cleaned_list)
+def fetch_all() -> dict:
+    """Fetch info from Noga API."""
+    with get(NOGA_ELECTRICITY_CONSUMPTION_API) as response:
+        data = response.json()
+    return data
 
 
 def fetch_price(
@@ -66,22 +42,43 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-    """Fetch price from IEC table."""
+    """Fetch price from Noga API."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     with get(IEC_PRICE) as response:
-        soup = BeautifulSoup(response.content, "lxml")
+        data = response.json()
 
-    price = soup.find("td", class_="ms-rteTableEvenCol-6")
+    components = data.get("components")
+    if not components:
+        raise ValueError("Could not parse IEC price")
+    general_message = components[0].get("text")
+    general_message = base64.b64decode(general_message).decode("utf-8")
+
+    date = extract_date_from_string(general_message)
+
+    table = components[1].get('table', [])
+    kw_prices = table[-1]
+    price_with_VAT = kw_prices[-1].get("value")
+    price_with_VAT = base64.b64decode(price_with_VAT).decode("utf-8")
 
     return {
         "zoneKey": zone_key,
         "currency": "NIS",
-        "datetime": extract_price_date(soup),
-        "price": float(price.p.text),
-        "source": IEC_URL,
+        "datetime": date,
+        "price": float(price_with_VAT),
+        "source": IEC_PRICE,
     }
+
+
+def extract_date_from_string(general_message: str) -> datetime:
+    regexp = r"(\d{2}.\d{2}.\d{4})"
+    match = re.search(regexp, general_message)
+    if match:
+        date_str = match.group(1)
+        return datetime.strptime(date_str, "%d.%m.%Y")
+    else:
+        raise ValueError("Could not parse IEC price date")
 
 
 def extract_price_date(soup):
@@ -109,14 +106,23 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     data = fetch_all()
-    production = [float(item) for item in data]
+    production = data.get("Production")
+    reserve = data.get("CurrentReserve")
+
+    if not production or not reserve:
+        raise ValueError("Could not parse Noga production")
+
+    production = production.replace(',', '')
+    reserve = reserve.replace(',', '')
+
+    production = float(production) + float(reserve)
 
     # all mapped to unknown as there is no available breakdown
     return {
         "zoneKey": zone_key,
         "datetime": arrow.now(TZ).datetime,
-        "production": {"unknown": production[0] + production[1]},
-        "source": IEC_URL,
+        "production": {"unknown": production},
+        "source": NOGA_BASE_URL,
     }
 
 
@@ -130,14 +136,17 @@ def fetch_consumption(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     data = fetch_all()
-    consumption = [float(item) for item in data]
+    consumption = data.get("Production")
+    if not consumption:
+        raise ValueError("Could not parse Noga consumption")
 
-    # all mapped to unknown as there is no available breakdown
+    consumption = consumption[0]
+    consumption.replace(',', '')
     return {
         "zoneKey": zone_key,
         "datetime": arrow.now(TZ).datetime,
-        "consumption": consumption[0],
-        "source": IEC_URL,
+        "consumption": {"unknown": float(consumption)},
+        "source": NOGA_BASE_URL,
     }
 
 
