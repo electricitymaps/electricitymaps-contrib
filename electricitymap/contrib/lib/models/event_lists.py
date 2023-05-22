@@ -50,39 +50,69 @@ class AggregatableEventList(EventList, ABC):
     def is_completely_empty(
         cls, ungrouped_events: Sequence["AggregatableEventList"], logger: Logger
     ) -> bool:
-        """Checks if the lists to be merged has any data."""
+        """Checks if the lists to be merged have any data."""
         if len(ungrouped_events) == 0:
             return True
-        if all(len(exchanges.events) == 0 for exchanges in ungrouped_events):
+        if all(len(event_list.events) == 0 for event_list in ungrouped_events):
             logger.warning(f"All {cls.__name__} are empty.")
             return True
         return False
 
     @classmethod
-    def get_unique_zone_source(
+    def get_zone_source_type(
         cls,
         events: pd.DataFrame,
     ) -> Tuple[ZoneKey, str, EventSourceType]:
         """
-        Given a concatenated dataframe of events, return the unique zone, source and source type.
+        Given a concatenated dataframe of events, return the unique zone, the aggregated sources and the unique source type.
         Raises an error if there are multiple zones or source types.
         It assumes that zoneKey, source and sourceType are present in the dataframe's columns.
         """
-        sources = events["source"].unique()
-        sources = ", ".join(sources)
+        return (
+            AggregatableEventList._get_unique_zone(events),
+            AggregatableEventList._get_aggregated_sources(events),
+            AggregatableEventList._get_unique_source_type(events),
+        )
+
+    @classmethod
+    def _get_unique_zone(cls, events: pd.DataFrame) -> ZoneKey:
+        """
+        Given a concatenated dataframe of events, return the unique zone.
+        Raises an error if there are multiple zones.
+        It assumes that `zoneKey` is present in the dataframe's columns.
+        """
         zones = events["zoneKey"].unique()
         if len(zones) != 1:
             raise ValueError(
                 f"Trying to merge {cls.__name__} from multiple zones \
                 , got {len(zones)}: {', '.join(zones)}"
             )
+        return zones[0]
+
+    @classmethod
+    def _get_aggregated_sources(cls, events: pd.DataFrame) -> str:
+        """
+        Given a concatenated dataframe of events, return the aggregated sources.
+        It assumes that `source` is present in the dataframe's columns.
+        """
+        sources = events["source"].unique()
+        sources = ", ".join(sources)
+        return sources
+
+    @classmethod
+    def _get_unique_source_type(cls, events: pd.DataFrame) -> EventSourceType:
+        """
+        Given a concatenated dataframe of events, return the unique source type.
+        Raises an error if there are multiple source types.
+        It assumes that `sourceType` is present in the dataframe's columns.
+        """
         source_types = events["sourceType"].unique()
         if len(source_types) != 1:
             raise ValueError(
                 f"Trying to merge {cls.__name__} from multiple source types \
                 , got {len(source_types)}: {', '.join(source_types)}"
             )
-        return zones[0], sources, source_types[0]
+        return source_types[0]
 
 
 class ExchangeList(AggregatableEventList):
@@ -124,10 +154,10 @@ class ExchangeList(AggregatableEventList):
 
         exchange_df = pd.concat(exchange_dfs)
         exchange_df = exchange_df.rename(columns={"sortedZoneKeys": "zoneKey"})
-        zone_key, sources, source_type = ExchangeList.get_unique_zone_source(
-            exchange_df
+        zone_key, sources, source_type = ExchangeList.get_zone_source_type(exchange_df)
+        exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
+            numeric_only=True
         )
-        exchange_df = exchange_df.groupby(level=0, dropna=False).sum(numeric_only=True)
         for datetime, row in exchange_df.iterrows():
             exchanges.append(zone_key, datetime.to_pydatetime(), sources, row["netFlow"], source_type)  # type: ignore
 
@@ -176,10 +206,12 @@ class ProductionBreakdownList(AggregatableEventList):
             if len(breakdowns.events) > 0
         ]
         df = pd.concat(prod_and_storage_dfs)
-        zoneKey, sources, source_type = ProductionBreakdownList.get_unique_zone_source(
+        zone_key, sources, source_type = ProductionBreakdownList.get_zone_source_type(
             df
         )
-        df = df.groupby(level=0, dropna=False).sum(numeric_only=True, min_count=1)
+        df = df.groupby(level="datetime", dropna=False).sum(
+            numeric_only=True, min_count=1
+        )
 
         for row in df.iterrows():
             production_mix = ProductionMix()
@@ -194,7 +226,7 @@ class ProductionBreakdownList(AggregatableEventList):
                 elif prefix == "storage":
                     storage_mix.set_value(mode, value)
             production_breakdowns.append(
-                zoneKey,
+                zone_key,
                 row[0].to_pydatetime(),  # type: ignore
                 sources,
                 production_mix,
