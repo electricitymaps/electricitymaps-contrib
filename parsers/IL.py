@@ -112,6 +112,10 @@ def fetch_production(
     if not production or not reserve:
         raise ValueError("Could not parse Noga production")
 
+    date = data.get("PeakReserveDate")
+    time = data.get("PeakReserveTime")
+    date_time = arrow.get(f"{date} {time}", "DD/MM/YYYY HH:mm").datetime
+
     production = production.replace(',', '')
     reserve = reserve.replace(',', '')
 
@@ -120,7 +124,7 @@ def fetch_production(
     # all mapped to unknown as there is no available breakdown
     return {
         "zoneKey": zone_key,
-        "datetime": arrow.now(TZ).datetime,
+        "datetime": date_time,
         "production": {"unknown": production},
         "source": NOGA_BASE_URL,
     }
@@ -139,12 +143,14 @@ def fetch_consumption(
     consumption = data.get("Production")
     if not consumption:
         raise ValueError("Could not parse Noga consumption")
-
+    date = data.get("PeakReserveDate")
+    time = data.get("PeakReserveTime")
+    date_time = arrow.get(f"{date} {time}", "DD/MM/YYYY HH:mm").datetime
     consumption = consumption[0]
     consumption.replace(',', '')
     return {
         "zoneKey": zone_key,
-        "datetime": arrow.now(TZ).datetime,
+        "datetime": date_time,
         "consumption": float(consumption) * 1000,
         "source": NOGA_BASE_URL,
     }
