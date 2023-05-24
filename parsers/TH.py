@@ -190,9 +190,9 @@ def fetch_price(
     price_ft = ft_rate_table.find_all("td")[curr_ft_month].text
 
     if price_ft == "\xa0":
-        price_ft = ft_rate_table.find_all("td")[curr_ft_month + 13]
+        price_ft = ft_rate_table.find_all("td")[curr_ft_month + 13].text
     if "\n" in price_ft:
-        price_ft = re.findall("\d+\.\d+", price_ft)[0]
+        price_ft = re.findall(r"\d+\.\d+", price_ft)[0]
 
     return {
         "zoneKey": zone_key,
