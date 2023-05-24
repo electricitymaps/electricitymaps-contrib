@@ -108,7 +108,6 @@ def extract_price_date(soup):
         date_str = span_soup.text
     else:
         raise ValueError("Could not parse IEC price date")
-    print(date_str)
     date_str = date_str.split(sep=" - ")
     date_str = date_str.pop(1)
     date = arrow.get(date_str, "DD.MM.YYYY").datetime
