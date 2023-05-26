@@ -5,6 +5,7 @@ import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { Mode } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
+import { getCarbonIntensity } from 'utils/helpers';
 import { productionConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
 import { InnerAreaGraphTooltipProps } from '../types';
 
@@ -19,7 +20,11 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     return null;
   }
   const { co2intensity, co2intensityProduction, stateDatetime } = zoneDetail;
-  const intensity = (isConsumption ? co2intensity : co2intensityProduction) ?? 0;
+  const intensity = getCarbonIntensity(
+    isConsumption,
+    co2intensity,
+    co2intensityProduction
+  );
   return (
     <div
       data-test-id="carbon-chart-tooltip"

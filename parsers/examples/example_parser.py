@@ -7,7 +7,6 @@ from pytz import timezone
 # The request library is used to fetch content through HTTP
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
@@ -16,7 +15,8 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.exceptions import ParserException
 
 
 def fetch_production(

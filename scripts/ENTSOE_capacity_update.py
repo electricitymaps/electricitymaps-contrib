@@ -22,12 +22,17 @@ import xmltodict
 import yaml
 from utils import ROOT_PATH, run_shell_command
 
-from electricitymap.contrib.config import CONFIG_DIR, ZONES_CONFIG, ZoneKey
+from electricitymap.contrib.config import CONFIG_DIR
+from electricitymap.contrib.config.reading import read_zones_config
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_DESC,
     ENTSOE_PARAMETER_GROUPS,
 )
+from parsers.lib.utils import get_token
+
+ZONES_CONFIG = read_zones_config(config_dir=CONFIG_DIR)
 
 
 def update_zone(zone_key: ZoneKey, data: dict) -> None:
@@ -90,7 +95,7 @@ def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
     # TODO not sure whether selecting the date always works like that
     date = datetime.datetime.now().strftime("%Y%m%d")
     url = (
-        "https://transparency.entsoe.eu/api?securityToken={token}"
+        "https://web-api.tp.entsoe.eu/api?securityToken={token}"
         "&documentType=A68&processType=A33&in_Domain={domain}"
         "&periodStart={date}0000&periodEnd={date}0000".format(
             token=token, domain=domain, date=date
@@ -149,7 +154,7 @@ def main():
             sys.exit(1)
         data = parse_from_csv(data_file)
     else:
-        token = args.api_token
+        token = args.api_token or get_token("ENTSOE_TOKEN").split(",")[0]
         if token is None:
             print(
                 "ERROR: If no CSV file is given, the option --api-token must be provided",

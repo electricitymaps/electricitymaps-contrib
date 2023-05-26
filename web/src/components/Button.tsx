@@ -40,6 +40,7 @@ export function Button({
         `${disabled ? 'opacity-60 hover:shadow-[0px_0px_13px_rgb(0_0_0/12%)]' : ''}`,
         className
       )}
+      translate="no"
       disabled={disabled}
       style={{ color: textColor, background: background }}
       {...(renderAsLink ? { href } : { type: 'button' })}

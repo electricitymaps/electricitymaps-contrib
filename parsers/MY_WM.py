@@ -15,7 +15,6 @@ from typing import Optional
 
 # Third-party library imports
 import arrow
-import requests
 from requests import Session
 
 # Local library imports
