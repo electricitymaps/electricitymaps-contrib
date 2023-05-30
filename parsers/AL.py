@@ -6,6 +6,8 @@ import pandas as pd
 from pytz import utc
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -33,7 +35,7 @@ def fetch_data(URL, session):
 
 @refetch_frequency(timedelta(hours=24))
 def fetch_consumption(
-    zone_key: str = "AL",
+    zone_key: ZoneKey = ZoneKey("AL"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -48,18 +50,16 @@ def fetch_consumption(
 
     date: datetime = data["Albania Transmission System Operator"][0]
 
-    consumption = []
+    consumption = TotalConsumptionList(logger)
 
     for row in consumption_data.iterrows():
         consumption.append(
-            {
-                "zoneKey": "AL",
-                "datetime": date.replace(hour=row[1]["Hour"] - 1, tzinfo=utc),
-                "consumption": row[1]["Total"],
-                "source": "ost.al",
-            }
+            zoneKey=zone_key,
+            datetime=date.replace(hour=row[1]["Hour"] - 1, tzinfo=utc),
+            consumption=row[1]["Total"],
+            source="ost.al",
         )
-    return consumption
+    return consumption.to_list()
 
 
 @refetch_frequency(timedelta(hours=24))
