@@ -16,6 +16,7 @@ capacity:
 contributors:
   - hectorespert
   - gopikrishna1793
+  - unitrium
 timezone: Asia/Kolkata
 parsers:
   consumption: IN.fetch_consumption
