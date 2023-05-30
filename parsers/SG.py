@@ -146,6 +146,8 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     requests_obj = session or Session()
+    # TODO: restore verification when source fixes configuration or we manually install their chain
+    requests_obj.verify = False
 
     response = requests_obj.get(TICKER_URL)
     data = response.json()
@@ -229,6 +231,8 @@ def fetch_price(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     requests_obj = session or Session()
+    # TODO: restore verification when source fixes configuration or we manually install their chain
+    requests_obj.verify = False
     response = requests_obj.get(TICKER_URL)
     data = response.json()
 
