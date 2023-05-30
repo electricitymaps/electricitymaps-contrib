@@ -5,7 +5,7 @@ import json
 import numbers
 import re
 import unittest
-from typing import Any, Dict, Set, Tuple
+from typing import Any, Dict, Set, Tuple, Union
 
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS,
@@ -391,7 +391,7 @@ class CO2eqParametersDirect(BaseClasses.CO2eqParametersDirectAndLifecycleBase):
     parameters = CO2EQ_PARAMETERS_DIRECT
 
     # Expected min and max values for emission factors, by mode.
-    ranges_by_mode: Dict[str, Tuple[numbers.Number, numbers.Number]] = {
+    ranges_by_mode: Dict[str, Tuple[Union[int, float], Union[int, float]]] = {
         # Fossil fuels: usually above 500 gCO2eq/kWh.
         "coal": (500, 1600),
         "gas": (200, 700),
@@ -419,7 +419,7 @@ class CO2eqParametersLifecycle(BaseClasses.CO2eqParametersDirectAndLifecycleBase
     parameters = CO2EQ_PARAMETERS_LIFECYCLE
 
     # Expected min and max values for emission factors, by mode.
-    ranges_by_mode: Dict[str, Tuple[numbers.Number, numbers.Number]] = {
+    ranges_by_mode: Dict[str, Tuple[Union[int, float], Union[int, float]]] = {
         # Fossil fuels: generally above 500 gCO2eq/kWh with some exceptions.
         "oil": (600, 1600),
         "coal": (500, 1600),
