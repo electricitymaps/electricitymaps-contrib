@@ -5,11 +5,11 @@ bounding_box:
     - 22.755921
 capacity:
   biomass: 3733.13
-  coal: 42597.5
+  coal: 43397.5
   gas: 6491.8
   hydro: 13670.43
   nuclear: 3320.0
-  oil: 433.66
+  oil: 460.49
   solar: 23926.29
   unknown: 0
   wind: 19429.32
