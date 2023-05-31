@@ -11,7 +11,7 @@ from typing import Optional
 import arrow
 from requests import Session
 
-from ..lib import IN, web, zonekey
+from ..lib import web, zonekey
 from ..lib.validation import validate
 
 SLDCGUJ_URL = (

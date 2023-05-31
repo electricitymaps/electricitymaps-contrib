@@ -1,5 +1,6 @@
 import datetime as dt
 import json
+import re
 from logging import Logger, getLogger
 from typing import List, Optional
 
@@ -12,7 +13,8 @@ from parsers.lib.exceptions import ParserException
 
 EGAT_GENERATION_URL = "https://www.sothailand.com/sysgen/ws/sysgen"
 EGAT_URL = "www.egat.co.th"
-MEA_PRICE_URL = "https://www.mea.or.th/en/profile/109/111"
+MEA_BASEPRICE_URL = "https://www.mea.or.th/en/profile/109/111"
+MEA_FT_URL = "https://www.mea.or.th/content/detail/2985/2987/474"
 MEA_URL = "www.mea.or.th"
 TZ = "Asia/Bangkok"
 
@@ -86,7 +88,7 @@ def fetch_generation_forecast(
 
 def _as_localtime(datetime):
     """
-    If there is no datetime is given, returns the current datetime with timezone.
+    If there is no datetime given, returns the current datetime with timezone.
     Otherwise, it interprets the datetime as the representation of local time
     since the API server supposes the local timezone instead of UTC.
     """
@@ -154,23 +156,49 @@ def fetch_price(
     target_datetime: Optional[dt.datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-    """Fetch the price data from the MEA."""
+    """
+    Fetch the base tariff data from the MEA (Unit in THB). This is then added up with
+    Float Time (Ft) rate from another MEA's webpage (Unit in Satang (THB/100)).
+
+    The Thai MEA/PEA Electicity Fee calculation are as follows:
+    AmountDue = (BasePrice** + FtRate) * UnitAmountInKWh
+    ActualDue = (AmountDue * 7%VAT) + FixedServiceFee
+
+    * Time-of-Use (TOU) rate is uncommon and thus left unimplemented.
+    **While actual BasePrice is done in a progressive manner, For Electricity Maps -
+      we use "AmountDue" at 1MWh calculated at the highest pricing bracket for simplification.
+    """
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     # Fetch price from MEA table.
-    with requests.get(MEA_PRICE_URL) as response:
-        soup = BeautifulSoup(response.content, "lxml")
+    # `price_base` is 'Over 400 kWh (up from 401st)' from Table 1.1
+    with requests.get(MEA_BASEPRICE_URL) as response:
+        soup_base = BeautifulSoup(response.content, "lxml")
 
-    # 'Over 400 kWh (up from 401st)' from Table 1.1
-    unit_price_table = soup.find_all("table")[1]
-    price = unit_price_table.find_all("td")[19]
+    unit_price_table = soup_base.find_all("table")[1]
+    price_base = unit_price_table.find_all("td")[19].text
+
+    # Available Ft pricing history dated back as far as September 2535 B.E. (1992 C.E.)
+    # `price_ft` slot's is 0+(month number), additional +13 is needed if that slot is " "
+    # For 2023 multi-Ft rates, we assumed the household rate.
+    with requests.get(MEA_FT_URL) as response:
+        soup_ft = BeautifulSoup(response.content, "lxml")
+
+    ft_rate_table = soup_ft.find_all("table")[1]
+    curr_ft_month = arrow.now(TZ).month
+    price_ft = ft_rate_table.find_all("td")[curr_ft_month].text
+
+    if price_ft == "\xa0":
+        price_ft = ft_rate_table.find_all("td")[curr_ft_month + 13].text
+    if "\n" in price_ft:
+        price_ft = re.findall(r"\d+\.\d+", price_ft)[0]
 
     return {
         "zoneKey": zone_key,
         "currency": "THB",
         "datetime": arrow.now(TZ).datetime,
-        "price": float(price.text) * 1000,
+        "price": float(price_base) * 1000 + float(price_ft) * 10,
         "source": MEA_URL,
     }
 

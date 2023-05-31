@@ -2,9 +2,9 @@ import logging
 import unittest
 from datetime import datetime, timezone
 
+import numpy as np
 from mock import patch
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
@@ -17,6 +17,7 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 class TestExchangeList(unittest.TestCase):
@@ -46,6 +47,72 @@ class TestExchangeList(unittest.TestCase):
                 source="trust.me",
             )
             mock_error.assert_called_once()
+
+    def test_merge_exchanges(self):
+        exchange_list_1 = ExchangeList(logging.Logger("test"))
+        exchange_list_1.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+        exchange_list_2 = ExchangeList(logging.Logger("test"))
+        exchange_list_2.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=2,
+            source="trust.me",
+        )
+        exchanges = ExchangeList.merge_exchanges(
+            [exchange_list_1, exchange_list_2], logging.Logger("test")
+        )
+        assert len(exchanges) == 1
+        assert exchanges.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert exchanges.events[0].netFlow == 3
+
+    def test_merge_exchanges_with_none(self):
+        exchange_list_1 = ExchangeList(logging.Logger("test"))
+        exchange_list_1.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+        exchange_list_2 = ExchangeList(logging.Logger("test"))
+        exchange_list_2.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=np.nan,
+            source="trust.me",
+        )
+        exchanges = ExchangeList.merge_exchanges(
+            [exchange_list_1, exchange_list_2], logging.Logger("test")
+        )
+        assert len(exchanges) == 1
+        assert exchanges.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert exchanges.events[0].netFlow == 1
+
+    def test_merge_exchanges_with_negatives(self):
+        exchange_list_1 = ExchangeList(logging.Logger("test"))
+        exchange_list_1.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+        exchange_list_2 = ExchangeList(logging.Logger("test"))
+        exchange_list_2.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=-11,
+            source="trust.me",
+        )
+        exchanges = ExchangeList.merge_exchanges(
+            [exchange_list_1, exchange_list_2], logging.Logger("test")
+        )
+        assert len(exchanges) == 1
+        assert exchanges.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert exchanges.events[0].netFlow == -10
 
 
 class TestConsumptionList(unittest.TestCase):
@@ -323,3 +390,6 @@ class TestTotalProductionList(unittest.TestCase):
             source="trust.me",
         )
         assert len(total_production.events) == 1
+
+
+print(type(ZoneKey("AT")))

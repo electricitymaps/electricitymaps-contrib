@@ -14,12 +14,12 @@ from bs4 import BeautifulSoup
 from pytz import UTC
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
 IN_TZ = "Asia/Kolkata"
@@ -56,39 +56,6 @@ CEA_REGION_MAPPING = {
     "दक्षिणी क्षेत्र / Southern Region": "IN-SO",
     "पूर्वी क्षेत्र/ Eastern Region": "IN-EA",
     "उत्तर-पूर्वी क्षेत्र  / North-Eastern Region": "IN-NE",
-}
-
-DEMAND_URL = "https://vidyutpravah.in/state-data/{state}"
-STATES_MAPPING = {
-    "IN-NO": [
-        "delhi",
-        "haryana",
-        "himachal-pradesh",
-        "jammu-kashmir",
-        "punjab",
-        "rajasthan",
-        "uttar-pradesh",
-        "uttarakhand",
-    ],
-    "IN-WE": ["gujarat", "madya-pradesh", "maharashtra", "goa", "chhattisgarh"],
-    "IN-EA": ["bihar", "west-bengal", "odisha", "sikkim"],
-    "IN-NE": [
-        "arunachal-pradesh",
-        "assam",
-        "meghalaya",
-        "tripura",
-        "mizoram",
-        "nagaland",
-        "manipur",
-    ],
-    "IN-SO": [
-        "karnataka",
-        "kerala",
-        "tamil-nadu",
-        "andhra-pradesh",
-        "telangana",
-        "puducherry",
-    ],
 }
 
 DEMAND_URL = "https://vidyutpravah.in/state-data/{state}"

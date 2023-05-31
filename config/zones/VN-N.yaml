@@ -1,0 +1,16 @@
+bounding_box:
+  - - 101.62
+    - 18.49
+  - - 108.49
+    - 23.86
+
+contributors:
+  - alixunderplatz
+  - MuffinCompiler
+  - VIKTORVAV99
+
+parsers:
+  price: VN.fetch_price
+  consumption: VN.fetch_consumption
+
+timezone: Asia/Ho_Chi_Minh

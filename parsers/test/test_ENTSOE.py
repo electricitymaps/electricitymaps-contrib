@@ -1,15 +1,12 @@
 import os
 import unittest
 from datetime import datetime
-from json import loads
-from typing import Dict, List, Union
 
-from pkg_resources import resource_string
 from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ENTSOE
 
 
