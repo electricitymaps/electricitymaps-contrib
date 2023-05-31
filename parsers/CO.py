@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any, Dict, List, Optional
 
 import arrow
-from pydataxm import ReadDB
-from requests import Session
+import pydataxm.pydataxm as pydataxm
+from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
@@ -43,32 +42,41 @@ XM_DELAY = 2
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "CO",
-    session: Session = Session(),
+    zone_key: ZoneKey,
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
+
+    session = session or Session()
+
     if target_datetime is None:
-        return fetch_live_consumption(zone_key, session, target_datetime, logger)
+        return fetch_live_consumption(zone_key, session, logger)
     else:
         return fetch_historical_consumption(zone_key, session, target_datetime, logger)
 
 
 def fetch_live_consumption(
-    zone_key: str = "CO",
-    session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
+    zone_key: ZoneKey, session: Session, logger: Logger
 ) -> List[Dict[str, Any]]:
-    demand_list = TotalConsumptionList(logger)
-    response = session.get(colombia_demand_URL, verify=False)
 
-    demand_json = json.loads(response.content)
+    response: Response = session.get(colombia_demand_URL, verify=False)
+
+    if not response.ok:
+        raise ParserException(
+            parser="CO",
+            message=f"Error fetching data: {response.status_code} {response.reason}",
+            zone_key=zone_key,
+        )
+
+    demand_json = response.json()
     demand_data = demand_json["Variables"][0]["Datos"]
+
+    demand_list = TotalConsumptionList(logger)
 
     for datapoint in demand_data:
         demand_list.append(
-            zoneKey=ZoneKey(zone_key),
+            zoneKey=zone_key,
             datetime=arrow.get(datapoint["Fecha"], tzinfo=TZ).datetime,
             consumption=round(datapoint["Valor"], 1),
             source="xm.com.co",
@@ -77,8 +85,8 @@ def fetch_live_consumption(
 
 
 def fetch_historical_consumption(
-    zone_key: str = "CO",
-    session: Session = Session(),
+    zone_key: ZoneKey,
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
@@ -102,7 +110,7 @@ def fetch_historical_consumption(
             )
             consumption = float(df_consumption[hour_col]) / 1000
             demand_list.append(
-                zoneKey=ZoneKey(zone_key),
+                zoneKey=zone_key,
                 datetime=target_datetime_in_tz,
                 consumption=consumption,
                 source="xm.com.co",
@@ -118,8 +126,8 @@ def fetch_historical_consumption(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "CO",
-    session: Session = Session(),
+    zone_key: ZoneKey,
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
@@ -177,7 +185,7 @@ def fetch_production(
 
             co_datetime = target_arrow_in_tz.datetime.replace(hour=int(col[-2:]) - 1)
             production_list.append(
-                zoneKey=ZoneKey(zone_key),
+                zoneKey=zone_key,
                 datetime=co_datetime,
                 production=production_mix,
                 source="xm.com.co",
@@ -194,11 +202,14 @@ def fetch_production(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
-    zone_key: str = "CO",
-    session: Session = Session(),
+    zone_key: ZoneKey,
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
+
+    session = session or Session()
+
     if target_datetime is None:
         target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY)
     else:
@@ -220,7 +231,7 @@ def fetch_price(
             price = float(df_price[col])
 
             price_list.append(
-                zoneKey=ZoneKey(zone_key),
+                zoneKey=zone_key,
                 datetime=target_datetime_in_tz,
                 currency="COP",
                 price=price,
@@ -237,10 +248,13 @@ def fetch_price(
 
 if __name__ == "__main__":
     print("fetch_consumption() ->")
-    print(fetch_consumption())
+    print(fetch_consumption(ZoneKey("CO")))
 
     print("fetch_live_production() ->")
-    print(fetch_production())
+    print(fetch_production(ZoneKey("CO")))
+
     print("fetch_production() ->")
-    print(fetch_production())
-    print(fetch_price())
+    print(fetch_production(ZoneKey("CO")))
+
+    print("fetch_price() ->")
+    print(fetch_price(ZoneKey("CO")))

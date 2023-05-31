@@ -36,7 +36,7 @@ isort = "5.12.0"
 deepdiff = "^5.8.1"
 PyYAML = "^6.0"
 openpyxl = {version="^3.1.2", optional=true}
-pydataxm = "^0.3.2"
+pydataxm = {version="^0.3.2", optional=true}
 odfpy = {version="^1.4.1", optional=true}
 
 [tool.poetry.dev-dependencies]
