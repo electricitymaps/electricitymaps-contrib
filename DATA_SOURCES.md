@@ -158,6 +158,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 ### Production capacity data sources
 
 Production capacities are centralized in the [config/zones](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones) folder. Capacities are included in the respective zone configurations. Values in the `capacity` maps are in MW.
+
 - India South Conventional: [NPP](https://npp.gov.in/public-reports/cea/monthly/installcap/2023/APR/capacity2-Southern-2023-04.pdf)
 - India South Renewables: [MRE](https://mnre.gov.in/img/documents/uploads/file_s-1683779844352.pdf)
 
