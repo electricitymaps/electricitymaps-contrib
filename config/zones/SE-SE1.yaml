@@ -10,8 +10,9 @@ capacity:
   geothermal: 0
   hydro: 5271
   nuclear: 0
+  oil: 0
   solar: 19
-  wind: 1927
+  wind: 2978
 emissionFactors:
   direct:
     biomass:
