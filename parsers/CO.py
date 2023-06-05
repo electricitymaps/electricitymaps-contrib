@@ -176,7 +176,9 @@ def fetch_production(
         for col in df_generation_aggregated.columns:
             production_kw = df_generation_aggregated[col].to_dict()
             # convert to MW
-            production_mw = {mode: round(production_kw[mode] / 1000,3) for mode in production_kw}
+            production_mw = {
+                mode: round(production_kw[mode] / 1000, 3) for mode in production_kw
+            }
             # convert to ProductionMix
             production_mix = ProductionMix()
 
