@@ -132,9 +132,9 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
     if target_datetime is None:
-        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
-    else:
         target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY)
+    else:
+        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
 
     objetoAPI = pydataxm.ReadDB()
 
@@ -176,7 +176,9 @@ def fetch_production(
         for col in df_generation_aggregated.columns:
             production_kw = df_generation_aggregated[col].to_dict()
             # convert to MW
-            production_mw = {mode: production_kw[mode] / 1000 for mode in production_kw}
+            production_mw = {
+                mode: round(production_kw[mode] / 1000, 3) for mode in production_kw
+            }
             # convert to ProductionMix
             production_mix = ProductionMix()
 
