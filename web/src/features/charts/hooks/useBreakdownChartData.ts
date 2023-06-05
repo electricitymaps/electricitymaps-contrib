@@ -1,11 +1,12 @@
-import type { ScaleLinear } from 'd3-scale';
 import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
+import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { ElectricityStorageType, ElectricityStorageKeyType, ZoneDetail } from 'types';
+import { ElectricityStorageKeyType, ElectricityStorageType, ZoneDetail } from 'types';
 
-import { Mode, ToggleOptions, modeColor, modeOrder } from 'utils/constants';
+import { useParams } from 'react-router-dom';
+import { Mode, SpatialAggregate, modeColor, modeOrder } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
@@ -15,7 +16,6 @@ import {
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import { getGenerationTypeKey } from '../graphUtils';
 import { AreaGraphElement } from '../types';
-import { useParams } from 'react-router-dom';
 
 export const getLayerFill = (
   exchangeKeys: string[],
@@ -40,15 +40,15 @@ export default function useBreakdownChartData() {
   const { zoneId } = useParams();
   const [mixMode] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [aggregateToggle] = useAtom(spatialAggregateAtom);
-  const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
+  const [viewMode] = useAtom(spatialAggregateAtom);
+  const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
   }
 
   const exchangesForSelectedAggregate = getExchangesToDisplay(
     zoneId,
-    isAggregateToggled,
+    isCountryView,
     zoneData.zoneStates
   );
 

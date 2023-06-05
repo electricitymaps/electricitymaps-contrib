@@ -8,8 +8,8 @@ import {
   ZoneKey,
 } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
-import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json';
 import { getProductionCo2Intensity } from 'utils/helpers';
+import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json';
 
 const LABEL_MAX_WIDTH = 102;
 const ROW_HEIGHT = 13;
@@ -161,12 +161,12 @@ export const getExchangeData = (
 
 export const getExchangesToDisplay = (
   currentZoneKey: ZoneKey,
-  isAggregatedToggled: boolean,
+  isCountryView: boolean,
   zoneStates: {
     [key: string]: ZoneDetail;
   }
 ): ZoneKey[] => {
-  const exchangeKeysToRemove = isAggregatedToggled
+  const exchangeKeysToRemove = isCountryView
     ? exchangesToExclude.exchangesToExcludeCountryView
     : exchangesToExclude.exchangesToExcludeZoneView;
 
