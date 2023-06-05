@@ -98,6 +98,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Netherlands:
   - [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
   - [Energieopwek.nl](https://energieopwek.nl/)
+  - [CBS](https://opendata.cbs.nl/statline/#/CBS/en/dataset/82610ENG/table)
 - New Zealand:
   - [Transpower](https://www.transpower.co.nz/power-system-live-data)
   - [Siesa](https://www.southlanddc.govt.nz/my-southland/siesa-2/what-sieasa-does/)
