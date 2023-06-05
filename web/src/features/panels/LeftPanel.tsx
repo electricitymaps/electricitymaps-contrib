@@ -50,7 +50,7 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   if (zoneId.startsWith('AUS')) {
     return (
       <Navigate
-        to={`/zone/${zoneId.replace('AUS-', 'AU-')}?${searchParameters}`}
+        to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`}
         replace
       />
     );
