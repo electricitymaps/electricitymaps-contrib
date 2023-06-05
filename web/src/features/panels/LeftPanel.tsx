@@ -47,7 +47,7 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   }
 
   // Handle legacy Australia zone names
-  if (zoneId.startsWith('AUS-')) {
+  if (zoneId.startsWith('AUS')) {
     return (
       <Navigate
         to={`/zone/${zoneId.replace('AUS-', 'AU-')}?${searchParameters}`}
