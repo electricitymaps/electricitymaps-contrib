@@ -12,8 +12,8 @@ capacity:
   hydro storage: 0
   nuclear: 486
   oil: 0
-  solar: 22590
-  wind: 9410
+  solar: 19142
+  wind: 8831
 contributors:
   - corradio
   - PaulCornelissen
