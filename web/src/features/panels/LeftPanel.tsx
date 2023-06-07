@@ -39,11 +39,20 @@ function HandleLegacyRoutes() {
 }
 
 function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
+  const [searchParameters] = useSearchParams();
   const { zoneId } = useParams();
 
   if (!zoneId) {
     return <Navigate to="/" replace />;
   }
+
+  // Handle legacy Australia zone names
+  if (zoneId.startsWith('AUS')) {
+    return (
+      <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
+    );
+  }
+
   return children;
 }
 
