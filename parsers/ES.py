@@ -12,7 +12,6 @@ from electricitymap.contrib.lib.types import ZoneKey
 # package "ree" is used to parse data from www.ree.es
 # maintained on github by @hectorespert at https://github.com/hectorespert/ree
 from ree import (
-    BalearicIslands,
     Ceuta,
     ElHierro,
     Formentera,
@@ -34,47 +33,9 @@ from requests import Session
 
 from .lib.config import refetch_frequency
 from .lib.exceptions import ParserException
-from .lib.validation import validate
 
 SOURCE = "demanda.ree.es"
 
-# Literal list of valid zone keys for this parser
-SUPPORTED_ZONE_KEYS: List[ZoneKey] = [
-    "ES",  # Spain
-    "ES-CE",  # Ceuta
-    "ES-CN-FVLZ",  # Fuerteventura/Lanzarote
-    "ES-CN-GC",  # Gran Canaria
-    "ES-CN-HI",  # El Hierro
-    "ES-CN-IG",  # Isla de la Gomera
-    "ES-CN-LP",  # La Palma
-    "ES-CN-TE",  # Tenerife
-    "ES-IB",  # Balearic Islands
-    "ES-IB-FO",  # Formentera
-    "ES-IB-IZ",  # Ibiza
-    "ES-IB-MA",  # Mallorca
-    "ES-IB-ME",  # Menorca
-    "ES-ML",  # Melilla
-]
-
-# TODO: Update floors to be non zero.
-# Minimum valid zone demand. This is used to eliminate some cases
-# where generation for one or more modes is obviously missing.
-ZONE_FLOORS: Dict[ZoneKey, float] = {
-    "ES": 0,
-    "ES-CE": 0,
-    "ES-CN-FVLZ": 50,
-    "ES-CN-GC": 150,
-    "ES-CN-HI": 2,
-    "ES-CN-IG": 3,
-    "ES-CN-LP": 10,
-    "ES-CN-TE": 150,
-    "ES-IB": 0,
-    "ES-IB-FO": 0,
-    "ES-IB-IZ": 0,
-    "ES-IB-MA": 0,
-    "ES-IB-ME": 0,
-    "ES-ML": 0,
-}
 
 ZONE_FUNCTION_MAP: Dict[ZoneKey, Callable] = {
     "ES": IberianPeninsula,
@@ -85,7 +46,6 @@ ZONE_FUNCTION_MAP: Dict[ZoneKey, Callable] = {
     "ES-CN-IG": Gomera,
     "ES-CN-LP": LaPalma,
     "ES-CN-TE": Tenerife,
-    "ES-IB": BalearicIslands,
     "ES-IB-FO": Formentera,
     "ES-IB-IZ": Ibiza,
     "ES-IB-MA": Mallorca,
@@ -94,7 +54,6 @@ ZONE_FUNCTION_MAP: Dict[ZoneKey, Callable] = {
 }
 
 EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
-    "ES->ES-IB": BalearicIslands,
     "ES->ES-IB-MA": Mallorca,
     "ES-IB-IZ->ES-IB-MA": Mallorca,
     "ES-IB-FO->ES-IB-IZ": Formentera,
@@ -107,14 +66,24 @@ def check_valid_parameters(
     session: Session,
     target_datetime: Optional[datetime],
     logger: Logger,
+    is_exchange: bool = False,
 ):
     """Raise an exception if the parameters are not valid for this parser."""
-    if zone_key not in SUPPORTED_ZONE_KEYS:
+    if is_exchange:
+        if zone_key not in EXCHANGE_FUNCTION_MAP.keys():
+            zone_key1, zone_key2 = zone_key.split("->")
         raise ParserException(
             "ES.py",
-            f"This parser cannot parse data for zone: {zone_key}",
+            f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
             zone_key,
         )
+    else:
+        if zone_key not in ZONE_FUNCTION_MAP.keys():
+            raise ParserException(
+                "ES.py",
+                f"This parser cannot parse data for zone: {zone_key}",
+                zone_key,
+            )
     if session is not None and not isinstance(session, Session):
         raise ParserException(
             "ES.py",
@@ -132,40 +101,6 @@ def check_valid_parameters(
             "ES.py",
             f"Invalid logger: {logger}",
             zone_key,
-        )
-
-
-def check_valid_parameters_exchange(
-    zone_key1: ZoneKey,
-    zone_key2: ZoneKey,
-    session: Session,
-    target_datetime: Optional[datetime],
-    logger: Logger,
-):
-    """Raise an exception if the parameters are not valid for this parser."""
-    if zone_key1 or zone_key2 not in SUPPORTED_ZONE_KEYS:
-        raise ParserException(
-            "ES.py",
-            f"This parser cannot parse data between: {'->'.join(sorted([zone_key1, zone_key2]))}",
-            "->".join(sorted([zone_key1, zone_key2])),
-        )
-    if session is not None and not isinstance(session, Session):
-        raise ParserException(
-            "ES.py",
-            f"Invalid session: {session}",
-            "->".join(sorted([zone_key1, zone_key2])),
-        )
-    if target_datetime is not None and not isinstance(target_datetime, datetime):
-        raise ParserException(
-            "ES.py",
-            f"Invalid target_datetime: {target_datetime}",
-            "->".join(sorted([zone_key1, zone_key2])),
-        )
-    if logger is not None and not isinstance(logger, Logger):
-        raise ParserException(
-            "ES.py",
-            f"Invalid logger: {logger}",
-            "->".join(sorted([zone_key1, zone_key2])),
         )
 
 
@@ -177,14 +112,8 @@ def fetch_island_data(
         date = target_datetime
     else:
         date = target_datetime.strftime("%Y-%m-%d")
-    try:
-        data: List[Response] = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
-    except KeyError:
-        raise ParserException(
-            "ES.py",
-            f"This parser cannot parse data for zone: {zone_key}",
-            zone_key,
-        )
+
+    data: List[Response] = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
     if data:
         return data
     else:
@@ -225,16 +154,9 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     check_valid_parameters(zone_key, session, target_datetime, logger)
-
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
     data: List[Dict[str, Any]] = []
-
-    # If we add more zones this should be turned into a map similar to ZONE_FlOORS mapping.
-    if zone_key == "ES-IB":
-        expected_range = {"coal": (50, 600)}
-    else:
-        expected_range = None
 
     if island_data:
         for response in island_data:
@@ -279,13 +201,6 @@ def fetch_production(
                     response_data["production"]["hydro"] = 0.0
                     response_data["storage"]["hydro"] = -response.hydraulic
 
-                response_data = validate(
-                    response_data,
-                    logger,
-                    floor=ZONE_FLOORS[zone_key],
-                    expected_range=expected_range,
-                )
-
                 if response_data:
                     # append if valid
                     data.append(response_data)
@@ -305,16 +220,15 @@ def fetch_exchange(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-    check_valid_parameters_exchange(
-        zone_key1, zone_key2, session, target_datetime, logger
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    check_valid_parameters(
+        sorted_zone_keys, session, target_datetime, logger, exchange=True
     )
 
     if isinstance(target_datetime, datetime):
         date = target_datetime.strftime("%Y-%m-%d")
     else:
         date = target_datetime
-
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     ses = session or Session()
 
