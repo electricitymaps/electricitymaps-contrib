@@ -98,6 +98,7 @@
   },
   "devDependencies": {
     "@mdx-js/react": "^2.1.5",
+    "@nabla/vite-plugin-eslint": "1.4.1",
     "@rollup/plugin-replace": "^5.0.2",
     "@sentry/vite-plugin": "^0.3.0",
     "@storybook/addon-actions": "7.0.0-alpha.47",
