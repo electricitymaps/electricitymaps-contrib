@@ -2,10 +2,12 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Callable, Dict, List, Literal, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 # The arrow library is used to handle datetimes
 from arrow import get
+from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from electricitymap.contrib.lib.types import ZoneKey
 
 # package "ree" is used to parse data from www.ree.es
 # maintained on github by @hectorespert at https://github.com/hectorespert/ree
@@ -37,7 +39,7 @@ from .lib.validation import validate
 SOURCE = "demanda.ree.es"
 
 # Literal list of valid zone keys for this parser
-ZONE_KEYS = Literal[
+SUPPORTED_ZONE_KEYS: List[ZoneKey] = [
     "ES",  # Spain
     "ES-CE",  # Ceuta
     "ES-CN-FVLZ",  # Fuerteventura/Lanzarote
@@ -57,7 +59,7 @@ ZONE_KEYS = Literal[
 # TODO: Update floors to be non zero.
 # Minimum valid zone demand. This is used to eliminate some cases
 # where generation for one or more modes is obviously missing.
-ZONE_FLOORS: Dict[ZONE_KEYS, float] = {
+ZONE_FLOORS: Dict[ZoneKey, float] = {
     "ES": 0,
     "ES-CE": 0,
     "ES-CN-FVLZ": 50,
@@ -74,7 +76,7 @@ ZONE_FLOORS: Dict[ZONE_KEYS, float] = {
     "ES-ML": 0,
 }
 
-ZONE_FUNCTION_MAP: Dict[ZONE_KEYS, Callable] = {
+ZONE_FUNCTION_MAP: Dict[ZoneKey, Callable] = {
     "ES": IberianPeninsula,
     "ES-CE": Ceuta,
     "ES-CN-FVLZ": LanzaroteFuerteventura,
@@ -100,13 +102,81 @@ EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
 }
 
 
+def check_valid_parameters(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: Optional[datetime],
+    logger: Logger,
+):
+    """Raise an exception if the parameters are not valid for this parser."""
+    if zone_key not in SUPPORTED_ZONE_KEYS:
+        raise ParserException(
+            "ES.py",
+            f"This parser cannot parse data for zone: {zone_key}",
+            zone_key,
+        )
+    if session is not None and not isinstance(session, Session):
+        raise ParserException(
+            "ES.py",
+            f"Invalid session: {session}",
+            zone_key,
+        )
+    if target_datetime is not None and not isinstance(target_datetime, datetime):
+        raise ParserException(
+            "ES.py",
+            f"Invalid target_datetime: {target_datetime}",
+            zone_key,
+        )
+    if logger is not None and not isinstance(logger, Logger):
+        raise ParserException(
+            "ES.py",
+            f"Invalid logger: {logger}",
+            zone_key,
+        )
+
+
+def check_valid_parameters_exchange(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session,
+    target_datetime: Optional[datetime],
+    logger: Logger,
+):
+    """Raise an exception if the parameters are not valid for this parser."""
+    if zone_key1 or zone_key2 not in SUPPORTED_ZONE_KEYS:
+        raise ParserException(
+            "ES.py",
+            f"This parser cannot parse data between: {'->'.join(sorted([zone_key1, zone_key2]))}",
+            "->".join(sorted([zone_key1, zone_key2])),
+        )
+    if session is not None and not isinstance(session, Session):
+        raise ParserException(
+            "ES.py",
+            f"Invalid session: {session}",
+            "->".join(sorted([zone_key1, zone_key2])),
+        )
+    if target_datetime is not None and not isinstance(target_datetime, datetime):
+        raise ParserException(
+            "ES.py",
+            f"Invalid target_datetime: {target_datetime}",
+            "->".join(sorted([zone_key1, zone_key2])),
+        )
+    if logger is not None and not isinstance(logger, Logger):
+        raise ParserException(
+            "ES.py",
+            f"Invalid logger: {logger}",
+            "->".join(sorted([zone_key1, zone_key2])),
+        )
+
+
 def fetch_island_data(
-    zone_key: ZONE_KEYS, session: Session, target_datetime: Optional[datetime]
+    zone_key: ZoneKey, session: Session, target_datetime: Optional[datetime]
 ) -> List[Response]:
-    if isinstance(target_datetime, datetime):
-        date = target_datetime.strftime("%Y-%m-%d")
-    else:
+    """Fetch data for the given zone key."""
+    if target_datetime is None:
         date = target_datetime
+    else:
+        date = target_datetime.strftime("%Y-%m-%d")
     try:
         data: List[Response] = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
     except KeyError:
@@ -127,41 +197,34 @@ def fetch_island_data(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: ZONE_KEYS,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
+    check_valid_parameters(zone_key, session, target_datetime, logger)
+
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
-    data = []
-    if island_data:
-        for response in island_data:
-            response_data = {
-                "zoneKey": zone_key,
-                "datetime": get(response.timestamp).datetime,
-                "consumption": response.demand,
-                "source": "demanda.ree.es",
-            }
-
-            data.append(response_data)
-
-        return data
-    else:
-        raise ParserException(
-            "ES.py",
-            f"No consumption data returned for zone: {zone_key}",
-            zone_key,
+    consumption = TotalConsumptionList(logger)
+    for event in island_data:
+        consumption.append(
+            zoneKey=zone_key,
+            datetime=get(event.timestamp).datetime,
+            consumption=event.demand,
+            source="demanda.ree.es",
         )
+    return consumption.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: ZONE_KEYS,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
+    check_valid_parameters(zone_key, session, target_datetime, logger)
 
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
@@ -236,12 +299,16 @@ def fetch_production(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: ZONE_KEYS,
-    zone_key2: ZONE_KEYS,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
+    check_valid_parameters_exchange(
+        zone_key1, zone_key2, session, target_datetime, logger
+    )
+
     if isinstance(target_datetime, datetime):
         date = target_datetime.strftime("%Y-%m-%d")
     else:
