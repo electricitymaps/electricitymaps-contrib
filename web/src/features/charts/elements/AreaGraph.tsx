@@ -273,7 +273,7 @@ function AreaGraph({
         <AreaGraphTooltip
           {...tooltipData}
           selectedLayerKey={
-            selectedLayerIndex !== null ? layerKeys[selectedLayerIndex] : undefined
+            selectedLayerIndex === null ? undefined : layerKeys[selectedLayerIndex]
           }
           tooltipSize={tooltipSize}
           isBiggerThanMobile={isBiggerThanMobile}

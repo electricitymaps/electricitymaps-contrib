@@ -75,27 +75,25 @@ function AreaGraphLayers({
         // Therefore, we copy all datapoints and make sure
         // both a start and an end are present to ensure
         // proper display of missing points
-        const datapoints = [
-          ...layer.datapoints.map((d: { data: AreaGraphElement }) => [
-            {
-              ...d,
-              data: {
-                ...d.data,
-                datetime: d.data.datetime,
-              },
+        const datapoints = layer.datapoints.flatMap((d: { data: AreaGraphElement }) => [
+          {
+            ...d,
+            data: {
+              ...d.data,
+              datetime: d.data.datetime,
             },
-            {
-              ...d,
-              data: {
-                ...d.data,
-                // Here we use a different array which
-                // will contain the last datetime.
-                datetime: getNextDatetime(datetimes, d.data.datetime),
-              },
-              isEnd: true,
+          },
+          {
+            ...d,
+            data: {
+              ...d.data,
+              // Here we use a different array which
+              // will contain the last datetime.
+              datetime: getNextDatetime(datetimes, d.data.datetime),
             },
-          ]),
-        ].flat();
+            isEnd: true,
+          },
+        ]);
 
         return (
           <React.Fragment key={layer.key}>
@@ -107,12 +105,12 @@ function AreaGraphLayers({
               d={layerArea(datapoints) || undefined}
               /* Support only click events in mobile mode, otherwise react to mouse hovers */
               onClick={isMobile ? (event_) => handleLayerMouseMove(event_, ind) : noop}
-              onFocus={!isMobile ? (event_) => handleLayerMouseMove(event_, ind) : noop}
+              onFocus={isMobile ? noop : (event_) => handleLayerMouseMove(event_, ind)}
               onMouseOver={
-                !isMobile ? (event_) => handleLayerMouseMove(event_, ind) : noop
+                isMobile ? noop : (event_) => handleLayerMouseMove(event_, ind)
               }
               onMouseMove={
-                !isMobile ? (event_) => handleLayerMouseMove(event_, ind) : noop
+                isMobile ? noop : (event_) => handleLayerMouseMove(event_, ind)
               }
               onMouseOut={handleLayerMouseOut}
               onBlur={handleLayerMouseOut}

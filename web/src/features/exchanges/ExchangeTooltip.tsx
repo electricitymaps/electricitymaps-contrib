@@ -17,7 +17,7 @@ export default function ExchangeTooltip(
   const isExporting = netFlow > 0;
   const roundedNetFlow = Math.abs(Math.round(netFlow));
   const zoneFrom = key.split('->')[isExporting ? 0 : 1];
-  const zoneTo = key.split('->')[!isExporting ? 0 : 1];
+  const zoneTo = key.split('->')[isExporting ? 1 : 0];
 
   return (
     <div className="text-start text-base font-medium">

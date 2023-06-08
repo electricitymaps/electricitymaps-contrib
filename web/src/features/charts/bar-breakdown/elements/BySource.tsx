@@ -15,9 +15,9 @@ export default function BySource({ className }: { className?: string }) {
           : 'country-panel.electricityproduction'
       )}{' '}
       {__(
-        timeAverage !== TimeAverages.HOURLY
-          ? 'country-panel.averagebysource'
-          : 'country-panel.bysource'
+        timeAverage === TimeAverages.HOURLY
+          ? 'country-panel.bysource'
+          : 'country-panel.averagebysource'
       )}
     </div>
   );
