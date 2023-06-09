@@ -10,9 +10,9 @@ capacity:
   geothermal: 0
   hydro: 2593
   nuclear: 6882
-  oil: 243
-  solar: 1109
-  wind: 3000
+  oil: 0
+  solar: 1130
+  wind: 3678
 emissionFactors:
   direct:
     battery discharge:

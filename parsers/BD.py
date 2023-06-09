@@ -33,6 +33,7 @@ TABLE_HEADERS = [
     "Coal",
     "Hydro",
     "Solar",
+    "Wind",
     "Bheramara HVDC",
     "Tripura",
     "Remarks",
@@ -95,10 +96,12 @@ def parse_table_body(table_body: Tag):
         row_dict["hydro"] = table_entry_to_float(row_items[8])
         # [9] is generation from solar
         row_dict["solar"] = table_entry_to_float(row_items[9])
-        # [10], [11] is import from Bheramara PP (IN-EA) and Tripura (IN-NE)
-        row_dict["bd_import_bheramara"] = table_entry_to_float(row_items[10])
-        row_dict["bd_import_tripura"] = table_entry_to_float(row_items[11])
-        row_dict["remarks"] = row_items[12]
+        # [10] is generation from wind
+        row_dict["wind"] = table_entry_to_float(row_items[10])
+        # [11], [12] is import from Bheramara PP (IN-EA) and Tripura (IN-NE)
+        row_dict["bd_import_bheramara"] = table_entry_to_float(row_items[11])
+        row_dict["bd_import_tripura"] = table_entry_to_float(row_items[12])
+        row_dict["remarks"] = row_items[13]
 
         row_data.append(row_dict)
 
@@ -184,12 +187,10 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
-
     row_data = query(session, target_datetime, logger)
 
     production_data_list = []
     for row in row_data:
-
         # Create data with empty production
         data = {
             "zoneKey": zone_key,
@@ -200,7 +201,7 @@ def fetch_production(
 
         # And add sources if they are present in the table
         known_sources_sum_mw = 0.0
-        for source_type in ["coal", "gas", "hydro", "oil", "solar"]:
+        for source_type in ["coal", "gas", "hydro", "oil", "solar", "wind"]:
             if row[source_type] is not None:
                 # also accumulate the sources to infer 'unknown'
                 known_sources_sum_mw += row[source_type]
@@ -234,7 +235,6 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
-
     row_data = query(session, target_datetime, logger)
 
     result_list = []
@@ -271,7 +271,6 @@ def fetch_exchange(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
-
     # Query table, contains import from india.
     row_data = query(session, target_datetime, logger)
 
@@ -279,7 +278,6 @@ def fetch_exchange(
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
 
     for row in row_data:
-
         # BD -> IN_xx
         if zone_key2 == "IN-NE":
             # Export to India NorthEast via Tripura
