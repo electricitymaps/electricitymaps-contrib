@@ -1,3 +1,4 @@
+import datetime as dt
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -178,7 +179,7 @@ class Event(BaseModel, ABC):
         return v
 
     @validator("datetime")
-    def _validate_datetime(cls, v: datetime, values: Dict[str, Any]):
+    def _validate_datetime(cls, v: dt.datetime, values: Dict[str, Any]):
         if v.tzinfo is None:
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
