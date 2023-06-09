@@ -3,6 +3,7 @@ import unittest
 from datetime import datetime, timezone
 
 import freezegun
+import pytz
 from mock import patch
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
@@ -328,6 +329,20 @@ class TestProductionBreakdown(unittest.TestCase):
                 production=mix,
                 source="trust.me",
             )
+
+    @freezegun.freeze_time("2023-01-01")
+    def test_non_forecasted_point_with_timezone_forward(self):
+        """Test that points in a timezone that is ahead of UTC are accepted."""
+        mix = ProductionMix(wind=10)
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, 5, tzinfo=pytz.timezone("Asia/Tokyo")),
+            production=mix,
+            source="trust.me",
+        )
+        assert breakdown.datetime == datetime(
+            2023, 1, 1, 5, tzinfo=pytz.timezone("Asia/Tokyo")
+        )
 
     def test_static_create_logs_error(self):
         logger = logging.Logger("test")
