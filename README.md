@@ -26,7 +26,8 @@ A real time and historical visualisation of the Greenhouse Gas Intensity (in ter
     ></a>
 </p>
 
-![image](https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/web/public/images/electricitymap_social_image.png)
+![image](web/public/images/electricitymap_social_image.png#gh-light-mode-only)
+![image](web/public/images/electricitymap_social_image_dark.png#gh-dark-mode-only)
 
 ## Introduction
 
