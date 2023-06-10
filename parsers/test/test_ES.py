@@ -1,8 +1,9 @@
+from datetime import datetime
 from unittest import TestCase, main
 
-from arrow import get
 from mock import patch
-from ree import BalearicIslands, ElHierro, Formentera, Response
+from electricitymap.contrib.lib.types import ZoneKey
+from ree import Mallorca, ElHierro, Formentera, Response
 from requests import Session
 
 from parsers import ES
@@ -22,88 +23,32 @@ class TestES(TestCase):
 
         self.mocked_responses = [first_request, second_request]
 
-    @patch.object(BalearicIslands, "get_all")
+    ### El Hierro
+    # Consumption
+    @patch.object(ElHierro, "get_all")
     def test_fetch_consumption(self, mocked_get_all):
         mocked_get_all.return_value = self.mocked_responses
-        data_list = ES.fetch_consumption("ES-IB", self.session)
-        self.assertIsNotNone(data_list)
+        data_list = ES.fetch_consumption(ZoneKey("ES-CN-HI"), self.session)
+        self.assertIsNot(data_list, [])
         for data in data_list:
-            self.assertEqual(data["zoneKey"], "ES-IB")
+            self.assertEqual(data["zoneKey"], "ES-CN-HI")
             self.assertEqual(data["source"], "demanda.ree.es")
-            self.assertIsNotNone(data["datetime"])
+            self.assertTrue(isinstance(data["datetime"], datetime))
             self.assertIsNotNone(data["consumption"])
 
-    @patch.object(Formentera, "get_all")
-    def test_fetch_consumption_ES_IB_FO(self, mocked_get_all):
-        mocked_get_all.return_value = self.mocked_responses
-        data_list = ES.fetch_consumption("ES-IB-FO", self.session)
-        self.assertIsNotNone(data_list)
-        for data in data_list:
-            self.assertEqual(data["zoneKey"], "ES-IB-FO")
-            self.assertEqual(data["source"], "demanda.ree.es")
-            self.assertIsNotNone(data["datetime"])
-            self.assertIsNotNone(data["consumption"])
-
-    @patch.object(BalearicIslands, "get_all")
-    def test_fetch_production(self, mocked_get_all):
-        mocked_get_all.return_value = self.mocked_responses
-        data_list = ES.fetch_production("ES-IB", self.session)
-        self.assertIsNotNone(data_list)
-        for data in data_list:
-            self.assertEqual(data["zoneKey"], "ES-IB")
-            self.assertEqual(data["source"], "demanda.ree.es")
-            self.assertIsNotNone(data["datetime"])
-            self.assertIsNotNone(data["production"])
-            self.assertIsNotNone(data["storage"])
-
-    @patch.object(Formentera, "get_all")
-    def test_fetch_production_ES_IB_FO(self, mocked_get_all):
-        mocked_get_all.return_value = self.mocked_responses
-        data_list = ES.fetch_production("ES-IB-FO", self.session)
-        self.assertIsNotNone(data_list)
-        for data in data_list:
-            self.assertEqual(data["zoneKey"], "ES-IB-FO")
-            self.assertEqual(data["source"], "demanda.ree.es")
-            self.assertIsNotNone(data["datetime"])
-            self.assertIsNotNone(data["production"])
-            self.assertIsNotNone(data["storage"])
-
-    @patch.object(BalearicIslands, "get_all")
-    def test_fetch_exchange(self, mocked_get_all):
-        mocked_get_all.return_value = self.mocked_responses
-        data_list = ES.fetch_exchange("ES", "ES-IB", self.session)
-        self.assertIsNotNone(data_list)
-        for data in data_list:
-            self.assertEqual(data["sortedZoneKeys"], "ES->ES-IB")
-            self.assertEqual(data["source"], "demanda.ree.es")
-            self.assertIsNotNone(data["netFlow"])
-            self.assertEqual(data["netFlow"], 50.0)
-            self.assertIsNotNone(data["datetime"])
-
-    @patch.object(Formentera, "get_all")
-    def test_fetch_exchange_ES_IB_FO(self, mocked_get_all):
-        mocked_get_all.return_value = self.mocked_responses
-        data_list = ES.fetch_exchange("ES-IB-FO", "ES-IB-IZ", self.session)
-        self.assertIsNotNone(data_list)
-        for data in data_list:
-            self.assertEqual(data["sortedZoneKeys"], "ES-IB-FO->ES-IB-IZ")
-            self.assertEqual(data["source"], "demanda.ree.es")
-            self.assertIsNotNone(data["netFlow"])
-            self.assertEqual(data["netFlow"], -10.0)
-            self.assertIsNotNone(data["datetime"])
-
+    # Production
     @patch.object(ElHierro, "get_all")
     def test_fetch_production_el_hierro(self, mocked_get_all):
-        date = get(1514629800).datetime
+        date = datetime.utcfromtimestamp(1514629800)
         mocked_get_all.return_value = (
             Response(date, 10.0, 1.5, 2.0, 0.5, 2.5, 2.5, 0.4, 5.0),
         )
         data_list = ES.fetch_production("ES-CN-HI", self.session)
-        self.assertIsNotNone(data_list)
+        self.assertIsNot(data_list, [])
         for data in data_list:
             self.assertEqual(data["zoneKey"], "ES-CN-HI")
             self.assertEqual(data["source"], "demanda.ree.es")
-            self.assertIsNotNone(data["datetime"])
+            self.assertTrue(isinstance(data["datetime"], datetime))
             self.assertIsNotNone(data["production"])
             self.assertIsNotNone(data["storage"])
             self.assertEqual(data["datetime"], date)
@@ -113,6 +58,58 @@ class TestES(TestCase):
             self.assertEqual(data["production"]["solar"], 0.4)
             self.assertEqual(data["production"]["wind"], 0.5)
             self.assertEqual(data["storage"]["hydro"], -5.0)
+
+    ### Formentera
+    # Production
+    @patch.object(Formentera, "get_all")
+    def test_fetch_production_ES_IB_FO(self, mocked_get_all):
+        date = datetime.utcfromtimestamp(1514629800).datetime
+        mocked_get_all.return_value = (
+            Response(date, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
+        )
+        data_list = ES.fetch_production("ES-IB-FO", self.session)
+        self.assertIsNot(data_list, [])
+        for data in data_list:
+            self.assertEqual(data["zoneKey"], "ES-IB-FO")
+            self.assertEqual(data["source"], "demanda.ree.es")
+            self.assertTrue(isinstance(data["datetime"], datetime))
+            self.assertIsNot(data["production"], {})
+            self.assertIs(data["storage"], {})
+            self.assertEqual(data["datetime"], date)
+            self.assertEqual(data["production"]["gas"], 8)
+            self.assertEqual(data["production"]["oil"], 14)
+            self.assertEqual(data["production"]["hydro"], 10)
+            self.assertEqual(data["production"]["solar"], 3.5)
+            self.assertEqual(data["production"]["wind"], 13)
+            self.assertEqual(data["production"]["coal"], 5)
+            self.assertEqual(data["production"]["unknown"], 0.5)
+
+    # Exchange
+    @patch.object(Formentera, "get_all")
+    def test_fetch_exchange_ES_IB_FO(self, mocked_get_all):
+        mocked_get_all.return_value = self.mocked_responses
+        data_list = ES.fetch_exchange("ES-IB-FO", "ES-IB-IZ", self.session)
+        self.assertIsNot(data_list, [])
+        for data in data_list:
+            self.assertEqual(data["sortedZoneKeys"], "ES-IB-FO->ES-IB-IZ")
+            self.assertEqual(data["source"], "demanda.ree.es")
+            self.assertIsNotNone(data["netFlow"])
+            self.assertEqual(data["netFlow"], -10.0)
+            self.assertTrue(isinstance(data["datetime"], datetime))
+
+    ### Mallorca
+    # Exchange
+    @patch.object(Mallorca, "get_all")
+    def test_fetch_exchange(self, mocked_get_all):
+        mocked_get_all.return_value = self.mocked_responses
+        data_list = ES.fetch_exchange(ZoneKey("ES"), ZoneKey("ES-IB-MA"), self.session)
+        self.assertIsNot(data_list, [])
+        for data in data_list:
+            self.assertEqual(data["sortedZoneKeys"], "ES->ES-IB-MA")
+            self.assertEqual(data["source"], "demanda.ree.es")
+            self.assertIsNotNone(data["netFlow"])
+            self.assertEqual(data["netFlow"], 50.0)
+            self.assertTrue(isinstance(data["datetime"], datetime))
 
 
 if __name__ == "__main__":
