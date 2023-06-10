@@ -94,7 +94,12 @@ function TimeAxis({
     );
   }
 
-  const scale = getTimeScale(scaleWidth ?? width, datetimes[0], datetimes.at(-1));
+  const scale = getTimeScale(
+    scaleWidth ?? width,
+    datetimes[0],
+    // eslint-disable-next-line unicorn/prefer-at
+    datetimes[datetimes.length - 1]
+  );
   const [x1, x2] = scale.range();
 
   return (

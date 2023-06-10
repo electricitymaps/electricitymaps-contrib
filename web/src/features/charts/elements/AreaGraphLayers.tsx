@@ -75,25 +75,28 @@ function AreaGraphLayers({
         // Therefore, we copy all datapoints and make sure
         // both a start and an end are present to ensure
         // proper display of missing points
-        const datapoints = layer.datapoints.flatMap((d: { data: AreaGraphElement }) => [
-          {
-            ...d,
-            data: {
-              ...d.data,
-              datetime: d.data.datetime,
+        // eslint-disable-next-line unicorn/no-useless-spread
+        const datapoints = [
+          ...layer.datapoints.map((d: { data: AreaGraphElement }) => [
+            {
+              ...d,
+              data: {
+                ...d.data,
+                datetime: d.data.datetime,
+              },
             },
-          },
-          {
-            ...d,
-            data: {
-              ...d.data,
-              // Here we use a different array which
-              // will contain the last datetime.
-              datetime: getNextDatetime(datetimes, d.data.datetime),
+            {
+              ...d,
+              data: {
+                ...d.data,
+                // Here we use a different array which
+                // will contain the last datetime.
+                datetime: getNextDatetime(datetimes, d.data.datetime),
+              },
+              isEnd: true,
             },
-            isEnd: true,
-          },
-        ]);
+          ]),
+        ].flat();
 
         return (
           <React.Fragment key={layer.key}>

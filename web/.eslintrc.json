@@ -144,7 +144,9 @@
     ],
     "unicorn/no-nested-ternary": ["error"],
     "unicorn/no-useless-undefined": "off",
-    "unicorn/no-null": "off"
+    "unicorn/no-null": "off",
+    // typescript doesn't recognize at syntax yet
+    "unicorn/prefer-at": 0
   },
   "settings": {
     "react": {

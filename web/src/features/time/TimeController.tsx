@@ -30,7 +30,7 @@ export default function TimeController({ className }: { className?: string }) {
       setNumberOfEntries(datetimes.length - 1);
       // Reset the selected datetime when data changes
       setSelectedDatetime({
-        datetimeString: dateToDatetimeString(datetimes.at(-1)),
+        datetimeString: dateToDatetimeString(datetimes[datetimes.length - 1]),
         index: datetimes.length - 1,
       });
     }
