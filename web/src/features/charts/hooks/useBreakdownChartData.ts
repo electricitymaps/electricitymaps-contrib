@@ -71,6 +71,7 @@ export default function useBreakdownChartData() {
     for (const mode of modeOrder) {
       const isStorage = mode.includes('storage');
 
+      // TODO: handle storage
       entry.layerData[mode] = isStorage
         ? getStorageValue(
             mode as ElectricityStorageType,

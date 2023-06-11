@@ -75,9 +75,8 @@ function AreaGraphLayers({
         // Therefore, we copy all datapoints and make sure
         // both a start and an end are present to ensure
         // proper display of missing points
-        // eslint-disable-next-line unicorn/no-useless-spread
-        const datapoints = [
-          ...layer.datapoints.map((d: { data: AreaGraphElement }) => [
+        const datapoints: any[] = layer.datapoints.flatMap(
+          (d: { data: AreaGraphElement }) => [
             {
               ...d,
               data: {
@@ -95,8 +94,8 @@ function AreaGraphLayers({
               },
               isEnd: true,
             },
-          ]),
-        ].flat();
+          ]
+        );
 
         return (
           <React.Fragment key={layer.key}>

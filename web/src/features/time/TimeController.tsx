@@ -24,13 +24,13 @@ export default function TimeController({ className }: { className?: string }) {
   );
 
   useEffect(() => {
-    if (datetimes) {
+    if (datetimes && datetimes.at(-1)) {
       // This value is stored in state to avoid flickering when switching between time averages
       // as this effect means index will be one render behind if using datetimes directly
       setNumberOfEntries(datetimes.length - 1);
       // Reset the selected datetime when data changes
       setSelectedDatetime({
-        datetimeString: dateToDatetimeString(datetimes[datetimes.length - 1]),
+        datetimeString: dateToDatetimeString(datetimes.at(-1) as Date),
         index: datetimes.length - 1,
       });
     }
