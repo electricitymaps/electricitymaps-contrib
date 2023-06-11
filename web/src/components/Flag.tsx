@@ -15,11 +15,7 @@ interface CountryFlagProps
   size?: number;
 }
 
-export function CountryFlag({
-  zoneId,
-  size = DEFAULT_FLAG_SIZE,
-  ...props
-}: CountryFlagProps) {
+export function CountryFlag({ zoneId, size = DEFAULT_FLAG_SIZE }: CountryFlagProps) {
   const countryName = getCountryName(zoneId) as keyof typeof flags;
   const FlagIcon = flags[countryName];
 
@@ -34,7 +30,6 @@ export function CountryFlag({
       style={{
         minWidth: size,
       }}
-      {...props}
     />
   );
 }
