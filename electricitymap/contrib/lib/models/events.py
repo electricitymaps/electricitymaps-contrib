@@ -23,6 +23,24 @@ class Mix(BaseModel, ABC):
         """
         self.__setattr__(mode, value)
 
+    def add_value(
+        self,
+        mode: str,
+        value: Optional[float],
+    ) -> None:
+        """
+        Adds the provided value to the existing value of the provided mode.
+        This is useful if there are multiple production modes in the source
+        that maps to the same Electricity Maps production mode.
+        """
+        existing_value = getattr(self, mode)
+        if existing_value is not None:
+            if value is None:
+                return
+            self.set_value(mode, existing_value + value)
+        else:
+            self.set_value(mode, value)
+
 
 class ProductionMix(Mix):
     """
@@ -128,14 +146,14 @@ class ProductionMix(Mix):
         If correct_negative_with_zero is set to True, negative values will be set to 0 instead of None.
         This method keeps track of modes that have been corrected.
         """
-        if value is None:
-            return
         existing_value = getattr(self, mode)
         if existing_value is not None:
+            if value is None:
+                return
             self.set_value(
                 mode,
                 existing_value + value,
-                correct_negative_with_zero=correct_negative_with_zero,
+                correct_negative_with_zero=True,
             )
         else:
             self.set_value(
