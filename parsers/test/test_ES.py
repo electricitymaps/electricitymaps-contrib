@@ -2,10 +2,11 @@ from datetime import datetime
 from unittest import TestCase, main
 
 from mock import patch
-from electricitymap.contrib.lib.types import ZoneKey
-from ree import Mallorca, ElHierro, Formentera, Response
+from pytz import utc
+from ree import ElHierro, Formentera, Mallorca, Response
 from requests import Session
 
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ES
 
 
@@ -39,9 +40,8 @@ class TestES(TestCase):
     # Production
     @patch.object(ElHierro, "get_all")
     def test_fetch_production_el_hierro(self, mocked_get_all):
-        date = datetime.utcfromtimestamp(1514629800)
         mocked_get_all.return_value = (
-            Response(date, 10.0, 1.5, 2.0, 0.5, 2.5, 2.5, 0.4, 5.0),
+            Response(1514629800, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
         )
         data_list = ES.fetch_production("ES-CN-HI", self.session)
         self.assertIsNot(data_list, [])
@@ -51,21 +51,24 @@ class TestES(TestCase):
             self.assertTrue(isinstance(data["datetime"], datetime))
             self.assertIsNotNone(data["production"])
             self.assertIsNotNone(data["storage"])
-            self.assertEqual(data["datetime"], date)
-            self.assertEqual(data["production"]["gas"], 0.0)
-            self.assertEqual(data["production"]["oil"], 8.5)
-            self.assertEqual(data["production"]["hydro"], 0.0)
-            self.assertEqual(data["production"]["solar"], 0.4)
-            self.assertEqual(data["production"]["wind"], 0.5)
-            self.assertEqual(data["storage"]["hydro"], -5.0)
+            self.assertEqual(
+                data["datetime"], datetime.utcfromtimestamp(1514629800).astimezone(utc)
+            )
+            self.assertEqual(data["production"]["gas"], 0)
+            self.assertEqual(data["production"]["oil"], 22)
+            self.assertEqual(data["production"]["hydro"], 0)
+            self.assertEqual(data["production"]["solar"], 3.5)
+            self.assertEqual(data["production"]["wind"], 13)
+            self.assertEqual(data["production"]["coal"], 5)
+            self.assertEqual(data["production"]["unknown"], 3)
+            self.assertEqual(data["storage"]["hydro"], -10)
 
     ### Formentera
     # Production
     @patch.object(Formentera, "get_all")
     def test_fetch_production_ES_IB_FO(self, mocked_get_all):
-        date = datetime.utcfromtimestamp(1514629800).datetime
         mocked_get_all.return_value = (
-            Response(date, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
+            Response(1514629800, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
         )
         data_list = ES.fetch_production("ES-IB-FO", self.session)
         self.assertIsNot(data_list, [])
@@ -74,15 +77,16 @@ class TestES(TestCase):
             self.assertEqual(data["source"], "demanda.ree.es")
             self.assertTrue(isinstance(data["datetime"], datetime))
             self.assertIsNot(data["production"], {})
-            self.assertIs(data["storage"], {})
-            self.assertEqual(data["datetime"], date)
+            self.assertEqual(
+                data["datetime"], datetime.utcfromtimestamp(1514629800).astimezone(utc)
+            )
             self.assertEqual(data["production"]["gas"], 8)
             self.assertEqual(data["production"]["oil"], 14)
             self.assertEqual(data["production"]["hydro"], 10)
             self.assertEqual(data["production"]["solar"], 3.5)
             self.assertEqual(data["production"]["wind"], 13)
             self.assertEqual(data["production"]["coal"], 5)
-            self.assertEqual(data["production"]["unknown"], 0.5)
+            self.assertEqual(data["production"]["unknown"], 3)
 
     # Exchange
     @patch.object(Formentera, "get_all")
