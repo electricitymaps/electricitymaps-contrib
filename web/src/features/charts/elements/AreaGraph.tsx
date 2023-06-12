@@ -263,6 +263,7 @@ function AreaGraph({
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
+        endTime={endTime}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
         selectedLayerIndex={selectedLayerIndex}
