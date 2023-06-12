@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 import arrow
 import pytz
@@ -25,7 +25,7 @@ def fetch_exchange(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict]:
+) -> List[Dict[str, Any]]:
     """collects average daily exchanges for ERLC"""
     if target_datetime is None:
         # 1 day delay observed
