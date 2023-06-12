@@ -1,8 +1,7 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from unittest import TestCase, main
 
 from mock import patch
-from pytz import utc
 from ree import ElHierro, Formentera, Mallorca, Response
 from requests import Session
 
@@ -14,11 +13,11 @@ class TestES(TestCase):
     def setUp(self):
         self.session = Session()
 
-        first_request = Response(1504603773)
+        first_request = Response(15046037)
         first_request.link["pe_ma"] = 50
         first_request.link["ib_fo"] = 10
 
-        second_request = Response(1504603842)
+        second_request = Response(15046038)
         second_request.link["pe_ma"] = 50
         second_request.link["ib_fo"] = 10
 
@@ -35,13 +34,17 @@ class TestES(TestCase):
             self.assertEqual(data["zoneKey"], "ES-CN-HI")
             self.assertEqual(data["source"], "demanda.ree.es")
             self.assertTrue(isinstance(data["datetime"], datetime))
+            self.assertEqual(
+                data["datetime"],
+                datetime.utcfromtimestamp(15046037).astimezone(timezone.utc),
+            )
             self.assertIsNotNone(data["consumption"])
 
     # Production
     @patch.object(ElHierro, "get_all")
     def test_fetch_production_el_hierro(self, mocked_get_all):
         mocked_get_all.return_value = (
-            Response(1514629800, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
+            Response(15146298, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
         )
         data_list = ES.fetch_production("ES-CN-HI", self.session)
         self.assertIsNot(data_list, [])
@@ -52,7 +55,8 @@ class TestES(TestCase):
             self.assertIsNotNone(data["production"])
             self.assertIsNotNone(data["storage"])
             self.assertEqual(
-                data["datetime"], datetime.utcfromtimestamp(1514629800).astimezone(utc)
+                data["datetime"],
+                datetime.utcfromtimestamp(15146298).astimezone(timezone.utc),
             )
             self.assertEqual(data["production"]["gas"], 0)
             self.assertEqual(data["production"]["oil"], 22)
@@ -68,7 +72,7 @@ class TestES(TestCase):
     @patch.object(Formentera, "get_all")
     def test_fetch_production_ES_IB_FO(self, mocked_get_all):
         mocked_get_all.return_value = (
-            Response(1514629800, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
+            Response(15146298, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
         )
         data_list = ES.fetch_production("ES-IB-FO", self.session)
         self.assertIsNot(data_list, [])
@@ -78,7 +82,8 @@ class TestES(TestCase):
             self.assertTrue(isinstance(data["datetime"], datetime))
             self.assertIsNot(data["production"], {})
             self.assertEqual(
-                data["datetime"], datetime.utcfromtimestamp(1514629800).astimezone(utc)
+                data["datetime"],
+                datetime.utcfromtimestamp(15146298).astimezone(timezone.utc),
             )
             self.assertEqual(data["production"]["gas"], 8)
             self.assertEqual(data["production"]["oil"], 14)
@@ -100,6 +105,10 @@ class TestES(TestCase):
             self.assertIsNotNone(data["netFlow"])
             self.assertEqual(data["netFlow"], -10.0)
             self.assertTrue(isinstance(data["datetime"], datetime))
+            self.assertEqual(
+                data["datetime"],
+                datetime.utcfromtimestamp(15046037).astimezone(timezone.utc),
+            )
 
     ### Mallorca
     # Exchange
@@ -114,6 +123,10 @@ class TestES(TestCase):
             self.assertIsNotNone(data["netFlow"])
             self.assertEqual(data["netFlow"], 50.0)
             self.assertTrue(isinstance(data["datetime"], datetime))
+            self.assertEqual(
+                data["datetime"],
+                datetime.utcfromtimestamp(15046037).astimezone(timezone.utc),
+            )
 
 
 if __name__ == "__main__":

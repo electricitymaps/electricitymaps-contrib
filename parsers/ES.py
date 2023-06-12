@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from inspect import getmembers
 from logging import Logger, getLogger
 from typing import Callable, Dict, List, Optional
-
-from pytz import utc
 
 # package "ree" is used to parse data from www.ree.es
 # maintained on github by @hectorespert at https://github.com/hectorespert/ree
@@ -161,7 +159,9 @@ def fetch_consumption(
     for event in island_data:
         consumption.append(
             zoneKey=zone_key,
-            datetime=datetime.utcfromtimestamp(event.timestamp),
+            datetime=datetime.utcfromtimestamp(event.timestamp).astimezone(
+                timezone.utc
+            ),
             consumption=event.demand,
             source="demanda.ree.es",
         )
@@ -214,7 +214,9 @@ def fetch_production(
 
         productionEventList.append(
             zoneKey=zone_key,
-            datetime=datetime.utcfromtimestamp(event.timestamp).astimezone(utc),
+            datetime=datetime.utcfromtimestamp(event.timestamp).astimezone(
+                timezone.utc
+            ),
             production=production,
             storage=storage,
             source="demanda.ree.es",
@@ -261,7 +263,9 @@ def fetch_exchange(
 
         exchangeList.append(
             zoneKey=sorted_zone_keys,
-            datetime=datetime.utcfromtimestamp(response.timestamp).astimezone(utc),
+            datetime=datetime.utcfromtimestamp(response.timestamp).astimezone(
+                timezone.utc
+            ),
             netFlow=net_flow,
             source="demanda.ree.es",
         )
