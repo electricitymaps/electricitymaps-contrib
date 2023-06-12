@@ -48,7 +48,7 @@ def fetch_exchange(
     imports = sum(float(item["ImportMW"]) for item in zone_data)
     exports = sum(float(item["ExportMW"]) for item in zone_data)  # always negative
     exchanges.append(
-        sorted_zone_keys=sorted_zone_keys,
+        zoneKey=sorted_zone_keys,
         datetime=target_datetime.replace(tzinfo=IN_EA_TZ),
         netFlow=imports + exports,
         source="erldc.in",
