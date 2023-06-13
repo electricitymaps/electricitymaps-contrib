@@ -244,7 +244,8 @@ def fetch_exchange(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    check_valid_parameters(sorted_zone_keys, session, target_datetime, logger)
     check_valid_parameters(ZoneKey(sorted_zone_keys), session, target_datetime, logger)
 
     if isinstance(target_datetime, datetime):
