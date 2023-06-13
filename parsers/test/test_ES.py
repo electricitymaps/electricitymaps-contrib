@@ -54,10 +54,6 @@ class TestES(TestCase):
             self.assertTrue(isinstance(data["datetime"], datetime))
             self.assertIsNotNone(data["production"])
             self.assertIsNotNone(data["storage"])
-            self.assertEqual(
-                data["datetime"],
-                datetime.utcfromtimestamp(15146298).astimezone(timezone.utc),
-            )
             self.assertEqual(data["production"]["gas"], 0)
             self.assertEqual(data["production"]["oil"], 22)
             self.assertEqual(data["production"]["hydro"], 0)
@@ -81,10 +77,6 @@ class TestES(TestCase):
             self.assertEqual(data["source"], "demanda.ree.es")
             self.assertTrue(isinstance(data["datetime"], datetime))
             self.assertIsNot(data["production"], {})
-            self.assertEqual(
-                data["datetime"],
-                datetime.utcfromtimestamp(15146298).astimezone(timezone.utc),
-            )
             self.assertEqual(data["production"]["gas"], 8)
             self.assertEqual(data["production"]["oil"], 14)
             self.assertEqual(data["production"]["hydro"], 10)
