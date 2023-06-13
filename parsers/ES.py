@@ -86,16 +86,14 @@ def check_valid_parameters(
     logger: Logger,
 ):
     """Raise an exception if the parameters are not valid for this parser."""
-    if "->" in zone_key:
-        if zone_key not in EXCHANGE_FUNCTION_MAP.keys():
+    if "->" in zone_key and zone_key not in EXCHANGE_FUNCTION_MAP.keys():
             zone_key1, zone_key2 = zone_key.split("->")
             raise ParserException(
                 "ES.py",
                 f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
                 zone_key,
             )
-    else:
-        if zone_key not in ZONE_FUNCTION_MAP.keys():
+    if zone_key not in ZONE_FUNCTION_MAP.keys():
             raise ParserException(
                 "ES.py",
                 f"This parser cannot parse data for zone: {zone_key}",
