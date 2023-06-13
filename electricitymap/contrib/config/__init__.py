@@ -17,7 +17,8 @@ from electricitymap.contrib.config.zones import (
     zone_bounding_boxes,
     zone_parents,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey, TimeZone
+
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
@@ -40,6 +41,12 @@ ZONE_BOUNDING_BOXES: Dict[ZoneKey, BoundingBox] = zone_bounding_boxes(ZONES_CONF
 
 # Make a mapping from subzone to the parent zone (full zone).
 ZONE_PARENT: Dict[ZoneKey, ZoneKey] = zone_parents(ZONES_CONFIG)
+
+# Prepare zone time zone
+ZONE_TIME_ZONE: Dict[ZoneKey, TimeZone] = {}
+for zone_id, zone_config in ZONES_CONFIG.items():
+    if "timezone" in zone_config:
+        ZONE_TIME_ZONE[zone_id] = zone_config["timezone"]
 
 # Zone neighbours are zones that are connected by exchanges.
 ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_zone_neighbours(
