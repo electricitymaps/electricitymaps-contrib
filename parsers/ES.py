@@ -87,21 +87,19 @@ def check_valid_parameters(
     logger: Logger,
 ):
     """Raise an exception if the parameters are not valid for this parser."""
-    if "->" in zone_key:
-        if zone_key not in EXCHANGE_FUNCTION_MAP.keys():
-            zone_key1, zone_key2 = zone_key.split("->")
-            raise ParserException(
-                "ES.py",
-                f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
-                zone_key,
-            )
-    else:
-        if zone_key not in ZONE_FUNCTION_MAP.keys():
-            raise ParserException(
-                "ES.py",
-                f"This parser cannot parse data for zone: {zone_key}",
-                zone_key,
-            )
+    if "->" not in zone_key and zone_key not in ZONE_FUNCTION_MAP.keys():
+        raise ParserException(
+            "ES.py",
+            f"Invalid logger: {logger}",
+            zone_key,
+        )
+    elif "->" in zone_key and zone_key not in EXCHANGE_FUNCTION_MAP.keys():
+        zone_key1, zone_key2 = zone_key.split("->")
+        raise ParserException(
+            "ES.py",
+            f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
+            zone_key,
+        )
     if session is not None and not isinstance(session, Session):
         raise ParserException(
             "ES.py",
@@ -231,10 +229,8 @@ def fetch_exchange(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-    check_valid_parameters(
-        ZoneKey(sorted_zone_keys), session, target_datetime, logger
-    )
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    check_valid_parameters(sorted_zone_keys, session, target_datetime, logger)
 
     if isinstance(target_datetime, datetime):
         date = target_datetime.strftime("%Y-%m-%d")
