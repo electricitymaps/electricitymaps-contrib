@@ -167,10 +167,10 @@ def fetch_consumption(
     for state in STATES_MAPPING[zone_key]:
         # By default the request headers are set to accept gzip.
         # If this header is set, the proxy will not decompress the content, therefore we set it to an empty string.
-        resp: Response = session.get(DEMAND_URL.format(proxy=INDIA_PROXY, state=state), headers={
-            "User-Agent": "Mozilla/5.0",
-            "Accept-Encoding": ""
-        })
+        resp: Response = session.get(
+            DEMAND_URL.format(proxy=INDIA_PROXY, state=state),
+            headers={"User-Agent": "Mozilla/5.0", "Accept-Encoding": ""},
+        )
 
         soup = BeautifulSoup(resp.content, "html.parser")
         try:
