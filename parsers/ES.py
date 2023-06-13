@@ -90,7 +90,7 @@ def check_valid_parameters(
     if "->" not in zone_key and zone_key not in ZONE_FUNCTION_MAP.keys():
         raise ParserException(
             "ES.py",
-            f"Invalid logger: {logger}",
+            f"This parser cannot parse data for zone: {zone_key}",
             zone_key,
         )
     elif "->" in zone_key and zone_key not in EXCHANGE_FUNCTION_MAP.keys():
