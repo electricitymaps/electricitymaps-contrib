@@ -32,7 +32,7 @@ GENERATION_MAPPING = {
     "NUCLEAR GENERATION": "nuclear",
     "RENEWABLE GENERATION": "unknown",
 }
-
+INDIA_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
 
 NPP_MODE_MAPPING = {
@@ -58,7 +58,7 @@ CEA_REGION_MAPPING = {
     "उत्तर-पूर्वी क्षेत्र  / North-Eastern Region": "IN-NE",
 }
 
-DEMAND_URL = "https://vidyutpravah.in/state-data/{state}"
+DEMAND_URL = "{proxy}/state-data/{state}?host=https://vidyutpravah.in"
 STATES_MAPPING = {
     "IN-NO": [
         "delhi",
@@ -165,8 +165,14 @@ def fetch_consumption(
 
     total_consumption = 0
     for state in STATES_MAPPING[zone_key]:
-        r: Response = session.get(DEMAND_URL.format(state=state))
-        soup = BeautifulSoup(r.content, "html.parser")
+        # By default the request headers are set to accept gzip.
+        # If this header is set, the proxy will not decompress the content, therefore we set it to an empty string.
+        resp: Response = session.get(DEMAND_URL.format(proxy=INDIA_PROXY, state=state), headers={
+            "User-Agent": "Mozilla/5.0",
+            "Accept-Encoding": ""
+        })
+
+        soup = BeautifulSoup(resp.content, "html.parser")
         try:
             state_consumption = int(
                 soup.find(
