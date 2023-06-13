@@ -85,11 +85,9 @@ def check_valid_parameters(
     session: Optional[Session],
     target_datetime: Optional[datetime],
     logger: Logger,
-    exchange: bool = False,
 ):
     """Raise an exception if the parameters are not valid for this parser."""
-    if exchange:
-        print(zone_key)
+    if "->" in zone_key:
         if zone_key not in EXCHANGE_FUNCTION_MAP.keys():
             zone_key1, zone_key2 = zone_key.split("->")
             raise ParserException(
@@ -235,7 +233,7 @@ def fetch_exchange(
 ) -> List[dict]:
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
     check_valid_parameters(
-        ZoneKey(sorted_zone_keys), session, target_datetime, logger, exchange=True
+        ZoneKey(sorted_zone_keys), session, target_datetime, logger
     )
 
     if isinstance(target_datetime, datetime):
