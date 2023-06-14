@@ -4,6 +4,8 @@ on:
     branches:
       - master
   pull_request:
+  schedule:
+    - cron: '0 7 * * 1'
 
 jobs:
   # This job is used to determine what files have changed and is used by later jobs to determine if they should run.
