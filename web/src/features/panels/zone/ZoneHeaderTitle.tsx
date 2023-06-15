@@ -48,11 +48,8 @@ export default function ZoneHeaderTitle({
                 tooltipContent={title.length > 20 ? title : undefined}
                 side="bottom"
               >
-                <div className="ml-2 flex w-full flex-row justify-between overflow-hidden">
-                  <h2
-                    className="w-full truncate text-lg font-medium"
-                    data-test-id="zone-name"
-                  >
+                <div className="ml-2 flex w-full flex-row overflow-hidden">
+                  <h2 className="truncate text-lg font-medium" data-test-id="zone-name">
                     {title}
                   </h2>
                   {isSubZone && (
