@@ -19,19 +19,20 @@ import { ZoneDataStatus, getHasSubZones, getZoneDataStatus } from './util';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
+  if (!zoneId) {
+    return <Navigate to="/" replace />;
+  }
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [viewMode, setViewMode] = useAtom(spatialAggregateAtom);
   const isZoneView = viewMode === SpatialAggregate.ZONE;
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
-  const { data, isError, isLoading } = useGetZone({
-    enabled: Boolean(zoneId),
-  });
+  const { data, isError, isLoading } = useGetZone();
 
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
-  if (!zoneId || Array.isArray(data)) {
+  if (Array.isArray(data)) {
     return <Navigate to="/" replace />;
   }
 
