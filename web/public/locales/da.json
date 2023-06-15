@@ -78,7 +78,7 @@
     "hideWindLayer": "Skjul vind",
     "showSolarLayer": "Vis sol",
     "hideSolarLayer": "Skjul sol",
-    "toggleDarkMode": "Slå dark-mode til/fra",
+    "changeTheme": "Skift tema",
     "noParserInfo": "Ingen data tilgængeligt",
     "temporaryDataOutage": "Realtidsdata er midlertidigt utilgængeligt",
     "production": "produktion",
@@ -90,6 +90,11 @@
     "representing": "forårsager",
     "ofemissions": "af CO₂-udledninger",
     "price": "Pris"
+  },
+  "themeOptions": {
+    "dark": "Mørk",
+    "light": "Lys",
+    "system": "System"
   },
   "misc": {
     "maintitle": "Realtids-CO₂-udledning fra elforbruget",

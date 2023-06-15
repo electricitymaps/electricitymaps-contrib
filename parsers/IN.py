@@ -5,20 +5,26 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
 import arrow
 import numpy as np
 import pandas as pd
-import pytz
 from bs4 import BeautifulSoup
+from pytz import UTC
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
-from parsers.lib.validation import validate_consumption
 
-IN_NO_TZ = pytz.timezone("Asia/Kolkata")
-CONVERSION_MWH_MW = 0.024
+IN_TZ = "Asia/Kolkata"
+START_DATE_RENEWABLE_DATA = arrow.get("2020-12-17", tzinfo=IN_TZ).datetime
+CONVERSION_GWH_MW = 0.024
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
     "GAS GENERATION": "gas",
@@ -26,7 +32,7 @@ GENERATION_MAPPING = {
     "NUCLEAR GENERATION": "nuclear",
     "RENEWABLE GENERATION": "unknown",
 }
-
+INDIA_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
 
 NPP_MODE_MAPPING = {
@@ -40,7 +46,7 @@ NPP_REGION_MAPPING = {
     "NORTHERN": "IN-NO",
     "EASTERN": "IN-EA",
     "WESTERN": "IN-WE",
-    "SOUTERN": "IN-SO",
+    "SOUTHERN": "IN-SO",
     "NORTH EASTERN": "IN-NE",
 }
 
@@ -52,40 +58,7 @@ CEA_REGION_MAPPING = {
     "उत्तर-पूर्वी क्षेत्र  / North-Eastern Region": "IN-NE",
 }
 
-DEMAND_URL = "https://vidyutpravah.in/state-data/{state}"
-STATES_MAPPING = {
-    "IN-NO": [
-        "delhi",
-        "haryana",
-        "himachal-pradesh",
-        "jammu-kashmir",
-        "punjab",
-        "rajasthan",
-        "uttar-pradesh",
-        "uttarakhand",
-    ],
-    "IN-WE": ["gujarat", "madya-pradesh", "maharashtra", "goa", "chhattisgarh"],
-    "IN-EA": ["bihar", "west-bengal", "odisha", "sikkim"],
-    "IN-NE": [
-        "arunachal-pradesh",
-        "assam",
-        "meghalaya",
-        "tripura",
-        "mizoram",
-        "nagaland",
-        "manipur",
-    ],
-    "IN-SO": [
-        "karnataka",
-        "kerala",
-        "tamil-nadu",
-        "andhra-pradesh",
-        "telangana",
-        "puducherry",
-    ],
-}
-
-DEMAND_URL = "https://vidyutpravah.in/state-data/{state}"
+DEMAND_URL = "{proxy}/state-data/{state}?host=https://vidyutpravah.in"
 STATES_MAPPING = {
     "IN-NO": [
         "delhi",
@@ -119,7 +92,7 @@ STATES_MAPPING = {
 }
 
 
-def get_data(session: Optional[Session]):
+def get_data(session: Optional[Session]) -> Dict[str, Any]:
     """
     Requests html then extracts generation data.
     Returns a dictionary.
@@ -149,7 +122,7 @@ def fetch_live_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> Dict[str, Any]:
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
@@ -170,7 +143,7 @@ def fetch_live_production(
 
     data = {
         "zoneKey": zone_key,
-        "datetime": arrow.now("Asia/Kolkata").datetime,
+        "datetime": IN_TZ.localize(datetime.now()),
         "production": mapped_production,
         "storage": {},
         "source": "meritindia.in",
@@ -184,7 +157,7 @@ def fetch_consumption(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> Dict[str, Any]:
     """Fetches live consumption from government dashboard. Consumption is available per state and is then aggregated at regional level.
     Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep"""
     if target_datetime is not None:
@@ -192,8 +165,14 @@ def fetch_consumption(
 
     total_consumption = 0
     for state in STATES_MAPPING[zone_key]:
-        r: Response = session.get(DEMAND_URL.format(state=state))
-        soup = BeautifulSoup(r.content, "html.parser")
+        # By default the request headers are set to accept gzip.
+        # If this header is set, the proxy will not decompress the content, therefore we set it to an empty string.
+        resp: Response = session.get(
+            DEMAND_URL.format(proxy=INDIA_PROXY, state=state),
+            headers={"User-Agent": "Mozilla/5.0", "Accept-Encoding": ""},
+        )
+
+        soup = BeautifulSoup(resp.content, "html.parser")
         try:
             state_consumption = int(
                 soup.find(
@@ -210,19 +189,21 @@ def fetch_consumption(
             )
         total_consumption += state_consumption
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": datetime.now(tz=IN_NO_TZ),
-        "consumption": total_consumption,
-        "source": "vidyupravah.in",
-    }
-    data = validate_consumption(data, logger)
-    if data is None:
+    if total_consumption == 0:
         raise ParserException(
             parser="IN.py",
             message=f"{target_datetime}: No valid consumption data found for {zone_key}",
         )
-    return data
+
+    consumption_list = TotalConsumptionList(logger=logger)
+    consumption_list.append(
+        zoneKey=ZoneKey(zone_key),
+        datetime=arrow.now(tz=IN_TZ).datetime,
+        consumption=total_consumption,
+        source="vidyupravah.in",
+    )
+
+    return consumption_list.to_list()
 
 
 def fetch_npp_production(
@@ -230,7 +211,7 @@ def fetch_npp_production(
     target_datetime: datetime,
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> Dict[str, Any]:
     """Gets production for conventional thermal, nuclear and hydro from NPP daily reports
     This data most likely doesn't inlcude distributed generation"""
     npp_url = "https://npp.gov.in/public-reports/cea/daily/dgr/{date:%d-%m-%Y}/dgr2-{date:%Y-%m-%d}.xls".format(
@@ -246,28 +227,23 @@ def fetch_npp_production(
                 "TODAY'S\nACTUAL\n": "value",
             }
         )
-        df_npp = df_npp[["power_station", "production_mode", "value"]]
-        df_npp = df_npp.iloc[1:].copy()
-        df_npp["production_mode"] = df_npp["production_mode"].ffill()
-
         df_npp["region"] = (
             df_npp["power_station"]
             .apply(lambda x: NPP_REGION_MAPPING[x] if x in NPP_REGION_MAPPING else None)
             .ffill()
         )
-        df_zone = df_npp.loc[df_npp["region"] == zone_key].copy()
-        df_zone = df_zone.loc[~df_zone.power_station.isna()]
-        df_zone = df_zone[df_zone.power_station.str.contains("TYPE:")]
-        df_zone = df_zone[["production_mode", "value"]]
-        df_zone = df_zone.groupby(["production_mode"]).sum()
-        production = {}
-        for mode in df_zone.index:
-            production[NPP_MODE_MAPPING[mode]] = round(
-                df_zone.iloc[df_zone.index.get_indexer_for([mode])[0]].get("value")
-                / CONVERSION_MWH_MW,
-                3,
-            )
-        return production
+        df_npp = df_npp[["region", "production_mode", "value"]]
+
+        df_npp_filtered = df_npp.loc[~df_npp["production_mode"].isna()].copy()
+
+        df_zone = df_npp_filtered.loc[df_npp_filtered["region"] == zone_key].copy()
+        df_zone["production_mode"] = df_zone["production_mode"].map(NPP_MODE_MAPPING)
+        production_in_zone = df_zone.groupby(["production_mode"])["value"].sum()
+        production_dict = {
+            mode: round(production_in_zone.get(mode) / CONVERSION_GWH_MW, 3)
+            for mode in production_in_zone.index
+        }
+        return production_dict
     else:
         raise ParserException(
             parser="IN.py",
@@ -275,7 +251,7 @@ def fetch_npp_production(
         )
 
 
-def format_ren_production_data(url: str, zone_key: str) -> dict:
+def format_ren_production_data(url: str, zone_key: str) -> Dict[str, Any]:
     """Formats daily renewable production data for each zone"""
     df_ren = pd.read_excel(url, engine="openpyxl", header=5, skipfooter=2)
     df_ren = df_ren.dropna(axis=0, how="all")
@@ -298,7 +274,7 @@ def format_ren_production_data(url: str, zone_key: str) -> dict:
     ][["wind", "solar", "unknown"]].sum()
 
     renewable_production = {
-        key: round(zone_data.get(key) / CONVERSION_MWH_MW, 3) for key in zone_data.index
+        key: round(zone_data.get(key) / CONVERSION_GWH_MW, 3) for key in zone_data.index
     }
     return renewable_production
 
@@ -308,7 +284,7 @@ def fetch_cea_production(
     target_datetime: datetime,
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> Dict[str, Any]:
     """Gets production data for wind, solar and other renewables
     Other renewables includes a share of hydro, biomass and others and will categorized as unknown
     DISCLAIMER: this data is only available since 2020/12/17"""
@@ -349,37 +325,71 @@ def fetch_production(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[Dict[str, Any]]:
     if target_datetime is None:
-        target_datetime = arrow.now(tz=IN_NO_TZ).floor("day").datetime - timedelta(
-            days=2
-        )
-    elif target_datetime < datetime(2020, 12, 17).replace(tzinfo=IN_NO_TZ):
-        raise ParserException(
-            parser="IN.py",
-            message=f"{target_datetime}: {zone_key} renewable production data is not available before 2020/12/17, data is not collected prior to this data",
-        )
+        target_datetime = get_start_of_day(dt=UTC.localize(datetime.now()))
     else:
-        target_datetime = (
-            arrow.get(target_datetime).floor("day").datetime.replace(tzinfo=IN_NO_TZ)
+        target_datetime = get_start_of_day(dt=target_datetime)
+        if target_datetime < START_DATE_RENEWABLE_DATA:
+            raise ParserException(
+                parser="IN.py",
+                message=f"{target_datetime}: {zone_key} renewable production data is not available before 2020/12/17, data is not collected prior to this data",
+            )
+
+    all_data_points = []
+    days_lookback_to_try = list(range(1, 8))
+    for days_lookback in days_lookback_to_try:
+        _target_datetime = target_datetime - timedelta(days=days_lookback)
+        try:
+            renewable_production = fetch_cea_production(
+                zone_key=zone_key,
+                session=session,
+                target_datetime=_target_datetime,
+            )
+            conventional_production = fetch_npp_production(
+                zone_key=zone_key,
+                session=session,
+                target_datetime=_target_datetime,
+            )
+            production = {**conventional_production, **renewable_production}
+            all_data_points += daily_to_hourly_production_data(
+                target_datetime=_target_datetime,
+                production=production,
+                zone_key=zone_key,
+                logger=logger,
+            )
+        except:
+            logger.warning(
+                f"{zone_key}: production not available for {_target_datetime}"
+            )
+    return all_data_points
+
+
+def daily_to_hourly_production_data(
+    target_datetime: datetime, production: dict, zone_key: str, logger: Logger
+) -> List[Dict[str, Any]]:
+    """convert daily power production average to hourly values"""
+    all_hourly_production = ProductionBreakdownList(logger)
+    production_mix = ProductionMix()
+    for mode, value in production.items():
+        production_mix.set_value(mode, value)
+    for hour in list(range(0, 24)):
+        all_hourly_production.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=target_datetime.replace(hour=hour),
+            production=production_mix,
+            source="npp.gov.in, cea.nic.in",
         )
+    return all_hourly_production.to_list()
 
-    renewable_production = fetch_cea_production(
-        zone_key=zone_key, session=session, target_datetime=target_datetime
-    )
-    conventional_production = fetch_npp_production(
-        zone_key=zone_key, session=session, target_datetime=target_datetime
-    )
-    data_point = {
-        "zoneKey": zone_key,
-        "datetime": target_datetime,
-        "production": {**conventional_production, **renewable_production},
-        "source": "npp.gov.in, cea.nic.in",
-    }
 
-    return data_point
+def get_start_of_day(dt: datetime) -> datetime:
+    dt_localised = arrow.get(dt).to(IN_TZ).datetime
+    dt_start = dt_localised.replace(hour=0, minute=0, second=0, microsecond=0)
+    return dt_start
 
 
 if __name__ == "__main__":
-    print("fetch_production() -> ")
-    print(fetch_production(zone_key="IN-NO"))
+
+    print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
+    print(fetch_consumption(zone_key="IN-WE"))

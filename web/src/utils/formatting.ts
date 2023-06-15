@@ -73,16 +73,26 @@ const formatDate = function (date: Date, lang: string, time: string) {
         timeStyle: 'short',
       }).format(date);
     }
+    // Instantiate below DateTimeFormat objects using UTC to avoid displaying
+    // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        dateStyle: 'long',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.MONTHLY: {
-      return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(
-        date
-      );
+      return new Intl.DateTimeFormat(lang, {
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     default: {
       console.error(`${time} is not implemented`);
@@ -135,22 +145,38 @@ const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAv
 
   switch (timeAggregate) {
     case TimeAverages.HOURLY: {
-      return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        timeStyle: 'short',
+      }).format(date);
     }
+    // Instantiate below DateTimeFormat objects using UTC to avoid displaying
+    // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' }).format(
-        date
-      );
+      return new Intl.DateTimeFormat(lang, {
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.MONTHLY: {
       return lang === 'et'
-        ? new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' })
+        ? new Intl.DateTimeFormat(lang, {
+            month: 'short',
+            day: 'numeric',
+            timeZone: 'UTC',
+          })
             .formatToParts(date)
             .find((part) => part.type === 'month')?.value
-        : new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
+        : new Intl.DateTimeFormat(lang, {
+            month: 'short',
+            timeZone: 'UTC',
+          }).format(date);
     }
     case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     default: {
       console.error(`${timeAggregate} is not implemented`);

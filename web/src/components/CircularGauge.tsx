@@ -22,14 +22,14 @@ export function CircularGauge({
   const endAngle = PIE_START_ANGLE - percentageAsAngle;
 
   return (
-    <div className="flex flex-col items-center" data-test-id={testId}>
+    <div className="flex flex-col items-center">
       <TooltipWrapper
         side="right"
         tooltipContent={tooltipContent}
-        tooltipClassName="bg-white max-w-44"
+        tooltipClassName="max-w-44"
       >
         {/* Div required to ensure Tooltip is rendered in right place */}
-        <div>
+        <div data-test-id={testId}>
           <PieChart
             width={65}
             height={65}

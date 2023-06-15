@@ -36,7 +36,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
-      value: 422.8263312
+      value: 397.8527093
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
@@ -80,7 +80,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 542.8263312
+      value: 517.8527093
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022

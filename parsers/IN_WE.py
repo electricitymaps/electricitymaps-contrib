@@ -4,47 +4,23 @@
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
 import arrow
 import pandas as pd
-import pytz
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
-PRODUCTION_URL = f"{IN_WE_PROXY}/GeneratorSchedule_data.aspx/Get_GeneratorScheduleData_state_Wise?host=https://www.wrldc.in"
 EXCHANGE_URL = f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise?host=https://www.wrldc.in"
 CONSUMPTION_URL = f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData_state_Wise?host=https://www.wrldc.in"
-
-POWER_PLANT_MAPPING = {
-    "Korba I": "coal",
-    "Korba III": "coal",
-    "VSTPS-I": "coal",
-    "VSTPS-II": "coal",
-    "VSTPS-III": "coal",
-    "VSTPS-IV": "coal",
-    "VSTPS-V": "coal",
-    "Kawas": "gas",
-    "Gandhar": "gas",
-    "Kakrapar": "nuclear",
-    "Tarapur": "nuclear",
-    "SSP": "hydro",
-    "Sipat I": "coal",
-    "Sipat II": "coal",
-    "RGPPL": "gas",
-    "NSPCL": "coal",
-    "Mauda I": "coal",
-    "Mauda II": "coal",
-    "Sasan": "coal",
-    "CGPL": "coal",
-    "Solapur": "coal",
-    "Gadarwara": "coal",
-    "Lara": "coal",
-    "Khargone": "coal",
-}
 
 EXCHANGES_MAPPING = {
     "WR-SR": "IN-SO->IN-WE",
@@ -53,7 +29,6 @@ EXCHANGES_MAPPING = {
 }
 
 KIND_MAPPING = {
-    "production": {"url": PRODUCTION_URL, "datetime_column": "lastUpdate"},
     "exchange": {"url": EXCHANGE_URL, "datetime_column": "lastUpdate"},
     "consumption": {"url": CONSUMPTION_URL, "datetime_column": "current_datetime"},
 }
@@ -68,11 +43,9 @@ def get_date_range(dt: datetime):
 
 
 def fetch_data(
-    zone_key: str = "IN-WE",
     kind: Optional[str] = None,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
 ) -> dict:
     """- get production data from wrldc.in
     - filter all rows with same hour as target_datetime"""
@@ -103,11 +76,14 @@ def fetch_data(
     return data
 
 
-def format_raw_data(
+def filter_raw_data(
     kind: str,
     data: dict,
     target_datetime: datetime,
 ) -> pd.DataFrame:
+    """
+    Filters out correct datetimes (source data is 12 hour format)
+    """
     assert len(data) > 0
     assert kind != ""
 
@@ -119,106 +95,9 @@ def format_raw_data(
     return filtered_data
 
 
-def format_production_data(
-    data: dict, zone_key: str, target_datetime: datetime
-) -> dict:
-    """format production data:
-    - filters out correct datetimes (source data is 12 hour format)
-    - average all data points in the target_datetime hour
-    - map power plants
-    - sum production per mode"""
-    assert target_datetime is not None
-    assert len(data) > 0
-
-    filtered_data = format_raw_data(
-        kind="production", data=data, target_datetime=target_datetime
-    )
-    df_production = pd.DataFrame()
-    df_unique_dt = (
-        pd.DataFrame()
-    )  # for older datetimes datetimes are not the same in the AM and the PM which makes sorting harder
-
-    if len(filtered_data) == len(POWER_PLANT_MAPPING):
-        df_production = filtered_data.copy()
-    else:
-        for plant in set(filtered_data.State_Name):
-            df_plant = filtered_data.loc[filtered_data.State_Name == plant].copy()
-            for dt in set(df_plant.lastUpdate):
-                df_dt = df_plant.loc[df_plant.lastUpdate == dt]
-                if len(df_dt) > 1:
-                    if target_datetime.hour >= 12:
-                        df_production = pd.concat(
-                            [df_production, df_dt.loc[df_dt["Id"] == max(df_dt["Id"])]]
-                        )
-                    else:
-                        df_production = pd.concat(
-                            [df_production, df_dt.loc[df_dt["Id"] == min(df_dt["Id"])]]
-                        )
-                else:
-                    df_unique_dt = pd.concat([df_unique_dt, df_dt])
-
-            if not df_unique_dt.empty:
-                if target_datetime.hour >= 12:
-                    df_production = pd.concat(
-                        [
-                            df_production,
-                            df_unique_dt.loc[
-                                df_unique_dt.Id > df_plant["Id"].mean(numeric_only=True)
-                            ],
-                        ]
-                    )
-                else:
-                    df_production = pd.concat(
-                        [
-                            df_production,
-                            df_unique_dt.loc[
-                                df_unique_dt.Id
-                                <= df_plant["Id"].mean(numeric_only=True)
-                            ],
-                        ]
-                    )
-
-    df_production.loc[:, "target_datetime"] = target_datetime
-    df_production = (
-        df_production.groupby(["target_datetime", "State_Name"])["Actual"]
-        .mean(numeric_only=True)
-        .reset_index()
-    )  # get one hourly data point
-
-    df_production.loc[:, "production_mode"] = df_production["State_Name"].map(
-        POWER_PLANT_MAPPING
-    )
-    df_production["Actual"] = df_production.apply(
-        lambda x: 0
-        if (x["Actual"] < 0 and x["production_mode"] != "hydro")
-        else x["Actual"],
-        axis=1,
-    )
-    df_production = (
-        df_production.groupby(["target_datetime", "production_mode"])["Actual"]
-        .sum()
-        .reset_index()
-    )  # aggregate by production mode
-    production = {}
-    for mode in set(df_production.production_mode):
-        production[mode] = round(
-            df_production.loc[
-                df_production["production_mode"] == mode, "Actual"
-            ].values[0],
-            3,
-        )
-    production_data_point = {
-        "zoneKey": zone_key,
-        "datetime": target_datetime.replace(tzinfo=pytz.timezone("Asia/Kolkata")),
-        "production": production,
-        "source": "wrldc.in",
-    }
-    return production_data_point
-
-
 def format_exchanges_data(
     data: dict, zone_key1: str, zone_key2: str, target_datetime: datetime
-) -> dict:
+) -> float:
     """format exchanges data:
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour"""
@@ -226,13 +105,13 @@ def format_exchanges_data(
     assert len(data) > 0
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    filtered_data = format_raw_data(
+    filtered_data = filter_raw_data(
         kind="exchange", data=data, target_datetime=target_datetime
     )
 
     filtered_data["zone_key"] = filtered_data["Region_Name"].map(EXCHANGES_MAPPING)
     df_exchanges = filtered_data.loc[filtered_data["zone_key"] == sortedZoneKeys]
-    exchanges = {}
+
     if target_datetime.hour >= 12:
         df_exchanges = df_exchanges.drop_duplicates(
             subset=["Region_Name", "lastUpdate"], keep="last"
@@ -247,36 +126,25 @@ def format_exchanges_data(
         .mean(numeric_only=True)
         .reset_index()
     )
+    net_flow = -round(df_exchanges.iloc[0].get("Current_Loading", 0), 3)
 
-    exchanges = {
-        "netFlow": -round(df_exchanges.iloc[0]["Current_Loading"], 3),
-        "sortedZoneKeys": sortedZoneKeys,
-        "datetime": target_datetime.replace(tzinfo=pytz.timezone("Asia/Kolkata")),
-        "source": "wrldc.in",
-    }
-    return exchanges
+    return net_flow
 
 
 def format_consumption_data(
     data: dict, zone_key: str, target_datetime: datetime
-) -> dict:
+) -> float:
     """format consumption data:
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour"""
     assert target_datetime is not None
     assert len(data) > 0
 
-    filtered_data = format_raw_data(
+    filtered_data = filter_raw_data(
         kind="consumption",
         data=data,
         target_datetime=target_datetime,
     )
-
-    consumption = {
-        "zoneKey": zone_key,
-        "datetime": target_datetime.replace(tzinfo=pytz.timezone("Asia/Kolkata")),
-        "source": "wrldc.in",
-    }
 
     if target_datetime.hour >= 12:
         df_consumption = filtered_data.drop_duplicates(
@@ -293,38 +161,10 @@ def format_consumption_data(
         .reset_index()
     )
 
-    consumption["consumption"] = round(
-        df_consumption.groupby(["target_datetime"])["Act_Drawal"].sum().values[0], 3
+    consumption_value = round(
+        df_consumption.groupby(["target_datetime"])["Demand"].sum().values[0], 3
     )
-    return consumption
-
-
-@refetch_frequency(timedelta(days=1))
-def fetch_production(
-    zone_key: str = "IN-WE",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
-    data = fetch_data(
-        zone_key=zone_key,
-        kind="production",
-        session=session,
-        target_datetime=target_datetime,
-        logger=logger,
-    )
-
-    production = [
-        format_production_data(
-            zone_key=zone_key,
-            data=data,
-            target_datetime=dt,
-        )
-        for dt in get_date_range(target_datetime)
-    ]
-    return production
+    return consumption_value
 
 
 @refetch_frequency(timedelta(days=1))
@@ -334,52 +174,62 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[Dict[str, Any]]:
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
+
+    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     data = fetch_data(
-        zone_key=zone_key1,
         kind="exchange",
         session=session,
         target_datetime=target_datetime,
-        logger=logger,
     )
-    exchanges = [
-        format_exchanges_data(
+    exchange_list = ExchangeList(logger)
+    for dt in get_date_range(target_datetime):
+        net_flow = format_exchanges_data(
             zone_key1=zone_key1,
             zone_key2=zone_key2,
             data=data,
             target_datetime=dt,
         )
-        for dt in get_date_range(target_datetime)
-    ]
-    return exchanges
+        exchange_list.append(
+            zoneKey=ZoneKey(sortedZoneKeys),
+            datetime=arrow.get(dt).replace(tzinfo="Asia/Kolkata").datetime,
+            netFlow=net_flow,
+            source="wrldc.in",
+        )
+
+    return exchange_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "IN-WE",
+    zone_key: ZoneKey = ZoneKey("IN-WE"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[Dict[str, Any]]:
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
     data = fetch_data(
-        zone_key=zone_key,
         kind="consumption",
         session=session,
         target_datetime=target_datetime,
-        logger=logger,
     )
-
-    consumption = [
-        format_consumption_data(
-            zone_key=zone_key,
-            data=data,
-            target_datetime=dt,
+    consumption_list = TotalConsumptionList(logger)
+    for dt in get_date_range(target_datetime):
+        consumption_data_point = format_consumption_data(
+            zone_key=zone_key, data=data, target_datetime=dt
         )
-        for dt in get_date_range(target_datetime)
-    ]
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=arrow.get(dt).replace(tzinfo="Asia/Kolkata").datetime,
+            consumption=consumption_data_point,
+            source="wrldc.in",
+        )
+    return consumption_list.to_list()
 
-    return consumption
+
+if __name__ == "__main__":
+    print(fetch_exchange(zone_key1="IN-WE", zone_key2="IN-NO"))
+    print(fetch_consumption())

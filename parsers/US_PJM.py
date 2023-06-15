@@ -10,7 +10,6 @@ from typing import List, Optional, Union
 import arrow
 import demjson3 as demjson
 import pandas as pd
-import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
 from requests import Response, Session
@@ -151,33 +150,37 @@ def fetch_production(
     resp_data = fetch_api_data(kind="gen_by_fuel", params=params, session=session)
 
     data = pd.DataFrame(resp_data)
-    data.datetime_beginning_ept = pd.to_datetime(data.datetime_beginning_ept)
-    data = data.set_index("datetime_beginning_ept")
-    data.fuel_type = data.fuel_type.map(FUEL_MAPPING)
+    if not data.empty:
+        data["datetime_beginning_ept"] = pd.to_datetime(data["datetime_beginning_ept"])
+        data = data.set_index("datetime_beginning_ept")
+        data["fuel_type"] = data["fuel_type"].map(FUEL_MAPPING)
 
-    all_data_points = []
-    for dt in data.index.unique():
-        production = {}
-        storage = {}
-        data_dt = data.loc[data.index == dt]
-        for i in range(len(data_dt)):
-            row = data_dt.iloc[i]
-            if row["fuel_type"] == "battery":
-                storage["battery"] = row.get("mw")
-            else:
-                mode = row["fuel_type"]
-                production[mode] = row.get("mw")
-        data_point = {
-            "zoneKey": zone_key,
-            "datetime": arrow.get(dt).datetime.replace(
-                tzinfo=pytz.timezone("US/Eastern")
-            ),
-            "production": production,
-            "storage": storage,
-            "source": "pjm.com",
-        }
-        all_data_points += [data_point]
-    return all_data_points
+        all_data_points = []
+        for dt in data.index.unique():
+            production = {}
+            storage = {}
+            data_dt = data.loc[data.index == dt]
+            for i in range(len(data_dt)):
+                row = data_dt.iloc[i]
+                if row["fuel_type"] == "battery":
+                    storage["battery"] = row.get("mw")
+                else:
+                    mode = row["fuel_type"]
+                    production[mode] = row.get("mw")
+            data_point = {
+                "zoneKey": zone_key,
+                "datetime": arrow.get(dt).replace(tzinfo="US/Eastern").datetime,
+                "production": production,
+                "storage": storage,
+                "source": "pjm.com",
+            }
+            all_data_points += [data_point]
+        return all_data_points
+    else:
+        raise ParserException(
+            parser="US_PJM.py",
+            message=f"{target_datetime}: Production data is not available in the API",
+        )
 
 
 def add_default_tz(timestamp):

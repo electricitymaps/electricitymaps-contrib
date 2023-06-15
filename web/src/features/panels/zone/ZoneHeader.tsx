@@ -3,8 +3,10 @@ import { CircularGauge } from 'components/CircularGauge';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { Mode } from 'utils/constants';
-import { productionConsumptionAtom } from 'utils/state/atoms';
+import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
+import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
+import { ZoneDetails } from 'types';
 
 function LowCarbonTooltip() {
   const { __ } = useTranslation();
@@ -20,34 +22,43 @@ function LowCarbonTooltip() {
 
 interface ZoneHeaderProps {
   zoneId: string;
-  isEstimated?: boolean;
+  data: ZoneDetails | undefined;
   isAggregated?: boolean;
-  co2intensity?: number;
-  renewableRatio?: number;
-  fossilFuelRatio?: number;
-  co2intensityProduction?: number;
-  renewableRatioProduction?: number;
-  fossilFuelRatioProduction?: number;
 }
 
-export function ZoneHeader({
-  zoneId,
-  isEstimated,
-  isAggregated,
-  co2intensity,
-  renewableRatio,
-  fossilFuelRatio,
-  co2intensityProduction,
-  renewableRatioProduction,
-  fossilFuelRatioProduction,
-}: ZoneHeaderProps) {
+export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
   const { __ } = useTranslation();
   const [currentMode] = useAtom(productionConsumptionAtom);
+  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
-  const intensity = isConsumption ? co2intensity : co2intensityProduction;
-  const renewable = isConsumption ? renewableRatio : renewableRatioProduction;
-  const fossilFuel =
-    (isConsumption ? fossilFuelRatio : fossilFuelRatioProduction) ?? null;
+  const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
+
+  const {
+    co2intensity,
+    renewableRatio,
+    fossilFuelRatio,
+    co2intensityProduction,
+    renewableRatioProduction,
+    fossilFuelRatioProduction,
+    estimationMethod,
+  } = selectedData || {};
+
+  const intensity = getCarbonIntensity(
+    isConsumption,
+    co2intensity,
+    co2intensityProduction
+  );
+  const renewable = getRenewableRatio(
+    isConsumption,
+    renewableRatio,
+    renewableRatioProduction
+  );
+  const fossilFuelPercentage = getFossilFuelRatio(
+    isConsumption,
+    fossilFuelRatio,
+    fossilFuelRatioProduction
+  );
+  const isEstimated = estimationMethod !== undefined;
 
   return (
     <div className="mt-1 grid w-full gap-y-5 sm:pr-4">
@@ -57,16 +68,20 @@ export function ZoneHeader({
         isAggregated={isAggregated}
       />
       <div className="flex flex-row justify-evenly">
-        <CarbonIntensitySquare intensity={intensity ?? Number.NaN} withSubtext />
+        <CarbonIntensitySquare
+          data-test-id="co2-square-value"
+          intensity={intensity}
+          withSubtext
+        />
         <CircularGauge
           name={__('country-panel.lowcarbon')}
-          ratio={fossilFuel ? 1 - fossilFuel : Number.NaN}
+          ratio={fossilFuelPercentage}
           tooltipContent={<LowCarbonTooltip />}
           testId="zone-header-lowcarbon-gauge"
         />
         <CircularGauge
           name={__('country-panel.renewable')}
-          ratio={renewable ?? Number.NaN}
+          ratio={renewable}
           testId="zone-header-renewable-gauge"
         />
       </div>

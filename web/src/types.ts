@@ -114,6 +114,7 @@ export interface ZoneDetail extends ZoneOverview {
   price?: {
     value: number;
     currency: string;
+    disabledReason?: string;
   };
   production: { [key in GenerationType]: Maybe<number> };
   productionCo2Intensities: { [key in GenerationType]: number };
@@ -144,17 +145,24 @@ export interface ZoneDetails {
   };
 }
 
+export interface GeometryProperties {
+  center: [number, number];
+  color: string;
+  countryKey: string;
+  countryName: string;
+  isAggregatedView: boolean;
+  isHighestGranularity: boolean;
+  zoneId: string;
+  zoneName: string;
+}
+
 export interface MapGeometries extends FeatureCollection<Geometry> {
   features: Array<MapGeometry>;
 }
 export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   geometry: MultiPolygon | Polygon;
   Id?: number;
-  properties: {
-    zoneId: string;
-    color: string;
-    center: [number, number];
-  };
+  properties: GeometryProperties;
 }
 
 export interface MapTheme {

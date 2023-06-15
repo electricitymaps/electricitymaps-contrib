@@ -13,6 +13,7 @@ export enum ToggleOptions {
 export enum ThemeOptions {
   LIGHT = 'light',
   DARK = 'dark',
+  SYSTEM = 'system',
 }
 
 export enum Mode {
@@ -23,6 +24,11 @@ export enum Mode {
 export enum SpatialAggregate {
   COUNTRY = 'country',
   ZONE = 'zone',
+}
+
+export enum LeftPanelToggleOptions {
+  ELECTRICITY = 'electricity',
+  EMISSIONS = 'emissions',
 }
 
 // Production/imports-exports mode

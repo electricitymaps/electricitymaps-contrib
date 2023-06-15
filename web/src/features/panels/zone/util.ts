@@ -10,6 +10,19 @@ type zoneConfigItem = {
   parsers?: any;
   flag_file_name?: string;
   estimation_method?: string;
+  subZoneNames?: string[];
+};
+
+export const getHasSubZones = (zoneId?: string) => {
+  if (!zoneId) {
+    return null;
+  }
+
+  const config = zonesConfig[zoneId];
+  if (!config || !config.subZoneNames) {
+    return false;
+  }
+  return config.subZoneNames.length > 0;
 };
 
 export enum ZoneDataStatus {
@@ -24,11 +37,6 @@ export const getZoneDataStatus = (
   zoneId: string,
   zoneDetails: ZoneDetails | undefined
 ) => {
-  // Temporary overwrite for IN-NO
-  if (zoneId === 'IN-NO') {
-    return ZoneDataStatus.NO_INFORMATION;
-  }
-
   // If there is no zoneDetails, we do not make any assumptions and return unknown
   if (!zoneDetails) {
     return ZoneDataStatus.UNKNOWN;

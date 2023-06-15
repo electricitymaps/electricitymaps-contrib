@@ -39,11 +39,20 @@ function HandleLegacyRoutes() {
 }
 
 function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
+  const [searchParameters] = useSearchParams();
   const { zoneId } = useParams();
 
   if (!zoneId) {
     return <Navigate to="/" replace />;
   }
+
+  // Handle legacy Australia zone names
+  if (zoneId.startsWith('AUS')) {
+    return (
+      <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
+    );
+  }
+
   return children;
 }
 
@@ -82,6 +91,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
 
   return (
     <aside
+      data-test-id="left-panel"
       className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-800 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
         location.pathname === '/map' ? 'hidden' : ''
       } ${!isOpen ? '-translate-x-full' : ''}`}

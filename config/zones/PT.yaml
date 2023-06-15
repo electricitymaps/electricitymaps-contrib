@@ -12,12 +12,14 @@ capacity:
   hydro storage: 3585
   nuclear: 0
   oil: 0
-  solar: 1891
+  solar: 1986
   wind: 5374
+  unknown: 28
 contributors:
   - corradio
   - nessie2013
   - Musketeiro
+  - RGarrido03
 emissionFactors:
   direct:
     battery discharge:

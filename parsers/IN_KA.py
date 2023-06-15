@@ -134,7 +134,7 @@ def fetch_production(
     )
 
     # Check ncep date is similar than state gen date
-    if abs((india_date_time - ncep_date_time).seconds) > 600:
+    if abs((india_date_time - ncep_date_time).total_seconds()) > 600:
         raise ParserException("IN-KA", "NCEP or State datetime is not valid")
 
     # cogen type is sugarcane bagasee. Proof in Issue #1867
@@ -149,7 +149,7 @@ def fetch_production(
 
     wind_value = IN.read_value_from_span_id(ncep_html, "lbl_tw")
 
-    solar_value = IN.read_value_from_span_id(ncep_html, "lbl_ts")
+    solar_value = IN.read_value_from_span_id(ncep_html, "lbl_kar_slr")
 
     # Hydro production
     hydro_value = (

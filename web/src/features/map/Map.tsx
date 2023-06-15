@@ -18,6 +18,7 @@ import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
+import { getApproximateFeature } from './map-utils/getApproximateFeature';
 import {
   hoveredZoneAtom,
   loadingMapAtom,
@@ -48,6 +49,8 @@ export default function MapPage(): ReactElement {
   const [currentMode] = useAtom(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
+  const [isDragging, setIsDragging] = useState(false);
+  const [isZooming, setIsZooming] = useState(false);
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -170,9 +173,16 @@ export default function MapPage(): ReactElement {
     const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
     setSelectedZoneId(zoneId);
     if (map && zoneId) {
-      const feature = geometries.features.find(
+      let feature = geometries.features.find(
         (feature) => feature.properties.zoneId === zoneId
       );
+      // if no feature matches, it means that the selected zone is not in current spatial resolution.
+      // We cannot include geometries in dependencies, as we don't want to flyTo when user switches
+      // between spatial resolutions. Therefore we find an approximate feature based on the zoneId.
+      if (!feature) {
+        feature = getApproximateFeature(zoneId, geometries);
+      }
+
       const center = feature?.properties.center;
       if (!center) {
         return;
@@ -288,12 +298,26 @@ export default function MapPage(): ReactElement {
     setIsLoadingMap(false);
   };
 
-  const onDragOrZoomStart = () => {
+  const onZoomStart = () => {
+    setIsZooming(true);
+    setIsMoving(true);
+  };
+  const onDragStart = () => {
+    setIsDragging(true);
     setIsMoving(true);
   };
 
-  const onDragOrZoomEnd = () => {
-    setIsMoving(false);
+  const onZoomEnd = () => {
+    setIsZooming(false);
+    if (!isDragging) {
+      setIsMoving(false);
+    }
+  };
+  const onDragEnd = () => {
+    setIsDragging(false);
+    if (!isZooming) {
+      setIsMoving(false);
+    }
   };
 
   return (
@@ -311,11 +335,11 @@ export default function MapPage(): ReactElement {
       onError={onError}
       onMouseMove={onMouseMove}
       onMouseOut={onMouseOut}
-      onDragStart={onDragOrZoomStart}
-      onZoomStart={onDragOrZoomStart}
-      onZoomEnd={onDragOrZoomEnd}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      onZoomStart={onZoomStart}
+      onZoomEnd={onZoomEnd}
       dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
-      onDragEnd={onDragOrZoomEnd}
       dragRotate={false}
       minZoom={0.7}
       maxBounds={[

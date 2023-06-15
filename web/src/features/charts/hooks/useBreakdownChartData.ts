@@ -1,16 +1,16 @@
-import type { ScaleLinear } from 'd3-scale';
 import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
+import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { ElectricityStorageType, ElectricityStorageKeyType, ZoneDetail } from 'types';
+import { ElectricityStorageKeyType, ElectricityStorageType, ZoneDetail } from 'types';
 
-import { Mode, ToggleOptions, modeColor, modeOrder } from 'utils/constants';
+import { useParams } from 'react-router-dom';
+import { Mode, SpatialAggregate, modeColor, modeOrder } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
@@ -37,20 +37,19 @@ export const getLayerFill = (
 export default function useBreakdownChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
+  const { zoneId } = useParams();
   const [mixMode] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [aggregateToggle] = useAtom(spatialAggregateAtom);
-  const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
-  if (isLoading || isError || !currentData) {
+  const [viewMode] = useAtom(spatialAggregateAtom);
+  const isCountryView = viewMode === SpatialAggregate.COUNTRY;
+  if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
   }
 
   const exchangesForSelectedAggregate = getExchangesToDisplay(
-    currentData.zoneKey,
-    isAggregateToggled,
-    currentData.exchange
+    zoneId,
+    isCountryView,
+    zoneData.zoneStates
   );
 
   const { valueFactor, valueAxisLabel } = getValuesInfo(

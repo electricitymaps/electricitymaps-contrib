@@ -2,10 +2,8 @@
 # Archived reason: Data is no longer available.
 
 import logging
-from collections import defaultdict
 from datetime import datetime, timedelta
 from io import StringIO
-from operator import itemgetter
 
 import pandas as pd
 import requests

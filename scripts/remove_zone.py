@@ -1,25 +1,30 @@
 #!/usr/bin/env python3
+
 """
-poetry run python scripts/remove_zone.py DK-DK1
+This script helps to remove a zone (including the zone config and exchanges).
+
+Example usage:
+  poetry run python scripts/remove_zone.py DK-DK1
 """
+
 import argparse
 import os
 from glob import glob
 
 from utils import LOCALE_FILE_PATHS, ROOT_PATH, JsonFilePatcher, run_shell_command
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 def remove_zone(zone_key: ZoneKey):
-    # Remove zone config
+    # Remove zone config.
     try:
         os.remove(ROOT_PATH / f"config/zones/{zone_key}.yaml")
     except FileNotFoundError:
         pass
 
-    # Remove exchanges for that zone
+    # Remove exchanges for that zone.
     def _is_zone_in_exchange(exchange_config_path: str) -> bool:
         exchange_key = exchange_config_path.split("/")[-1].split(".")[0]
         return zone_key in exchange_key.split(EXCHANGE_FILENAME_ZONE_SEPARATOR)

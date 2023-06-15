@@ -2,8 +2,6 @@ name: ESLint
 
 on:
   workflow_call:
-  schedule:
-    - cron: '0 7 * * 1'
 
 jobs:
   eslint:
@@ -36,9 +34,9 @@ jobs:
       - name: Install web dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
-      - name: Generate zone config
+      - name: Generate config files
         if: steps.cache.outputs.cache-hit == 'true'
-        run: pnpm generate-zones-config
+        run: pnpm create-generated-files
       - name: Restore ESLint cache
         uses: actions/cache@v3
         with:
