@@ -25,11 +25,11 @@ export function Button({
   textColor,
   href,
   className,
-  ...restProps
+  onClick,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
   const As = renderAsLink ? 'a' : 'button';
-
+  const type = renderAsLink ? undefined : 'button';
   const isIconOnly = !children && Boolean(icon);
 
   return (
@@ -43,8 +43,9 @@ export function Button({
       translate="no"
       disabled={disabled}
       style={{ color: textColor, background: background }}
-      {...(renderAsLink ? { href } : { type: 'button' })}
-      {...restProps}
+      href={href}
+      type={type}
+      onClick={onClick}
     >
       {icon}
       {children}
