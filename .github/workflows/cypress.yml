@@ -11,7 +11,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
       - name: Cypress run component tests
         uses: cypress-io/github-action@v5
         env:
@@ -37,7 +37,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
       - name: Cypress run e2e tests
         uses: cypress-io/github-action@v5
         env:
