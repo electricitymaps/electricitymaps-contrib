@@ -186,7 +186,7 @@ devDependencies:
     version: 3.0.0
   '@nabla/vite-plugin-eslint':
     specifier: 1.4.1
-    version: 1.4.1(eslint@8.26.0)(vite@4.2.1)
+    version: 1.4.1(eslint@8.26.0)(vite@4.2.3)
   '@rollup/plugin-replace':
     specifier: ^5.0.2
     version: 5.0.2(rollup@2.77.3)
@@ -309,7 +309,7 @@ devDependencies:
     version: 5.41.0(eslint@8.26.0)(typescript@4.8.4)
   '@vitejs/plugin-react':
     specifier: 2.1.0
-    version: 2.1.0(vite@4.2.1)
+    version: 2.1.0(vite@4.2.3)
   '@vitest/coverage-istanbul':
     specifier: 0.24.3
     version: 0.24.3(jsdom@20.0.1)
@@ -407,14 +407,14 @@ devDependencies:
     specifier: 4.8.4
     version: 4.8.4
   vite:
-    specifier: 4.2.1
-    version: 4.2.1(@types/node@18.11.17)
+    specifier: 4.2.3
+    version: 4.2.3(@types/node@18.11.17)
   vite-plugin-pwa:
     specifier: 0.13.1
-    version: 0.13.1(vite@4.2.1)(workbox-build@6.5.4)(workbox-window@6.5.4)
+    version: 0.13.1(vite@4.2.3)(workbox-build@6.5.4)(workbox-window@6.5.4)
   vite-tsconfig-paths:
     specifier: 3.5.2
-    version: 3.5.2(vite@4.2.1)
+    version: 3.5.2(vite@4.2.3)
   vitest:
     specifier: 0.24.3
     version: 0.24.3(jsdom@20.0.1)
@@ -3507,7 +3507,7 @@ packages:
       - supports-color
     dev: true
 
-  /@nabla/vite-plugin-eslint@1.4.1(eslint@8.26.0)(vite@4.2.1):
+  /@nabla/vite-plugin-eslint@1.4.1(eslint@8.26.0)(vite@4.2.3):
     resolution: {integrity: sha512-H19ReYMRdy7i6zz7HKYcBlfv/4Nu/sv9Wtu9+GImQ5nzCgOz4RRUqnj/PJ2OuATcbxNgLr1NSbk7miJDdK6BOw==}
     peerDependencies:
       eslint: '*'
@@ -3516,7 +3516,7 @@ packages:
       '@types/eslint': 8.4.5
       chalk: 4.1.2
       eslint: 8.26.0
-      vite: 4.2.1(@types/node@18.11.17)
+      vite: 4.2.3(@types/node@18.11.17)
     dev: true
 
   /@nodelib/fs.scandir@2.1.5:
@@ -8641,7 +8641,7 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-react@2.1.0(vite@4.2.1):
+  /@vitejs/plugin-react@2.1.0(vite@4.2.3):
     resolution: {integrity: sha512-am6rPyyU3LzUYne3Gd9oj9c4Rzbq5hQnuGXSMT6Gujq45Il/+bunwq3lrB7wghLkiF45ygMwft37vgJ/NE8IAA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -8654,7 +8654,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.18.6(@babel/core@7.19.0)
       magic-string: 0.26.2
       react-refresh: 0.14.0
-      vite: 4.2.1(@types/node@18.11.17)
+      vite: 4.2.3(@types/node@18.11.17)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -11348,6 +11348,7 @@ packages:
   /esbuild@0.14.54:
     resolution: {integrity: sha512-Cy9llcy8DvET5uznocPyqL3BFRrFXSVqbgpMJ9Wz8oVjZlh/zUSNbPRbov0VX7VxN2JH1Oa0uNxZ7eLRb62pJA==}
     engines: {node: '>=12'}
+    hasBin: true
     requiresBuild: true
     optionalDependencies:
       '@esbuild/linux-loong64': 0.14.54
@@ -11376,6 +11377,7 @@ packages:
   /esbuild@0.15.10:
     resolution: {integrity: sha512-N7wBhfJ/E5fzn/SpNgX+oW2RLRjwaL8Y0ezqNqhjD6w0H2p0rDuEz2FKZqpqLnO8DCaWumKe8dsC/ljvVSSxng==}
     engines: {node: '>=12'}
+    hasBin: true
     requiresBuild: true
     optionalDependencies:
       '@esbuild/android-arm': 0.15.10
@@ -11405,6 +11407,7 @@ packages:
   /esbuild@0.17.14:
     resolution: {integrity: sha512-vOO5XhmVj/1XQR9NQ1UPq6qvMYL7QFJU57J5fKBKBKxp17uDt5PgxFDb4A2nEiXhr1qQs4x0F5+66hVVw4ruNw==}
     engines: {node: '>=12'}
+    hasBin: true
     requiresBuild: true
     optionalDependencies:
       '@esbuild/android-arm': 0.17.14
@@ -16854,6 +16857,7 @@ packages:
 
   /resolve@1.22.1:
     resolution: {integrity: sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==}
+    hasBin: true
     dependencies:
       is-core-module: 2.10.0
       path-parse: 1.0.7
@@ -16940,6 +16944,7 @@ packages:
   /rollup@2.78.1:
     resolution: {integrity: sha512-VeeCgtGi4P+o9hIg+xz4qQpRl6R401LWEXBmxYKOV4zlF82lyhgh2hTZnheFUbANE8l2A41F458iwj2vEYaXJg==}
     engines: {node: '>=10.0.0'}
+    hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -16954,6 +16959,7 @@ packages:
   /rollup@3.20.2:
     resolution: {integrity: sha512-3zwkBQl7Ai7MFYQE0y1MeQ15+9jsi7XxfrqwTb/9EK8D9C9+//EBR4M+CuA1KODRaNbFez/lWxA5vhEGZp4MUg==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
+    hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -18479,7 +18485,7 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /vite-plugin-pwa@0.13.1(vite@4.2.1)(workbox-build@6.5.4)(workbox-window@6.5.4):
+  /vite-plugin-pwa@0.13.1(vite@4.2.3)(workbox-build@6.5.4)(workbox-window@6.5.4):
     resolution: {integrity: sha512-NR3dIa+o2hzlzo4lF4Gu0cYvoMjSw2DdRc6Epw1yjmCqWaGuN86WK9JqZie4arNlE1ZuWT3CLiMdiX5wcmmUmg==}
     peerDependencies:
       vite: ^3.1.0
@@ -18490,14 +18496,14 @@ packages:
       fast-glob: 3.2.12
       pretty-bytes: 6.0.0
       rollup: 2.79.1
-      vite: 4.2.1(@types/node@18.11.17)
+      vite: 4.2.3(@types/node@18.11.17)
       workbox-build: 6.5.4
       workbox-window: 6.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-tsconfig-paths@3.5.2(vite@4.2.1):
+  /vite-tsconfig-paths@3.5.2(vite@4.2.3):
     resolution: {integrity: sha512-xJMgHA2oJ28QCG2f+hXrcqzo7IttrSRK4A//Tp94CfuX5eetOx33qiwXHUdi3FwkHP2ocpxHuvE45Ix67gwEmQ==}
     peerDependencies:
       vite: '>2.0.0-0'
@@ -18506,7 +18512,7 @@ packages:
       globrex: 0.1.2
       recrawl-sync: 2.2.2
       tsconfig-paths: 4.1.0
-      vite: 4.2.1(@types/node@18.11.17)
+      vite: 4.2.3(@types/node@18.11.17)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -18531,15 +18537,15 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.15.10
-      postcss: 8.4.21
+      postcss: 8.4.18
       resolve: 1.22.1
       rollup: 2.78.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /vite@4.2.1(@types/node@18.11.17):
-    resolution: {integrity: sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==}
+  /vite@4.2.3(@types/node@18.11.17):
+    resolution: {integrity: sha512-kLU+m2q0Y434Y1kCy3TchefAdtFso0ILi0dLyFV8Us3InXTU11H/B5ZTqCKIQHzSKNxVG/yEx813EA9f1imQ9A==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
