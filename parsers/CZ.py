@@ -124,6 +124,12 @@ def fetch_consumption(
             }
 
             data_list.append(data)
+    else:
+        ParserException(
+            "CZ.py",
+            f"There was no data returned for {zone_key} at {target_datetime}",
+            zone_key,
+        )
 
     return data_list
 
