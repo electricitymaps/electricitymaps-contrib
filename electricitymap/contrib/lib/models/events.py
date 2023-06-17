@@ -127,9 +127,10 @@ class ProductionMix(Mix):
         if value is not None and value < 0:
             self._corrected_negative_values.add(mode)
             if correct_negative_with_zero == True:
-                return 0
+                value = 0
             elif correct_negative_with_zero == False:
-                return None
+                value = None
+        return value
 
     def set_value(
         self,
