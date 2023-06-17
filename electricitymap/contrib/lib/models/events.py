@@ -125,11 +125,10 @@ class ProductionMix(Mix):
         This method also keeps track of the modes that have been corrected.
         """
         if value is not None and value < 0:
+            self._corrected_negative_values.add(mode)
             if correct_negative_with_zero == True:
-                self._corrected_negative_values.add(mode)
                 return 0
             elif correct_negative_with_zero == False:
-                self._corrected_negative_values.add(mode)
                 return None
 
     def set_value(
