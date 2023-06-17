@@ -46,7 +46,7 @@ class TestES(TestCase):
         mocked_get_all.return_value = (
             Response(15146298, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
         )
-        data_list = ES.fetch_production("ES-CN-HI", self.session)
+        data_list = ES.fetch_production(ZoneKey("ES-CN-HI"), self.session)
         self.assertIsNot(data_list, [])
         for data in data_list:
             self.assertEqual(data["zoneKey"], "ES-CN-HI")
@@ -72,9 +72,21 @@ class TestES(TestCase):
     @patch.object(Formentera, "get_all")
     def test_fetch_production_ES_IB_FO(self, mocked_get_all):
         mocked_get_all.return_value = (
-            Response(15146298, 10.0, 10, 5, 13, 3, 4, 3.5, 10, 5, 0, 3),
+            Response(
+                timestamp=15146298,
+                demand=10.0,
+                diesel=10,
+                gas=5,
+                wind=13,
+                combined=3,
+                vapor=4,
+                solar=3.5,
+                hydraulic=10,
+                carbon=5,
+                other=3,
+            ),
         )
-        data_list = ES.fetch_production("ES-IB-FO", self.session)
+        data_list = ES.fetch_production(ZoneKey("ES-IB-FO"), self.session)
         self.assertIsNot(data_list, [])
         for data in data_list:
             self.assertEqual(data["zoneKey"], "ES-IB-FO")
@@ -93,11 +105,51 @@ class TestES(TestCase):
             self.assertEqual(data["production"]["coal"], 5)
             self.assertEqual(data["production"]["unknown"], 3)
 
+    # Test that negative values are corrected for production
+    @patch.object(Formentera, "get_all")
+    def test_fetch_production_negative_values_ES_IB_FO(self, mocked_get_all):
+        mocked_get_all.return_value = (
+            Response(
+                timestamp=15146298,
+                demand=10.0,
+                diesel=10,
+                gas=5,
+                wind=13,
+                combined=-3,
+                vapor=4,
+                solar=3.5,
+                hydraulic=10,
+                carbon=5,
+                other=3,
+            ),
+        )
+        data_list = ES.fetch_production(ZoneKey("ES-IB-FO"), self.session)
+        self.assertIsNot(data_list, [])
+        for data in data_list:
+            self.assertEqual(data["zoneKey"], "ES-IB-FO")
+            self.assertEqual(data["source"], "demanda.ree.es")
+            self.assertTrue(isinstance(data["datetime"], datetime))
+            self.assertIsNot(data["production"], {})
+            self.assertEqual(
+                data["datetime"],
+                datetime.utcfromtimestamp(15146298).astimezone(timezone.utc),
+            )
+            self.assertEqual(data["production"]["gas"], 5)
+            self.assertEqual(data["production"]["oil"], 14)
+            self.assertEqual(data["production"]["hydro"], 10)
+            self.assertEqual(data["production"]["solar"], 3.5)
+            self.assertEqual(data["production"]["wind"], 13)
+            self.assertEqual(data["production"]["coal"], 5)
+            self.assertEqual(data["production"]["nuclear"], 0)
+            self.assertEqual(data["production"]["unknown"], 3)
+
     # Exchange
     @patch.object(Formentera, "get_all")
     def test_fetch_exchange_ES_IB_FO(self, mocked_get_all):
         mocked_get_all.return_value = self.mocked_responses
-        data_list = ES.fetch_exchange("ES-IB-FO", "ES-IB-IZ", self.session)
+        data_list = ES.fetch_exchange(
+            ZoneKey("ES-IB-FO"), ZoneKey("ES-IB-IZ"), self.session
+        )
         self.assertIsNot(data_list, [])
         for data in data_list:
             self.assertEqual(data["sortedZoneKeys"], "ES-IB-FO->ES-IB-IZ")
