@@ -10,6 +10,7 @@ import pandas as pd
 from requests import Session
 
 from parsers import occtonet
+from electricitymap.contrib.config import ZONES_CONFIG
 from parsers.lib.config import refetch_frequency
 
 # Abbreviations
@@ -38,6 +39,20 @@ sources = {
 }
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
+def get_wind_capacity(datetime:datetime, zone_key):
+    assert zone_key == "JP-HKD"
+    ZONE_CONFIG = ZONES_CONFIG[zone_key]
+    capacity = ZONE_CONFIG["capacity"]["wind"]
+    if zone_key == "JP-HKD":
+        if datetime.year <= 2019:
+            capacity = 480
+        elif datetime.year == 2020:
+            capacity = 520
+        elif datetime.year >= 2021:
+            capacity = 577
+    else:
+        raise NotImplementedError("This parser can only fetch wind capacity for JP-HKD")
+    return capacity
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
@@ -71,11 +86,15 @@ def fetch_production(
                 "geothermal": None,
                 "unknown": df.loc[i, "unknown"],
             },
+            "capacity":
+            {"wind": get_wind_capacity(df.loc[i, "datetime"].to_pydatetime(), zone_key) if zone_key in ["JP-HKD"] else None},
             "source": "occtonet.or.jp, {}".format(sources[zone_key]),
         }
         datalist.append(data)
-
+    breakpoint()
     return datalist
+
+
 
 
 def fetch_production_df(
@@ -123,7 +142,6 @@ def fetch_production_df(
     # When there is solar, remove it from other production
     if "solar" in df.columns:
         df["unknown"] = df["unknown"] - df["solar"]
-
     return df
 
 
