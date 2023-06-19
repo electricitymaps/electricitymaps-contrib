@@ -111,10 +111,15 @@ class ProductionMix(Mix):
         value: Optional[float],
     ) -> None:
         """
-        Overriding the setattr method to check that the name is a valid production mode.
+        Overriding the setattr method to check that the name is a valid production mode
+        and to check for negative values and set them to None.
+        This method also keeps track of the modes that have been corrected.
         """
         if not name in PRODUCTION_MODES:
             raise ValueError(f"Unknown production mode: {name}")
+        if value is not None and value < 0:
+            self._corrected_negative_values.add(name)
+            value = None
         return super().__setattr__(name, value)
 
     def _correct_negative_value(
