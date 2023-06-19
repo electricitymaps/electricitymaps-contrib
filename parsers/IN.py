@@ -59,7 +59,9 @@ CEA_REGION_MAPPING = {
 }
 
 DEMAND_URL_VIDYUTPRAVAH = "{proxy}/state-data/{state}?host=https://vidyutpravah.in"
-DEMAND_URL_MERITINDIA = "{proxy}/StateWiseDetails/BindCurrentStateStatus?host=https://meritindia.in"
+DEMAND_URL_MERITINDIA = (
+    "{proxy}/StateWiseDetails/BindCurrentStateStatus?host=https://meritindia.in"
+)
 
 # States codes as on meritindia.in
 STATE_CODES = {
@@ -192,6 +194,7 @@ def fetch_live_production(
 
     return data
 
+
 def fetch_consumption_from_vidyutpravah(
     zone_key: str,
     session: Session = Session(),
@@ -244,6 +247,7 @@ def fetch_consumption_from_vidyutpravah(
 
     return consumption_list
 
+
 def fetch_consumption_from_meritindia(
     zone_key: ZoneKey,
     session: Session = Session(),
@@ -270,6 +274,7 @@ def fetch_consumption_from_meritindia(
         source="meritindia.in",
     )
     return consumption_list
+
 
 def fetch_npp_production(
     zone_key: str,
@@ -315,6 +320,7 @@ def fetch_npp_production(
             message=f"{target_datetime}: {zone_key} conventional production data is not available : [{r.status_code}]",
         )
 
+
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session = Session(),
@@ -327,6 +333,7 @@ def fetch_consumption(
         target_datetime=target_datetime,
         logger=logger,
     ).to_list()
+
 
 def format_ren_production_data(url: str, zone_key: str) -> Dict[str, Any]:
     """Formats daily renewable production data for each zone"""
@@ -468,5 +475,5 @@ def get_start_of_day(dt: datetime) -> datetime:
 
 if __name__ == "__main__":
 
-    #print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
+    # print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
     print(fetch_consumption(zone_key=ZoneKey("IN-NO")))
