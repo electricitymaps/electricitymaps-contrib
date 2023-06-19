@@ -34,13 +34,13 @@ class Mix(BaseModel, ABC):
         This is useful if there are multiple production modes in the source
         that maps to the same Electricity Maps production mode.
         """
+        if value is None:
+            return
         existing_value: Optional[float] = getattr(self, mode)
         if existing_value is not None:
-            if value is None:
-                return
-            self.set_value(mode, existing_value + value)
+            self.__setattr__(mode, existing_value + value)
         else:
-            self.set_value(mode, value)
+            self.__setattr__(mode, value)
 
 
 class ProductionMix(Mix):
