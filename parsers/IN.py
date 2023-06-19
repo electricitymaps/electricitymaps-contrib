@@ -320,7 +320,7 @@ def fetch_consumption(
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-):
+) -> List[Dict[str, Any]]:
     return fetch_consumption_from_meritindia(
         zone_key=zone_key,
         session=session,
