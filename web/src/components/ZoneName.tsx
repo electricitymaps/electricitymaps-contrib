@@ -1,4 +1,4 @@
-import { CountryFlag } from '../components/Flag';
+import { CountryFlag } from './Flag';
 import { getShortenedZoneNameWithCountry } from '../translation/translation';
 import { twMerge } from 'tailwind-merge';
 
