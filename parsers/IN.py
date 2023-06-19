@@ -469,4 +469,4 @@ def get_start_of_day(dt: datetime) -> datetime:
 if __name__ == "__main__":
 
     #print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
-    print(fetch_consumption(zone_key="IN-NO"))
+    print(fetch_consumption(zone_key=ZoneKey("IN-NO")))
