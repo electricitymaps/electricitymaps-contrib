@@ -87,7 +87,7 @@ class TestES(TestCase):
             Response(
                 timestamp=1687192328,
                 demand=10.0,
-                diesel=-10, # Test negative value
+                diesel=-10,  # Test negative value
                 gas=5,
                 wind=13,
                 combined=3,
