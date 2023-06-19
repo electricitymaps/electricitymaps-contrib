@@ -32,7 +32,7 @@ GENERATION_MAPPING = {
     "NUCLEAR GENERATION": "nuclear",
     "RENEWABLE GENERATION": "unknown",
 }
-INDIA_PROXY = "https://in-proxy-2-jfnx5klx2a-em.a.run.app"
+INDIA_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
 
 NPP_MODE_MAPPING = {
