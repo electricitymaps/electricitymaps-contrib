@@ -76,9 +76,7 @@ def fetch_production(
     datalist = []
 
     for i in df.index:
-        capacity = get_wind_capacity(
-                    df.loc[i, "datetime"].to_pydatetime(), zone_key
-                )
+        capacity = get_wind_capacity(df.loc[i, "datetime"].to_pydatetime(), zone_key)
         data = {
             "zoneKey": zone_key,
             "datetime": df.loc[i, "datetime"].to_pydatetime(),
@@ -94,9 +92,7 @@ def fetch_production(
                 "geothermal": None,
                 "unknown": df.loc[i, "unknown"],
             },
-            "capacity": {
-                "wind":capacity if capacity is not None else {}
-                            },
+            "capacity": {"wind": capacity if capacity is not None else {}},
             "source": "occtonet.or.jp, {}".format(sources[zone_key]),
         }
         datalist.append(data)
