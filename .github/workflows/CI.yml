@@ -127,6 +127,14 @@ jobs:
     needs: [eslint, typecheck, validate_generate_files, unit_test]
     uses: ./.github/workflows/cypress.yml
 
+  branch-preview:
+    name: Branch preview
+    needs: [eslint, typecheck, validate_generate_files, unit_test]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/branch-preview.yml
+
   # Python checks
   python_formatting:
     name: Python
