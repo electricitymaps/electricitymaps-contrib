@@ -2980,58 +2980,6 @@
           "zoneKey": "IN"
         }
       },
-      "IN-UP": {
-        "2017-01-01T00:00:00Z": {
-          "co2intensity": 727.17,
-          "co2intensityProduction": 727.17,
-          "fossilFuelRatio": 0.9081999999999999,
-          "fossilFuelRatioProduction": 0.9081999999999999,
-          "renewableRatio": 0.09179999999999999,
-          "renewableRatioProduction": 0.09179999999999999,
-          "stateDatetime": "2017-01-01T00:00:00Z",
-          "zoneKey": "IN-UP"
-        },
-        "2018-01-01T00:00:00Z": {
-          "co2intensity": 733.44,
-          "co2intensityProduction": 733.42,
-          "fossilFuelRatio": 0.9166,
-          "fossilFuelRatioProduction": 0.9166,
-          "renewableRatio": 0.0834,
-          "renewableRatioProduction": 0.0834,
-          "stateDatetime": "2018-01-01T00:00:00Z",
-          "zoneKey": "IN-UP"
-        },
-        "2019-01-01T00:00:00Z": {
-          "co2intensity": 732.09,
-          "co2intensityProduction": 732.09,
-          "fossilFuelRatio": 0.9148000000000001,
-          "fossilFuelRatioProduction": 0.9148000000000001,
-          "renewableRatio": 0.0852,
-          "renewableRatioProduction": 0.0852,
-          "stateDatetime": "2019-01-01T00:00:00Z",
-          "zoneKey": "IN-UP"
-        },
-        "2020-01-01T00:00:00Z": {
-          "co2intensity": 730.1,
-          "co2intensityProduction": 730.1,
-          "fossilFuelRatio": 0.9122,
-          "fossilFuelRatioProduction": 0.9122,
-          "renewableRatio": 0.08779999999999999,
-          "renewableRatioProduction": 0.08779999999999999,
-          "stateDatetime": "2020-01-01T00:00:00Z",
-          "zoneKey": "IN-UP"
-        },
-        "2021-01-01T00:00:00Z": {
-          "co2intensity": 733.84,
-          "co2intensityProduction": 733.84,
-          "fossilFuelRatio": 0.9170999999999999,
-          "fossilFuelRatioProduction": 0.9170999999999999,
-          "renewableRatio": 0.08289999999999999,
-          "renewableRatioProduction": 0.08289999999999999,
-          "stateDatetime": "2021-01-01T00:00:00Z",
-          "zoneKey": "IN-UP"
-        }
-      },
       "IN-WE": {
         "2020-01-01T00:00:00Z": {
           "co2intensity": 662.83,

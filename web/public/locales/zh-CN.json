@@ -723,29 +723,6 @@
       "countryName": "印度",
       "zoneName": "哈里亚纳邦"
     },
-    "IN-UP": {
-      "countryName": "印度",
-      "zoneName": "北方邦"
-    },
-    "IO": {
-      "zoneName": "英属印度洋领地"
-    },
-    "IQ": {
-      "zoneName": "伊拉克"
-    },
-    "IQ-KUR": {
-      "countryName": "伊拉克",
-      "zoneName": "库尔德斯坦"
-    },
-    "IR": {
-      "zoneName": "伊朗"
-    },
-    "IS": {
-      "zoneName": "冰岛"
-    },
-    "IT": {
-      "zoneName": "意大利"
-    },
     "IT-CNO": {
       "countryName": "意大利",
       "zoneName": "意大利中北部"
