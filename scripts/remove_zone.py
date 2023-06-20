@@ -12,10 +12,18 @@ import os
 import re
 from glob import glob
 
-from utils import LOCALE_FILE_PATHS, ROOT_PATH, JsonFilePatcher, run_shell_command
+from utils import (
+    LOCALE_FILE_PATHS,
+    ROOT_PATH,
+    JsonFilePatcher,
+    YamlFilePatcher,
+    run_shell_command,
+)
 
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
 from electricitymap.contrib.lib.types import ZoneKey
+
+PRETTIER_CONFIG_PATH = ROOT_PATH / "web/.prettierrc.json"
 
 
 def remove_config(zone_key: ZoneKey):
@@ -24,6 +32,20 @@ def remove_config(zone_key: ZoneKey):
         print(f"🧹 Removed {zone_key}.yaml")
     except FileNotFoundError:
         pass
+
+
+def remove_from_parent_config(zone_key: ZoneKey):
+    # Remove zone-key from subZoneNames in parent yaml file
+    parent_config_path = ROOT_PATH / f"config/zones/{zone_key.split('-')[0]}.yaml"
+    if parent_config_path.exists():
+        with YamlFilePatcher(parent_config_path) as f:
+            sub_zone_names = f.content["subZoneNames"]
+            if zone_key in sub_zone_names:
+                sub_zone_names.remove(zone_key)
+        run_shell_command(
+            f"npx prettier --config {PRETTIER_CONFIG_PATH} --write {parent_config_path}",
+            cwd=ROOT_PATH,
+        )
 
 
 def remove_exchanges(zone_key: ZoneKey):
@@ -71,7 +93,6 @@ def remove_mockserver_data(zone_key: ZoneKey):
 
 def remove_geojson_entry(zone_key: ZoneKey):
     geo_json_path = ROOT_PATH / "web/geo/world.geojson"
-    prettier_config_path = ROOT_PATH / "web/.prettierrc.json"
     with JsonFilePatcher(geo_json_path, indent=None) as f:
         new_features = [
             f for f in f.content["features"] if f["properties"]["zoneName"] != zone_key
@@ -79,7 +100,7 @@ def remove_geojson_entry(zone_key: ZoneKey):
         f.content["features"] = new_features
 
     run_shell_command(
-        f"npx prettier --config {prettier_config_path} --write {geo_json_path}",
+        f"npx prettier --config {PRETTIER_CONFIG_PATH} --write {geo_json_path}",
         cwd=ROOT_PATH,
     )
     run_shell_command(
@@ -140,15 +161,16 @@ def main():
     print(f"Removing {zone_key}...\n")
 
     remove_config(zone_key)
-    remove_exchanges(zone_key)
-    remove_translations(zone_key)
-    remove_mockserver_data(zone_key)
-    remove_geojson_entry(zone_key)
-    move_parser_to_archived(zone_key)
-    # For legacy reasons, a subzone parser can both use dash and underscore
-    # in the file name so we need to search for both
-    move_parser_to_archived(zone_key.replace("-", "_"))
-    find_files_mentioning_zone(zone_key)
+    remove_from_parent_config(zone_key)
+    # remove_exchanges(zone_key)
+    # remove_translations(zone_key)
+    # remove_mockserver_data(zone_key)
+    # remove_geojson_entry(zone_key)
+    # move_parser_to_archived(zone_key)
+    # # For legacy reasons, a subzone parser can both use dash and underscore
+    # # in the file name so we need to search for both
+    # move_parser_to_archived(zone_key.replace("-", "_"))
+    # find_files_mentioning_zone(zone_key)
 
     print("\n✔  All done!")
 
