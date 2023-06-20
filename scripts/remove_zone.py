@@ -97,6 +97,39 @@ def move_parser_to_archived(zone_key: ZoneKey):
         print(f"🧹 Moved parser to /archived folder")
 
 
+def find_files_mentioning_zone(text):
+    """Search for the zone_key across all files in contrib."""
+    IGNORED_PATHS = [
+        "mobileapp/ios",
+        "mobileapp/android",
+        "node_modules",
+        "dist",
+        "archived",
+    ]
+    VALID_EXTENSIONS = (".py", ".js", ".ts", ".yaml", ".json", ".md", ".html")
+    results = []
+    for root, dirs, files in os.walk(ROOT_PATH):
+        if any([ignored_path in root for ignored_path in IGNORED_PATHS]):
+            continue
+        for file in files:
+            if file.endswith(VALID_EXTENSIONS):
+                with open(os.path.join(root, file), "r") as f:
+                    if re.search(text, f.read()):
+                        # print the relative path
+                        results.append(
+                            os.path.relpath(os.path.join(root, file), ROOT_PATH)
+                        )
+    if not results:
+        print(f'🧹 Found no additional files mentioning "{text}" in contrib repository.')
+        return
+
+    print(
+        f"❗️ Found {len(results)} files mentioning {text}, please manually clean these files:"
+    )
+    for result in results:
+        print(f"  - {result}")
+
+
 def main():
     """Removes a zone by from a bunch of places and lists additional files mentioning the zone key."""
     parser = argparse.ArgumentParser()
@@ -115,6 +148,7 @@ def main():
     # For legacy reasons, a subzone parser can both use dash and underscore
     # in the file name so we need to search for both
     move_parser_to_archived(zone_key.replace("-", "_"))
+    find_files_mentioning_zone(zone_key)
 
     print("\n✔  All done!")
 
