@@ -123,7 +123,7 @@ jobs:
     uses: ./.github/workflows/typecheck.yml
 
   branch-preview:
-    name: Branch preview
+    name: Deploy staging
     needs: [eslint, typecheck, validate_generate_files, unit_test]
     if: >-
       needs.setup.outputs.frontend != 'false' ||
