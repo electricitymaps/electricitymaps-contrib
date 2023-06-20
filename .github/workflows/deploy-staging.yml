@@ -1,5 +1,10 @@
 on:
   workflow_call:
+    secrets:
+      CLOUDFLARE_API_TOKEN:
+        required: true
+      CLOUDFLARE_ACCOUNT_ID:
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest

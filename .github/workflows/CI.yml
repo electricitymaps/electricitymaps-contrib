@@ -129,6 +129,7 @@ jobs:
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/deploy-staging.yml
+    secrets: inherit
 
   cypress:
     name: Cypress
