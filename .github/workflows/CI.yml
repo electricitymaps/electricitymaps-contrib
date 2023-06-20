@@ -132,7 +132,7 @@ jobs:
 
   cypress:
     name: Cypress
-    needs: [eslint, typecheck, validate_generate_files]
+    needs: [eslint, typecheck, validate_generate_files, unit_test]
     uses: ./.github/workflows/cypress.yml
 
   # Python checks
