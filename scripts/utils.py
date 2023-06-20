@@ -32,7 +32,7 @@ class JsonFilePatcher(object):
             del f.content[zone]
     """
 
-    def __init__(self, file_path: Union[PathLike, str], indent=2):
+    def __init__(self, file_path: Union[PathLike, str], indent: Union[int, None] = 2):
         self.file_path = file_path
         self.indent = indent
 
