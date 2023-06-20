@@ -128,7 +128,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/deploy-stagin.yml
+    uses: ./.github/workflows/deploy-staging.yml
 
   cypress:
     name: Cypress
