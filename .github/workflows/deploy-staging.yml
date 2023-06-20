@@ -37,12 +37,15 @@ jobs:
         working-directory: ./web
       - name: Build
         working-directory: ./web
-        run: VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }} pnpm run build
+        run: pnpm run build
+        env:
+          VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: '${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }}'
       - name: Publish
         uses: cloudflare/pages-action@1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.CONTRIB_GH_TOKEN }}
           branch: main
           projectName: 'electricitymaps-staging'
           directory: ./web/dist
