@@ -88,6 +88,15 @@ def remove_geojson_entry(zone_key: ZoneKey):
     )
 
 
+def move_parser_to_archived(zone_key: ZoneKey):
+    parser_path = ROOT_PATH / f"parsers/{zone_key}.py"
+    if parser_path.exists():
+        run_shell_command(
+            f"git mv {parser_path} {ROOT_PATH / 'parsers/archived'}", cwd=ROOT_PATH
+        )
+        print(f"🧹 Moved parser to /archived folder")
+
+
 def main():
     """Removes a zone by from a bunch of places and lists additional files mentioning the zone key."""
     parser = argparse.ArgumentParser()
@@ -102,6 +111,10 @@ def main():
     remove_translations(zone_key)
     remove_mockserver_data(zone_key)
     remove_geojson_entry(zone_key)
+    move_parser_to_archived(zone_key)
+    # For legacy reasons, a subzone parser can both use dash and underscore
+    # in the file name so we need to search for both
+    move_parser_to_archived(zone_key.replace("-", "_"))
 
     print("\n✔  All done!")
 
