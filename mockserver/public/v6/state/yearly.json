@@ -2980,58 +2980,6 @@
           "zoneKey": "IN"
         }
       },
-      "IN-MH": {
-        "2017-01-01T00:00:00Z": {
-          "co2intensity": 727.42,
-          "co2intensityProduction": 727.42,
-          "fossilFuelRatio": 0.8967,
-          "fossilFuelRatioProduction": 0.8967,
-          "renewableRatio": 0.0828,
-          "renewableRatioProduction": 0.0828,
-          "stateDatetime": "2017-01-01T00:00:00Z",
-          "zoneKey": "IN-MH"
-        },
-        "2018-01-01T00:00:00Z": {
-          "co2intensity": 723.28,
-          "co2intensityProduction": 723.28,
-          "fossilFuelRatio": 0.8915000000000001,
-          "fossilFuelRatioProduction": 0.8915000000000001,
-          "renewableRatio": 0.08810000000000001,
-          "renewableRatioProduction": 0.08810000000000001,
-          "stateDatetime": "2018-01-01T00:00:00Z",
-          "zoneKey": "IN-MH"
-        },
-        "2019-01-01T00:00:00Z": {
-          "co2intensity": 725.88,
-          "co2intensityProduction": 725.88,
-          "fossilFuelRatio": 0.8948,
-          "fossilFuelRatioProduction": 0.8948,
-          "renewableRatio": 0.0848,
-          "renewableRatioProduction": 0.0848,
-          "stateDatetime": "2019-01-01T00:00:00Z",
-          "zoneKey": "IN-MH"
-        },
-        "2020-01-01T00:00:00Z": {
-          "co2intensity": 724.8,
-          "co2intensityProduction": 724.8,
-          "fossilFuelRatio": 0.8933,
-          "fossilFuelRatioProduction": 0.8933,
-          "renewableRatio": 0.0863,
-          "renewableRatioProduction": 0.0863,
-          "stateDatetime": "2020-01-01T00:00:00Z",
-          "zoneKey": "IN-MH"
-        },
-        "2021-01-01T00:00:00Z": {
-          "co2intensity": 728.94,
-          "co2intensityProduction": 728.94,
-          "fossilFuelRatio": 0.8986,
-          "fossilFuelRatioProduction": 0.8986,
-          "renewableRatio": 0.0808,
-          "renewableRatioProduction": 0.0808,
-          "stateDatetime": "2021-01-01T00:00:00Z",
-          "zoneKey": "IN-MH"
-        }
-      },
       "IN-PB": {
         "2018-01-01T00:00:00Z": {
           "co2intensity": 303.96,
