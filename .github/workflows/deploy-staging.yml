@@ -5,6 +5,8 @@ on:
         required: true
       CLOUDFLARE_ACCOUNT_ID:
         required: true
+      VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN:
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -35,11 +37,12 @@ jobs:
         working-directory: ./web
       - name: Build
         working-directory: ./web
-        run: pnpm run build
+        run: VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }} pnpm run build
       - name: Publish
         uses: cloudflare/pages-action@1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          branch: main
           projectName: 'electricitymaps-staging'
           directory: ./web/dist
