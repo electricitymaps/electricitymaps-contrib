@@ -122,6 +122,14 @@ jobs:
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/typecheck.yml
 
+  branch-preview:
+    name: Deploy staging
+    needs: [eslint, typecheck, validate_generate_files, unit_test]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/deploy-stagin.yml
+
   cypress:
     name: Cypress
     needs: [eslint, typecheck, validate_generate_files, unit_test]
