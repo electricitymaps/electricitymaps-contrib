@@ -37,6 +37,12 @@ def get_fetch_function(
     exchange_key: ZoneKey,
 ) -> Tuple[str, Callable[[Dict, ZoneKey, Logger], ExchangeList]]:
     """Get the url, the lookup key and the extract function for the exchange."""
+    if exchange_key not in MAPPING:
+        raise ParserException(
+            "IN_EA.py",
+            f"Unsupported exchange key {exchange_key}",
+            zone_key=exchange_key,
+        )
     if exchange_key in INTERRNATIONAL_EXCHANGES:
         return (
             INTERNATIONAL_EXCHANGES_URL,
