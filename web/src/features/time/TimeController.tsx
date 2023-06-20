@@ -24,7 +24,7 @@ export default function TimeController({ className }: { className?: string }) {
   );
 
   useEffect(() => {
-    if (datetimes && datetimes.at(-1)) {
+    if (datetimes) {
       // This value is stored in state to avoid flickering when switching between time averages
       // as this effect means index will be one render behind if using datetimes directly
       setNumberOfEntries(datetimes.length - 1);
