@@ -2980,18 +2980,6 @@
           "zoneKey": "IN"
         }
       },
-      "IN-HP": {
-        "2021-01-01T00:00:00Z": {
-          "co2intensity": 92.73,
-          "co2intensityProduction": 92.73,
-          "fossilFuelRatio": 0.1017,
-          "fossilFuelRatioProduction": 0.1017,
-          "renewableRatio": 0.8983,
-          "renewableRatioProduction": 0.8983,
-          "stateDatetime": "2021-01-01T00:00:00Z",
-          "zoneKey": "IN-HP"
-        }
-      },
       "IN-KA": {
         "2018-01-01T00:00:00Z": {
           "co2intensity": 473.22,
