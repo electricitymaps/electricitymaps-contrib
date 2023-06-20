@@ -691,10 +691,6 @@
       "countryName": "Velika Britanija",
       "zoneName": "Šetlandski otoki"
     },
-    "GB-ZET": {
-      "countryName": "Velika Britanija",
-      "zoneName": "Šetlandski otoki"
-    },
     "GD": {
       "zoneName": "Grenada"
     },
@@ -803,10 +799,6 @@
     "IN-CT": {
       "countryName": "Indija",
       "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "Indija",
-      "zoneName": "Delhi"
     },
     "IN-DN": {
       "countryName": "Indija",
