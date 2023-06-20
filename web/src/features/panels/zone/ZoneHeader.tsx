@@ -34,10 +34,12 @@ function OutageMessage({
     return null;
   }
   return (
-    <div className="px-2 text-gray-800 sm:pl-4">
-      <div className="flex w-full items-center rounded-lg border border-yellow-300 bg-yellow-100 p-2 text-sm">
-        <HiExclamationTriangle className="mr-2 w-10 text-yellow-600" size="30" />
-        <span className="inline">
+    <div className="overflow-hidden px-2 text-gray-800 sm:pl-4">
+      <div className="flex w-full  items-center rounded-lg border border-yellow-300 bg-yellow-100 p-2 text-sm">
+        <div>
+          <HiExclamationTriangle className="mr-2 text-yellow-600" size="20" />
+        </div>
+        <span className="inline overflow-hidden">
           {truncateString(outageData.message, 300)}{' '}
           {outageData?.issue && outageData.issue != 'None' && (
             <span className="inline-flex">
@@ -51,8 +53,8 @@ function OutageMessage({
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="15"
-                  height="15"
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   className="ml-1"
                 >
