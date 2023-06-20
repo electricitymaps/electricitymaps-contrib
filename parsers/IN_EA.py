@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
@@ -8,6 +8,7 @@ from requests import Session
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
 from parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.config import refetch_frequency
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 HOST = "https://app.erldc.in"
@@ -82,7 +83,7 @@ def extract_interregional_exchanges(
     )
     return exchanges
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
