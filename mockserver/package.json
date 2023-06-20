@@ -6,7 +6,7 @@
     "nodemon": "^2.0.18"
   },
   "engines": {
-    "node": "^18",
+    "node": ">=18",
     "pnpm": "^8"
   },
   "scripts": {
