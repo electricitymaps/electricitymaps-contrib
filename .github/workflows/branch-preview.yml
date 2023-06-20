@@ -30,7 +30,7 @@ jobs:
         working-directory: ./web
       - name: Build
         working-directory: ./web
-        run: pnpm exec vite build
+        run: pnpm run build
       - name: Publish
         uses: cloudflare/pages-action@1
         with:
