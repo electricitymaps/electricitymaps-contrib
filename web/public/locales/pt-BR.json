@@ -742,97 +742,9 @@
       "countryName": "Índia",
       "zoneName": "Ilhas Andaman e Nicobar"
     },
-    "IN-AR": {
-      "countryName": "Índia",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "Índia",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "Índia",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "Índia",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DN": {
-      "countryName": "Índia",
-      "zoneName": "Dadra e Nagar Haveli"
-    },
-    "IN-GA": {
-      "countryName": "Índia",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Índia",
-      "zoneName": "Gujarat"
-    },
-    "IN-HR": {
-      "countryName": "Índia",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "Índia",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "Índia",
-      "zoneName": "Jammu e Caxemira"
-    },
-    "IN-KL": {
-      "countryName": "Índia",
-      "zoneName": "Kerala"
-    },
-    "IN-ML": {
-      "countryName": "Índia",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "Índia",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "Índia",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "Índia",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "Índia",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "Índia",
-      "zoneName": "Orissa"
-    },
-    "IN-PY": {
-      "countryName": "Índia",
-      "zoneName": "Pondicherry"
-    },
-    "IN-RJ": {
-      "countryName": "Índia",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "Índia",
-      "zoneName": "Sikkim"
-    },
     "IN-TL": {
       "countryName": "Índia",
       "zoneName": "Tamil Nadu"
-    },
-    "IN-TR": {
-      "countryName": "Índia",
-      "zoneName": "Tripura"
-    },
-    "IN-WB": {
-      "countryName": "Índia",
-      "zoneName": "Bengala Ocidental"
     },
     "IO": {
       "zoneName": "Território Britânico do Oceano Índico"
@@ -1738,10 +1650,6 @@
     "CL-CHP": {
       "countryName": "Chile",
       "zoneName": "Ilha de Páscoa"
-    },
-    "IN-TN": {
-      "countryName": "Índia",
-      "zoneName": "Tamil Nadu"
     },
     "NZ-NZST": {
       "countryName": "Nova Zelândia",

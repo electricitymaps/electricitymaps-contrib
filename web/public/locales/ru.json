@@ -591,93 +591,9 @@
       "countryName": "Индия",
       "zoneName": "Острова Андаман и Никобар"
     },
-    "IN-AR": {
-      "countryName": "Индия",
-      "zoneName": "Аруначал-Прадеш"
-    },
-    "IN-AS": {
-      "countryName": "Индия",
-      "zoneName": "Ассам"
-    },
-    "IN-BR": {
-      "countryName": "Индия",
-      "zoneName": "Бихар"
-    },
-    "IN-CT": {
-      "countryName": "Индия",
-      "zoneName": "Чхаттисгарха"
-    },
-    "IN-GA": {
-      "countryName": "Индия",
-      "zoneName": "Гоа"
-    },
-    "IN-GJ": {
-      "countryName": "Индия",
-      "zoneName": "Гуджарат"
-    },
-    "IN-HR": {
-      "countryName": "Индия",
-      "zoneName": "Харьяна"
-    },
-    "IN-JH": {
-      "countryName": "Индия",
-      "zoneName": "Джаркханд"
-    },
-    "IN-JK": {
-      "countryName": "Индия",
-      "zoneName": "Джамму и Кашмир"
-    },
-    "IN-KL": {
-      "countryName": "Индия",
-      "zoneName": "Керала"
-    },
-    "IN-ML": {
-      "countryName": "Индия",
-      "zoneName": "Мегалая"
-    },
-    "IN-MN": {
-      "countryName": "Индия",
-      "zoneName": "Манипур"
-    },
-    "IN-MP": {
-      "countryName": "Индия",
-      "zoneName": "Мадхья-Прадеш"
-    },
-    "IN-MZ": {
-      "countryName": "Индия",
-      "zoneName": "Мизорам"
-    },
-    "IN-NL": {
-      "countryName": "Индия",
-      "zoneName": "Нагаленд"
-    },
-    "IN-OR": {
-      "countryName": "Индия",
-      "zoneName": "Орисса"
-    },
-    "IN-PY": {
-      "countryName": "Индия",
-      "zoneName": "Пондишерри"
-    },
-    "IN-RJ": {
-      "countryName": "Индия",
-      "zoneName": "Раджастхан"
-    },
-    "IN-SK": {
-      "countryName": "Индия",
-      "zoneName": "Сикким"
-    },
     "IN-TL": {
       "countryName": "Индия",
       "zoneName": "Тамил Наду"
-    },
-    "IN-TR": {
-      "countryName": "Индия",
-      "zoneName": "Трипура"
-    },
-    "IN-WB": {
-      "countryName": "Индия",
-      "zoneName": "Западная Бенгалия"
     },
     "IO": {
       "zoneName": "Британская территория в Индийском океане"
@@ -1196,14 +1112,6 @@
     "GR-IS": {
       "countryName": "Греция",
       "zoneName": "Эгейские острова"
-    },
-    "IN-DN": {
-      "countryName": "Индия",
-      "zoneName": "Дадра и Нагар-Хавели"
-    },
-    "IN-TN": {
-      "countryName": "Индия",
-      "zoneName": "Тамил Наду"
     },
     "IQ-KUR": {
       "countryName": "Ирак",
