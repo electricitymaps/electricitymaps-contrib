@@ -731,10 +731,6 @@
       "countryName": "印度",
       "zoneName": "查谟和克什米尔"
     },
-    "IN-KA": {
-      "countryName": "印度",
-      "zoneName": "卡纳塔克邦"
-    },
     "IN-KL": {
       "countryName": "印度",
       "zoneName": "喀拉拉邦"
@@ -794,14 +790,6 @@
     "IN-UP": {
       "countryName": "印度",
       "zoneName": "北方邦"
-    },
-    "IN-UT": {
-      "countryName": "印度",
-      "zoneName": "北阿坎德邦"
-    },
-    "IN-WB": {
-      "countryName": "印度",
-      "zoneName": "西孟加拉邦"
     },
     "IO": {
       "zoneName": "英属印度洋领地"

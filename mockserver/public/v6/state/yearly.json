@@ -2980,48 +2980,6 @@
           "zoneKey": "IN"
         }
       },
-      "IN-KA": {
-        "2018-01-01T00:00:00Z": {
-          "co2intensity": 473.22,
-          "co2intensityProduction": 473.19,
-          "fossilFuelRatio": 0.6332,
-          "fossilFuelRatioProduction": 0.6332,
-          "renewableRatio": 0.3668,
-          "renewableRatioProduction": 0.3668,
-          "stateDatetime": "2018-01-01T00:00:00Z",
-          "zoneKey": "IN-KA"
-        },
-        "2019-01-01T00:00:00Z": {
-          "co2intensity": 387.09,
-          "co2intensityProduction": 387.09,
-          "fossilFuelRatio": 0.5107,
-          "fossilFuelRatioProduction": 0.5107,
-          "renewableRatio": 0.4893,
-          "renewableRatioProduction": 0.4893,
-          "stateDatetime": "2019-01-01T00:00:00Z",
-          "zoneKey": "IN-KA"
-        },
-        "2020-01-01T00:00:00Z": {
-          "co2intensity": 385.93,
-          "co2intensityProduction": 385.93,
-          "fossilFuelRatio": 0.5135000000000001,
-          "fossilFuelRatioProduction": 0.5135000000000001,
-          "renewableRatio": 0.4865,
-          "renewableRatioProduction": 0.4865,
-          "stateDatetime": "2020-01-01T00:00:00Z",
-          "zoneKey": "IN-KA"
-        },
-        "2021-01-01T00:00:00Z": {
-          "co2intensity": 459.82,
-          "co2intensityProduction": 459.82,
-          "fossilFuelRatio": 0.5967,
-          "fossilFuelRatioProduction": 0.5967,
-          "renewableRatio": 0.4033,
-          "renewableRatioProduction": 0.4033,
-          "stateDatetime": "2021-01-01T00:00:00Z",
-          "zoneKey": "IN-KA"
-        }
-      },
       "IN-MH": {
         "2017-01-01T00:00:00Z": {
           "co2intensity": 727.42,
