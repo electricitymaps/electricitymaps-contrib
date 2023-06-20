@@ -124,7 +124,7 @@ jobs:
 
   branch-preview:
     name: Deploy staging
-    needs: [eslint, typecheck, validate_generate_files, unit_test]
+    needs: [eslint, typecheck, validate_generate_files]
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
