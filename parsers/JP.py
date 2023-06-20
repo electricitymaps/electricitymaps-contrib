@@ -41,18 +41,21 @@ ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
 
 def get_wind_capacity(datetime: datetime, zone_key):
-    assert zone_key == "JP-HKD"
     ZONE_CONFIG = ZONES_CONFIG[zone_key]
-    capacity = ZONE_CONFIG["capacity"]["wind"]
-    if zone_key == "JP-HKD":
-        if datetime.year <= 2019:
-            capacity = 480
-        elif datetime.year == 2020:
-            capacity = 520
-        elif datetime.year >= 2021:
-            capacity = 577
-    else:
-        raise NotImplementedError("This parser can only fetch wind capacity for JP-HKD")
+    try:
+        capacity = ZONE_CONFIG["capacity"]["wind"]
+        if zone_key == "JP-HKD":
+            if datetime.year <= 2019:
+                capacity = 480
+            elif datetime.year == 2020:
+                capacity = 520
+            elif datetime.year >= 2021:
+                capacity = 577
+    except Exception as e:
+        Logger.error(f"Wind capacity not found in configuration file: {e.args}")
+        print(f"Wind capacity not found in configuration file: {e.args}")
+        # Logger.exception("Wind capacity not found in configuration file")
+        capacity = None
     return capacity
 
 
@@ -73,6 +76,9 @@ def fetch_production(
     datalist = []
 
     for i in df.index:
+        capacity = get_wind_capacity(
+                    df.loc[i, "datetime"].to_pydatetime(), zone_key
+                )
         data = {
             "zoneKey": zone_key,
             "datetime": df.loc[i, "datetime"].to_pydatetime(),
@@ -89,12 +95,8 @@ def fetch_production(
                 "unknown": df.loc[i, "unknown"],
             },
             "capacity": {
-                "wind": get_wind_capacity(
-                    df.loc[i, "datetime"].to_pydatetime(), zone_key
-                )
-                if zone_key in ["JP-HKD"]
-                else None
-            },
+                "wind":capacity if capacity is not None else {}
+                            },
             "source": "occtonet.or.jp, {}".format(sources[zone_key]),
         }
         datalist.append(data)
