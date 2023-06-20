@@ -37,7 +37,7 @@ jobs:
         working-directory: ./web
       - name: Build
         working-directory: ./web
-        run: VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }} pnpm run build
+        run: VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }}' pnpm run build
       - name: Publish
         uses: cloudflare/pages-action@1
         with:
