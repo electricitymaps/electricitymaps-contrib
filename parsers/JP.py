@@ -40,7 +40,7 @@ sources = {
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
 
-def get_wind_capacity(datetime: datetime, zone_key):
+def get_wind_capacity(datetime: datetime, zone_key, logger: Logger):
     ZONE_CONFIG = ZONES_CONFIG[zone_key]
     try:
         capacity = ZONE_CONFIG["capacity"]["wind"]
@@ -52,9 +52,7 @@ def get_wind_capacity(datetime: datetime, zone_key):
             elif datetime.year >= 2021:
                 capacity = 577
     except Exception as e:
-        Logger.error(f"Wind capacity not found in configuration file: {e.args}")
-        print(f"Wind capacity not found in configuration file: {e.args}")
-        # Logger.exception("Wind capacity not found in configuration file")
+        logger.error(f"Wind capacity not found in configuration file: {e.args}")
         capacity = None
     return capacity
 
@@ -76,7 +74,9 @@ def fetch_production(
     datalist = []
 
     for i in df.index:
-        capacity = get_wind_capacity(df.loc[i, "datetime"].to_pydatetime(), zone_key)
+        capacity = get_wind_capacity(
+            df.loc[i, "datetime"].to_pydatetime(), zone_key, logger
+        )
         data = {
             "zoneKey": zone_key,
             "datetime": df.loc[i, "datetime"].to_pydatetime(),
