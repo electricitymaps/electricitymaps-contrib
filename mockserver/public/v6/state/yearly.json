@@ -2980,28 +2980,6 @@
           "zoneKey": "IN"
         }
       },
-      "IN-PB": {
-        "2018-01-01T00:00:00Z": {
-          "co2intensity": 303.96,
-          "co2intensityProduction": 303.96,
-          "fossilFuelRatio": 0.33520000000000005,
-          "fossilFuelRatioProduction": 0.33520000000000005,
-          "renewableRatio": 0.6648000000000001,
-          "renewableRatioProduction": 0.6648000000000001,
-          "stateDatetime": "2018-01-01T00:00:00Z",
-          "zoneKey": "IN-PB"
-        },
-        "2020-01-01T00:00:00Z": {
-          "co2intensity": 585.06,
-          "co2intensityProduction": 585.06,
-          "fossilFuelRatio": 0.6970999999999999,
-          "fossilFuelRatioProduction": 0.6970999999999999,
-          "renewableRatio": 0.3029,
-          "renewableRatioProduction": 0.3029,
-          "stateDatetime": "2020-01-01T00:00:00Z",
-          "zoneKey": "IN-PB"
-        }
-      },
       "IN-UP": {
         "2017-01-01T00:00:00Z": {
           "co2intensity": 727.17,
