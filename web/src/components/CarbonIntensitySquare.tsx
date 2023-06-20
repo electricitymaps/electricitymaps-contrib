@@ -32,7 +32,9 @@ interface CarbonIntensitySquareProps {
 function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquareProps) {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
-  const styles = useSpring({ backgroundColor: co2ColorScale(intensity) });
+  const backgroundColor = useSpring({
+    backgroundColor: co2ColorScale(intensity),
+  }).backgroundColor;
 
   return (
     <div>
@@ -40,7 +42,7 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
         <animated.div
           style={{
             color: getTextColor(co2ColorScale(intensity)),
-            ...styles,
+            backgroundColor,
           }}
           className="mx-auto flex h-[65px] w-[65px] flex-col items-center justify-center rounded-2xl"
         >

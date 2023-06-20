@@ -2,8 +2,6 @@ name: ESLint
 
 on:
   workflow_call:
-  schedule:
-    - cron: '0 7 * * 1'
 
 jobs:
   eslint:
@@ -22,7 +20,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
       - name: Setup Node v18.x
         uses: actions/setup-node@v3
         with:

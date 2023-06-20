@@ -27,7 +27,7 @@ export const formatCo2 = function (d: number, numberDigits: number = DEFAULT_NUM
     return d;
   }
 
-  return d >= 1
+  return value >= 1
     ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
     : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
 };

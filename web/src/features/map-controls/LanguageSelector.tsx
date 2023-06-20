@@ -4,7 +4,6 @@ import { useTranslation } from 'translation/translation';
 import MapOptionSelector from './MapOptionSelector';
 import MapButton from './MapButton';
 import { HiLanguage } from 'react-icons/hi2';
-import { Button } from 'components/Button';
 
 type LanguageNamesKey = keyof typeof languageNames;
 
