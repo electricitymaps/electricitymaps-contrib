@@ -9,6 +9,7 @@ import arrow
 import pandas as pd
 from requests import Session
 
+from electricitymap.contrib.config import ZONES_CONFIG
 from parsers import occtonet
 from parsers.lib.config import refetch_frequency
 
@@ -39,6 +40,23 @@ sources = {
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
 
+def get_wind_capacity(datetime: datetime, zone_key, logger: Logger):
+    ZONE_CONFIG = ZONES_CONFIG[zone_key]
+    try:
+        capacity = ZONE_CONFIG["capacity"]["wind"]
+        if zone_key == "JP-HKD":
+            if datetime.year <= 2019:
+                capacity = 480
+            elif datetime.year == 2020:
+                capacity = 520
+            elif datetime.year >= 2021:
+                capacity = 577
+    except Exception as e:
+        logger.error(f"Wind capacity not found in configuration file: {e.args}")
+        capacity = None
+    return capacity
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "JP-TK",
@@ -56,6 +74,9 @@ def fetch_production(
     datalist = []
 
     for i in df.index:
+        capacity = get_wind_capacity(
+            df.loc[i, "datetime"].to_pydatetime(), zone_key, logger
+        )
         data = {
             "zoneKey": zone_key,
             "datetime": df.loc[i, "datetime"].to_pydatetime(),
@@ -71,10 +92,10 @@ def fetch_production(
                 "geothermal": None,
                 "unknown": df.loc[i, "unknown"],
             },
+            "capacity": {"wind": capacity if capacity is not None else {}},
             "source": "occtonet.or.jp, {}".format(sources[zone_key]),
         }
         datalist.append(data)
-
     return datalist
 
 
@@ -123,7 +144,6 @@ def fetch_production_df(
     # When there is solar, remove it from other production
     if "solar" in df.columns:
         df["unknown"] = df["unknown"] - df["solar"]
-
     return df
 
 

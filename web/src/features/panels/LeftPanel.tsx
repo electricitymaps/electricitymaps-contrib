@@ -97,7 +97,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
       } ${!isOpen ? '-translate-x-full' : ''}`}
     >
       <MobileHeader />
-      <section className="h-full w-full p-2 pl-1 pr-0">{children}</section>
+      <section className="h-full w-full p-2 pr-0 sm:pl-1">{children}</section>
       <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
     </aside>
   );
