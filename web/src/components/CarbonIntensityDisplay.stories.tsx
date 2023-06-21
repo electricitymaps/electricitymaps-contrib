@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import React from 'react';
-import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { CarbonIntensityDisplay } from './CarbonIntensityDisplay';
 
 const meta: Meta<typeof CarbonIntensityDisplay> = {
