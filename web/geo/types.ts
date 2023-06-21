@@ -14,6 +14,11 @@ export interface ZonesConfig {
   [key: string]: ZoneConfig;
 }
 
+export interface CombinedZonesConfig {
+  contributors: string[];
+  zonesConfig: ZonesConfig;
+}
+
 export interface ExchangeConfig {
   capacity?: [number, number];
   lonlat: [number, number];

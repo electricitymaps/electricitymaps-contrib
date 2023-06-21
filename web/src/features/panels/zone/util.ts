@@ -1,5 +1,6 @@
 import { ZoneDetails } from 'types';
 import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
+import { CombinedZonesConfig } from '../../../../geo/types';
 
 type zoneConfigItem = {
   contributors?: string[];
@@ -18,7 +19,7 @@ export const getHasSubZones = (zoneId?: string) => {
     return null;
   }
 
-  const config = zonesConfig[zoneId];
+  const config = zonesConfig.zonesConfig[zoneId];
   if (!config || !config.subZoneNames) {
     return false;
   }
@@ -32,7 +33,7 @@ export enum ZoneDataStatus {
   UNKNOWN = 'unknown',
 }
 
-const zonesConfig: Record<string, zoneConfigItem | undefined> = zonesConfigJSON;
+const zonesConfig = zonesConfigJSON as unknown as CombinedZonesConfig;
 export const getZoneDataStatus = (
   zoneId: string,
   zoneDetails: ZoneDetails | undefined
@@ -48,7 +49,7 @@ export const getZoneDataStatus = (
   }
 
   // If there is no config for the zone, we assume we do not have any data
-  const config = zonesConfig[zoneId];
+  const config = zonesConfig.zonesConfig[zoneId];
   if (!config) {
     console.log(config);
 
@@ -69,11 +70,14 @@ export const getZoneDataStatus = (
 };
 
 export function getContributors(zoneId: string) {
-  const config = zonesConfig[zoneId];
-  return config?.contributors;
+  const config = zonesConfig.zonesConfig[zoneId];
+  return {
+    zoneContributors: config?.contributors,
+    allContributors: zonesConfig.contributors,
+  };
 }
 
 export function getDisclaimer(zoneId: string) {
-  const config = zonesConfig[zoneId];
+  const config = zonesConfig.zonesConfig[zoneId];
   return config?.disclaimer;
 }

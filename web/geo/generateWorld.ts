@@ -29,7 +29,7 @@ const EXCHANGE_OUT_PATH = path.resolve(
 
 const fc: WorldFeatureCollection = getJSON(config.WORLD_PATH);
 const zoneConfig = mergeZones();
-const aggregates = generateAggregates(fc, zoneConfig);
+const aggregates = generateAggregates(fc, zoneConfig.zonesConfig);
 
 fc.features = aggregates;
 
@@ -41,7 +41,7 @@ coordEach(fc, (coord) => {
 
 const { skipped } = generateTopojson(fc, config);
 
-generateExchangesToIgnore(EXCHANGE_OUT_PATH, zoneConfig);
+generateExchangesToIgnore(EXCHANGE_OUT_PATH, zoneConfig.zonesConfig);
 
 if (skipped === true) {
   console.info('No changes to world.json');

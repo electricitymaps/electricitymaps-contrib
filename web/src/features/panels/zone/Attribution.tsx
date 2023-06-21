@@ -14,7 +14,7 @@ export function removeDuplicateSources(source: string | undefined) {
     ...new Set(
       source
         .split('","')
-        .flatMap((x) => x.split(',').map((x) => x.replace(/\\/g, '').replace(/"/g, '')))
+        .flatMap((x) => x.split(',').map((x) => x.replaceAll('\\', '').replaceAll('"', '')))
     ),
   ];
 
@@ -73,25 +73,29 @@ export default function Attribution({
 }
 
 function ContributorList({ zoneId }: { zoneId: string }) {
-  const contributors = getContributors(zoneId);
-  if (!contributors) {
+  const { zoneContributors, allContributors } = getContributors(zoneId);
+  if (!zoneContributors) {
     return null;
   }
 
   return (
     <div className="mt-1 flex flex-wrap gap-1">
-      {contributors.map((contributor) => {
+      {zoneContributors.map((contributor) => {
         return (
           <a
-            key={contributor}
-            href={`https://github.com/${contributor}`}
+            key={allContributors.at(contributor)}
+            href={`https://github.com/${allContributors.at(contributor)}`}
             rel="noopener noreferrer"
             target="_blank"
           >
             <img
-              src={`https://avatars.githubusercontent.com/${contributor}?s=20`} // loads the avatar image at a default size of 20px
-              srcSet={`https://avatars.githubusercontent.com/${contributor}?s=40 2x`} // loads the avatar image at a default size of 40px for high resolution displays
-              alt={contributor}
+              src={`https://avatars.githubusercontent.com/${allContributors.at(
+                contributor
+              )}?s=20`} // loads the avatar image at a default size of 20px
+              srcSet={`https://avatars.githubusercontent.com/${allContributors.at(
+                contributor
+              )}?s=40 2x`} // loads the avatar image at a default size of 40px for high resolution displays
+              alt={allContributors.at(contributor)}
               height="20"
               width="20"
               loading="lazy" // makes sure the image don't load until the user scrolls down

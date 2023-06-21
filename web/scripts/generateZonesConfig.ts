@@ -8,7 +8,7 @@ import {
   ExchangeConfig,
   ExchangesConfig,
   ZoneConfig,
-  ZonesConfig,
+  CombinedZonesConfig,
 } from '../geo/types.js';
 import { round } from '../geo/utilities.js';
 
@@ -18,7 +18,7 @@ const config = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
-const mergeZones = (): ZonesConfig => {
+const mergeZones = (): CombinedZonesConfig => {
   const basePath = path.resolve(
     fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/zones'), import.meta.url))
   );
@@ -40,8 +40,23 @@ const mergeZones = (): ZonesConfig => {
     'flag_file_name',
     'bypassedSubZones',
   ]);
+
+  const contributors = new Set<string>();
+
   const zones = filesWithDirectory.reduce((zones, filepath) => {
     const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
+
+    if (zoneConfig.contributors) {
+      for (const contributor of zoneConfig.contributors) {
+        contributors.add(contributor);
+        const index = zoneConfig.contributors.indexOf(contributor);
+        const contributorArray = [...contributors];
+        const globalIndex = contributorArray.indexOf(contributor);
+
+        zoneConfig.contributors[index] = globalIndex;
+      }
+    }
+
     if (zoneConfig?.bounding_box) {
       for (const point of zoneConfig.bounding_box) {
         point[0] = round(point[0], 4);
@@ -63,7 +78,11 @@ const mergeZones = (): ZonesConfig => {
     return zones;
   }, {});
 
-  return zones;
+  const combinedZonesConfig = {
+    contributors: [...contributors],
+    zonesConfig: zones,
+  };
+  return combinedZonesConfig;
 };
 
 const mergeExchanges = (): ExchangesConfig => {
@@ -137,7 +156,7 @@ const mergeRatioParameters = () => {
   return ratioParameters;
 };
 
-const writeJSON = (fileName: string, object: ZonesConfig | ExchangesConfig) => {
+const writeJSON = (fileName: string, object: CombinedZonesConfig | ExchangesConfig) => {
   const directory = path.resolve(path.dirname(fileName));
 
   if (!fs.existsSync(directory)) {
