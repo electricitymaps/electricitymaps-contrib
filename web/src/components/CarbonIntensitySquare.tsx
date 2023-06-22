@@ -12,7 +12,7 @@ import { useCo2ColorScale } from '../hooks/theme';
  * @param {string} rgbColor a string with the background color (e.g. "rgb(0,5,4)")
  */
 const getTextColor = (rgbColor: string) => {
-  const colors = rgbColor.replace(/[^\d,.]/g, '').split(',');
+  const colors = rgbColor.replaceAll(/[^\d,.]/g, '').split(',');
   const r = Number.parseInt(colors[0], 10);
   const g = Number.parseInt(colors[1], 10);
   const b = Number.parseInt(colors[2], 10);
