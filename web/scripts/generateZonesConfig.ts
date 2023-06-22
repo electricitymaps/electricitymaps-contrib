@@ -9,6 +9,7 @@ import {
   ExchangesConfig,
   ZoneConfig,
   CombinedZonesConfig,
+  BaseZoneConfig,
 } from '../geo/types.js';
 import { round } from '../geo/utilities.js';
 
@@ -44,7 +45,7 @@ const mergeZones = (): CombinedZonesConfig => {
   const contributors = new Set<string>();
 
   const zones = filesWithDirectory.reduce((zones, filepath) => {
-    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
+    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as BaseZoneConfig;
 
     if (zoneConfig.contributors) {
       for (const contributor of zoneConfig.contributors) {
@@ -52,7 +53,6 @@ const mergeZones = (): CombinedZonesConfig => {
         const index = zoneConfig.contributors.indexOf(contributor);
         const contributorArray = [...contributors];
         const globalIndex = contributorArray.indexOf(contributor);
-
         zoneConfig.contributors[index] = globalIndex;
       }
     }

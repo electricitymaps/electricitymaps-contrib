@@ -3,21 +3,32 @@ import { config } from './generateWorld';
 
 export type GeoConfig = typeof config;
 
-export interface ZoneConfig {
+export interface BaseZoneConfig {
   subZoneNames?: string[];
-  bounding_box: number[][];
+  bounding_box?: number[][];
   timezone?: string;
-  contributors?: number[];
   [key: string]: any;
+}
+
+export interface ZoneConfig extends BaseZoneConfig {
+  contributors?: string[];
+}
+
+export interface OptimizedZoneConfig extends BaseZoneConfig {
+  contributors?: number[];
 }
 
 export interface ZonesConfig {
   [key: string]: ZoneConfig;
 }
 
+export interface OptimizedZonesConfig {
+  [key: string]: OptimizedZoneConfig;
+}
+
 export interface CombinedZonesConfig {
   contributors: string[];
-  zonesConfig: ZonesConfig;
+  zonesConfig: OptimizedZoneConfig;
 }
 
 export interface ExchangeConfig {

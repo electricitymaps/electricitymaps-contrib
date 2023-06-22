@@ -71,7 +71,7 @@ export const getZoneDataStatus = (
 
 export function getContributors(zoneId: string) {
   return {
-    zoneContributorsIndexArray: zonesConfig.zonesConfig[zoneId]?.contributors,
+    zoneContributorsIndexArray: zonesConfig.zonesConfig[zoneId]?.contributors as number[],
     contributors: zonesConfig.contributors,
   };
 }
