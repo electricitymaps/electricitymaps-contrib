@@ -97,7 +97,7 @@ function matchesZonesConfig(fc: WorldFeatureCollection) {
 
   const missingZones: string[] = [];
   featureEach(fc, (ft) => {
-    if (!(ft.properties?.zoneName in zonesJson)) {
+    if (!(ft.properties?.zoneName in zonesJson.zonesConfig)) {
       missingZones.push(ft.properties?.zoneName);
     }
   });

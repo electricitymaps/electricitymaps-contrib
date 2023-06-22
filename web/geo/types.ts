@@ -6,7 +6,8 @@ export type GeoConfig = typeof config;
 export interface ZoneConfig {
   subZoneNames?: string[];
   bounding_box: number[][];
-  timezone: string;
+  timezone?: string;
+  contributors?: number[];
   [key: string]: any;
 }
 

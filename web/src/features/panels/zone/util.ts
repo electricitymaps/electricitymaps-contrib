@@ -70,10 +70,9 @@ export const getZoneDataStatus = (
 };
 
 export function getContributors(zoneId: string) {
-  const config = zonesConfig.zonesConfig[zoneId];
   return {
-    zoneContributors: config?.contributors,
-    allContributors: zonesConfig.contributors,
+    zoneContributorsIndexArray: zonesConfig.zonesConfig[zoneId]?.contributors,
+    contributors: zonesConfig.contributors,
   };
 }
 
