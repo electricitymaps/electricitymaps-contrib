@@ -1,5 +1,4 @@
 import { useGetSolar } from 'api/getWeatherData';
-import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtom, useSetAtom } from 'jotai';
 
 import { useEffect } from 'react';
@@ -19,8 +18,13 @@ import {
 } from './utils';
 
 // TODO: Figure out why the layer is "shifting" when zooming in and out on the map!
-export default function SolarLayer({ map }: { map?: MapboxMap }) {
-  const [isMapMoving] = useAtom(mapMovingAtom);
+export default function SolarLayer({
+  map,
+  isMapMoving,
+}: {
+  map?: MapboxMap;
+  isMapMoving: boolean;
+}) {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [solarLayerToggle] = useAtom(solarLayerEnabledAtom);
   const setIsLoadingSolarLayer = useSetAtom(solarLayerLoadingAtom);

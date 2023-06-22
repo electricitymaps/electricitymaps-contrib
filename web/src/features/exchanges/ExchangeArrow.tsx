@@ -4,8 +4,6 @@ import { MapboxMap } from 'react-map-gl';
 import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
 import { quantizedCo2IntensityScale, quantizedExchangeSpeedScale } from './scales';
-import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useSetAtom } from 'jotai';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import ExchangeTooltip from './ExchangeTooltip';
 import MobileTooltipWrapper from 'components/tooltips/MobileTooltipWrapper';
@@ -17,6 +15,7 @@ interface ExchangeArrowProps {
   viewportHeight: number;
   map: MapboxMap;
   colorBlindMode: boolean;
+  setIsMapMoving: (argument: boolean) => void;
 }
 
 function ExchangeArrow({
@@ -25,16 +24,16 @@ function ExchangeArrow({
   viewportHeight,
   map,
   colorBlindMode,
+  setIsMapMoving,
 }: ExchangeArrowProps) {
   const mapZoom = map.getZoom();
   const colorBlindModeEnabled = colorBlindMode;
   const absFlow = Math.abs(data.netFlow ?? 0);
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
-  const setIsMoving = useSetAtom(mapMovingAtom);
   if (!lonlat) {
+    //TODO This should be handled higher up in the component tree
     return null;
   }
-
   useEffect(() => {
     const cancelWheel = (event: Event) => event.preventDefault();
     const exchangeLayer = document.querySelector('#exchange-layer');
@@ -112,7 +111,7 @@ function ExchangeArrow({
             left: '-25px',
             top: '-41px',
           }}
-          onWheel={() => setIsMoving(true)}
+          onWheel={() => setIsMapMoving(true)}
         >
           <source srcSet={`${imageSource}.webp`} type="image/webp" />
           <img src={`${imageSource}.gif`} alt="" draggable={false} />
@@ -137,7 +136,7 @@ function ExchangeArrow({
             left: '-25px',
             top: '-41px',
           }}
-          onWheel={() => setIsMoving(true)}
+          onWheel={() => setIsMapMoving(true)}
         >
           <source srcSet={`${imageSource}.webp`} type="image/webp" />
           <img src={`${imageSource}.gif`} alt="" draggable={false} />

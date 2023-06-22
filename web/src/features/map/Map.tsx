@@ -26,6 +26,7 @@ import {
   mousePositionAtom,
 } from './mapAtoms';
 import { FeatureId } from './mapTypes';
+import MapTooltip from './MapTooltip';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
@@ -51,6 +52,7 @@ export default function MapPage(): ReactElement {
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
+  const isDraggingOrZooming = isDragging || isZooming;
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -321,51 +323,59 @@ export default function MapPage(): ReactElement {
   };
 
   return (
-    <Map
-      ref={mapReference}
-      initialViewState={{
-        latitude: 50.905,
-        longitude: 6.528,
-        zoom: 2.5,
-      }}
-      interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
-      cursor={hoveredZone ? 'pointer' : 'grab'}
-      onClick={onClick}
-      onLoad={onLoad}
-      onError={onError}
-      onMouseMove={onMouseMove}
-      onMouseOut={onMouseOut}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-      onZoomStart={onZoomStart}
-      onZoomEnd={onZoomEnd}
-      dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
-      dragRotate={false}
-      minZoom={0.7}
-      maxBounds={[
-        [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
-        [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
-      ]}
-      mapLib={maplibregl}
-      style={{ minWidth: '100vw', height: '100vh' }}
-      mapStyle={MAP_STYLE as mapboxgl.Style}
-    >
-      <Layer id="ocean" type="background" paint={styles.ocean} />
-      <Source id="zones-clickable" promoteId={'zoneId'} type="geojson" data={geometries}>
-        <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
-        <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
-        <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
-      </Source>
-      <CustomLayer>
-        <WindLayer />
-      </CustomLayer>
-      <CustomLayer>
-        <ExchangeLayer />
-      </CustomLayer>
-      <CustomLayer>
-        <SolarLayer />
-      </CustomLayer>
-      <ZoomControls />
-    </Map>
+    <>
+      {!isDraggingOrZooming && <MapTooltip />}
+      <Map
+        ref={mapReference}
+        initialViewState={{
+          latitude: 50.905,
+          longitude: 6.528,
+          zoom: 2.5,
+        }}
+        interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
+        cursor={hoveredZone ? 'pointer' : 'grab'}
+        onClick={onClick}
+        onLoad={onLoad}
+        onError={onError}
+        onMouseMove={onMouseMove}
+        onMouseOut={onMouseOut}
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+        onZoomStart={onZoomStart}
+        onZoomEnd={onZoomEnd}
+        dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
+        dragRotate={false}
+        minZoom={0.7}
+        maxBounds={[
+          [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
+          [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
+        ]}
+        mapLib={maplibregl}
+        style={{ minWidth: '100vw', height: '100vh' }}
+        mapStyle={MAP_STYLE as mapboxgl.Style}
+      >
+        <Layer id="ocean" type="background" paint={styles.ocean} />
+        <Source
+          id="zones-clickable"
+          promoteId={'zoneId'}
+          type="geojson"
+          data={geometries}
+        >
+          <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
+          <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
+          <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
+        </Source>
+        <CustomLayer>
+          <WindLayer isMapMoving={isDraggingOrZooming} />
+        </CustomLayer>
+        <CustomLayer>
+          <ExchangeLayer isMapMoving={isDraggingOrZooming} setIsMapMoving={onZoomStart} />
+        </CustomLayer>
+        <CustomLayer>
+          <SolarLayer isMapMoving={isDraggingOrZooming} />
+        </CustomLayer>
+        <ZoomControls />
+      </Map>
+    </>
   );
 }

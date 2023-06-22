@@ -1,5 +1,4 @@
 import { useGetWind } from 'api/getWeatherData';
-import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
 import { MapboxMap } from 'react-map-gl';
@@ -26,8 +25,13 @@ const createWindy = async (canvas: HTMLCanvasElement, data: any, map: MapboxMap)
   return windySingleton as WindyType;
 };
 
-export default function WindLayer({ map }: { map?: MapboxMap }) {
-  const [isMapMoving] = useAtom(mapMovingAtom);
+export default function WindLayer({
+  map,
+  isMapMoving,
+}: {
+  map?: MapboxMap;
+  isMapMoving: boolean;
+}) {
   const [windy, setWindy] = useState<Maybe<WindyType>>(null);
   const { ref, node, width, height } = useReferenceWidthHeightObserver();
   const viewport = useMemo(() => {
