@@ -22,7 +22,7 @@ if (inputArguments.length <= 0) {
 
 const zoneKey = inputArguments[0];
 
-if (!(zoneKey in zones)) {
+if (!(zoneKey in zones.zonesConfig)) {
   console.error(`ERROR: Zone ${zoneKey} does not exist in configuration`);
   process.exit(1);
 }
@@ -74,16 +74,16 @@ for (const zone of zonesGeo.features) {
 
 for (const [zoneKey, bbox] of Object.entries(boundingBoxes)) {
   // do not add new entries to zones/*.yaml, do not add RU because it crosses the 180th meridian
-  if (!(zoneKey in zones) || zoneKey === 'RU' || zoneKey === 'RU-FE') {
+  if (!(zoneKey in zones.zonesConfig) || zoneKey === 'RU' || zoneKey === 'RU-FE') {
     continue;
   }
   // do not modifiy current bounding boxes
-  if (zones[zoneKey].bounding_box) {
+  if (zones.zonesConfig[zoneKey].bounding_box) {
     continue;
   }
-  zones[zoneKey].bounding_box = [bbox[0], bbox[1]];
+  zones.zonesConfig[zoneKey].bounding_box = [bbox[0], bbox[1]];
 
-  saveZoneYaml(zoneKey, zones[zoneKey]);
+  saveZoneYaml(zoneKey, zones.zonesConfig[zoneKey]);
 }
 
 console.error(
