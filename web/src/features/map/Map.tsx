@@ -300,12 +300,13 @@ export default function MapPage(): ReactElement {
     setIsLoadingMap(false);
   };
 
-  const onZoomStart = () => {
-    setIsZooming(true);
+  const onMouseDown = () => {
+    setIsDragging(true);
     setIsMoving(true);
   };
-  const onDragStart = () => {
-    setIsDragging(true);
+
+  const onZoomStart = () => {
+    setIsZooming(true);
     setIsMoving(true);
   };
 
@@ -337,10 +338,12 @@ export default function MapPage(): ReactElement {
         onClick={onClick}
         onLoad={onLoad}
         onError={onError}
+        onMouseDown={onMouseDown}
+        onMouseUp={onDragEnd}
         onMouseMove={onMouseMove}
         onMouseOut={onMouseOut}
-        onDragStart={onDragStart}
-        onDragEnd={onDragEnd}
+        onTouchStart={onMouseDown}
+        onTouchEnd={onDragEnd}
         onZoomStart={onZoomStart}
         onZoomEnd={onZoomEnd}
         dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
