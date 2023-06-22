@@ -1,4 +1,4 @@
-import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import { useParams } from 'react-router-dom';

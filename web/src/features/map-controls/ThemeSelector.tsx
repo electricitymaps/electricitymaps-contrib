@@ -7,7 +7,6 @@ import { themeAtom } from 'utils/state/atoms';
 
 import MapButton from './MapButton';
 import MapOptionSelector from './MapOptionSelector';
-import { Button } from 'components/Button';
 
 const ICONS = {
   light: <HiOutlineSun size={20} />,
