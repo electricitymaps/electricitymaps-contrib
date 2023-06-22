@@ -114,8 +114,7 @@ function ExchangeArrow({
           }}
           onWheel={() => setIsMoving(true)}
         >
-          <source srcSet={`${imageSource}.webp`} type="image/webp" />
-          <img src={`${imageSource}.gif`} alt="" draggable={false} />
+          <img src={`${imageSource}.webp`} alt="arrow" draggable={false} />
         </picture>
       </MobileTooltipWrapper>
       <TooltipWrapper
@@ -139,8 +138,7 @@ function ExchangeArrow({
           }}
           onWheel={() => setIsMoving(true)}
         >
-          <source srcSet={`${imageSource}.webp`} type="image/webp" />
-          <img src={`${imageSource}.gif`} alt="" draggable={false} />
+          <img src={`${imageSource}.webp`} alt="arrow" draggable={false} />
         </picture>
       </TooltipWrapper>
     </>
