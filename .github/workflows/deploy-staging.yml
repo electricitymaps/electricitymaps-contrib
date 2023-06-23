@@ -1,12 +1,8 @@
 on:
-  workflow_call:
-    secrets:
-      CLOUDFLARE_API_TOKEN:
-        required: true
-      CLOUDFLARE_ACCOUNT_ID:
-        required: true
-      VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN:
-        required: true
+  push:
+    branches:
+      - master
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -45,7 +41,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          gitHubToken: ${{ secrets.CONTRIB_GH_TOKEN }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           projectName: 'electricitymaps-staging'
           directory: ./web/dist

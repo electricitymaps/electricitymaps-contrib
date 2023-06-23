@@ -45,7 +45,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          gitHubToken: ${{ secrets.CONTRIB_GH_TOKEN }}
-          # TODO change to electricitymaps-app when reviewed
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           projectName: 'electricitymaps-staging'
           directory: ./web/dist
