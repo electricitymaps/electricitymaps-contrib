@@ -34,9 +34,9 @@ jobs:
         uses: tj-actions/changed-files@v36.4.0
         with:
           files: |
-            web:
-              !public/locales/*.json
-              !**.md
+            web
+            !web/public/locales/*.json
+            !web/**/*.md
       - name: Check config files
         id: check-config
         uses: tj-actions/changed-files@v36.4.0
