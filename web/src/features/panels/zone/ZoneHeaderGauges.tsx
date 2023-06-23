@@ -68,11 +68,7 @@ function OutageMessage({
   );
 }
 
-interface ZoneHeaderGaugesProps {
-  data: ZoneDetails | undefined;
-}
-
-export function ZoneHeaderGauges({ data }: ZoneHeaderGaugesProps) {
+export function ZoneHeaderGauges({ data }: {data?: ZoneDetails}) {
   const { __ } = useTranslation();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
