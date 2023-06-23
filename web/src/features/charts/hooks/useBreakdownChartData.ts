@@ -71,22 +71,15 @@ export default function useBreakdownChartData() {
     for (const mode of modeOrder) {
       const isStorage = mode.includes('storage');
 
-      if (isStorage) {
-        entry.layerData[mode] = getStorageValue(
-          mode as ElectricityStorageType,
-          value,
-          valueFactor,
-          displayByEmissions
-        );
-        // TODO: handle storage
-      } else {
-        entry.layerData[mode] = getGenerationValue(
-          mode,
-          value,
-          valueFactor,
-          displayByEmissions
-        );
-      }
+      // TODO: handle storage
+      entry.layerData[mode] = isStorage
+        ? getStorageValue(
+            mode as ElectricityStorageType,
+            value,
+            valueFactor,
+            displayByEmissions
+          )
+        : getGenerationValue(mode, value, valueFactor, displayByEmissions);
     }
 
     if (mixMode === Mode.CONSUMPTION) {

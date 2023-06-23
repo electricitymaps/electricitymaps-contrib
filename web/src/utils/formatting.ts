@@ -111,7 +111,7 @@ const getLocaleNumberFormat = (lang: string, { unit, unitDisplay, range }: any) 
   } catch {
     // As Intl.NumberFormat with custom 'unit' is not supported in all browsers, we fallback to
     // a simple English based implementation
-    const plural = range !== 1 ? 's' : '';
+    const plural = range === 1 ? '' : 's';
     return `${range} ${unit}${plural}`;
   }
 };
@@ -202,11 +202,11 @@ function isValidDate(date: Date) {
  * @returns {string} formatted string of data sources.
  */
 function formatDataSources(dataSources: string[], language: string) {
-  return typeof Intl.ListFormat !== 'undefined'
-    ? new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
+  return Intl.ListFormat === undefined
+    ? dataSources.join(', ')
+    : new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
         dataSources
-      )
-    : dataSources.join(', ');
+      );
 }
 
 export { scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };

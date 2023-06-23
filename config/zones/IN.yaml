@@ -10,6 +10,7 @@ capacity:
 contributors:
   - systemcatch
   - gopikrishna1793
+  - unitrium
 emissionFactors:
   direct:
     battery discharge:
@@ -118,3 +119,10 @@ fallbackZoneMixes:
 parsers:
   production: IN.fetch_live_production
 timezone: Asia/Kolkata
+subZoneNames:
+  - IN-NO
+  - IN-NE
+  - IN-EA
+  - IN-WE
+  - IN-SO
+estimation_method: MODE_BREAKDOWN
