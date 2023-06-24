@@ -2,10 +2,10 @@ import { StrictMode } from 'react';
 import * as Sentry from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
-import { REFETCH_INTERVAL_FIVE_MINUTES } from 'api/helpers';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
+import { refetchDataOnHourChange } from 'utils/refetching';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 //import { registerSW } from 'virtual:pwa-register';
 
@@ -60,6 +60,8 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+refetchDataOnHourChange(queryClient);
 
 const container = document.querySelector('#root');
 if (container) {
