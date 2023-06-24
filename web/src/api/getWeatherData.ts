@@ -111,8 +111,8 @@ const useGetWeather = (
     [type],
     async () => await getWeatherData(type),
     {
-      staleTime: REFETCH_INTERVAL_FIVE_MINUTES,
-      refetchOnWindowFocus: false,
+      staleTime: FIVE_MINUTES,
+      cacheTime: FIVE_MINUTES,
       retry: false, // Disables retrying as getWeatherData handles retrying with new timestamps
       ...options,
     }

@@ -53,7 +53,10 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: MAX_RETRIES,
-      refetchInterval: REFETCH_INTERVAL_FIVE_MINUTES,
+      refetchOnWindowFocus: false,
+      // by default data is cached and valid forever, as we handle invalidation ourselves
+      cacheTime: Number.POSITIVE_INFINITY,
+      staleTime: Number.POSITIVE_INFINITY,
     },
   },
 });
