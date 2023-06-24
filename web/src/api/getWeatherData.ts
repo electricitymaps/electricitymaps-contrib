@@ -3,7 +3,7 @@ import { add, startOfHour, sub } from 'date-fns';
 import { useInterpolatedData } from 'features/weather-layers/hooks';
 import type { Maybe } from 'types';
 
-import { REFETCH_INTERVAL_FIVE_MINUTES, getBasePath, getHeaders } from './helpers';
+import { FIVE_MINUTES, getBasePath, getHeaders } from './helpers';
 
 export type WeatherType = 'wind' | 'solar';
 
