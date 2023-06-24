@@ -24,7 +24,7 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 
 const useGetState = (): UseQueryResult<GridState> => {
   const [timeAverage] = useAtom(timeAverageAtom);
-  return useQuery<GridState>([QUERY_KEYS.STATE, timeAverage], async () =>
+  return useQuery<GridState>([QUERY_KEYS.STATE, { aggregate: timeAverage }], async () =>
     getState(timeAverage)
   );
 };
