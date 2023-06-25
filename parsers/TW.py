@@ -53,6 +53,15 @@ def fetch_production(
     objData.loc[:, ["capacity", "output"]] = objData[["capacity", "output"]].apply(
         pd.to_numeric, errors="coerce"
     )
+
+    if objData["fueltype"].str.contains("Other Renewable Energy").any():
+        if objData["name"].str.contains("Geothermal").any():
+            objData.loc[
+                objData["name"].str.contains("Geothermal"), "fueltype"
+            ] = "Geothermal"
+        if objData["name"].str.contains("Biofuel").any():
+            objData.loc[objData["name"].str.contains("Biofuel"), "fueltype"] = "Biofuel"
+
     assert (
         not objData.capacity.isna().all()
     ), "capacity data is entirely NaN - input column order may have changed"
@@ -73,10 +82,9 @@ def fetch_production(
     check_values = production.output <= production.capacity
     modes_with_capacity_exceeded = production[~check_values].index.tolist()
     for mode in modes_with_capacity_exceeded:
-        if mode != "Geothermal":
-            logger.warning(
-                f"Capacity exceeded for {mode} in {zone_key} at {dumpDate.datetime}"
-            )
+        logger.warning(
+            f"Capacity exceeded for {mode} in {zone_key} at {dumpDate.datetime}"
+        )
 
     coal_capacity = (
         production.loc["Coal"].capacity + production.loc["IPP-Coal"].capacity
@@ -95,9 +103,10 @@ def fetch_production(
         "zoneKey": zone_key,
         "datetime": dumpDate.datetime,
         "production": {
+            "biomass": production.loc["Biofuel"].output,
             "coal": coal_production,
             "gas": gas_production,
-            "geothermal": production.loc["Geothermal"].capacity,
+            "geothermal": production.loc["Geothermal"].output,
             "oil": oil_production,
             "hydro": production.loc["Hydro"].output,
             "nuclear": production.loc["Nuclear"].output,
@@ -106,6 +115,7 @@ def fetch_production(
             "unknown": production.loc["Co-Gen"].output,
         },
         "capacity": {
+            "biomass": production.loc["Biofuel"].capacity,
             "coal": coal_capacity,
             "gas": gas_capacity,
             "geothermal": production.loc["Geothermal"].capacity,
