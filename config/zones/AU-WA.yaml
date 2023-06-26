@@ -212,4 +212,4 @@ flag_file_name: au.png
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
-timezone: null
+timezone: Australia/Perth

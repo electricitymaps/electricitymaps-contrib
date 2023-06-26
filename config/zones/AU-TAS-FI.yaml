@@ -60,4 +60,4 @@ fallbackZoneMixes:
 flag_file_name: au.png
 parsers:
   production: ajenti.fetch_production
-timezone: null
+timezone: Australia/Hobart

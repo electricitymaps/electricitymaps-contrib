@@ -4,4 +4,4 @@ bounding_box:
   - - 69.53394616000008
     - 82.35871002800013
 flag_file_name: ru.png
-timezone: null
+timezone: Europe/Moscow

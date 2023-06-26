@@ -224,4 +224,4 @@ parsers:
   price: ENTSOE.fetch_price
   productionPerModeForecast: IE.fetch_wind_forecasts
   production: IE.fetch_production
-timezone: null
+timezone: Europe/London
