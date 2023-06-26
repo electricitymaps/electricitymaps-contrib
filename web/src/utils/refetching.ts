@@ -10,9 +10,11 @@ import { TimeAverages } from './constants';
  * time the component is mounted (e.g. when going back to a zone previously viewed)
  */
 export function refetchDataOnHourChange(queryClient: QueryClient) {
-  let startHour = new Date().getMinutes();
+  let startHour = new Date().getUTCHours();
   setInterval(() => {
-    const currentHour = new Date().getMinutes();
+    const currentHour = new Date().getUTCHours();
+    // log the current second
+    console.info(`${new Date().getSeconds()}`);
     if (startHour !== currentHour) {
       console.info(`Refetching data for new hour: ${currentHour}`);
 
@@ -29,5 +31,5 @@ export function refetchDataOnHourChange(queryClient: QueryClient) {
       // Reset the start hour
       startHour = currentHour;
     }
-  }, ONE_MINUTE);
+  }, 1000);
 }
