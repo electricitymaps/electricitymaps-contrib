@@ -3,7 +3,7 @@ from datetime import datetime
 import pytest
 from pytz import timezone
 from requests import Session
-from requests_mock import ANY, GET, Adapter
+from requests_mock import GET, Adapter
 
 from electricitymap.contrib.config import ZONE_NEIGHBOURS, ZoneKey
 from parsers import IN_EA
