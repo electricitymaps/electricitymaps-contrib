@@ -2,13 +2,14 @@
 This library contains validation functions applied to all parsers by the feeder.
 This is a higher level validation than validation.py
 """
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, List
 from warnings import warn
 
 import arrow
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZoneKey, emission_factors
+from electricitymap.contrib.config import EXCHANGES_CONFIG, emission_factors
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 class ValidationError(ValueError):
@@ -48,7 +49,7 @@ def validate_reasonable_time(item, k):
         )
 
     arrow_now = arrow.utcnow()
-    if data_time > arrow_now:
+    if data_time.astimezone(timezone.utc) > arrow_now:
         raise ValidationError(
             "Data from %s can't be in the future, data was %s, now is "
             "%s" % (k, data_time, arrow_now)

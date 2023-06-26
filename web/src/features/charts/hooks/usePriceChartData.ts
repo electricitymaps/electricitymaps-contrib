@@ -12,7 +12,7 @@ export function getFills(data: AreaGraphElement[]) {
 
   const priceColorScale = scaleLinear<string>()
     .domain([priceMinValue, 0, priceMaxValue])
-    .range(['brown', 'lightgray', '#616161']);
+    .range(['gray', 'lightgray', '#616161']);
 
   const layerFill = (key: string) => (d: { data: AreaGraphElement }) =>
     priceColorScale(d.data.layerData[key]);
@@ -29,6 +29,9 @@ export function usePriceChartData() {
   if (isLoading || isError) {
     return { isLoading, isError };
   }
+
+  // We assume that if the first element has price disabled, all of them do
+  const priceDisabledReason = Object.values(zoneData.zoneStates)[0].price?.disabledReason;
 
   const chartData: AreaGraphElement[] = [];
 
@@ -59,6 +62,7 @@ export function usePriceChartData() {
     markerFill,
     valueAxisLabel,
     layerStroke: undefined,
+    priceDisabledReason,
   };
 
   return { data: result, isLoading, isError };

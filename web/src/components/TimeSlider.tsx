@@ -21,6 +21,7 @@ function TimeSlider({ onChange, numberOfEntries, selectedIndex }: TimeSliderProp
         <SliderPrimitive.Range />
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
+        data-test-id="time-slider-input"
         className={`block h-6 w-6 rounded-full bg-white bg-[url("/images/slider-thumb.svg")]
           bg-center bg-no-repeat shadow-3xl focus:outline-none
           focus-visible:ring focus-visible:ring-brand-green/10

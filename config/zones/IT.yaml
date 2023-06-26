@@ -4,16 +4,16 @@ bounding_box:
   - - 18.4802470232
     - 47.1153931748
 capacity:
-  biomass: 4105.9
-  coal: 6981
-  gas: 50382.3
+  biomass: 4106.2
+  coal: 5598
+  gas: 51765.5
   geothermal: 817.1
-  hydro: 15659.1
-  hydro storage: 7328.5
+  hydro: 17127.9
+  hydro storage: 7293.5
   nuclear: 0
-  oil: 1325
-  solar: 21650.1
-  wind: 10906.9
+  oil: 1269
+  solar: 22594.2
+  wind: 11289.8
 contributors:
   - corradio
 emissionFactors:
@@ -51,7 +51,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
-      value: 446.1813452
+      value: 427.8711931
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -113,7 +113,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 566.1813452
+      value: 547.8711931
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022

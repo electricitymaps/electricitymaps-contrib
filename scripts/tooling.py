@@ -1,6 +1,11 @@
 """
-Poetry scripts, runable using 'poetry run'.
+Poetry scripts, runnable using 'poetry run'.
+
+For example:
+    poetry run lint
+    poetry run format
 """
+
 import subprocess
 import sys
 
@@ -21,7 +26,7 @@ def format():
 
 def lint():
     _run(
-        "flake8 electricitymap tests parsers --count --select=E901,E999,F821,F822,F823 --show-source --statistics"
+        "flake8 electricitymap tests parsers --count --select=F401,E901,E999,F821,F822,F823 --show-source --statistics"
     )
     _run("black --check .")
     _run("isort -c .")

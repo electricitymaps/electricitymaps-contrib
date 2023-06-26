@@ -3,7 +3,7 @@ import useGetState from 'api/getState';
 import { useAtom } from 'jotai';
 import { useMemo } from 'react';
 import { ExchangeArrowData, ExchangeResponse } from 'types';
-import { TimeAverages, ToggleOptions } from 'utils/constants';
+import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
@@ -19,7 +19,7 @@ const exchangesConfig: Record<string, any> = exchangesConfigJSON;
 export function useExchangeArrowsData(): ExchangeArrowData[] {
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [aggregateToggle] = useAtom(spatialAggregateAtom);
+  const [viewMode] = useAtom(spatialAggregateAtom);
   const { data, isError, isLoading } = useGetState();
   const [mode] = useAtom(productionConsumptionAtom);
   const isConsumption = mode === 'consumption';
@@ -44,10 +44,10 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
         return Object.assign(current, { [key]: exchanges[key] });
       }, {});
 
-    return aggregateToggle === ToggleOptions.ON
+    return viewMode === SpatialAggregate.COUNTRY
       ? countryViewExchanges
       : zoneViewExchanges;
-  }, [aggregateToggle, data]);
+  }, [viewMode, data]);
 
   if (isError || isLoading || !isConsumption || !isHourly) {
     return [];

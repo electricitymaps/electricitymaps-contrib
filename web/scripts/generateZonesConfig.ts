@@ -3,7 +3,14 @@ file to enable easy importing within web/ */
 import * as yaml from 'js-yaml';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { round } from '../geo/utilities';
+import { fileURLToPath } from 'node:url';
+import {
+  ExchangeConfig,
+  ExchangesConfig,
+  ZoneConfig,
+  ZonesConfig,
+} from '../geo/types.js';
+import { round } from '../geo/utilities.js';
 
 const BASE_CONFIG_PATH = '../../config';
 
@@ -11,11 +18,15 @@ const config = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
-const mergeZones = () => {
-  const basePath = path.resolve(__dirname, BASE_CONFIG_PATH, 'zones');
+const mergeZones = (): ZonesConfig => {
+  const basePath = path.resolve(
+    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/zones'), import.meta.url))
+  );
 
   const zoneFiles = fs.readdirSync(basePath);
-  const filesWithDirectory = zoneFiles.map((file) => `${basePath}/${file}`);
+  const filesWithDirectory = zoneFiles
+    .filter((file) => file.endsWith('.yaml'))
+    .map((file) => `${basePath}/${file}`);
 
   const UNNECESSARY_ZONE_FIELDS = new Set([
     'fallbackZoneMixes',
@@ -30,7 +41,7 @@ const mergeZones = () => {
     'bypassedSubZones',
   ]);
   const zones = filesWithDirectory.reduce((zones, filepath) => {
-    const zoneConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
     if (zoneConfig?.bounding_box) {
       for (const point of zoneConfig.bounding_box) {
         point[0] = round(point[0], 4);
@@ -55,18 +66,23 @@ const mergeZones = () => {
   return zones;
 };
 
-const mergeExchanges = () => {
-  const basePath = path.resolve(__dirname, BASE_CONFIG_PATH, 'exchanges');
+const mergeExchanges = (): ExchangesConfig => {
+  const basePath = path.resolve(
+    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/exchanges'), import.meta.url))
+  );
 
   const exchangeFiles = fs.readdirSync(basePath);
-  const filesWithDirectory = exchangeFiles.map((file) => `${basePath}/${file}`);
+  const filesWithDirectory = exchangeFiles
+    .filter((file) => file.endsWith('.yaml'))
+    .map((file) => `${basePath}/${file}`);
 
   const UNNECESSARY_EXCHANGE_FIELDS = new Set(['comment', '_comment', 'parsers']);
 
   const exchanges = filesWithDirectory.reduce((exchanges, filepath) => {
-    const exchangeConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const exchangeConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ExchangeConfig;
     exchangeConfig.lonlat[0] = round(exchangeConfig.lonlat[0], 3);
     exchangeConfig.lonlat[1] = round(exchangeConfig.lonlat[1], 3);
+
     for (const key of Object.keys(exchangeConfig)) {
       if (UNNECESSARY_EXCHANGE_FIELDS.has(key)) {
         delete exchangeConfig[key];
@@ -82,14 +98,16 @@ const mergeExchanges = () => {
 
 const mergeRatioParameters = () => {
   // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
-  const basePath = path.resolve(__dirname, '../config');
+  const basePath = path.resolve(fileURLToPath(new URL('../config', import.meta.url)));
 
   const defaultParameters: any = yaml.load(
     fs.readFileSync(`${basePath}/defaults.yaml`, 'utf8')
   );
 
   const zoneFiles = fs.readdirSync(`${basePath}/zones`);
-  const filesWithDirectory = zoneFiles.map((file) => `${basePath}/zones/${file}`);
+  const filesWithDirectory = zoneFiles
+    .filter((file) => file.endsWith('.yaml'))
+    .map((file) => `${basePath}/zones/${file}`);
 
   const ratioParameters: any = {
     fallbackZoneMixes: {
@@ -107,7 +125,7 @@ const mergeRatioParameters = () => {
   };
 
   for (const filepath of filesWithDirectory) {
-    const zoneConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
     const zoneKey = path.parse(filepath).name;
     for (const key of Object.keys(ratioParameters)) {
       if (zoneConfig[key] !== undefined) {
@@ -119,7 +137,7 @@ const mergeRatioParameters = () => {
   return ratioParameters;
 };
 
-const writeJSON = (fileName: any, object: any) => {
+const writeJSON = (fileName: string, object: ZonesConfig | ExchangesConfig) => {
   const directory = path.resolve(path.dirname(fileName));
 
   if (!fs.existsSync(directory)) {
@@ -132,7 +150,9 @@ const writeJSON = (fileName: any, object: any) => {
 const zonesConfig = mergeZones();
 const exchangesConfig = mergeExchanges();
 
-const autogenConfigPath = path.resolve(__dirname, '../config');
+const autogenConfigPath = path.resolve(
+  fileURLToPath(new URL('../config', import.meta.url))
+);
 
 if (config.verifyNoUpdates) {
   const zonesConfigPrevious = JSON.parse(
@@ -158,4 +178,4 @@ if (config.verifyNoUpdates) {
 writeJSON(`${autogenConfigPath}/zones.json`, zonesConfig);
 writeJSON(`${autogenConfigPath}/exchanges.json`, exchangesConfig);
 
-export { mergeZones, mergeExchanges, mergeRatioParameters };
+export { mergeExchanges, mergeRatioParameters, mergeZones };

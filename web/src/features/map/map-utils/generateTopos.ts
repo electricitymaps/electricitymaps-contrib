@@ -1,20 +1,13 @@
 import { multiPolygon } from '@turf/helpers';
 import { merge } from 'topojson-client';
-import { MapGeometries, MapTheme } from 'types';
-import { ToggleOptions } from 'utils/constants';
+import { GeometryProperties, MapGeometries, MapTheme } from 'types';
+import { SpatialAggregate } from 'utils/constants';
 import topo from '../../../../config/world.json';
 // TODO: Investigate if we can move this step to buildtime geo scripts
 export interface TopoObject {
   type: any;
   arcs: number[][][];
-  properties: {
-    zoneName: string;
-    countryKey: string;
-    countryName?: string; //Potential bug spotted, check why aggregated view value doesn't have country name
-    isAggregatedView: boolean;
-    isHighestGranularity: boolean;
-    center: number[];
-  };
+  properties: Omit<GeometryProperties, 'color' | 'zoneId'>;
 }
 
 export interface Topo {
@@ -28,9 +21,13 @@ export interface Topo {
 /**
  * This function takes the topojson file and converts it to a geojson file
  */
-const generateTopos = (theme: MapTheme, spatialAggregate: string): MapGeometries => {
+const generateTopos = (
+  theme: MapTheme,
+  spatialAggregate: SpatialAggregate
+): MapGeometries => {
   const geometries: MapGeometries = { features: [], type: 'FeatureCollection' };
-  const topography = topo as Topo;
+  // Casting to unknown first to allow using [number, number] for center property
+  const topography = topo as unknown as Topo;
 
   for (const k of Object.keys(topography.objects)) {
     if (!topography.objects[k].arcs) {
@@ -40,7 +37,7 @@ const generateTopos = (theme: MapTheme, spatialAggregate: string): MapGeometries
     // Exclude if spatial aggregate is on and the feature is not highest granularity
     // I.e excludes SE if spatialAggregate is off.
     if (
-      spatialAggregate === ToggleOptions.OFF &&
+      spatialAggregate === SpatialAggregate.ZONE &&
       !topography.objects[k].properties.isHighestGranularity
     ) {
       continue;
@@ -49,7 +46,7 @@ const generateTopos = (theme: MapTheme, spatialAggregate: string): MapGeometries
     // Exclude if spatial aggregate is off and the feature is aggregated view,
     // I.e excludes SE-SE4 if spatialAggregate is on.
     if (
-      spatialAggregate === ToggleOptions.ON &&
+      spatialAggregate === SpatialAggregate.COUNTRY &&
       !topography.objects[k].properties.isAggregatedView
     ) {
       continue;

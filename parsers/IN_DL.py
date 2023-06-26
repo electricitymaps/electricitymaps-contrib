@@ -15,6 +15,7 @@ plants = {
     "GT": "Gas",
     "Pragati": "Gas",
     "TOWMP-Okhla": "G2E",
+    "TWEPL-TUGLAK": "G2E",
 }
 
 

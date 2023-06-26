@@ -133,13 +133,13 @@
     "showSolarLayer": "Prikaži sončno plast",
     "hideSolarLayer": "Skrij sončno plast",
     "weatherDisabled": "Vremenski podatki trenutno niso na voljo",
-    "toggleDarkMode": "Preklopi na temni način",
+    "changeTheme": "Preklopi na temni način",
     "noParserInfo": "Ni podatkov",
     "temporaryDataOutage": "Podatki v živo trenutno niso na voljo",
     "production": "Proizvodnja",
     "consumption": "Poraba",
     "cpinfo": "<b>Potrošnja</b> upošteva uvoz in izvoz, <b>proizvodnja</b> ju ne upošteva",
-    "aggregateinfo": "Države se združijo, ko je letna zmogljivost cone večja od 90 % celotne zmogljivosti",
+    "aggregateInfo": "Države se združijo, ko je letna zmogljivost cone večja od 90 % celotne zmogljivosti",
     "selectLanguage": "Izberi jezik",
     "lowCarbDescription": "Vključuje obnovljive vire in jedrsko energijo",
     "dataIsDelayed": "Podatki zamujajo"
@@ -288,7 +288,7 @@
     "AT": {
       "zoneName": "Avstrija"
     },
-    "AUS-NSW": {
+    "AU-NSW": {
       "countryName": "Australija",
       "zoneName": "Novi Južni Wales"
     },
@@ -296,15 +296,15 @@
       "countryName": "Australija",
       "zoneName": "Severni teritoriji"
     },
-    "AUS-QLD": {
+    "AU-QLD": {
       "countryName": "Australia",
       "zoneName": "Queensland"
     },
-    "AUS-SA": {
+    "AU-SA": {
       "countryName": "Australija",
       "zoneName": "Južna Avstralija"
     },
-    "AUS-TAS": {
+    "AU-TAS": {
       "countryName": "Australija",
       "zoneName": "Tasmanija"
     },
@@ -312,23 +312,23 @@
       "countryName": "Australija",
       "zoneName": "Cape Barren otok"
     },
-    "AUS-TAS-KI": {
+    "AU-TAS-KI": {
       "countryName": "Australija",
       "zoneName": "King otok"
     },
-    "AUS-TAS-FI": {
+    "AU-TAS-FI": {
       "countryName": "Australija",
       "zoneName": "Flinders otok"
     },
-    "AUS-VIC": {
+    "AU-VIC": {
       "countryName": "Australija",
       "zoneName": "Victoria"
     },
-    "AUS-WA": {
+    "AU-WA": {
       "countryName": "Australij",
       "zoneName": "Zahodna Avstralija"
     },
-    "AUS-WA-RI": {
+    "AU-WA-RI": {
       "countryName": "Avstralija",
       "zoneName": "Rottnest Otoki"
     },

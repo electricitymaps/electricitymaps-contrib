@@ -69,13 +69,13 @@ export function OnboardingModal() {
   const [searchParameters] = useSearchParams();
   const skipOnboarding = searchParameters.get('skip-onboarding') === 'true';
   const visible = !hasOnboardingBeenSeen && !skipOnboarding;
-
   const handleDismiss = () => {
     setHasOnboardingBeenSeen(true);
   };
   return (
     <Modal
       modalName="onboarding"
+      data-test-id="onboarding"
       visible={visible}
       onDismiss={handleDismiss}
       views={views}

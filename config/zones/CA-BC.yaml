@@ -22,4 +22,6 @@ fallbackZoneMixes:
       unknown: 0.01
       wind: 0.01
 flag_file_name: ca.png
-timezone: null
+timezone: America/Vancouver
+parsers:
+  consumption: CA_BC.fetch_consumption

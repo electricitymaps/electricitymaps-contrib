@@ -11,13 +11,14 @@ import {
   getGeom,
   intersect,
 } from '@turf/turf';
-import { getHoles, getPolygons, log, writeJSON } from './utilities';
+import { getHoles, getPolygons, log, writeJSON } from './utilities.js';
 
-import { mergeZones } from '../scripts/generateZonesConfig';
+import { mergeZones } from '../scripts/generateZonesConfig.js';
+import { GeoConfig, WorldFeatureCollection } from './types.js';
 
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
-function validateGeometry(fc, config) {
+function validateGeometry(fc: WorldFeatureCollection, config: GeoConfig) {
   console.info('Validating geometries...');
   zeroNullGeometries(fc);
   containsRequiredProperties(fc);
@@ -28,7 +29,7 @@ function validateGeometry(fc, config) {
   matchesZonesConfig(fc);
 }
 
-function zeroNullGeometries(fc) {
+function zeroNullGeometries(fc: WorldFeatureCollection) {
   const nullGeometries = fc.features
     .filter((ft) => getGeom(ft).coordinates.length === 0)
     .map((ft) => ft.properties.zoneName);
@@ -40,7 +41,7 @@ function zeroNullGeometries(fc) {
   }
 }
 
-function containsRequiredProperties(fc) {
+function containsRequiredProperties(fc: WorldFeatureCollection) {
   const indexes = getPolygons(fc)
     .features.map(({ properties }, index) =>
       properties?.zoneName || properties?.countryKey || properties?.countryName
@@ -57,7 +58,10 @@ function containsRequiredProperties(fc) {
   }
 }
 
-function zeroComplexPolygons(fc, { MAX_CONVEX_DEVIATION }) {
+function zeroComplexPolygons(
+  fc: WorldFeatureCollection,
+  { MAX_CONVEX_DEVIATION }: GeoConfig
+) {
   // https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.73.1045&rep=rep1&type=pdf
   // calculate deviation from the convex hull and returns array of polygons with high complexity
 
@@ -88,7 +92,7 @@ function zeroComplexPolygons(fc, { MAX_CONVEX_DEVIATION }) {
   }
 }
 
-function matchesZonesConfig(fc) {
+function matchesZonesConfig(fc: WorldFeatureCollection) {
   const zonesJson = mergeZones();
 
   const missingZones: string[] = [];
@@ -105,7 +109,10 @@ function matchesZonesConfig(fc) {
   }
 }
 
-function zeroGaps(fc, { ERROR_PATH, MIN_AREA_HOLES, SLIVER_RATIO }) {
+function zeroGaps(
+  fc: WorldFeatureCollection,
+  { ERROR_PATH, MIN_AREA_HOLES, SLIVER_RATIO }: GeoConfig
+) {
   const dissolved = getPolygons(dissolve(getPolygons(fc)));
   const holes = getHoles(dissolved, MIN_AREA_HOLES, SLIVER_RATIO);
 
@@ -118,13 +125,10 @@ function zeroGaps(fc, { ERROR_PATH, MIN_AREA_HOLES, SLIVER_RATIO }) {
   }
 }
 
-function zeroNeighboringIds(fc) {
+function zeroNeighboringIds(fc: WorldFeatureCollection) {
   // Throws error if multiple polygons have the same zoneName and are right next to each other,
   // in that case they should be merged as one polygon
-
-  const groupedByZoneNames: { [key: string]: Feature<Polygon>[] } = getPolygons(
-    fc
-  ).features.reduce((accumulator, cval) => {
+  const groupedByZoneNames = getPolygons(fc).features.reduce((accumulator, cval) => {
     const zoneName = cval.properties?.zoneName;
     if (accumulator[zoneName]) {
       accumulator[zoneName].push(cval);
@@ -132,7 +136,7 @@ function zeroNeighboringIds(fc) {
       accumulator[zoneName] = [cval];
     }
     return accumulator;
-  }, {});
+  }, {} as { [key: string]: Feature<Polygon>[] });
 
   // dissolve each group, if length decreases, it means that they are superfluous neigbors
   const zoneNames = Object.entries(groupedByZoneNames)
@@ -150,7 +154,10 @@ function zeroNeighboringIds(fc) {
   }
 }
 
-function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
+export function zeroOverlaps(
+  fc: WorldFeatureCollection,
+  { MIN_AREA_INTERSECTION }: GeoConfig
+) {
   // add bbox to features to increase speed
   const features = getPolygons(fc).features.map((ft) => ({
     ft,
@@ -163,27 +170,29 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
       .map((ft) => ft.properties.countryKey)
   );
 
-  const overlaps = features
-    .filter(
-      (ft1, index1) =>
-        features.filter((ft2, index2) => {
-          if (countriesToIgnore.has(ft1.ft.properties?.countryKey)) {
-            return false;
-          }
-          if (index1 !== index2 && intersect(ft1.bbox, ft2.bbox)) {
-            const intersection = intersect(ft1.ft, ft2.ft);
-            if (intersection && area(intersection) > MIN_AREA_INTERSECTION) {
-              return true;
-            }
-          }
-        }).length
-    )
-    .map(({ ft, _ }: any) => ft.properties?.zoneName);
-  if (overlaps.length > 0) {
-    for (const x of overlaps) {
-      console.error(`${x} overlaps with another feature`);
+  // Since this code runs all the time and can be slow, we use this performance optimised version.
+  // It creates a reverse loop of features and remove the tested one from the array to avoid
+  // testing the same combination twice.
+  for (let index1 = features.length - 1; index1 >= 0; index1--) {
+    const ft1 = features[index1];
+    if (countriesToIgnore.has(ft1.ft.properties?.countryKey)) {
+      // We should not test this feature again
+      features.pop();
+      continue;
     }
-    throw new Error('Feature(s) overlap');
+
+    for (const [index2, ft2] of features.entries()) {
+      if (index1 !== index2 && intersect(ft1.bbox, ft2.bbox)) {
+        const intersection = intersect(ft1.ft, ft2.ft);
+        if (intersection && area(intersection) > MIN_AREA_INTERSECTION) {
+          throw new Error(
+            `${ft1.ft.properties?.zoneName} overlaps with ${ft2.ft.properties?.zoneName}`
+          );
+        }
+      }
+    }
+    // Remove the tested feature from the array
+    features.pop();
   }
 }
 

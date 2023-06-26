@@ -1,7 +1,6 @@
-_comment: "Hydro capacity from IRENA includes pumped storage generation capacity.
+_comment: 'Hydro capacity from IRENA includes pumped storage generation capacity.
   Note: ENTSO-E (not used for hydro capacity) lists 5645 MW for pumped storage CONSUMPTION
-  capacity, whereas GENERATION from pumped storage is included in 'hydro reservoir'
-  category."
+  capacity.'
 bounding_box:
   - - -9.3603515625
     - 35.9957853864
@@ -10,15 +9,15 @@ bounding_box:
 capacity:
   biomass: 1219
   coal: 3223
-  gas: 30148
+  gas: 30163
   geothermal: 0
   hydro: 17093
   hydro storage: 5645
   nuclear: 7117
   oil: 670
-  solar: 20821
-  unknown: 403
-  wind: 29157
+  solar: 22065
+  unknown: 387
+  wind: 29465
 contributors:
   - brandongalbraith
   - corradio
@@ -61,7 +60,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
-      value: 422.8263312
+      value: 397.8527093
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -123,7 +122,7 @@ emissionFactors:
     gas:
       datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 542.8263312
+      value: 517.8527093
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022

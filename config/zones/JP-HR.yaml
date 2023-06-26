@@ -6,6 +6,27 @@ bounding_box:
 contributors:
   - tmslaine
   - lorrieq
+  - pierresegonne
+  - wobniarin
+  - PPsyrius
+capacity:
+  biomass: 700
+  geothermal: 0
+  coal: 2900
+  gas: 1194.7
+  hydro: 1934
+  nuclear: 1746
+  oil: 1750
+  wind: 229.6
+disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
+emissionFactors:
+  lifecycle:
+    unknown:
+      _comment: 'Source: Enerdata 2022 Japanese National Average'
+      _url:
+        - https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
+      source: Enerdata 2022
+      value: 462
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price

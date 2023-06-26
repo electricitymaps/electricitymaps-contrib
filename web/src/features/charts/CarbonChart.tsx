@@ -23,7 +23,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
     <>
       <ChartTitle translationKey="country-history.carbonintensity" />
       <AreaGraph
-        testId="history-carbon-graph"
+        testId="details-carbon-graph"
         data={chartData}
         layerKeys={layerKeys}
         layerFill={layerFill}

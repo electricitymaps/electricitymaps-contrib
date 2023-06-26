@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { CircularGauge } from './CircularGauge';
 
 const meta: Meta<typeof CircularGauge> = {

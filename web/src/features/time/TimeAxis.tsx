@@ -94,11 +94,7 @@ function TimeAxis({
     );
   }
 
-  const scale = getTimeScale(
-    scaleWidth ?? width,
-    datetimes[0],
-    datetimes[datetimes.length - 1]
-  );
+  const scale = getTimeScale(scaleWidth ?? width, datetimes[0], datetimes.at(-1) as Date);
   const [x1, x2] = scale.range();
 
   return (

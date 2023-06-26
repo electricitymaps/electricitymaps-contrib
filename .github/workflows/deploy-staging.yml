@@ -1,0 +1,47 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Deploy staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Setup Node v18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Restore node_modules for web
+        id: cache-web
+        uses: actions/cache@v3
+        with:
+          path: web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache-web.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+        working-directory: ./web
+      - name: Build
+        working-directory: ./web
+        run: pnpm run build
+        env:
+          VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: '${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }}'
+      - name: Publish
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          projectName: 'electricitymaps-staging'
+          directory: ./web/dist

@@ -1,22 +1,26 @@
 import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
+import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { ElectricityStorageType, ZoneDetail } from 'types';
+import { ElectricityStorageKeyType, ElectricityStorageType, ZoneDetail } from 'types';
 
-import { Mode, ToggleOptions, modeColor, modeOrder } from 'utils/constants';
+import { useParams } from 'react-router-dom';
+import { Mode, SpatialAggregate, modeColor, modeOrder } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import { getGenerationTypeKey } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
-export const getLayerFill = (exchangeKeys: string[], co2ColorScale: any) => {
+export const getLayerFill = (
+  exchangeKeys: string[],
+  co2ColorScale: ScaleLinear<string, string, string>
+) => {
   const layerFill = (key: string) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
     if (exchangeKeys.includes(key)) {
@@ -33,20 +37,19 @@ export const getLayerFill = (exchangeKeys: string[], co2ColorScale: any) => {
 export default function useBreakdownChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
+  const { zoneId } = useParams();
   const [mixMode] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [aggregateToggle] = useAtom(spatialAggregateAtom);
-  const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
-  if (isLoading || isError || !currentData) {
+  const [viewMode] = useAtom(spatialAggregateAtom);
+  const isCountryView = viewMode === SpatialAggregate.COUNTRY;
+  if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
   }
 
   const exchangesForSelectedAggregate = getExchangesToDisplay(
-    currentData.zoneKey,
-    isAggregateToggled,
-    currentData.exchange
+    zoneId,
+    isCountryView,
+    zoneData.zoneStates
   );
 
   const { valueFactor, valueAxisLabel } = getValuesInfo(
@@ -68,22 +71,15 @@ export default function useBreakdownChartData() {
     for (const mode of modeOrder) {
       const isStorage = mode.includes('storage');
 
-      if (isStorage) {
-        entry.layerData[mode] = getStorageValue(
-          mode,
-          value,
-          valueFactor,
-          displayByEmissions
-        );
-        // TODO: handle storage
-      } else {
-        entry.layerData[mode] = getGenerationValue(
-          mode,
-          value,
-          valueFactor,
-          displayByEmissions
-        );
-      }
+      // TODO: handle storage
+      entry.layerData[mode] = isStorage
+        ? getStorageValue(
+            mode as ElectricityStorageType,
+            value,
+            valueFactor,
+            displayByEmissions
+          )
+        : getGenerationValue(mode, value, valueFactor, displayByEmissions);
     }
 
     if (mixMode === Mode.CONSUMPTION) {
@@ -124,19 +120,24 @@ export default function useBreakdownChartData() {
 }
 
 function getStorageValue(
-  key: string,
+  key: ElectricityStorageType,
   value: ZoneDetail,
   valueFactor: number,
   displayByEmissions: boolean
 ) {
-  const storageKey = key.replace(' storage', '') as ElectricityStorageType;
-  let scaledValue = (-1 * Math.min(0, (value.storage || {})[storageKey])) / valueFactor;
+  const storageKey = key.replace(' storage', '') as ElectricityStorageKeyType;
+  const storageValue = value.storage?.[storageKey];
+  if (storageValue === undefined || storageValue === null) {
+    return Number.NaN;
+  }
+
+  let scaledValue = (-1 * Math.min(0, storageValue)) / valueFactor;
 
   if (displayByEmissions) {
     scaledValue *= value.dischargeCo2Intensities[storageKey] / 1e3 / 60;
   }
 
-  return scaledValue ?? Number.NaN;
+  return scaledValue;
 }
 
 function getGenerationValue(
@@ -151,14 +152,18 @@ function getGenerationValue(
   }
 
   const modeProduction = value.production[generationKey];
-  let scaledValue =
-    modeProduction !== undefined ? modeProduction / valueFactor : undefined;
 
-  if (displayByEmissions && scaledValue !== undefined) {
+  if (modeProduction === undefined || modeProduction === null) {
+    return Number.NaN;
+  }
+
+  let scaledValue = modeProduction / valueFactor;
+
+  if (displayByEmissions) {
     scaledValue *= value.productionCo2Intensities[generationKey] / 1e3 / 60;
   }
 
-  return scaledValue ?? Number.NaN;
+  return scaledValue;
 }
 
 interface ValuesInfo {

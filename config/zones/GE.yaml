@@ -7,9 +7,9 @@ bounding_box:
     - 43.553104153
 capacity:
   gas: 1189
-  hydro: 3439
+  hydro: 3552
   nuclear: 0
-  wind: 21
+  wind: 29
 contributors:
   - alixunderplatz
   - kruschk

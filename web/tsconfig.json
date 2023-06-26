@@ -15,13 +15,6 @@
     "target": "ESNext",
     "types": ["vite/client", "vitest/globals", "vite-plugin-pwa/client"]
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    },
-    "transpileOnly": true
-  },
   "include": ["src", "./cypress/cypress.d.ts", "viteEnvironment.d.ts"],
-  "exclude": ["node_modules", "dist"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": ["node_modules", "dist"]
 }

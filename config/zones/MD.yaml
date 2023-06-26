@@ -4,12 +4,12 @@ bounding_box:
   - - 30.0246586443
     - 48.4671194525
 capacity:
-  biomass: 6
+  biomass: 12
   coal: 1600
   gas: 1263
   hydro: 64
-  solar: 8
-  wind: 51
+  solar: 19
+  wind: 102
 contributors:
   - systemcatch
   - alixunderplatz

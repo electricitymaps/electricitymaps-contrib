@@ -4,18 +4,21 @@ import { TimeAverages } from './constants';
 
 const DEFAULT_NUM_DIGITS = 3;
 
-export const formatPower = function (d: number, numberDigits = DEFAULT_NUM_DIGITS) {
+export const formatPower = function (
+  d: number,
+  numberDigits: number = DEFAULT_NUM_DIGITS
+) {
   // Assume MW input
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
   const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}W` //Add a space between the number and the unit
-    .replace(/([a-zA-Z])/, ' $1')
+    .replace(/([A-Za-z])/, ' $1')
     .trim();
   return power;
 };
 
-export const formatCo2 = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
+export const formatCo2 = function (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) {
   let value = d;
   // Assume gCO₂ / h input
   value /= 60; // Convert to gCO₂ / min
@@ -24,7 +27,7 @@ export const formatCo2 = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
     return d;
   }
 
-  return d >= 1
+  return value >= 1
     ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
     : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
 };
@@ -70,16 +73,26 @@ const formatDate = function (date: Date, lang: string, time: string) {
         timeStyle: 'short',
       }).format(date);
     }
+    // Instantiate below DateTimeFormat objects using UTC to avoid displaying
+    // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        dateStyle: 'long',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.MONTHLY: {
-      return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(
-        date
-      );
+      return new Intl.DateTimeFormat(lang, {
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     default: {
       console.error(`${time} is not implemented`);
@@ -98,7 +111,7 @@ const getLocaleNumberFormat = (lang: string, { unit, unitDisplay, range }: any) 
   } catch {
     // As Intl.NumberFormat with custom 'unit' is not supported in all browsers, we fallback to
     // a simple English based implementation
-    const plural = range !== 1 ? 's' : '';
+    const plural = range === 1 ? '' : 's';
     return `${range} ${unit}${plural}`;
   }
 };
@@ -132,22 +145,38 @@ const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAv
 
   switch (timeAggregate) {
     case TimeAverages.HOURLY: {
-      return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        timeStyle: 'short',
+      }).format(date);
     }
+    // Instantiate below DateTimeFormat objects using UTC to avoid displaying
+    // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' }).format(
-        date
-      );
+      return new Intl.DateTimeFormat(lang, {
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.MONTHLY: {
       return lang === 'et'
-        ? new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' })
+        ? new Intl.DateTimeFormat(lang, {
+            month: 'short',
+            day: 'numeric',
+            timeZone: 'UTC',
+          })
             .formatToParts(date)
             .find((part) => part.type === 'month')?.value
-        : new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
+        : new Intl.DateTimeFormat(lang, {
+            month: 'short',
+            timeZone: 'UTC',
+          }).format(date);
     }
     case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     default: {
       console.error(`${timeAggregate} is not implemented`);
@@ -173,11 +202,11 @@ function isValidDate(date: Date) {
  * @returns {string} formatted string of data sources.
  */
 function formatDataSources(dataSources: string[], language: string) {
-  return typeof Intl.ListFormat !== 'undefined'
-    ? new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
+  return Intl.ListFormat === undefined
+    ? dataSources.join(', ')
+    : new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
         dataSources
-      )
-    : dataSources.join(', ');
+      );
 }
 
 export { scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };

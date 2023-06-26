@@ -5,6 +5,7 @@ import json
 import numbers
 import re
 import unittest
+from typing import Any, Dict, Set, Tuple, Union
 
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS,
@@ -13,7 +14,7 @@ from electricitymap.contrib.config import (
 )
 
 
-def get_possible_modes():
+def get_possible_modes() -> Set[str]:
     """Get the set of possible modes."""
     modes = set()
     with open("web/src/utils/constants.ts", encoding="utf-8") as file_:
@@ -39,16 +40,16 @@ def get_possible_modes():
     return modes
 
 
-def parse_json_file(path):
+def parse_json_file(path: str):
     """Parse a JSON file."""
     with open(path, encoding="utf-8") as file_:
         return json.load(file_)
 
 
 class CO2eqParametersAll(unittest.TestCase):
-    """A test case for the CO2eq parameters."""
+    """A test case for CO2eq parameters."""
 
-    modes = get_possible_modes()
+    modes: Set[str] = get_possible_modes()
     parameters = CO2EQ_PARAMETERS
 
     @staticmethod
@@ -125,13 +126,10 @@ class CO2eqParametersAll(unittest.TestCase):
         """
 
         def callback(ratio, zone):
+            values = ratio["value"].values()
             self.assertAlmostEqual(
                 1.0,
-                sum(
-                    ratio
-                    for ratio in ratio["value"].values()
-                    if isinstance(ratio, numbers.Number)
-                ),
+                sum(v for v in values if isinstance(v, numbers.Number)),
                 msg=f"zone '{zone}' ratios do not sum to (approximately) 1.0",
                 places=2,
             )
@@ -179,6 +177,7 @@ class CO2eqParametersAll(unittest.TestCase):
 
     def check_contribution_datetimes(self, contribution, zone, mode, contribution_name):
         # Would throw a KeyError if a member misses a datetime
+        dts = []
         try:
             dts = [c["datetime"] for c in contribution]
         except KeyError:
@@ -247,93 +246,200 @@ class CO2eqParametersAll(unittest.TestCase):
         self.check_is_low_carbon(callback)
 
 
-class CO2eqParametersDirectAndLifecycleMixin:
-    """A mixin for the direct and lifecycle CO2eq parameters."""
+class BaseClasses:
+    # By putting the base classes in a separate class,
+    # we avoid automatically running this test case by itself.
+    class CO2eqParametersDirectAndLifecycleBase(unittest.TestCase):
+        """Base case lifecycle CO2eq parameters test cases."""
 
-    modes = get_possible_modes()
+        modes = get_possible_modes()
 
-    @classmethod
-    def check_emission_factors(cls, callback):
-        """Apply the callback to each emission factor in the 'emissionFactors'
-        object.
-        """
-        emission_factors = cls.parameters["emissionFactors"]
-        for zone, modes_to_factors in (
-            ("defaults", emission_factors["defaults"]),
-            *emission_factors["zoneOverrides"].items(),
-        ):
-            for mode, factors in modes_to_factors.items():
-                callback(mode, factors, zone)
+        # `parameters` and `ranges_by_mode` are expected to be overridden by the test
+        # case; they are defined here to for typing purposes.
+        parameters: Dict[str, Any] = {}
+        ranges_by_mode: Dict[str, Tuple[numbers.Number, numbers.Number]] = {}
 
-    def test_emission_factor_modes_are_valid(self):
-        """All specified modes must be in the allowed set of modes."""
+        @classmethod
+        def check_emission_factors(cls, callback):
+            """Apply the callback to each item in the 'emissionFactors' object.
 
-        def callback(mode, _factors, zone):
-            self.assertIn(
-                mode, self.modes, msg=f"zone '{zone}' contains an invalid mode"
-            )
+            The callback is called with the mode and factors for both the defaults
+            and the zone-specific overrides; each `factors` object is either a list
+            of factor dicts or a single factor dict, and each factor dict has the
+            key "value", and possibly other keys such as "source".
+            """
+            emission_factors = cls.parameters["emissionFactors"]
+            for zone, modes_to_factors in (
+                ("defaults", emission_factors["defaults"]),
+                *emission_factors["zoneOverrides"].items(),
+            ):
+                for mode, factors in modes_to_factors.items():
+                    callback(mode, factors, zone)
 
-        self.check_emission_factors(callback)
+        @classmethod
+        def check_emission_factor_values(cls, callback):
+            """Apply the callback to each emission factor value.
 
-    def test_emission_factor_annual_lists_have_valid_dates(self):
-        """Lists of emission factors must include valid date strings."""
+            Similar to check_emission_factors, but the second argument to the
+            callback is the value of the factor, not the dict or list of dicts
+            containing it.
+            """
 
-        def callback(_mode, factors, _zone):
-            if isinstance(factors, list):
-                for factor in factors:
-                    # An exception will be raised if the string is not a valid
-                    # datetime, thus failing the test.
-                    datetime.datetime.fromisoformat(factor["datetime"])
+            def cb(mode, factors, zone):
+                if isinstance(factors, list):
+                    for factor in factors:
+                        callback(mode, factor, zone)
+                else:
+                    callback(mode, factors, zone)
 
-        self.check_emission_factors(callback)
+            cls.check_emission_factors(cb)
 
-    def test_emission_factor_annual_lists_are_not_empty(self):
-        """Verifies that the list of annual emission factors are not empty"""
+        def test_emission_factor_value_ranges(self):
+            """Checks all emission factors are in the allowed range.
 
-        def callback(_mode, factors, _zone):
-            if isinstance(factors, list):
-                self.assertGreater(
-                    len(factors),
-                    0,
-                    msg=f"emission factors list is empty for zone {_zone}",
+            Emission factor is measured in grams CO2eq per kWh. It is also known as
+            the carbon intensity.
+
+            This test method checks that values are within reasonable ranges for
+            different modes, to avoid accidental typos in configs. For reference,
+            most renewables are below 50 gCO2eq/kWh, and most fossil fuels are
+            above 500 gCO2eq/kWh.
+            """
+
+            def check_range(mode, factor, zone):
+                value = factor["value"]
+                assert isinstance(value, (int, float))
+                low, high = self.ranges_by_mode[mode]
+                assert isinstance(low, (int, float))
+                assert isinstance(high, (int, float))
+                msg = (
+                    f"emission factor {value} not in expected range "
+                    f"[{low}, {high}] for {mode} in {zone}"
+                )
+                self.assertGreaterEqual(value, low, msg)
+                self.assertLessEqual(value, high, msg)
+
+            def callback(mode, factors, zone):
+                if isinstance(factors, list):
+                    for factor in factors:
+                        check_range(mode, factor, zone)
+                else:
+                    check_range(mode, factors, zone)
+
+            self.check_emission_factors(callback)
+
+        def test_emission_factor_modes_are_valid(self):
+            """All specified modes must be in the allowed set of modes."""
+
+            def callback(mode, _factors, zone):
+                self.assertIn(
+                    mode, self.modes, msg=f"zone '{zone}' contains an invalid mode"
                 )
 
-        self.check_emission_factors(callback)
+            self.check_emission_factors(callback)
 
-    def test_required_keys_are_present(self):
-        """All objects must contain the required keys."""
+        def test_emission_factor_annual_lists_have_valid_dates(self):
+            """Lists of emission factors must include valid date strings."""
 
-        def callback(_mode, factors, _zone):
-            if isinstance(factors, list):
-                for factor in factors:
-                    self.assertIn(
-                        "datetime",
-                        factor,
-                        msg="lists of emission factors must include datetimes",
+            def callback(_mode, factors, _zone):
+                if isinstance(factors, list):
+                    for factor in factors:
+                        # An exception will be raised if the string is not a valid
+                        # datetime, thus failing the test.
+                        datetime.datetime.fromisoformat(factor["datetime"])
+
+            self.check_emission_factors(callback)
+
+        def test_emission_factor_annual_lists_are_not_empty(self):
+            """Verifies that the list of annual emission factors are not empty"""
+
+            def callback(_mode, factors, _zone):
+                if isinstance(factors, list):
+                    self.assertGreater(
+                        len(factors),
+                        0,
+                        msg=f"emission factors list is empty for zone {_zone}",
                     )
-                    self.assertIn("value", factor)
-            else:
-                self.assertIn("value", factors)
 
-        self.assertIn("emissionFactors", self.parameters)
-        emission_factors = self.parameters["emissionFactors"]
-        self.assertIn("defaults", emission_factors)
-        self.assertIn("zoneOverrides", emission_factors)
-        self.check_emission_factors(callback)
+            self.check_emission_factors(callback)
+
+        def test_required_keys_are_present(self):
+            """All objects must contain the required keys."""
+
+            def callback(_mode, factors, _zone):
+                if isinstance(factors, list):
+                    for factor in factors:
+                        self.assertIn(
+                            "datetime",
+                            factor,
+                            msg="lists of emission factors must include datetimes",
+                        )
+                        self.assertIn("value", factor)
+                else:
+                    self.assertIn("value", factors)
+
+            self.assertIn("emissionFactors", self.parameters)
+            emission_factors = self.parameters["emissionFactors"]
+            self.assertIn("defaults", emission_factors)
+            self.assertIn("zoneOverrides", emission_factors)
+            self.check_emission_factors(callback)
 
 
-class CO2eqParametersDirect(CO2eqParametersDirectAndLifecycleMixin, unittest.TestCase):
+class CO2eqParametersDirect(BaseClasses.CO2eqParametersDirectAndLifecycleBase):
     """A test case for the direct CO2eq parameters."""
 
     parameters = CO2EQ_PARAMETERS_DIRECT
 
+    # Expected min and max values for emission factors, by mode.
+    ranges_by_mode: Dict[str, Tuple[Union[int, float], Union[int, float]]] = {
+        # Fossil fuels: usually above 500 gCO2eq/kWh.
+        "coal": (500, 1600),
+        "gas": (200, 700),
+        "oil": (300, 1300),
+        # Low-carbon: direct emissions are usually zero, with some possible exceptions.
+        "geothermal": (0, 100),
+        "hydro": (0, 0),
+        "nuclear": (0, 0),
+        "solar": (0, 0),
+        "wind": (0, 0),
+        "biomass": (0, 0),
+        # Storage; should be zero as emissions are counted at discharge time.
+        "hydro charge": (0, 0),
+        "battery charge": (0, 0),
+        # Discharge and unknown; these may be based on averages for region/time.
+        "battery discharge": (0, 1000),
+        "hydro discharge": (0, 1000),
+        "unknown": (0, 1000),
+    }
 
-class CO2eqParametersLifecycle(
-    CO2eqParametersDirectAndLifecycleMixin, unittest.TestCase
-):
+
+class CO2eqParametersLifecycle(BaseClasses.CO2eqParametersDirectAndLifecycleBase):
     """A test case for the lifecycle CO2eq parameters."""
 
     parameters = CO2EQ_PARAMETERS_LIFECYCLE
+
+    # Expected min and max values for emission factors, by mode.
+    ranges_by_mode: Dict[str, Tuple[Union[int, float], Union[int, float]]] = {
+        # Fossil fuels: generally above 500 gCO2eq/kWh with some exceptions.
+        "oil": (600, 1600),
+        "coal": (500, 1600),
+        "gas": (400, 900),
+        # Low-carbon: generally below 50 gCO2eq/kWh with some exceptions.
+        # For lifecycle emissions, this should not be zero.
+        "geothermal": (30, 140),
+        "hydro": (10, 25),
+        "nuclear": (4, 12),
+        "biomass": (0.4, 1300),
+        "solar": (25, 45),
+        "wind": (10, 13),
+        # Storage: emissions are counted at discharge time, should always be zero.
+        "battery charge": (0, 0),
+        "hydro charge": (0, 0),
+        # Unknown and discharge; may be based on averages for a region/time.
+        "battery discharge": (10, 1200),
+        "hydro discharge": (10, 1200),
+        "unknown": (10, 1000),
+    }
 
 
 if __name__ == "__main__":

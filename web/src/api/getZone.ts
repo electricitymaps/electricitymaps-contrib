@@ -1,4 +1,4 @@
-import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import { useParams } from 'react-router-dom';
@@ -29,6 +29,9 @@ const getZone = async (
 
   if (response.ok) {
     const { data } = (await response.json()) as { data: ZoneDetails };
+    if (!data.zoneStates) {
+      throw new Error('No data returned from API');
+    }
     return data;
   }
 
@@ -37,17 +40,14 @@ const getZone = async (
 
 // TODO: The frontend (graphs) expects that the datetimes in state are the same as in zone
 // should we add a check for this?
-const useGetZone = (
-  options?: UseQueryOptions<ZoneDetails>
-): UseQueryResult<ZoneDetails> => {
-  const [timeAverage] = useAtom(timeAverageAtom);
+const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const { zoneId } = useParams();
+  const [timeAverage] = useAtom(timeAverageAtom);
   return useQuery<ZoneDetails>(
     [QUERY_KEYS.ZONE, zoneId, timeAverage],
     async () => getZone(timeAverage, zoneId),
     {
       staleTime: REFETCH_INTERVAL_FIVE_MINUTES,
-      ...options,
     }
   );
 };

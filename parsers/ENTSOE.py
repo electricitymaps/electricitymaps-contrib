@@ -24,8 +24,11 @@ import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
+from pytz import utc
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import PriceList
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 
 from .lib.exceptions import ParserException
@@ -214,7 +217,8 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     "SK->UA": [ENTSOE_DOMAIN_MAPPINGS["SK"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
 }
 # Some zone_keys are part of bidding zone domains for price data
-ENTSOE_PRICE_DOMAIN_OVERRIDE: Dict[str, str] = {
+ENTSOE_PRICE_DOMAIN_MAPPINGS: Dict[str, str] = {
+    **ENTSOE_DOMAIN_MAPPINGS,  # Note: This has to be first so the domains are overwritten.
     "AX": ENTSOE_DOMAIN_MAPPINGS["SE-SE3"],
     "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
@@ -525,7 +529,6 @@ def query_ENTSOE(
 def query_consumption(
     domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A65",
         "processType": "A16",
@@ -562,7 +565,6 @@ def query_production_per_units(
     session: Session,
     target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A73",
         "processType": "A16",
@@ -585,7 +587,6 @@ def query_exchange(
     session: Session,
     target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A11",
         "in_Domain": in_domain,
@@ -623,7 +624,6 @@ def query_exchange_forecast(
 def query_price(
     domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
-
     params = {
         "documentType": "A44",
         "in_Domain": domain,
@@ -711,7 +711,6 @@ def parse_scalar(
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
 ) -> Union[Tuple[List[float], List[datetime]], None]:
-
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -740,7 +739,6 @@ def parse_scalar(
 def parse_production(
     xml_text,
 ) -> Union[Tuple[List[Dict[str, Any]], List[datetime]], None]:
-
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -882,7 +880,6 @@ def parse_exchange(
     quantities: Optional[List[float]] = None,
     datetimes: Optional[List[datetime]] = None,
 ) -> Union[Tuple[List[float], List[datetime]], None]:
-
     if not xml_text:
         return None
     quantities = quantities or []
@@ -919,17 +916,16 @@ def parse_exchange(
     return quantities, datetimes
 
 
-def parse_price(
+def parse_prices(
     xml_text: str,
-) -> Union[Tuple[List[float], List[str], List[datetime]], None]:
+    zoneKey: ZoneKey,
+    logger: Logger,
+) -> PriceList:
 
     if not xml_text:
-        return None
+        return PriceList(logger)
     soup = BeautifulSoup(xml_text, "html.parser")
-    # Get all points
-    prices: List[float] = []
-    currencies: List[str] = []
-    datetimes: List[datetime] = []
+    prices = PriceList(logger)
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find_all("currency_unit.name")[0].contents[0])
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
@@ -939,11 +935,15 @@ def parse_price(
         for entry in timeseries.find_all("point"):
             position = int(entry.find_all("position")[0].contents[0])
             dt = datetime_from_position(datetime_start, position, resolution)
-            prices.append(float(entry.find_all("price.amount")[0].contents[0]))
-            datetimes.append(dt)
-            currencies.append(currency)
+            prices.append(
+                zoneKey=zoneKey,
+                datetime=dt,
+                price=float(entry.find_all("price.amount")[0].contents[0]),
+                source="entsoe.eu",
+                currency=currency,
+            )
 
-    return prices, currencies, datetimes
+    return prices
 
 
 def validate_production(
@@ -1187,13 +1187,22 @@ def fetch_production_aggregate(
 @refetch_frequency(timedelta(days=1))
 def fetch_production_per_units(
     zone_key: str,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Returns all production units and production values."""
-    if not session:
-        session = Session()
+
+    # If no target_datetime is specified, or the target datetime is less
+    # than 5 days ago we set the target_datetime to 5 days ago.
+    if target_datetime is None or target_datetime > datetime.now(tz=utc) - timedelta(
+        days=5
+    ):
+        logger.info(
+            "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
+        )
+        target_datetime = datetime.now(tz=utc) - timedelta(days=5)
+
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
     # Iterate over all psr types
@@ -1373,45 +1382,25 @@ def fetch_exchange_forecast(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_price(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets day-ahead price for specified zone."""
-    # Note: This is day-ahead prices
     if not session:
         session = Session()
-    if zone_key in ENTSOE_PRICE_DOMAIN_OVERRIDE:
-        domain = ENTSOE_PRICE_DOMAIN_OVERRIDE[zone_key]
-    else:
-        domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    parsed = None
-    # Grab consumption
-    raw_price = query_price(domain, session, target_datetime=target_datetime)
-    if raw_price is not None:
-        parsed = parse_price(raw_price)
-    if parsed is not None:
-        data = []
-        prices, currencies, datetimes = parsed
-        for i in range(len(prices)):
-            data.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": datetimes[i],
-                    "currency": currencies[i],
-                    "price": prices[i],
-                    "source": "entsoe.eu",
-                }
-            )
 
-        return data
-    else:
+    domain = ENTSOE_PRICE_DOMAIN_MAPPINGS[zone_key]
+
+    raw_price_data = query_price(domain, session, target_datetime=target_datetime)
+    if raw_price_data is None:
         raise ParserException(
             parser="ENTSOE.py",
             message=f"No price data found for {zone_key}",
             zone_key=zone_key,
         )
+    return parse_prices(raw_price_data, zone_key, logger).to_list()
 
 
 @refetch_frequency(timedelta(days=2))
@@ -1548,3 +1537,7 @@ def fetch_wind_solar_forecasts(
         )
 
     return data
+
+
+if __name__ == "__main__":
+    fetch_price(ZoneKey("FR"))

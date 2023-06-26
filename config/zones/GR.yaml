@@ -8,13 +8,13 @@ capacity:
   coal: 2650
   gas: 6030
   geothermal: 0
-  hydro: 2722
+  hydro: 2724
   hydro storage: 699
   nuclear: 0
   oil: 0
   solar: 5100
   unknown: 120
-  wind: 4150
+  wind: 4547
 contributors:
   - corradio
 emissionFactors:

@@ -15,7 +15,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
       - name: Setup Node v18.x
         uses: actions/setup-node@v3
         with:
@@ -29,8 +29,8 @@ jobs:
       - name: Install web dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
-      - name: Generate zone config
+      - name: Generate config files
         if: steps.cache.outputs.cache-hit == 'true'
-        run: pnpm generate-zones-config
+        run: pnpm create-generated-files
       - name: Run test
         run: pnpm run test:ci

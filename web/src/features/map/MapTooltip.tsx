@@ -16,6 +16,7 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
+import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 
 function TooltipInner({
   zoneData,
@@ -38,7 +39,21 @@ function TooltipInner({
 
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
-  const fossilFuel = (isConsumption ? fossilFuelRatio : fossilFuelRatioProduction) ?? 0;
+  const intensity = getCarbonIntensity(
+    isConsumption,
+    co2intensity,
+    co2intensityProduction
+  );
+  const fossilFuelPercentage = getFossilFuelRatio(
+    isConsumption,
+    fossilFuelRatio,
+    fossilFuelRatioProduction
+  );
+  const renewable = getRenewableRatio(
+    isConsumption,
+    renewableRatio,
+    renewableRatioProduction
+  );
   return (
     <div className="w-full text-center">
       <div className="pl-2">
@@ -46,17 +61,15 @@ function TooltipInner({
         <div className="flex self-start text-xs">{date}</div>{' '}
       </div>
       <div className="flex w-full flex-grow py-1 sm:pr-2">
-        <div className="flex w-full flex-grow flex-row justify-start">
-          <CarbonIntensitySquare
-            intensity={isConsumption ? co2intensity : co2intensityProduction}
-          />
-          <div className="px-4">
-            <CircularGauge name={__('country-panel.lowcarbon')} ratio={1 - fossilFuel} />
+        <div className="flex w-full flex-grow flex-row justify-around">
+          <CarbonIntensitySquare intensity={intensity} />
+          <div className="pl-2 pr-6">
+            <CircularGauge
+              name={__('country-panel.lowcarbon')}
+              ratio={fossilFuelPercentage}
+            />
           </div>
-          <CircularGauge
-            name={__('country-panel.renewable')}
-            ratio={isConsumption ? renewableRatio : renewableRatioProduction}
-          />
+          <CircularGauge name={__('country-panel.renewable')} ratio={renewable} />
         </div>
       </div>
     </div>
@@ -83,8 +96,8 @@ export default function MapTooltip() {
     : undefined;
 
   const screenWidth = window.innerWidth;
-  const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 290, 176);
-  const emptyTooltipPosition = getSafeTooltipPosition(x, y, screenWidth, 176, 80);
+  const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 300, 170);
+  const emptyTooltipPosition = getSafeTooltipPosition(x, y, screenWidth, 176, 70);
 
   const formattedDate = formatDate(
     new Date(selectedDatetime.datetimeString),
@@ -96,7 +109,7 @@ export default function MapTooltip() {
     return (
       <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
         <div
-          className="relative h-[176px] w-[276px] rounded border bg-zinc-50 p-3  text-sm shadow-lg dark:border-0 dark:bg-gray-900"
+          className="pointer-events-none relative w-[300px] rounded border bg-zinc-50 p-3  text-sm shadow-lg dark:border-0 dark:bg-gray-900"
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>
@@ -113,7 +126,7 @@ export default function MapTooltip() {
   return (
     <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
       <div
-        className="relative h-[80px] w-[176px] rounded border bg-zinc-50 p-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+        className="pointer-events-none relative w-[176px] rounded border bg-zinc-50 p-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
         style={{ left: emptyTooltipPosition.x, top: emptyTooltipPosition.y }}
       >
         <div>

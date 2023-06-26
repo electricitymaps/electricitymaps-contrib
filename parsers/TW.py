@@ -9,6 +9,7 @@ import pandas as pd
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 
 @refetch_frequency(timedelta(days=1))
@@ -24,6 +25,11 @@ def fetch_production(
     url = "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary.txt"
     s = session or Session()
     response = s.get(url)
+    if not response.status_code == 200:
+        raise ParserException(
+            "TW",
+            f"Query failed with status code {response.status_code} and {response.content}",
+        )
     data = response.json()
 
     dumpDate = data[""]

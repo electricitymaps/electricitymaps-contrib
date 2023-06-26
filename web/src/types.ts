@@ -90,12 +90,13 @@ export type Exchange = { [key: string]: number };
 
 export interface ZoneDetail extends ZoneOverview {
   _isFinestGranularity: boolean;
-  capacity?: { [key in ElectricityModeType]: Maybe<number> };
+  // Capacity is only available on hourly details
+  capacity?: { [key in ElectricityModeType]: number | null };
   dischargeCo2Intensities: { [key in ElectricityStorageKeyType]: number };
   dischargeCo2IntensitySources: { [key in ElectricityStorageKeyType]: string };
   exchange: Exchange;
   exchangeCapacities?: {
-    [key: string]: number[]; // TODO: Why can I not use [number, number] here?
+    [key: ZoneKey]: [number, number];
   };
   exchangeCo2Intensities: Exchange;
   fossilFuelRatio: number;
@@ -113,6 +114,7 @@ export interface ZoneDetail extends ZoneOverview {
   price?: {
     value: number;
     currency: string;
+    disabledReason?: string;
   };
   production: { [key in GenerationType]: Maybe<number> };
   productionCo2Intensities: { [key in GenerationType]: number };
@@ -141,6 +143,18 @@ export interface ZoneDetails {
   zoneStates: {
     [key: string]: ZoneDetail;
   };
+  zoneMessage?: { message: string; issue: string };
+}
+
+export interface GeometryProperties {
+  center: [number, number];
+  color: string;
+  countryKey: string;
+  countryName: string;
+  isAggregatedView: boolean;
+  isHighestGranularity: boolean;
+  zoneId: string;
+  zoneName: string;
 }
 
 export interface MapGeometries extends FeatureCollection<Geometry> {
@@ -149,10 +163,7 @@ export interface MapGeometries extends FeatureCollection<Geometry> {
 export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   geometry: MultiPolygon | Polygon;
   Id?: number;
-  properties: {
-    zoneId: string;
-    color: string;
-  };
+  properties: GeometryProperties;
 }
 
 export interface MapTheme {

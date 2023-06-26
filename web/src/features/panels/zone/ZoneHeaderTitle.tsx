@@ -26,7 +26,7 @@ export default function ZoneHeaderTitle({
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
   return (
-    <div className="flex w-full grow flex-row pl-2">
+    <div className="flex w-full grow flex-row overflow-hidden pl-2">
       <Link
         className="text-3xl self-center py-4 pr-4"
         to={returnToMapLink}
@@ -35,28 +35,30 @@ export default function ZoneHeaderTitle({
         <HiArrowLeft />
       </Link>
 
-      <div className="w-full">
-        <div className="flex  flex-row justify-between">
+      <div className="w-full overflow-hidden">
+        <div className="flex w-full  flex-row justify-between">
           <div className="mb-0.5 flex  w-full  justify-between">
-            <div className="flex  flex-row items-center ">
+            <div className="flex w-full flex-row items-center pr-4 sm:pr-0 ">
               <CountryFlag
                 zoneId={zoneId}
                 size={18}
-                className="mr-2 shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+                className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
               />
-              <div className="flex flex-row">
-                <h2
-                  className="max-w-[300px] overflow-hidden truncate text-lg font-medium sm:max-w-[230px] md:max-w-[270px]"
-                  data-test-id="zone-name"
-                >
-                  {title}
-                </h2>
-                {isSubZone && (
-                  <p className="ml-2 flex w-auto items-center whitespace-nowrap rounded-full bg-gray-200 py-0.5 px-2  text-sm dark:bg-gray-900">
-                    {countryName || zoneId}
-                  </p>
-                )}
-              </div>
+              <TooltipWrapper
+                tooltipContent={title.length > 20 ? title : undefined}
+                side="bottom"
+              >
+                <div className="ml-2 flex w-full flex-row overflow-hidden">
+                  <h2 className="truncate text-lg font-medium" data-test-id="zone-name">
+                    {title}
+                  </h2>
+                  {isSubZone && (
+                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 py-0.5 px-2  text-sm dark:bg-gray-900">
+                      <p className="w-full truncate">{countryName || zoneId}</p>
+                    </div>
+                  )}
+                </div>
+              </TooltipWrapper>
             </div>
             {disclaimer && (
               <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
@@ -67,7 +69,7 @@ export default function ZoneHeaderTitle({
             )}
           </div>
         </div>
-        <div className="flex h-3 flex-wrap items-center gap-1 text-center">
+        <div className="flex h-auto flex-wrap items-center gap-1 text-center">
           {isEstimated && (
             <Badge type="warning" key={'badge-est'}>
               {__('country-panel.estimated')}

@@ -5,10 +5,17 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "module": "ESNext",
+    "noEmit": true,
     "moduleResolution": "Node",
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext"
   },
-  "include": ["vite.config.ts", "cypress.config.ts", "scripts", "geo"]
+  "ts-node": {
+    "compilerOptions": {
+      "module": "ESNext"
+    },
+    "transpileOnly": true
+  },
+  "include": ["vite.config.cts", "cypress.config.ts", "scripts", "geo"]
 }

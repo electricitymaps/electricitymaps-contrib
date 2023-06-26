@@ -1,4 +1,4 @@
-import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import type { GridState } from 'types';
@@ -27,15 +27,15 @@ const getState = async (timeAverage: string): Promise<GridState> => {
   throw new Error(await response.text());
 };
 
-const useGetState = (options?: UseQueryOptions<GridState>): UseQueryResult<GridState> => {
+const useGetState = (): UseQueryResult<GridState> => {
   const [timeAverage] = useAtom(timeAverageAtom);
   return useQuery<GridState>(
     [QUERY_KEYS.STATE, timeAverage],
     async () => getState(timeAverage),
     {
       refetchInterval: REFETCH_INTERVAL_FIVE_MINUTES,
-      refetchOnWindowFocus: false,
-      ...options,
+      staleTime: REFETCH_INTERVAL_FIVE_MINUTES,
+      refetchOnWindowFocus: true,
     }
   );
 };
