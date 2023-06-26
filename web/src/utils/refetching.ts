@@ -31,5 +31,5 @@ export function refetchDataOnHourChange(queryClient: QueryClient) {
       // Reset the start hour
       startHour = currentHour;
     }
-  }, 1000);
+  }, ONE_MINUTE);
 }
