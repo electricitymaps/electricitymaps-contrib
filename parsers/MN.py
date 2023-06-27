@@ -8,6 +8,12 @@ import arrow
 from pytz import timezone
 from requests import Response, Session
 
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
 
 NDC_GENERATION = "https://disnews.energy.mn/test/convert.php"
@@ -80,7 +86,7 @@ def query(session: Session) -> Dict[str, Any]:
 
 
 def fetch_production(
-    zone_key: str = "MN",
+    zone_key: ZoneKey,
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -100,23 +106,25 @@ def fetch_production(
         13,
     )
 
-    dataset_production = {
-        "unknown": query_data["unknownMW"],
-        "solar": query_data["solarMW"],
-        "wind": query_data["windMW"],
-    }
-    data = {
-        "zoneKey": zone_key,
-        "datetime": query_data["time"],
-        "production": dataset_production,
-        "source": "https://ndc.energy.mn/",
-    }
+    prod_mix = ProductionMix(
+        solar=query_data["solarMW"],
+        wind=query_data["windMW"],
+        unknown=query_data["unknownMW"],
+    )
 
-    return data
+    prod_breakdown_list = ProductionBreakdownList(logger)
+    prod_breakdown_list.append(
+        datetime=query_data["time"],
+        zoneKey=zone_key,
+        source="https://ndc.energy.mn/",
+        production=prod_mix,
+    )
+
+    return prod_breakdown_list.to_list()
 
 
 def fetch_consumption(
-    zone_key: str = "MN",
+    zone_key: ZoneKey,
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -126,14 +134,15 @@ def fetch_consumption(
 
     query_data = query(session)
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": query_data["time"],
-        "consumption": query_data["consumptionMW"],
-        "source": "https://ndc.energy.mn/",
-    }
+    consumption_list = TotalConsumptionList(logger)
+    consumption_list.append(
+        datetime=query_data["time"],
+        zoneKey=zone_key,
+        consumption=query_data["consumptionMW"],
+        source="https://ndc.energy.mn/",
+    )
 
-    return data
+    return consumption_list.to_list()
 
 
 if __name__ == "__main__":
