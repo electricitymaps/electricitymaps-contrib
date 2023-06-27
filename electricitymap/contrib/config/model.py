@@ -69,7 +69,7 @@ class ParsersBaseModel(StrictBaseModel):
         """
         function_str = getattr(self, type)
         if function_str:
-            return import_string(f"electricitymap.contrib.parsers.{function_str}")
+            return import_string(f"parsers.{function_str}")
 
 
 class Parsers(ParsersBaseModel):
