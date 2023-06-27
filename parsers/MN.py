@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import json
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any, Dict, Optional
@@ -74,7 +73,7 @@ def query(session: Session) -> Dict[str, Any]:
         )
 
     # Read as JSON
-    response_json = json.loads(target_response.text)
+    response_json = target_response.json()
     query_result = parse_json(response_json)
 
     return query_result
@@ -98,7 +97,7 @@ def fetch_production(
         - query_data["importMW"]
         - query_data["solarMW"]
         - query_data["windMW"],
-        2,
+        13,
     )
 
     dataset_production = {
