@@ -13,12 +13,13 @@ interface CountryFlagProps
     React.SVGAttributes<HTMLSVGElement> {
   zoneId: string;
   size?: number;
+  className?: string;
 }
 
 export function CountryFlag({
   zoneId,
   size = DEFAULT_FLAG_SIZE,
-  ...props
+  className,
 }: CountryFlagProps) {
   const countryName = getCountryName(zoneId) as keyof typeof flags;
   const FlagIcon = flags[countryName];
@@ -34,7 +35,7 @@ export function CountryFlag({
       style={{
         minWidth: size,
       }}
-      {...props}
+      className={className}
     />
   );
 }

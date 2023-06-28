@@ -93,3 +93,10 @@ Android emulator not working?
 
 Android studio will need a virtual device, shown here in the Android Studio opening screen:
 ![](./VDM.png)
+
+If you get XCode error "Command PhaseScriptExecution failed with a nonzero exit code"
+Then in Pods-Electricity Maps-frameworks.sh
+Replace:
+`source="$(readlink "${source}")"`
+With:
+`source="$(readlink -f "${source}")"`

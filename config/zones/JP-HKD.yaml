@@ -13,7 +13,7 @@ capacity:
   nuclear: 2070
   oil: 1815
   solar: 1880
-  wind: 530
+  wind: 577
   unknown: 0
 contributors:
   - tmslaine

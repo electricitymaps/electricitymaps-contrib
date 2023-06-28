@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Any, Callable, Dict, List, Literal, Optional
+from typing import Any, Callable, Dict, List, Optional
 
-# The arrow library is used to handle datetimes
 from arrow import get
 
 # package "ree" is used to parse data from www.ree.es
 # maintained on github by @hectorespert at https://github.com/hectorespert/ree
 from ree import (
-    BalearicIslands,
     Ceuta,
     ElHierro,
     Formentera,
@@ -30,91 +28,101 @@ from ree import (
 # The request library is used to fetch content through HTTP
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.types import ZoneKey
+
 from .lib.config import refetch_frequency
 from .lib.exceptions import ParserException
-from .lib.validation import validate
 
 SOURCE = "demanda.ree.es"
 
-# Literal list of valid zone keys for this parser
-ZONE_KEYS = Literal[
-    "ES",  # Spain
-    "ES-CE",  # Ceuta
-    "ES-CN-FVLZ",  # Fuerteventura/Lanzarote
-    "ES-CN-GC",  # Gran Canaria
-    "ES-CN-HI",  # El Hierro
-    "ES-CN-IG",  # Isla de la Gomera
-    "ES-CN-LP",  # La Palma
-    "ES-CN-TE",  # Tenerife
-    "ES-IB",  # Balearic Islands
-    "ES-IB-FO",  # Formentera
-    "ES-IB-IZ",  # Ibiza
-    "ES-IB-MA",  # Mallorca
-    "ES-IB-ME",  # Menorca
-    "ES-ML",  # Melilla
-]
 
-# TODO: Update floors to be non zero.
-# Minimum valid zone demand. This is used to eliminate some cases
-# where generation for one or more modes is obviously missing.
-ZONE_FLOORS: Dict[ZONE_KEYS, float] = {
-    "ES": 0,
-    "ES-CE": 0,
-    "ES-CN-FVLZ": 50,
-    "ES-CN-GC": 150,
-    "ES-CN-HI": 2,
-    "ES-CN-IG": 3,
-    "ES-CN-LP": 10,
-    "ES-CN-TE": 150,
-    "ES-IB": 0,
-    "ES-IB-FO": 0,
-    "ES-IB-IZ": 0,
-    "ES-IB-MA": 0,
-    "ES-IB-ME": 0,
-    "ES-ML": 0,
-}
-
-ZONE_FUNCTION_MAP: Dict[ZONE_KEYS, Callable] = {
-    "ES": IberianPeninsula,
-    "ES-CE": Ceuta,
-    "ES-CN-FVLZ": LanzaroteFuerteventura,
-    "ES-CN-GC": GranCanaria,
-    "ES-CN-HI": ElHierro,
-    "ES-CN-IG": Gomera,
-    "ES-CN-LP": LaPalma,
-    "ES-CN-TE": Tenerife,
-    "ES-IB": BalearicIslands,
-    "ES-IB-FO": Formentera,
-    "ES-IB-IZ": Ibiza,
-    "ES-IB-MA": Mallorca,
-    "ES-IB-ME": Menorca,
-    "ES-ML": Melilla,
+ZONE_FUNCTION_MAP: Dict[ZoneKey, Callable] = {
+    ZoneKey("ES"): IberianPeninsula,
+    ZoneKey("ES-CE"): Ceuta,
+    ZoneKey("ES-CN-FVLZ"): LanzaroteFuerteventura,
+    ZoneKey("ES-CN-GC"): GranCanaria,
+    ZoneKey("ES-CN-HI"): ElHierro,
+    ZoneKey("ES-CN-IG"): Gomera,
+    ZoneKey("ES-CN-LP"): LaPalma,
+    ZoneKey("ES-CN-TE"): Tenerife,
+    ZoneKey("ES-IB-FO"): Formentera,
+    ZoneKey("ES-IB-IZ"): Ibiza,
+    ZoneKey("ES-IB-MA"): Mallorca,
+    ZoneKey("ES-IB-ME"): Menorca,
+    ZoneKey("ES-ML"): Melilla,
 }
 
 EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
-    "ES->ES-IB": BalearicIslands,
     "ES->ES-IB-MA": Mallorca,
     "ES-IB-IZ->ES-IB-MA": Mallorca,
     "ES-IB-FO->ES-IB-IZ": Formentera,
     "ES-IB-MA->ES-IB-ME": Mallorca,
 }
 
+# dict of REE production types to Electricity Maps production types
+PRODUCTION_MAPPING = {
+    "carbon": "coal",
+    "combined": "gas",
+    "diesel": "oil",
+    "gas": "gas",
+    "hydraulic": "hydro",
+    "nuclear": "nuclear",
+    "other": "unknown",
+    "solar": "solar",
+    "vapor": "oil",
+    "waste": "biomass",
+    "wind": "wind",
+}
 
-def fetch_island_data(
-    zone_key: ZONE_KEYS, session: Session, target_datetime: Optional[datetime]
-) -> List[Response]:
-    if isinstance(target_datetime, datetime):
-        date = target_datetime.strftime("%Y-%m-%d")
-    else:
-        date = target_datetime
-    try:
-        data: List[Response] = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
-    except KeyError:
+
+def check_valid_parameters(
+    zone_key: ZoneKey,
+    session: Optional[Session],
+    target_datetime: Optional[datetime],
+    logger: Logger,
+):
+    """Raise an exception if the parameters are not valid for this parser."""
+    if "->" not in zone_key and zone_key not in ZONE_FUNCTION_MAP.keys():
         raise ParserException(
             "ES.py",
             f"This parser cannot parse data for zone: {zone_key}",
             zone_key,
         )
+    elif "->" in zone_key and zone_key not in EXCHANGE_FUNCTION_MAP.keys():
+        zone_key1, zone_key2 = zone_key.split("->")
+        raise ParserException(
+            "ES.py",
+            f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
+            zone_key,
+        )
+    if session is not None and not isinstance(session, Session):
+        raise ParserException(
+            "ES.py",
+            f"Invalid session: {session}",
+            zone_key,
+        )
+    if target_datetime is not None and not isinstance(target_datetime, datetime):
+        raise ParserException(
+            "ES.py",
+            f"Invalid target_datetime: {target_datetime}",
+            zone_key,
+        )
+
+
+def fetch_island_data(
+    zone_key: ZoneKey, session: Session, target_datetime: Optional[datetime]
+) -> List[Response]:
+    """Fetch data for the given zone key."""
+    if target_datetime is None:
+        date = target_datetime
+    else:
+        date = target_datetime.strftime("%Y-%m-%d")
+
+    data: List[Response] = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
     if data:
         return data
     else:
@@ -127,42 +135,35 @@ def fetch_island_data(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: ZONE_KEYS,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
+    check_valid_parameters(zone_key, session, target_datetime, logger)
+
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
-    data = []
-    if island_data:
-        for response in island_data:
-            response_data = {
-                "zoneKey": zone_key,
-                "datetime": get(response.timestamp).datetime,
-                "consumption": response.demand,
-                "source": "demanda.ree.es",
-            }
-
-            data.append(response_data)
-
-        return data
-    else:
-        raise ParserException(
-            "ES.py",
-            f"No consumption data returned for zone: {zone_key}",
-            zone_key,
+    consumption = TotalConsumptionList(logger)
+    for event in island_data:
+        consumption.append(
+            zoneKey=zone_key,
+            datetime=datetime.utcfromtimestamp(event.timestamp).astimezone(
+                timezone.utc
+            ),
+            consumption=event.demand,
+            source="demanda.ree.es",
         )
+    return consumption.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: ZONE_KEYS,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
     data: List[Dict[str, Any]] = []
@@ -216,13 +217,6 @@ def fetch_production(
                     response_data["production"]["hydro"] = 0.0
                     response_data["storage"]["hydro"] = -response.hydraulic
 
-                response_data = validate(
-                    response_data,
-                    logger,
-                    floor=ZONE_FLOORS[zone_key],
-                    expected_range=expected_range,
-                )
-
                 if response_data:
                     # append if valid
                     data.append(response_data)
@@ -236,30 +230,28 @@ def fetch_production(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: ZONE_KEYS,
-    zone_key2: ZONE_KEYS,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    check_valid_parameters(sorted_zone_keys, session, target_datetime, logger)
+    check_valid_parameters(ZoneKey(sorted_zone_keys), session, target_datetime, logger)
+
     if isinstance(target_datetime, datetime):
         date = target_datetime.strftime("%Y-%m-%d")
     else:
         date = target_datetime
-
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     ses = session or Session()
 
     responses: List[Response] = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all(
         date
     )
-    if not responses:
-        raise NotImplementedError(
-            f'Exchange pair "{sorted_zone_keys}" is not implemented in this parser'
-        )
 
-    exchanges = []
+    exchangeList = ExchangeList(logger)
     for response in responses:
         net_flow: float
         if sorted_zone_keys == "ES-IB-MA->ES-IB-ME":
@@ -271,16 +263,16 @@ def fetch_exchange(
         else:
             net_flow = response.link["pe_ma"]
 
-        exchange = {
-            "datetime": get(response.timestamp).datetime,
-            "netFlow": net_flow,
-            "sortedZoneKeys": sorted_zone_keys,
-            "source": "demanda.ree.es",
-        }
+        exchangeList.append(
+            zoneKey=sorted_zone_keys,
+            datetime=datetime.utcfromtimestamp(response.timestamp).astimezone(
+                timezone.utc
+            ),
+            netFlow=net_flow,
+            source="demanda.ree.es",
+        )
 
-        exchanges.append(exchange)
-
-    return exchanges
+    return exchangeList.to_list()
 
 
 if __name__ == "__main__":
@@ -327,10 +319,6 @@ if __name__ == "__main__":
     print(fetch_production("ES-CN-HI"))
 
     # Balearic Islands
-    print("fetch_consumption(ES-IB)")
-    print(fetch_consumption("ES-IB"))
-    print("fetch_production(ES-IB)")
-    print(fetch_production("ES-IB"))
     print("fetch_consumption(ES-IB-FO)")
     print(fetch_consumption("ES-IB-FO"))
     print("fetch_production(ES-IB-FO)")
