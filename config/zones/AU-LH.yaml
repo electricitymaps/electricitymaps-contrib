@@ -8,5 +8,6 @@ capacity:
   gas: 0.84
   solar: 1
 flag_file_name: au.png
-parsers: false
+parsers:
+  production: AU-LH.fetch_production
 timezone: Lord_Howe
