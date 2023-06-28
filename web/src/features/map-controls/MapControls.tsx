@@ -78,11 +78,11 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
   const weatherId = `${type.charAt(0).toUpperCase() + type.slice(1)}`; // Capitalize first letter
 
   const onToggle = () => {
-    if (!isEnabled) {
+    if (isEnabled) {
+      trackEvent(`${weatherId} Disabled`);
+    } else {
       setIsLoadingLayer(true);
       trackEvent(`${weatherId} Enabled`);
-    } else {
-      trackEvent(`${weatherId} Disabled`);
     }
 
     setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
@@ -100,7 +100,7 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       tooltipText={tooltipTexts[type]}
       dataTestId={`${type}-layer-button`}
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
-      onClick={!isLoadingLayer ? onToggle : () => {}}
+      onClick={isLoadingLayer ? () => {} : onToggle}
       asToggle
     />
   );

@@ -52,7 +52,7 @@ export function CircularGauge({
                 position="center"
                 offset={0}
                 formatter={(value: number) =>
-                  !Number.isNaN(value) ? `${Math.round(value * 100)}%` : '?%'
+                  Number.isNaN(value) ? '?%' : `${Math.round(value * 100)}%`
                 }
                 value={ratio}
               />

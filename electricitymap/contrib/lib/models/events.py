@@ -1,3 +1,4 @@
+import datetime as dt
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -184,14 +185,16 @@ class Event(BaseModel, ABC):
         return v
 
     @validator("datetime")
-    def _validate_datetime(cls, v, values: Dict[str, Any]):
+    def _validate_datetime(cls, v: dt.datetime, values: Dict[str, Any]):
         if v.tzinfo is None:
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
         if values.get(
             "sourceType", EventSourceType.measured
-        ) != EventSourceType.forecasted and v > datetime.now(timezone.utc) + timedelta(
+        ) != EventSourceType.forecasted and v.astimezone(timezone.utc) > datetime.now(
+            timezone.utc
+        ) + timedelta(
             days=1
         ):
             raise ValueError(

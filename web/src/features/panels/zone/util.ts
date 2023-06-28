@@ -8,8 +8,20 @@ type zoneConfigItem = {
   timezone?: string | null;
   bounding_box?: any;
   parsers?: any;
-  flag_file_name?: string;
   estimation_method?: string;
+  subZoneNames?: string[];
+};
+
+export const getHasSubZones = (zoneId?: string) => {
+  if (!zoneId) {
+    return null;
+  }
+
+  const config = zonesConfig[zoneId];
+  if (!config || !config.subZoneNames) {
+    return false;
+  }
+  return config.subZoneNames.length > 0;
 };
 
 export enum ZoneDataStatus {

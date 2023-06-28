@@ -7,6 +7,7 @@ const GraphHoverLine = React.memo(
   ({
     layers,
     datetimes,
+    endTime,
     timeScale,
     valueScale,
     markerUpdateHandler,
@@ -18,9 +19,12 @@ const GraphHoverLine = React.memo(
     const layer = layers && layers[selectedLayerIndex];
     const fill = layer && layer.markerFill;
     const datapoint = layer && layer.datapoints && layer.datapoints[selectedTimeIndex];
+    const nextDateTime = datetimes
+      ? datetimes[selectedTimeIndex + 1] ?? endTime
+      : undefined;
     const interval =
-      datetimes && datetimes.length > 1
-        ? timeScale(datetimes[1]) - timeScale(datetimes[0])
+      nextDateTime && datetimes[selectedTimeIndex]
+        ? timeScale(nextDateTime) - timeScale(datetimes[selectedTimeIndex])
         : undefined;
     let x =
       datetimes &&
