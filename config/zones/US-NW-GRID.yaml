@@ -236,7 +236,6 @@ fallbackZoneMixes:
         solar: 0.02771352657165702
         unknown: 2.0436804600482556e-05
         wind: 0.1510388581970516
-flag_file_name: us.png
 parsers:
   production: EIA.fetch_production_mix
 sources:
