@@ -4,7 +4,6 @@ from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any, Dict, Optional
 
-import arrow
 from pytz import timezone
 from requests import Response, Session
 
@@ -53,11 +52,11 @@ def parse_json(web_json: dict) -> Dict[str, Any]:
     # Then we can safely parse them
     query_data = dict()
     for query_key, src_key in JSON_QUERY_TO_SRC.items():
-
         if query_key == "time":
             # convert to datetime
-            parsed_time = arrow.get(web_json[src_key], "YYYY-MM-DD HH:mm:ss", tzinfo=TZ)
-            query_data[query_key] = parsed_time.datetime
+            query_data[query_key] = datetime.fromisoformat(web_json[src_key]).replace(
+                tzinfo=TZ
+            )
         else:
             # or convert to float, might also be string
             query_data[query_key] = float(web_json[src_key])
@@ -147,6 +146,6 @@ def fetch_consumption(
 
 if __name__ == "__main__":
     print("fetch_production() ->")
-    print(fetch_production())
+    print(fetch_production(ZoneKey("MN")))
     print("fetch_consumption() ->")
-    print(fetch_consumption())
+    print(fetch_consumption(ZoneKey("MN")))
