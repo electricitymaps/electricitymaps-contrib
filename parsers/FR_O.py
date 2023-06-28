@@ -17,6 +17,7 @@ DOMAIN_MAPPING = {
 LIVE_DATASETS = {
     "FR-COR": "production-delectricite-par-filiere-en-temps-reel",
     "GP": "mix-temps-reel-guadeloupe",
+    "RE": "prod-electricite-temps-reel"
 }
 
 HISTORICAL_DATASETS = {
@@ -71,7 +72,7 @@ API_PARAMETER_GROUPS = {
         ],
         "unknown": ["bagasse_charbon_mwh", "charbon_bagasse_mw"],
     },
-    "storage": {"battery": ["solde_stockage"]},
+    "storage": {"battery": ["solde_stockage", "stockage"]},
     "price": {
         "price": ["cout_moyen_de_production_eur_mwh"],
     },
@@ -98,6 +99,8 @@ PRICE_MAPPING = {
     for API_TYPE in groups
 }
 
+IGNORED_VALUES = ["jour", "total", "statut", "date", "heure"]
+
 
 def generate_url(zone_key, target_datetime):
     return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{HISTORICAL_DATASETS[zone_key] if target_datetime else LIVE_DATASETS[zone_key]}/exports/json"
@@ -108,13 +111,12 @@ def fetch_data(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
-) -> Tuple[Any, str]:
+) -> Tuple[list, str]:
     ses = session or Session()
-    target_datetime_string = None
 
     DATE_STRING_MAPPING = {
         "FR-COR": "date_heure" if target_datetime else "date",
-        "RE": "date_heure",
+        "RE": "date_heure" if target_datetime else "date",
         "GF": "date",
         "MQ": "date_heure",
         "GP": "date",
@@ -144,7 +146,7 @@ def fetch_data(
 
     url = generate_url(zone_key, target_datetime)
     response: Response = ses.get(url, params=URL_QUERIES)
-    data = response.json()
+    data: Union[dict, list, None] = response.json()
     if data == []:
         raise ParserException(
             "FR_O.py",
@@ -164,7 +166,16 @@ def fetch_data(
                 "FR_O.py",
                 "Query malformed. Please check the parameters. If this was previously working there has likely been a change in the API.",
             )
-    return data, DATE_STRING_MAPPING[zone_key]
+    if isinstance(data, list):
+        return data, DATE_STRING_MAPPING[zone_key]
+    else:
+        raise ParserException(
+            "FR_O.py",
+            f"Unexpected data format for {zone_key} for {target_datetime.strftime('%Y')}"
+            if target_datetime
+            else f"Unexpected data format for {zone_key}.",
+            zone_key,
+        )
 
 
 def fetch_production(
@@ -206,6 +217,12 @@ def fetch_production(
                     storage[STORAGE_MAPPING[mode_key]] = (
                         production_object[mode_key] * -1
                     )
+            elif mode_key in IGNORED_VALUES:
+                pass
+            else :
+                logger.warning(
+                    f"Unknown mode_key: '{mode_key}' encountered for {zone_key}."
+                )
         return_list.append(
             {
                 "zoneKey": zone_key,
