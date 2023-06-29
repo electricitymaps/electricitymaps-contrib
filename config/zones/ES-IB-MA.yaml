@@ -174,7 +174,6 @@ fallbackZoneMixes:
         solar: 0.05186245196101885
         unknown: 0.0009256820316711058
         wind: 0.04241711984451486
-flag_file_name: es.png
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
