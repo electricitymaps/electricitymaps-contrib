@@ -2,6 +2,8 @@ from datetime import datetime, timezone
 from logging import Logger, getLogger
 from typing import Any, Dict, List, Optional, Union
 
+from requests_html import HTMLSession
+
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
@@ -11,13 +13,10 @@ from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
-from requests_html import HTMLSession
-
-
 PARSER_NAME = "AU-LH.py"
 DATA_URL = "http://photonscada.com/data/perspective/client/LHI"
 
-RENDER_TIMEOUT = 10 # seconds
+RENDER_TIMEOUT = 10  # seconds
 
 
 def validate_and_clean_data(
@@ -31,12 +30,18 @@ def validate_and_clean_data(
 
     # Expect 8 tspans in the page
     if len(values) != 8:
-        raise ParserException(PARSER_NAME, "Unexpected number of values parsed", zone_key)
-    
+        raise ParserException(
+            PARSER_NAME, "Unexpected number of values parsed", zone_key
+        )
+
     # every other tpspan contains the text "L"
     even_index_values = values[::2]
     if not all(val == "L" for val in even_index_values):
-        raise ParserException(PARSER_NAME, "Unexpected parsed values (although normally discarded), website structure changed", zone_key)
+        raise ParserException(
+            PARSER_NAME,
+            "Unexpected parsed values (although normally discarded), website structure changed",
+            zone_key,
+        )
 
     # the last 4 values are the 4 consumption/production values we care about
     odd_index_values = values[1::2]
@@ -46,20 +51,21 @@ def validate_and_clean_data(
         # Observed units are always kW, this could be a wrong assumption
         unit_suffix = " kW"
         if not val.endswith(unit_suffix):
-            raise ParserException(PARSER_NAME, f"Unexpected parsed values, check website structure or electricity units {odd_index_values}", zone_key)
-        
+            raise ParserException(
+                PARSER_NAME,
+                f"Unexpected parsed values, check website structure or electricity units {odd_index_values}",
+                zone_key,
+            )
+
         # strip suffix, convert to numerical value, convert units to MW
-        parsed_val = float(val.rstrip(unit_suffix))/1000
+        parsed_val = float(val.rstrip(unit_suffix)) / 1000
         num_digits = 10
         cleaned_values.append(round(parsed_val, num_digits))
 
     return cleaned_values
 
 
-def fetch_data(
-    zone_key: ZoneKey,
-    session: HTMLSession
-) -> Dict[str, float]:
+def fetch_data(zone_key: ZoneKey, session: HTMLSession) -> Dict[str, float]:
     res = session.get(DATA_URL)
 
     if not res.status_code == 200:
@@ -68,17 +74,17 @@ def fetch_data(
             f"Exception when fetching production error code: {res.status_code}",
             zone_key,
         )
-    
+
     # render the website using request_html (chromium), need a sleep value to wait for render
     res.html.render(timeout=RENDER_TIMEOUT + 1, sleep=RENDER_TIMEOUT)
 
     cleaned_values = validate_and_clean_data(zone_key, res)
 
-    value_dict =  {
+    value_dict = {
         "consumption": cleaned_values[0],
         "solar": cleaned_values[1],
         "battery": cleaned_values[2],
-        "diesel": cleaned_values[3]
+        "diesel": cleaned_values[3],
     }
 
     # determine the sign of the battery value based on the other values
@@ -86,7 +92,7 @@ def fetch_data(
         value_dict["battery"] *= -1
 
     return value_dict
-    
+
 
 def fetch_production(
     zone_key: ZoneKey,
@@ -95,8 +101,10 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     if target_datetime is not None:
-        raise ParserException(PARSER_NAME, "This parser is not yet able to parse past dates", zone_key)
-    
+        raise ParserException(
+            PARSER_NAME, "This parser is not yet able to parse past dates", zone_key
+        )
+
     is_new_session = session is None
     if is_new_session:
         session = HTMLSession()
@@ -128,8 +136,10 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
     if target_datetime is not None:
-        raise ParserException(PARSER_NAME, "This parser is not yet able to parse past dates", zone_key)
-    
+        raise ParserException(
+            PARSER_NAME, "This parser is not yet able to parse past dates", zone_key
+        )
+
     is_new_session = session is None
     if is_new_session:
         session = HTMLSession()
@@ -138,12 +148,12 @@ def fetch_consumption(
 
     consumption_list = TotalConsumptionList(logger=logger)
     consumption_list.append(
-            zoneKey=zone_key,
-            datetime=datetime.now(timezone.utc),
-            consumption=data["consumption"],
-            source=DATA_URL,
-        )
-    
+        zoneKey=zone_key,
+        datetime=datetime.now(timezone.utc),
+        consumption=data["consumption"],
+        source=DATA_URL,
+    )
+
     if is_new_session:
         session.close()
 
@@ -157,8 +167,10 @@ def fetch_total_production(
     logger: Logger = getLogger(__name__),
 ) -> Union[dict, List[dict]]:
     if target_datetime is not None:
-        raise ParserException(PARSER_NAME, "This parser is not yet able to parse past dates", zone_key)
-    
+        raise ParserException(
+            PARSER_NAME, "This parser is not yet able to parse past dates", zone_key
+        )
+
     is_new_session = session is None
     if is_new_session:
         session = HTMLSession()
