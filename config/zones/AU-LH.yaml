@@ -10,4 +10,5 @@ capacity:
 flag_file_name: au.png
 parsers:
   production: AU-LH.fetch_production
+  consumption: AU-LH.fetch_consumption
 timezone: Lord_Howe
