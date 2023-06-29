@@ -485,4 +485,27 @@ class TestTotalProductionList(unittest.TestCase):
         assert len(total_production.events) == 1
 
 
+class TestListFeatures(unittest.TestCase):
+    def test_df_representation(self):
+        production_list_1 = ProductionBreakdownList(logging.Logger("test"))
+        production_mix_1 = ProductionMix(wind=-10, coal=10)
+        production_mix_1.set_value("solar", -10, correct_negative_with_zero=True)
+        production_mix_1.set_value("biomass", -10, correct_negative_with_zero=True)
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=production_mix_1,
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            production=ProductionMix(wind=-12, coal=12),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        test = production_list_1.dataframe
+
+
 print(type(ZoneKey("AT")))

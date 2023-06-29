@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -41,6 +41,23 @@ class EventList(ABC):
 
     def to_list(self) -> List[Dict[str, Any]]:
         return [event.to_dict() for event in self.events]
+
+    @property
+    def dataframe(self) -> pd.DataFrame:
+        """Gives the dataframe representation of the events, indexed by datetime."""
+        return pd.DataFrame.from_records(
+            [
+                {
+                    "datetime": event.datetime,
+                    "zoneKey": event.zoneKey,
+                    "source": event.source,
+                    "sourceType": event.sourceType,
+                    "data": event,
+                }
+                for event in self.events
+                if len(self.events) > 0
+            ]
+        ).set_index("datetime")
 
 
 class AggregatableEventList(EventList, ABC):
@@ -199,76 +216,22 @@ class ProductionBreakdownList(AggregatableEventList):
         ):
             return production_breakdowns
 
-        # Create a dataframe for each parser output, then flatten the power mixes.
-        prod_and_storage_dfs = [
-            pd.json_normalize(breakdowns.to_list()).set_index("datetime")
-            for breakdowns in ungrouped_production_breakdowns
-            if len(breakdowns.events) > 0
-        ]
-        df = pd.concat(prod_and_storage_dfs)
-        sources = df["source"].unique()
-        sources = ", ".join(sources)
-        zones = df["zoneKey"].unique()
-        if len(zones) != 1:
-            raise ValueError(
-                f"Trying to merge production outputs from multiple zones \
-                , got {len(zones)}: {', '.join(zones)}"
-            )
-        source_types = df["sourceType"].unique()
-        if len(source_types) != 1:
-            raise ValueError(
-                f"Trying to merge production outputs from multiple source types \
-                , got {len(source_types)}: {', '.join(source_types)}"
-            )
-
-        def aggregate(value: pd.Series) -> Union[List[str], Optional[float]]:
-            """An internal aggregation function taking care of corrected modes."""
-            if value.name == "corrected_modes":
-                aggregated_modes = set()
-                for corrected_modes in value:
-                    if corrected_modes is not None:
-                        aggregated_modes.update(set(corrected_modes))
-                return list(aggregated_modes)
-            if value.isnull().all():
-                # We don't want to return a zero if all are None or NaN.
-                return None
-            return value.sum()
+        df = pd.concat(
+            [
+                production_breakdowns.dataframe
+                for production_breakdowns in ungrouped_production_breakdowns
+                if len(production_breakdowns.events) > 0
+            ]
+        )
+        _, _, _ = ProductionBreakdownList.get_zone_source_type(df)
 
         df = df.drop(columns=["source", "sourceType", "zoneKey"])
-        df = df.groupby(level=0, dropna=False).agg(aggregate)
+        df = df.groupby(level=0, dropna=False)["data"].apply(list)
         result = ProductionBreakdownList(logger)
-        for row in df.iterrows():
-            production_mix = ProductionMix()
-            storage_mix = StorageMix()
-            for key, value in row[1].items():
-                if str(key).startswith("production.") or str(key).startswith(
-                    "storage."
-                ):
-                    # NaN values can arise from the aggregation. We want to keep them as None.
-                    # We do this at the last step to avoid changing the object type of the dataframe.
-                    if value is not None and np.isnan(value):
-                        value = None
-                    # The key is in the form of "production.<mode>" or "storage.<mode>"
-                    prefix, mode = key.split(".")  # type: ignore
-                    if prefix == "production":
-                        flag_as_corrected = False
-                        if mode in row[1]["correctedModes"]:
-                            # This is just to mark this mode as corrected, the value is not overwritten.
-                            flag_as_corrected = True
-                        production_mix.set_value(
-                            mode, value, flag_as_corrected_negative=flag_as_corrected
-                        )
-                    elif prefix == "storage":
-                        storage_mix.set_value(mode, value)
-            result.append(
-                zones[0],
-                row[0].to_pydatetime(),  # type: ignore
-                sources,
-                production_mix,
-                storage_mix,
-                source_type,
-            )
-        return production_breakdowns
+        for row in df:
+            prod = ProductionBreakdown.aggregate(row)
+            result.events.append(prod)
+        return result
 
 
 class TotalProductionList(EventList):
