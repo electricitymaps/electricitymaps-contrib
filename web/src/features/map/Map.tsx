@@ -51,6 +51,7 @@ export default function MapPage(): ReactElement {
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
+  const [touchEventCount, setTouchEventCount] = useState(0);
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -194,7 +195,26 @@ export default function MapPage(): ReactElement {
     }
   }, [location.pathname, isLoadingMap]);
 
-  const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
+  useEffect(() => {
+    let singleTouchTimer: number | NodeJS.Timeout | undefined;
+    if (touchEventCount === 1) {
+      singleTouchTimer = setTimeout(function (event: mapboxgl.MapLayerTouchEvent) {
+        onClick(event, true);
+        setTouchEventCount(0);
+      }, 200);
+    } else if (touchEventCount >= 2) {
+      setTouchEventCount(0);
+    }
+    return () => clearTimeout(singleTouchTimer);
+  }, [touchEventCount]);
+
+  const onClick = (
+    event: mapboxgl.MapLayerMouseEvent | mapboxgl.MapLayerTouchEvent,
+    enableTouchEvent?: boolean
+  ) => {
+    if ((event.type === 'touchstart' || event.type === 'touchend') && !enableTouchEvent) {
+      return;
+    }
     const map = mapReference.current?.getMap();
     if (!map || !event.features) {
       return;
@@ -331,6 +351,7 @@ export default function MapPage(): ReactElement {
       interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
       cursor={hoveredZone ? 'pointer' : 'grab'}
       onClick={onClick}
+      onTouchEnd={() => setTouchEventCount(touchEventCount + 1)}
       onLoad={onLoad}
       onError={onError}
       onMouseMove={onMouseMove}
