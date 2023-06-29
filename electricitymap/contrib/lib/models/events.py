@@ -112,7 +112,7 @@ class ProductionMix(Mix):
         self,
         mode: str,
         value: Optional[float],
-        correct_negative_with_zero: bool = False
+        correct_negative_with_zero: bool = False,
     ) -> None:
         """
         Set the value of a production mode. Negative values are set to None by default.
@@ -146,8 +146,12 @@ class ProductionMix(Mix):
                     continue
                 if getattr(merged_production_mix, mode) is None:
                     merged_production_mix.set_value(mode, 0)
-                merged_production_mix.set_value(mode, getattr(merged_production_mix, mode) + value)
-            merged_production_mix._corrected_negative_values.update(production_mix.corrected_negative_modes)
+                merged_production_mix.set_value(
+                    mode, getattr(merged_production_mix, mode) + value
+                )
+            merged_production_mix._corrected_negative_values.update(
+                production_mix.corrected_negative_modes
+            )
         return merged_production_mix
 
 
