@@ -49,7 +49,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - French Polynesia: [EDT](https://www.edt.pf/transition-energetique-innovation)
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Georgia: [Georgian State Electrosystem (GSE)](http://www.gse.com.ge/home)
-- Great Britain: [Elexon BMRS](https://www.elexon.co.uk/wp-content/uploads/2017/06/bmrs_api_data_push_user_guide_v1.1.pdf)
+- Great Britain: [Elexon BMRS](https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide)
 - Great Britain (Orkney Islands): [SSEN](https://www.ssen.co.uk/ANM/)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Guatemala: [AMM](http://www.amm.org.gt)
