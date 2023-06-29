@@ -51,7 +51,13 @@ export default function MapPage(): ReactElement {
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
-  const [touchEventCount, setTouchEventCount] = useState(0);
+  const [touchEventCount, setTouchEventCount] = useState<{
+    touchEvent: mapboxgl.MapLayerTouchEvent | undefined;
+    count: number;
+  }>({
+    touchEvent: undefined,
+    count: 0,
+  });
 
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -197,13 +203,15 @@ export default function MapPage(): ReactElement {
 
   useEffect(() => {
     let singleTouchTimer: number | NodeJS.Timeout | undefined;
-    if (touchEventCount === 1) {
-      singleTouchTimer = setTimeout(function (event: mapboxgl.MapLayerTouchEvent) {
-        onClick(event, true);
-        setTouchEventCount(0);
+    if (touchEventCount.count === 1) {
+      singleTouchTimer = setTimeout(function () {
+        if (touchEventCount.touchEvent) {
+          onClick(touchEventCount.touchEvent, true);
+        }
+        setTouchEventCount({ touchEvent: undefined, count: 0 });
       }, 200);
-    } else if (touchEventCount >= 2) {
-      setTouchEventCount(0);
+    } else if (touchEventCount.count >= 2) {
+      setTouchEventCount({ touchEvent: undefined, count: 0 });
     }
     return () => clearTimeout(singleTouchTimer);
   }, [touchEventCount]);
@@ -212,7 +220,11 @@ export default function MapPage(): ReactElement {
     event: mapboxgl.MapLayerMouseEvent | mapboxgl.MapLayerTouchEvent,
     enableTouchEvent?: boolean
   ) => {
-    if ((event.type === 'touchstart' || event.type === 'touchend') && !enableTouchEvent) {
+    if (
+      event &&
+      (event.type === 'touchstart' || event.type === 'touchend') &&
+      !enableTouchEvent
+    ) {
       return;
     }
     const map = mapReference.current?.getMap();
@@ -351,7 +363,9 @@ export default function MapPage(): ReactElement {
       interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
       cursor={hoveredZone ? 'pointer' : 'grab'}
       onClick={onClick}
-      onTouchEnd={() => setTouchEventCount(touchEventCount + 1)}
+      onTouchEnd={(event) =>
+        setTouchEventCount({ touchEvent: event, count: touchEventCount.count + 1 })
+      }
       onLoad={onLoad}
       onError={onError}
       onMouseMove={onMouseMove}
