@@ -7,8 +7,6 @@ from typing import List, Optional
 from pytz import timezone
 from requests import Response, Session
 
-from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
@@ -40,6 +38,14 @@ COLUMN_MAPPING = {
     18: "solar",  # CSP
     19: "unknown",  # Other_RE
 }
+
+# Ignored values
+# 1, 2, 3, 5, 7, 13, 14, 15
+# TODO:
+# - 7 (international imports) can be further implemented in exchange function.
+
+STORAGE_IDS = [4, 12]
+PRODUCTION_IDS = [0, 6, 8, 9, 10, 11, 16, 17, 18, 19]
 
 
 def get_url() -> str:
@@ -73,7 +79,7 @@ def fetch_production(
 
     csv_data = csv.reader(res.text.splitlines())
 
-    production_data = ProductionBreakdownList(logger=logger)
+    return_list = []
 
     for row in csv_data:
         if row[0] == "Date_Time_Hour_Beginning":
@@ -83,34 +89,39 @@ def fetch_production(
             tzinfo=timezone(TIMEZONE)
         )
 
-        returned_production = row[1:] # First column is datetime
+        returned_production = row[1:]  # First column is datetime
 
-        production = ProductionMix()
-        storage = StorageMix()
-
-        storage_inversion_idcs = [4, 12]
-        production_idcs = [0, 6, 8, 9, 10, 11, 16, 17, 18, 19]
-
-        # Ignored values
-        # 1, 2, 3, 5, 7, 13, 14, 15
-        # TODO:
-        # - 7 (international imports) can be further implemented in exchange function.
+        production = {}
+        storage = {}
 
         for index, prod_data_value in enumerate(returned_production):
-            if index in storage_inversion_idcs:
-                storage.set_value(COLUMN_MAPPING[index], float(prod_data_value) * -1)
-            elif index in production_idcs:
-                production.set_value(COLUMN_MAPPING[index], float(prod_data_value))
+            prod_data_value = float(prod_data_value)
+            if index in PRODUCTION_IDS:
+                if COLUMN_MAPPING[index] in production.keys():
+                    production[COLUMN_MAPPING[index]] += (
+                        prod_data_value if prod_data_value >= 0 else 0
+                    )
+                else:
+                    production[COLUMN_MAPPING[index]] = (
+                        prod_data_value if prod_data_value >= 0 else 0
+                    )
+            elif index in STORAGE_IDS:
+                if COLUMN_MAPPING[index] in storage.keys():
+                    storage[COLUMN_MAPPING[index]] += prod_data_value * -1
+                else:
+                    storage[COLUMN_MAPPING[index]] = prod_data_value * -1
 
-        production_data.append(
-            zoneKey=zone_key,
-            datetime=returned_datetime,
-            production=production,
-            storage=storage,
-            source="eskom.co.za",
+        return_list.append(
+            {
+                "zoneKey": zone_key,
+                "datetime": returned_datetime,
+                "production": production,
+                "storage": storage,
+                "source": "eskom.co.za",
+            }
         )
 
-    return production_data.to_list()
+    return return_list
 
 
 if __name__ == "__main__":
