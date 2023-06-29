@@ -17,7 +17,7 @@ DOMAIN_MAPPING = {
 LIVE_DATASETS = {
     "FR-COR": "production-delectricite-par-filiere-en-temps-reel",
     "GP": "mix-temps-reel-guadeloupe",
-    "RE": "prod-electricite-temps-reel"
+    "RE": "prod-electricite-temps-reel",
 }
 
 HISTORICAL_DATASETS = {
@@ -219,7 +219,7 @@ def fetch_production(
                     )
             elif mode_key in IGNORED_VALUES:
                 pass
-            else :
+            else:
                 logger.warning(
                     f"Unknown mode_key: '{mode_key}' encountered for {zone_key}."
                 )
