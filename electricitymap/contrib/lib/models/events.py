@@ -113,18 +113,12 @@ class ProductionMix(Mix):
         mode: str,
         value: Optional[float],
         correct_negative_with_zero: bool = False,
-        flag_as_corrected_negative: bool = False,
     ) -> None:
         """
         Set the value of a production mode. Negative values are set to None by default.
         If correct_negative_with_zero is set to True, negative values will be set to 0 instead of None.
         This method keeps track of values that have been corrected.
-
-        If flag_as_corrected is set to True, the mode will be flagged as corrected even if it is positive.
-        Negative values will still be set to None or 0 depending on the value of correct_negative_with_zero.
         """
-        if flag_as_corrected_negative:
-            self._corrected_negative_values.add(mode)
         if correct_negative_with_zero and value is not None and value < 0:
             value = 0
             self._corrected_negative_values.add(mode)
