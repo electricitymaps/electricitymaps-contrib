@@ -164,16 +164,7 @@ class ProductionMix(Mix):
         This method keeps track of modes that have been corrected.
         """
         value = self._correct_negative_value(mode, value, correct_negative_with_zero)
-        if value is None:
-            return
-        existing_value: Optional[float] = getattr(self, mode)
-        if existing_value is not None:
-            self.__setattr__(
-                mode,
-                existing_value + value,
-            )
-        elif existing_value is None:
-            self.__setattr__(mode, value)
+        super().add_value(mode, value)
 
     @property
     def has_corrected_negative_values(self) -> bool:
