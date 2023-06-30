@@ -573,9 +573,18 @@ class Price(Event):
     currency: str
 
     @validator("currency")
-    def _validate_currency(cls, v: str):
+    def _validate_currency(cls, v: str) -> str:
         if v not in VALID_CURRENCIES:
             raise ValueError(f"Unknown currency: {v}")
+        return v
+
+    @validator("datetime")
+    def _validate_datetime(cls, v: dt.datetime) -> datetime:
+        """Prices are given for the day ahead, so we should allow them to be in the future."""
+        if v.tzinfo is None:
+            raise ValueError(f"Missing timezone: {v}")
+        if v < LOWER_DATETIME_BOUND:
+            raise ValueError(f"Date is before 2000, this is not plausible: {v}")
         return v
 
     @staticmethod
