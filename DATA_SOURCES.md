@@ -521,7 +521,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - Spain ⇄ France: [According to "The Spanish electricity system 2019" page 65: 2800 MW](https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/InformesSistemaElectrico/2019/ISE_2019_eng.pdf)
 - [Spain ⇄ Portugal](https://web.archive.org/web/20230516184334/https://www.erse.pt/media/kevnjc3r/portugal-spain-interconnection-analysis-and-maczt-monitoring-report-english-version-2020.pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](<https://en.wikipedia.org/wiki/Cometa_(HVDC)>)
-- Spain (Mallorca) ⇄ Spain (Ibiza): ["Romulo 2: 200 MW"](https://web.archive.org/web/20230329093513/https://www.ree.es/sites/default/files/01_ACTIVIDADES/Documentos/Romulo2_en.pdf)
+- Spain (Mallorca) ⇄ Spain (Ibiza): ["Romulo 2": 200 MW](https://web.archive.org/web/20230329093513/https://www.ree.es/sites/default/files/01_ACTIVIDADES/Documentos/Romulo2_en.pdf)
 - Spain (Mallorca) ⇄ Spain (Menorca): According to ["REE PLAN 2021-2026"](https://web.archive.org/web/20230629182722/https://www.planificacionelectrica.es/sites/webplani/files/2022-12/REE_PLAN_DESARROLLO_EN.pdf) (Page 466, only one built yet): 100 MW 
 - Spain (Ibiza) ⇄ Spain (Formentera): According to ["REE PLAN 2021-2026"](https://web.archive.org/web/20230629182722/https://www.planificacionelectrica.es/sites/webplani/files/2022-12/REE_PLAN_DESARROLLO_EN.pdf) (Pages 466, Page 297): 134 MW (11+17+106)
 - [Sweden ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
