@@ -268,7 +268,10 @@ def fetch_production(
         for data_item in data_list:
             date_time = data_item["datetime"]
             if date_time in consumption_dict:
-                data_item["consumption"] = consumption_dict[date_time]["pumping"]
+                if float(consumption_dict[date_time]["pumping"]) > 0.0:
+                    data_item["storage"]["hydro"] = consumption_dict[date_time][
+                        "pumping"
+                    ]
 
     return data_list
 
