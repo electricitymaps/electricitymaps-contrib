@@ -48,7 +48,6 @@ class Mix(BaseModel, ABC):
         raise NotImplementedError()
 
 
-
 class ProductionMix(Mix):
     """
     Contains the production mix for a zone at a given time.
@@ -137,10 +136,7 @@ class ProductionMix(Mix):
         """
         if value is not None and value < 0:
             self._corrected_negative_values.add(mode)
-            if correct_negative_with_zero == True:
-                value = 0
-            elif correct_negative_with_zero == False:
-                value = None
+            return 0 if correct_negative_with_zero else None
         return value
 
     def set_value(
