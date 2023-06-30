@@ -4,13 +4,13 @@ import * as yaml from 'js-yaml';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { round } from '../geo/utilities.js';
 import {
+  ExchangeConfig,
+  ExchangesConfig,
   ZoneConfig,
   ZonesConfig,
-  ExchangesConfig,
-  ExchangeConfig,
 } from '../geo/types.js';
+import { round } from '../geo/utilities.js';
 
 const BASE_CONFIG_PATH = '../../config';
 
@@ -24,7 +24,9 @@ const mergeZones = (): ZonesConfig => {
   );
 
   const zoneFiles = fs.readdirSync(basePath);
-  const filesWithDirectory = zoneFiles.map((file) => `${basePath}/${file}`);
+  const filesWithDirectory = zoneFiles
+    .filter((file) => file.endsWith('.yaml'))
+    .map((file) => `${basePath}/${file}`);
 
   const UNNECESSARY_ZONE_FIELDS = new Set([
     'fallbackZoneMixes',
@@ -35,7 +37,6 @@ const mergeZones = (): ZonesConfig => {
     'comment',
     '_comment',
     'sources',
-    'flag_file_name',
     'bypassedSubZones',
   ]);
   const zones = filesWithDirectory.reduce((zones, filepath) => {
@@ -70,7 +71,9 @@ const mergeExchanges = (): ExchangesConfig => {
   );
 
   const exchangeFiles = fs.readdirSync(basePath);
-  const filesWithDirectory = exchangeFiles.map((file) => `${basePath}/${file}`);
+  const filesWithDirectory = exchangeFiles
+    .filter((file) => file.endsWith('.yaml'))
+    .map((file) => `${basePath}/${file}`);
 
   const UNNECESSARY_EXCHANGE_FIELDS = new Set(['comment', '_comment', 'parsers']);
 
@@ -101,7 +104,9 @@ const mergeRatioParameters = () => {
   );
 
   const zoneFiles = fs.readdirSync(`${basePath}/zones`);
-  const filesWithDirectory = zoneFiles.map((file) => `${basePath}/zones/${file}`);
+  const filesWithDirectory = zoneFiles
+    .filter((file) => file.endsWith('.yaml'))
+    .map((file) => `${basePath}/zones/${file}`);
 
   const ratioParameters: any = {
     fallbackZoneMixes: {
@@ -172,4 +177,4 @@ if (config.verifyNoUpdates) {
 writeJSON(`${autogenConfigPath}/zones.json`, zonesConfig);
 writeJSON(`${autogenConfigPath}/exchanges.json`, exchangesConfig);
 
-export { mergeZones, mergeExchanges, mergeRatioParameters };
+export { mergeExchanges, mergeRatioParameters, mergeZones };

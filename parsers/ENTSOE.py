@@ -23,6 +23,7 @@ import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
+from pytz import utc
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -1165,13 +1166,22 @@ def fetch_production_aggregate(
 @refetch_frequency(timedelta(days=1))
 def fetch_production_per_units(
     zone_key: str,
-    session: Optional[Session] = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Returns all production units and production values."""
-    if not session:
-        session = Session()
+
+    # If no target_datetime is specified, or the target datetime is less
+    # than 5 days ago we set the target_datetime to 5 days ago.
+    if target_datetime is None or target_datetime > datetime.now(tz=utc) - timedelta(
+        days=5
+    ):
+        logger.info(
+            "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
+        )
+        target_datetime = datetime.now(tz=utc) - timedelta(days=5)
+
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
     # Iterate over all psr types

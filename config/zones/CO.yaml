@@ -9,6 +9,11 @@ capacity:
   solar: 297
   wind: 18
 contributors:
+  - lav-julien
   - alixunderplatz
 parsers:
   consumption: CO.fetch_consumption
+  production: CO.fetch_production
+  price: CO.fetch_price
+delays:
+  production: 48

@@ -70,7 +70,6 @@ fallbackZoneMixes:
         solar: 0.006841029239200127
         unknown: 0.0
         wind: 0.5403600850959404
-flag_file_name: au.png
 parsers:
   production: ajenti.fetch_production
 timezone: null

@@ -196,7 +196,6 @@ fallbackZoneMixes:
         solar: 0.007996769820413207
         unknown: 0.23886146380132728
         wind: 0.12396047613175017
-flag_file_name: br.png
 parsers:
   production: BR.fetch_production
 timezone: null

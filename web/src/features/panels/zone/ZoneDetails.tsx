@@ -1,30 +1,54 @@
 import useGetZone from 'api/getZone';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { TimeAverages } from 'utils/constants';
-import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
+import { SpatialAggregate, TimeAverages } from 'utils/constants';
+import {
+  displayByEmissionsAtom,
+  spatialAggregateAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
 import NoInformationMessage from './NoInformationMessage';
 import { ZoneHeader } from './ZoneHeader';
-import { ZoneDataStatus, getZoneDataStatus } from './util';
+import { ZoneDataStatus, getHasSubZones, getZoneDataStatus } from './util';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
+  if (!zoneId) {
+    return <Navigate to="/" replace />;
+  }
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const { data, isError, isLoading } = useGetZone({
-    enabled: Boolean(zoneId),
-  });
+  const [viewMode, setViewMode] = useAtom(spatialAggregateAtom);
+  const isZoneView = viewMode === SpatialAggregate.ZONE;
+  const hasSubZones = getHasSubZones(zoneId);
+  const isSubZone = zoneId ? zoneId.includes('-') : true;
+  const { data, isError, isLoading } = useGetZone();
 
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
-  if (!zoneId || Array.isArray(data)) {
+  if (Array.isArray(data)) {
     return <Navigate to="/" replace />;
   }
+
+  useEffect(() => {
+    if (hasSubZones === null) {
+      return;
+    }
+    // When first hitting the map (or opening a zone from the ranking panel),
+    // set the correct matching view mode (zone or country).
+    if (hasSubZones && isZoneView) {
+      setViewMode(SpatialAggregate.COUNTRY);
+    }
+    if (isSubZone && !isZoneView) {
+      setViewMode(SpatialAggregate.ZONE);
+    }
+  }, []);
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data);
 

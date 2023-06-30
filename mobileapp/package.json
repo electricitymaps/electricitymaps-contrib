@@ -1,11 +1,12 @@
 {
   "name": "electricitymaps-mobile",
-  "version": "1.21.0",
+  "version": "1.45.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "main": "index.js",
   "engines": {
-    "node": ">=18"
+    "node": ">=18",
+    "pnpm": "^8"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

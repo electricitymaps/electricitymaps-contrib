@@ -11,8 +11,8 @@ capacity:
   hydro: 345
   nuclear: 0
   oil: 662
-  solar: 372
-  wind: 1805
+  solar: 1091
+  wind: 2098
 emissionFactors:
   direct:
     battery discharge:

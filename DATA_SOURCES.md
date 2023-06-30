@@ -49,7 +49,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - French Polynesia: [EDT](https://www.edt.pf/transition-energetique-innovation)
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Georgia: [Georgian State Electrosystem (GSE)](http://www.gse.com.ge/home)
-- Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Great Britain: [Elexon BMRS](https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide)
 - Great Britain (Orkney Islands): [SSEN](https://www.ssen.co.uk/ANM/)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Guatemala: [AMM](http://www.amm.org.gt)
@@ -159,6 +159,9 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 
 Production capacities are centralized in the [config/zones](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones) folder. Capacities are included in the respective zone configurations. Values in the `capacity` maps are in MW.
 
+- India South Conventional: [NPP](https://npp.gov.in/public-reports/cea/monthly/installcap/2023/APR/capacity2-Southern-2023-04.pdf)
+- India South Renewables: [MRE](https://mnre.gov.in/img/documents/uploads/file_s-1683779844352.pdf)
+
 #### International sources
 
 When determining the installed capacity for a country, these sources might help you get started. Note that if you end up using one of these sources, it _also_ needs to be listed with the country/region.
@@ -267,14 +270,14 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Geothermal and Unknown: [Bundesnetzagentur](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
   - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
 - Georgia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Great Britain:
-  - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=GB)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Great Britain: [Elexon BMRS](https://www.bmreports.com/bmrs/?q=foregeneration/capacityaggregated)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
 - Honduras: [ENEE](http://www.enee.hn/planificacion/2018/boletines/Boletin%20Estadistico%20Mes%20de%20Septiembre%202018%20PDF.pdf)
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
-- Hungary: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Hungary:
+  - Solar: [MAVIR](<https://www.mavir.hu/documents/10258/245818953/PV+STATISZTIKA_HU_20230213_ig_v1+(1).pdf>)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
   - Geothermal, Wind and Hydro: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -359,7 +362,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - List of PowerStations: [PowerStations](https://en.wikipedia.org/wiki/List_of_power_stations_in_Nepal)
   - GIS Map of Reservoir Projects: [GIS_Reservoir](https://www.doed.gov.np/download/GIS-map-of-reservoir-projects.pdf)
 - Netherlands:
-  - Solar and wind : [CBS](https://www.cbs.nl/en-gb/news/2022/10/more-electricity-from-renewable-sources-less-from-fossil-sources)
+  - Solar and wind : [CBS](https://www.cbs.nl/nl-nl/cijfers/detail/82610NED)
   - Biomass, Hydro, Wind: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Other : [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [INE](https://www.ine.gob.ni/index.php/electricidad/estadisticas-anuales)
@@ -417,7 +420,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Spain (Ceuta): [REE](https://www.ree.es/es/datos/generacion/potencia-instalada)
 - Spain (Melilla): [REE](https://www.ree.es/es/datos/generacion/potencia-instalada)
 - Sri Lanka: [Ceylon Electricity Board](https://ceb.lk/front_img/img_reports/1636539187LTGEP_2022-2041_Web_compressed.pdf 'Renewable installed capacity taken from Figure 1.13 (private-owned) and Table 2.1 (government-owned hydro), except for biomass, where the higher figure mentioned in the section "5.4 Other Renewable Energy Development" was used. Together, these add up to within 1 MW of the stated total renewable capacity of 2,447 MW (which is mentioned in e.g. "1.4.2.1 Overview"). Solar includes rooftop solar.  Thermal capactity taken from "2.2 Thermal Generation". Thermal Electricity generation is only from coal and oil, see Figure 1.14. According to ["CEB - ANNUAL REPORT 2020" page 18 (20 in PDF)](https://ceb.lk/front_img/img_reports/164887150703-CEB-Annual_Report-2020-English.pdf), the 900MW Lakvijaya plant is the only coal plant in Sri Lanka, implying the others are oil-fired. Installed capacity figures do not add up exactly to the 2,168 MW mentioned in the opening paragraph; I went with the combined total nameplate capacity from Table 2.5 (government-owned) and Table 2.6 (private-owned), adding up to 2197.9 MW. Then I put 900MW under coal and categorized the remainder as oil.  Pumped hydro is mentioned as being planned/investigated in several places, but currently isn\'t deployed. The same goes for battery storage.  Sri Lanka has no nuclear power plants. A report has been commissioned to investigate the possibility, see 4.2 (v).')
-- Sweden: [SVK](https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf)
+- Sweden: [SVK](https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf)
 - Switzerland
   - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
@@ -457,7 +460,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 ### Cross-border transmission capacity data sources
 
-Cross-border transmission capacities between the zones are centralized in the [config/exchanges](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges) folder. Capacities are included in the respective exchange configurations. Values in the `capacity` maps are in MW.
+Cross-border transmission capacities between the zones are centralized in the [config/exchanges](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges) folder. Capacities are included in the respective exchange configurations. Values in the `capacity` maps are in MW. The value prefaced with `-` is the export capacity and the value not prefaced is the import capacity. Direction is determined by alphabetical sorting of the zone keys.
 
 #### For the nordic and baltic countries capacities are availible from [Nord Pool](https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Capacities1/Capacities/key1/hourly/?view=table)
 
@@ -516,7 +519,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - [Serbia ⇄ Bulgaria](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - [Slovakia ⇄ Ukraine](https://op.europa.eu/en/publication-detail/-/publication/785f224b-93cd-11e9-9369-01aa75ed71a1/language-en?WT.mc_id=Searchresult&WT.ria_c=37085&WT.ria_f=3608&WT.ria_ev=sea)
 - Spain ⇄ France: [According to "The Spanish electricity system 2019" page 65: 2800 MW](https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/InformesSistemaElectrico/2019/ISE_2019_eng.pdf)
-- [Spain ⇄ Portugal](https://www.ree.es/en/activities/operation-of-the-electricity-system/international-interconnections)
+- [Spain ⇄ Portugal](https://web.archive.org/web/20230516184334/https://www.erse.pt/media/kevnjc3r/portugal-spain-interconnection-analysis-and-maczt-monitoring-report-english-version-2020.pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](<https://en.wikipedia.org/wiki/Cometa_(HVDC)>)
 - [Sweden ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Ukraine ⇄ Belarus, ⇄ Hungary, ⇉ Poland, ⇄ Moldova, ⇄ Slovakia, ⇄ Romania, ⇄ Russia: [Ukrenergo](https://ua.energy/activity/dispatch-information/transborder-flows/)

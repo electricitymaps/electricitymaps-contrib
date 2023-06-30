@@ -243,7 +243,6 @@ fallbackZoneMixes:
         solar: 0.09739320710532436
         unknown: 0.005265021553958536
         wind: 0.22676190478336342
-flag_file_name: es.png
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
