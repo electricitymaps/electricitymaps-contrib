@@ -281,12 +281,12 @@ class AggregatableEvent(Event):
 
     @staticmethod
     def _unique_datetime(df_view: pd.DataFrame) -> datetime:
-        datetime = df_view.index.unique()
-        if len(datetime) > 1:
+        target_datetime = df_view.datetime.unique()
+        if len(target_datetime) > 1:
             raise ValueError(
-                f"Cannot merge events from different datetimes: {datetime}"
+                f"Cannot merge events from different datetimes: {target_datetime}"
             )
-        return datetime[0]
+        return target_datetime[0].to_pydatetime()
 
     @staticmethod
     def _aggregated_fields(
@@ -476,7 +476,7 @@ class ProductionBreakdown(AggregatableEvent):
                 }
                 for event in events
             ]
-        ).set_index("datetime")
+        )
         (
             zoneKey,
             sources,
