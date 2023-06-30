@@ -24,9 +24,26 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 
 const useGetState = (): UseQueryResult<GridState> => {
   const [timeAverage] = useAtom(timeAverageAtom);
-  return useQuery<GridState>([QUERY_KEYS.STATE, { aggregate: timeAverage }], async () =>
-    getState(timeAverage)
+
+  // First fetch hour zero
+  const hour_zero = useQuery<GridState>(
+    [QUERY_KEYS.STATE, { aggregate: 'hour_zero' }],
+    async () => getState('hour_zero'),
+    {
+      enabled: timeAverage === 'hourly',
+    }
   );
+
+  // Then fetch the rest of the data
+  const all_data = useQuery<GridState>(
+    [QUERY_KEYS.STATE, { aggregate: timeAverage }],
+    async () => getState(timeAverage),
+    {
+      // The query should not execute until the hour_zero query is done
+      enabled: Boolean(hour_zero.isLoading === false && hour_zero.data),
+    }
+  );
+  return all_data.data || timeAverage != 'hourly' ? all_data : hour_zero;
 };
 
 export default useGetState;
