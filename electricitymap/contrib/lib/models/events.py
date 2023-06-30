@@ -3,8 +3,9 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
-from typing import AbstractSet, Any, Dict, Optional, Union
+from typing import AbstractSet, Any, Dict, List, Optional, Tuple, Union
 
+import pandas as pd
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
@@ -41,6 +42,11 @@ class Mix(BaseModel, ABC):
             self.__setattr__(mode, existing_value + value)
         else:
             self.__setattr__(mode, value)
+
+    @classmethod
+    def merge(cls, mixes: List["Mix"]) -> "Mix":
+        raise NotImplementedError()
+
 
 
 class ProductionMix(Mix):
@@ -181,6 +187,28 @@ class ProductionMix(Mix):
     def corrected_negative_modes(self) -> AbstractSet[str]:
         return self._corrected_negative_values
 
+    @classmethod
+    def merge(cls, production_mixes: List["ProductionMix"]) -> "ProductionMix":
+        """
+        Merge a list of production mixes into a single production mix.
+        The values are summed.
+        """
+        merged_production_mix = cls()
+        for production_mix in production_mixes:
+            for mode in PRODUCTION_MODES:
+                value = getattr(production_mix, mode)
+                if value is None:
+                    continue
+                if getattr(merged_production_mix, mode) is None:
+                    merged_production_mix.set_value(mode, 0)
+                merged_production_mix.set_value(
+                    mode, getattr(merged_production_mix, mode) + value
+                )
+            merged_production_mix._corrected_negative_values.update(
+                production_mix.corrected_negative_modes
+            )
+        return merged_production_mix
+
 
 class StorageMix(Mix):
     """
@@ -199,6 +227,24 @@ class StorageMix(Mix):
         if not name in STORAGE_MODES:
             raise ValueError(f"Unknown storage mode: {name}")
         return super().__setattr__(name, value)
+
+    @classmethod
+    def merge(cls, storage_mixes: List["StorageMix"]) -> "StorageMix":
+        """
+        Merge a list of storage mixes into a single storage mix.
+        The values are summed.
+        """
+        storage_mix = cls()
+        for storage_mix_to_merge in storage_mixes:
+            for mode in STORAGE_MODES:
+                value = getattr(storage_mix_to_merge, mode)
+                if value is not None:
+                    current_value = getattr(storage_mix, mode)
+                    if current_value is None:
+                        storage_mix.set_value(mode, value)
+                    else:
+                        storage_mix.set_value(mode, current_value + value)
+        return storage_mix
 
 
 class EventSourceType(str, Enum):
@@ -259,6 +305,59 @@ class Event(BaseModel, ABC):
     @abstractmethod
     def to_dict(self) -> Dict[str, Any]:
         """As part of a backwards compatibility, the points will be converted to a dict before being sent to the database."""
+        pass
+
+
+class AggregatableEvent(Event):
+    """
+    An abstract class representing all types of electricity events that can be aggregated.
+    """
+
+    @staticmethod
+    def _unique_zone_key(df_view: pd.DataFrame) -> ZoneKey:
+        zone_key = df_view["zoneKey"].unique()
+        if len(zone_key) > 1:
+            raise ValueError(f"Cannot merge events from different zones: {zone_key}")
+        return zone_key[0]
+
+    @staticmethod
+    def _sources(df_view: pd.DataFrame) -> str:
+        sources = df_view["source"].unique()
+        return ", ".join(sources)
+
+    @staticmethod
+    def _unique_source_type(df_view: pd.DataFrame) -> EventSourceType:
+        source_type = df_view["sourceType"].unique()
+        if len(source_type) > 1:
+            raise ValueError(
+                f"Cannot merge events from different source types: {source_type}"
+            )
+        return source_type[0]
+
+    @staticmethod
+    def _unique_datetime(df_view: pd.DataFrame) -> datetime:
+        datetime = df_view.index.unique()
+        if len(datetime) > 1:
+            raise ValueError(
+                f"Cannot merge events from different datetimes: {datetime}"
+            )
+        return datetime[0]
+
+    @staticmethod
+    def _aggregated_fields(
+        df_view: pd.DataFrame,
+    ) -> Tuple[ZoneKey, str, EventSourceType, datetime]:
+        return (
+            AggregatableEvent._unique_zone_key(df_view),
+            AggregatableEvent._sources(df_view),
+            AggregatableEvent._unique_source_type(df_view),
+            AggregatableEvent._unique_datetime(df_view),
+        )
+
+    @staticmethod
+    @abstractmethod
+    def aggregate(events: List["AggregatableEvent"]) -> "AggregatableEvent":
+        """Aggregate a list of events into a single event."""
         pass
 
 
@@ -364,7 +463,7 @@ class TotalProduction(Event):
         }
 
 
-class ProductionBreakdown(Event):
+class ProductionBreakdown(AggregatableEvent):
     production: Optional[ProductionMix] = None
     storage: Optional[StorageMix] = None
     """
@@ -416,6 +515,45 @@ class ProductionBreakdown(Event):
                 f"Error(s) creating production breakdown Event {datetime}: {e}"
             )
 
+    @staticmethod
+    def aggregate(events: List["ProductionBreakdown"]) -> "ProductionBreakdown":
+        """Merge ProductionBreakdown events into one."""
+        if len(events) == 0:
+            raise ValueError("Cannot aggregate empty list of events")
+        df_view = pd.DataFrame.from_records(
+            [
+                {
+                    "zoneKey": event.zoneKey,
+                    "datetime": event.datetime,
+                    "source": event.source,
+                    "sourceType": event.sourceType,
+                    "data": event,
+                }
+                for event in events
+            ]
+        ).set_index("datetime")
+        (
+            zoneKey,
+            sources,
+            source_type,
+            target_datetime,
+        ) = ProductionBreakdown._aggregated_fields(df_view)
+
+        production_mix = ProductionMix.merge(
+            [event.production for event in events if event.production is not None]
+        )
+        storage_mix = StorageMix.merge(
+            [event.storage for event in events if event.storage is not None]
+        )
+        return ProductionBreakdown(
+            zoneKey=zoneKey,
+            datetime=target_datetime,
+            source=sources,
+            production=production_mix,
+            storage=storage_mix,
+            sourceType=source_type,
+        )
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "datetime": self.datetime,
@@ -428,6 +566,9 @@ class ProductionBreakdown(Event):
             "storage": self.storage.dict(exclude_none=True) if self.storage else {},
             "source": self.source,
             "sourceType": self.sourceType,
+            "correctedModes": []
+            if self.production is None
+            else list(self.production._corrected_negative_values),
         }
 
 
