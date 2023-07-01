@@ -25,6 +25,24 @@ class Mix(BaseModel, ABC):
         """
         self.__setattr__(mode, value)
 
+    def add_value(
+        self,
+        mode: str,
+        value: Optional[float],
+    ) -> None:
+        """
+        Adds the provided value to the existing value of the provided mode.
+        This is useful if there are multiple production modes in the source
+        that maps to the same Electricity Maps production mode.
+        """
+        if value is None:
+            return
+        existing_value: Optional[float] = getattr(self, mode)
+        if existing_value is not None:
+            self.__setattr__(mode, existing_value + value)
+        else:
+            self.__setattr__(mode, value)
+
     @classmethod
     def merge(cls, mixes: List["Mix"]) -> "Mix":
         raise NotImplementedError()
@@ -98,7 +116,8 @@ class ProductionMix(Mix):
         value: Optional[float],
     ) -> None:
         """
-        Overriding the setattr method to check for negative values and set them to None.
+        Overriding the setattr method to check that the name is a valid production mode
+        and to check for negative values and set them to None.
         This method also keeps track of the modes that have been corrected.
         """
         if not name in PRODUCTION_MODES:
@@ -107,6 +126,18 @@ class ProductionMix(Mix):
             self._corrected_negative_values.add(name)
             value = None
         return super().__setattr__(name, value)
+
+    def _correct_negative_value(
+        self, mode: str, value: Optional[float], correct_negative_with_zero: bool
+    ) -> Union[float, None]:
+        """
+        Corrects a negative value by setting it to None or 0.
+        This method also keeps track of the modes that have been corrected.
+        """
+        if value is not None and value < 0:
+            self._corrected_negative_values.add(mode)
+            return 0 if correct_negative_with_zero else None
+        return value
 
     def set_value(
         self,
@@ -119,10 +150,21 @@ class ProductionMix(Mix):
         If correct_negative_with_zero is set to True, negative values will be set to 0 instead of None.
         This method keeps track of values that have been corrected.
         """
-        if correct_negative_with_zero and value is not None and value < 0:
-            value = 0
-            self._corrected_negative_values.add(mode)
+        value = self._correct_negative_value(mode, value, correct_negative_with_zero)
         self.__setattr__(mode, value)
+
+    def add_value(
+        self,
+        mode: str,
+        value: Optional[float],
+        correct_negative_with_zero: bool = False,
+    ) -> None:
+        """Adds the provided value to the existing value of the provided mode. Negative values are set to None by default.
+        If correct_negative_with_zero is set to True, negative values will be set to 0 instead of None.
+        This method keeps track of modes that have been corrected.
+        """
+        value = self._correct_negative_value(mode, value, correct_negative_with_zero)
+        super().add_value(mode, value)
 
     @property
     def has_corrected_negative_values(self) -> bool:
