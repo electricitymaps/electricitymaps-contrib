@@ -1,8 +1,19 @@
 from datetime import datetime
 from logging import getLogger
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Dict, Optional, Tuple, Union
 
 from requests import Response, Session
+
+from electricitymap.contrib.lib.models.event_lists import (
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
+from electricitymap.contrib.lib.types import ZoneKey
 
 from .lib.exceptions import ParserException
 
@@ -107,10 +118,9 @@ def generate_url(zone_key, target_datetime):
 
 
 def fetch_data(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
-    logger=getLogger(__name__),
 ) -> Tuple[list, str]:
     ses = session or Session()
 
@@ -159,7 +169,7 @@ def fetch_data(
         if data.get("errorcode") == "10002":
             raise ParserException(
                 "FR_O.py",
-                f"Rate limit exceeded. Please try again later after: {data.reset_time}",
+                f"Rate limit exceeded. Please try again later after: {data.get('reset_time')}",
             )
         elif data.get("error_code") == "ODSQLError":
             raise ParserException(
@@ -179,87 +189,69 @@ def fetch_data(
 
 
 def fetch_production(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
 ):
-    production_objects, date_string = fetch_data(
-        zone_key, session, target_datetime, logger
-    )
+    production_objects, date_string = fetch_data(zone_key, session, target_datetime)
 
-    return_list: List[Dict[str, Any]] = []
+    production_breakdown_list = ProductionBreakdownList(logger=logger)
     for production_object in production_objects:
-        production: Dict[str, Union[float, int]] = {}
-        storage: Dict[str, Union[float, int]] = {}
+        production = ProductionMix()
+        storage = StorageMix()
         for mode_key in production_object:
             if mode_key in PRODUCTION_MAPPING:
-                if PRODUCTION_MAPPING[mode_key] in production.keys():
-                    production[PRODUCTION_MAPPING[mode_key]] += production_object[
-                        mode_key
-                    ]
-                else:
-                    production[PRODUCTION_MAPPING[mode_key]] = production_object[
-                        mode_key
-                    ]
-                # Set values below 0 to 0
-                production[PRODUCTION_MAPPING[mode_key]] = (
-                    production[PRODUCTION_MAPPING[mode_key]]
-                    if production[PRODUCTION_MAPPING[mode_key]] >= 0
-                    else 0
+                production.add_value(
+                    PRODUCTION_MAPPING[mode_key],
+                    production_object[mode_key],
+                    correct_negative_with_zero=True,
                 )
             elif mode_key in STORAGE_MAPPING:
-                if STORAGE_MAPPING[mode_key] in storage.keys():
-                    storage[STORAGE_MAPPING[mode_key]] += (
-                        production_object[mode_key] * -1
-                    )
-                else:
-                    storage[STORAGE_MAPPING[mode_key]] = (
-                        production_object[mode_key] * -1
-                    )
+                storage.add_value(
+                    STORAGE_MAPPING[mode_key], -production_object[mode_key]
+                )
             elif mode_key in IGNORED_VALUES:
                 pass
             else:
                 logger.warning(
                     f"Unknown mode_key: '{mode_key}' encountered for {zone_key}."
                 )
-        return_list.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": datetime.fromisoformat(production_object[f"{date_string}"]),
-                "production": production,
-                "storage": storage,
-                "source": "edf.fr",
-                # TODO: Should be re-enabled when the changes discussed in #4828 are implemented
-                # "estimated": True if production_object["statut"] == "Estimé" else False,
-            }
+
+        production_breakdown_list.append(
+            zoneKey=zone_key,
+            datetime=datetime.fromisoformat(production_object[f"{date_string}"]),
+            production=production,
+            storage=storage,
+            source="edf.fr",
+            sourceType=EventSourceType.estimated
+            if production_object["statut"] == "Estimé"
+            else EventSourceType.measured,
         )
-    return return_list
+    return production_breakdown_list.to_list()
 
 
 def fetch_price(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
 ):
-    data_objects, date_string = fetch_data(zone_key, session, target_datetime, logger)
+    data_objects, date_string = fetch_data(zone_key, session, target_datetime)
 
-    return_list: List[Dict[str, Any]] = []
+    price_list = PriceList(logger=logger)
     for data_object in data_objects:
         price: Union[float, int, None] = None
         for mode_key in data_object:
             if mode_key in PRICE_MAPPING:
                 price = data_object[mode_key]
                 break
-
-        return_list.append(
-            {
-                "zoneKey": zone_key,
-                "currency": "EUR",
-                "datetime": datetime.fromisoformat(data_object[f"{date_string}"]),
-                "source": "edf.fr",
-                "price": price,
-            }
-        )
-    return return_list
+        if price is not None:
+            price_list.append(
+                zoneKey=zone_key,
+                currency="EUR",
+                datetime=datetime.fromisoformat(data_object[f"{date_string}"]),
+                source="edf.fr",
+                price=price,
+            )
+    return price_list
