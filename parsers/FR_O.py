@@ -110,7 +110,7 @@ PRICE_MAPPING = {
     for API_TYPE in groups
 }
 
-IGNORED_VALUES = ["jour", "total", "statut", "date", "heure"]
+IGNORED_VALUES = ["jour", "total", "statut", "date", "heure", "liaisons", "tac"]
 
 
 def generate_url(zone_key, target_datetime):
