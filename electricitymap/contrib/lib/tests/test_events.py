@@ -394,6 +394,7 @@ class TestMixes(unittest.TestCase):
         for mode in STORAGE_MODES:
             assert hasattr(mix, mode)
 
+
 class TestAddValue(unittest.TestCase):
     def test_production(self):
         mix = ProductionMix()
@@ -433,7 +434,6 @@ class TestAddValue(unittest.TestCase):
         assert mix.wind == 10
         assert mix.corrected_negative_modes == set()
 
-
     def test_storage(self):
         mix = StorageMix()
         mix.add_value("hydro", 10)
@@ -456,5 +456,3 @@ class TestAddValue(unittest.TestCase):
         assert mix.hydro == -5
         mix.add_value("hydro", None)
         assert mix.hydro == -5
-
-
