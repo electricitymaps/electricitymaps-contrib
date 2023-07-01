@@ -58,7 +58,50 @@ CEA_REGION_MAPPING = {
     "उत्तर-पूर्वी क्षेत्र  / North-Eastern Region": "IN-NE",
 }
 
-DEMAND_URL = "{proxy}/state-data/{state}?host=https://vidyutpravah.in"
+DEMAND_URL_VIDYUTPRAVAH = "{proxy}/state-data/{state}?host=https://vidyutpravah.in"
+DEMAND_URL_MERITINDIA = (
+    "{proxy}/StateWiseDetails/BindCurrentStateStatus?host=https://meritindia.in"
+)
+
+# States codes as on meritindia.in
+STATE_CODES = {
+    "andhra-pradesh": "AP",
+    "arunachal-pradesh": "ACP",
+    "assam": "ASM",
+    "bihar": "BHR",
+    "chandiagarh": "CHG",
+    "chhattisgarh": "CTG",
+    "dadra-nagar-haveli": "DNH",
+    "daman-diu": "DND",
+    "delhi": "DL",
+    "goa": "GOA",
+    "gujarat": "GJT",
+    "haryana": "HRN",
+    "himachal-pradesh": "HP",
+    "jammu-kashmir": "JAK",
+    "jharkhand": "JHK",
+    "karnataka": "KRT",
+    "kerala": "KRL",
+    "madhya-pradesh": "MPD",
+    "maharashtra": "MHA",
+    "manipur": "MIP",
+    "meghalaya": "MGA",
+    "mizoram": "MZM",
+    "nagaland": "NGD",
+    "odisha": "ODI",
+    "puducherry": "PU",
+    "punjab": "PNB",
+    "rajasthan": "RJ",
+    "sikkim": "SKM",
+    "tamil-nadu": "TND",
+    "telangana": "TLG",
+    "tripura": "TPA",
+    "uttar-pradesh": "UP",
+    "uttarakhand": "UTK",
+    "west-bengal": "WB",
+}
+
+
 STATES_MAPPING = {
     "IN-NO": [
         "delhi",
@@ -152,12 +195,12 @@ def fetch_live_production(
     return data
 
 
-def fetch_consumption(
+def fetch_consumption_from_vidyutpravah(
     zone_key: str,
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> TotalConsumptionList:
     """Fetches live consumption from government dashboard. Consumption is available per state and is then aggregated at regional level.
     Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep"""
     if target_datetime is not None:
@@ -168,10 +211,9 @@ def fetch_consumption(
         # By default the request headers are set to accept gzip.
         # If this header is set, the proxy will not decompress the content, therefore we set it to an empty string.
         resp: Response = session.get(
-            DEMAND_URL.format(proxy=INDIA_PROXY, state=state),
+            DEMAND_URL_VIDYUTPRAVAH.format(proxy=INDIA_PROXY, state=state),
             headers={"User-Agent": "Mozilla/5.0", "Accept-Encoding": ""},
         )
-
         soup = BeautifulSoup(resp.content, "html.parser")
         try:
             state_consumption = int(
@@ -203,7 +245,35 @@ def fetch_consumption(
         source="vidyupravah.in",
     )
 
-    return consumption_list.to_list()
+    return consumption_list
+
+
+def fetch_consumption_from_meritindia(
+    zone_key: ZoneKey,
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> TotalConsumptionList:
+    """Fetches the live consumption from the Merit Order Despatch of Electricity.
+    This source seems to be a bit more stable right now than vidyutpravah.in"""
+    if target_datetime is not None:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+    total_consumption = 0
+    for state in STATES_MAPPING[zone_key]:
+        resp: Response = session.post(
+            DEMAND_URL_MERITINDIA.format(proxy=INDIA_PROXY),
+            data={"StateCode": STATE_CODES[state]},
+        )
+        data = resp.json()[0]
+        total_consumption += float(str(data["Demand"]).replace(",", ""))
+    consumption_list = TotalConsumptionList(logger=logger)
+    consumption_list.append(
+        zoneKey=ZoneKey(zone_key),
+        datetime=arrow.now(tz=IN_TZ).datetime,
+        consumption=total_consumption,
+        source="meritindia.in",
+    )
+    return consumption_list
 
 
 def fetch_npp_production(
@@ -249,6 +319,20 @@ def fetch_npp_production(
             parser="IN.py",
             message=f"{target_datetime}: {zone_key} conventional production data is not available : [{r.status_code}]",
         )
+
+
+def fetch_consumption(
+    zone_key: ZoneKey,
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[Dict[str, Any]]:
+    return fetch_consumption_from_meritindia(
+        zone_key=zone_key,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    ).to_list()
 
 
 def format_ren_production_data(url: str, zone_key: str) -> Dict[str, Any]:
@@ -391,5 +475,5 @@ def get_start_of_day(dt: datetime) -> datetime:
 
 if __name__ == "__main__":
 
-    print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
-    print(fetch_consumption(zone_key="IN-WE"))
+    # print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
+    print(fetch_consumption(zone_key=ZoneKey("IN-NO")))

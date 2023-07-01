@@ -18,7 +18,6 @@ capacity:
   wind: 179
 contributors:
   - q--
-flag_file_name: lk.png
 parsers:
   production: LK.fetch_production
 timezone: Asia/Colombo

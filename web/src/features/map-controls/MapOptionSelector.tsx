@@ -1,5 +1,5 @@
 import { useTranslation } from 'translation/translation';
-import { Root, Trigger, Portal, Content, Arrow } from '@radix-ui/react-dropdown-menu';
+import { Root, Trigger, Content, Arrow } from '@radix-ui/react-dropdown-menu';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 

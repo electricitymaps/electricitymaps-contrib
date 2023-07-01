@@ -69,7 +69,7 @@ class ParsersBaseModel(StrictBaseModel):
         """
         function_str = getattr(self, type)
         if function_str:
-            return import_string(f"electricitymap.contrib.parsers.{function_str}")
+            return import_string(f"parsers.{function_str}")
 
 
 class Parsers(ParsersBaseModel):
@@ -106,7 +106,6 @@ class Zone(StrictBaseModelWithAlias):
     contributors: Optional[List[str]]
     delays: Optional[Delays]
     disclaimer: Optional[str]
-    flag_file_name: Optional[str]
     parsers: Parsers = Parsers()
     price_displayed: Optional[bool]
     sub_zone_names: Optional[List[ZoneKey]] = Field(None, alias="subZoneNames")

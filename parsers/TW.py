@@ -59,6 +59,15 @@ def fetch_production(
     objData.loc[:, ["capacity", "output"]] = objData[["capacity", "output"]].apply(
         pd.to_numeric, errors="coerce"
     )
+
+    if objData["fueltype"].str.contains("Other Renewable Energy").any():
+        if objData["name"].str.contains("Geothermal").any():
+            objData.loc[
+                objData["name"].str.contains("Geothermal"), "fueltype"
+            ] = "Geothermal"
+        if objData["name"].str.contains("Biofuel").any():
+            objData.loc[objData["name"].str.contains("Biofuel"), "fueltype"] = "Biofuel"
+
     assert (
         not objData.capacity.isna().all()
     ), "capacity data is entirely NaN - input column order may have changed"
@@ -100,8 +109,10 @@ def fetch_production(
         "zoneKey": zone_key,
         "datetime": dumpDate.datetime,
         "production": {
+            "biomass": production.loc["Biofuel"].output,
             "coal": coal_production,
             "gas": gas_production,
+            "geothermal": production.loc["Geothermal"].output,
             "oil": oil_production,
             "hydro": production.loc["Hydro"].output,
             "nuclear": production.loc["Nuclear"].output,
@@ -110,8 +121,10 @@ def fetch_production(
             "unknown": production.loc["Co-Gen"].output,
         },
         "capacity": {
+            "biomass": production.loc["Biofuel"].capacity,
             "coal": coal_capacity,
             "gas": gas_capacity,
+            "geothermal": production.loc["Geothermal"].capacity,
             "oil": oil_capacity,
             "hydro": production.loc["Hydro"].capacity,
             "hydro storage": production.loc["Pumping Gen"].capacity,

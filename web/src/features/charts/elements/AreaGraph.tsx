@@ -263,6 +263,7 @@ function AreaGraph({
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
+        endTime={endTime}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
         selectedLayerIndex={selectedLayerIndex}
@@ -273,7 +274,7 @@ function AreaGraph({
         <AreaGraphTooltip
           {...tooltipData}
           selectedLayerKey={
-            selectedLayerIndex !== null ? layerKeys[selectedLayerIndex] : undefined
+            selectedLayerIndex === null ? undefined : layerKeys[selectedLayerIndex]
           }
           tooltipSize={tooltipSize}
           isBiggerThanMobile={isBiggerThanMobile}

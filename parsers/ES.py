@@ -111,12 +111,6 @@ def check_valid_parameters(
             f"Invalid target_datetime: {target_datetime}",
             zone_key,
         )
-    if logger is not None and not isinstance(logger, Logger):
-        raise ParserException(
-            "ES.py",
-            f"Invalid logger: {logger}",
-            zone_key,
-        )
 
 
 def fetch_island_data(
