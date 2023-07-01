@@ -90,7 +90,6 @@ emissionFactors:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
       value: 650.0
-flag_file_name: us.png
 parsers:
   production: EIA.fetch_production_mix
 sources:

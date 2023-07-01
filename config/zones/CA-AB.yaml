@@ -97,7 +97,6 @@ fallbackZoneMixes:
         solar: 4.635281476656439e-05
         unknown: 0.02695033437648351
         wind: 0.05061339866691943
-flag_file_name: ca.png
 parsers:
   price: CA_AB.fetch_price
   production: CA_AB.fetch_production
