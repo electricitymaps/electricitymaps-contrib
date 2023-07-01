@@ -83,7 +83,6 @@ def check_valid_parameters(
     zone_key: ZoneKey,
     session: Optional[Session],
     target_datetime: Optional[datetime],
-    logger: Logger,
 ):
     """Raise an exception if the parameters are not valid for this parser."""
     if "->" not in zone_key and zone_key not in ZONE_FUNCTION_MAP.keys():
@@ -140,7 +139,7 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-    check_valid_parameters(zone_key, session, target_datetime, logger)
+    check_valid_parameters(zone_key, session, target_datetime)
 
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
@@ -148,9 +147,7 @@ def fetch_consumption(
     for event in island_data:
         consumption.append(
             zoneKey=zone_key,
-            datetime=datetime.utcfromtimestamp(event.timestamp).astimezone(
-                timezone.utc
-            ),
+            datetime=datetime.fromtimestamp(event.timestamp).astimezone(timezone.utc),
             consumption=event.demand,
             source="demanda.ree.es",
         )
@@ -164,7 +161,7 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-    check_valid_parameters(zone_key, session, target_datetime, logger)
+    check_valid_parameters(zone_key, session, target_datetime)
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
     productionEventList = ProductionBreakdownList(logger)
@@ -199,9 +196,7 @@ def fetch_production(
 
         productionEventList.append(
             zoneKey=zone_key,
-            datetime=datetime.utcfromtimestamp(event.timestamp).astimezone(
-                timezone.utc
-            ),
+            datetime=datetime.fromtimestamp(event.timestamp).astimezone(timezone.utc),
             production=production,
             storage=storage,
             source="demanda.ree.es",
@@ -219,7 +214,7 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    check_valid_parameters(sorted_zone_keys, session, target_datetime, logger)
+    check_valid_parameters(sorted_zone_keys, session, target_datetime)
 
     if isinstance(target_datetime, datetime):
         date = target_datetime.strftime("%Y-%m-%d")
@@ -246,7 +241,7 @@ def fetch_exchange(
 
         exchangeList.append(
             zoneKey=sorted_zone_keys,
-            datetime=datetime.utcfromtimestamp(response.timestamp).astimezone(
+            datetime=datetime.fromtimestamp(response.timestamp).astimezone(
                 timezone.utc
             ),
             netFlow=net_flow,

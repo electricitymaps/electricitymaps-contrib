@@ -37,7 +37,7 @@ class TestES(TestCase):
             self.assertIsNotNone(data["consumption"])
         self.assertEqual(
             data_list[0]["datetime"],
-            datetime.utcfromtimestamp(1687192328).astimezone(timezone.utc),
+            datetime.fromtimestamp(1687192328).astimezone(timezone.utc),
         )
 
     # Production
@@ -55,7 +55,7 @@ class TestES(TestCase):
             self.assertIsNotNone(data["storage"])
             self.assertEqual(
                 data["datetime"],
-                datetime.utcfromtimestamp(1687192328).astimezone(timezone.utc),
+                datetime.utcfromtimestamp(1687192328).replace(tzinfo=timezone.utc),
             )
             self.assertEqual(data["production"]["gas"], 0)
             self.assertEqual(data["production"]["oil"], 22)
@@ -107,7 +107,7 @@ class TestES(TestCase):
             self.assertIsNot(data["production"], {})
             self.assertEqual(
                 data["datetime"],
-                datetime.utcfromtimestamp(1687192328).astimezone(timezone.utc),
+                datetime.utcfromtimestamp(1687192328).replace(tzinfo=timezone.utc),
             )
             self.assertEqual(data["production"]["gas"], 8)
             self.assertEqual(data["production"]["oil"], 4)
@@ -133,7 +133,7 @@ class TestES(TestCase):
             self.assertTrue(isinstance(data["datetime"], datetime))
         self.assertEqual(
             data_list[0]["datetime"],
-            datetime.utcfromtimestamp(1687192328).astimezone(timezone.utc),
+            datetime.utcfromtimestamp(1687192328).replace(tzinfo=timezone.utc),
         )
 
     ### Mallorca
@@ -151,7 +151,7 @@ class TestES(TestCase):
             self.assertTrue(isinstance(data["datetime"], datetime))
         self.assertEqual(
             data_list[0]["datetime"],
-            datetime.utcfromtimestamp(1687192328).astimezone(timezone.utc),
+            datetime.utcfromtimestamp(1687192328).replace(tzinfo=timezone.utc),
         )
 
 
