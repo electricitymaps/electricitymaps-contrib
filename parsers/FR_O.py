@@ -254,4 +254,4 @@ def fetch_price(
                 source="edf.fr",
                 price=price,
             )
-    return price_list
+    return price_list.to_list()
