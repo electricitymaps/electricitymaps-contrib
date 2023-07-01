@@ -393,3 +393,68 @@ class TestMixes(unittest.TestCase):
         mix = StorageMix()
         for mode in STORAGE_MODES:
             assert hasattr(mix, mode)
+
+class TestAddValue(unittest.TestCase):
+    def test_production(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", 5)
+        assert mix.wind == 15
+        assert mix.corrected_negative_modes == set()
+
+    def test_production_with_negative_value(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", -5)
+        assert mix.wind == 10
+        assert mix.corrected_negative_modes == set(["wind"])
+
+    def test_production_with_negative_value_expect_none(self):
+        mix = ProductionMix()
+        mix.add_value("wind", -10)
+        assert mix.wind == None
+        assert mix.corrected_negative_modes == set(["wind"])
+
+    def test_production_with_negative_value_and_correct_with_none(self):
+        mix = ProductionMix()
+        mix.add_value("wind", -10, correct_negative_with_zero=True)
+        assert mix.wind == 0
+        mix.add_value("wind", 15, correct_negative_with_zero=True)
+        assert mix.wind == 15
+        assert mix.corrected_negative_modes == set(["wind"])
+
+    def test_production_with_none(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", None)
+        assert mix.wind == 10
+        assert mix.corrected_negative_modes == set()
+
+
+    def test_storage(self):
+        mix = StorageMix()
+        mix.add_value("hydro", 10)
+        assert mix.hydro == 10
+        mix.add_value("hydro", 5)
+        assert mix.hydro == 15
+
+    def test_storage_with_negative_value(self):
+        mix = StorageMix()
+        mix.add_value("hydro", 10)
+        assert mix.hydro == 10
+        mix.add_value("hydro", -5)
+        assert mix.hydro == 5
+
+    def test_storage_with_none(self):
+        mix = StorageMix()
+        mix.add_value("hydro", None)
+        assert mix.hydro == None
+        mix.add_value("hydro", -5)
+        assert mix.hydro == -5
+        mix.add_value("hydro", None)
+        assert mix.hydro == -5
+
+
