@@ -68,7 +68,7 @@ def production_processor(
 ) -> Tuple[datetime, ProductionMix]:
     """Extracts data timestamp and sums regional data into totals by key."""
 
-    dt = arrow.get(json_data["Data"]).datetime
+    dt = datetime.fromisoformat(json_data["Data"])
     totals = defaultdict(lambda: 0.0)
 
     region = REGIONS[zone_key]
