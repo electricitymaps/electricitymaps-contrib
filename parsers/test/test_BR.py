@@ -8,8 +8,8 @@ from unittest.mock import patch
 
 from arrow import get
 
-from parsers import BR
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers import BR
 
 
 class ProductionTestcase(unittest.TestCase):
@@ -55,6 +55,7 @@ class ProductionTestcase(unittest.TestCase):
     def test_storage_type(self):
         data = self.data
         self.assertIsInstance(data[0]["storage"], dict)
+
     def test_negative_solar(self):
         with open("parsers/test/mocks/BR/BR_negative_solar.json") as f:
             fake_data = json.load(f)

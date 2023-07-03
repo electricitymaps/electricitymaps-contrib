@@ -1,16 +1,15 @@
 from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, Optional, Union, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import arrow
 from requests import Session
+
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
-import pytz
 
-TIMEZONE = pytz.timezone("America/Sao_Paulo")
 URL = "http://tr.ons.org.br/Content/GetBalancoEnergetico/null"
 SOURCE = "ons.org.br"
 
@@ -20,15 +19,13 @@ GENERATION_MAPPING = {
     "termica": "unknown",
     "solar": "solar",
     "hidraulica": "hydro",
-    "itaipu50HzBrasil": "hydro", # BR_CS contains the Itaipu Dam.
+    "itaipu50HzBrasil": "hydro",  # BR_CS contains the Itaipu Dam.
     # We merge the hydro keys into one.
     "itaipu60Hz": "hydro",
 }
 
 # Those modes report self consumption, therefore they can be negative.
-CORRECTED_NEGATIVE_PRODUCTION = {
-    "solar"
-}
+CORRECTED_NEGATIVE_PRODUCTION = {"solar"}
 
 REGIONS = {
     "BR-NE": "nordeste",
@@ -66,7 +63,9 @@ def get_data(session: Optional[Session]):
     return json_data
 
 
-def production_processor(json_data: dict, zone_key: str) -> Tuple[datetime, ProductionMix]:
+def production_processor(
+    json_data: dict, zone_key: str
+) -> Tuple[datetime, ProductionMix]:
     """Extracts data timestamp and sums regional data into totals by key."""
 
     dt = arrow.get(json_data["Data"]).datetime
@@ -81,7 +80,9 @@ def production_processor(json_data: dict, zone_key: str) -> Tuple[datetime, Prod
     production = ProductionMix()
     for mode, value in totals.items():
         mode_name = GENERATION_MAPPING.get(mode, "unknown")
-        production.add_value(mode_name, value, mode_name in CORRECTED_NEGATIVE_PRODUCTION)
+        production.add_value(
+            mode_name, value, mode_name in CORRECTED_NEGATIVE_PRODUCTION
+        )
 
     return dt, production
 
