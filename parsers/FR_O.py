@@ -116,6 +116,9 @@ IGNORED_VALUES = ["jour", "total", "statut", "date", "heure", "liaisons", "tac"]
 def generate_url(zone_key, target_datetime):
     return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{HISTORICAL_DATASETS[zone_key] if target_datetime else LIVE_DATASETS[zone_key]}/exports/json"
 
+def generate_source(zone_key: ZoneKey):
+    # Return the domain name of the source without the protocol
+    return DOMAIN_MAPPING[zone_key].split("//")[1]
 
 def fetch_data(
     zone_key: ZoneKey,
@@ -176,9 +179,7 @@ def fetch_data(
                 "FR_O.py",
                 "Query malformed. Please check the parameters. If this was previously working there has likely been a change in the API.",
             )
-    if isinstance(data, list):
-        return data, DATE_STRING_MAPPING[zone_key]
-    else:
+    if not isinstance(data, list):
         raise ParserException(
             "FR_O.py",
             f"Unexpected data format for {zone_key} for {target_datetime.strftime('%Y')}"
@@ -186,6 +187,7 @@ def fetch_data(
             else f"Unexpected data format for {zone_key}.",
             zone_key,
         )
+    return data, DATE_STRING_MAPPING[zone_key]
 
 
 def fetch_production(
@@ -220,10 +222,10 @@ def fetch_production(
 
         production_breakdown_list.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(production_object[f"{date_string}"]),
+            datetime=datetime.fromisoformat(production_object[date_string]),
             production=production,
             storage=storage,
-            source="edf.fr",
+            source=generate_source(zone_key),
             sourceType=EventSourceType.estimated
             if production_object["statut"] == "Estimé"
             else EventSourceType.measured,
@@ -250,8 +252,8 @@ def fetch_price(
             price_list.append(
                 zoneKey=zone_key,
                 currency="EUR",
-                datetime=datetime.fromisoformat(data_object[f"{date_string}"]),
-                source="edf.fr",
+                datetime=datetime.fromisoformat(data_object[date_string]),
+                source=generate_source(zone_key),
                 price=price,
             )
     return price_list.to_list()
