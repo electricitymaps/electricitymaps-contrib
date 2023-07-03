@@ -426,7 +426,7 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
     "RS": {
         "required": ["coal"],
         "expected_range": {
-            "hydro": (0, 5000), # 5 GW is double the production capacity of Serbia.
+            "hydro": (0, 5000),  # 5 GW is double the production capacity of Serbia.
         },
     },
     "SE": {
