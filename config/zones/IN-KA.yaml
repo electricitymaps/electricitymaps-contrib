@@ -165,7 +165,6 @@ fallbackZoneMixes:
         solar: 0.11428956239295081
         unknown: 0.30120780799848923
         wind: 0.07397103900342754
-flag_file_name: in.png
 parsers:
   consumption: IN_KA.fetch_consumption
   production: IN_KA.fetch_production

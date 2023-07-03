@@ -7,8 +7,7 @@ Production
 Exchanges
 
 Documentation:
-https://www.elexon.co.uk/wp-content/uploads/2017/06/
-bmrs_api_data_push_user_guide_v1.1.pdf
+https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide
 """
 
 import re
