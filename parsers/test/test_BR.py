@@ -8,6 +8,7 @@ from unittest.mock import patch
 
 from arrow import get
 
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import BR
 
 
@@ -18,11 +19,11 @@ class ProductionTestcase(unittest.TestCase):
     """
 
     def setUp(self):
-        with open("parsers/test/mocks/BR.html") as f:
+        with open("parsers/test/mocks/BR/BR.json") as f:
             self.fake_data = json.load(f)
 
         with patch("parsers.BR.get_data", return_value=self.fake_data) as gd:
-            self.data = BR.fetch_production("BR-CS")
+            self.data = BR.fetch_production(ZoneKey("BR-CS"))
 
     def test_is_not_none(self):
         data = self.data
@@ -32,28 +33,36 @@ class ProductionTestcase(unittest.TestCase):
         """Check that hydro keys correctly merge into one."""
 
         data = self.data
-        self.assertEqual(data["production"]["hydro"], 35888.05363)
+        self.assertEqual(data[0]["production"]["hydro"], 35888.05363)
 
     def test_wind(self):
         data = self.data
-        self.assertEqual(data["production"]["wind"], 4.2)
+        self.assertEqual(data[0]["production"]["wind"], 4.2)
 
     def test_correct_datetime(self):
         data = self.data
         expected_dt = get("2018-01-27T20:19:00-02:00").datetime
-        self.assertEqual(data["datetime"], expected_dt)
+        self.assertEqual(data[0]["datetime"], expected_dt)
 
     def test_source(self):
         data = self.data
-        self.assertEqual(data["source"], "ons.org.br")
+        self.assertEqual(data[0]["source"], "ons.org.br")
 
     def test_zoneKey_match(self):
         data = self.data
-        self.assertEqual(data["zoneKey"], "BR-CS")
+        self.assertEqual(data[0]["zoneKey"], "BR-CS")
 
     def test_storage_type(self):
         data = self.data
-        self.assertIsInstance(data["storage"], dict)
+        self.assertIsInstance(data[0]["storage"], dict)
+
+    def test_negative_solar(self):
+        with open("parsers/test/mocks/BR/BR_negative_solar.json") as f:
+            fake_data = json.load(f)
+
+            with patch("parsers.BR.get_data", return_value=fake_data) as gd:
+                data = BR.fetch_production(ZoneKey("BR-CS"))
+                self.assertEqual(data[0]["production"]["solar"], 0)
 
 
 class ExchangeTestcase(unittest.TestCase):
@@ -63,7 +72,7 @@ class ExchangeTestcase(unittest.TestCase):
     """
 
     def setUp(self):
-        with open("parsers/test/mocks/BR.html") as f:
+        with open("parsers/test/mocks/BR/BR.json") as f:
             self.fake_data = json.load(f)
 
         with patch("parsers.BR.get_data", return_value=self.fake_data) as gd:
@@ -98,7 +107,7 @@ class RegionTestcase(unittest.TestCase):
     """
 
     def setUp(self):
-        with open("parsers/test/mocks/BR.html") as f:
+        with open("parsers/test/mocks/BR/BR.json") as f:
             self.fake_data = json.load(f)
 
         with patch("parsers.BR.get_data", return_value=self.fake_data) as gd:
