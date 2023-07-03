@@ -174,16 +174,16 @@ if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print("fetch_production(BR-NE) ->")
-    print(fetch_production("BR-NE"))
+    print(fetch_production(ZoneKey("BR-NE")))
 
     print("fetch_production(BR-N) ->")
-    print(fetch_production("BR-N"))
+    print(fetch_production(ZoneKey("BR-N")))
 
     print("fetch_production(BR-CS) ->")
-    print(fetch_production("BR-CS"))
+    print(fetch_production(ZoneKey("BR-CS")))
 
     print("fetch_production(BR-S) ->")
-    print(fetch_production("BR-S"))
+    print(fetch_production(ZoneKey("BR-S")))
 
     print("fetch_exchange(BR-S, UY) ->")
     print(fetch_exchange("BR-S", "UY"))
