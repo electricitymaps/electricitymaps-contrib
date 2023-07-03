@@ -177,7 +177,6 @@ fallbackZoneMixes:
         solar: 0.02726765885168756
         unknown: 0.0
         wind: 0.14045529364217207
-flag_file_name: au.png
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production

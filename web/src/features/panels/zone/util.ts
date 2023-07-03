@@ -8,7 +8,6 @@ type zoneConfigItem = {
   timezone?: string | null;
   bounding_box?: any;
   parsers?: any;
-  flag_file_name?: string;
   estimation_method?: string;
   subZoneNames?: string[];
 };

@@ -21,5 +21,4 @@ fallbackZoneMixes:
       gas: 0.003
       hydro: 0.9715
       wind: 0.0254
-flag_file_name: ca.png
 timezone: America/Winnipeg
