@@ -180,4 +180,4 @@ fallbackZoneMixes:
 parsers:
   consumption: GT.fetch_consumption
   production: GT.fetch_production
-timezone: null
+timezone: America/Guatemala
