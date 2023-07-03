@@ -105,7 +105,8 @@ load-plugins = "pylint_pydantic"
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
-    "parsers/test"
+    "parsers/test",
+    "electricitymap/contrib/lib/tests",
 ]
 
 [build-system]
