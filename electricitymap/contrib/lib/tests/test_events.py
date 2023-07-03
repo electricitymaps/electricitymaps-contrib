@@ -186,6 +186,16 @@ class TestPrice(unittest.TestCase):
                 currency="EURO",
             )
 
+    @freezegun.freeze_time("2023-01-01")
+    def test_prices_can_be_in_future(self):
+        Price(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            price=1,
+            source="trust.me",
+            currency="EUR",
+        )
+
 
 class TestProductionBreakdown(unittest.TestCase):
     def test_create_production_breakdown(self):
