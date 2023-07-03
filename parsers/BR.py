@@ -1,12 +1,14 @@
 from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import arrow
 from requests import Session
 
-from .lib.validation import validate
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 
 URL = "http://tr.ons.org.br/Content/GetBalancoEnergetico/null"
 SOURCE = "ons.org.br"
@@ -16,8 +18,14 @@ GENERATION_MAPPING = {
     "eolica": "wind",
     "termica": "unknown",
     "solar": "solar",
-    "hydro": "hydro",
+    "hidraulica": "hydro",
+    "itaipu50HzBrasil": "hydro",  # BR_CS contains the Itaipu Dam.
+    # We merge the hydro keys into one.
+    "itaipu60Hz": "hydro",
 }
+
+# Those modes report self consumption, therefore they can be negative.
+CORRECTED_NEGATIVE_PRODUCTION = {"solar"}
 
 REGIONS = {
     "BR-NE": "nordeste",
@@ -55,10 +63,12 @@ def get_data(session: Optional[Session]):
     return json_data
 
 
-def production_processor(json_data, zone_key: str) -> tuple:
+def production_processor(
+    json_data: dict, zone_key: str
+) -> Tuple[datetime, ProductionMix]:
     """Extracts data timestamp and sums regional data into totals by key."""
 
-    dt = arrow.get(json_data["Data"])
+    dt = datetime.fromisoformat(json_data["Data"])
     totals = defaultdict(lambda: 0.0)
 
     region = REGIONS[zone_key]
@@ -66,51 +76,38 @@ def production_processor(json_data, zone_key: str) -> tuple:
     for generation, val in breakdown.items():
         totals[generation] += val
 
-    # BR_CS contains the Itaipu Dam.
-    # We merge the hydro keys into one, then remove unnecessary keys.
-    totals["hydro"] = (
-        totals.get("hidraulica", 0.0)
-        + totals.get("itaipu50HzBrasil", 0.0)
-        + totals.get("itaipu60Hz", 0.0)
-    )
-    entries_to_remove = {"hidraulica", "itaipu50HzBrasil", "itaipu60Hz", "total"}
-    mapped_totals = {
-        GENERATION_MAPPING.get(name, "unknown"): val
-        for name, val in totals.items()
-        if name not in entries_to_remove
-    }
+    del totals["total"]
+    production = ProductionMix()
+    for mode, value in totals.items():
+        mode_name = GENERATION_MAPPING.get(mode, "unknown")
+        production.add_value(
+            mode_name, value, mode_name in CORRECTED_NEGATIVE_PRODUCTION
+        )
 
-    return dt, mapped_totals
+    return dt, production
 
 
 def fetch_production(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> List[Dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     data = get_data(session)
-    timestamp, production = production_processor(data, zone_key)
-
-    datapoint = {
-        "zoneKey": zone_key,
-        "datetime": timestamp.datetime,
-        "production": production,
-        "storage": {
-            "hydro": None,
-        },
-        "source": SOURCE,
-    }
-
-    datapoint = validate(
-        datapoint, logger, remove_negative=True, required=["hydro"], floor=1000
+    date, production = production_processor(data, zone_key)
+    productions = ProductionBreakdownList(logger)
+    productions.append(
+        zoneKey=zone_key,
+        datetime=date,
+        source=SOURCE,
+        production=production,
     )
 
-    return datapoint
+    return productions.to_list()
 
 
 def fetch_exchange(
@@ -177,16 +174,16 @@ if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print("fetch_production(BR-NE) ->")
-    print(fetch_production("BR-NE"))
+    print(fetch_production(ZoneKey("BR-NE")))
 
     print("fetch_production(BR-N) ->")
-    print(fetch_production("BR-N"))
+    print(fetch_production(ZoneKey("BR-N")))
 
     print("fetch_production(BR-CS) ->")
-    print(fetch_production("BR-CS"))
+    print(fetch_production(ZoneKey("BR-CS")))
 
     print("fetch_production(BR-S) ->")
-    print(fetch_production("BR-S"))
+    print(fetch_production(ZoneKey("BR-S")))
 
     print("fetch_exchange(BR-S, UY) ->")
     print(fetch_exchange("BR-S", "UY"))
