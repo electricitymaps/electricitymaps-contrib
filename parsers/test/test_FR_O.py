@@ -4,9 +4,9 @@ from json import loads
 
 from pkg_resources import resource_string
 from requests import Session
-from electricitymap.contrib.lib.types import ZoneKey
 from requests_mock import ANY, Adapter
 
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import FR_O
 
 
@@ -128,13 +128,28 @@ class TestFR_O(unittest.TestCase):
         ]
         self.assertEqual(len(data_list), len(expected_production_data))
         for index, actual in enumerate(data_list):
-            self.assertEqual(actual["zoneKey"], expected_production_data[index]["zoneKey"])
-            self.assertEqual(actual["source"], expected_production_data[index]["source"])
-            self.assertEqual(actual["sourceType"], expected_production_data[index]["sourceType"])
-            self.assertEqual(actual["datetime"], expected_production_data[index]["datetime"])
-            self.assertEqual(actual["production"], expected_production_data[index]["production"])
-            self.assertEqual(actual["storage"], expected_production_data[index]["storage"])
-            self.assertEqual(actual["correctedModes"], expected_production_data[index]["correctedModes"])
+            self.assertEqual(
+                actual["zoneKey"], expected_production_data[index]["zoneKey"]
+            )
+            self.assertEqual(
+                actual["source"], expected_production_data[index]["source"]
+            )
+            self.assertEqual(
+                actual["sourceType"], expected_production_data[index]["sourceType"]
+            )
+            self.assertEqual(
+                actual["datetime"], expected_production_data[index]["datetime"]
+            )
+            self.assertEqual(
+                actual["production"], expected_production_data[index]["production"]
+            )
+            self.assertEqual(
+                actual["storage"], expected_production_data[index]["storage"]
+            )
+            self.assertEqual(
+                actual["correctedModes"],
+                expected_production_data[index]["correctedModes"],
+            )
 
 
 if __name__ == "__main__":

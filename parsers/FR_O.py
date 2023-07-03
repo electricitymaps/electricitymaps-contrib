@@ -116,9 +116,11 @@ IGNORED_VALUES = ["jour", "total", "statut", "date", "heure", "liaisons", "tac"]
 def generate_url(zone_key, target_datetime):
     return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{HISTORICAL_DATASETS[zone_key] if target_datetime else LIVE_DATASETS[zone_key]}/exports/json"
 
+
 def generate_source(zone_key: ZoneKey):
     # Return the domain name of the source without the protocol
     return DOMAIN_MAPPING[zone_key].split("//")[1]
+
 
 def fetch_data(
     zone_key: ZoneKey,
