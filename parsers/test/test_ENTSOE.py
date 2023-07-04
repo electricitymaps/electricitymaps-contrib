@@ -9,7 +9,6 @@ from requests_mock import ANY, GET, Adapter
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ENTSOE
-from parsers.lib.utils import get_token
 
 
 class TestENTSOE(unittest.TestCase):
