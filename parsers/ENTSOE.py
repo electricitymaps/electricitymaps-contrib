@@ -472,24 +472,27 @@ def query_ENTSOE(
     Raises an exception if no API token is found.
     Returns a request object.
     """
+    env_var = "ENTSOE_REFETCH_TOKEN"
     if target_datetime is None:
         target_datetime = datetime.utcnow()
-    if isinstance(target_datetime, datetime):
-        # make sure we have an arrow object
-        params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
-            "%Y%m%d%H00"  # YYYYMMDDHH00
-        )
-        params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
-            "%Y%m%d%H00"  # YYYYMMDDHH00
-        )
-    else:
+        env_var = "ENTSOE_TOKEN"
+
+    if not isinstance(target_datetime, datetime):
         raise ParserException(
             parser="ENTSOE.py",
             message="target_datetime has to be a datetime in query_entsoe",
         )
 
+    # make sure we have an arrow object
+    params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
+        "%Y%m%d%H00"  # YYYYMMDDHH00
+    )
+    params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
+        "%Y%m%d%H00"  # YYYYMMDDHH00
+    )
+
     # Due to rate limiting, we need to spread our requests across different tokens
-    tokens = get_token("ENTSOE_TOKEN").split(",")
+    tokens = get_token(env_var).split(",")
     # Shuffle the tokens so that we don't always use the same one first.
     shuffle(tokens)
     last_response_if_all_fail = None
