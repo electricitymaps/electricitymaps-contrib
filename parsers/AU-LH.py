@@ -3,20 +3,25 @@ from logging import Logger, getLogger
 from typing import Any, Dict, List, Optional, Union
 
 from requests_html import HTMLSession
+# Not actually used, only here to conform to the parser function definition
+from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
-    TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
 PARSER_NAME = "AU-LH.py"
+
+SOURCE = "photonscada.com"
 DATA_URL = "http://photonscada.com/data/perspective/client/LHI"
 
-RENDER_TIMEOUT = 10  # seconds
+# Adjustable parameters for requesting website data
+RENDER_SLEEP = 10  # seconds
+RENDER_TIMEOUT = 20 # seconds
 
 
 def validate_and_clean_data(
@@ -65,7 +70,10 @@ def validate_and_clean_data(
     return cleaned_values
 
 
-def fetch_data(zone_key: ZoneKey, session: HTMLSession) -> Dict[str, float]:
+def fetch_data(zone_key: ZoneKey) -> Dict[str, float]:
+    # Need to open our own HTMLSession, can't use the usual python requests library
+    session = HTMLSession()
+
     res = session.get(DATA_URL)
 
     if not res.status_code == 200:
@@ -76,7 +84,9 @@ def fetch_data(zone_key: ZoneKey, session: HTMLSession) -> Dict[str, float]:
         )
 
     # render the website using request_html (chromium), need a sleep value to wait for render
-    res.html.render(timeout=RENDER_TIMEOUT + 1, sleep=RENDER_TIMEOUT)
+    res.html.render(timeout=RENDER_TIMEOUT, sleep=RENDER_SLEEP)
+
+    session.close()
 
     cleaned_values = validate_and_clean_data(zone_key, res)
 
@@ -89,6 +99,7 @@ def fetch_data(zone_key: ZoneKey, session: HTMLSession) -> Dict[str, float]:
 
     # determine the sign of the battery value based on the other values
     if value_dict["diesel"] + value_dict["solar"] < value_dict["consumption"]:
+        # negative for discharge
         value_dict["battery"] *= -1
 
     return value_dict
@@ -96,7 +107,7 @@ def fetch_data(zone_key: ZoneKey, session: HTMLSession) -> Dict[str, float]:
 
 def fetch_production(
     zone_key: ZoneKey,
-    session: HTMLSession = None,
+    session: Session = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
@@ -105,11 +116,7 @@ def fetch_production(
             PARSER_NAME, "This parser is not yet able to parse past dates", zone_key
         )
 
-    is_new_session = session is None
-    if is_new_session:
-        session = HTMLSession()
-
-    data = fetch_data(zone_key, session)
+    data = fetch_data(zone_key)
 
     production_list = ProductionBreakdownList(logger=logger)
     production_list.append(
@@ -120,18 +127,15 @@ def fetch_production(
             solar=data["solar"],
         ),
         storage=StorageMix(battery=data["battery"]),
-        source=DATA_URL,
+        source=SOURCE,
     )
-
-    if is_new_session:
-        session.close()
 
     return production_list.to_list()
 
 
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: HTMLSession = None,
+    session: Session = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
@@ -140,56 +144,17 @@ def fetch_consumption(
             PARSER_NAME, "This parser is not yet able to parse past dates", zone_key
         )
 
-    is_new_session = session is None
-    if is_new_session:
-        session = HTMLSession()
-
-    data = fetch_data(zone_key, session)
+    data = fetch_data(zone_key)
 
     consumption_list = TotalConsumptionList(logger=logger)
     consumption_list.append(
         zoneKey=zone_key,
         datetime=datetime.now(timezone.utc),
         consumption=data["consumption"],
-        source=DATA_URL,
+        source=SOURCE,
     )
-
-    if is_new_session:
-        session.close()
 
     return consumption_list.to_list()
-
-
-def fetch_total_production(
-    zone_key: ZoneKey,
-    session: HTMLSession = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> Union[dict, List[dict]]:
-    if target_datetime is not None:
-        raise ParserException(
-            PARSER_NAME, "This parser is not yet able to parse past dates", zone_key
-        )
-
-    is_new_session = session is None
-    if is_new_session:
-        session = HTMLSession()
-
-    data = fetch_data(zone_key, session)
-
-    production_list = TotalProductionList(logger=logger)
-
-    production_list.append(
-        zoneKey=zone_key,
-        datetime=datetime.now(timezone.utc),
-        value=data["solar"] + data["diesel"],
-        source=DATA_URL,
-    )
-
-    if is_new_session:
-        session.close()
-
-    return production_list.to_list()
 
 
 if __name__ == "__main__":
@@ -197,4 +162,3 @@ if __name__ == "__main__":
 
     print(fetch_production(ZoneKey("AU-LH")))
     print(fetch_consumption(ZoneKey("AU-LH")))
-    print(fetch_total_production(ZoneKey("AU-LH")))
