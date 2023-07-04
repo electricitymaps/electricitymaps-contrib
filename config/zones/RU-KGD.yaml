@@ -16,4 +16,4 @@ fallbackZoneMixes:
       gas: 0.98
       hydro: 0.005
       wind: 0.015
-timezone: null
+timezone: Europe/Kaliningrad

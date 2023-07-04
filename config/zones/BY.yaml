@@ -31,4 +31,4 @@ parsers:
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-timezone: null
+timezone: Europe/Minsk
