@@ -483,7 +483,6 @@ def query_ENTSOE(
             message="target_datetime has to be a datetime in query_entsoe",
         )
 
-
     # make sure we have an arrow object
     params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
         "%Y%m%d%H00"  # YYYYMMDDHH00
