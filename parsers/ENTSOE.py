@@ -433,6 +433,9 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
     },
     "RS": {
         "required": ["coal"],
+        "expected_range": {
+            "hydro": (0, 5000),  # 5 GW is double the production capacity of Serbia.
+        },
     },
     "SE": {
         "required": ["hydro", "nuclear", "wind", "unknown"],
@@ -934,7 +937,6 @@ def parse_prices(
     zoneKey: ZoneKey,
     logger: Logger,
 ) -> PriceList:
-
     if not xml_text:
         return PriceList(logger)
     soup = BeautifulSoup(xml_text, "html.parser")
