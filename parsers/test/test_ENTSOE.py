@@ -74,3 +74,29 @@ class TestENTSOE_Refetch(unittest.TestCase):
                     ZoneKey("DE"), self.session, datetime(2021, 1, 1)
                 )
                 patched_get_token.assert_called_once_with("ENTSOE_REFETCH_TOKEN")
+
+    def test_refetch_uses_proxy(self):
+        os.environ["ENTSOE_REFETCH_TOKEN"] = "proxy"
+        self.session = Session()
+        self.adapter = Adapter()
+        self.session.mount("https://", self.adapter)
+        with open("parsers/test/mocks/ENTSOE/FR_prices.xml", "rb") as price_fr_data:
+            self.adapter.register_uri(
+                GET,
+                ENTSOE.ENTSOE_EU_PROXY_ENDPOINT,
+                content=price_fr_data.read(),
+            )
+            _ = ENTSOE.fetch_price(ZoneKey("DE"), self.session, datetime(2021, 1, 1))
+
+    def test_fetch_uses_normal_url(self):
+        os.environ["ENTSOE_TOKEN"] = "proxy"
+        self.session = Session()
+        self.adapter = Adapter()
+        self.session.mount("https://", self.adapter)
+        with open("parsers/test/mocks/ENTSOE/FR_prices.xml", "rb") as price_fr_data:
+            self.adapter.register_uri(
+                GET,
+                ENTSOE.ENTSOE_ENDPOINT,
+                content=price_fr_data.read(),
+            )
+            _ = ENTSOE.fetch_price(ZoneKey("DE"), self.session)
