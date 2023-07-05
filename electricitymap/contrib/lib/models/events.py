@@ -254,11 +254,11 @@ class Event(BaseModel, ABC):
     # As the validators are called in the order of the attributes, we need to make sure that the sourceType is validated before the datetime.
     sourceType: EventSourceType = EventSourceType.measured
     zoneKey: ZoneKey
-    datetime: datetime
+    datetime: AwareDatetime
     source: str
 
     @validator("zoneKey")
-    def _validate_zone_key(cls, v):
+    def _validate_zone_key(cls, v) -> ZoneKey:
         if v not in ZONES_CONFIG:
             raise ValueError(f"Unknown zone: {v}")
         return v
