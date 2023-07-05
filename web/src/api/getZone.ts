@@ -7,12 +7,7 @@ import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { timeAverageAtom } from 'utils/state/atoms';
 
-import {
-  getBasePath,
-  getHeaders,
-  QUERY_KEYS,
-  REFETCH_INTERVAL_FIVE_MINUTES,
-} from './helpers';
+import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 
 const getZone = async (
   timeAverage: TimeAverages,
@@ -44,11 +39,8 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const { zoneId } = useParams();
   const [timeAverage] = useAtom(timeAverageAtom);
   return useQuery<ZoneDetails>(
-    [QUERY_KEYS.ZONE, zoneId, timeAverage],
-    async () => getZone(timeAverage, zoneId),
-    {
-      staleTime: REFETCH_INTERVAL_FIVE_MINUTES,
-    }
+    [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
+    async () => getZone(timeAverage, zoneId)
   );
 };
 

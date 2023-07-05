@@ -7,7 +7,7 @@ from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
-from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
@@ -35,7 +35,7 @@ MAPPING = {
 
 def get_fetch_function(
     exchange_key: ZoneKey,
-) -> Tuple[str, Callable[[Dict, ZoneKey, Logger], ExchangeList]]:
+) -> Tuple[str, Callable[[List, ZoneKey, Logger], ExchangeList]]:
     """Get the url, the lookup key and the extract function for the exchange."""
     if exchange_key not in MAPPING:
         raise ParserException(
@@ -55,7 +55,7 @@ def get_fetch_function(
 
 
 def extract_international_exchanges(
-    raw_data: Dict, exchange_key: ZoneKey, logger: Logger
+    raw_data: List, exchange_key: ZoneKey, logger: Logger
 ) -> ExchangeList:
     exchanges = ExchangeList(logger)
     zone_data = [item for item in raw_data if item["Region"] == MAPPING[exchange_key]][
@@ -73,7 +73,7 @@ def extract_international_exchanges(
 
 
 def extract_interregional_exchanges(
-    raw_data: Dict, exchange_key: ZoneKey, logger: Logger
+    raw_data: List, exchange_key: ZoneKey, logger: Logger
 ) -> ExchangeList:
     exchanges = ExchangeList(logger)
     zone_data = [item for item in raw_data if item["Type"] == MAPPING[exchange_key]]
@@ -81,7 +81,7 @@ def extract_interregional_exchanges(
     exports = sum(float(item["ExportMW"]) for item in zone_data)  # always negative
     exchanges.append(
         zoneKey=exchange_key,
-        datetime=datetime.strptime("%Y-%m-%d", zone_data[0]["Date"]).replace(
+        datetime=datetime.strptime(zone_data[0]["Date"], "%Y-%m-%d").replace(
             tzinfo=IN_EA_TZ
         ),
         netFlow=imports + exports,
