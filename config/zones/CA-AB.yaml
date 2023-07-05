@@ -100,4 +100,4 @@ fallbackZoneMixes:
 parsers:
   price: CA_AB.fetch_price
   production: CA_AB.fetch_production
-timezone: null
+timezone: America/Edmonton

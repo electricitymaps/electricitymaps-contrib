@@ -72,4 +72,4 @@ fallbackZoneMixes:
         wind: 0.5403600850959404
 parsers:
   production: ajenti.fetch_production
-timezone: null
+timezone: Australia/Hobart
