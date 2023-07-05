@@ -1105,76 +1105,25 @@ def fetch_production(
     """
     if not session:
         session = Session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    raw_production = query_production(domain, session, target_datetime=target_datetime)
-    if raw_production is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No production data found for {zone_key}",
-            zone_key=zone_key,
+    non_aggregated_data: List[ProductionBreakdownList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        raw_production = query_production(
+            domain, session, target_datetime=target_datetime
         )
-    parsed = parse_production(raw_production, logger, zone_key)
-    data = parsed.to_list()
-    return list(filter(lambda x: validate_production(x, logger), data))
+        if raw_production is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No production data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        # Aggregated data are regrouped unde the same zone key.
+        non_aggregated_data.append(parse_production(raw_production, logger, zone_key))
 
-
-# TODO: generalize and move to lib.utils so other parsers can reuse it. (it's
-# currently used by US_SEC.)
-def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
-    """
-    Given multiple parser outputs, sum the production and storage of corresponding datetimes to create a production list.
-    This will drop rows where the datetime is missing in at least a parser_output.
-    """
-    if len(parser_outputs) == 0:
-        return []
-    if merge_source is None:
-        merge_source = parser_outputs[0][0]["source"]
-    prod_and_storage_dfs = [
-        pd.DataFrame(output).set_index("datetime")[["production", "storage"]]
-        for output in parser_outputs
-    ]
-    to_return = prod_and_storage_dfs[0]
-    for prod_and_storage in prod_and_storage_dfs[1:]:
-        # `inner` join drops rows where one of the production is missing
-        to_return = to_return.join(prod_and_storage, how="inner", rsuffix="_other")
-        to_return["production"] = to_return.apply(
-            lambda row: sum_production_dicts(row.production, row.production_other),
-            axis=1,
-        )
-        to_return["storage"] = to_return.apply(
-            lambda row: sum_production_dicts(row.storage, row.storage_other), axis=1
-        )
-        to_return = to_return[["production", "storage"]]
-
-    return [
-        {
-            "datetime": dt.to_pydatetime(),
-            "production": row.production,
-            "storage": row.storage,
-            "source": merge_source,
-            "zoneKey": merge_zone_key,
-        }
-        for dt, row in to_return.iterrows()
-    ]
-
-
-@refetch_frequency(timedelta(days=2))
-def fetch_production_aggregate(
-    zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-):
-    if zone_key not in ZONE_KEY_AGGREGATES:
-        raise ValueError("Unknown aggregate key %s" % zone_key)
-
-    return merge_production_outputs(
-        [
-            fetch_production(k, session, target_datetime, logger)
-            for k in ZONE_KEY_AGGREGATES[zone_key]
-        ],
-        zone_key,
-    )
+    aggregated_zone_data = ProductionBreakdownList.merge_production_breakdowns(
+        non_aggregated_data, logger
+    ).to_list()
+    return list(filter(lambda x: validate_production(x, logger), aggregated_zone_data))
 
 
 @refetch_frequency(timedelta(days=1))
