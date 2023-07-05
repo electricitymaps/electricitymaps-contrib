@@ -6,7 +6,14 @@ from logging import Logger
 from typing import AbstractSet, Any, Dict, List, Optional, Tuple, Union
 
 import pandas as pd
-from pydantic import BaseModel, PrivateAttr, ValidationError, validator
+from pydantic import (
+    AwareDatetime,
+    BaseModel,
+    FieldValidationInfo,
+    PrivateAttr,
+    ValidationError,
+    field_validator,
+)
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
@@ -82,24 +89,22 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def dict(
+    def model_dump(
         self,
         *,
         include: Optional[Union[set, dict]] = None,
         exclude: Optional[Union[set, dict]] = None,
         by_alias: bool = False,
-        skip_defaults: Optional[bool] = None,
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
         exclude_none: bool = False,
         keep_corrected_negative_values: bool = False,
     ) -> Dict[str, Any]:
-        """Overriding the dict method to add the corrected negative values as Nones."""
-        production_mix = super().dict(
+        """Overriding the model_dump method to add the corrected negative values as Nones."""
+        production_mix = super().model_dump(
             include=include,
             exclude=exclude,
             by_alias=by_alias,
-            skip_defaults=skip_defaults,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
@@ -256,22 +261,22 @@ class Event(BaseModel, ABC):
     # As the validators are called in the order of the attributes, we need to make sure that the sourceType is validated before the datetime.
     sourceType: EventSourceType = EventSourceType.measured
     zoneKey: ZoneKey
-    datetime: datetime
+    datetime: AwareDatetime
     source: str
 
-    @validator("zoneKey")
-    def _validate_zone_key(cls, v):
+    @field_validator("zoneKey")
+    def _validate_zone_key(cls, v: ZoneKey) -> ZoneKey:
         if v not in ZONES_CONFIG:
             raise ValueError(f"Unknown zone: {v}")
         return v
 
-    @validator("datetime")
-    def _validate_datetime(cls, v: dt.datetime, values: Dict[str, Any]):
-        if v.tzinfo is None:
-            raise ValueError(f"Missing timezone: {v}")
+    @field_validator("datetime")
+    def _validate_datetime(
+        cls, v: dt.datetime, previous_values: FieldValidationInfo
+    ) -> dt.datetime:
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
-        if values.get(
+        if previous_values.data.get(
             "sourceType", EventSourceType.measured
         ) != EventSourceType.forecasted and v.astimezone(timezone.utc) > datetime.now(
             timezone.utc
@@ -358,7 +363,7 @@ class Exchange(Event):
 
     netFlow: float
 
-    @validator("zoneKey")
+    @field_validator("zoneKey")
     def _validate_zone_key(cls, v: str):
         if "->" not in v:
             raise ValueError(f"Not an exchange key: {v}")
@@ -369,7 +374,7 @@ class Exchange(Event):
             raise ValueError(f"Unknown zone: {v}")
         return v
 
-    @validator("netFlow")
+    @field_validator("netFlow")
     def _validate_value(cls, v: float):
         # TODO in the future those checks should be performed in the data quality layer.
         if abs(v) > 100000:
@@ -411,7 +416,7 @@ class TotalProduction(Event):
 
     value: float
 
-    @validator("value")
+    @field_validator("value")
     def _validate_value(cls, v: float):
         if v < 0:
             raise ValueError(f"Total production cannot be negative: {v}")
@@ -458,17 +463,19 @@ class ProductionBreakdown(AggregatableEvent):
     If a production mix is supplied it should not be fully empty.
     """
 
-    @validator("production")
-    def _validate_production_mix(cls, v):
+    @field_validator("production")
+    def _validate_production_mix(
+        cls, v: Optional[ProductionMix]
+    ) -> Optional[ProductionMix]:
         if v is not None and not v.has_corrected_negative_values:
-            if all(value is None for value in v.dict().values()):
+            if all(value is None for value in v.model_dump().values()):
                 raise ValueError("Mix is completely empty")
         return v
 
-    @validator("storage")
-    def _validate_storage_mix(cls, v):
+    @field_validator("storage")
+    def _validate_storage_mix(cls, v: Optional[StorageMix]) -> Optional[StorageMix]:
         if v is not None:
-            if all(value is None for value in v.dict().values()):
+            if all(value is None for value in v.model_dump().values()):
                 return None
         return v
 
@@ -545,12 +552,14 @@ class ProductionBreakdown(AggregatableEvent):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "production": self.production.dict(
+            "production": self.production.model_dump(
                 exclude_none=True, keep_corrected_negative_values=True
             )
             if self.production
             else {},
-            "storage": self.storage.dict(exclude_none=True) if self.storage else {},
+            "storage": self.storage.model_dump(exclude_none=True)
+            if self.storage
+            else {},
             "source": self.source,
             "sourceType": self.sourceType,
             "correctedModes": []
@@ -564,7 +573,7 @@ class TotalConsumption(Event):
 
     consumption: float
 
-    @validator("consumption")
+    @field_validator("consumption")
     def _validate_consumption(cls, v: float):
         if v < 0:
             raise ValueError(f"Total consumption cannot be negative: {v}")
@@ -614,13 +623,13 @@ class Price(Event):
     price: float
     currency: str
 
-    @validator("currency")
+    @field_validator("currency")
     def _validate_currency(cls, v: str) -> str:
         if v not in VALID_CURRENCIES:
             raise ValueError(f"Unknown currency: {v}")
         return v
 
-    @validator("datetime")
+    @field_validator("datetime")
     def _validate_datetime(cls, v: dt.datetime) -> datetime:
         """Prices are given for the day ahead, so we should allow them to be in the future."""
         if v.tzinfo is None:
