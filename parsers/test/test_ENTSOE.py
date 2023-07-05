@@ -155,6 +155,7 @@ class TestFetchProduction(TestENTSOE):
                 # A warning has been logged for this.
                 mock_warning.assert_called()
 
+
 class TestENTSOE_Refetch(unittest.TestCase):
     def test_refetch_token(self) -> None:
         token = mock.Mock(return_value="token")
@@ -201,4 +202,3 @@ class TestENTSOE_Refetch(unittest.TestCase):
                 content=price_fr_data.read(),
             )
             _ = ENTSOE.fetch_price(ZoneKey("DE"), self.session)
-
