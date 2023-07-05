@@ -6,7 +6,14 @@ from logging import Logger
 from typing import AbstractSet, Any, Dict, List, Optional, Tuple, Union
 
 import pandas as pd
-from pydantic import AwareDatetime, BaseModel, PrivateAttr, ValidationError, field_validator, FieldValidationInfo
+from pydantic import (
+    AwareDatetime,
+    BaseModel,
+    FieldValidationInfo,
+    PrivateAttr,
+    ValidationError,
+    field_validator,
+)
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
@@ -264,7 +271,9 @@ class Event(BaseModel, ABC):
         return v
 
     @field_validator("datetime")
-    def _validate_datetime(cls, v: dt.datetime, previous_values: FieldValidationInfo) -> dt.datetime:
+    def _validate_datetime(
+        cls, v: dt.datetime, previous_values: FieldValidationInfo
+    ) -> dt.datetime:
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
         if previous_values.data.get(
@@ -455,7 +464,9 @@ class ProductionBreakdown(AggregatableEvent):
     """
 
     @field_validator("production")
-    def _validate_production_mix(cls, v: Optional[ProductionMix]) -> Optional[ProductionMix]:
+    def _validate_production_mix(
+        cls, v: Optional[ProductionMix]
+    ) -> Optional[ProductionMix]:
         if v is not None and not v.has_corrected_negative_values:
             if all(value is None for value in v.model_dump().values()):
                 raise ValueError("Mix is completely empty")
