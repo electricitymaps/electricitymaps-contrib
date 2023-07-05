@@ -82,24 +82,22 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def dict(
+    def model_dump(
         self,
         *,
         include: Optional[Union[set, dict]] = None,
         exclude: Optional[Union[set, dict]] = None,
         by_alias: bool = False,
-        skip_defaults: Optional[bool] = None,
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
         exclude_none: bool = False,
         keep_corrected_negative_values: bool = False,
     ) -> Dict[str, Any]:
-        """Overriding the dict method to add the corrected negative values as Nones."""
-        production_mix = super().dict(
+        """Overriding the model_dump method to add the corrected negative values as Nones."""
+        production_mix = super().model_dump(
             include=include,
             exclude=exclude,
             by_alias=by_alias,
-            skip_defaults=skip_defaults,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
@@ -545,12 +543,14 @@ class ProductionBreakdown(AggregatableEvent):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "production": self.production.dict(
+            "production": self.production.model_dump(
                 exclude_none=True, keep_corrected_negative_values=True
             )
             if self.production
             else {},
-            "storage": self.storage.dict(exclude_none=True) if self.storage else {},
+            "storage": self.storage.model_dump(exclude_none=True)
+            if self.storage
+            else {},
             "source": self.source,
             "sourceType": self.sourceType,
             "correctedModes": []
