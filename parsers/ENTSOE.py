@@ -39,10 +39,10 @@ ENDPOINT = "/api"
 ENTSOE_HOST = "https://web-api.tp.entsoe.eu"
 
 
-EU_PROXY = "https://eu-proxy-jfnx5klx2a-ew.a.run.app{enpoint}?host={host}"
+EU_PROXY = "https://eu-proxy-jfnx5klx2a-ew.a.run.app{endpoint}?host={host}"
 
 ENTSOE_ENDPOINT = ENTSOE_HOST + ENDPOINT
-ENTSOE_EU_PROXY_ENDPOINT = EU_PROXY.format(enpoint=ENDPOINT, host=ENTSOE_HOST)
+ENTSOE_EU_PROXY_ENDPOINT = EU_PROXY.format(endpoint=ENDPOINT, host=ENTSOE_HOST)
 
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
