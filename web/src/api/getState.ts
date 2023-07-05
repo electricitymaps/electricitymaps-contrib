@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import type { GridState } from 'types';
 import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
+import { TimeAverages } from 'utils/constants';
 
 const getState = async (timeAverage: string): Promise<GridState> => {
   const path = `v6/state/${timeAverage}`;
@@ -30,9 +31,16 @@ const useGetState = (): UseQueryResult<GridState> => {
     [QUERY_KEYS.STATE, { aggregate: 'hour_zero' }],
     async () => getState('hour_zero'),
     {
-      enabled: timeAverage === 'hourly',
+      enabled: timeAverage === TimeAverages.HOURLY,
     }
   );
+
+  const hourZeroWasSuccessful = Boolean(hour_zero.isLoading === false && hour_zero.data);
+
+  const shouldFetchFullState =
+    timeAverage !== TimeAverages.HOURLY ||
+    hourZeroWasSuccessful ||
+    hour_zero.isError === true;
 
   // Then fetch the rest of the data
   const all_data = useQuery<GridState>(
@@ -40,7 +48,7 @@ const useGetState = (): UseQueryResult<GridState> => {
     async () => getState(timeAverage),
     {
       // The query should not execute until the hour_zero query is done
-      enabled: Boolean(hour_zero.isLoading === false && hour_zero.data),
+      enabled: shouldFetchFullState,
     }
   );
   return all_data.data || timeAverage != 'hourly' ? all_data : hour_zero;
