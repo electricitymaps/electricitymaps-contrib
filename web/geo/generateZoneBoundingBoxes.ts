@@ -87,25 +87,16 @@ for (const zone of zonesGeo.features) {
 }
 
 if (isAggregate) {
-  const averageBoundingBox: number[][] = Object.values(boundingBoxes).reduce(
-    (accumulator, bbox) => {
-      return [
-        [
-          Math.min(accumulator[0][0], bbox[0][0]),
-          Math.min(accumulator[0][1], bbox[0][1]),
-        ],
-
-        [
-          Math.max(accumulator[1][0], bbox[1][0]),
-          Math.max(accumulator[1][1], bbox[1][1]),
-        ],
-      ];
-    },
-    [
-      [200, 200],
-      [-200, -200],
-    ]
-  );
+  const averageBoundingBox: number[][] = [
+    [200, 200],
+    [-200, -200],
+  ];
+  for (const bbox of Object.values(boundingBoxes)) {
+    averageBoundingBox[0][0] = Math.min(averageBoundingBox[0][0], bbox[0][0]); // minX
+    averageBoundingBox[0][1] = Math.min(averageBoundingBox[0][1], bbox[0][1]); // minY
+    averageBoundingBox[1][0] = Math.max(averageBoundingBox[1][0], bbox[1][0]); // maxX
+    averageBoundingBox[1][1] = Math.max(averageBoundingBox[1][1], bbox[1][1]); // maxY
+  }
   boundingBoxes = {}; // Reset subzone bounding boxes
   boundingBoxes[zoneKey] = averageBoundingBox;
 }
