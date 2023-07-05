@@ -29,17 +29,12 @@ const mergeZones = (): CombinedZonesConfig => {
     .filter((file) => file.endsWith('.yaml'))
     .map((file) => `${basePath}/${file}`);
 
-  const UNNECESSARY_ZONE_FIELDS = new Set([
-    'fallbackZoneMixes',
-    'isLowCarbon',
-    'isRenewable',
-    'emissionFactors',
-    'capacity',
-    'comment',
-    '_comment',
-    'sources',
-    'flag_file_name',
-    'bypassedSubZones',
+  const USED_CONFIG_FIELDS = new Set([
+    'contributors',
+    'disclaimer',
+    'estimation_method',
+    'parsers',
+    'subZoneNames',
   ]);
 
   const contributors = new Set<string>();
@@ -65,7 +60,7 @@ const mergeZones = (): CombinedZonesConfig => {
     }
 
     for (const key of Object.keys(zoneConfig)) {
-      if (UNNECESSARY_ZONE_FIELDS.has(key)) {
+      if (!USED_CONFIG_FIELDS.has(key)) {
         delete zoneConfig[key];
       }
     }
