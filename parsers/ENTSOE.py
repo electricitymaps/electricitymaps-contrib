@@ -38,7 +38,7 @@ from electricitymap.contrib.lib.models.events import (
 from parsers.lib.config import refetch_frequency
 
 from .lib.exceptions import ParserException
-from .lib.utils import get_token, sum_production_dicts
+from .lib.utils import get_token
 from .lib.validation import validate
 
 SOURCE = "entsoe.eu"
