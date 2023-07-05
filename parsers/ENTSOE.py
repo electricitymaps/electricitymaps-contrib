@@ -21,7 +21,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 import arrow
 import numpy as np
-import pandas as pd
 from bs4 import BeautifulSoup
 from pytz import utc
 from requests import Response, Session
