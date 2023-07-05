@@ -5,7 +5,6 @@ import { useTranslation } from 'translation/translation';
 import { Mode } from 'utils/constants';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
-import ZoneHeaderTitle from './ZoneHeaderTitle';
 import { ZoneDetails } from 'types';
 import { HiExclamationTriangle } from 'react-icons/hi2';
 
@@ -69,13 +68,7 @@ function OutageMessage({
   );
 }
 
-interface ZoneHeaderProps {
-  zoneId: string;
-  data: ZoneDetails | undefined;
-  isAggregated?: boolean;
-}
-
-export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
+export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
   const { __ } = useTranslation();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
@@ -89,7 +82,6 @@ export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
     co2intensityProduction,
     renewableRatioProduction,
     fossilFuelRatioProduction,
-    estimationMethod,
   } = selectedData || {};
 
   const intensity = getCarbonIntensity(
@@ -107,17 +99,10 @@ export function ZoneHeader({ zoneId, data, isAggregated }: ZoneHeaderProps) {
     fossilFuelRatio,
     fossilFuelRatioProduction
   );
-  const isEstimated = estimationMethod !== undefined;
   const outageData = data?.zoneMessage;
 
   return (
     <div className="mt-1 grid w-full gap-y-5 sm:pr-4">
-      <ZoneHeaderTitle
-        zoneId={zoneId}
-        isEstimated={isEstimated}
-        isAggregated={isAggregated}
-      />
-
       {outageData && <OutageMessage outageData={outageData} />}
 
       <div className="flex flex-row justify-evenly">
