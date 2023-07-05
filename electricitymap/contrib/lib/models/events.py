@@ -6,7 +6,7 @@ from logging import Logger
 from typing import AbstractSet, Any, Dict, List, Optional, Tuple, Union
 
 import pandas as pd
-from pydantic import AwareDatetime, BaseModel, PrivateAttr, ValidationError, validator
+from pydantic import AwareDatetime, BaseModel, PrivateAttr, ValidationError, field_validator, FieldValidationInfo
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
@@ -257,17 +257,17 @@ class Event(BaseModel, ABC):
     datetime: AwareDatetime
     source: str
 
-    @validator("zoneKey")
-    def _validate_zone_key(cls, v) -> ZoneKey:
+    @field_validator("zoneKey")
+    def _validate_zone_key(cls, v: ZoneKey) -> ZoneKey:
         if v not in ZONES_CONFIG:
             raise ValueError(f"Unknown zone: {v}")
         return v
 
-    @validator("datetime")
-    def _validate_datetime(cls, v: dt.datetime, values: Dict[str, Any]) -> dt.datetime:
+    @field_validator("datetime")
+    def _validate_datetime(cls, v: dt.datetime, previous_values: FieldValidationInfo) -> dt.datetime:
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
-        if values.get(
+        if previous_values.data.get(
             "sourceType", EventSourceType.measured
         ) != EventSourceType.forecasted and v.astimezone(timezone.utc) > datetime.now(
             timezone.utc
@@ -354,7 +354,7 @@ class Exchange(Event):
 
     netFlow: float
 
-    @validator("zoneKey")
+    @field_validator("zoneKey")
     def _validate_zone_key(cls, v: str):
         if "->" not in v:
             raise ValueError(f"Not an exchange key: {v}")
@@ -365,7 +365,7 @@ class Exchange(Event):
             raise ValueError(f"Unknown zone: {v}")
         return v
 
-    @validator("netFlow")
+    @field_validator("netFlow")
     def _validate_value(cls, v: float):
         # TODO in the future those checks should be performed in the data quality layer.
         if abs(v) > 100000:
@@ -407,7 +407,7 @@ class TotalProduction(Event):
 
     value: float
 
-    @validator("value")
+    @field_validator("value")
     def _validate_value(cls, v: float):
         if v < 0:
             raise ValueError(f"Total production cannot be negative: {v}")
@@ -454,17 +454,17 @@ class ProductionBreakdown(AggregatableEvent):
     If a production mix is supplied it should not be fully empty.
     """
 
-    @validator("production")
-    def _validate_production_mix(cls, v):
+    @field_validator("production")
+    def _validate_production_mix(cls, v: Optional[ProductionMix]) -> Optional[ProductionMix]:
         if v is not None and not v.has_corrected_negative_values:
-            if all(value is None for value in v.dict().values()):
+            if all(value is None for value in v.model_dump().values()):
                 raise ValueError("Mix is completely empty")
         return v
 
-    @validator("storage")
-    def _validate_storage_mix(cls, v):
+    @field_validator("storage")
+    def _validate_storage_mix(cls, v: Optional[StorageMix]) -> Optional[StorageMix]:
         if v is not None:
-            if all(value is None for value in v.dict().values()):
+            if all(value is None for value in v.model_dump().values()):
                 return None
         return v
 
@@ -562,7 +562,7 @@ class TotalConsumption(Event):
 
     consumption: float
 
-    @validator("consumption")
+    @field_validator("consumption")
     def _validate_consumption(cls, v: float):
         if v < 0:
             raise ValueError(f"Total consumption cannot be negative: {v}")
@@ -612,13 +612,13 @@ class Price(Event):
     price: float
     currency: str
 
-    @validator("currency")
+    @field_validator("currency")
     def _validate_currency(cls, v: str) -> str:
         if v not in VALID_CURRENCIES:
             raise ValueError(f"Unknown currency: {v}")
         return v
 
-    @validator("datetime")
+    @field_validator("datetime")
     def _validate_datetime(cls, v: dt.datetime) -> datetime:
         """Prices are given for the day ahead, so we should allow them to be in the future."""
         if v.tzinfo is None:
