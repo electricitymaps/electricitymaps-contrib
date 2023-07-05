@@ -6,7 +6,7 @@ from logging import Logger
 from typing import AbstractSet, Any, Dict, List, Optional, Tuple, Union
 
 import pandas as pd
-from pydantic import BaseModel, PrivateAttr, ValidationError, validator
+from pydantic import AwareDatetime, BaseModel, PrivateAttr, ValidationError, validator
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
@@ -264,9 +264,7 @@ class Event(BaseModel, ABC):
         return v
 
     @validator("datetime")
-    def _validate_datetime(cls, v: dt.datetime, values: Dict[str, Any]):
-        if v.tzinfo is None:
-            raise ValueError(f"Missing timezone: {v}")
+    def _validate_datetime(cls, v: dt.datetime, values: Dict[str, Any]) -> dt.datetime:
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
         if values.get(
