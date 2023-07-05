@@ -433,6 +433,7 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
     },
     "RS": {
         "required": ["coal"],
+        "expected_range": (2000, 10000),
     },
     "SE": {
         "required": ["hydro", "nuclear", "wind", "unknown"],
