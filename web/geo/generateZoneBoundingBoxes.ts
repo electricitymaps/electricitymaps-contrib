@@ -43,7 +43,7 @@ if (zoneFeatures.length <= 0) {
 }
 zonesGeo.features = zoneFeatures;
 
-let allCoords = [];
+let allCoords: Position[] = [];
 let boundingBoxes: { [key: string]: number[][] } = {};
 
 for (const zone of zonesGeo.features) {
@@ -51,7 +51,7 @@ for (const zone of zonesGeo.features) {
   const geometryType = zone.geometry.type;
   for (const coords1 of zone.geometry.coordinates) {
     for (const coord of coords1[0]) {
-      allCoords.push(coord);
+      allCoords.push(coord as Position);
     }
   }
 
@@ -61,7 +61,7 @@ for (const zone of zonesGeo.features) {
   let maxLon = -200;
 
   if (geometryType == 'MultiPolygon') {
-    for (const coord of allCoords as Position[]) {
+    for (const coord of allCoords) {
       const lon = coord[0];
       const lat = coord[1];
 
@@ -71,8 +71,8 @@ for (const zone of zonesGeo.features) {
       maxLat = Math.max(maxLat, lat);
     }
   } else {
-    const lon = (allCoords as Position)[0];
-    const lat = (allCoords as Position)[1];
+    const lon = allCoords[0] as unknown as number;
+    const lat = allCoords[1] as unknown as number;
 
     minLon = Math.min(minLon, lon);
     maxLon = Math.max(maxLon, lon);
