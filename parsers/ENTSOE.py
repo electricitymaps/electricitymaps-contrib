@@ -35,7 +35,15 @@ from .lib.exceptions import ParserException
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
-ENTSOE_ENDPOINT = "https://web-api.tp.entsoe.eu/api"
+ENDPOINT = "/api"
+ENTSOE_HOST = "https://web-api.tp.entsoe.eu"
+
+
+EU_PROXY = "https://eu-proxy-jfnx5klx2a-ew.a.run.app{enpoint}?host={host}"
+
+ENTSOE_ENDPOINT = ENTSOE_HOST + ENDPOINT
+ENTSOE_EU_PROXY_ENDPOINT = EU_PROXY.format(enpoint=ENDPOINT, host=ENTSOE_HOST)
+
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
     "B02": "Fossil Brown coal/Lignite",
@@ -473,9 +481,11 @@ def query_ENTSOE(
     Returns a request object.
     """
     env_var = "ENTSOE_REFETCH_TOKEN"
+    url = ENTSOE_EU_PROXY_ENDPOINT
     if target_datetime is None:
         target_datetime = datetime.utcnow()
         env_var = "ENTSOE_TOKEN"
+        url = ENTSOE_ENDPOINT
 
     if not isinstance(target_datetime, datetime):
         raise ParserException(
@@ -499,7 +509,7 @@ def query_ENTSOE(
     # Try each token until we get a valid response
     for token in tokens:
         params["securityToken"] = token
-        response: Response = session.get(ENTSOE_ENDPOINT, params=params)
+        response: Response = session.get(url, params=params)
         if response.ok:
             return response.text
         else:
