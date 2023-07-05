@@ -131,7 +131,7 @@ const formatTimeRange = (lang: string, timeAggregate: TimeAverages) => {
     case TimeAverages.YEARLY: {
       return getLocaleNumberFormat(lang, {
         unit: 'year',
-        range: new Date().getFullYear() - 2017,
+        range: new Date().getUTCFullYear() - 2017,
       });
     }
     default: {
