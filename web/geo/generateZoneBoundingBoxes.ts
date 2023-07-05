@@ -32,10 +32,19 @@ if (!zoneConfig) {
   process.exit(1);
 }
 
-zonesGeo.features = zonesGeo.features.filter((d) => d.properties.zoneName === zoneKey);
+let zoneFeatures = zonesGeo.features.filter((d) => d.properties.zoneName === zoneKey);
+let isAggregate = false;
+if (zoneFeatures.length <= 0) {
+  console.info(`Zone ${zoneKey} does not exist in geojson, using subzones instead`);
+  isAggregate = true;
+  zoneFeatures = zonesGeo.features.filter((d) => {
+    return d.properties.countryKey === zoneKey;
+  });
+}
+zonesGeo.features = zoneFeatures;
 
 let allCoords = [];
-const boundingBoxes: { [key: string]: any } = {};
+let boundingBoxes: { [key: string]: number[][] } = {};
 
 for (const zone of zonesGeo.features) {
   allCoords = [];
@@ -75,6 +84,30 @@ for (const zone of zonesGeo.features) {
     [minLon - 0.5, minLat - 0.5],
     [maxLon + 0.5, maxLat + 0.5],
   ];
+}
+
+if (isAggregate) {
+  const averageBoundingBox: number[][] = Object.values(boundingBoxes).reduce(
+    (accumulator, bbox) => {
+      return [
+        [
+          Math.min(accumulator[0][0], bbox[0][0]),
+          Math.min(accumulator[0][1], bbox[0][1]),
+        ],
+
+        [
+          Math.max(accumulator[1][0], bbox[1][0]),
+          Math.max(accumulator[1][1], bbox[1][1]),
+        ],
+      ];
+    },
+    [
+      [200, 200],
+      [-200, -200],
+    ]
+  );
+  boundingBoxes = {}; // Reset subzone bounding boxes
+  boundingBoxes[zoneKey] = averageBoundingBox;
 }
 
 for (const [zoneKey, bbox] of Object.entries(boundingBoxes)) {
