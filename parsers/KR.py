@@ -285,7 +285,7 @@ def fetch_production(
                 "source": "https://new.kpx.or.kr",
             }
 
-            data["storage"]["hydro"] = chart_data_values["pumpedHydro"]
+            data["storage"]["hydro"] = -chart_data_values["pumpedHydro"]
 
             data["production"]["coal"] = chart_data_values["coal"]
             data["production"]["gas"] = chart_data_values["gas"]
