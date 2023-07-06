@@ -206,7 +206,6 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.02596304015010383
         wind: 0.06777937653655683
-flag_file_name: nz.png
 parsers:
   price: NZ.fetch_price
   production: NZ.fetch_production

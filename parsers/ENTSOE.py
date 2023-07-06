@@ -35,7 +35,15 @@ from .lib.exceptions import ParserException
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
-ENTSOE_ENDPOINT = "https://web-api.tp.entsoe.eu/api"
+ENDPOINT = "/api"
+ENTSOE_HOST = "https://web-api.tp.entsoe.eu"
+
+
+EU_PROXY = "https://eu-proxy-jfnx5klx2a-ew.a.run.app{endpoint}?host={host}"
+
+ENTSOE_ENDPOINT = ENTSOE_HOST + ENDPOINT
+ENTSOE_EU_PROXY_ENDPOINT = EU_PROXY.format(endpoint=ENDPOINT, host=ENTSOE_HOST)
+
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
     "B02": "Fossil Brown coal/Lignite",
@@ -472,31 +480,36 @@ def query_ENTSOE(
     Raises an exception if no API token is found.
     Returns a request object.
     """
+    env_var = "ENTSOE_REFETCH_TOKEN"
+    url = ENTSOE_EU_PROXY_ENDPOINT
     if target_datetime is None:
         target_datetime = datetime.utcnow()
-    if isinstance(target_datetime, datetime):
-        # make sure we have an arrow object
-        params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
-            "%Y%m%d%H00"  # YYYYMMDDHH00
-        )
-        params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
-            "%Y%m%d%H00"  # YYYYMMDDHH00
-        )
-    else:
+        env_var = "ENTSOE_TOKEN"
+        url = ENTSOE_ENDPOINT
+
+    if not isinstance(target_datetime, datetime):
         raise ParserException(
             parser="ENTSOE.py",
             message="target_datetime has to be a datetime in query_entsoe",
         )
 
+    # make sure we have an arrow object
+    params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
+        "%Y%m%d%H00"  # YYYYMMDDHH00
+    )
+    params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
+        "%Y%m%d%H00"  # YYYYMMDDHH00
+    )
+
     # Due to rate limiting, we need to spread our requests across different tokens
-    tokens = get_token("ENTSOE_TOKEN").split(",")
+    tokens = get_token(env_var).split(",")
     # Shuffle the tokens so that we don't always use the same one first.
     shuffle(tokens)
     last_response_if_all_fail = None
     # Try each token until we get a valid response
     for token in tokens:
         params["securityToken"] = token
-        response: Response = session.get(ENTSOE_ENDPOINT, params=params)
+        response: Response = session.get(url, params=params)
         if response.ok:
             return response.text
         else:

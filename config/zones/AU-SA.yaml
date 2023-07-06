@@ -201,8 +201,7 @@ fallbackZoneMixes:
         solar: 0.06947178316866146
         unknown: 0.0
         wind: 0.46357974561885024
-flag_file_name: au.png
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
-timezone: null
+timezone: Australia/Adelaide

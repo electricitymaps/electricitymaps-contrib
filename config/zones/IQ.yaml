@@ -71,7 +71,6 @@ fallbackZoneMixes:
         solar: 0.0013491621174001674
         unknown: 0.0004746672484962591
         wind: 0.002930743203856084
-flag_file_name: iq.png
 parsers:
   consumption: IQ.fetch_consumption
   production: IQ.fetch_production

@@ -247,7 +247,6 @@ fallbackZoneMixes:
         solar: 0.02697457806266613
         unknown: 0.029083877862535776
         wind: 3.190452430028712e-07
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
