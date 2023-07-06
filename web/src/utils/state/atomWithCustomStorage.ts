@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
-import { SyncStorage } from 'jotai/utils/atomWithStorage';
+import { SyncStorage } from 'jotai/vanilla/utils/atomWithStorage';
 import invariant from 'tiny-invariant';
 
 // TODO: consider using preferences from capacitor https://capacitorjs.com/docs/apis/preferences
@@ -45,6 +45,7 @@ function createStorage<Value extends string>({
   syncWithUrl,
   syncWithLocalStorage,
   syncWithSessionStorage,
+  initialValue,
 }: StorageOptions): SyncStorage<Value> {
   const _sessionStorage =
     syncWithSessionStorage && createJSONStorage<Value>(() => sessionStorage);
@@ -54,17 +55,17 @@ function createStorage<Value extends string>({
   invariant(_sessionStorage || _localStorage || _URLStorage, 'No storage provided');
 
   return {
-    getItem: (key) => {
+    getItem: (key: string) => {
       // Retrieve value in order of preference URLStorage -> sessionStorage -> localStorage
       if (_URLStorage) {
         return _URLStorage.getItem(key);
       }
       if (_sessionStorage) {
-        return _sessionStorage.getItem(key);
+        return _sessionStorage.getItem(key, initialValue as Value);
       }
 
       if (_localStorage) {
-        return _localStorage.getItem(key);
+        return _localStorage.getItem(key, initialValue as Value);
       }
 
       return typeof NO_STORAGE_VALUE;
@@ -100,6 +101,7 @@ interface StorageOptions {
   syncWithUrl?: boolean;
   syncWithLocalStorage?: boolean;
   syncWithSessionStorage?: boolean;
+  initialValue: string;
 }
 
 /**
@@ -116,7 +118,7 @@ export default function atomWithCustomStorage<Value extends string>({
   options,
 }: {
   key: string;
-  initialValue: string;
+  initialValue: Value;
   options: StorageOptions;
 }) {
   const storage = createStorage(options);
