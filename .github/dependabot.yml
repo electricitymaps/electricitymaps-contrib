@@ -38,6 +38,7 @@ updates:
         patterns:
           - 'i18next'
           - 'i18next-*'
+          - 'react-i18next'
       topojson:
         patterns:
           - 'topojson-*'
