@@ -335,6 +335,7 @@ export default function MapPage(): ReactElement {
       onError={onError}
       onMouseMove={onMouseMove}
       onMouseOut={onMouseOut}
+      onTouchStart={onDragStart}
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
       onZoomStart={onZoomStart}
