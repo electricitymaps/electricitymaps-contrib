@@ -410,8 +410,8 @@ devDependencies:
     specifier: 4.2.3
     version: 4.2.3(@types/node@18.16.19)
   vite-plugin-pwa:
-    specifier: 0.13.1
-    version: 0.13.1(vite@4.2.3)(workbox-build@6.5.4)(workbox-window@6.5.4)
+    specifier: 0.15.2
+    version: 0.15.2(vite@4.2.3)(workbox-build@6.5.4)(workbox-window@6.5.4)
   vite-tsconfig-paths:
     specifier: 3.5.2
     version: 3.5.2(vite@4.2.3)
@@ -19016,13 +19016,6 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /rollup@2.79.1:
-    resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
-    engines: {node: '>=10.0.0'}
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /rollup@3.20.2:
     resolution: {integrity: sha512-3zwkBQl7Ai7MFYQE0y1MeQ15+9jsi7XxfrqwTb/9EK8D9C9+//EBR4M+CuA1KODRaNbFez/lWxA5vhEGZp4MUg==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
@@ -20654,17 +20647,16 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /vite-plugin-pwa@0.13.1(vite@4.2.3)(workbox-build@6.5.4)(workbox-window@6.5.4):
-    resolution: {integrity: sha512-NR3dIa+o2hzlzo4lF4Gu0cYvoMjSw2DdRc6Epw1yjmCqWaGuN86WK9JqZie4arNlE1ZuWT3CLiMdiX5wcmmUmg==}
+  /vite-plugin-pwa@0.15.2(vite@4.2.3)(workbox-build@6.5.4)(workbox-window@6.5.4):
+    resolution: {integrity: sha512-l1srtaad5NMNrAtAuub6ArTYG5Ci9AwofXXQ6IsbpCMYQ/0HUndwI7RB2x95+1UBFm7VGttQtT7woBlVnNhBRw==}
     peerDependencies:
-      vite: ^3.1.0
+      vite: ^3.1.0 || ^4.0.0
       workbox-build: ^6.5.4
       workbox-window: ^6.5.4
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
       fast-glob: 3.2.12
       pretty-bytes: 6.0.0
-      rollup: 2.79.1
       vite: 4.2.3(@types/node@18.16.19)
       workbox-build: 6.5.4
       workbox-window: 6.5.4
