@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import List, Optional, Union
 
 from requests import Response, Session
 from requests_html import HTMLSession
