@@ -37,7 +37,8 @@ PRODUCTION_MAPPING = {
     "JET-A1": "oil",
 }
 
-XM_DELAY = 2
+XM_DELAY_MIN = 2
+XM_DELAY_MAX = 5
 
 
 @refetch_frequency(timedelta(days=1))
@@ -132,7 +133,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
     if target_datetime is None:
-        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY)
+        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY_MIN)
     else:
         target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
 
@@ -150,6 +151,24 @@ def fetch_production(
     df_generation = objetoAPI.request_data(
         "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
     )
+
+    if target_datetime is None:
+        # Allow retries for most recent data
+        for xm_delay in range(XM_DELAY_MIN + 1, XM_DELAY_MAX + 1):
+            if not df_generation.empty and not df_recursos.empty:
+                break
+
+            target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-xm_delay)
+
+            df_recursos = objetoAPI.request_data(
+                "ListadoRecursos",
+                "Sistema",
+                target_arrow_in_tz.date(),
+                target_arrow_in_tz.date(),
+            )
+            df_generation = objetoAPI.request_data(
+                "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
+            )
 
     if not df_generation.empty and not df_recursos.empty:
         df_units = (
@@ -213,7 +232,7 @@ def fetch_price(
     session = session or Session()
 
     if target_datetime is None:
-        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY)
+        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY_MIN)
     else:
         target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
 
@@ -223,6 +242,22 @@ def fetch_price(
     df_price = objetoAPI.request_data(
         "PrecBolsNaci", "Sistema", target_arrow_in_tz.date(), target_arrow_in_tz.date()
     )
+
+    if target_datetime is None:
+        # Allow retries for most recent data
+        for xm_delay in range(XM_DELAY_MIN + 1, XM_DELAY_MAX + 1):
+            if not df_price.empty:
+                break
+
+            target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-xm_delay)
+
+            df_price = objetoAPI.request_data(
+                "PrecBolsNaci",
+                "Sistema",
+                target_arrow_in_tz.date(),
+                target_arrow_in_tz.date(),
+            )
+
     price_list = PriceList(logger)
     if not df_price.empty:
         hour_columns = [col for col in df_price.columns if "Hour" in col]
