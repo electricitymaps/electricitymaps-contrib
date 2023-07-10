@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+import ssl
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
 import pytz
-from requests import Response, Session
+import urllib3
+from requests import Response, Session, adapters
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -37,13 +39,30 @@ PRODUCTION_MAPPING = {
 }
 
 
+class LegacyHttpAdapter(adapters.HTTPAdapter):
+    def init_poolmanager(self, connections, maxsize, block=False):
+        ctx = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
+        ctx.options |= 0x4  # OP_LEGACY_SERVER_CONNECT
+        self.poolmanager = urllib3.poolmanager.PoolManager(
+            num_pools=connections, maxsize=maxsize, block=block, ssl_context=ctx
+        )
+
+
+# Use a LegacyHttpAdapter to avoid "unsafe legacy renegotiation disabled" error (issue #5484)
+# Original code source: https://stackoverflow.com/questions/71603314/ssl-error-unsafe-legacy-renegotiation-disabled
+def create_legacy_session():
+    session = Session()
+    session.mount("https://", LegacyHttpAdapter())
+    return session
+
+
 def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
     url = "/".join((EPIAS_MAIN_URL, KINDS_MAPPING[kind]["url"]))
     params = {
         "startDate": (target_datetime).strftime("%Y-%m-%d"),
         "endDate": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
     }
-    r: Response = session.get(url=url, params=params)
+    r: Response = create_legacy_session().get(url=url, params=params)
     if r.status_code == 200:
         return r.json()["body"][KINDS_MAPPING[kind]["json_key"]]
     else:
