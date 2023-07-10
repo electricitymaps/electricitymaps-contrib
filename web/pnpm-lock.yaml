@@ -7,10 +7,10 @@ settings:
 dependencies:
   '@capacitor/app':
     specifier: ^4.1.1
-    version: 4.1.1(@capacitor/core@4.6.2)
+    version: 4.1.1(@capacitor/core@4.8.1)
   '@capacitor/core':
-    specifier: ^4.6.2
-    version: 4.6.2
+    specifier: ^4.8.1
+    version: 4.8.1
   '@mapbox/point-geometry':
     specifier: ^0.1.0
     version: 0.1.0
@@ -4237,18 +4237,18 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@capacitor/app@4.1.1(@capacitor/core@4.6.2):
+  /@capacitor/app@4.1.1(@capacitor/core@4.8.1):
     resolution: {integrity: sha512-SJcJA1rhFQyeH6eLfUEbdKkHzAwzahJNVPNXmU88fdmXpMgM2dJGzZj1vrm6e21aQq+Z4aBVLJ2RCdj92zD7wg==}
     peerDependencies:
       '@capacitor/core': ^4.0.0
     dependencies:
-      '@capacitor/core': 4.6.2
+      '@capacitor/core': 4.8.1
     dev: false
 
-  /@capacitor/core@4.6.2:
-    resolution: {integrity: sha512-M/KpAg+peft/HTb7svLiKHxjbll67ybs1vEqhZuvjXlwro53NxNXR4YJS7+wNXZSiA4Kxjtf+a754xGgZcMarA==}
+  /@capacitor/core@4.8.1:
+    resolution: {integrity: sha512-GIUGw1P2Iyh4jb8ZAIWRPtR2zH6ARcpwN5pn/vmIJiTujQBMQmF62s5L3m4XMQSVKlbw8iCPi/YKjlUL+EjKhA==}
     dependencies:
-      tslib: 2.4.0
+      tslib: 2.6.0
     dev: false
 
   /@cnakazawa/watch@1.0.4:
@@ -11224,7 +11224,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001513
+      caniuse-lite: 1.0.30001514
       electron-to-chromium: 1.4.454
       node-releases: 2.0.13
       update-browserslist-db: 1.0.11(browserslist@4.21.9)
@@ -11369,8 +11369,8 @@ packages:
     resolution: {integrity: sha512-V0mnJ5dwarmhYv8/MzhJ//aW68UpvnQBXv8lJ2QUsvn2pHcmAuNtu8hQEDz37XnA1iE+lRR9CIfGWWpgJ5QedQ==}
     dev: true
 
-  /caniuse-lite@1.0.30001513:
-    resolution: {integrity: sha512-pnjGJo7SOOjAGytZZ203Em95MRM8Cr6jhCXNF/FAXTpCTRTECnqQWLpiTRqrFtdYcth8hf4WECUpkezuYsMVww==}
+  /caniuse-lite@1.0.30001514:
+    resolution: {integrity: sha512-ENcIpYBmwAAOm/V2cXgM7rZUrKKaqisZl4ZAI520FIkqGXUxJjmaIssbRW5HVVR5tyV6ygTLIm15aU8LUmQSaQ==}
 
   /capture-exit@2.0.0:
     resolution: {integrity: sha512-PiT/hQmTonHhl/HFGN+Lx3JJUznrVYJ3+AQsnthneZbvW7x+f08Tk7yLJTLEOUvBTbduLeeBkxEaYXUOUrRq6g==}
@@ -18046,8 +18046,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /react-devtools-core@4.27.8:
-    resolution: {integrity: sha512-KwoH8/wN/+m5wTItLnsgVraGNmFrcTWR3k1VimP1HjtMMw4CNF+F5vg4S/0tzTEKIdpCi2R7mPNTC+/dswZMgw==}
+  /react-devtools-core@4.28.0:
+    resolution: {integrity: sha512-E3C3X1skWBdBzwpOUbmXG8SgH6BtsluSMe+s6rRcujNKG1DGi8uIfhdhszkgDpAsMoE55hwqRUzeXCmETDBpTg==}
     dependencies:
       shell-quote: 1.8.1
       ws: 7.5.9
@@ -18221,7 +18221,7 @@ packages:
       pretty-format: 26.6.2
       promise: 8.3.0
       react: 18.2.0
-      react-devtools-core: 4.27.8
+      react-devtools-core: 4.28.0
       react-refresh: 0.4.3
       react-shallow-renderer: 16.15.0(react@18.2.0)
       regenerator-runtime: 0.13.11
@@ -20172,10 +20172,6 @@ packages:
 
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-
-  /tslib@2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-    dev: false
 
   /tslib@2.6.0:
     resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
