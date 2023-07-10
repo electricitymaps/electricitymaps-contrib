@@ -2,8 +2,7 @@ from datetime import datetime, timezone
 from logging import Logger, getLogger
 from typing import List, Optional, Union
 
-from requests import Response, Session
-from requests_html import HTMLSession
+from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
@@ -13,16 +12,16 @@ from parsers.lib.exceptions import ParserException
 PARSER_NAME = "US_AK_SAP.py"
 
 SOURCE = "seapahydro.org"
-DATA_URL = "https://seapahydro.org/scada"
+DATA_URL = "https://seapahydro.org/api/scada/index"
 
 
-def get_value_by_id(res: Response, id) -> float:
-    return float(res.html.find(f"#{id}", first=True).text)
+def get_value(data: dict, key: str) -> float:
+    return float(data[key]["text"])
 
 
 def fetch_production(
     zone_key: ZoneKey,
-    session: Session = None,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
@@ -31,27 +30,26 @@ def fetch_production(
             PARSER_NAME, "This parser is not yet able to parse past dates", zone_key
         )
 
-    session = HTMLSession()
     res = session.get(DATA_URL)
-    # render the website using requests_html (chromium) due to JS scripts
-    res.html.render()
+    data = res.json()
 
     data = {
-        "seapa_total": get_value_by_id(res, "ss_mw"),  # 2 hydro plants owned by SEAPA
-        "ktn_hydro": get_value_by_id(
-            res, "ktn_hydro_mw"
+        "seapa_total": get_value(data, "ss_mw"),  # 2 hydro plants owned by SEAPA
+        "ktn_hydro": get_value(
+            data, "ktn_hydro_mw"
         ),  # hydro from pre-existing Ketchikan plants
-        "ktn_diesel": get_value_by_id(res, "ktn_diesel_mw"),  # backup Ketchikan diesel
+        "ktn_diesel": get_value(data, "ktn_diesel_mw"),  # backup Ketchikan diesel
     }
+
+    production_mix = ProductionMix(gas=data["ktn_diesel"])
+    production_mix.add_value("hydro", data["seapa_total"], True)
+    production_mix.add_value("hydro", data["ktn_hydro"], True)
 
     production_list = ProductionBreakdownList(logger=logger)
     production_list.append(
         zoneKey=zone_key,
         datetime=datetime.now(timezone.utc),
-        production=ProductionMix(
-            gas=data["ktn_diesel"],
-            hydro=data["seapa_total"] + data["ktn_hydro"],
-        ),
+        production=production_mix,
         source=SOURCE,
     )
 
@@ -63,4 +61,4 @@ def fetch_production(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Maps backend, but handy for testing."""
 
-    print(fetch_production(ZoneKey("AU-LH")))
+    print(fetch_production(ZoneKey("US-AK-SAP")))
