@@ -214,7 +214,6 @@ class ProductionBreakdownList(AggregatableEventList):
             ungrouped_production_breakdowns, logger
         ):
             return production_breakdowns
-
         df = pd.concat(
             [
                 production_breakdowns.dataframe
@@ -226,11 +225,10 @@ class ProductionBreakdownList(AggregatableEventList):
 
         df = df.drop(columns=["source", "sourceType", "zoneKey"])
         df = df.groupby(level=0, dropna=False)["data"].apply(list)
-        result = ProductionBreakdownList(logger)
         for row in df:
             prod = ProductionBreakdown.aggregate(row)
-            result.events.append(prod)
-        return result
+            production_breakdowns.events.append(prod)
+        return production_breakdowns
 
 
 class TotalProductionList(EventList):
