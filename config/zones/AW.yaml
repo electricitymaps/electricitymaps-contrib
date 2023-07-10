@@ -125,7 +125,6 @@ fallbackZoneMixes:
         solar: 0.012112561598734299
         unknown: 0.0007195554431291911
         wind: 0.15728253495460173
-flag_file_name: aw.png
 parsers:
   production: AW.fetch_production
 timezone: America/Aruba

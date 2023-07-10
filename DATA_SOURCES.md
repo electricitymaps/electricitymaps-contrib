@@ -49,7 +49,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - French Polynesia: [EDT](https://www.edt.pf/transition-energetique-innovation)
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Georgia: [Georgian State Electrosystem (GSE)](http://www.gse.com.ge/home)
-- Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Great Britain: [Elexon BMRS](https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide)
 - Great Britain (Orkney Islands): [SSEN](https://www.ssen.co.uk/ANM/)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Guatemala: [AMM](http://www.amm.org.gt)
@@ -270,9 +270,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Geothermal and Unknown: [Bundesnetzagentur](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
   - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
 - Georgia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Great Britain:
-  - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=GB)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Great Britain: [Elexon BMRS](https://www.bmreports.com/bmrs/?q=foregeneration/capacityaggregated)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
 - Honduras: [ENEE](http://www.enee.hn/planificacion/2018/boletines/Boletin%20Estadistico%20Mes%20de%20Septiembre%202018%20PDF.pdf)
@@ -523,6 +521,9 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - Spain ⇄ France: [According to "The Spanish electricity system 2019" page 65: 2800 MW](https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/InformesSistemaElectrico/2019/ISE_2019_eng.pdf)
 - [Spain ⇄ Portugal](https://web.archive.org/web/20230516184334/https://www.erse.pt/media/kevnjc3r/portugal-spain-interconnection-analysis-and-maczt-monitoring-report-english-version-2020.pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](<https://en.wikipedia.org/wiki/Cometa_(HVDC)>)
+- Spain (Mallorca) ⇄ Spain (Ibiza): ["Romulo 2": 200 MW](https://web.archive.org/web/20230329093513/https://www.ree.es/sites/default/files/01_ACTIVIDADES/Documentos/Romulo2_en.pdf)
+- Spain (Mallorca) ⇄ Spain (Menorca): According to ["REE PLAN 2021-2026"](https://web.archive.org/web/20230629182722/https://www.planificacionelectrica.es/sites/webplani/files/2022-12/REE_PLAN_DESARROLLO_EN.pdf) (Page 466, only one built yet): 100 MW
+- Spain (Ibiza) ⇄ Spain (Formentera): According to ["REE PLAN 2021-2026"](https://web.archive.org/web/20230629182722/https://www.planificacionelectrica.es/sites/webplani/files/2022-12/REE_PLAN_DESARROLLO_EN.pdf) (Pages 466, Page 297): 134 MW (11+17+106)
 - [Sweden ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Ukraine ⇄ Belarus, ⇄ Hungary, ⇉ Poland, ⇄ Moldova, ⇄ Slovakia, ⇄ Romania, ⇄ Russia: [Ukrenergo](https://ua.energy/activity/dispatch-information/transborder-flows/)
 

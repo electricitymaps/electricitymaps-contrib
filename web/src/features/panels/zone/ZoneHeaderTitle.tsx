@@ -25,8 +25,9 @@ export default function ZoneHeaderTitle({
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
+
   return (
-    <div className="flex w-full grow flex-row overflow-hidden pl-2">
+    <div className="flex w-full grow flex-row overflow-hidden pl-2 pb-2">
       <Link
         className="text-3xl self-center py-4 pr-4"
         to={returnToMapLink}
