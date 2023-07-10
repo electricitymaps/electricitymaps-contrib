@@ -1,21 +1,30 @@
 import { FeatureCollection, Feature, MultiPolygon, Polygon } from '@turf/turf';
-import { config } from './generateWorld';
+import { GEO_CONFIG } from './generateWorld';
 
-export type GeoConfig = typeof config;
+export type GeoConfig = typeof GEO_CONFIG;
 
-export interface BaseZoneConfig {
+export interface ZoneConfig {
   subZoneNames?: string[];
   bounding_box?: number[][];
-  timezone?: string;
+  contributors?: string[];
+  disclaimer?: string;
+  estimation_method?: string;
+  parsers?: {
+    consumption?: string;
+    consumptionForecast?: string;
+    generationForecast?: string;
+    price?: string;
+    production?: string;
+    productionPerModeForecast?: string;
+    productionPerUnit?: string;
+  };
   [key: string]: any;
 }
 
-export interface ZoneConfig extends BaseZoneConfig {
-  contributors?: string[];
-}
-
-export interface OptimizedZoneConfig extends BaseZoneConfig {
-  contributors?: number[];
+export interface OptimizedZoneConfig
+  extends Omit<ZoneConfig, 'contributors' | 'parsers'> {
+  contributors: number[];
+  parsers: boolean;
 }
 
 export interface ZonesConfig {
@@ -28,7 +37,7 @@ export interface OptimizedZonesConfig {
 
 export interface CombinedZonesConfig {
   contributors: string[];
-  zonesConfig: OptimizedZoneConfig;
+  zones: OptimizedZonesConfig;
 }
 
 export interface ExchangeConfig {

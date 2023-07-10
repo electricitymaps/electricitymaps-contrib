@@ -13,16 +13,18 @@ type zoneConfigItem = {
   subZoneNames?: string[];
 };
 
+const config = zonesConfigJSON as unknown as CombinedZonesConfig;
+
 export const getHasSubZones = (zoneId?: string) => {
   if (!zoneId) {
     return null;
   }
 
-  const config = zonesConfig.zonesConfig[zoneId];
-  if (!config || !config.subZoneNames) {
+  const zoneConfig = config.zones[zoneId];
+  if (!zoneConfig || !zoneConfig.subZoneNames) {
     return false;
   }
-  return config.subZoneNames.length > 0;
+  return zoneConfig.subZoneNames.length > 0;
 };
 
 export enum ZoneDataStatus {
@@ -32,7 +34,6 @@ export enum ZoneDataStatus {
   UNKNOWN = 'unknown',
 }
 
-const zonesConfig = zonesConfigJSON as unknown as CombinedZonesConfig;
 export const getZoneDataStatus = (
   zoneId: string,
   zoneDetails: ZoneDetails | undefined
@@ -48,19 +49,16 @@ export const getZoneDataStatus = (
   }
 
   // If there is no config for the zone, we assume we do not have any data
-  const config = zonesConfig.zonesConfig[zoneId];
-  if (!config) {
-    console.log(config);
+  const zoneConfig = config.zones[zoneId];
+  if (!zoneConfig) {
+    console.log(zoneConfig);
 
     return ZoneDataStatus.NO_INFORMATION;
   }
 
   // If there are no production parsers or no defined estimation method in the config,
   // we assume we do not have data for the zone
-  if (
-    config.parsers?.production === undefined &&
-    config.estimation_method === undefined
-  ) {
+  if (zoneConfig.parsers === false && zoneConfig.estimation_method === undefined) {
     return ZoneDataStatus.NO_INFORMATION;
   }
 
@@ -70,12 +68,12 @@ export const getZoneDataStatus = (
 
 export function getContributors(zoneId: string) {
   return {
-    zoneContributorsIndexArray: zonesConfig.zonesConfig[zoneId]?.contributors as number[],
-    contributors: zonesConfig.contributors,
+    zoneContributorsIndexArray: config.zones[zoneId]?.contributors as number[],
+    contributors: config.contributors,
   };
 }
 
 export function getDisclaimer(zoneId: string) {
-  const config = zonesConfig.zonesConfig[zoneId];
-  return config?.disclaimer;
+  const zoneConfig = config.zones[zoneId];
+  return zoneConfig?.disclaimer;
 }

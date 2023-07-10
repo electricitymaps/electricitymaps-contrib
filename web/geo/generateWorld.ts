@@ -1,7 +1,7 @@
 import { coordEach } from '@turf/turf';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { mergeZones } from '../scripts/generateZonesConfig.js';
+import { getConfig } from '../scripts/generateZonesConfig.js';
 import { generateAggregates } from './generateAggregates.js';
 import { generateExchangesToIgnore } from './generateExchangesToExclude.js';
 import { generateTopojson } from './generateTopojson.js';
@@ -9,7 +9,7 @@ import { getJSON, round } from './utilities.js';
 import { validateGeometry } from './validate.js';
 import { WorldFeatureCollection } from './types.js';
 
-export const config = {
+export const GEO_CONFIG = {
   WORLD_PATH: path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url))),
   OUT_PATH: path.resolve(fileURLToPath(new URL('../config/world.json', import.meta.url))),
   ERROR_PATH: path.resolve(fileURLToPath(new URL('.', import.meta.url))),
@@ -27,9 +27,9 @@ const EXCHANGE_OUT_PATH = path.resolve(
   fileURLToPath(new URL('../config/excludedAggregatedExchanges.json', import.meta.url))
 );
 
-const fc: WorldFeatureCollection = getJSON(config.WORLD_PATH);
-const zoneConfig = mergeZones();
-const aggregates = generateAggregates(fc, zoneConfig.zonesConfig);
+const fc: WorldFeatureCollection = getJSON(GEO_CONFIG.WORLD_PATH);
+const config = getConfig();
+const aggregates = generateAggregates(fc, config.zones);
 
 fc.features = aggregates;
 
@@ -39,12 +39,12 @@ coordEach(fc, (coord) => {
   coord[1] = round(coord[1], 4);
 });
 
-const { skipped } = generateTopojson(fc, config);
+const { skipped } = generateTopojson(fc, GEO_CONFIG);
 
-generateExchangesToIgnore(EXCHANGE_OUT_PATH, zoneConfig.zonesConfig);
+generateExchangesToIgnore(EXCHANGE_OUT_PATH, config.zones);
 
 if (skipped === true) {
   console.info('No changes to world.json');
 } else {
-  validateGeometry(fc, config);
+  validateGeometry(fc, GEO_CONFIG);
 }

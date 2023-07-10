@@ -7,19 +7,19 @@ import { fileURLToPath } from 'node:url';
 import {
   ExchangeConfig,
   ExchangesConfig,
-  ZoneConfig,
   CombinedZonesConfig,
-  BaseZoneConfig,
+  ZoneConfig,
+  OptimizedZoneConfig,
 } from '../geo/types.js';
 import { round } from '../geo/utilities.js';
 
 const BASE_CONFIG_PATH = '../../config';
 
-const config = {
+const verifyConfig = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
-const mergeZones = (): CombinedZonesConfig => {
+const getConfig = (): CombinedZonesConfig => {
   const basePath = path.resolve(
     fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/zones'), import.meta.url))
   );
@@ -40,42 +40,47 @@ const mergeZones = (): CombinedZonesConfig => {
   const contributors = new Set<string>();
 
   const zones = filesWithDirectory.reduce((zones, filepath) => {
-    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as BaseZoneConfig;
+    const config = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
 
-    if (zoneConfig.contributors) {
-      for (const contributor of zoneConfig.contributors) {
+    if (config.contributors) {
+      for (const contributor of config.contributors) {
         contributors.add(contributor);
-        const index = zoneConfig.contributors.indexOf(contributor);
+        const index = config.contributors?.indexOf(contributor);
         const contributorArray = [...contributors];
         const globalIndex = contributorArray.indexOf(contributor);
-        zoneConfig.contributors[index] = globalIndex;
+        config.contributors
+          ? ((config as unknown as OptimizedZoneConfig).contributors[index] = globalIndex)
+          : [];
       }
     }
 
-    if (zoneConfig?.bounding_box) {
-      for (const point of zoneConfig.bounding_box) {
+    if (config?.bounding_box) {
+      for (const point of config.bounding_box) {
         point[0] = round(point[0], 4);
         point[1] = round(point[1], 4);
       }
     }
 
-    for (const key of Object.keys(zoneConfig)) {
+    for (const key of Object.keys(config)) {
       if (!USED_CONFIG_FIELDS.has(key)) {
-        delete zoneConfig[key];
+        delete config[key];
       }
     }
     /*
      * The parsers object is only used to check if there is a production parser in the frontend.
      * This moves this check to the build step, so we can minimize the size of the frontend bundle.
      */
-    zoneConfig.parsers = zoneConfig?.parsers?.production?.length > 0 ? true : false;
-    Object.assign(zones, { [path.parse(filepath).name]: zoneConfig });
+    (config as unknown as OptimizedZoneConfig).parsers = config?.parsers?.production
+      ?.length
+      ? true
+      : false;
+    Object.assign(zones, { [path.parse(filepath).name]: config });
     return zones;
   }, {});
 
   const combinedZonesConfig = {
     contributors: [...contributors],
-    zonesConfig: zones,
+    zones: zones,
   };
   return combinedZonesConfig;
 };
@@ -161,14 +166,14 @@ const writeJSON = (fileName: string, object: CombinedZonesConfig | ExchangesConf
   fs.writeFileSync(fileName, JSON.stringify(object), { encoding: 'utf8' });
 };
 
-const zonesConfig = mergeZones();
+const zonesConfig = getConfig();
 const exchangesConfig = mergeExchanges();
 
 const autogenConfigPath = path.resolve(
   fileURLToPath(new URL('../config', import.meta.url))
 );
 
-if (config.verifyNoUpdates) {
+if (verifyConfig.verifyNoUpdates) {
   const zonesConfigPrevious = JSON.parse(
     fs.readFileSync(`${autogenConfigPath}/zones.json`, 'utf8')
   );
@@ -192,4 +197,4 @@ if (config.verifyNoUpdates) {
 writeJSON(`${autogenConfigPath}/zones.json`, zonesConfig);
 writeJSON(`${autogenConfigPath}/exchanges.json`, exchangesConfig);
 
-export { mergeExchanges, mergeRatioParameters, mergeZones };
+export { mergeExchanges, mergeRatioParameters, getConfig };

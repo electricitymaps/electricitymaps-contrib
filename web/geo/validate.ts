@@ -13,7 +13,7 @@ import {
 } from '@turf/turf';
 import { getHoles, getPolygons, log, writeJSON } from './utilities.js';
 
-import { mergeZones } from '../scripts/generateZonesConfig.js';
+import { getConfig } from '../scripts/generateZonesConfig.js';
 import { GeoConfig, WorldFeatureCollection } from './types.js';
 
 // TODO: Improve this function so each check returns error messages,
@@ -93,11 +93,11 @@ function zeroComplexPolygons(
 }
 
 function matchesZonesConfig(fc: WorldFeatureCollection) {
-  const zonesJson = mergeZones();
+  const config = getConfig();
 
   const missingZones: string[] = [];
   featureEach(fc, (ft) => {
-    if (!(ft.properties?.zoneName in zonesJson.zonesConfig)) {
+    if (!(ft.properties?.zoneName in config.zones)) {
       missingZones.push(ft.properties?.zoneName);
     }
   });

@@ -1,5 +1,5 @@
 import { Feature, MultiPolygon, union } from '@turf/turf';
-import { ZonesConfig, WorldFeatureCollection, FeatureProperties } from './types';
+import { OptimizedZonesConfig, WorldFeatureCollection, FeatureProperties } from './types';
 
 const emptyFeature: Feature<MultiPolygon, FeatureProperties> = {
   type: 'Feature',
@@ -14,7 +14,7 @@ const emptyFeature: Feature<MultiPolygon, FeatureProperties> = {
   geometry: { type: 'MultiPolygon', coordinates: [] },
 };
 
-const generateAggregates = (fc: WorldFeatureCollection, zones: ZonesConfig) => {
+const generateAggregates = (fc: WorldFeatureCollection, zones: OptimizedZonesConfig) => {
   const skippedZones: string[] = []; // Holds skipped subZones that are not in the geojson
   const { features } = fc;
 
