@@ -257,21 +257,6 @@ def fetch_price(
             target_arrow_in_tz.date(),
         )
 
-    if target_datetime is None:
-        # Allow retries for most recent data
-        for xm_delay in range(XM_DELAY_MIN + 1, XM_DELAY_MAX + 1):
-            if not df_price.empty:
-                break
-
-            target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-xm_delay)
-
-            df_price = objetoAPI.request_data(
-                "PrecBolsNaci",
-                "Sistema",
-                target_arrow_in_tz.date(),
-                target_arrow_in_tz.date(),
-            )
-
     price_list = PriceList(logger)
     if not df_price.empty:
         hour_columns = [col for col in df_price.columns if "Hour" in col]
