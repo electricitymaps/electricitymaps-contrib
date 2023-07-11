@@ -2,9 +2,9 @@ from datetime import datetime, timezone
 from logging import Logger, getLogger
 from typing import Any, Dict, List, Optional, Union
 
-from requests_html import HTMLSession
 # Not actually used, only here to conform to the parser function definition
 from requests import Session
+from requests_html import HTMLSession
 
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
@@ -21,7 +21,7 @@ DATA_URL = "http://photonscada.com/data/perspective/client/LHI"
 
 # Adjustable parameters for requesting website data
 RENDER_SLEEP = 10  # seconds
-RENDER_TIMEOUT = 20 # seconds
+RENDER_TIMEOUT = 20  # seconds
 
 
 def validate_and_clean_data(

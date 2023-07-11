@@ -7,7 +7,6 @@ capacity:
   battery storage: 1
   gas: 0.84
   solar: 1
-flag_file_name: au.png
 parsers:
   production: AU-LH.fetch_production
   consumption: AU-LH.fetch_consumption
