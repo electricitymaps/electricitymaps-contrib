@@ -50,8 +50,8 @@ class LegacyHttpAdapter(adapters.HTTPAdapter):
 
 # Use a LegacyHttpAdapter to avoid "unsafe legacy renegotiation disabled" error (issue #5484)
 # Original code source: https://stackoverflow.com/questions/71603314/ssl-error-unsafe-legacy-renegotiation-disabled
-def get_legacy_session(session: Session):
-    return session.mount("https://", LegacyHttpAdapter())
+def mount_legacy_adapter(session: Session):
+    session.mount("https://", LegacyHttpAdapter())
 
 
 def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
@@ -60,7 +60,8 @@ def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
         "startDate": (target_datetime).strftime("%Y-%m-%d"),
         "endDate": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
     }
-    r: Response = get_legacy_session(session).get(url=url, params=params)
+    mount_legacy_adapter(session)
+    r: Response = session.get(url=url, params=params)
     if r.status_code == 200:
         return r.json()["body"][KINDS_MAPPING[kind]["json_key"]]
     else:
