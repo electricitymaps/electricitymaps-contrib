@@ -173,7 +173,9 @@ def fetch_price(
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ)
 
-    data = fetch_data(session=local_session, target_datetime=target_datetime, kind="price")
+    data = fetch_data(
+        session=local_session, target_datetime=target_datetime, kind="price"
+    )
     all_data_points = []
     for item in data:
         data_point = {
