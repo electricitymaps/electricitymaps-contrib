@@ -60,7 +60,7 @@ def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
         "startDate": (target_datetime).strftime("%Y-%m-%d"),
         "endDate": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
     }
-    r: Response = create_legacy_session().get(url=url, params=params)
+    r: Response = get_legacy_session(session).get(url=url, params=params)
     if r.status_code == 200:
         return r.json()["body"][KINDS_MAPPING[kind]["json_key"]]
     else:
