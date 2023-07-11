@@ -132,34 +132,15 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
-    if target_datetime is None:
-        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY_MIN)
-    else:
-        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
-
     objetoAPI = pydataxm.ReadDB()
 
-    # API request list of power plants with ID (column 1) and type (column 7)
-    df_recursos = objetoAPI.request_data(
-        "ListadoRecursos",
-        "Sistema",
-        target_arrow_in_tz.date(),
-        target_arrow_in_tz.date(),
-    )
-
-    # API request generation per power plant
-    df_generation = objetoAPI.request_data(
-        "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
-    )
-
     if target_datetime is None:
+        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY_MIN)
         # Allow retries for most recent data
-        for xm_delay in range(XM_DELAY_MIN + 1, XM_DELAY_MAX + 1):
-            if not df_generation.empty and not df_recursos.empty:
-                break
-
+        for xm_delay in range(XM_DELAY_MIN, XM_DELAY_MAX + 1):
             target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-xm_delay)
 
+            # API request list of power plants with ID (column 1) and type (column 7)
             df_recursos = objetoAPI.request_data(
                 "ListadoRecursos",
                 "Sistema",
@@ -169,6 +150,24 @@ def fetch_production(
             df_generation = objetoAPI.request_data(
                 "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
             )
+
+            if not df_generation.empty and not df_recursos.empty:
+                break
+    else:
+        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
+
+        # API request list of power plants with ID (column 1) and type (column 7)
+        df_recursos = objetoAPI.request_data(
+            "ListadoRecursos",
+            "Sistema",
+            target_arrow_in_tz.date(),
+            target_arrow_in_tz.date(),
+        )
+
+        # API request generation per power plant
+        df_generation = objetoAPI.request_data(
+            "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
+        )
 
     if not df_generation.empty and not df_recursos.empty:
         df_units = (
@@ -231,17 +230,32 @@ def fetch_price(
 
     session = session or Session()
 
-    if target_datetime is None:
-        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY_MIN)
-    else:
-        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
-
     objetoAPI = pydataxm.ReadDB()
 
-    # API request consumption
-    df_price = objetoAPI.request_data(
-        "PrecBolsNaci", "Sistema", target_arrow_in_tz.date(), target_arrow_in_tz.date()
-    )
+    if target_datetime is None:
+        # Allow retries for most recent data
+        for xm_delay in range(XM_DELAY_MIN, XM_DELAY_MAX + 1):
+
+            target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-xm_delay)
+
+            df_price = objetoAPI.request_data(
+                "PrecBolsNaci",
+                "Sistema",
+                target_arrow_in_tz.date(),
+                target_arrow_in_tz.date(),
+            )
+
+            if not df_price.empty:
+                break
+    else:
+        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
+        # API request consumption
+        df_price = objetoAPI.request_data(
+            "PrecBolsNaci",
+            "Sistema",
+            target_arrow_in_tz.date(),
+            target_arrow_in_tz.date(),
+        )
 
     if target_datetime is None:
         # Allow retries for most recent data
