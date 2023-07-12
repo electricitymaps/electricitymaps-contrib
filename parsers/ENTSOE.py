@@ -810,6 +810,9 @@ def parse_production(
         for entry in timeseries.find_all("point"):
             quantity = float(entry.find_all("quantity")[0].contents[0])
             position = int(entry.find_all("position")[0].contents[0])
+            # Since all values in ENTSOE are positive, we need to check if
+            # the value is production or consumption so we can set the quantity
+            # to a negative value if it is consumption.
             is_production = (
                 len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
             )
