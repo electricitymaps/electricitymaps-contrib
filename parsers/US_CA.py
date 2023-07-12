@@ -74,7 +74,7 @@ def add_production_to_dict(mode: str, value: float, production_dict: dict) -> di
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "US-CAL-CISO",
+    zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
