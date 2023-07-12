@@ -47,7 +47,7 @@ PRODUCTION_MODES_MAPPING = {
     "other": "unknown",
 }
 
-CORRECTED_NEGATIVE_PRODUCTION = [mode for mode in PRODUCTION_MODES_MAPPING if mode not in ["large hydro","small hydro"]]
+CORRECT_NEGATIVE_PRODUCTION_MODES_WITH_ZERO = [mode for mode in PRODUCTION_MODES_MAPPING if mode not in ["large hydro","small hydro"]]
 STORAGE_MAPPING = {"batteries": "battery"}
 
 MX_EXCHANGE_URL = "http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
