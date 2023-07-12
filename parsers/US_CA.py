@@ -47,7 +47,11 @@ PRODUCTION_MODES_MAPPING = {
     "other": "unknown",
 }
 
-CORRECT_NEGATIVE_PRODUCTION_MODES_WITH_ZERO = [mode for mode in PRODUCTION_MODES_MAPPING if mode not in ["large hydro","small hydro"]]
+CORRECT_NEGATIVE_PRODUCTION_MODES_WITH_ZERO = [
+    mode
+    for mode in PRODUCTION_MODES_MAPPING
+    if mode not in ["large hydro", "small hydro"]
+]
 STORAGE_MAPPING = {"batteries": "battery"}
 
 MX_EXCHANGE_URL = "http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
@@ -99,7 +103,7 @@ def fetch_production(
     all_data_points = ProductionBreakdownList(logger)
     for index, row in df.iterrows():
         production_mix = ProductionMix()
-        storage_mix=StorageMix()
+        storage_mix = StorageMix()
         row_datetime = target_datetime.replace(
             hour=int(row["time"][:2]), minute=int(row["time"][-2:])
         )
@@ -110,7 +114,11 @@ def fetch_production(
             if mode not in ["small hydro", "large hydro"]
         ]:
             production_value = float(row[mode])
-            production_mix.add_value(PRODUCTION_MODES_MAPPING[mode], production_value, mode in CORRECTED_NEGATIVE_PRODUCTION)
+            production_mix.add_value(
+                PRODUCTION_MODES_MAPPING[mode],
+                production_value,
+                mode in CORRECTED_NEGATIVE_PRODUCTION,
+            )
 
         for mode in ["small hydro", "large hydro"]:
             production_value = float(row[mode])
@@ -125,15 +133,15 @@ def fetch_production(
             production=production_mix,
             storage=storage_mix,
             source="caiso.com",
-            datetime=arrow.get(row_datetime).replace(tzinfo="US/Pacific")
-                .datetime,)
+            datetime=arrow.get(row_datetime).replace(tzinfo="US/Pacific").datetime,
+        )
 
     return all_data_points.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "US-CAL-CISO",
+    zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -161,9 +169,12 @@ def fetch_consumption(
             hour=int(row.Time[:2]), minute=int(row.Time[-2:])
         )
         if not np.isnan(consumption):
-            all_data_points.append(zoneKey=zone_key, consumption=consumption, source="caiso.com", datetime=arrow.get(row_datetime)
-                .replace(tzinfo="US/Pacific")
-                .datetime,)
+            all_data_points.append(
+                zoneKey=zone_key,
+                consumption=consumption,
+                source="caiso.com",
+                datetime=arrow.get(row_datetime).replace(tzinfo="US/Pacific").datetime,
+            )
 
     return all_data_points.to_list()
 
@@ -242,10 +253,10 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     pprint(fetch_production(target_datetime=datetime(2020, 1, 20)))
 
-    # print('fetch_exchange("US-CA", "US") ->')
-    # # pprint(fetch_exchange("US-CA", "US"))
+    print('fetch_exchange("US-CA", "US") ->')
+    # pprint(fetch_exchange("US-CA", "US"))
 
-    # print('fetch_exchange("MX-BC", "US-CA")')
-    # pprint(fetch_exchange("MX-BC", "US-CA"))
-    # # pprint(fetch_production(target_datetime=datetime(2023,1,20)))s
-    # pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))
+    print('fetch_exchange("MX-BC", "US-CA")')
+    pprint(fetch_exchange("MX-BC", "US-CA"))
+    # pprint(fetch_production(target_datetime=datetime(2023,1,20)))s
+    pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))
