@@ -129,7 +129,7 @@ const zoneKey = inputArguments[0];
 const zonesToCover = zoneKey === 'ALL' ? findZonesWithMissingBoundingBoxes() : [zoneKey];
 
 // Ignore zones crossing the 180th meridian
-const ignoredZones = new Set(['RU', 'RU', 'RU-FE', 'US-AK', 'US']);
+const ignoredZones = new Set(['RU', 'RU', 'RU-FE', 'US-AK', 'US', 'FJ']);
 
 for (const zoneKey of zonesToCover) {
   if (ignoredZones.has(zoneKey)) {
