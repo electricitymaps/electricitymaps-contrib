@@ -810,9 +810,12 @@ def parse_production(
         for entry in timeseries.find_all("point"):
             quantity = float(entry.find_all("quantity")[0].contents[0])
             position = int(entry.find_all("position")[0].contents[0])
+            is_production = (
+                len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
+            )
             datetime = datetime_from_position(datetime_start, position, resolution)
             production, storage = create_production_storage(
-                fuel_code, quantity, logger, zoneKey
+                fuel_code, quantity if is_production else -quantity, logger, zoneKey
             )
             production_breakdowns.append(
                 zoneKey=zoneKey,
