@@ -1,7 +1,14 @@
+bounding_box:
+  - - 99.60080100801005
+    - 13.417469362602077
+  - - 108.15727657276571
+    - 22.94672304703373
 fallbackZoneMixes:
-  _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables'
+  _source: >-
+    IEA 2020 (used because Our World in Data has a lot of 'other renewables'
     generation not broken down by type). Biomass includes waste.
-  _url: https://www.iea.org/data-and-statistics/data-browser?country=LAO&fuel=Energy%20supply&indicator=ElecGenByFuel
+  _url: >-
+    https://www.iea.org/data-and-statistics/data-browser?country=LAO&fuel=Energy%20supply&indicator=ElecGenByFuel
   powerOriginRatios:
     value:
       biomass: 0.0014261409127302
