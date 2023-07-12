@@ -117,7 +117,7 @@ def fetch_production(
             production_mix.add_value(
                 PRODUCTION_MODES_MAPPING[mode],
                 production_value,
-                mode in CORRECTED_NEGATIVE_PRODUCTION,
+                mode in CORRECT_NEGATIVE_PRODUCTION_MODES_WITH_ZERO,
             )
 
         for mode in ["small hydro", "large hydro"]:
