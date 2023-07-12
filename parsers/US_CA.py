@@ -18,7 +18,6 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
-from parsers.lib.validation import validate_consumption
 
 CAISO_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 PRODUCTION_URL_REAL_TIME = (
