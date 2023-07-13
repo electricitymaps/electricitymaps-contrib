@@ -27,7 +27,7 @@ translate_table_gen = {
     "unknown": "unknown",
 }
 translate_table_dist = {
-    "SEPS": "SVK",
+    "SEPS": "SK",
     "APG": "AT",
     "PSE": "PL",
     "TenneT": "DE",

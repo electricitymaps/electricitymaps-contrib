@@ -3,6 +3,7 @@ import unittest
 from datetime import datetime, timezone
 
 import freezegun
+import pytz
 from mock import patch
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
@@ -185,6 +186,16 @@ class TestPrice(unittest.TestCase):
                 currency="EURO",
             )
 
+    @freezegun.freeze_time("2023-01-01")
+    def test_prices_can_be_in_future(self):
+        Price(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            price=1,
+            source="trust.me",
+            currency="EUR",
+        )
+
 
 class TestProductionBreakdown(unittest.TestCase):
     def test_create_production_breakdown(self):
@@ -329,6 +340,20 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
 
+    @freezegun.freeze_time("2023-01-01")
+    def test_non_forecasted_point_with_timezone_forward(self):
+        """Test that points in a timezone that is ahead of UTC are accepted."""
+        mix = ProductionMix(wind=10)
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, 5, tzinfo=pytz.timezone("Asia/Tokyo")),
+            production=mix,
+            source="trust.me",
+        )
+        assert breakdown.datetime == datetime(
+            2023, 1, 1, 5, tzinfo=pytz.timezone("Asia/Tokyo")
+        )
+
     def test_static_create_logs_error(self):
         logger = logging.Logger("test")
         with patch.object(logger, "error") as mock_error:
@@ -378,3 +403,66 @@ class TestMixes(unittest.TestCase):
         mix = StorageMix()
         for mode in STORAGE_MODES:
             assert hasattr(mix, mode)
+
+
+class TestAddValue(unittest.TestCase):
+    def test_production(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", 5)
+        assert mix.wind == 15
+        assert mix.corrected_negative_modes == set()
+
+    def test_production_with_negative_value(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", -5)
+        assert mix.wind == 10
+        assert mix.corrected_negative_modes == set(["wind"])
+
+    def test_production_with_negative_value_expect_none(self):
+        mix = ProductionMix()
+        mix.add_value("wind", -10)
+        assert mix.wind == None
+        assert mix.corrected_negative_modes == set(["wind"])
+
+    def test_production_with_negative_value_and_correct_with_none(self):
+        mix = ProductionMix()
+        mix.add_value("wind", -10, correct_negative_with_zero=True)
+        assert mix.wind == 0
+        mix.add_value("wind", 15, correct_negative_with_zero=True)
+        assert mix.wind == 15
+        assert mix.corrected_negative_modes == set(["wind"])
+
+    def test_production_with_none(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", None)
+        assert mix.wind == 10
+        assert mix.corrected_negative_modes == set()
+
+    def test_storage(self):
+        mix = StorageMix()
+        mix.add_value("hydro", 10)
+        assert mix.hydro == 10
+        mix.add_value("hydro", 5)
+        assert mix.hydro == 15
+
+    def test_storage_with_negative_value(self):
+        mix = StorageMix()
+        mix.add_value("hydro", 10)
+        assert mix.hydro == 10
+        mix.add_value("hydro", -5)
+        assert mix.hydro == 5
+
+    def test_storage_with_none(self):
+        mix = StorageMix()
+        mix.add_value("hydro", None)
+        assert mix.hydro == None
+        mix.add_value("hydro", -5)
+        assert mix.hydro == -5
+        mix.add_value("hydro", None)
+        assert mix.hydro == -5

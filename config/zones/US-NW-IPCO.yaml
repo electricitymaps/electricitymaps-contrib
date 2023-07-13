@@ -13,7 +13,7 @@ capacity:
   hydro storage: 0
   nuclear: 0
   oil: 5
-  solar: 438.3
+  solar: 478.3
   unknown: 15.9
   wind: 716.8
 comment: Idaho Power Company
@@ -251,7 +251,6 @@ fallbackZoneMixes:
         solar: 0.06078957471102096
         unknown: 0.029083564844054652
         wind: 0.16387553102986702
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

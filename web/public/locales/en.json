@@ -776,7 +776,7 @@
       "zoneName": "Isle of Man"
     },
     "IN": {
-      "zoneName": "India"
+      "zoneName": "Mainland India"
     },
     "IN-EA": {
       "countryName": "India",
@@ -1813,6 +1813,18 @@
     },
     "VN": {
       "zoneName": "Vietnam"
+    },
+    "VN-C": {
+      "countryName": "Vietnam",
+      "zoneName": "Central Vietnam"
+    },
+    "VN-N": {
+      "countryName": "Vietnam",
+      "zoneName": "Northern Vietnam"
+    },
+    "VN-S": {
+      "countryName": "Vietnam",
+      "zoneName": "Southern Vietnam"
     },
     "VU": {
       "zoneName": "Vanuatu"

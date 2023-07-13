@@ -13,7 +13,7 @@ capacity:
   hydro storage: 208.5
   nuclear: 0
   oil: 158.8
-  solar: 219.2
+  solar: 248.9
   unknown: 11.5
   wind: 1236.9
 comment: Western Area Power Administration - Rocky Mountain Region
@@ -252,7 +252,6 @@ fallbackZoneMixes:
         solar: 0.0077608075889321225
         unknown: 0.0003080433696485103
         wind: 0.12350465671685011
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

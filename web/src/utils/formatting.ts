@@ -27,7 +27,7 @@ export const formatCo2 = function (d: number, numberDigits: number = DEFAULT_NUM
     return d;
   }
 
-  return d >= 1
+  return value >= 1
     ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
     : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
 };
@@ -73,16 +73,26 @@ const formatDate = function (date: Date, lang: string, time: string) {
         timeStyle: 'short',
       }).format(date);
     }
+    // Instantiate below DateTimeFormat objects using UTC to avoid displaying
+    // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        dateStyle: 'long',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.MONTHLY: {
-      return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(
-        date
-      );
+      return new Intl.DateTimeFormat(lang, {
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     default: {
       console.error(`${time} is not implemented`);
@@ -101,7 +111,7 @@ const getLocaleNumberFormat = (lang: string, { unit, unitDisplay, range }: any) 
   } catch {
     // As Intl.NumberFormat with custom 'unit' is not supported in all browsers, we fallback to
     // a simple English based implementation
-    const plural = range !== 1 ? 's' : '';
+    const plural = range === 1 ? '' : 's';
     return `${range} ${unit}${plural}`;
   }
 };
@@ -119,7 +129,10 @@ const formatTimeRange = (lang: string, timeAggregate: TimeAverages) => {
       return getLocaleNumberFormat(lang, { unit: 'month', range: 12 });
     }
     case TimeAverages.YEARLY: {
-      return getLocaleNumberFormat(lang, { unit: 'year', range: 5 });
+      return getLocaleNumberFormat(lang, {
+        unit: 'year',
+        range: new Date().getUTCFullYear() - 2017,
+      });
     }
     default: {
       console.error(`${timeAggregate} is not implemented`);
@@ -135,22 +148,38 @@ const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAv
 
   switch (timeAggregate) {
     case TimeAverages.HOURLY: {
-      return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        timeStyle: 'short',
+      }).format(date);
     }
+    // Instantiate below DateTimeFormat objects using UTC to avoid displaying
+    // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' }).format(
-        date
-      );
+      return new Intl.DateTimeFormat(lang, {
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.MONTHLY: {
       return lang === 'et'
-        ? new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' })
+        ? new Intl.DateTimeFormat(lang, {
+            month: 'short',
+            day: 'numeric',
+            timeZone: 'UTC',
+          })
             .formatToParts(date)
             .find((part) => part.type === 'month')?.value
-        : new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
+        : new Intl.DateTimeFormat(lang, {
+            month: 'short',
+            timeZone: 'UTC',
+          }).format(date);
     }
     case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     default: {
       console.error(`${timeAggregate} is not implemented`);
@@ -176,11 +205,11 @@ function isValidDate(date: Date) {
  * @returns {string} formatted string of data sources.
  */
 function formatDataSources(dataSources: string[], language: string) {
-  return typeof Intl.ListFormat !== 'undefined'
-    ? new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
+  return Intl.ListFormat === undefined
+    ? dataSources.join(', ')
+    : new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
         dataSources
-      )
-    : dataSources.join(', ');
+      );
 }
 
 export { scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };

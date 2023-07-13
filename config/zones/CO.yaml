@@ -1,4 +1,8 @@
-timezone: America/Bogota
+bounding_box:
+  - - -79.5225902259022
+    - -4.735816373474336
+  - - -66.37606876068756
+    - 12.964920287149383
 capacity:
   biomass: 397
   coal: 1612
@@ -9,6 +13,12 @@ capacity:
   solar: 297
   wind: 18
 contributors:
+  - lav-julien
   - alixunderplatz
+delays:
+  production: 48
 parsers:
   consumption: CO.fetch_consumption
+  production: CO.fetch_production
+  price: CO.fetch_price
+timezone: America/Bogota

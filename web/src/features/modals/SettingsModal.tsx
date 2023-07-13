@@ -45,7 +45,7 @@ function WeatherToggleButton({
       )}
 
       <Button
-        onClick={!isLoadingLayer ? onToggle : () => {}}
+        onClick={isLoadingLayer ? () => {} : onToggle}
         className={isEnabled ? 'bg-brand-green text-white dark:bg-brand-green' : ''}
         disabled={!allowed}
         icon={

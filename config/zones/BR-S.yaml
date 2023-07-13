@@ -4,9 +4,9 @@ bounding_box:
   - - -47.53248898038211
     - -22.021725762533777
 capacity:
-  hydro: 17590
-  solar: 14
-  unknown: 4573
+  hydro: 24609
+  solar: 5685
+  unknown: 4473
   wind: 2026
 contributors:
   - alexanmtz
@@ -196,7 +196,6 @@ fallbackZoneMixes:
         solar: 0.0024953765508307422
         unknown: 0.19878422179900282
         wind: 0.07201483333379087
-flag_file_name: br.png
 parsers:
   production: BR.fetch_production
 timezone: null

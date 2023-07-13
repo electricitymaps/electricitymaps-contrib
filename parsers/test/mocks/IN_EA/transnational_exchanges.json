@@ -1,0 +1,32 @@
+[
+    {
+        "Id": 13156,
+        "Region": "BANGLADESH",
+        "ScheduledEnergyExchangeMU": "-22.51",
+        "ActualEnergyExchangeMU": "-22.483",
+        "DayPeakMW": "-940",
+        "DayMinMW": "-818",
+        "DayAverageMW": "-936.79",
+        "Date": "2023-06-25"
+    },
+    {
+        "Id": 13157,
+        "Region": "BHUTAN",
+        "ScheduledEnergyExchangeMU": "20.83",
+        "ActualEnergyExchangeMU": "18.474",
+        "DayPeakMW": "1408.14",
+        "DayMinMW": "0",
+        "DayAverageMW": "769.75",
+        "Date": "2023-06-25"
+    },
+    {
+        "Id": 13158,
+        "Region": "NEPAL",
+        "ScheduledEnergyExchangeMU": "7.5",
+        "ActualEnergyExchangeMU": "6.58",
+        "DayPeakMW": "393",
+        "DayMinMW": "211",
+        "DayAverageMW": "274.17",
+        "Date": "2023-06-25"
+    }
+]

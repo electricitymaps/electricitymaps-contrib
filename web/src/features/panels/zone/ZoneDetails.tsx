@@ -1,43 +1,77 @@
 import useGetZone from 'api/getZone';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { TimeAverages } from 'utils/constants';
-import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
+import { SpatialAggregate, TimeAverages } from 'utils/constants';
+import {
+  displayByEmissionsAtom,
+  selectedDatetimeIndexAtom,
+  spatialAggregateAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
 import NoInformationMessage from './NoInformationMessage';
-import { ZoneHeader } from './ZoneHeader';
-import { ZoneDataStatus, getZoneDataStatus } from './util';
+import { ZoneHeaderGauges } from './ZoneHeaderGauges';
+import { ZoneDataStatus, getHasSubZones, getZoneDataStatus } from './util';
+import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
+  if (!zoneId) {
+    return <Navigate to="/" replace />;
+  }
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const { data, isError, isLoading } = useGetZone({
-    enabled: Boolean(zoneId),
-  });
+  const [viewMode, setViewMode] = useAtom(spatialAggregateAtom);
+  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const isZoneView = viewMode === SpatialAggregate.ZONE;
+  const hasSubZones = getHasSubZones(zoneId);
+  const isSubZone = zoneId ? zoneId.includes('-') : true;
+  const { data, isError, isLoading } = useGetZone();
 
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
-  if (!zoneId || Array.isArray(data)) {
+  if (Array.isArray(data)) {
     return <Navigate to="/" replace />;
   }
+
+  useEffect(() => {
+    if (hasSubZones === null) {
+      return;
+    }
+    // When first hitting the map (or opening a zone from the ranking panel),
+    // set the correct matching view mode (zone or country).
+    if (hasSubZones && isZoneView) {
+      setViewMode(SpatialAggregate.COUNTRY);
+    }
+    if (isSubZone && !isZoneView) {
+      setViewMode(SpatialAggregate.ZONE);
+    }
+  }, []);
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data);
 
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
+
+  const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
+  const { estimationMethod } = selectedData || {};
+  const isEstimated = estimationMethod !== undefined;
+  const isAggregated = timeAverage !== TimeAverages.HOURLY;
+
   return (
     <>
-      <ZoneHeader
+      <ZoneHeaderTitle
         zoneId={zoneId}
-        data={data}
-        isAggregated={timeAverage !== TimeAverages.HOURLY}
+        isAggregated={isAggregated}
+        isEstimated={isEstimated}
       />
-      {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && <DisplayByEmissionToggle />}
-      <div className="h-[calc(100%-290px)] overflow-y-scroll p-4 pt-2 pb-40">
+      <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pt-2 pb-40 sm:h-[calc(100%-130px)]">
+        <ZoneHeaderGauges data={data} />
+        {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && <DisplayByEmissionToggle />}
         <ZoneDetailsContent
           isLoading={isLoading}
           isError={isError}

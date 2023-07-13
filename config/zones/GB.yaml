@@ -5,17 +5,17 @@ bounding_box:
   - - 2.1533203125
     - 61.0795442346
 capacity:
-  biomass: 4528
-  coal: 5241
-  gas: 39822
+  biomass: 4438
+  coal: 1491
+  gas: 37047
   geothermal: 0
-  hydro: 1919
-  hydro storage: 4309
-  nuclear: 5883
+  hydro: 2063
+  hydro storage: 5603
+  nuclear: 4950
   oil: 0
-  solar: 13378
-  unknown: 4708
-  wind: 25097
+  solar: 14518
+  unknown: 4775
+  wind: 26945
 contributors:
   - corradio
   - lorrieq
@@ -235,4 +235,4 @@ price_displayed: false
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
-timezone: null
+timezone: Europe/London

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { modeColor, TimeAverages } from 'utils/constants';
+import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 
 interface AreaGraphToolTipHeaderProps {
