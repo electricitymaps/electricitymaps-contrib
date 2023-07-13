@@ -4,7 +4,7 @@ bounding_box:
   - - -102.094762152
     - 41.7250704890001
 capacity:
-  battery storage: 102
+  battery storage: 227
   biomass: 30.8
   coal: 2946.6
   gas: 6426
@@ -13,7 +13,7 @@ capacity:
   hydro storage: 300
   nuclear: 0
   oil: 33.2
-  solar: 1341.9
+  solar: 1904.6
   unknown: 0
   wind: 4490.8
 comment: Public Service Company Of Colorado
