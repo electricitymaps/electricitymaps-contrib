@@ -25,7 +25,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 
 # Local library imports
-from parsers.lib import config, validation
+from parsers.lib import config
 
 DEFAULT_ZONE_KEY = ZoneKey("MY-WM")
 DOMAIN = "www.gso.org.my"
