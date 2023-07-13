@@ -34,7 +34,6 @@ TIMEZONE = "Asia/Kuala_Lumpur"
 CONSUMPTION_URL = f"https://{DOMAIN}/SystemData/SystemDemand.aspx/GetChartDataSource"
 EXCHANGE_URL = f"https://{DOMAIN}/SystemData/TieLine.aspx/GetChartDataSource"
 PRODUCTION_URL = f"https://{DOMAIN}/SystemData/CurrentGen.aspx/GetChartDataSource"
-SOLAR_URL = f"https://{DOMAIN}/SystemData/LargeScaleSolar.aspx/ForecastChart"
 
 PRODUCTION_BREAKDOWN = {
     "Coal": "coal",
@@ -68,7 +67,7 @@ def fetch_consumption(
     for item in consumption_data:
         all_consumption_data.append(
             zoneKey=zone_key,
-            datetime=arrow.get(item["DT"]).to(TIMEZONE).datetime,
+            datetime=arrow.get(item["DT"], tzinfo=TIMEZONE).to('utc').datetime,
             consumption=item["MW"],
             source=DOMAIN,
         )
@@ -86,7 +85,7 @@ def fetch_exchange(
     """Request the power exchange (in MW) between two zones."""
     date_string = arrow.get(target_datetime).to(TIMEZONE).format("DD/MM/YYYY")
 
-    sorted_zone_keys = "->".join(sorted((zone_key1, zone_key2)))
+    sorted_zone_keys = ZoneKey("->".join(sorted((zone_key1, zone_key2))))
     all_exchange_data = ExchangeList(logger)
     if sorted_zone_keys == "MY-WM->SG":
         # The Singapore exchange is a PLTG tie.
@@ -101,9 +100,9 @@ def fetch_exchange(
         )
         for item in exchange_data:
             all_exchange_data.append(
-                datetime=arrow.get(item["Tarikhmasa"], tzinfo=TIMEZONE).datetime,
+                datetime=arrow.get(item["Tarikhmasa"], tzinfo=TIMEZONE).to('utc').datetime,
                 netFlow=item["MW"],
-                zoneKey=ZoneKey(sorted_zone_keys),
+                zoneKey=sorted_zone_keys,
                 source=DOMAIN,
             )
 
@@ -129,7 +128,7 @@ def fetch_exchange(
         )
         for exchange in egat_exchanges + hvdc_exchanges:
             all_exchange_data.append(
-                datetime=arrow.get(exchange["Tarikhmasa"], tzinfo=TIMEZONE).datetime,
+                datetime=arrow.get(exchange["Tarikhmasa"], tzinfo=TIMEZONE).to('utc').datetime,
                 netFlow=exchange["MW"],
                 zoneKey=sorted_zone_keys,
                 source=DOMAIN,
@@ -160,7 +159,7 @@ def fetch_production(
     )
     for item in production_data:
         production_mix = ProductionMix()
-        item_datetime = arrow.get(item["DT"], tzinfo=TIMEZONE).datetime
+        item_datetime = arrow.get(item["DT"], tzinfo=TIMEZONE).to('utc').datetime
         for mode in [key for key in item if key != "DT"]:
             production_mix.add_value(PRODUCTION_BREAKDOWN[mode], item[mode], True)
         all_production_data.append(
@@ -170,53 +169,6 @@ def fetch_production(
             datetime=item_datetime,
         )
     return all_production_data.to_list()
-
-
-@config.refetch_frequency(timedelta(minutes=10))
-def fetch_wind_solar_forecasts(
-    zone_key: str = DEFAULT_ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    """Request the solar forecast (in MW) of a given zone."""
-    date = arrow.get(target_datetime).to(TIMEZONE).floor("day")
-    date_string = date.format("DD/MM/YYYY")
-    session = session or Session()
-    # Like the others, this endpoint presents data as a JSON object containing
-    # the lone key 'd' and a string as its value, but the string now represents
-    # a '$'-separated list of JSON strings rather than a proper JSON string.
-    parsed_api_data = [
-        json.loads(table)
-        for table in session.post(
-            SOLAR_URL,
-            json={
-                "Fromdate": date_string,
-                "Todate": date_string,
-            },
-        )
-        .json()["d"]
-        .split("$")
-    ]
-    result = []
-    for index, table in enumerate(parsed_api_data[1:4]):
-        forecast_date = date.shift(days=index)
-        for point in table:
-            hour, minute, second = (int(hms) for hms in point["x"].split(":"))
-            result.append(
-                {
-                    "datetime": forecast_date.replace(
-                        hour=hour, minute=minute, second=second
-                    ).datetime,
-                    "production": {
-                        "solar": point["y"],
-                        "wind": None,
-                    },
-                    "source": DOMAIN,
-                    "zoneKey": zone_key,
-                }
-            )
-    return result
 
 
 def get_api_data(session: Session, url, data):
@@ -246,7 +198,4 @@ if __name__ == "__main__":
     print(fetch_exchange("MY-WM", "TH"))
     print(f"fetch_exchange('MY-WM', 'TH', target_datetime='{DATE}'):")
     print(fetch_exchange("MY-WM", "TH", target_datetime=DATE))
-    print(f"fetch_wind_solar_forecasts('MY-WM', target_datetime='{DATE}'):")
-    print(fetch_wind_solar_forecasts("MY-WM", target_datetime=DATE))
-    print("fetch_wind_solar_forecasts('MY-WM'):")
-    print(fetch_wind_solar_forecasts("MY-WM"))
+
