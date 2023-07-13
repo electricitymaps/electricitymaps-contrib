@@ -134,6 +134,10 @@ def fetch_production(
 ) -> List[Dict[str, Any]]:
     objetoAPI = pydataxm.ReadDB()
 
+    df_recursos = None
+    df_generation = None
+    target_arrow_in_tz = arrow.now()
+
     if target_datetime is None:
         target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY_MIN)
         # Allow retries for most recent data
@@ -231,6 +235,9 @@ def fetch_price(
     session = session or Session()
 
     objetoAPI = pydataxm.ReadDB()
+
+    df_price = None
+    target_arrow_in_tz = arrow.now()
 
     if target_datetime is None:
         # Allow retries for most recent data
