@@ -67,7 +67,7 @@ def fetch_consumption(
     for item in consumption_data:
         all_consumption_data.append(
             zoneKey=zone_key,
-            datetime=arrow.get(item["DT"], tzinfo=TIMEZONE).to('utc').datetime,
+            datetime=arrow.get(item["DT"], tzinfo=TIMEZONE).to("utc").datetime,
             consumption=item["MW"],
             source=DOMAIN,
         )
@@ -100,7 +100,9 @@ def fetch_exchange(
         )
         for item in exchange_data:
             all_exchange_data.append(
-                datetime=arrow.get(item["Tarikhmasa"], tzinfo=TIMEZONE).to('utc').datetime,
+                datetime=arrow.get(item["Tarikhmasa"], tzinfo=TIMEZONE)
+                .to("utc")
+                .datetime,
                 netFlow=item["MW"],
                 zoneKey=sorted_zone_keys,
                 source=DOMAIN,
@@ -128,7 +130,9 @@ def fetch_exchange(
         )
         for exchange in egat_exchanges + hvdc_exchanges:
             all_exchange_data.append(
-                datetime=arrow.get(exchange["Tarikhmasa"], tzinfo=TIMEZONE).to('utc').datetime,
+                datetime=arrow.get(exchange["Tarikhmasa"], tzinfo=TIMEZONE)
+                .to("utc")
+                .datetime,
                 netFlow=exchange["MW"],
                 zoneKey=sorted_zone_keys,
                 source=DOMAIN,
@@ -159,7 +163,7 @@ def fetch_production(
     )
     for item in production_data:
         production_mix = ProductionMix()
-        item_datetime = arrow.get(item["DT"], tzinfo=TIMEZONE).to('utc').datetime
+        item_datetime = arrow.get(item["DT"], tzinfo=TIMEZONE).to("utc").datetime
         for mode in [key for key in item if key != "DT"]:
             production_mix.add_value(PRODUCTION_BREAKDOWN[mode], item[mode], True)
         all_production_data.append(
@@ -198,4 +202,3 @@ if __name__ == "__main__":
     print(fetch_exchange("MY-WM", "TH"))
     print(f"fetch_exchange('MY-WM', 'TH', target_datetime='{DATE}'):")
     print(fetch_exchange("MY-WM", "TH", target_datetime=DATE))
-
