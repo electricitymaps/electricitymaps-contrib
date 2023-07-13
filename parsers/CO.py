@@ -48,7 +48,6 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
-
     session = session or Session()
 
     if target_datetime is None:
@@ -60,7 +59,6 @@ def fetch_consumption(
 def fetch_live_consumption(
     zone_key: ZoneKey, session: Session, logger: Logger
 ) -> List[Dict[str, Any]]:
-
     response: Response = session.get(colombia_demand_URL, verify=False)
 
     if not response.ok:
@@ -105,7 +103,6 @@ def fetch_historical_consumption(
     if not df_consumption.empty:
         hour_columns = [col for col in df_consumption.columns if "Hour" in col]
         for hour_col in hour_columns:
-
             target_datetime_in_tz = target_arrow_in_tz.datetime.replace(
                 hour=int(hour_col[-2:]) - 1
             )
@@ -173,7 +170,12 @@ def fetch_production(
             "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
         )
 
-    if not df_generation.empty and not df_recursos.empty:
+    if (
+        df_generation is not None
+        and not df_generation.empty
+        and df_recursos is not None
+        and not df_recursos.empty
+    ):
         df_units = (
             df_recursos[["Values_Code", "Values_EnerSource"]]
             .copy()
@@ -231,7 +233,6 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
-
     session = session or Session()
 
     objetoAPI = pydataxm.ReadDB()
@@ -242,7 +243,6 @@ def fetch_price(
     if target_datetime is None:
         # Allow retries for most recent data
         for xm_delay in range(XM_DELAY_MIN, XM_DELAY_MAX + 1):
-
             target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-xm_delay)
 
             df_price = objetoAPI.request_data(
@@ -265,7 +265,7 @@ def fetch_price(
         )
 
     price_list = PriceList(logger)
-    if not df_price.empty:
+    if df_price is not None and not df_price.empty:
         hour_columns = [col for col in df_price.columns if "Hour" in col]
         for col in hour_columns:
             target_datetime_in_tz = target_arrow_in_tz.datetime.replace(
