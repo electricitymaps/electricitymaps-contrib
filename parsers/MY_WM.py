@@ -7,7 +7,6 @@
 # https://www.scribd.com/document/354635277/Doubling-Up-in-Malaysia-International-Water-Power
 
 # Standard library imports
-import collections
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
