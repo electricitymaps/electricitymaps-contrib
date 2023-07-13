@@ -129,7 +129,10 @@ const formatTimeRange = (lang: string, timeAggregate: TimeAverages) => {
       return getLocaleNumberFormat(lang, { unit: 'month', range: 12 });
     }
     case TimeAverages.YEARLY: {
-      return getLocaleNumberFormat(lang, { unit: 'year', range: 5 });
+      return getLocaleNumberFormat(lang, {
+        unit: 'year',
+        range: new Date().getUTCFullYear() - 2017,
+      });
     }
     default: {
       console.error(`${timeAggregate} is not implemented`);
