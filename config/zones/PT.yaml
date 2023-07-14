@@ -12,9 +12,9 @@ capacity:
   hydro storage: 3585
   nuclear: 0
   oil: 0
-  solar: 1986
-  wind: 5374
+  solar: 2141
   unknown: 28
+  wind: 5374
 contributors:
   - corradio
   - nessie2013
@@ -268,7 +268,6 @@ fallbackZoneMixes:
         solar: 0.05519285019577381
         unknown: 0.005716956593203194
         wind: 0.2646243882322409
-flag_file_name: pt.png
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

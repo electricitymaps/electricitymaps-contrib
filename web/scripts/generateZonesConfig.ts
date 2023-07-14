@@ -37,7 +37,6 @@ const mergeZones = (): ZonesConfig => {
     'comment',
     '_comment',
     'sources',
-    'flag_file_name',
     'bypassedSubZones',
   ]);
   const zones = filesWithDirectory.reduce((zones, filepath) => {

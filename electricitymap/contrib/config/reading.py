@@ -1,15 +1,17 @@
 from typing import Any, Dict
 
-import yaml
+from ruamel.yaml import YAML
 
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
 from electricitymap.contrib.lib.types import ZoneKey
+
+yaml = YAML(typ="safe")
 
 
 def read_defaults(config_dir) -> Dict[str, Any]:
     """Reads the defaults.yaml file."""
     defaults_path = config_dir.joinpath("defaults.yaml")
-    return yaml.safe_load(open(defaults_path, encoding="utf-8"))
+    return yaml.load(open(defaults_path, encoding="utf-8"))
 
 
 def read_zones_config(config_dir) -> Dict[ZoneKey, Any]:
@@ -17,7 +19,7 @@ def read_zones_config(config_dir) -> Dict[ZoneKey, Any]:
     zones_config: Dict[ZoneKey, Any] = {}
     for zone_path in config_dir.joinpath("zones").glob("*.yaml"):
         zone_key = ZoneKey(zone_path.stem)
-        zones_config[zone_key] = yaml.safe_load(open(zone_path, encoding="utf-8"))
+        zones_config[zone_key] = yaml.load(open(zone_path, encoding="utf-8"))
     return zones_config
 
 
@@ -29,7 +31,7 @@ def read_exchanges_config(config_dir) -> Dict[str, Any]:
         zone_keys = exchange_key_unicode.split(EXCHANGE_FILENAME_ZONE_SEPARATOR)
         assert len(zone_keys) == 2
         exchange_key = "->".join(zone_keys)
-        exchanges_config[exchange_key] = yaml.safe_load(
+        exchanges_config[exchange_key] = yaml.load(
             open(exchange_path, encoding="utf-8")
         )
     return exchanges_config
