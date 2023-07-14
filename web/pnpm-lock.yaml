@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@capacitor/app':
     specifier: ^4.1.1
@@ -117,8 +113,8 @@ dependencies:
     specifier: ^2.2.1
     version: 2.2.1
   jotai:
-    specifier: ^1.9.1
-    version: 1.9.1(@babel/core@7.22.8)(react@18.2.0)
+    specifier: ^2.2.2
+    version: 2.2.2(react@18.2.0)
   js-yaml:
     specifier: ^4.1.0
     version: 4.1.0
@@ -15640,38 +15636,15 @@ packages:
       '@sideway/pinpoint': 2.0.0
     dev: false
 
-  /jotai@1.9.1(@babel/core@7.22.8)(react@18.2.0):
-    resolution: {integrity: sha512-rDmmDL6owX4Kg5fAV0arjGVJmT1VYnkROwAx/PgpMkYCzvHEtABm8qnq/Ki5o5/GFGbvdfE11VNP1brDWP7+9w==}
-    engines: {node: '>=12.7.0'}
+  /jotai@2.2.2(react@18.2.0):
+    resolution: {integrity: sha512-Cn8hnBg1sc5ppFwEgVGTfMR5WSM0hbAasd/bdAwIwTaum0j3OUPqBSC4tyk3jtB95vicML+RRWgKFOn6gtfN0A==}
+    engines: {node: '>=12.20.0'}
     peerDependencies:
-      '@babel/core': '*'
-      '@babel/template': '*'
-      immer: '*'
-      jotai-tanstack-query: '*'
-      jotai-urql: '*'
-      optics-ts: '*'
-      react: '>=16.8'
-      valtio: '*'
-      xstate: '*'
+      react: '>=17.0.0'
     peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      '@babel/template':
-        optional: true
-      immer:
-        optional: true
-      jotai-tanstack-query:
-        optional: true
-      jotai-urql:
-        optional: true
-      optics-ts:
-        optional: true
-      valtio:
-        optional: true
-      xstate:
+      react:
         optional: true
     dependencies:
-      '@babel/core': 7.22.8
       react: 18.2.0
     dev: false
 
@@ -21380,3 +21353,7 @@ packages:
     dependencies:
       react: 18.2.0
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

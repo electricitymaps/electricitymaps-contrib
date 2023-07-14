@@ -31,6 +31,9 @@ export const displayByEmissionsAtom = atom(false);
 
 export const themeAtom = atomWithStorage('theme', ThemeOptions.SYSTEM);
 
-export const hasOnboardingBeenSeenAtom = atomWithStorage('onboardingSeen', false);
+export const hasOnboardingBeenSeenAtom = atomWithStorage(
+  'onboardingSeen',
+  localStorage.getItem('onboardingSeen') ?? false
+);
 
 export const colorblindModeAtom = atomWithStorage('colorblindModeEnabled', false);
