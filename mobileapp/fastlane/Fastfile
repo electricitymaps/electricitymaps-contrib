@@ -53,7 +53,15 @@ platform :android do
     # ensure_git_status_clean
     bump_version
     gradle(task: 'bundle',build_type: 'Release', project_dir: android_dir)
-    upload_to_play_store(track: 'internal')
+    upload_to_play_store(
+      track: 'internal',
+      aab: File.join(android_dir,"app/build/outputs/bundle/release/app-release.aab"),
+      skip_upload_apk: true,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
     #slack(message: 'Successfully distributed a new beta build')
     # reset_git_repo
   end
