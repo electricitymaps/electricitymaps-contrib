@@ -14,7 +14,8 @@
     "build-ios": "pnpm build-web && pnpm exec cap copy && pnpm exec cap sync && pnpm exec cap open ios",
     "build-android": "pnpm build-web && pnpm exec cap copy && pnpm exec cap sync && pnpm exec cap open android",
     "dev-ios": "NODE_ENV=dev pnpm exec cap run ios",
-    "dev-android": "NODE_ENV=dev pnpm exec cap run android"
+    "dev-android": "NODE_ENV=dev pnpm exec cap run android",
+    "fast": "sudo bundle exec fastlane"
   },
   "dependencies": {
     "@capacitor/android": "^4.6.2",

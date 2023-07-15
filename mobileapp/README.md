@@ -2,14 +2,9 @@
 
 This is a capacitor project that builds the mobile apps from the web directory
 
-## Prerequisites:
+## Prerequisites
 
-https://capacitorjs.com/docs/getting-started/environment-setup
-
-Xcode
-
-Android Studio
-
+- Follow this guide: https://capacitorjs.com/docs/getting-started/environment-setup (but skip the Android SDK part)
 - install JDK v8 <-- to avoid having to create an Oracle account(!), you can find a `jdk-8u321-macosx-x64.dmg` in our internal Google Drive.
 - `brew install gradle`
 - install Android Studio - make sure you open it and go through the install wizard in the start
@@ -24,8 +19,6 @@ Android Studio
   export ANDROID_SDK_ROOT=~/Library/Android/sdk
   export ANDROID_HOME=~/Library/Android/sdk
   ```
-
-Node 18+
 
 ## If you have the web app installed and running and want to do production builds the following commands will run everything you need
 
@@ -42,11 +35,11 @@ Navigate to the web directory then:
 
 `pnpm build`
 
-To enable hot reload you must runt he web app locally on port 5173:
+To enable hot reload you must runt the web app locally on port 5173:
 
 `pnpm dev`
 
-Navigate to the moibleapp directory then:
+Navigate to the mobileapp directory then:
 
 `pnpm install`
 
@@ -83,6 +76,34 @@ Android:
 iOS:
 
 `pnpm exec open ios`
+
+## Deployment
+
+We use [fastlane](https://fastlane.tools/) to build and deploy the apps automatically.
+See [fastlane/README.md](./fastlane/README.md) for more information.
+
+### Setup
+
+```bash
+bundle install
+```
+
+### Making a beta build
+
+```bash
+sudo pnpm run fast ios beta
+sudo pnpm run fast android beta
+```
+
+### Publishing to the app stores
+
+This script will take screenshots, build the app, and publish it to the app stores.
+Please verify that the screenshots are good (and does not show significant missing zones or anything) before publishing.
+
+```bash
+sudo pnpm run fast ios publish
+sudo pnpm run fast android publish
+```
 
 ---
 
