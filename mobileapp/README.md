@@ -91,7 +91,7 @@ bundle install
 ### Making a beta build
 
 ```bash
-sudo pnpm run fast ios beta
+APPLE_ID="YOUR_EMAIL" sudo pnpm run fast ios beta
 sudo pnpm run fast android beta
 ```
 
