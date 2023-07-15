@@ -12,6 +12,8 @@ import dateutil
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
+from parsers.lib.session import mount_legacy_adapter
+
 # There is a 2MW storage battery on the islands.
 # http://www.oref.co.uk/orkneys-energy/innovations-2/
 
@@ -32,6 +34,7 @@ def get_json_data(session):
     Returns a dictionary.
     """
     s = session or Session()
+    mount_legacy_adapter(s)
     req = s.get(GENERATION_LINK)
     raw_json_data = req.json()
 
@@ -57,6 +60,7 @@ def get_datetime(session):
     Returns an arrow object.
     """
     s = session or Session()
+    mount_legacy_adapter(s)
     req: Response = s.get(DATETIME_LINK)
     soup = BeautifulSoup(req.text, "html.parser")
 

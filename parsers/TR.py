@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-import ssl
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
 import pytz
-import urllib3
-from requests import Response, Session, adapters
+from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
+from parsers.lib.session import mount_legacy_adapter
 from parsers.lib.validation import validate
 
 TR_TZ = pytz.timezone("Europe/Istanbul")
@@ -37,21 +36,6 @@ PRODUCTION_MAPPING = {
     "coal": ["blackCoal", "asphaltiteCoal", "lignite", "importCoal"],
     "hydro": ["river", "dammedHydro"],
 }
-
-
-class LegacyHttpAdapter(adapters.HTTPAdapter):
-    def init_poolmanager(self, connections, maxsize, block=False):
-        ctx = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
-        ctx.options |= 0x4  # OP_LEGACY_SERVER_CONNECT
-        self.poolmanager = urllib3.poolmanager.PoolManager(
-            num_pools=connections, maxsize=maxsize, block=block, ssl_context=ctx
-        )
-
-
-# Use a LegacyHttpAdapter to avoid "unsafe legacy renegotiation disabled" error (issue #5484)
-# Original code source: https://stackoverflow.com/questions/71603314/ssl-error-unsafe-legacy-renegotiation-disabled
-def mount_legacy_adapter(session: Session):
-    session.mount("https://", LegacyHttpAdapter())
 
 
 def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
