@@ -90,9 +90,21 @@ bundle install
 
 ### Making a beta build
 
+**Android**
+
 ```bash
-APPLE_ID="YOUR_EMAIL" sudo pnpm run fast ios beta
-sudo pnpm run fast android beta
+pnpm run bump-version
+pnpm run build-android
+pnpm run fast android beta
+
+```
+
+**iOS**
+
+```bash
+pnpm run bump-version
+pnpm run build-ios
+APPLE_ID="YOUR_EMAIL" pnpm run fast ios beta
 ```
 
 ### Publishing to the app stores
@@ -101,8 +113,8 @@ This script will take screenshots, build the app, and publish it to the app stor
 Please verify that the screenshots are good (and does not show significant missing zones or anything) before publishing.
 
 ```bash
-sudo pnpm run fast ios publish
-sudo pnpm run fast android publish
+pnpm run fast ios publish
+pnpm run fast android publish
 ```
 
 ---

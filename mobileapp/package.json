@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-mobile",
-  "version": "1.45.0",
+  "version": "1.52.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "main": "index.js",
@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "bump-version": "npm pkg set version=`cd ../web && npm pkg get version | tr -d '\"'`",
     "build-web": "pnpm -C ../web build",
     "build-ios": "pnpm build-web && pnpm exec cap copy && pnpm exec cap sync && pnpm exec cap open ios",
     "build-android": "pnpm build-web && pnpm exec cap copy && pnpm exec cap sync && pnpm exec cap open android",
