@@ -9,7 +9,7 @@ from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
-from parsers.lib.session import mount_legacy_adapter
+from parsers.lib.session import get_session_with_legacy_adapter
 from parsers.lib.validation import validate
 
 TR_TZ = pytz.timezone("Europe/Istanbul")
@@ -44,8 +44,7 @@ def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
         "startDate": (target_datetime).strftime("%Y-%m-%d"),
         "endDate": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
     }
-    mount_legacy_adapter(session)
-    r: Response = session.get(url=url, params=params)
+    r: Response = get_session_with_legacy_adapter().get(url=url, params=params)
     if r.status_code == 200:
         return r.json()["body"][KINDS_MAPPING[kind]["json_key"]]
     else:

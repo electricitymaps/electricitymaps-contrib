@@ -12,7 +12,7 @@ import dateutil
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
-from parsers.lib.session import mount_legacy_adapter
+from parsers.lib.session import get_session_with_legacy_adapter
 
 # There is a 2MW storage battery on the islands.
 # http://www.oref.co.uk/orkneys-energy/innovations-2/
@@ -33,9 +33,7 @@ def get_json_data(session):
     Requests json data and extracts generation information.
     Returns a dictionary.
     """
-    s = session or Session()
-    mount_legacy_adapter(s)
-    req = s.get(GENERATION_LINK)
+    req = get_session_with_legacy_adapter().get(GENERATION_LINK)
     raw_json_data = req.json()
 
     generation_data = raw_json_data["data"]["datasets"]
@@ -59,9 +57,7 @@ def get_datetime(session):
     Extracts data timestamp from html and checks it's less than 2 hours old.
     Returns an arrow object.
     """
-    s = session or Session()
-    mount_legacy_adapter(s)
-    req: Response = s.get(DATETIME_LINK)
+    req: Response = get_session_with_legacy_adapter().get(DATETIME_LINK)
     soup = BeautifulSoup(req.text, "html.parser")
 
     data_table = soup.find("div", {"class": "Widget-Base Widget-ANMGraph"})
