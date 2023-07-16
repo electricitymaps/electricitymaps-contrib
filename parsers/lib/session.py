@@ -15,5 +15,8 @@ class LegacyHttpAdapter(adapters.HTTPAdapter):
 
 # Use a LegacyHttpAdapter to avoid "unsafe legacy renegotiation disabled" error
 # Original code source: https://stackoverflow.com/questions/71603314/ssl-error-unsafe-legacy-renegotiation-disabled
-def mount_legacy_adapter(session: Session):
-    session.mount("https://", LegacyHttpAdapter())
+def get_session_with_legacy_adapter():
+	    session = Session();
+	    session.mount("https://", LegacyHttpAdapter())
+	    session.mount("http://", LegacyHttpAdapter())
+	    return session
