@@ -8,3 +8,10 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/fastlane-key.json
 fastlane/metadata/*
+
+# ios build files
+Electricity Maps.ipa
+*.cer
+*.certSigningRequest
+*.p12
+*.mobileprovision

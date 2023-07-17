@@ -24,14 +24,25 @@ platform :ios do
   end
 
 
+  # 1. Go to https://appleid.apple.com/account/manage and App-Specific Passwords
+  # 2. Create a new password for fastlane
+  # 3. Run with the following environment variables:
+  # APPLE_ID="" FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="" pnpm run fast ios beta
   desc "Submit a new Beta build"
   lane :beta do
-    # ensure_git_status_clean
-    # bump_version
-    # build
-    # upload_to_testflight
-    # reset_git_repo
-    # revert bump?
+    ensure_git_status_clean
+    bump_version
+    get_certificates           # invokes cert
+    get_provisioning_profile   # invokes sigh
+    build_app(
+        workspace: File.join(ios_dir,'App/App.xcworkspace'),
+      )
+    upload_to_testflight()
+    reset_git_repo(
+      files: [
+        File.join(ios_dir,'App/App.xcodeproj/project.pbxproj'),
+      ]
+    )
   end
 
 end
