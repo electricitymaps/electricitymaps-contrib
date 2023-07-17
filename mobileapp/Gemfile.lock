@@ -108,6 +108,7 @@ GEM
     fastlane-plugin-increment_version_code (0.4.3)
     fastlane-plugin-increment_version_name (0.0.10)
     fastlane-plugin-load_json (0.0.1)
+    fastlane-plugin-versioning (0.5.2)
     gh_inspector (1.1.3)
     google-apis-androidpublisher_v3 (0.45.0)
       google-apis-core (>= 0.11.0, < 2.a)
@@ -219,6 +220,7 @@ DEPENDENCIES
   fastlane-plugin-increment_version_code
   fastlane-plugin-increment_version_name
   fastlane-plugin-load_json
+  fastlane-plugin-versioning
 
 BUNDLED WITH
    2.3.7
