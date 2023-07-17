@@ -6,20 +6,34 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-package = load_json(json_path: "./package.json")
-package_version = package["version"]
+
+private_lane :increment_package_version do
+  package = read_json(json_path: "./package.json")
+  root_package = read_json(json_path: "../web/package.json")
+
+  UI.message("Updating from version #{package[:version]} to #{root_package[:version]}")
+  package[:version] = root_package[:version]
+
+  write_json(
+    hash: package,
+    file_path: "./package.json"
+  )
+
+  package[:version]
+end
 
 platform :ios do
   ios_dir = File.expand_path('../ios')
 
   lane :bump_version do
+    version = increment_package_version
     increment_version_number_in_xcodeproj(
       xcodeproj: File.join(ios_dir,'App/App.xcodeproj'),
-      version_number: package['version']
+      version_number: version
     )
     increment_build_number_in_xcodeproj(
       xcodeproj: File.join(ios_dir,'App/App.xcodeproj'),
-      build_number: package['version']
+      build_number: version
     )
   end
 
@@ -30,7 +44,7 @@ platform :ios do
   # APPLE_ID="" FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="" pnpm run fast ios beta
   desc "Submit a new Beta build"
   lane :beta do
-    ensure_git_status_clean
+    increment_package_version
     bump_version
     get_certificates           # invokes cert
     get_provisioning_profile   # invokes sigh
@@ -51,15 +65,17 @@ platform :android do
   android_dir = File.expand_path('../android')
 
   lane :bump_version do
+    version = increment_package_version
     increment_version_code(
       gradle_file_path: File.join(android_dir,"app/build.gradle"),
     )
     increment_version_name(
       gradle_file_path: File.join(android_dir,"app/build.gradle"),
-      version_name: package['version']
+      version_name: version
     )
   end
 
+  # See README for guide on how to set this up
   desc "Submit a new Beta build"
   lane :beta do
     # ensure_git_status_clean

@@ -2,7 +2,7 @@
 #
 # Ensure this file is checked in to source control!
 
-gem 'fastlane-plugin-load_json'
 gem 'fastlane-plugin-increment_version_code'
 gem 'fastlane-plugin-increment_version_name'
 gem 'fastlane-plugin-versioning'
+gem 'fastlane-plugin-json'
