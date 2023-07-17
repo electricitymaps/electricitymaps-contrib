@@ -38,13 +38,13 @@ platform :ios do
   end
 
 
-  # 1. Go to https://appleid.apple.com/account/manage and App-Specific Passwords
-  # 2. Create a new password for fastlane
-  # 3. Run with the following environment variables:
-  # APPLE_ID="" FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="" pnpm run fast ios beta
+  # See README for guide on how to set this up
   desc "Submit a new Beta build"
   lane :beta do
-    increment_package_version
+    ensure_git_status_clean(
+      show_uncommitted_changes: true,
+      ignore_files: ['mobileapp/fastlane/Fastfile']
+    )
     bump_version
     get_certificates           # invokes cert
     get_provisioning_profile   # invokes sigh
@@ -55,8 +55,11 @@ platform :ios do
     reset_git_repo(
       files: [
         File.join(ios_dir,'App/App.xcodeproj/project.pbxproj'),
+        './package.json'
       ]
     )
+    #slack(message: 'A new build is ready to be tested! Please open TestFlight and update the app.')
+
   end
 
 end
@@ -78,7 +81,10 @@ platform :android do
   # See README for guide on how to set this up
   desc "Submit a new Beta build"
   lane :beta do
-    # ensure_git_status_clean
+    ensure_git_status_clean(
+      show_uncommitted_changes: true,
+      ignore_files: ['mobileapp/fastlane/Fastfile']
+    )
     bump_version
     gradle(task: 'bundle',build_type: 'Release', project_dir: android_dir)
     upload_to_play_store(
@@ -90,7 +96,12 @@ platform :android do
       skip_upload_images: true,
       skip_upload_screenshots: true
     )
-    #slack(message: 'Successfully distributed a new beta build')
-    # reset_git_repo
+    reset_git_repo(
+      files: [
+        File.join(android_dir,'app/build.gradle'),
+        './package.json'
+      ]
+    )
+    #slack(message: 'A new build is ready to be tested! Please open Play Store and update the app.')
   end
 end
