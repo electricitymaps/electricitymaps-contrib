@@ -12,6 +12,8 @@ import dateutil
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
+from parsers.lib.session import get_session_with_legacy_adapter
+
 # There is a 2MW storage battery on the islands.
 # http://www.oref.co.uk/orkneys-energy/innovations-2/
 
@@ -26,13 +28,12 @@ GENERATION_MAPPING = {
 }
 
 
-def get_json_data(session):
+def get_json_data():
     """
     Requests json data and extracts generation information.
     Returns a dictionary.
     """
-    s = session or Session()
-    req = s.get(GENERATION_LINK)
+    req = get_session_with_legacy_adapter().get(GENERATION_LINK)
     raw_json_data = req.json()
 
     generation_data = raw_json_data["data"]["datasets"]
@@ -51,13 +52,12 @@ def get_json_data(session):
     return production
 
 
-def get_datetime(session):
+def get_datetime():
     """
     Extracts data timestamp from html and checks it's less than 2 hours old.
     Returns an arrow object.
     """
-    s = session or Session()
-    req: Response = s.get(DATETIME_LINK)
+    req: Response = get_session_with_legacy_adapter().get(DATETIME_LINK)
     soup = BeautifulSoup(req.text, "html.parser")
 
     data_table = soup.find("div", {"class": "Widget-Base Widget-ANMGraph"})
@@ -90,7 +90,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    raw_data = get_json_data(session)
+    raw_data = get_json_data()
     raw_data.pop("Live Demand")
 
     mapped_data = {}
@@ -98,7 +98,7 @@ def fetch_production(
         "Non-ANM Renewable Generation", 0.0
     )
 
-    dt = get_datetime(session)
+    dt = get_datetime()
 
     data = {
         "zoneKey": zone_key,
@@ -122,8 +122,8 @@ def fetch_exchange(
 ) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-    raw_data = get_json_data(session)
-    dt = get_datetime(session)
+    raw_data = get_json_data()
+    dt = get_datetime()
 
     # +ve importing from mainland
     # -ve export to mainland
