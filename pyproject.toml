@@ -38,6 +38,7 @@ PyYAML = "^6.0"
 openpyxl = {version="^3.1.2", optional=true}
 pydataxm = {version="^0.3.2", optional=true}
 odfpy = {version="^1.4.1", optional=true}
+ruamel-yaml = "^0.17.24"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
