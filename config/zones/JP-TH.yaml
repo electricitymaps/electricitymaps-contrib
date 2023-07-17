@@ -19,7 +19,7 @@ contributors:
   - tmslaine
   - lorrieq
   - PPsyrius
-disclaimer: The data provider (Tohoku Electric Power Co. Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
+  - mathilde.daugy
 emissionFactors:
   lifecycle:
     unknown:
