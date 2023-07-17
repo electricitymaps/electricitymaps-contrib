@@ -13,12 +13,13 @@ platform :ios do
   ios_dir = File.expand_path('../ios')
 
   lane :bump_version do
-    increment_build_number(
-      xcodeproj: File.join(android_dir,'App/App.xcodeproj')
-    )
-    increment_version_number(
-      xcodeproj: File.join(android_dir,'App/App.xcodeproj'),
+    increment_version_number_in_xcodeproj(
+      xcodeproj: File.join(ios_dir,'App/App.xcodeproj'),
       version_number: package['version']
+    )
+    increment_build_number_in_xcodeproj(
+      xcodeproj: File.join(ios_dir,'App/App.xcodeproj'),
+      build_number: package['version']
     )
   end
 
