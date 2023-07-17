@@ -101,10 +101,12 @@ pnpm run fast android beta
 
 **iOS**
 
+_Note, you need to go to https://appleid.apple.com/account/manage and create an App-Specific Password to be used for the FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD environment variable._
+
 ```bash
 pnpm run bump-version
 pnpm run build-ios
-APPLE_ID="YOUR_EMAIL" pnpm run fast ios beta
+FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="" APPLE_ID="YOUR_EMAIL" pnpm run fast ios beta
 ```
 
 ### Publishing to the app stores
