@@ -38,7 +38,7 @@ PRODUCTION_MAPPING = {
 }
 
 
-def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
+def fetch_data(target_datetime: datetime, kind: str) -> dict:
     url = "/".join((EPIAS_MAIN_URL, KINDS_MAPPING[kind]["url"]))
     params = {
         "startDate": (target_datetime).strftime("%Y-%m-%d"),
@@ -79,17 +79,13 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    local_session = session or Session()
-
     # For real-time data, the last data point seems to but continously updated thoughout the hour and will be excluded as not final
     exclude_last_data_point = False
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ)
         exclude_last_data_point = True
 
-    data = fetch_data(
-        session=local_session, target_datetime=target_datetime, kind="production"
-    )
+    data = fetch_data(target_datetime=target_datetime, kind="production")
 
     all_data_points = []
     for item in data:
@@ -122,14 +118,10 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    local_session = session or Session()
-
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ) - timedelta(hours=2)
 
-    data = fetch_data(
-        session=local_session, target_datetime=target_datetime, kind="consumption"
-    )
+    data = fetch_data(target_datetime=target_datetime, kind="consumption")
 
     all_data_points = []
     for item in data:
@@ -151,14 +143,10 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    local_session = session or Session()
-
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ)
 
-    data = fetch_data(
-        session=local_session, target_datetime=target_datetime, kind="price"
-    )
+    data = fetch_data(target_datetime=target_datetime, kind="price")
     all_data_points = []
     for item in data:
         data_point = {

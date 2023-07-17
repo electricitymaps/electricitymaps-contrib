@@ -28,7 +28,7 @@ GENERATION_MAPPING = {
 }
 
 
-def get_json_data(session):
+def get_json_data():
     """
     Requests json data and extracts generation information.
     Returns a dictionary.
@@ -52,7 +52,7 @@ def get_json_data(session):
     return production
 
 
-def get_datetime(session):
+def get_datetime():
     """
     Extracts data timestamp from html and checks it's less than 2 hours old.
     Returns an arrow object.
@@ -90,7 +90,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    raw_data = get_json_data(session)
+    raw_data = get_json_data()
     raw_data.pop("Live Demand")
 
     mapped_data = {}
@@ -98,7 +98,7 @@ def fetch_production(
         "Non-ANM Renewable Generation", 0.0
     )
 
-    dt = get_datetime(session)
+    dt = get_datetime()
 
     data = {
         "zoneKey": zone_key,
@@ -122,8 +122,8 @@ def fetch_exchange(
 ) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-    raw_data = get_json_data(session)
-    dt = get_datetime(session)
+    raw_data = get_json_data()
+    dt = get_datetime()
 
     # +ve importing from mainland
     # -ve export to mainland
