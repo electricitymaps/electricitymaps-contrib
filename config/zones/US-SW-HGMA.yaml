@@ -1,8 +1,8 @@
 bounding_box:
-  - - -114.158504486
-    - 32.855298996
-  - - -112.449426651
-    - 34.847730637
+- - -114.158504486
+  - 32.855298996
+- - -112.449426651
+  - 34.847730637
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,26 +18,28 @@ capacity:
   wind: 0
 comment: New Harquahala Generating Company, Llc - Hgba
 contributors:
-  - systemcatch
-  - robertahunt
-  - KabelWlan
+- systemcatch
+- robertahunt
+- KabelWlan
 delays:
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 370.0
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 370.0
     hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 370.0
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 370.0
   lifecycle:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 490.0
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 490.0
     coal:
       datetime: '2014-01-01'
       source: IPCC 2014
@@ -47,30 +49,30 @@ emissionFactors:
       source: IPCC 2014
       value: 490.0
     hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 490.0
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 490.0
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
       value: 650.0
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2021 average
-      datetime: '2021-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 1.0
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.0
-        wind: 0.0
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 1.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.0
+      wind: 0.0
 parsers:
   production: EIA.fetch_production_mix
 sources:
