@@ -68,6 +68,8 @@ platform :ios do
       skip_screenshots: true,
       skip_binary_upload: true
     )
+    # Fixes missing empty line at the end of the file after incrementing version
+    sh("pnpx", "prettier", "--write", "../package.json")
     git_commit(path: ["./package.json", File.join(ios_dir, "App/App.xcodeproj/project.pbxproj")], message: "Bumps mobile version")
     # Note: This step requires admin privileges
     push_to_git_remote(
