@@ -1,3 +1,4 @@
+.env.default
 *.keystore
 keystore.properties
 
