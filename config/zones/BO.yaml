@@ -165,4 +165,5 @@ fallbackZoneMixes:
 parsers:
   generationForecast: BO.fetch_generation_forecast
   production: BO.fetch_production
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 timezone: America/La_Paz
