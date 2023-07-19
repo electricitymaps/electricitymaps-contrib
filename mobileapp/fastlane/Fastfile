@@ -56,7 +56,30 @@ platform :ios do
         "./package.json"
       ]
     )
-    # slack(message: 'A new build is ready to be tested! Please open TestFlight and update the app.')
+    slack(message: 'A new mobile app version is ready to be tested! Please update the app on your device, test it and respond on this thread with your results :pray:')
+  end
+
+  desc "Promote latest beta build to production"
+  lane :release do
+    package = read_json(json_path: "./package.json")
+    upload_to_app_store(
+      metadata_path: "./fastlane/metadata/ios",
+      build_number: package[:version],
+      skip_screenshots: true,
+      skip_binary_upload: true
+    )
+    git_commit(path: ["./package.json", File.join(ios_dir, "App/App.xcodeproj/project.pbxproj")], message: "Bumps mobile version")
+    # Note: This step requires admin privileges
+    push_to_git_remote
+
+    UI.success("-------------------------")
+    UI.success("--- Step: manual part ---")
+    UI.success("-------------------------")
+    UI.important("YOU ARE ALMOST THERE! Please follow the steps below to submit the new version for review:")
+    UI.message("1. Open https://appstoreconnect.apple.com, My Apps and then find our app.")
+    UI.message("2. Click on the blue plus icon in the sidebar and add version #{package[:version]}.")
+    UI.message("3. Fill in 'what's new in this version' (look at commits on master).")
+    UI.success("4. Click 'Save' and then 'Submit for Review'.")
   end
 end
 
