@@ -31,6 +31,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Submit a new Beta build
 
+### ios release
+
+```sh
+[bundle exec] fastlane ios release
+```
+
+Promote latest beta build to production
+
 ----
 
 
