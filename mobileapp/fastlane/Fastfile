@@ -63,7 +63,7 @@ platform :ios do
   lane :release do
     package = read_json(json_path: "./package.json")
     upload_to_app_store(
-      metadata_path: "./fastlane/metadata/ios",
+      skip_metadata: true,
       build_number: package[:version],
       skip_screenshots: true,
       skip_binary_upload: true
