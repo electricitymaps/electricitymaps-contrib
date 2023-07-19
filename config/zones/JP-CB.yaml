@@ -19,7 +19,7 @@ contributors:
   - lorrieq
   - pierresegonne
   - wobniarin
-disclaimer: The data provider (Chubu Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
+disclaimer: The data provided for solar power production is suspected to be too high (source; Chubu Electric Power Co.,Inc.). See https://github.com/electricitymaps/electricitymaps-contrib/issues/5616.
 emissionFactors:
   lifecycle:
     unknown:
