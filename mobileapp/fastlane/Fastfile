@@ -70,7 +70,9 @@ platform :ios do
     )
     git_commit(path: ["./package.json", File.join(ios_dir, "App/App.xcodeproj/project.pbxproj")], message: "Bumps mobile version")
     # Note: This step requires admin privileges
-    push_to_git_remote
+    push_to_git_remote(
+      tags: false
+    )
 
     UI.success("-------------------------")
     UI.success("--- Step: manual part ---")
