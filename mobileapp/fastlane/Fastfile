@@ -18,6 +18,9 @@ private_lane :increment_package_version do
     file_path: "./package.json"
   )
 
+  # Fixes missing empty line at the end of the file after incrementing version
+  sh("pnpx", "prettier", "--write", "../package.json")
+
   package[:version]
 end
 
@@ -56,7 +59,7 @@ platform :ios do
         "./package.json"
       ]
     )
-    slack(message: 'A new mobile app version is ready to be tested! Please update the app on your device, test it and respond on this thread with your results :pray:')
+    slack(message: 'A new iOS app version is ready to be tested! Please update the app on your device, test it and respond on this thread with your results :pray:')
   end
 
   desc "Promote latest beta build to production"
@@ -68,8 +71,6 @@ platform :ios do
       skip_screenshots: true,
       skip_binary_upload: true
     )
-    # Fixes missing empty line at the end of the file after incrementing version
-    sh("pnpx", "prettier", "--write", "../package.json")
     git_commit(path: ["./package.json", File.join(ios_dir, "App/App.xcodeproj/project.pbxproj")], message: "Bumps mobile version")
     # Note: This step requires admin privileges
     push_to_git_remote(
