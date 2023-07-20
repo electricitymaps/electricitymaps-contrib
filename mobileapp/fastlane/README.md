@@ -60,6 +60,14 @@ Promote latest beta build to production
 
 Submit a new Beta build
 
+### android release
+
+```sh
+[bundle exec] fastlane android release
+```
+
+Promote latest beta build to production
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
