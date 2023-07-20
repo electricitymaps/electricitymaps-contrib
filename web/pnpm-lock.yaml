@@ -7658,7 +7658,7 @@ packages:
       '@storybook/core-events': 7.0.0-alpha.54
       '@storybook/csf': 0.1.1-next.0
       '@storybook/csf-tools': 7.0.0-alpha.54
-      '@storybook/docs-mdx': 0.0.1-next.7
+      '@storybook/docs-mdx': 0.1.1-next.0
       '@storybook/node-logger': 7.0.0-alpha.54
       '@storybook/preview-api': 7.0.0-alpha.54
       '@storybook/telemetry': 7.0.0-alpha.54(react-dom@18.2.0)(react@18.2.0)(typescript@4.8.4)
@@ -7756,8 +7756,8 @@ packages:
       type-fest: 2.19.0
     dev: true
 
-  /@storybook/docs-mdx@0.0.1-next.7:
-    resolution: {integrity: sha512-JbgBf/EMBtx65iXtB3pOiX3818UeL9jZ+KAY241OAPqJVXjMQ5KaVOdg/57MSmd508HDIGx7CiImOMEmWwQ9/g==}
+  /@storybook/docs-mdx@0.1.1-next.0:
+    resolution: {integrity: sha512-t5gehdVj1GxicE2W3mslaqaLGKg6u1wZRySVrWNM4Ue7PmuI0LvJDLcOcaIzizc4Duh+JljMvShK8NTaxhE1PA==}
     dev: true
 
   /@storybook/docs-tools@7.0.0-alpha.47(react-dom@18.2.0)(react@18.2.0)(typescript@4.8.4):
@@ -17259,7 +17259,7 @@ packages:
       levn: 0.3.0
       prelude-ls: 1.1.2
       type-check: 0.3.2
-      word-wrap: 1.2.3
+      word-wrap: 1.2.4
     dev: true
 
   /optionator@0.9.3:
@@ -20963,8 +20963,8 @@ packages:
       string-width: 5.1.2
     dev: true
 
-  /word-wrap@1.2.3:
-    resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
+  /word-wrap@1.2.4:
+    resolution: {integrity: sha512-2V81OA4ugVo5pRo46hAoD2ivUJx8jXmWXfUkY4KFNw0hEptvN0QfH3K4nHiwzGeKl5rFKedV48QVoqYavy4YpA==}
     engines: {node: '>=0.10.0'}
     dev: true
 
