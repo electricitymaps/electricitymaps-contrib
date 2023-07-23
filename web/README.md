@@ -29,6 +29,7 @@ Prerequisites:
 - `pnpm format` - format all files with Prettier.
 - `pnpm lint` - runs TypeScript and ESLint.
 - `pnpm validate` - runs `lint`, `test:ci` and `test:e2e:ci`.
+- `pnpm storybook`
 
 ### TODO: Scripts currently disabled until we're ready
 
@@ -95,8 +96,24 @@ In general all global atoms should be accessed through useAtom and not through p
 If the components are very closely related it may make sense to pass down derived values instead.
 
 - ButtonGroup.tsx
-- Button1.tsx
-- Button2.tsx
-- Button3.tsx
+  - Button1.tsx
+  - Button2.tsx
+  - Button3.tsx
 
 Here the buttonGroup may retrieve a state 'globalSelectedValue' from the global state. Instead of passing down 'globalSelectedValue' to the buttons, the buttonGroup can pass down a 'isSelected' boolean prop which depends on 'globalSelectedValue' and the value of the individual buttons.
+
+### TypeScript target standards
+
+Target standards are set to [ESNext](https://developer.mozilla.org/en-US/docs/Web/JavaScript/JavaScript_technologies_overview).
+
+### Writing Tests
+
+We currently support two types of tests. Unit tests and integration tests.
+
+Integration tests are based in cypress, and will built out a application then test a series of in browser operations. Existing tests include interactions with map controls, settings controls, and interactions with the tooltip.
+
+Unit tests are limited to non-component utilitiy files. Functions within should be purely functional, and absolutely not mutate any input objects or references.
+
+### Component Stories
+
+New components components should all be created with accompanying Stories. In addition examples of variations and options should be visible within the Story Documentation.
