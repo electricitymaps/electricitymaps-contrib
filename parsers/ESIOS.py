@@ -20,8 +20,8 @@ TIMEZONE = pytz.timezone("Europe/Madrid")
 
 
 def fetch_exchange(
-    zone_key1: str = "ES",
-    zone_key2: str = "MA",
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -45,8 +45,19 @@ def fetch_exchange(
     end_date = target_datetime.isoformat()
     dates = {"start_date": start_date, "end_date": end_date}
     query = urlencode(dates)
-    url = "https://api.esios.ree.es/indicators/10209?{0}".format(query)
 
+    zone_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    if zone_key == ZoneKey("AD->ES"):
+        url = "https://api.esios.ree.es/indicators/10278?{0}".format(query)
+    elif zone_key == ZoneKey("ES->MA"):
+        url = "https://api.esios.ree.es/indicators/10209?{0}".format(query)
+    else:
+        raise ParserException(
+            "ESIOS.py",
+            f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
+            zone_key1, zone_key2,
+        )
+    
     response: Response = ses.get(url, headers=headers)
     if response.status_code != 200 or not response.text:
         raise ParserException(
@@ -58,12 +69,15 @@ def fetch_exchange(
     if not values:
         raise ParserException("ESIOS", "No values received")
     exchanges = ExchangeList(logger)
-    zone_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     for value in values:
         # Get last value in datasource
         # Datasource negative value is exporting, positive value is importing
-        net_flow = -value["value"]
+        # If Spain is the second country, the value must be opposite
+        if zone_key.startswith("ES"):
+            net_flow = -value["value"]
+        else:
+            net_flow = value["value"]
 
         exchanges.append(
             zoneKey=zone_key,
@@ -77,4 +91,7 @@ def fetch_exchange(
 
 if __name__ == "__main__":
     session = Session()
-    print(fetch_exchange("ES", "MA", session))
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("MA"), session))
+    print("fetch_exchange(ES, MA)")
+    print(fetch_exchange(ZoneKey("AD"), ZoneKey("ES"), session))
+    print("fetch_exchange(AD, ES)")
