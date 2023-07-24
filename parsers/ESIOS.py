@@ -55,9 +55,10 @@ def fetch_exchange(
         raise ParserException(
             "ESIOS.py",
             f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
-            zone_key1, zone_key2,
+            zone_key1,
+            zone_key2,
         )
-    
+
     response: Response = ses.get(url, headers=headers)
     if response.status_code != 200 or not response.text:
         raise ParserException(
