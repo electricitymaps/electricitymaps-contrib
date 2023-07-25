@@ -24,12 +24,14 @@ EXCHANGE_ID_MAP = {
     "ES->MA": "10209",
 }
 
+
 def format_url(target_datetime: datetime, ID: str):
     start_date = (target_datetime - timedelta(hours=24)).isoformat()
     end_date = target_datetime.isoformat()
     dates = {"start_date": start_date, "end_date": end_date}
     query = urlencode(dates)
     return f"https://api.esios.ree.es/indicators/{ID}?{query}"
+
 
 def fetch_exchange(
     zone_key1: ZoneKey,
@@ -56,7 +58,7 @@ def fetch_exchange(
     if zone_key not in EXCHANGE_ID_MAP.keys():
         raise ParserException(
             "ESIOS.py",
-            f"This parser cannot parse data between {zone_key1} and {zone_key2}."
+            f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
         )
     url = format_url(target_datetime, EXCHANGE_ID_MAP[zone_key])
 
