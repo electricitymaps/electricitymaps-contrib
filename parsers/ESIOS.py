@@ -18,6 +18,18 @@ from .lib.utils import get_token
 
 TIMEZONE = pytz.timezone("Europe/Madrid")
 
+# Map each exchange to the ID used in the API. 10278 is used for Andorra->Spain until 10210 returns data correctly
+EXCHANGE_ID_MAP = {
+    "AD->ES": "10278",
+    "ES->MA": "10209",
+}
+
+def format_url(target_datetime: datetime, ID: str):
+    start_date = (target_datetime - timedelta(hours=24)).isoformat()
+    end_date = target_datetime.isoformat()
+    dates = {"start_date": start_date, "end_date": end_date}
+    query = urlencode(dates)
+    return f"https://api.esios.ree.es/indicators/{ID}?{query}"
 
 def fetch_exchange(
     zone_key1: ZoneKey,
@@ -40,24 +52,13 @@ def fetch_exchange(
         "x-api-key": token,
     }
 
-    # Request query url
-    start_date = (target_datetime - timedelta(hours=24)).isoformat()
-    end_date = target_datetime.isoformat()
-    dates = {"start_date": start_date, "end_date": end_date}
-    query = urlencode(dates)
-
     zone_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    if zone_key == ZoneKey("AD->ES"):
-        url = "https://api.esios.ree.es/indicators/10278?{0}".format(query)
-    elif zone_key == ZoneKey("ES->MA"):
-        url = "https://api.esios.ree.es/indicators/10209?{0}".format(query)
-    else:
+    if zone_key not in EXCHANGE_ID_MAP.keys():
         raise ParserException(
             "ESIOS.py",
-            f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
-            zone_key1,
-            zone_key2,
+            f"This parser cannot parse data between {zone_key1} and {zone_key2}."
         )
+    url = format_url(target_datetime, EXCHANGE_ID_MAP[zone_key])
 
     response: Response = ses.get(url, headers=headers)
     if response.status_code != 200 or not response.text:
