@@ -94,7 +94,7 @@ REGIONS = {
     "US-FLA-GVL": "GVL",  # Gainesville Regional Utilities
     "US-FLA-HST": "HST",  # City Of Homestead
     "US-FLA-JEA": "JEA",  # Jea
-    #    "US-FLA-NSB": "NSB",  # Utilities Commission Of New Smyrna Beach, Decomissioned data is directly integrated in another balancing authority
+    "US-FLA-NSB": "NSB",  # Utilities Commission Of New Smyrna Beach, Decomissioned data is directly integrated in another balancing authority
     # Some solar plants within this zone are operated by Florida Power & Light, therefore on the map the zones got merged.
     "US-FLA-SEC": "SEC",  # Seminole Electric Cooperative
     "US-FLA-TAL": "TAL",  # City Of Tallahassee
@@ -127,7 +127,7 @@ REGIONS = {
     "US-NW-WAUW": "WAUW",  # Western Area Power Administration Ugp West
     "US-NW-WWA": "WWA",  # Naturener Wind Watch, Llc, integrated with US-NW-NWMT
     "US-NY-NYIS": "NYIS",  # New York Independent System Operator
-    # "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative, decomissioned merged with US-SE-SOCO
+    "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative, decomissioned merged with US-SE-SOCO
     # Though it is unclear which BA took over AEC.
     "US-SE-SEPA": "SEPA",  # Southeastern Power Administration
     "US-SE-SOCO": "SOCO",  # Southern Company Services, Inc. - Trans
@@ -244,7 +244,7 @@ EXCHANGES = {
     # "US-MIDW-GLHB->US-TEN-TVA": "&facets[fromba][]=EEI&facets[toba][]=TVA", US-MIDW-GLHB decommissioned no more powerplant
     "US-MIDW-LGEE->US-MIDW-MISO": "&facets[fromba][]=LGEE&facets[toba][]=MISO",
     "US-MIDW-LGEE->US-TEN-TVA": "&facets[fromba][]=LGEE&facets[toba][]=TVA",
-    # "US-MIDW-MISO->US-SE-AEC": "&facets[fromba][]=MISO&facets[toba][]=AEC", US-SE-AEC decommissioned no more powerplant
+    # "US-MIDW-MISO->US-SE-AEC": "&facets[fromba][]=MISO&facets[toba][]=AEC", US-SE-AEC decommissioned
     "US-MIDW-MISO->US-SE-SOCO": "&facets[fromba][]=MISO&facets[toba][]=SOCO",
     "US-MIDW-MISO->US-TEN-TVA": "&facets[fromba][]=MISO&facets[toba][]=TVA",
     "US-NE-ISNE->US-NY-NYIS": "&facets[fromba][]=ISNE&facets[toba][]=NYIS",
@@ -326,6 +326,8 @@ PRODUCTION_ZONES_TRANSFERS = {
         "wind": {"US-NW-AVRN": 1.0},
     },
     "US-CAR-SC": {"nuclear": {"US-CAR-SCEG": SC_VIRGIL_OWNERSHIP}},
+    "US-SE-SOCO": {"all": {"US-SE-AEC": 1.0}},
+    "US-FLA-FPL": {"all": {"US-FLA-NSB": 1.0}},
 }
 
 TYPES = {
