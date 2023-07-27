@@ -42,9 +42,7 @@ def fetch_data(
         "filter": '{"PriceArea":"DK1"}'
         if price_area == "DK1"
         else '{"PriceArea":"DK2"}',
-        "start": target_datetime.strftime("%Y-%m-%d")
-        if target_datetime
-        else None,
+        "start": target_datetime.strftime("%Y-%m-%d") if target_datetime else None,
         "end": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d")
         if target_datetime
         else None,
@@ -62,7 +60,10 @@ def fetch_data(
         else:
             return data
     else:
-        raise ParserException(parser="DK.py", message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}")
+        raise ParserException(
+            parser="DK.py",
+            message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}",
+        )
 
 
 def flow(sorted_keys: str, datapoint: dict) -> Union[int, float, None]:
@@ -112,17 +113,16 @@ def fetch_exchange(
     else:
         for datapoint in data["records"]:
             all_exchange_data.append(
-
-                    zoneKey=sorted_keys,
-                   datetime= datetime.fromisoformat(
-                        datapoint["Minutes5UTC"]
-                    ).replace(tzinfo=timezone.utc),
-                    netFlow=flow(sorted_keys, datapoint),
-                    source= "energidataservice.dk",
-
+                zoneKey=sorted_keys,
+                datetime=datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
+                    tzinfo=timezone.utc
+                ),
+                netFlow=flow(sorted_keys, datapoint),
+                source="energidataservice.dk",
             )
         return all_exchange_data.to_list()
 
+
 if __name__ == "__main__":
     print("fetch_exchange(DK-DK1, DE) ->")
-    print(fetch_exchange("DK-DK1", "DE", target_datetime=datetime(2023,3,27)))
+    print(fetch_exchange("DK-DK1", "DE", target_datetime=datetime(2023, 3, 27)))
