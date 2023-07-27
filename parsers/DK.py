@@ -36,14 +36,14 @@ def fetch_data(
         target_datetime = target_datetime.replace(tzinfo=None)
 
     params = {
-        "limit": 144,
+        "limit": 500,
         "filter": '{"PriceArea":"DK1"}'
         if price_area == "DK1"
         else '{"PriceArea":"DK2"}',
-        "start": (target_datetime - timedelta(days=1)).isoformat(timespec="minutes")
+        "start": (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d")
         if target_datetime
         else None,
-        "end": target_datetime.isoformat(timespec="minutes")
+        "end": target_datetime.strftime("%Y-%m-%d")
         if target_datetime
         else None,
     }
@@ -119,6 +119,7 @@ def fetch_exchange(
                     "source": "energidataservice.dk",
                 }
             )
+
     if return_list == []:
         raise ParserException(
             parser="DK.py",
@@ -130,4 +131,4 @@ def fetch_exchange(
 
 if __name__ == "__main__":
     print("fetch_exchange(DK-DK2, SE-SE4) ->")
-    print(fetch_exchange("DK-DK2", "SE-SE4"))
+    print(fetch_exchange("DK-DK1", "DE", target_datetime=datetime(2023,3,27)))
