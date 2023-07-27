@@ -18,9 +18,9 @@ from .lib.utils import get_token
 
 TIMEZONE = pytz.timezone("Europe/Madrid")
 
-# Map each exchange to the ID used in the API. 10278 is used for Andorra->Spain until 10210 returns data correctly
+# Map each exchange to the ID used in the API
 EXCHANGE_ID_MAP = {
-    "AD->ES": "10278",
+    "AD->ES": "10278",  # Switch to 10210 when it has data
     "ES->MA": "10209",
 }
 
@@ -77,11 +77,10 @@ def fetch_exchange(
     for value in values:
         # Get last value in datasource
         # Datasource negative value is exporting, positive value is importing
-        # If Spain is the second country, the value must be opposite
-        if zone_key.startswith("ES"):
-            net_flow = -value["value"]
-        else:
-            net_flow = value["value"]
+        # If Spain is the first zone invert the values to match Electricity Maps schema
+        net_flow = (
+            -value["value"] if zone_key.partition("->")[0] == "ES" else value["value"]
+        )
 
         exchanges.append(
             zoneKey=zone_key,
