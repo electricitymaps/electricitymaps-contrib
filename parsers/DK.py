@@ -57,10 +57,10 @@ def fetch_data(
         data = response.json()
         if data["total"] == 0:
             raise ParserException(
-            parser="DK.py",
-            zone_key=sorted_keys,
-            message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}",
-        )
+                parser="DK.py",
+                zone_key=sorted_keys,
+                message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}",
+            )
 
         else:
             return data
@@ -101,14 +101,12 @@ def flow(sorted_keys: ZoneKey, datapoint: dict) -> Union[int, float, None]:
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Session= Session(),
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     sorted_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    data = fetch_data(
-        sorted_keys, session, target_datetime, logger
-    )
+    data = fetch_data(sorted_keys, session, target_datetime, logger)
     all_exchange_data = ExchangeList(logger)
 
     if sorted_keys not in EXCHANGE_MAPPING:
