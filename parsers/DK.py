@@ -113,7 +113,7 @@ def fetch_exchange(
     else:
         for datapoint in data["records"]:
             all_exchange_data.append(
-                zoneKey=sorted_keys,
+                zoneKey=ZoneKey(sorted_keys),
                 datetime=datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
                     tzinfo=timezone.utc
                 ),
