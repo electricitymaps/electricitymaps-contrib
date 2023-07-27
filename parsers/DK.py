@@ -22,7 +22,7 @@ EXCHANGE_MAPPING = {
 
 
 def fetch_data(
-    price_area: str,
+    sorted_keys: ZoneKey,
     session: Optional[Session],
     target_datetime: Optional[datetime],
     logger: Logger,
@@ -36,6 +36,8 @@ def fetch_data(
         # Data source doesn't support timezone aware
         # datetimes.
         target_datetime = target_datetime.replace(tzinfo=None)
+
+    price_area = EXCHANGE_MAPPING[sorted_keys]["priceArea"]
 
     params = {
         "limit": 500,
@@ -55,18 +57,22 @@ def fetch_data(
         data = response.json()
         if data["total"] == 0:
             raise ParserException(
-                parser="DK.py", message=f"No data found for {target_datetime}"
-            )
+            parser="DK.py",
+            zone_key=sorted_keys,
+            message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}",
+        )
+
         else:
             return data
     else:
         raise ParserException(
             parser="DK.py",
+            zone_key=sorted_keys,
             message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}",
         )
 
 
-def flow(sorted_keys: str, datapoint: dict) -> Union[int, float, None]:
+def flow(sorted_keys: ZoneKey, datapoint: dict) -> Union[int, float, None]:
     """
     Helper function to extract the net flow from a datapoint.
     """
@@ -93,27 +99,28 @@ def flow(sorted_keys: str, datapoint: dict) -> Union[int, float, None]:
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: str = "DK-DK1",
-    zone_key2: str = "DK-DK2",
-    session: Optional[Session] = None,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session= Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-    sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     data = fetch_data(
-        EXCHANGE_MAPPING[sorted_keys]["priceArea"], session, target_datetime, logger
+        sorted_keys, session, target_datetime, logger
     )
     all_exchange_data = ExchangeList(logger)
 
     if sorted_keys not in EXCHANGE_MAPPING:
         raise ParserException(
             "DK.py",
+            sorted_keys,
             "Only able to fetch data for exchanges that are connected to Denmark (DK-DK1, DK-DK2, DK-BHM)",
         )
     else:
         for datapoint in data["records"]:
             all_exchange_data.append(
-                zoneKey=ZoneKey(sorted_keys),
+                zoneKey=sorted_keys,
                 datetime=datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
                     tzinfo=timezone.utc
                 ),
@@ -125,4 +132,4 @@ def fetch_exchange(
 
 if __name__ == "__main__":
     print("fetch_exchange(DK-DK1, DE) ->")
-    print(fetch_exchange("DK-DK1", "DE", target_datetime=datetime(2023, 3, 27)))
+    print(fetch_exchange("DK-DK2", "SE-SE4"))
