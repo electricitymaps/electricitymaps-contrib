@@ -135,7 +135,7 @@ REGIONS = {
     "US-SW-DEAA": "DEAA",  # Arlington Valley, LLC, integrated with US-SW-SRP
     "US-SW-EPE": "EPE",  # El Paso Electric Company
     "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc, integrated with US-SW-WALC
-    # "US-SW-GRMA": "GRMA",  # Gila River Power, Llc Decommissioned,
+    "US-SW-GRMA": "GRMA",  # Gila River Power, Llc Decommissioned,
     #  The only gas power plant is owned by US-SW-SRP but there's a PPA with US-SW-AZPS, so it was merged with
     # US-SW-AZPS https://www.power-technology.com/marketdata/gila-river-power-station-us/
     "US-SW-HGMA": "HGMA",  # New Harquahala Generating Company, Llc - Hgba, integrated with US-SW-SRP
@@ -329,6 +329,7 @@ PRODUCTION_ZONES_TRANSFERS = {
     "US-CAR-SC": {"nuclear": {"US-CAR-SCEG": SC_VIRGIL_OWNERSHIP}},
     "US-SE-SOCO": {"all": {"US-SE-AEC": 1.0}},
     "US-FLA-FPL": {"all": {"US-FLA-NSB": 1.0}},
+    "US-SW-AZPS": {"gas": {"US-SW-GRMA": 1.0}},
 }
 
 EXCHANGE_TRANSFERS = {
