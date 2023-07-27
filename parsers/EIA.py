@@ -135,7 +135,7 @@ REGIONS = {
     "US-SW-DEAA": "DEAA",  # Arlington Valley, LLC, integrated with US-SW-SRP
     "US-SW-EPE": "EPE",  # El Paso Electric Company
     "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc, integrated with US-SW-WALC
-    #   "US-SW-GRMA": "GRMA",  # Gila River Power, Llc Decommissioned,
+    # "US-SW-GRMA": "GRMA",  # Gila River Power, Llc Decommissioned,
     #  The only gas power plant is owned by US-SW-SRP but there's a PPA with US-SW-AZPS, so it was merged with
     # US-SW-AZPS https://www.power-technology.com/marketdata/gila-river-power-station-us/
     "US-SW-HGMA": "HGMA",  # New Harquahala Generating Company, Llc - Hgba, integrated with US-SW-SRP
@@ -222,7 +222,7 @@ EXCHANGES = {
     "US-FLA-FPC->US-FLA-SEC": "&facets[fromba][]=FPC&facets[toba][]=SEC",
     "US-FLA-FPC->US-SE-SOCO": "&facets[fromba][]=FPC&facets[toba][]=SOCO",
     "US-FLA-FPC->US-FLA-TEC": "&facets[fromba][]=FPC&facets[toba][]=TEC",
-    #    "US-FLA-FPC->US-FLA-NSB": "&facets[fromba][]=FPC&facets[toba][]=NSB", decomissioned NSB zone
+    "US-FLA-FPC->US-FLA-NSB": "&facets[fromba][]=FPC&facets[toba][]=NSB",  # decomissioned NSB zone, merged with FPL, exchange transfered
     "US-FLA-FPL->US-FLA-HST": "&facets[fromba][]=FPL&facets[toba][]=HST",
     "US-FLA-FPL->US-FLA-GVL": "&facets[fromba][]=FPL&facets[toba][]=GVL",
     "US-FLA-FPL->US-FLA-JEA": "&facets[fromba][]=FPL&facets[toba][]=JEA",
@@ -244,7 +244,7 @@ EXCHANGES = {
     # "US-MIDW-GLHB->US-TEN-TVA": "&facets[fromba][]=EEI&facets[toba][]=TVA", US-MIDW-GLHB decommissioned no more powerplant
     "US-MIDW-LGEE->US-MIDW-MISO": "&facets[fromba][]=LGEE&facets[toba][]=MISO",
     "US-MIDW-LGEE->US-TEN-TVA": "&facets[fromba][]=LGEE&facets[toba][]=TVA",
-    # "US-MIDW-MISO->US-SE-AEC": "&facets[fromba][]=MISO&facets[toba][]=AEC", US-SE-AEC decommissioned
+    "US-MIDW-MISO->US-SE-AEC": "&facets[fromba][]=MISO&facets[toba][]=AEC",  # US-SE-AEC decommissioned, merged with US-SE-SOCO, exchange transfered
     "US-MIDW-MISO->US-SE-SOCO": "&facets[fromba][]=MISO&facets[toba][]=SOCO",
     "US-MIDW-MISO->US-TEN-TVA": "&facets[fromba][]=MISO&facets[toba][]=TVA",
     "US-NE-ISNE->US-NY-NYIS": "&facets[fromba][]=ISNE&facets[toba][]=NYIS",
@@ -295,7 +295,7 @@ EXCHANGES = {
     # "US-SE-AEC->US-SE-SOCO": "&facets[fromba][]=AEC&facets[toba][]=SOCO", Decommisioned BA
     "US-SE-SEPA->US-SE-SOCO": "&facets[fromba][]=SEPA&facets[toba][]=SOCO",
     "US-SE-SOCO->US-TEN-TVA": "&facets[fromba][]=SOCO&facets[toba][]=TVA",
-    #    "US-SW-AZPS->US-SW-GRMA": "&facets[fromba][]=AZPS&facets[toba][]=GRMA", Decommissioned
+    # "US-SW-AZPS->US-SW-GRMA": "&facets[fromba][]=AZPS&facets[toba][]=GRMA", , directly integrated in US-SW-AZPS
     "US-SW-AZPS->US-SW-PNM": "&facets[fromba][]=AZPS&facets[toba][]=PNM",
     "US-SW-AZPS->US-SW-SRP": "&facets[fromba][]=AZPS&facets[toba][]=SRP",
     "US-SW-AZPS->US-SW-TEPC": "&facets[fromba][]=AZPS&facets[toba][]=TEPC",
@@ -318,6 +318,7 @@ EXCHANGES = {
 SC_VIRGIL_OWNERSHIP = 0.3333333
 
 PRODUCTION_ZONES_TRANSFERS = {
+    # key receives production from the dict of keys
     "US-SW-SRP": {"all": {"US-SW-DEAA": 1.0, "US-SW-HGMA": 1.0}},
     "US-NW-NWMT": {"all": {"US-NW-GWA": 1.0, "US-NW-WWA": 1.0}},
     "US-SW-WALC": {"all": {"US-SW-GRIF": 1.0}},
@@ -328,6 +329,12 @@ PRODUCTION_ZONES_TRANSFERS = {
     "US-CAR-SC": {"nuclear": {"US-CAR-SCEG": SC_VIRGIL_OWNERSHIP}},
     "US-SE-SOCO": {"all": {"US-SE-AEC": 1.0}},
     "US-FLA-FPL": {"all": {"US-FLA-NSB": 1.0}},
+}
+
+EXCHANGE_TRANSFERS = {
+    # key receives the exchange from the set of keys
+    "US-FLA-FPC->US-FLA-FPL": {"US-FLA-FPC->US-FLA-NSB"},
+    "US-MIDW-MISO->US-SE-SOCO": {"US-MIDW-MISO->US-SE-AEC"},
 }
 
 TYPES = {
@@ -605,6 +612,31 @@ def fetch_exchange(
             else point["value"],
             source="eia.gov",
         )
+
+    # Integrate remapped exchanges
+    remapped_exchanges = EXCHANGE_TRANSFERS.get(sortedcodes, {})
+    remapped_exchange_list = ExchangeList(logger)
+    for remapped_exchange in remapped_exchanges:
+        exchange = _fetch(
+            remapped_exchange,
+            url_prefix=EXCHANGE.format(EXCHANGES[remapped_exchange]),
+            session=session,
+            target_datetime=target_datetime,
+            logger=logger,
+        )
+        for point in exchange:
+            remapped_exchange_list.append(
+                zoneKey=ZoneKey(sortedcodes),
+                datetime=point["datetime"],
+                netFlow=-point["value"]
+                if remapped_exchange in REVERSE_EXCHANGES
+                else point["value"],
+                source="eia.gov",
+            )
+
+    exchange_list = ExchangeList.merge_exchanges(
+        [exchange_list, remapped_exchange_list], logger
+    )
 
     return exchange_list.to_list()
 
