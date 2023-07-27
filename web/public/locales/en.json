@@ -92,6 +92,7 @@
     "electricityorigin": { "default": "Origin of electricity in the last %1$s" },
     "electricityproduction": { "default": "Electricity production in the last %1$s" },
     "electricityprices": { "default": "Electricity prices in the last %1$s" },
+    "netExchange": { "default": "Net exchange in the last %1$s" },
     "Getdata": "Get hourly historical, live, and forecast data with Electricity Maps API"
   },
   "footer": {

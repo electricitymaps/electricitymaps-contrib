@@ -108,3 +108,20 @@ export function getRenewableRatio(
 ): number {
   return (isConsumption ? renewableRatio : renewableRatioProduction) ?? Number.NaN;
 }
+
+/**
+ * Returns the net exchange of a zone
+ * @param zoneData - The zone data
+ * @returns The net exchange
+ */
+export function getNetExchange(zoneData: ZoneDetail): number {
+  if (
+    !zoneData.totalImport ||
+    !zoneData.totalExport ||
+    zoneData.totalImport < 0 ||
+    zoneData.totalExport < 0
+  ) {
+    Number.NaN;
+  }
+  return zoneData.totalImport - zoneData.totalExport;
+}
