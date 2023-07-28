@@ -29,7 +29,7 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
         title={__('tooltips.netExchange')}
       />
       <p className="flex justify-center text-base">
-        {netExchange * formattingFactor} {unit}
+        {netExchange / formattingFactor} {unit}
       </p>
     </div>
   );

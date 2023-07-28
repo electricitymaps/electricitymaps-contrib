@@ -2,7 +2,7 @@ import useGetZone from 'api/getZone';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { AreaGraphElement } from '../types';
-import { getNetExchange, round } from 'utils/helpers';
+import { getNetExchange } from 'utils/helpers';
 
 export function getFills(data: AreaGraphElement[]) {
   const netExchangeMaxValue =
