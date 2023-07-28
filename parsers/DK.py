@@ -4,6 +4,8 @@ from typing import List, Optional, Union
 
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import ExchangeList
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -20,7 +22,7 @@ EXCHANGE_MAPPING = {
 
 
 def fetch_data(
-    price_area: str,
+    sorted_keys: ZoneKey,
     session: Optional[Session],
     target_datetime: Optional[datetime],
     logger: Logger,
@@ -35,15 +37,15 @@ def fetch_data(
         # datetimes.
         target_datetime = target_datetime.replace(tzinfo=None)
 
+    price_area = EXCHANGE_MAPPING[sorted_keys]["priceArea"]
+
     params = {
-        "limit": 144,
+        "limit": 500,
         "filter": '{"PriceArea":"DK1"}'
         if price_area == "DK1"
         else '{"PriceArea":"DK2"}',
-        "start": (target_datetime - timedelta(days=1)).isoformat(timespec="minutes")
-        if target_datetime
-        else None,
-        "end": target_datetime.isoformat(timespec="minutes")
+        "start": target_datetime.strftime("%Y-%m-%d") if target_datetime else None,
+        "end": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d")
         if target_datetime
         else None,
     }
@@ -55,15 +57,22 @@ def fetch_data(
         data = response.json()
         if data["total"] == 0:
             raise ParserException(
-                parser="DK.py", message=f"No data found for {target_datetime}"
+                parser="DK.py",
+                zone_key=sorted_keys,
+                message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}",
             )
+
         else:
             return data
     else:
-        raise ParserException(parser="DK.py", message="No data was returned")
+        raise ParserException(
+            parser="DK.py",
+            zone_key=sorted_keys,
+            message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}",
+        )
 
 
-def flow(sorted_keys: str, datapoint: dict) -> Union[int, float, None]:
+def flow(sorted_keys: ZoneKey, datapoint: dict) -> Union[int, float, None]:
     """
     Helper function to extract the net flow from a datapoint.
     """
@@ -90,44 +99,35 @@ def flow(sorted_keys: str, datapoint: dict) -> Union[int, float, None]:
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: str = "DK-DK1",
-    zone_key2: str = "DK-DK2",
-    session: Optional[Session] = None,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-    sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
-    data = fetch_data(
-        EXCHANGE_MAPPING[sorted_keys]["priceArea"], session, target_datetime, logger
-    )
+    sorted_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    data = fetch_data(sorted_keys, session, target_datetime, logger)
+    all_exchange_data = ExchangeList(logger)
 
     if sorted_keys not in EXCHANGE_MAPPING:
         raise ParserException(
             "DK.py",
+            sorted_keys,
             "Only able to fetch data for exchanges that are connected to Denmark (DK-DK1, DK-DK2, DK-BHM)",
         )
     else:
-        return_list: List[dict] = []
         for datapoint in data["records"]:
-            return_list.append(
-                {
-                    "sortedZoneKeys": sorted_keys,
-                    "datetime": datetime.fromisoformat(
-                        datapoint["Minutes5UTC"]
-                    ).replace(tzinfo=timezone.utc),
-                    "netFlow": flow(sorted_keys, datapoint),
-                    "source": "energidataservice.dk",
-                }
+            all_exchange_data.append(
+                zoneKey=sorted_keys,
+                datetime=datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
+                    tzinfo=timezone.utc
+                ),
+                netFlow=flow(sorted_keys, datapoint),
+                source="energidataservice.dk",
             )
-    if return_list == []:
-        raise ParserException(
-            parser="DK.py",
-            message=f"No exchange data found for {sorted_keys} at: {target_datetime or datetime.now()}",
-        )
-    else:
-        return return_list
+        return all_exchange_data.to_list()
 
 
 if __name__ == "__main__":
-    print("fetch_exchange(DK-DK2, SE-SE4) ->")
+    print("fetch_exchange(DK-DK1, DE) ->")
     print(fetch_exchange("DK-DK2", "SE-SE4"))
