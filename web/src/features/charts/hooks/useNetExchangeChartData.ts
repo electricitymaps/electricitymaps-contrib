@@ -2,7 +2,9 @@ import useGetZone from 'api/getZone';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { AreaGraphElement } from '../types';
-import { getNetExchange } from 'utils/helpers';
+import { getNetExchange, round } from 'utils/helpers';
+import { ZoneDetail } from 'types';
+import { scalePower } from 'utils/formatting';
 
 export function getFills(data: AreaGraphElement[]) {
   const netExchangeMaxValue =
@@ -30,6 +32,10 @@ export function useNetExchangeChartData() {
     return { isLoading, isError };
   }
 
+  const { valueFactor, valueAxisLabel } = getValuesInfo(
+    Object.values(zoneData.zoneStates)
+  );
+
   const chartData: AreaGraphElement[] = [];
 
   for (const [datetimeString, zoneDetail] of Object.entries(zoneData.zoneStates)) {
@@ -37,13 +43,11 @@ export function useNetExchangeChartData() {
     chartData.push({
       datetime,
       layerData: {
-        netExchange: getNetExchange(zoneDetail),
+        netExchange: round(getNetExchange(zoneDetail) / valueFactor),
       },
       meta: zoneDetail,
     });
   }
-
-  const valueAxisLabel = 'MW';
 
   const { layerFill, markerFill } = getFills(chartData);
 
@@ -59,4 +63,18 @@ export function useNetExchangeChartData() {
   };
 
   return { data: result, isLoading, isError };
+}
+
+interface ValuesInfo {
+  valueAxisLabel: string; // For example, GW or tCO₂eq/min
+  valueFactor: number; // TODO: why is this required
+}
+
+function getValuesInfo(historyData: ZoneDetail[]): ValuesInfo {
+  const maxTotalValue = d3Max(historyData, (d: ZoneDetail) => getNetExchange(d));
+
+  const format = scalePower(maxTotalValue);
+  const valueAxisLabel = format.unit;
+  const valueFactor = format.formattingFactor;
+  return { valueAxisLabel, valueFactor };
 }
