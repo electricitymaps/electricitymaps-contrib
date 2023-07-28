@@ -2,3 +2,6 @@ name: 'CodeQL config'
 paths-ignore:
   - mockserver
   - 'web/**/*.test.ts'
+
+# This is the new recommended setting for analyzing Python projects.
+setup-python-dependencies: false
