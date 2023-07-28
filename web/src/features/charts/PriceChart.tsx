@@ -15,7 +15,6 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   const { data, isLoading, isError } = usePriceChartData();
   const { __ } = useTranslation();
 
-  console.log(data);
   if (isLoading || isError || !data) {
     return null;
   }

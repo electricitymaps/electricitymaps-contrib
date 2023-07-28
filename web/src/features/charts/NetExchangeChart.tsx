@@ -25,7 +25,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   }
   return (
     <>
-      <ChartTitle translationKey="country-history.electricityprices" />
+      <ChartTitle translationKey="country-history.netExchange" />
       <div className="relative">
         <AreaGraph
           testId="history-exchange-graph"
