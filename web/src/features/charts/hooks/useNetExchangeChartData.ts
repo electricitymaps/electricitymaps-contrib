@@ -2,7 +2,7 @@ import useGetZone from 'api/getZone';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { AreaGraphElement } from '../types';
-import { getNetExchange } from 'utils/helpers';
+import { getNetExchange, round } from 'utils/helpers';
 
 export function getFills(data: AreaGraphElement[]) {
   const netExchangeMaxValue =
@@ -32,14 +32,14 @@ export function useNetExchangeChartData() {
 
   const chartData: AreaGraphElement[] = [];
 
-  for (const [datetimeString, value] of Object.entries(zoneData.zoneStates)) {
+  for (const [datetimeString, zoneDetail] of Object.entries(zoneData.zoneStates)) {
     const datetime = new Date(datetimeString);
     chartData.push({
       datetime,
       layerData: {
-        netExchange: getNetExchange(value),
+        netExchange: getNetExchange(zoneDetail),
       },
-      meta: value,
+      meta: zoneDetail,
     });
   }
 

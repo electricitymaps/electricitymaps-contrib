@@ -135,7 +135,8 @@
     "selectLanguage": "Select language",
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed",
-    "price": "Price"
+    "price": "Price",
+    "netExchange": "Net exchange"
   },
   "aggregateButtons": {
     "country": "country",

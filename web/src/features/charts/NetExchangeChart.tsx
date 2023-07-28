@@ -3,7 +3,7 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
-import PriceChartTooltip from './tooltips/PriceChartTooltip';
+import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
 
 interface NetExchangeChartProps {
   datetimes: Date[];
@@ -38,10 +38,10 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           markerUpdateHandler={noop}
           markerHideHandler={noop}
           isMobile={false}
-          height="6em"
+          height="10em"
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
-          tooltip={PriceChartTooltip} // TODO: Replace with NetExchangeChartTooltip
+          tooltip={NetExchangeChartTooltip}
         />
       </div>
     </>

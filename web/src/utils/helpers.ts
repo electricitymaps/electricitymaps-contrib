@@ -110,6 +110,20 @@ export function getRenewableRatio(
 }
 
 /**
+ * Function to round a number to a specific amount of decimals.
+ * @param {number} number - The number to round.
+ * @param {number} decimals - Defaults to 3 decimals.
+ * @returns {number} Rounded number.
+ */
+export const round = (number: number, decimals = 3): number => {
+  const sign = Math.sign(number);
+  return (
+    (Math.round(Math.abs(number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
+    sign
+  );
+};
+
+/**
  * Returns the net exchange of a zone
  * @param zoneData - The zone data
  * @returns The net exchange
@@ -118,5 +132,5 @@ export function getNetExchange(zoneData: ZoneDetail): number {
   if (Object.keys(zoneData.exchange).length === 0) {
     return Number.NaN;
   }
-  return zoneData.totalImport - zoneData.totalExport;
+  return round(zoneData.totalImport - zoneData.totalExport);
 }
