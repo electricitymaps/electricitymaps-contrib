@@ -15,10 +15,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
 )
-from electricitymap.contrib.lib.models.events import (
-    ProductionMix,
-    StorageMix,
-)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 
@@ -118,13 +115,14 @@ def production_data_processer(
 
         # neiso storage flow signs are opposite to EM
         battery_storage = -1 * datapoint.pop("Other", 0.0)
-        storage_mix = StorageMix(battery=battery_storage)
+        storage_mix = StorageMix(battery=battery_storage, hydro=None)
 
         production = {mode: None for mode in generation_mapping.values()}
         for k, v in datapoint.items():
-            production[generation_mapping[k]] = (
-                production.get(generation_mapping[k], 0) + v
-            )
+            if production[generation_mapping[k]] is None:
+                production[generation_mapping[k]] = v
+            else:
+                production[generation_mapping[k]] += v
         production_mix = ProductionMix(**production)
 
         production_breakdowns.append(
