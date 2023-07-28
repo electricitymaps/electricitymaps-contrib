@@ -115,7 +115,7 @@ export function getRenewableRatio(
  * @returns The net exchange
  */
 export function getNetExchange(zoneData: ZoneDetail): number {
-  if (Object.keys(zoneData.exchange).length > 0) {
+  if (Object.keys(zoneData.exchange).length === 0) {
     return Number.NaN;
   }
   return zoneData.totalImport - zoneData.totalExport;
