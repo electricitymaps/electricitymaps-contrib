@@ -64,7 +64,7 @@ def fetch_production(
 
     # Set the headers to mimic a user browser as the API will return a 403 if not.
     headers = {"user-agent": USER_AGENT}
-    response: Response = session.get(PRODUCTION_URL, headers=headers)
+    response: Response = session.get(PRODUCTION_URL, headers=headers, verify=False)
 
     if not response.ok:
         raise ParserException(
@@ -115,7 +115,7 @@ def fetch_consumption(
     # Set the headers to mimic a user browser as the API will return a 403 if not.
     headers = {"user-agent": USER_AGENT}
 
-    response: Response = session.get(CONSUMPTION_URL)  # , headers=headers)
+    response: Response = session.get(CONSUMPTION_URL, verify=False)  # , headers=headers)
 
     if not response.ok:
         raise ParserException(
