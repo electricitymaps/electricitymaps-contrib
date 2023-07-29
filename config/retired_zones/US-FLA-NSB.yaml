@@ -1,28 +1,18 @@
 bounding_box:
-  - - -113.26607132
-    - 31.246901321
-  - - -111.760446548
-    - 33.5380344390001
-capacity:
-  battery storage: 0
-  biomass: 0
-  coal: 0
-  gas: 619
-  geothermal: 0
-  hydro: 0
-  hydro storage: 0
-  nuclear: 0
-  oil: 0
-  solar: 0
-  unknown: 0
-  wind: 0
-comment: Gila River Power, Llc
+  - - -82.18057
+    - 28.1131300000001
+  - - -80.23297
+    - 29.92717
+comment: New Smyrna Beach, Utilities Commission Of
 contributors:
   - systemcatch
   - robertahunt
-  - KabelWlan
 delays:
+  consumption: 30
+  consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   lifecycle:
     coal:
@@ -38,8 +28,10 @@ emissionFactors:
       source: IPCC 2014; EIA 2020/BEIS 2021
       value: 650.0
 parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
-timezone: US/Arizona
+timezone: US/Eastern

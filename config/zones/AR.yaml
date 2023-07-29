@@ -161,4 +161,5 @@ fallbackZoneMixes:
         wind: 0.0772943608308855
 parsers:
   production: AR.fetch_production
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas.
 timezone: America/Argentina/Buenos_Aires
