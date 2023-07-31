@@ -21,7 +21,10 @@ from electricitymap.contrib.lib.types import ZoneKey
 def remove_zone(zone_key: ZoneKey):
     # Remove zone config.
     try:
-        move(ROOT_PATH / f"config/zones/{zone_key}.yaml", ROOT_PATH / f"config/retired_zones/{zone_key}.yaml")
+        move(
+            ROOT_PATH / f"config/zones/{zone_key}.yaml",
+            ROOT_PATH / f"config/retired_zones/{zone_key}.yaml",
+        )
     except FileNotFoundError:
         pass
 
@@ -95,8 +98,6 @@ def remove_zone(zone_key: ZoneKey):
     run_shell_command(f"pnpm generate-zones-config", cwd=ROOT_PATH / "web")
 
     run_shell_command(f"pnpm format", cwd=ROOT_PATH / "web")
-
-
 
 
 def main():
