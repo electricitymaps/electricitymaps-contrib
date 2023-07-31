@@ -256,7 +256,7 @@ if __name__ == "__main__":
     )
 
     print(f'fetch_exchange("{US_NEISO_KEY}", "CA-QC") ->')
-    pprint(fetch_exchange(US_NEISO_KEY, "CA-QC"))
+    pprint(fetch_exchange(US_NEISO_KEY, ZoneKey("CA-QC")))
 
     print(
         f'fetch_exchange("{US_NEISO_KEY}", "CA-QC", target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00")) ->'
