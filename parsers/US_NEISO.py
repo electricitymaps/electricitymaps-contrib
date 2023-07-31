@@ -78,7 +78,7 @@ def get_json_data(
 
 
 def production_data_processer(
-    zone_key: ZoneKey, raw_data: dict, logger: Logger
+    zone_key: ZoneKey, raw_data: Union[dict, list], logger: Logger
 ) -> ProductionBreakdownList:
     """
     Takes raw json data and removes unnecessary keys.
