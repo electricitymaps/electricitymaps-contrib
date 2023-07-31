@@ -383,13 +383,13 @@ class TestEIAConsumption(TestEIA):
         expected = [
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
-                "consumption": 6215,
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "consumption": 4792,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
-                "consumption": 4792,
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "consumption": 6215,
             },
         ]
         self.assertEqual(len(data_list), len(expected))
@@ -405,13 +405,13 @@ class TestEIAConsumption(TestEIA):
         expected = [
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
-                "consumption": 6215,
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "consumption": 4792,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
-                "consumption": 4792,
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "consumption": 6215,
             },
         ]
         self.assertEqual(len(data_list), len(expected))
