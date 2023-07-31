@@ -250,6 +250,47 @@ class TestEIAProduction(TestEIA):
         ]
         self.check_production_matches(data, expected)
 
+    def test_exchange_transfer(self):
+        exchange_key = "US-FLA-FPC->US-FLA-FPL"
+        remapped_exchange_key = "US-FLA-FPC->US-FLA-NSB"
+        target_datetime = (
+            "2020-01-07T05:00:00+00:00"  # Last datapoint before decommissioning of NSB
+        )
+        # 1. Get data directly from EIA for both
+        FPL_exchange_data = resource_string(
+            "parsers.test.mocks.EIA", "US-FLA-FPC_US-FLA-FPL_exchange.json"
+        )
+        FPL_exchange_data_url = EIA.EXCHANGE.format(EIA.EXCHANGES[exchange_key])
+        # FPL_exchange_data_url = "https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=FPL&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24"
+        self.adapter.register_uri(
+            GET, FPL_exchange_data_url, json=loads(FPL_exchange_data.decode("utf-8"))
+        )
+
+        NSB_exchange_data = resource_string(
+            "parsers.test.mocks.EIA", "US-FLA-FPC_US-FLA-NSB_exchange.json"
+        )
+        NSB_exchange_data_url = EIA.EXCHANGE.format(
+            EIA.EXCHANGES[remapped_exchange_key]
+        )
+        # NSB_exchange_data_url = "https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=NSB&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24"
+        self.adapter.register_uri(
+            GET, NSB_exchange_data_url, json=loads(NSB_exchange_data.decode("utf-8"))
+        )
+
+        # 2. Get data from the EIA parser fetch_exchange for US-FLA-FPC->US-FLA-FPL
+        z_k_1, z_k_2 = exchange_key.split("->")
+        data_list = EIA.fetch_exchange(ZoneKey(z_k_1), ZoneKey(z_k_2), self.session)
+
+        # Verify that the sum of the data directly fetched matches the data from the parser
+        # Read both json and sum the values
+        FPL_exchange_data_json = loads(FPL_exchange_data.decode("utf-8"))
+        NSB_exchange_data_json = loads(NSB_exchange_data.decode("utf-8"))
+
+        for idx in range(len(data_list)):
+            FPL_raw_value = FPL_exchange_data_json["response"]["data"][idx]["value"]
+            NSB_raw_value = NSB_exchange_data_json["response"]["data"][idx]["value"]
+            assert FPL_raw_value + NSB_raw_value == data_list[idx]["netFlow"]
+
     def check_production_matches(
         self,
         actual: List[Dict[str, Union[str, Dict]]],
