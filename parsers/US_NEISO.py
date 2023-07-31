@@ -150,7 +150,7 @@ def production_data_processer(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = US_NEISO_KEY,
+    zone_key: ZoneKey = US_NEISO_KEY,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
