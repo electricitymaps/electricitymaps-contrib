@@ -121,7 +121,7 @@ def production_data_processer(
     for key in unmapped:
         logger.warning(
             f"Key '{key}' in {zone_key} is not mapped to type.",
-            extra={"key": zone_key},
+            extra={"zone_key": zone_key},
         )
 
     if counter > 0:
