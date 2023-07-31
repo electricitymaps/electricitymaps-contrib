@@ -436,7 +436,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - Balancing Authorities: [EIA](https://www.eia.gov/electricity/data/eia860M/)
-  - States: [EIA](https://www.eia.gov/electricity/data/state/)
+  - States:
+    - [EIA](https://www.eia.gov/electricity/data/state/)
+    - [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
   - CAISO
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
@@ -453,6 +455,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - PNM
     - Coal: [Github|electricitymaps-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
     - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
+  - Southern Company Services, Inc:
+    - Nuclear: Capacity [EIA] (https://www.eia.gov/electricity/data/eia860m/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
 - Vietnam: [EVN](https://www.nldc.evn.vn/FullNewsg/100/Thong-tin-thi-truong-dien/default.aspx)
