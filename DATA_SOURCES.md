@@ -456,7 +456,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - Coal: [Github|electricitymaps-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
     - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - Southern Company Services, Inc:
-    - Nuclear: Capacity [EIA] (https://www.eia.gov/electricity/data/eia860m/)
+    - Nuclear: Capacity [EIA](https://www.eia.gov/electricity/data/eia860m/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
 - Vietnam: [EVN](https://www.nldc.evn.vn/FullNewsg/100/Thong-tin-thi-truong-dien/default.aspx)
