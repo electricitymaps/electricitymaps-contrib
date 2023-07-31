@@ -108,7 +108,9 @@ def production_data_processer(
 
         production_mix = ProductionMix()
         for k, v in datapoint.items():
-            production_mix.add_value(mode=generation_mapping[k], value=v, correct_negative_with_zero=v>-5)
+            production_mix.add_value(
+                mode=generation_mapping[k], value=v, correct_negative_with_zero=v > -5
+            )
 
         production_breakdowns.append(
             zoneKey=zone_key,
