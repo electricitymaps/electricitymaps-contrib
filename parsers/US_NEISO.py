@@ -264,7 +264,7 @@ if __name__ == "__main__":
     pprint(
         fetch_exchange(
             US_NEISO_KEY,
-            "CA-QC",
+            ZoneKey("CA-QC"),
             target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00"),
         )
     )
