@@ -6,7 +6,7 @@
 import time
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 import arrow
 from requests import Session
@@ -123,7 +123,9 @@ def production_data_processer(
                 production[generation_mapping[k]] = v
             else:
                 production[generation_mapping[k]] += v
-        production_mix = ProductionMix(**production)
+        production_mix = ProductionMix()
+        for k, v in production.items():
+            production_mix.add_value(mode=k, value=v)
 
         production_breakdowns.append(
             zoneKey=zone_key,
@@ -171,8 +173,8 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
