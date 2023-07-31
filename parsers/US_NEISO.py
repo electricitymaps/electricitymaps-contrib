@@ -106,15 +106,9 @@ def production_data_processer(
         battery_storage = -1 * datapoint.pop("Other", 0.0)
         storage_mix = StorageMix(battery=battery_storage, hydro=None)
 
-        production = {mode: None for mode in generation_mapping.values()}
-        for k, v in datapoint.items():
-            if production[generation_mapping[k]] is None:
-                production[generation_mapping[k]] = v
-            else:
-                production[generation_mapping[k]] += v
         production_mix = ProductionMix()
-        for k, v in production.items():
-            production_mix.add_value(mode=k, value=v)
+        for k, v in datapoint.items():
+            production_mix.add_value(mode=generation_mapping[k], value=v)
 
         production_breakdowns.append(
             zoneKey=zone_key,
