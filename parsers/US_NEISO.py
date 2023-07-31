@@ -4,11 +4,11 @@
 """Real time parser for the New England ISO (NEISO) area."""
 
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any, Dict, List, Optional, Union
 
-import arrow
+import pytz
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -38,15 +38,6 @@ generation_mapping = {
 }
 
 
-def timestring_converter(time_string: str) -> datetime:
-    """Converts ISO-8601 time strings in neiso data into aware datetime objects."""
-
-    dt_naive = arrow.get(time_string)
-    dt_aware = dt_naive.replace(tzinfo="America/New_York").datetime
-
-    return dt_aware
-
-
 def get_json_data(
     target_datetime: Optional[datetime], params, session: Optional[Session] = None
 ) -> dict:
@@ -54,10 +45,9 @@ def get_json_data(
 
     epoch_time = str(int(time.time()))
 
-    # when target_datetime is None, arrow.get(None) will return current time
-    target_datetime = arrow.get(target_datetime)
-    target_ne = target_datetime.to("America/New_York")
-    target_ne_day = target_ne.format("MM/DD/YYYY")
+    target_datetime = target_datetime or datetime.now(tz=timezone.utc)
+    target_ne = target_datetime.astimezone(tz=pytz.timezone("America/New_York"))
+    target_ne_day = target_ne.strftime("%m/%d/%Y")
 
     postdata = {
         "_nstmp_formDate": epoch_time,
@@ -103,9 +93,8 @@ def production_data_processer(
 
         time_string = datapoint.pop("BeginDate", None)
         if time_string:
-            dt = timestring_converter(time_string)
+            dt = datetime.fromisoformat(time_string)
         else:
-            # passing None to arrow.get() will return current time
             counter += 1
             logger.warning(
                 f"Skipping {zone_key} datapoint missing timestamp.",
@@ -218,9 +207,18 @@ def fetch_exchange(
     exchange_data = get_json_data(target_datetime, postdata, session)
     for _, exchange_values in exchange_data.items():
         for datapoint in exchange_values:
+            time_string = datapoint.pop("BeginDate", None)
+            if time_string:
+                dt = datetime.fromisoformat(time_string)
+            else:
+                logger.warning(
+                    f"Skipping {sorted_zone_keys} datapoint missing timestamp.",
+                    extra={"zone_key": sorted_zone_keys},
+                )
+                continue
             exchanges.append(
                 zoneKey=sorted_zone_keys,
-                datetime=timestring_converter(datapoint["BeginDate"]),
+                datetime=dt,
                 netFlow=datapoint["Actual"] * multiplier,
                 source=SOURCE,
             )
@@ -239,29 +237,45 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     pprint(fetch_production())
 
-    print('fetch_production(target_datetime=arrow.get("2017-12-31T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get("2017-12-31T12:00Z")))
+    print(
+        'fetch_production(target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00")) ->'
+    )
+    pprint(
+        fetch_production(
+            target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00")
+        )
+    )
 
-    print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z")))
+    print(
+        'fetch_production(target_datetime=datetime.fromisoformat("2007-03-13T12:00:00+00:00")) ->'
+    )
+    pprint(
+        fetch_production(
+            target_datetime=datetime.fromisoformat("2007-03-13T12:00:00+00:00")
+        )
+    )
 
     print(f'fetch_exchange("{US_NEISO_KEY}", "CA-QC") ->')
     pprint(fetch_exchange(US_NEISO_KEY, "CA-QC"))
 
     print(
-        f'fetch_exchange("{US_NEISO_KEY}", "CA-QC", target_datetime=arrow.get("2017-12-31T12:00Z")) ->'
+        f'fetch_exchange("{US_NEISO_KEY}", "CA-QC", target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00")) ->'
     )
     pprint(
         fetch_exchange(
-            US_NEISO_KEY, "CA-QC", target_datetime=arrow.get("2017-12-31T12:00Z")
+            US_NEISO_KEY,
+            "CA-QC",
+            target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00"),
         )
     )
 
     print(
-        f'fetch_exchange("{US_NEISO_KEY}", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")) ->'
+        f'fetch_exchange("{US_NEISO_KEY}", "CA-QC", target_datetime=datetime.fromisoformat("2007-03-13T12:00:00+00:00")) ->'
     )
     pprint(
         fetch_exchange(
-            US_NEISO_KEY, "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")
+            US_NEISO_KEY,
+            "CA-QC",
+            target_datetime=datetime.fromisoformat("2007-03-13T12:00:00+00:00"),
         )
     )
