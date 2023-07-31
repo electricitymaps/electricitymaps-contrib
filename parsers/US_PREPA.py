@@ -3,7 +3,7 @@
 """
 Real-time parser for Puerto Rico.
 
-Fetches data from various pages embedded as an iframe at https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx
+Fetches data from javascript sources used from the dashboard at https://aeepr.com/es-pr/Paginas/NewGen/dashboard.aspx
 
 The electricity authority is known in English as PREPA (Puerto Rico Electric Power Authority) and in Spanish as AEEPR (Autoridad de Energía Eléctrica Puerto Rico)
 """
@@ -14,59 +14,161 @@ from datetime import datetime
 from logging import Logger, getLogger
 from typing import Optional
 
-# The arrow library is used to handle datetimes
 import arrow
-from requests import Session
+from requests import Response, Session
+
+from parsers.lib.exceptions import ParserException
 
 timezone_name = "America/Puerto_Rico"
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "?host=https://aeepr.com"
+
 GENERATION_BREAKDOWN_URL = (
-    f"{US_PROXY}/es-pr/generacion/Documents/combustibles.aspx{HOST_PARAMETER}"
-)
-RENEWABLES_BREAKDOWN_URL = (
-    f"{US_PROXY}/es-pr/generacion/Documents/Unidades_renovables.aspx{HOST_PARAMETER}"
-)
-TIMESTAMP_URL = (
-    f"{US_PROXY}/es-pr/generacion/Documents/CostosCombustible.aspx{HOST_PARAMETER}"
+    f"https://aeepr.com/es-pr/generacion/Documents/DataJS/dataSource.js"
+    # f"{US_PROXY}/es-pr/generacion/Documents/DataJS/dataSource.js{HOST_PARAMETER}"
 )
 
-
-def extract_data(html):
-    """Extracts data from the source code of an HTML page with a FusionCharts chart"""
-    dataSource = re.search(r"dataSource: (\{.+\}\]\})\}\);", html).group(
-        1
-    )  # Extract object with data
-    dataSource = re.sub(
-        r",\s*\}", "}", dataSource
-    )  # ,} is valid JavaScript but not valid JSON
-    dataSource = json.loads(dataSource)
-    sourceData = dataSource[
-        "data"
-    ]  # The rest of the dataSource object contains unnecessary stuff like chart theme, label, axis names etc.
-    return sourceData
+# renewable source data identifiers -> Production types
+RENEWABLE_SRC_TYPE_TO_PRODUCTION_TYPE = {
+    # renewables
+    "Hidroelectricas": "hydro",
+    "Wind": "wind",
+    "Solar": "solar",
+    "Landfill": "biomass",
+}
 
 
-def convert_timestamp(
-    zone_key: str, timestamp_string: str, logger: Logger = getLogger(__name__)
-):
+def get_site_renewable_type(site_info, logger):
     """
-    Converts timestamp fetched from website into timezone-aware datetime object
+    Get the renewable power type from the site info.
+    """
+    # Type could be 'Hidroelectricas'
+    if site_info["Type"] in RENEWABLE_SRC_TYPE_TO_PRODUCTION_TYPE.keys():
+        return RENEWABLE_SRC_TYPE_TO_PRODUCTION_TYPE[site_info["Type"]]
+
+    # On other cases, the type is just 'Renovable'
+    if site_info["Type"] == "Renovable":
+        # Renovable-Type has specific type in 'Desc' attribute (solar, wind...)
+        type_desc = site_info["Desc"]
+
+        if type_desc not in RENEWABLE_SRC_TYPE_TO_PRODUCTION_TYPE.keys():
+            logger.warn(f"Unknown renewable type in data: {type_desc}, skipping...")
+            return None
+
+        return RENEWABLE_SRC_TYPE_TO_PRODUCTION_TYPE[type_desc]
+    else:
+        return None
+
+
+def parse_datetime(input_data: str, zone_key: str, logger: Logger):
+    """
+    Parses the timezone-aware datetime object from the time specified in the .js file
+
+    Expected format in file:
+    const dataFechaAcualizado = '4/25/2023' + ' 3:06:05 PM';
+    Expected format as string:
+    M/D/YYYY h:mm:ss A
+
     Arguments:
     ----------
-    timestamp_string: timestamp in the format 06/01/2020 08:40:00 AM
+    input_data: The input .js file as string
+    zone_key: the two letter zone from the map
+    ----------
+    Returns:
+    ----------
+    The datetime specified in the file as outlined above. None if could not be parsed.
     """
-    timestamp_string = re.sub(
-        r"\s+", " ", timestamp_string
-    )  # Replace double spaces with one
 
+    # in file: const dataFechaAcualizado = '4/25/2023' + ' 3:06:05 PM';
+    date_matches = re.search(
+        r"\Aconst\sdataFechaAcualizado\s*=\s*'(.*)'\s\+\s'(.*)';", input_data
+    )
+    date_fmt = "M/D/YYYY h:mm:ss A"
+
+    date_str = "".join(date_matches.group(1, 2))
     logger.debug(
-        f"PARSED TIMESTAMP {arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss A', tzinfo=timezone_name)}",
+        f"Found timestamp string: {date_str}",
         extra={"key": zone_key},
     )
-    return arrow.get(
-        timestamp_string, "MM/DD/YYYY HH:mm:ss A", tzinfo=timezone_name
-    ).datetime
+
+    try:
+        date_obj = arrow.get(date_str, date_fmt, tzinfo=timezone_name).datetime
+        logger.debug(
+            f"Parsed time: {date_obj}",
+            extra={"key": zone_key},
+        )
+        return date_obj
+
+    except arrow.parser.ParserError as e:
+        logger.warn(f"Could not parse timestamp {date_str} to format {date_fmt}." "{e}")
+        return None
+
+
+def parse_js_block_to_json(
+    input_data: str,
+    identifier: str,
+    zone_key: str,
+    logger: Logger = getLogger(__name__),
+):
+    """
+    Parses a JavaScript Object Literal block in the .js file into a JSON object.
+
+    Expected format in file:
+    const identifier = {JSOL-STYLE};
+
+    Arguments:
+    ----------
+    input_data: The input .js file as string
+    identifier: The const identifier to look for in the file
+    zone_key: the two letter zone from the map
+    ----------
+    Returns:
+    ----------
+    The JSON object if successfully parsed, otherwise None.
+    """
+
+    # create regex expression to extract block and extract it
+    regex = r"const\s" + identifier + r"\s*=\s*(.*?);"
+    id_matches = re.search(regex, input_data, re.DOTALL)
+    if id_matches is None:
+        logger.warning(f"Failed to parse data block identifier {identifier}.")
+        return None
+    dict_match = id_matches.group(1)
+
+    # transform the JSOL to JSON.
+    # add '' to keys
+    dict_match = re.sub(r"(\w+):", r"'\g<1>':", dict_match)
+    # replace all ' with "
+    dict_match = re.sub("'", '"', dict_match)
+    # remove trailing commas at end of object lists
+    dict_match = re.sub(r"\,([\s]*[\}|\]])", r"\g<1>", dict_match)
+
+    try:
+        json_obj = json.loads(dict_match)
+        return json_obj
+    except json.decoder.JSONDecodeError as e:
+        logger.warning(f"Failed to parse for JSOL to JSON converted string. {e}")
+        return None
+
+
+def get_field_value(in_json, kv_access: tuple, get_id: str):
+    """
+    Get a specific attribute value of a json list.
+    Serves as helper function.
+
+    Arguments:
+    ----------
+    in_json: The JSON object having a list of sub-objects
+    kv_access: (key, value) pair to look for in each sub-object
+    get_id: Identifier whose value should be returned
+
+    """
+
+    for sub_obj in in_json:
+        if sub_obj[kv_access[0]] == kv_access[1]:
+            return sub_obj[get_id]
+
+    return None
 
 
 def fetch_production(
@@ -77,8 +179,6 @@ def fetch_production(
 ) -> dict:
     """Requests the last known production mix (in MW) of a given region."""
 
-    global renewable_output
-
     if target_datetime is not None:
         raise NotImplementedError(
             "The datasource currently implemented is only real time"
@@ -86,9 +186,36 @@ def fetch_production(
 
     r = session or Session()
 
-    data = {  # To be returned as response data
+    # Fetch production by generation type
+    res: Response = r.get(GENERATION_BREAKDOWN_URL)
+    assert res.ok, (
+        "Exception when fetching production for "
+        "{}: error when calling url={}".format(zone_key, GENERATION_BREAKDOWN_URL)
+    )
+
+    data_js = res.text
+
+    # parse datetime contained in the received .js file
+    fetch_dt = parse_datetime(data_js, zone_key, logger)
+    if fetch_dt is None:
+        raise ParserException(
+            parser="US_PREPA.py",
+            message="The datetime could not be parsed from given data source.",
+        )
+
+    data_fuel_cost = parse_js_block_to_json(data_js, "dataFuelCost", zone_key)
+    data_by_fuel = parse_js_block_to_json(data_js, "dataByFuel", zone_key)
+    data_metrics = parse_js_block_to_json(data_js, "dataMetrics", zone_key)
+    data_load_per_site = parse_js_block_to_json(data_js, "dataLoadPerSite", zone_key)
+
+    # Total generation
+    data_metrics_total_gen = get_field_value(
+        data_metrics, ("Desc", "Total de Generación"), "value"
+    )
+
+    data = {
         "zoneKey": zone_key,
-        #'datetime': '2017-01-01T00:00:00Z',
+        "datetime": fetch_dt,
         "production": {
             "biomass": 0.0,
             "coal": 0.0,
@@ -101,180 +228,76 @@ def fetch_production(
             "geothermal": 0.0,
             "unknown": 0.0,
         },
-        #   'storage': {
-        #        'hydro': -10.0,
-        #    },
         "source": "aeepr.com",
     }
 
-    renewable_output = 0.0  # Temporarily stored here. We'll subtract solar, wind and biomass (landfill gas) from it and assume the remainder, if any,  is hydro
+    """
+    Some of the plants in PR are capable of combusting both gas and oil. Currently, PR is in the process of 
+    transforming some of the power plants from oil driven to gas or even hybrid. The data does not contain 
+    information, on which mode a plant is currently operating on. However, we know the production
+    percentage of oil and gas over PR in total. Therefore, we infer fossil sources based on given ratios (%)
+    from the data source.
+    Report of a power plant operating on both modes:
+    https://energia.pr.gov/wp-content/uploads/sites/7/2022/06/SL-015976.SJ_San-Juan-IE-Report_-Draft-13Nov2020.pdf
 
-    # Step 1: fetch production by generation type
-    # Note: seems to be rounded down (to an integer)
-    # Total at the top of the page fetched in step 3 isn't rounded down, but seems to be lagging behind sometimes.
-    # Difference is only minor, so for now we will IGNORE that total (instead of trying to parse the total and addding the difference to "unknown")
-    res = r.get(GENERATION_BREAKDOWN_URL)
+    Renewables are parsed from the precise sources to get their power type.
+    """
 
-    assert res.status_code == 200, (
-        "Exception when fetching production for "
-        "{}: error when calling url={}".format(zone_key, GENERATION_BREAKDOWN_URL)
-    )
+    total_sites_mw = 0
+    # For each site, if renewable, account for it in data field.
+    for site_info in data_load_per_site:
 
-    sourceData = extract_data(res.text)
+        # production_type = get_production_type_from_site(site_info)
+        output_mw = site_info["SiteTotal"]
+        site_desc = site_info["Desc"]
+        total_sites_mw += output_mw
 
-    logger.debug(f"Raw generation breakdown: {sourceData}", extra={"key": zone_key})
+        renewable_production_type = get_site_renewable_type(site_info, logger)
+        if renewable_production_type is None:
+            continue  # site is not renewable
 
-    for (
-        item
-    ) in (
-        sourceData
-    ):  # Item has a label with fuel type + generation in MW, and a value with a percentage
-
-        if item["label"] == "  MW":  # There's one empty item for some reason. Skip it.
-            continue
-
-        logger.debug(item["label"], extra={"key": zone_key})
-
-        parsedLabel = re.search(r"^(.+?)\s+(\d+)\s+MW$", item["label"])
-
-        category = parsedLabel.group(1)  # E.g. GAS NATURAL
-        outputInMW = float(parsedLabel.group(2))
-
-        if category == "BUNKER C" or category == "DIESEL CC" or category == "DIESEL GT":
-            data["production"]["oil"] += outputInMW
-        elif category == "GAS NATURAL":
-            data["production"]["gas"] += outputInMW
-        elif category == "CARBON":
-            data["production"]["coal"] += outputInMW
-        elif category == "RENOVABLES":
-            renewable_output += outputInMW  # Temporarily store aggregate renewable output. We'll subtract solar, wind and biomass (landfill gas) from it and assume the remainder, if any,  is hydro
-        else:
-            logger.warn(
-                f'Unknown energy type "{category}" is present for Puerto Rico',
-                extra={"key": zone_key},
-            )
-
-        logger.info(
-            f'Category "{category}" produces {outputInMW}MW', extra={"key": zone_key}
-        )
-
-    # Step 2: fetch renewable production breakdown
-    # Data from this source isn't rounded. Assume renewable production not accounted for is hydro
-    res = r.get(RENEWABLES_BREAKDOWN_URL)
-
-    assert res.status_code == 200, (
-        "Exception when fetching renewable production for "
-        "{}: error when calling url={}".format(zone_key, RENEWABLES_BREAKDOWN_URL)
-    )
-
-    sourceData = extract_data(res.text)
-    logger.debug(
-        f"Raw renewable generation breakdown: {sourceData}", extra={"key": zone_key}
-    )
-
-    original_renewable_output = renewable_output  # If nothing gets subtracted renewable_output, there probably was no data on the renewables breakdown page
-
-    logger.debug(
-        f"Total (unspecified) renewable output from total generation breakdown: {original_renewable_output}MW",
-        extra={"key": zone_key},
-    )
-
-    for (
-        item
-    ) in (
-        sourceData
-    ):  # Somewhat different from above, the item's label has the generation type and the item's value has generation in MW
-        if item["label"] == "  ":  # There's one empty item for some reason. Skip it.
-            continue
-
-        if item["label"] == "Solar":
-            data["production"]["solar"] += float(item["value"])
-        elif item["label"] == "Eolica":
-            data["production"]["wind"] += float(item["value"])
-        elif item["label"] == "Landfill Gas":
-            data["production"]["biomass"] += float(item["value"])
-        else:
-            logger.warn(
-                f"Unknown renewable type \"{item['label']}\" is present for Puerto Rico",
-                extra={"key": zone_key},
-            )
-
-        renewable_output -= float(
-            item["value"]
-        )  # Subtract production accounted for from the renewable output total
-
-        logger.info(
-            f"Renewable \"{item['label']}\" produces {item['value']}MW",
-            extra={"key": zone_key},
-        )
         logger.debug(
-            f"Renewable output yet to be accounted for: {renewable_output}MW",
+            f"Adding source {site_desc} to type {renewable_production_type} - generating {output_mw} MW.",
             extra={"key": zone_key},
         )
+        data["production"][renewable_production_type] += output_mw
+
+    # Get % production of fossile sources
+    # our 'oil' is oil (Bunker) and diesel
+    oil_perc = get_field_value(
+        data_by_fuel, ("fuel", "Bunker"), "value"
+    ) + get_field_value(data_by_fuel, ("fuel", "Diesel"), "value")
+    gas_perc = get_field_value(data_by_fuel, ("fuel", "LNG"), "value")
+    coal_perc = get_field_value(data_by_fuel, ("fuel", "Coal"), "value")
+
+    oil_mw = data_metrics_total_gen * oil_perc / 100.0
+    gas_mw = data_metrics_total_gen * gas_perc / 100.0
+    coal_mw = data_metrics_total_gen * coal_perc / 100.0
+
+    data["production"]["oil"] = oil_mw
+    data["production"]["gas"] = gas_mw
+    data["production"]["coal"] = coal_mw
 
     logger.debug(
-        "Rounding remaining renewable output to 14 decimal places to get rid of floating point errors"
+        f"Infer type 'oil' from ratio table ({oil_perc}%) - generating {oil_mw} MW.",
+        extra={"key": zone_key},
     )
-    renewable_output = round(renewable_output, 14)
-
-    logger.info(
-        f"Remaining renewable output not accounted for: {renewable_output}MW",
+    logger.debug(
+        f"Infer type 'gas' from ratio table ({gas_perc}%) - generating {gas_mw} MW.",
+        extra={"key": zone_key},
+    )
+    logger.debug(
+        f"Infer type 'gas' from ratio table ({coal_perc}%) - generating {coal_mw} MW.",
         extra={"key": zone_key},
     )
 
-    # Assume renewable generation not accounted for is hydro - if we could fetch the other renewable generation data
-    if renewable_output >= 0.0:
-        if (
-            original_renewable_output == renewable_output
-        ):  # Nothing got subtracted for Solar, Wind or Landfill gas - so the page probably didn't contain any data. Renewable type=unknown
-            logger.warning(
-                f"Renewable generation breakdown page was empty, reporting unspecified renewable output ({renewable_output}MW) as 'unknown'",
-                extra={"key": zone_key},
-            )
-            data["production"]["unknown"] += renewable_output
-        else:  # Otherwise, any remaining renewable output is probably hydro
-            logger.info(
-                f"Assuming remaining renewable output of {renewable_output}MW is hydro",
-                extra={"key": zone_key},
-            )
-            data["production"]["hydro"] += renewable_output
-    else:
-        logger.warn(
-            f"Renewable generation breakdown page total is greater than total renewable output, a difference of {renewable_output}MW",
-            extra={"key": zone_key},
+    # Sanity check: compare sum over power sources with given total generation.
+    # Compare it with number of sites since these are round off errors.
+    if abs(total_sites_mw - data_metrics_total_gen) > len(data_load_per_site):
+        logger.warning(
+            f"Sum of production of all sites in zone {zone_key} at {fetch_dt} "
+            f"is {total_sites_mw} MW, but given total production is {data_metrics_total_gen} MW."
         )
-
-    # Step 3: fetch the timestamp, which is at the bottom of a different iframe
-    # Note: there's a race condition here when requesting data very close to <hour>:10 and <hour>:40, which is when the data gets updated
-    # Sometimes it's some seconds later, so we grab the timestamp from here to know the exact moment
-
-    res = r.get(
-        TIMESTAMP_URL
-    )  # TODO do we know for sure the timestamp on this page gets updated *every time* the generation breakdown gets updated?
-
-    assert (
-        res.status_code == 200
-    ), "Exception when fetching timestamp for " "{}: error when calling url={}".format(
-        zone_key, TIMESTAMP_URL
-    )
-
-    raw_timestamp_match = re.search(
-        r"Ultima Actualizaci�n:  ((?:0[1-9]|1[0-2])/(?:[0-2][0-9]|3[0-2])/2[01][0-9]{2}  [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [AP]M)",
-        res.text,
-    )
-
-    if raw_timestamp_match is None:
-        raise Exception(f"Could not find timestamp in {res.text}")
-
-    raw_timestamp = raw_timestamp_match.group(1)
-
-    logger.debug(f"RAW TIMESTAMP: {raw_timestamp}", extra={"key": zone_key})
-
-    data["datetime"] = convert_timestamp(zone_key, raw_timestamp)
-
-    assert (
-        data["production"]["oil"] > 0.0
-    ), "{} is missing required generation type: oil".format(zone_key)
 
     return data
 
@@ -283,6 +306,3 @@ if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
     print("fetch_production() ->")
     print(fetch_production())
-# TODO add forecast parser
-#    print('fetch_generation_forecast() ->')
-#    print(fetch_generation_forecast())
