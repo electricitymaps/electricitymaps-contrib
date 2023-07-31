@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 2
       - name: Check which files have changed
         id: check-changed-files
-        uses: tj-actions/changed-files@v37.4.0
+        uses: tj-actions/changed-files@v37.5.1
         with:
           files_yaml_from_source_file: .github/filter-groups.yml
       - name: Log outputs
