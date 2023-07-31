@@ -127,7 +127,7 @@ def production_data_processer(
     if counter > 0:
         logger.warning(
             f"Skipped {counter} {zone_key} datapoints that were missing timestamps.",
-            extra={"key": zone_key},
+            extra={"zone_key": zone_key},
         )
 
     return production_breakdowns
