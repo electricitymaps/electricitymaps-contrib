@@ -39,7 +39,9 @@ class EventList(ABC):
         pass
 
     def to_list(self) -> List[Dict[str, Any]]:
-        return sorted([event.to_dict() for event in self.events], key=lambda x: x["datetime"])
+        return sorted(
+            [event.to_dict() for event in self.events], key=lambda x: x["datetime"]
+        )
 
     @property
     def dataframe(self) -> pd.DataFrame:
