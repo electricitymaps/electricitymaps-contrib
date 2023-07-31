@@ -21,7 +21,7 @@ jobs:
       frontend: ${{ steps.check-changed-files.outputs.frontend_any_changed }}
       config: ${{ steps.check-changed-files.outputs.config_any_changed }}
       markdown: ${{ steps.check-changed-files.outputs.markdown_any_changed }}
-      json: ${{ steps.check-changed-files.json_any_changed }}
+      json: ${{ steps.check-changed-files.outputs.json_any_changed }}
       python: ${{ steps.check-changed-files.outputs.python_any_changed }}
       workflows: ${{ steps.check-changed-files.outputs.workflows_any_changed }}
     steps:
@@ -39,7 +39,7 @@ jobs:
           echo "frontend changed: ${{ steps.check-changed-files.outputs.frontend_any_changed }}
           echo "config changed: ${{ steps.check-changed-files.outputs.config_any_changed }}
           echo "markdown changed: ${{ steps.check-changed-files.outputs.markdown_any_changed }}
-          echo "json changed: ${{ steps.check-changed-files.json_any_changed }}
+          echo "json changed: ${{ steps.check-changed-files.outputs.json_any_changed }}
           echo "python changed: ${{ steps.check-changed-files.outputs.python_any_changed }}
           echo "workflows changed: ${{ steps.check-changed-files.outputs.workflows_any_changed }}
 
