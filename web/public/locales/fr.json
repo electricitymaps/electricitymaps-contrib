@@ -1689,10 +1689,6 @@
       "countryName": "USA",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "USA",
-      "zoneName": "Coopérative d'énergies renouvelables d'Avangrid"
-    },
     "US-NW-BPAT": {
       "countryName": "USA",
       "zoneName": "Administration de l'électricité de Bonneville"
@@ -1785,10 +1781,6 @@
       "countryName": "USA",
       "zoneName": "Société de services publics de l'Arizona"
     },
-    "US-SW-DEAA": {
-      "countryName": "USA",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "USA",
       "zoneName": "Compagnie électrique El Paso"
@@ -1796,10 +1788,6 @@
     "US-SW-GRIF": {
       "countryName": "USA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "USA",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "USA",
