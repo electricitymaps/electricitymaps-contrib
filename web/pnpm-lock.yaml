@@ -4635,7 +4635,7 @@ packages:
     dependencies:
       '@open-draft/until': 1.0.3
       '@types/debug': 4.1.7
-      '@xmldom/xmldom': 0.7.5
+      '@xmldom/xmldom': 0.7.13
       debug: 4.3.4(supports-color@8.1.1)
       headers-polyfill: 3.1.0
       outvariant: 1.3.0
@@ -9574,8 +9574,8 @@ packages:
       '@xtuc/long': 4.2.2
     dev: true
 
-  /@xmldom/xmldom@0.7.5:
-    resolution: {integrity: sha512-V3BIhmY36fXZ1OtVcI9W+FxQqxVLsPKcNjWigIaa81dLC9IolJl5Mt4Cvhmr0flUnjSpTdrbMTSbXqYqV5dT6A==}
+  /@xmldom/xmldom@0.7.13:
+    resolution: {integrity: sha512-lm2GW5PkosIzccsaZIz7tp8cPADSIlIHWDFTR1N0SzfinhhYgeIQjFMz4rYzanCScr3DqQLeomUDArp6MWKm+g==}
     engines: {node: '>=10.0.0'}
     dev: true
 
