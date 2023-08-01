@@ -411,7 +411,7 @@ devDependencies:
     version: 4.2.3(@types/node@18.17.1)
   vite-plugin-pwa:
     specifier: 0.15.2
-    version: 0.15.2(vite@4.2.3)(workbox-build@6.6.0)(workbox-window@6.5.4)
+    version: 0.15.2(vite@4.2.3)(workbox-build@6.6.0)(workbox-window@6.6.0)
   vite-tsconfig-paths:
     specifier: 3.5.2
     version: 3.5.2(vite@4.2.3)
@@ -425,8 +425,8 @@ devDependencies:
     specifier: 6.6.0
     version: 6.6.0
   workbox-window:
-    specifier: 6.5.4
-    version: 6.5.4
+    specifier: 6.6.0
+    version: 6.6.0
 
 packages:
 
@@ -16716,7 +16716,7 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-pwa@0.15.2(vite@4.2.3)(workbox-build@6.6.0)(workbox-window@6.5.4):
+  /vite-plugin-pwa@0.15.2(vite@4.2.3)(workbox-build@6.6.0)(workbox-window@6.6.0):
     resolution: {integrity: sha512-l1srtaad5NMNrAtAuub6ArTYG5Ci9AwofXXQ6IsbpCMYQ/0HUndwI7RB2x95+1UBFm7VGttQtT7woBlVnNhBRw==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
@@ -16728,7 +16728,7 @@ packages:
       pretty-bytes: 6.0.0
       vite: 4.2.3(@types/node@18.17.1)
       workbox-build: 6.6.0
-      workbox-window: 6.5.4
+      workbox-window: 6.6.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -17201,10 +17201,6 @@ packages:
       workbox-core: 6.6.0
     dev: true
 
-  /workbox-core@6.5.4:
-    resolution: {integrity: sha512-OXYb+m9wZm8GrORlV2vBbE5EC1FKu71GGp0H4rjmxmF4/HLbMCoTFws87M3dFwgpmg0v00K++PImpNQ6J5NQ6Q==}
-    dev: true
-
   /workbox-core@6.6.0:
     resolution: {integrity: sha512-GDtFRF7Yg3DD859PMbPAYPeJyg5gJYXuBQAC+wyrWuuXgpfoOrIQIvFRZnQ7+czTIQjIr1DhLEGFzZanAT/3bQ==}
     dev: true
@@ -17277,13 +17273,6 @@ packages:
 
   /workbox-sw@6.6.0:
     resolution: {integrity: sha512-R2IkwDokbtHUE4Kus8pKO5+VkPHD2oqTgl+XJwh4zbF1HyjAbgNmK/FneZHVU7p03XUt9ICfuGDYISWG9qV/CQ==}
-    dev: true
-
-  /workbox-window@6.5.4:
-    resolution: {integrity: sha512-HnLZJDwYBE+hpG25AQBO8RUWBJRaCsI9ksQJEp3aCOFCaG5kqaToAYXFRAHxzRluM2cQbGzdQF5rjKPWPA1fug==}
-    dependencies:
-      '@types/trusted-types': 2.0.2
-      workbox-core: 6.5.4
     dev: true
 
   /workbox-window@6.6.0:
