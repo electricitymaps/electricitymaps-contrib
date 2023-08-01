@@ -60,14 +60,14 @@ export default function ZoneHeaderTitle({
                   )}
                 </div>
               </TooltipWrapper>
+              {disclaimer && (
+                <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
+                  <div className="ml-1 mr-1 h-6 w-6 shrink-0 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
+                    <p>i</p>
+                  </div>
+                </TooltipWrapper>
+              )}
             </div>
-            {disclaimer && (
-              <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
-                <div className="mr-1 h-6 w-6 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900 sm:mr-0">
-                  <p>i</p>
-                </div>
-              </TooltipWrapper>
-            )}
           </div>
         </div>
         <div className="flex h-auto flex-wrap items-center gap-1 text-center">
