@@ -171,7 +171,7 @@
     "prettier": "2.8.8",
     "prettier-plugin-tailwindcss": "0.4.1",
     "readline-sync": "^1.4.10",
-    "storybook": "^7.0.0-alpha.47",
+    "storybook": "^7.1.1",
     "tailwindcss": "3.1.8",
     "ts-node": "^10.9.1",
     "typescript": "4.8.4",

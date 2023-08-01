@@ -44,6 +44,7 @@ updates:
           - 'topojson-*'
       storybook:
         patterns:
+          - 'storybook'
           - '@storybook/*'
       eslint:
         patterns:
@@ -56,6 +57,18 @@ updates:
       capacitor:
         patterns:
           - '@capacitor/*'
+      tailwind:
+        patterns:
+          - 'tailwindcss'
+          - 'tailwindcss-*'
+          - 'tailwind-*'
+          - '@tailwindcss/*'
+      tanstack:
+        patterns:
+          - '@tanstack/*'
+      sentry:
+        patterns:
+          - '@sentry/*'
 #
 # CURRENTLY DISABLED
 # We had so many PRs being opened and not enough time to test each individual update,
