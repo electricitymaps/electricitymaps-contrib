@@ -38,7 +38,7 @@ function BreakdownChart({
         {isBreakdownGraphOverlayEnabled && (
           <div className="absolute top-0 h-full w-full">
             <div className=" h-full w-full bg-white opacity-50 dark:bg-gray-700" />
-            <div className="absolute top-[50%] left-[50%] z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
+            <div className="absolute left-[50%] top-[50%] z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
               Temporarily disabled for consumption. <br /> Switch to production view
             </div>
           </div>

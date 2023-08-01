@@ -8,7 +8,7 @@ export default function BySource({ className }: { className?: string }) {
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   return (
-    <div className={`relative pt-4 pb-2 text-md font-bold ${className}`}>
+    <div className={`relative pb-2 pt-4 text-md font-bold ${className}`}>
       {__(
         displayByEmissions
           ? 'country-panel.emissions'
