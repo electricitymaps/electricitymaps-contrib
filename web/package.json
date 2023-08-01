@@ -180,7 +180,7 @@
     "vite-tsconfig-paths": "3.5.2",
     "vitest": "0.24.3",
     "whatwg-fetch": "3.6.2",
-    "workbox-build": "6.5.4",
+    "workbox-build": "6.6.0",
     "workbox-window": "6.5.4"
   },
   "browserslist": [
