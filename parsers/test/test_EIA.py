@@ -221,14 +221,14 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-SW-SRP",
                 "source": "eia.gov",
-                "production": {"hydro": 7.0}, # 4 from HGMA, 3 from DEAA
-                "storage": {"hydro": 5.0}, # 5 from SRP
+                "production": {"hydro": 7.0},  # 4 from HGMA, 3 from DEAA
+                "storage": {"hydro": 5.0},  # 5 from SRP
             },
             {
                 "zoneKey": "US-SW-SRP",
                 "source": "eia.gov",
-                "production": {"hydro": 800.0}, # 400 from SRP, 400 from HGMA
-                "storage": {"hydro": 900.0}, # 900 from DEAA
+                "production": {"hydro": 800.0},  # 400 from SRP, 400 from HGMA
+                "storage": {"hydro": 900.0},  # 900 from DEAA
             },
         ]
         self.check_production_matches(data, expected)
