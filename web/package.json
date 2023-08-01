@@ -181,7 +181,7 @@
     "vitest": "0.24.3",
     "whatwg-fetch": "3.6.2",
     "workbox-build": "6.6.0",
-    "workbox-window": "6.5.4"
+    "workbox-window": "6.6.0"
   },
   "browserslist": [
     "defaults",
