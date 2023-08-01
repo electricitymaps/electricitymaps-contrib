@@ -1515,10 +1515,6 @@
       "countryName": "Yhdysvallat",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "Yhdysvallat",
       "zoneName": "Bonneville Power Administration"
@@ -1611,10 +1607,6 @@
       "countryName": "Yhdysvallat",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Yhdysvallat",
       "zoneName": "El Paso Electric Company"
@@ -1622,10 +1614,6 @@
     "US-SW-GRIF": {
       "countryName": "Yhdysvallat",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Yhdysvallat",

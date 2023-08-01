@@ -154,7 +154,6 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
             "US-SE-SEPA",
             "US-NW-GWA",
             "US-NW-DOPD",
-            "US-NW-AVRN",
             "LU",
         ]
     ):
