@@ -25,7 +25,7 @@ function MenuLink({ children, href, active, id }: MenuLinkProps): JSX.Element {
         >
           {children}
           {active && (
-            <div className="absolute left-0 bottom-0 h-[2px] w-full bg-green-500"></div>
+            <div className="absolute bottom-0 left-0 h-[2px] w-full bg-green-500"></div>
           )}
         </NavigationMenu.Link>
       </NavigationMenu.Item>
