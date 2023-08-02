@@ -139,7 +139,7 @@
     "@types/topojson": "^3.2.3",
     "@types/topojson-client": "^3.1.1",
     "@types/topojson-server": "^3.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.59.9",
     "@vitejs/plugin-react": "2.2.0",
     "@vitest/coverage-istanbul": "0.28.5",
