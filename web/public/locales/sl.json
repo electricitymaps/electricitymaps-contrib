@@ -691,10 +691,6 @@
       "countryName": "Velika Britanija",
       "zoneName": "Šetlandski otoki"
     },
-    "GB-ZET": {
-      "countryName": "Velika Britanija",
-      "zoneName": "Šetlandski otoki"
-    },
     "GD": {
       "zoneName": "Grenada"
     },
@@ -1631,10 +1627,6 @@
       "countryName": "ZDA",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "ZDA",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "ZDA",
       "zoneName": "Bonneville Power Administration"
@@ -1727,10 +1719,6 @@
       "countryName": "ZDA",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "ZDA",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "ZDA",
       "zoneName": "El Paso Electric Company"
@@ -1738,10 +1726,6 @@
     "US-SW-GRIF": {
       "countryName": "ZDA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "ZDA",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "ZDA",
