@@ -48,7 +48,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
         {isPriceDisabled && (
           <div className="absolute top-0 h-full w-full">
             <div className=" h-full w-full rounded bg-white opacity-50 dark:bg-gray-700" />
-            <div className="absolute top-[50%] left-[50%] z-10 w-60 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
+            <div className="absolute left-[50%] top-[50%] z-10 w-60 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
               {__(`country-panel.disabledPriceReasons.${priceDisabledReason}`)}
             </div>
           </div>

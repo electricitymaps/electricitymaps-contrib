@@ -31,7 +31,7 @@ function MobileMapControls() {
   const handleOpenSettingsModal = () => setIsSettingsModalOpen(true);
 
   return (
-    <div className="absolute top-2 right-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
+    <div className="absolute right-2 top-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
       <Button
         className="m-0 p-3"
         aria-label="open info modal"
