@@ -366,6 +366,46 @@ class TestProductionBreakdown(unittest.TestCase):
             )
             mock_error.assert_called_once()
 
+    def test_set_breakdown_all_present(self):
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, solar=None),
+            source="trust.me",
+        )
+        dict_form = breakdown.to_dict()
+        assert dict_form["production"].keys() == {"wind", "solar"}
+        assert dict_form["production"]["wind"] == 10
+        assert dict_form["production"]["solar"] == None
+
+    def test_set_modes_all_present_set_mode(self):
+        mix = ProductionMix(wind=10)
+        mix.set_value("solar", None)
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=mix,
+            source="trust.me",
+        )
+        dict_form = breakdown.to_dict()
+        assert dict_form["production"].keys() == {"wind", "solar"}
+        assert dict_form["production"]["wind"] == 10
+        assert dict_form["production"]["solar"] == None
+
+    def test_set_modes_all_present_add_mode(self):
+        mix = ProductionMix(wind=10)
+        mix.add_value("solar", None)
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=mix,
+            source="trust.me",
+        )
+        dict_form = breakdown.to_dict()
+        assert dict_form["production"].keys() == {"wind", "solar"}
+        assert dict_form["production"]["wind"] == 10
+        assert dict_form["production"]["solar"] == None
+
 
 class TestTotalProduction(unittest.TestCase):
     def test_create_generation(self):

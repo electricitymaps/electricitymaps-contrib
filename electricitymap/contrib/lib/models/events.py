@@ -35,10 +35,10 @@ class Mix(BaseModel, ABC):
         This is useful if there are multiple production modes in the source
         that maps to the same Electricity Maps production mode.
         """
-        if value is None:
-            return
         existing_value: Optional[float] = getattr(self, mode)
         if existing_value is not None:
+            if value is None:
+                return
             self.__setattr__(mode, existing_value + value)
         else:
             self.__setattr__(mode, value)
@@ -546,11 +546,11 @@ class ProductionBreakdown(AggregatableEvent):
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
             "production": self.production.dict(
-                exclude_none=True, keep_corrected_negative_values=True
+                exclude_unset=True, keep_corrected_negative_values=True
             )
             if self.production
             else {},
-            "storage": self.storage.dict(exclude_none=True) if self.storage else {},
+            "storage": self.storage.dict(exclude_unset=True) if self.storage else {},
             "source": self.source,
             "sourceType": self.sourceType,
             "correctedModes": []
