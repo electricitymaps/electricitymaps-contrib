@@ -97,21 +97,6 @@ class TestFR_O(unittest.TestCase):
         expected_production_data = [
             {
                 "correctedModes": [],
-                "datetime": datetime.fromisoformat("2023-07-02T15:31:00+00:00"),
-                "production": {
-                    "biomass": 0.38,
-                    "hydro": 5.426,
-                    "oil": 110.23200000000001,
-                    "solar": 74.562,
-                    "wind": 2.3480000000000003,
-                },
-                "source": "opendata-corse.edf.fr",
-                "sourceType": "estimated",
-                "storage": {"battery": -0.0},
-                "zoneKey": "FR-COR",
-            },
-            {
-                "correctedModes": [],
                 "datetime": datetime.fromisoformat("2023-07-02T15:26:00+00:00"),
                 "zoneKey": "FR-COR",
                 "production": {
@@ -124,6 +109,21 @@ class TestFR_O(unittest.TestCase):
                 "storage": {"battery": 0.32},
                 "source": "opendata-corse.edf.fr",
                 "sourceType": "estimated",
+            },
+            {
+                "correctedModes": [],
+                "datetime": datetime.fromisoformat("2023-07-02T15:31:00+00:00"),
+                "production": {
+                    "biomass": 0.38,
+                    "hydro": 5.426,
+                    "oil": 110.23200000000001,
+                    "solar": 74.562,
+                    "wind": 2.3480000000000003,
+                },
+                "source": "opendata-corse.edf.fr",
+                "sourceType": "estimated",
+                "storage": {"battery": -0.0},
+                "zoneKey": "FR-COR",
             },
         ]
         self.assertEqual(len(data_list), len(expected_production_data))
