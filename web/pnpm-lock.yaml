@@ -191,8 +191,8 @@ devDependencies:
     specifier: ^5.0.2
     version: 5.0.2(rollup@2.78.1)
   '@sentry/vite-plugin':
-    specifier: ^0.7.2
-    version: 0.7.2
+    specifier: ^2.5.0
+    version: 2.5.0
   '@storybook/addon-actions':
     specifier: 7.1.1
     version: 7.1.1(react-dom@18.2.0)(react@18.2.0)
@@ -4258,18 +4258,18 @@ packages:
       tslib: 2.6.1
     dev: false
 
-  /@sentry/bundler-plugin-core@0.7.2:
-    resolution: {integrity: sha512-9d1MxEgRkPCTewQ26Bs+J/GxvnNVIRuQPZrHs70qRLotMiedH4KlHauh2MhbgH5rdgm0DUeOcafhxoBSK7ji3w==}
-    engines: {node: '>= 10'}
+  /@sentry/bundler-plugin-core@2.5.0:
+    resolution: {integrity: sha512-UNjeTSf0Irt/RsC1Xsfxa+RC92mBvjzuWQnvHJ5c+mXwUt+jLcFgGMCSVK/FCDZO+gAeKzmU1+G2UexbsNAP8w==}
+    engines: {node: '>= 14'}
     dependencies:
       '@sentry/cli': 2.20.3
       '@sentry/node': 7.61.0
-      '@sentry/tracing': 7.61.0
+      '@sentry/utils': 7.61.0
+      dotenv: 16.3.1
       find-up: 5.0.0
       glob: 9.3.2
       magic-string: 0.27.0
       unplugin: 1.0.1
-      webpack-sources: 3.2.3
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -4338,13 +4338,6 @@ packages:
       '@sentry/utils': 7.61.0
     dev: false
 
-  /@sentry/tracing@7.61.0:
-    resolution: {integrity: sha512-asGbw3n04qkM5zUCPlGg9i52GEHq9Nmore38SJFN0L4N/YH6EPJLEUfNm2jFvXWCo96kq/dPKnyjOEuPccwhIA==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry-internal/tracing': 7.61.0
-    dev: true
-
   /@sentry/types@7.61.0:
     resolution: {integrity: sha512-/GLlIBNR35NKPE/SfWi9W10dK9hE8qTShzsuPVn5wAJxpT3Lb4+dkwmKCTLUYxdkmvRDEudkfOxgalsfQGTAWA==}
     engines: {node: '>=8'}
@@ -4356,11 +4349,12 @@ packages:
       '@sentry/types': 7.61.0
       tslib: 2.6.1
 
-  /@sentry/vite-plugin@0.7.2:
-    resolution: {integrity: sha512-gprT6wyc1JEtjZcWjv1jQSjT2QV62ZCLmXsjK4oKosb0uaaUMR4UgKxorZyNPGSY08YangjumeJZ7UX0/zakkw==}
-    engines: {node: '>= 10'}
+  /@sentry/vite-plugin@2.5.0:
+    resolution: {integrity: sha512-u5lfIysy6UVzUGn/adyDcRXfzFyip4mLGThTnKeOeA9rCgmJUVnErH8TD8xhTKdpq/MBiQ+KqrC6xG9pKCa96g==}
+    engines: {node: '>= 14'}
     dependencies:
-      '@sentry/bundler-plugin-core': 0.7.2
+      '@sentry/bundler-plugin-core': 2.5.0
+      unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -7607,7 +7601,7 @@ packages:
   /acorn-globals@7.0.1:
     resolution: {integrity: sha512-umOSDSDrfHbTNPuNpC2NSnnA3LUrqpevPb4T9jRx4MagXNS0rs+gwiTcAvqCRmsD6utzsrzNt+ebm00SNWiC3Q==}
     dependencies:
-      acorn: 8.8.0
+      acorn: 8.10.0
       acorn-walk: 8.2.0
     dev: true
 
