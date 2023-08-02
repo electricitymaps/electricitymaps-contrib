@@ -37,8 +37,7 @@ class Mix(BaseModel, ABC):
         """
         existing_value: Optional[float] = getattr(self, mode)
         if existing_value is not None:
-            if value is None:
-                return
+            value = 0 if value is None else value
             self.__setattr__(mode, existing_value + value)
         else:
             self.__setattr__(mode, value)
