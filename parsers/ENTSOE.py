@@ -769,7 +769,7 @@ def create_production_storage(
     if fuel_code in ENTSOE_STORAGE_PARAMETERS:
         # Only include consumption if it's for storage. In other cases
         # it is power plant self-consumption which should be ignored.
-        storage.set_value(fuel_em_type, -quantity)
+        storage.add_value(fuel_em_type, -quantity)
         return None, storage
     if 0 > quantity > -50:
         logger.info(
@@ -778,7 +778,7 @@ def create_production_storage(
             extra={"key": zoneKey, "fuel_type": fuel_em_type},
         )
         quantity = 0
-    production.set_value(fuel_em_type, quantity)
+    production.add_value(fuel_em_type, quantity)
     return production, None
 
 
