@@ -61,7 +61,9 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
         args = zone.split("->")
     else:
         args = [zone]
-    res = parser(*args, target_datetime=parsed_target_datetime, logger=getLogger(__name__))
+    res = parser(
+        *args, target_datetime=parsed_target_datetime, logger=getLogger(__name__)
+    )
 
     if not res:
         raise ValueError(f"Error: parser returned nothing ({res})")
@@ -95,10 +97,10 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
     ), "Datetimes must be timezone aware"
 
     last_dt = datetime.fromisoformat(f"{max(dts)}").astimezone(timezone.utc)
-    first_dt =  datetime.fromisoformat(f"{min(dts)}").astimezone(timezone.utc)
+    first_dt = datetime.fromisoformat(f"{min(dts)}").astimezone(timezone.utc)
     max_dt_warning = ""
     if not target_datetime:
-        now_string = datetime.now(timezone.utc).isoformat(timespec='seconds')
+        now_string = datetime.now(timezone.utc).isoformat(timespec="seconds")
         max_dt_warning = (
             f" :( >2h from now !!! (now={now_string} UTC)"
             if (datetime.now(timezone.utc) - last_dt).total_seconds() > 2 * 3600
@@ -114,7 +116,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
                 "---------------------",
                 f"took {elapsed_time:.2f}s",
                 f"min returned datetime: {first_dt} UTC",
-                f"max returned datetime: {last_dt} UTC {max_dt_warning}"
+                f"max returned datetime: {last_dt} UTC {max_dt_warning}",
             ]
         )
     )
