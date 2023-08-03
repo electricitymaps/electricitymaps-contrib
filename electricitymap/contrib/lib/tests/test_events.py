@@ -285,7 +285,7 @@ class TestProductionBreakdown(unittest.TestCase):
     def test_self_report_negative_value(self):
         mix = ProductionMix()
         # We have manually set a 0 to avoid reporting self consumption for instance.
-        mix.set_value("wind", 0)
+        mix.add_value("wind", 0)
         # This one has been set through the attributes and should be reported as None.
         mix.biomass = -10
         logger = logging.Logger("test")
@@ -303,14 +303,14 @@ class TestProductionBreakdown(unittest.TestCase):
 
     def test_unknown_production_mode_raises(self):
         mix = ProductionMix()
-        with self.assertRaises(ValueError):
-            mix.set_value("nuke", 10)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(AttributeError):
+            mix.add_value("nuke", 10)
+        with self.assertRaises(AttributeError):
             mix.nuke = 10
         storage = StorageMix()
-        with self.assertRaises(ValueError):
-            storage.set_value("nuke", 10)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(AttributeError):
+            storage.add_value("nuke", 10)
+        with self.assertRaises(AttributeError):
             storage.nuke = 10
 
     @freezegun.freeze_time("2023-01-01")
@@ -365,6 +365,32 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
             mock_error.assert_called_once()
+
+    def test_set_breakdown_all_present(self):
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, solar=None),
+            source="trust.me",
+        )
+        dict_form = breakdown.to_dict()
+        assert dict_form["production"].keys() == {"wind", "solar"}
+        assert dict_form["production"]["wind"] == 10
+        assert dict_form["production"]["solar"] == None
+
+    def test_set_modes_all_present_add_mode(self):
+        mix = ProductionMix(wind=10)
+        mix.add_value("solar", None)
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=mix,
+            source="trust.me",
+        )
+        dict_form = breakdown.to_dict()
+        assert dict_form["production"].keys() == {"wind", "solar"}
+        assert dict_form["production"]["wind"] == 10
+        assert dict_form["production"]["solar"] == None
 
 
 class TestTotalProduction(unittest.TestCase):

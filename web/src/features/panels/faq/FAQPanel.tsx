@@ -23,7 +23,7 @@ export default function FAQPanel(): ReactElement {
   }
 
   return (
-    <div className="pt-4 pl-2 ">
+    <div className="pl-2 pt-4 ">
       <div className="mb-2 flex flex-row pl-2">
         <Link to={parentPage} className="text-3xl mr-4 self-center">
           <HiArrowLeft />

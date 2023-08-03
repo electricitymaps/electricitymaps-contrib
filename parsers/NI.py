@@ -230,7 +230,7 @@ def fetch_production(
         production_mix = ProductionMix()
 
         for mode, value in production.items():
-            production_mix.set_value(mode, value)
+            production_mix.add_value(mode, value)
 
         production_list = ProductionBreakdownList(logger)
         production_list.append(
