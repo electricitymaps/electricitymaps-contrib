@@ -344,25 +344,29 @@ class TestProductionBreakdownList(unittest.TestCase):
         production_list_1.append(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            production=ProductionMix(wind=10),
+            production=ProductionMix(wind=10, coal=None),
             storage=StorageMix(hydro=1),
             source="trust.me",
         )
         production_list_2 = ProductionBreakdownList(logging.Logger("test"))
+        production_mix = ProductionMix(wind=20)
+        production_mix.add_value("hydro", None)
         production_list_2.append(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            production=ProductionMix(wind=20),
+            production=production_mix,
             storage=StorageMix(hydro=1),
             source="trust.me",
         )
-        merged = ProductionBreakdownList.merge_production_breakdowns([production_list_1, production_list_2], logging.Logger("test"))
+        merged = ProductionBreakdownList.merge_production_breakdowns(
+            [production_list_1, production_list_2], logging.Logger("test")
+        )
         assert len(merged.events) == 1
         assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
         assert merged.events[0].production.hydro is None
         assert merged.events[0].storage.battery is None
         merged_dict = merged.events[0].to_dict()
-        assert merged_dict["production"].keys() == {"wind"}
+        assert merged_dict["production"].keys() == {"coal", "hydro", "wind"}
         assert merged_dict["storage"].keys() == {"hydro"}
 
     def test_merge_production_list_predicted(self):
