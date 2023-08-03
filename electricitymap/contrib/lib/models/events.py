@@ -160,10 +160,11 @@ class ProductionMix(Mix):
         """
         merged_production_mix = cls()
         for production_mix in production_mixes:
-            for mode in PRODUCTION_MODES:
-                if mode in production_mix.__fields_set__:
-                    value = getattr(production_mix, mode)
-                    merged_production_mix.add_value(mode, value)
+            for mode in set(PRODUCTION_MODES).intersection(
+                production_mix.__fields_set__
+            ):
+                value = getattr(production_mix, mode)
+                merged_production_mix.add_value(mode, value)
             merged_production_mix._corrected_negative_values.update(
                 production_mix.corrected_negative_modes
             )
@@ -196,10 +197,11 @@ class StorageMix(Mix):
         """
         merged_storage_mix = cls()
         for storage_mix_to_merge in storage_mixes:
-            for mode in STORAGE_MODES:
-                if mode in storage_mix_to_merge.__fields_set__:
-                    value = getattr(storage_mix_to_merge, mode)
-                    merged_storage_mix.add_value(mode, value)
+            for mode in set(STORAGE_MODES).intersection(
+                storage_mix_to_merge.__fields_set__
+            ):
+                value = getattr(storage_mix_to_merge, mode)
+                merged_storage_mix.add_value(mode, value)
         return merged_storage_mix
 
 
