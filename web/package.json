@@ -177,7 +177,7 @@
     "typescript": "4.8.4",
     "vite": "4.2.3",
     "vite-plugin-pwa": "0.15.2",
-    "vite-tsconfig-paths": "3.5.2",
+    "vite-tsconfig-paths": "3.6.0",
     "vitest": "0.24.3",
     "whatwg-fetch": "3.6.2",
     "workbox-build": "6.6.0",
