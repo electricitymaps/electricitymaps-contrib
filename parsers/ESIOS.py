@@ -25,6 +25,7 @@ EXCHANGE_ID_MAP = {
 }
 
 # Map each exchange to the needed factor to adjust from MWh to MW. Depends on the time granularity of the API for each request
+# E.g ES->MA is 4 because the API returns 15 minutes intervals data (15 min = 1/4 of an hour; P=E/t).
 EXCHANGE_GRANULARITY_FACTOR_MAP = {
     "AD->ES": 1,
     "ES->MA": 4,
@@ -62,8 +63,8 @@ def fetch_exchange(
 
     zone_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     if (
-        zone_key not in EXCHANGE_ID_MAP.keys()
-        or zone_key not in EXCHANGE_GRANULARITY_FACTOR_MAP.keys()
+        zone_key not in EXCHANGE_ID_MAP
+        or zone_key not in EXCHANGE_GRANULARITY_FACTOR_MAP
     ):
         raise ParserException(
             "ESIOS.py",
