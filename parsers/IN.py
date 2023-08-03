@@ -456,7 +456,7 @@ def daily_to_hourly_production_data(
     all_hourly_production = ProductionBreakdownList(logger)
     production_mix = ProductionMix()
     for mode, value in production.items():
-        production_mix.set_value(mode, value)
+        production_mix.add_value(mode, value)
     for hour in list(range(0, 24)):
         all_hourly_production.append(
             zoneKey=ZoneKey(zone_key),
