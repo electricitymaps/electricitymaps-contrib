@@ -120,7 +120,7 @@ def fetch_production(
         # Or you can create the production mix and fill it later.
         production_mix = ProductionMix()
         for mode, value in item.items():
-            production_mix.set_value(mode, value)
+            production_mix.add_value(mode, value)
         production_list.append(
             zoneKey=zone_key,
             datetime=datetime.fromisoformat(item["datetime"]),
