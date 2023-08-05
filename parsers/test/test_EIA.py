@@ -221,31 +221,14 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-SW-SRP",
                 "source": "eia.gov",
-                "production": {"hydro": 7.0},
-                "storage": {"hydro": 5.0},
+                "production": {"hydro": 7.0},  # 4 from HGMA, 3 from DEAA
+                "storage": {"hydro": 5.0},  # 5 from SRP
             },
             {
                 "zoneKey": "US-SW-SRP",
                 "source": "eia.gov",
-                "production": {"hydro": 800.0},
-                "storage": {"hydro": 900.0},
-            },
-        ]
-        self.check_production_matches(data, expected)
-
-        data = EIA.fetch_production_mix(ZoneKey("US-SW-HGMA"), self.session)
-        expected = [
-            {
-                "zoneKey": "US-SW-HGMA",
-                "source": "eia.gov",
-                "production": {"hydro": 4.0},
-                "storage": {},
-            },
-            {
-                "zoneKey": "US-SW-HGMA",
-                "source": "eia.gov",
-                "production": {"hydro": 400.0},
-                "storage": {},
+                "production": {"hydro": 800.0},  # 400 from SRP, 400 from HGMA
+                "storage": {"hydro": 900.0},  # 900 from DEAA
             },
         ]
         self.check_production_matches(data, expected)
@@ -383,13 +366,13 @@ class TestEIAConsumption(TestEIA):
         expected = [
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
-                "consumption": 6215,
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "consumption": 4792,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
-                "consumption": 4792,
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "consumption": 6215,
             },
         ]
         self.assertEqual(len(data_list), len(expected))
@@ -405,13 +388,13 @@ class TestEIAConsumption(TestEIA):
         expected = [
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
-                "consumption": 6215,
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "consumption": 4792,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
-                "consumption": 4792,
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "consumption": 6215,
             },
         ]
         self.assertEqual(len(data_list), len(expected))

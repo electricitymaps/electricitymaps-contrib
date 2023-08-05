@@ -448,17 +448,17 @@ def create_production_storage(
     production_mix = ProductionMix()
     storage_mix = StorageMix()
     if production_value > 0:
-        production_mix.set_value(fuel_type, production_value)
+        production_mix.add_value(fuel_type, production_value)
         return production_mix, None
     if fuel_type == "hydro":
         # Negative hydro is reported by some BAs, according to the EIA those are pumped storage.
         # https://www.eia.gov/electricity/gridmonitor/about
-        storage_mix.set_value("hydro", abs(production_value))
+        storage_mix.add_value("hydro", abs(production_value))
         return None, storage_mix
 
     # production_value > negative_threshold, this is considered to be self consumption and should be reported as 0.
     # Lower values are set to None as they are most likely outliers.
-    production_mix.set_value(
+    production_mix.add_value(
         fuel_type, production_value, production_value > negative_threshold
     )
     return production_mix, None

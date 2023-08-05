@@ -138,19 +138,14 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United Arab Emirates: [GCCIA](https://www.gccia.com.sa/)
 - United States of America
-  - Bonneville Power Authority: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.txt)
-  - California: [CAISO](http://www.caiso.com/Pages/default.aspx)
-  - Hawaii (Oahu Island): [Islandpulse](https://www.islandpulse.org/)
-  - Idaho Power Company: [IPC](https://www.idahopower.com/energy/delivering-power/generation-and-demand/)
-  - MISO: [MISO](https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getfuelmix&returnType=json)
-  - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
-  - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
-  - PJM: [PJM](http://www.pjm.com/markets-and-operations.aspx)
-  - Puerto Rico: [AEEPR](https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx)
-  - Southwest Power Pool: [SPP](https://marketplace.spp.org/pages/generation-mix)
-  - Southwest Variable Energy Resource Initiative: [SVERI](https://sveri.energy.arizona.edu/#generation-by-fuel-type)
-  - Texas: [ERCOT](http://www.ercot.com/content/cdr/html/real_time_system_conditions.html)
-  - Seminole Electric Cooperative (Florida): [EIA](https://www.eia.gov/opendata/qb.php?category=2122629&sdid=EBA.SEC-ALL.NG.H), [SEC](https://www.seminole-electric.com/facilities/generation/)
+  - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
+  - California (US-CAL-CISO): [CAISO](http://www.caiso.com/Pages/default.aspx)
+  - Hawaii, Oahu Island (US-HI-OA): [Islandpulse](https://www.islandpulse.org/)
+  - New England (US-NE-ISNE): [NEISO](https://www.iso-ne.com/isoexpress/)
+  - New York (US-NY-NYIS): [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
+  - PJM (US-MIDA-PJM): [PJM](http://www.pjm.com/markets-and-operations.aspx)
+  - Puerto Rico (PR): [AEEPR](https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx)
+  - Southwest Power Pool (US-CENT-SWPP): [SPP](https://marketplace.spp.org/pages/generation-mix)
 - Uruguay: [UTE](https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 - Vietnam: [EVN](https://www.nldc.evn.vn/)
   &nbsp;</details>
@@ -436,7 +431,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - Balancing Authorities: [EIA](https://www.eia.gov/electricity/data/eia860M/)
-  - States: [EIA](https://www.eia.gov/electricity/data/state/)
+  - States:
+    - [EIA](https://www.eia.gov/electricity/data/state/)
+    - [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
   - CAISO
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
@@ -453,6 +450,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - PNM
     - Coal: [Github|electricitymaps-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
     - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
+  - Southern Company Services, Inc:
+    - Nuclear: Capacity [EIA](https://www.eia.gov/electricity/data/eia860m/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
 - Vietnam: [EVN](https://www.nldc.evn.vn/FullNewsg/100/Thong-tin-thi-truong-dien/default.aspx)
