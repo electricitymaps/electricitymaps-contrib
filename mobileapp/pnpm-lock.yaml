@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@capacitor/android':
     specifier: ^4.6.2
@@ -333,7 +337,7 @@ packages:
       '@types/lodash': 4.14.186
       '@types/plist': 3.0.2
       '@types/slice-ansi': 5.0.0
-      '@xmldom/xmldom': 0.7.6
+      '@xmldom/xmldom': 0.7.13
       conventional-changelog: 3.1.25
       cross-spawn: 7.0.3
       diff: 5.1.0
@@ -448,8 +452,8 @@ packages:
       chevrotain: 7.1.1
     dev: true
 
-  /@xmldom/xmldom@0.7.6:
-    resolution: {integrity: sha512-HHXP9hskkFQHy8QxxUXkS7946FFIhYVfGqsk0WLwllmexN9x/+R4UBLvurHEuyXRfVEObVR8APuQehykLviwSQ==}
+  /@xmldom/xmldom@0.7.13:
+    resolution: {integrity: sha512-lm2GW5PkosIzccsaZIz7tp8cPADSIlIHWDFTR1N0SzfinhhYgeIQjFMz4rYzanCScr3DqQLeomUDArp6MWKm+g==}
     engines: {node: '>=10.0.0'}
     dev: true
 
@@ -1687,7 +1691,7 @@ packages:
   /mergexml@1.2.3:
     resolution: {integrity: sha512-sNc9qswtLUoGmN0MB3dY+MCIJqCGEZZrtYp0Z5Iwsk6ELc/V96SFIuv5Y6O6tYAsFtdpJcPFV0FgOSHSciJLbA==}
     dependencies:
-      '@xmldom/xmldom': 0.7.6
+      '@xmldom/xmldom': 0.7.13
       formidable: 1.2.6
       xpath: 0.0.27
     dev: true
