@@ -12,7 +12,6 @@ interface NetExchangeChartProps {
 
 function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
-  console.log(data);
 
   if (isLoading || isError || !data) {
     return null;

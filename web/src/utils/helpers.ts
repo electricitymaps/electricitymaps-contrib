@@ -112,10 +112,10 @@ export function getRenewableRatio(
 /**
  * Function to round a number to a specific amount of decimals.
  * @param {number} number - The number to round.
- * @param {number} decimals - Defaults to 3 decimals.
+ * @param {number} decimals - Defaults to 2 decimals.
  * @returns {number} Rounded number.
  */
-export const round = (number: number, decimals = 3): number => {
+export const round = (number: number, decimals = 2): number => {
   const sign = Math.sign(number);
   return (
     (Math.round(Math.abs(number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *

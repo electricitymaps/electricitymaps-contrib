@@ -6,7 +6,9 @@ import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 import { getNetExchange, round } from 'utils/helpers';
 import { scalePower } from 'utils/formatting';
 
-export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
+export default function NetExchangeChartTooltip({
+  zoneDetail,
+}: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);
   const { __ } = useTranslation();
 
@@ -16,12 +18,10 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
   const { stateDatetime } = zoneDetail;
 
   const netExchange = getNetExchange(zoneDetail);
-  console.log(netExchange);
   const { formattingFactor, unit } = scalePower(netExchange);
-  console.log(formattingFactor, unit);
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:bg-gray-900 sm:w-64">
+    <div className="w-max rounded-md bg-white p-3 shadow-xl dark:bg-gray-900">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
@@ -29,7 +29,8 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
         title={__('tooltips.netExchange')}
       />
       <p className="flex justify-center text-base">
-        {round(netExchange / formattingFactor)} {unit}
+        {netExchange >= 0 ? __('tooltips.importing') : __('tooltips.exporting')}{' '}
+        {Math.abs(round(netExchange / formattingFactor))} {unit}
       </p>
     </div>
   );
