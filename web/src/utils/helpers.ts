@@ -117,7 +117,7 @@ export function getRenewableRatio(
  */
 export const round = (number: number, decimals = 2): number => {
   return (
-    (Math.round(Math.abs(number) + Number.EPSILON * 10 ** decimals) / 10 ** decimals) *
+    (Math.round((Math.abs(number) + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
     Math.sign(number)
   );
 };

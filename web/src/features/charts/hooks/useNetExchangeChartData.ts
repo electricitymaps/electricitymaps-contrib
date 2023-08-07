@@ -80,8 +80,14 @@ function getValuesInfo(
     Math.abs(getNetExchange(d, displayByEmissions))
   );
 
-  const format = scalePower(maxTotalValue);
-  const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
-  const valueFactor = displayByEmissions ? 1 : format.formattingFactor;
+  const { unit, formattingFactor } = displayByEmissions
+    ? {
+        unit: 'tCO₂eq/min',
+        formattingFactor: 1,
+      }
+    : scalePower(maxTotalValue);
+  const valueAxisLabel = unit;
+  const valueFactor = formattingFactor;
+
   return { valueAxisLabel, valueFactor };
 }
