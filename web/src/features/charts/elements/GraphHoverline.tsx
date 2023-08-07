@@ -33,12 +33,11 @@ const GraphHoverLine = React.memo(
     if (interval) {
       x += 0.5 * interval;
     }
-    let y = datapoint && Number.isFinite(datapoint[1]) && valueScale(datapoint[1]);
 
-    if (datapoint && datapoint[0] < 0) {
-      // For negative values, we push the circle below the x-axis
-      y -= datapoint[0] + CIRCLE_RADIUS;
-    }
+    // For negative values we use the first value in the array
+    // For positive values we use the second value in the array
+    const yIndex = datapoint?.at(0) < 0 ? 0 : 1;
+    const y = Number.isFinite(datapoint?.at(yIndex)) && valueScale(datapoint?.at(yIndex));
 
     const showVerticalLine = Number.isFinite(x);
     const showMarker = Number.isFinite(x) && Number.isFinite(y);
