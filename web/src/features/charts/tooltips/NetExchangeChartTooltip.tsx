@@ -21,7 +21,7 @@ export default function NetExchangeChartTooltip({
   const { formattingFactor, unit } = scalePower(netExchange);
 
   return (
-    <div className="w-max rounded-md bg-white p-3 shadow-xl dark:bg-gray-900">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:bg-gray-900 sm:w-max">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
