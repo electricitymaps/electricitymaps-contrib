@@ -24,6 +24,13 @@ EXCHANGE_ID_MAP = {
     "ES->MA": "10209",
 }
 
+# Map each exchange to the needed factor to adjust from MWh to MW. Depends on the time granularity of the API for each request
+# E.g ES->MA is 4 because the API returns 15 minutes intervals data (15 min = 1/4 of an hour; P=E/t).
+EXCHANGE_MULTIPLICATION_FACTOR_MAP = {
+    "AD->ES": 1,
+    "ES->MA": 4,
+}
+
 
 def format_url(target_datetime: datetime, ID: str):
     start_date = (target_datetime - timedelta(hours=24)).isoformat()
@@ -55,7 +62,10 @@ def fetch_exchange(
     }
 
     zone_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    if zone_key not in EXCHANGE_ID_MAP.keys():
+    if (
+        zone_key not in EXCHANGE_ID_MAP
+        or zone_key not in EXCHANGE_MULTIPLICATION_FACTOR_MAP
+    ):
         raise ParserException(
             "ESIOS.py",
             f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
@@ -81,6 +91,8 @@ def fetch_exchange(
         net_flow = (
             -value["value"] if zone_key.partition("->")[0] == "ES" else value["value"]
         )
+
+        net_flow *= EXCHANGE_MULTIPLICATION_FACTOR_MAP[zone_key]
 
         exchanges.append(
             zoneKey=zone_key,
