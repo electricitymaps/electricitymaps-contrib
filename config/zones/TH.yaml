@@ -5,17 +5,17 @@ bounding_box:
     - 20.94500640900013
 capacity:
   battery storage: 0
-  biomass: 1040.79
-  coal: 6067.5
-  gas: 29833
+  biomass: 4533.6
+  coal: 6641.06
+  gas: 33098.85
   geothermal: 0.3
-  hydro: 7544.03
+  hydro: 7573.17
   hydro storage: 1000
   nuclear: 0
-  oil: 1497.4
-  solar: 487.8
+  oil: 1501.1
+  solar: 3040.17
   unknown: 0
-  wind: 1447.69
+  wind: 1539.21
 contributors:
   - PPsyrius
 emissionFactors:

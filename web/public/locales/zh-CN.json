@@ -1541,10 +1541,6 @@
       "countryName": "美国",
       "zoneName": "Avista公司"
     },
-    "US-NW-AVRN": {
-      "countryName": "美国",
-      "zoneName": "Avangrid可再生能源公司"
-    },
     "US-NW-BPAT": {
       "countryName": "美国",
       "zoneName": "邦纳维尔能源管理"
@@ -1637,10 +1633,6 @@
       "countryName": "美国",
       "zoneName": "亚利桑那公共服务公司"
     },
-    "US-SW-DEAA": {
-      "countryName": "美国",
-      "zoneName": "阿灵顿山谷有限公司"
-    },
     "US-SW-EPE": {
       "countryName": "美国",
       "zoneName": "埃尔帕索电力公司"
@@ -1648,10 +1640,6 @@
     "US-SW-GRIF": {
       "countryName": "美国",
       "zoneName": "Griffith能源有限责任公司"
-    },
-    "US-SW-HGMA": {
-      "countryName": "美国",
-      "zoneName": "新Harquahala能源生产有限公司"
     },
     "US-SW-PNM": {
       "countryName": "美国",

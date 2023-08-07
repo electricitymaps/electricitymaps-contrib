@@ -207,7 +207,7 @@ def fetch_production(
             production_mix = ProductionMix()
 
             for mode, value in production_mw.items():
-                production_mix.set_value(mode, value)
+                production_mix.add_value(mode, value)
 
             co_datetime = target_arrow_in_tz.datetime.replace(hour=int(col[-2:]) - 1)
             production_list.append(

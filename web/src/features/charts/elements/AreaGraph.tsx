@@ -23,13 +23,24 @@ const Y_AXIS_WIDTH = 40;
 const Y_AXIS_PADDING = 4;
 
 const getTotalValues = (layers: any) => {
-  const values = layers
-    .flatMap((layer: any) => layer.datapoints.map((d: any) => d[1]))
-    .filter(() => Number.isFinite);
-
+  // Use a single loop to find the min and max values of the datapoints
+  let min = 0;
+  let max = 0;
+  for (const layer of layers) {
+    for (const [low, high] of layer.datapoints) {
+      // Check if the values are finite numbers
+      if (Number.isFinite(low)) {
+        min = Math.min(min, low);
+      }
+      if (Number.isFinite(high)) {
+        max = Math.max(max, high);
+      }
+    }
+  }
+  // Return the min and max values
   return {
-    min: Number.isFinite(Math.min(...values)) ? Math.min(...values) : 0,
-    max: Number.isFinite(Math.max(...values)) ? Math.max(...values) : 0,
+    min: min,
+    max: max,
   };
 };
 
