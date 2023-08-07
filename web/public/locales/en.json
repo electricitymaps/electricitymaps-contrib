@@ -148,7 +148,9 @@
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed",
     "price": "Price",
-    "netExchange": "Net exchange"
+    "netExchange": "Net exchange",
+    "importing": "Importing",
+    "exporting": "Exporting"
   },
   "aggregateButtons": {
     "country": "country",
