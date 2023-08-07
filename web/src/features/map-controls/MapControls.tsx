@@ -101,6 +101,9 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       dataTestId={`${type}-layer-button`}
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={isLoadingLayer ? () => {} : onToggle}
+      ariaLabel={
+        type == 'wind' ? __('aria.label.windLayer') : __('aria.label.solarLayer')
+      }
       asToggle
     />
   );
@@ -140,6 +143,7 @@ function DesktopMapControls() {
           tooltipText={__('legends.colorblindmode')}
           onClick={handleColorblindModeToggle}
           asToggle
+          ariaLabel={__('aria.label.colorBlindMode')}
         />
         {areWeatherLayersAllowed && (
           <>
