@@ -14,6 +14,10 @@ interface NetExchangeChartProps {
 
 function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
+  const [productionConsumption] = useAtom(productionConsumptionAtom);
+  if (productionConsumption === 'production') {
+    return null;
+  }
 
   if (isLoading || isError || !data) {
     return null;
@@ -24,8 +28,8 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   if (!chartData[0]?.layerData?.netExchange) {
     return null;
   }
-  const [productionConsumption] = useAtom(productionConsumptionAtom);
-  return productionConsumption === 'consumption' ? (
+
+  return (
     <>
       <ChartTitle translationKey="country-history.netExchange" />
       <div className="relative">
@@ -47,7 +51,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
         />
       </div>
     </>
-  ) : null;
+  );
 }
 
 export default NetExchangeChart;
