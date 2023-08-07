@@ -47,7 +47,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
         />
       </div>
     </>
-  ) : undefined;
+  ) : null;
 }
 
 export default NetExchangeChart;
