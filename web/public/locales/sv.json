@@ -170,6 +170,17 @@
     "detailed": "detaljerad",
     "aggregateInfo": "Växla mellan en detaljerad zon vy och en aggregerad lands vy"
   },
+  "aria": {
+    "label": {
+      "selectLanguage": "Välj språk",
+      "colorBlindMode": "Färgblinds läge",
+      "windLayer": "Vind-lager",
+      "solarLayer": "Sol-lager",
+      "changeTheme": "Byt tema",
+      "hideSidePanel": "Dölj sidopanel",
+      "showSidePanel": "Visa sidopanel"
+    }
+  },
   "aggregateButtons": {
     "country": "land",
     "zone": "zon"
