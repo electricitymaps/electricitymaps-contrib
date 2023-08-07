@@ -4,6 +4,8 @@ import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
 import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
+import { useAtom } from 'jotai';
+import { productionConsumptionAtom } from 'utils/state/atoms';
 
 interface NetExchangeChartProps {
   datetimes: Date[];
@@ -22,7 +24,8 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   if (!chartData[0]?.layerData?.netExchange) {
     return null;
   }
-  return (
+  const [productionConsumption] = useAtom(productionConsumptionAtom);
+  return productionConsumption === 'consumption' ? (
     <>
       <ChartTitle translationKey="country-history.netExchange" />
       <div className="relative">
@@ -44,7 +47,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
         />
       </div>
     </>
-  );
+  ) : undefined;
 }
 
 export default NetExchangeChart;
