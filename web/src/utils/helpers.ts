@@ -116,10 +116,9 @@ export function getRenewableRatio(
  * @returns {number} Rounded number.
  */
 export const round = (number: number, decimals = 2): number => {
-  const sign = Math.sign(number);
   return (
-    (Math.round(Math.abs(number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
-    sign
+    (Math.round(Math.abs(number) + Number.EPSILON * 10 ** decimals) / 10 ** decimals) *
+    Math.sign(number)
   );
 };
 
@@ -128,9 +127,14 @@ export const round = (number: number, decimals = 2): number => {
  * @param zoneData - The zone data
  * @returns The net exchange
  */
-export function getNetExchange(zoneData: ZoneDetail): number {
+export function getNetExchange(
+  zoneData: ZoneDetail,
+  displayByEmissions: boolean
+): number {
   if (Object.keys(zoneData.exchange).length === 0) {
     return Number.NaN;
   }
-  return round(zoneData.totalImport - zoneData.totalExport);
+  return displayByEmissions
+    ? round(zoneData.totalCo2NetExchange / 1e6 / 60) // in tCO₂eq/min
+    : round(zoneData.totalImport - zoneData.totalExport);
 }

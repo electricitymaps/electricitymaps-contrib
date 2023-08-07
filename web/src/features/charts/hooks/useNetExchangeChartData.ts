@@ -5,6 +5,8 @@ import { AreaGraphElement } from '../types';
 import { getNetExchange, round } from 'utils/helpers';
 import { ZoneDetail } from 'types';
 import { scalePower } from 'utils/formatting';
+import { displayByEmissionsAtom } from 'utils/state/atoms';
+import { useAtom } from 'jotai';
 
 export function getFills(data: AreaGraphElement[]) {
   const netExchangeMaxValue =
@@ -27,13 +29,13 @@ export function getFills(data: AreaGraphElement[]) {
 
 export function useNetExchangeChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
-
   if (isLoading || isError) {
     return { isLoading, isError };
   }
-
+  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { valueFactor, valueAxisLabel } = getValuesInfo(
-    Object.values(zoneData.zoneStates)
+    Object.values(zoneData.zoneStates),
+    displayByEmissions
   );
 
   const chartData: AreaGraphElement[] = [];
@@ -43,7 +45,7 @@ export function useNetExchangeChartData() {
     chartData.push({
       datetime,
       layerData: {
-        netExchange: round(getNetExchange(zoneDetail) / valueFactor),
+        netExchange: round(getNetExchange(zoneDetail, displayByEmissions) / valueFactor),
       },
       meta: zoneDetail,
     });
@@ -70,11 +72,16 @@ interface ValuesInfo {
   valueFactor: number; // TODO: why is this required
 }
 
-function getValuesInfo(historyData: ZoneDetail[]): ValuesInfo {
-  const maxTotalValue = d3Max(historyData, (d: ZoneDetail) => getNetExchange(d));
+function getValuesInfo(
+  historyData: ZoneDetail[],
+  displayByEmissions: boolean
+): ValuesInfo {
+  const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
+    Math.abs(getNetExchange(d, displayByEmissions))
+  );
 
   const format = scalePower(maxTotalValue);
-  const valueAxisLabel = format.unit;
-  const valueFactor = format.formattingFactor;
+  const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
+  const valueFactor = displayByEmissions ? 1 : format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 }

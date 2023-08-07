@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 import { getNetExchange, round } from 'utils/helpers';
@@ -9,16 +9,22 @@ import { scalePower } from 'utils/formatting';
 export default function NetExchangeChartTooltip({
   zoneDetail,
 }: InnerAreaGraphTooltipProps) {
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const { __ } = useTranslation();
-
   if (!zoneDetail) {
     return null;
   }
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const { __ } = useTranslation();
+
   const { stateDatetime } = zoneDetail;
 
-  const netExchange = getNetExchange(zoneDetail);
-  const { formattingFactor, unit } = scalePower(netExchange);
+  const netExchange = getNetExchange(zoneDetail, displayByEmissions);
+  const { formattingFactor, unit } = displayByEmissions
+    ? {
+        formattingFactor: 1,
+        unit: 'tCO₂eq / min',
+      }
+    : scalePower(netExchange);
 
   return (
     <div className="w-full rounded-md bg-white p-3 shadow-xl dark:bg-gray-900 sm:w-max">
