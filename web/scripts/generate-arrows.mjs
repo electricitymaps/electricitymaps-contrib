@@ -26,17 +26,17 @@ function generateArrows(prefix, scaleTheme) {
   for (const co2value in colors) {
     // generate specific color
     console.info([
-      'public/images/arrow-template.png',
+      'arrows/arrow-template.png',
       '+level-colors',
       `transparent,${colors[co2value]}`,
-      `public/images/${prefix}arrow-${co2value}.png`,
+      `../public/images/arrows/${prefix}arrow-${co2value}.png`,
     ]);
     child_process
       .spawn('convert', [
-        'public/images/arrow-template.png',
+        'arrows/arrow-template.png',
         '+level-colors',
         `transparent,${colors[co2value]}`,
-        `public/images/${prefix}arrow-${co2value}.png`,
+        `../public/images/arrows/${prefix}arrow-${co2value}.png`,
       ])
       .on('close', (code) => {
         if (code !== 0) {
@@ -52,7 +52,7 @@ function generateArrows(prefix, scaleTheme) {
             'none',
             '-delay',
             '0',
-            `public/images/${prefix}arrow-${co2value}.png`,
+            `../public/images/arrows/${prefix}arrow-${co2value}.png`,
             '-dispose',
             'previous',
             '-delay',
@@ -61,10 +61,10 @@ function generateArrows(prefix, scaleTheme) {
             '0',
             '-page',
             `45x77+${outlineSize}+${outlineSize}`,
-            'public/images/arrow-highlights/*.png',
+            'arrows/arrow-highlights/*.png',
             '-layers',
             'coalesce',
-            `public/images/${prefix}arrow-${co2value}-animated-${index}.gif`,
+            `../public/images/arrows/${prefix}arrow-${co2value}-animated-${index}.gif`,
           ];
           const child = child_process.spawn('convert', args);
           child.on('close', (code) => {
@@ -74,8 +74,11 @@ function generateArrows(prefix, scaleTheme) {
               return;
             }
 
-            fs.unlink(`public/images/${prefix}arrow-${co2value}.png`, () => {});
-            fs.unlink(`public/images/${prefix}arrow-${co2value}-outline.png`, () => {});
+            fs.unlink(`../public/images/arrows/${prefix}arrow-${co2value}.png`, () => {});
+            fs.unlink(
+              `../public/images/arrows/${prefix}arrow-${co2value}-outline.png`,
+              () => {}
+            );
           });
 
           child.stderr.on('data', (data) => {
