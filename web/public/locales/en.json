@@ -148,6 +148,17 @@
     "dataIsDelayed": "Data is delayed",
     "price": "Price"
   },
+  "aria": {
+    "label": {
+      "selectLanguage": "Select language",
+      "colorBlindMode": "Color blind mode",
+      "windLayer": "Wind layer",
+      "solarLayer": "Solar layer",
+      "changeTheme": "Change theme",
+      "hideSidePanel": "Hide side panel",
+      "showSidePanel": "Show side panel"
+    }
+  },
   "aggregateButtons": {
     "country": "country",
     "zone": "zone"
