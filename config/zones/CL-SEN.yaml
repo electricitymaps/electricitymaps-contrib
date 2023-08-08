@@ -252,4 +252,5 @@ fallbackZoneMixes:
         wind: 0.08868521298423133
 parsers:
   production: CL.fetch_production
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 timezone: America/Santiago

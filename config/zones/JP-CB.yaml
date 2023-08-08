@@ -19,7 +19,7 @@ contributors:
   - lorrieq
   - pierresegonne
   - wobniarin
-disclaimer: The data provided for solar power production is suspected to be too high (source; Chubu Electric Power Co.,Inc.). See https://github.com/electricitymaps/electricitymaps-contrib/issues/5616.
+disclaimer: The data provided for solar power production is suspected to be too high (source; Chubu Electric Power Co.,Inc.).
 emissionFactors:
   lifecycle:
     unknown:
