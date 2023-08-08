@@ -6,10 +6,69 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+    reviewers:
+      - 'VIKTORVAV99'
     ignore:
       - dependency-name: '*'
         update-types: ['version-update:semver-patch']
+
+  # Maintain the web npm (pnpm) dependencies.
+  - package-ecosystem: 'npm'
+    directory: '/web/'
+    schedule:
+      interval: 'monthly'
+    open-pull-requests-limit: 10
+    reviewers:
+      - 'VIKTORVAV99'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major', 'version-update:semver-patch']
+    groups:
+      radix-ui:
+        patterns:
+          - '@radix-ui/*'
+      types:
+        patterns:
+          - '@types/*'
+      d3:
+        patterns:
+          - 'd3-*'
+      i18next:
+        patterns:
+          - 'i18next'
+          - 'i18next-*'
+          - 'react-i18next'
+      topojson:
+        patterns:
+          - 'topojson-*'
+      storybook:
+        patterns:
+          - 'storybook'
+          - '@storybook/*'
+      eslint:
+        patterns:
+          - 'eslint'
+          - 'eslint-*'
+      prettier:
+        patterns:
+          - 'prettier'
+          - 'prettier-*'
+      capacitor:
+        patterns:
+          - '@capacitor/*'
+      tailwind:
+        patterns:
+          - 'tailwindcss'
+          - 'tailwindcss-*'
+          - 'tailwind-*'
+          - '@tailwindcss/*'
+      tanstack:
+        patterns:
+          - '@tanstack/*'
+      sentry:
+        patterns:
+          - '@sentry/*'
 #
 # CURRENTLY DISABLED
 # We had so many PRs being opened and not enough time to test each individual update,
@@ -25,22 +84,6 @@ updates:
 #    ignore:
 #      - dependency-name: "*"
 #        update-types: ["version-update:semver-major"]
-#
-#  # Maintain the web npm dependencies.
-#  - package-ecosystem: "npm"
-#    directory: "/web/"
-#    schedule:
-#      interval: "monthly"
-#    open-pull-requests-limit: 10
-#    ignore:
-#      - dependency-name: "*"
-#        update-types: ["version-update:semver-major"]
-#
-#  - package-ecosystem: "docker"
-#    directory: "/web/"
-#    schedule:
-#      interval: "monthly"
-#    open-pull-requests-limit: 5
 #
 #  # Maintain the mockserver npm dependencies.
 #  - package-ecosystem: "npm"

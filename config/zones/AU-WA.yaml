@@ -211,4 +211,5 @@ fallbackZoneMixes:
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
-timezone: null
+disclaimer: Western Australia's power grid is not connected to the (Australian) National Electricity Market or the Northern Territory grid.
+timezone: Australia/Perth

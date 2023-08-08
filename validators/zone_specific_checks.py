@@ -20,7 +20,6 @@ from validators.lib.config import validator
         "US-SE-SEPA",
         "US-NW-GWA",
         "US-NW-DOPD",
-        "US-NW-AVRN",
         "LU",
     ],
 )

@@ -4,7 +4,10 @@ import {
   getElectricityProductionValue,
   ExchangeDataType,
   getExchangesToDisplay,
+  getExchangeData,
+  getExchangeCo2Intensity,
 } from './utils';
+import { Mode } from 'utils/constants';
 
 const zoneDetailsData = {
   co2intensity: 187.32,
@@ -331,5 +334,128 @@ describe('getExchangesToDisplay', () => {
     };
     const result = getExchangesToDisplay('DE', false, ZoneStates);
     expect(result).toEqual([]);
+  });
+});
+
+describe('getExchangeData', () => {
+  it('returns array of exchange data', () => {
+    const exchangeCapacity: [number, number] = [-1000, 1000];
+    const exchangeCapacitiesZoneDetailsData = {
+      ...zoneDetailsData,
+      exchange: { AT: -934, ES: 934 },
+      exchangeCapacities: { ES: exchangeCapacity, AT: exchangeCapacity },
+    };
+    const result = getExchangeData(
+      exchangeCapacitiesZoneDetailsData,
+      ['ES', 'AT'],
+      Mode.CONSUMPTION
+    );
+
+    expect(result).toEqual([
+      {
+        exchange: 934,
+        exchangeCapacityRange: [-1000, 1000],
+        zoneKey: 'ES',
+        gCo2eqPerkWh: 187.32,
+        tCo2eqPerMin: 2.915_948,
+      },
+      {
+        exchange: -934,
+        exchangeCapacityRange: [-1000, 1000],
+        zoneKey: 'AT',
+        gCo2eqPerkWh: 187.32,
+        tCo2eqPerMin: -2.915_948,
+      },
+    ]);
+  });
+  it('handles missing exchange capacity', () => {
+    const exchangeCapacitiesZoneDetailsData = {
+      ...zoneDetailsData,
+    };
+    const result = getExchangeData(
+      exchangeCapacitiesZoneDetailsData,
+      ['ES'],
+      Mode.CONSUMPTION
+    );
+
+    expect(result).toEqual([
+      {
+        exchange: -934,
+        exchangeCapacityRange: [0, 0],
+        zoneKey: 'ES',
+        gCo2eqPerkWh: 187.32,
+        tCo2eqPerMin: -2.915_948,
+      },
+    ]);
+  });
+  it('handles missing exchange data', () => {
+    const exchangeCapacity: [number, number] = [-1000, 1000];
+    const exchangeCapacitiesZoneDetailsData = {
+      ...zoneDetailsData,
+      exchange: {},
+      exchangeCapacity: { ES: exchangeCapacity },
+    };
+    const result = getExchangeData(
+      exchangeCapacitiesZoneDetailsData,
+      ['ES'],
+      Mode.CONSUMPTION
+    );
+
+    expect(result).toEqual([
+      {
+        exchange: undefined,
+        exchangeCapacityRange: [0, 0],
+        zoneKey: 'ES',
+        gCo2eqPerkWh: 187.32,
+        tCo2eqPerMin: Number.NaN,
+      },
+    ]);
+  });
+});
+
+describe('getExchangeCo2Intensity', () => {
+  it('returns exchange Co2 intensity if exhange value is greater than or equal to 0', () => {
+    const exchangeCapacitiesZoneDetailsData = {
+      ...zoneDetailsData,
+      exchange: { ES: 1000 },
+      exchangeCo2Intensities: { ES: 999 },
+    };
+
+    const result = getExchangeCo2Intensity(
+      'ES',
+      exchangeCapacitiesZoneDetailsData,
+      Mode.CONSUMPTION
+    );
+    expect(result).toStrictEqual(999);
+  });
+  describe('when exchange value is less than 0', () => {
+    it('returns Co2 insensity when in Consumption mode', () => {
+      const exchangeCapacitiesZoneDetailsData = {
+        ...zoneDetailsData,
+        exchange: { ES: -1000 },
+        exchangeCo2Intensities: { ES: 999 },
+      };
+
+      const result = getExchangeCo2Intensity(
+        'ES',
+        exchangeCapacitiesZoneDetailsData,
+        Mode.CONSUMPTION
+      );
+      expect(result).toStrictEqual(187.32);
+    });
+    it('returns Co2 insensity production when in Production mode', () => {
+      const exchangeCapacitiesZoneDetailsData = {
+        ...zoneDetailsData,
+        exchange: { ES: -1000 },
+        exchangeCo2Intensities: { ES: 999 },
+      };
+
+      const result = getExchangeCo2Intensity(
+        'ES',
+        exchangeCapacitiesZoneDetailsData,
+        Mode.PRODUCTION
+      );
+      expect(result).toStrictEqual(190.6);
+    });
   });
 });

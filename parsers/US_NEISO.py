@@ -4,15 +4,23 @@
 """Real time parser for the New England ISO (NEISO) area."""
 
 import time
-from collections import defaultdict
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Optional
+from typing import Any, Dict, List, Optional, Union
 
-import arrow
+import pytz
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
+
+US_NEISO_KEY = ZoneKey("US-NE-ISNE")
+SOURCE = "iso-ne.com"
 
 url = "https://www.iso-ne.com/ws/wsclient"
 
@@ -30,26 +38,16 @@ generation_mapping = {
 }
 
 
-def timestring_converter(time_string):
-    """Converts ISO-8601 time strings in neiso data into aware datetime objects."""
-
-    dt_naive = arrow.get(time_string)
-    dt_aware = dt_naive.replace(tzinfo="America/New_York").datetime
-
-    return dt_aware
-
-
 def get_json_data(
     target_datetime: Optional[datetime], params, session: Optional[Session] = None
-):
+) -> dict:
     """Fetches json data for requested params and target_datetime using a post request."""
 
     epoch_time = str(int(time.time()))
 
-    # when target_datetime is None, arrow.get(None) will return current time
-    target_datetime = arrow.get(target_datetime)
-    target_ne = target_datetime.to("America/New_York")
-    target_ne_day = target_ne.format("MM/DD/YYYY")
+    target_datetime = target_datetime or datetime.now(tz=timezone.utc)
+    target_ne = target_datetime.astimezone(tz=pytz.timezone("America/New_York"))
+    target_ne_day = target_ne.strftime("%m/%d/%Y")
 
     postdata = {
         "_nstmp_formDate": epoch_time,
@@ -69,7 +67,9 @@ def get_json_data(
     return raw_data
 
 
-def production_data_processer(raw_data, logger: Logger) -> list:
+def production_data_processer(
+    zone_key: ZoneKey, raw_data: Union[dict, list], logger: Logger
+) -> ProductionBreakdownList:
     """
     Takes raw json data and removes unnecessary keys.
     Separates datetime key and converts to a datetime object.
@@ -79,7 +79,8 @@ def production_data_processer(raw_data, logger: Logger) -> list:
     known_keys = generation_mapping.keys() | other_keys
 
     unmapped = set()
-    clean_data = []
+
+    production_breakdowns = ProductionBreakdownList(logger)
     counter = 0
     for datapoint in raw_data:
         current_keys = datapoint.keys() | set()
@@ -92,55 +93,55 @@ def production_data_processer(raw_data, logger: Logger) -> list:
 
         time_string = datapoint.pop("BeginDate", None)
         if time_string:
-            dt = timestring_converter(time_string)
+            dt = datetime.fromisoformat(time_string)
         else:
-            # passing None to arrow.get() will return current time
             counter += 1
             logger.warning(
-                "Skipping US-NEISO datapoint missing timestamp.",
-                extra={"key": "US-NEISO"},
+                f"Skipping {zone_key} datapoint missing timestamp.",
+                extra={"zone_key": zone_key},
             )
             continue
 
         # neiso storage flow signs are opposite to EM
         battery_storage = -1 * datapoint.pop("Other", 0.0)
+        storage_mix = StorageMix(battery=battery_storage, hydro=None)
 
-        production = defaultdict(lambda: 0.0)
+        production_mix = ProductionMix()
         for k, v in datapoint.items():
-            # Need to avoid duplicate keys overwriting.
-            production[generation_mapping[k]] += v
+            production_mix.add_value(
+                mode=generation_mapping[k], value=v, correct_negative_with_zero=v > -5
+            )
 
-        # move small negative values to 0
-        for k, v in production.items():
-            if -5 < v < 0:
-                production[k] = 0
-
-        clean_data.append((dt, dict(production), battery_storage))
+        production_breakdowns.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            source=SOURCE,
+            production=production_mix,
+            storage=storage_mix,
+        )
 
     for key in unmapped:
         logger.warning(
-            "Key '{}' in US-NEISO is not mapped to type.".format(key),
-            extra={"key": "US-NEISO"},
+            f"Key '{key}' in {zone_key} is not mapped to type.",
+            extra={"zone_key": zone_key},
         )
 
     if counter > 0:
         logger.warning(
-            "Skipped {} US-NEISO datapoints that were missing timestamps.".format(
-                counter
-            ),
-            extra={"key": "US-NEISO"},
+            f"Skipped {counter} {zone_key} datapoints that were missing timestamps.",
+            extra={"zone_key": zone_key},
         )
 
-    return sorted(clean_data)
+    return production_breakdowns
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "US-NEISO",
+    zone_key: ZoneKey = US_NEISO_KEY,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> List[Dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
 
     postdata = {
@@ -151,44 +152,30 @@ def fetch_production(
     }
 
     production_json = get_json_data(target_datetime, postdata, session)
-    points = production_data_processer(production_json, logger)
+    production_breakdowns = production_data_processer(zone_key, production_json, logger)
 
-    # Hydro pumped storage is included within the general hydro category.
-    production_mix = []
-    for item in points:
-        data = {
-            "zoneKey": zone_key,
-            "datetime": item[0],
-            "production": item[1],
-            "storage": {"hydro": None, "battery": item[2]},
-            "source": "iso-ne.com",
-        }
-        production_mix.append(data)
-
-    return production_mix
+    return production_breakdowns.to_list()
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> List[Dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two zones."""
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     # For directions, note that ISO-NE always reports its import as negative
 
-    if sorted_zone_keys == "CA-NB->US-NEISO" or sorted_zone_keys == "CA-NB->US-NE-ISNE":
+    if sorted_zone_keys == "CA-NB->US-NE-ISNE":
         # CA-NB->US-NEISO means import to NEISO should be positive
         multiplier = -1
 
         postdata = {"_nstmp_zone0": "4010"}  # ".I.SALBRYNB345 1"
 
-    elif (
-        sorted_zone_keys == "CA-QC->US-NEISO" or sorted_zone_keys == "CA-QC->US-NE-ISNE"
-    ):
+    elif sorted_zone_keys == "CA-QC->US-NE-ISNE":
         # CA-QC->US-NEISO means import to NEISO should be positive
         multiplier = -1
 
@@ -197,10 +184,7 @@ def fetch_exchange(
             "_nstmp_zone1": "4013",  # ".I.HQHIGATE120 2"
         }
 
-    elif (
-        sorted_zone_keys == "US-NEISO->US-NY"
-        or sorted_zone_keys == "US-NE-ISNE->US-NY-NYIS"
-    ):
+    elif sorted_zone_keys == "US-NE-ISNE->US-NY-NYIS":
         # US-NEISO->US-NY means import to NEISO should be negative
         multiplier = 1
 
@@ -215,29 +199,30 @@ def fetch_exchange(
 
     postdata["_nstmp_requestType"] = "externalflow"
 
+    exchanges = ExchangeList(logger)
     exchange_data = get_json_data(target_datetime, postdata, session)
-
-    summed_exchanges = defaultdict(int)
-    for exchange_key, exchange_values in exchange_data.items():
-        # sum up values from separate "exchanges" for the same date.
-        # this works because the timestamp of exchanges is always reported
-        # in exact 5-minute intervals by the API,
-        # e.g. "2018-03-18T00:05:00.000-04:00"
+    for _, exchange_values in exchange_data.items():
         for datapoint in exchange_values:
-            dt = timestring_converter(datapoint["BeginDate"])
-            summed_exchanges[dt] += datapoint["Actual"]
+            time_string = datapoint.pop("BeginDate", None)
+            if time_string:
+                dt = datetime.fromisoformat(time_string)
+            else:
+                logger.warning(
+                    f"Skipping {sorted_zone_keys} datapoint missing timestamp.",
+                    extra={"zone_key": sorted_zone_keys},
+                )
+                continue
+            exchanges.append(
+                zoneKey=sorted_zone_keys,
+                datetime=dt,
+                netFlow=datapoint["Actual"] * multiplier,
+                source=SOURCE,
+            )
 
-    result = [
-        {
-            "datetime": timestamp,
-            "sortedZoneKeys": sorted_zone_keys,
-            "netFlow": value * multiplier,
-            "source": "iso-ne.com",
-        }
-        for timestamp, value in summed_exchanges.items()
-    ]
+    # This will merge exchanges with the same datetime
+    exchanges = ExchangeList.merge_exchanges([exchanges], logger)
 
-    return result
+    return exchanges.to_list()
 
 
 if __name__ == "__main__":
@@ -248,29 +233,45 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     pprint(fetch_production())
 
-    print('fetch_production(target_datetime=arrow.get("2017-12-31T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get("2017-12-31T12:00Z")))
-
-    print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z")))
-
-    print('fetch_exchange("US-NEISO", "CA-QC") ->')
-    pprint(fetch_exchange("US-NEISO", "CA-QC"))
-
     print(
-        'fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2017-12-31T12:00Z")) ->'
+        'fetch_production(target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00")) ->'
     )
     pprint(
-        fetch_exchange(
-            "US-NEISO", "CA-QC", target_datetime=arrow.get("2017-12-31T12:00Z")
+        fetch_production(
+            target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00")
         )
     )
 
     print(
-        'fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")) ->'
+        'fetch_production(target_datetime=datetime.fromisoformat("2007-03-13T12:00:00+00:00")) ->'
+    )
+    pprint(
+        fetch_production(
+            target_datetime=datetime.fromisoformat("2007-03-13T12:00:00+00:00")
+        )
+    )
+
+    print(f'fetch_exchange("{US_NEISO_KEY}", "CA-QC") ->')
+    pprint(fetch_exchange(US_NEISO_KEY, ZoneKey("CA-QC")))
+
+    print(
+        f'fetch_exchange("{US_NEISO_KEY}", "CA-QC", target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00")) ->'
     )
     pprint(
         fetch_exchange(
-            "US-NEISO", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")
+            US_NEISO_KEY,
+            ZoneKey("CA-QC"),
+            target_datetime=datetime.fromisoformat("2017-12-31T12:00:00+00:00"),
+        )
+    )
+
+    print(
+        f'fetch_exchange("{US_NEISO_KEY}", "CA-QC", target_datetime=datetime.fromisoformat("2007-03-13T12:00:00+00:00")) ->'
+    )
+    pprint(
+        fetch_exchange(
+            US_NEISO_KEY,
+            ZoneKey("CA-QC"),
+            target_datetime=datetime.fromisoformat("2007-03-13T12:00:00+00:00"),
         )
     )

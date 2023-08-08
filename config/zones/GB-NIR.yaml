@@ -223,4 +223,5 @@ parsers:
   price: ENTSOE.fetch_price
   production: IE.fetch_production
   productionPerModeForecast: IE.fetch_wind_forecasts
-timezone: null
+disclaimer: The complete generation mix is unavailable. It is therefore estimated by Electricity Maps.
+timezone: Europe/London
