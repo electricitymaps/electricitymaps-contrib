@@ -36,7 +36,7 @@ export default function NetExchangeChartTooltip({
       />
       <p className="flex justify-center text-base">
         {netExchange >= 0 ? __('tooltips.importing') : __('tooltips.exporting')}{' '}
-        {Math.abs(round(netExchange / formattingFactor))} {unit}
+        <b className="mx-1">{Math.abs(round(netExchange / formattingFactor))}</b> {unit}
       </p>
     </div>
   );
