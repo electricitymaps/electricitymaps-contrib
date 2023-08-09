@@ -1,5 +1,4 @@
-fastlane documentation
-----
+## fastlane documentation
 
 # Installation
 
@@ -21,8 +20,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios bump_version
 ```
 
-
-
 ### ios beta
 
 ```sh
@@ -31,8 +28,15 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Submit a new Beta build
 
-----
+### ios release
 
+```sh
+[bundle exec] fastlane ios release
+```
+
+Promote latest beta build to production
+
+---
 
 ## Android
 
@@ -42,8 +46,6 @@ Submit a new Beta build
 [bundle exec] fastlane android bump_version
 ```
 
-
-
 ### android beta
 
 ```sh
@@ -52,7 +54,15 @@ Submit a new Beta build
 
 Submit a new Beta build
 
-----
+### android release
+
+```sh
+[bundle exec] fastlane android release
+```
+
+Promote latest beta build to production
+
+---
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
 
