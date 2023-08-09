@@ -23,14 +23,14 @@ app.get('/v6/details/:aggregate/:zoneId', (req, res, next) => {
 });
 
 app.get('/v3/gfs/wind', (req, res, next) => {
-  const { refTime, targetTime } = req.query
+  const { refTime, targetTime } = req.query;
 
   fs.readFile(`./public/v3/gfs/wind.json`, (err, data) => {
-    const jsonData = JSON.parse(data)
-    jsonData.data[0].header.refTime = targetTime
+    const jsonData = JSON.parse(data);
+    jsonData.data[0].header.refTime = targetTime;
 
-    res.json(jsonData)
- })
+    res.json(jsonData);
+  });
 });
 
 app.use(function (req, res, next) {
