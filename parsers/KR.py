@@ -90,7 +90,7 @@ def fetch_consumption(
     r = session or Session()
     url = REAL_TIME_URL
 
-    response = r.get(url)
+    response = r.get(url, verify=False)
     assert response.status_code == 200
 
     soup = BeautifulSoup(response.text, "html.parser")
@@ -139,7 +139,7 @@ def fetch_price(
     r = session or Session()
     url = PRICE_URL
 
-    response = r.get(url)
+    response = r.get(url, verify=False)
     assert response.status_code == 200
 
     all_data = []
@@ -246,7 +246,7 @@ def get_long_term_prod_data(
 
 def get_granular_real_time_prod_data(session: Optional[Session] = None) -> dict:
     r0 = session or Session()
-    res_0 = r0.get(REAL_TIME_URL)
+    res_0 = r0.get(REAL_TIME_URL, verify=False)
     chart_data = extract_chart_data(res_0.text)
 
     return chart_data
@@ -285,7 +285,7 @@ def fetch_production(
                 "source": "https://new.kpx.or.kr",
             }
 
-            data["storage"]["hydro"] = chart_data_values["pumpedHydro"]
+            data["storage"]["hydro"] = -chart_data_values["pumpedHydro"]
 
             data["production"]["coal"] = chart_data_values["coal"]
             data["production"]["gas"] = chart_data_values["gas"]

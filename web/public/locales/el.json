@@ -1518,10 +1518,6 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Bonneville Power Administration"
@@ -1614,10 +1610,6 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "El Paso Electric Company"
@@ -1625,10 +1617,6 @@
     "US-SW-GRIF": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",

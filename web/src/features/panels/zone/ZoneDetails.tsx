@@ -69,7 +69,7 @@ export default function ZoneDetails(): JSX.Element {
         isAggregated={isAggregated}
         isEstimated={isEstimated}
       />
-      <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pt-2 pb-40 sm:h-[calc(100%-130px)]">
+      <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && <DisplayByEmissionToggle />}
         <ZoneDetailsContent

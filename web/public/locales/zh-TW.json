@@ -1641,10 +1641,6 @@
       "countryName": "美國",
       "zoneName": "阿維斯塔公司"
     },
-    "US-NW-AVRN": {
-      "countryName": "美國",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "美國",
       "zoneName": "邦納維爾電力管理局"
@@ -1737,10 +1733,6 @@
       "countryName": "美國",
       "zoneName": "亞利桑那公用事業公司"
     },
-    "US-SW-DEAA": {
-      "countryName": "美國",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "美國",
       "zoneName": "阿爾帕索電力"
@@ -1748,10 +1740,6 @@
     "US-SW-GRIF": {
       "countryName": "美國",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "美國",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "美國",
