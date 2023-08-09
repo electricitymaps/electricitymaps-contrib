@@ -2,14 +2,9 @@
 
 This is a capacitor project that builds the mobile apps from the web directory
 
-## Prerequisites:
+## Prerequisites
 
-https://capacitorjs.com/docs/getting-started/environment-setup
-
-Xcode
-
-Android Studio
-
+- Follow this guide: https://capacitorjs.com/docs/getting-started/environment-setup (but skip the Android SDK part)
 - install JDK v8 <-- to avoid having to create an Oracle account(!), you can find a `jdk-8u321-macosx-x64.dmg` in our internal Google Drive.
 - `brew install gradle`
 - install Android Studio - make sure you open it and go through the install wizard in the start
@@ -25,71 +20,94 @@ Android Studio
   export ANDROID_HOME=~/Library/Android/sdk
   ```
 
-Node 18+
+## Development
 
-## If you have the web app installed and running and want to do production builds the following commands will run everything you need
+If you have the web app installed and running and want to do production builds,the following commands will run everything you need.
 
-Navigate to mobileapp
+Navigate to mobileapp and run:
 
 `pnpm build-ios`
 `pnpm build-android`
 
-## Detailed instruction if the above doesn't work. First make sure you have installed and built the web app:
+**Did the above not work?**
 
-Navigate to the web directory then:
+<details>
 
-`pnpm install`
+  <summary><b>Guide to manually run the same step</b></summary>
 
-`pnpm build`
+1. First make sure you have installed and built the web app.
 
-To enable hot reload you must runt he web app locally on port 5173:
+   - Navigate to the **web** directory then:
+     - `pnpm install`
+     - `pnpm build`
 
-`pnpm dev`
+2. To enable hot reload you must runt the web app locally on port 5173: `pnpm dev`
 
-Navigate to the moibleapp directory then:
+3. Navigate to the **mobileapp** directory and run `pnpm install`
 
-`pnpm install`
+4. Add Android and iOS to Capacitor:
 
-Add Android and iOS:
+   - `pnpm exec cap add android`
+   - `pnpm exec cap add ios`
 
-`pnpm exec cap add android`
-`pnpm exec cap add ios`
+5. Copy Assets to app directories: `pnpm exec cap copy`
 
-Copy Assets to app directories:
+6. Sync the web project to capacitor: `pnpm exec cap sync`
 
-`pnpm exec cap copy`
+</details>
 
-Sync the web project to capacitor:
+### Run the app locally with hot reload
 
-`pnpm exec cap sync`
+```bash
+pnpm dev-android
+pnpm dev-ios
+```
 
-**Run the app locally with hot reload**
+## Deployment
 
-Android:
+We use [fastlane](https://fastlane.tools/) to build and deploy the apps automatically.
+See [fastlane/README.md](./fastlane/README.md) for more information.
 
-`pnpm dev-android`
+### Setup
 
-iOS:
+1. `bundle install`
+2. Ensure you have the following keyfiles locally (ask the team internally to get them):
+   - `.env.default`
+   - `android/electricitymap.keystore`
+   - `android/keystore.properties`
+   - `fastlane/fastlane-key.json`
+3. Update keys in `.env.default`:
+   - Add your own Apple ID
+   - Open https://appleid.apple.com/account/manage and create an App-Specific Password to be used for the FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD environment variable
+   - Ask internally for the team ids
 
-`pnpm dev-ios`
+### Making a beta build
 
-**Build app bundles**
+Makes a build and distributes it for internal testing.
 
-App bundles are built through Android Studio and iOS
-Android:
+```bash
+pnpm run fast android beta
+pnpm run fast ios beta
+```
 
-`pnpm exec open android`
+### Publishing to the app stores
 
-iOS:
+Once beta builds have been tested and approved, you can publish them to the app stores.
 
-`pnpm exec open ios`
+```bash
+pnpm run fast ios publish
+pnpm run fast android publish
+```
 
 ---
 
 If you need more information:
 https://capacitorjs.com/docs/getting-started
 
-Android emulator not working?
+## Troubleshooting
+
+<details>
+  <summary>Android emulator not working?</summary>
 
 Android studio will need a virtual device, shown here in the Android Studio opening screen:
 ![](./VDM.png)
@@ -100,3 +118,5 @@ Replace:
 `source="$(readlink "${source}")"`
 With:
 `source="$(readlink -f "${source}")"`
+
+</details>

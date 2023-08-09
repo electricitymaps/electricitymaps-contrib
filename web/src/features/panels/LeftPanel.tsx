@@ -14,6 +14,7 @@ import {
 import FAQPanel from './faq/FAQPanel';
 import { leftPanelOpenAtom } from './panelAtoms';
 import RankingPanel from './ranking-panel/RankingPanel';
+import { useTranslation } from 'translation/translation';
 
 import ZoneDetails from './zone/ZoneDetails';
 
@@ -62,6 +63,7 @@ type CollapseButtonProps = {
 };
 
 function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
+  const { __ } = useTranslation();
   return (
     <button
       data-test-id="left-panel-collapse-button"
@@ -69,6 +71,9 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
         'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 pl-1 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-800 dark:hover:bg-gray-600'
       }
       onClick={onCollapse}
+      aria-label={
+        isCollapsed ? __('aria.label.showSidePanel') : __('aria.label.hideSidePanel')
+      }
     >
       {isCollapsed ? <HiChevronRight /> : <HiChevronLeft />}
     </button>
