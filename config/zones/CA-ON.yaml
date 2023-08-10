@@ -221,6 +221,6 @@ parsers:
   price: CA_ON.fetch_price
   production: CA_ON.fetch_production
 sources:
-  'Mallia, E., and G. Lewis. “Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada.” The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391, https://doi.org/10.1007/s11367-012-0501-0.':
+  'Mallia, E., and G. Lewis. “Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada.” The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391':
     link: https://doi.org/10.1007/s11367-012-0501-0
 timezone: America/Toronto
