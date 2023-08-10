@@ -89,7 +89,7 @@ emissionFactors:
         value: 57.47323263502428
     gas:
       datetime: '2013-01-01'
-      source: Mallia, E., and G. Lewis. "Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada." The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391
+      source: 'Mallia, E., and G. Lewis. “Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada.” The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391, https://doi.org/10.1007/s11367-012-0501-0.'
       value: 497
     hydro discharge:
       - datetime: '2015-01-01'
@@ -115,15 +115,15 @@ emissionFactors:
         value: 57.47323263502428
     hydro:
       datetime: '2013-01-01'
-      source: Mallia, E., and G. Lewis. "Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada." The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391
+      source: 'Mallia, E., and G. Lewis. “Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada.” The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391, https://doi.org/10.1007/s11367-012-0501-0.'
       value: 22
     nuclear:
       datetime: '2013-01-01'
-      source: Mallia, E., and G. Lewis. "Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada." The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391
+      source: 'Mallia, E., and G. Lewis. “Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada.” The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391, https://doi.org/10.1007/s11367-012-0501-0.'
       value: 4.8
     wind:
       datetime: '2013-01-01'
-      source: Mallia, E., and G. Lewis. "Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada." The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391
+      source: 'Mallia, E., and G. Lewis. “Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada.” The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391, https://doi.org/10.1007/s11367-012-0501-0.'
       value: 10.69
 fallbackZoneMixes:
   powerOriginRatios:
@@ -221,7 +221,6 @@ parsers:
   price: CA_ON.fetch_price
   production: CA_ON.fetch_production
 sources:
-  Mallia, E., and G. Lewis. "Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada." The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391:
+  'Mallia, E., and G. Lewis. “Life Cycle Greenhouse Gas Emissions of Electricity Generation in the Province of Ontario, Canada.” The International Journal of Life Cycle Assessment, vol. 18, no. 2, 2012, pp. 377–391, https://doi.org/10.1007/s11367-012-0501-0.':
     link: https://doi.org/10.1007/s11367-012-0501-0
-  : link: https://doi.org/10.1007/s11367-012-0501-0
 timezone: America/Toronto
