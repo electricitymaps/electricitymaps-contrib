@@ -33,6 +33,17 @@ app.get('/v3/gfs/wind', (req, res, next) => {
   });
 });
 
+app.get('/v3/gfs/solar', (req, res, next) => {
+  const { refTime, targetTime } = req.query;
+
+  fs.readFile(`./public/v3/gfs/solar.json`, (err, data) => {
+    const jsonData = JSON.parse(data);
+    jsonData.data.header.refTime = targetTime;
+
+    res.json(jsonData);
+  });
+});
+
 app.use(function (req, res, next) {
   // Get rid of query parameters so we can serve static files
   if (Object.entries(req.query).length !== 0) {
