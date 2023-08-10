@@ -67,9 +67,7 @@ class CyprusParser:
                     production["wind"] = float(val)
                 elif col == "Συμβατική Παραγωγή":
                     production["oil"] = float(val)
-                elif (
-                    col == "Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)"
-                ):
+                elif col == "Εκτίμηση Διεσπαρμένης Παραγωγής":
                     # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage)
                     # and there is no sunlight between 10pm and 3am (https://www.timeanddate.com/sun/cyprus/nicosia),
                     # we use the nightly biomass+solar generation reported to determine the portion of biomass+solar

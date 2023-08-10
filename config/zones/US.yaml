@@ -15,7 +15,7 @@ capacity:
   geothermal: 3910.8
   hydro: 79458.5
   hydro storage: 22008.1
-  nuclear: 99148.5
+  nuclear: 100262.5
   oil: 29667.3
   solar: 78322.4
   unknown: 1690.2
@@ -28,6 +28,7 @@ contributors:
   - brandongalbraith
   - systemcatch
   - VIKTORVAV99
+  - MisterClean
 emissionFactors:
   direct:
     battery discharge:

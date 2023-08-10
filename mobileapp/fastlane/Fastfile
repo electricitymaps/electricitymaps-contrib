@@ -1,0 +1,160 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+# For a list of all available actions, check out https://docs.fastlane.tools/actions
+# For a list of all available plugins, check out https://docs.fastlane.tools/plugins/available-plugins
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+private_lane :increment_package_version do
+  package = read_json(json_path: "./package.json")
+  root_package = read_json(json_path: "../web/package.json")
+
+  UI.message("Updating from version #{package[:version]} to #{root_package[:version]}")
+  package[:version] = root_package[:version]
+
+  write_json(
+    hash: package,
+    file_path: "./package.json"
+  )
+
+  # Fixes missing empty line at the end of the file after incrementing version
+  sh("pnpx", "prettier", "--write", "../package.json")
+
+  package[:version]
+end
+
+platform :ios do
+  ios_dir = File.expand_path("../ios")
+
+  lane :bump_version do
+    version = increment_package_version
+    increment_version_number_in_xcodeproj(
+      xcodeproj: File.join(ios_dir, "App/App.xcodeproj"),
+      version_number: version
+    )
+    increment_build_number_in_xcodeproj(
+      xcodeproj: File.join(ios_dir, "App/App.xcodeproj"),
+      build_number: version
+    )
+  end
+
+  # See README for guide on how to set this up
+  desc "Submit a new Beta build"
+  lane :beta do
+    ensure_git_status_clean(
+      show_uncommitted_changes: true,
+      ignore_files: ["mobileapp/fastlane/Fastfile"]
+    )
+    bump_version
+    get_certificates           # invokes cert
+    get_provisioning_profile   # invokes sigh
+    build_app(
+      workspace: File.join(ios_dir, "App/App.xcworkspace")
+    )
+    upload_to_testflight
+    reset_git_repo(
+      files: [
+        File.join(ios_dir, "App/App.xcodeproj/project.pbxproj"),
+        "./package.json"
+      ]
+    )
+    slack(message: 'A new iOS app version is ready to be tested! Please update the app on your device, test it and respond on this thread with your results :pray:')
+  end
+
+  desc "Promote latest beta build to production"
+  lane :release do
+    package = read_json(json_path: "./package.json")
+    upload_to_app_store(
+      skip_metadata: true,
+      build_number: package[:version],
+      skip_screenshots: true,
+      skip_binary_upload: true
+    )
+    git_commit(path: ["./package.json", File.join(ios_dir, "App/App.xcodeproj/project.pbxproj")], message: "Bumps mobile version")
+    # Note: This step requires admin privileges
+    push_to_git_remote(
+      tags: false
+    )
+
+    UI.success("-------------------------")
+    UI.success("--- Step: manual part ---")
+    UI.success("-------------------------")
+    UI.important("YOU ARE ALMOST THERE! Please follow the steps below to submit the new version for review:")
+    UI.message("1. Open https://appstoreconnect.apple.com, My Apps and then find our app.")
+    UI.message("2. Click on the blue plus icon in the sidebar and add version #{package[:version]}.")
+    UI.message("3. Fill in 'what's new in this version' (look at commits on master).")
+    UI.success("4. Click 'Save' and then 'Submit for Review'.")
+  end
+end
+
+platform :android do
+  android_dir = File.expand_path("../android")
+
+  lane :bump_version do
+    version = increment_package_version
+    increment_version_code(
+      gradle_file_path: File.join(android_dir, "app/build.gradle"),
+      # write version_code as 104500 instead of 1.45.0
+      version_code: version.gsub(".", "0")
+    )
+    increment_version_name(
+      gradle_file_path: File.join(android_dir, "app/build.gradle"),
+      version_name: version
+    )
+  end
+
+  # See README for guide on how to set this up
+  desc "Submit a new Beta build"
+  lane :beta do
+    ensure_git_status_clean(
+      show_uncommitted_changes: true,
+      ignore_files: ["mobileapp/fastlane/Fastfile"]
+    )
+    bump_version
+    gradle(task: "bundle", build_type: "Release", project_dir: android_dir)
+    upload_to_play_store(
+      track: "internal",
+      aab: File.join(android_dir, "app/build/outputs/bundle/release/app-release.aab"),
+      skip_upload_apk: true,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+    reset_git_repo(
+      files: [
+        File.join(android_dir, "app/build.gradle"),
+        "./package.json"
+      ]
+    )
+    slack(message: 'A new Android app version is ready to be tested! Please update the app on your device, test it and respond on this thread with your results :pray:')
+  end
+
+  desc "Promote latest beta build to production"
+  lane :release do
+    ensure_git_status_clean(
+      show_uncommitted_changes: true,
+      ignore_files: ["mobileapp/fastlane/Fastfile", "web/package.json"]
+    )
+    bump_version
+    package = read_json(json_path: "./package.json")
+    upload_to_play_store(
+      version_name: package[:version],
+      track: 'internal', track_promote_to: 'production'
+    )
+    git_commit(path: ["./package.json", File.join(android_dir, "app/build.gradle")], message: "Bumps mobile version")
+    # Note: This step requires admin privileges
+    push_to_git_remote(
+      tags: false
+    )
+
+    UI.success("-------------------------")
+    UI.success("--- Step: manual part ---")
+    UI.success("-------------------------")
+    UI.important("YOU ARE ALMOST THERE! Please follow the steps below to submit the new version for review:")
+    UI.message("1. Open https://play.google.com/console/u/0/developers/7105597502658203364/app/4972478320592934095/tracks/internal-testing")
+    UI.message("2. Promote the latest version to production.")
+    UI.success("3. Remember to add release notes and save.")
+  end
+end

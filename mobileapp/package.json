@@ -1,12 +1,13 @@
 {
   "name": "electricitymaps-mobile",
-  "version": "1.45.0",
+  "version": "1.53.1",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "main": "index.js",
   "engines": {
     "node": ">=18",
-    "pnpm": "^8"
+    "pnpm": "^8",
+    "ruby": ">=3.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,7 +15,10 @@
     "build-ios": "pnpm build-web && pnpm exec cap copy && pnpm exec cap sync && pnpm exec cap open ios",
     "build-android": "pnpm build-web && pnpm exec cap copy && pnpm exec cap sync && pnpm exec cap open android",
     "dev-ios": "NODE_ENV=dev pnpm exec cap run ios",
-    "dev-android": "NODE_ENV=dev pnpm exec cap run android"
+    "dev-android": "NODE_ENV=dev pnpm exec cap run android",
+    "lint": "standardrb --fix",
+    "fast": "bundle exec fastlane",
+    "postinstall": "bundle install"
   },
   "dependencies": {
     "@capacitor/android": "^4.6.2",

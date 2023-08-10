@@ -22,6 +22,8 @@ contributors:
   - robertahunt
 delays:
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:

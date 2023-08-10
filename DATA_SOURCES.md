@@ -138,19 +138,14 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United Arab Emirates: [GCCIA](https://www.gccia.com.sa/)
 - United States of America
-  - Bonneville Power Authority: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.txt)
-  - California: [CAISO](http://www.caiso.com/Pages/default.aspx)
-  - Hawaii (Oahu Island): [Islandpulse](https://www.islandpulse.org/)
-  - Idaho Power Company: [IPC](https://www.idahopower.com/energy/delivering-power/generation-and-demand/)
-  - MISO: [MISO](https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getfuelmix&returnType=json)
-  - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
-  - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
-  - PJM: [PJM](http://www.pjm.com/markets-and-operations.aspx)
-  - Puerto Rico: [AEEPR](https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx)
-  - Southwest Power Pool: [SPP](https://marketplace.spp.org/pages/generation-mix)
-  - Southwest Variable Energy Resource Initiative: [SVERI](https://sveri.energy.arizona.edu/#generation-by-fuel-type)
-  - Texas: [ERCOT](http://www.ercot.com/content/cdr/html/real_time_system_conditions.html)
-  - Seminole Electric Cooperative (Florida): [EIA](https://www.eia.gov/opendata/qb.php?category=2122629&sdid=EBA.SEC-ALL.NG.H), [SEC](https://www.seminole-electric.com/facilities/generation/)
+  - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
+  - California (US-CAL-CISO): [CAISO](http://www.caiso.com/Pages/default.aspx)
+  - Hawaii, Oahu Island (US-HI-OA): [Islandpulse](https://www.islandpulse.org/)
+  - New England (US-NE-ISNE): [NEISO](https://www.iso-ne.com/isoexpress/)
+  - New York (US-NY-NYIS): [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
+  - PJM (US-MIDA-PJM): [PJM](http://www.pjm.com/markets-and-operations.aspx)
+  - Puerto Rico (PR): [AEEPR](https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx)
+  - Southwest Power Pool (US-CENT-SWPP): [SPP](https://marketplace.spp.org/pages/generation-mix)
 - Uruguay: [UTE](https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 - Vietnam: [EVN](https://www.nldc.evn.vn/)
   &nbsp;</details>
@@ -276,7 +271,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Honduras: [ENEE](http://www.enee.hn/planificacion/2018/boletines/Boletin%20Estadistico%20Mes%20de%20Septiembre%202018%20PDF.pdf)
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
 - Hungary:
-  - Solar: [MAVIR](<https://www.mavir.hu/documents/10258/245818953/PV+STATISZTIKA_HU_20230213_ig_v1+(1).pdf>)
+  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246425808/PV+STATISZTIKA_HU_20230701_ig_v1.pdf/06d76259-877f-6064-4a55-cf46ac1fbbac?t=1689240158131)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
@@ -436,7 +431,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - Balancing Authorities: [EIA](https://www.eia.gov/electricity/data/eia860M/)
-  - States: [EIA](https://www.eia.gov/electricity/data/state/)
+  - States:
+    - [EIA](https://www.eia.gov/electricity/data/state/)
+    - [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
   - CAISO
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
@@ -453,6 +450,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - PNM
     - Coal: [Github|electricitymaps-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
     - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
+  - Southern Company Services, Inc:
+    - Nuclear: Capacity [EIA](https://www.eia.gov/electricity/data/eia860m/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
 - Vietnam: [EVN](https://www.nldc.evn.vn/FullNewsg/100/Thong-tin-thi-truong-dien/default.aspx)
@@ -469,6 +468,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - Åland ⇄ Sweden: ["Sverigekabeln": 80 MW](https://kraftnat.ax/stamnatet/)
 - Åland ⇄ Finland: ["Gustavskablen": 10 MW + "ÅL-Link": 100 MW](https://kraftnat.ax/stamnatet/)
 - Albania ⇄ Greece: [533 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
+- Andorra ⇄ Spain: [125 MW](https://www.ree.es/sites/default/files/publication/2022/05/downloadable/inf_sis_elec_ree_2020_0EN_0.pdf)
 - Australia (New South Wales) ⇄ Australia (Queensland) ["QNI": 700MW (NSW -> QLD) 1200MW (QLD -> NSW)](https://en.wikipedia.org/wiki/Queensland_%E2%80%93_New_South_Wales_Interconnector) and ["N-Q-MNSP1": 180MW](https://www.aemo.com.au/-/media/Files/Electricity/NEM/Security_and_Reliability/Congestion-Information/2017/Interconnector-Capabilities.pdf)
 - Australia (Victoria) ⇄ Australia (New South Wales) ["VIC1-NSW1": 1600MW (VIC -> NSW) 1350MW (NSW -> VIC)](https://www.aemo.com.au/-/media/Files/Electricity/NEM/Security_and_Reliability/Congestion-Information/2017/Interconnector-Capabilities.pdf) and ["VNI": 170MW](https://www.transgrid.com.au/what-we-do/projects/current-projects/Victoria%20to%20NSW%20Interconnector)
 - Australia (Victoria) ⇄ Australia (South Australia) ["Heywood interconnector": 650 MW](https://en.wikipedia.org/wiki/Heywood_interconnector) and ["Murraylink": 220MW](https://en.wikipedia.org/wiki/Murraylink)
