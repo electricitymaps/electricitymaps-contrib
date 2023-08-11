@@ -21,12 +21,12 @@ import { windColor } from './scales';
 import { Capacitor } from '@capacitor/core';
 
 var Windy = function (params: any) {
-  var VELOCITY_SCALE = 1 / 100000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
+  const VELOCITY_SCALE = 1 / 50_000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
   var INTENSITY_SCALE_STEP = 10; // step size of particle intensity color scale
   var MAX_WIND_INTENSITY = 30; // wind velocity at which particle intensity is maximum (m/s)
   var MAX_PARTICLE_AGE = 100; // max number of frames a particle is drawn before regeneration
   var PARTICLE_LINE_WIDTH = 2; // line width of a drawn particle
-  var PARTICLE_MULTIPLIER = 4; // particle count scalar (completely arbitrary--this values looks nice)
+  const PARTICLE_MULTIPLIER = 8; // particle count scalar (completely arbitrary--this values looks nice)
   var PARTICLE_REDUCTION = 0.75; // reduce particle count to this much of normal for mobile devices
   var BOUNDARY = 0.45;
 
@@ -311,6 +311,10 @@ var Windy = function (params: any) {
     return [projected.x, projected.y];
   };
 
+  const zoomScaling = function () {
+    return 1 / Math.sqrt(params.map.transform.scale);
+  };
+
   var interpolateField = function (
     grid: { interpolate: (arg0: any, arg1: any) => any },
     bounds: { x: any; y: any; yMax: any; width: any; height: any },
@@ -324,7 +328,7 @@ var Windy = function (params: any) {
     },
     callback: (bounds: any, field: any) => void
   ) {
-    var velocityScale = bounds.height * VELOCITY_SCALE;
+    const velocityScale = bounds.height * VELOCITY_SCALE * zoomScaling();
 
     var columns: never[] = [];
     var x = bounds.x;
@@ -433,7 +437,7 @@ var Windy = function (params: any) {
       return [];
     });
 
-    var particleCount = Math.round(bounds.width * PARTICLE_MULTIPLIER);
+    const particleCount = Math.round(bounds.width * PARTICLE_MULTIPLIER * zoomScaling());
     if (isMobile()) {
       particleCount *= PARTICLE_REDUCTION;
     }
