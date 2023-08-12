@@ -7,6 +7,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
+import { formatPower } from 'utils/formatting';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
@@ -97,14 +98,13 @@ function BarElectricityBreakdownChart({
 
   // TODO: use unified formatting function in the future.
   const formatTick = (t: number) => {
-    const [x1, x2] = powerScale.domain();
-    if (x2 - x1 <= 1) {
-      return `${t * 1e3} ${PowerUnits.KILOWATTS}`;
+    // Use same unit as max value for tick with value 0
+    if (t === 0) {
+      return formatPower(maxPower, 0)
+        .toString()
+        .replace(/[\d.]+/, '0');
     }
-    if (x2 - x1 <= 1e3) {
-      return `${t} ${PowerUnits.MEGAWATTS}`;
-    }
-    return `${t * 1e-3} ${PowerUnits.GIGAWATTS}`;
+    return formatPower(t, 0);
   };
 
   return (
