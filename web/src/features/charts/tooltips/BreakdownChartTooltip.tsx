@@ -7,7 +7,6 @@ import { renderToString } from 'react-dom/server';
 import { getZoneName, useTranslation } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
 import { TimeAverages, modeColor } from 'utils/constants';
-import { formatCo2, formatPower } from 'utils/formatting';
 import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
 import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
@@ -154,12 +153,12 @@ export function BreakdownChartTooltipContent({
       />
       <br />
       {displayByEmissions && (
-        <MetricRatio value={emissions} total={totalEmissions} format={formatCo2} />
+        <MetricRatio value={emissions} total={totalEmissions} type="co2" />
       )}
 
       {!displayByEmissions && (
         <>
-          <MetricRatio value={usage} total={totalElectricity} format={formatPower} />
+          <MetricRatio value={usage} total={totalElectricity} type="power" />
           <br />
           {timeAverage === TimeAverages.HOURLY && (
             <>
@@ -167,7 +166,7 @@ export function BreakdownChartTooltipContent({
               {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
               {__('tooltips.ofinstalled')}
               <br />
-              <MetricRatio value={usage} total={(capacity ??= 0)} format={formatPower} />
+              <MetricRatio value={usage} total={(capacity ??= 0)} type="power" />
               <br />
             </>
           )}
@@ -176,7 +175,7 @@ export function BreakdownChartTooltipContent({
           <b>{getRatioPercent(emissions, totalEmissions)} %</b>{' '}
           {__('tooltips.ofemissions')}
           <br />
-          <MetricRatio value={emissions} total={totalEmissions} format={formatCo2} />
+          <MetricRatio value={emissions} total={totalEmissions} type="co2" />
         </>
       )}
       {!displayByEmissions && (Number.isFinite(co2Intensity) || usage !== 0) && (

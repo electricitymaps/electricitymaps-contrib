@@ -12,7 +12,7 @@ export const formatPower = function (
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
-  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}W` //Add a space between the number and the unit
+  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}Wh` //Add a space between the number and the unit
     .replace(/([A-Za-z])/, ' $1')
     .trim();
   return power;
@@ -45,21 +45,28 @@ const scalePower = function (maxPower: number | undefined) {
 
   if (value < 1) {
     return {
-      unit: 'kW',
+      unit: 'kWh',
       formattingFactor: 1e-3,
     };
   }
 
   if (value < 1e3) {
     return {
-      unit: 'MW',
+      unit: 'MWh',
       formattingFactor: 1,
     };
   }
 
+  if (maxPower < 1e6) {
+    return {
+      unit: 'GWh',
+      formattingFactor: 1e3,
+    };
+  }
+
   return {
-    unit: 'GW',
-    formattingFactor: 1e3,
+    unit: 'TWh',
+    formattingFactor: 1e6,
   };
 };
 
