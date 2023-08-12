@@ -1,8 +1,8 @@
 import * as d3 from 'd3-format';
 import { TimeAverages } from './constants';
-import { PowerUnits } from './units';
+import { EnergyUnits } from './units';
 
-const DEFAULT_NUM_DIGITS = 3;
+const DEFAULT_NUM_DIGITS = 2;
 
 export const formatPower = function (
   d: number,
@@ -16,6 +16,15 @@ export const formatPower = function (
     .replace(/([A-Za-z])/, ' $1')
     .trim();
   return power;
+};
+
+export const formatPowerWithSameUnit = function (
+  d: number,
+  valueToMatch: number,
+  numberDigits: number = DEFAULT_NUM_DIGITS
+) {
+  const { unit, formattingFactor } = scalePower(valueToMatch);
+  return `${d3.format(`.${numberDigits}~f`)(d / formattingFactor)} ${unit}`;
 };
 
 export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
@@ -64,28 +73,35 @@ const scalePower = function (maxPower: number | undefined) {
 
   if (value < 1) {
     return {
-      unit: PowerUnits.KILOWATTS,
+      unit: EnergyUnits.KILOWATT_HOURS,
       formattingFactor: 1e-3,
     };
   }
 
   if (value < 1e3) {
     return {
-      unit: PowerUnits.MEGAWATTS,
+      unit: EnergyUnits.MEGAWATT_HOURS,
       formattingFactor: 1,
     };
   }
 
   if (maxPower < 1e6) {
     return {
-      unit: 'GWh',
+      unit: EnergyUnits.GIGAWATT_HOURS,
       formattingFactor: 1e3,
     };
   }
 
+  if (maxPower < 1e9) {
+    return {
+      unit: EnergyUnits.TERAWATT_HOURS,
+      formattingFactor: 1e6,
+    };
+  }
+
   return {
-    unit: 'TWh',
-    formattingFactor: 1e6,
+    unit: EnergyUnits.PETAWATT_HOURS,
+    formattingFactor: 1e9,
   };
 };
 
