@@ -183,7 +183,7 @@ function getValuesInfo(
   );
 
   const format = scalePower(maxTotalValue);
-  const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'tCO₂eq / hour' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 }

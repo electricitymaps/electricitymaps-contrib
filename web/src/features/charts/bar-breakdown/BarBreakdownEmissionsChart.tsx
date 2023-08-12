@@ -86,7 +86,7 @@ function BarBreakdownEmissionsChart({
             label={__(d.mode)}
             width={width}
             scale={co2Scale}
-            value={Math.abs(d.tCo2eqPerMin)}
+            value={Math.abs(d.tCo2eqPerHour)}
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, data, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
@@ -94,7 +94,7 @@ function BarBreakdownEmissionsChart({
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}
-              range={[0, Math.abs(d.tCo2eqPerMin)]}
+              range={[0, Math.abs(d.tCo2eqPerHour)]}
               scale={co2Scale}
             />
           </Row>
@@ -117,7 +117,7 @@ function BarBreakdownEmissionsChart({
             <HorizontalBar
               className="exchange"
               fill={'gray'}
-              range={[0, d.tCo2eqPerMin]}
+              range={[0, d.tCo2eqPerHour]}
               scale={co2Scale}
             />
           </Row>
