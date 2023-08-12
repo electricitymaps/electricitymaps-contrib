@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { useAtom } from 'jotai';
 import { Mode } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';
-import { getTotalElectricity, tonsPerHourToGramsPerMinute } from '../graphUtils';
+import { getTotalElectricity } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
 export function useEmissionChartData() {
@@ -21,9 +21,7 @@ export function useEmissionChartData() {
       return {
         datetime,
         layerData: {
-          emissions: tonsPerHourToGramsPerMinute(
-            getTotalElectricity(value, mixMode === Mode.CONSUMPTION)
-          ),
+          emissions: getTotalElectricity(value, mixMode === Mode.CONSUMPTION) / 1e3,
         },
         meta: value,
       };

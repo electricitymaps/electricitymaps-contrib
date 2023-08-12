@@ -71,10 +71,6 @@ export const getGenerationTypeKey = (name: string): GenerationType | undefined =
   return undefined;
 };
 
-export function tonsPerHourToGramsPerMinute(value: number) {
-  return value / 1e6 / 60;
-}
-
 export function getTotalElectricity(zoneData: ZoneDetail, displayByEmissions: boolean) {
   const productionValue = displayByEmissions
     ? zoneData.totalCo2Production
