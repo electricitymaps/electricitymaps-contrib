@@ -26,17 +26,35 @@ export const formatPowerWithSameUnit = function (
   return `${d3.format(`.${numberDigits}~f`)(d / formattingFactor)} ${unit}`;
 };
 
+export const formatCo2 = function (d: number, valueToMatch?: number) {
   let value = d;
   // Assume gCO₂ / h input
-  value /= 60; // Convert to gCO₂ / min
-  value /= 1e6; // Convert to tCO₂ / min
+  value /= 1e6; // Convert to tCO₂ / hour
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
 
-  return value >= 1
-    ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
-    : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
+  // Ensure both numbers are at the same scale
+  const checkAgainst = valueToMatch ? valueToMatch / 1e6 : value;
+
+  // grams
+  if (Math.round(checkAgainst) < 1) {
+    return `${d3.format(`,.0~s`)(value * 1e6)}g`;
+  }
+
+  // tons
+  if (Math.round(checkAgainst) < 1e5) {
+    const decimals = value < 1 ? 1 : 0;
+    return `${d3.format(`,.${decimals}~f`)(value)}t`;
+  }
+
+  // Hundred thousands of tons
+  if (Math.round(checkAgainst) < 1e6) {
+    return `${d3.format(`,.1~f`)(value / 1e6)}Mt`;
+  }
+
+  // megatons or above
+  return `${d3.format(`,.0~s`)(value)}t`;
 };
 
 const scalePower = function (maxPower: number | undefined) {
@@ -228,4 +246,4 @@ function formatDataSources(dataSources: string[], language: string) {
       );
 }
 
-export { scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };
+export { formatDataSources, formatDate, formatDateTick, formatTimeRange, scalePower };
