@@ -5,9 +5,15 @@ type Props = {
   height: number;
   scale: ScaleLinear<number, number, never>;
   formatTick: (tick: number) => string;
+  amountOfTicks?: number;
 };
 
-export default function Axis({ formatTick, height, scale }: Props) {
+export default function Axis({
+  formatTick,
+  height,
+  scale,
+  amountOfTicks = SCALE_TICKS,
+}: Props) {
   return (
     <g
       className="text-gray-500/30"
@@ -23,7 +29,7 @@ export default function Axis({ formatTick, height, scale }: Props) {
         shapeRendering="auto"
         d={`M${scale.range()[0] + 0.5},0.5H${scale.range()[1] + 0.5}`}
       />
-      {scale.ticks(SCALE_TICKS).map((t) => (
+      {scale.ticks(amountOfTicks).map((t) => (
         <g key={t} className="tick" opacity="1" transform={`translate(${scale(t)}, 0)`}>
           <line
             stroke="currentColor"

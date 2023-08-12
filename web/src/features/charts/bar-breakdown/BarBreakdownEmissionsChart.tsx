@@ -6,11 +6,16 @@ import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
+import { formatCo2 } from 'utils/formatting';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import { ExchangeDataType, ProductionDataType, getDataBlockPositions } from './utils';
+
+// Amount of ticks is lower than default due to longer text in the axis
+// TODO: This might need to be even lower in some cases
+const AMOUNT_OF_TICKS = 3;
 
 interface BarBreakdownEmissionsChartProps {
   height: number;
@@ -51,9 +56,9 @@ function BarBreakdownEmissionsChart({
     exchangeData
   );
 
-  const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.tCo2eqPerMin)) || 0;
-  const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.tCo2eqPerMin));
-  const maxCO2eqProduction = d3Max(productionData, (d) => d.tCo2eqPerMin);
+  const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.tCo2eqPerHour)) || 0;
+  const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.tCo2eqPerHour));
+  const maxCO2eqProduction = d3Max(productionData, (d) => d.tCo2eqPerHour);
 
   // in tCO₂eq/min
   const co2Scale = useMemo(
@@ -68,16 +73,24 @@ function BarBreakdownEmissionsChart({
   );
 
   const formatTick = (t: number) => {
-    const [x1, x2] = co2Scale.domain();
-    if (x2 - x1 <= 1) {
-      return `${t * 1e3} kg/min`;
+    // Use same unit as max value for tick with value 0
+    if (t === 0) {
+      const value = formatCo2((maxCO2eqProduction || 1) * 1e6)
+        .toString()
+        .replace(/[\d,.]+/, '0');
+      return `${value}/hour`;
     }
-    return `${t} t/min`;
+    return `${formatCo2(t * 1e6, (maxCO2eqProduction || 1) * 1e6)}/hour`;
   };
 
   return (
     <svg className="w-full overflow-visible" height={height}>
-      <Axis formatTick={formatTick} height={height} scale={co2Scale} />
+      <Axis
+        formatTick={formatTick}
+        height={height}
+        scale={co2Scale}
+        amountOfTicks={AMOUNT_OF_TICKS}
+      />
       <g transform={`translate(0, ${productionY})`}>
         {productionData.map((d, index) => (
           <Row
