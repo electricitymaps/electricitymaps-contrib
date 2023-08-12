@@ -1,8 +1,7 @@
 import * as d3 from 'd3-format';
-import { translate } from '../translation/translation';
 import { TimeAverages } from './constants';
 
-const DEFAULT_NUM_DIGITS = 3;
+const DEFAULT_NUM_DIGITS = 2;
 
 export const formatPower = function (
   d: number,
@@ -18,7 +17,15 @@ export const formatPower = function (
   return power;
 };
 
-export const formatCo2 = function (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) {
+export const formatPowerWithSameUnit = function (
+  d: number,
+  valueToMatch: number,
+  numberDigits: number = DEFAULT_NUM_DIGITS
+) {
+  const { unit, formattingFactor } = scalePower(valueToMatch);
+  return `${d3.format(`.${numberDigits}~f`)(d / formattingFactor)} ${unit}`;
+};
+
   let value = d;
   // Assume gCO₂ / h input
   value /= 60; // Convert to gCO₂ / min
