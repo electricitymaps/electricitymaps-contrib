@@ -16,7 +16,7 @@ export default function Modal({ isOpen, setIsOpen, title, children }: ModalProps
         <Dialog.Content
           // Avoid close button being auto-focused initially, as pressing space will otherwise close the modal
           onOpenAutoFocus={(event: Event) => event.preventDefault()}
-          className="fixed left-[50%] top-[50%] z-40 w-[98vw] max-w-2xl -translate-x-[50%] -translate-y-[50%] rounded-xl bg-white p-4 shadow-md dark:bg-gray-800 sm:w-[90vw]"
+          className="fixed left-[50%] top-[50%] z-40 w-[98vw] max-w-2xl -translate-x-[50%] -translate-y-[50%] rounded-xl bg-white p-4 shadow-md backdrop-blur-sm dark:bg-gray-800/90 sm:w-[90vw]"
         >
           <Dialog.Title className="text-center font-poppins sm:text-lg">
             {title}
