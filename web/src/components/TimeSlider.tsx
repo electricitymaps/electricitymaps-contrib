@@ -113,8 +113,7 @@ export function TimeSliderWithoutNight(props: TimeSliderProps) {
 }
 
 export function TimeSliderWithNight(props: TimeSliderProps) {
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const nightTimeSets = useNightTimes(timeAverage, props.numberOfEntries);
+  const nightTimeSets = useNightTimes();
   const isDarkModeEnabled = useDarkMode();
 
   const thumbIcon = getThumbIcon(props.selectedIndex || 0, nightTimeSets);
@@ -133,7 +132,8 @@ function TimeSlider(props: TimeSliderProps) {
   const zoneId = getZoneFromPath();
   const [timeAverage] = useAtom(timeAverageAtom);
 
-  const showNightTime = zoneId && timeAverage === TimeAverages.HOURLY;
+  const showNightTime =
+    zoneId && timeAverage === TimeAverages.HOURLY && props.numberOfEntries === 24;
 
   return showNightTime ? (
     <TimeSliderWithNight {...props} />
