@@ -158,6 +158,9 @@ dependencies:
   sprintf-js:
     specifier: ^1.1.2
     version: 1.1.2
+  sunrise-sunset-js:
+    specifier: ^2.2.1
+    version: 2.2.1
   tailwind-merge:
     specifier: ^1.14.0
     version: 1.14.0
@@ -15864,6 +15867,10 @@ packages:
 
   /sudo-prompt@9.2.1:
     resolution: {integrity: sha512-Mu7R0g4ig9TUuGSxJavny5Rv0egCEtpZRNMrZaYS1vxkiIxGiGUwoezU3LazIQ+KE04hTrTfNPgxU5gzi7F5Pw==}
+    dev: false
+
+  /sunrise-sunset-js@2.2.1:
+    resolution: {integrity: sha512-ErsvmxoTCZRacVPtlchkrTAR8qxypBy0BDrrv9LMugLuF0AykcS5pQsP1EhQJHgumxrTTSI8N8KJkQMVJ6dEPw==}
     dev: false
 
   /supercluster@7.1.5:
