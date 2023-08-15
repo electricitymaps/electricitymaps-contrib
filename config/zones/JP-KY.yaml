@@ -8,7 +8,6 @@ capacity:
   hydro: 1247
   hydro storage: 2350
   nuclear: 5258
-  unknown: 9976.94
   wind: 630
   solar: 10910
 contributors:
