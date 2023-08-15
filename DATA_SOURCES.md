@@ -296,7 +296,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
 - Japan:
   - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
-  - Kyūshū: [Electrical Japan](https://agora-ex-nii-ac-jp.translate.goog/earthquake/201103-eastjapan/energy/electrical-japan/operator/9.html.ja?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp&_x_tr_sch=http)
+  - Kyūshū: [TSO - Kyuden](https://www.kyuden.co.jp/library/pdf/en/ir/integratedreport/2022/en_integratedreport_2022.pdf)
   - Tohoku
     - Wind: [The Wind Power](https://www.thewindpower.net/country_zones_en_11_japan.php)
   - Hokkaidō

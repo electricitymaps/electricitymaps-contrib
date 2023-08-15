@@ -26,13 +26,11 @@ export default function ZoneDetails(): JSX.Element {
   }
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [viewMode, setViewMode] = useAtom(spatialAggregateAtom);
+  const [_, setViewMode] = useAtom(spatialAggregateAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const isZoneView = viewMode === SpatialAggregate.ZONE;
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
   const { data, isError, isLoading } = useGetZone();
-
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
   if (Array.isArray(data)) {
@@ -45,10 +43,10 @@ export default function ZoneDetails(): JSX.Element {
     }
     // When first hitting the map (or opening a zone from the ranking panel),
     // set the correct matching view mode (zone or country).
-    if (hasSubZones && isZoneView) {
+    if (hasSubZones && !isSubZone) {
       setViewMode(SpatialAggregate.COUNTRY);
     }
-    if (isSubZone && !isZoneView) {
+    if (!hasSubZones && isSubZone) {
       setViewMode(SpatialAggregate.ZONE);
     }
   }, []);
