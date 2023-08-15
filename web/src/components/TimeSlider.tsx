@@ -131,9 +131,7 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
 function TimeSlider(props: TimeSliderProps) {
   const zoneId = getZoneFromPath();
   const [timeAverage] = useAtom(timeAverageAtom);
-
-  const showNightTime =
-    zoneId && timeAverage === TimeAverages.HOURLY && props.numberOfEntries === 24;
+  const showNightTime = zoneId && timeAverage === TimeAverages.HOURLY;
 
   return showNightTime ? (
     <TimeSliderWithNight {...props} />
