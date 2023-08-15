@@ -31,7 +31,6 @@ export default function ZoneDetails(): JSX.Element {
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
   const { data, isError, isLoading } = useGetZone();
-  console.log('isSubZone:', isSubZone);
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
   if (Array.isArray(data)) {
