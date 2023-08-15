@@ -18,7 +18,9 @@ const meta: Meta<typeof TimeSliderBasic> = {
 
 export default meta;
 
-function SliderWithControls(arguments_: TimeSliderProps & { nightTimeSets?: any }) {
+function SliderWithControls(
+  arguments_: TimeSliderProps & { nightTimeSets?: number[][] }
+) {
   const [selectedIndex, setSelectedIndex] = useState(arguments_.selectedIndex);
 
   const handleOnSelectedIndexChange = (selectedIndex: number) => {
