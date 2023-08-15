@@ -150,7 +150,6 @@ export interface GeometryProperties {
   center: [number, number];
   color: string;
   countryKey: string;
-  countryName: string;
   isAggregatedView: boolean;
   isHighestGranularity: boolean;
   zoneId: string;

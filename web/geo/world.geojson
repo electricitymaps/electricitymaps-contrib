@@ -12,8 +12,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SE-SE4",
-        "countryKey": "SE",
-        "countryName": "Sweden"
+        "countryKey": "SE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -70,8 +69,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SE-SE3",
-        "countryKey": "SE",
-        "countryName": "Sweden"
+        "countryKey": "SE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -168,8 +166,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SE-SE2",
-        "countryKey": "SE",
-        "countryName": "Sweden"
+        "countryKey": "SE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -238,8 +235,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SE-SE1",
-        "countryKey": "SE",
-        "countryName": "Sweden"
+        "countryKey": "SE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -321,8 +317,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "XX",
-        "countryKey": "CY",
-        "countryName": "Cyprus"
+        "countryKey": "CY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -446,8 +441,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AE",
-        "countryKey": "AE",
-        "countryName": "United Arab Emirates"
+        "countryKey": "AE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -506,8 +500,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AF",
-        "countryKey": "AF",
-        "countryName": "Afghanistan"
+        "countryKey": "AF"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -666,8 +659,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AL",
-        "countryKey": "AL",
-        "countryName": "Albania"
+        "countryKey": "AL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -715,8 +707,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AD",
-        "countryKey": "AD",
-        "countryName": "Andorra"
+        "countryKey": "AD"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -737,8 +728,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AO",
-        "countryKey": "AO",
-        "countryName": "Angola"
+        "countryKey": "AO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -880,8 +870,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AG",
-        "countryKey": "AG",
-        "countryName": "Antigua and Barbuda"
+        "countryKey": "AG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -901,8 +890,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AR",
-        "countryKey": "AR",
-        "countryName": "Argentina"
+        "countryKey": "AR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1334,8 +1322,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AM",
-        "countryKey": "AM",
-        "countryName": "Armenia"
+        "countryKey": "AM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1410,8 +1397,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AT",
-        "countryKey": "AT",
-        "countryName": "Austria"
+        "countryKey": "AT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1500,8 +1486,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-NSW",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1600,8 +1585,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-NT",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1773,8 +1757,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-QLD",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1994,8 +1977,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-SA",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2113,8 +2095,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-TAS",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2185,8 +2166,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-TAS-KI",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2209,8 +2189,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-TAS-FI",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2233,8 +2212,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-TAS-CBI",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2255,8 +2233,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-VIC",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2346,8 +2323,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-WA",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2580,8 +2556,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AX",
-        "countryKey": "AX",
-        "countryName": "Åland Islands"
+        "countryKey": "AX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2603,8 +2578,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AZ",
-        "countryKey": "AZ",
-        "countryName": "Azerbaijan"
+        "countryKey": "AZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2761,8 +2735,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BA",
-        "countryKey": "BA",
-        "countryName": "Bosnia and Herzegovina"
+        "countryKey": "BA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2841,8 +2814,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BB",
-        "countryKey": "BB",
-        "countryName": "Barbados"
+        "countryKey": "BB"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2862,8 +2834,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BD",
-        "countryKey": "BD",
-        "countryName": "Bangladesh"
+        "countryKey": "BD"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3011,8 +2982,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BE",
-        "countryKey": "BE",
-        "countryName": "Belgium"
+        "countryKey": "BE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3070,8 +3040,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BH",
-        "countryKey": "BH",
-        "countryName": "Bahrain"
+        "countryKey": "BH"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3092,8 +3061,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BJ",
-        "countryKey": "BJ",
-        "countryName": "Benin"
+        "countryKey": "BJ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3154,8 +3122,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BO",
-        "countryKey": "BO",
-        "countryName": "Bolivia, Plurinational State of"
+        "countryKey": "BO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3309,8 +3276,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BR-CS",
-        "countryKey": "BR",
-        "countryName": "Brazil"
+        "countryKey": "BR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3648,8 +3614,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BR-N",
-        "countryKey": "BR",
-        "countryName": "Brazil"
+        "countryKey": "BR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4226,8 +4191,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BR-NE",
-        "countryKey": "BR",
-        "countryName": "Brazil"
+        "countryKey": "BR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4493,8 +4457,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BR-S",
-        "countryKey": "BR",
-        "countryName": "Brazil"
+        "countryKey": "BR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4670,8 +4633,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BS",
-        "countryKey": "BS",
-        "countryName": "Bahamas"
+        "countryKey": "BS"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4839,8 +4801,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BT",
-        "countryKey": "BT",
-        "countryName": "Bhutan"
+        "countryKey": "BT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4892,8 +4853,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BW",
-        "countryKey": "BW",
-        "countryName": "Botswana"
+        "countryKey": "BW"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4983,8 +4943,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BY",
-        "countryKey": "BY",
-        "countryName": "Belarus"
+        "countryKey": "BY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5105,8 +5064,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BZ",
-        "countryKey": "BZ",
-        "countryName": "Belize"
+        "countryKey": "BZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5145,8 +5103,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BN",
-        "countryKey": "BN",
-        "countryName": "Brunei Darussalam"
+        "countryKey": "BN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5186,8 +5143,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BG",
-        "countryKey": "BG",
-        "countryName": "Bulgaria"
+        "countryKey": "BG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5265,8 +5221,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BF",
-        "countryKey": "BF",
-        "countryName": "Burkina Faso"
+        "countryKey": "BF"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5360,8 +5315,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "BI",
-        "countryKey": "BI",
-        "countryName": "Burundi"
+        "countryKey": "BI"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5401,8 +5355,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-AB",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5468,8 +5421,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-BC",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -5967,8 +5919,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-MB",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6097,8 +6048,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-NB",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6167,8 +6117,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-NL-LB",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6448,8 +6397,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-NL-NF",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6606,8 +6554,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-NS",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6716,8 +6663,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-ON",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6995,8 +6941,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-PE",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7035,8 +6980,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-QC",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7519,8 +7463,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-SK",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7545,8 +7488,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-NT",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -8375,8 +8317,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-NU",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11883,8 +11824,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CA-YT",
-        "countryKey": "CA",
-        "countryName": "Canada"
+        "countryKey": "CA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11993,8 +11933,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CF",
-        "countryKey": "CF",
-        "countryName": "Central African Republic"
+        "countryKey": "CF"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12131,8 +12070,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CG",
-        "countryKey": "CG",
-        "countryName": "Congo"
+        "countryKey": "CG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12261,8 +12199,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CH",
-        "countryKey": "CH",
-        "countryName": "Switzerland"
+        "countryKey": "CH"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12335,8 +12272,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CI",
-        "countryKey": "CI",
-        "countryName": "Côte d'Ivoire"
+        "countryKey": "CI"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12435,8 +12371,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CL-SEN",
-        "countryKey": "CL",
-        "countryName": "Chile"
+        "countryKey": "CL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12726,8 +12661,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CL-SEM",
-        "countryKey": "CL",
-        "countryName": "Chile"
+        "countryKey": "CL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -13361,8 +13295,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CL-SEA",
-        "countryKey": "CL",
-        "countryName": "Chile"
+        "countryKey": "CL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -13702,8 +13635,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CL-CHP",
-        "countryKey": "CL",
-        "countryName": "Chile"
+        "countryKey": "CL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -13723,8 +13655,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CM",
-        "countryKey": "CM",
-        "countryName": "Cameroon"
+        "countryKey": "CM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -13853,8 +13784,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CN",
-        "countryKey": "CN",
-        "countryName": "China"
+        "countryKey": "CN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -14744,8 +14674,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CO",
-        "countryKey": "CO",
-        "countryName": "Colombia"
+        "countryKey": "CO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -14950,8 +14879,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CV",
-        "countryKey": "CV",
-        "countryName": "Cabo Verde"
+        "countryKey": "CV"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15015,8 +14943,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CD",
-        "countryKey": "CD",
-        "countryName": "Congo, The Democratic Republic of the"
+        "countryKey": "CD"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15259,8 +15186,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CR",
-        "countryKey": "CR",
-        "countryName": "Costa Rica"
+        "countryKey": "CR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15329,8 +15255,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CU",
-        "countryKey": "CU",
-        "countryName": "Cuba"
+        "countryKey": "CU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15460,8 +15385,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CY",
-        "countryKey": "CY",
-        "countryName": "Cyprus"
+        "countryKey": "CY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15616,8 +15540,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "CZ",
-        "countryKey": "CZ",
-        "countryName": "Czechia"
+        "countryKey": "CZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15693,8 +15616,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "DE",
-        "countryKey": "DE",
-        "countryName": "Germany"
+        "countryKey": "DE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15864,8 +15786,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "DJ",
-        "countryKey": "DJ",
-        "countryName": "Djibouti"
+        "countryKey": "DJ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15904,8 +15825,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "DK-DK1",
-        "countryKey": "DK",
-        "countryName": "Denmark"
+        "countryKey": "DK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16033,8 +15953,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "DK-DK2",
-        "countryKey": "DK",
-        "countryName": "Denmark"
+        "countryKey": "DK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16101,8 +16020,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "DK-BHM",
-        "countryKey": "DK",
-        "countryName": "Denmark"
+        "countryKey": "DK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16123,8 +16041,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "DM",
-        "countryKey": "DM",
-        "countryName": "Dominica"
+        "countryKey": "DM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16145,8 +16062,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "DO",
-        "countryKey": "DO",
-        "countryName": "Dominican Republic"
+        "countryKey": "DO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16209,8 +16125,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "DZ",
-        "countryKey": "DZ",
-        "countryName": "Algeria"
+        "countryKey": "DZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16365,8 +16280,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "EC",
-        "countryKey": "EC",
-        "countryName": "Ecuador"
+        "countryKey": "EC"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16517,8 +16431,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "EE",
-        "countryKey": "EE",
-        "countryName": "Estonia"
+        "countryKey": "EE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16610,8 +16523,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "EG",
-        "countryKey": "EG",
-        "countryName": "Egypt"
+        "countryKey": "EG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16718,8 +16630,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "EH",
-        "countryKey": "EH",
-        "countryName": "Western Sahara"
+        "countryKey": "EH"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16782,8 +16693,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ER",
-        "countryKey": "ER",
-        "countryName": "Eritrea"
+        "countryKey": "ER"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16878,8 +16788,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17026,8 +16935,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-CN-LP",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17048,8 +16956,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-CN-HI",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17069,8 +16976,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-CN-IG",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17090,8 +16996,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-CN-TE",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17115,8 +17020,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-CN-GC",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17139,8 +17043,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-CN-FVLZ",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17172,8 +17075,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-IB-IZ",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17195,8 +17097,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-IB-MA",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17223,8 +17124,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-IB-ME",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17246,8 +17146,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ET",
-        "countryKey": "ET",
-        "countryName": "Ethiopia"
+        "countryKey": "ET"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17371,8 +17270,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "FI",
-        "countryKey": "FI",
-        "countryName": "Finland"
+        "countryKey": "FI"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17580,8 +17478,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "FJ",
-        "countryKey": "FJ",
-        "countryName": "Fiji"
+        "countryKey": "FJ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17651,8 +17548,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "FK",
-        "countryKey": "FK",
-        "countryName": "Falkland Islands (Malvinas)"
+        "countryKey": "FK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17723,8 +17619,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "FM",
-        "countryKey": "FM",
-        "countryName": "Micronesia, Federated States of"
+        "countryKey": "FM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17744,8 +17639,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "FO-MI",
-        "countryKey": "FO",
-        "countryName": "Faroe Islands"
+        "countryKey": "FO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -17841,8 +17735,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "FR",
-        "countryKey": "FR",
-        "countryName": "France"
+        "countryKey": "FR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18039,8 +17932,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "FR-COR",
-        "countryKey": "FR",
-        "countryName": "France"
+        "countryKey": "FR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18072,8 +17964,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GA",
-        "countryKey": "GA",
-        "countryName": "Gabon"
+        "countryKey": "GA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18184,8 +18075,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GB",
-        "countryKey": "GB",
-        "countryName": "United Kingdom"
+        "countryKey": "GB"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18487,8 +18377,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GB-NIR",
-        "countryKey": "GB",
-        "countryName": "United Kingdom"
+        "countryKey": "GB"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18529,8 +18418,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GB-ORK",
-        "countryKey": "GB",
-        "countryName": "United Kingdom"
+        "countryKey": "GB"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18555,8 +18443,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GB-ZET",
-        "countryKey": "GB",
-        "countryName": "United Kingdom"
+        "countryKey": "GB"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18599,8 +18486,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GE",
-        "countryKey": "GE",
-        "countryName": "Georgia"
+        "countryKey": "GE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18697,8 +18583,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GF",
-        "countryKey": "GF",
-        "countryName": "French Guiana"
+        "countryKey": "GF"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18746,8 +18631,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GH",
-        "countryKey": "GH",
-        "countryName": "Ghana"
+        "countryKey": "GH"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -18819,8 +18703,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GL",
-        "countryKey": "GL",
-        "countryName": "Greenland"
+        "countryKey": "GL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -20837,8 +20720,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GM",
-        "countryKey": "GM",
-        "countryName": "Gambia"
+        "countryKey": "GM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -20878,8 +20760,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GN",
-        "countryKey": "GN",
-        "countryName": "Guinea"
+        "countryKey": "GN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -20999,8 +20880,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GP",
-        "countryKey": "GP",
-        "countryName": "Guadeloupe"
+        "countryKey": "GP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21030,8 +20910,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GQ",
-        "countryKey": "GQ",
-        "countryName": "Equatorial Guinea"
+        "countryKey": "GQ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21067,8 +20946,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GR",
-        "countryKey": "GR",
-        "countryName": "Greece"
+        "countryKey": "GR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21300,8 +21178,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GR-IS",
-        "countryKey": "GR",
-        "countryName": "Greece"
+        "countryKey": "GR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21424,8 +21301,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GS",
-        "countryKey": "GS",
-        "countryName": "South Georgia and the South Sandwich Islands"
+        "countryKey": "GS"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21459,8 +21335,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GT",
-        "countryKey": "GT",
-        "countryName": "Guatemala"
+        "countryKey": "GT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21516,8 +21391,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GU",
-        "countryKey": "GU",
-        "countryName": "Guam"
+        "countryKey": "GU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21538,8 +21412,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GW",
-        "countryKey": "GW",
-        "countryName": "Guinea-Bissau"
+        "countryKey": "GW"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21598,8 +21471,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "GY",
-        "countryKey": "GY",
-        "countryName": "Guyana"
+        "countryKey": "GY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21694,8 +21566,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "HK",
-        "countryKey": "HK",
-        "countryName": "Hong Kong"
+        "countryKey": "HK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21717,8 +21588,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "HM",
-        "countryKey": "HM",
-        "countryName": "Heard Island and McDonald Islands"
+        "countryKey": "HM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21739,8 +21609,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "HN",
-        "countryKey": "HN",
-        "countryName": "Honduras"
+        "countryKey": "HN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21812,8 +21681,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "HT",
-        "countryKey": "HT",
-        "countryName": "Haiti"
+        "countryKey": "HT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21876,8 +21744,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "HU",
-        "countryKey": "HU",
-        "countryName": "Hungary"
+        "countryKey": "HU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21953,8 +21820,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "HR",
-        "countryKey": "HR",
-        "countryName": "Croatia"
+        "countryKey": "HR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -22121,8 +21987,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ID",
-        "countryKey": "ID",
-        "countryName": "Indonesia"
+        "countryKey": "ID"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -23752,8 +23617,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IE",
-        "countryKey": "IE",
-        "countryName": "Ireland"
+        "countryKey": "IE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -23871,8 +23735,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IL",
-        "countryKey": "IL",
-        "countryName": "Israel"
+        "countryKey": "IL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -23919,8 +23782,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IM",
-        "countryKey": "IM",
-        "countryName": "Isle of Man"
+        "countryKey": "IM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -23942,8 +23804,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IN-AN",
-        "countryKey": "IN",
-        "countryName": "India"
+        "countryKey": "IN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -23992,8 +23853,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IN-NO",
-        "countryKey": "IN",
-        "countryName": "India"
+        "countryKey": "IN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -24277,8 +24137,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IN-WE",
-        "countryKey": "IN",
-        "countryName": "India"
+        "countryKey": "IN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -24567,8 +24426,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IN-EA",
-        "countryKey": "IN",
-        "countryName": "India"
+        "countryKey": "IN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -24769,8 +24627,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IN-SO",
-        "countryKey": "IN",
-        "countryName": "India"
+        "countryKey": "IN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -24918,8 +24775,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IN-NE",
-        "countryKey": "IN",
-        "countryName": "India"
+        "countryKey": "IN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -25057,8 +24913,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IQ",
-        "countryKey": "IQ",
-        "countryName": "Iraq"
+        "countryKey": "IQ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -25155,8 +25010,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IQ-KUR",
-        "countryKey": "IQ",
-        "countryName": "Iraq"
+        "countryKey": "IQ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -25228,8 +25082,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IR",
-        "countryKey": "IR",
-        "countryName": "Iran, Islamic Republic of"
+        "countryKey": "IR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -25492,8 +25345,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IS",
-        "countryKey": "IS",
-        "countryName": "Iceland"
+        "countryKey": "IS"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -25646,8 +25498,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IT-CNO",
-        "countryKey": "IT",
-        "countryName": "Italy"
+        "countryKey": "IT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -25725,8 +25576,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IT-CSO",
-        "countryKey": "IT",
-        "countryName": "Italy"
+        "countryKey": "IT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -25793,8 +25643,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IT-NO",
-        "countryKey": "IT",
-        "countryName": "Italy"
+        "countryKey": "IT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -25929,8 +25778,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IT-SAR",
-        "countryKey": "IT",
-        "countryName": "Italy"
+        "countryKey": "IT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -25974,8 +25822,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IT-SIC",
-        "countryKey": "IT",
-        "countryName": "Italy"
+        "countryKey": "IT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26020,8 +25867,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "IT-SO",
-        "countryKey": "IT",
-        "countryName": "Italy"
+        "countryKey": "IT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26096,8 +25942,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JM",
-        "countryKey": "JM",
-        "countryName": "Jamaica"
+        "countryKey": "JM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26130,8 +25975,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-CB",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26201,8 +26045,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-CG",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26250,8 +26093,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-HKD",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26331,8 +26173,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-HR",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26377,8 +26218,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-KN",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26441,8 +26281,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-KY",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26587,8 +26426,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-ON",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26629,8 +26467,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-SK",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26683,8 +26520,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-TH",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26784,8 +26620,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JP-TK",
-        "countryKey": "JP",
-        "countryName": "Japan"
+        "countryKey": "JP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26851,8 +26686,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "JO",
-        "countryKey": "JO",
-        "countryName": "Jordan"
+        "countryKey": "JO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26899,8 +26733,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "KE",
-        "countryKey": "KE",
-        "countryName": "Kenya"
+        "countryKey": "KE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26980,8 +26813,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "KG",
-        "countryKey": "KG",
-        "countryName": "Kyrgyzstan"
+        "countryKey": "KG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -27110,8 +26942,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "KH",
-        "countryKey": "KH",
-        "countryName": "Cambodia"
+        "countryKey": "KH"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -27199,8 +27030,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "KM",
-        "countryKey": "KM",
-        "countryName": "Comoros"
+        "countryKey": "KM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -27232,8 +27062,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "KP",
-        "countryKey": "KP",
-        "countryName": "Korea, Democratic People's Republic of"
+        "countryKey": "KP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -27324,8 +27153,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "KR",
-        "countryKey": "KR",
-        "countryName": "Korea, Republic of"
+        "countryKey": "KR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -27448,8 +27276,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "KW",
-        "countryKey": "KW",
-        "countryName": "Kuwait"
+        "countryKey": "KW"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -27485,8 +27312,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "KZ",
-        "countryKey": "KZ",
-        "countryName": "Kazakhstan"
+        "countryKey": "KZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -27907,8 +27733,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LA",
-        "countryKey": "LA",
-        "countryName": "Lao People's Democratic Republic"
+        "countryKey": "LA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28055,8 +27880,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LB",
-        "countryKey": "LB",
-        "countryName": "Lebanon"
+        "countryKey": "LB"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28088,8 +27912,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LC",
-        "countryKey": "LC",
-        "countryName": "Saint Lucia"
+        "countryKey": "LC"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28110,8 +27933,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LK",
-        "countryKey": "LK",
-        "countryName": "Sri Lanka"
+        "countryKey": "LK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28155,8 +27977,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LI",
-        "countryKey": "LI",
-        "countryName": "Liechtenstein"
+        "countryKey": "LI"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28176,8 +27997,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LR",
-        "countryKey": "LR",
-        "countryName": "Liberia"
+        "countryKey": "LR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28233,8 +28053,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LS",
-        "countryKey": "LS",
-        "countryName": "Lesotho"
+        "countryKey": "LS"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28269,8 +28088,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LT",
-        "countryKey": "LT",
-        "countryName": "Lithuania"
+        "countryKey": "LT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28335,8 +28153,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LU",
-        "countryKey": "LU",
-        "countryName": "Luxembourg"
+        "countryKey": "LU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28362,8 +28179,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LV",
-        "countryKey": "LV",
-        "countryName": "Latvia"
+        "countryKey": "LV"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28434,8 +28250,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "LY",
-        "countryKey": "LY",
-        "countryName": "Libya"
+        "countryKey": "LY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28545,8 +28360,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MA",
-        "countryKey": "MA",
-        "countryName": "Morocco"
+        "countryKey": "MA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28724,8 +28538,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ME",
-        "countryKey": "ME",
-        "countryName": "Montenegro"
+        "countryKey": "ME"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28766,8 +28579,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MD",
-        "countryKey": "MD",
-        "countryName": "Moldova, Republic of"
+        "countryKey": "MD"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28825,8 +28637,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MG",
-        "countryKey": "MG",
-        "countryName": "Madagascar"
+        "countryKey": "MG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -28960,8 +28771,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MK",
-        "countryKey": "MK",
-        "countryName": "North Macedonia"
+        "countryKey": "MK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -29007,8 +28817,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ML",
-        "countryKey": "ML",
-        "countryName": "Mali"
+        "countryKey": "ML"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -29153,8 +28962,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MM",
-        "countryKey": "MM",
-        "countryName": "Myanmar"
+        "countryKey": "MM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -29463,8 +29271,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MN",
-        "countryKey": "MN",
-        "countryName": "Mongolia"
+        "countryKey": "MN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -29693,8 +29500,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MT",
-        "countryKey": "MT",
-        "countryName": "Malta"
+        "countryKey": "MT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -29714,8 +29520,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MQ",
-        "countryKey": "MQ",
-        "countryName": "Martinique"
+        "countryKey": "MQ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -29738,8 +29543,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MR",
-        "countryKey": "MR",
-        "countryName": "Mauritania"
+        "countryKey": "MR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -29817,8 +29621,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MU",
-        "countryKey": "MU",
-        "countryName": "Mauritius"
+        "countryKey": "MU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -29841,8 +29644,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MX-BCS",
-        "countryKey": "MX",
-        "countryName": "Mexico"
+        "countryKey": "MX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -29947,8 +29749,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MX-CE",
-        "countryKey": "MX",
-        "countryName": "Mexico"
+        "countryKey": "MX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -30013,8 +29814,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MX-NW",
-        "countryKey": "MX",
-        "countryName": "Mexico"
+        "countryKey": "MX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -30143,8 +29943,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MX-NO",
-        "countryKey": "MX",
-        "countryName": "Mexico"
+        "countryKey": "MX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -30295,8 +30094,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MX-NE",
-        "countryKey": "MX",
-        "countryName": "Mexico"
+        "countryKey": "MX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -30379,8 +30177,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MX-OC",
-        "countryKey": "MX",
-        "countryName": "Mexico"
+        "countryKey": "MX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -30505,8 +30302,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MX-OR",
-        "countryKey": "MX",
-        "countryName": "Mexico"
+        "countryKey": "MX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -30673,8 +30469,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MX-PN",
-        "countryKey": "MX",
-        "countryName": "Mexico"
+        "countryKey": "MX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -30756,8 +30551,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MW",
-        "countryKey": "MW",
-        "countryName": "Malawi"
+        "countryKey": "MW"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -30845,8 +30639,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MY-EM",
-        "countryKey": "MY",
-        "countryName": "Malaysia"
+        "countryKey": "MY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -30997,8 +30790,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MY-WM",
-        "countryKey": "MY",
-        "countryName": "Malaysia"
+        "countryKey": "MY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31095,8 +30887,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MZ",
-        "countryKey": "MZ",
-        "countryName": "Mozambique"
+        "countryKey": "MZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31285,8 +31076,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NA",
-        "countryKey": "NA",
-        "countryName": "Namibia"
+        "countryKey": "NA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31392,8 +31182,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NC",
-        "countryKey": "NC",
-        "countryName": "New Caledonia"
+        "countryKey": "NC"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31461,8 +31250,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NE",
-        "countryKey": "NE",
-        "countryName": "Niger"
+        "countryKey": "NE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31566,8 +31354,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NG",
-        "countryKey": "NG",
-        "countryName": "Nigeria"
+        "countryKey": "NG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31702,8 +31489,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NI",
-        "countryKey": "NI",
-        "countryName": "Nicaragua"
+        "countryKey": "NI"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31774,8 +31560,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NKR",
-        "countryKey": "AZ",
-        "countryName": "Azerbaijan"
+        "countryKey": "AZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31828,8 +31613,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NL",
-        "countryKey": "NL",
-        "countryName": "Netherlands"
+        "countryKey": "NL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31913,8 +31697,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NO-NO1",
-        "countryKey": "NO",
-        "countryName": "Norway"
+        "countryKey": "NO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -31965,8 +31748,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NO-NO2",
-        "countryKey": "NO",
-        "countryName": "Norway"
+        "countryKey": "NO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -32050,8 +31832,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NO-NO3",
-        "countryKey": "NO",
-        "countryName": "Norway"
+        "countryKey": "NO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -32262,8 +32043,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NO-NO4",
-        "countryKey": "NO",
-        "countryName": "Norway"
+        "countryKey": "NO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -32824,8 +32604,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NO-NO5",
-        "countryKey": "NO",
-        "countryName": "Norway"
+        "countryKey": "NO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -32899,8 +32678,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NP",
-        "countryKey": "NP",
-        "countryName": "Nepal"
+        "countryKey": "NP"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -33007,8 +32785,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NZ-NZA",
-        "countryKey": "NZ",
-        "countryName": "New Zealand"
+        "countryKey": "NZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -33029,8 +32806,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NZ-NZC",
-        "countryKey": "NZ",
-        "countryName": "New Zealand"
+        "countryKey": "NZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -33054,8 +32830,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NZ",
-        "countryKey": "NZ",
-        "countryName": "New Zealand"
+        "countryKey": "NZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -33259,8 +33034,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "NZ-NZST",
-        "countryKey": "NZ",
-        "countryName": "New Zealand"
+        "countryKey": "NZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -33285,8 +33059,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "OM",
-        "countryKey": "OM",
-        "countryName": "Oman"
+        "countryKey": "OM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -33383,8 +33156,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PA",
-        "countryKey": "PA",
-        "countryName": "Panama"
+        "countryKey": "PA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -33477,8 +33249,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PE",
-        "countryKey": "PE",
-        "countryName": "Peru"
+        "countryKey": "PE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -33683,8 +33454,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PF",
-        "countryKey": "PF",
-        "countryName": "French Polynesia"
+        "countryKey": "PF"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -33723,8 +33493,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PG",
-        "countryKey": "PG",
-        "countryName": "Papua New Guinea"
+        "countryKey": "PG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -34054,8 +33823,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PM",
-        "countryKey": "PM",
-        "countryName": "Saint Pierre and Miquelon"
+        "countryKey": "PM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -34075,8 +33843,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PK",
-        "countryKey": "PK",
-        "countryName": "Pakistan"
+        "countryKey": "PK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -34294,8 +34061,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PH",
-        "countryKey": "PH",
-        "countryName": "Philippines"
+        "countryKey": "PH"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -34833,8 +34599,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PL",
-        "countryKey": "PL",
-        "countryName": "Poland"
+        "countryKey": "PL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -34950,8 +34715,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PR",
-        "countryKey": "PR",
-        "countryName": "Puerto Rico"
+        "countryKey": "PR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -34980,8 +34744,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PS",
-        "countryKey": "PS",
-        "countryName": "Palestine, State of"
+        "countryKey": "PS"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35019,8 +34782,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PT",
-        "countryKey": "PT",
-        "countryName": "Portugal"
+        "countryKey": "PT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35093,8 +34855,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PT-MA",
-        "countryKey": "PT",
-        "countryName": "Portugal"
+        "countryKey": "PT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35116,8 +34877,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PT-AC",
-        "countryKey": "PT",
-        "countryName": "Portugal"
+        "countryKey": "PT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35163,8 +34923,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PW",
-        "countryKey": "PW",
-        "countryName": "Palau"
+        "countryKey": "PW"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35184,8 +34943,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "PY",
-        "countryKey": "PY",
-        "countryName": "Paraguay"
+        "countryKey": "PY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35282,8 +35040,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "QA",
-        "countryKey": "QA",
-        "countryName": "Qatar"
+        "countryKey": "QA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35314,8 +35071,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RE",
-        "countryKey": "RE",
-        "countryName": "Réunion"
+        "countryKey": "RE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35339,8 +35095,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RO",
-        "countryKey": "RO",
-        "countryName": "Romania"
+        "countryKey": "RO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35433,8 +35188,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RS",
-        "countryKey": "RS",
-        "countryName": "Serbia"
+        "countryKey": "RS"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -35509,8 +35263,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RU-1",
-        "countryKey": "RU",
-        "countryName": "Russian Federation"
+        "countryKey": "RU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -36683,8 +36436,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RU-2",
-        "countryKey": "RU",
-        "countryName": "Russian Federation"
+        "countryKey": "RU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -38009,8 +37761,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RU-EU",
-        "countryKey": "RU",
-        "countryName": "Russian Federation"
+        "countryKey": "RU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -38984,8 +38735,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RU-AS",
-        "countryKey": "RU",
-        "countryName": "Russian Federation"
+        "countryKey": "RU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -40037,8 +39787,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RU-FE",
-        "countryKey": "RU",
-        "countryName": "Russian Federation"
+        "countryKey": "RU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -40920,8 +40669,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RU-KGD",
-        "countryKey": "RU",
-        "countryName": "Russian Federation"
+        "countryKey": "RU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -40959,8 +40707,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "RW",
-        "countryKey": "RW",
-        "countryName": "Rwanda"
+        "countryKey": "RW"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -41004,8 +40751,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SA",
-        "countryKey": "SA",
-        "countryName": "Saudi Arabia"
+        "countryKey": "SA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -41151,8 +40897,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SB",
-        "countryKey": "SB",
-        "countryName": "Solomon Islands"
+        "countryKey": "SB"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -41311,8 +41056,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SD",
-        "countryKey": "SD",
-        "countryName": "Sudan"
+        "countryKey": "SD"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -41460,8 +41204,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SG",
-        "countryKey": "SG",
-        "countryName": "Singapore"
+        "countryKey": "SG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -41483,8 +41226,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SI",
-        "countryKey": "SI",
-        "countryName": "Slovenia"
+        "countryKey": "SI"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -41539,8 +41281,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SJ",
-        "countryKey": "SJ",
-        "countryName": "Svalbard and Jan Mayen"
+        "countryKey": "SJ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -41930,8 +41671,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SK",
-        "countryKey": "SK",
-        "countryName": "Slovakia"
+        "countryKey": "SK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -41989,8 +41729,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SL",
-        "countryKey": "SL",
-        "countryName": "Sierra Leone"
+        "countryKey": "SL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42052,8 +41791,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SN",
-        "countryKey": "SN",
-        "countryName": "Senegal"
+        "countryKey": "SN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42134,8 +41872,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SO",
-        "countryKey": "SO",
-        "countryName": "Somalia"
+        "countryKey": "SO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42240,8 +41977,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SR",
-        "countryKey": "SR",
-        "countryName": "Suriname"
+        "countryKey": "SR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42303,8 +42039,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SS",
-        "countryKey": "SS",
-        "countryName": "South Sudan"
+        "countryKey": "SS"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42441,8 +42176,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ST",
-        "countryKey": "ST",
-        "countryName": "Sao Tome and Principe"
+        "countryKey": "ST"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42463,8 +42197,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SV",
-        "countryKey": "SV",
-        "countryName": "El Salvador"
+        "countryKey": "SV"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42502,8 +42235,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SY",
-        "countryKey": "SY",
-        "countryName": "Syrian Arab Republic"
+        "countryKey": "SY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42573,8 +42305,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "SZ",
-        "countryKey": "SZ",
-        "countryName": "Eswatini"
+        "countryKey": "SZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42607,8 +42338,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TD",
-        "countryKey": "TD",
-        "countryName": "Chad"
+        "countryKey": "TD"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42717,8 +42447,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TF",
-        "countryKey": "TF",
-        "countryName": "French Southern Territories"
+        "countryKey": "TF"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42772,8 +42501,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TG",
-        "countryKey": "TG",
-        "countryName": "Togo"
+        "countryKey": "TG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42825,8 +42553,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TH",
-        "countryKey": "TH",
-        "countryName": "Thailand"
+        "countryKey": "TH"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43067,8 +42794,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TJ",
-        "countryKey": "TJ",
-        "countryName": "Tajikistan"
+        "countryKey": "TJ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43189,8 +42915,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TL",
-        "countryKey": "TL",
-        "countryName": "Timor-Leste"
+        "countryKey": "TL"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43233,8 +42958,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TO",
-        "countryKey": "TO",
-        "countryName": "Tonga"
+        "countryKey": "TO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43254,8 +42978,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TM",
-        "countryKey": "TM",
-        "countryName": "Turkmenistan"
+        "countryKey": "TM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43417,8 +43140,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TN",
-        "countryKey": "TN",
-        "countryName": "Tunisia"
+        "countryKey": "TN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43511,8 +43233,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TR",
-        "countryKey": "TR",
-        "countryName": "Turkey"
+        "countryKey": "TR"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43761,8 +43482,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TT",
-        "countryKey": "TT",
-        "countryName": "Trinidad and Tobago"
+        "countryKey": "TT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43796,8 +43516,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TW",
-        "countryKey": "TW",
-        "countryName": "Taiwan, Province of China"
+        "countryKey": "TW"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43833,8 +43552,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "TZ",
-        "countryKey": "TZ",
-        "countryName": "Tanzania, United Republic of"
+        "countryKey": "TZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -43980,8 +43698,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "UA",
-        "countryKey": "UA",
-        "countryName": "Ukraine"
+        "countryKey": "UA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -44192,8 +43909,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "UA-CR",
-        "countryKey": "UA",
-        "countryName": "Ukraine"
+        "countryKey": "UA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -44241,8 +43957,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "UG",
-        "countryKey": "UG",
-        "countryName": "Uganda"
+        "countryKey": "UG"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -44317,8 +44032,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-AK",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -45604,8 +45318,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAL-BANC",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -45648,8 +45361,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAL-CISO",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -45850,8 +45562,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAL-IID",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -45887,8 +45598,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAL-LDWP",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -45927,8 +45637,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAL-TIDC",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -45955,8 +45664,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAR-CPLE",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46019,8 +45727,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAR-CPLW",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46062,8 +45769,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAR-DUK",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46143,8 +45849,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAR-SC",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46212,8 +45917,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAR-SCEG",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46267,8 +45971,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CAR-YAD",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46290,8 +45993,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CENT-SPA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46314,8 +46016,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-CENT-SWPP",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46742,8 +46443,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-FLA-FMPP",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46820,8 +46520,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-FLA-FPC",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -46945,8 +46644,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-NWMT",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47142,8 +46840,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-FLA-GVL",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47170,8 +46867,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-FLA-HST",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47194,8 +46890,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-FLA-JEA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47239,8 +46934,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-SW-WALC",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47426,8 +47120,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-FLA-SEC",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47561,8 +47254,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-FLA-TAL",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47582,8 +47274,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-FLA-TEC",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47621,8 +47312,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-HI-HA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47653,8 +47343,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-HI-KA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47676,8 +47365,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-HI-LA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47697,8 +47385,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-HI-MA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47723,8 +47410,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-HI-MO",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47745,8 +47431,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-HI-NI",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47766,8 +47451,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-HI-OA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -47790,8 +47474,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-MIDA-PJM",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -48038,8 +47721,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-MIDW-AECI",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -48173,8 +47855,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-MIDW-MISO",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -48794,8 +48475,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-MIDW-LGEE",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -48891,8 +48571,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NE-ISNE",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -48997,8 +48676,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-AVA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49074,8 +48752,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-BPAT",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49326,8 +49003,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-CHPD",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49359,8 +49035,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-DOPD",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49398,8 +49073,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-GCPD",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49429,8 +49103,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-GRID",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49451,8 +49124,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-SW-AZPS",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49589,8 +49261,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-IPCO",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49667,8 +49338,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-NEVP",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49729,8 +49399,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-FLA-FPL",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49835,8 +49504,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-PACE",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -50023,8 +49691,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-PACW",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -50177,8 +49844,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-PGE",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -50215,8 +49881,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-PSCO",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -50444,8 +50109,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-PSEI",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -50532,8 +50196,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-TPWR",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -50583,8 +50246,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-WACM",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -50940,8 +50602,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-WAUW",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51083,8 +50744,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NY-NYIS",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51160,8 +50820,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-SE-SOCO",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51302,8 +50961,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-SE-SEPA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51329,8 +50987,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-SW-EPE",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51381,8 +51038,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-SW-SRP",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51425,8 +51081,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-SW-PNM",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51577,8 +51232,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-SW-TEPC",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51646,8 +51300,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-TEN-TVA",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51787,8 +51440,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-TEX-ERCO",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51967,8 +51619,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "VC",
-        "countryKey": "VC",
-        "countryName": "Saint Vincent and the Grenadines"
+        "countryKey": "VC"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -51988,8 +51639,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "UY",
-        "countryKey": "UY",
-        "countryName": "Uruguay"
+        "countryKey": "UY"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52063,8 +51713,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "UZ",
-        "countryKey": "UZ",
-        "countryName": "Uzbekistan"
+        "countryKey": "UZ"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52228,8 +51877,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "VE",
-        "countryKey": "VE",
-        "countryName": "Venezuela, Bolivarian Republic of"
+        "countryKey": "VE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52457,8 +52105,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "VI",
-        "countryKey": "VI",
-        "countryName": "Virgin Islands, U.S."
+        "countryKey": "VI"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52478,8 +52125,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "VN-S",
-        "countryKey": "VN",
-        "countryName": "Viet Nam"
+        "countryKey": "VN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52543,8 +52189,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "VU",
-        "countryKey": "VU",
-        "countryName": "Vanuatu"
+        "countryKey": "VU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52671,8 +52316,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "WS",
-        "countryKey": "WS",
-        "countryName": "Samoa"
+        "countryKey": "WS"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52704,8 +52348,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "XK",
-        "countryKey": "XK",
-        "countryName": "Kosovo"
+        "countryKey": "XK"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52740,8 +52383,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "YE",
-        "countryKey": "YE",
-        "countryName": "Yemen"
+        "countryKey": "YE"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52835,8 +52477,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "YT",
-        "countryKey": "YT",
-        "countryName": "Mayotte"
+        "countryKey": "YT"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -52856,8 +52497,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ZA",
-        "countryKey": "ZA",
-        "countryName": "South Africa"
+        "countryKey": "ZA"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53054,8 +52694,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ZM",
-        "countryKey": "ZM",
-        "countryName": "Zambia"
+        "countryKey": "ZM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53197,8 +52836,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ZW",
-        "countryKey": "ZW",
-        "countryName": "Zimbabwe"
+        "countryKey": "ZW"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53285,8 +52923,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AU-WA-RI",
-        "countryKey": "AU",
-        "countryName": "Australia"
+        "countryKey": "AU"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53306,8 +52943,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "AW",
-        "countryKey": "AW",
-        "countryName": "Aruba"
+        "countryKey": "AW"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53330,8 +52966,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-IB-FO",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53356,8 +52991,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-HI-KH",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53380,8 +53014,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-CE",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53430,8 +53063,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "ES-ML",
-        "countryKey": "ES",
-        "countryName": "Spain"
+        "countryKey": "ES"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53477,8 +53109,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "FO-SI",
-        "countryKey": "FO",
-        "countryName": "Faroe Islands"
+        "countryKey": "FO"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53531,8 +53162,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "US-NW-SCL",
-        "countryKey": "US",
-        "countryName": "United States"
+        "countryKey": "US"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53558,8 +53188,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "MX-BC",
-        "countryKey": "MX",
-        "countryName": "Mexico"
+        "countryKey": "MX"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53641,8 +53270,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "VN-N",
-        "countryKey": "VN",
-        "countryName": "Viet Nam"
+        "countryKey": "VN"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -53737,8 +53365,7 @@
       "type": "Feature",
       "properties": {
         "zoneName": "VN-C",
-        "countryKey": "VN",
-        "countryName": "Viet Nam"
+        "countryKey": "VN"
       },
       "geometry": {
         "type": "MultiPolygon",
