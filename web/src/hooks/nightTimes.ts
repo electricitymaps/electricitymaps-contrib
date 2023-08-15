@@ -10,6 +10,7 @@ import {
   subDays,
 } from 'date-fns';
 import { useGetGeometries } from 'features/map/map-utils/getMapGrid';
+import { useEffect, useState } from 'react';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import { getZoneFromPath } from 'utils/helpers';
 
@@ -17,31 +18,35 @@ export function useNightTimes() {
   const { data } = useGetZone();
   const geometries = useGetGeometries();
   const zoneId = getZoneFromPath();
+  const [nightTimes, setNightTimes] = useState<number[][] | undefined>(undefined);
 
-  if (!zoneId || !data) {
-    return undefined;
-  }
+  useEffect(() => {
+    if (zoneId && data) {
+      // get latitude and longitude of zone
+      const feature = geometries.features.find(
+        (feature) => feature.properties.zoneId === zoneId
+      );
+      const coord = feature?.properties.center;
+      if (!coord) {
+        console.warn('no center coordinates available');
+        return undefined;
+      }
+      const [longitude, latitude] = coord;
 
-  // get latitude and longitude of zone
-  const feature = geometries.features.find(
-    (feature) => feature.properties.zoneId === zoneId
-  );
-  const coord = feature?.properties.center;
-  if (!coord) {
-    console.warn('no center coordinates available');
-    return undefined;
-  }
-  const [longitude, latitude] = coord;
+      const datetimes = Object.keys(data.zoneStates)
+        .map((d) => new Date(d))
 
-  const datetimes = Object.keys(data.zoneStates)
-    .map((d) => new Date(d))
-    .sort(compareAsc);
+        .sort(compareAsc);
 
-  if (datetimes.length > 0) {
-    return calculateNightTimes(datetimes, latitude, longitude);
-  }
+      if (datetimes.length > 0) {
+        setNightTimes(calculateNightTimes(datetimes, latitude, longitude));
+      } else {
+        setNightTimes(undefined);
+      }
+    }
+  }, [zoneId, data]);
 
-  return undefined;
+  return nightTimes;
 }
 
 /** Returns indexes of when nights start and end in the given datetimes */
