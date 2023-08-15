@@ -137,7 +137,7 @@ export function BreakdownChartTooltipContent({
     ? getZoneName(selectedLayerKey)
     : __(selectedLayerKey).charAt(0).toUpperCase() + __(selectedLayerKey).slice(1);
   return (
-    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-gray-700 dark:bg-gray-800 dark:shadow-none sm:w-[410px]">
+    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]">
       <AreaGraphToolTipHeader
         squareColor={
           isExchange ? co2ColorScale(co2Intensity) : modeColor[selectedLayerKey]
