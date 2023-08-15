@@ -492,9 +492,8 @@ const chartData = [
 ].map((d) => ({ ...d, datetime: new Date(d.datetime) }));
 
 const includesStorageData = [...chartData];
-const exchangeKeys = ['ES'];
 
-const layerFill = getLayerFill(exchangeKeys, getCo2ColorScale(colors.bright));
+const layerFill = getLayerFill(getCo2ColorScale(colors.bright));
 
 export const IncludesStorage: Story = {
   // More on args: https://storybook.js.org/docs/react/writing-stories/args
