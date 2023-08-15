@@ -26,7 +26,7 @@ export default function ZoneDetails(): JSX.Element {
   }
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [setViewMode] = useAtom(spatialAggregateAtom);
+  const [_, setViewMode] = useAtom(spatialAggregateAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
