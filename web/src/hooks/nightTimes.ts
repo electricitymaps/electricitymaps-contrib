@@ -37,7 +37,11 @@ export function useNightTimes() {
     .map((d) => new Date(d))
     .sort(compareAsc);
 
-  return calculateNightTimes(datetimes, latitude, longitude);
+  if (datetimes.length > 0) {
+    return calculateNightTimes(datetimes, latitude, longitude);
+  }
+
+  return undefined;
 }
 
 /** Returns indexes of when nights start and end in the given datetimes */
