@@ -90,7 +90,7 @@
     "react-map-gl": "^7.0.19",
     "react-router-dom": "6.14.2",
     "react-spinners": "^0.13.8",
-    "react-spring-bottom-sheet": "3.4.1",
+    "react-spring-bottom-sheet": "3.5.0-alpha.0",
     "recharts": "^2.7.3",
     "sprintf-js": "^1.1.2",
     "tailwind-merge": "^1.14.0",
