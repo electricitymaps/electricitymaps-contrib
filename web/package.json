@@ -90,6 +90,7 @@
     "react-spring-bottom-sheet": "3.5.0-alpha.0",
     "recharts": "^2.1.16",
     "sprintf-js": "^1.1.2",
+    "sunrise-sunset-js": "^2.2.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.3",
     "tailwindcss-radix": "^2.8.0",
