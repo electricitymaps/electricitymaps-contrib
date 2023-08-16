@@ -12,8 +12,14 @@ HOST_PARAM = "?host=https://hydroquebec.com"
 DATA_PATH = "data/documents-donnees/donnees-ouvertes/json"
 PRODUCTION_URL = f"{US_PROXY}/{DATA_PATH}/production.json{HOST_PARAM}"
 CONSUMPTION_URL = f"{US_PROXY}/{DATA_PATH}/demande.json{HOST_PARAM}"
+SOURCE = "hydroquebec.com"
 # Reluctant to call it 'timezone', since we are importing 'timezone' from datetime
 timezone_id = "America/Montreal"
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.types import ZoneKey
 
 
 def fetch_production(
@@ -73,24 +79,23 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key: str = "CA-QC",
+    zone_key: ZoneKey = ZoneKey("CA-QC"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     data = _fetch_quebec_consumption(session)
-    list_res = []
-    for elem in reversed(data["details"]):
+
+    consumption = TotalConsumptionList(logger)
+    for elem in data["details"]:
         if "demandeTotal" in elem["valeurs"]:
-            list_res.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": arrow.get(elem["date"], tzinfo=timezone_id).datetime,
-                    "consumption": elem["valeurs"]["demandeTotal"],
-                    "source": "hydroquebec.com",
-                }
+            consumption.append(
+                zoneKey=zone_key,
+                datetime=arrow.get(elem["date"], tzinfo=timezone_id).datetime,
+                consumption=elem["valeurs"]["demandeTotal"],
+                source=SOURCE,
             )
-    return list_res
+    return consumption.to_list()
 
 
 def _fetch_quebec_production(
@@ -110,7 +115,7 @@ def _fetch_quebec_production(
 
 def _fetch_quebec_consumption(
     session: Optional[Session] = None, logger: Logger = getLogger(__name__)
-) -> str:
+) -> dict:
     s = session or Session()
     response = s.get(CONSUMPTION_URL)
 
