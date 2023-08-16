@@ -38,7 +38,9 @@ export function useNightTimes() {
 
         .sort(compareAsc);
 
-      if (datetimes.length > 0) {
+      // This needs to be exactly 25, otherwise the nightTimes calculation will return incorrect values
+      // TODO: We should consider not using the actual datetimes sent from backend
+      if (datetimes.length === 25) {
         setNightTimes(calculateNightTimes(datetimes, latitude, longitude));
       } else {
         setNightTimes(undefined);
