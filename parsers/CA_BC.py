@@ -29,7 +29,6 @@ SOURCE = "bchydro.com"
 PUBLICATION_DELAY = timedelta(days=31)
 
 EXCHANGE_POSITION_MULTIPLIER = {
-    ZoneKey("CA-BC->US-BPA"): (1, 1),
     ZoneKey("CA-BC->US-NW-BPAT"): (1, 1),
     ZoneKey("CA-AB->CA-BC"): (2, -1),
 }
@@ -116,9 +115,6 @@ def fetch_exchange(
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-
-    print("fetch_exchange(CA-BC, US-BPA) ->")
-    print(fetch_exchange("CA-BC", "US-BPA"))
     print("fetch_exchange(CA-AB, CA-BC) ->")
     print(fetch_exchange("CA-AB", "CA-BC"))
     print("fetch_consumption(CA-BC) ->")
