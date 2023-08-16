@@ -14,6 +14,17 @@ class TestHydroquebec(TestCase):
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
 
+    def test_production(self):
+        hydroquebec_production = resource_string(
+            "parsers.test.mocks.Hydroquebec", "production.json"
+        )
+        self.adapter.register_uri(
+            GET, ANY, json=loads(hydroquebec_production.decode("utf-8"))
+        )
+
+        production = fetch_production(session=self.session)
+        self.assertMatchSnapshot(production)
+
     def test_consumption(self):
         hydroquebec_consumption = resource_string(
             "parsers.test.mocks.Hydroquebec", "consumption.json"

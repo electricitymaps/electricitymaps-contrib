@@ -1115,3 +1115,601 @@ snapshots["TestHydroquebec::test_consumption 1"] = [
         "zoneKey": "CA-QC",
     },
 ]
+
+snapshots["TestHydroquebec::test_production 1"] = [
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 0, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 633.0,
+            "gas": 0.0,
+            "hydro": 15660.0,
+            "solar": 0.0,
+            "wind": 201.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 1, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 615.0,
+            "gas": 0.0,
+            "hydro": 15324.0,
+            "solar": 0.0,
+            "wind": 146.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 2, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 614.0,
+            "gas": 0.0,
+            "hydro": 14781.0,
+            "solar": 0.0,
+            "wind": 115.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 3, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 610.0,
+            "gas": 0.0,
+            "hydro": 14809.0,
+            "solar": 0.0,
+            "wind": 55.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 4, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 610.0,
+            "gas": 0.0,
+            "hydro": 14420.0,
+            "solar": 0.0,
+            "wind": 30.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 5, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 613.0,
+            "gas": 0.0,
+            "hydro": 15449.0,
+            "solar": 0.0,
+            "wind": 23.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 6, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 611.0,
+            "gas": 0.0,
+            "hydro": 16572.0,
+            "solar": 0.0,
+            "wind": 18.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 7, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 609.0,
+            "gas": 0.0,
+            "hydro": 18555.0,
+            "solar": 1.0,
+            "wind": 12.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 8, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 605.0,
+            "gas": 0.0,
+            "hydro": 19478.0,
+            "solar": 4.0,
+            "wind": 7.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 9, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 592.0,
+            "gas": 0.0,
+            "hydro": 20074.0,
+            "solar": 4.0,
+            "wind": 5.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 10, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 599.0,
+            "gas": 0.0,
+            "hydro": 20286.0,
+            "solar": 7.0,
+            "wind": 6.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 11, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 605.0,
+            "gas": 0.0,
+            "hydro": 20599.0,
+            "solar": 7.0,
+            "wind": 14.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 12, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 599.0,
+            "gas": 0.0,
+            "hydro": 20653.0,
+            "solar": 7.0,
+            "wind": 20.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 13, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 603.0,
+            "gas": 0.0,
+            "hydro": 20549.0,
+            "solar": 7.0,
+            "wind": 48.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 14, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 603.0,
+            "gas": 0.0,
+            "hydro": 20586.0,
+            "solar": 4.0,
+            "wind": 43.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 15, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 605.0,
+            "gas": 0.0,
+            "hydro": 21051.0,
+            "solar": 6.0,
+            "wind": 49.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 16, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 603.0,
+            "gas": 0.0,
+            "hydro": 21225.0,
+            "solar": 7.0,
+            "wind": 39.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 17, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 606.0,
+            "gas": 0.0,
+            "hydro": 21785.0,
+            "solar": 1.0,
+            "wind": 60.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 18, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 603.0,
+            "gas": 0.0,
+            "hydro": 21498.0,
+            "solar": 1.0,
+            "wind": 60.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 19, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 606.0,
+            "gas": 0.0,
+            "hydro": 21503.0,
+            "solar": 0.0,
+            "wind": 65.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 20, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 609.0,
+            "gas": 0.0,
+            "hydro": 20725.0,
+            "solar": 0.0,
+            "wind": 110.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 21, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 614.0,
+            "gas": 0.0,
+            "hydro": 19213.0,
+            "solar": 0.0,
+            "wind": 194.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 22, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 613.0,
+            "gas": 0.0,
+            "hydro": 18053.0,
+            "solar": 0.0,
+            "wind": 215.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 15, 23, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 615.0,
+            "gas": 0.0,
+            "hydro": 16093.0,
+            "solar": 0.0,
+            "wind": 211.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 0, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 618.0,
+            "gas": 0.0,
+            "hydro": 15415.0,
+            "solar": 0.0,
+            "wind": 209.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 1, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 612.0,
+            "gas": 0.0,
+            "hydro": 14289.0,
+            "solar": 0.0,
+            "wind": 199.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 2, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 613.0,
+            "gas": 0.0,
+            "hydro": 14093.0,
+            "solar": 0.0,
+            "wind": 157.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 3, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 611.0,
+            "gas": 0.0,
+            "hydro": 13974.0,
+            "solar": 0.0,
+            "wind": 92.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 4, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 611.0,
+            "gas": 0.0,
+            "hydro": 14545.0,
+            "solar": 0.0,
+            "wind": 100.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 5, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 608.0,
+            "gas": 0.0,
+            "hydro": 15028.0,
+            "solar": 0.0,
+            "wind": 113.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 6, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 603.0,
+            "gas": 0.0,
+            "hydro": 16175.0,
+            "solar": 0.0,
+            "wind": 106.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 7, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 599.0,
+            "gas": 0.0,
+            "hydro": 18527.0,
+            "solar": 0.0,
+            "wind": 78.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 8, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 0.0,
+            "gas": 0.0,
+            "hydro": 0.0,
+            "solar": 0.0,
+            "wind": 0.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 9, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 0.0,
+            "gas": 0.0,
+            "hydro": 0.0,
+            "solar": 0.0,
+            "wind": 0.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 10, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 0.0,
+            "gas": 0.0,
+            "hydro": 0.0,
+            "solar": 0.0,
+            "wind": 0.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
+]
