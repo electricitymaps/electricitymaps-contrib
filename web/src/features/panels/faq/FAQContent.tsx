@@ -62,7 +62,7 @@ function FAQContent() {
               </Accordion.Header>
               <Accordion.Content className="ml-2 border-l border-gray-300 pl-4 radix-state-closed:animate-slide-up radix-state-open:animate-slide-down">
                 <div
-                  className="prose prose-sm text-md leading-5 dark:prose-invert"
+                  className="prose prose-sm text-md leading-5 dark:prose-invert prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:invert "
                   dangerouslySetInnerHTML={{
                     __html: __(`${groupKey}.${entryKey}-answer`),
                   }}
