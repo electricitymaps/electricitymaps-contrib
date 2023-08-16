@@ -182,10 +182,7 @@ export default function MapPage(): ReactElement {
         return;
       }
 
-      const center = feature?.properties.center;
-      if (!center) {
-        return;
-      }
+      const center = feature.properties.center;
       map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
       setLeftPanelOpen(true);
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
