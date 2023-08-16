@@ -271,8 +271,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Honduras: [ENEE](http://www.enee.hn/planificacion/2018/boletines/Boletin%20Estadistico%20Mes%20de%20Septiembre%202018%20PDF.pdf)
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
 - Hungary:
-  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246425808/PV+STATISZTIKA_HU_20230701_ig_v1.pdf/06d76259-877f-6064-4a55-cf46ac1fbbac?t=1689240158131)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Biomass: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246425808/PV+STATISZTIKA_HU_20230701_ig_v1.pdf)
+  - Other: [MAVIR](https://www.mavir.hu/web/mavir/energia-mix-eromuvi-beepitett-teljesitokepesseg-adatok)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
   - Geothermal, Wind and Hydro: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -295,7 +296,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
 - Japan:
   - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
-  - Kyūshū: [Electrical Japan](https://agora-ex-nii-ac-jp.translate.goog/earthquake/201103-eastjapan/energy/electrical-japan/operator/9.html.ja?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp&_x_tr_sch=http)
+  - Kyūshū: [TSO - Kyuden](https://www.kyuden.co.jp/library/pdf/en/ir/integratedreport/2022/en_integratedreport_2022.pdf)
   - Tohoku
     - Wind: [The Wind Power](https://www.thewindpower.net/country_zones_en_11_japan.php)
   - Hokkaidō
