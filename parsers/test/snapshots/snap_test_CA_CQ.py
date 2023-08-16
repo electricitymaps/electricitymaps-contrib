@@ -1712,4 +1712,21 @@ snapshots["TestHydroquebec::test_production 1"] = [
         "storage": {},
         "zoneKey": "CA-QC",
     },
+    {
+        "correctedModes": [],
+        "datetime": GenericRepr(
+            "datetime.datetime(2023, 8, 16, 11, 30, tzinfo=tzfile('/usr/share/zoneinfo/America/Montreal'))"
+        ),
+        "production": {
+            "biomass": 0.0,
+            "gas": 0.0,
+            "hydro": 0.0,
+            "solar": 0.0,
+            "wind": 0.0,
+        },
+        "source": "hydroquebec.com",
+        "sourceType": "measured",
+        "storage": {},
+        "zoneKey": "CA-QC",
+    },
 ]
