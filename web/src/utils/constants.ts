@@ -1,3 +1,5 @@
+import { ElectricityModeType } from 'types';
+
 export enum TimeAverages {
   DAILY = 'daily',
   HOURLY = 'hourly',
@@ -32,12 +34,11 @@ export enum LeftPanelToggleOptions {
 }
 
 // Production/imports-exports mode
-export const modeColor: { [key: string]: any } = {
+export const modeColor: { [mode in ElectricityModeType]: string } = {
   solar: '#f27406',
   wind: '#74cdb9',
   hydro: '#2772b2',
   'hydro storage': '#0052cc',
-  battery: 'lightgray',
   'battery storage': '#b76bcf',
   biomass: '#166a57',
   geothermal: 'yellow',

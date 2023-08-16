@@ -12,7 +12,7 @@ import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import { getTimeScale, isEmpty } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
-import { AreaGraphElement, InnerAreaGraphTooltipProps } from '../types';
+import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphLayers from './AreaGraphLayers';
 import GraphBackground from './GraphBackground';
 import GraphHoverLine from './GraphHoverline';
@@ -52,8 +52,8 @@ const getValueScale = (height: number, totalValues: { min: number; max: number }
 const getLayers = (
   data: AreaGraphElement[],
   layerKeys: string[],
-  layerFill: (key: string) => (d: { data: AreaGraphElement }) => string,
-  markerFill: (key: string) => string,
+  layerFill: FillFunction,
+  markerFill?: FillFunction,
   layerStroke?: (key: string) => string
 ) => {
   if (!data || !data[0]) {
@@ -81,9 +81,9 @@ interface AreagraphProps {
   testId: string;
   layerKeys: string[];
   layerStroke?: (key: string) => string;
-  layerFill: (key: string) => (d: { data: AreaGraphElement }) => string;
-  markerFill?: any;
-  valueAxisLabel: any;
+  layerFill: FillFunction;
+  markerFill?: FillFunction;
+  valueAxisLabel: string;
   markerUpdateHandler: any;
   markerHideHandler: any;
   isMobile: boolean;
