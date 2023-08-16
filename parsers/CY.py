@@ -34,11 +34,12 @@ class CyprusParser:
     def parse_capacity(self, html) -> dict:
         capacity = {}
         table = html.find(id="production_graph_static_data2")
-        for tr in table.find_all("tr"):
-            values = [td.string for td in tr.find_all("td")]
-            key = self.CAPACITY_KEYS.get(values[0])
-            if key:
-                capacity[key] = float(values[1])
+        if table:
+            for tr in table.find_all("tr"):
+                values = [td.string for td in tr.find_all("td")]
+                key = self.CAPACITY_KEYS.get(values[0])
+                if key:
+                    capacity[key] = float(values[1])
         return capacity
 
     def parse_production(self, html, capacity: dict) -> list:
