@@ -10,16 +10,19 @@ import re
 import urllib.parse
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 # Third-party library imports
 import arrow
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import ExchangeList, PriceList
+from electricitymap.contrib.lib.types import ZoneKey
+
 # Local library imports
 from parsers.lib import validation
 
-DEFAULT_ZONE_KEY = "CA-AB"
+DEFAULT_ZONE_KEY = ZoneKey("CA-AB")
 MINIMUM_PRODUCTION_THRESHOLD = 10  # MW
 TIMEZONE = "Canada/Mountain"
 URL = urllib.parse.urlsplit("http://ets.aeso.ca/ets_web/ip/Market/Reports")
@@ -32,7 +35,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[Dict[str, Any]]:
     """Request the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError("Currently unable to scrape historical data")
@@ -47,23 +50,25 @@ def fetch_exchange(
         f"{DEFAULT_ZONE_KEY}->US-MT": interchange["Montana"],
         f"{DEFAULT_ZONE_KEY}->US-NW-NWMT": interchange["Montana"],
     }
-    sorted_zone_keys = "->".join(sorted((zone_key1, zone_key2)))
+    sorted_zone_keys = ZoneKey("->".join(sorted((zone_key1, zone_key2))))
     if sorted_zone_keys not in flows:
         raise NotImplementedError(f"Pair '{sorted_zone_keys}' not implemented")
-    return {
-        "datetime": get_csd_report_timestamp(response.text),
-        "sortedZoneKeys": sorted_zone_keys,
-        "netFlow": float(flows[sorted_zone_keys]),
-        "source": URL.netloc,
-    }
+    exchanges = ExchangeList(logger)
+    exchanges.append(
+        zoneKey=sorted_zone_keys,
+        datetime=get_csd_report_timestamp(response.text),
+        netFlow=float(flows[sorted_zone_keys]),
+        source=URL.netloc,
+    )
+    return exchanges.to_list()
 
 
 def fetch_price(
-    zone_key: str = DEFAULT_ZONE_KEY,
+    zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> List[Dict[str, Any]]:
     """Request the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError("Currently unable to scrape historical data")
@@ -71,17 +76,17 @@ def fetch_price(
     response = session.get(
         f"{URL_STRING}/SMPriceReportServlet", params={"contentType": "csv"}
     )
-    return [
-        {
-            "currency": "CAD",
-            "datetime": arrow.get(row[0], "MM/DD/YYYY HH", tzinfo=TIMEZONE).datetime,
-            "price": float(row[1]),
-            "source": URL.netloc,
-            "zoneKey": zone_key,
-        }
-        for row in csv.reader(response.text.split("\r\n\r\n")[2].splitlines()[1:])
-        if row[1] != "-"
-    ]
+    prices = PriceList(logger)
+    for row in csv.reader(response.text.split("\r\n\r\n")[2].splitlines()[1:]):
+        if row[1] != "-":
+            prices.append(
+                zoneKey=zone_key,
+                datetime=arrow.get(row[0], "MM/DD/YYYY HH", tzinfo=TIMEZONE).datetime,
+                price=float(row[1]),
+                source=URL.netloc,
+                currency="CAD",
+            )
+    return prices.to_list()
 
 
 def fetch_production(
