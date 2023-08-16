@@ -34,12 +34,11 @@ class CyprusParser:
     def parse_capacity(self, html) -> dict:
         capacity = {}
         table = html.find(id="production_graph_static_data2")
-        if table:
-            for tr in table.find_all("tr"):
-                values = [td.string for td in tr.find_all("td")]
-                key = self.CAPACITY_KEYS.get(values[0])
-                if key:
-                    capacity[key] = float(values[1])
+        for tr in table.find_all("tr"):
+            values = [td.string for td in tr.find_all("td")]
+            key = self.CAPACITY_KEYS.get(values[0])
+            if key:
+                capacity[key] = float(values[1])
         return capacity
 
     def parse_production(self, html, capacity: dict) -> list:
@@ -99,7 +98,8 @@ class CyprusParser:
 
         html = BeautifulSoup(res.text, "lxml")
 
-        capacity = self.parse_capacity(html)
+        # Capacity is only available if we fetch data from realtime url (target_datetime is None)
+        capacity = self.parse_capacity(html) if target_datetime is None else {}
         data = self.parse_production(html, capacity)
 
         if len(data) == 0:
