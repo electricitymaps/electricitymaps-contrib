@@ -92,7 +92,7 @@ interface BreakdownChartTooltipContentProperties {
   zoneKey: string;
   originTranslateKey: string;
   isExchange: boolean;
-  selectedLayerKey: string;
+  selectedLayerKey: LayerKey;
   co2IntensitySource?: string;
   storage?: Maybe<number>;
   production?: Maybe<number>;
@@ -140,7 +140,9 @@ export function BreakdownChartTooltipContent({
     <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]">
       <AreaGraphToolTipHeader
         squareColor={
-          isExchange ? co2ColorScale(co2Intensity) : modeColor[selectedLayerKey]
+          isExchange
+            ? co2ColorScale(co2Intensity)
+            : modeColor[selectedLayerKey as ElectricityModeType]
         }
         datetime={datetime}
         timeAverage={timeAverage}
