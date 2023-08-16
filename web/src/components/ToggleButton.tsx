@@ -41,7 +41,7 @@ export default function ToggleButton({
   return (
     <div
       className={twMerge(
-        'z-10 flex h-9 rounded-full bg-gray-200/80 px-1  shadow    dark:bg-gray-800/80',
+        'z-10 flex h-9 rounded-full bg-gray-200/80 px-1 shadow dark:bg-gray-800/80',
         transparentBackground ? 'backdrop-blur-sm' : 'bg-gray-200'
       )}
     >
@@ -81,7 +81,7 @@ export default function ToggleButton({
                 role="button"
                 tabIndex={0}
                 className={twMerge(
-                  'ml-2 inline-flex h-[29px] w-[29px] select-none justify-center self-center rounded-full bg-white shadow  dark:border dark:border-gray-500/80 dark:bg-gray-600/50',
+                  'ml-2 inline-flex h-[29px] w-[29px] select-none justify-center self-center rounded-full bg-white shadow dark:border dark:border-gray-500/80 dark:bg-gray-600/50',
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
