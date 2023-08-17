@@ -19,9 +19,15 @@ from sys import stderr
 from typing import Optional
 
 import arrow
+from pytz import timezone
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+
 from .lib.exceptions import ParserException
+
+CONSUMPTION_URL = "https://www.gccia.com.sa/"
+SOURCE = "www.gccia.com.sa"
 
 COUNTRY_CODE_MAPPING = {
     "AE": "uae",
@@ -33,12 +39,12 @@ COUNTRY_CODE_MAPPING = {
 }
 
 TIME_ZONE_MAPPING = {
-    "AE": "Asia/Dubai",
-    "BH": "Asia/Bahrain",
-    "KW": "Asia/Kuwait",
-    "OM": "Asia/Muscat",
-    "QA": "Asia/Qatar",
-    "SA": "Asia/Riyadh",
+    "AE": timezone("Asia/Dubai"),
+    "BH": timezone("Asia/Bahrain"),
+    "KW": timezone("Asia/Kuwait"),
+    "OM": timezone("Asia/Muscat"),
+    "QA": timezone("Asia/Qatar"),
+    "SA": timezone("Asia/Riyadh"),
 }
 
 
@@ -53,8 +59,7 @@ def fetch_consumption(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or Session()
-    url = "https://www.gccia.com.sa/"
-    response = r.get(url)
+    response = r.get(CONSUMPTION_URL)
 
     pattern = COUNTRY_CODE_MAPPING[zone_key] + r'-mw-val">\s*(\d+)'
 
@@ -64,16 +69,15 @@ def fetch_consumption(
         raise ParserException(
             "GCCIA.py", "data is currently not available", zone_key=zone_key
         )
-    consumption = int(match[0])
+    consumption = TotalConsumptionList(logger)
+    consumption.append(
+        zoneKey=zone_key,
+        datetime=datetime.now(tz=TIME_ZONE_MAPPING[zone_key]),
+        consumption=int(match[0]),
+        source=SOURCE,
+    )
 
-    datapoint = {
-        "zoneKey": zone_key,
-        "datetime": arrow.now(TIME_ZONE_MAPPING[zone_key]).datetime,
-        "consumption": consumption,
-        "source": "www.gccia.com.sa",  # URL won't work without WWW
-    }
-
-    return datapoint
+    return consumption.to_list()
 
 
 if __name__ == "__main__":
