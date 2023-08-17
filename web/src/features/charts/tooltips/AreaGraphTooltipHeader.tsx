@@ -31,7 +31,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
           {formatDate(datetime, i18n.language, timeAverage)}
         </div>
       </div>
-      <hr className="my-1 mb-3" />
+      <hr className="my-1 mb-3 dark:border-gray-600" />
     </>
   );
 }

@@ -21,7 +21,6 @@ contributors:
   - pierresegonne
   - wobniarin
   - PPsyrius
-disclaimer: The data provider (Hokkaido Electric Power Network HEPCO) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 emissionFactors:
   lifecycle:
     unknown:

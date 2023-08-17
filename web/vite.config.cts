@@ -6,8 +6,8 @@ import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
 import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import { defineConfig } from 'vite';
 // import { VitePWA } from 'vite-plugin-pwa';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import replace from '@rollup/plugin-replace';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 const manualChunkMap = {
   '@sentry': 'sentry',
@@ -62,6 +62,7 @@ export default defineConfig(({ mode }) => ({
     css: false,
     include: ['src/**/*.test.{ts,tsx}', 'geo/**/*.test.{ts,tsx}'],
     globals: true,
+    globalSetup: 'testSetup.ts',
     environment: 'jsdom',
     setupFiles: 'src/testing/setupTests.ts',
     clearMocks: true,
