@@ -69,7 +69,7 @@ export function useNetExchangeChartData() {
 
 interface ValuesInfo {
   valueAxisLabel: string; // For example, GW or tCO₂eq/min
-  valueFactor: number; // TODO: why is this required
+  valueFactor: number;
 }
 
 function getValuesInfo(
