@@ -93,6 +93,10 @@ scripts = [
     "xmltodict"
 ]
 
+[tool.poetry.group.dev.dependencies]
+snapshottest = "^0.6.0"
+pytest = "^7.4.0"
+
 [tool.isort]
 profile = "black"
 

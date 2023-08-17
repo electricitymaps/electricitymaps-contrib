@@ -9,7 +9,7 @@ import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
 import { TimeAverages, modeColor } from 'utils/constants';
 import { formatCo2, formatPower } from 'utils/formatting';
 import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
-import { getRatioPercent, getGenerationTypeKey } from '../graphUtils';
+import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
 import { InnerAreaGraphTooltipProps, LayerKey } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
@@ -92,7 +92,7 @@ interface BreakdownChartTooltipContentProperties {
   zoneKey: string;
   originTranslateKey: string;
   isExchange: boolean;
-  selectedLayerKey: string;
+  selectedLayerKey: LayerKey;
   co2IntensitySource?: string;
   storage?: Maybe<number>;
   production?: Maybe<number>;
@@ -137,10 +137,12 @@ export function BreakdownChartTooltipContent({
     ? getZoneName(selectedLayerKey)
     : __(selectedLayerKey).charAt(0).toUpperCase() + __(selectedLayerKey).slice(1);
   return (
-    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:bg-gray-900 sm:w-[410px]">
+    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]">
       <AreaGraphToolTipHeader
         squareColor={
-          isExchange ? co2ColorScale(co2Intensity) : modeColor[selectedLayerKey]
+          isExchange
+            ? co2ColorScale(co2Intensity)
+            : modeColor[selectedLayerKey as ElectricityModeType]
         }
         datetime={datetime}
         timeAverage={timeAverage}

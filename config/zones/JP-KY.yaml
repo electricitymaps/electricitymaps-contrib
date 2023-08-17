@@ -4,12 +4,12 @@ bounding_box:
   - - 131.89
     - 35.11
 capacity:
-  geothermal: 210.2
+  geothermal: 553
   hydro: 1247
   hydro storage: 2350
   nuclear: 5258
-  unknown: 9976.94
-  wind: 3.25
+  wind: 630
+  solar: 10910
 contributors:
   - tmslaine
   - lorrieq
