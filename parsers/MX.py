@@ -17,8 +17,10 @@ from requests import Response, Session
 from electricitymap.contrib.config import ZONES_CONFIG
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    ProductionBreakdownList,
     TotalConsumptionList,
 )
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -145,31 +147,19 @@ def fetch_csv_for_date(dt, session: Optional[Session] = None):
     )
 
 
-def convert_production(series):
-    aggregated = {
-        "biomass": 0.0,
-        "coal": 0.0,
-        "gas": 0.0,
-        "hydro": 0.0,
-        "nuclear": 0.0,
-        "oil": 0.0,
-        "solar": 0.0,
-        "wind": 0.0,
-        "geothermal": 0.0,
-        "unknown": 0.0,
-    }
+def convert_production(series: pd.Series) -> ProductionMix:
+    mix = ProductionMix()
 
     for name, val in series.iteritems():
         name = name.strip()
         if isinstance(val, float) or isinstance(val, int):
-            target = MAPPING.get(name, "unknown")  # default to unknown
-            aggregated[target] += val
+            mix.add_value(MAPPING.get(name, "unknown"), val)
 
-    return aggregated
+    return mix
 
 
 def fetch_production(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -192,20 +182,18 @@ def fetch_production(
         df = fetch_csv_for_date(target_datetime, session=session)
         DATA_CACHE[cache_key] = df
 
-    data = []
+    production = ProductionBreakdownList(logger)
     for idx, series in df.iterrows():
-        data.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": series["instante"].to_pydatetime(),
-                "production": convert_production(series),
-                "source": "cenace.gob.mx",
-            }
+        production.append(
+            zoneKey=zone_key,
+            datetime=series["instante"].to_pydatetime(),
+            production=convert_production(series),
+            source=SOURCE,
         )
-    return data
+    return production.to_list()
 
 
-def fetch_MX_exchange(sorted_zone_keys: str, s: Session) -> float:
+def fetch_MX_exchange(sorted_zone_keys: ZoneKey, s: Session) -> float:
     """Finds current flow between two Mexican control areas."""
     req = s.get(MX_EXCHANGE_URL, headers={"User-Agent": "Mozilla/5.0"})
     soup = BeautifulSoup(req.text, "html.parser")
