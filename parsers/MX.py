@@ -11,10 +11,14 @@ import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import tz
+from pytz import timezone
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
-from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    TotalConsumptionList,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -65,6 +69,8 @@ MAPPING = {
     "Termica Convencional": "unknown",
     "Turbo Gas": "gas",
 }
+SOURCE = "cenace.gob.mx"
+TIMEZONE = timezone("America/Tijuana")
 
 # cache where the data for whole months is stored as soon as it has been fetched once
 DATA_CACHE = {}
@@ -220,14 +226,14 @@ def fetch_MX_exchange(sorted_zone_keys: str, s: Session) -> float:
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     if sorted_zone_keys not in EXCHANGES:
         raise NotImplementedError(
@@ -237,15 +243,15 @@ def fetch_exchange(
     s = session or Session()
 
     netflow = fetch_MX_exchange(sorted_zone_keys, s)
+    exchange = ExchangeList(logger)
+    exchange.append(
+        zoneKey=sorted_zone_keys,
+        datetime=datetime.now(tz=TIMEZONE),
+        netFlow=netflow,
+        source=SOURCE,
+    )
 
-    data = {
-        "sortedZoneKeys": sorted_zone_keys,
-        "datetime": arrow.now("America/Tijuana").datetime,
-        "netFlow": netflow,
-        "source": "cenace.gob.mx",
-    }
-
-    return data
+    return exchange.to_list()
 
 
 @refetch_frequency(timedelta(hours=1))
