@@ -38,8 +38,8 @@ def fetch_production(
     for elem in data:
         values = elem["valeurs"]
         timestamp = arrow.get(elem["date"], tzinfo=TIMEZONE).datetime
-        # The datasource returns future dates with a 0.0 value, so we ignore them.
-        if timestamp <= now:
+        # The datasource returns future timestamps or recent with a 0.0 value, so we ignore them.
+        if timestamp <= now and values.get("total", 0) > 0:
             production.append(
                 zoneKey=zone_key,
                 datetime=timestamp,

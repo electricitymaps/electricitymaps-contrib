@@ -23,7 +23,20 @@ class TestHydroquebec(TestCase):
         )
 
         production = fetch_production(session=self.session)
-        self.assertMatchSnapshot(production)
+
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "production": element["production"],
+                    "source": element["source"],
+                    "zoneKey": element["zoneKey"],
+                    "storage": element["storage"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in production
+            ]
+        )
 
     def test_consumption(self):
         hydroquebec_consumption = resource_string(
@@ -34,4 +47,15 @@ class TestHydroquebec(TestCase):
         )
 
         consumption = fetch_consumption(session=self.session)
-        self.assertMatchSnapshot(consumption)
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "consumption": element["consumption"],
+                    "source": element["source"],
+                    "zoneKey": element["zoneKey"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in consumption
+            ]
+        )

@@ -373,7 +373,7 @@ class Exchange(Event):
             "sortedZoneKeys": self.zoneKey,
             "netFlow": self.netFlow,
             "source": self.source,
-            "sourceType": self.sourceType.value,
+            "sourceType": self.sourceType,
         }
 
 
@@ -417,7 +417,7 @@ class TotalProduction(Event):
             "zoneKey": self.zoneKey,
             "generation": self.value,
             "source": self.source,
-            "sourceType": self.sourceType.value,
+            "sourceType": self.sourceType,
         }
 
 
@@ -523,7 +523,7 @@ class ProductionBreakdown(AggregatableEvent):
             else {},
             "storage": self.storage.dict(exclude_unset=True) if self.storage else {},
             "source": self.source,
-            "sourceType": self.sourceType.value,
+            "sourceType": self.sourceType,
             "correctedModes": []
             if self.production is None
             else list(self.production._corrected_negative_values),
@@ -577,7 +577,7 @@ class TotalConsumption(Event):
             "zoneKey": self.zoneKey,
             "consumption": self.consumption,
             "source": self.source,
-            "sourceType": self.sourceType.value,
+            "sourceType": self.sourceType,
         }
 
 
@@ -629,5 +629,5 @@ class Price(Event):
             "currency": self.currency,
             "price": self.price,
             "source": self.source,
-            "sourceType": self.sourceType.value,
+            "sourceType": self.sourceType,
         }
