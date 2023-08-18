@@ -2,11 +2,14 @@ import Badge from 'components/Badge';
 import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
-import { HiArrowLeft } from 'react-icons/hi2';
+import { HiArrowLeft, HiArrowDownTray } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 import { getCountryName, getZoneName, useTranslation } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
 import { getDisclaimer } from './util';
+import { isDownloadModalOpenAtom } from 'features/modals/modalAtoms';
+import { useAtom } from 'jotai';
+import DownloadModal from './DownloadModal';
 
 interface ZoneHeaderTitleProps {
   zoneId: string;
@@ -25,9 +28,12 @@ export default function ZoneHeaderTitle({
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
+  const [isOpen, setIsOpen] = useAtom(isDownloadModalOpenAtom);
+  const hasCSV = true;
 
   return (
     <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
+      <DownloadModal zoneName={title} />
       <Link
         className="text-3xl self-center py-4 pr-4"
         to={returnToMapLink}
@@ -49,7 +55,7 @@ export default function ZoneHeaderTitle({
                 tooltipContent={title.length > 20 ? title : undefined}
                 side="bottom"
               >
-                <div className="ml-2 flex w-full flex-row overflow-hidden">
+                <div className="ml-2 flex w-full flex-row  overflow-hidden">
                   <h2 className="truncate text-lg font-medium" data-test-id="zone-name">
                     {title}
                   </h2>
@@ -60,13 +66,28 @@ export default function ZoneHeaderTitle({
                   )}
                 </div>
               </TooltipWrapper>
+
+              {hasCSV && (
+                <TooltipWrapper
+                  side="bottom"
+                  tooltipContent="Download historical data in CSV format"
+                >
+                  <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="flex cursor-pointer items-center pl-2"
+                  >
+                    <HiArrowDownTray size={22} />
+                  </button>
+                </TooltipWrapper>
+              )}
               {disclaimer && (
                 <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
-                  <div className="ml-2 mr-4 h-6 w-6 shrink-0 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
+                  <div className="ml-2 h-6 w-6 shrink-0 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
                     <p>i</p>
                   </div>
                 </TooltipWrapper>
               )}
+              {hasCSV || disclaimer ? <div className="w-4" /> : null}
             </div>
           </div>
         </div>

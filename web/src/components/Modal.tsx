@@ -27,7 +27,7 @@ export default function Modal({ isOpen, setIsOpen, title, children }: ModalProps
           >
             <HiXMark size="18" />
           </Dialog.Close>
-          <div className="px-2 py-3 sm:p-[25px_55px]">{children}</div>
+          <div className="px-2 py-3 sm:p-[25px_32px]">{children}</div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
