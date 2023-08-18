@@ -12,12 +12,14 @@ interface ZoneHeaderTitleProps {
   zoneId: string;
   isEstimated?: boolean;
   isAggregated?: boolean;
+  isPredicted?: boolean;
 }
 
 export default function ZoneHeaderTitle({
   zoneId,
   isAggregated,
   isEstimated,
+  isPredicted,
 }: ZoneHeaderTitleProps) {
   const { __ } = useTranslation();
   const title = getZoneName(zoneId);
@@ -74,6 +76,11 @@ export default function ZoneHeaderTitle({
           {isEstimated && (
             <Badge type="warning" key={'badge-est'}>
               {__('country-panel.estimated')}
+            </Badge>
+          )}
+          {isPredicted && (
+            <Badge type="supercool" key={'badge-pred'}>
+              {'predicted by 🧠'}
             </Badge>
           )}
           {isAggregated && (

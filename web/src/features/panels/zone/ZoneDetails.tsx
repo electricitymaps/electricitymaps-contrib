@@ -57,7 +57,8 @@ export default function ZoneDetails(): JSX.Element {
 
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
   const { estimationMethod } = selectedData || {};
-  const isEstimated = estimationMethod !== undefined;
+  const isEstimated = estimationMethod !== undefined && estimationMethod !== 'PREDICTED';
+  const isPredicted = estimationMethod === 'PREDICTED';
   const isAggregated = timeAverage !== TimeAverages.HOURLY;
 
   return (
@@ -66,6 +67,7 @@ export default function ZoneDetails(): JSX.Element {
         zoneId={zoneId}
         isAggregated={isAggregated}
         isEstimated={isEstimated}
+        isPredicted={isPredicted}
       />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
         <ZoneHeaderGauges data={data} />
