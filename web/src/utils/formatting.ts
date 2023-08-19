@@ -40,15 +40,17 @@ const scalePower = function (maxPower: number | undefined) {
       formattingFactor: 1e3,
     };
   }
+  // Use absolute value to handle negative values
+  const value = Math.abs(maxPower);
 
-  if (maxPower < 1) {
+  if (value < 1) {
     return {
       unit: 'kW',
       formattingFactor: 1e-3,
     };
   }
 
-  if (maxPower < 1e3) {
+  if (value < 1e3) {
     return {
       unit: 'MW',
       formattingFactor: 1,
