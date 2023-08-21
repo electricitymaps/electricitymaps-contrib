@@ -3,6 +3,7 @@ import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { AreaGraphElement } from '../types';
+import { EnergyUnits } from 'utils/units';
 
 export function getFills(data: AreaGraphElement[]) {
   const priceMaxValue =
@@ -49,7 +50,7 @@ export function usePriceChartData() {
   const currencySymbol: string = getSymbolFromCurrency(
     Object.values(zoneData.zoneStates)[0].price?.currency // Every price has the same currency
   );
-  const valueAxisLabel = `${currencySymbol || '?'} / MWh`;
+  const valueAxisLabel = `${currencySymbol || '?'} / ${EnergyUnits.MEGAWATT_HOURS}}`;
 
   const { layerFill, markerFill } = getFills(chartData);
 

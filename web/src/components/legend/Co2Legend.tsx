@@ -2,6 +2,7 @@ import { useCo2ColorScale } from 'hooks/theme';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'translation/translation';
 import HorizontalColorbar from './ColorBar';
+import { CarbonUnits } from 'utils/units';
 
 function LegendItem({
   label,
@@ -27,7 +28,10 @@ export default function Co2Legend(): ReactElement {
   const co2ColorScale = useCo2ColorScale();
   return (
     <div>
-      <LegendItem label={__('legends.carbonintensity')} unit="gCO₂eq/kWh">
+      <LegendItem
+        label={__('legends.carbonintensity')}
+        unit={CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}
+      >
         <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
       </LegendItem>
     </div>
