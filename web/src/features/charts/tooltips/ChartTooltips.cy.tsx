@@ -34,7 +34,7 @@ it('Carbon chart tooltip mobile', () => {
     <CarbonChartTooltip zoneDetail={zoneDetailMock} selectedLayerKey="carbonIntensity" />
   );
   cy.contains('Carbon intensity');
-  cy.contains(`187 ${CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}}`);
+  cy.contains(`187 ${CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}`);
   cy.contains('2022');
 });
 it('Breakdown chart tooltip mobile', () => {
