@@ -62,7 +62,6 @@ platform :ios do
     slack(message: 'A new iOS app version is ready to be tested! Please update the app on your device, test it and respond on this thread with your results :pray:')
   end
 
-  # We here assume that you already have the version incremented from the beta lane
   desc "Promote latest beta build to production"
   lane :release do
     ensure_git_status_clean(
@@ -134,7 +133,6 @@ platform :android do
     slack(message: 'A new Android app version is ready to be tested! Please update the app on your device, test it and respond on this thread with your results :pray:')
   end
 
-  # We here assume that you already have the version incremented from the beta lane
   desc "Promote latest beta build to production"
   lane :release do
     ensure_git_status_clean(
