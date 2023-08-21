@@ -120,8 +120,7 @@ def fetch_production(
     assert zone_key == "CY"
 
     parser = CyprusParser(session or Session(), logger)
-    if isinstance(target_datetime, Optional[datetime]):
-        return parser.fetch_production(target_datetime)
+    return parser.fetch_production(target_datetime)
 
 
 if __name__ == "__main__":
