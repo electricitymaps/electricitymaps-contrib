@@ -6,9 +6,13 @@ import { useAtom } from 'jotai';
 import { renderToString } from 'react-dom/server';
 import { getZoneName, useTranslation } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { TimeAverages, modeColor } from 'utils/constants';
+import { Mode, TimeAverages, modeColor } from 'utils/constants';
 import { formatCo2, formatPower } from 'utils/formatting';
-import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
+import {
+  displayByEmissionsAtom,
+  productionConsumptionAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
 import { InnerAreaGraphTooltipProps, LayerKey } from '../types';
@@ -17,7 +21,8 @@ import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 function calculateTooltipContentData(
   selectedLayerKey: LayerKey,
   zoneDetail: ZoneDetail,
-  displayByEmissions: boolean
+  displayByEmissions: boolean,
+  mixMode: Mode
 ) {
   // If layer key is not a generation type, it is an exchange
   const isExchange = !getGenerationTypeKey(selectedLayerKey);
@@ -27,7 +32,8 @@ function calculateTooltipContentData(
     : getProductionTooltipData(
         selectedLayerKey as ElectricityModeType,
         zoneDetail,
-        displayByEmissions
+        displayByEmissions,
+        mixMode
       );
 }
 
@@ -37,6 +43,7 @@ export default function BreakdownChartTooltip({
 }: InnerAreaGraphTooltipProps) {
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
+  const [mixMode] = useAtom(productionConsumptionAtom);
 
   if (!zoneDetail || !selectedLayerKey) {
     return null;
@@ -48,7 +55,8 @@ export default function BreakdownChartTooltip({
   const contentData = calculateTooltipContentData(
     selectedLayerKey,
     zoneDetail,
-    displayByEmissions
+    displayByEmissions,
+    mixMode
   );
 
   const getOriginTranslateKey = () => {
