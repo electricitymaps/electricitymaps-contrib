@@ -1,23 +1,15 @@
-import re
-from datetime import datetime, timedelta, timezone
 import logging
+import re
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Dict, List, NamedTuple, Optional, Union
 
-import arrow
-import requests
-import demjson3 as demjson
 import pandas as pd
-from bs4 import BeautifulSoup
-from dateutil import parser, tz
+import requests
 from requests import Response, Session
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 
 from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeList,
     ProductionBreakdownList,
-    TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
@@ -26,7 +18,6 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
-from parsers.lib.exceptions import ParserException
 
 DIPC_URL = "https://www.iemop.ph/market-data/dipc-energy-results-raw/"
 TIMEZONE = "Asia/Manila"
