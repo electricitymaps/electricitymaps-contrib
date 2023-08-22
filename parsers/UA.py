@@ -43,13 +43,14 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+        target_date = arrow.get(target_datetime.date()).format("DD.MM.YYYY")
+    else:
+        target_date = arrow.now().format("DD.MM.YYYY")
 
     data = []
-    today = arrow.now(tz=tz).format("DD.MM.YYYY")
 
     conn = http.client.HTTPSConnection("ua.energy")
-    payload = f"action=get_data_oes&report_date={today}&type=day"
+    payload = f"action=get_data_oes&report_date={target_date}&type=day"
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
         "User-Agent": "PostmanRuntime/7.32.3",
@@ -82,10 +83,17 @@ def fetch_production(
         if serie["hour"] == 24:
             serie["hour"] = "24:00"
 
-        date = arrow.get("%s %s" % (today, serie["hour"]), "DD.MM.YYYY HH:mm")
+        date = arrow.get(f"{target_date} {serie['hour']}", "DD.MM.YYYY HH:mm")
         row["datetime"] = date.replace(tzinfo=dateutil.tz.gettz(tz)).datetime
 
-        data.append(row)
+        if target_datetime:
+            target_time = arrow.get(target_datetime).format("HH:mm")
+            if target_time == serie["hour"]:
+                data.append(row)
+                return data
+        else:
+            data.append(row)
+
     return data
 
 
