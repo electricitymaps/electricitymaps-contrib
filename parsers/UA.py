@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
+import http.client
+import json
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
 import dateutil
-from requests import Session
 
 """
 tec - same as `tes` but also working as central heater,
@@ -38,24 +39,26 @@ tz = "Europe/Kiev"
 
 def fetch_production(
     zone_key: str = "UA",
-    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
-    r = session or Session()
 
     data = []
     today = arrow.now(tz=tz).format("DD.MM.YYYY")
-    url = "https://ua.energy/wp-admin/admin-ajax.php"
-    postdata = {"action": "get_data_oes", "report_date": today, "type": "day"}
 
-    response = r.post(
-        url, postdata, headers={"User-Agent": "electricitymap-parser/1.0"}
-    )
+    conn = http.client.HTTPSConnection("ua.energy")
+    payload = f"action=get_data_oes&report_date={today}&type=day"
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent": "PostmanRuntime/7.32.3",
+    }
+    conn.request("POST", "/wp-admin/admin-ajax.php", payload, headers)
+    res = conn.getresponse()
+    response = json.loads(res.read().decode("utf-8"))
 
-    for serie in response.json():
+    for serie in response:
         row = {
             "zoneKey": zone_key,
             "production": {},
@@ -75,6 +78,10 @@ def fetch_production(
                 row["production"][v] = 0.0
 
         # Date
+        # For some reason, every hour returned normally as string, except for 12 AM
+        if serie["hour"] == 24:
+            serie["hour"] = "24:00"
+
         date = arrow.get("%s %s" % (today, serie["hour"]), "DD.MM.YYYY HH:mm")
         row["datetime"] = date.replace(tzinfo=dateutil.tz.gettz(tz)).datetime
 
