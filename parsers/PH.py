@@ -666,7 +666,7 @@ def fetch_exchange(
     for index, row in df_exchanges_filtered.iterrows():
         exchange_list.append(
             zoneKey=row["zone_key"],
-            datetime=arrow.get(row["datetime"], tzinfo=TIMEZONE).datetime,
+            datetime=arrow.get(row["datetime"]).replace(tzinfo=TIMEZONE).datetime,
             netFlow=row["net_flow"],
             source="iemop.ph",
         )
@@ -674,9 +674,9 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
-    # logger = getLogger(__name__)
-    # logging.basicConfig(level=logging.DEBUG)
+    logger = getLogger(__name__)
+    logging.basicConfig(level=logging.DEBUG)
 
-    # print(fetch_production())
-    # print(fetch_exchange("PH-LU", "PH-VI"))
+    print(fetch_production())
+    print(fetch_exchange("PH-LU", "PH-VI"))
     print(fetch_exchange("PH-MI", "PH-VI", target_datetime=datetime(2023, 8, 15)))
