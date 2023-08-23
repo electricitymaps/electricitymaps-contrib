@@ -117,10 +117,10 @@ RESOURCE_NAME_TO_MODE = {
     "3CALSOL_G01": "solar",
     "3ILIJAN_G01": "gas",
     "3ILIJAN_G02": "gas",
-    "3KAL_G01": "hydro storage",
-    "3KAL_G02": "hydro storage",
-    "3KAL_G03": "hydro storage",
-    "3KAL_G04": "hydro storage",
+    "3KAL_G01": "hydro_storage",
+    "3KAL_G02": "hydro_storage",
+    "3KAL_G03": "hydro_storage",
+    "3KAL_G04": "hydro_storage",
     "3MALAYA_G01": "gas",
     "3MALAYA_G02": "gas",
     "3MEC_G01": "solar",
@@ -450,7 +450,27 @@ def get_all_market_reports_items(
     return datetime_to_items
 
 
-def download_market_reports_items(
+def filter_reports_items(
+    reports_items: List[MarketReportsItem], target_datetime: Optional[datetime]
+) -> List[MarketReportsItem]:
+    # Date filtering
+    if target_datetime is None:
+        last_available_datetime = max(reports_items.keys())
+        start_datetime = last_available_datetime - timedelta(days=1)
+        reports_items = [
+            item for item in reports_items.values() if item.datetime >= start_datetime
+        ]
+    else:
+        # Refetch the whole day
+        reports_items = [
+            item
+            for item in reports_items.values()
+            if item.datetime.date() == target_datetime.date()
+        ]
+    return reports_items
+
+
+def download_production_market_reports_items(
     session: Session, reports_items: List[MarketReportsItem], logger: Logger
 ) -> pd.DataFrame:
     from io import BytesIO
@@ -517,13 +537,18 @@ def filter_generation(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def match_resources_to_modes(df: pd.DataFrame) -> pd.DataFrame:
+def match_resources_to_modes(df: pd.DataFrame, logger: Logger) -> pd.DataFrame:
     df = df.copy()
     # Remove 0 padding in resource name
     df["resource_name"] = df["resource_name"].apply(lambda x: x.strip("0"))
     # Match resource name to mode
     df["mode"] = df["resource_name"].apply(
         lambda x: RESOURCE_NAME_TO_MODE[x] if x in RESOURCE_NAME_TO_MODE else "unknown"
+    )
+    # Fill a list of all unknown resources
+    unknown_resources = df[df["mode"] == "unknown"]["resource_name"].unique()
+    logger.warning(
+        f"PH - production: Unknown resources found: {unknown_resources}. Please report this issue to the Electricity Maps team"
     )
     return df
 
@@ -538,8 +563,33 @@ def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
     # Flatten columns and make them "production.{mode}"
     df.columns = df.columns.to_series().str.join(".")
     # Handle storage
-    df = df.rename(columns={"production.hydro_storage": "storage.hydro"})
-    df["storage.hydro"] *= -1
+    if "production.hydro_storage" in df.columns:
+        df = df.rename(columns={"production.hydro_storage": "storage.hydro"})
+        df["storage.hydro"] *= -1
+    return df
+
+
+def download_exchange_market_reports_items(
+    session: Session, reports_items: List[MarketReportsItem], logger: Logger
+) -> pd.DataFrame:
+    _all_items_df = []
+    for reports_item in reports_items:
+        logger.debug(f"Downloading market reports for {reports_item.filename}")
+        r: Response = session.get(reports_item.link)
+        _df = pd.read_csv(r.url)
+        _df = _df[:-1]
+        _df = convert_column_to_datetime(_df, "RUN_TIME")
+        _df["zone_key"] = _df["HVDC_NAME"].apply(
+            lambda x: EXCHANGE_KEY_MAPPING[x]["zone_key"]
+        )
+        _df["net_flow"] = _df.apply(
+            lambda x: EXCHANGE_KEY_MAPPING[x["HVDC_NAME"]]["flow"] * x["FLOW_FROM"],
+            axis=1,
+        )
+        _df = _df[["datetime", "zone_key", "net_flow"]]
+        _all_items_df.append(_df)
+
+    df = pd.concat(_all_items_df, ignore_index=True)
     return df
 
 
@@ -562,28 +612,21 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    reports_items = get_all_market_reports_items(logger)
+    reports_items = get_all_market_reports_items("production", logger)
+    reports_items = filter_reports_items(reports_items, target_datetime)
 
-    # Date filtering
-    if target_datetime is None:
-        last_available_datetime = max(reports_items.keys())
-        start_datetime = last_available_datetime - timedelta(days=1)
-        reports_item = [
-            item for item in reports_items.values() if item.datetime >= start_datetime
-        ]
-    else:
-        # Refetch the whole day
-        reports_item = [
-            item
-            for item in reports_items.values()
-            if item.datetime.date() == target_datetime.date()
-        ]
+    if len(reports_items) == 0:
+        raise ParserException(
+            parser="PH.py",
+            zone_key=zone_key,
+            message=f"{zone_key}: No production data available for {target_datetime.date()} ",
+        )
 
-    df = download_market_reports_items(session, reports_item, logger)
+    df = download_production_market_reports_items(session, reports_items, logger)
     df = (
         df.pipe(filter_for_zone, zone_key)
         .pipe(filter_generation)
-        .pipe(match_resources_to_modes)
+        .pipe(match_resources_to_modes, logger)
         .pipe(aggregate_per_datetime_mode)
         .pipe(pivot_per_mode)
     )
@@ -594,7 +637,8 @@ def fetch_production(
         for mode in [m for m in row.index if "production." in m]:
             production_mix.add_value(mode.replace("production.", ""), row[mode])
         storage_mix = StorageMix()
-        storage_mix.add_value("hydro", row["storage.hydro"])
+        if "storage.hydro" in row.index:
+            storage_mix.add_value("hydro", row["storage.hydro"])
         production_breakdown.append(
             zone_key,
             datetime,
@@ -617,53 +661,22 @@ def fetch_exchange(
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
 
     all_exchange_items = get_all_market_reports_items("exchange", logger)
-    # Date filtering
-    if target_datetime is None:
-        last_available_datetime = max(all_exchange_items.keys())
-        start_datetime = last_available_datetime - timedelta(days=1)
-        reports_item = [
-            item
-            for item in all_exchange_items.values()
-            if item.datetime >= start_datetime
-        ]
-    else:
-        # Refetch the whole day
-        reports_item = [
-            item
-            for item in all_exchange_items.values()
-            if item.datetime.date() == target_datetime.date()
-        ]
+    reports_items = filter_reports_items(all_exchange_items, target_datetime)
 
-    if len(reports_item) == 0:
+    if len(reports_items) == 0:
         raise ParserException(
             parser="PH.py",
             zone_key=sortedZoneKeys,
             message=f"{sortedZoneKeys}: No exchange data available for {target_datetime.date()} ",
         )
 
-    df_exchanges = pd.DataFrame()
-    for item in reports_item:
-        r: Response = session.get(item.link)
-        df_item = pd.read_csv(r.url)
-        df_item = df_item[:-1]
-        df_item = convert_column_to_datetime(df_item, "RUN_TIME")
-        df_item["zone_key"] = df_item["HVDC_NAME"].apply(
-            lambda x: EXCHANGE_KEY_MAPPING[x]["zone_key"]
-        )
-        df_item["net_flow"] = df_item.apply(
-            lambda x: EXCHANGE_KEY_MAPPING[x["HVDC_NAME"]]["flow"] * x["FLOW_FROM"],
-            axis=1,
-        )
-        df_item = df_item[["datetime", "zone_key", "net_flow"]]
-
-        df_exchanges = pd.concat([df_exchanges, df_item])
-
-    # filter for zone_key
-    df_exchanges_filtered = df_exchanges.loc[df_exchanges["zone_key"] == sortedZoneKeys]
+    df = download_exchange_market_reports_items(session, reports_items, logger).pipe(
+        filter_for_zone, sortedZoneKeys
+    )
 
     # Convert to EventList
     exchange_list = ExchangeList(logger)
-    for index, row in df_exchanges_filtered.iterrows():
+    for _, row in df.iterrows():
         exchange_list.append(
             zoneKey=row["zone_key"],
             datetime=arrow.get(row["datetime"]).replace(tzinfo=TIMEZONE).datetime,
@@ -678,5 +691,6 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
 
     print(fetch_production())
+    print(fetch_production("PH-VI", target_datetime=datetime(2023, 8, 15)))
     print(fetch_exchange("PH-LU", "PH-VI"))
     print(fetch_exchange("PH-MI", "PH-VI", target_datetime=datetime(2023, 8, 15)))
