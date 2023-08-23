@@ -45,9 +45,9 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:
-        target_date = arrow.get(target_datetime.date()).format("DD.MM.YYYY")
+        target_date = target_datetime.date().strftime("%d.%m.%Y")
     else:
-        target_date = arrow.now().format("DD.MM.YYYY")
+        target_date = arrow.now(tz=tz).strftime("%d.%m.%Y")
 
     data = []
 
