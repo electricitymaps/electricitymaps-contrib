@@ -1,7 +1,7 @@
 lonlat:
-  - 15.969256
-  - 55.215172
+  - 9.877123
+  - 125.341644
 parsers:
   exchange: PH.fetch_exchange
 
-rotation: -20
+rotation: 120
