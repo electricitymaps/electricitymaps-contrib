@@ -8,6 +8,7 @@ from typing import Optional
 
 import arrow
 import dateutil
+from requests import Session
 
 """
 tec - same as `tes` but also working as central heater,
@@ -39,6 +40,7 @@ tz = "Europe/Kiev"
 
 def fetch_production(
     zone_key: str = "UA",
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
