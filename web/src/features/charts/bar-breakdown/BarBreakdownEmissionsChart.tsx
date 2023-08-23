@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
+import { formatCo2 } from 'utils/formatting';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
@@ -68,11 +69,12 @@ function BarBreakdownEmissionsChart({
   );
 
   const formatTick = (t: number) => {
-    const [x1, x2] = co2Scale.domain();
-    if (x2 - x1 <= 1) {
-      return `${t * 1e3} kg/min`;
-    }
-    return `${t} t/min`;
+    // Convert from t/min to g/hour as the formatCo2 function expects g/hour
+    // TODO: This is a temporary solution until we have a better way of handling this on the backend
+    const value = t * 1e6 * 60;
+    const maxValue = (maxCO2eqProduction || 1) * 1e6 * 60;
+
+    return formatCo2(value, maxValue);
   };
 
   return (
