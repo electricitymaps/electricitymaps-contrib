@@ -22,6 +22,7 @@ from parsers.lib.exceptions import ParserException
 
 DIPC_URL = "https://www.iemop.ph/market-data/dipc-energy-results-raw/"
 TIMEZONE = "Asia/Manila"
+SOURCE = "iemop.ph"
 REGION_TO_ZONE_KEY = {
     "LUZON": "PH-LU",
     "VISAYAS": "PH-VI",
@@ -650,7 +651,7 @@ def fetch_production(
         production_breakdown.append(
             zone_key,
             tstamp.to_pydatetime(),
-            "iemop",
+            SOURCE,
             production_mix,
             storage_mix,
             sourceType=EventSourceType.measured,
@@ -684,7 +685,7 @@ def fetch_exchange(
             zoneKey=row["zone_key"],
             datetime=tstamp.to_pydatetime(),
             netFlow=row["net_flow"],
-            source="iemop.ph",
+            source=SOURCE,
         )
     return exchange_list.to_list()
 
