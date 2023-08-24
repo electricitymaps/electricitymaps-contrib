@@ -2,13 +2,16 @@
 
 import http.client
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
-import arrow
-import dateutil
+from pytz import timezone
 from requests import Session
+
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.types import ZoneKey
 
 """
 tec - same as `tes` but also working as central heater,
@@ -23,38 +26,37 @@ MAP_GENERATION = {
     "tec": "gas",
     "tes": "coal",
     "vde": "unknown",
-    "biomass": "biomass",
     "gesgaes": "hydro",
-    "solar": "solar",
-    "wind": "wind",
-    "oil": "oil",
-    "geothermal": "geothermal",
 }
 
 MAP_STORAGE = {
     "consumptiongaespump": "hydro",
 }
 
-tz = "Europe/Kiev"
+IGNORED_VALUES = ["hour", "consumption", "consumption_diff"]
+
+SOURCE = "ua.energy"
+
+TZ = timezone("Europe/Kiev")
 
 
 def fetch_production(
-    zone_key: str = "UA",
+    zone_key: ZoneKey = ZoneKey("UA"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:
-        target_date = target_datetime.date().strftime("%d.%m.%Y")
+        target_datetime = target_datetime.astimezone(TZ)
     else:
-        target_date = arrow.now(tz=tz).strftime("%d.%m.%Y")
+        target_datetime = datetime.now(TZ)
 
     data = []
 
     # We are using HTTP.client because Request returns 403 http codes.
     # TODO: Look into why requests are returning 403 http codes while HTTP.client works.
     conn = http.client.HTTPSConnection("ua.energy")
-    payload = f"action=get_data_oes&report_date={target_date}&type=day"
+    payload = f"action=get_data_oes&report_date={target_datetime.date().strftime('%d.%m.%Y')}&type=day"
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
         "User-Agent": "PostmanRuntime/7.32.3",
@@ -63,36 +65,44 @@ def fetch_production(
     res = conn.getresponse()
     response = json.loads(res.read().decode("utf-8"))
 
+    print(response)
+
+    production_list = ProductionBreakdownList(logger)
+
     for serie in response:
-        row = {
-            "zoneKey": zone_key,
-            "production": {},
-            "storage": {},
-            "source": "ua.energy",
-        }
+        production = ProductionMix()
+        storage = StorageMix()
 
-        # Storage
-        if "consumptiongaespump" in serie:
-            row["storage"]["hydro"] = serie["consumptiongaespump"] * -1
-
-        # Production
-        for k, v in MAP_GENERATION.items():
-            if k in serie:
-                row["production"][v] = serie[k]
-            else:
-                row["production"][v] = 0.0
+        for mode in serie:
+            # Production
+            if mode in MAP_GENERATION:
+                production.add_value(MAP_GENERATION[mode], serie[mode])
+            # Storage
+            elif mode in MAP_STORAGE:
+                storage.add_value(MAP_STORAGE[mode], -serie[mode])
+            # Log unknown modes
+            elif mode not in IGNORED_VALUES:
+                logger.warning(f"Unknown mode: {mode}")
 
         # Date
         # For some reason, every hour returned normally as string, except for 12 AM
         if serie["hour"] == 24:
-            serie["hour"] = "24:00"
+            target_datetime = target_datetime + timedelta(days=1)
+            serie["hour"] = "00:00"
 
-        date = arrow.get(f"{target_date} {serie['hour']}", "DD.MM.YYYY HH:mm")
-        row["datetime"] = date.replace(tzinfo=dateutil.tz.gettz(tz)).datetime
+        date_time = target_datetime.replace(
+            hour=int(serie["hour"][:2]), minute=0, second=0, microsecond=0
+        )
 
-        data.append(row)
+        production_list.append(
+            zoneKey=zone_key,
+            production=production,
+            storage=storage,
+            datetime=date_time,
+            source=SOURCE,
+        )
 
-    return data
+    return production_list.to_list()
 
 
 if __name__ == "__main__":
