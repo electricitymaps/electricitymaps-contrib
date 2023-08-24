@@ -1310,6 +1310,18 @@
     "PH": {
       "zoneName": "Philippines"
     },
+    "PH-LU": {
+      "countryName": "Philippines",
+      "zoneName": "Luzon"
+    },
+    "PH-MI": {
+      "countryName": "Philippines",
+      "zoneName": "Mindanao"
+    },
+    "PH-VI": {
+      "countryName": "Philippines",
+      "zoneName": "Visayas"
+    },
     "PK": {
       "zoneName": "Pakistan"
     },
