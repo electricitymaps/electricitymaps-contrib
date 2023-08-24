@@ -88,13 +88,7 @@ def fetch_production(
         date = arrow.get(f"{target_date} {serie['hour']}", "DD.MM.YYYY HH:mm")
         row["datetime"] = date.replace(tzinfo=dateutil.tz.gettz(tz)).datetime
 
-        if target_datetime:
-            target_time = arrow.get(target_datetime).format("HH:mm")
-            if target_time == serie["hour"]:
-                data.append(row)
-                return data
-        else:
-            data.append(row)
+        data.append(row)
 
     return data
 
