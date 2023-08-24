@@ -24,6 +24,37 @@ CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resol
 ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 EXCHANGES_CONFIG = read_exchanges_config(CONFIG_DIR)
 
+EU_ZONES = [
+    "AT",
+    "BE",
+    "BG",
+    "CY",
+    "CZ",
+    "DE",
+    "DK",
+    "EE",
+    "ES",
+    "FI",
+    "FR",
+    "GR",
+    "HR",
+    "HU",
+    "IE",
+    "IT",
+    "LT",
+    "LU",
+    "LV",
+    "MT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SE",
+    "SI",
+    "SK",
+]
+EU_ZONES_CONFIG = {k: v for k, v in ZONES_CONFIG.items() if k in EU_ZONES}
+
 # Prepare the CO2eq parameters config dicts.
 defaults = read_defaults(CONFIG_DIR)
 (
