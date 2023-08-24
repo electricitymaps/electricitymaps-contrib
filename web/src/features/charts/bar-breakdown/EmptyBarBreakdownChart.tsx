@@ -7,6 +7,7 @@ import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import { getDataBlockPositions } from './utils';
+import { PowerUnits } from 'utils/units';
 
 interface EmptyBarBreakdownChartProps {
   height: number;
@@ -50,7 +51,7 @@ function EmptyBarBreakdownChart({
   // eslint-disable-next-line unicorn/consistent-function-scoping
   const formatTick = (t: number) => {
     // TODO: format tick depending on displayByEmissions
-    return `${t} GW`;
+    return `${t} ${PowerUnits.GIGAWATTS}`;
   };
 
   return (

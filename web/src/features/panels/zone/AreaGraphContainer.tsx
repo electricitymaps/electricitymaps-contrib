@@ -4,6 +4,7 @@ import EmissionChart from 'features/charts/EmissionChart';
 import PriceChart from 'features/charts/PriceChart';
 import { TimeAverages } from 'utils/constants';
 import Divider from './Divider';
+import NetExchangeChart from 'features/charts/NetExchangeChart';
 
 export default function AreaGraphContainer({
   datetimes,
@@ -26,6 +27,7 @@ export default function AreaGraphContainer({
         datetimes={datetimes}
         timeAverage={timeAverage}
       />
+      <NetExchangeChart datetimes={datetimes} timeAverage={timeAverage} />
       <PriceChart datetimes={datetimes} timeAverage={timeAverage} />
       <Divider />
     </div>
