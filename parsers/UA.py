@@ -51,8 +51,6 @@ def fetch_production(
     else:
         target_datetime = datetime.now(TZ)
 
-    data = []
-
     # We are using HTTP.client because Request returns 403 http codes.
     # TODO: Look into why requests are returning 403 http codes while HTTP.client works.
     conn = http.client.HTTPSConnection("ua.energy")
@@ -64,8 +62,6 @@ def fetch_production(
     conn.request("POST", "/wp-admin/admin-ajax.php", payload, headers)
     res = conn.getresponse()
     response = json.loads(res.read().decode("utf-8"))
-
-    print(response)
 
     production_list = ProductionBreakdownList(logger)
 
