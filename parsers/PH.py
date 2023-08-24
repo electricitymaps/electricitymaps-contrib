@@ -667,7 +667,7 @@ def fetch_exchange(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     all_exchange_items = get_all_market_reports_items("exchange", logger)
     reports_items = filter_reports_items(
