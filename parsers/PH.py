@@ -460,26 +460,26 @@ def filter_reports_items(
         last_available_datetime = max(reports_items.keys())
         start_datetime = last_available_datetime - timedelta(days=1)
         _exception_date = start_datetime.date()
-        reports_items = [
+        _reports_items = [
             item for item in reports_items.values() if item.datetime >= start_datetime
         ]
     else:
         # Refetch the whole day
         _exception_date = target_datetime.date()
-        reports_items = [
+        _reports_items = [
             item
             for item in reports_items.values()
             if item.datetime.date() == target_datetime.date()
         ]
 
-    if len(reports_items) == 0:
+    if len(_reports_items) == 0:
         raise ParserException(
             parser="PH.py",
             zone_key=zone_key,
             message=f"{zone_key}: No {kind} data available for {_exception_date} ",
         )
 
-    return reports_items
+    return _reports_items
 
 
 def download_production_market_reports_items(
