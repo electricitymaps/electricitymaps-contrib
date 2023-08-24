@@ -511,9 +511,7 @@ def download_production_market_reports_items(
                         # Add datetime column
                         _df = convert_column_to_datetime(_df, "TIME_INTERVAL")
                         # Localize to TIMEZONE
-                        _df["datetime"] = _df["datetime"].apply(
-                            lambda x: x.tz_localize(TIMEZONE)
-                        )
+                        _df["datetime"] = _df["datetime"].dt.tz_localize(TIMEZONE)
                         # Remove 5 minute interval as we want start of interval convention
                         _df["datetime"] = _df["datetime"] - timedelta(minutes=5)
                         # Misc
