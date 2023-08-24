@@ -51,6 +51,8 @@ def fetch_production(
 
     data = []
 
+    # We are using HTTP.client because Request returns 403 http codes.
+    # TODO: Look into why requests are returning 403 http codes while HTTP.client works.
     conn = http.client.HTTPSConnection("ua.energy")
     payload = f"action=get_data_oes&report_date={target_date}&type=day"
     headers = {
