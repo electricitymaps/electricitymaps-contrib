@@ -1,10 +1,8 @@
 import logging
-import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Dict, List, NamedTuple, Optional, Union
 
-import arrow
 import pandas as pd
 import requests
 from requests import Response, Session
@@ -451,22 +449,35 @@ def get_all_market_reports_items(
 
 
 def filter_reports_items(
-    reports_items: List[MarketReportsItem], target_datetime: Optional[datetime]
+    kind: str,
+    zone_key: ZoneKey,
+    reports_items: Dict[datetime, MarketReportsItem],
+    target_datetime: Optional[datetime],
 ) -> List[MarketReportsItem]:
     # Date filtering
     if target_datetime is None:
         last_available_datetime = max(reports_items.keys())
         start_datetime = last_available_datetime - timedelta(days=1)
+        _exception_date = start_datetime.date()
         reports_items = [
             item for item in reports_items.values() if item.datetime >= start_datetime
         ]
     else:
         # Refetch the whole day
+        _exception_date = target_datetime.date()
         reports_items = [
             item
             for item in reports_items.values()
             if item.datetime.date() == target_datetime.date()
         ]
+
+    if len(reports_items) == 0:
+        raise ParserException(
+            parser="PH.py",
+            zone_key=zone_key,
+            message=f"{zone_key}: No {kind} data available for {_exception_date} ",
+        )
+
     return reports_items
 
 
@@ -589,7 +600,11 @@ def download_exchange_market_reports_items(
         _df = _df[["datetime", "zone_key", "net_flow"]]
         _all_items_df.append(_df)
 
-    df = pd.concat(_all_items_df, ignore_index=True)
+    df = (
+        pd.concat(_all_items_df, ignore_index=True)
+        .set_index("datetime")
+        .tz_localize(TIMEZONE)
+    )
     return df
 
 
@@ -607,20 +622,15 @@ def convert_column_to_datetime(df: pd.DataFrame, datetime_column: str) -> pd.Dat
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: ZoneKey = "PH-LU",
+    zone_key: ZoneKey = ZoneKey("PH-LU"),
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     reports_items = get_all_market_reports_items("production", logger)
-    reports_items = filter_reports_items(reports_items, target_datetime)
-
-    if len(reports_items) == 0:
-        raise ParserException(
-            parser="PH.py",
-            zone_key=zone_key,
-            message=f"{zone_key}: No production data available for {target_datetime.date()} ",
-        )
+    reports_items = filter_reports_items(
+        "production", zone_key, reports_items, target_datetime
+    )
 
     df = download_production_market_reports_items(session, reports_items, logger)
     df = (
@@ -632,7 +642,7 @@ def fetch_production(
     )
 
     production_breakdown = ProductionBreakdownList(logger)
-    for datetime, row in df.iterrows():
+    for tstamp, row in df.iterrows():
         production_mix = ProductionMix()
         for mode in [m for m in row.index if "production." in m]:
             production_mix.add_value(mode.replace("production.", ""), row[mode])
@@ -641,7 +651,7 @@ def fetch_production(
             storage_mix.add_value("hydro", row["storage.hydro"])
         production_breakdown.append(
             zone_key,
-            datetime,
+            tstamp.to_pydatetime(),
             "iemop",
             production_mix,
             storage_mix,
@@ -658,28 +668,23 @@ def fetch_exchange(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     all_exchange_items = get_all_market_reports_items("exchange", logger)
-    reports_items = filter_reports_items(all_exchange_items, target_datetime)
-
-    if len(reports_items) == 0:
-        raise ParserException(
-            parser="PH.py",
-            zone_key=sortedZoneKeys,
-            message=f"{sortedZoneKeys}: No exchange data available for {target_datetime.date()} ",
-        )
+    reports_items = filter_reports_items(
+        "exchange", sorted_zone_keys, all_exchange_items, target_datetime
+    )
 
     df = download_exchange_market_reports_items(session, reports_items, logger).pipe(
-        filter_for_zone, sortedZoneKeys
+        filter_for_zone, sorted_zone_keys
     )
 
     # Convert to EventList
     exchange_list = ExchangeList(logger)
-    for _, row in df.iterrows():
+    for tstamp, row in df.iterrows():
         exchange_list.append(
             zoneKey=row["zone_key"],
-            datetime=arrow.get(row["datetime"]).replace(tzinfo=TIMEZONE).datetime,
+            datetime=tstamp.to_pydatetime(),
             netFlow=row["net_flow"],
             source="iemop.ph",
         )
@@ -691,6 +696,10 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
 
     print(fetch_production())
-    print(fetch_production("PH-VI", target_datetime=datetime(2023, 8, 15)))
-    print(fetch_exchange("PH-LU", "PH-VI"))
-    print(fetch_exchange("PH-MI", "PH-VI", target_datetime=datetime(2023, 8, 15)))
+    print(fetch_production(ZoneKey("PH-VI"), target_datetime=datetime(2023, 8, 15)))
+    print(fetch_exchange(ZoneKey("PH-LU"), ZoneKey("PH-VI")))
+    print(
+        fetch_exchange(
+            ZoneKey("PH-MI"), ZoneKey("PH-VI"), target_datetime=datetime(2023, 8, 15)
+        )
+    )
