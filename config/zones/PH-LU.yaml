@@ -5,4 +5,6 @@ bounding_box:
     - 19.14290487703049
 contributors:
   - VIKTORVAV99
+parsers:
+  production: PH.fetch_production
 timezone: Asia/Manila
