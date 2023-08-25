@@ -29,7 +29,7 @@ interface Colors {
 export const colors: Colors = {
   colorblindDark: {
     co2Scale: colorblindCo2Scale,
-    oceanColor: '#33414A',
+    oceanColor: '#343D4C',
     strokeWidth: 0.15,
     strokeColor: '#6D6D6D',
     clickableFill: '#7A878D',
@@ -37,7 +37,7 @@ export const colors: Colors = {
   },
   dark: {
     co2Scale: defaultCo2Scale,
-    oceanColor: '#33414A',
+    oceanColor: '#343D4C',
     strokeWidth: 0.15,
     strokeColor: '#6D6D6D',
     clickableFill: '#7A878D',

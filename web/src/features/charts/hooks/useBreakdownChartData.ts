@@ -3,7 +3,12 @@ import { max as d3Max } from 'd3-array';
 import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { ElectricityStorageKeyType, ElectricityStorageType, ZoneDetail } from 'types';
+import {
+  ElectricityModeType,
+  ElectricityStorageKeyType,
+  ElectricityStorageType,
+  ZoneDetail,
+} from 'types';
 
 import { useParams } from 'react-router-dom';
 import { Mode, SpatialAggregate, modeColor, modeOrder } from 'utils/constants';
@@ -15,24 +20,18 @@ import {
 } from 'utils/state/atoms';
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import { getGenerationTypeKey } from '../graphUtils';
-import { AreaGraphElement } from '../types';
+import { AreaGraphElement, LayerKey } from '../types';
 
-export const getLayerFill = (
-  exchangeKeys: string[],
-  co2ColorScale: ScaleLinear<string, string, string>
-) => {
-  const layerFill = (key: string) => {
-    // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
-    if (exchangeKeys.includes(key)) {
-      return (d: { data: AreaGraphElement }) =>
-        co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
+export const getLayerFill =
+  (co2ColorScale: ScaleLinear<string, string, string>) => (key: LayerKey) => {
+    // Use regular production fill.
+    if (key in modeColor) {
+      return () => modeColor[key as ElectricityModeType];
     }
-    // Otherwise use regular production fill.
-    return modeColor[key];
+    // Otherwise it's an exchange, set the horizontal gradient by using a different fill for each datapoint.
+    return (d: { data: AreaGraphElement }) =>
+      co2ColorScale(d.data.meta.exchangeCo2Intensities?.[key]);
   };
-
-  return layerFill;
-};
 
 export default function useBreakdownChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
@@ -110,7 +109,7 @@ export default function useBreakdownChartData() {
   const result = {
     chartData,
     layerKeys,
-    layerFill: getLayerFill(exchangeKeys, co2ColorScale),
+    layerFill: getLayerFill(co2ColorScale),
     // markerFill,
     valueAxisLabel,
     layerStroke: undefined,
@@ -168,7 +167,7 @@ function getGenerationValue(
 
 interface ValuesInfo {
   valueAxisLabel: string; // For example, GW or tCO₂eq/min
-  valueFactor: number; // TODO: why is this required
+  valueFactor: number;
 }
 
 function getValuesInfo(
