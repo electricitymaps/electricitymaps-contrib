@@ -123,7 +123,7 @@ describe('getTotalElectricity', () => {
 
   it('returns NaN when productionValue is null', () => {
     const actual = getTotalElectricity(
-      { ...zoneData, totalProduction: Number.NaN },
+      { ...zoneData, totalProduction: Null},
       false,
       Mode.PRODUCTION
     );
