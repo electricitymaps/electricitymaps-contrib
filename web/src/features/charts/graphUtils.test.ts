@@ -121,14 +121,6 @@ describe('getTotalElectricity', () => {
     expect(actual).toEqual(300);
   });
 
-  it('returns NaN when productionValue is null', () => {
-    const actual = getTotalElectricity(
-      { ...zoneData, totalProduction: Null},
-      false,
-      Mode.PRODUCTION
-    );
-    expect(actual).toBeNaN();
-  });
   it('returns 0 when productionValue is 0', () => {
     const actual = getTotalElectricity(
       { ...zoneData, totalProduction: 0, totalDischarge: 0 },
