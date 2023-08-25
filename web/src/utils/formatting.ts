@@ -1,6 +1,7 @@
 import * as d3 from 'd3-format';
 import { translate } from '../translation/translation';
 import { TimeAverages } from './constants';
+import { PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 3;
 
@@ -45,20 +46,20 @@ const scalePower = function (maxPower: number | undefined) {
 
   if (value < 1) {
     return {
-      unit: 'kW',
+      unit: PowerUnits.KILOWATTS,
       formattingFactor: 1e-3,
     };
   }
 
   if (value < 1e3) {
     return {
-      unit: 'MW',
+      unit: PowerUnits.MEGAWATTS,
       formattingFactor: 1,
     };
   }
 
   return {
-    unit: 'GW',
+    unit: PowerUnits.GIGAWATTS,
     formattingFactor: 1e3,
   };
 };
