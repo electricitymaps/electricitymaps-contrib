@@ -19,7 +19,7 @@ import {
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
-import { getGenerationTypeKey } from '../graphUtils';
+import { getGenerationTypeKey, getTotalElectricity } from '../graphUtils';
 import { AreaGraphElement, LayerKey } from '../types';
 
 export const getLayerFill =
@@ -87,8 +87,9 @@ export default function useBreakdownChartData() {
         // in GW or MW
         entry.layerData[key] = Math.max(0, exchangeValue / valueFactor);
         if (displayByEmissions) {
-          // in tCO₂eq/min
-          entry.layerData[key] *= (value.exchangeCo2Intensities || {})[key] / 1e3 / 60;
+          // in gCO₂eq/hour
+          entry.layerData[key] =
+            (value.exchangeCo2Intensities || {})[key] * Math.max(0, exchangeValue);
         }
       }
     }
@@ -130,13 +131,11 @@ function getStorageValue(
     return Number.NaN;
   }
 
-  let scaledValue = (-1 * Math.min(0, storageValue)) / valueFactor;
+  const invertedValue = -1 * Math.min(0, storageValue);
 
-  if (displayByEmissions) {
-    scaledValue *= value.dischargeCo2Intensities[storageKey] / 1e3 / 60;
-  }
-
-  return scaledValue;
+  return displayByEmissions
+    ? invertedValue * value.dischargeCo2Intensities[storageKey] * valueFactor
+    : invertedValue / valueFactor;
 }
 
 function getGenerationValue(
@@ -156,13 +155,9 @@ function getGenerationValue(
     return Number.NaN;
   }
 
-  let scaledValue = modeProduction / valueFactor;
-
-  if (displayByEmissions) {
-    scaledValue *= value.productionCo2Intensities[generationKey] / 1e3 / 60;
-  }
-
-  return scaledValue;
+  return displayByEmissions
+    ? modeProduction * value.productionCo2Intensities[generationKey] * valueFactor
+    : modeProduction / valueFactor;
 }
 
 interface ValuesInfo {
@@ -174,16 +169,12 @@ function getValuesInfo(
   historyData: ZoneDetail[],
   displayByEmissions: boolean
 ): ValuesInfo {
-  const maxTotalValue = d3Max(
-    historyData,
-    (d: ZoneDetail) =>
-      displayByEmissions
-        ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60 // in tCO₂eq/min
-        : d.totalProduction + d.totalImport + d.totalDischarge // in MW
+  const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
+    getTotalElectricity(d, displayByEmissions, Mode.CONSUMPTION)
   );
 
   const format = scalePower(maxTotalValue);
-  const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'CO₂eq / min' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 }
