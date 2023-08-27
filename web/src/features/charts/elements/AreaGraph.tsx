@@ -76,8 +76,6 @@ const getLayers = (
   }));
 };
 
-const defaultFormatTickHandler = (t: number) => t.toString();
-
 interface AreagraphProps {
   data: AreaGraphElement[];
   testId: string;
@@ -118,7 +116,7 @@ function AreaGraph({
   datetimes,
   tooltip,
   tooltipSize,
-  formatTick = defaultFormatTickHandler,
+  formatTick = String,
 }: AreagraphProps) {
   const {
     ref,
