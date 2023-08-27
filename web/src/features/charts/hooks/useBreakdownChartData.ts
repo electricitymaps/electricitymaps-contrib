@@ -89,7 +89,7 @@ export default function useBreakdownChartData() {
         if (displayByEmissions) {
           // in gCO₂eq/hour
           entry.layerData[key] =
-            (value.exchangeCo2Intensities || {})[key] * Math.max(0, exchangeValue);
+            value.exchangeCo2Intensities?.[key] * Math.max(0, exchangeValue);
         }
       }
     }
