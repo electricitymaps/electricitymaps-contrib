@@ -1,5 +1,6 @@
 import { ZoneDetail } from 'types';
 import { getExchangeTooltipData, getProductionTooltipData } from './tooltipCalculations';
+import { Mode } from 'utils/constants';
 
 const zoneDetailsData = {
   _isFinestGranularity: true,
@@ -109,7 +110,12 @@ const zoneDetailsData = {
 
 describe('getProductionTooltipData', () => {
   it('returns correct data for nuclear', () => {
-    const data = getProductionTooltipData('nuclear', zoneDetailsData, false);
+    const data = getProductionTooltipData(
+      'nuclear',
+      zoneDetailsData,
+      false,
+      Mode.CONSUMPTION
+    );
     const expectedData = {
       capacity: 61_370,
       co2Intensity: 5.13,
@@ -128,7 +134,12 @@ describe('getProductionTooltipData', () => {
   });
 
   it('returns correct data for nuclear with displayEmissions', () => {
-    const actual = getProductionTooltipData('nuclear', zoneDetailsData, true);
+    const actual = getProductionTooltipData(
+      'nuclear',
+      zoneDetailsData,
+      true,
+      Mode.CONSUMPTION
+    );
     const expected = {
       capacity: 61_370,
       co2Intensity: 5.13,
@@ -147,7 +158,12 @@ describe('getProductionTooltipData', () => {
   });
 
   it('returns correct data for hydro storage', () => {
-    const actual = getProductionTooltipData('hydro storage', zoneDetailsData, false);
+    const actual = getProductionTooltipData(
+      'hydro storage',
+      zoneDetailsData,
+      false,
+      Mode.CONSUMPTION
+    );
     const expected = {
       capacity: 5053.47,
       co2Intensity: 54.190_888_929_032_22,
@@ -166,13 +182,23 @@ describe('getProductionTooltipData', () => {
   });
 
   it('returns 0 usage for zero production', () => {
-    const actual = getProductionTooltipData('solar', zoneDetailsData, false);
+    const actual = getProductionTooltipData(
+      'solar',
+      zoneDetailsData,
+      false,
+      Mode.PRODUCTION
+    );
     expect(actual.usage).toEqual(0);
     expect(actual.emissions).toEqual(0);
   });
 
   it('returns nan usage for null production', () => {
-    const actual = getProductionTooltipData('geothermal', zoneDetailsData, false);
+    const actual = getProductionTooltipData(
+      'geothermal',
+      zoneDetailsData,
+      false,
+      Mode.PRODUCTION
+    );
     expect(actual.usage).toEqual(Number.NaN);
   });
 
@@ -186,7 +212,8 @@ describe('getProductionTooltipData', () => {
     const data = getProductionTooltipData(
       'nuclear',
       zoneDetailsDataWithMissingProductionModes,
-      false
+      false,
+      Mode.CONSUMPTION
     );
     const expectedData = {
       capacity: 61_370,
@@ -210,7 +237,8 @@ describe('getProductionTooltipData', () => {
     const actual = getProductionTooltipData(
       'nuclear',
       zoneDetailsDataWithoutCapacity,
-      false
+      false,
+      Mode.PRODUCTION
     );
 
     expect(actual.usage).toEqual(41_161);
