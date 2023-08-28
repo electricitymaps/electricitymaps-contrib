@@ -315,6 +315,10 @@
     "AU": {
       "zoneName": "Australia"
     },
+    "AU-LH": {
+      "countryName": "Australia",
+      "zoneName": "Lord Howe Island"
+    },
     "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "New South Wales"
