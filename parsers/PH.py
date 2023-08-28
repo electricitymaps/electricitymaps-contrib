@@ -413,7 +413,6 @@ KIND_TO_URL = {"production": DIPC_URL, "exchange": RTDHS_URL}
 KIND_TO_POST_ID = {"production": "5754", "exchange": "5770"}
 
 
-
 class MarketReportsItem(NamedTuple):
     datetime: datetime
     filename: str
