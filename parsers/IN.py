@@ -258,14 +258,28 @@ def fetch_consumption_from_meritindia(
     This source seems to be a bit more stable right now than vidyutpravah.in"""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    import concurrent.futures
+
     total_consumption = 0
-    for state in STATES_MAPPING[zone_key]:
+    futures = []
+
+    def fetch_state_consumption(session, state):
         resp: Response = session.post(
             DEMAND_URL_MERITINDIA.format(proxy=INDIA_PROXY),
             data={"StateCode": STATE_CODES[state]},
         )
         data = resp.json()[0]
-        total_consumption += float(str(data["Demand"]).replace(",", ""))
+        return float(str(data["Demand"]).replace(",", ""))
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        for state in STATES_MAPPING[zone_key]:
+            future = executor.submit(fetch_state_consumption, session, state)
+            futures.append(future)
+
+        for future in concurrent.futures.as_completed(futures):
+            total_consumption += future.result()
+
     consumption_list = TotalConsumptionList(logger=logger)
     consumption_list.append(
         zoneKey=ZoneKey(zone_key),
@@ -456,7 +470,7 @@ def daily_to_hourly_production_data(
     all_hourly_production = ProductionBreakdownList(logger)
     production_mix = ProductionMix()
     for mode, value in production.items():
-        production_mix.set_value(mode, value)
+        production_mix.add_value(mode, value)
     for hour in list(range(0, 24)):
         all_hourly_production.append(
             zoneKey=ZoneKey(zone_key),

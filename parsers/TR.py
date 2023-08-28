@@ -9,6 +9,7 @@ from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
+from parsers.lib.session import get_session_with_legacy_adapter
 from parsers.lib.validation import validate
 
 TR_TZ = pytz.timezone("Europe/Istanbul")
@@ -37,13 +38,13 @@ PRODUCTION_MAPPING = {
 }
 
 
-def fetch_data(session: Session, target_datetime: datetime, kind: str) -> dict:
+def fetch_data(target_datetime: datetime, kind: str) -> dict:
     url = "/".join((EPIAS_MAIN_URL, KINDS_MAPPING[kind]["url"]))
     params = {
         "startDate": (target_datetime).strftime("%Y-%m-%d"),
         "endDate": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
     }
-    r: Response = session.get(url=url, params=params)
+    r: Response = get_session_with_legacy_adapter().get(url=url, params=params)
     if r.status_code == 200:
         return r.json()["body"][KINDS_MAPPING[kind]["json_key"]]
     else:
@@ -74,7 +75,7 @@ def validate_production_data(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "TR",
-    session: Session = Session(),
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
@@ -84,9 +85,7 @@ def fetch_production(
         target_datetime = datetime.now(tz=TR_TZ)
         exclude_last_data_point = True
 
-    data = fetch_data(
-        session=session, target_datetime=target_datetime, kind="production"
-    )
+    data = fetch_data(target_datetime=target_datetime, kind="production")
 
     all_data_points = []
     for item in data:
@@ -115,16 +114,14 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "TR",
-    session: Session = Session(),
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ) - timedelta(hours=2)
 
-    data = fetch_data(
-        session=session, target_datetime=target_datetime, kind="consumption"
-    )
+    data = fetch_data(target_datetime=target_datetime, kind="consumption")
 
     all_data_points = []
     for item in data:
@@ -142,14 +139,14 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str = "TR",
-    session: Session = Session(),
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ)
 
-    data = fetch_data(session=session, target_datetime=target_datetime, kind="price")
+    data = fetch_data(target_datetime=target_datetime, kind="price")
     all_data_points = []
     for item in data:
         data_point = {

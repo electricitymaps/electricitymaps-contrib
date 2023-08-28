@@ -44,7 +44,7 @@
 
 /* Custom styling for react-spring-bottom-sheet */
 .dark [data-rsbs-root] {
-  --rsbs-bg: theme(colors.gray.900);
+  --rsbs-bg: theme(colors.gray.800);
   --rsbs-handle-bg: rgba(255, 255, 255, 0.2);
 }
 [data-rsbs-header] {

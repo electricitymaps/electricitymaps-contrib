@@ -5,6 +5,7 @@ bounding_box:
     - -33.486452325214685
 bypassedSubZones:
   - AU-TAS-CBI
+  - AU-WA-RI
 capacity:
   battery storage: 157.2
   biomass: 384.1

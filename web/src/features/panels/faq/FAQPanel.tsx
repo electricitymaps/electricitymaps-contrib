@@ -23,7 +23,7 @@ export default function FAQPanel(): ReactElement {
   }
 
   return (
-    <div className="pt-4 pl-2 ">
+    <div className="pl-2 pt-4 ">
       <div className="mb-2 flex flex-row pl-2">
         <Link to={parentPage} className="text-3xl mr-4 self-center">
           <HiArrowLeft />
@@ -35,13 +35,13 @@ export default function FAQPanel(): ReactElement {
       </div>
       <div className=" mt-2 hidden space-x-4 text-center text-sm md:block">
         <a
-          className="text-brand-green underline hover:text-gray-500 dark:text-brand-yellow"
+          className="text-sky-600 underline hover:text-gray-500 dark:invert"
           href="https://www.electricitymaps.com/privacy-policy/"
         >
           {__('misc.privacyPolicy')}
         </a>
         <a
-          className="text-brand-green underline hover:text-gray-500 dark:text-brand-yellow"
+          className="text-sky-600 underline hover:text-gray-500 dark:invert"
           href="https://www.electricitymaps.com/legal-notice/"
         >
           {__('misc.legalNotice')}

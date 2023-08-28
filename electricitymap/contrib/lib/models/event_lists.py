@@ -3,7 +3,6 @@ from datetime import datetime
 from logging import Logger
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
-import numpy as np
 import pandas as pd
 
 from electricitymap.contrib.lib.models.events import (
@@ -27,7 +26,7 @@ class EventList(ABC):
     events: List[Event]
 
     def __init__(self, logger: Logger):
-        self.events = list()
+        self.events = []
         self.logger = logger
 
     def __len__(self):
@@ -40,7 +39,26 @@ class EventList(ABC):
         pass
 
     def to_list(self) -> List[Dict[str, Any]]:
-        return [event.to_dict() for event in self.events]
+        return sorted(
+            [event.to_dict() for event in self.events], key=lambda x: x["datetime"]
+        )
+
+    @property
+    def dataframe(self) -> pd.DataFrame:
+        """Gives the dataframe representation of the events, indexed by datetime."""
+        return pd.DataFrame.from_records(
+            [
+                {
+                    "datetime": event.datetime,
+                    "zoneKey": event.zoneKey,
+                    "source": event.source,
+                    "sourceType": event.sourceType,
+                    "data": event,
+                }
+                for event in self.events
+                if len(self.events) > 0
+            ]
+        ).set_index("datetime")
 
 
 class AggregatableEventList(EventList, ABC):
@@ -198,41 +216,20 @@ class ProductionBreakdownList(AggregatableEventList):
             ungrouped_production_breakdowns, logger
         ):
             return production_breakdowns
-
-        # Create a dataframe for each parser output, then flatten the power mixes.
-        prod_and_storage_dfs = [
-            pd.json_normalize(breakdowns.to_list()).set_index("datetime")
-            for breakdowns in ungrouped_production_breakdowns
-            if len(breakdowns.events) > 0
-        ]
-        df = pd.concat(prod_and_storage_dfs)
-        zone_key, sources, source_type = ProductionBreakdownList.get_zone_source_type(
-            df
+        df = pd.concat(
+            [
+                production_breakdowns.dataframe
+                for production_breakdowns in ungrouped_production_breakdowns
+                if len(production_breakdowns.events) > 0
+            ]
         )
-        df = df.groupby(level="datetime", dropna=False).sum(
-            numeric_only=True, min_count=1
-        )
+        _, _, _ = ProductionBreakdownList.get_zone_source_type(df)
 
-        for row in df.iterrows():
-            production_mix = ProductionMix()
-            storage_mix = StorageMix()
-            for key, value in row[1].items():
-                if np.isnan(value):
-                    value = None
-                # The key is in the form of "production.<mode>" or "storage.<mode>"
-                prefix, mode = key.split(".")  # type: ignore
-                if prefix == "production":
-                    production_mix.set_value(mode, value)
-                elif prefix == "storage":
-                    storage_mix.set_value(mode, value)
-            production_breakdowns.append(
-                zone_key,
-                row[0].to_pydatetime(),  # type: ignore
-                sources,
-                production_mix,
-                storage_mix,
-                source_type,
-            )
+        df = df.drop(columns=["source", "sourceType", "zoneKey"])
+        df = df.groupby(level=0, dropna=False)["data"].apply(list)
+        for row in df:
+            prod = ProductionBreakdown.aggregate(row)
+            production_breakdowns.events.append(prod)
         return production_breakdowns
 
 

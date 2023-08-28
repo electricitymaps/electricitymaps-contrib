@@ -18,10 +18,31 @@ from .lib.utils import get_token
 
 TIMEZONE = pytz.timezone("Europe/Madrid")
 
+# Map each exchange to the ID used in the API
+EXCHANGE_ID_MAP = {
+    "AD->ES": "10278",  # Switch to 10210 when it has data
+    "ES->MA": "10209",
+}
+
+# Map each exchange to the needed factor to adjust from MWh to MW. Depends on the time granularity of the API for each request
+# E.g ES->MA is 4 because the API returns 15 minutes intervals data (15 min = 1/4 of an hour; P=E/t).
+EXCHANGE_MULTIPLICATION_FACTOR_MAP = {
+    "AD->ES": 1,
+    "ES->MA": 4,
+}
+
+
+def format_url(target_datetime: datetime, ID: str):
+    start_date = (target_datetime - timedelta(hours=24)).isoformat()
+    end_date = target_datetime.isoformat()
+    dates = {"start_date": start_date, "end_date": end_date}
+    query = urlencode(dates)
+    return f"https://api.esios.ree.es/indicators/{ID}?{query}"
+
 
 def fetch_exchange(
-    zone_key1: str = "ES",
-    zone_key2: str = "MA",
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -40,12 +61,16 @@ def fetch_exchange(
         "x-api-key": token,
     }
 
-    # Request query url
-    start_date = (target_datetime - timedelta(hours=24)).isoformat()
-    end_date = target_datetime.isoformat()
-    dates = {"start_date": start_date, "end_date": end_date}
-    query = urlencode(dates)
-    url = "https://api.esios.ree.es/indicators/10209?{0}".format(query)
+    zone_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    if (
+        zone_key not in EXCHANGE_ID_MAP
+        or zone_key not in EXCHANGE_MULTIPLICATION_FACTOR_MAP
+    ):
+        raise ParserException(
+            "ESIOS.py",
+            f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
+        )
+    url = format_url(target_datetime, EXCHANGE_ID_MAP[zone_key])
 
     response: Response = ses.get(url, headers=headers)
     if response.status_code != 200 or not response.text:
@@ -58,12 +83,16 @@ def fetch_exchange(
     if not values:
         raise ParserException("ESIOS", "No values received")
     exchanges = ExchangeList(logger)
-    zone_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     for value in values:
         # Get last value in datasource
         # Datasource negative value is exporting, positive value is importing
-        net_flow = -value["value"]
+        # If Spain is the first zone invert the values to match Electricity Maps schema
+        net_flow = (
+            -value["value"] if zone_key.partition("->")[0] == "ES" else value["value"]
+        )
+
+        net_flow *= EXCHANGE_MULTIPLICATION_FACTOR_MAP[zone_key]
 
         exchanges.append(
             zoneKey=zone_key,
@@ -77,4 +106,7 @@ def fetch_exchange(
 
 if __name__ == "__main__":
     session = Session()
-    print(fetch_exchange("ES", "MA", session))
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("MA"), session))
+    print("fetch_exchange(ES, MA)")
+    print(fetch_exchange(ZoneKey("AD"), ZoneKey("ES"), session))
+    print("fetch_exchange(AD, ES)")

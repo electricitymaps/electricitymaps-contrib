@@ -4,7 +4,7 @@ bounding_box:
   - - -108.777145881
     - 36.784585904
 capacity:
-  battery storage: 2
+  battery storage: 200
   biomass: 33.4
   coal: 1749.8
   gas: 2714.6
@@ -25,6 +25,8 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
@@ -256,7 +258,6 @@ fallbackZoneMixes:
         solar: 0.04625073953725447
         unknown: 0.010039607592683613
         wind: 0.024298130475104016
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

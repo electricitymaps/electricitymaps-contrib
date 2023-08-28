@@ -17,5 +17,8 @@ capacity:
   wind: 443
 contributors:
   - xomanuel
-flag_file_name: ph.png
+subZoneNames:
+  - PH-LU
+  - PH-MI
+  - PH-VI
 timezone: Asia/Manila

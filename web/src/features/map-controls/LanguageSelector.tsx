@@ -31,6 +31,7 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
           <MapButton
             icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
             tooltipText={__('tooltips.selectLanguage')}
+            ariaLabel={__('aria.label.selectLanguage')}
           />
         )
       }

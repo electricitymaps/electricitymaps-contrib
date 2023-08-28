@@ -1,101 +1,86 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from pprint import pprint
-from typing import Optional
+from typing import Any, Dict, List, Optional, Union
 
 # The arrow library is used to handle datetimes
 import arrow
+from pytz import timezone
 from requests import Session
+
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAM = "?host=https://hydroquebec.com"
 DATA_PATH = "data/documents-donnees/donnees-ouvertes/json"
 PRODUCTION_URL = f"{US_PROXY}/{DATA_PATH}/production.json{HOST_PARAM}"
 CONSUMPTION_URL = f"{US_PROXY}/{DATA_PATH}/demande.json{HOST_PARAM}"
-# Reluctant to call it 'timezone', since we are importing 'timezone' from datetime
-timezone_id = "America/Montreal"
+SOURCE = "hydroquebec.com"
+TIMEZONE = timezone("America/Montreal")
 
 
 def fetch_production(
-    zone_key: str = "CA-QC",
+    zone_key: ZoneKey = ZoneKey("CA-QC"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> list:
-    """Requests the last known production mix (in MW) of a given region.
-    In this particular case, translated mapping of JSON keys are also required"""
-
-    def if_exists(elem: dict, etype: str):
-
-        english = {
-            "hydraulique": "hydro",
-            "thermique": "thermal",
-            "solaire": "solar",
-            "eolien": "wind",
-            # autres is all renewable, and mostly biomass.  See Github    #3218
-            "autres": "biomass",
-            "valeurs": "values",
-        }
-        english = {v: k for k, v in english.items()}
-        try:
-            return elem["valeurs"][english[etype]]
-        except KeyError:
-            return 0.0
+) -> List[Dict[str, Any]]:
+    """Requests the last known production mix (in MW) of a given region."""
 
     data = _fetch_quebec_production(session)
-    list_res = []
-    for elem in reversed(data["details"]):
-        if elem["valeurs"]["total"] != 0:
-            list_res.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": arrow.get(elem["date"], tzinfo=timezone_id).datetime,
-                    "production": {
-                        "biomass": if_exists(elem, "biomass"),
-                        "coal": 0.0,
-                        "hydro": if_exists(elem, "hydro"),
-                        "nuclear": 0.0,
-                        "oil": 0.0,
-                        "solar": if_exists(elem, "solar"),
-                        "wind": if_exists(elem, "wind"),
-                        # See Github issue #3218, Québec's thermal generation is at Bécancour gas turbine.
-                        # It is reported with a delay, and data source returning 0.0 can indicate either no generation or not-yet-reported generation.
-                        # Thus, if value is 0.0, overwrite it to None, so that backend can know this is not entirely reliable and might be updated later.
-                        "gas": if_exists(elem, "thermal") or None,
-                        # There are no geothermal electricity generation stations in Québec (and all of Canada for that matter).
-                        "geothermal": 0.0,
-                        "unknown": if_exists(elem, "unknown"),
-                    },
-                    "source": "hydroquebec.com",
-                }
+    production = ProductionBreakdownList(logger)
+    now = datetime.now(tz=TIMEZONE)
+    for elem in data:
+        values = elem["valeurs"]
+        timestamp = arrow.get(elem["date"], tzinfo=TIMEZONE).datetime
+        # The datasource returns future timestamps or recent with a 0.0 value, so we ignore them.
+        if timestamp <= now and values.get("total", 0) > 0:
+            production.append(
+                zoneKey=zone_key,
+                datetime=timestamp,
+                production=ProductionMix(
+                    # autres is all renewable, and mostly biomass.  See Github    #3218
+                    biomass=values.get("autres", 0),
+                    hydro=values.get("hydraulique", 0),
+                    # See Github issue #3218, Québec's thermal generation is at Bécancour gas turbine.
+                    # It is reported with a delay, and data source returning 0.0 can indicate either no generation or not-yet-reported generation.
+                    gas=values.get("thermique", 0),
+                    solar=values.get("solaire", 0),
+                    wind=values.get("eolien", 0),
+                ),
+                source=SOURCE,
             )
-    return list_res
+    return production.to_list()
 
 
 def fetch_consumption(
-    zone_key: str = "CA-QC",
+    zone_key: ZoneKey = ZoneKey("CA-QC"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     data = _fetch_quebec_consumption(session)
-    list_res = []
-    for elem in reversed(data["details"]):
+
+    consumption = TotalConsumptionList(logger)
+    for elem in data:
         if "demandeTotal" in elem["valeurs"]:
-            list_res.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": arrow.get(elem["date"], tzinfo=timezone_id).datetime,
-                    "consumption": elem["valeurs"]["demandeTotal"],
-                    "source": "hydroquebec.com",
-                }
+            consumption.append(
+                zoneKey=zone_key,
+                datetime=arrow.get(elem["date"], tzinfo=TIMEZONE).datetime,
+                consumption=elem["valeurs"]["demandeTotal"],
+                source=SOURCE,
             )
-    return list_res
+    return consumption.to_list()
 
 
 def _fetch_quebec_production(
     session: Optional[Session] = None, logger: Logger = getLogger(__name__)
-) -> str:
+) -> List[Dict[str, Union[str, Dict[str, float]]]]:
     s = session or Session()
     response = s.get(PRODUCTION_URL)
 
@@ -105,12 +90,12 @@ def _fetch_quebec_production(
                 PRODUCTION_URL
             )
         )
-    return response.json()
+    return response.json()["details"]
 
 
 def _fetch_quebec_consumption(
     session: Optional[Session] = None, logger: Logger = getLogger(__name__)
-) -> str:
+) -> List[Dict[str, Any]]:
     s = session or Session()
     response = s.get(CONSUMPTION_URL)
 
@@ -120,7 +105,7 @@ def _fetch_quebec_consumption(
                 CONSUMPTION_URL
             )
         )
-    return response.json()
+    return response.json()["details"]
 
 
 if __name__ == "__main__":

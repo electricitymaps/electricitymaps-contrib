@@ -31,15 +31,15 @@ function MobileMapControls() {
   const handleOpenSettingsModal = () => setIsSettingsModalOpen(true);
 
   return (
-    <div className="absolute top-2 right-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
+    <div className="absolute right-2 top-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
       <Button
-        className="m-0 p-3"
+        className="m-0 bg-white/80 p-3 backdrop-blur-sm dark:bg-gray-800/80"
         aria-label="open info modal"
         onClick={handleOpenInfoModal}
         icon={<HiOutlineInformationCircle size={21} />}
       />
       <Button
-        className="m-0 p-3"
+        className="m-0 bg-white/80 p-3 backdrop-blur-sm dark:bg-gray-800/80"
         aria-label="open settings modal"
         onClick={handleOpenSettingsModal}
         icon={<HiCog6Tooth size={20} />}
@@ -101,6 +101,9 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       dataTestId={`${type}-layer-button`}
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={isLoadingLayer ? () => {} : onToggle}
+      ariaLabel={
+        type == 'wind' ? __('aria.label.windLayer') : __('aria.label.solarLayer')
+      }
       asToggle
     />
   );
@@ -140,6 +143,7 @@ function DesktopMapControls() {
           tooltipText={__('legends.colorblindmode')}
           onClick={handleColorblindModeToggle}
           asToggle
+          ariaLabel={__('aria.label.colorBlindMode')}
         />
         {areWeatherLayersAllowed && (
           <>

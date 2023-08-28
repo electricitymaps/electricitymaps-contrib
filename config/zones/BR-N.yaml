@@ -4,8 +4,8 @@ bounding_box:
   - - -49.37304648399993
     - 4.941122259000181
 capacity:
-  hydro: 22305
-  solar: 3
+  hydro: 33384
+  solar: 1491
   unknown: 4031
   wind: 426
 contributors:
@@ -196,7 +196,7 @@ fallbackZoneMixes:
         solar: 0.007996769820413207
         unknown: 0.23886146380132728
         wind: 0.12396047613175017
-flag_file_name: br.png
 parsers:
   production: BR.fetch_production
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 timezone: null

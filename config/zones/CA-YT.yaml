@@ -152,7 +152,6 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.07055666837734512
         wind: 0.0
-flag_file_name: ca.png
 parsers:
   production: CA_YT.fetch_production
 timezone: America/Whitehorse

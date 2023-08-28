@@ -170,6 +170,17 @@
     "detailed": "detaljerad",
     "aggregateInfo": "Växla mellan en detaljerad zon vy och en aggregerad lands vy"
   },
+  "aria": {
+    "label": {
+      "selectLanguage": "Välj språk",
+      "colorBlindMode": "Färgblinds läge",
+      "windLayer": "Vind-lager",
+      "solarLayer": "Sol-lager",
+      "changeTheme": "Byt tema",
+      "hideSidePanel": "Dölj sidopanel",
+      "showSidePanel": "Visa sidopanel"
+    }
+  },
   "aggregateButtons": {
     "country": "land",
     "zone": "zon"
@@ -1645,10 +1656,6 @@
       "countryName": "USA",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "USA",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "USA",
       "zoneName": "Bonneville Power Administration"
@@ -1741,10 +1748,6 @@
       "countryName": "USA",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "USA",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "USA",
       "zoneName": "El Paso Electric Company"
@@ -1752,10 +1755,6 @@
     "US-SW-GRIF": {
       "countryName": "USA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "USA",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "USA",

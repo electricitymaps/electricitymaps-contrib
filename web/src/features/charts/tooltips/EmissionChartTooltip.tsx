@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { productionConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
 import { getTotalElectricity, tonsPerHourToGramsPerMinute } from '../graphUtils';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
@@ -8,18 +8,20 @@ import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);
   const { __ } = useTranslation();
+  const [mixMode] = useAtom(productionConsumptionAtom);
 
   if (!zoneDetail) {
     return null;
   }
 
   const totalEmissions =
-    Math.round(tonsPerHourToGramsPerMinute(getTotalElectricity(zoneDetail, true)) * 100) /
-    100;
+    Math.round(
+      tonsPerHourToGramsPerMinute(getTotalElectricity(zoneDetail, true, mixMode)) * 100
+    ) / 100;
   const { stateDatetime } = zoneDetail;
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:bg-gray-900 sm:w-[350px]">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[350px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}

@@ -35,7 +35,8 @@
     "renewable": "regenerativ",
     "electricityproduction": "Stromerzeugung",
     "electricityconsumption": "Stromverbrauch",
-    "bysource": "Ursprung:",
+    "bysource": "nach Quelle:",
+    "averagebysource": "Durchschnitt nach Quelle:",
     "emissions": "CO₂-Emissionen",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">Quelle bearbeiten oder hinzufügen</a>",
     "helpfrom": "mit Unterstützung von",
@@ -49,8 +50,10 @@
     "electricity": "Elektrizität",
     "dataIsDelayed": "Die Daten in dieser Region können bis zu %s Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
     "estimated": "Geschätzt",
+    "aggregated": "Zusammengefasst",
     "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">hier</a> lesen.",
     "estimatedTooltip": "Die Echtzeit-Daten für diese Zone sind auf Basis der Daten der Quelle und den Annahmen des Modells geschätzt.",
+    "aggregatedTooltip": "Die Daten für diese Zone sind zusammengefasst, basierend auf den stündlichen Werten der historischen Daten",
     "helpUs": "Hilf uns Problem zu finden indem du dir die <a href=\"%s\" target=\"_blank\">Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
   },
   "left-panel": {
@@ -64,24 +67,34 @@
   "country-history": {
     "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
     "carbonintensity": {
-      "hourly": "spezifische CO₂-Emissionen in den letzten 24 h"
+      "default": "Spezifische CO₂-Emissionen in den letzten %1$s",
+      "hourly": "Spezifische CO₂-Emissionen in den letzten 24 Stunden",
+      "daily": "Spezifische CO₂-Emissionen im letzten Monat",
+      "monthly": "Spezifische CO₂-Emissionen im letzten Jahr",
+      "yearly": "Spezifische CO₂-Emissionen in den letzten 5 Jahren"
     },
     "emissionsorigin": {
-      "hourly": "Ursprung der Emissionen in den letzten 24 h"
+      "default": "Ursprung der Emissionen in den letzten %1$s",
+      "hourly": "Ursprung der Emissionen in den letzten 24 Stunden"
     },
     "emissionsproduction": {
-      "hourly": "Erzeugte Emissionen in den letzten 24 h"
+      "default": "Erzeugte Emissionen in den letzten %1$s",
+      "hourly": "Erzeugte Emissionen in den letzten 24 Stunden"
     },
     "electricityorigin": {
-      "hourly": "Ursprung der Elektrizität in den letzten 24 h"
+      "default": "Ursprung der Elektrizität in den letzten %1$s",
+      "hourly": "Ursprung der Elektrizität in den letzten 24 Stunden"
     },
     "electricityproduction": {
-      "hourly": "Erzeugte Elektrizität in den letzten 24 h"
+      "default": "Erzeugte Elektrizität in den letzten %1$s",
+      "hourly": "Erzeugte Elektrizität in den letzten 24 Stunden"
     },
     "electricityprices": {
-      "hourly": "Strompreis in den letzten 24 h"
+      "default": "Strompreis in den letzten %1$s",
+      "hourly": "Strompreis in den letzten 24 Stunden"
     },
     "emissions": {
+      "default": "Emissionen in den letzten %1$s",
       "hourly": "Emissionen in den letzten 24 Stunden"
     }
   },
@@ -1634,10 +1647,6 @@
       "countryName": "Vereinigte Staaten",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "Vereinigte Staaten",
       "zoneName": "Bonneville Power Administration"
@@ -1730,10 +1739,6 @@
       "countryName": "Vereinigte Staaten",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Vereinigte Staaten",
       "zoneName": "El Paso Electric Company"
@@ -1741,10 +1746,6 @@
     "US-SW-GRIF": {
       "countryName": "Vereinigte Staaten",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Vereinigte Staaten",

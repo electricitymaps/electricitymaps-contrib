@@ -7,10 +7,7 @@ function getCountryName(zoneId: string) {
   return flagName.toUpperCase();
 }
 
-type HTMLSVGElement = HTMLElement & SVGElement;
-interface CountryFlagProps
-  extends React.HTMLAttributes<HTMLSVGElement>,
-    React.SVGAttributes<HTMLSVGElement> {
+interface CountryFlagProps {
   zoneId: string;
   size?: number;
   className?: string;

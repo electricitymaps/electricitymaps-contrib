@@ -134,7 +134,6 @@ fallbackZoneMixes:
         solar: 0.012594741844093696
         unknown: 0.6994951986943484
         wind: 0.04224314715222993
-flag_file_name: gb.png
 isLowCarbon:
   unknown:
     value: 1
@@ -146,4 +145,4 @@ parsers:
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
-timezone: null
+timezone: Europe/London

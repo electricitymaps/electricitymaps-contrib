@@ -208,5 +208,5 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
-flag_file_name: hk.png
+disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
 timezone: Asia/Hong_Kong

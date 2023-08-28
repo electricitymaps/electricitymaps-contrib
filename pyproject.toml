@@ -33,11 +33,10 @@ xlrd = {version="^2.0.1", optional=true}
 xmltodict = {version = "^0.13.0", optional=true}
 black = "22.12.0"
 isort = "5.12.0"
-deepdiff = "^5.8.1"
 PyYAML = "^6.0"
 openpyxl = {version="^3.1.2", optional=true}
 pydataxm = {version="^0.3.2", optional=true}
-odfpy = {version="^1.4.1", optional=true}
+ruamel-yaml = "^0.17.24"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
@@ -81,7 +80,8 @@ parsers = [
     "tqdm",
     "openpyxl",
     "pydataxm",
-    "odfpy"]
+    "odfpy",
+    "selenium"]
 
 
 validators = [
@@ -92,6 +92,10 @@ validators = [
 scripts = [
     "xmltodict"
 ]
+
+[tool.poetry.group.dev.dependencies]
+snapshottest = "^0.6.0"
+pytest = "^7.4.0"
 
 [tool.isort]
 profile = "black"
@@ -105,7 +109,8 @@ load-plugins = "pylint_pydantic"
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
-    "parsers/test"
+    "parsers/test",
+    "electricitymap/contrib/lib/tests",
 ]
 
 [build-system]
