@@ -104,6 +104,7 @@
     "electricityprices": {
       "default": "Electricity prices in the last %1$s"
     },
+    "netExchange": { "default": "Net exchange in the last %1$s" },
     "Getdata": "Get hourly historical, live, and forecast data with Electricity Maps API"
   },
   "footer": {
@@ -146,7 +147,10 @@
     "selectLanguage": "Select language",
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed",
-    "price": "Price"
+    "price": "Price",
+    "netExchange": "Net exchange",
+    "importing": "Importing",
+    "exporting": "Exporting"
   },
   "aria": {
     "label": {
@@ -1305,6 +1309,18 @@
     },
     "PH": {
       "zoneName": "Philippines"
+    },
+    "PH-LU": {
+      "countryName": "Philippines",
+      "zoneName": "Luzon"
+    },
+    "PH-MI": {
+      "countryName": "Philippines",
+      "zoneName": "Mindanao"
+    },
+    "PH-VI": {
+      "countryName": "Philippines",
+      "zoneName": "Visayas"
     },
     "PK": {
       "zoneName": "Pakistan"

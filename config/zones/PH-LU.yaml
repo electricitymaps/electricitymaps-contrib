@@ -1,0 +1,15 @@
+bounding_box:
+  - - 116.46336963369632
+    - 7.323918659865512
+  - - 124.9190441904419
+    - 19.14290487703049
+contributors:
+  - VIKTORVAV99
+  - jarek
+  - systemcatch
+  - q--
+  - mathilde-daugy
+  - pierresegonne
+parsers:
+  production: PH.fetch_production
+timezone: Asia/Manila

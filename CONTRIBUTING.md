@@ -12,7 +12,7 @@ Any and all contributions however big or small are welcome.
 
 # Code of Conduct
 
-This repository and by extension its community have adopted the [Contributor Covenant][contributor covenant] v2.1 as it's code of conduct.
+This repository and by extension its community have adopted the [Contributor Covenant][contributor covenant] v2.1 as its code of conduct.
 If you have any questions about the code of conduct or feel the need to report an incident you can do so by emailing us at codeofconduct@electricitymaps.com. For the full code of conduct see [CODE_OF_CONDUCT.md][code of conduct].
 
 # License
@@ -60,13 +60,13 @@ For more detailed information about parsers specifically you can look at the par
 
 #### Example parser:
 
-For a example on how a parser can look we have an example here: </br> [parsers/examples/example_parser.py][example parser]
+For an example of how a parser can look we have an example here: </br> [parsers/examples/example_parser.py][example parser]
 
 ### Formatting the parsers
 
 We use [black][black homepage] and [isort][isort homepage] as code formatters for python which is automatically checked in the CI job `Python / Formatting`.
 
-If this jobs fail and you need to manually format the code you can run `poetry run format` in the top level of the repository.
+If this jobs fails and you need to manually format the code you can run `poetry run format` in the top level of the repository.
 
 Check the [wiki page][wiki python code formatting] for more details and tips.
 
@@ -77,14 +77,14 @@ To get started with editing the fronted use the following steps:
 1. Use `cd web` to go into the web directory
 2. Then use `pnpm install` to get all dependencies installed.
 
-Note: This requires you to have [node.js][node homepage] and [pnpm][pnpm homepage] installed, you can see there respective installation guides here:
+Note: This requires you to have [node.js][node homepage] and [pnpm][pnpm homepage] installed, you can see their respective installation guides here:
 
 - [How to install node.js][node installation guide]
 - [pnpm installation][pnpm installation guide]
 
 ### Frontend structure
 
-The frontend can be broken down to 2 main parts, the web app built [Vite][vitejs] and the mobile app built with [capacitor][capacitorjs].
+The frontend can be broken down into 2 main parts, the web app built [Vite][vitejs] and the mobile app built with [capacitor][capacitorjs].
 Both of these share a common code base that is built upon [react][reactjs].
 
 As a result we have a frontend folder structure that looks like this:

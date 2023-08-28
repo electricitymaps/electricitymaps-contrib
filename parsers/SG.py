@@ -15,7 +15,9 @@ TIMEZONE = "Asia/Singapore"
 
 TICKER_URL = "https://www.emcsg.com/ChartServer/blue/ticker"
 
-SOLAR_URL = "https://www.ema.gov.sg/cmsmedia/irradiance/plot.png"
+SOLAR_URL = (
+    "https://www.ema.gov.sg//content/dam/corporate/solar-irradiance-map/plot.png"
+)
 
 """
 Around 95% of Singapore's generation is done with combined-cycle gas turbines.
@@ -60,8 +62,7 @@ def get_solar(session: Session, logger: Logger) -> Optional[float]:
     Uses OCR (tesseract) to extract MW value.
     """
 
-    url = SOLAR_URL
-    solar_image = Image.open(session.get(url, stream=True).raw)
+    solar_image = Image.open(session.get(SOLAR_URL, stream=True).raw)
 
     solar_mw = __detect_output_from_solar_image(solar_image, logger)
     solar_dt = __detect_datetime_from_solar_image(solar_image, logger)
