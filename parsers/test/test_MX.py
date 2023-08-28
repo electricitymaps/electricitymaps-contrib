@@ -39,4 +39,3 @@ class TestFetchConsumption(TestCase):
 
         data = fetch_consumption(ZoneKey("MX-BCS"), self.session)
         assert len(data) == 0
-

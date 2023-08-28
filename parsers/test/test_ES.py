@@ -32,7 +32,6 @@ class TestES(TestCase):
 
         self.assertEqual(len(data_list), 0)
 
-
     # Production
     @patch.object(ElHierro, "get_all")
     def test_fetch_production_el_hierro(self, mocked_get_all):
