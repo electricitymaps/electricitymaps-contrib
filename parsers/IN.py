@@ -279,8 +279,7 @@ def fetch_consumption_from_meritindia(
 
         for future in concurrent.futures.as_completed(futures):
             total_consumption += future.result()
-    if total_consumption == 0:
-        raise ParserException(parser="IN.py", message=f"{target_datetime}: No valid consumption data found", zone_key=zone_key)
+
     consumption_list = TotalConsumptionList(logger=logger)
     consumption_list.append(
         zoneKey=ZoneKey(zone_key),
