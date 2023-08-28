@@ -462,7 +462,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 Cross-border transmission capacities between the zones are centralized in the [config/exchanges](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges) folder. Capacities are included in the respective exchange configurations. Values in the `capacity` maps are in MW. The value prefaced with `-` is the export capacity and the value not prefaced is the import capacity. Direction is determined by alphabetical sorting of the zone keys.
 
-#### For the nordic and baltic countries capacities are availible from [Nord Pool](https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Capacities1/Capacities/key1/hourly/?view=table)
+#### For the nordic and baltic countries capacities are available from [Nord Pool](https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Capacities1/Capacities/key1/hourly/?view=table)
 
 <details><summary>Click to see the full list of sources</summary>
 
