@@ -35,7 +35,6 @@ export const getRankedState = (
   const zonesData = data.data;
   const keys = Object.keys(zonesData.zones) as Array<keyof GridState>;
 
-  console.log('mode', zonesData);
   if (!keys) {
     return [];
   }
