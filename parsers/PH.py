@@ -21,6 +21,7 @@ from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 DIPC_URL = "https://www.iemop.ph/market-data/dipc-energy-results-raw/"
+RTDHS_URL = "https://www.iemop.ph/market-data/rtd-hvdc-schedules/"
 TIMEZONE = "Asia/Manila"
 SOURCE = "iemop.ph"
 REGION_TO_ZONE_KEY = {
@@ -408,7 +409,9 @@ EXCHANGE_KEY_MAPPING = {
     "MINVIS1": {"zone_key": "PH-MI->PH-VI", "flow": 1},
     "VISLUZ1": {"zone_key": "PH-LU->PH-VI", "flow": -1},
 }
+KIND_TO_URL = {"production": DIPC_URL, "exchange": RTDHS_URL}
 KIND_TO_POST_ID = {"production": "5754", "exchange": "5770"}
+
 
 
 class MarketReportsItem(NamedTuple):
@@ -442,7 +445,7 @@ def get_all_market_reports_items(
         market_reports_item = MarketReportsItem(
             datetime.strptime(items["date"], "%d %B %Y %H:%M"),
             items["filename"],
-            DIPC_URL + f"?md_file={id}",
+            KIND_TO_URL[kind] + f"?md_file={id}",
         )
         datetime_to_items[market_reports_item.datetime] = market_reports_item
     logger.info(f"PH - {kind}: Succesfully recovered market reports items")
@@ -694,8 +697,8 @@ if __name__ == "__main__":
     logger = getLogger(__name__)
     logging.basicConfig(level=logging.DEBUG)
 
-    print(fetch_production())
-    print(fetch_production(ZoneKey("PH-VI"), target_datetime=datetime(2023, 8, 15)))
+    # print(fetch_production())
+    # print(fetch_production(ZoneKey("PH-VI"), target_datetime=datetime(2023, 8, 15)))
     print(fetch_exchange(ZoneKey("PH-LU"), ZoneKey("PH-VI")))
     print(
         fetch_exchange(
