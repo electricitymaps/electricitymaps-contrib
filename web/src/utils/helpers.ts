@@ -5,11 +5,7 @@ import {
   ZoneDetail,
 } from 'types';
 import { useParams, useMatch } from 'react-router-dom';
-import {
-  tonsPerHourToGramsPerMinute,
-  getTotalElectricity,
-} from 'features/charts/graphUtils';
-import { Mode } from './constants';
+import { tonsPerHourToGramsPerMinute } from 'features/charts/graphUtils';
 
 export function getZoneFromPath() {
   const { zoneId } = useParams();
