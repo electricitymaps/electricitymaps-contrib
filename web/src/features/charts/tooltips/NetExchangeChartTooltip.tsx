@@ -29,7 +29,6 @@ export default function NetExchangeChartTooltip({
   const netExchange = getNetExchange(zoneDetail, displayByEmissions);
   const netProduction = getNetProduction(zoneDetail, displayByEmissions);
   const netConsumption = getNetConsumption(zoneDetail, displayByEmissions);
-  //const exchangesList = zoneDetail.exchange
   const { formattingFactor, unit } = displayByEmissions
     ? {
         formattingFactor: 1,
