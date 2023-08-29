@@ -5,6 +5,11 @@ import {
   ZoneDetail,
 } from 'types';
 import { useParams, useMatch } from 'react-router-dom';
+import {
+  tonsPerHourToGramsPerMinute,
+  getTotalElectricity,
+} from 'features/charts/graphUtils';
+import { Mode } from './constants';
 
 export function getZoneFromPath() {
   const { zoneId } = useParams();
@@ -147,4 +152,45 @@ export function getNetExchange(
   return displayByEmissions
     ? round(zoneData.totalCo2NetExchange / 1e6 / 60) // in tCO₂eq/min
     : round(zoneData.totalImport - zoneData.totalExport);
+}
+
+/**
+ * Returns the net production of a zone
+ * @param zoneData - The zone data
+ * @returns The net production
+ */
+export function getNetProduction(
+  zoneData: ZoneDetail,
+  displayByEmissions: boolean
+): number {
+  return displayByEmissions
+    ? round(zoneData.totalCo2Production / 1e6 / 60) // in tCO₂eq/min
+    : round(zoneData.totalProduction);
+}
+
+/**
+ * Returns the net consumption of a zone
+ * @param zoneData - The zone data
+ * @returns The net consumption
+ */
+export function getNetConsumption(
+  zoneData: ZoneDetail,
+  displayByEmissions: boolean
+): number {
+  return displayByEmissions
+    ? round(
+        tonsPerHourToGramsPerMinute(
+          getTotalElectricity(zoneData, true, Mode.CONSUMPTION)
+        ) * 100
+      ) / 100 // in tCO₂eq/min
+    : round(zoneData.totalConsumption);
+}
+
+/**
+ * Returns the zoneKey of a zone
+ * @param zoneData - The zone data
+ * @returns The zoneKey
+ */
+export function getZoneKey(zoneData: ZoneDetail): string {
+  return zoneData.zoneKey;
 }
