@@ -164,7 +164,7 @@ export function getNetProduction(
   displayByEmissions: boolean
 ): number {
   return displayByEmissions
-    ? round(zoneData.totalCo2Production / 1e6 / 60) // in tCO₂eq/min
+    ? round(tonsPerHourToGramsPerMinute(zoneData.totalCo2Production)) // in tCO₂eq/min
     : round(zoneData.totalProduction);
 }
 
@@ -180,17 +180,10 @@ export function getNetConsumption(
   return displayByEmissions
     ? round(
         tonsPerHourToGramsPerMinute(
-          getTotalElectricity(zoneData, true, Mode.CONSUMPTION)
-        ) * 100
-      ) / 100 // in tCO₂eq/min
+          zoneData.totalCo2Production +
+            zoneData.totalCo2Storage +
+            zoneData.totalCo2Discharge
+        )
+      ) // in tCO₂eq/min
     : round(zoneData.totalConsumption);
-}
-
-/**
- * Returns the zoneKey of a zone
- * @param zoneData - The zone data
- * @returns The zoneKey
- */
-export function getZoneKey(zoneData: ZoneDetail): string {
-  return zoneData.zoneKey;
 }

@@ -7,7 +7,6 @@ import {
   getNetConsumption,
   getNetExchange,
   getNetProduction,
-  getZoneKey,
   round,
 } from 'utils/helpers';
 import { scalePower } from 'utils/formatting';
@@ -29,6 +28,7 @@ export default function NetExchangeChartTooltip({
   const netExchange = getNetExchange(zoneDetail, displayByEmissions);
   const netProduction = getNetProduction(zoneDetail, displayByEmissions);
   const netConsumption = getNetConsumption(zoneDetail, displayByEmissions);
+  const zoneKey = zoneDetail.zoneKey;
   const { formattingFactor, unit } = displayByEmissions
     ? {
         formattingFactor: 1,
@@ -57,9 +57,10 @@ export default function NetExchangeChartTooltip({
           )}{' '}
           %
         </b>
-        of electricity {netExchange >= 0 ? 'available' : 'produced'} in{' '}
-        {<CountryFlag className="shadow-3xl" zoneId={getZoneKey(zoneDetail)} />}{' '}
-        <b> {getZoneName(getZoneKey(zoneDetail))} </b>
+        of {displayByEmissions ? 'carbon emissions' : 'electricity'}{' '}
+        {netExchange >= 0 ? 'consumed' : 'produced'} in{' '}
+        {<CountryFlag className="shadow-3xl" zoneId={zoneKey} />}{' '}
+        <b> {getZoneName(zoneKey)} </b>
       </p>
     </div>
   );
