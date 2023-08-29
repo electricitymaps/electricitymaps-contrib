@@ -18,7 +18,6 @@ from logging import Logger, getLogger
 from sys import stderr
 from typing import Optional
 
-import arrow
 from pytz import timezone
 from requests import Session
 
