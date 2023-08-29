@@ -6,7 +6,7 @@ import { bisectLeft } from 'd3-array';
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { modeOrder } from 'utils/constants';
+import { Mode, modeOrder } from 'utils/constants';
 
 export const detectHoveredDatapointIndex = (
   event_: any,
@@ -75,18 +75,26 @@ export function tonsPerHourToGramsPerMinute(value: number) {
   return value / 1e6 / 60;
 }
 
-export function getTotalElectricity(zoneData: ZoneDetail, displayByEmissions: boolean) {
-  const productionValue = displayByEmissions
-    ? zoneData.totalCo2Production
-    : zoneData.totalProduction;
+export function getTotalElectricity(
+  zoneData: ZoneDetail,
+  displayByEmissions: boolean,
+  mixMode: Mode
+) {
+  const includeImports = mixMode === Mode.CONSUMPTION;
+  let productionValue: number;
 
-  if (productionValue == null) {
+  if (displayByEmissions) {
+    productionValue = zoneData.totalCo2Production + zoneData.totalCo2Discharge;
+    productionValue += includeImports ? zoneData.totalCo2Import : 0;
+  } else {
+    productionValue = zoneData.totalProduction + zoneData.totalDischarge;
+    productionValue += includeImports ? zoneData.totalImport : 0;
+  }
+  if (productionValue === null) {
     return Number.NaN;
   }
 
-  return displayByEmissions
-    ? productionValue + zoneData.totalCo2Discharge + zoneData.totalCo2Import // gCO₂eq/h
-    : productionValue + zoneData.totalDischarge + zoneData.totalImport;
+  return productionValue;
 }
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {

@@ -17,4 +17,8 @@ capacity:
   wind: 443
 contributors:
   - xomanuel
+subZoneNames:
+  - PH-LU
+  - PH-MI
+  - PH-VI
 timezone: Asia/Manila

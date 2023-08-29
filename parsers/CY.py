@@ -12,6 +12,9 @@ import arrow
 from bs4 import BeautifulSoup
 from requests import Session
 
+REALTIME_SOURCE = "https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/"
+HISTORICAL_SOURCE = "https://tsoc.org.cy/electrical-system/archive-total-daily-system-generation-on-the-transmission-system/?startdt={}&enddt=%2B1days"
+
 
 class CyprusParser:
     CAPACITY_KEYS = {
@@ -33,7 +36,7 @@ class CyprusParser:
 
     def parse_capacity(self, html) -> dict:
         capacity = {}
-        table = html.find(id="production_graph_static_data")
+        table = html.find(id="production_graph_static_data2")
         for tr in table.find_all("tr"):
             values = [td.string for td in tr.find_all("td")]
             key = self.CAPACITY_KEYS.get(values[0])
@@ -83,13 +86,13 @@ class CyprusParser:
 
     def fetch_production(self, target_datetime: Optional[datetime]) -> list:
         if target_datetime is None:
-            url = "https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/"
+            url = REALTIME_SOURCE
         else:
             # convert target datetime to local datetime
             url_date = (
                 arrow.get(target_datetime).to("Asia/Nicosia").format("DD-MM-YYYY")
             )
-            url = f"https://tsoc.org.cy/electrical-system/archive-total-daily-system-generation-on-the-transmission-system/?startdt={url_date}&enddt=%2B1days"
+            url = HISTORICAL_SOURCE.format(url_date)
 
         res = self.session.get(url)
         assert (
@@ -98,7 +101,8 @@ class CyprusParser:
 
         html = BeautifulSoup(res.text, "lxml")
 
-        capacity = self.parse_capacity(html)
+        # Capacity is only available if we fetch data from realtime url
+        capacity = self.parse_capacity(html) if url is REALTIME_SOURCE else {}
         data = self.parse_production(html, capacity)
 
         if len(data) == 0:
@@ -115,11 +119,8 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given country."""
     assert zone_key == "CY"
 
-    target_datetime = target_datetime or datetime.utcnow()
-
     parser = CyprusParser(session or Session(), logger)
-    if isinstance(target_datetime, datetime):
-        return parser.fetch_production(target_datetime)
+    return parser.fetch_production(target_datetime)
 
 
 if __name__ == "__main__":
