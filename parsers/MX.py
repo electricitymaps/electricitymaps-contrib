@@ -6,15 +6,20 @@ from io import StringIO
 from logging import Logger, getLogger
 from typing import Optional
 
-import arrow
 import pandas as pd
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import tz
+from pytz import timezone
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
-from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -65,6 +70,8 @@ MAPPING = {
     "Termica Convencional": "unknown",
     "Turbo Gas": "gas",
 }
+SOURCE = "cenace.gob.mx"
+TIMEZONE = timezone("America/Tijuana")
 
 # cache where the data for whole months is stored as soon as it has been fetched once
 DATA_CACHE = {}
@@ -139,31 +146,19 @@ def fetch_csv_for_date(dt, session: Optional[Session] = None):
     )
 
 
-def convert_production(series):
-    aggregated = {
-        "biomass": 0.0,
-        "coal": 0.0,
-        "gas": 0.0,
-        "hydro": 0.0,
-        "nuclear": 0.0,
-        "oil": 0.0,
-        "solar": 0.0,
-        "wind": 0.0,
-        "geothermal": 0.0,
-        "unknown": 0.0,
-    }
+def convert_production(series: pd.Series) -> ProductionMix:
+    mix = ProductionMix()
 
     for name, val in series.iteritems():
         name = name.strip()
         if isinstance(val, float) or isinstance(val, int):
-            target = MAPPING.get(name, "unknown")  # default to unknown
-            aggregated[target] += val
+            mix.add_value(MAPPING.get(name, "unknown"), val)
 
-    return aggregated
+    return mix
 
 
 def fetch_production(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -186,20 +181,18 @@ def fetch_production(
         df = fetch_csv_for_date(target_datetime, session=session)
         DATA_CACHE[cache_key] = df
 
-    data = []
+    production = ProductionBreakdownList(logger)
     for idx, series in df.iterrows():
-        data.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": series["instante"].to_pydatetime(),
-                "production": convert_production(series),
-                "source": "cenace.gob.mx",
-            }
+        production.append(
+            zoneKey=zone_key,
+            datetime=series["instante"].to_pydatetime(),
+            production=convert_production(series),
+            source=SOURCE,
         )
-    return data
+    return production.to_list()
 
 
-def fetch_MX_exchange(sorted_zone_keys: str, s: Session) -> float:
+def fetch_MX_exchange(sorted_zone_keys: ZoneKey, s: Session) -> float:
     """Finds current flow between two Mexican control areas."""
     req = s.get(MX_EXCHANGE_URL, headers={"User-Agent": "Mozilla/5.0"})
     soup = BeautifulSoup(req.text, "html.parser")
@@ -220,14 +213,14 @@ def fetch_MX_exchange(sorted_zone_keys: str, s: Session) -> float:
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     if sorted_zone_keys not in EXCHANGES:
         raise NotImplementedError(
@@ -237,15 +230,15 @@ def fetch_exchange(
     s = session or Session()
 
     netflow = fetch_MX_exchange(sorted_zone_keys, s)
+    exchange = ExchangeList(logger)
+    exchange.append(
+        zoneKey=sorted_zone_keys,
+        datetime=datetime.now(tz=TIMEZONE),
+        netFlow=netflow,
+        source=SOURCE,
+    )
 
-    data = {
-        "sortedZoneKeys": sorted_zone_keys,
-        "datetime": arrow.now("America/Tijuana").datetime,
-        "netFlow": netflow,
-        "source": "cenace.gob.mx",
-    }
-
-    return data
+    return exchange.to_list()
 
 
 @refetch_frequency(timedelta(hours=1))
