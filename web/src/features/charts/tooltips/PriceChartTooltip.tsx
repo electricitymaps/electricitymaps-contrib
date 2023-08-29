@@ -4,6 +4,7 @@ import { useTranslation } from 'translation/translation';
 import { timeAverageAtom } from 'utils/state/atoms';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
+import { EnergyUnits } from 'utils/units';
 
 export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -28,7 +29,7 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
       />
       <p className="flex justify-center text-base">
         <b className="mr-1">{value}</b>
-        {currency} / MWh
+        {currency} / {EnergyUnits.MEGAWATT_HOURS}
       </p>
     </div>
   );
