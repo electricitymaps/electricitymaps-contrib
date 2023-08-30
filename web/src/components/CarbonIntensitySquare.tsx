@@ -1,6 +1,7 @@
 import { animated, useSpring } from '@react-spring/web';
 import { useTranslation } from 'translation/translation';
 import { useCo2ColorScale } from '../hooks/theme';
+import { CarbonUnits } from 'utils/units';
 
 /**
  * This function finds the optimal text color based on a custom formula
@@ -55,7 +56,9 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
       </div>
       <div className="mt-2 flex flex-col items-center">
         <div className="text-sm">{__('country-panel.carbonintensity')}</div>
-        {withSubtext && <div className="text-sm">(gCO₂eq/kWh)</div>}
+        {withSubtext && (
+          <div className="text-sm">{CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}</div>
+        )}
       </div>
     </div>
   );

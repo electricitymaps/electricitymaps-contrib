@@ -315,6 +315,10 @@
     "AU": {
       "zoneName": "Australia"
     },
+    "AU-LH": {
+      "countryName": "Australia",
+      "zoneName": "Lord Howe Island"
+    },
     "AU-NSW": {
       "countryName": "Australia",
       "zoneName": "New South Wales"
@@ -1309,6 +1313,18 @@
     },
     "PH": {
       "zoneName": "Philippines"
+    },
+    "PH-LU": {
+      "countryName": "Philippines",
+      "zoneName": "Luzon"
+    },
+    "PH-MI": {
+      "countryName": "Philippines",
+      "zoneName": "Mindanao"
+    },
+    "PH-VI": {
+      "countryName": "Philippines",
+      "zoneName": "Visayas"
     },
     "PK": {
       "zoneName": "Pakistan"

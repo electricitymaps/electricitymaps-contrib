@@ -17,6 +17,7 @@ import {
   getDataBlockPositions,
   getElectricityProductionValue,
 } from './utils';
+import { PowerUnits } from 'utils/units';
 
 interface BarElectricityBreakdownChartProps {
   height: number;
@@ -94,15 +95,16 @@ function BarElectricityBreakdownChart({
     .domain([minPower, maxPower])
     .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
 
+  // TODO: use unified formatting function in the future.
   const formatTick = (t: number) => {
     const [x1, x2] = powerScale.domain();
     if (x2 - x1 <= 1) {
-      return `${t * 1e3} kW`;
+      return `${t * 1e3} ${PowerUnits.KILOWATTS}`;
     }
     if (x2 - x1 <= 1e3) {
-      return `${t} MW`;
+      return `${t} ${PowerUnits.MEGAWATTS}`;
     }
-    return `${t * 1e-3} GW`;
+    return `${t * 1e-3} ${PowerUnits.GIGAWATTS}`;
   };
 
   return (
