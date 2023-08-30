@@ -18,7 +18,6 @@ import {
   getDataBlockPositions,
   getElectricityProductionValue,
 } from './utils';
-import { PowerUnits } from 'utils/units';
 
 interface BarElectricityBreakdownChartProps {
   height: number;
@@ -96,7 +95,6 @@ function BarElectricityBreakdownChart({
     .domain([minPower, maxPower])
     .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
 
-  // TODO: use unified formatting function in the future.
   const formatTick = (t: number) => {
     // Use same unit as max value for tick with value 0
     if (t === 0) {
