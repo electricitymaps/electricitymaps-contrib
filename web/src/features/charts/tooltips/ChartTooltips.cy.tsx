@@ -1,8 +1,8 @@
+import { zoneDetailMock } from 'stories/mockData';
 import { CarbonUnits } from 'utils/units';
 import BreakdownChartTooltip from './BreakdownChartTooltip';
 import CarbonChartTooltip from './CarbonChartTooltip';
 import EmissionChartTooltip from './EmissionChartTooltip';
-import { zoneDetailMock } from 'stories/mockData';
 
 it('Carbon chart tooltip', () => {
   cy.mount(
@@ -24,7 +24,7 @@ it('Breakdown chart tooltip', () => {
 it('Emmisions chart tooltip', () => {
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
   cy.contains('Carbon emissions');
-  cy.contains(`20.39t of CO₂eq per minute`);
+  cy.contains(`20t of CO₂eq per minute`);
   cy.contains('28');
 });
 
@@ -51,6 +51,6 @@ it('Emmisions chart tooltip mobile', () => {
   cy.viewport(500, 500);
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
   cy.contains('Carbon emissions');
-  cy.contains(`20.39t of CO₂eq per minute`);
+  cy.contains(`20t of CO₂eq per minute`);
   cy.contains('28');
 });
