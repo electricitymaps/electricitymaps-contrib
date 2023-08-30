@@ -1,0 +1,329 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -62.182134,
+                    -32.140421
+                ]
+            },
+            "properties": {
+                "id": "4170422",
+                "nombre": "LIT-CEN",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "243",
+                "internacional": false,
+                "url": "flecha225"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -59.510791,
+                    -29.270577
+                ]
+            },
+            "properties": {
+                "id": "4170418",
+                "nombre": "LIT-NEA",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "858",
+                "internacional": false,
+                "url": "flecha225"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -64.993047,
+                    -29.967938
+                ]
+            },
+            "properties": {
+                "id": "4220419",
+                "nombre": "CEN-NOA",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "13",
+                "internacional": false,
+                "url": "flecha315"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.385543,
+                    -38.76666
+                ]
+            },
+            "properties": {
+                "id": "4250420",
+                "nombre": "PBA-COM",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "3074",
+                "internacional": false,
+                "url": "flecha45"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -65.324708,
+                    -35.989118
+                ]
+            },
+            "properties": {
+                "id": "4220420",
+                "nombre": "CEN-COM",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "7",
+                "internacional": false,
+                "url": "flecha90"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -68.739899,
+                    -41.994767
+                ]
+            },
+            "properties": {
+                "id": "4200111",
+                "nombre": "COM-PAT",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "962",
+                "internacional": false,
+                "url": "flecha90"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -61.896586,
+                    -29.100734
+                ]
+            },
+            "properties": {
+                "id": "4170419",
+                "nombre": "LIT-NOA",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "0",
+                "internacional": false,
+                "url": "flecha135"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.392038,
+                    -34.41615
+                ]
+            },
+            "properties": {
+                "id": "4250422",
+                "nombre": "PBA-CEN",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "0",
+                "internacional": false,
+                "url": "flecha135"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -67.07486,
+                    -33.542342
+                ]
+            },
+            "properties": {
+                "id": "4220429",
+                "nombre": "CEN-CUY",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "392",
+                "internacional": false,
+                "url": "flecha45"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -68.242399,
+                    -37.578937
+                ]
+            },
+            "properties": {
+                "id": "4290420",
+                "nombre": "CUY-COM",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "862",
+                "internacional": false,
+                "url": "flecha135"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -60.509501,
+                    -33.634523
+                ]
+            },
+            "properties": {
+                "id": "4250417",
+                "nombre": "PBA-LIT",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "28",
+                "internacional": false,
+                "url": "flecha90"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -67.851574,
+                    -30.069604
+                ]
+            },
+            "properties": {
+                "id": "4290419",
+                "nombre": "CUY-NOA",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "0",
+                "internacional": false,
+                "url": "flecha45"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -61.71216,
+                    -25.805339
+                ]
+            },
+            "properties": {
+                "id": "4180419",
+                "nombre": "NEA-NOA",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "338",
+                "internacional": false,
+                "url": "flecha180"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.0,
+                    -26.0
+                ]
+            },
+            "properties": {
+                "id": "1002056",
+                "nombre": "ARG-CHI",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "200",
+                "internacional": true,
+                "url": "flecha180"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -64.65,
+                    -20.47
+                ]
+            },
+            "properties": {
+                "id": "1002599",
+                "nombre": "ARG-BOL",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "40",
+                "internacional": true,
+                "url": "flecha270"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -52.400971,
+                    -25.43659
+                ]
+            },
+            "properties": {
+                "id": "1002055",
+                "nombre": "ARG-BRA",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "0",
+                "internacional": true,
+                "url": "flecha225"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -58.615612,
+                    -23.057355
+                ]
+            },
+            "properties": {
+                "id": "1002595",
+                "nombre": "ARG-PAR",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "28",
+                "internacional": true,
+                "url": "flecha225"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -56.116736,
+                    -32.498692
+                ]
+            },
+            "properties": {
+                "id": "1002598",
+                "nombre": "ARG-URU",
+                "fecha": "2023-08-30T02:45:00.000-0300",
+                "text": "0",
+                "internacional": true,
+                "url": "flecha180"
+            }
+        }
+    ]
+}
