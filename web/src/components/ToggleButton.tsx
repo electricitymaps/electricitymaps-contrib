@@ -41,14 +41,12 @@ export default function ToggleButton({
   return (
     <div
       className={twMerge(
-        'z-10 flex h-9 rounded-full bg-gray-200/80 px-1 shadow dark:bg-gray-800/80',
+        'z-10 flex h-9 min-w-fit rounded-full bg-gray-200/80 px-1 shadow dark:bg-gray-800/80',
         transparentBackground ? 'backdrop-blur-sm' : 'bg-gray-200'
       )}
     >
       <ToggleGroupRoot
-        className={
-          'flex-start flex flex-grow flex-row items-center justify-between self-center rounded-full'
-        }
+        className={'flex flex-grow flex-row items-center justify-between rounded-full'}
         type="single"
         aria-label="Toggle between modes"
         value={selectedOption}
