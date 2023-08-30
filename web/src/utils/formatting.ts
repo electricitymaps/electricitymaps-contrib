@@ -1,23 +1,8 @@
 import * as d3 from 'd3-format';
-import { translate } from '../translation/translation';
 import { TimeAverages } from './constants';
 import { EnergyUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 2;
-
-export const formatCo2 = function (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) {
-  let value = d;
-  // Assume gCO₂ / h input
-  value /= 60; // Convert to gCO₂ / min
-  value /= 1e6; // Convert to tCO₂ / min
-  if (d == undefined || Number.isNaN(d)) {
-    return d;
-  }
-
-  return value >= 1
-    ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
-    : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
-};
 
 export const formatPower = function (
   d: number,
