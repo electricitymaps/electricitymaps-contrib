@@ -1,4 +1,3 @@
-import logging
 from json import loads
 
 from pkg_resources import resource_string
