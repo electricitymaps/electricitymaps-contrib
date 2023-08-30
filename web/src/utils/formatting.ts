@@ -85,14 +85,14 @@ const scalePower = function (maxPower: number | undefined) {
     };
   }
 
-  if (maxPower < 1e6) {
+  if (value < 1e6) {
     return {
       unit: EnergyUnits.GIGAWATT_HOURS,
       formattingFactor: 1e3,
     };
   }
 
-  if (maxPower < 1e9) {
+  if (value < 1e9) {
     return {
       unit: EnergyUnits.TERAWATT_HOURS,
       formattingFactor: 1e6,
