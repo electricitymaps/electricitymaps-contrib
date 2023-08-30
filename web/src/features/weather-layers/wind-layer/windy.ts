@@ -16,9 +16,9 @@
     interpolation and animation process.
 */
 
+import { Capacitor } from '@capacitor/core';
 import { Point } from 'mapbox-gl';
 import { windColor } from './scales';
-import { Capacitor } from '@capacitor/core';
 
 var Windy = function (params: any) {
   const VELOCITY_SCALE = 1 / 50_000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
@@ -437,7 +437,7 @@ var Windy = function (params: any) {
       return [];
     });
 
-    const particleCount = Math.round(bounds.width * PARTICLE_MULTIPLIER * zoomScaling());
+    let particleCount = Math.round(bounds.width * PARTICLE_MULTIPLIER * zoomScaling());
     if (isMobile()) {
       particleCount *= PARTICLE_REDUCTION;
     }

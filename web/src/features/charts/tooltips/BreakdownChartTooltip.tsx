@@ -6,8 +6,12 @@ import { useAtom } from 'jotai';
 import { renderToString } from 'react-dom/server';
 import { getZoneName, useTranslation } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { TimeAverages, modeColor } from 'utils/constants';
-import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
+import { Mode, TimeAverages, modeColor } from 'utils/constants';
+import {
+  displayByEmissionsAtom,
+  timeAverageAtom,
+  productionConsumptionAtom,
+} from 'utils/state/atoms';
 import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
 import { InnerAreaGraphTooltipProps, LayerKey } from '../types';
@@ -16,7 +20,8 @@ import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 function calculateTooltipContentData(
   selectedLayerKey: LayerKey,
   zoneDetail: ZoneDetail,
-  displayByEmissions: boolean
+  displayByEmissions: boolean,
+  mixMode: Mode
 ) {
   // If layer key is not a generation type, it is an exchange
   const isExchange = !getGenerationTypeKey(selectedLayerKey);
@@ -26,7 +31,8 @@ function calculateTooltipContentData(
     : getProductionTooltipData(
         selectedLayerKey as ElectricityModeType,
         zoneDetail,
-        displayByEmissions
+        displayByEmissions,
+        mixMode
       );
 }
 
@@ -36,6 +42,7 @@ export default function BreakdownChartTooltip({
 }: InnerAreaGraphTooltipProps) {
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
+  const [mixMode] = useAtom(productionConsumptionAtom);
 
   if (!zoneDetail || !selectedLayerKey) {
     return null;
@@ -47,7 +54,8 @@ export default function BreakdownChartTooltip({
   const contentData = calculateTooltipContentData(
     selectedLayerKey,
     zoneDetail,
-    displayByEmissions
+    displayByEmissions,
+    mixMode
   );
 
   const getOriginTranslateKey = () => {
@@ -91,7 +99,7 @@ interface BreakdownChartTooltipContentProperties {
   zoneKey: string;
   originTranslateKey: string;
   isExchange: boolean;
-  selectedLayerKey: string;
+  selectedLayerKey: LayerKey;
   co2IntensitySource?: string;
   storage?: Maybe<number>;
   production?: Maybe<number>;
@@ -136,10 +144,12 @@ export function BreakdownChartTooltipContent({
     ? getZoneName(selectedLayerKey)
     : __(selectedLayerKey).charAt(0).toUpperCase() + __(selectedLayerKey).slice(1);
   return (
-    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:bg-gray-900 sm:w-[410px]">
+    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]">
       <AreaGraphToolTipHeader
         squareColor={
-          isExchange ? co2ColorScale(co2Intensity) : modeColor[selectedLayerKey]
+          isExchange
+            ? co2ColorScale(co2Intensity)
+            : modeColor[selectedLayerKey as ElectricityModeType]
         }
         datetime={datetime}
         timeAverage={timeAverage}

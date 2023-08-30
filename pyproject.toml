@@ -36,8 +36,8 @@ isort = "5.12.0"
 PyYAML = "^6.0"
 openpyxl = {version="^3.1.2", optional=true}
 pydataxm = {version="^0.3.2", optional=true}
-odfpy = {version="^1.4.1", optional=true}
 ruamel-yaml = "^0.17.24"
+odfpy = {version = "^1.4.1", optional = true}
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
@@ -81,7 +81,8 @@ parsers = [
     "tqdm",
     "openpyxl",
     "pydataxm",
-    "odfpy"]
+    "odfpy"
+]
 
 
 validators = [
@@ -92,6 +93,10 @@ validators = [
 scripts = [
     "xmltodict"
 ]
+
+[tool.poetry.group.dev.dependencies]
+snapshottest = "^0.6.0"
+pytest = "^7.4.0"
 
 [tool.isort]
 profile = "black"

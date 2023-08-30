@@ -1,5 +1,6 @@
 import * as d3 from 'd3-format';
 import { TimeAverages } from './constants';
+import { PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 2;
 
@@ -24,19 +25,18 @@ export const formatPowerWithSameUnit = function (
 ) {
   const { unit, formattingFactor } = scalePower(valueToMatch);
   return `${d3.format(`.${numberDigits}~f`)(d / formattingFactor)} ${unit}`;
-};
 
-  let value = d;
-  // Assume gCO₂ / h input
-  value /= 60; // Convert to gCO₂ / min
-  value /= 1e6; // Convert to tCO₂ / min
-  if (d == undefined || Number.isNaN(d)) {
-    return d;
-  }
+  // let value = d;
+  // // Assume gCO₂ / h input
+  // value /= 60; // Convert to gCO₂ / min
+  // value /= 1e6; // Convert to tCO₂ / min
+  // if (d == undefined || Number.isNaN(d)) {
+  //   return d;
+  // }
 
-  return value >= 1
-    ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
-    : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
+  // return value >= 1
+  //   ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
+  //   : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
 };
 
 const scalePower = function (maxPower: number | undefined) {
@@ -47,31 +47,42 @@ const scalePower = function (maxPower: number | undefined) {
       formattingFactor: 1e3,
     };
   }
+  // Use absolute value to handle negative values
+  const value = Math.abs(maxPower);
 
-  if (maxPower < 1) {
+  if (value < 1) {
     return {
-      unit: 'kWh',
+      unit: PowerUnits.KILOWATTS,
       formattingFactor: 1e-3,
     };
   }
 
-  if (maxPower < 1e3) {
+  if (value < 1e3) {
     return {
-      unit: 'MWh',
+      unit: PowerUnits.MEGAWATTS,
       formattingFactor: 1,
     };
   }
 
-  if (maxPower < 1e6) {
+  if (value < 1e6) {
     return {
-      unit: 'GWh',
+      unit: PowerUnits.GIGAWATTS,
+
       formattingFactor: 1e3,
     };
   }
 
+  if (value < 1e9) {
+    return {
+      unit: PowerUnits.TERAWATTS,
+
+      formattingFactor: 1e6,
+    };
+  }
+
   return {
-    unit: 'TWh',
-    formattingFactor: 1e6,
+    unit: PowerUnits.PETAWATTS,
+    formattingFactor: 1e9,
   };
 };
 
