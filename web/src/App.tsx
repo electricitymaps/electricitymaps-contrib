@@ -17,6 +17,7 @@ import { App as Cap } from '@capacitor/app';
 import trackEvent from 'utils/analytics';
 import { useDarkMode } from 'hooks/theme';
 import useGetState from 'api/getState';
+import { useTranslation } from 'translation/translation';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -64,6 +65,7 @@ export default function App(): ReactElement {
       });
     }
   }, []);
+  const { __ } = useTranslation();
 
   return (
     <Suspense fallback={<div />}>
@@ -74,10 +76,10 @@ export default function App(): ReactElement {
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               {isSuccess && isNewVersionAvailable && (
                 <Toast
-                  title="A new app version is available"
+                  title={__('misc.newversion')}
                   toastAction={handleReload}
                   isCloseable={true}
-                  toastActionText="Reload"
+                  toastActionText={__('misc.reload')}
                 />
               )}
               <LoadingOverlay />
