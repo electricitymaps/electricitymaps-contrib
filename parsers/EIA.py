@@ -447,7 +447,7 @@ def create_production_storage(
     production_value = production_point["value"]
     production_mix = ProductionMix()
     storage_mix = StorageMix()
-    if production_value > 0:
+    if production_value >= 0:
         production_mix.add_value(fuel_type, production_value)
         return production_mix, None
     if fuel_type == "hydro":
