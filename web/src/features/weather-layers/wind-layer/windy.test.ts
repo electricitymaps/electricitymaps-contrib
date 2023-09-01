@@ -1,3 +1,4 @@
+import { round } from 'utils/helpers';
 import { bilinearInterpolateVector } from './windy';
 
 describe('bilinearInterpolateVector', () => {
@@ -8,8 +9,16 @@ describe('bilinearInterpolateVector', () => {
     const g11 = [7, 8];
     const x = 0.5;
     const y = 0.5;
-    const result = bilinearInterpolateVector(x, y, g00, g10, g01, g11);
-    expect(result).toEqual([4, 5, Math.sqrt(41)]);
+    const [result1, result2, result3] = bilinearInterpolateVector(
+      x,
+      y,
+      g00,
+      g10,
+      g01,
+      g11
+    );
+    const result = [result1, result2, round(result3, 13)];
+    expect(result).toEqual([4, 5, round(Math.sqrt(41), 13)]);
   });
 
   it('should interpolate a vector at the top left corner of the square', () => {
@@ -19,8 +28,16 @@ describe('bilinearInterpolateVector', () => {
     const g11 = [7, 8];
     const x = 0;
     const y = 0;
-    const result = bilinearInterpolateVector(x, y, g00, g10, g01, g11);
-    expect(result).toEqual([1, 2, Math.sqrt(5)]);
+    const [result1, result2, result3] = bilinearInterpolateVector(
+      x,
+      y,
+      g00,
+      g10,
+      g01,
+      g11
+    );
+    const result = [result1, result2, round(result3, 13)];
+    expect(result).toEqual([1, 2, round(Math.sqrt(5), 13)]);
   });
 
   it('should interpolate a vector at the top right corner of the square', () => {
@@ -30,7 +47,15 @@ describe('bilinearInterpolateVector', () => {
     const g11 = [7, 8];
     const x = 1;
     const y = 0;
-    const result = bilinearInterpolateVector(x, y, g00, g10, g01, g11);
+    const [result1, result2, result3] = bilinearInterpolateVector(
+      x,
+      y,
+      g00,
+      g10,
+      g01,
+      g11
+    );
+    const result = [result1, result2, round(result3, 13)];
     expect(result).toEqual([3, 4, 5]);
   });
 
@@ -41,8 +66,16 @@ describe('bilinearInterpolateVector', () => {
     const g11 = [7, 8];
     const x = 0;
     const y = 1;
-    const result = bilinearInterpolateVector(x, y, g00, g10, g01, g11);
-    expect(result).toEqual([5, 6, Math.sqrt(61)]);
+    const [result1, result2, result3] = bilinearInterpolateVector(
+      x,
+      y,
+      g00,
+      g10,
+      g01,
+      g11
+    );
+    const result = [result1, result2, round(result3, 13)];
+    expect(result).toEqual([5, 6, round(Math.sqrt(61), 13)]);
   });
 
   it('should interpolate a vector at the bottom right corner of the square', () => {
@@ -52,7 +85,15 @@ describe('bilinearInterpolateVector', () => {
     const g11 = [7, 8];
     const x = 1;
     const y = 1;
-    const result = bilinearInterpolateVector(x, y, g00, g10, g01, g11);
-    expect(result).toEqual([7, 8, Math.sqrt(113)]);
+    const [result1, result2, result3] = bilinearInterpolateVector(
+      x,
+      y,
+      g00,
+      g10,
+      g01,
+      g11
+    );
+    const result = [result1, result2, round(result3, 13)];
+    expect(result).toEqual([7, 8, round(Math.sqrt(113), 13)]);
   });
 });

@@ -26,7 +26,7 @@ const MAX_PARTICLE_AGE = 100; // max number of frames a particle is drawn before
 const PARTICLE_LINE_WIDTH = 2; // line width of a drawn particle
 const PARTICLE_MULTIPLIER = 8; // particle count scalar (completely arbitrary--this values looks nice)
 const PARTICLE_REDUCTION = 0.75; // reduce particle count to this much of normal for mobile devices
-const NULL_WIND_VECTOR = [NaN, NaN, null]; // singleton for no wind in the form: [u, v, magnitude]
+const NULL_WIND_VECTOR = [Number.NaN, Number.NaN, null]; // singleton for no wind in the form: [u, v, magnitude]
 
 // interpolation for vectors like wind (u,v,m)
 export const bilinearInterpolateVector = (
@@ -45,7 +45,7 @@ export const bilinearInterpolateVector = (
     d = x * y;
   const u = g00[0] * a + g10[0] * b + g01[0] * c + g11[0] * d;
   const v = g00[1] * a + g10[1] * b + g01[1] * c + g11[1] * d;
-  return [u, v, Math.sqrt(u * u + v * v)];
+  return [u, v, Math.hypot(u, v)];
 };
 
 const createWindBuilder = (
