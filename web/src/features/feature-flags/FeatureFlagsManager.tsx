@@ -8,12 +8,9 @@ import { FeatureFlags } from './types';
 function Content({ features }: { features: FeatureFlags }) {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: (_key: string) => fetch('/feature-flags'),
+    // Leaving an empty function here as we only want to apply mutation locally
+    mutationFn: (_key: string) => Promise.resolve(),
     onMutate: async (key) => {
-      // Cancel any outgoing refetches
-      // (so they don't overwrite our optimistic update)
-      await queryClient.cancelQueries({ queryKey: [QUERY_KEYS.FEATURE_FLAGS] });
-
       // Snapshot the previous value
       const previousState = queryClient.getQueryData([QUERY_KEYS.FEATURE_FLAGS]);
 
