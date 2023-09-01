@@ -1,3 +1,5 @@
+import { App as Cap } from '@capacitor/app';
+import { Capacitor } from '@capacitor/core';
 import { ToastProvider } from '@radix-ui/react-toast';
 import * as Sentry from '@sentry/react';
 import { useGetAppVersion } from 'api/getAppVersion';
@@ -12,12 +14,9 @@ import FAQModal from 'features/modals/FAQModal';
 import InfoModal from 'features/modals/InfoModal';
 import SettingsModal from 'features/modals/SettingsModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
-import { ReactElement, Suspense, lazy, useEffect, useLayoutEffect } from 'react';
-import { Capacitor } from '@capacitor/core';
-import { App as Cap } from '@capacitor/app';
-import trackEvent from 'utils/analytics';
 import { useDarkMode } from 'hooks/theme';
-import useGetState from 'api/getState';
+import { ReactElement, Suspense, lazy, useEffect, useLayoutEffect } from 'react';
+import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -29,6 +28,14 @@ if (isProduction) {
     isNative: Capacitor.isNativePlatform(),
     platform: Capacitor.getPlatform(),
   });
+}
+
+function LoadingScreen() {
+  return (
+    <main className="fixed flex h-screen w-screen flex-col pt-[56px]">
+      <LoadingOverlay />
+    </main>
+  );
 }
 
 const handleReload = () => {
@@ -67,7 +74,7 @@ export default function App(): ReactElement {
   }, []);
 
   return (
-    <Suspense fallback={<div />}>
+    <Suspense fallback={<LoadingScreen />}>
       <main className="fixed flex h-screen w-screen flex-col">
         <ToastProvider duration={20_000}>
           <Header />
