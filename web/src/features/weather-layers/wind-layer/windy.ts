@@ -67,19 +67,14 @@ const createWindBuilder = (
 const createBuilder = (data: any[]) => {
   let uComp = null,
     vComp = null;
-
-  data.forEach(function (record: {
-    header: { parameterCategory: string; parameterNumber: string };
-  }) {
-    switch (record.header.parameterCategory + ',' + record.header.parameterNumber) {
-      case '2,2':
-        uComp = record;
-        break;
-      case '2,3':
-        vComp = record;
-        break;
+  for (const record of data) {
+    const { parameterCategory, parameterNumber } = record.header;
+    if (parameterCategory === 2 && parameterNumber === 2) {
+      uComp = record;
+    } else if (parameterCategory === 2 && parameterNumber === 3) {
+      vComp = record;
     }
-  });
+  }
 
   return createWindBuilder(uComp, vComp);
 };
@@ -95,7 +90,7 @@ const isValue = (x: null | undefined): boolean => {
  * @returns {Number} returns remainder of floored division, i.e., floor(a / n). Useful for consistent modulo
  * of negative numbers. See http://en.wikipedia.org/wiki/Modulo_operation.
  */
-const floorMod = (a: number, n: number): number => {
+const floorModulus = (a: number, n: number): number => {
   return a - n * Math.floor(a / n);
 };
 
@@ -108,25 +103,25 @@ const buildGrid = (
 ) => {
   const builder = createBuilder(data);
 
-  var header = builder.header;
-  var λ0 = header.lo1,
+  const header = builder.header;
+  const λ0 = header.lo1,
     φ0 = header.la1; // the grid's origin (e.g., 0.0E, 90.0N)
-  var Δλ = header.dx,
+  const Δλ = header.dx,
     Δφ = header.dy; // distance between grid points (e.g., 2.5 deg lon, 2.5 deg lat)
-  var ni = header.nx,
+  const ni = header.nx,
     nj = header.ny; // number of grid points W-E and N-S (e.g., 144 x 73)
-  var date = new Date(header.refTime);
+  const date = new Date(header.refTime);
   date.setHours(date.getHours() + header.forecastTime);
 
   // Scan mode 0 assumed. Longitude increases from λ0, and latitude decreases from φ0.
   // http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table3-4.shtml
-  var grid: any[] = [],
-    p = 0;
-  var isContinuous = Math.floor(ni * Δλ) >= 360;
+  const grid: any[] = [];
+  let p = 0;
+  const isContinuous = Math.floor(ni * Δλ) >= 360;
   for (var j = 0; j < nj; j++) {
     var row = [];
-    for (var i = 0; i < ni; i++, p++) {
-      row[i] = builder.data(p);
+    for (let index = 0; index < ni; index++, p++) {
+      row[index] = builder.data(p);
     }
     if (isContinuous) {
       // For wrapped grids, duplicate first column as last column to simplify interpolation logic
@@ -136,21 +131,21 @@ const buildGrid = (
   }
 
   function interpolate(λ: number, φ: number) {
-    var i = floorMod(λ - λ0, 360) / Δλ; // calculate longitude index in wrapped range [0, 360)
-    var j = (φ0 - φ) / Δφ; // calculate latitude index in direction +90 to -90
+    const i = floorModulus(λ - λ0, 360) / Δλ; // calculate longitude index in wrapped range [0, 360)
+    const j = (φ0 - φ) / Δφ; // calculate latitude index in direction +90 to -90
 
-    var fi = Math.floor(i),
+    const fi = Math.floor(i),
       ci = fi + 1;
-    var fj = Math.floor(j),
+    const fj = Math.floor(j),
       cj = fj + 1;
 
-    var row;
+    let row;
     if ((row = grid[fj])) {
-      var g00 = row[fi];
-      var g10 = row[ci];
+      const g00 = row[fi];
+      const g10 = row[ci];
       if (isValue(g00) && isValue(g10) && (row = grid[cj])) {
-        var g01 = row[fi];
-        var g11 = row[ci];
+        const g01 = row[fi];
+        const g11 = row[ci];
         if (isValue(g01) && isValue(g11)) {
           // All four points found, so interpolate the value.
           return builder.interpolate(i - fi, j - fj, g00, g10, g01, g11);
@@ -174,6 +169,65 @@ const buildBounds = (bounds: any[], width: any, height: number) => {
   return { x: x, y: y, yMax: yMax, width: width, height: height };
 };
 
+const project = (params: any, lat: any, lon: any) => {
+  // both in radians, use deg2rad if necessary
+  const projected = params.map.project([lon, lat]);
+  return [projected.x, projected.y];
+};
+
+const distortion = (params: any, λ: number, φ: number, x: number, y: number) => {
+  const τ = 2 * Math.PI;
+  const H = Math.pow(10, -5.2);
+  const hλ = λ < 0 ? H : -H;
+  const hφ = φ < 0 ? H : -H;
+
+  const pλ = project(params, φ, λ + hλ);
+  const pφ = project(params, φ + hφ, λ);
+
+  // Meridian scale factor (see Snyder, equation 4-3), where R = 1. This handles issue where length of 1º λ
+  // changes depending on φ. Without this, there is a pinching effect at the poles.
+  const k = Math.cos((φ / 360) * τ);
+  return [(pλ[0] - x) / hλ / k, (pλ[1] - y) / hλ / k, (pφ[0] - x) / hφ, (pφ[1] - y) / hφ];
+};
+
+/**
+ * Calculate distortion of the wind vector caused by the shape of the projection at point (x, y). The wind
+ * vector is modified in place and returned by this function.
+ */
+const distort = (
+  params: any,
+  λ: number,
+  φ: number,
+  x: number,
+  y: number,
+  scale: number,
+  wind: [number, number]
+) => {
+  const u = wind[0] * scale;
+  const v = wind[1] * scale;
+  const d = distortion(params, λ, φ, x, y);
+
+  // Scale distortion vectors by u and v, then add.
+  wind[0] = d[0] * u + d[2] * v;
+  wind[1] = d[1] * u + d[3] * v;
+  return wind;
+};
+
+export function windIntensityColorScale(maxWind: number) {
+  const result = [...windColor.range()];
+  /*
+        var result = [];
+        for (var j = 225; j >= 100; j = j - step) {
+          result.push(asColorStyle(j, j, j, 1));
+        }
+        */
+  result.indexFor = function (m: number) {
+    // map wind speed to a style
+    return Math.floor((Math.min(m, maxWind) / maxWind) * (this.length - 1));
+  };
+  return result;
+}
+
 var Windy = function (params: any) {
   /**
    * @returns {Boolean} true if agent is probably a mobile device. Don't really care if this is accurate.
@@ -185,48 +239,6 @@ var Windy = function (params: any) {
   };
   const isIphone =
     Capacitor.getPlatform() === 'ios' || /iPad|iPhone|iPod/.test(navigator.userAgent);
-  /**
-   * Calculate distortion of the wind vector caused by the shape of the projection at point (x, y). The wind
-   * vector is modified in place and returned by this function.
-   */
-  const distort = (
-    λ: number,
-    φ: number,
-    x: number,
-    y: number,
-    scale: number,
-    wind: number[],
-    windy: any
-  ) => {
-    const u = wind[0] * scale;
-    const v = wind[1] * scale;
-    const d = distortion(λ, φ, x, y, windy);
-
-    // Scale distortion vectors by u and v, then add.
-    wind[0] = d[0] * u + d[2] * v;
-    wind[1] = d[1] * u + d[3] * v;
-    return wind;
-  };
-
-  const distortion = (λ: number, φ: number, x: number, y: number, windy: any) => {
-    const τ = 2 * Math.PI;
-    const H = Math.pow(10, -5.2);
-    const hλ = λ < 0 ? H : -H;
-    const hφ = φ < 0 ? H : -H;
-
-    const pλ = project(φ, λ + hλ, windy);
-    const pφ = project(φ + hφ, λ, windy);
-
-    // Meridian scale factor (see Snyder, equation 4-3), where R = 1. This handles issue where length of 1º λ
-    // changes depending on φ. Without this, there is a pinching effect at the poles.
-    const k = Math.cos((φ / 360) * τ);
-    return [
-      (pλ[0] - x) / hλ / k,
-      (pλ[1] - y) / hλ / k,
-      (pφ[0] - x) / hφ,
-      (pφ[1] - y) / hφ,
-    ];
-  };
 
   var createField = function (
     columns: any[],
@@ -283,12 +295,6 @@ var Windy = function (params: any) {
     return [obj.lng, obj.lat];
   };
 
-  var project = function (lat: any, lon: any, windy: any) {
-    // both in radians, use deg2rad if neccessary
-    const projected = params.map.project([lon, lat]);
-    return [projected.x, projected.y];
-  };
-
   const zoomScaling = function () {
     return 1 / Math.sqrt(params.map.transform.scale);
   };
@@ -322,7 +328,7 @@ var Windy = function (params: any) {
           if (isFinite(λ)) {
             var wind = grid.interpolate(λ, φ);
             if (wind) {
-              wind = distort(λ, φ, x, y, velocityScale, wind, extent);
+              wind = distort(params, λ, φ, x, y, velocityScale, wind);
               column[y + 1] = column[y] = wind;
             }
           }
@@ -354,63 +360,7 @@ var Windy = function (params: any) {
       randomize: any;
     }
   ) {
-    function asColorStyle(r: any, g: any, b: any, a: string) {
-      return 'rgba(' + 243 + ', ' + 243 + ', ' + 238 + ', ' + a + ')';
-    }
-
-    function hexToR(h: any) {
-      return parseInt(cutHex(h).substring(0, 2), 16);
-    }
-    function hexToG(h: any) {
-      return parseInt(cutHex(h).substring(2, 4), 16);
-    }
-    function hexToB(h: any) {
-      return parseInt(cutHex(h).substring(4, 6), 16);
-    }
-    function cutHex(h: string) {
-      return h.charAt(0) == '#' ? h.substring(1, 7) : h;
-    }
-
-    function windIntensityColorScale(step: number, maxWind: number) {
-      var result = [
-        /* blue to red
-          "rgba(" + hexToR('#178be7') + ", " + hexToG('#178be7') + ", " + hexToB('#178be7') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#8888bd') + ", " + hexToG('#8888bd') + ", " + hexToB('#8888bd') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#b28499') + ", " + hexToG('#b28499') + ", " + hexToB('#b28499') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#cc7e78') + ", " + hexToG('#cc7e78') + ", " + hexToB('#cc7e78') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#de765b') + ", " + hexToG('#de765b') + ", " + hexToB('#de765b') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#ec6c42') + ", " + hexToG('#ec6c42') + ", " + hexToB('#ec6c42') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#f55f2c') + ", " + hexToG('#f55f2c') + ", " + hexToB('#f55f2c') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#fb4f17') + ", " + hexToG('#fb4f17') + ", " + hexToB('#fb4f17') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#fe3705') + ", " + hexToG('#fe3705') + ", " + hexToB('#fe3705') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#ff0000') + ", " + hexToG('#ff0000') + ", " + hexToB('#ff0000') + ", " + 0.5 + ")"
-          // */
-        // "rgba(" + hexToR('#00ffff') + ", " + hexToG('#00ffff') + ", " + hexToB('#00ffff') + ", " + 0.1 + ")",
-        // "rgba(" + hexToR('#64f0ff') + ", " + hexToG('#64f0ff') + ", " + hexToB('#64f0ff') + ", " + 0.2 + ")",
-        // "rgba(" + hexToR('#87e1ff') + ", " + hexToG('#87e1ff') + ", " + hexToB('#87e1ff') + ", " + 0.3 + ")",
-        // "rgba(" + hexToR('#a0d0ff') + ", " + hexToG('#a0d0ff') + ", " + hexToB('#a0d0ff') + ", " + 0.5 + ")",
-        // "rgba(" + hexToR('#b5c0ff') + ", " + hexToG('#b5c0ff') + ", " + hexToB('#b5c0ff') + ", " + 0.6 + ")",
-        // "rgba(" + hexToR('#c6adff') + ", " + hexToG('#c6adff') + ", " + hexToB('#c6adff') + ", " + 1.0 + ")",
-        // "rgba(" + hexToR('#d49bff') + ", " + hexToG('#d49bff') + ", " + hexToB('#d49bff') + ", " + 1.0 + ")",
-        // "rgba(" + hexToR('#e185ff') + ", " + hexToG('#e185ff') + ", " + hexToB('#e185ff') + ", " + 1.0 + ")",
-        // "rgba(" + hexToR('#ec6dff') + ", " + hexToG('#ec6dff') + ", " + hexToB('#ec6dff') + ", " + 1.0 + ")",
-        // "rgba(" + hexToR('#ff1edb') + ", " + hexToG('#ff1edb') + ", " + hexToB('#ff1edb') + ", " + 1.0 + ")"
-        ...windColor.range(),
-      ];
-      /*
-        var result = [];
-        for (var j = 225; j >= 100; j = j - step) {
-          result.push(asColorStyle(j, j, j, 1));
-        }
-        */
-      result.indexFor = function (m: number) {
-        // map wind speed to a style
-        return Math.floor((Math.min(m, maxWind) / maxWind) * (this.length - 1));
-      };
-      return result;
-    }
-
-    var colorStyles = windIntensityColorScale(INTENSITY_SCALE_STEP, MAX_WIND_INTENSITY);
+    var colorStyles = windIntensityColorScale(MAX_WIND_INTENSITY);
     var buckets = colorStyles.map(function () {
       return [];
     });
@@ -428,10 +378,10 @@ var Windy = function (params: any) {
     }
 
     function evolve() {
-      buckets.forEach(function (bucket) {
+      for (const bucket of buckets) {
         bucket.length = 0;
-      });
-      particles.forEach(function (particle) {
+      }
+      for (const particle of particles) {
         if (particle.age > MAX_PARTICLE_AGE) {
           field.randomize(particle).age = 0;
         }
@@ -456,7 +406,7 @@ var Windy = function (params: any) {
           }
         }
         particle.age += 1;
-      });
+      }
     }
 
     var g = params.canvas.getContext('2d');
@@ -481,20 +431,21 @@ var Windy = function (params: any) {
       g.globalAlpha = 1;
 
       // Draw new particle trails.
-      buckets.forEach(function (bucket, i) {
+
+      for (const bucket of buckets) {
         if (bucket.length > 0) {
           g.beginPath();
-          g.strokeStyle = colorStyles[i];
-          g.lineWidth = 1 + 0.25 * i;
-          bucket.forEach(function (particle) {
+          g.strokeStyle = colorStyles[buckets.indexOf(bucket)];
+          g.lineWidth = 1 + 0.25 * buckets.indexOf(bucket);
+          for (const particle of bucket) {
             g.moveTo(particle.x, particle.y);
             g.lineTo(particle.xt, particle.yt);
             particle.x = particle.xt;
             particle.y = particle.yt;
-          });
+          }
           g.stroke();
         }
-      });
+      }
     }
 
     function frame() {
@@ -509,9 +460,9 @@ var Windy = function (params: any) {
   };
 
   var windy: {
-    paused: any;
+    paused: boolean;
     animationRequest?: any;
-    started: any;
+    started: boolean;
     field?: any;
     params?: any;
     start: (bounds: any, width: any, height: any, extent: any) => void;
