@@ -1,6 +1,7 @@
 import { Button } from 'components/Button';
 import { isInfoModalOpenAtom, isSettingsModalOpenAtom } from 'features/modals/modalAtoms';
 import { useAtom, useSetAtom } from 'jotai';
+import { useTransition } from 'react';
 import { FiWind } from 'react-icons/fi';
 import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
 import { HiCog6Tooth, HiOutlineInformationCircle } from 'react-icons/hi2';
@@ -67,6 +68,7 @@ export const weatherButtonMap = {
 
 function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
   const [theme] = useAtom(themeAtom);
+  const [, startTransition] = useTransition();
   const { __ } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
   const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
@@ -88,7 +90,9 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       trackEvent(`${weatherId} Enabled`);
     }
 
-    setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
+    startTransition(() => {
+      setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
+    });
   };
 
   return (

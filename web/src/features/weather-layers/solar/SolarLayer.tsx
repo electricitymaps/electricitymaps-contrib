@@ -1,8 +1,7 @@
 import { useGetSolar } from 'api/getWeatherData';
-import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtom, useSetAtom } from 'jotai';
 
-import { useEffect } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { ToggleOptions } from 'utils/constants';
 import {
@@ -10,7 +9,6 @@ import {
   solarLayerEnabledAtom,
   solarLayerLoadingAtom,
 } from 'utils/state/atoms';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import { stackBlurImageOpacity } from './stackBlurImageOpacity';
 import {
   opacityToSolarIntensity,
@@ -18,8 +16,24 @@ import {
   solarIntensityToOpacity,
 } from './utils';
 
+const RADIANS_PER_DEGREE = Math.PI / 180;
+const DEGREES_PER_RADIAN = 180 / Math.PI;
+
+function gudermannian(y: number): number {
+  return Math.atan(Math.sinh(y)) * DEGREES_PER_RADIAN;
+}
+function convertRange(value: number, r1: [number, number], r2: [number, number]): number {
+  return ((value - r1[0]) * (r2[1] - r2[0])) / (r1[1] - r1[0]) + r2[0];
+}
+function convertYToLat(yMax: number, y: number): number {
+  return convertRange(
+    y,
+    [0, yMax],
+    [90 * RADIANS_PER_DEGREE * 2, -90 * RADIANS_PER_DEGREE * 2]
+  );
+}
+
 export default function SolarLayer({ map }: { map?: MapboxMap }) {
-  const [isMapMoving] = useAtom(mapMovingAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [solarLayerToggle] = useAtom(solarLayerEnabledAtom);
   const setIsLoadingSolarLayer = useSetAtom(solarLayerLoadingAtom);
@@ -31,66 +45,115 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   });
   const solarData = solarDataArray?.[0];
 
-  const { ref, node, width, height } = useReferenceWidthHeightObserver();
-  const isVisible = isSuccess && !isMapMoving && isSolarLayerEnabled;
+  const isVisibleReference = useRef(false);
+  isVisibleReference.current = isSuccess && isSolarLayerEnabled;
+
+  const canvasScale = 4;
+  const node: HTMLCanvasElement = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    // wrap around Earth three times to avoid a seam where 180 and -180 meet
+    canvas.width = 3 * canvasScale * (solarData?.header.nx ?? 360);
+    canvas.height = canvasScale * (solarData?.header.ny ?? 180);
+    return canvas;
+  }, [solarData?.header.nx, solarData?.header.ny]);
+
+  useEffect(() => {
+    if (!node || !map) {
+      return;
+    }
+    const north = gudermannian(convertYToLat(node.height - 1, 0));
+    const south = gudermannian(convertYToLat(node.height - 1, node.height - 1));
+    map.addSource('solar', {
+      type: 'canvas',
+      canvas: node,
+      coordinates: [
+        [-540, north],
+        [539.999, north],
+        [539.999, south],
+        [-540, south],
+      ],
+    });
+    return () => {
+      if (map.getLayer('solar-point')) {
+        map.removeLayer('solar-point');
+      }
+      if (map.getSource('solar')) {
+        map.removeSource('solar');
+      }
+    };
+  }, [map, node]);
+
+  useEffect(() => {
+    if (!node || !map || !isVisibleReference.current) {
+      return;
+    }
+    if (!map.getLayer('solar-point')) {
+      map.addLayer({ id: 'solar-point', type: 'raster', source: 'solar' });
+    }
+    setIsLoadingSolarLayer(false);
+
+    return () => {
+      if (map.getLayer('solar-point')) {
+        map.removeLayer('solar-point');
+      }
+    };
+  }, [map, node, isVisibleReference.current]);
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {
-    if (map && node && isVisible && solarData && width && height) {
-      const canvas = (node as HTMLCanvasElement).getContext('2d');
-      if (!canvas) {
-        return;
-      }
-
-      const image = canvas.createImageData(width, height);
-
-      const { lo1, la1, dx, dy, nx } = solarData.header;
-
-      // Project solar data onto the image opacity channel
-      for (let x = 0; x < image.width; x += 1) {
-        for (let y = 0; y < image.height; y += 1) {
-          const { lng: lon, lat: lat } = map.unproject([x, y]);
-
-          const sx = Math.floor(lon - lo1 / dx);
-          const sy = Math.floor(la1 - lat / dy);
-          const sourceIndex = sy * nx + sx;
-          const targetIndex = 4 * (y * image.width + x);
-
-          image.data[targetIndex + 3] = solarIntensityToOpacity(
-            solarData.data[sourceIndex]
-          );
-        }
-      }
-
-      // Apply stack blur filter over the image opacity.
-      stackBlurImageOpacity(image, 0, 0, width, height, 10 * map.getZoom());
-
-      // // Map image opacity channel onto solarColor scale to get the real solar colors.
-      for (let index = 0; index < image.data.length; index += 4) {
-        const color =
-          solarColorComponents[opacityToSolarIntensity(image.data[index + 3])];
-        image.data[index + 0] = color.red;
-        image.data[index + 1] = color.green;
-        image.data[index + 2] = color.blue;
-        image.data[index + 3] = color.alpha;
-      }
-
-      // Render the image into canvas and mark as ready so that fading in can start.
-      canvas.clearRect(0, 0, width, height);
-      canvas.putImageData(image, 0, 0);
-      setIsLoadingSolarLayer(false);
+    if (!map || !node || !solarData || !isVisibleReference.current) {
+      return;
     }
-  }, [node, isVisible, solarData, width, height, map]);
+    const canvas = node.getContext('2d');
+    if (!canvas) {
+      return;
+    }
 
-  return (
-    <canvas
-      id="solar"
-      width={width}
-      height={height}
-      ref={ref}
-      className={`pointer-events-none absolute inset-0 h-full w-full duration-300 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
-    />
-  );
+    const image = canvas.createImageData(node.width, node.height);
+
+    const { lo1, la1, dx, dy, nx } = solarData.header;
+
+    // Project solar data onto the image opacity channel
+    for (let x = 0; x < image.width / 3; x += 1) {
+      const lon = ((x / canvasScale) % 360) - 180;
+      const sx = Math.floor(lon - lo1 / dx);
+      for (let y = 0; y < image.height; y += 1) {
+        const lat = gudermannian(convertYToLat(image.height - 1, y));
+        const sy = Math.floor(la1 - lat / dy);
+
+        const sourceIndex = sy * nx + sx;
+        const targetIndex = 4 * (y * image.width + x);
+
+        image.data[targetIndex + 3] = solarIntensityToOpacity(
+          solarData.data[sourceIndex]
+        );
+      }
+    }
+    // copy already calculated opacity data from the left
+    for (let x = Math.floor(image.width / 3); x < image.width; x += 1) {
+      for (let y = 0; y < image.height; y += 1) {
+        const targetIndex = 4 * (y * image.width + x);
+        const sourceIndex = 4 * (y * image.width + (x % (360 * canvasScale)));
+        image.data[targetIndex + 3] = image.data[sourceIndex + 3];
+      }
+    }
+
+    // Apply stack blur filter over the image opacity.
+    stackBlurImageOpacity(image, 0, 0, image.width, image.height, 10);
+
+    // Map image opacity channel onto solarColor scale to get the real solar colors.
+    for (let index = 0; index < image.data.length; index += 4) {
+      const color = solarColorComponents[opacityToSolarIntensity(image.data[index + 3])];
+      image.data[index + 0] = color.red;
+      image.data[index + 1] = color.green;
+      image.data[index + 2] = color.blue;
+      image.data[index + 3] = color.alpha;
+    }
+
+    // Render the image into canvas and mark as ready so that fading in can start.
+    canvas.clearRect(0, 0, node.width, node.height);
+    canvas.putImageData(image, 0, 0);
+  }, [node, solarData, map]);
+
+  return null;
 }
