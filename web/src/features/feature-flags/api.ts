@@ -1,4 +1,4 @@
-import { useQuery, type QueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS, getBasePath, getHeaders } from 'api/helpers';
 import { FeatureFlags } from './types';
 
