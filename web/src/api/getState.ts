@@ -1,10 +1,10 @@
-import type { UseQueryResult } from '@tanstack/react-query';
+import type { QueryClient, UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import type { GridState } from 'types';
-import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
-import { timeAverageAtom } from 'utils/state/atoms';
 import { TimeAverages } from 'utils/constants';
+import { timeAverageAtom } from 'utils/state/atoms';
+import { QUERY_KEYS, getBasePath, getHeaders } from './helpers';
 
 const getState = async (timeAverage: string): Promise<GridState> => {
   const path = `v6/state/${timeAverage}`;
@@ -22,6 +22,16 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 
   throw new Error(await response.text());
 };
+
+/**
+ * Prefetches last_hour state on initial app load
+ */
+export async function prefetchInitialState(queryClient: QueryClient) {
+  await queryClient.prefetchQuery({
+    queryKey: [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
+    queryFn: async () => getState('last_hour'),
+  });
+}
 
 const useGetState = (): UseQueryResult<GridState> => {
   const [timeAverage] = useAtom(timeAverageAtom);
