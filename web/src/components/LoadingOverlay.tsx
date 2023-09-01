@@ -1,5 +1,4 @@
 import { animated, useTransition } from '@react-spring/web';
-import useGetState from 'api/getState';
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtom } from 'jotai';
 
@@ -26,10 +25,7 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
 }
 
 export default function LoadingOverlay() {
-  const { isLoading, isError } = useGetState();
   const [isLoadingMap] = useAtom(loadingMapAtom);
 
-  const showLoadingOverlay = !isError && (isLoading || isLoadingMap);
-
-  return <FadingOverlay isVisible={showLoadingOverlay} />;
+  return <FadingOverlay isVisible={isLoadingMap} />;
 }
