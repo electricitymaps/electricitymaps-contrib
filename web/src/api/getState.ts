@@ -42,14 +42,16 @@ const useGetState = (): UseQueryResult<GridState> => {
     async () => getState('last_hour'),
     {
       enabled: timeAverage === TimeAverages.HOURLY,
+      suspense: true,
+      retry: 3,
     }
   );
 
-  const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
+  const lastHourWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
 
   const shouldFetchFullState =
     timeAverage !== TimeAverages.HOURLY ||
-    hourZeroWasSuccessful ||
+    lastHourWasSuccessful ||
     last_hour.isError === true;
 
   // Then fetch the rest of the data
@@ -59,6 +61,7 @@ const useGetState = (): UseQueryResult<GridState> => {
     {
       // The query should not execute until the last_hour query is done
       enabled: shouldFetchFullState,
+      retry: 3,
     }
   );
   return all_data.data || timeAverage != 'hourly' ? all_data : last_hour;
