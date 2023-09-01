@@ -6,6 +6,7 @@ import Toast from 'components/Toast';
 import LegendContainer from 'components/legend/LegendContainer';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
+import FeatureFlagsManager from 'features/feature-flags/FeatureFlagsManager';
 import Header from 'features/header/Header';
 import FAQModal from 'features/modals/FAQModal';
 import InfoModal from 'features/modals/InfoModal';
@@ -88,6 +89,7 @@ export default function App(): ReactElement {
               <LeftPanel />
               <MapWrapper />
               <TimeControllerWrapper />
+              <FeatureFlagsManager />
               <LegendContainer />
             </Sentry.ErrorBoundary>
           </div>
