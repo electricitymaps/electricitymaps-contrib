@@ -38,3 +38,13 @@ export function useFeatureFlag(name: string): boolean {
 
   return features?.[name] || false;
 }
+
+/**
+ * Prefetches feature flags on initial app load
+ */
+export async function prefetchFeatureFlags(queryClient: QueryClient) {
+  await queryClient.prefetchQuery({
+    queryKey: [QUERY_KEYS.FEATURE_FLAGS],
+    queryFn: getFeatureFlags,
+  });
+}
