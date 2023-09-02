@@ -18,15 +18,6 @@ export const formatPower = function (
   return power;
 };
 
-export const formatPowerWithSameUnit = function (
-  d: number,
-  valueToMatch: number,
-  numberDigits: number = DEFAULT_NUM_DIGITS
-) {
-  const { unit, formattingFactor } = scalePower(valueToMatch);
-  return `${d3.format(`.${numberDigits}~f`)(d / formattingFactor)} ${unit}`;
-};
-
 export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
   if (gramPerHour == undefined || Number.isNaN(gramPerHour)) {
     return gramPerHour;
