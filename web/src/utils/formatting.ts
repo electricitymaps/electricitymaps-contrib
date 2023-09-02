@@ -59,37 +59,28 @@ const scalePower = function (maxPower: number | undefined) {
       formattingFactor: 1e3,
     };
   }
+
+  const thresholds: [number, EnergyUnits][] = [
+    [1e9, EnergyUnits.PETAWATT_HOURS],
+    [1e6, EnergyUnits.TERAWATT_HOURS],
+    [1e3, EnergyUnits.GIGAWATT_HOURS],
+    [1, EnergyUnits.MEGAWATT_HOURS],
+    [1e-3, EnergyUnits.KILOWATT_HOURS],
+  ];
+
   // Use absolute value to handle negative values
   const value = Math.abs(maxPower);
 
-  if (value < 1) {
-    return {
-      unit: EnergyUnits.KILOWATT_HOURS,
-      formattingFactor: 1e-3,
-    };
+  for (const [threshold, unit] of thresholds) {
+    if (value >= threshold) {
+      return {
+        unit,
+        formattingFactor: threshold,
+      };
+    }
   }
 
-  if (value < 1e3) {
-    return {
-      unit: EnergyUnits.MEGAWATT_HOURS,
-      formattingFactor: 1,
-    };
-  }
-
-  if (value < 1e6) {
-    return {
-      unit: EnergyUnits.GIGAWATT_HOURS,
-      formattingFactor: 1e3,
-    };
-  }
-
-  if (value < 1e9) {
-    return {
-      unit: EnergyUnits.TERAWATT_HOURS,
-      formattingFactor: 1e6,
-    };
-  }
-
+  // Fallback if none of the thresholds are met
   return {
     unit: EnergyUnits.PETAWATT_HOURS,
     formattingFactor: 1e9,
