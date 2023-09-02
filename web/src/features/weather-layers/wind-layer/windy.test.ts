@@ -2,39 +2,10 @@ import { round } from 'utils/helpers';
 import { bilinearInterpolateVector, windIntensityColorScale } from './windy';
 describe('windIntensityColorScale', () => {
   it('should return an array of colors', () => {
-    const maxWind = 10;
-    const result = windIntensityColorScale(maxWind);
+    const result = windIntensityColorScale();
     expect(Array.isArray(result)).toBe(true);
     expect(result.length).toBeGreaterThan(0);
     expect(typeof result[0]).toBe('string');
-  });
-
-  it('should return an array with an indexFor method', () => {
-    const maxWind = 10;
-    const result = windIntensityColorScale(maxWind);
-    expect(typeof result.indexFor).toBe('function');
-  });
-
-  it('should return an array with an indexFor method that returns a number', () => {
-    const maxWind = 10;
-    const result = windIntensityColorScale(maxWind);
-    const index = result.indexFor(5);
-    expect(typeof index).toBe('number');
-  });
-
-  it('should return an array with an indexFor method that returns an integer', () => {
-    const maxWind = 10;
-    const result = windIntensityColorScale(maxWind);
-    const index = result.indexFor(5);
-    expect(Number.isInteger(index)).toBe(true);
-  });
-
-  it('should return an array with an indexFor method that returns an index within the range of the array', () => {
-    const maxWind = 10;
-    const result = windIntensityColorScale(maxWind);
-    const index = result.indexFor(5);
-    expect(index).toBeGreaterThanOrEqual(0);
-    expect(index).toBeLessThan(result.length);
   });
 });
 

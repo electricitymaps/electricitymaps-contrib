@@ -213,19 +213,13 @@ const distort = (
   return wind;
 };
 
-export function windIntensityColorScale(maxWind: number) {
-  const result = [...windColor.range()];
-  /*
-        var result = [];
-        for (var j = 225; j >= 100; j = j - step) {
-          result.push(asColorStyle(j, j, j, 1));
-        }
-        */
-  result.indexFor = function (m: number) {
-    // map wind speed to a style
-    return Math.floor((Math.min(m, maxWind) / maxWind) * (this.length - 1));
-  };
-  return result;
+const indexFor = (m: number, maxWind: number, resultLength: number) => {
+  // map wind speed to a style
+  return Math.floor((Math.min(m, maxWind) / maxWind) * (resultLength - 1));
+};
+
+export function windIntensityColorScale() {
+  return [...windColor.range()];
 }
 
 var Windy = function (params: any) {
@@ -360,7 +354,7 @@ var Windy = function (params: any) {
       randomize: any;
     }
   ) {
-    var colorStyles = windIntensityColorScale(MAX_WIND_INTENSITY);
+    var colorStyles = windIntensityColorScale();
     var buckets = colorStyles.map(function () {
       return [];
     });
@@ -398,7 +392,7 @@ var Windy = function (params: any) {
             // Path from (x,y) to (xt,yt) is visible, so add this particle to the appropriate draw bucket.
             particle.xt = xt;
             particle.yt = yt;
-            buckets[colorStyles.indexFor(m)].push(particle);
+            buckets[indexFor(m, MAX_WIND_INTENSITY, colorStyles.length)].push(particle);
           } else {
             // Particle isn't visible, but it still moves through the field.
             particle.x = xt;
