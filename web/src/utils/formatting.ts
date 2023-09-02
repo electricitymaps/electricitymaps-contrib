@@ -1,8 +1,8 @@
 import * as d3 from 'd3-format';
 import { TimeAverages } from './constants';
-import { PowerUnits } from './units';
+import { EnergyUnits } from './units';
 
-const DEFAULT_NUM_DIGITS = 3;
+const DEFAULT_NUM_DIGITS = 2;
 
 export const formatPower = function (
   d: number,
@@ -12,7 +12,7 @@ export const formatPower = function (
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
-  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}W` //Add a space between the number and the unit
+  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}Wh` //Add a space between the number and the unit
     .replace(/([A-Za-z])/, ' $1')
     .trim();
   return power;
@@ -59,26 +59,31 @@ const scalePower = function (maxPower: number | undefined) {
       formattingFactor: 1e3,
     };
   }
+
+  const thresholds: [number, EnergyUnits][] = [
+    [1e9, EnergyUnits.PETAWATT_HOURS],
+    [1e6, EnergyUnits.TERAWATT_HOURS],
+    [1e3, EnergyUnits.GIGAWATT_HOURS],
+    [1, EnergyUnits.MEGAWATT_HOURS],
+    [1e-3, EnergyUnits.KILOWATT_HOURS],
+  ];
+
   // Use absolute value to handle negative values
   const value = Math.abs(maxPower);
 
-  if (value < 1) {
-    return {
-      unit: PowerUnits.KILOWATTS,
-      formattingFactor: 1e-3,
-    };
+  for (const [threshold, unit] of thresholds) {
+    if (value >= threshold) {
+      return {
+        unit,
+        formattingFactor: threshold,
+      };
+    }
   }
 
-  if (value < 1e3) {
-    return {
-      unit: PowerUnits.MEGAWATTS,
-      formattingFactor: 1,
-    };
-  }
-
+  // Fallback if none of the thresholds are met
   return {
-    unit: PowerUnits.GIGAWATTS,
-    formattingFactor: 1e3,
+    unit: EnergyUnits.PETAWATT_HOURS,
+    formattingFactor: 1e9,
   };
 };
 
