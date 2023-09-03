@@ -44,10 +44,10 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   return (
     <>
       <ChartTitle translationKey="country-history.electricityprices" />
-      <div className="relative  overflow-hidden">
+      <div className="relative overflow-hidden">
         {isPriceDisabled && (
           <div className="absolute top-0 -ml-3 h-full w-[115%]">
-            <div className=" h-full w-full rounded bg-white opacity-90 dark:bg-gray-900" />
+            <div className="h-full w-full rounded bg-white opacity-90 dark:bg-gray-900" />
             <div className="absolute left-[45%] top-[50%] z-10 w-60 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800">
               {__(`country-panel.disabledPriceReasons.${priceDisabledReason}`)}
             </div>
