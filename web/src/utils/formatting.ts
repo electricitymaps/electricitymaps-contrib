@@ -38,7 +38,12 @@ export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
 
   // tons
   if (Math.round(checkAgainst) < 1e5) {
-    const decimals = value < 1 ? 2 : 1;
+    let decimals = 1;
+    if (value < 1) {
+      decimals = 2;
+    } else if (value > 1000) {
+      decimals = 0;
+    }
     return `${d3.format(`,.${decimals}~f`)(value)}t`;
   }
 
