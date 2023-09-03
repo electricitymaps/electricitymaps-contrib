@@ -32,7 +32,7 @@ export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
   const checkAgainst = valueToMatch ? valueToMatch / 1e6 : value;
 
   // grams and kilograms
-  if (Math.round(checkAgainst) < 1) {
+  if (checkAgainst < 1) {
     return `${d3.format(`,.0~s`)(value * 1e6)}g`;
   }
 
