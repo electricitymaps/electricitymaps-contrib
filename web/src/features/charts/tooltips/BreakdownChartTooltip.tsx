@@ -167,6 +167,7 @@ export function BreakdownChartTooltipContent({
           total={totalEmissions}
           format={formatCo2}
           label={__('ofCO2eqPerMinute')}
+          useTotalUnit
         />
       )}
 
@@ -194,6 +195,7 @@ export function BreakdownChartTooltipContent({
             total={totalEmissions}
             format={formatCo2}
             label={__('ofCO2eqPerMinute')}
+            useTotalUnit
           />
         </>
       )}
