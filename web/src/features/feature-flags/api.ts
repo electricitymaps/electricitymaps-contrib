@@ -3,7 +3,7 @@ import { QUERY_KEYS, getBasePath, getHeaders } from 'api/helpers';
 import { FeatureFlags } from './types';
 
 export async function getFeatureFlags(): Promise<FeatureFlags> {
-  const path = '/feature-flags';
+  const path = `/${QUERY_KEYS.FEATURE_FLAGS}`;
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
@@ -20,7 +20,7 @@ export async function getFeatureFlags(): Promise<FeatureFlags> {
   } catch (error) {
     // If the request fails, we will return an empty object instead of throwing an error
     // as the app might still be functional without feature flags
-    console.log(error);
+    console.error(error);
     return {};
   }
 }
