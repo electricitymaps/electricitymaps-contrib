@@ -1,27 +1,87 @@
 #!/usr/bin/env python3
 
 from datetime import datetime, timedelta, timezone
+from json import loads
 from logging import Logger, getLogger
 from typing import Callable, Dict, List, Optional
 
-# package "ree" is used to parse data from www.ree.es
-# maintained on github by @hectorespert at https://github.com/hectorespert/ree
-from ree import (
-    Ceuta,
-    ElHierro,
-    Formentera,
-    Gomera,
-    GranCanaria,
-    IberianPeninsula,
-    Ibiza,
-    LanzaroteFuerteventura,
-    LaPalma,
-    Mallorca,
-    Melilla,
-    Menorca,
-    Response,
-    Tenerife,
-)
+from arrow import get, utcnow
+
+FUEL_MAPPING = {
+    "dem": "demand",
+    "nuc": "nuclear",
+    "die": "oil",
+    "genAux": "oil",
+    "gas": "gas",
+    "gf": "gas",
+    "eol": "wind",
+    "cc": "gas",
+    "vap": "oil",
+    "fot": "solar",
+    "sol": "solar",
+    "hid": "hydro",
+    "car": "coal",
+    "resid": "biomass",
+    "termRenov": "unknown",
+    "cogenResto": "unknown",
+    "cogen": "gas",
+}
+
+LINK_MAPPING = {
+    "cb": "pe_ma",
+    "icb": "pe_ma",
+    "emm": "ma_me",
+    "emi": "ma_ib",
+    "eif": "ib_fo",
+    "inter": "int",
+}
+
+API_CODE_MAPPING = {
+    "IberianPeninsula": "DEMANDAQH",
+    "Ceuta": "CEUTA5M",
+    "Melilla": "MELILLA5M",
+    "Mallorca": "MALLORCA5M",
+    "Menorca": "MENORCA5M",
+    "Ibiza": "IBIZA5M",
+    "Formentera": "FORMENTERA5M",
+    "GranCanaria": "GCANARIA5M",
+    "Gomera": "LA_GOMERA5M",
+    "LaPalma": "LA_PALMA5M",
+    "Tenerife": "TENERIFE5M",
+    "LanzaroteFuerteventura": "LZ_FV5M",
+    "ElHierro": "EL_HIERRO5M",
+}
+
+ZONE_MAPPING = {
+    "IberianPeninsula": "Peninsula",
+    "Ceuta": "Peninsula",
+    "Melilla": "Peninsula",
+    "Mallorca": "Baleares",
+    "Menorca": "Baleares",
+    "Ibiza": "Baleares",
+    "Formentera": "Baleares",
+    "GranCanaria": "Canarias",
+    "Gomera": "Canarias",
+    "LaPalma": "Canarias",
+    "Tenerife": "Canarias",
+    "LanzaroteFuerteventura": "Canarias",
+    "ElHierro": "Canarias",
+}
+TIMEZONES_MAPPING = {
+    "IberianPeninsula": "Europe/Madrid",
+    "Ceuta": "Europe/Madrid",
+    "Melilla": "Europe/Madrid",
+    "Mallorca": "Europe/Madrid",
+    "Menorca": "Europe/Madrid",
+    "Ibiza": "Europe/Madrid",
+    "Formentera": "Europe/Madrid",
+    "GranCanaria": "Atlantic/Canary",
+    "Gomera": "Atlantic/Canary",
+    "LaPalma": "Atlantic/Canary",
+    "Tenerife": "Atlantic/Canary",
+    "LanzaroteFuerteventura": "Atlantic/Canary",
+    "ElHierro": "Atlantic/Canary",
+}
 
 # The request library is used to fetch content through HTTP
 from requests import Session
@@ -41,41 +101,26 @@ SOURCE = "demanda.ree.es"
 
 
 ZONE_FUNCTION_MAP: Dict[ZoneKey, Callable] = {
-    ZoneKey("ES"): IberianPeninsula,
-    ZoneKey("ES-CE"): Ceuta,
-    ZoneKey("ES-CN-FVLZ"): LanzaroteFuerteventura,
-    ZoneKey("ES-CN-GC"): GranCanaria,
-    ZoneKey("ES-CN-HI"): ElHierro,
-    ZoneKey("ES-CN-IG"): Gomera,
-    ZoneKey("ES-CN-LP"): LaPalma,
-    ZoneKey("ES-CN-TE"): Tenerife,
-    ZoneKey("ES-IB-FO"): Formentera,
-    ZoneKey("ES-IB-IZ"): Ibiza,
-    ZoneKey("ES-IB-MA"): Mallorca,
-    ZoneKey("ES-IB-ME"): Menorca,
-    ZoneKey("ES-ML"): Melilla,
+    ZoneKey("ES"): "IberianPeninsula",
+    ZoneKey("ES-CE"): "Ceuta",
+    ZoneKey("ES-CN-FVLZ"): "LanzaroteFuerteventura",
+    ZoneKey("ES-CN-GC"): "GranCanaria",
+    ZoneKey("ES-CN-HI"): "ElHierro",
+    ZoneKey("ES-CN-IG"): "Gomera",
+    ZoneKey("ES-CN-LP"): "LaPalma",
+    ZoneKey("ES-CN-TE"): "Tenerife",
+    ZoneKey("ES-IB-FO"): "Formentera",
+    ZoneKey("ES-IB-IZ"): "Ibiza",
+    ZoneKey("ES-IB-MA"): "Mallorca",
+    ZoneKey("ES-IB-ME"): "Menorca",
+    ZoneKey("ES-ML"): "Melilla",
 }
 
 EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
-    "ES->ES-IB-MA": Mallorca,
-    "ES-IB-IZ->ES-IB-MA": Mallorca,
-    "ES-IB-FO->ES-IB-IZ": Formentera,
-    "ES-IB-MA->ES-IB-ME": Mallorca,
-}
-
-# dict of REE production types to Electricity Maps production types
-PRODUCTION_MAPPING = {
-    "carbon": "coal",
-    "combined": "gas",
-    "diesel": "oil",
-    "gas": "gas",
-    "hydraulic": "hydro",
-    "nuclear": "nuclear",
-    "other": "unknown",
-    "solar": "solar",
-    "vapor": "oil",
-    "waste": "biomass",
-    "wind": "wind",
+    "ES->ES-IB-MA": ZoneKey("ES"),
+    "ES-IB-IZ->ES-IB-MA": ZoneKey("ES-IB-MA"),
+    "ES-IB-FO->ES-IB-IZ": ZoneKey("ES-IB-FO"),
+    "ES-IB-MA->ES-IB-ME": ZoneKey("ES-IB-MA"),
 }
 
 
@@ -113,17 +158,50 @@ def check_valid_parameters(
 
 
 def fetch_island_data(
-    zone_key: ZoneKey, session: Session, target_datetime: Optional[datetime]
-) -> List[Response]:
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: Optional[datetime],
+    fuel_mapping: Dict = FUEL_MAPPING,
+):
     """Fetch data for the given zone key."""
+    timezone = TIMEZONES_MAPPING[ZONE_FUNCTION_MAP[zone_key]]
     if target_datetime is None:
-        date = target_datetime
+        date = utcnow().to(timezone).format("YYYY-MM-DD")
     else:
         date = target_datetime.strftime("%Y-%m-%d")
-
-    data: List[Response] = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
-    if data:
-        return data
+    system = ZONE_MAPPING[ZONE_FUNCTION_MAP[zone_key]]
+    zone = API_CODE_MAPPING[ZONE_FUNCTION_MAP[zone_key]]
+    res = session.get(
+        f"https://demanda.ree.es/WSvisionaMoviles{system}Rest/resources/demandaGeneracion{system}?curva={zone}&fecha={date}"
+    )
+    if not res.ok:
+        raise ParserException(
+            "ES.py",
+            f"Failed fetching data for {zone_key}",
+            zone_key,
+        )
+    json = loads(res.text.replace("null(", "", 1).replace(r");", "", 1))
+    data = json["valoresHorariosGeneracion"]
+    responses = []
+    for value in data:
+        ts = value.pop("ts")
+        arrow = get(ts + " " + timezone, "YYYY-MM-DD HH:mm ZZZ")
+        response = {}
+        response["timestamp"] = str(arrow)
+        for key in value:
+            if key in fuel_mapping:
+                if fuel_mapping[key] in response.keys():
+                    response[fuel_mapping[key]] += value[key]
+                else:
+                    response[fuel_mapping[key]] = value[key]
+            elif key in LINK_MAPPING:
+                if LINK_MAPPING[key] in response.keys():
+                    response[LINK_MAPPING[key]] += value[key]
+                else:
+                    response[LINK_MAPPING[key]] = value[key]
+        responses.append(response)
+    if responses:
+        return responses
     else:
         raise ParserException(
             "ES.py",
@@ -147,8 +225,10 @@ def fetch_consumption(
     for event in island_data:
         consumption.append(
             zoneKey=zone_key,
-            datetime=datetime.fromtimestamp(event.timestamp).astimezone(timezone.utc),
-            consumption=event.demand,
+            datetime=datetime.fromisoformat(event["timestamp"]).astimezone(
+                timezone.utc
+            ),
+            consumption=event["demand"],
             source="demanda.ree.es",
         )
     return consumption.to_list()
@@ -163,40 +243,46 @@ def fetch_production(
 ) -> List[dict]:
     check_valid_parameters(zone_key, session, target_datetime)
     ses = session or Session()
-    island_data = fetch_island_data(zone_key, ses, target_datetime)
-    productionEventList = ProductionBreakdownList(logger)
+    fuel_mapping = FUEL_MAPPING.copy()
 
+    ## Production mapping override for Canary Islands
+    # NOTE the LNG terminals are not built yet, so power generated by "gas" or "cc" in ES-CN domain is actually using oil.
+    # Recheck this every 6 months and move to gas key if there has been a change.
+    # Last checked: 2022-06-27
+    if zone_key.split("-")[1] == "CN":
+        fuel_mapping["gas"] = "oil"
+        fuel_mapping["cc"] = "oil"
+
+    if zone_key == "ES-IB-ME" or zone_key == "ES-IB-FO":
+        fuel_mapping["gas"] = "oil"
+    if zone_key == "ES-IB-IZ":
+        fuel_mapping["die"] = "gas"
+
+    island_data = fetch_island_data(zone_key, ses, target_datetime, fuel_mapping)
+    productionEventList = ProductionBreakdownList(logger)
     for event in island_data:
         production = ProductionMix()
+        for mode in [
+            "biomass",
+            "coal",
+            "gas",
+            "geothermal",
+            "nuclear",
+            "oil",
+            "solar",
+            "wind",
+            "unknown",
+        ]:
+            if mode in event.keys():
+                production.add_value(mode, event[mode])
         storage = StorageMix()
-
-        for mode in PRODUCTION_MAPPING.keys():
-            if mode in event.__dir__():
-                value = getattr(event, mode)
-                ## Production mapping override for Canary Islands
-                # NOTE the LNG terminals are not built yet, so power generated by "gas" or "combined" in ES-CN domain is actually using oil.
-                # Recheck this every 6 months and move to gas key if there has been a change.
-                # Last checked: 2022-06-27
-                fuel_mapping = PRODUCTION_MAPPING
-                if zone_key.split("-")[1] == "CN":
-                    fuel_mapping = {
-                        **PRODUCTION_MAPPING,
-                        "gas": "oil",
-                        "combined": "oil",
-                    }
-                    # Reset gas to 0, as it is now oil, normally this should be skipped or set to None but to conform to how REE does it, we set it to 0
-                    # We should aim to change this upstream in the future to make it uniform with other parsers going forward.
-                    production.gas = 0
-                production.add_value(fuel_mapping[mode], value, True)
-                # Zone specific override for El Hierro
-                # Hydro response is hydro storage, not hydro production
-                if zone_key == "ES-CN-HI" and mode == "hydraulic":
-                    storage.hydro = -value
-                    production.hydro = 0
-
+        if "hydro" in event.keys():
+            storage.hydro = -event["hydro"]
         productionEventList.append(
             zoneKey=zone_key,
-            datetime=datetime.fromtimestamp(event.timestamp).astimezone(timezone.utc),
+            datetime=datetime.fromisoformat(event["timestamp"]).astimezone(
+                timezone.utc
+            ),
             production=production,
             storage=storage,
             source="demanda.ree.es",
@@ -223,25 +309,27 @@ def fetch_exchange(
 
     ses = session or Session()
 
-    responses: List[Response] = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all(
-        date
+    responses = fetch_island_data(
+        EXCHANGE_FUNCTION_MAP[sorted_zone_keys],
+        ses,
+        target_datetime,
     )
 
     exchangeList = ExchangeList(logger)
     for response in responses:
         net_flow: float
         if sorted_zone_keys == "ES-IB-MA->ES-IB-ME":
-            net_flow = -1 * response.link["ma_me"]
+            net_flow = -1 * response["ma_me"]
         elif sorted_zone_keys == "ES-IB-IZ->ES-IB-MA":
-            net_flow = response.link["ma_ib"]
+            net_flow = response["ma_ib"]
         elif sorted_zone_keys == "ES-IB-FO->ES-IB-IZ":
-            net_flow = -1 * response.link["ib_fo"]
+            net_flow = -1 * response["ib_fo"]
         else:
-            net_flow = response.link["pe_ma"]
+            net_flow = response["pe_ma"]
 
         exchangeList.append(
             zoneKey=sorted_zone_keys,
-            datetime=datetime.fromtimestamp(response.timestamp).astimezone(
+            datetime=datetime.fromisoformat(response["timestamp"]).astimezone(
                 timezone.utc
             ),
             netFlow=net_flow,
