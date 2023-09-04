@@ -36,8 +36,7 @@ DATA_MAPPING = {
     "inter": "exchange.int",
 }
 
-LINK_MAPPING = {
-}
+LINK_MAPPING = {}
 
 API_CODE_MAPPING = {
     "IberianPeninsula": "DEMANDAQH",
@@ -197,9 +196,13 @@ def fetch_island_data(
         for mode in value:
             try:
                 if "production." in data_mapping[mode]:
-                    production.add_value(data_mapping[mode].replace("production.", ""), value[mode])
+                    production.add_value(
+                        data_mapping[mode].replace("production.", ""), value[mode]
+                    )
                 elif "storage." in data_mapping[mode]:
-                    storage.add_value(data_mapping[mode].replace("storage.", ""), value[mode] * -1)
+                    storage.add_value(
+                        data_mapping[mode].replace("storage.", ""), value[mode] * -1
+                    )
                 elif "exchange." in data_mapping[mode]:
                     exchange[data_mapping[mode].replace("exchange.", "")] = value[mode]
                 elif data_mapping[mode] == "demand":
