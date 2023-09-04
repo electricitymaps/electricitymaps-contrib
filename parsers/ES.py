@@ -186,7 +186,7 @@ def fetch_island_data(
     responses = []
     for value in data:
         ts = value.pop("ts")
-        arrow = get(ts + " " + tz, "YYYY-MM-DD HH:mm ZZZ")
+        arrow = get(f"{ts} {tz}", "YYYY-MM-DD HH:mm ZZZ")
         response = {}
         response["timestamp"] = arrow
         production = ProductionMix()
