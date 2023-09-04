@@ -30,7 +30,7 @@ function ValueAxis({ scale, label, width, height, formatTick }: ValueAxisProps) 
           strokeWidth={0.5}
           fontSize="0.6rem"
           fill="gray"
-          transform={`translate(44, ${height / 2}) rotate(-90)`}
+          transform={`translate(52, ${height / 2}) rotate(-90)`}
         >
           {label}
         </text>
