@@ -71,8 +71,8 @@ ZONE_MAPPING = {
 }
 TIMEZONES_MAPPING = {
     "IberianPeninsula": "Europe/Madrid",
-    "Ceuta": "Europe/Madrid",
-    "Melilla": "Europe/Madrid",
+    "Ceuta": "Africa/Ceuta",
+    "Melilla": "Africa/Ceuta",
     "Mallorca": "Europe/Madrid",
     "Menorca": "Europe/Madrid",
     "Ibiza": "Europe/Madrid",
