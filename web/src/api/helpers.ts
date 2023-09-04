@@ -70,4 +70,5 @@ export function getBasePath() {
 export const QUERY_KEYS = {
   STATE: 'state',
   ZONE: 'zone',
+  FEATURE_FLAGS: 'feature-flags',
 };
