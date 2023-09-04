@@ -1,10 +1,10 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
+import { scalePower } from 'utils/formatting';
+import { getNetExchange, round } from 'utils/helpers';
 import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
-import { getNetExchange, round } from 'utils/helpers';
-import { scalePower } from 'utils/formatting';
 
 export default function NetExchangeChartTooltip({
   zoneDetail,
@@ -27,7 +27,7 @@ export default function NetExchangeChartTooltip({
     : scalePower(netExchange);
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:bg-gray-900 sm:w-max">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[350px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
