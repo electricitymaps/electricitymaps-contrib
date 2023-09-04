@@ -165,9 +165,9 @@ def fetch_island_data(
     data_mapping: Dict = DATA_MAPPING,
 ):
     """Fetch data for the given zone key."""
-    timezone = TIMEZONES_MAPPING[zone_key]
+    tz = TIMEZONES_MAPPING[zone_key]
     if target_datetime is None:
-        date = utcnow().to(timezone).format("YYYY-MM-DD")
+        date = utcnow().to(tz).format("YYYY-MM-DD")
     else:
         date = target_datetime.strftime("%Y-%m-%d")
     system = ZONE_MAPPING[zone_key]
@@ -186,9 +186,9 @@ def fetch_island_data(
     responses = []
     for value in data:
         ts = value.pop("ts")
-        arrow = get(ts + " " + timezone, "YYYY-MM-DD HH:mm ZZZ")
+        arrow = get(ts + " " + tz, "YYYY-MM-DD HH:mm ZZZ")
         response = {}
-        response["timestamp"] = str(arrow)
+        response["timestamp"] = arrow
         production = ProductionMix()
         storage = StorageMix()
         exchange = {}
@@ -237,7 +237,7 @@ def fetch_consumption(
     for event in island_data:
         consumption.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(event["timestamp"]).astimezone(
+            datetime=event["timestamp"].astimezone(
                 timezone.utc
             ),
             consumption=event["demand"],
@@ -275,7 +275,7 @@ def fetch_production(
     for event in island_data:
         productionEventList.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(event["timestamp"]).astimezone(
+            datetime=event["timestamp"].astimezone(
                 timezone.utc
             ),
             production=event["production"],
@@ -325,7 +325,7 @@ def fetch_exchange(
 
         exchangeList.append(
             zoneKey=sorted_zone_keys,
-            datetime=datetime.fromisoformat(response["timestamp"]).astimezone(
+            datetime=response["timestamp"].astimezone(
                 timezone.utc
             ),
             netFlow=net_flow,
