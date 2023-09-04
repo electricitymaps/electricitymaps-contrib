@@ -7,6 +7,37 @@ from typing import Callable, Dict, List, Optional
 
 from arrow import get, utcnow
 
+# The request library is used to fetch content through HTTP
+from requests import Session
+
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.types import ZoneKey
+
+from .lib.config import refetch_frequency
+from .lib.exceptions import ParserException
+
+#    Zone name Cheat Sheet
+
+#    ZoneKey("ES"): "IberianPeninsula"
+#    ZoneKey("ES-CE"): "Ceuta"
+#    ZoneKey("ES-CN-FVLZ"): "LanzaroteFuerteventura"
+#    ZoneKey("ES-CN-GC"): "GranCanaria"
+#    ZoneKey("ES-CN-HI"): "ElHierro"
+#    ZoneKey("ES-CN-IG"): "Gomera"
+#    ZoneKey("ES-CN-LP"): "LaPalma"
+#    ZoneKey("ES-CN-TE"): "Tenerife"
+#    ZoneKey("ES-IB-FO"): "Formentera"
+#    ZoneKey("ES-IB-IZ"): "Ibiza"
+#    ZoneKey("ES-IB-MA"): "Mallorca"
+#    ZoneKey("ES-IB-ME"): "Menorca"
+#    ZoneKey("ES-ML"): "Melilla"
+
+
 DATA_MAPPING = {
     "dem": "demand",
     "nuc": "production.nuclear",
@@ -36,87 +67,55 @@ DATA_MAPPING = {
     "inter": "exchange.int",
 }
 
-LINK_MAPPING = {}
-
 API_CODE_MAPPING = {
-    "IberianPeninsula": "DEMANDAQH",
-    "Ceuta": "CEUTA5M",
-    "Melilla": "MELILLA5M",
-    "Mallorca": "MALLORCA5M",
-    "Menorca": "MENORCA5M",
-    "Ibiza": "IBIZA5M",
-    "Formentera": "FORMENTERA5M",
-    "GranCanaria": "GCANARIA5M",
-    "Gomera": "LA_GOMERA5M",
-    "LaPalma": "LA_PALMA5M",
-    "Tenerife": "TENERIFE5M",
-    "LanzaroteFuerteventura": "LZ_FV5M",
-    "ElHierro": "EL_HIERRO5M",
+    ZoneKey("ES"): "DEMANDAQH",
+    ZoneKey("ES-CE"): "CEUTA5M",
+    ZoneKey("ES-CN-FVLZ"): "LZ_FV5M",
+    ZoneKey("ES-CN-GC"): "GCANARIA5M",
+    ZoneKey("ES-CN-HI"): "EL_HIERRO5M",
+    ZoneKey("ES-CN-IG"): "LA_GOMERA5M",
+    ZoneKey("ES-CN-LP"): "LA_PALMA5M",
+    ZoneKey("ES-CN-TE"): "TENERIFE5M",
+    ZoneKey("ES-IB-FO"): "FORMENTERA5M",
+    ZoneKey("ES-IB-IZ"): "IBIZA5M",
+    ZoneKey("ES-IB-MA"): "MALLORCA5M",
+    ZoneKey("ES-IB-ME"): "MENORCA5M",
+    ZoneKey("ES-ML"): "MELILLA5M",
 }
 
 ZONE_MAPPING = {
-    "IberianPeninsula": "Peninsula",
-    "Ceuta": "Peninsula",
-    "Melilla": "Peninsula",
-    "Mallorca": "Baleares",
-    "Menorca": "Baleares",
-    "Ibiza": "Baleares",
-    "Formentera": "Baleares",
-    "GranCanaria": "Canarias",
-    "Gomera": "Canarias",
-    "LaPalma": "Canarias",
-    "Tenerife": "Canarias",
-    "LanzaroteFuerteventura": "Canarias",
-    "ElHierro": "Canarias",
+    ZoneKey("ES"): "Peninsula",
+    ZoneKey("ES-CE"): "Peninsula",
+    ZoneKey("ES-CN-FVLZ"): "Canarias",
+    ZoneKey("ES-CN-GC"): "Canarias",
+    ZoneKey("ES-CN-HI"): "Canarias",
+    ZoneKey("ES-CN-IG"): "Canarias",
+    ZoneKey("ES-CN-LP"): "Canarias",
+    ZoneKey("ES-CN-TE"): "Canarias",
+    ZoneKey("ES-IB-FO"): "Baleares",
+    ZoneKey("ES-IB-IZ"): "Baleares",
+    ZoneKey("ES-IB-MA"): "Baleares",
+    ZoneKey("ES-IB-ME"): "Baleares",
+    ZoneKey("ES-ML"): "Peninsula",
 }
+
 TIMEZONES_MAPPING = {
-    "IberianPeninsula": "Europe/Madrid",
-    "Ceuta": "Africa/Ceuta",
-    "Melilla": "Africa/Ceuta",
-    "Mallorca": "Europe/Madrid",
-    "Menorca": "Europe/Madrid",
-    "Ibiza": "Europe/Madrid",
-    "Formentera": "Europe/Madrid",
-    "GranCanaria": "Atlantic/Canary",
-    "Gomera": "Atlantic/Canary",
-    "LaPalma": "Atlantic/Canary",
-    "Tenerife": "Atlantic/Canary",
-    "LanzaroteFuerteventura": "Atlantic/Canary",
-    "ElHierro": "Atlantic/Canary",
+    ZoneKey("ES"): "Europe/Madrid",
+    ZoneKey("ES-CE"): "Africa/Ceuta",
+    ZoneKey("ES-CN-FVLZ"): "Atlantic/Canary",
+    ZoneKey("ES-CN-GC"): "Atlantic/Canary",
+    ZoneKey("ES-CN-HI"): "Atlantic/Canary",
+    ZoneKey("ES-CN-IG"): "Atlantic/Canary",
+    ZoneKey("ES-CN-LP"): "Atlantic/Canary",
+    ZoneKey("ES-CN-TE"): "Atlantic/Canary",
+    ZoneKey("ES-IB-FO"): "Europe/Madrid",
+    ZoneKey("ES-IB-IZ"): "Europe/Madrid",
+    ZoneKey("ES-IB-MA"): "Europe/Madrid",
+    ZoneKey("ES-IB-ME"): "Europe/Madrid",
+    ZoneKey("ES-ML"): "Africa/Ceuta",
 }
-
-# The request library is used to fetch content through HTTP
-from requests import Session
-
-from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeList,
-    ProductionBreakdownList,
-    TotalConsumptionList,
-)
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.lib.types import ZoneKey
-
-from .lib.config import refetch_frequency
-from .lib.exceptions import ParserException
 
 SOURCE = "demanda.ree.es"
-
-
-ZONE_FUNCTION_MAP: Dict[ZoneKey, Callable] = {
-    ZoneKey("ES"): "IberianPeninsula",
-    ZoneKey("ES-CE"): "Ceuta",
-    ZoneKey("ES-CN-FVLZ"): "LanzaroteFuerteventura",
-    ZoneKey("ES-CN-GC"): "GranCanaria",
-    ZoneKey("ES-CN-HI"): "ElHierro",
-    ZoneKey("ES-CN-IG"): "Gomera",
-    ZoneKey("ES-CN-LP"): "LaPalma",
-    ZoneKey("ES-CN-TE"): "Tenerife",
-    ZoneKey("ES-IB-FO"): "Formentera",
-    ZoneKey("ES-IB-IZ"): "Ibiza",
-    ZoneKey("ES-IB-MA"): "Mallorca",
-    ZoneKey("ES-IB-ME"): "Menorca",
-    ZoneKey("ES-ML"): "Melilla",
-}
 
 EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
     "ES->ES-IB-MA": ZoneKey("ES"),
@@ -132,7 +131,7 @@ def check_valid_parameters(
     target_datetime: Optional[datetime],
 ):
     """Raise an exception if the parameters are not valid for this parser."""
-    if "->" not in zone_key and zone_key not in ZONE_FUNCTION_MAP.keys():
+    if "->" not in zone_key and zone_key not in ZONE_MAPPING.keys():
         raise ParserException(
             "ES.py",
             f"This parser cannot parse data for zone: {zone_key}",
@@ -166,13 +165,13 @@ def fetch_island_data(
     data_mapping: Dict = DATA_MAPPING,
 ):
     """Fetch data for the given zone key."""
-    timezone = TIMEZONES_MAPPING[ZONE_FUNCTION_MAP[zone_key]]
+    timezone = TIMEZONES_MAPPING[zone_key]
     if target_datetime is None:
         date = utcnow().to(timezone).format("YYYY-MM-DD")
     else:
         date = target_datetime.strftime("%Y-%m-%d")
-    system = ZONE_MAPPING[ZONE_FUNCTION_MAP[zone_key]]
-    zone = API_CODE_MAPPING[ZONE_FUNCTION_MAP[zone_key]]
+    system = ZONE_MAPPING[zone_key]
+    zone = API_CODE_MAPPING[zone_key]
     res = session.get(
         f"https://demanda.ree.es/WSvisionaMoviles{system}Rest/resources/demandaGeneracion{system}?curva={zone}&fecha={date}"
     )
