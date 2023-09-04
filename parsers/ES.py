@@ -118,7 +118,7 @@ TIMEZONES_MAPPING = {
 SOURCE = "demanda.ree.es"
 
 EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
-    "ES->ES-IB-MA": ZoneKey("ES"),
+    "ES->ES-IB-MA": ZoneKey("ES-IB-MA"),
     "ES-IB-IZ->ES-IB-MA": ZoneKey("ES-IB-MA"),
     "ES-IB-FO->ES-IB-IZ": ZoneKey("ES-IB-FO"),
     "ES-IB-MA->ES-IB-ME": ZoneKey("ES-IB-MA"),
