@@ -41,10 +41,9 @@ export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
 
   // tons
   if (Math.round(checkAgainst) < 1e5) {
-    let decimals = 1;
-    if (value < 1) {
-      decimals = 2;
-    } else if (value > 1000) {
+    let decimals = value < 1 ? 2 : 1;
+    // Remove decimals for large values
+    if (value > 1000) {
       decimals = 0;
     }
     return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~f`)(value)}t`);
