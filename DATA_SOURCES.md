@@ -378,7 +378,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Oil, Gas and Coal: [CND](http://www.cnd.com.pa/index.php/estadisticas)
   - Biomass: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
-- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/list-existing-power-plants-june-30-2022)
+- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/sites/default/files/pdf/electric_power/04_LVM-Grid-Summary-June-2023-updated.pdf)
 - Poland: [ARE](https://www.are.waw.pl/badania-statystyczne/wynikowe-informacje-statystyczne/publikacje-miesieczne#informacja-statystyczna-o-energii-elektrycznej)
 - Portugal:
   - Biomass, Hydro, Solar, Wind, Gas: [REN](https://datahub.ren.pt/en/electricity/monthly-balance/)
