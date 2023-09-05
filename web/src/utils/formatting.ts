@@ -17,7 +17,7 @@ export const formatPower = function (
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
-  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}Wh`;
+  const power = `${d3.format(`.${numberDigits}s`)(d)}Wh`;
   return addSpaceBetweenNumberAndUnit(power);
 };
 
@@ -27,16 +27,14 @@ export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
   }
 
   // Assume gCO₂ / h input
-  let value = gramPerHour;
-  value /= 60; // Convert to gCO₂ / min
-  value /= 1e6; // Convert to tCO₂ / min
+  const value = gramPerHour;
 
   // Ensure both numbers are at the same scale
-  const checkAgainst = valueToMatch ? valueToMatch / 1e6 : value;
+  const checkAgainst = valueToMatch ?? value;
 
   // grams and kilograms
   if (checkAgainst < 1) {
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.0~s`)(value * 1e6)}g`);
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.0~s`)(value)}g`);
   }
 
   // tons

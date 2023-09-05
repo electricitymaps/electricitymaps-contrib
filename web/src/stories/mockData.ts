@@ -88,6 +88,7 @@ export const zoneDetailMock = {
   totalCo2Import: 0,
   totalCo2NetExchange: -174_956_880,
   totalCo2Production: 1_169_515_098.83,
+  totalCo2Consumption: 1_343_353_533.17,
   totalCo2Storage: 0,
   totalConsumption: 5597,
   totalDischarge: 395,
