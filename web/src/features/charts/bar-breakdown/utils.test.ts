@@ -99,6 +99,7 @@ const zoneDetailsData = {
   totalCo2Import: 0,
   totalCo2NetExchange: -174_956_880,
   totalCo2Production: 1_169_515_098.83,
+  totalCo2Consumption: 1_232_232_232,
   totalCo2Storage: 0,
   totalConsumption: 5597,
   totalDischarge: 395,
@@ -115,7 +116,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'nuclear',
-    tCo2eqPerMin: 0,
+    gCo2eqPerHour: 0,
   },
   {
     isStorage: false,
@@ -123,7 +124,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'geothermal',
-    tCo2eqPerMin: 0,
+    gCo2eqPerHour: 0,
   },
   {
     isStorage: false,
@@ -131,7 +132,7 @@ const productionData = [
     storage: undefined,
     capacity: 700,
     mode: 'biomass',
-    tCo2eqPerMin: 2.561_683_868_333_333,
+    gCo2eqPerHour: 2.561_683_868_333_333,
   },
   {
     isStorage: false,
@@ -139,7 +140,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'coal',
-    tCo2eqPerMin: 0,
+    gCo2eqPerHour: 0,
   },
   {
     isStorage: false,
@@ -147,7 +148,7 @@ const productionData = [
     storage: undefined,
     capacity: 5389,
     mode: 'wind',
-    tCo2eqPerMin: 0.497_438_333_333_333_3,
+    gCo2eqPerHour: 0.497_438_333_333_333_3,
   },
   {
     isStorage: false,
@@ -155,7 +156,7 @@ const productionData = [
     storage: undefined,
     capacity: 1616,
     mode: 'solar',
-    tCo2eqPerMin: 0.007_253_333_333_333_333,
+    gCo2eqPerHour: 0.007_253_333_333_333_333,
   },
   {
     isStorage: false,
@@ -163,7 +164,7 @@ const productionData = [
     production: 1445,
     capacity: 4578,
     mode: 'hydro',
-    tCo2eqPerMin: 0.257_691_666_666_666_65,
+    gCo2eqPerHour: 0.257_691_666_666_666_65,
   },
   {
     isStorage: true,
@@ -171,7 +172,7 @@ const productionData = [
     production: 1445,
     capacity: 3585,
     mode: 'hydro storage',
-    tCo2eqPerMin: -0.898_247_560_136_053_7,
+    gCo2eqPerHour: -0.898_247_560_136_053_7,
   },
   {
     isStorage: true,
@@ -179,7 +180,7 @@ const productionData = [
     capacity: null,
     mode: 'battery storage',
     production: undefined,
-    tCo2eqPerMin: 0,
+    gCo2eqPerHour: 0,
   },
   {
     isStorage: false,
@@ -187,7 +188,7 @@ const productionData = [
     storage: undefined,
     capacity: 4520,
     mode: 'gas',
-    tCo2eqPerMin: 15.829_517_778_833_331,
+    gCo2eqPerHour: 15.829_517_778_833_331,
   },
   {
     isStorage: false,
@@ -195,7 +196,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'oil',
-    tCo2eqPerMin: 0,
+    gCo2eqPerHour: 0,
   },
   {
     isStorage: false,
@@ -203,7 +204,7 @@ const productionData = [
     storage: undefined,
     capacity: null,
     mode: 'unknown',
-    tCo2eqPerMin: 0.338_333_333_333_333_3,
+    gCo2eqPerHour: 0.338_333_333_333_333_3,
   },
 ];
 
@@ -212,14 +213,14 @@ const exchangeData: ExchangeDataType[] = [
     exchange: -934,
     zoneKey: 'ES',
     gCo2eqPerkWh: 187.32,
-    tCo2eqPerMin: -2.915_948,
+    gCo2eqPerHour: -2.915_948,
     exchangeCapacityRange: [-1000, 1000],
   },
   {
     exchange: 200,
     zoneKey: 'FR',
     gCo2eqPerkWh: 999.32,
-    tCo2eqPerMin: 45.915_948,
+    gCo2eqPerHour: 45.915_948,
     exchangeCapacityRange: [0, 1000],
   },
 ];
@@ -357,14 +358,14 @@ describe('getExchangeData', () => {
         exchangeCapacityRange: [-1000, 1000],
         zoneKey: 'ES',
         gCo2eqPerkWh: 187.32,
-        tCo2eqPerMin: 2.915_948,
+        gCo2eqPerHour: 2.915_948,
       },
       {
         exchange: -934,
         exchangeCapacityRange: [-1000, 1000],
         zoneKey: 'AT',
         gCo2eqPerkWh: 187.32,
-        tCo2eqPerMin: -2.915_948,
+        gCo2eqPerHour: -2.915_948,
       },
     ]);
   });
@@ -384,7 +385,7 @@ describe('getExchangeData', () => {
         exchangeCapacityRange: [0, 0],
         zoneKey: 'ES',
         gCo2eqPerkWh: 187.32,
-        tCo2eqPerMin: -2.915_948,
+        gCo2eqPerHour: -2.915_948,
       },
     ]);
   });
@@ -407,7 +408,7 @@ describe('getExchangeData', () => {
         exchangeCapacityRange: [0, 0],
         zoneKey: 'ES',
         gCo2eqPerkWh: 187.32,
-        tCo2eqPerMin: Number.NaN,
+        gCo2eqPerHour: Number.NaN,
       },
     ]);
   });

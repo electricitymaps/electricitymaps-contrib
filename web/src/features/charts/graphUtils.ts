@@ -76,15 +76,17 @@ export function getTotalElectricity(
   displayByEmissions: boolean,
   mixMode: Mode
 ) {
-  const includeImports = mixMode === Mode.CONSUMPTION;
+  const isConsumption = mixMode === Mode.CONSUMPTION;
   let productionValue: number;
 
   if (displayByEmissions) {
-    productionValue = zoneData.totalCo2Production + zoneData.totalCo2Discharge;
-    productionValue += includeImports ? zoneData.totalCo2Import : 0;
+    productionValue = isConsumption
+      ? zoneData.totalCo2Consumption
+      : zoneData.totalCo2Production;
   } else {
-    productionValue = zoneData.totalProduction + zoneData.totalDischarge;
-    productionValue += includeImports ? zoneData.totalImport : 0;
+    productionValue = isConsumption
+      ? zoneData.totalConsumption
+      : zoneData.totalProduction;
   }
   if (productionValue === null) {
     return Number.NaN;

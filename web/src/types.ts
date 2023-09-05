@@ -123,6 +123,7 @@ export interface ZoneDetail extends ZoneOverview {
   renewableRatioProduction: number;
   source: string;
   storage: { [key in ElectricityStorageKeyType]: Maybe<number> };
+  totalCo2Consumption: number;
   totalCo2Discharge: number;
   totalCo2Export: number;
   totalCo2Import: number;

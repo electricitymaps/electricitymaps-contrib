@@ -56,10 +56,8 @@ export function getProductionTooltipData(
   let emissions = electricity === 0 ? 0 : Number.NaN;
 
   if (electricity && Number.isFinite(electricity)) {
-    usage = Math.abs(
-      displayByEmissions ? electricity * co2Intensity * 1000 : electricity
-    );
-    emissions = Math.abs(electricity * co2Intensity * 1000);
+    usage = Math.abs(displayByEmissions ? electricity * co2Intensity : electricity);
+    emissions = Math.abs(electricity * co2Intensity);
   }
 
   return {
@@ -92,7 +90,7 @@ export function getExchangeTooltipData(
 
   const isExport = exchange < 0;
 
-  const usage = Math.abs(displayByEmissions ? exchange * 1000 * co2Intensity : exchange);
+  const usage = Math.abs(displayByEmissions ? exchange * co2Intensity : exchange);
   const totalElectricity = getTotalElectricity(
     zoneDetail,
     displayByEmissions,
@@ -101,7 +99,7 @@ export function getExchangeTooltipData(
   const totalCapacity = exchangeCapacityRange
     ? Math.abs(exchangeCapacityRange[isExport ? 0 : 1])
     : undefined;
-  const emissions = Math.abs(exchange * 1000 * co2Intensity);
+  const emissions = Math.abs(exchange * co2Intensity);
   const totalEmissions = getTotalElectricity(zoneDetail, true, Mode.CONSUMPTION);
 
   return {
