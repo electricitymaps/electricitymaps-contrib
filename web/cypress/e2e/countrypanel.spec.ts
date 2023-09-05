@@ -5,12 +5,12 @@ describe('Country Panel', () => {
   });
 
   it('interacts with details', () => {
-    cy.interceptAPI('v6/details/hourly/DK-DK2');
+    cy.interceptAPI('v7/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess('v6/state/hourly');
-    cy.waitForAPISuccess('v6/details/hourly/DK-DK2');
+    cy.waitForAPISuccess('v7/details/hourly/DK-DK2');
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
@@ -57,10 +57,10 @@ describe('Country Panel', () => {
 
   // TODO bring back when we have a no recent data message
   it.skip('asserts countryPanel contains "no-recent-data" message', () => {
-    cy.interceptAPI('v6/details/hourly/UA');
+    cy.interceptAPI('v7/details/hourly/UA');
     cy.visit('/zone/UA?lang=en-GB');
     cy.waitForAPISuccess('v6/state/hourly');
-    cy.waitForAPISuccess('v6/details/hourly/UA');
+    cy.waitForAPISuccess('v7/details/hourly/UA');
 
     cy.get('[data-test-id=no-data-overlay-message]')
       .should('exist')
