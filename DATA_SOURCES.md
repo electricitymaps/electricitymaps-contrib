@@ -287,7 +287,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)
 - India:
-  - Renewable:  [MRE](https://mnre.gov.in/img/documents/uploads/file_s-1683779844352.pdf)
+  - Renewable: [MRE](https://mnre.gov.in/img/documents/uploads/file_s-1683779844352.pdf)
   - Non-Renewable: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
   - (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
