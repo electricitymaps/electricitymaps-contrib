@@ -162,7 +162,13 @@ export function BreakdownChartTooltipContent({
       />
       <br />
       {displayByEmissions && (
-        <MetricRatio value={emissions} total={totalEmissions} format={formatCo2} />
+        <MetricRatio
+          value={emissions}
+          total={totalEmissions}
+          format={formatCo2}
+          label={__('ofCO2eqPerMinute')}
+          useTotalUnit
+        />
       )}
 
       {!displayByEmissions && (
@@ -184,7 +190,13 @@ export function BreakdownChartTooltipContent({
           <b>{getRatioPercent(emissions, totalEmissions)} %</b>{' '}
           {__('tooltips.ofemissions')}
           <br />
-          <MetricRatio value={emissions} total={totalEmissions} format={formatCo2} />
+          <MetricRatio
+            value={emissions}
+            total={totalEmissions}
+            format={formatCo2}
+            label={__('ofCO2eqPerMinute')}
+            useTotalUnit
+          />
         </>
       )}
       {!displayByEmissions && (Number.isFinite(co2Intensity) || usage !== 0) && (

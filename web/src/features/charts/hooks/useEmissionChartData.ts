@@ -3,7 +3,7 @@ import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useAtom } from 'jotai';
 import { productionConsumptionAtom } from 'utils/state/atoms';
-import { getTotalElectricity, tonsPerHourToGramsPerMinute } from '../graphUtils';
+import { getTotalElectricity } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
 export function useEmissionChartData() {
@@ -20,9 +20,7 @@ export function useEmissionChartData() {
       return {
         datetime,
         layerData: {
-          emissions: tonsPerHourToGramsPerMinute(
-            getTotalElectricity(value, true, mixMode)
-          ),
+          emissions: getTotalElectricity(value, true, mixMode),
         },
         meta: value,
       };

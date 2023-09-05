@@ -1,9 +1,13 @@
 import * as d3 from 'd3-format';
-import { translate } from '../translation/translation';
 import { TimeAverages } from './constants';
-import { PowerUnits } from './units';
+import { EnergyUnits } from './units';
 
-const DEFAULT_NUM_DIGITS = 3;
+const DEFAULT_NUM_DIGITS = 2;
+
+function addSpaceBetweenNumberAndUnit(inputString: string) {
+  // Use a regular expression to add a space between the number and unit
+  return inputString.replace(/([A-Za-z])/, ' $1');
+}
 
 export const formatPower = function (
   d: number,
@@ -13,24 +17,45 @@ export const formatPower = function (
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
-  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}W` //Add a space between the number and the unit
-    .replace(/([A-Za-z])/, ' $1')
-    .trim();
-  return power;
+  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}Wh`;
+  return addSpaceBetweenNumberAndUnit(power);
 };
 
-export const formatCo2 = function (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) {
-  let value = d;
-  // Assume gCO₂ / h input
-  value /= 60; // Convert to gCO₂ / min
-  value /= 1e6; // Convert to tCO₂ / min
-  if (d == undefined || Number.isNaN(d)) {
-    return d;
+export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
+  if (gramPerHour == undefined || Number.isNaN(gramPerHour)) {
+    return gramPerHour;
   }
 
-  return value >= 1
-    ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
-    : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
+  // Assume gCO₂ / h input
+  let value = gramPerHour;
+  value /= 60; // Convert to gCO₂ / min
+  value /= 1e6; // Convert to tCO₂ / min
+
+  // Ensure both numbers are at the same scale
+  const checkAgainst = valueToMatch ? valueToMatch / 1e6 : value;
+
+  // grams and kilograms
+  if (checkAgainst < 1) {
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.0~s`)(value * 1e6)}g`);
+  }
+
+  // tons
+  if (Math.round(checkAgainst) < 1e5) {
+    let decimals = value < 1 ? 2 : 1;
+    // Remove decimals for large values
+    if (value > 1000) {
+      decimals = 0;
+    }
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~f`)(value)}t`);
+  }
+
+  // Hundred thousands of tons
+  if (Math.round(checkAgainst) < 1e6) {
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.1~f`)(value / 1e6)}Mt`);
+  }
+
+  // megatons or above
+  return addSpaceBetweenNumberAndUnit(`${d3.format(`,.2~s`)(value)}t`);
 };
 
 const scalePower = function (maxPower: number | undefined) {
@@ -41,26 +66,31 @@ const scalePower = function (maxPower: number | undefined) {
       formattingFactor: 1e3,
     };
   }
+
+  const thresholds: [number, EnergyUnits][] = [
+    [1e9, EnergyUnits.PETAWATT_HOURS],
+    [1e6, EnergyUnits.TERAWATT_HOURS],
+    [1e3, EnergyUnits.GIGAWATT_HOURS],
+    [1, EnergyUnits.MEGAWATT_HOURS],
+    [1e-3, EnergyUnits.KILOWATT_HOURS],
+  ];
+
   // Use absolute value to handle negative values
   const value = Math.abs(maxPower);
 
-  if (value < 1) {
-    return {
-      unit: PowerUnits.KILOWATTS,
-      formattingFactor: 1e-3,
-    };
+  for (const [threshold, unit] of thresholds) {
+    if (value >= threshold) {
+      return {
+        unit,
+        formattingFactor: threshold,
+      };
+    }
   }
 
-  if (value < 1e3) {
-    return {
-      unit: PowerUnits.MEGAWATTS,
-      formattingFactor: 1,
-    };
-  }
-
+  // Fallback if none of the thresholds are met
   return {
-    unit: PowerUnits.GIGAWATTS,
-    formattingFactor: 1e3,
+    unit: EnergyUnits.PETAWATT_HOURS,
+    formattingFactor: 1e9,
   };
 };
 
@@ -215,4 +245,4 @@ function formatDataSources(dataSources: string[], language: string) {
       );
 }
 
-export { scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };
+export { formatDataSources, formatDate, formatDateTick, formatTimeRange, scalePower };
