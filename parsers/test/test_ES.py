@@ -2,7 +2,6 @@ from datetime import datetime, timezone
 from unittest import TestCase, main
 
 from mock import patch
-from ree import ElHierro, Formentera, Mallorca, Response
 from requests import Session
 
 from electricitymap.contrib.lib.types import ZoneKey
@@ -15,19 +14,19 @@ class TestES(TestCase):
 
     ### El Hierro
     # Consumption
+    @patch("requests.Response")
     @patch("parsers.ES.Session.get")
-    def test_fetch_consumption(self, mocked_json_loads):
-        res = Response
-        res.ok = True
-        res.text = r'null({"valoresHorariosGeneracion":[{"ts":"2023-09-04 00:55","dem":5.5,"die":3.2,"gas":0.0,"eol":3.0,"cc":0.0,"vap":0.0,"fot":0.0,"hid":-0.5}]}'
-        mocked_json_loads.return_value = res
+    def test_fetch_consumption(self, mocked_session_get, mocked_response):
+        mocked_response.ok = True
+        mocked_response.text = r'null({"valoresHorariosGeneracion":[{"ts":"2023-09-04 00:55","dem":5.5,"die":3.2,"gas":0.0,"eol":3.0,"cc":0.0,"vap":0.0,"fot":0.0,"hid":-0.5}]}'
+        mocked_session_get.return_value = mocked_response
         data_list = ES.fetch_consumption(
             ZoneKey("ES-CN-HI"), self.session, datetime.fromisoformat("2023-09-04")
         )
 
         # Test "get" function has been called correctly
         self.assertEqual(
-            mocked_json_loads.call_args[0][0],
+            mocked_session_get.call_args[0][0],
             "https://demanda.ree.es/WSvisionaMovilesCanariasRest/resources/demandaGeneracionCanarias?curva=EL_HIERRO5M&fecha=2023-09-04",
         )
 
@@ -44,19 +43,19 @@ class TestES(TestCase):
 
     ### Menorca
     # Production
+    @patch("requests.Response")
     @patch("parsers.ES.Session.get")
-    def test_fetch_production(self, mocked_json_loads):
-        res = Response
-        res.ok = True
-        res.text = r'null({"valoresHorariosGeneracion":[{"ts":"2023-09-02 21:00","dem":85.9,"car":0.0,"die":22.6,"gas":59.3,"cc":0.0,"cb":0.0,"fot":1.1,"tnr":0.0,"trn":0.0,"eol":0.2,"emm":2.7,"emi":-0.0,"otrRen":0.0,"resid":0.0,"genAux":0.0,"cogen":0.0,"eif":-0.0}]}'
-        mocked_json_loads.return_value = res
+    def test_fetch_production(self, mocked_session_get, mocked_response):
+        mocked_response.ok = True
+        mocked_response.text = r'null({"valoresHorariosGeneracion":[{"ts":"2023-09-02 21:00","dem":85.9,"car":0.0,"die":22.6,"gas":59.3,"cc":0.0,"cb":0.0,"fot":1.1,"tnr":0.0,"trn":0.0,"eol":0.2,"emm":2.7,"emi":-0.0,"otrRen":0.0,"resid":0.0,"genAux":0.0,"cogen":0.0,"eif":-0.0}]}'
+        mocked_session_get.return_value = mocked_response
         data_list = ES.fetch_production(
             ZoneKey("ES-IB-ME"), self.session, datetime.fromisoformat("2023-09-03")
         )
 
         # Test "get" function has been called correctly
         self.assertEqual(
-            mocked_json_loads.call_args[0][0],
+            mocked_session_get.call_args[0][0],
             "https://demanda.ree.es/WSvisionaMovilesBalearesRest/resources/demandaGeneracionBaleares?curva=MENORCA5M&fecha=2023-09-03",
         )
 
@@ -84,12 +83,12 @@ class TestES(TestCase):
 
     ### Mallorca
     # Exchange
+    @patch("requests.Response")
     @patch("parsers.ES.Session.get")
-    def test_fetch_exchange(self, mocked_json_loads):
-        res = Response
-        res.ok = True
-        res.text = r'null({"valoresHorariosGeneracion":[{"ts":"2023-09-03 19:05","dem":670.3,"car":0.0,"die":0.0,"gas":0.0,"cc":416.4,"cb":309.8,"fot":19.7,"tnr":0.0,"trn":0.0,"eol":0.0,"emm":-20.6,"emi":-91.3,"otrRen":0.0,"resid":34.6,"genAux":0.0,"cogen":1.7,"eif":-0.0}]}'
-        mocked_json_loads.return_value = res
+    def test_fetch_exchange(self, mocked_session_get, mocked_response):
+        mocked_response.ok = True
+        mocked_response.text = r'null({"valoresHorariosGeneracion":[{"ts":"2023-09-03 19:05","dem":670.3,"car":0.0,"die":0.0,"gas":0.0,"cc":416.4,"cb":309.8,"fot":19.7,"tnr":0.0,"trn":0.0,"eol":0.0,"emm":-20.6,"emi":-91.3,"otrRen":0.0,"resid":34.6,"genAux":0.0,"cogen":1.7,"eif":-0.0}]}'
+        mocked_session_get.return_value = mocked_response
         data_list = ES.fetch_exchange(
             ZoneKey("ES"),
             ZoneKey("ES-IB-MA"),
@@ -99,7 +98,7 @@ class TestES(TestCase):
 
         # Test "get" function has been called correctly
         self.assertEqual(
-            mocked_json_loads.call_args[0][0],
+            mocked_session_get.call_args[0][0],
             "https://demanda.ree.es/WSvisionaMovilesBalearesRest/resources/demandaGeneracionBaleares?curva=MALLORCA5M&fecha=2023-09-03",
         )
 
