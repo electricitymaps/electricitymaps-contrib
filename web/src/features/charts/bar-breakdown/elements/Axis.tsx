@@ -4,7 +4,7 @@ import { LABEL_MAX_WIDTH, SCALE_TICKS, X_AXIS_HEIGHT } from '../constants';
 type Props = {
   height: number;
   scale: ScaleLinear<number, number, never>;
-  formatTick: (tick: number) => string;
+  formatTick: (tick: number) => string | number;
 };
 
 export default function Axis({ formatTick, height, scale }: Props) {
