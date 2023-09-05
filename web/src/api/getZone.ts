@@ -8,13 +8,16 @@ import { timeAverageAtom } from 'utils/state/atoms';
 
 import { getZoneFromPath } from 'utils/helpers';
 import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
+import { useFeatureFlag } from 'features/feature-flags/api';
 
 const getZone = async (
   timeAverage: TimeAverages,
-  zoneId?: string
+  zoneId?: string,
+  apiVersion?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
-  const path = `/v6/details/${timeAverage}/${zoneId}`;
+
+  const path = `/${apiVersion}/details/${timeAverage}/${zoneId}`;
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
@@ -37,10 +40,12 @@ const getZone = async (
 // should we add a check for this?
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const zoneId = getZoneFromPath();
+  const totalEnergy = useFeatureFlag('total-energy');
+  const apiVersion = totalEnergy ? 'v7' : 'v6';
   const [timeAverage] = useAtom(timeAverageAtom);
   return useQuery<ZoneDetails>(
-    [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
-    async () => getZone(timeAverage, zoneId)
+    [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage, apiVersion }],
+    async () => getZone(timeAverage, zoneId, apiVersion)
   );
 };
 
