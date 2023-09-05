@@ -237,9 +237,7 @@ def fetch_consumption(
     for event in island_data:
         consumption.append(
             zoneKey=zone_key,
-            datetime=event["timestamp"].astimezone(
-                timezone.utc
-            ),
+            datetime=event["timestamp"].astimezone(timezone.utc),
             consumption=event["demand"],
             source="demanda.ree.es",
         )
@@ -275,9 +273,7 @@ def fetch_production(
     for event in island_data:
         productionEventList.append(
             zoneKey=zone_key,
-            datetime=event["timestamp"].astimezone(
-                timezone.utc
-            ),
+            datetime=event["timestamp"].astimezone(timezone.utc),
             production=event["production"],
             storage=event["storage"],
             source="demanda.ree.es",
@@ -325,9 +321,7 @@ def fetch_exchange(
 
         exchangeList.append(
             zoneKey=sorted_zone_keys,
-            datetime=response["timestamp"].astimezone(
-                timezone.utc
-            ),
+            datetime=response["timestamp"].astimezone(timezone.utc),
             netFlow=net_flow,
             source="demanda.ree.es",
         )
