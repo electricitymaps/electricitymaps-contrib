@@ -1,15 +1,15 @@
 /* eslint-disable unicorn/no-null */
+import MobileTooltipWrapper from 'components/tooltips/MobileTooltipWrapper';
+import TooltipWrapper from 'components/tooltips/TooltipWrapper';
+import { mapMovingAtom } from 'features/map/mapAtoms';
+import { useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
-import { quantizedCo2IntensityScale, quantizedExchangeSpeedScale } from './scales';
-import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useSetAtom } from 'jotai';
-import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import ExchangeTooltip from './ExchangeTooltip';
-import MobileTooltipWrapper from 'components/tooltips/MobileTooltipWrapper';
 import MobileExchangeTooltip from './MobileExchangeTooltip';
+import { quantizedCo2IntensityScale, quantizedExchangeSpeedScale } from './scales';
 
 interface ExchangeArrowProps {
   data: ExchangeArrowData;
@@ -119,7 +119,7 @@ function ExchangeArrow({
         </picture>
       </MobileTooltipWrapper>
       <TooltipWrapper
-        tooltipClassName="max-h-[256px] max-w-[512px] top-[-76px] hidden md:flex"
+        tooltipClassName="max-h-[256px] max-w-[512px] top-[-76px] hidden md:flex bg-red-500"
         tooltipContent={<ExchangeTooltip exchangeData={data} />}
         side="right"
         sideOffset={10}
