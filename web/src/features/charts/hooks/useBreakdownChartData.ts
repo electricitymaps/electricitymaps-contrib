@@ -161,7 +161,7 @@ function getGenerationValue(
 }
 
 interface ValuesInfo {
-  valueAxisLabel: string; // For example, GW or tCO₂eq/min
+  valueAxisLabel: string; // For example, GW or tCO₂eq
   valueFactor: number;
 }
 
@@ -174,7 +174,7 @@ function getValuesInfo(
   );
 
   const format = scalePower(maxTotalValue);
-  const valueAxisLabel = displayByEmissions ? 'CO₂eq / min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'tCO₂eq' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 }
