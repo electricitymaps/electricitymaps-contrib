@@ -169,7 +169,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são exportadas para %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> é importada de %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são importadas de %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "de CO₂eq por minuto",
+  "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "O mapa",
     "mapColors-question": "O que significam as cores no mapa?",

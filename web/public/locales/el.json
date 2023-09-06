@@ -140,7 +140,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εξάγεται στο/στη(ν) %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εισάγεται από %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εισάγεται από %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq ανά λεπτό",
   "theMap": {
     "groupName": "Ο χάρτης",
     "mapColors-question": "What do the colors on the map mean?",

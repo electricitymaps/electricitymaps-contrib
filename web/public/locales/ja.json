@@ -140,7 +140,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "地図",
     "mapColors-question": "地図中の色は何を意味しますか?",

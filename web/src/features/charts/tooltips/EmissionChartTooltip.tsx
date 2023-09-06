@@ -27,7 +27,7 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
         title={__('country-panel.emissions')}
       />
       <p className="flex justify-center text-base">
-        <b className="mr-1">{formatCo2(totalEmissions)}</b> {__('ofCO2eqPerMinute')}
+        <b className="mr-1">{formatCo2(totalEmissions)}</b> {__('ofCO2eq')}
       </p>
     </div>
   );

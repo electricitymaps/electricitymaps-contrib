@@ -178,7 +178,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> werden in die Region %5$s <b>%3$s</b> exportiert",
   "electricityImportedFrom": "<b>%1$s %%</b> der Elektrizität der Region %4$s <b>%2$s</b> werden aus der Region %5$s <b>%3$s</b> importiert",
   "emissionsImportedFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> werden aus der Region %5$s <b>%3$s</b> importiert",
-  "ofCO2eqPerMinute": "CO₂äq pro Minute",
+  "ofCO2eq": "CO₂äq",
   "theMap": {
     "groupName": "Die Karte",
     "mapColors-question": "Was bedeuten die Farben auf der Karte?",
