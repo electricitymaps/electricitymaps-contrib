@@ -5,7 +5,8 @@ import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
 import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
 import { useAtom } from 'jotai';
-import { productionConsumptionAtom } from 'utils/state/atoms';
+import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
+import { formatCo2 } from 'utils/formatting';
 
 interface NetExchangeChartProps {
   datetimes: Date[];
@@ -15,6 +16,7 @@ interface NetExchangeChartProps {
 function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
   const [productionConsumption] = useAtom(productionConsumptionAtom);
+  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   if (productionConsumption === 'production') {
     return null;
   }
@@ -24,6 +26,10 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   }
   const { chartData } = data;
   const { layerFill, layerKeys, layerStroke, valueAxisLabel, markerFill } = data;
+
+  const maxEmissions = Math.max(...chartData.map((o) => o.layerData.netExchange));
+  const formatAxisTick = (t: number) =>
+    displayByEmissions ? formatCo2(t, maxEmissions) : t.toString();
 
   if (!chartData[0]?.layerData?.netExchange) {
     return null;
@@ -48,6 +54,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
           tooltip={NetExchangeChartTooltip}
+          formatTick={formatAxisTick}
         />
       </div>
     </>
