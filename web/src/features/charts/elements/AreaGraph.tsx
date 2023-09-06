@@ -93,6 +93,7 @@ interface AreagraphProps {
   selectedTimeAggregate: TimeAverages; // TODO: Graph does not need to know about this
   tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
   tooltipSize?: 'small' | 'large';
+  formatTick?: (t: number) => string | number;
 }
 
 interface TooltipData {
@@ -115,6 +116,7 @@ function AreaGraph({
   datetimes,
   tooltip,
   tooltipSize,
+  formatTick = String,
 }: AreagraphProps) {
   const {
     ref,
@@ -268,6 +270,7 @@ function AreaGraph({
         label={valueAxisLabel}
         width={containerWidth}
         height={containerHeight}
+        formatTick={formatTick}
       />
       <GraphHoverLine
         layers={layers}
