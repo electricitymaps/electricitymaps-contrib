@@ -154,9 +154,6 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 
 Production capacities are centralized in the [config/zones](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones) folder. Capacities are included in the respective zone configurations. Values in the `capacity` maps are in MW.
 
-- India South Conventional: [NPP](https://npp.gov.in/public-reports/cea/monthly/installcap/2023/APR/capacity2-Southern-2023-04.pdf)
-- India South Renewables: [MRE](https://mnre.gov.in/img/documents/uploads/file_s-1683779844352.pdf)
-
 #### International sources
 
 When determining the installed capacity for a country, these sources might help you get started. Note that if you end up using one of these sources, it _also_ needs to be listed with the country/region.
@@ -290,7 +287,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)
 - India:
-  - Renewable: [NPP](https://npp.gov.in/dashBoard/cp-map-dashboard)
+  - Renewable: [MRE](https://mnre.gov.in/img/documents/uploads/file_s-1683779844352.pdf)
   - Non-Renewable: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
   - (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
