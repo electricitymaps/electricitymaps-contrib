@@ -5,7 +5,11 @@ import {
   ZoneDetail,
 } from 'types';
 import { getProductionCo2Intensity } from 'utils/helpers';
-import { getElectricityProductionValue, getTotalElectricity } from './graphUtils';
+import {
+  getElectricityProductionValue,
+  getTotalEmissions,
+  getTotalElectricity,
+} from './graphUtils';
 import { Mode } from 'utils/constants';
 
 export function getProductionTooltipData(
@@ -23,8 +27,8 @@ export function getProductionTooltipData(
 
   const storageKey = generationType as ElectricityStorageKeyType;
 
-  const totalElectricity = getTotalElectricity(zoneDetail, displayByEmissions, mixMode);
-  const totalEmissions = getTotalElectricity(zoneDetail, true, mixMode);
+  const totalElectricity = getTotalElectricity(zoneDetail, mixMode);
+  const totalEmissions = getTotalEmissions(zoneDetail, mixMode);
 
   const {
     capacity,
@@ -56,8 +60,10 @@ export function getProductionTooltipData(
   let emissions = electricity === 0 ? 0 : Number.NaN;
 
   if (electricity && Number.isFinite(electricity)) {
-    usage = Math.abs(displayByEmissions ? electricity * co2Intensity : electricity);
-    emissions = Math.abs(electricity * co2Intensity);
+    usage = Math.abs(
+      displayByEmissions ? electricity * co2Intensity * 1000 : electricity
+    );
+    emissions = Math.abs(electricity * co2Intensity * 1000);
   }
 
   return {
@@ -90,17 +96,17 @@ export function getExchangeTooltipData(
 
   const isExport = exchange < 0;
 
-  const usage = Math.abs(displayByEmissions ? exchange * co2Intensity : exchange);
-  const totalElectricity = getTotalElectricity(
-    zoneDetail,
-    displayByEmissions,
-    Mode.CONSUMPTION
-  );
+  const usage = Math.abs(displayByEmissions ? exchange * co2Intensity * 1000 : exchange);
+  const totalElectricity = getTotalElectricity(zoneDetail, Mode.CONSUMPTION);
   const totalCapacity = exchangeCapacityRange
     ? Math.abs(exchangeCapacityRange[isExport ? 0 : 1])
     : undefined;
-  const emissions = Math.abs(exchange * co2Intensity);
-  const totalEmissions = getTotalElectricity(zoneDetail, true, Mode.CONSUMPTION);
+  const emissions = Math.abs(exchange * co2Intensity * 1000);
+  const totalEmissions = getTotalEmissions(
+    zoneDetail,
+
+    Mode.CONSUMPTION
+  );
 
   return {
     co2Intensity,
