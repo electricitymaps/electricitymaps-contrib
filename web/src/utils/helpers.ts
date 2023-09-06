@@ -145,6 +145,6 @@ export function getNetExchange(
     return Number.NaN;
   }
   return displayByEmissions
-    ? round(zoneData.totalCo2NetExchange) // in CO₂eq
+    ? round(zoneData.totalCo2NetExchange ?? 0) // in CO₂eq
     : round(zoneData.totalImport - zoneData.totalExport);
 }
