@@ -7,15 +7,13 @@ import pandas as pd
 import requests
 from requests import Response, Session
 
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.lib.models.event_lists import (
+    EventSourceType,
     ExchangeList,
     ProductionBreakdownList,
 )
-from electricitymap.contrib.lib.models.events import (
-    EventSourceType,
-    ProductionMix,
-    StorageMix,
-)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -453,6 +451,10 @@ EXCHANGE_KEY_MAPPING = {
 }
 KIND_TO_URL = {"production": DIPC_URL, "exchange": RTDHS_URL}
 KIND_TO_POST_ID = {"production": "5754", "exchange": "5770"}
+PRODUCTION_MIX_TO_MODE = {
+    "production": PRODUCTION_MODES,
+    "storage": ["hydro_storage", "battery"],
+}
 
 
 class MarketReportsItem(NamedTuple):
@@ -611,15 +613,11 @@ def aggregate_per_datetime_mode(df: pd.DataFrame) -> pd.DataFrame:
     return df.groupby(["datetime", "mode"]).sum(numeric_only=True).reset_index()
 
 
-def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
+def add_production_mix_column(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    df = df.pivot(index="datetime", columns="mode")
-    # Flatten columns and make them "production.{mode}"
-    df.columns = df.columns.to_series().str.join(".")
-    # Handle storage
-    if "production.hydro_storage" in df.columns:
-        df = df.rename(columns={"production.hydro_storage": "storage.hydro"})
-        df["storage.hydro"] *= -1
+    df["production_mix"] = None
+    for mix, modes in PRODUCTION_MIX_TO_MODE.items():
+        df.loc[df["mode"].isin(modes), "production_mix"] = mix
     return df
 
 
@@ -681,25 +679,39 @@ def fetch_production(
         .pipe(filter_generation)
         .pipe(match_resources_to_modes, logger)
         .pipe(aggregate_per_datetime_mode)
-        .pipe(pivot_per_mode)
+        .pipe(add_production_mix_column)
     )
 
     production_breakdown = ProductionBreakdownList(logger)
-    for tstamp, row in df.iterrows():
+    df = df.set_index("datetime")
+    for dt in df.index.unique():
+        df_dt = df.loc[dt]
         production_mix = ProductionMix()
-        for mode in [m for m in row.index if "production." in m]:
-            production_mix.add_value(mode.replace("production.", ""), row[mode])
         storage_mix = StorageMix()
-        if "storage.hydro" in row.index:
-            storage_mix.add_value("hydro", row["storage.hydro"])
+        for idx, row in df_dt.iterrows():
+            if row["production_mix"] == "production":
+                production_mix.add_value(row["mode"], row["production"])
+            elif row["production_mix"] == "storage":
+                if row["mode"] == "hydro_storage":
+                    mode = "hydro"
+                else:
+                    mode = row["mode"]
+                storage_mix.add_value(mode, row["production"])
+            else:
+                raise ParserException(
+                    parser="PH.py",
+                    zone_key=zone_key,
+                    message=f"{zone_key}: Unknown production mix {row['production_mix']}. Production mix must be storage or production",
+                )
+
         production_breakdown.append(
-            zone_key,
-            tstamp.to_pydatetime(),
-            SOURCE,
-            production_mix,
-            storage_mix,
-            sourceType=EventSourceType.measured,
-        )
+                zone_key,
+                idx.to_pydatetime(),
+                SOURCE,
+                production_mix,
+                storage_mix,
+                sourceType=EventSourceType.measured,
+            )
 
     return production_breakdown.to_list()
 
