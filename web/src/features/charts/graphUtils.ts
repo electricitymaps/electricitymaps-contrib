@@ -71,28 +71,38 @@ export const getGenerationTypeKey = (name: string): GenerationType | undefined =
   return undefined;
 };
 
-export function getTotalElectricity(
-  zoneData: ZoneDetail,
-  displayByEmissions: boolean,
-  mixMode: Mode
-) {
+export function getTotalElectricity(zoneData: ZoneDetail, mixMode: Mode) {
   const isConsumption = mixMode === Mode.CONSUMPTION;
-  let productionValue: number;
-
-  if (displayByEmissions) {
-    productionValue = isConsumption
-      ? zoneData.totalCo2Consumption
-      : zoneData.totalCo2Production;
-  } else {
-    productionValue = isConsumption
-      ? zoneData.totalConsumption
-      : zoneData.totalProduction;
+  if (isConsumption) {
+    if (zoneData.totalConsumption === null) {
+      return Number.NaN;
+    }
+    return zoneData.totalConsumption;
   }
-  if (productionValue === null) {
+  if (zoneData.totalProduction === null) {
     return Number.NaN;
   }
+  // Electricity: Handle discharge case if available, else default to production
+  return zoneData.totalDischarge !== null && zoneData.totalDischarge !== undefined
+    ? zoneData.totalProduction + zoneData.totalDischarge
+    : zoneData.totalProduction;
+}
 
-  return productionValue;
+export function getTotalEmissions(zoneData: ZoneDetail, mixMode: Mode) {
+  const isConsumption = mixMode === Mode.CONSUMPTION;
+  if (isConsumption) {
+    if (zoneData.totalCo2Consumption === null) {
+      return Number.NaN;
+    }
+    return zoneData.totalCo2Consumption;
+  }
+  if (zoneData.totalCo2Production === null) {
+    return Number.NaN;
+  }
+  // Emissions: Handle discharge case if available, else default to production
+  return zoneData.totalCo2Discharge !== null && zoneData.totalCo2Discharge !== undefined
+    ? zoneData.totalCo2Production + zoneData.totalCo2Discharge
+    : zoneData.totalCo2Production;
 }
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
