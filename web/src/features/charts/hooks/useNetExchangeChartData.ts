@@ -82,7 +82,7 @@ function getValuesInfo(
 
   const { unit, formattingFactor } = displayByEmissions
     ? {
-        unit: 'tCO₂eq',
+        unit: 'CO₂eq',
         formattingFactor: 1,
       }
     : scalePower(maxTotalValue);

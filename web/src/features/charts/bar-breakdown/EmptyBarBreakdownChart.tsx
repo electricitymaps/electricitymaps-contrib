@@ -36,7 +36,7 @@ function EmptyBarBreakdownChart({
   const maxCO2eqImport = 10;
   const maxCO2eqProduction = 10;
 
-  // in tCO₂eq/min
+  // in CO₂eq
   const co2Scale = useMemo(
     () =>
       scaleLinear()

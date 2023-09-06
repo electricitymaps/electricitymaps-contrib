@@ -137,7 +137,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä viedään %3$s",
   "electricityImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä tuodaan %3$s",
   "emissionsImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä tuodaan %3$s",
-  "ofCO2eqPerMinute": "hiilidioksiidia minuutissa",
   "theMap": {
     "groupName": "Kartta",
     "mapColors-question": "Mitä kartan värit tarkoittavat?",

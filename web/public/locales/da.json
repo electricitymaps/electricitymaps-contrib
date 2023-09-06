@@ -128,7 +128,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "af CO₂-ækvivalenter per minut",
+  "ofCO2eq": "af CO₂-ækvivalenter",
   "zoneShortName": {
     "AL": {
       "zoneName": "Albanien"

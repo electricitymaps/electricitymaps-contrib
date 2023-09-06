@@ -146,7 +146,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> din emisiile din electricitatea disponibilă în %4$s <b>%2$s</b> sunt exportate în %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> din electricitatea disponibilă în %4$s <b>%2$s</b> este importată din %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> din emisiile din electricitatea disponibilă în %4$s <b>%2$s</b> sunt importate din %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "de CO₂echivalent pe minut",
+  "ofCO2eq": "de CO₂echivalent",
   "theMap": {
     "groupName": "Harta",
     "mapColors-question": "Ce semnificație au culorile de pe hartă",
