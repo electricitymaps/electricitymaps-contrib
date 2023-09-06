@@ -19,14 +19,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v3
-        with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+          cache: 'pnpm'
       - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
         working-directory: ./web
       - name: Prettier Check
