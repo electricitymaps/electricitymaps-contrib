@@ -133,7 +133,7 @@ export interface ExchangeDataType {
   zoneKey: ZoneKey;
   gCo2eqPerkWh: number;
   gCo2eqPerHour: number;
-  exchangeCapacityRange: [number, number];
+  exchangeCapacityRange: number[];
 }
 export const getExchangeData = (
   data: ZoneDetail,
