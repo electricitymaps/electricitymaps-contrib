@@ -132,7 +132,7 @@ const productionData = [
     storage: undefined,
     capacity: 700,
     mode: 'biomass',
-    gCo2eqPerHour: 2.561_683_868_333_333,
+    gCo2eqPerHour: 153_701_032.1,
   },
   {
     isStorage: false,
@@ -148,7 +148,7 @@ const productionData = [
     storage: undefined,
     capacity: 5389,
     mode: 'wind',
-    gCo2eqPerHour: 0.497_438_333_333_333_3,
+    gCo2eqPerHour: 29_846_300,
   },
   {
     isStorage: false,
@@ -156,7 +156,7 @@ const productionData = [
     storage: undefined,
     capacity: 1616,
     mode: 'solar',
-    gCo2eqPerHour: 0.007_253_333_333_333_333,
+    gCo2eqPerHour: 435_200,
   },
   {
     isStorage: false,
@@ -164,7 +164,7 @@ const productionData = [
     production: 1445,
     capacity: 4578,
     mode: 'hydro',
-    gCo2eqPerHour: 0.257_691_666_666_666_65,
+    gCo2eqPerHour: 15_461_500,
   },
   {
     isStorage: true,
@@ -172,7 +172,7 @@ const productionData = [
     production: 1445,
     capacity: 3585,
     mode: 'hydro storage',
-    gCo2eqPerHour: -0.898_247_560_136_053_7,
+    gCo2eqPerHour: -53_894_853.608_163_215,
   },
   {
     isStorage: true,
@@ -188,7 +188,7 @@ const productionData = [
     storage: undefined,
     capacity: 4520,
     mode: 'gas',
-    gCo2eqPerHour: 15.829_517_778_833_331,
+    gCo2eqPerHour: 949_771_066.729_999_9,
   },
   {
     isStorage: false,
@@ -204,7 +204,7 @@ const productionData = [
     storage: undefined,
     capacity: null,
     mode: 'unknown',
-    gCo2eqPerHour: 0.338_333_333_333_333_3,
+    gCo2eqPerHour: 20_300_000,
   },
 ];
 
@@ -358,14 +358,14 @@ describe('getExchangeData', () => {
         exchangeCapacityRange: [-1000, 1000],
         zoneKey: 'ES',
         gCo2eqPerkWh: 187.32,
-        gCo2eqPerHour: 2.915_948,
+        gCo2eqPerHour: 174_956_880,
       },
       {
         exchange: -934,
         exchangeCapacityRange: [-1000, 1000],
         zoneKey: 'AT',
         gCo2eqPerkWh: 187.32,
-        gCo2eqPerHour: -2.915_948,
+        gCo2eqPerHour: -174_956_880,
       },
     ]);
   });
@@ -385,7 +385,7 @@ describe('getExchangeData', () => {
         exchangeCapacityRange: [0, 0],
         zoneKey: 'ES',
         gCo2eqPerkWh: 187.32,
-        gCo2eqPerHour: -2.915_948,
+        gCo2eqPerHour: -174_956_880,
       },
     ]);
   });
