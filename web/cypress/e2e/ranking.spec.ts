@@ -2,7 +2,7 @@
 describe('Ranking Panel', () => {
   it('interacts with details', () => {
     cy.interceptAPI('v6/state/hourly');
-    cy.interceptAPI('v6/details/hourly/DK-DK2');
+    cy.interceptAPI('v7/details/hourly/DK-DK2');
     cy.visit('/?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess(`v6/state/hourly`);

@@ -220,7 +220,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> exporteras till %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> av elen i %4$s <b>%2$s</b> importeras från %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> importeras från %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "av CO₂eq per minut",
+  "ofCO2eq": "av CO₂eq",
   "theMap": {
     "groupName": "Kartan",
     "mapColors-question": "Vad betyder färgerna på kartan?",

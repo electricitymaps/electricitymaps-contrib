@@ -68,7 +68,7 @@ export function useNetExchangeChartData() {
 }
 
 interface ValuesInfo {
-  valueAxisLabel: string; // For example, GW or tCO₂eq/min
+  valueAxisLabel: string; // For example, GW or CO₂eq
   valueFactor: number;
 }
 
@@ -82,7 +82,7 @@ function getValuesInfo(
 
   const { unit, formattingFactor } = displayByEmissions
     ? {
-        unit: 'tCO₂eq/min',
+        unit: 'CO₂eq',
         formattingFactor: 1,
       }
     : scalePower(maxTotalValue);

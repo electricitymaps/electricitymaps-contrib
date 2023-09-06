@@ -56,7 +56,8 @@ function BarBreakdownEmissionsChart({
   const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.gCo2eqPerHour));
   const maxCO2eqProduction = d3Max(productionData, (d) => d.gCo2eqPerHour);
 
-  // in tCO₂eq
+  // in CO₂eq
+
   const co2Scale = useMemo(
     () =>
       scaleLinear()
