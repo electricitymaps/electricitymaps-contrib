@@ -3,17 +3,17 @@ import { formatCo2, formatDataSources } from './formatting';
 
 describe('formatCo2', () => {
   it('handles grams', () => {
-    const actual = formatCo2(1200);
+    const actual = formatCo2(20);
     const expected = '20 g';
     expect(actual).toBe(expected);
   });
   it('handles kilograms', () => {
-    const actual = formatCo2(60_950);
+    const actual = formatCo2(1000);
     const expected = '1 kg';
     expect(actual).toBe(expected);
   });
   it('handles tons', () => {
-    const actual = formatCo2(60_950_000);
+    const actual = formatCo2(1_000_000);
     const expected = '1 t';
     expect(actual).toBe(expected);
   });
@@ -23,25 +23,40 @@ describe('formatCo2', () => {
     const expected = '0 t';
     expect(actual).toBe(expected);
   });
+  it('uses same unit as another value would non-zero', () => {
+    const actual = formatCo2(230_500, 2_350_000);
+    const expected = '0.2 t';
+    expect(actual).toBe(expected);
+  });
 
   it('adds decimals if comparing with tons', () => {
-    const actual = formatCo2(12_003_500, 200_350_000);
+    const actual = formatCo2(200_500, 2_350_000);
     const expected = '0.2 t';
     expect(actual).toBe(expected);
   });
   it('handles values up to 100k', () => {
-    const actual = formatCo2(700_003_500_000);
-    const expected = '11,667 t';
+    const actual = formatCo2(99_000_000_000_000_000);
+    const expected = '99 Gt';
     expect(actual).toBe(expected);
   });
-  it('handles values up to 1 million', () => {
-    const actual = formatCo2(30_000_035_000_000);
-    const expected = '0.5 Mt';
+  it('handles values up to megatonnes', () => {
+    const actual = formatCo2(500_000_000_000_000);
+    const expected = '500 Mt';
     expect(actual).toBe(expected);
   });
-  it('handles values above 1 million', () => {
-    const actual = formatCo2(400_000_350_000_000_000);
+  it('handles values up to 1 trillion grams', () => {
+    const actual = formatCo2(999_000_000_000_000);
+    const expected = '1 Gt';
+    expect(actual).toBe(expected);
+  });
+  it('handles values above 1 trillion', () => {
+    const actual = formatCo2(6_700_000_000_000_000);
     const expected = '6.7 Gt';
+    expect(actual).toBe(expected);
+  });
+  it('handles values petatonnes', () => {
+    const actual = formatCo2(1.5e21);
+    const expected = '1.5 Pt';
     expect(actual).toBe(expected);
   });
 });

@@ -33,27 +33,28 @@ export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
   const checkAgainst = valueToMatch ?? value;
 
   // grams and kilograms
-  if (checkAgainst < 1) {
+  if (checkAgainst < 1_000_000) {
     return addSpaceBetweenNumberAndUnit(`${d3.format(`,.0~s`)(value)}g`);
   }
 
   // tons
-  if (Math.round(checkAgainst) < 1e5) {
+  if (Math.round(checkAgainst) < 1e8) {
     let decimals = value < 1 ? 2 : 1;
     // Remove decimals for large values
-    if (value > 1000) {
+    if (value > 1_000_000) {
       decimals = 0;
     }
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~f`)(value)}t`);
+
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~f`)(value / 1e6)}t`);
   }
 
   // Hundred thousands of tons
-  if (Math.round(checkAgainst) < 1e6) {
+  if (Math.round(checkAgainst) < 1e9) {
     return addSpaceBetweenNumberAndUnit(`${d3.format(`,.1~f`)(value / 1e6)}Mt`);
   }
 
   // megatons or above
-  return addSpaceBetweenNumberAndUnit(`${d3.format(`,.2~s`)(value)}t`);
+  return addSpaceBetweenNumberAndUnit(`${d3.format(`,.2~s`)(value / 1e6)}t`);
 };
 
 const scalePower = function (maxPower: number | undefined) {
