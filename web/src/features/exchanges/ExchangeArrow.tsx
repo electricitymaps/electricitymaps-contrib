@@ -119,7 +119,7 @@ function ExchangeArrow({
         </picture>
       </MobileTooltipWrapper>
       <TooltipWrapper
-        tooltipClassName="max-h-[256px] max-w-[512px] top-[-76px] hidden md:flex bg-red-500"
+        tooltipClassName="max-h-[256px] max-w-[512px] top-[-76px] hidden md:flex"
         tooltipContent={<ExchangeTooltip exchangeData={data} />}
         side="right"
         sideOffset={10}
