@@ -1,5 +1,67 @@
 import { removeDuplicateSources } from 'features/panels/zone/Attribution';
-import { formatCo2, formatDataSources } from './formatting';
+import { formatCo2, formatDataSources, formatEnergy } from './formatting';
+
+describe('formatEnergy', () => {
+  it('handles NaN input', () => {
+    const actual = formatEnergy(Number.NaN);
+    const expected = Number.NaN;
+    expect(actual).toBe(expected);
+  });
+
+  it('handles custom number of digits', () => {
+    const actual = formatEnergy(1.234_567, 4);
+    const expected = '1.235 MWh';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles default number kWh', () => {
+    const actual = formatEnergy(0.002_234_567);
+    const expected = '2.2 kWh';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles MWh', () => {
+    const actual = formatEnergy(1.234_567);
+    const expected = '1.2 MWh';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles GWh', () => {
+    const actual = formatEnergy(1222.234_567);
+    const expected = '1.2 GWh';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles TWh', () => {
+    const actual = formatEnergy(1_222_000.234_567);
+    const expected = '1.2 TWh';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles PWh', () => {
+    const actual = formatEnergy(1_222_000_000.234_567);
+    const expected = '1.2 PWh';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles zero input', () => {
+    const actual = formatEnergy(0);
+    const expected = '0 Wh';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles 1 input for number of digits', () => {
+    const actual = formatEnergy(12_313, 1);
+    const expected = '10 GWh';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles 0 input for number of digits', () => {
+    const actual = formatEnergy(12_313, 0);
+    const expected = '10 GWh';
+    expect(actual).toBe(expected);
+  });
+});
 
 describe('formatCo2', () => {
   it('handles grams', () => {

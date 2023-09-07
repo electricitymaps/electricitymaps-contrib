@@ -9,7 +9,7 @@ function addSpaceBetweenNumberAndUnit(inputString: string) {
   return inputString.replace(/([A-Za-z])/, ' $1');
 }
 
-export const formatPower = function (
+export const formatEnergy = function (
   d: number,
   numberDigits: number = DEFAULT_NUM_DIGITS
 ) {
@@ -17,7 +17,9 @@ export const formatPower = function (
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
-  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}Wh`;
+  const significantFigures = d.toString().length > 1 ? numberDigits : 1;
+
+  const power = `${d3.format(`.${significantFigures}s`)(d * 1e6)}Wh`;
   return addSpaceBetweenNumberAndUnit(power);
 };
 
