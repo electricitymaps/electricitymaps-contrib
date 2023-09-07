@@ -23,7 +23,7 @@ export const formatPower = function (
 
 export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
   if (gramPerHour == undefined || Number.isNaN(gramPerHour)) {
-    return gramPerHour;
+    return '?';
   }
 
   // Assume gCO₂ / h input

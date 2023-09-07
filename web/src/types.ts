@@ -131,11 +131,11 @@ export interface ZoneDetail extends ZoneOverview {
   totalCo2Production: number;
   totalCo2Storage: number | null;
   totalConsumption: number;
-  totalDischarge: number;
-  totalExport: number;
-  totalImport: number;
+  totalDischarge: number | null;
+  totalExport: number | null;
+  totalImport: number | null;
   totalProduction: number;
-  totalStorage: number;
+  totalStorage: number | null;
 }
 
 export interface ZoneDetails {
