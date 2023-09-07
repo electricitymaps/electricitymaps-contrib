@@ -210,6 +210,7 @@ class ProductionBreakdownList(AggregatableEventList):
         of corresponding datetimes to create a unique production breakdown list.
         Sources will be aggregated in a comma-separated string. Ex: "entsoe, eia".
         There should be only one zone in the list of production breakdowns.
+        Matching timestamps only will only keep the timestamps where all the production breakdowns have data.
         """
         production_breakdowns = ProductionBreakdownList(logger)
         if ProductionBreakdownList.is_completely_empty(
