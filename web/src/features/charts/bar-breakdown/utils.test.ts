@@ -116,7 +116,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'nuclear',
-    gCo2eqPerHour: 0,
+    gCo2eq: 0,
   },
   {
     isStorage: false,
@@ -124,7 +124,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'geothermal',
-    gCo2eqPerHour: 0,
+    gCo2eq: 0,
   },
   {
     isStorage: false,
@@ -132,7 +132,7 @@ const productionData = [
     storage: undefined,
     capacity: 700,
     mode: 'biomass',
-    gCo2eqPerHour: 153_701_032.1,
+    gCo2eq: 153_701_032.1,
   },
   {
     isStorage: false,
@@ -140,7 +140,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'coal',
-    gCo2eqPerHour: 0,
+    gCo2eq: 0,
   },
   {
     isStorage: false,
@@ -148,7 +148,7 @@ const productionData = [
     storage: undefined,
     capacity: 5389,
     mode: 'wind',
-    gCo2eqPerHour: 29_846_300,
+    gCo2eq: 29_846_300,
   },
   {
     isStorage: false,
@@ -156,7 +156,7 @@ const productionData = [
     storage: undefined,
     capacity: 1616,
     mode: 'solar',
-    gCo2eqPerHour: 435_200,
+    gCo2eq: 435_200,
   },
   {
     isStorage: false,
@@ -164,7 +164,7 @@ const productionData = [
     production: 1445,
     capacity: 4578,
     mode: 'hydro',
-    gCo2eqPerHour: 15_461_500,
+    gCo2eq: 15_461_500,
   },
   {
     isStorage: true,
@@ -172,7 +172,7 @@ const productionData = [
     production: 1445,
     capacity: 3585,
     mode: 'hydro storage',
-    gCo2eqPerHour: -53_894_853.608_163_215,
+    gCo2eq: -53_894_853.608_163_215,
   },
   {
     isStorage: true,
@@ -180,7 +180,7 @@ const productionData = [
     capacity: null,
     mode: 'battery storage',
     production: undefined,
-    gCo2eqPerHour: 0,
+    gCo2eq: 0,
   },
   {
     isStorage: false,
@@ -188,7 +188,7 @@ const productionData = [
     storage: undefined,
     capacity: 4520,
     mode: 'gas',
-    gCo2eqPerHour: 949_771_066.729_999_9,
+    gCo2eq: 949_771_066.729_999_9,
   },
   {
     isStorage: false,
@@ -196,7 +196,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'oil',
-    gCo2eqPerHour: 0,
+    gCo2eq: 0,
   },
   {
     isStorage: false,
@@ -204,7 +204,7 @@ const productionData = [
     storage: undefined,
     capacity: null,
     mode: 'unknown',
-    gCo2eqPerHour: 20_300_000,
+    gCo2eq: 20_300_000,
   },
 ];
 
@@ -213,14 +213,14 @@ const exchangeData: ExchangeDataType[] = [
     exchange: -934,
     zoneKey: 'ES',
     gCo2eqPerkWh: 187.32,
-    gCo2eqPerHour: -2.915_948,
+    gCo2eq: -2.915_948,
     exchangeCapacityRange: [-1000, 1000],
   },
   {
     exchange: 200,
     zoneKey: 'FR',
     gCo2eqPerkWh: 999.32,
-    gCo2eqPerHour: 45.915_948,
+    gCo2eq: 45.915_948,
     exchangeCapacityRange: [0, 1000],
   },
 ];
@@ -358,14 +358,14 @@ describe('getExchangeData', () => {
         exchangeCapacityRange: [-1000, 1000],
         zoneKey: 'ES',
         gCo2eqPerkWh: 187.32,
-        gCo2eqPerHour: 174_956_880,
+        gCo2eq: 174_956_880,
       },
       {
         exchange: -934,
         exchangeCapacityRange: [-1000, 1000],
         zoneKey: 'AT',
         gCo2eqPerkWh: 187.32,
-        gCo2eqPerHour: -174_956_880,
+        gCo2eq: -174_956_880,
       },
     ]);
   });
@@ -385,7 +385,7 @@ describe('getExchangeData', () => {
         exchangeCapacityRange: [0, 0],
         zoneKey: 'ES',
         gCo2eqPerkWh: 187.32,
-        gCo2eqPerHour: -174_956_880,
+        gCo2eq: -174_956_880,
       },
     ]);
   });
@@ -408,7 +408,7 @@ describe('getExchangeData', () => {
         exchangeCapacityRange: [0, 0],
         zoneKey: 'ES',
         gCo2eqPerkWh: 187.32,
-        gCo2eqPerHour: Number.NaN,
+        gCo2eq: Number.NaN,
       },
     ]);
   });

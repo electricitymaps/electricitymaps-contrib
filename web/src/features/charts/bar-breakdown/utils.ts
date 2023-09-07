@@ -44,7 +44,7 @@ export interface ProductionDataType {
   isStorage: boolean;
   storage: Maybe<number>;
   mode: ElectricityModeType;
-  gCo2eqPerHour: number;
+  gCo2eq: number;
 }
 
 export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
@@ -60,8 +60,7 @@ export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
     // Production CO₂ intensity
     const gCo2eqPerkWh = getProductionCo2Intensity(mode, data);
     const value = isStorage ? storage : production || 0;
-    const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * (value || 0);
-    // const gCo2eqPerHour = gCo2eqPerHour / 1e6 / 60;
+    const gCo2eq = gCo2eqPerkWh * 1000 * (value || 0);
 
     return {
       isStorage,
@@ -69,7 +68,7 @@ export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
       production,
       capacity,
       mode,
-      gCo2eqPerHour,
+      gCo2eq,
     };
   });
 
@@ -132,7 +131,7 @@ export interface ExchangeDataType {
   exchange: number;
   zoneKey: ZoneKey;
   gCo2eqPerkWh: number;
-  gCo2eqPerHour: number;
+  gCo2eq: number;
   exchangeCapacityRange: number[];
 }
 export const getExchangeData = (
@@ -147,15 +146,14 @@ export const getExchangeData = (
 
     // Exchange CO₂ intensity
     const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, electricityMixMode);
-    const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * exchange;
-    // const gCo2eqPerHour = gCo2eqPerHour / 1e6 / 60;
+    const gCo2eq = gCo2eqPerkWh * 1000 * exchange;
 
     return {
       exchange,
       exchangeCapacityRange,
       zoneKey,
       gCo2eqPerkWh,
-      gCo2eqPerHour,
+      gCo2eq,
     };
   });
 

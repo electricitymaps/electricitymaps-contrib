@@ -52,9 +52,9 @@ function BarBreakdownEmissionsChart({
     exchangeData
   );
 
-  const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.gCo2eqPerHour)) || 0;
-  const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.gCo2eqPerHour));
-  const maxCO2eqProduction = d3Max(productionData, (d) => d.gCo2eqPerHour);
+  const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.gCo2eq)) || 0;
+  const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.gCo2eq));
+  const maxCO2eqProduction = d3Max(productionData, (d) => d.gCo2eq);
 
   // in CO₂eq
 
@@ -70,9 +70,9 @@ function BarBreakdownEmissionsChart({
   );
 
   const formatTick = (t: number) => {
-    const maxValue = maxCO2eqProduction || 1; // * 1e6 * 60;
+    const maxValue = maxCO2eqProduction || 1;
 
-    return `${formatCo2(t, maxValue)}`;
+    return formatCo2(t, maxValue);
   };
 
   return (
@@ -86,7 +86,7 @@ function BarBreakdownEmissionsChart({
             label={__(d.mode)}
             width={width}
             scale={co2Scale}
-            value={Math.abs(d.gCo2eqPerHour)}
+            value={Math.abs(d.gCo2eq)}
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, data, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
@@ -94,7 +94,7 @@ function BarBreakdownEmissionsChart({
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}
-              range={[0, Math.abs(d.gCo2eqPerHour)]}
+              range={[0, Math.abs(d.gCo2eq)]}
               scale={co2Scale}
             />
           </Row>
@@ -117,7 +117,7 @@ function BarBreakdownEmissionsChart({
             <HorizontalBar
               className="exchange"
               fill={'gray'}
-              range={[0, d.gCo2eqPerHour]}
+              range={[0, d.gCo2eq]}
               scale={co2Scale}
             />
           </Row>

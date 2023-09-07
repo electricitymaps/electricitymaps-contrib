@@ -24,9 +24,9 @@ function EmptyBarBreakdownChart({
 }: EmptyBarBreakdownChartProps) {
   const productionData = modeOrder.map((d) => ({
     mode: d,
-    gCo2eqPerHour: 0,
-    gCo2eqPerHourByFuel: {},
-    gCo2eqPerHourByFuelAndSource: {},
+    gCo2eq: 0,
+    gCo2eqByFuel: {},
+    gCo2eqByFuelAndSource: {},
     isStorage: false,
   }));
   const { __ } = useTranslation();
@@ -78,7 +78,7 @@ function EmptyBarBreakdownChart({
               label={__(d.mode)}
               width={width}
               scale={co2Scale}
-              value={Math.abs(d.gCo2eqPerHour)}
+              value={Math.abs(d.gCo2eq)}
               isMobile={Boolean(isMobile)}
             >
               <HorizontalBar
