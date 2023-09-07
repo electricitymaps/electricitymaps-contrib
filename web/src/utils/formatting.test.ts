@@ -23,28 +23,28 @@ describe('formatCo2', () => {
     const expected = '0 t';
     expect(actual).toBe(expected);
   });
-  it('uses same unit as another value would non-zero', () => {
-    const actual = formatCo2(230_500, 2_350_000);
-    const expected = '0.2 t';
-    expect(actual).toBe(expected);
-  });
 
   it('adds decimals if comparing with tons', () => {
     const actual = formatCo2(200_500, 2_350_000);
     const expected = '0.2 t';
     expect(actual).toBe(expected);
   });
-  it('handles values up to 100k', () => {
-    const actual = formatCo2(99_000_000_000_000_000);
-    const expected = '99 Gt';
+  it('handles kilotonnes', () => {
+    const actual = formatCo2(99_000_000_000);
+    const expected = '99 kt';
     expect(actual).toBe(expected);
   });
-  it('handles values up to megatonnes', () => {
-    const actual = formatCo2(500_000_000_000_000);
-    const expected = '500 Mt';
+  it('handles megatonnes', () => {
+    const actual = formatCo2(99_000_000_000_000);
+    const expected = '99 Mt';
     expect(actual).toBe(expected);
   });
-  it('handles values up to 1 trillion grams', () => {
+  it('handles megatonnes close to 1Gt rounding down', () => {
+    const actual = formatCo2(994_000_000_000_000);
+    const expected = '990 Mt';
+    expect(actual).toBe(expected);
+  });
+  it('handles values up to 1 trillion grams, rounding up', () => {
     const actual = formatCo2(999_000_000_000_000);
     const expected = '1 Gt';
     expect(actual).toBe(expected);
