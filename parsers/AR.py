@@ -72,26 +72,10 @@ def fetch_production(
         zone_key, current_session, logger
     )
     renewables_production = renewables_production_mix(zone_key, current_session, logger)
-
+    # Hydro comes from both conventional and renewables production which are merged together
     return ProductionBreakdownList.merge_production_breakdowns(
         [conventional_production, renewables_production], logger
     ).to_list()
-
-
-def merged_production_mix(non_renewables_mix: dict, renewables_mix: dict) -> dict:
-    """Merges production mix data from different sources. Hydro comes from two
-    different sources that are added up."""
-
-    production_mix = {
-        "biomass": renewables_mix["biomass"],
-        "solar": renewables_mix["solar"],
-        "wind": renewables_mix["wind"],
-        "hydro": non_renewables_mix["hydro"] + renewables_mix["hydro"],
-        "nuclear": non_renewables_mix["nuclear"],
-        "unknown": non_renewables_mix["unknown"],
-    }
-
-    return production_mix
 
 
 def renewables_production_mix(
@@ -140,7 +124,6 @@ def non_renewables_production_mix(
             zone_key, CAMMESA_DEMANDA_ENDPOINT, params
         )
     )
-
     production_list = api_cammesa_response.json()
     conventional_production = ProductionBreakdownList(logger)
     for production_info in production_list:
