@@ -218,13 +218,14 @@ class ProductionBreakdownList(AggregatableEventList):
             ungrouped_production_breakdowns, logger
         ):
             return production_breakdowns
-        len_ungrouped_production_breakdowns = len(ungrouped_production_breakdowns)
+        filtered_ungrouped_breakdowns = [
+            ungrouped_breakdowns.dataframe
+            for ungrouped_breakdowns in ungrouped_production_breakdowns
+            if len(ungrouped_breakdowns.events) > 0
+        ]
+        len_ungrouped_breakdowns = len(filtered_ungrouped_breakdowns)
         df = pd.concat(
-            [
-                production_breakdowns.dataframe
-                for production_breakdowns in ungrouped_production_breakdowns
-                if len(production_breakdowns.events) > 0
-            ]
+            filtered_ungrouped_breakdowns,
         )
         _, _, _ = ProductionBreakdownList.get_zone_source_type(df)
 
@@ -234,10 +235,10 @@ class ProductionBreakdownList(AggregatableEventList):
             logger.info(
                 f"Filtering production breakdowns to keep \
                 only the timestamps where all the production breakdowns \
-                have data, {len(df[df.apply(lambda x: len(x) != len_ungrouped_production_breakdowns)])}\
+                have data, {len(df[df.apply(lambda x: len(x) != len_ungrouped_breakdowns)])}\
                 points where discarded."
             )
-            df = df[df.apply(lambda x: len(x) == len_ungrouped_production_breakdowns)]
+            df = df[df.apply(lambda x: len(x) == len_ungrouped_breakdowns)]
         for row in df:
             prod = ProductionBreakdown.aggregate(row)
             production_breakdowns.events.append(prod)
