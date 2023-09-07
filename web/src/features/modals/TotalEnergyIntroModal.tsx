@@ -7,11 +7,11 @@ import { useTranslation } from 'translation/translation';
 
 export function InfoModalContent() {
   const { __ } = useTranslation();
-  const image = resolvePath('images/onboarding/mapExtract.png').pathname;
+  const image = resolvePath('images/onboarding/totalEnergyIntro.png').pathname;
   return (
     <div className="">
       <div
-        className={`block h-60 w-full rounded-t-xl bg-auto bg-center bg-no-repeat`}
+        className={`block h-72 w-full rounded-t-xl bg-auto bg-top bg-no-repeat`}
         style={{
           backgroundImage: `url("${image}")`,
           backgroundSize: `cover`,
@@ -26,8 +26,8 @@ export function InfoModalContent() {
         </h2>
         <div className="px-12 text-sm sm:text-base">
           <p className="mb-4">
-            Instead of showing average numbers for the daily/monthly/yearly periods, the
-            app now displays the <strong>total amount of electricity</strong>{' '}
+            Instead of showing average numbers for the daily, monthly and yearly periods,
+            the app now displays the <strong>total amount of electricity</strong>{' '}
             consumed/produced for the selected time period.
           </p>
           <p className="mb-6">
@@ -61,7 +61,7 @@ export default function TotalEnergyIntroModal() {
   // Stop showing this modal roughly a month after the feature is released
   const isExpired = new Date() > new Date('2023-11-01');
 
-  const visible = !hasTotalEnergyIntroBeenSeen && !skipOnboarding && !isExpired;
+  const visible = true; //!hasTotalEnergyIntroBeenSeen && !skipOnboarding && !isExpired;
 
   const handleOpenChange = () => {
     setHasTotalEnergyIntroBeenSeen(true);
