@@ -38,7 +38,7 @@ snapshots["TestCammesaweb::test_fetch_production 1"] = [
         "datetime": "2023-09-07T00:45:00-03:00",
         "production": {
             "biomass": 157.2,
-            "hydro": 5893.2300000000005,
+            "hydro": 5893.23,
             "nuclear": 1390.4,
             "solar": 0.0,
             "unknown": 7223.0,
@@ -83,7 +83,7 @@ snapshots["TestCammesaweb::test_fetch_production 1"] = [
         "datetime": "2023-09-07T01:50:00-03:00",
         "production": {
             "biomass": 149.74,
-            "hydro": 6678.259999999999,
+            "hydro": 6678.26,
             "nuclear": 1387.0,
             "solar": 0.0,
             "unknown": 6758.0,
