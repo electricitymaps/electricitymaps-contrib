@@ -83,9 +83,7 @@ export function getTotalElectricity(zoneData: ZoneDetail, mixMode: Mode) {
     return Number.NaN;
   }
   // Electricity: Handle discharge case if available, else default to production
-  return zoneData.totalDischarge !== null && zoneData.totalDischarge !== undefined
-    ? zoneData.totalProduction + zoneData.totalDischarge
-    : zoneData.totalProduction;
+  return zoneData.totalProduction + (zoneData.totalDischarge ?? 0);
 }
 
 export function getTotalEmissions(zoneData: ZoneDetail, mixMode: Mode) {
@@ -100,9 +98,7 @@ export function getTotalEmissions(zoneData: ZoneDetail, mixMode: Mode) {
     return Number.NaN;
   }
   // Emissions: Handle discharge case if available, else default to production
-  return zoneData.totalCo2Discharge !== null && zoneData.totalCo2Discharge !== undefined
-    ? zoneData.totalCo2Production + zoneData.totalCo2Discharge
-    : zoneData.totalCo2Production;
+  return zoneData.totalCo2Production + (zoneData.totalCo2Discharge ?? 0);
 }
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
