@@ -8,7 +8,11 @@ from typing import Dict, List, Optional
 import arrow
 from requests import Session
 
-from electricitymap.contrib.lib.models.event_lists import ExchangeList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
@@ -52,7 +56,7 @@ SOURCE = "cammesaweb.cammesa.com"
 
 
 def fetch_production(
-    zone_key="AR",
+    zone_key: ZoneKey = ZoneKey("AR"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -64,30 +68,14 @@ def fetch_production(
 
     current_session = session or Session()
 
-    non_renewables_production: Dict[str, dict] = non_renewables_production_mix(
-        zone_key, current_session
+    conventional_production = non_renewables_production_mix(
+        zone_key, current_session, logger
     )
-    renewables_production: Dict[str, dict] = renewables_production_mix(
-        zone_key, current_session
-    )
+    renewables_production = renewables_production_mix(zone_key, current_session, logger)
 
-    full_production_list = [
-        {
-            "datetime": arrow.get(datetime_tz_ar).to("UTC").datetime,
-            "zoneKey": zone_key,
-            "production": merged_production_mix(
-                non_renewables_production[datetime_tz_ar],
-                renewables_production[datetime_tz_ar],
-            ),
-            "capacity": {},
-            "storage": {},
-            "source": "cammesaweb.cammesa.com",
-        }
-        for datetime_tz_ar in non_renewables_production
-        if datetime_tz_ar in renewables_production
-    ]
-
-    return full_production_list
+    return ProductionBreakdownList.merge_production_breakdowns(
+        [conventional_production, renewables_production], logger
+    ).to_list()
 
 
 def merged_production_mix(non_renewables_mix: dict, renewables_mix: dict) -> dict:
@@ -106,7 +94,9 @@ def merged_production_mix(non_renewables_mix: dict, renewables_mix: dict) -> dic
     return production_mix
 
 
-def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
+def renewables_production_mix(
+    zone_key: ZoneKey, session: Session, logger: Logger
+) -> ProductionBreakdownList:
     """Retrieves production mix for renewables using CAMMESA's API"""
 
     today = arrow.now(tz="America/Argentina/Buenos_Aires").format("DD-MM-YYYY")
@@ -120,22 +110,26 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
     )
 
     production_list = renewables_response.json()
-    sorted_production_list = sorted(production_list, key=lambda d: d["momento"])
-
-    renewables_production: Dict[str, dict] = {
-        production_info["momento"]: {
-            "biomass": production_info["biocombustible"],
-            "hydro": production_info["hidraulica"],
-            "solar": production_info["fotovoltaica"],
-            "wind": production_info["eolica"],
-        }
-        for production_info in sorted_production_list
-    }
+    renewables_production = ProductionBreakdownList(logger)
+    for production_info in production_list:
+        renewables_production.append(
+            zoneKey=zone_key,
+            datetime=arrow.get(production_info["momento"]).datetime,
+            production=ProductionMix(
+                biomass=production_info["biocombustible"],
+                hydro=production_info["hidraulica"],
+                solar=production_info["fotovoltaica"],
+                wind=production_info["eolica"],
+            ),
+            source=SOURCE,
+        )
 
     return renewables_production
 
 
-def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
+def non_renewables_production_mix(
+    zone_key: ZoneKey, session: Session, logger: Logger
+) -> ProductionBreakdownList:
     """Retrieves production mix for non renewables using CAMMESA's API"""
 
     params = {"id_region": 1002}
@@ -148,21 +142,23 @@ def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, 
     )
 
     production_list = api_cammesa_response.json()
-    sorted_production_list = sorted(production_list, key=lambda d: d["fecha"])
+    conventional_production = ProductionBreakdownList(logger)
+    for production_info in production_list:
+        conventional_production.append(
+            zoneKey=zone_key,
+            datetime=arrow.get(production_info["fecha"]).datetime,
+            production=ProductionMix(
+                hydro=production_info["hidraulico"],
+                nuclear=production_info["nuclear"],
+                # As of 2022 thermal energy is mostly natural gas but
+                # the data is not split. We put it into unknown for now.
+                # More info: see page 21 in https://microfe.cammesa.com/static-content/CammesaWeb/download-manager-files/Sintesis%20Mensual/Informe%20Mensual_2021-12.pdf
+                unknown=production_info["termico"],
+            ),
+            source=SOURCE,
+        )
 
-    non_renewables_production: Dict[str, dict] = {
-        production_info["fecha"]: {
-            "hydro": production_info["hidraulico"],
-            "nuclear": production_info["nuclear"],
-            # As of 2022 thermal energy is mostly natural gas but
-            # the data is not split. We put it into unknown for now.
-            # More info: see page 21 in https://microfe.cammesa.com/static-content/CammesaWeb/download-manager-files/Sintesis%20Mensual/Informe%20Mensual_2021-12.pdf
-            "unknown": production_info["termico"],
-        }
-        for production_info in sorted_production_list
-    }
-
-    return non_renewables_production
+    return conventional_production
 
 
 def fetch_exchange(
