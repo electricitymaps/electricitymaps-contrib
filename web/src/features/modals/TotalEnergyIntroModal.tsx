@@ -12,7 +12,7 @@ export function InfoModalContent() {
   const { __ } = useTranslation();
   const image = resolvePath('images/onboarding/totalEnergyIntro.png').pathname;
   return (
-    <div className="">
+    <>
       <div
         className={`block h-72 w-full rounded-t-xl bg-auto bg-top bg-no-repeat`}
         style={{
@@ -50,7 +50,7 @@ export function InfoModalContent() {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -66,7 +66,7 @@ export default function TotalEnergyIntroModal() {
   const isExpired = new Date() > new Date('2023-11-01');
 
   const visible =
-    hasOnboardingBeenSeen &&
+    Boolean(hasOnboardingBeenSeen) &&
     !hasTotalEnergyIntroBeenSeen &&
     !skipOnboarding &&
     !isExpired;
