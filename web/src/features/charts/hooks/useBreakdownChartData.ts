@@ -19,7 +19,11 @@ import {
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
-import { getGenerationTypeKey, getTotalElectricity } from '../graphUtils';
+import {
+  getGenerationTypeKey,
+  getTotalEmissions,
+  getTotalElectricity,
+} from '../graphUtils';
 import { AreaGraphElement, LayerKey } from '../types';
 
 export const getLayerFill =
@@ -170,7 +174,9 @@ function getValuesInfo(
   displayByEmissions: boolean
 ): ValuesInfo {
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
-    getTotalElectricity(d, displayByEmissions, Mode.CONSUMPTION)
+    displayByEmissions
+      ? getTotalEmissions(d, Mode.CONSUMPTION)
+      : getTotalElectricity(d, Mode.CONSUMPTION)
   );
 
   const format = scalePower(maxTotalValue);
