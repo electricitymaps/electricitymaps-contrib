@@ -116,9 +116,9 @@ class TestFR_O(unittest.TestCase):
                 "production": {
                     "biomass": 0.38,
                     "hydro": 5.426,
-                    "oil": 110.23200000000001,
+                    "oil": 110.232,
                     "solar": 74.562,
-                    "wind": 2.3480000000000003,
+                    "wind": 2.348,
                 },
                 "source": "opendata-corse.edf.fr",
                 "sourceType": "estimated",
