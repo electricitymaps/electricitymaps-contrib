@@ -203,7 +203,8 @@ class ProductionBreakdownList(AggregatableEventList):
     @staticmethod
     def merge_production_breakdowns(
         ungrouped_production_breakdowns: List["ProductionBreakdownList"],
-        logger: Logger, matching_timestamps_only: bool = False,
+        logger: Logger,
+        matching_timestamps_only: bool = False,
     ) -> "ProductionBreakdownList":
         """
         Given multiple parser outputs, sum the production and storage

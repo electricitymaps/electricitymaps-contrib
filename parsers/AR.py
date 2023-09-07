@@ -74,7 +74,9 @@ def fetch_production(
     renewables_production = renewables_production_mix(zone_key, current_session, logger)
     # Hydro comes from both conventional and renewables production which are merged together
     return ProductionBreakdownList.merge_production_breakdowns(
-        [conventional_production, renewables_production], logger, matching_timestamps_only=True
+        [conventional_production, renewables_production],
+        logger,
+        matching_timestamps_only=True,
     ).to_list()
 
 
