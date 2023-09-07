@@ -61,7 +61,7 @@ export default function TotalEnergyIntroModal() {
   // Stop showing this modal roughly a month after the feature is released
   const isExpired = new Date() > new Date('2023-11-01');
 
-  const visible = true; //!hasTotalEnergyIntroBeenSeen && !skipOnboarding && !isExpired;
+  const visible = !hasTotalEnergyIntroBeenSeen && !skipOnboarding && !isExpired;
 
   const handleOpenChange = () => {
     setHasTotalEnergyIntroBeenSeen(true);
