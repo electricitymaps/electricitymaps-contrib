@@ -17,7 +17,7 @@ export const formatPower = function (
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
-  const power = `${d3.format(`.${numberDigits}s`)(d)}Wh`;
+  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}Wh`;
   return addSpaceBetweenNumberAndUnit(power);
 };
 
