@@ -203,7 +203,7 @@ class ProductionBreakdownList(AggregatableEventList):
     @staticmethod
     def merge_production_breakdowns(
         ungrouped_production_breakdowns: List["ProductionBreakdownList"],
-        logger: Logger,
+        logger: Logger, matching_timestamps_only: bool = False,
     ) -> "ProductionBreakdownList":
         """
         Given multiple parser outputs, sum the production and storage
@@ -216,6 +216,7 @@ class ProductionBreakdownList(AggregatableEventList):
             ungrouped_production_breakdowns, logger
         ):
             return production_breakdowns
+        len_ungrouped_production_breakdowns = len(ungrouped_production_breakdowns)
         df = pd.concat(
             [
                 production_breakdowns.dataframe
@@ -227,6 +228,8 @@ class ProductionBreakdownList(AggregatableEventList):
 
         df = df.drop(columns=["source", "sourceType", "zoneKey"])
         df = df.groupby(level=0, dropna=False)["data"].apply(list)
+        if matching_timestamps_only:
+            df = df[df.apply(lambda x: len(x) == len_ungrouped_production_breakdowns)]
         for row in df:
             prod = ProductionBreakdown.aggregate(row)
             production_breakdowns.events.append(prod)
