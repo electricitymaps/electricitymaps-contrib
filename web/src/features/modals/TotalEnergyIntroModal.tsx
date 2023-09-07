@@ -21,7 +21,7 @@ export function InfoModalContent() {
         }}
       ></div>
       <div className="flex w-auto flex-col justify-center px-4 pb-6 pt-2 text-center dark:bg-gray-700">
-        <p className="pb-2 pt-2 font-poppins text-sm text-gray-500">
+        <p className="pb-2 pt-2 font-poppins text-sm text-gray-500 dark:text-gray-400">
           Important Update &mdash; September 2023
         </p>
         <h2 className="mb-2 text-base sm:text-xl">
