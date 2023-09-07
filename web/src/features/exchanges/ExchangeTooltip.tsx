@@ -3,7 +3,7 @@ import { ZoneName } from 'components/ZoneName';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ExchangeArrowData } from 'types';
-import { formatPower } from 'utils/formatting';
+import { formatEnergy } from 'utils/formatting';
 
 interface ExchangeTooltipProperties {
   exchangeData: ExchangeArrowData;
@@ -26,7 +26,7 @@ export default function ExchangeTooltip(
         <div className="flex items-center pb-2">
           <ZoneName zone={zoneFrom} textStyle="max-w-[165px]" /> <p className="mx-2">→</p>{' '}
           <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
-          <b className="font-bold">: {formatPower(roundedNetFlow)}</b>
+          <b className="font-bold">: {formatEnergy(roundedNetFlow)}</b>
         </div>
       </div>
       {__('tooltips.carbonintensityexport')}:

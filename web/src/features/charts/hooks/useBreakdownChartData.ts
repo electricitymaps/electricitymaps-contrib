@@ -19,7 +19,11 @@ import {
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
-import { getGenerationTypeKey, getTotalElectricity } from '../graphUtils';
+import {
+  getGenerationTypeKey,
+  getTotalEmissions,
+  getTotalElectricity,
+} from '../graphUtils';
 import { AreaGraphElement, LayerKey } from '../types';
 
 export const getLayerFill =
@@ -161,7 +165,7 @@ function getGenerationValue(
 }
 
 interface ValuesInfo {
-  valueAxisLabel: string; // For example, GW or tCO₂eq/min
+  valueAxisLabel: string; // For example, GW or CO₂eq
   valueFactor: number;
 }
 
@@ -170,11 +174,13 @@ function getValuesInfo(
   displayByEmissions: boolean
 ): ValuesInfo {
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
-    getTotalElectricity(d, displayByEmissions, Mode.CONSUMPTION)
+    displayByEmissions
+      ? getTotalEmissions(d, Mode.CONSUMPTION)
+      : getTotalElectricity(d, Mode.CONSUMPTION)
   );
 
   const format = scalePower(maxTotalValue);
-  const valueAxisLabel = displayByEmissions ? 'CO₂eq / min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'CO₂eq' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 }

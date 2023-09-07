@@ -21,7 +21,7 @@ export default function NetExchangeChartTooltip({
   const netExchange = getNetExchange(zoneDetail, displayByEmissions);
   const { formattingFactor, unit: powerUnit } = scalePower(netExchange);
 
-  const unit = displayByEmissions ? __('ofCO2eqPerMinute') : powerUnit;
+  const unit = displayByEmissions ? __('ofCO2eq') : powerUnit;
   const value = displayByEmissions
     ? formatCo2(Math.abs(netExchange))
     : Math.abs(round(netExchange / formattingFactor));

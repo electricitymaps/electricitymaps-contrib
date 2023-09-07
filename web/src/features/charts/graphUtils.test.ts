@@ -2,6 +2,7 @@ import { Mode } from 'utils/constants';
 import {
   getElectricityProductionValue,
   getRatioPercent,
+  getTotalEmissions,
   getTotalElectricity,
 } from './graphUtils';
 import { ZoneDetail } from 'types';
@@ -91,40 +92,41 @@ describe('getElectricityProductionValue', () => {
   });
 });
 
-describe('getTotalElectricity', () => {
+describe('getTotalEmissionsOrElectricity', () => {
   const zoneData = {
     totalCo2Production: 100,
+    totalCo2Consumption: 175,
+    totalConsumption: 350,
     totalCo2Discharge: 50,
     totalProduction: 200,
-    totalDischarge: 100,
-    totalImport: 50,
+    totalDischarge: 50,
+    totalImport: 100,
     totalCo2Import: 25,
   } as ZoneDetail;
 
   it('handles emissions for consumption', () => {
-    const actual = getTotalElectricity(zoneData, true, Mode.CONSUMPTION);
+    const actual = getTotalEmissions(zoneData, Mode.CONSUMPTION);
     expect(actual).toEqual(175);
   });
 
   it('handles power for consumption', () => {
-    const actual = getTotalElectricity(zoneData, false, Mode.CONSUMPTION);
+    const actual = getTotalElectricity(zoneData, Mode.CONSUMPTION);
     expect(actual).toEqual(350);
   });
 
   it('handles emissions for production', () => {
-    const actual = getTotalElectricity(zoneData, true, Mode.PRODUCTION);
+    const actual = getTotalEmissions(zoneData, Mode.PRODUCTION);
     expect(actual).toEqual(150);
   });
 
   it('handles power for production', () => {
-    const actual = getTotalElectricity(zoneData, false, Mode.PRODUCTION);
-    expect(actual).toEqual(300);
+    const actual = getTotalElectricity(zoneData, Mode.PRODUCTION);
+    expect(actual).toEqual(250);
   });
 
   it('returns 0 when productionValue is 0', () => {
     const actual = getTotalElectricity(
       { ...zoneData, totalProduction: 0, totalDischarge: 0 },
-      false,
       Mode.PRODUCTION
     );
     expect(actual).toEqual(0);

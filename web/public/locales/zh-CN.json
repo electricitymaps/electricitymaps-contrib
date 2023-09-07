@@ -143,7 +143,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量被汇出到 %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的电力从 %5$s <b>%3$s</b> 汇入",
   "emissionsImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量从 %5$s <b>%3$s</b> 汇入",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "地图",
     "mapColors-question": "在地图上的颜色是什么意思?",

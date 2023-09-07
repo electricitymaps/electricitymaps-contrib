@@ -22,7 +22,7 @@ describe('Country Panel', () => {
 
     cy.contains('Carbon emissions').should('have.attr', 'aria-checked', 'false');
     cy.contains('Carbon emissions').click().should('have.attr', 'aria-checked', 'true');
-    cy.contains('0 t/min');
+    cy.contains('0 t');
     cy.contains('Electricity consumption').click();
 
     // // test graph tooltip

@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
-import { formatPower } from 'utils/formatting';
+import { formatEnergy } from 'utils/formatting';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
@@ -98,11 +98,11 @@ function BarElectricityBreakdownChart({
   const formatTick = (t: number) => {
     // Use same unit as max value for tick with value 0
     if (t === 0) {
-      return formatPower(maxPower, 0)
+      return formatEnergy(maxPower, 1)
         .toString()
         .replace(/[\d.]+/, '0');
     }
-    return formatPower(t, 0);
+    return formatEnergy(t, 1);
   };
 
   return (
