@@ -9,6 +9,7 @@ describe('Country Panel', () => {
 
     cy.visit('/zone/DK-DK2?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
+    cy.get('[data-test-id=close-modal-button]').click();
     cy.waitForAPISuccess('v6/state/hourly');
     cy.waitForAPISuccess('v7/details/hourly/DK-DK2');
     cy.get('[data-test-id=loading-overlay]').should('not.exist');

@@ -35,6 +35,7 @@ export default function Modal({
           <Dialog.Close
             className="absolute right-2 top-2 rounded-full bg-gray-100 p-1.5 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-700"
             aria-label="Close"
+            data-test-id="close-modal-button"
           >
             <HiXMark size="18" />
           </Dialog.Close>
