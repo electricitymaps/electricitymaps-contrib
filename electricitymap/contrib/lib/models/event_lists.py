@@ -231,6 +231,12 @@ class ProductionBreakdownList(AggregatableEventList):
         df = df.drop(columns=["source", "sourceType", "zoneKey"])
         df = df.groupby(level=0, dropna=False)["data"].apply(list)
         if matching_timestamps_only:
+            logger.info(
+                f"Filtering production breakdowns to keep \
+                only the timestamps where all the production breakdowns \
+                have data, {len(df[df.apply(lambda x: len(x) != len_ungrouped_production_breakdowns)])}\
+                points where discarded."
+            )
             df = df[df.apply(lambda x: len(x) == len_ungrouped_production_breakdowns)]
         for row in df:
             prod = ProductionBreakdown.aggregate(row)
