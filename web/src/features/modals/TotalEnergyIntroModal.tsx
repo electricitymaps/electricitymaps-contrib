@@ -1,4 +1,7 @@
-import { hasTotalEnergyIntroBeenSeenAtom } from 'utils/state/atoms';
+import {
+  hasOnboardingBeenSeenAtom,
+  hasTotalEnergyIntroBeenSeenAtom,
+} from 'utils/state/atoms';
 
 import Modal from 'components/Modal';
 import { useAtom } from 'jotai';
@@ -56,12 +59,17 @@ export default function TotalEnergyIntroModal() {
   const [hasTotalEnergyIntroBeenSeen, setHasTotalEnergyIntroBeenSeen] = useAtom(
     hasTotalEnergyIntroBeenSeenAtom
   );
+  const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
   const [searchParameters] = useSearchParams();
   const skipOnboarding = searchParameters.get('skip-onboarding') === 'true';
   // Stop showing this modal roughly a month after the feature is released
   const isExpired = new Date() > new Date('2023-11-01');
 
-  const visible = !hasTotalEnergyIntroBeenSeen && !skipOnboarding && !isExpired;
+  const visible =
+    hasOnboardingBeenSeen &&
+    !hasTotalEnergyIntroBeenSeen &&
+    !skipOnboarding &&
+    !isExpired;
 
   const handleOpenChange = () => {
     setHasTotalEnergyIntroBeenSeen(true);
