@@ -149,13 +149,13 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-CAR-SC",
                 "source": "eia.gov",
-                "production": {"nuclear": 330.6666336},
+                "production": {"nuclear": 330.666634},
                 "storage": {},
             },
             {
                 "zoneKey": "US-CAR-SC",
                 "source": "eia.gov",
-                "production": {"nuclear": 330.3333003},
+                "production": {"nuclear": 330.3333},
                 "storage": {},
             },
         ]
@@ -165,13 +165,13 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-CAR-SCEG",
                 "source": "eia.gov",
-                "production": {"nuclear": 661.3333663999999},
+                "production": {"nuclear": 661.333366},
                 "storage": {},
             },
             {
                 "zoneKey": "US-CAR-SCEG",
                 "source": "eia.gov",
-                "production": {"nuclear": 660.6666997},
+                "production": {"nuclear": 660.6667},
                 "storage": {},
             },
         ]
