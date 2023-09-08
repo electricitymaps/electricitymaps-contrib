@@ -8,14 +8,14 @@ const orderings = [
     entryOrder: [
       'mapColors',
       'mapArrows',
-      'mapSolarWindButtons',
       'mapNuclearColors',
       'mapColorBlind',
+      'mapSolarWindButtons',
     ],
   },
   {
     groupKey: 'mapAreas',
-    entryOrder: ['noData', 'whySmallAreas', 'divideExistingArea', 'seeHistoricalData'],
+    entryOrder: ['noData', 'whySmallAreas', 'divideExistingArea'],
   },
   {
     groupKey: 'methodology',
