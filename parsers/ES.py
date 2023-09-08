@@ -272,7 +272,7 @@ def fetch_production(
     if zone_key == "ES-IB-ME" or zone_key == "ES-IB-FO":
         data_mapping["gas"] = "production.oil"
     if zone_key == "ES-IB-IZ":
-        data_mapping["die"] = "prosuction.gas"
+        data_mapping["die"] = "production.gas"
 
     island_data = fetch_island_data(zone_key, ses, target_datetime, data_mapping)
     productionEventList = ProductionBreakdownList(logger)
