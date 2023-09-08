@@ -158,14 +158,9 @@ def check_valid_parameters(
         )
 
 
-def fetch_island_data(
-    zone_key: ZoneKey,
-    session: Session,
-    target_datetime: Optional[datetime],
-    data_mapping: Dict = DATA_MAPPING,
-):
-    """Fetch data for the given zone key."""
-    tz = TIMEZONES_MAPPING[zone_key]
+def fetch_data_ree(
+    zone_key: ZoneKey, session: Session, target_datetime: Optional[datetime], tz: str
+) -> Dict:
     if target_datetime is None:
         date = utcnow().to(tz).format("YYYY-MM-DD")
     else:
@@ -182,7 +177,18 @@ def fetch_island_data(
             zone_key,
         )
     json = loads(res.text.replace("null(", "", 1).replace(r");", "", 1))
-    data = json["valoresHorariosGeneracion"]
+    return json["valoresHorariosGeneracion"]
+
+
+def fetch_island_data(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: Optional[datetime],
+    data_mapping: Dict = DATA_MAPPING,
+):
+    """Fetch data for the given zone key."""
+    tz = TIMEZONES_MAPPING[zone_key]
+    data = fetch_data_ree(zone_key, session, target_datetime, tz)
     responses = []
     for value in data:
         ts = value.pop("ts")
