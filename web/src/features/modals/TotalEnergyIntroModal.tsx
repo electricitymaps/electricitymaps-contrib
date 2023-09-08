@@ -62,8 +62,8 @@ export default function TotalEnergyIntroModal() {
   const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
   const [searchParameters] = useSearchParams();
   const skipOnboarding = searchParameters.get('skip-onboarding') === 'true';
-  // Stop showing this modal roughly a month after the feature is released
-  const isExpired = new Date() > new Date('2023-11-01');
+  // Stop showing this modal a few months after the feature was released
+  const isExpired = new Date() > new Date('2023-12-31');
 
   const visible =
     Boolean(hasOnboardingBeenSeen) &&
