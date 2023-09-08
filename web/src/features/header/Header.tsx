@@ -1,31 +1,47 @@
 import { Capacitor } from '@capacitor/core';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
+import { useSetAtom } from 'jotai';
+import { HiOutlineExternalLink } from 'react-icons/hi';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import Logo from './Logo';
 
 interface MenuLinkProps {
-  href: string;
+  href?: string;
   children: React.ReactNode;
-  active?: boolean;
+  isExternal?: boolean;
   id: string;
+  onClick?: () => void;
 }
-function MenuLink({ children, href, active, id }: MenuLinkProps): JSX.Element {
+
+function MenuLink({
+  children,
+  href,
+  isExternal,
+  id,
+  onClick,
+}: MenuLinkProps): JSX.Element {
+  const handleClick = () => {
+    trackEvent('HeaderLink Clicked', { linkId: id });
+    onClick && onClick();
+  };
   return (
     <div className="relative flex py-2 ">
       <NavigationMenu.Item
         asChild
-        className="rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+        className="cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
       >
         <NavigationMenu.Link
-          onClick={() => trackEvent('HeaderLink Clicked', { linkId: id })}
-          active={active}
+          onClick={handleClick}
           href={href}
-          className={`px-2 py-2  ${active && 'font-bold'}`}
+          className="group px-2 py-2"
         >
           {children}
-          {active && (
-            <div className="absolute bottom-0 left-0 h-[2px] w-full bg-green-500"></div>
+          {isExternal && (
+            <div className="absolute bottom-0 top-1 flex w-full justify-end text-gray-400 opacity-0 transition-opacity group-hover:opacity-80 dark:text-gray-600">
+              <HiOutlineExternalLink />
+            </div>
           )}
         </NavigationMenu.Link>
       </NavigationMenu.Item>
@@ -35,6 +51,10 @@ function MenuLink({ children, href, active, id }: MenuLinkProps): JSX.Element {
 
 export default function Header(): JSX.Element {
   const isMobileApp = Capacitor.isNativePlatform();
+  const setIsFAQModalOpen = useSetAtom(isFAQModalOpenAtom);
+  const onFAQClick = () => {
+    setIsFAQModalOpen(true);
+  };
   return (
     <header
       className={twMerge(
@@ -45,30 +65,34 @@ export default function Header(): JSX.Element {
       <Logo className="h-12 w-56 fill-black dark:fill-white" />
       <NavigationMenu.Root className="hidden md:block">
         <NavigationMenu.List className="flex space-x-2">
-          <MenuLink href="/" active id="live">
-            Live
+          <MenuLink id="faq" onClick={onFAQClick}>
+            FAQ
           </MenuLink>
           <MenuLink
             href="https://www.electricitymaps.com/jobs/?utm_source=app.electricitymaps.com&utm_medium=referral"
             id="jobs"
+            isExternal
           >
             We&apos;re hiring!
           </MenuLink>
           <MenuLink
             href="https://electricitymaps.com/open-source/?utm_source=app.electricitymaps.com&utm_medium=referral"
             id="open-source"
+            isExternal
           >
             Open Source
           </MenuLink>
           <MenuLink
             href="https://electricitymaps.com/blog/?utm_source=app.electricitymaps.com&utm_medium=referral"
             id="blog"
+            isExternal
           >
             Blog
           </MenuLink>
           <MenuLink
             href="https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral"
             id="get-data"
+            isExternal
           >
             Get our data
           </MenuLink>
