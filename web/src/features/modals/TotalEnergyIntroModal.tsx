@@ -76,7 +76,12 @@ export default function TotalEnergyIntroModal() {
   };
 
   return (
-    <Modal isOpen={visible} setIsOpen={handleOpenChange} fullWidth>
+    <Modal
+      isOpen={visible}
+      setIsOpen={handleOpenChange}
+      fullWidth
+      testId="total-energy-modal"
+    >
       <InfoModalContent />
     </Modal>
   );

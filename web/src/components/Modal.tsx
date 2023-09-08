@@ -5,6 +5,7 @@ interface ModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   title?: string;
+  testId?: string;
   children: React.ReactNode;
   fullWidth?: boolean;
 }
@@ -14,6 +15,7 @@ export default function Modal({
   setIsOpen,
   title,
   fullWidth,
+  testId,
   children,
 }: ModalProps) {
   return (
@@ -23,6 +25,7 @@ export default function Modal({
         <Dialog.Content
           // Avoid close button being auto-focused initially, as pressing space will otherwise close the modal
           onOpenAutoFocus={(event: Event) => event.preventDefault()}
+          data-test-id={testId}
           className={`fixed left-[50%] top-[50%] z-40 w-[98vw] max-w-2xl -translate-x-[50%] -translate-y-[50%] rounded-xl bg-white shadow-md backdrop-blur-sm dark:bg-gray-800/90 sm:w-[90vw] ${
             fullWidth ? 'p-0' : 'p-4'
           }`}
