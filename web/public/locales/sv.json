@@ -49,7 +49,14 @@
     "renewable": "Förnybart",
     "electricityproduction": "Elproduktion",
     "electricityconsumption": "Elkonsumtion",
-    "bysource": "per källa",
+    "by-source": {
+      "emissions": "Koldioxidutsläpp per källa",
+      "electricity-production": "Elproduktion per källa",
+      "electricity-consumption": "Elkonsumtion per källa",
+      "total-emissions": "Totala koldioxidutsläpp per källa",
+      "total-electricity-production": "Total elproduktion per källa",
+      "total-electricity-consumption": "Total ekonsumtion per källa"
+    },
     "emissions": "Koldioxidutsläpp",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
     "helpfrom": "med hjälp från",
@@ -64,8 +71,7 @@
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
     "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
-    "now": "Nu",
-    "averagebysource": "genomsnitt per källa"
+    "now": "Nu"
   },
   "time-controller": {
     "title": "Visa historisk data"
