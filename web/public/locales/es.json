@@ -49,7 +49,14 @@
     "renewable": "Renovables",
     "electricityproduction": "Producción de electricidad",
     "electricityconsumption": "Consumo de electricidad",
-    "bysource": "por fuente",
+    "by-source": {
+      "emissions": "Emisiones de CO₂ por fuente",
+      "electricity-production": "Producción de electricidad por fuente",
+      "electricity-consumption": "Consumo de electricidad por fuente",
+      "total-emissions": "Emisiones totales de CO₂ por fuente",
+      "total-electricity-production": "Producción total de electricidad por fuente",
+      "total-electricity-consumption": "Consumo total de electricidad por fuente"
+    },
     "emissions": "Emisiones de CO₂",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o modificar fuente</a>",
     "helpfrom": "con la ayuda de",

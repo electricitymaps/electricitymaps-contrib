@@ -49,8 +49,6 @@
     "renewable": "可再生能源",
     "electricityproduction": "電力生產",
     "electricityconsumption": "用電量",
-    "bysource": "按來源",
-    "averagebysource": "來源平均",
     "emissions": "碳排放量",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或編輯來源</a>",
     "helpfrom": "with help from",
