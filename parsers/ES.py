@@ -3,7 +3,7 @@
 from datetime import datetime, timedelta, timezone
 from json import loads
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, Optional
+from typing import Dict, List, Optional
 
 from arrow import get, utcnow
 
