@@ -211,7 +211,7 @@
   "theMap": {
     "groupName": "The map",
     "mapColors-question": "What do the colors on the map mean?",
-    "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). The greener the colour, the more climate-friendly the electricity consumption.",
+    "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its carbon intensity). The greener the colour, the more climate-friendly the electricity consumption.",
     "mapArrows-question": "What do the arrows between areas on the map indicate?",
     "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
     "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
@@ -224,7 +224,7 @@
   "mapAreas": {
     "groupName": "Areas in the map",
     "noData-question": "Why is data for my area not available?",
-    "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>.",
+    "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources\">help us find new data sources</a>.",
     "whySmallAreas-question": "Why do you divide the world into smaller areas and not simply show country averages?",
     "whySmallAreas-answer": "The areas are the smallest geographical areas we have data for. By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.",
     "divideExistingArea-question": "Can you divide my area into smaller parts?",
