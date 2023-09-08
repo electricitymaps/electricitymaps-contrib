@@ -21,7 +21,7 @@ const orderings = [
     groupKey: 'methodology',
     entryOrder: [
       'carbonIntensity',
-      'consumptionFocus',
+      'methodology',
       'renewableLowCarbonDifference',
       'importsAndExports',
       'guaranteesOfOrigin',
