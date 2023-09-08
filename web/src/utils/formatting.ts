@@ -23,13 +23,13 @@ export const formatEnergy = function (
   return addSpaceBetweenNumberAndUnit(power);
 };
 
-export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
-  if (gramPerHour == undefined || Number.isNaN(gramPerHour)) {
+export const formatCo2 = function (grams: number, valueToMatch?: number) {
+  if (grams == undefined || Number.isNaN(grams)) {
     return '?';
   }
 
   // Assume gCO₂ / h input
-  const value = gramPerHour;
+  const value = grams;
 
   // Ensure both numbers are at the same scale
   const checkAgainst = valueToMatch ?? value;
@@ -52,7 +52,7 @@ export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
 
   // Hundred thousands of tons
   if (Math.round(checkAgainst) < 1e9) {
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.1~f`)(value / 1e6)}Mt`);
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.2~s`)(value / 1e6)}t`);
   }
 
   // megatons or above

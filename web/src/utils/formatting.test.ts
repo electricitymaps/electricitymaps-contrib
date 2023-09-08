@@ -91,6 +91,11 @@ describe('formatCo2', () => {
     const expected = '0.2 t';
     expect(actual).toBe(expected);
   });
+  it('handles real data value', () => {
+    const actual = formatCo2(740_703_650);
+    const expected = '740 t';
+    expect(actual).toBe(expected);
+  });
   it('handles kilotonnes', () => {
     const actual = formatCo2(99_000_000_000);
     const expected = '99 kt';
@@ -102,7 +107,7 @@ describe('formatCo2', () => {
     expect(actual).toBe(expected);
   });
   it('handles megatonnes close to 1Gt rounding down', () => {
-    const actual = formatCo2(994_000_000_000_000);
+    const actual = formatCo2(994_320_320_231_123);
     const expected = '990 Mt';
     expect(actual).toBe(expected);
   });
