@@ -11,8 +11,13 @@ import pytz
 from bs4 import BeautifulSoup
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
-from parsers.lib.validation import validate_consumption
 
 CAISO_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 PRODUCTION_URL_REAL_TIME = (
@@ -29,19 +34,25 @@ REAL_TIME_URL_MAPPING = {
 }
 
 PRODUCTION_MODES_MAPPING = {
-    "Solar": "solar",
-    "Wind": "wind",
-    "Geothermal": "geothermal",
-    "Biomass": "biomass",
-    "Biogas": "biomass",
-    "Small hydro": "hydro",
-    "Coal": "coal",
-    "Nuclear": "nuclear",
-    "Natural Gas": "gas",
-    "Large Hydro": "hydro",
-    "Other": "unknown",
+    "solar": "solar",
+    "wind": "wind",
+    "geothermal": "geothermal",
+    "biomass": "biomass",
+    "biogas": "biomass",
+    "small hydro": "hydro",
+    "coal": "coal",
+    "nuclear": "nuclear",
+    "natural gas": "gas",
+    "large hydro": "hydro",
+    "other": "unknown",
 }
-STORAGE_MAPPING = {"Batteries": "battery"}
+
+CORRECT_NEGATIVE_PRODUCTION_MODES_WITH_ZERO = [
+    mode
+    for mode in PRODUCTION_MODES_MAPPING
+    if mode not in ["large hydro", "small hydro"]
+]
+STORAGE_MAPPING = {"batteries": "battery"}
 
 MX_EXCHANGE_URL = "http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
 
@@ -66,7 +77,7 @@ def add_production_to_dict(mode: str, value: float, production_dict: dict) -> di
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "US-CA",
+    zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -86,62 +97,51 @@ def fetch_production(
     else:
         df = csv.copy()
 
-    all_data_points = []
+    # lower case column names
+    df.columns = [col.lower() for col in df.columns]
+
+    all_data_points = ProductionBreakdownList(logger)
     for index, row in df.iterrows():
-        production = {}
-        storage = {"hydro": 0.0, "battery": 0.0}
+        production_mix = ProductionMix()
+        storage_mix = StorageMix()
         row_datetime = target_datetime.replace(
-            hour=int(row["Time"][:2]), minute=int(row["Time"][-2:])
+            hour=int(row["time"][:2]), minute=int(row["time"][-2:])
         )
+
         for mode in [
             mode
             for mode in PRODUCTION_MODES_MAPPING
-            if mode not in ["Small hydro", "Large Hydro"]
+            if mode not in ["small hydro", "large hydro"]
         ]:
             production_value = float(row[mode])
-            if production_value < 0 and (
-                mode
-                in [
-                    "Solar",
-                    "Wind",
-                    "Geothermal",
-                    "Biomass",
-                    "Biogas",
-                    "Coal",
-                    "Nuclear",
-                    "Natural Gas",
-                ]
-            ):
-                logger.warn(
-                    f" {mode} production for US_CA was reported as less than 0 and was clamped"
-                )
-                production_value = 0.0
+            production_mix.add_value(
+                PRODUCTION_MODES_MAPPING[mode],
+                production_value,
+                mode in CORRECT_NEGATIVE_PRODUCTION_MODES_WITH_ZERO,
+            )
 
-            production = add_production_to_dict(mode, production_value, production)
-
-        for mode in ["Small hydro", "Large Hydro"]:
+        for mode in ["small hydro", "large hydro"]:
             production_value = float(row[mode])
             if production_value < 0:
-                storage["hydro"] += production_value * -1
+                storage_mix.add_value("hydro", production_value * -1)
             else:
-                production = add_production_to_dict(mode, production_value, production)
+                production_mix.add_value("hydro", production_value)
 
-        storage["battery"] = float(row["Batteries"]) * -1
+        storage_mix.add_value("battery", float(row["batteries"]) * -1)
+        all_data_points.append(
+            zoneKey=zone_key,
+            production=production_mix,
+            storage=storage_mix,
+            source="caiso.com",
+            datetime=arrow.get(row_datetime).replace(tzinfo="US/Pacific").datetime,
+        )
 
-        data = {
-            "zoneKey": zone_key,
-            "production": production,
-            "storage": storage,
-            "source": "caiso.com",
-            "datetime": arrow.get(row_datetime).replace(tzinfo="US/Pacific").datetime,
-        }
-        all_data_points.append(data)
-    return all_data_points
+    return all_data_points.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "US-CAL-CISO",
+    zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
@@ -162,27 +162,21 @@ def fetch_consumption(
     else:
         df = csv.copy()
 
-    all_data_points = []
+    all_data_points = TotalConsumptionList(logger)
     for row in df.itertuples():
         consumption = row._3
         row_datetime = target_datetime.replace(
             hour=int(row.Time[:2]), minute=int(row.Time[-2:])
         )
         if not np.isnan(consumption):
-            data_point = {
-                "zoneKey": zone_key,
-                "consumption": consumption,
-                "source": "caiso.com",
-                "datetime": arrow.get(row_datetime)
-                .replace(tzinfo="US/Pacific")
-                .datetime,
-            }
-            all_data_points.append(data_point)
+            all_data_points.append(
+                zoneKey=zone_key,
+                consumption=consumption,
+                source="caiso.com",
+                datetime=arrow.get(row_datetime).replace(tzinfo="US/Pacific").datetime,
+            )
 
-    validated_data_points = [
-        validate_consumption(datapoint, logger) for datapoint in all_data_points
-    ]
-    return validated_data_points
+    return all_data_points.to_list()
 
 
 def fetch_MX_exchange(s: Session) -> float:
@@ -257,7 +251,7 @@ if __name__ == "__main__":
     from pprint import pprint
 
     print("fetch_production() ->")
-    pprint(fetch_production())
+    pprint(fetch_production(target_datetime=datetime(2020, 1, 20)))
 
     print('fetch_exchange("US-CA", "US") ->')
     # pprint(fetch_exchange("US-CA", "US"))

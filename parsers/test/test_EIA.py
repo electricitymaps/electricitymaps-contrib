@@ -149,13 +149,13 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-CAR-SC",
                 "source": "eia.gov",
-                "production": {"nuclear": 330.6666336},
+                "production": {"nuclear": 330.666634},
                 "storage": {},
             },
             {
                 "zoneKey": "US-CAR-SC",
                 "source": "eia.gov",
-                "production": {"nuclear": 330.3333003},
+                "production": {"nuclear": 330.3333},
                 "storage": {},
             },
         ]
@@ -165,13 +165,13 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-CAR-SCEG",
                 "source": "eia.gov",
-                "production": {"nuclear": 661.3333663999999},
+                "production": {"nuclear": 661.333366},
                 "storage": {},
             },
             {
                 "zoneKey": "US-CAR-SCEG",
                 "source": "eia.gov",
-                "production": {"nuclear": 660.6666997},
+                "production": {"nuclear": 660.6667},
                 "storage": {},
             },
         ]
@@ -221,34 +221,58 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-SW-SRP",
                 "source": "eia.gov",
-                "production": {"hydro": 7.0},
-                "storage": {"hydro": 5.0},
+                "production": {"hydro": 7.0},  # 4 from HGMA, 3 from DEAA
+                "storage": {"hydro": 5.0},  # 5 from SRP
             },
             {
                 "zoneKey": "US-SW-SRP",
                 "source": "eia.gov",
-                "production": {"hydro": 800.0},
-                "storage": {"hydro": 900.0},
+                "production": {"hydro": 800.0},  # 400 from SRP, 400 from HGMA
+                "storage": {"hydro": 900.0},  # 900 from DEAA
             },
         ]
         self.check_production_matches(data, expected)
 
-        data = EIA.fetch_production_mix(ZoneKey("US-SW-HGMA"), self.session)
-        expected = [
-            {
-                "zoneKey": "US-SW-HGMA",
-                "source": "eia.gov",
-                "production": {"hydro": 4.0},
-                "storage": {},
-            },
-            {
-                "zoneKey": "US-SW-HGMA",
-                "source": "eia.gov",
-                "production": {"hydro": 400.0},
-                "storage": {},
-            },
-        ]
-        self.check_production_matches(data, expected)
+    def test_exchange_transfer(self):
+        exchange_key = "US-FLA-FPC->US-FLA-FPL"
+        remapped_exchange_key = "US-FLA-FPC->US-FLA-NSB"
+        target_datetime = (
+            "2020-01-07T05:00:00+00:00"  # Last datapoint before decommissioning of NSB
+        )
+        # 1. Get data directly from EIA for both
+        FPL_exchange_data = resource_string(
+            "parsers.test.mocks.EIA", "US-FLA-FPC_US-FLA-FPL_exchange.json"
+        )
+        FPL_exchange_data_url = EIA.EXCHANGE.format(EIA.EXCHANGES[exchange_key])
+        # FPL_exchange_data_url = "https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=FPL&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24"
+        self.adapter.register_uri(
+            GET, FPL_exchange_data_url, json=loads(FPL_exchange_data.decode("utf-8"))
+        )
+
+        NSB_exchange_data = resource_string(
+            "parsers.test.mocks.EIA", "US-FLA-FPC_US-FLA-NSB_exchange.json"
+        )
+        NSB_exchange_data_url = EIA.EXCHANGE.format(
+            EIA.EXCHANGES[remapped_exchange_key]
+        )
+        # NSB_exchange_data_url = "https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=NSB&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24"
+        self.adapter.register_uri(
+            GET, NSB_exchange_data_url, json=loads(NSB_exchange_data.decode("utf-8"))
+        )
+
+        # 2. Get data from the EIA parser fetch_exchange for US-FLA-FPC->US-FLA-FPL
+        z_k_1, z_k_2 = exchange_key.split("->")
+        data_list = EIA.fetch_exchange(ZoneKey(z_k_1), ZoneKey(z_k_2), self.session)
+
+        # Verify that the sum of the data directly fetched matches the data from the parser
+        # Read both json and sum the values
+        FPL_exchange_data_json = loads(FPL_exchange_data.decode("utf-8"))
+        NSB_exchange_data_json = loads(NSB_exchange_data.decode("utf-8"))
+
+        for idx in range(len(data_list)):
+            FPL_raw_value = FPL_exchange_data_json["response"]["data"][idx]["value"]
+            NSB_raw_value = NSB_exchange_data_json["response"]["data"][idx]["value"]
+            assert FPL_raw_value + NSB_raw_value == data_list[idx]["netFlow"]
 
     def check_production_matches(
         self,
@@ -342,13 +366,13 @@ class TestEIAConsumption(TestEIA):
         expected = [
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
-                "consumption": 6215,
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "consumption": 4792,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
-                "consumption": 4792,
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "consumption": 6215,
             },
         ]
         self.assertEqual(len(data_list), len(expected))
@@ -364,13 +388,13 @@ class TestEIAConsumption(TestEIA):
         expected = [
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
-                "consumption": 6215,
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "consumption": 4792,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
-                "consumption": 4792,
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "consumption": 6215,
             },
         ]
         self.assertEqual(len(data_list), len(expected))

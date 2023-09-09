@@ -6,6 +6,7 @@ import Toast from 'components/Toast';
 import LegendContainer from 'components/legend/LegendContainer';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
+import FeatureFlagsManager from 'features/feature-flags/FeatureFlagsManager';
 import Header from 'features/header/Header';
 import FAQModal from 'features/modals/FAQModal';
 import InfoModal from 'features/modals/InfoModal';
@@ -16,6 +17,7 @@ import { Capacitor } from '@capacitor/core';
 import { App as Cap } from '@capacitor/app';
 import trackEvent from 'utils/analytics';
 import { useDarkMode } from 'hooks/theme';
+import useGetState from 'api/getState';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -33,6 +35,9 @@ const handleReload = () => {
   window.location.reload();
 };
 export default function App(): ReactElement {
+  // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
+  // instead of waiting for the map to be lazy loaded.
+  const _ = useGetState();
   const shouldUseDarkMode = useDarkMode();
   const currentAppVersion = APP_VERSION;
   const { data, isSuccess } = useGetAppVersion();
@@ -84,6 +89,7 @@ export default function App(): ReactElement {
               <LeftPanel />
               <MapWrapper />
               <TimeControllerWrapper />
+              <FeatureFlagsManager />
               <LegendContainer />
             </Sentry.ErrorBoundary>
           </div>

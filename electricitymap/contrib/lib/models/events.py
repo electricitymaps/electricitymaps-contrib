@@ -17,14 +17,6 @@ LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
 class Mix(BaseModel, ABC):
-    def set_value(self, mode: str, value: Optional[float]) -> None:
-        """
-        Sets the value of a production mode.
-        This can be used if the Production has been initialized empty
-        and is being filled in a loop.
-        """
-        self.__setattr__(mode, value)
-
     def add_value(
         self,
         mode: str,
@@ -35,13 +27,14 @@ class Mix(BaseModel, ABC):
         This is useful if there are multiple production modes in the source
         that maps to the same Electricity Maps production mode.
         """
-        if value is None:
-            return
         existing_value: Optional[float] = getattr(self, mode)
         if existing_value is not None:
-            self.__setattr__(mode, existing_value + value)
+            value = 0 if value is None else value
+            self.__setattr__(
+                mode, round(existing_value + value, 6)
+            )  # 6 decimal places gives us a precision of 1 W.
         else:
-            self.__setattr__(mode, value)
+            self.__setattr__(mode, value if value is None else round(value, 6))
 
     @classmethod
     def merge(cls, mixes: List["Mix"]) -> "Mix":
@@ -74,7 +67,7 @@ class ProductionMix(Mix):
         Overriding the constructor to check for negative values and set them to None.
         This method also keeps track of the modes that have been corrected.
         Note: This method does NOT allow to set negative values to zero for self consumption.
-        As we want self consumption to be set to zero, on a fine grained level with the set_value method.
+        As we want self consumption to be set to zero, on a fine grained level with the `add_value` method.
         """
         super().__init__(**data)
         for attr, value in data.items():
@@ -121,7 +114,7 @@ class ProductionMix(Mix):
         This method also keeps track of the modes that have been corrected.
         """
         if not name in PRODUCTION_MODES:
-            raise ValueError(f"Unknown production mode: {name}")
+            raise AttributeError(f"Unknown production mode: {name}")
         if value is not None and value < 0:
             self._corrected_negative_values.add(name)
             value = None
@@ -138,20 +131,6 @@ class ProductionMix(Mix):
             self._corrected_negative_values.add(mode)
             return 0 if correct_negative_with_zero else None
         return value
-
-    def set_value(
-        self,
-        mode: str,
-        value: Optional[float],
-        correct_negative_with_zero: bool = False,
-    ) -> None:
-        """
-        Set the value of a production mode. Negative values are set to None by default.
-        If correct_negative_with_zero is set to True, negative values will be set to 0 instead of None.
-        This method keeps track of values that have been corrected.
-        """
-        value = self._correct_negative_value(mode, value, correct_negative_with_zero)
-        self.__setattr__(mode, value)
 
     def add_value(
         self,
@@ -178,19 +157,16 @@ class ProductionMix(Mix):
     def merge(cls, production_mixes: List["ProductionMix"]) -> "ProductionMix":
         """
         Merge a list of production mixes into a single production mix.
-        The values are summed.
+        The values are summed. Negative values have been set to None or 0.
+        Therefore merging cannot result in a lower production value.
         """
         merged_production_mix = cls()
         for production_mix in production_mixes:
-            for mode in PRODUCTION_MODES:
+            for mode in set(PRODUCTION_MODES).intersection(
+                production_mix.__fields_set__
+            ):
                 value = getattr(production_mix, mode)
-                if value is None:
-                    continue
-                if getattr(merged_production_mix, mode) is None:
-                    merged_production_mix.set_value(mode, 0)
-                merged_production_mix.set_value(
-                    mode, getattr(merged_production_mix, mode) + value
-                )
+                merged_production_mix.add_value(mode, value)
             merged_production_mix._corrected_negative_values.update(
                 production_mix.corrected_negative_modes
             )
@@ -212,7 +188,7 @@ class StorageMix(Mix):
         Overriding the setattr method to raise an error if the mode is unknown.
         """
         if not name in STORAGE_MODES:
-            raise ValueError(f"Unknown storage mode: {name}")
+            raise AttributeError(f"Unknown storage mode: {name}")
         return super().__setattr__(name, value)
 
     @classmethod
@@ -221,17 +197,14 @@ class StorageMix(Mix):
         Merge a list of storage mixes into a single storage mix.
         The values are summed.
         """
-        storage_mix = cls()
+        merged_storage_mix = cls()
         for storage_mix_to_merge in storage_mixes:
-            for mode in STORAGE_MODES:
+            for mode in set(STORAGE_MODES).intersection(
+                storage_mix_to_merge.__fields_set__
+            ):
                 value = getattr(storage_mix_to_merge, mode)
-                if value is not None:
-                    current_value = getattr(storage_mix, mode)
-                    if current_value is None:
-                        storage_mix.set_value(mode, value)
-                    else:
-                        storage_mix.set_value(mode, current_value + value)
-        return storage_mix
+                merged_storage_mix.add_value(mode, value)
+        return merged_storage_mix
 
 
 class EventSourceType(str, Enum):
@@ -546,11 +519,11 @@ class ProductionBreakdown(AggregatableEvent):
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
             "production": self.production.dict(
-                exclude_none=True, keep_corrected_negative_values=True
+                exclude_unset=True, keep_corrected_negative_values=True
             )
             if self.production
             else {},
-            "storage": self.storage.dict(exclude_none=True) if self.storage else {},
+            "storage": self.storage.dict(exclude_unset=True) if self.storage else {},
             "source": self.source,
             "sourceType": self.sourceType,
             "correctedModes": []
@@ -571,6 +544,8 @@ class TotalConsumption(Event):
         # TODO in the future those checks should be performed in the data quality layer.
         if v > 500000:
             raise ValueError(f"Total consumption is implausibly high, above 500GW: {v}")
+        if v == 0:
+            raise ValueError(f"Total consumption cannot be 0 MW: {v}")
         return v
 
     @staticmethod

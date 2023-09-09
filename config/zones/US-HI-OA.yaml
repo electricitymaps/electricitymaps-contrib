@@ -20,6 +20,8 @@ contributors:
   - KabelWlan
   - danielmatsuda
   - brandongalbraith
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
@@ -246,8 +248,6 @@ fallbackZoneMixes:
         solar: 0.04862796250972639
         unknown: 0.0
         wind: 0.04317213987789937
-parsers:
-  production: US_HI.fetch_production
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

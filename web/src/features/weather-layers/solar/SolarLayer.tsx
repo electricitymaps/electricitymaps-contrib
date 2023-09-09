@@ -18,7 +18,6 @@ import {
   solarIntensityToOpacity,
 } from './utils';
 
-// TODO: Figure out why the layer is "shifting" when zooming in and out on the map!
 export default function SolarLayer({ map }: { map?: MapboxMap }) {
   const [isMapMoving] = useAtom(mapMovingAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
@@ -45,19 +44,12 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
 
       const image = canvas.createImageData(width, height);
 
-      const { lng: minLon, lat: minLat } = map.unproject([0, 0]);
-      const { lng: maxLon, lat: maxLat } = map.unproject([width, height]);
-
       const { lo1, la1, dx, dy, nx } = solarData.header;
 
       // Project solar data onto the image opacity channel
       for (let x = 0; x < image.width; x += 1) {
         for (let y = 0; y < image.height; y += 1) {
-          // Taking [lon, lat] = unproject([x, y]) here would be
-          // simpler but also slower as unproject method seems more
-          // complex than just these basic arithmetic operations.
-          const lon = minLon + (maxLon - minLon) * (x / image.width);
-          const lat = minLat + (maxLat - minLat) * (y / image.height);
+          const { lng: lon, lat: lat } = map.unproject([x, y]);
 
           const sx = Math.floor(lon - lo1 / dx);
           const sy = Math.floor(la1 - lat / dy);

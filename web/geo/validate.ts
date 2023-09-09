@@ -121,7 +121,9 @@ function zeroGaps(
     for (const _ of holes.features) {
       log(`Found gap, see gaps.geojson`);
     }
-    throw new Error('Contains gaps');
+    throw new Error(
+      'Contains gaps - please upload the file to QGIS or similar to inspect and remove the gaps'
+    );
   }
 }
 

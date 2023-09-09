@@ -10,6 +10,7 @@ Example usage:
 import argparse
 import os
 from glob import glob
+from shutil import move
 
 from utils import LOCALE_FILE_PATHS, ROOT_PATH, JsonFilePatcher, run_shell_command
 
@@ -20,7 +21,10 @@ from electricitymap.contrib.lib.types import ZoneKey
 def remove_zone(zone_key: ZoneKey):
     # Remove zone config.
     try:
-        os.remove(ROOT_PATH / f"config/zones/{zone_key}.yaml")
+        move(
+            ROOT_PATH / f"config/zones/{zone_key}.yaml",
+            ROOT_PATH / f"config/retired_zones/{zone_key}.yaml",
+        )
     except FileNotFoundError:
         pass
 
@@ -89,7 +93,11 @@ def remove_zone(zone_key: ZoneKey):
         ]
         f.content["features"] = new_features
 
-    run_shell_command(f"npx prettier --write {geo_json_path}", cwd=ROOT_PATH)
+    run_shell_command(f"pnpm generate-world", cwd=ROOT_PATH / "web")
+
+    run_shell_command(f"pnpm generate-zones-config", cwd=ROOT_PATH / "web")
+
+    run_shell_command(f"pnpm format", cwd=ROOT_PATH / "web")
 
 
 def main():

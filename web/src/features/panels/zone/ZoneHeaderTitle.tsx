@@ -27,7 +27,7 @@ export default function ZoneHeaderTitle({
   const disclaimer = getDisclaimer(zoneId);
 
   return (
-    <div className="flex w-full grow flex-row overflow-hidden pl-2 pb-2">
+    <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
       <Link
         className="text-3xl self-center py-4 pr-4"
         to={returnToMapLink}
@@ -54,20 +54,20 @@ export default function ZoneHeaderTitle({
                     {title}
                   </h2>
                   {isSubZone && (
-                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 py-0.5 px-2  text-sm dark:bg-gray-900">
+                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">
                       <p className="w-full truncate">{countryName || zoneId}</p>
                     </div>
                   )}
                 </div>
               </TooltipWrapper>
+              {disclaimer && (
+                <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
+                  <div className="ml-2 mr-4 h-6 w-6 shrink-0 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
+                    <p>i</p>
+                  </div>
+                </TooltipWrapper>
+              )}
             </div>
-            {disclaimer && (
-              <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
-                <div className="mr-1 h-6 w-6 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900 sm:mr-0">
-                  <p>i</p>
-                </div>
-              </TooltipWrapper>
-            )}
           </div>
         </div>
         <div className="flex h-auto flex-wrap items-center gap-1 text-center">

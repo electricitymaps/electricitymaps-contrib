@@ -103,7 +103,7 @@ if (isAggregate) {
 
 for (const [zoneKey, bbox] of Object.entries(boundingBoxes)) {
   // do not add new entries to zones/*.yaml, do not add RU because it crosses the 180th meridian
-  if (zoneKey === 'RU' || zoneKey === 'RU-FE') {
+  if (zoneKey === 'RU' || zoneKey === 'RU-FE' || zoneKey === 'US-AK') {
     console.log('IGNORING', zoneKey, 'because it is crossing the 180th meridian');
     continue;
   }

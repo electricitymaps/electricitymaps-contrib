@@ -1548,10 +1548,6 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Bonneville Power Administration"
@@ -1644,10 +1640,6 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "El Paso Electric Company"
@@ -1655,10 +1647,6 @@
     "US-SW-GRIF": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Ameerika Ühendriigid",

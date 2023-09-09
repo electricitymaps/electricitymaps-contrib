@@ -1,13 +1,13 @@
 /// <reference types="vitest" />
 import eslintPlugin from '@nabla/vite-plugin-eslint';
-import sentryVitePlugin from '@sentry/vite-plugin';
+import { sentryVitePlugin, SentryVitePluginOptions } from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react';
 import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
 import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import { defineConfig } from 'vite';
 // import { VitePWA } from 'vite-plugin-pwa';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import replace from '@rollup/plugin-replace';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 const manualChunkMap = {
   '@sentry': 'sentry',
@@ -18,6 +18,24 @@ const manualChunkMap = {
   'zones.json': 'config',
   'exchanges.json': 'config',
   'excludedAggregatedExchanges.json': 'config',
+};
+
+const sentryPluginOptions: SentryVitePluginOptions = {
+  org: 'electricitymaps',
+  project: 'app-web',
+
+  // Auth tokens can be obtained from https://sentry.io/settings/account/api/auth-tokens/
+  // and needs the `project:releases` and `org:read` scopes
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  sourcemaps: {
+    // Specify the directory containing build artifacts
+    assets: ['./dist'],
+  },
+
+  release: {
+    // Optionally uncomment the line below to override automatic release name detection
+    name: process.env.npm_package_version,
+  },
 };
 
 export default defineConfig(({ mode }) => ({
@@ -44,6 +62,7 @@ export default defineConfig(({ mode }) => ({
     css: false,
     include: ['src/**/*.test.{ts,tsx}', 'geo/**/*.test.{ts,tsx}'],
     globals: true,
+    globalSetup: 'testSetup.ts',
     environment: 'jsdom',
     setupFiles: 'src/testing/setupTests.ts',
     clearMocks: true,
@@ -99,21 +118,7 @@ export default defineConfig(({ mode }) => ({
           //   },
           // }),
           // Used to upload sourcemaps to Sentry
-          process.env.SENTRY_AUTH_TOKEN &&
-            sentryVitePlugin({
-              org: 'electricitymaps',
-              project: 'app-web',
-
-              // Specify the directory containing build artifacts
-              include: './dist',
-
-              // Auth tokens can be obtained from https://sentry.io/settings/account/api/auth-tokens/
-              // and needs the `project:releases` and `org:read` scopes
-              authToken: process.env.SENTRY_AUTH_TOKEN,
-
-              // Optionally uncomment the line below to override automatic release name detection
-              release: process.env.npm_package_version,
-            }),
+          process.env.SENTRY_AUTH_TOKEN && sentryVitePlugin(sentryPluginOptions),
         ]
       : []),
   ],

@@ -1,0 +1,9 @@
+capacity:
+  - -125
+  - 125
+lonlat:
+  - 1.45
+  - 42.3
+parsers:
+  exchange: ESIOS.fetch_exchange
+rotation: 200

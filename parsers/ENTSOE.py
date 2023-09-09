@@ -769,7 +769,7 @@ def create_production_storage(
     if fuel_code in ENTSOE_STORAGE_PARAMETERS:
         # Only include consumption if it's for storage. In other cases
         # it is power plant self-consumption which should be ignored.
-        storage.set_value(fuel_em_type, -quantity)
+        storage.add_value(fuel_em_type, -quantity)
         return None, storage
     if 0 > quantity > -50:
         logger.info(
@@ -778,7 +778,7 @@ def create_production_storage(
             extra={"key": zoneKey, "fuel_type": fuel_em_type},
         )
         quantity = 0
-    production.set_value(fuel_em_type, quantity)
+    production.add_value(fuel_em_type, quantity)
     return production, None
 
 
@@ -810,9 +810,15 @@ def parse_production(
         for entry in timeseries.find_all("point"):
             quantity = float(entry.find_all("quantity")[0].contents[0])
             position = int(entry.find_all("position")[0].contents[0])
+            # Since all values in ENTSOE are positive, we need to check if
+            # the value is production or consumption so we can set the quantity
+            # to a negative value if it is consumption.
+            is_production = (
+                len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
+            )
             datetime = datetime_from_position(datetime_start, position, resolution)
             production, storage = create_production_storage(
-                fuel_code, quantity, logger, zoneKey
+                fuel_code, quantity if is_production else -quantity, logger, zoneKey
             )
             production_breakdowns.append(
                 zoneKey=zoneKey,
