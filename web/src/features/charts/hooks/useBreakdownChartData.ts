@@ -3,7 +3,12 @@ import { max as d3Max } from 'd3-array';
 import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { ElectricityStorageKeyType, ElectricityStorageType, ZoneDetail } from 'types';
+import {
+  ElectricityModeType,
+  ElectricityStorageKeyType,
+  ElectricityStorageType,
+  ZoneDetail,
+} from 'types';
 
 import { useParams } from 'react-router-dom';
 import { Mode, SpatialAggregate, modeColor, modeOrder } from 'utils/constants';
@@ -14,25 +19,19 @@ import {
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
-import { getGenerationTypeKey } from '../graphUtils';
-import { AreaGraphElement } from '../types';
+import { getGenerationTypeKey, getTotalElectricity } from '../graphUtils';
+import { AreaGraphElement, LayerKey } from '../types';
 
-export const getLayerFill = (
-  exchangeKeys: string[],
-  co2ColorScale: ScaleLinear<string, string, string>
-) => {
-  const layerFill = (key: string) => {
-    // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
-    if (exchangeKeys.includes(key)) {
-      return (d: { data: AreaGraphElement }) =>
-        co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
+export const getLayerFill =
+  (co2ColorScale: ScaleLinear<string, string, string>) => (key: LayerKey) => {
+    // Use regular production fill.
+    if (key in modeColor) {
+      return () => modeColor[key as ElectricityModeType];
     }
-    // Otherwise use regular production fill.
-    return modeColor[key];
+    // Otherwise it's an exchange, set the horizontal gradient by using a different fill for each datapoint.
+    return (d: { data: AreaGraphElement }) =>
+      co2ColorScale(d.data.meta.exchangeCo2Intensities?.[key]);
   };
-
-  return layerFill;
-};
 
 export default function useBreakdownChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
@@ -88,8 +87,9 @@ export default function useBreakdownChartData() {
         // in GW or MW
         entry.layerData[key] = Math.max(0, exchangeValue / valueFactor);
         if (displayByEmissions) {
-          // in tCO₂eq/min
-          entry.layerData[key] *= (value.exchangeCo2Intensities || {})[key] / 1e3 / 60;
+          // in gCO₂eq/hour
+          entry.layerData[key] =
+            value.exchangeCo2Intensities?.[key] * Math.max(0, exchangeValue);
         }
       }
     }
@@ -110,7 +110,7 @@ export default function useBreakdownChartData() {
   const result = {
     chartData,
     layerKeys,
-    layerFill: getLayerFill(exchangeKeys, co2ColorScale),
+    layerFill: getLayerFill(co2ColorScale),
     // markerFill,
     valueAxisLabel,
     layerStroke: undefined,
@@ -131,13 +131,11 @@ function getStorageValue(
     return Number.NaN;
   }
 
-  let scaledValue = (-1 * Math.min(0, storageValue)) / valueFactor;
+  const invertedValue = -1 * Math.min(0, storageValue);
 
-  if (displayByEmissions) {
-    scaledValue *= value.dischargeCo2Intensities[storageKey] / 1e3 / 60;
-  }
-
-  return scaledValue;
+  return displayByEmissions
+    ? invertedValue * value.dischargeCo2Intensities[storageKey] * valueFactor
+    : invertedValue / valueFactor;
 }
 
 function getGenerationValue(
@@ -157,34 +155,26 @@ function getGenerationValue(
     return Number.NaN;
   }
 
-  let scaledValue = modeProduction / valueFactor;
-
-  if (displayByEmissions) {
-    scaledValue *= value.productionCo2Intensities[generationKey] / 1e3 / 60;
-  }
-
-  return scaledValue;
+  return displayByEmissions
+    ? modeProduction * value.productionCo2Intensities[generationKey] * valueFactor
+    : modeProduction / valueFactor;
 }
 
 interface ValuesInfo {
   valueAxisLabel: string; // For example, GW or tCO₂eq/min
-  valueFactor: number; // TODO: why is this required
+  valueFactor: number;
 }
 
 function getValuesInfo(
   historyData: ZoneDetail[],
   displayByEmissions: boolean
 ): ValuesInfo {
-  const maxTotalValue = d3Max(
-    historyData,
-    (d: ZoneDetail) =>
-      displayByEmissions
-        ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60 // in tCO₂eq/min
-        : d.totalProduction + d.totalImport + d.totalDischarge // in MW
+  const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
+    getTotalElectricity(d, displayByEmissions, Mode.CONSUMPTION)
   );
 
   const format = scalePower(maxTotalValue);
-  const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'CO₂eq / min' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 }

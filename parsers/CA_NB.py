@@ -1,17 +1,31 @@
 #!/usr/bin/env python3
 
 # The arrow library is used to handle datetimes consistently with other parsers
-from datetime import datetime
+from datetime import datetime, timezone
 from logging import Logger, getLogger
-from typing import Optional
-
-import arrow
+from typing import Any, Dict, List, Optional
 
 # BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup
 from requests import Session
 
-timezone = "Canada/Atlantic"
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+
+SOURCE = "tso.nbpower.com"
+EXCHANGE_TO_FLOWS = {
+    ZoneKey("CA-NB->CA-QC"): ["QUEBEC"],
+    # all of these exports are to Maine
+    # (see https://www.nbpower.com/en/about-us/our-energy/system-map/),
+    # currently this is mapped to ISO-NE
+    ZoneKey("CA-NB->US-NE-ISNE"): ["EMEC", "ISO-NE", "MPS"],
+    ZoneKey("CA-NB->CA-NS"): ["NOVA SCOTIA"],
+    ZoneKey("CA-NB->CA-PE"): ["PEI"],
+}
 
 
 def _get_new_brunswick_flows(requests_obj):
@@ -42,11 +56,11 @@ def _get_new_brunswick_flows(requests_obj):
 
 
 def fetch_production(
-    zone_key: str = "CA-NB",
+    zone_key: ZoneKey = ZoneKey("CA-NB"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[Dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
 
     """
@@ -74,25 +88,29 @@ def fetch_production(
         + flows["PEI"]
         + flows["QUEBEC"]
     )
+    production = ProductionBreakdownList(logger)
+    production.append(
+        zoneKey=zone_key,
+        # Using the current utc time because the page returns the current time.
+        datetime=datetime.now(tz=timezone.utc).replace(
+            minute=0, second=0, microsecond=0
+        ),
+        source=SOURCE,
+        production=ProductionMix(
+            unknown=generated,
+        ),
+    )
 
-    data = {
-        "datetime": arrow.utcnow().floor("minute").datetime,
-        "zoneKey": zone_key,
-        "production": {"unknown": generated},
-        "storage": {},
-        "source": "tso.nbpower.com",
-    }
-
-    return data
+    return production.to_list()
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[Dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -106,28 +124,19 @@ def fetch_exchange(
     # In expected result, "net" represents an export.
     # So these can be used directly.
 
-    if sorted_zone_keys == "CA-NB->CA-QC":
-        value = flows["QUEBEC"]
-    elif sorted_zone_keys == "CA-NB->US-NE-ISNE":
-        # all of these exports are to Maine
-        # (see https://www.nbpower.com/en/about-us/our-energy/system-map/),
-        # currently this is mapped to ISO-NE
-        value = flows["EMEC"] + flows["ISO-NE"] + flows["MPS"]
-    elif sorted_zone_keys == "CA-NB->CA-NS":
-        value = flows["NOVA SCOTIA"]
-    elif sorted_zone_keys == "CA-NB->CA-PE":
-        value = flows["PEI"]
-    else:
+    if sorted_zone_keys not in EXCHANGE_TO_FLOWS:
         raise NotImplementedError("This exchange pair is not implemented")
+    exchanges = ExchangeList(logger)
+    exchanges.append(
+        zoneKey=sorted_zone_keys,
+        datetime=datetime.now(tz=timezone.utc).replace(
+            minute=0, second=0, microsecond=0
+        ),
+        source=SOURCE,
+        netFlow=sum([flows[flow] for flow in EXCHANGE_TO_FLOWS[sorted_zone_keys]]),
+    )
 
-    data = {
-        "datetime": arrow.utcnow().floor("minute").datetime,
-        "sortedZoneKeys": sorted_zone_keys,
-        "netFlow": value,
-        "source": "tso.nbpower.com",
-    }
-
-    return data
+    return exchanges.to_list()
 
 
 if __name__ == "__main__":
@@ -137,4 +146,4 @@ if __name__ == "__main__":
     print(fetch_production())
 
     print('fetch_exchange("CA-NB", "CA-PE") ->')
-    print(fetch_exchange("CA-NB", "CA-PE"))
+    print(fetch_exchange(ZoneKey("CA-NB"), ZoneKey("CA-PE")))

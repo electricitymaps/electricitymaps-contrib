@@ -1,14 +1,15 @@
+import { zoneDetailMock } from 'stories/mockData';
+import { CarbonUnits } from 'utils/units';
 import BreakdownChartTooltip from './BreakdownChartTooltip';
 import CarbonChartTooltip from './CarbonChartTooltip';
 import EmissionChartTooltip from './EmissionChartTooltip';
-import { zoneDetailMock } from 'stories/mockData';
 
 it('Carbon chart tooltip', () => {
   cy.mount(
     <CarbonChartTooltip zoneDetail={zoneDetailMock} selectedLayerKey="carbonIntensity" />
   );
   cy.contains('Carbon intensity');
-  cy.contains(`187 gCO₂eq/kWh`);
+  cy.contains(`187 ${CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}`);
   cy.contains('2022');
 });
 it('Breakdown chart tooltip', () => {
@@ -23,7 +24,7 @@ it('Breakdown chart tooltip', () => {
 it('Emmisions chart tooltip', () => {
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
   cy.contains('Carbon emissions');
-  cy.contains(`20.39t of CO₂eq per minute`);
+  cy.contains(`20.4 t of CO₂eq per minute`);
   cy.contains('28');
 });
 
@@ -33,7 +34,7 @@ it('Carbon chart tooltip mobile', () => {
     <CarbonChartTooltip zoneDetail={zoneDetailMock} selectedLayerKey="carbonIntensity" />
   );
   cy.contains('Carbon intensity');
-  cy.contains(`187 gCO₂eq/kWh`);
+  cy.contains(`187 ${CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}`);
   cy.contains('2022');
 });
 it('Breakdown chart tooltip mobile', () => {
@@ -50,6 +51,6 @@ it('Emmisions chart tooltip mobile', () => {
   cy.viewport(500, 500);
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
   cy.contains('Carbon emissions');
-  cy.contains(`20.39t of CO₂eq per minute`);
+  cy.contains(`20.4 t of CO₂eq per minute`);
   cy.contains('28');
 });

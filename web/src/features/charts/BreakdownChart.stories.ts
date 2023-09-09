@@ -5,6 +5,7 @@ import { TimeAverages } from '../../utils/constants';
 import AreaGraph from './elements/AreaGraph';
 import { getLayerFill } from './hooks/useBreakdownChartData';
 import { zoneDetailMock } from 'stories/mockData';
+import { EnergyUnits } from 'utils/units';
 
 const meta: Meta<typeof AreaGraph> = {
   title: 'charts/BreakdownChart',
@@ -492,9 +493,8 @@ const chartData = [
 ].map((d) => ({ ...d, datetime: new Date(d.datetime) }));
 
 const includesStorageData = [...chartData];
-const exchangeKeys = ['ES'];
 
-const layerFill = getLayerFill(exchangeKeys, getCo2ColorScale(colors.bright));
+const layerFill = getLayerFill(getCo2ColorScale(colors.bright));
 
 export const IncludesStorage: Story = {
   // More on args: https://storybook.js.org/docs/react/writing-stories/args
@@ -504,7 +504,7 @@ export const IncludesStorage: Story = {
     layerKeys: Object.keys(includesStorageData[0].layerData),
     layerFill,
     selectedTimeAggregate: TimeAverages.HOURLY,
-    valueAxisLabel: '€ / MWh',
+    valueAxisLabel: `€ / ${EnergyUnits.MEGAWATT_HOURS}`,
     isMobile: false,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),

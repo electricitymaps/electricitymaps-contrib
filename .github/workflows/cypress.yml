@@ -13,7 +13,7 @@ jobs:
         with:
           version: 8
       - name: Cypress run component tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         env:
           TZ: Europe/Copenhagen
         with:
@@ -39,7 +39,7 @@ jobs:
         with:
           version: 8
       - name: Cypress run e2e tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         env:
           TZ: Europe/Copenhagen
         with:

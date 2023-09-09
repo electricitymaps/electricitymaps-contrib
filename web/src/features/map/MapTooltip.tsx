@@ -10,13 +10,13 @@ import { useTranslation } from 'translation/translation';
 import { StateZoneData } from 'types';
 import { Mode } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
+import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
-import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 
 function TooltipInner({
   zoneData,
@@ -109,7 +109,7 @@ export default function MapTooltip() {
     return (
       <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
         <div
-          className="pointer-events-none relative w-[300px] rounded border bg-zinc-50 p-3  text-sm shadow-lg dark:border-0 dark:bg-gray-900"
+          className="pointer-events-none relative w-[300px] rounded border bg-zinc-50 p-3  text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800 "
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>
@@ -126,7 +126,7 @@ export default function MapTooltip() {
   return (
     <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
       <div
-        className="pointer-events-none relative w-[176px] rounded border bg-zinc-50 p-3 text-center text-sm drop-shadow-sm dark:border-0 dark:bg-gray-900"
+        className="pointer-events-none relative w-[176px] rounded border bg-zinc-50 p-3 text-center text-sm drop-shadow-sm dark:border dark:border-gray-700 dark:bg-gray-800"
         style={{ left: emptyTooltipPosition.x, top: emptyTooltipPosition.y }}
       >
         <div>

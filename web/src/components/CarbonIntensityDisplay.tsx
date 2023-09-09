@@ -1,4 +1,5 @@
 import { useCo2ColorScale } from 'hooks/theme';
+import { CarbonUnits } from 'utils/units';
 
 function Square({ co2Intensity }: { co2Intensity: number }) {
   const co2ColorScale = useCo2ColorScale();
@@ -27,7 +28,8 @@ export function CarbonIntensityDisplay({
     <>
       {withSquare && <Square co2Intensity={intensityAsNumber} />}
       <p className={className}>
-        <b>{Math.round(intensityAsNumber) || '?'}</b>&nbsp;gCO₂eq/kWh
+        <b>{Math.round(intensityAsNumber) || '?'}</b>&nbsp;
+        {CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}
       </p>
     </>
   );

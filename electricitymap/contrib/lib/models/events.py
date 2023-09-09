@@ -30,9 +30,11 @@ class Mix(BaseModel, ABC):
         existing_value: Optional[float] = getattr(self, mode)
         if existing_value is not None:
             value = 0 if value is None else value
-            self.__setattr__(mode, existing_value + value)
+            self.__setattr__(
+                mode, round(existing_value + value, 6)
+            )  # 6 decimal places gives us a precision of 1 W.
         else:
-            self.__setattr__(mode, value)
+            self.__setattr__(mode, value if value is None else round(value, 6))
 
     @classmethod
     def merge(cls, mixes: List["Mix"]) -> "Mix":
@@ -542,6 +544,8 @@ class TotalConsumption(Event):
         # TODO in the future those checks should be performed in the data quality layer.
         if v > 500000:
             raise ValueError(f"Total consumption is implausibly high, above 500GW: {v}")
+        if v == 0:
+            raise ValueError(f"Total consumption cannot be 0 MW: {v}")
         return v
 
     @staticmethod

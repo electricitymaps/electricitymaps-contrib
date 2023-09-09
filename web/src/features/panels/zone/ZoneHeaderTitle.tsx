@@ -54,7 +54,7 @@ export default function ZoneHeaderTitle({
                     {title}
                   </h2>
                   {isSubZone && (
-                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-900">
+                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">
                       <p className="w-full truncate">{countryName || zoneId}</p>
                     </div>
                   )}
@@ -62,7 +62,7 @@ export default function ZoneHeaderTitle({
               </TooltipWrapper>
               {disclaimer && (
                 <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
-                  <div className="ml-1 mr-1 h-6 w-6 shrink-0 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
+                  <div className="ml-2 mr-4 h-6 w-6 shrink-0 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
                     <p>i</p>
                   </div>
                 </TooltipWrapper>

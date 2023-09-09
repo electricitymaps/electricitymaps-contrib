@@ -14,7 +14,7 @@ function ExternalLink({ href, text }: { href: string; text: string }) {
 export default function InfoText() {
   const { __ } = useTranslation();
   return (
-    <div className="prose text-sm dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline">
+    <div className="prose text-sm dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:invert">
       <p>
         {__('panel-initial-text.thisproject')}{' '}
         <ExternalLink
