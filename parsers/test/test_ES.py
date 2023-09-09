@@ -41,6 +41,43 @@ class TestES(TestCase):
             datetime(2023, 9, 3, 23, 55, tzinfo=timezone.utc),
         )
 
+    ### El Hierro
+    # Production
+    @patch("requests.Response")
+    @patch("parsers.ES.Session.get")
+    def test_fetch_production_storage(self, mocked_session_get, mocked_response):
+        mocked_response.ok = True
+        mocked_response.text = r'null({"valoresHorariosGeneracion":[{"ts":"2023-09-04 00:55","dem":5.5,"die":3.2,"gas":0.0,"eol":3.0,"cc":0.0,"vap":0.0,"fot":0.0,"hid":-0.5}]}'
+        mocked_session_get.return_value = mocked_response
+        data_list = ES.fetch_production(
+            ZoneKey("ES-CN-HI"), self.session, datetime.fromisoformat("2023-09-04")
+        )
+
+        # Test "get" function has been called correctly
+        self.assertEqual(
+            mocked_session_get.call_args[0][0],
+            "https://demanda.ree.es/WSvisionaMovilesCanariasRest/resources/demandaGeneracionCanarias?curva=EL_HIERRO5M&fecha=2023-09-04",
+        )
+
+        # Test that the data is parsed correctly afterwards
+        self.assertEqual(len(data_list), 1)
+        self.assertEqual(data_list[0]["zoneKey"], "ES-CN-HI")
+        self.assertEqual(data_list[0]["source"], "demanda.ree.es")
+        self.assertEqual(
+            data_list[0]["production"],
+            {
+                "oil": 3.2,
+                "solar": 0.0,
+                "wind": 3.0,
+            },
+        )
+        self.assertEqual(data_list[0]["storage"], {"hydro": 0.5})
+        self.assertTrue(isinstance(data_list[0]["datetime"], datetime))
+        self.assertEqual(
+            data_list[0]["datetime"],
+            datetime(2023, 9, 3, 23, 55, tzinfo=timezone.utc),
+        )
+
     ### Menorca
     # Production
     @patch("requests.Response")
