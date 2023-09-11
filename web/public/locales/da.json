@@ -19,7 +19,14 @@
     "electricity": "Elektricitet",
     "electricityproduction": "Elproduktion",
     "electricityconsumption": "Elforbrug",
-    "bysource": "efter kilde",
+    "by-source": {
+      "emissions": "CO₂-udledning per kilde",
+      "electricity-production": "Elproduktion per kilde",
+      "electricity-consumption": "Elforbrug per kilde",
+      "total-emissions": "Samlede CO₂-udledninger per kilde",
+      "total-electricity-production": "Samlet elproduktion per kilde",
+      "total-electricity-consumption": "Samlet elforbrug per kilde"
+    },
     "emissions": "CO₂-udledning",
     "helpfrom": "med hjælp fra",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",

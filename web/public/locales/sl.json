@@ -49,8 +49,14 @@
     "renewable": "obnovljiva",
     "electricityproduction": "Proizvodnja električne energije",
     "electricityconsumption": "Poraba električne energije",
-    "bysource": "po viru",
-    "averagebysource": "povprečje glede na vir",
+    "by-source": {
+      "emissions": "Izpusti ogljika po virih",
+      "electricity-production": "Proizvodnja električne energije po virih",
+      "electricity-consumption": "Poraba električne energije po virih",
+      "total-emissions": "Skupni izpusti ogljika po virih",
+      "total-electricity-production": "Skupna proizvodnja električne energije po virih",
+      "total-electricity-consumption": "Skupna poraba električne energije po virih"
+    },
     "emissions": "ogljične emisije",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj ali uredi vir</a>",
     "helpfrom": "s pomočjo od",
