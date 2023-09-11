@@ -29,6 +29,8 @@ LIVE_DATASETS = {
     "FR-COR": "production-delectricite-par-filiere-en-temps-reel",
     "GP": "mix-temps-reel-guadeloupe",
     "RE": "prod-electricite-temps-reel",
+    "GF": "production-d-electricite-par-filiere-en-temps-reel",
+    "MQ": "production-delectricite-par-filiere-en-temps-reel",
 }
 
 HISTORICAL_DATASETS = {
@@ -68,7 +70,7 @@ API_PARAMETER_GROUPS = {
             "micro_hydro",
             "micro_hydraulique_mw",
         ],
-        "oil": ["diesel", "moteur_diesel"],
+        "oil": ["diesel", "moteur_diesel", "centrale_au_fioul", "moteurs_diesels"],
         "solar": [
             "photovoltaique",
             "photovoltaique0",
@@ -133,7 +135,7 @@ def fetch_data(
         "FR-COR": "date_heure" if target_datetime else "date",
         "RE": "date_heure" if target_datetime else "date",
         "GF": "date",
-        "MQ": "date_heure",
+        "MQ": "date_heure" if target_datetime else "date",
         "GP": "date",
     }
 
@@ -229,7 +231,7 @@ def fetch_production(
             storage=storage,
             source=generate_source(zone_key),
             sourceType=EventSourceType.estimated
-            if production_object["statut"] == "Estimé"
+            if production_object.get("statut") == "Estimé"
             else EventSourceType.measured,
         )
     return production_breakdown_list.to_list()
