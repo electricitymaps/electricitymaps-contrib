@@ -19,7 +19,7 @@ from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup
-from requests import Response, Session
+from requests import Response, Session, get
 
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
