@@ -1,5 +1,5 @@
 import { removeDuplicateSources } from 'features/panels/zone/Attribution';
-import { formatCo2, formatDataSources, formatEnergy } from './formatting';
+import { formatCo2, formatDataSources, formatEnergy, formatPower } from './formatting';
 
 describe('formatEnergy', () => {
   it('handles NaN input', () => {
@@ -38,9 +38,9 @@ describe('formatEnergy', () => {
     expect(actual).toBe(expected);
   });
 
-  it('handles PWh', () => {
+  it('Converts PWh to TWh', () => {
     const actual = formatEnergy(1_222_000_000.234_567);
-    const expected = '1.2 PWh';
+    const expected = '1200 TWh';
     expect(actual).toBe(expected);
   });
 
@@ -59,6 +59,62 @@ describe('formatEnergy', () => {
   it('handles 0 input for number of digits', () => {
     const actual = formatEnergy(12_313, 0);
     const expected = '10 GWh';
+    expect(actual).toBe(expected);
+  });
+});
+
+describe('formatPower', () => {
+  it('handles NaN input', () => {
+    const actual = formatPower(Number.NaN);
+    const expected = Number.NaN;
+    expect(actual).toBe(expected);
+  });
+
+  it('handles custom number of digits', () => {
+    const actual = formatPower(1.234_567, 4);
+    const expected = '1.235 MW';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles default number kW', () => {
+    const actual = formatPower(0.002_234_567);
+    const expected = '2.2 kW';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles MW', () => {
+    const actual = formatPower(1.234_567);
+    const expected = '1.2 MW';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles GW', () => {
+    const actual = formatPower(1222.234_567);
+    const expected = '1.2 GW';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles TW', () => {
+    const actual = formatPower(1_222_000.234_567);
+    const expected = '1.2 TW';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles zero input', () => {
+    const actual = formatPower(0);
+    const expected = '0 W';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles 1 input for number of digits', () => {
+    const actual = formatPower(12_313, 1);
+    const expected = '10 GW';
+    expect(actual).toBe(expected);
+  });
+
+  it('handles 0 input for number of digits', () => {
+    const actual = formatPower(12_313, 0);
+    const expected = '10 GW';
     expect(actual).toBe(expected);
   });
 });
