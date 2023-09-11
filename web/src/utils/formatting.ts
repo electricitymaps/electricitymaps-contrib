@@ -23,40 +23,30 @@ export const formatEnergy = function (
   return addSpaceBetweenNumberAndUnit(power);
 };
 
-export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
-  if (gramPerHour == undefined || Number.isNaN(gramPerHour)) {
+export const formatCo2 = function (grams: number, valueToMatch?: number): string {
+  // Validate input
+  if (grams == null || Number.isNaN(grams)) {
     return '?';
   }
 
-  // Assume gCO₂ / h input
-  const value = gramPerHour;
-
   // Ensure both numbers are at the same scale
-  const checkAgainst = valueToMatch ?? value;
+  const checkAgainst = valueToMatch ?? grams;
 
-  // grams and kilograms
-  if (checkAgainst < 1_000_000) {
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.0~s`)(value)}g`);
-  }
-
-  // tons
-  if (Math.round(checkAgainst) < 1e8) {
-    let decimals = value < 1 ? 2 : 1;
+  //Values less than 1Mt
+  if (Math.round(checkAgainst) < 1e9) {
+    let decimals = grams < 1 ? 2 : 1;
     // Remove decimals for large values
-    if (value > 1_000_000) {
-      decimals = 0;
+    if (grams > 1_000_000) {
+      decimals = 2;
+    }
+    if (checkAgainst < 1e6) {
+      return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~s`)(grams)}g`);
     }
 
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~f`)(value / 1e6)}t`);
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~r`)(grams / 1e6)}t`);
   }
-
-  // Hundred thousands of tons
-  if (Math.round(checkAgainst) < 1e9) {
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.1~f`)(value / 1e6)}Mt`);
-  }
-
-  // megatons or above
-  return addSpaceBetweenNumberAndUnit(`${d3.format(`,.2~s`)(value / 1e6)}t`);
+  // tonnes or above with significant figures as a default
+  return addSpaceBetweenNumberAndUnit(`${d3.format(',.2~s')(grams / 1e6)}t`);
 };
 
 const scalePower = function (maxPower: number | undefined) {

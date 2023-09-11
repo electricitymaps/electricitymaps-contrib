@@ -74,7 +74,7 @@ describe('formatCo2', () => {
     const expected = '1 kg';
     expect(actual).toBe(expected);
   });
-  it('handles tons', () => {
+  it('handles tonnes', () => {
     const actual = formatCo2(1_000_000);
     const expected = '1 t';
     expect(actual).toBe(expected);
@@ -82,13 +82,23 @@ describe('formatCo2', () => {
 
   it('uses same unit as another value would', () => {
     const actual = formatCo2(23_500, 2_350_000);
-    const expected = '0 t';
+    const expected = '0.02 t';
     expect(actual).toBe(expected);
   });
 
-  it('adds decimals if comparing with tons', () => {
+  it('adds decimals if comparing with tonnes', () => {
     const actual = formatCo2(200_500, 2_350_000);
     const expected = '0.2 t';
+    expect(actual).toBe(expected);
+  });
+  it('adds decimals if comparing with large tonnes', () => {
+    const actual = formatCo2(200_500, 992_350_000);
+    const expected = '0.2 t';
+    expect(actual).toBe(expected);
+  });
+  it('handles real data value', () => {
+    const actual = formatCo2(740_703_650);
+    const expected = '740 t';
     expect(actual).toBe(expected);
   });
   it('handles kilotonnes', () => {
@@ -102,7 +112,7 @@ describe('formatCo2', () => {
     expect(actual).toBe(expected);
   });
   it('handles megatonnes close to 1Gt rounding down', () => {
-    const actual = formatCo2(994_000_000_000_000);
+    const actual = formatCo2(994_320_320_231_123);
     const expected = '990 Mt';
     expect(actual).toBe(expected);
   });
