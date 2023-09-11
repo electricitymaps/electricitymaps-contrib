@@ -29,26 +29,24 @@ export const formatCo2 = function (grams: number, valueToMatch?: number): string
     return '?';
   }
 
-  // Assume gCO₂ input
-  const value = grams;
-
   // Ensure both numbers are at the same scale
-  const checkAgainst = valueToMatch ?? value;
+  const checkAgainst = valueToMatch ?? grams;
 
+  //Values less than 1Mt
   if (Math.round(checkAgainst) < 1e9) {
-    let decimals = value < 1 ? 2 : 1;
+    let decimals = grams < 1 ? 2 : 1;
     // Remove decimals for large values
-    if (value > 1_000_000) {
+    if (grams > 1_000_000) {
       decimals = 2;
     }
     if (checkAgainst < 1e6) {
-      return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~s`)(value)}g`);
+      return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~s`)(grams)}g`);
     }
 
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~r`)(value / 1e6)}t`);
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~r`)(grams / 1e6)}t`);
   }
-  // megato(ns or above as a default
-  return addSpaceBetweenNumberAndUnit(`${d3.format(',.2~s')(value / 1e6)}t`);
+  // tonnes or above with significant figures as a default
+  return addSpaceBetweenNumberAndUnit(`${d3.format(',.2~s')(grams / 1e6)}t`);
 };
 
 const scalePower = function (maxPower: number | undefined) {
