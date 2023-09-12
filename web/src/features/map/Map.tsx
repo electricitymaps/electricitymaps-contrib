@@ -1,9 +1,6 @@
-import mapboxgl from 'mapbox-gl';
-import maplibregl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
 import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
-import { Layer, Map, MapRef, Source } from 'react-map-gl';
-import { useCo2ColorScale, useTheme } from '../../hooks/theme';
+
+import 'maplibre-gl/dist/maplibre-gl.css';
 
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
@@ -12,10 +9,14 @@ import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
+import mapboxgl from 'mapbox-gl';
+import maplibregl from 'maplibre-gl';
+import { Layer, Map, MapRef, Source } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
+
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 import {
@@ -25,6 +26,7 @@ import {
   mousePositionAtom,
 } from './mapAtoms';
 import { FeatureId } from './mapTypes';
+import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;

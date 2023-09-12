@@ -1,9 +1,10 @@
 import { getCountryName, getZoneName } from 'translation/translation';
 import type { GridState, ZoneKey } from 'types';
+import { SpatialAggregate } from 'utils/constants';
 import { getCO2IntensityByMode } from 'utils/helpers';
+
 import { ZoneRowType } from './ZoneList';
 import { getHasSubZones } from '../zone/util';
-import { SpatialAggregate } from 'utils/constants';
 
 function filterZonesBySpatialAggregation(
   zoneKey: ZoneKey,

@@ -1,5 +1,6 @@
-import * as Tooltip from '@radix-ui/react-tooltip';
 import { ReactElement, useState } from 'react';
+
+import * as Tooltip from '@radix-ui/react-tooltip';
 import { twMerge } from 'tailwind-merge';
 
 interface MobileTooltipWrapperProperties {

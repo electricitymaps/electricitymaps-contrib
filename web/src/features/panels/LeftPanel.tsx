@@ -12,10 +12,10 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { useTranslation } from 'translation/translation';
+
 import FAQPanel from './faq/FAQPanel';
 import { leftPanelOpenAtom } from './panelAtoms';
 import RankingPanel from './ranking-panel/RankingPanel';
-
 import ZoneDetails from './zone/ZoneDetails';
 
 function HandleLegacyRoutes() {

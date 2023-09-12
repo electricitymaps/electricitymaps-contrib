@@ -1,6 +1,7 @@
+import { twMerge } from 'tailwind-merge';
+
 import { CountryFlag } from './Flag';
 import { getShortenedZoneNameWithCountry } from '../translation/translation';
-import { twMerge } from 'tailwind-merge';
 
 export function ZoneName({ zone, textStyle }: { zone: string; textStyle?: string }) {
   return (

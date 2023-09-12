@@ -1,8 +1,10 @@
 import { ReactElement } from 'react';
+
 import { HiArrowLeft } from 'react-icons/hi2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from '../../../translation/translation';
+
 import FAQContent from './FAQContent';
+import { useTranslation } from '../../../translation/translation';
 
 export default function FAQPanel(): ReactElement {
   const { __ } = useTranslation();

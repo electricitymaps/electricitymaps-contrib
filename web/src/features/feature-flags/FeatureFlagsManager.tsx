@@ -2,6 +2,7 @@ import * as Switch from '@radix-ui/react-switch';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from 'api/helpers';
 import { useSearchParams } from 'react-router-dom';
+
 import { useFeatureFlags } from './api';
 import { FeatureFlags } from './types';
 

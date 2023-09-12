@@ -1,5 +1,7 @@
 import type { ReactElement } from 'react';
+
 import { useTranslation } from 'translation/translation';
+
 import HorizontalColorbar from './ColorBar';
 import { solarColor } from '../../features/weather-layers/solar/utils';
 

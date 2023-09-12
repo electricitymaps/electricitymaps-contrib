@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
+
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
-import { formatDataSources } from 'utils/formatting';
-import { getContributors } from './util';
-import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { ZoneDetails } from 'types';
+import { formatDataSources } from 'utils/formatting';
+import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
+
+import { getContributors } from './util';
 export function removeDuplicateSources(source: string | undefined) {
   if (!source) {
     return [''];

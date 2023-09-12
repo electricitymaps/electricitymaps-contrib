@@ -1,6 +1,7 @@
+import type { ReactElement } from 'react';
+
 import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
-import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
 import { Mode } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';

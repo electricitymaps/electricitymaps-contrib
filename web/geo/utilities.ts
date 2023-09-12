@@ -14,6 +14,7 @@ import {
   Properties,
   truncate,
 } from '@turf/turf';
+
 import * as fs from 'node:fs';
 
 /* Transform the feature collection of polygons and multi-polygons into a feature collection of polygons only */

@@ -1,6 +1,7 @@
 /* eslint-disable react/display-name */
-import { ScaleLinear } from 'd3-scale';
 import React from 'react';
+
+import { ScaleLinear } from 'd3-scale';
 
 interface ValueAxisProps {
   scale: ScaleLinear<number, number, never>;

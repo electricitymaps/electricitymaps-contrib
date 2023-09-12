@@ -2,6 +2,7 @@ import { Capacitor } from '@capacitor/core';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
+
 import Logo from './Logo';
 
 interface MenuLinkProps {

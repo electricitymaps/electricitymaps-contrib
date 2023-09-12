@@ -1,8 +1,10 @@
-import { useCo2ColorScale } from 'hooks/theme';
 import type { ReactElement } from 'react';
+
+import { useCo2ColorScale } from 'hooks/theme';
 import { useTranslation } from 'translation/translation';
-import HorizontalColorbar from './ColorBar';
 import { CarbonUnits } from 'utils/units';
+
+import HorizontalColorbar from './ColorBar';
 
 function LegendItem({
   label,

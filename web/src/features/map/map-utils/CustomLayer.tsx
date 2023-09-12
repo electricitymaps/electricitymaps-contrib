@@ -1,7 +1,8 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/consistent-function-scoping */
-import { IControl } from 'mapbox-gl';
 import React, { useState } from 'react';
+
+import { IControl } from 'mapbox-gl';
 import { MapboxMap, useControl } from 'react-map-gl';
 
 class OverlayControl implements IControl {

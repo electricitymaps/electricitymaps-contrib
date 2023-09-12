@@ -1,12 +1,13 @@
 import { StrictMode } from 'react';
+
 import * as Sentry from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
-import { refetchDataOnHourChange } from 'utils/refetching';
 import enableErrorsInOverlay from 'utils/errorOverlay';
+import { refetchDataOnHourChange } from 'utils/refetching';
 //import { registerSW } from 'virtual:pwa-register';
 
 const isProduction = import.meta.env.PROD;

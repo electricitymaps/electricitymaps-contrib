@@ -1,10 +1,10 @@
+import { useParams, useMatch } from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
   ZoneDetail,
 } from 'types';
-import { useParams, useMatch } from 'react-router-dom';
 
 export function getZoneFromPath() {
   const { zoneId } = useParams();

@@ -1,5 +1,6 @@
-import * as ToastPrimitive from '@radix-ui/react-toast';
 import { useState } from 'react';
+
+import * as ToastPrimitive from '@radix-ui/react-toast';
 
 type Props = {
   title: string;

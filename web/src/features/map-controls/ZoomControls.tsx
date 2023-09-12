@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+
 import { NavigationControl } from 'react-map-gl';
 
 export default function ZoomControls(): ReactElement {

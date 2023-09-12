@@ -1,6 +1,6 @@
-import { mergeExchanges } from '../scripts/generateZonesConfig.js';
 import { ZonesConfig } from './types.js';
 import { fileExists, getJSON, writeJSON } from './utilities.js';
+import { mergeExchanges } from '../scripts/generateZonesConfig.js';
 
 const exchangeConfig = mergeExchanges();
 

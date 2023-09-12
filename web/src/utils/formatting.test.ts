@@ -1,4 +1,5 @@
 import { removeDuplicateSources } from 'features/panels/zone/Attribution';
+
 import { formatCo2, formatDataSources, formatEnergy, formatPower } from './formatting';
 
 describe('formatEnergy', () => {

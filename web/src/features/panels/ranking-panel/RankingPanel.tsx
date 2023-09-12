@@ -1,18 +1,20 @@
+import { ReactElement, useState } from 'react';
+
 import useGetState from 'api/getState';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { ReactElement, useState } from 'react';
 import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
-import { useTranslation } from '../../../translation/translation';
+
 import { getRankedState } from './getRankingPanelData';
 import InfoText from './InfoText';
 import SearchBar from './SearchBar';
 import SocialButtons from './SocialButtons';
 import ZoneList from './ZoneList';
+import { useTranslation } from '../../../translation/translation';
 
 export default function RankingPanel(): ReactElement {
   const { __ } = useTranslation();

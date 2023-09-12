@@ -3,8 +3,9 @@ import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { timeAverageAtom } from 'utils/state/atoms';
 import { EnergyUnits } from 'utils/units';
-import { InnerAreaGraphTooltipProps } from '../types';
+
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
+import { InnerAreaGraphTooltipProps } from '../types';
 
 export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);

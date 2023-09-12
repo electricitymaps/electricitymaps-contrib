@@ -13,10 +13,11 @@ import {
   productionConsumptionAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+
+import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
 import { InnerAreaGraphTooltipProps, LayerKey } from '../types';
-import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 function calculateTooltipContentData(
   selectedLayerKey: LayerKey,

@@ -3,14 +3,13 @@ import { max as d3Max } from 'd3-array';
 import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
+import { useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   ElectricityStorageType,
   ZoneDetail,
 } from 'types';
-
-import { useParams } from 'react-router-dom';
 import { Mode, SpatialAggregate, modeColor, modeOrder } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
@@ -18,6 +17,7 @@ import {
   productionConsumptionAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
+
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import {
   getGenerationTypeKey,

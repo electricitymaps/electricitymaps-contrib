@@ -1,3 +1,5 @@
+import { ReactElement, useState } from 'react';
+
 import {
   Item as ToggleGroupItem,
   Root as ToggleGroupRoot,
@@ -9,8 +11,8 @@ import {
   Root as TooltipRoot,
   Trigger as TooltipTrigger,
 } from '@radix-ui/react-tooltip';
-import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+
 import { useTranslation } from '../translation/translation';
 
 interface ToggleButtonProperties {

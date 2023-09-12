@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-
 import { useTranslation } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
 

@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import mediaQuery from 'css-mediaquery';
+
 import server from './mocks/server';
 import { DESKTOP_RESOLUTION_HEIGHT, DESKTOP_RESOLUTION_WIDTH } from './testUtils';
 import 'whatwg-fetch';

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { TimeAverages } from 'utils/constants';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
+
 import { formatDateTick } from '../../utils/formatting';
 
 // Frequency at which values are displayed for a tick

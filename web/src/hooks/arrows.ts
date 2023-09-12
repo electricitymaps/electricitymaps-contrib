@@ -1,7 +1,8 @@
 /* eslint-disable unicorn/no-array-reduce */
+import { useMemo } from 'react';
+
 import useGetState from 'api/getState';
 import { useAtom } from 'jotai';
-import { useMemo } from 'react';
 import { ExchangeArrowData, ExchangeResponse } from 'types';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
@@ -10,6 +11,7 @@ import {
   spatialAggregateAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+
 import exchangesConfigJSON from '../../config/exchanges.json'; // do something globally
 import exchangesToExclude from '../../config/excludedAggregatedExchanges.json'; // do something globally
 

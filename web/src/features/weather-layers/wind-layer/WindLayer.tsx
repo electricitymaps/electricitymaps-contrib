@@ -1,7 +1,8 @@
+import { useEffect, useMemo, useState } from 'react';
+
 import { useGetWind } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtom, useSetAtom } from 'jotai';
-import { useEffect, useMemo, useState } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { Maybe } from 'types';
 import { ToggleOptions } from 'utils/constants';
@@ -11,6 +12,7 @@ import {
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
+
 import Windy from './windy';
 
 type WindyType = ReturnType<typeof Windy>;

@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
+
 import useGetZone from 'api/getZone';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
-import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
@@ -10,13 +11,14 @@ import {
   spatialAggregateAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
 import NoInformationMessage from './NoInformationMessage';
-import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import { ZoneDataStatus, getHasSubZones, getZoneDataStatus } from './util';
+import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {

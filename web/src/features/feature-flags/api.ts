@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS, getBasePath, getHeaders } from 'api/helpers';
+
 import { FeatureFlags } from './types';
 
 export async function getFeatureFlags(): Promise<FeatureFlags> {

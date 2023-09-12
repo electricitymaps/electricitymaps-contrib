@@ -1,12 +1,13 @@
 import useGetZone from 'api/getZone';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
-import { AreaGraphElement } from '../types';
-import { getNetExchange, round } from 'utils/helpers';
+import { useAtom } from 'jotai';
 import { ZoneDetail } from 'types';
 import { scalePower } from 'utils/formatting';
+import { getNetExchange, round } from 'utils/helpers';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
-import { useAtom } from 'jotai';
+
+import { AreaGraphElement } from '../types';
 
 export function getFills(data: AreaGraphElement[]) {
   const netExchangeMaxValue =

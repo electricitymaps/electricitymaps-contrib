@@ -1,6 +1,7 @@
+import type { ReactElement } from 'react';
+
 import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
-import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
 import { Mode, LeftPanelToggleOptions } from 'utils/constants';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';

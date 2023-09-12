@@ -6,8 +6,9 @@ import { useTranslation } from 'translation/translation';
 import { Mode } from 'utils/constants';
 import { getCarbonIntensity } from 'utils/helpers';
 import { productionConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
-import { InnerAreaGraphTooltipProps } from '../types';
+
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
+import { InnerAreaGraphTooltipProps } from '../types';
 
 export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);

@@ -1,12 +1,14 @@
 /* eslint-disable unicorn/no-null */
+import { useEffect, useMemo } from 'react';
+
 import MobileTooltipWrapper from 'components/tooltips/MobileTooltipWrapper';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useSetAtom } from 'jotai';
-import { useEffect, useMemo } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
+
 import ExchangeTooltip from './ExchangeTooltip';
 import MobileExchangeTooltip from './MobileExchangeTooltip';
 import { quantizedCo2IntensityScale, quantizedExchangeSpeedScale } from './scales';

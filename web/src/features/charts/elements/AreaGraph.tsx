@@ -1,22 +1,24 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable react/display-name */
+import React, { useMemo, useState } from 'react';
+
 import { scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
 import TimeAxis from 'features/time/TimeAxis'; // TODO: Move to a shared folder
 import { useAtom } from 'jotai';
-import React, { useMemo, useState } from 'react';
 import { ZoneDetail } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
-import { getTimeScale, isEmpty } from '../graphUtils';
-import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
-import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
+
 import AreaGraphLayers from './AreaGraphLayers';
 import GraphBackground from './GraphBackground';
 import GraphHoverLine from './GraphHoverline';
 import ValueAxis from './ValueAxis';
+import { getTimeScale, isEmpty } from '../graphUtils';
+import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
+import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
 
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 40;

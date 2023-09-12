@@ -1,7 +1,9 @@
 import { useState } from 'react';
+
 import { HiLanguage } from 'react-icons/hi2';
 import { languageNames } from 'translation/locales';
 import { useTranslation } from 'translation/translation';
+
 import MapButton from './MapButton';
 import MapOptionSelector from './MapOptionSelector';
 

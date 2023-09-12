@@ -1,7 +1,8 @@
+import { useMemo } from 'react';
+
 import generateTopos from 'features/map/map-utils/generateTopos';
 import { useTheme } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { useMemo } from 'react';
 import { MapGeometries } from 'types';
 import { spatialAggregateAtom } from 'utils/state/atoms';
 

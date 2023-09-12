@@ -1,12 +1,13 @@
+import { useMemo } from 'react';
+
 import { CountryFlag } from 'components/Flag';
 import { max as d3Max } from 'd3-array';
-
 import { scaleLinear } from 'd3-scale';
-import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
+
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';

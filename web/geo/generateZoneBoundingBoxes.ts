@@ -1,11 +1,12 @@
+import { Position } from '@turf/turf';
+import yaml from 'js-yaml';
+
+import { saveZoneYaml } from './files.js';
+import { WorldFeatureCollection, ZoneConfig } from './types.js';
+import { getJSON } from './utilities.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import yaml from 'js-yaml';
-import { saveZoneYaml } from './files.js';
-import { getJSON } from './utilities.js';
-import { WorldFeatureCollection, ZoneConfig } from './types.js';
-import { Position } from '@turf/turf';
 
 const inputArguments = process.argv.slice(2);
 

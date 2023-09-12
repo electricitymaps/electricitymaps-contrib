@@ -1,4 +1,5 @@
 import { ScaleLinear } from 'd3-scale';
+
 import { LABEL_MAX_WIDTH, SCALE_TICKS, X_AXIS_HEIGHT } from '../constants';
 
 type Props = {

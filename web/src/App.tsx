@@ -1,13 +1,15 @@
+import { ReactElement, Suspense, lazy, useEffect, useLayoutEffect } from 'react';
+
 import { App as Cap } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { ToastProvider } from '@radix-ui/react-toast';
 import * as Sentry from '@sentry/react';
 import { useGetAppVersion } from 'api/getAppVersion';
 import useGetState from 'api/getState';
-import LoadingOverlay from 'components/LoadingOverlay';
-import Toast from 'components/Toast';
 import LegendContainer from 'components/legend/LegendContainer';
+import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
+import Toast from 'components/Toast';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import FeatureFlagsManager from 'features/feature-flags/FeatureFlagsManager';
 import Header from 'features/header/Header';
@@ -17,7 +19,6 @@ import SettingsModal from 'features/modals/SettingsModal';
 import TotalEnergyIntroModal from 'features/modals/TotalEnergyIntroModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { useDarkMode } from 'hooks/theme';
-import { ReactElement, Suspense, lazy, useEffect, useLayoutEffect } from 'react';
 import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));

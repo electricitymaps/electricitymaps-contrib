@@ -1,4 +1,5 @@
 import * as d3 from 'd3-format';
+
 import { TimeAverages } from './constants';
 import { EnergyUnits } from './units';
 

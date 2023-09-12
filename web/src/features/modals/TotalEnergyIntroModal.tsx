@@ -1,12 +1,11 @@
-import {
-  hasOnboardingBeenSeenAtom,
-  hasTotalEnergyIntroBeenSeenAtom,
-} from 'utils/state/atoms';
-
 import Modal from 'components/Modal';
 import { useAtom } from 'jotai';
 import { resolvePath, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'translation/translation';
+import {
+  hasOnboardingBeenSeenAtom,
+  hasTotalEnergyIntroBeenSeenAtom,
+} from 'utils/state/atoms';
 
 export function InfoModalContent() {
   const { __ } = useTranslation();

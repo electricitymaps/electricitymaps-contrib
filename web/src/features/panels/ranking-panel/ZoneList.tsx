@@ -1,6 +1,7 @@
+import type { ReactElement } from 'react';
+
 import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
-import type { ReactElement } from 'react';
 import { HiChevronRight } from 'react-icons/hi2';
 import { GridState } from 'types';
 

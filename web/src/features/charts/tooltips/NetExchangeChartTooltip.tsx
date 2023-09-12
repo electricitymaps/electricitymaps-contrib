@@ -1,10 +1,11 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
+import { formatCo2, scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
 import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
-import { InnerAreaGraphTooltipProps } from '../types';
+
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
-import { formatCo2, scalePower } from 'utils/formatting';
+import { InnerAreaGraphTooltipProps } from '../types';
 
 export default function NetExchangeChartTooltip({
   zoneDetail,

@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { zoneDetailMock } from 'stories/mockData';
+import { EnergyUnits } from 'utils/units';
+
+import AreaGraph from './elements/AreaGraph';
+import { getLayerFill } from './hooks/useBreakdownChartData';
 import { colors } from '../../hooks/colors';
 import { getCo2ColorScale } from '../../hooks/theme';
 import { TimeAverages } from '../../utils/constants';
-import AreaGraph from './elements/AreaGraph';
-import { getLayerFill } from './hooks/useBreakdownChartData';
-import { zoneDetailMock } from 'stories/mockData';
-import { EnergyUnits } from 'utils/units';
 
 const meta: Meta<typeof AreaGraph> = {
   title: 'charts/BreakdownChart',

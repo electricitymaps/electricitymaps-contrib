@@ -1,11 +1,13 @@
-import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
+
+import { useAtom } from 'jotai';
 import { ToggleOptions } from 'utils/constants';
 import {
   selectedDatetimeIndexAtom,
   solarLayerEnabledAtom,
   windLayerAtom,
 } from 'utils/state/atoms';
+
 import Co2Legend from './Co2Legend';
 import SolarLegend from './SolarLegend';
 import WindLegend from './WindLegend';

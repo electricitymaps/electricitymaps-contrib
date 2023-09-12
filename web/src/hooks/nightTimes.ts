@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import useGetZone from 'api/getZone';
 import {
   addDays,
@@ -10,7 +12,6 @@ import {
   subDays,
 } from 'date-fns';
 import { useGetGeometries } from 'features/map/map-utils/getMapGrid';
-import { useEffect, useState } from 'react';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import { getZoneFromPath } from 'utils/helpers';
 

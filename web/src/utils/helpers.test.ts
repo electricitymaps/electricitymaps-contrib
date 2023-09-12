@@ -1,3 +1,5 @@
+import { zoneDetailMock } from 'stories/mockData';
+
 import {
   getCO2IntensityByMode,
   dateToDatetimeString,
@@ -6,8 +8,6 @@ import {
   getCarbonIntensity,
   getRenewableRatio,
 } from './helpers';
-
-import { zoneDetailMock } from 'stories/mockData';
 
 describe('getCO2IntensityByMode', () => {
   // Tests for consumption
