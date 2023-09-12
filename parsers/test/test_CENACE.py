@@ -15,7 +15,7 @@ class TestFetchConsumption(TestCase):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
-        data = open("parsers/test/mocks/MX/DemandaRegional.html", "rb")
+        data = open("parsers/test/mocks/CENACE/DemandaRegional.html", "rb")
         self.adapter.register_uri(ANY, ANY, content=data.read())
 
     @freezegun.freeze_time("2021-01-01 00:00:00")
