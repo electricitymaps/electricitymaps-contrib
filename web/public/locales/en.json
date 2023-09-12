@@ -49,8 +49,6 @@
     "renewable": "Renewable",
     "electricityproduction": "Electricity production",
     "electricityconsumption": "Electricity consumption",
-    "bysource": "by source",
-    "averagebysource": "average by source",
     "emissions": "Carbon emissions",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
     "helpfrom": "with help from",
@@ -68,7 +66,15 @@
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
     "helpUs": "Help us identify the problem by taking a look at the <a href=\"%s\" target=\"_blank\">runtime logs</a> or contact the data provider.",
     "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
-    "now": "Now"
+    "now": "Now",
+    "by-source": {
+      "emissions": "Carbon emissions by source",
+      "electricity-production": "Electricity production by source",
+      "electricity-consumption": "Electricity consumption by source",
+      "total-emissions": "Total carbon emissions by source",
+      "total-electricity-production": "Total electricity production by source",
+      "total-electricity-consumption": "Total electricity consumption by source"
+    }
   },
   "time-controller": {
     "title": "Display data from the past"
@@ -80,11 +86,7 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Carbon intensity in the last %1$s",
-      "hourly": "Carbon intensity in the last 24 hours",
-      "daily": "Carbon intensity in the last month",
-      "monthly": "Carbon intensity in the last year",
-      "yearly": "Carbon intensity in the last 5 years"
+      "default": "Carbon intensity in the last %1$s"
     },
     "emissions": {
       "default": "Emissions in the last %1$s"
@@ -207,7 +209,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
+  "ofCO2eq": "of CO₂eq",
   "theMap": {
     "groupName": "The map",
     "mapColors-question": "What do the colors on the map mean?",

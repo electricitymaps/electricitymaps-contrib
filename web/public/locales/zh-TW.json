@@ -49,8 +49,6 @@
     "renewable": "可再生能源",
     "electricityproduction": "電力生產",
     "electricityconsumption": "用電量",
-    "bysource": "按來源",
-    "averagebysource": "來源平均",
     "emissions": "碳排放量",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或編輯來源</a>",
     "helpfrom": "with help from",
@@ -171,7 +169,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量被匯出到 %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力從 %5$s <b>%3$s</b> 匯入",
   "emissionsImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量從 %5$s <b>%3$s</b> 匯入",
-  "ofCO2eqPerMinute": "每分鐘 CO₂eq",
   "theMap": {
     "groupName": "地圖",
     "mapColors-question": "地圖上的顏色代表什麼呢？",

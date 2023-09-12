@@ -26,7 +26,7 @@ const generateMockData = async () => {
       detailsZones.forEach(async (zoneId) => {
         await fetchAndStoreData(
           `${CORE_URL}/details/${agg}/${zoneId}`,
-          `./public/v6/details/${agg}/${zoneId}.json`
+          `./public/v7/details/${agg}/${zoneId}.json`
         );
       });
     } catch (error) {

@@ -1,10 +1,12 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
+import { TimeAverages } from 'utils/constants';
+import { formatCo2, scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
 import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
-import { InnerAreaGraphTooltipProps } from '../types';
+
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
-import { formatCo2, scalePower } from 'utils/formatting';
+import { InnerAreaGraphTooltipProps } from '../types';
 
 export default function NetExchangeChartTooltip({
   zoneDetail,
@@ -16,12 +18,13 @@ export default function NetExchangeChartTooltip({
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { __ } = useTranslation();
 
+  const isHourly = timeAverage === TimeAverages.HOURLY;
   const { stateDatetime } = zoneDetail;
 
   const netExchange = getNetExchange(zoneDetail, displayByEmissions);
-  const { formattingFactor, unit: powerUnit } = scalePower(netExchange);
+  const { formattingFactor, unit: powerUnit } = scalePower(netExchange, isHourly);
 
-  const unit = displayByEmissions ? __('ofCO2eqPerMinute') : powerUnit;
+  const unit = displayByEmissions ? __('ofCO2eq') : powerUnit;
   const value = displayByEmissions
     ? formatCo2(Math.abs(netExchange))
     : Math.abs(round(netExchange / formattingFactor));

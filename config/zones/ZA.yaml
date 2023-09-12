@@ -216,5 +216,5 @@ isRenewable:
   unknown:
     value: 1
 parsers:
-  production: ZA.fetch_production
+  production: ESKOM.fetch_production
 timezone: Africa/Johannesburg
