@@ -160,7 +160,7 @@ def fetch_exchange(
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     if sorted_zone_keys not in EXCHANGE_NAME_DIRECTION_MAPPING:
         raise ParserException(
-            parser="AR.py",
+            parser="CAMMESA.py",
             message="This exchange is not currently implemented",
             zone_key=sorted_zone_keys,
         )
@@ -170,7 +170,7 @@ def fetch_exchange(
     api_cammesa_response = current_session.get(CAMMESA_EXCHANGE_ENDPOINT)
     if not api_cammesa_response.ok:
         raise ParserException(
-            parser="AR.py",
+            parser="CAMMESA.py",
             message=f"Exception when fetching exchange for {sorted_zone_keys}: error when calling url={CAMMESA_EXCHANGE_ENDPOINT}",
             zone_key=sorted_zone_keys,
         )
@@ -186,7 +186,7 @@ def fetch_exchange(
     )
     if exchange_data is None:
         raise ParserException(
-            parser="AR.py",
+            parser="CAMMESA.py",
             message=f"Exception when fetching exchange for {sorted_zone_keys}: exchange not found",
             zone_key=sorted_zone_keys,
         )
