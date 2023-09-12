@@ -71,6 +71,7 @@ def fetch_production(
             )
 
     res: Response = session.get(get_url())
+    breakpoint()
     if not res.ok:
         raise ParserException(
             "ZA.py",
