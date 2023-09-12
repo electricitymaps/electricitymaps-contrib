@@ -7,7 +7,7 @@ from requests import Session
 from requests_mock import ANY, Adapter
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.MX import fetch_consumption
+from parsers.CENACE import fetch_consumption
 
 
 class TestFetchConsumption(TestCase):
