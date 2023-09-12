@@ -5,6 +5,8 @@ import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
+import { formatCo2 } from 'utils/formatting';
+import { max, sum } from 'd3-array';
 
 interface BreakdownChartProps {
   displayByEmissions: boolean;
@@ -28,6 +30,11 @@ function BreakdownChart({
     mixMode === Mode.CONSUMPTION && timeAverage !== TimeAverages.HOURLY;
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
+
+  // Find highest daily emissions to show correct unit on chart
+  const maxEmissions = max(chartData.map((day) => sum(Object.values(day.layerData))));
+
+  const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
 
   const titleDisplayMode = displayByEmissions ? 'emissions' : 'electricity';
   const titleMixMode = mixMode === Mode.CONSUMPTION ? 'origin' : 'production';
@@ -59,6 +66,7 @@ function BreakdownChart({
           selectedTimeAggregate={timeAverage}
           tooltip={BreakdownChartTooltip}
           tooltipSize={displayByEmissions ? 'small' : 'large'}
+          {...(displayByEmissions && { formatTick: formatAxisTick })}
         />
       </div>
       {isBreakdownGraphOverlayEnabled && (

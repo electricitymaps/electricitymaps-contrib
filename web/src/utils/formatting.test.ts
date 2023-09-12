@@ -1,5 +1,50 @@
 import { removeDuplicateSources } from 'features/panels/zone/Attribution';
-import { formatDataSources } from './formatting';
+import { formatCo2, formatDataSources } from './formatting';
+
+describe('formatCo2', () => {
+  it('handles grams', () => {
+    const actual = formatCo2(1200);
+    const expected = '20 g';
+    expect(actual).toBe(expected);
+  });
+  it('handles kilograms', () => {
+    const actual = formatCo2(60_950);
+    const expected = '1 kg';
+    expect(actual).toBe(expected);
+  });
+  it('handles tons', () => {
+    const actual = formatCo2(60_950_000);
+    const expected = '1 t';
+    expect(actual).toBe(expected);
+  });
+
+  it('uses same unit as another value would', () => {
+    const actual = formatCo2(23_500, 2_350_000);
+    const expected = '0 t';
+    expect(actual).toBe(expected);
+  });
+
+  it('adds decimals if comparing with tons', () => {
+    const actual = formatCo2(12_003_500, 200_350_000);
+    const expected = '0.2 t';
+    expect(actual).toBe(expected);
+  });
+  it('handles values up to 100k', () => {
+    const actual = formatCo2(700_003_500_000);
+    const expected = '11,667 t';
+    expect(actual).toBe(expected);
+  });
+  it('handles values up to 1 million', () => {
+    const actual = formatCo2(30_000_035_000_000);
+    const expected = '0.5 Mt';
+    expect(actual).toBe(expected);
+  });
+  it('handles values above 1 million', () => {
+    const actual = formatCo2(400_000_350_000_000_000);
+    const expected = '6.7 Gt';
+    expect(actual).toBe(expected);
+  });
+});
 
 describe('formatDataSources', () => {
   it('handles multiple sources with en', () => {

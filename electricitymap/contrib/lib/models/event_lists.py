@@ -204,18 +204,21 @@ class ProductionBreakdownList(AggregatableEventList):
     def merge_production_breakdowns(
         ungrouped_production_breakdowns: List["ProductionBreakdownList"],
         logger: Logger,
+        matching_timestamps_only: bool = False,
     ) -> "ProductionBreakdownList":
         """
         Given multiple parser outputs, sum the production and storage
         of corresponding datetimes to create a unique production breakdown list.
         Sources will be aggregated in a comma-separated string. Ex: "entsoe, eia".
         There should be only one zone in the list of production breakdowns.
+        Matching timestamps only will only keep the timestamps where all the production breakdowns have data.
         """
         production_breakdowns = ProductionBreakdownList(logger)
         if ProductionBreakdownList.is_completely_empty(
             ungrouped_production_breakdowns, logger
         ):
             return production_breakdowns
+        len_ungrouped_production_breakdowns = len(ungrouped_production_breakdowns)
         df = pd.concat(
             [
                 production_breakdowns.dataframe
@@ -227,6 +230,14 @@ class ProductionBreakdownList(AggregatableEventList):
 
         df = df.drop(columns=["source", "sourceType", "zoneKey"])
         df = df.groupby(level=0, dropna=False)["data"].apply(list)
+        if matching_timestamps_only:
+            logger.info(
+                f"Filtering production breakdowns to keep \
+                only the timestamps where all the production breakdowns \
+                have data, {len(df[df.apply(lambda x: len(x) != len_ungrouped_production_breakdowns)])}\
+                points where discarded."
+            )
+            df = df[df.apply(lambda x: len(x) == len_ungrouped_production_breakdowns)]
         for row in df:
             prod = ProductionBreakdown.aggregate(row)
             production_breakdowns.events.append(prod)
