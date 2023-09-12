@@ -259,7 +259,7 @@ def fetch_consumption(
     )
     if not response.ok:
         raise ParserException(
-            "MX.py",
+            "CENACE.py",
             f"[{response.status_code}] Demand dashboard could not be reached: {response.text}",
             zone_key,
         )
@@ -268,7 +268,7 @@ def fetch_consumption(
         "td", attrs={"id": f"Demanda{REGION_MAPPING[zone_key]}", "class": "num"}
     )
     if demand_td is None:
-        raise ParserException("MX.py", f"Could not find demand cell", zone_key)
+        raise ParserException("CENACE.py", f"Could not find demand cell", zone_key)
     demand = float(demand_td.text.replace(",", ""))
     timezone = ZONES_CONFIG[zone_key].get("timezone")
     if timezone is None:
