@@ -7,7 +7,7 @@ capacity: {}
 contributors:
   - scriptator
 parsers:
-  production: MX.fetch_production
+  production: cenace.gob.mx.fetch_production
 subZoneNames:
   - MX-BC
   - MX-CE

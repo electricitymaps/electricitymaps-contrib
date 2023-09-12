@@ -2,5 +2,5 @@ lonlat:
   - -107.292
   - 31.709
 parsers:
-  exchange: MX.fetch_exchange
+  exchange: cenace.gob.mx.fetch_exchange
 rotation: 0

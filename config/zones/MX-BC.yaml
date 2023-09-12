@@ -12,5 +12,5 @@ fallbackZoneMixes:
       wind: 0.077
   source: "Electricity Maps & Dra. Gabriela Mu\xF1oz Mel\xE9ndez"
 parsers:
-  consumption: MX.fetch_consumption
+  consumption: cenace.gob.mx.fetch_consumption
 timezone: America/Tijuana

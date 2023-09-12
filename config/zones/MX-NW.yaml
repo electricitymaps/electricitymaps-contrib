@@ -5,4 +5,4 @@ bounding_box:
     - 32.99936330200008
 timezone: America/Mexico_City
 parsers:
-  consumption: MX.fetch_consumption
+  consumption: cenace.gob.mx.fetch_consumption
