@@ -3,21 +3,28 @@ import { max as d3Max } from 'd3-array';
 import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
+import { useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   ElectricityStorageType,
   ZoneDetail,
 } from 'types';
-
-import { useParams } from 'react-router-dom';
-import { Mode, SpatialAggregate, modeColor, modeOrder } from 'utils/constants';
+import {
+  Mode,
+  SpatialAggregate,
+  TimeAverages,
+  modeColor,
+  modeOrder,
+} from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
   spatialAggregateAtom,
+  timeAverageAtom,
 } from 'utils/state/atoms';
+
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import {
   getGenerationTypeKey,
@@ -44,6 +51,7 @@ export default function useBreakdownChartData() {
   const [mixMode] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [viewMode] = useAtom(spatialAggregateAtom);
+  const [timeAggregate] = useAtom(timeAverageAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
@@ -57,7 +65,8 @@ export default function useBreakdownChartData() {
 
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
-    displayByEmissions
+    displayByEmissions,
+    timeAggregate
   );
 
   const chartData: AreaGraphElement[] = [];
@@ -171,15 +180,16 @@ interface ValuesInfo {
 
 function getValuesInfo(
   historyData: ZoneDetail[],
-  displayByEmissions: boolean
+  displayByEmissions: boolean,
+  timeAggregate: string
 ): ValuesInfo {
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     displayByEmissions
       ? getTotalEmissions(d, Mode.CONSUMPTION)
       : getTotalElectricity(d, Mode.CONSUMPTION)
   );
-
-  const format = scalePower(maxTotalValue);
+  const isHourly = timeAggregate === TimeAverages.HOURLY;
+  const format = scalePower(maxTotalValue, isHourly);
   const valueAxisLabel = displayByEmissions ? 'CO₂eq' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
