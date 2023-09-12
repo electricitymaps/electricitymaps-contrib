@@ -1,13 +1,16 @@
+import { useMemo } from 'react';
+
 import { CountryFlag } from 'components/Flag';
 import { max as d3Max, min as d3Min } from 'd3-array';
-
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useMemo } from 'react';
+import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
-import { modeColor } from 'utils/constants';
-import { formatEnergy } from 'utils/formatting';
+import { TimeAverages, modeColor } from 'utils/constants';
+import { formatEnergy, formatPower } from 'utils/formatting';
+import { timeAverageAtom } from 'utils/state/atoms';
+
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
@@ -60,6 +63,8 @@ function BarElectricityBreakdownChart({
     productionData.length,
     exchangeData
   );
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const isHourly = timeAverage === TimeAverages.HOURLY;
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
@@ -98,11 +103,10 @@ function BarElectricityBreakdownChart({
   const formatTick = (t: number) => {
     // Use same unit as max value for tick with value 0
     if (t === 0) {
-      return formatEnergy(maxPower, 1)
-        .toString()
-        .replace(/[\d.]+/, '0');
+      const tickValue = isHourly ? formatPower(maxPower, 1) : formatEnergy(maxPower, 1);
+      return tickValue.toString().replace(/[\d.]+/, '0');
     }
-    return formatEnergy(t, 1);
+    return isHourly ? formatPower(t, 1) : formatEnergy(t, 1);
   };
 
   return (

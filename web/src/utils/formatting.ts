@@ -1,6 +1,7 @@
 import * as d3 from 'd3-format';
+
 import { TimeAverages } from './constants';
-import { EnergyUnits } from './units';
+import { EnergyUnits, PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 2;
 
@@ -63,7 +64,7 @@ export const formatCo2 = function (grams: number, valueToMatch?: number): string
   return addSpaceBetweenNumberAndUnit(`${d3.format(',.2~s')(grams / 1e6)}t`);
 };
 
-const scalePower = function (maxPower: number | undefined) {
+const scalePower = function (maxPower: number | undefined, isPower = false) {
   // Assume MW input
   if (maxPower == undefined) {
     return {
@@ -72,13 +73,21 @@ const scalePower = function (maxPower: number | undefined) {
     };
   }
 
-  const thresholds: [number, EnergyUnits][] = [
-    [1e9, EnergyUnits.PETAWATT_HOURS],
-    [1e6, EnergyUnits.TERAWATT_HOURS],
-    [1e3, EnergyUnits.GIGAWATT_HOURS],
-    [1, EnergyUnits.MEGAWATT_HOURS],
-    [1e-3, EnergyUnits.KILOWATT_HOURS],
-  ];
+  const thresholds: [number, EnergyUnits | PowerUnits][] = isPower
+    ? [
+        [1e9, PowerUnits.PETAWATTS],
+        [1e6, PowerUnits.TERAWATTS],
+        [1e3, PowerUnits.GIGAWATTS],
+        [1, PowerUnits.MEGAWATTS],
+        [1e-3, PowerUnits.KILOWATTS],
+      ]
+    : [
+        [1e9, EnergyUnits.PETAWATT_HOURS],
+        [1e6, EnergyUnits.TERAWATT_HOURS],
+        [1e3, EnergyUnits.GIGAWATT_HOURS],
+        [1, EnergyUnits.MEGAWATT_HOURS],
+        [1e-3, EnergyUnits.KILOWATT_HOURS],
+      ];
 
   // Use absolute value to handle negative values
   const value = Math.abs(maxPower);
