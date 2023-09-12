@@ -20,6 +20,9 @@ FUEL_MAPPING = {
     "total_bio_gas": "biomass",
 }
 TIMEZONE = timezone("America/Aruba")
+PRODUCTION_URL = (
+    "https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json"
+)
 SOURCE = "webaruba.com"
 
 
@@ -33,10 +36,11 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or Session()
-    url = "https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json"
     # User agent is mandatory or services answers 404
-    headers = {"user-agent": "electricitymaps.com"}
-    response = r.get(url, headers=headers)
+    headers = {
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)"
+    }
+    response = r.get(PRODUCTION_URL, headers=headers)
     aruba_json = response.json()
     top_data = aruba_json["dashboard_top_data"]
     mix = ProductionMix()
