@@ -75,7 +75,7 @@ def fetch_production(
     res: Response = session.get(get_url())
     if not res.ok:
         raise ParserException(
-            "ZA.py",
+            "ESKOM.py",
             f"Exception when fetching production for {zone_key}: error when calling url={get_url()}",
             zone_key=zone_key,
         )
