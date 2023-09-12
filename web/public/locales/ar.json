@@ -63,7 +63,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> من الانبعاثات في %4$s <b>%2$s</b> تصدر إلى %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> من الكهرباء في %4$s <b>%2$s</b> تستورد من %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> من الانبعاثات في %4$s <b>%2$s</b> تستورد من %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "zoneShortName": {
     "AD": {
       "zoneName": "أندورا"

@@ -32,7 +32,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         data={chartData}
         layerKeys={layerKeys}
         layerFill={layerFill}
-        valueAxisLabel="CO₂eq / min"
+        valueAxisLabel="CO₂eq"
         markerUpdateHandler={noop}
         markerHideHandler={noop}
         datetimes={datetimes}

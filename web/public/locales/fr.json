@@ -35,7 +35,14 @@
     "lowcarbon": "Bas carbone",
     "electricityproduction": "Production électrique",
     "electricityconsumption": "Consommation électrique",
-    "bysource": "par source",
+    "by-source": {
+      "emissions": "Émissions de carbone par source",
+      "electricity-production": "Production d'électricité par source",
+      "electricity-consumption": "Consommation d'électricité par source",
+      "total-emissions": "Émissions totales de carbone par source",
+      "total-electricity-production": "Production totale d'électricité par source",
+      "total-electricity-consumption": "Consommation totale d'électricité par source"
+    },
     "emissions": "Émissions",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">ajouter ou modifier la source</a>",
     "helpfrom": "avec l’aide de",
@@ -47,7 +54,6 @@
     },
     "now": "Maintenant",
     "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à %s heures de retard. Les données temps-réel ne peuvent pas être affichées.",
-    "averagebysource": "moyenne par source",
     "estimated": "estimé",
     "aggregated": "aggrégé",
     "dataIsEstimated": "Certaines données de cette région sont estimées. En savoir plus sur notre méthodologie d'estimation <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
@@ -174,7 +180,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont exportées vers %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est importée depuis %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont importées depuis %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "de CO₂eq par minute",
+  "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "La carte",
     "mapColors-question": "Que signifient les couleurs sur la carte ?",
