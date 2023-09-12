@@ -7,7 +7,7 @@ import { renderToString } from 'react-dom/server';
 import { getZoneName, useTranslation } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
 import { Mode, TimeAverages, modeColor } from 'utils/constants';
-import { formatCo2, formatEnergy } from 'utils/formatting';
+import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
@@ -184,7 +184,7 @@ export function BreakdownChartTooltipContent({
               {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
               {__('tooltips.ofinstalled')}
               <br />
-              <MetricRatio value={usage} total={(capacity ??= 0)} format={formatEnergy} />
+              <MetricRatio value={usage} total={(capacity ??= 0)} format={formatPower} />
               <br />
             </>
           )}
