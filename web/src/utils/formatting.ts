@@ -9,29 +9,32 @@ function addSpaceBetweenNumberAndUnit(inputString: string) {
   return inputString.replace(/([A-Za-z])/, ' $1');
 }
 
-export const formatEnergy = function (
+export const formatPower = function (
   d: number,
-  numberDigits: number = DEFAULT_NUM_DIGITS,
-  isCapacity = false
+  numberDigits: number = DEFAULT_NUM_DIGITS
 ) {
   // Assume MW input
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
   const significantFigures = d.toString().length > 1 ? numberDigits : 1;
-  const unit = isCapacity ? 'W' : 'Wh';
   const power =
     d < 1e9
-      ? d3.format(`.${significantFigures}s`)(d * 1e6) + unit
-      : d3.format(`.${significantFigures}r`)(d / 1e6) + 'TWh';
+      ? d3.format(`.${significantFigures}s`)(d * 1e6) + 'W'
+      : d3.format(`.${significantFigures}r`)(d / 1e6) + 'TW';
   return addSpaceBetweenNumberAndUnit(power);
 };
 
-export const formatPower = function (
+export const formatEnergy = function (
   d: number,
   numberDigits: number = DEFAULT_NUM_DIGITS
 ) {
-  return formatEnergy(d, numberDigits, true);
+  const power = formatPower(d, numberDigits);
+  // Assume MW input
+  if (power == undefined || Number.isNaN(power)) {
+    return power;
+  }
+  return power + 'h';
 };
 
 export const formatCo2 = function (grams: number, valueToMatch?: number): string {
