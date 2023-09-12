@@ -220,7 +220,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisji jest eksportowane do %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest importowane z %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisji jest importowane z %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq na minutę",
   "zoneShortName": {
     "AE": {
       "zoneName": "Zjednoczone Emiraty Arabskie"
