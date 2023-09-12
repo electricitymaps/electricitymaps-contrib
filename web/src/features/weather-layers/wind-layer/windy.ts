@@ -17,221 +17,222 @@
 */
 
 import { Capacitor } from '@capacitor/core';
-import { Point } from 'mapbox-gl';
 import { windColor } from './scales';
 
-var Windy = function (params: any) {
-  const VELOCITY_SCALE = 1 / 50_000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
-  var INTENSITY_SCALE_STEP = 10; // step size of particle intensity color scale
-  var MAX_WIND_INTENSITY = 30; // wind velocity at which particle intensity is maximum (m/s)
-  var MAX_PARTICLE_AGE = 100; // max number of frames a particle is drawn before regeneration
-  var PARTICLE_LINE_WIDTH = 2; // line width of a drawn particle
-  const PARTICLE_MULTIPLIER = 8; // particle count scalar (completely arbitrary--this values looks nice)
-  var PARTICLE_REDUCTION = 0.75; // reduce particle count to this much of normal for mobile devices
-  var BOUNDARY = 0.45;
+const VELOCITY_SCALE = 1 / 50_000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
+const INTENSITY_SCALE_STEP = 10; // step size of particle intensity color scale
+const MAX_WIND_INTENSITY = 30; // wind velocity at which particle intensity is maximum (m/s)
+const MAX_PARTICLE_AGE = 100; // max number of frames a particle is drawn before regeneration
+const PARTICLE_LINE_WIDTH = 2; // line width of a drawn particle
+const PARTICLE_MULTIPLIER = 8; // particle count scalar (completely arbitrary--this values looks nice)
+const PARTICLE_REDUCTION = 0.75; // reduce particle count to this much of normal for mobile devices
+const NULL_WIND_VECTOR = [Number.NaN, Number.NaN, null]; // singleton for no wind in the form: [u, v, magnitude]
 
-  var NULL_WIND_VECTOR = [NaN, NaN, null]; // singleton for no wind in the form: [u, v, magnitude]
-  var TRANSPARENT_BLACK = [255, 0, 0, 0];
+// interpolation for vectors like wind (u,v,m)
+export const bilinearInterpolateVector = (
+  x: number,
+  y: number,
+  g00: number[],
+  g10: number[],
+  g01: number[],
+  g11: number[]
+) => {
+  const rx = 1 - x;
+  const ry = 1 - y;
+  const a = rx * ry,
+    b = x * ry,
+    c = rx * y,
+    d = x * y;
+  const u = g00[0] * a + g10[0] * b + g01[0] * c + g11[0] * d;
+  const v = g00[1] * a + g10[1] * b + g01[1] * c + g11[1] * d;
+  return [u, v, Math.hypot(u, v)];
+};
 
-  // interpolation for vectors like wind (u,v,m)
-  var bilinearInterpolateVector = function (
-    x: number,
-    y: number,
-    g00: number[],
-    g10: number[],
-    g01: number[],
-    g11: number[]
-  ) {
-    var rx = 1 - x;
-    var ry = 1 - y;
-    var a = rx * ry,
-      b = x * ry,
-      c = rx * y,
-      d = x * y;
-    var u = g00[0] * a + g10[0] * b + g01[0] * c + g11[0] * d;
-    var v = g00[1] * a + g10[1] * b + g01[1] * c + g11[1] * d;
-    return [u, v, Math.sqrt(u * u + v * v)];
+const createWindBuilder = (
+  uComp: { data: any; header: any } | null,
+  vComp: { data: any } | null
+) => {
+  const uData = uComp?.data,
+    vData = vComp?.data;
+  return {
+    header: uComp?.header,
+    //recipe: recipeFor("wind-" + uComp.header.surface1Value),
+    data: function (i: string | number) {
+      return [uData[i], vData[i]];
+    },
+    interpolate: bilinearInterpolateVector,
   };
+};
 
-  var createWindBuilder = function (
-    uComp: { data: any; header: any } | null,
-    vComp: { data: any } | null
-  ) {
-    var uData = uComp?.data,
-      vData = vComp?.data;
-    return {
-      header: uComp?.header,
-      //recipe: recipeFor("wind-" + uComp.header.surface1Value),
-      data: function (i: string | number) {
-        return [uData[i], vData[i]];
-      },
-      interpolate: bilinearInterpolateVector,
-    };
-  };
-
-  var createBuilder = function (data: any[]) {
-    var uComp = null,
-      vComp = null,
-      scalar = null;
-
-    data.forEach(function (record: {
-      header: { parameterCategory: string; parameterNumber: string };
-    }) {
-      switch (record.header.parameterCategory + ',' + record.header.parameterNumber) {
-        case '2,2':
-          uComp = record;
-          break;
-        case '2,3':
-          vComp = record;
-          break;
-        default:
-          scalar = record;
-      }
-    });
-
-    return createWindBuilder(uComp, vComp);
-  };
-
-  var buildGrid = function (
-    data: any,
-    callback: {
-      (grid: any): void;
-      (arg0: { date: Date; interpolate: (λ: any, φ: any) => number[] | null }): void;
+const createBuilder = (data: any[]) => {
+  let uComp = null,
+    vComp = null;
+  for (const record of data) {
+    const { parameterCategory, parameterNumber } = record.header;
+    if (parameterCategory === 2 && parameterNumber === 2) {
+      uComp = record;
+    } else if (parameterCategory === 2 && parameterNumber === 3) {
+      vComp = record;
     }
-  ) {
-    var builder = createBuilder(data);
+  }
 
-    var header = builder.header;
-    var λ0 = header.lo1,
-      φ0 = header.la1; // the grid's origin (e.g., 0.0E, 90.0N)
-    var Δλ = header.dx,
-      Δφ = header.dy; // distance between grid points (e.g., 2.5 deg lon, 2.5 deg lat)
-    var ni = header.nx,
-      nj = header.ny; // number of grid points W-E and N-S (e.g., 144 x 73)
-    var date = new Date(header.refTime);
-    date.setHours(date.getHours() + header.forecastTime);
+  return createWindBuilder(uComp, vComp);
+};
 
-    // Scan mode 0 assumed. Longitude increases from λ0, and latitude decreases from φ0.
-    // http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table3-4.shtml
-    var grid: any[] = [],
-      p = 0;
-    var isContinuous = Math.floor(ni * Δλ) >= 360;
-    for (var j = 0; j < nj; j++) {
-      var row = [];
-      for (var i = 0; i < ni; i++, p++) {
-        row[i] = builder.data(p);
-      }
-      if (isContinuous) {
-        // For wrapped grids, duplicate first column as last column to simplify interpolation logic
-        row.push(row[0]);
-      }
-      grid[j] = row;
+/**
+ * @returns {Boolean} true if the specified value is not null and not undefined.
+ */
+const isValue = (x: null | undefined): boolean => {
+  return x !== null && x !== undefined;
+};
+
+/**
+ * @returns {Number} returns remainder of floored division, i.e., floor(a / n). Useful for consistent modulo
+ * of negative numbers. See http://en.wikipedia.org/wiki/Modulo_operation.
+ */
+const floorModulus = (a: number, n: number): number => {
+  return a - n * Math.floor(a / n);
+};
+
+const buildGrid = (
+  data: any,
+  callback: {
+    (grid: any): void;
+    (arg0: { date: Date; interpolate: (λ: any, φ: any) => number[] | null }): void;
+  }
+) => {
+  const builder = createBuilder(data);
+
+  const header = builder.header;
+  const λ0 = header.lo1,
+    φ0 = header.la1; // the grid's origin (e.g., 0.0E, 90.0N)
+  const Δλ = header.dx,
+    Δφ = header.dy; // distance between grid points (e.g., 2.5 deg lon, 2.5 deg lat)
+  const ni = header.nx,
+    nj = header.ny; // number of grid points W-E and N-S (e.g., 144 x 73)
+  const date = new Date(header.refTime);
+  date.setHours(date.getHours() + header.forecastTime);
+
+  // Scan mode 0 assumed. Longitude increases from λ0, and latitude decreases from φ0.
+  // http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table3-4.shtml
+  const grid: any[] = [];
+  let p = 0;
+  const isContinuous = Math.floor(ni * Δλ) >= 360;
+  for (var j = 0; j < nj; j++) {
+    var row = [];
+    for (let index = 0; index < ni; index++, p++) {
+      row[index] = builder.data(p);
     }
+    if (isContinuous) {
+      // For wrapped grids, duplicate first column as last column to simplify interpolation logic
+      row.push(row[0]);
+    }
+    grid[j] = row;
+  }
 
-    function interpolate(λ: number, φ: number) {
-      var i = floorMod(λ - λ0, 360) / Δλ; // calculate longitude index in wrapped range [0, 360)
-      var j = (φ0 - φ) / Δφ; // calculate latitude index in direction +90 to -90
+  function interpolate(λ: number, φ: number) {
+    const i = floorModulus(λ - λ0, 360) / Δλ; // calculate longitude index in wrapped range [0, 360)
+    const j = (φ0 - φ) / Δφ; // calculate latitude index in direction +90 to -90
 
-      var fi = Math.floor(i),
-        ci = fi + 1;
-      var fj = Math.floor(j),
-        cj = fj + 1;
+    const fi = Math.floor(i),
+      ci = fi + 1;
+    const fj = Math.floor(j),
+      cj = fj + 1;
 
-      var row;
-      if ((row = grid[fj])) {
-        var g00 = row[fi];
-        var g10 = row[ci];
-        if (isValue(g00) && isValue(g10) && (row = grid[cj])) {
-          var g01 = row[fi];
-          var g11 = row[ci];
-          if (isValue(g01) && isValue(g11)) {
-            // All four points found, so interpolate the value.
-            return builder.interpolate(i - fi, j - fj, g00, g10, g01, g11);
-          }
+    let row;
+    if ((row = grid[fj])) {
+      const g00 = row[fi];
+      const g10 = row[ci];
+      if (isValue(g00) && isValue(g10) && (row = grid[cj])) {
+        const g01 = row[fi];
+        const g11 = row[ci];
+        if (isValue(g01) && isValue(g11)) {
+          // All four points found, so interpolate the value.
+          return builder.interpolate(i - fi, j - fj, g00, g10, g01, g11);
         }
       }
-      return null;
     }
-    callback({
-      date: date,
-      interpolate: interpolate,
-    });
-  };
+    return null;
+  }
+  callback({
+    date: date,
+    interpolate: interpolate,
+  });
+};
 
-  /**
-   * @returns {Boolean} true if the specified value is not null and not undefined.
-   */
-  var isValue = function (x: null | undefined) {
-    return x !== null && x !== undefined;
-  };
+const buildBounds = (bounds: any[], width: any, height: number) => {
+  const upperLeft = bounds[0];
+  const lowerRight = bounds[1];
+  const x = Math.round(upperLeft[0]); //Math.max(Math.floor(upperLeft[0], 0), 0);
+  const y = Math.max(Math.floor(upperLeft[1], 0), 0);
+  const yMax = Math.min(Math.ceil(lowerRight[1], height), height - 1);
+  return { x: x, y: y, yMax: yMax, width: width, height: height };
+};
 
-  /**
-   * @returns {Number} returns remainder of floored division, i.e., floor(a / n). Useful for consistent modulo
-   *          of negative numbers. See http://en.wikipedia.org/wiki/Modulo_operation.
-   */
-  var floorMod = function (a: number, n: number) {
-    return a - n * Math.floor(a / n);
-  };
+const project = (params: any, lat: any, lon: any) => {
+  // both in radians, use deg2rad if necessary
+  const projected = params.map.project([lon, lat]);
+  return [projected.x, projected.y];
+};
 
-  /**
-   * @returns {Number} the value x clamped to the range [low, high].
-   */
-  var clamp = function (x: number, range: number[]) {
-    return Math.max(range[0], Math.min(x, range[1]));
-  };
+const distortion = (params: any, λ: number, φ: number, x: number, y: number) => {
+  const τ = 2 * Math.PI;
+  const H = Math.pow(10, -5.2);
+  const hλ = λ < 0 ? H : -H;
+  const hφ = φ < 0 ? H : -H;
 
+  const pλ = project(params, φ, λ + hλ);
+  const pφ = project(params, φ + hφ, λ);
+
+  // Meridian scale factor (see Snyder, equation 4-3), where R = 1. This handles issue where length of 1º λ
+  // changes depending on φ. Without this, there is a pinching effect at the poles.
+  const k = Math.cos((φ / 360) * τ);
+  return [(pλ[0] - x) / hλ / k, (pλ[1] - y) / hλ / k, (pφ[0] - x) / hφ, (pφ[1] - y) / hφ];
+};
+
+/**
+ * Calculate distortion of the wind vector caused by the shape of the projection at point (x, y). The wind
+ * vector is modified in place and returned by this function.
+ */
+const distort = (
+  params: any,
+  λ: number,
+  φ: number,
+  x: number,
+  y: number,
+  scale: number,
+  wind: [number, number]
+) => {
+  const u = wind[0] * scale;
+  const v = wind[1] * scale;
+  const d = distortion(params, λ, φ, x, y);
+
+  // Scale distortion vectors by u and v, then add.
+  wind[0] = d[0] * u + d[2] * v;
+  wind[1] = d[1] * u + d[3] * v;
+  return wind;
+};
+
+const indexFor = (m: number, maxWind: number, resultLength: number) => {
+  // map wind speed to a style
+  return Math.floor((Math.min(m, maxWind) / maxWind) * (resultLength - 1));
+};
+
+export function windIntensityColorScale() {
+  return [...windColor.range()];
+}
+
+var Windy = function (params: any) {
   /**
    * @returns {Boolean} true if agent is probably a mobile device. Don't really care if this is accurate.
    */
-  const isMobile = function () {
+  const isMobile = function (): boolean {
     return /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
       navigator.userAgent
     );
   };
   const isIphone =
     Capacitor.getPlatform() === 'ios' || /iPad|iPhone|iPod/.test(navigator.userAgent);
-  /**
-   * Calculate distortion of the wind vector caused by the shape of the projection at point (x, y). The wind
-   * vector is modified in place and returned by this function.
-   */
-  var distort = function (
-    λ: any,
-    φ: any,
-    x: any,
-    y: any,
-    scale: number,
-    wind: number[],
-    windy: any
-  ) {
-    var u = wind[0] * scale;
-    var v = wind[1] * scale;
-    var d = distortion(λ, φ, x, y, windy);
-
-    // Scale distortion vectors by u and v, then add.
-    wind[0] = d[0] * u + d[2] * v;
-    wind[1] = d[1] * u + d[3] * v;
-    return wind;
-  };
-
-  var distortion = function (λ: number, φ: number, x: number, y: number, windy: any) {
-    var τ = 2 * Math.PI;
-    var H = Math.pow(10, -5.2);
-    var hλ = λ < 0 ? H : -H;
-    var hφ = φ < 0 ? H : -H;
-
-    var pλ = project(φ, λ + hλ, windy);
-    var pφ = project(φ + hφ, λ, windy);
-
-    // Meridian scale factor (see Snyder, equation 4-3), where R = 1. This handles issue where length of 1º λ
-    // changes depending on φ. Without this, there is a pinching effect at the poles.
-    var k = Math.cos((φ / 360) * τ);
-    return [
-      (pλ[0] - x) / hλ / k,
-      (pλ[1] - y) / hλ / k,
-      (pφ[0] - x) / hφ,
-      (pφ[1] - y) / hφ,
-    ];
-  };
 
   var createField = function (
     columns: any[],
@@ -251,7 +252,7 @@ var Windy = function (params: any) {
      * @returns {Array} wind vector [u, v, magnitude] at the point (x, y), or [NaN, NaN, null] if wind
      *          is undefined at that point.
      */
-    function field(x: number, y: number) {
+    function field(x: number, y: number): Array<any> {
       var column = columns[Math.round(x)];
       return (column && column[Math.round(y)]) || NULL_WIND_VECTOR;
     }
@@ -278,37 +279,14 @@ var Windy = function (params: any) {
     callback(bounds, field);
   };
 
-  var buildBounds = function (bounds: any[], width: any, height: number) {
-    var upperLeft = bounds[0];
-    var lowerRight = bounds[1];
-    var x = Math.round(upperLeft[0]); //Math.max(Math.floor(upperLeft[0], 0), 0);
-    var y = Math.max(Math.floor(upperLeft[1], 0), 0);
-    var yMax = Math.min(Math.ceil(lowerRight[1], height), height - 1);
-    return { x: x, y: y, yMax: yMax, width: width, height: height };
-  };
-
   var deg2rad = function (deg: number) {
     return (deg / 180) * Math.PI;
-  };
-
-  var rad2deg = function (ang: number) {
-    return ang / (Math.PI / 180.0);
   };
 
   var invert = function (x: any, y: any, windy: any) {
     const obj = params.map.unproject([x, y]);
 
     return [obj.lng, obj.lat];
-  };
-
-  var mercY = function (lat: number) {
-    return Math.log(Math.tan(lat / 2 + Math.PI / 4));
-  };
-
-  var project = function (lat: any, lon: any, windy: any) {
-    // both in radians, use deg2rad if neccessary
-    const projected = params.map.project([lon, lat]);
-    return [projected.x, projected.y];
   };
 
   const zoomScaling = function () {
@@ -344,7 +322,7 @@ var Windy = function (params: any) {
           if (isFinite(λ)) {
             var wind = grid.interpolate(λ, φ);
             if (wind) {
-              wind = distort(λ, φ, x, y, velocityScale, wind, extent);
+              wind = distort(params, λ, φ, x, y, velocityScale, wind);
               column[y + 1] = column[y] = wind;
             }
           }
@@ -376,63 +354,7 @@ var Windy = function (params: any) {
       randomize: any;
     }
   ) {
-    function asColorStyle(r: any, g: any, b: any, a: string) {
-      return 'rgba(' + 243 + ', ' + 243 + ', ' + 238 + ', ' + a + ')';
-    }
-
-    function hexToR(h: any) {
-      return parseInt(cutHex(h).substring(0, 2), 16);
-    }
-    function hexToG(h: any) {
-      return parseInt(cutHex(h).substring(2, 4), 16);
-    }
-    function hexToB(h: any) {
-      return parseInt(cutHex(h).substring(4, 6), 16);
-    }
-    function cutHex(h: string) {
-      return h.charAt(0) == '#' ? h.substring(1, 7) : h;
-    }
-
-    function windIntensityColorScale(step: number, maxWind: number) {
-      var result = [
-        /* blue to red
-          "rgba(" + hexToR('#178be7') + ", " + hexToG('#178be7') + ", " + hexToB('#178be7') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#8888bd') + ", " + hexToG('#8888bd') + ", " + hexToB('#8888bd') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#b28499') + ", " + hexToG('#b28499') + ", " + hexToB('#b28499') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#cc7e78') + ", " + hexToG('#cc7e78') + ", " + hexToB('#cc7e78') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#de765b') + ", " + hexToG('#de765b') + ", " + hexToB('#de765b') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#ec6c42') + ", " + hexToG('#ec6c42') + ", " + hexToB('#ec6c42') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#f55f2c') + ", " + hexToG('#f55f2c') + ", " + hexToB('#f55f2c') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#fb4f17') + ", " + hexToG('#fb4f17') + ", " + hexToB('#fb4f17') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#fe3705') + ", " + hexToG('#fe3705') + ", " + hexToB('#fe3705') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#ff0000') + ", " + hexToG('#ff0000') + ", " + hexToB('#ff0000') + ", " + 0.5 + ")"
-          // */
-        // "rgba(" + hexToR('#00ffff') + ", " + hexToG('#00ffff') + ", " + hexToB('#00ffff') + ", " + 0.1 + ")",
-        // "rgba(" + hexToR('#64f0ff') + ", " + hexToG('#64f0ff') + ", " + hexToB('#64f0ff') + ", " + 0.2 + ")",
-        // "rgba(" + hexToR('#87e1ff') + ", " + hexToG('#87e1ff') + ", " + hexToB('#87e1ff') + ", " + 0.3 + ")",
-        // "rgba(" + hexToR('#a0d0ff') + ", " + hexToG('#a0d0ff') + ", " + hexToB('#a0d0ff') + ", " + 0.5 + ")",
-        // "rgba(" + hexToR('#b5c0ff') + ", " + hexToG('#b5c0ff') + ", " + hexToB('#b5c0ff') + ", " + 0.6 + ")",
-        // "rgba(" + hexToR('#c6adff') + ", " + hexToG('#c6adff') + ", " + hexToB('#c6adff') + ", " + 1.0 + ")",
-        // "rgba(" + hexToR('#d49bff') + ", " + hexToG('#d49bff') + ", " + hexToB('#d49bff') + ", " + 1.0 + ")",
-        // "rgba(" + hexToR('#e185ff') + ", " + hexToG('#e185ff') + ", " + hexToB('#e185ff') + ", " + 1.0 + ")",
-        // "rgba(" + hexToR('#ec6dff') + ", " + hexToG('#ec6dff') + ", " + hexToB('#ec6dff') + ", " + 1.0 + ")",
-        // "rgba(" + hexToR('#ff1edb') + ", " + hexToG('#ff1edb') + ", " + hexToB('#ff1edb') + ", " + 1.0 + ")"
-        ...windColor.range(),
-      ];
-      /*
-        var result = [];
-        for (var j = 225; j >= 100; j = j - step) {
-          result.push(asColorStyle(j, j, j, 1));
-        }
-        */
-      result.indexFor = function (m: number) {
-        // map wind speed to a style
-        return Math.floor((Math.min(m, maxWind) / maxWind) * (this.length - 1));
-      };
-      return result;
-    }
-
-    var colorStyles = windIntensityColorScale(INTENSITY_SCALE_STEP, MAX_WIND_INTENSITY);
+    var colorStyles = windIntensityColorScale();
     var buckets = colorStyles.map(function () {
       return [];
     });
@@ -450,10 +372,10 @@ var Windy = function (params: any) {
     }
 
     function evolve() {
-      buckets.forEach(function (bucket) {
+      for (const bucket of buckets) {
         bucket.length = 0;
-      });
-      particles.forEach(function (particle) {
+      }
+      for (const particle of particles) {
         if (particle.age > MAX_PARTICLE_AGE) {
           field.randomize(particle).age = 0;
         }
@@ -470,7 +392,7 @@ var Windy = function (params: any) {
             // Path from (x,y) to (xt,yt) is visible, so add this particle to the appropriate draw bucket.
             particle.xt = xt;
             particle.yt = yt;
-            buckets[colorStyles.indexFor(m)].push(particle);
+            buckets[indexFor(m, MAX_WIND_INTENSITY, colorStyles.length)].push(particle);
           } else {
             // Particle isn't visible, but it still moves through the field.
             particle.x = xt;
@@ -478,7 +400,7 @@ var Windy = function (params: any) {
           }
         }
         particle.age += 1;
-      });
+      }
     }
 
     var g = params.canvas.getContext('2d');
@@ -503,20 +425,21 @@ var Windy = function (params: any) {
       g.globalAlpha = 1;
 
       // Draw new particle trails.
-      buckets.forEach(function (bucket, i) {
+
+      for (const bucket of buckets) {
         if (bucket.length > 0) {
           g.beginPath();
-          g.strokeStyle = colorStyles[i];
-          g.lineWidth = 1 + 0.25 * i;
-          bucket.forEach(function (particle) {
+          g.strokeStyle = colorStyles[buckets.indexOf(bucket)];
+          g.lineWidth = 1 + 0.25 * buckets.indexOf(bucket);
+          for (const particle of bucket) {
             g.moveTo(particle.x, particle.y);
             g.lineTo(particle.xt, particle.yt);
             particle.x = particle.xt;
             particle.y = particle.yt;
-          });
+          }
           g.stroke();
         }
-      });
+      }
     }
 
     function frame() {
@@ -531,9 +454,9 @@ var Windy = function (params: any) {
   };
 
   var windy: {
-    paused: any;
+    paused: boolean;
     animationRequest?: any;
-    started: any;
+    started: boolean;
     field?: any;
     params?: any;
     start: (bounds: any, width: any, height: any, extent: any) => void;
