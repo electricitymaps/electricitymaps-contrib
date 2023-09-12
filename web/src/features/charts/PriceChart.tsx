@@ -5,6 +5,7 @@ import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { usePriceChartData } from './hooks/usePriceChartData';
 import PriceChartTooltip from './tooltips/PriceChartTooltip';
+import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 
 interface PriceChartProps {
   datetimes: Date[];
@@ -41,6 +42,13 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   if (!chartData[0]?.layerData?.price) {
     return null;
   }
+
+  const hasEnoughDataToDisplay = datetimes?.length > 2;
+
+  if (!hasEnoughDataToDisplay) {
+    return <NotEnoughDataMessage translationKey="country-history.electricityprices" />;
+  }
+
   return (
     <>
       <ChartTitle translationKey="country-history.electricityprices" />
