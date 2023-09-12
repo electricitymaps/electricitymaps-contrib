@@ -13,6 +13,7 @@ from parsers.lib.exceptions import ParserException
 pp = PrettyPrinter(indent=4)
 
 TIMEZONE = "Africa/Johannesburg"
+SOURCE = "eskom.co.za"
 
 # Mapping columns to keys
 # Helpful: https://www.eskom.co.za/dataportal/glossary/
@@ -117,7 +118,7 @@ def fetch_production(
                 "datetime": returned_datetime,
                 "production": production,
                 "storage": storage,
-                "source": "eskom.co.za",
+                "source": SOURCE,
             }
         )
 
