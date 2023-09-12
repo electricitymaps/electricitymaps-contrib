@@ -20,6 +20,25 @@
     "prettier"
   ],
   "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": ["external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
     // TODO: TEMPORARILY DISABLED DURING INITIAL DEVELOPMENT
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-empty-function": "off",
