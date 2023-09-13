@@ -160,8 +160,8 @@
     "newversion": "Na voljo je nova različica! Pritisnite <a onClick=\"location.reload(true);\">tukaj</a> za ponovno nalaganje.",
     "webgl-not-supported": "Zemljevida ni mogoče upodobiti, ker ta brskalnik ne podpira WebGL.",
     "retrynow": "Poskusi ponovno",
-    "database-ad": "Iščete zgodovinske podatke? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preverite našo bazo podatkov!</a>",
-    "api-ad": "želite podatke v živo v svoji aplikaciji? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preizkusi naš API!</a>",
+    "database-ad": "Iščete zgodovinske podatke? <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Preverite našo bazo podatkov!</a>",
+    "api-ad": "želite podatke v živo v svoji aplikaciji? <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Preizkusi naš API!</a>",
     "legend": "Legenda",
     "faq": "Pogosto postavljena vprašanja",
     "privacyPolicy": "Politika zasebnosti",
@@ -211,7 +211,7 @@
     "divideExistingArea-question": "Ali lahko moje območje razdelite na manjše dele?",
     "divideExistingArea-answer": "Seveda, če obstajajo ločeni viri podatkov za vsak del območja. Lahko <a href=\"#contribute\" class=\"entry-link\">pomagate nam pri dodajanju novih podatkovnih virov</a>",
     "seeHistoricalData-question": "Ali lahko vidim zgodovino za obmmočje starejše od 24 ur?",
-    "seeHistoricalData-answer": "Dostop do vseh naših zgodovinskih podatkov lahko kupite prek naše <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">zbirke podatkov</a>."
+    "seeHistoricalData-answer": "Dostop do vseh naših zgodovinskih podatkov lahko kupite prek naše <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">zbirke podatkov</a>."
   },
   "methodology": {
     "groupName": "Our methods",
@@ -239,14 +239,14 @@
     "dataOrigins-question": "Kako dobite vaše podatke?",
     "dataOrigins-answer": "Vse naše podatke izračunavamo iz javno dostopnih podatkov, ki jih objavljajo operaterji elektroenergetskega omrežja, uradne agencije in drugi. Lahko kliknete območje, če si želite ogledati več podrobnosti o izvoru njegovih podatkov.",
     "dataDownload-question": "Ali imam dostop do vaših popdat?",
-    "dataDownload-answer": "Imate možnost kupiti dostop do vseh naših podatkov v <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">bazi</a>.",
+    "dataDownload-answer": "Imate možnost kupiti dostop do vseh naših podatkov v <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">bazi</a>.",
     "dataIntegration-question": "Ali lahko vaše podatke v realnem času integriram v svojo aplikacijo ali napravo?",
-    "dataIntegration-answer": "Da! Prodajamo dostop do <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API-ja</a>, kateri vključuje prihodnje napovedi."
+    "dataIntegration-answer": "Da! Prodajamo dostop do <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">real-time API-ja</a>, kateri vključuje prihodnje napovedi."
   },
   "aboutUs": {
     "groupName": "O nas",
     "whoAreYou-question": "Kdo ste?",
-    "whoAreYou-answer": "Aplikacijo razvija in vzdržuje <a href=\"https://electricitymaps.com/\" target=\"_blank\">Električni zemljevidi</a>, dansko startup podjetje. Naš cilj je pomagati človeštvu doseči trajnostno stanje obstoja, tako, da kvalificiramo vpliv vsakodnevnih odločitev na podnebje it podatke naredimo široko dostopne.",
+    "whoAreYou-answer": "Aplikacijo razvija in vzdržuje <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Električni zemljevidi</a>, dansko startup podjetje. Naš cilj je pomagati človeštvu doseči trajnostno stanje obstoja, tako, da kvalificiramo vpliv vsakodnevnih odločitev na podnebje it podatke naredimo široko dostopne.",
     "feedback-question": "Vam lahko dam nekaj povratnih informacij?",
     "feedback-answer": "Da! Prosim izpolnite <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymaps.com\">Pošlji mail!</a>",
     "contribute-question": "Ali lahko pomagam pri vašem projektu?",
@@ -254,7 +254,7 @@
     "workTogether-question": "Lahko delamo skupaj?",
     "workTogether-answer": "Aktivno iščemo nove priložnosti za sodelovanje. <a href=\"mailto:app@electricitymaps.com\">Pošlji mail!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Električni zemljevidi</a> v informativne namene. Ne garantiramo pravilnosti in ne zagotavljamo nobenih jamstev o podatkih. Pridružujemo si pravico, da lahko kadarkoli spremenimo ali odstranimo dele vsebine, ne da bi vas o tem obvestili. Električni zemljevidi ne prevzemajo nobene odgovornosti za kakršno koli škodo ali stroške, kateri bi lahko nastali zaradi netočnosti, nepopolnosti, neažurnosti ali zastarelosti informacij pridobljenih iz zemljevidov. Te spletne strani ali katerega koli njenega posameznega elementa ni dovoljeno vključiti v drugo spletno stran brez uradnega predhodnega pisnega soglasja.<br><br> Vse pravice intelektualne lastnine pripadajo zakonitim lastnikom in dajalcem licence. Kopiranje, distribucija in kakršna koli druga uporaba teh materialov, zlasti energetskih podatkov, ni dovoljena brez pisnega dovoljenja Elektrokarte, razen in samo v obsegu, ki je drugače določen s predpisi prisilnega prava (kot je pravica do citiranja), razen če je za določene materiale določeno drugače.  <br><br> Ta izjava se lahko občasno posodobi."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Električni zemljevidi</a> v informativne namene. Ne garantiramo pravilnosti in ne zagotavljamo nobenih jamstev o podatkih. Pridružujemo si pravico, da lahko kadarkoli spremenimo ali odstranimo dele vsebine, ne da bi vas o tem obvestili. Električni zemljevidi ne prevzemajo nobene odgovornosti za kakršno koli škodo ali stroške, kateri bi lahko nastali zaradi netočnosti, nepopolnosti, neažurnosti ali zastarelosti informacij pridobljenih iz zemljevidov. Te spletne strani ali katerega koli njenega posameznega elementa ni dovoljeno vključiti v drugo spletno stran brez uradnega predhodnega pisnega soglasja.<br><br> Vse pravice intelektualne lastnine pripadajo zakonitim lastnikom in dajalcem licence. Kopiranje, distribucija in kakršna koli druga uporaba teh materialov, zlasti energetskih podatkov, ni dovoljena brez pisnega dovoljenja Elektrokarte, razen in samo v obsegu, ki je drugače določen s predpisi prisilnega prava (kot je pravica do citiranja), razen če je za določene materiale določeno drugače.  <br><br> Ta izjava se lahko občasno posodobi."
   },
   "zoneShortName": {
     "AD": {

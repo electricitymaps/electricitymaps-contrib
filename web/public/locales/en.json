@@ -181,8 +181,8 @@
     "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
     "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
     "retrynow": "Retry now",
-    "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-    "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
+    "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Check out our Database!</a>",
+    "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Try our API!</a>",
     "legend": "Legend",
     "faq": "Frequently Asked Questions",
     "privacyPolicy": "Privacy Policy",
@@ -233,14 +233,14 @@
     "divideExistingArea-question": "Can you divide my area into smaller parts?",
     "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
     "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-    "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>."
+    "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">database</a>."
   },
   "methodology": {
     "groupName": "Our methods",
     "carbonIntensity-question": "What is \"carbon intensity\"?",
     "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
     "methodology-question": "How did you calculate the numbers?",
-    "methodology-answer": "We have detailed our full methodology on <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a>, with additional documentation in <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">our GitHub Wiki</a>.",
+    "methodology-answer": "We have detailed our full methodology on <a href=\"https://www.electricitymaps.com/methodology?utm_source=app&utm_medium=internal-referral\">electricitymaps.com/methodology</a>, with additional documentation in <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">our GitHub Wiki</a>.",
     "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
     "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
     "importsAndExports-question": "Do you take into account imports and exports of electricity?",
@@ -262,14 +262,14 @@
     "dataOrigins-question": "How do you get your data?",
     "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
     "dataDownload-question": "Can I download your data?",
-    "dataDownload-answer": "We publish data for the past years for free at our <a href=\"https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Data Portal</a>. For more recent and real-time data you can use <a href=\"https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral\">our API</a>, which is free for non-commercial use and available for purchase for commercial use.",
+    "dataDownload-answer": "We publish data for the past years for free at our <a href=\"https://electricitymaps.com/data-portal?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Data Portal</a>. For more recent and real-time data you can use <a href=\"https://www.electricitymaps.com/pricing?utm_source=app&utm_medium=internal-referral\">our API</a>, which is free for non-commercial use and available for purchase for commercial use.",
     "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
-    "dataIntegration-answer": "Yes! We provide a free API for non-commercial uses, and sell access to a <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a> for commercial use, which includes forecasts and more."
+    "dataIntegration-answer": "Yes! We provide a free API for non-commercial uses, and sell access to a <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">real-time API</a> for commercial use, which includes forecasts and more."
   },
   "aboutUs": {
     "groupName": "About us",
     "whoAreYou-question": "Who are you?",
-    "whoAreYou-answer": "The app is developed and maintained by <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, a Danish startup company. Our mission is to organise the world's electricity data to drive the transition towards a truly decarbonised electricity system.",
+    "whoAreYou-answer": "The app is developed and maintained by <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Electricity Maps</a>, a Danish startup company. Our mission is to organise the world's electricity data to drive the transition towards a truly decarbonised electricity system.",
     "feedback-question": "Can I give you some feedback?",
     "feedback-answer": "We would love that! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a>.",
     "contribute-question": "Can I contribute to your project?",
@@ -277,7 +277,7 @@
     "workTogether-question": "Can we work together?",
     "workTogether-answer": "We are always looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymaps.com\">Send us an email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://app.electricitymaps.com/\" target=\"_blank\">Electricity Maps App</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps App, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://app.electricitymaps.com/\" target=\"_blank\">Electricity Maps App</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps App, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": {

@@ -69,28 +69,28 @@ export default function Header(): JSX.Element {
             FAQ
           </MenuLink>
           <MenuLink
-            href="https://www.electricitymaps.com/jobs/?utm_source=app.electricitymaps.com&utm_medium=referral"
+            href="https://www.electricitymaps.com/jobs/?utm_source=app&utm_medium=internal-referral&utm_campaign=headerlink"
             id="jobs"
             isExternal
           >
             We&apos;re hiring!
           </MenuLink>
           <MenuLink
-            href="https://electricitymaps.com/open-source/?utm_source=app.electricitymaps.com&utm_medium=referral"
+            href="https://electricitymaps.com/open-source/?utm_source=app&utm_medium=internal-referral&utm_campaign=headerlink"
             id="open-source"
             isExternal
           >
             Open Source
           </MenuLink>
           <MenuLink
-            href="https://electricitymaps.com/blog/?utm_source=app.electricitymaps.com&utm_medium=referral"
+            href="https://electricitymaps.com/blog/?utm_source=app&utm_medium=internal-referral&utm_campaign=headerlink"
             id="blog"
             isExternal
           >
             Blog
           </MenuLink>
           <MenuLink
-            href="https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral"
+            href="https://electricitymaps.com?utm_source=app&utm_medium=internal-referral&utm_campaign=headerlink"
             id="get-data"
             isExternal
           >

@@ -37,7 +37,7 @@ export function ChartTitle({ translationKey, hasLink = true }: Props) {
         <div className="flex flex-row items-center pb-2 text-center text-[0.7rem]">
           <HiOutlineArrowDownTray className="min-w-[12px]" size={12} />
           <a
-            href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
+            href="https://electricitymaps.com/?app&utm_medium=internal-referral&utm_campaign=country_panel"
             target="_blank"
             rel="noreferrer"
             className="pl-0.5 text-left text-[#4178ac] no-underline hover:underline dark:invert"

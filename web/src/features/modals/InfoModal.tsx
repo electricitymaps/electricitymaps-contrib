@@ -73,11 +73,11 @@ export function InfoModalContent() {
         </Button>
       </div>
       <div className="prose space-x-2  pt-1 text-center text-sm prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline">
-        <a href="https://www.electricitymaps.com/privacy-policy/">
+        <a href="https://www.electricitymaps.com/privacy-policy?utm_source=app&utm_medium=internal-referral">
           {__('info-modal.privacy-policy')}
         </a>
         <span className="text-gray-500">|</span>
-        <a href="https://www.electricitymaps.com/legal-notice/">
+        <a href="https://www.electricitymaps.com/legal-notice?utm_source=app&utm_medium=internal-referral">
           {__('info-modal.legal-notice')}
         </a>
       </div>

@@ -140,8 +140,8 @@
     "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">這裏</a>重新載入。",
     "webgl-not-supported": "無法渲染地圖，因為您的瀏覽器不支援 WebGL。",
     "retrynow": "再試一次",
-    "database-ad": "在尋找歷史資料嗎？歡迎檢視我們的<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">資料庫</a>！",
-    "api-ad": "<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">試試我們的 API！</a>",
+    "database-ad": "在尋找歷史資料嗎？歡迎檢視我們的<a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">資料庫</a>！",
+    "api-ad": "<a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">試試我們的 API！</a>",
     "legend": "傳奇",
     "faq": "常見問題",
     "privacyPolicy": "隱私權政策",
@@ -191,7 +191,7 @@
     "divideExistingArea-question": "可以將我所在的區域分割成更小的單位嗎？",
     "divideExistingArea-answer": "可以，如果分割後的單位都有各自的資料來源的話。你可以幫助我們<a href=\"#contribute\" class=\"entry-link\">新增資料來源</a>。",
     "seeHistoricalData-question": "我可以檢視一個區域超過 24 小時以前的資料嗎？",
-    "seeHistoricalData-answer": "你可以從我們的<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">資料庫</a>購買所有歷史資料的取得權。"
+    "seeHistoricalData-answer": "你可以從我們的<a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">資料庫</a>購買所有歷史資料的取得權。"
   },
   "methodology": {
     "groupName": "我們的方法",
@@ -219,14 +219,14 @@
     "dataOrigins-question": "你們如何取得資料？",
     "dataOrigins-answer": "我們使用供電網路管理者、公部門提供的公開資料進行計算。點選區域以檢視資料來源資訊。",
     "dataDownload-question": "可不可以下載你們的資料？",
-    "dataDownload-answer": "你可以在我們的<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">資料庫</a>購買資料的取得權。",
+    "dataDownload-answer": "你可以在我們的<a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">資料庫</a>購買資料的取得權。",
     "dataIntegration-question": "可以將你們的即時資料整合到我的應用程式或裝置上嗎？",
-    "dataIntegration-answer": "可以！我們也有販賣<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">即時資料的 API</a>，裡面也包含未來預測。"
+    "dataIntegration-answer": "可以！我們也有販賣<a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">即時資料的 API</a>，裡面也包含未來預測。"
   },
   "aboutUs": {
     "groupName": "關於我們",
     "whoAreYou-question": "你們是誰？",
-    "whoAreYou-answer": "這個網站由丹麥新創公司 <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> 開發並維護。我們的目標是要透過量化日常行為對氣候變遷的影響，並廣泛的提供給大眾，以幫助人類達成永續的生存。",
+    "whoAreYou-answer": "這個網站由丹麥新創公司 <a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Electricity Maps</a> 開發並維護。我們的目標是要透過量化日常行為對氣候變遷的影響，並廣泛的提供給大眾，以幫助人類達成永續的生存。",
     "feedback-question": "可以給你們回饋嗎？",
     "feedback-answer": "歡迎你提供回饋！請填寫我們的<a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">回饋表單</a>或<a href=\"mailto:app@electricitymaps.com\">寄信給我們</a>。",
     "contribute-question": "可以為這個專案貢獻嗎？",
@@ -234,7 +234,7 @@
     "workTogether-question": "我們可以合作嗎？",
     "workTogether-answer": "我們正積極的尋找新的合作機會。<a href=\"mailto:app@electricitymaps.com\">寄封電子郵件給我們！</a>",
     "disclaimer-question": "聲明",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com?utm_source=app&utm_medium=internal-referral\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": {
