@@ -59,10 +59,9 @@ def fetch_production(
     return latest
 
 
-URL = (
-    "https://www.yonden.co.jp/energy/atom/ikata/ikt722.html"
-)
+URL = "https://www.yonden.co.jp/energy/atom/ikata/ikt722.html"
 IMAGE_CORE_URL = "https://www.yonden.co.jp/energy/atom/ikata/"
+
 
 def get_nuclear_from_image(zone_key) -> (datetime, float):
     # TODO: extract production value from image on TOP
@@ -71,7 +70,6 @@ def get_nuclear_from_image(zone_key) -> (datetime, float):
     # TODO: extract datetime from image on BOTTOM
 
     return (datetime.now(), 890.0)
-
 
 
 def getImageText(imgUrl, lang):
