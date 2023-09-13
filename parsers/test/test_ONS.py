@@ -4,9 +4,8 @@
 
 import json
 import unittest
-from unittest.mock import patch
-
 from datetime import datetime
+from unittest.mock import patch
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ONS
