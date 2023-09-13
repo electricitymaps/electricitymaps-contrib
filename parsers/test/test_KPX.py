@@ -4,6 +4,7 @@ from pkg_resources import resource_string
 from requests import Session
 from requests_mock import GET, Adapter
 from snapshottest import TestCase
+from datetime import datetime
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.KPX import REAL_TIME_URL, fetch_consumption, fetch_production
@@ -39,7 +40,7 @@ class TestKPX(TestCase):
             ]
         )
 
-    def test_production(self):
+    def test_production_realtime(self):
         production = open("parsers/test/mocks/KPX/realtime.html", "rb")
         self.adapter.register_uri(
             GET,
@@ -58,7 +59,7 @@ class TestKPX(TestCase):
                     "storage": element["storage"],
                     "source": element["source"],
                     "zoneKey": element["zoneKey"],
-                    "sourceType": element["sourceType"],
+                    "sourceType": element["sourceType"].value,
                 }
                 for element in production
             ]

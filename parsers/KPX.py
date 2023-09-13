@@ -13,7 +13,11 @@ from bs4 import BeautifulSoup
 from pytz import timezone
 from requests import Session
 
-from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 
@@ -40,12 +44,14 @@ def time_floor(time, delta, epoch=None):
     return time - mod
 
 
-def extract_chart_data(html):
+def extract_realtime_production(
+    raw_data, zone_key: ZoneKey, logger: Logger
+) -> ProductionBreakdownList:
     """
     Extracts generation breakdown chart data from the source code of the page.
     """
     # Extract object with data
-    data_source = re.search(r"var ictArr = (\[\{.+\}\]);", html).group(1)
+    data_source = re.search(r"var ictArr = (\[\{.+\}\]);", raw_data).group(1)
     # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}).
     # Will break if other keys than these are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
     data_source = re.sub(
@@ -55,7 +61,7 @@ def extract_chart_data(html):
     )
     json_obj = json.loads(data_source)
 
-    timed_data = {}
+    breakdowns = ProductionBreakdownList(logger)
 
     for item in json_obj:
         if item["regDate"] == "0":
@@ -63,18 +69,24 @@ def extract_chart_data(html):
 
         date = datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M")
         date = arrow.get(date, TIMEZONE).datetime
+        breakdowns.append(
+            zoneKey=zone_key,
+            datetime=date,
+            source=SOURCE,
+            production=ProductionMix(
+                coal=float(item["coal"]) + float(item["localCoal"]),
+                gas=float(item["gas"]),
+                hydro=float(item["waterPower"]),
+                nuclear=float(item["nuclearPower"]),
+                oil=float(item["oil"]),
+                unknown=float(item["newRenewable"]),
+            ),
+            storage=StorageMix(
+                hydro=-1 * float(item["raisingWater"]),
+            ),
+        )
 
-        timed_data[date] = {
-            "coal": round(float(item["coal"]) + float(item["localCoal"]), 5),
-            "gas": round(float(item["gas"]), 5),
-            "hydro": round(float(item["waterPower"]), 5),
-            "nuclear": round(float(item["nuclearPower"]), 5),
-            "oil": round(float(item["oil"]), 5),
-            "renewable": round(float(item["newRenewable"]), 5),
-            "pumpedHydro": round(float(item["raisingWater"]), 5),
-        }
-
-    return timed_data
+    return breakdowns
 
 
 @refetch_frequency(timedelta(minutes=5))
@@ -189,15 +201,13 @@ def fetch_price(
 
 
 def get_long_term_prod_data(
-    session: Optional[Session] = None, target_datetime: Optional[datetime] = None
+    session: Session, target_datetime: Optional[datetime] = None
 ) -> List[dict]:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
 
-    r = session or Session()
-
     # CSRF token is needed to access the production data
-    r.get(LONG_TERM_PRODUCTION_URL)
-    cookies_dict = r.cookies.get_dict()
+    session.get(LONG_TERM_PRODUCTION_URL)
+    cookies_dict = session.cookies.get_dict()
 
     payload = {
         "mid": "a10606030000",
@@ -207,7 +217,7 @@ def get_long_term_prod_data(
         "_csrf": cookies_dict["XSRF-TOKEN"],
     }
 
-    res = r.post(LONG_TERM_PRODUCTION_URL, payload)
+    res = session.post(LONG_TERM_PRODUCTION_URL, payload)
 
     assert res.status_code == 200
 
@@ -255,14 +265,6 @@ def get_long_term_prod_data(
     return all_data
 
 
-def get_granular_real_time_prod_data(session: Optional[Session] = None) -> dict:
-    r0 = session or Session()
-    res_0 = r0.get(REAL_TIME_URL, verify=False)
-    chart_data = extract_chart_data(res_0.text)
-
-    return chart_data
-
-
 @refetch_frequency(timedelta(minutes=5))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
@@ -270,40 +272,25 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
-
+    if session is None:
+        session = Session()
     if target_datetime is not None and target_datetime < datetime(
         2021, 12, 22, tzinfo=TIMEZONE
     ):
         raise NotImplementedError(
             "This parser is not able to parse dates before 2021-12-22."
         )
-    all_data = []
+    production = ProductionBreakdownList(logger)
     if target_datetime is None:
+        # Use real-time data
         target_datetime = datetime.now(TIMEZONE)
-        chart_data = get_granular_real_time_prod_data(session=session)
 
-        for datetime_key, chart_data_values in chart_data.items():
-            data = {
-                "zoneKey": "KR",
-                "datetime": datetime_key,
-                "capacity": {},
-                "production": {},
-                "storage": {},
-                "source": "https://new.kpx.or.kr",
-                "sourceType": "mix",
-            }
+        response = session.get(REAL_TIME_URL, verify=False)
+        production = extract_realtime_production(
+            response.text, zone_key=zone_key, logger=logger
+        )
 
-            data["storage"]["hydro"] = -chart_data_values["pumpedHydro"]
-
-            data["production"]["coal"] = chart_data_values["coal"]
-            data["production"]["gas"] = chart_data_values["gas"]
-            data["production"]["nuclear"] = chart_data_values["nuclear"]
-            data["production"]["oil"] = chart_data_values["oil"]
-            data["production"]["hydro"] = chart_data_values["hydro"]
-            data["production"]["unknown"] = chart_data_values["renewable"]
-
-            all_data.append(data)
-        return all_data
+        return production.to_list()
 
     all_data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
 
