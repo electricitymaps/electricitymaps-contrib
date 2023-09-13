@@ -2,5 +2,5 @@ lonlat:
   - -98.042
   - 26.057
 parsers:
-  exchange: MX.fetch_exchange
+  exchange: CENACE.fetch_exchange
 rotation: 0

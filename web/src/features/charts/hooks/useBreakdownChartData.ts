@@ -189,8 +189,11 @@ function getValuesInfo(
       : getTotalElectricity(d, Mode.CONSUMPTION)
   );
   const isHourly = timeAggregate === TimeAverages.HOURLY;
-  const format = scalePower(maxTotalValue, isHourly);
-  const valueAxisLabel = displayByEmissions ? 'CO₂eq' : format.unit;
+  const format = displayByEmissions
+    ? // Value factor of 1000 to convert from MW to KW
+      { formattingFactor: 1000, unit: 'CO₂eq' }
+    : scalePower(maxTotalValue, isHourly);
+  const valueAxisLabel = format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 }
