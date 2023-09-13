@@ -47,7 +47,7 @@ EXCHANGES = {
 }
 
 
-def get_data(session: Optional[Session]):
+def get_data(session: Session | None):
     """Requests generation data in json format."""
     s = session or Session()
     json_data = s.get(URL).json()
@@ -57,7 +57,7 @@ def get_data(session: Optional[Session]):
 
 def production_processor(
     json_data: dict, zone_key: str
-) -> Tuple[datetime, ProductionMix]:
+) -> tuple[datetime, ProductionMix]:
     """Extracts data timestamp and sums regional data into totals by key."""
 
     dt = datetime.fromisoformat(json_data["Data"])
@@ -81,10 +81,10 @@ def production_processor(
 
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -111,10 +111,10 @@ def get_exchange_flow(sorted_zone_keys: ZoneKey, raw_data: dict) -> float:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

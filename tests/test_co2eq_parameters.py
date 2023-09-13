@@ -14,7 +14,7 @@ from electricitymap.contrib.config import (
 )
 
 
-def get_possible_modes() -> Set[str]:
+def get_possible_modes() -> set[str]:
     """Get the set of possible modes."""
     modes = set()
     with open("web/src/utils/constants.ts", encoding="utf-8") as file_:
@@ -49,7 +49,7 @@ def parse_json_file(path: str):
 class CO2eqParametersAll(unittest.TestCase):
     """A test case for CO2eq parameters."""
 
-    modes: Set[str] = get_possible_modes()
+    modes: set[str] = get_possible_modes()
     parameters = CO2EQ_PARAMETERS
 
     @staticmethod
@@ -256,8 +256,8 @@ class BaseClasses:
 
         # `parameters` and `ranges_by_mode` are expected to be overridden by the test
         # case; they are defined here to for typing purposes.
-        parameters: Dict[str, Any] = {}
-        ranges_by_mode: Dict[str, Tuple[numbers.Number, numbers.Number]] = {}
+        parameters: dict[str, Any] = {}
+        ranges_by_mode: dict[str, tuple[numbers.Number, numbers.Number]] = {}
 
         @classmethod
         def check_emission_factors(cls, callback):
@@ -391,7 +391,7 @@ class CO2eqParametersDirect(BaseClasses.CO2eqParametersDirectAndLifecycleBase):
     parameters = CO2EQ_PARAMETERS_DIRECT
 
     # Expected min and max values for emission factors, by mode.
-    ranges_by_mode: Dict[str, Tuple[Union[int, float], Union[int, float]]] = {
+    ranges_by_mode: dict[str, tuple[int | float, int | float]] = {
         # Fossil fuels: usually above 500 gCO2eq/kWh.
         "coal": (500, 1600),
         "gas": (200, 700),
@@ -419,7 +419,7 @@ class CO2eqParametersLifecycle(BaseClasses.CO2eqParametersDirectAndLifecycleBase
     parameters = CO2EQ_PARAMETERS_LIFECYCLE
 
     # Expected min and max values for emission factors, by mode.
-    ranges_by_mode: Dict[str, Tuple[Union[int, float], Union[int, float]]] = {
+    ranges_by_mode: dict[str, tuple[int | float, int | float]] = {
         # Fossil fuels: generally above 500 gCO2eq/kWh with some exceptions.
         "oil": (600, 1600),
         "coal": (500, 1600),

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 from datetime import datetime
 from logging import Logger, getLogger
@@ -34,8 +33,8 @@ def parse_date(item):
 
 def fetch_production(
     zone_key: str = "PE",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""

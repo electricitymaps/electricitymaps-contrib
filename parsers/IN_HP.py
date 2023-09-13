@@ -74,8 +74,8 @@ PLANT_NAMES_TO_TYPES = {
 
 def fetch_production(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of Himachal Pradesh (India)"""
@@ -179,8 +179,8 @@ def combine_gen(gen1, gen2):
 
 def fetch_consumption(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger=getLogger(__name__),
 ):
     # Not currently implemented as this function is not used by the map,
@@ -191,8 +191,8 @@ def fetch_consumption(
 
 def fetch_price(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger=getLogger(__name__),
 ):
     # The only price data available in the source is 'DSM Rate'.

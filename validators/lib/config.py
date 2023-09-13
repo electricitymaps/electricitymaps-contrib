@@ -1,8 +1,9 @@
-from typing import Callable, List
+from typing import List
+from collections.abc import Callable
 
 
 def validator(
-    kind: str, zone_keys: List[str] = None, not_zone_keys: List[str] = None
+    kind: str, zone_keys: list[str] = None, not_zone_keys: list[str] = None
 ) -> Callable:
     """
     Decorator function to mark a function as a validator.

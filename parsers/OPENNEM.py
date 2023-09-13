@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Mapping, Optional, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
+from collections.abc import Mapping
 
 import arrow
 import pandas as pd
@@ -97,15 +98,13 @@ def process_solar_rooftop(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def get_capacities(filtered_datasets: List[Mapping], region: str) -> pd.Series:
+def get_capacities(filtered_datasets: list[Mapping], region: str) -> pd.Series:
     # Parse capacity data
-    capacities = dict(
-        [
-            (obj["id"].split(".")[-2].upper(), obj.get("x_capacity_at_present"))
+    capacities = {
+            obj["id"].split(".")[-2].upper(): obj.get("x_capacity_at_present")
             for obj in filtered_datasets
             if obj["region"] == region
-        ]
-    )
+    }
     return pd.Series(capacities)
 
 
@@ -123,9 +122,9 @@ def sum_vector(pd_series, keys, ignore_nans=False):
 
 
 def filter_production_objs(
-    objs: List[Dict], logger: Logger = getLogger(__name__)
-) -> List[Dict]:
-    def filter_solar_production(obj: Dict) -> bool:
+    objs: list[dict], logger: Logger = getLogger(__name__)
+) -> list[dict]:
+    def filter_solar_production(obj: dict) -> bool:
         if (
             "solar" in obj.get("production", {})
             and obj["production"]["solar"] is not None
@@ -172,10 +171,10 @@ def generate_url(
 
 
 def fetch_main_price_df(
-    zone_key: Union[str, None] = None,
-    sorted_zone_keys: Union[str, None] = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: str | None = None,
+    sorted_zone_keys: str | None = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> pd.DataFrame:
     return _fetch_main_df(
@@ -189,12 +188,12 @@ def fetch_main_price_df(
 
 
 def fetch_main_power_df(
-    zone_key: Union[str, None] = None,
-    sorted_zone_keys: Union[str, None] = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: str | None = None,
+    sorted_zone_keys: str | None = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Tuple[pd.DataFrame, list]:
+) -> tuple[pd.DataFrame, list]:
     df, filtered_datasets = _fetch_main_df(
         "power",
         zone_key=zone_key,
@@ -215,7 +214,7 @@ def _fetch_main_df(
     session: Session,
     target_datetime: datetime,
     logger: Logger,
-) -> Tuple[pd.DataFrame, list]:
+) -> tuple[pd.DataFrame, list]:
     region = ZONE_KEY_TO_REGION.get(zone_key)
     url = generate_url(
         zone_key=zone_key or sorted_zone_keys[0],
@@ -261,9 +260,9 @@ def _fetch_main_df(
 
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_production(
-    zone_key: Union[str, None] = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[Session] = None,
+    zone_key: str | None = None,
+    session: Session | None = None,
+    target_datetime: Session | None = None,
     logger: Logger = getLogger(__name__),
 ):
     df, filtered_datasets = fetch_main_power_df(
@@ -351,8 +350,8 @@ def fetch_production(
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_price(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     df = fetch_main_price_df(
@@ -378,8 +377,8 @@ def fetch_price(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[Session] = None,
+    session: Session | None = None,
+    target_datetime: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     sorted_zone_keys = sorted([zone_key1, zone_key2])

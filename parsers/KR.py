@@ -76,8 +76,8 @@ def extract_chart_data(html):
 @refetch_frequency(timedelta(minutes=5))
 def fetch_consumption(
     zone_key: str = "KR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -119,8 +119,8 @@ def fetch_consumption(
 @refetch_frequency(timedelta(hours=1))
 def fetch_price(
     zone_key: str = "KR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
 
@@ -178,8 +178,8 @@ def fetch_price(
 
 
 def get_long_term_prod_data(
-    session: Optional[Session] = None, target_datetime: Optional[datetime] = None
-) -> List[dict]:
+    session: Session | None = None, target_datetime: datetime | None = None
+) -> list[dict]:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
 
     r = session or Session()
@@ -244,7 +244,7 @@ def get_long_term_prod_data(
     return all_data
 
 
-def get_granular_real_time_prod_data(session: Optional[Session] = None) -> dict:
+def get_granular_real_time_prod_data(session: Session | None = None) -> dict:
     r0 = session or Session()
     res_0 = r0.get(REAL_TIME_URL, verify=False)
     chart_data = extract_chart_data(res_0.text)
@@ -255,10 +255,10 @@ def get_granular_real_time_prod_data(session: Optional[Session] = None) -> dict:
 @refetch_frequency(timedelta(minutes=5))
 def fetch_production(
     zone_key: str = "KR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
 
     if target_datetime is not None and target_datetime < arrow.get(
         2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE

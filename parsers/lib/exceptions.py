@@ -14,14 +14,14 @@ class ParserException(Exception):
         message (str): String describing the exception.
         zone_key (str | None): Country code or sortedZoneKeys."""
 
-    def __init__(self, parser: str, message: str, zone_key: Optional[str] = None):
-        super(ParserException, self).__init__(message)
+    def __init__(self, parser: str, message: str, zone_key: str | None = None):
+        super().__init__(message)
         self.parser = parser
         self.zone_key = zone_key
 
     def __str__(self):
         if self.zone_key:
-            zone_key_info = " ({0})".format(self.zone_key)
+            zone_key_info = f" ({self.zone_key})"
         else:
             zone_key_info = ""
-        return "{0} Parser{1}: {2}".format(self.parser, zone_key_info, self.args[0])
+        return f"{self.parser} Parser{zone_key_info}: {self.args[0]}"

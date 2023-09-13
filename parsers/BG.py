@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 
 from logging import Logger, getLogger
@@ -25,7 +24,7 @@ TYPE_MAPPING = {  # Real values around midnight
 
 def fetch_production(
     zone_key: str = "BG",
-    session: Optional[Session] = None,
+    session: Session | None = None,
     target_datetime=None,
     logger: Logger = getLogger(__name__),
 ) -> dict:

@@ -21,10 +21,10 @@ TZ = "Asia/Bangkok"
 
 def fetch_production(
     zone_key: str = "TH",
-    session: Optional[requests.Session] = None,
-    target_datetime: Optional[dt.datetime] = None,
+    session: requests.Session | None = None,
+    target_datetime: dt.datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Request the last known production mix (in MW) of a given country."""
     data = _fetch_data(_as_localtime(target_datetime), "actual")
 
@@ -44,10 +44,10 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = "TH",
-    session: Optional[requests.Session] = None,
-    target_datetime: Optional[dt.datetime] = None,
+    session: requests.Session | None = None,
+    target_datetime: dt.datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """
     Gets consumption for a specified zone.
 
@@ -65,10 +65,10 @@ def fetch_consumption(
 
 def fetch_generation_forecast(
     zone_key: str = "TH",
-    session: Optional[requests.Session] = None,
-    target_datetime: Optional[dt.datetime] = None,
+    session: requests.Session | None = None,
+    target_datetime: dt.datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Gets generation forecast for specified zone."""
     data = _fetch_data(_as_localtime(target_datetime), "plan")
 
@@ -98,7 +98,7 @@ def _as_localtime(datetime):
     return datetime.astimezone(tzinfo)
 
 
-def _fetch_data(target_datetime: dt.datetime, data_type: str) -> List[dict]:
+def _fetch_data(target_datetime: dt.datetime, data_type: str) -> list[dict]:
     """Fetch actual or planning generation data from the EGAT API endpoint."""
     url = f"{EGAT_GENERATION_URL}/{data_type}"
     if target_datetime is None:
@@ -152,8 +152,8 @@ def _seconds_to_time(target_datetime: dt.datetime, seconds_in_day: int) -> dt.da
 
 def fetch_price(
     zone_key: str = "TH",
-    session: Optional[requests.Session] = None,
-    target_datetime: Optional[dt.datetime] = None,
+    session: requests.Session | None = None,
+    target_datetime: dt.datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """

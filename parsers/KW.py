@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 """
 This parser returns Kuwait's electricity system load (assumed to be equal to electricity production)
 Source: Ministry of Electricity and Water / State of Kuwait
@@ -19,8 +18,8 @@ from requests import Session
 
 def fetch_production(
     zone_key: str = "KW",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
@@ -46,8 +45,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = "KW",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:

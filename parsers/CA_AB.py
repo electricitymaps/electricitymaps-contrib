@@ -32,10 +32,10 @@ URL_STRING = urllib.parse.urlunsplit(URL)
 def fetch_exchange(
     zone_key1: str = DEFAULT_ZONE_KEY,
     zone_key2: str = "CA-BC",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Request the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError("Currently unable to scrape historical data")
@@ -65,10 +65,10 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Request the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError("Currently unable to scrape historical data")
@@ -91,10 +91,10 @@ def fetch_price(
 
 def fetch_production(
     zone_key: str = DEFAULT_ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Request the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

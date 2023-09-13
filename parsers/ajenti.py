@@ -131,7 +131,7 @@ def sum_storage_techs(technologies_parsed):
 
 def fetch_production(
     zone_key: str = "AU-TAS-KI",
-    session: Optional[Session] = None,
+    session: Session | None = None,
     target_datetime=None,
     logger: Logger = getLogger(__name__),
 ) -> dict:

@@ -49,7 +49,7 @@ PRODUCTION_BREAKDOWN = {
 def fetch_consumption(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the power consumption (in MW) of a given zone."""
@@ -79,7 +79,7 @@ def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the power exchange (in MW) between two zones."""
@@ -146,7 +146,7 @@ def fetch_exchange(
 def fetch_production(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the production mix (in MW) of a given zone."""

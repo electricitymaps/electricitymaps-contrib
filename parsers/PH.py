@@ -463,7 +463,7 @@ class MarketReportsItem(NamedTuple):
 
 def get_all_market_reports_items(
     kind: str, logger: Logger = getLogger(__name__)
-) -> Dict[datetime, MarketReportsItem]:
+) -> dict[datetime, MarketReportsItem]:
     """
     Gets a dictionary that converts a date into its code and filename
     """
@@ -496,9 +496,9 @@ def get_all_market_reports_items(
 def filter_reports_items(
     kind: str,
     zone_key: ZoneKey,
-    reports_items: Dict[datetime, MarketReportsItem],
-    target_datetime: Optional[datetime],
-) -> List[MarketReportsItem]:
+    reports_items: dict[datetime, MarketReportsItem],
+    target_datetime: datetime | None,
+) -> list[MarketReportsItem]:
     # Date filtering
     if target_datetime is None:
         last_available_datetime = max(reports_items.keys())
@@ -527,7 +527,7 @@ def filter_reports_items(
 
 
 def download_production_market_reports_items(
-    session: Session, reports_items: List[MarketReportsItem], logger: Logger
+    session: Session, reports_items: list[MarketReportsItem], logger: Logger
 ) -> pd.DataFrame:
     from io import BytesIO
     from zipfile import ZipFile
@@ -624,7 +624,7 @@ def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def download_exchange_market_reports_items(
-    session: Session, reports_items: List[MarketReportsItem], logger: Logger
+    session: Session, reports_items: list[MarketReportsItem], logger: Logger
 ) -> pd.DataFrame:
     _all_items_df = []
     for reports_item in reports_items:
@@ -667,7 +667,7 @@ def convert_column_to_datetime(df: pd.DataFrame, datetime_column: str) -> pd.Dat
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("PH-LU"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     reports_items = get_all_market_reports_items("production", logger)
@@ -708,9 +708,9 @@ def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     all_exchange_items = get_all_market_reports_items("exchange", logger)

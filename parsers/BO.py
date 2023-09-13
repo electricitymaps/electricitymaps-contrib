@@ -16,13 +16,13 @@ SOURCE = "cndc.bo"
 
 class HourlyProduction(NamedTuple):
     datetime: datetime
-    forecast: Optional[float]
-    total: Optional[float]
-    thermo: Optional[float]
-    hydro: Optional[float]
-    wind: Optional[float]
-    solar: Optional[float]
-    bagasse: Optional[float]
+    forecast: float | None
+    total: float | None
+    thermo: float | None
+    hydro: float | None
+    wind: float | None
+    solar: float | None
+    bagasse: float | None
 
 
 def extract_xsrf_token(html):
@@ -31,10 +31,10 @@ def extract_xsrf_token(html):
 
 
 def fetch_data(
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[HourlyProduction]:
+) -> list[HourlyProduction]:
     if target_datetime is not None:
         dt = arrow.get(target_datetime, tz_bo)
     else:
@@ -56,7 +56,7 @@ def fetch_data(
 
     hour_rows = json.loads(resp.text.replace("ï»¿", ""))["data"]
 
-    result: List[HourlyProduction] = []
+    result: list[HourlyProduction] = []
 
     for hour_row in hour_rows:
         [hour, forecast, total, thermo, hydro, wind, solar, bagasse] = hour_row
@@ -89,8 +89,8 @@ def fetch_data(
 
 def fetch_production(
     zone_key: str = "BO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
@@ -127,8 +127,8 @@ def fetch_production(
 
 def fetch_generation_forecast(
     zone_key: str = "BO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     return [

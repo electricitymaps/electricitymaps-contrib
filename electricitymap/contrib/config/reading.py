@@ -8,22 +8,22 @@ from electricitymap.contrib.lib.types import ZoneKey
 yaml = YAML(typ="safe")
 
 
-def read_defaults(config_dir) -> Dict[str, Any]:
+def read_defaults(config_dir) -> dict[str, Any]:
     """Reads the defaults.yaml file."""
     defaults_path = config_dir.joinpath("defaults.yaml")
     return yaml.load(open(defaults_path, encoding="utf-8"))
 
 
-def read_zones_config(config_dir) -> Dict[ZoneKey, Any]:
+def read_zones_config(config_dir) -> dict[ZoneKey, Any]:
     """Reads all the zone config files."""
-    zones_config: Dict[ZoneKey, Any] = {}
+    zones_config: dict[ZoneKey, Any] = {}
     for zone_path in config_dir.joinpath("zones").glob("*.yaml"):
         zone_key = ZoneKey(zone_path.stem)
         zones_config[zone_key] = yaml.load(open(zone_path, encoding="utf-8"))
     return zones_config
 
 
-def read_exchanges_config(config_dir) -> Dict[str, Any]:
+def read_exchanges_config(config_dir) -> dict[str, Any]:
     """Reads all the exchange config files."""
     exchanges_config = {}
     for exchange_path in config_dir.joinpath("exchanges").glob("*.yaml"):

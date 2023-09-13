@@ -15,7 +15,7 @@ CONFIG_DIR = Path(__file__).parent.parent.joinpath("config").resolve()
 
 class TestConfigZones(unittest.TestCase):
     def test_bounding_boxes_basic(self):
-        zones: Dict[ZoneKey, Any] = {
+        zones: dict[ZoneKey, Any] = {
             ZoneKey("AD"): {
                 "bounding_box": [[0.906, 41.928], [2.265, 43.149]],
             },
@@ -29,7 +29,7 @@ class TestConfigZones(unittest.TestCase):
         )
 
     def test_zone_parents_basic(self):
-        zones: Dict[ZoneKey, Any] = {
+        zones: dict[ZoneKey, Any] = {
             ZoneKey("DE"): {},
             ZoneKey("SE"): {
                 "subZoneNames": ["SE-SE1", "SE-SE2"],
@@ -67,7 +67,7 @@ class TestConfigZones(unittest.TestCase):
         exchanges = {
             "DE->SE-SE4": {"parsers": {"exchange": "source"}},
         }
-        zones: Dict[ZoneKey, Any] = {
+        zones: dict[ZoneKey, Any] = {
             ZoneKey("DE"): {},
             ZoneKey("SE"): {
                 "subZoneNames": ["SE-SE4"],
@@ -141,7 +141,7 @@ class TestConfigZones(unittest.TestCase):
             "GB->GB-NIR": {"parsers": {"exchange": "source"}},
             "GB->GB-ORK": {"parsers": {"exchange": "source"}},
         }
-        zones: Dict[ZoneKey, Any] = {
+        zones: dict[ZoneKey, Any] = {
             ZoneKey("GB"): {},
             ZoneKey("GB-NIR"): {},
             ZoneKey("GB-ORK"): {},
@@ -156,7 +156,7 @@ class TestConfigZones(unittest.TestCase):
         exchanges = {
             "DE->FR": {"parsers": {}},
         }
-        zones: Dict[ZoneKey, Any] = {
+        zones: dict[ZoneKey, Any] = {
             ZoneKey("DE"): {},
             ZoneKey("FR"): {},
         }

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 """
 Parser that uses the RTE-FRANCE API to return the following data type(s)
@@ -21,8 +20,8 @@ from parsers.lib.config import refetch_frequency
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:

@@ -20,14 +20,14 @@ class Mix(BaseModel, ABC):
     def add_value(
         self,
         mode: str,
-        value: Optional[float],
+        value: float | None,
     ) -> None:
         """
         Adds the provided value to the existing value of the provided mode.
         This is useful if there are multiple production modes in the source
         that maps to the same Electricity Maps production mode.
         """
-        existing_value: Optional[float] = getattr(self, mode)
+        existing_value: float | None = getattr(self, mode)
         if existing_value is not None:
             value = 0 if value is None else value
             self.__setattr__(
@@ -37,7 +37,7 @@ class Mix(BaseModel, ABC):
             self.__setattr__(mode, value if value is None else round(value, 6))
 
     @classmethod
-    def merge(cls, mixes: List["Mix"]) -> "Mix":
+    def merge(cls, mixes: list["Mix"]) -> "Mix":
         raise NotImplementedError()
 
 
@@ -51,16 +51,16 @@ class ProductionMix(Mix):
 
     # We use a private attribute to keep track of the modes that have been set to None.
     _corrected_negative_values: set = PrivateAttr(set())
-    biomass: Optional[float] = None
-    coal: Optional[float] = None
-    gas: Optional[float] = None
-    geothermal: Optional[float] = None
-    hydro: Optional[float] = None
-    nuclear: Optional[float] = None
-    oil: Optional[float] = None
-    solar: Optional[float] = None
-    unknown: Optional[float] = None
-    wind: Optional[float] = None
+    biomass: float | None = None
+    coal: float | None = None
+    gas: float | None = None
+    geothermal: float | None = None
+    hydro: float | None = None
+    nuclear: float | None = None
+    oil: float | None = None
+    solar: float | None = None
+    unknown: float | None = None
+    wind: float | None = None
 
     def __init__(self, **data: Any):
         """
@@ -78,15 +78,15 @@ class ProductionMix(Mix):
     def dict(
         self,
         *,
-        include: Optional[Union[set, dict]] = None,
-        exclude: Optional[Union[set, dict]] = None,
+        include: set | dict | None = None,
+        exclude: set | dict | None = None,
         by_alias: bool = False,
-        skip_defaults: Optional[bool] = None,
+        skip_defaults: bool | None = None,
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
         exclude_none: bool = False,
         keep_corrected_negative_values: bool = False,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Overriding the dict method to add the corrected negative values as Nones."""
         production_mix = super().dict(
             include=include,
@@ -106,7 +106,7 @@ class ProductionMix(Mix):
     def __setattr__(
         self,
         name: str,
-        value: Optional[float],
+        value: float | None,
     ) -> None:
         """
         Overriding the setattr method to check that the name is a valid production mode
@@ -121,8 +121,8 @@ class ProductionMix(Mix):
         return super().__setattr__(name, value)
 
     def _correct_negative_value(
-        self, mode: str, value: Optional[float], correct_negative_with_zero: bool
-    ) -> Union[float, None]:
+        self, mode: str, value: float | None, correct_negative_with_zero: bool
+    ) -> float | None:
         """
         Corrects a negative value by setting it to None or 0.
         This method also keeps track of the modes that have been corrected.
@@ -135,7 +135,7 @@ class ProductionMix(Mix):
     def add_value(
         self,
         mode: str,
-        value: Optional[float],
+        value: float | None,
         correct_negative_with_zero: bool = False,
     ) -> None:
         """Adds the provided value to the existing value of the provided mode. Negative values are set to None by default.
@@ -154,7 +154,7 @@ class ProductionMix(Mix):
         return self._corrected_negative_values
 
     @classmethod
-    def merge(cls, production_mixes: List["ProductionMix"]) -> "ProductionMix":
+    def merge(cls, production_mixes: list["ProductionMix"]) -> "ProductionMix":
         """
         Merge a list of production mixes into a single production mix.
         The values are summed. Negative values have been set to None or 0.
@@ -180,10 +180,10 @@ class StorageMix(Mix):
     Values can be both positive (when storing energy) or negative (when the storage is discharged).
     """
 
-    battery: Optional[float] = None
-    hydro: Optional[float] = None
+    battery: float | None = None
+    hydro: float | None = None
 
-    def __setattr__(self, name: str, value: Optional[float]) -> None:
+    def __setattr__(self, name: str, value: float | None) -> None:
         """
         Overriding the setattr method to raise an error if the mode is unknown.
         """
@@ -192,7 +192,7 @@ class StorageMix(Mix):
         return super().__setattr__(name, value)
 
     @classmethod
-    def merge(cls, storage_mixes: List["StorageMix"]) -> "StorageMix":
+    def merge(cls, storage_mixes: list["StorageMix"]) -> "StorageMix":
         """
         Merge a list of storage mixes into a single storage mix.
         The values are summed.
@@ -239,7 +239,7 @@ class Event(BaseModel, ABC):
         return v
 
     @validator("datetime")
-    def _validate_datetime(cls, v: dt.datetime, values: Dict[str, Any]):
+    def _validate_datetime(cls, v: dt.datetime, values: dict[str, Any]):
         if v.tzinfo is None:
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
@@ -263,7 +263,7 @@ class Event(BaseModel, ABC):
         pass
 
     @abstractmethod
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """As part of a backwards compatibility, the points will be converted to a dict before being sent to the database."""
         pass
 
@@ -306,7 +306,7 @@ class AggregatableEvent(Event):
     @staticmethod
     def _aggregated_fields(
         df_view: pd.DataFrame,
-    ) -> Tuple[ZoneKey, str, EventSourceType, datetime]:
+    ) -> tuple[ZoneKey, str, EventSourceType, datetime]:
         return (
             AggregatableEvent._unique_zone_key(df_view),
             AggregatableEvent._sources(df_view),
@@ -316,7 +316,7 @@ class AggregatableEvent(Event):
 
     @staticmethod
     @abstractmethod
-    def aggregate(events: List["AggregatableEvent"]) -> "AggregatableEvent":
+    def aggregate(events: list["AggregatableEvent"]) -> "AggregatableEvent":
         """Aggregate a list of events into a single event."""
         pass
 
@@ -369,7 +369,7 @@ class Exchange(Event):
         except ValidationError as e:
             logger.error(f"Error(s) creating exchange Event {datetime}: {e}")
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
             "sortedZoneKeys": self.zoneKey,
@@ -413,7 +413,7 @@ class TotalProduction(Event):
         except ValidationError as e:
             logger.error(f"Error(s) creating total production Event {datetime}: {e}")
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
@@ -424,8 +424,8 @@ class TotalProduction(Event):
 
 
 class ProductionBreakdown(AggregatableEvent):
-    production: Optional[ProductionMix] = None
-    storage: Optional[StorageMix] = None
+    production: ProductionMix | None = None
+    storage: StorageMix | None = None
     """
     An event representing the production and storage breakdown of a zone at a given time.
     If a production mix is supplied it should not be fully empty.
@@ -451,8 +451,8 @@ class ProductionBreakdown(AggregatableEvent):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        production: Optional[ProductionMix] = None,
-        storage: Optional[StorageMix] = None,
+        production: ProductionMix | None = None,
+        storage: StorageMix | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> Optional["ProductionBreakdown"]:
         try:
@@ -476,7 +476,7 @@ class ProductionBreakdown(AggregatableEvent):
             )
 
     @staticmethod
-    def aggregate(events: List["ProductionBreakdown"]) -> "ProductionBreakdown":
+    def aggregate(events: list["ProductionBreakdown"]) -> "ProductionBreakdown":
         """Merge ProductionBreakdown events into one."""
         if len(events) == 0:
             raise ValueError("Cannot aggregate empty list of events")
@@ -514,7 +514,7 @@ class ProductionBreakdown(AggregatableEvent):
             sourceType=source_type,
         )
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
@@ -575,7 +575,7 @@ class TotalConsumption(Event):
                 },
             )
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
@@ -626,7 +626,7 @@ class Price(Event):
         except ValidationError as e:
             logger.error(f"Error(s) creating price Event {datetime}: {e}")
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,

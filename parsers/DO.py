@@ -88,7 +88,7 @@ thermal_plants = {
 }
 
 
-def get_data(session: Optional[Session] = None) -> list:
+def get_data(session: Session | None = None) -> list:
     """
     Makes a request to source url.
     Finds main table and creates a list of all table elements in string format.
@@ -185,7 +185,7 @@ def data_parser(formatted_data):
     return dft
 
 
-def thermal_production(df, logger: Logger) -> List[dict]:
+def thermal_production(df, logger: Logger) -> list[dict]:
     """
     Takes DataFrame and finds thermal generation for each hour.
     Removes any non generating plants then maps plants to type.
@@ -226,14 +226,14 @@ def thermal_production(df, logger: Logger) -> List[dict]:
 
     for plant in unmapped:
         logger.warning(
-            "{} is missing from the DO plant mapping!".format(plant),
+            f"{plant} is missing from the DO plant mapping!",
             extra={"key": "DO"},
         )
 
     return therms
 
 
-def total_production(df) -> List[dict]:
+def total_production(df) -> list[dict]:
     """Takes DataFrame and finds generation totals for each hour."""
 
     vals = []
@@ -260,7 +260,7 @@ def total_production(df) -> List[dict]:
     return vals
 
 
-def merge_production(thermal, total) -> List[dict]:
+def merge_production(thermal, total) -> list[dict]:
     """
     Takes thermal generation and total generation and merges them using 'datetime' key.
     """
@@ -287,10 +287,10 @@ def merge_production(thermal, total) -> List[dict]:
 
 def fetch_production(
     zone_key: str = "DO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

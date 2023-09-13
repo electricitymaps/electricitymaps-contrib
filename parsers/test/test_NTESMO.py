@@ -84,7 +84,7 @@ class TestNTESMO(unittest.TestCase):
         self.assertEqual(
             data_list[0]["datetime"],
             australia.localize(
-                (datetime(year=2022, month=12, day=1, hour=4, minute=30))
+                datetime(year=2022, month=12, day=1, hour=4, minute=30)
             ),
         )
         self.assertEqual(

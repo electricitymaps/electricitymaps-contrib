@@ -35,10 +35,10 @@ def calculate_average_timestamp(timestamps):
 
 def fetch_production(
     zone_key: str = "IN-PB",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError(
@@ -75,8 +75,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = "IN-PB",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known consumption (in MW) of a given zone."""

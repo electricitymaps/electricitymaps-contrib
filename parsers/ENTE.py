@@ -28,8 +28,8 @@ JSON_MAPPING = {
 
 def fetch_production(
     zone_key: str = "HN",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
 
@@ -51,7 +51,7 @@ def fetch_production(
     return data
 
 
-def extract_exchange(raw_data, exchange) -> Optional[float]:
+def extract_exchange(raw_data, exchange) -> float | None:
     """Extracts flow value and direction for a given exchange."""
     search_value = JSON_MAPPING[exchange]
 
@@ -73,8 +73,8 @@ def extract_exchange(raw_data, exchange) -> Optional[float]:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Gets an exchange pair from the SIEPAC system."""

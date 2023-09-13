@@ -44,10 +44,10 @@ XM_DELAY_MAX = 5
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     session = session or Session()
 
     if target_datetime is None:
@@ -58,7 +58,7 @@ def fetch_consumption(
 
 def fetch_live_consumption(
     zone_key: ZoneKey, session: Session, logger: Logger
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     response: Response = session.get(colombia_demand_URL, verify=False)
 
     if not response.ok:
@@ -85,10 +85,10 @@ def fetch_live_consumption(
 
 def fetch_historical_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     demand_list = TotalConsumptionList(logger)
     # Convert datetime to local time
     target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
@@ -125,10 +125,10 @@ def fetch_historical_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     objetoAPI = pydataxm.ReadDB()
 
     df_recursos = None
@@ -229,10 +229,10 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     session = session or Session()
 
     objetoAPI = pydataxm.ReadDB()

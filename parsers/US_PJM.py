@@ -99,7 +99,7 @@ def fetch_api_data(kind: str, params: dict, session: Session) -> list:
 def fetch_consumption_forecast_7_days(
     zone_key: str = "US-PJM",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
@@ -134,7 +134,7 @@ def fetch_consumption_forecast_7_days(
 def fetch_production(
     zone_key: str = "US-PJM",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """uses PJM API to get generation  by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
@@ -309,9 +309,9 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Requests the last known power exchange (in MW) between two zones."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -361,7 +361,7 @@ def fetch_exchange(
 def fetch_price(
     zone_key: str = "US-PJM",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power price of a given country."""

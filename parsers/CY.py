@@ -84,7 +84,7 @@ class CyprusParser:
             data.append(datum)
         return data
 
-    def fetch_production(self, target_datetime: Optional[datetime]) -> list:
+    def fetch_production(self, target_datetime: datetime | None) -> list:
         if target_datetime is None:
             url = REALTIME_SOURCE
         else:
@@ -112,10 +112,10 @@ class CyprusParser:
 
 def fetch_production(
     zone_key: str = "CY",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
     assert zone_key == "CY"
 

@@ -71,8 +71,8 @@ def fetch_all() -> list:
 
 def fetch_price(
     zone_key: str = "IL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch price from IEC table."""
@@ -123,8 +123,8 @@ def fetch_noga_iso_data(session: Session, logger: Logger):
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("IL"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
@@ -153,8 +153,8 @@ def fetch_production(
 
 def fetch_total_production(
     zone_key: ZoneKey = ZoneKey("IL"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
@@ -176,8 +176,8 @@ def fetch_total_production(
 
 def fetch_consumption(
     zone_key: str = "IL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:

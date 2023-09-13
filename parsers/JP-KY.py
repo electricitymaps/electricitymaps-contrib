@@ -16,10 +16,10 @@ from parsers import occtonet
 
 def fetch_production(
     zone_key: str = "JP-KY",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[dict, list]:
+) -> dict | list:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

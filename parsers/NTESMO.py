@@ -6,7 +6,8 @@ https://territorygeneration.com.au/about-us/our-power-stations/
 """
 from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, TypedDict
+from typing import Dict, List, TypedDict
+from collections.abc import Callable
 
 import arrow
 import pandas as pd
@@ -69,7 +70,7 @@ retry_strategy = Retry(
 )
 
 
-def construct_year_index(year: int, session: Session) -> Dict[int, Dict[int, str]]:
+def construct_year_index(year: int, session: Session) -> dict[int, dict[int, str]]:
     """Browse all links on a yearly historical daily data and index them."""
     index = {}
     # For the current we need to go to the default page.
@@ -133,7 +134,7 @@ def parse_consumption(
     target_datetime: datetime,
     logger: Logger,
     price: bool = False,
-) -> List[dict]:
+) -> list[dict]:
     data_points = []
     assert target_datetime is not None, ParserException(
         "NTESMO.py", "Target datetime cannot be None."
@@ -161,7 +162,7 @@ def parse_consumption(
 
 def parse_production_mix(
     raw_production_mix: pd.DataFrame, logger: Logger
-) -> List[dict]:
+) -> list[dict]:
     production_mix = []
     generation_units = set(raw_production_mix.columns)
     generation_units.remove("Period Start")

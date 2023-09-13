@@ -101,7 +101,7 @@ def fix_solar_production(dt: datetime, row: pd.Series) -> int:
 def fetch_production(
     zone_key: str = "UY",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """collects production data from ADME and format all data points for target_datetime"""
@@ -144,8 +144,8 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "UY",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """collects consumption data from ADME and format all data points for target_datetime"""
@@ -179,8 +179,8 @@ def fetch_consumption(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """collects exchanges data from ADME and format all data points for target_datetime"""

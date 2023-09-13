@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 
 import freezegun
 import pytz
-from mock import patch
+from unittest.mock import patch
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
@@ -446,13 +446,13 @@ class TestAddValue(unittest.TestCase):
         assert mix.wind == 10
         mix.add_value("wind", -5)
         assert mix.wind == 10
-        assert mix.corrected_negative_modes == set(["wind"])
+        assert mix.corrected_negative_modes == {"wind"}
 
     def test_production_with_negative_value_expect_none(self):
         mix = ProductionMix()
         mix.add_value("wind", -10)
         assert mix.wind == None
-        assert mix.corrected_negative_modes == set(["wind"])
+        assert mix.corrected_negative_modes == {"wind"}
 
     def test_production_with_negative_value_and_correct_with_none(self):
         mix = ProductionMix()
@@ -460,7 +460,7 @@ class TestAddValue(unittest.TestCase):
         assert mix.wind == 0
         mix.add_value("wind", 15, correct_negative_with_zero=True)
         assert mix.wind == 15
-        assert mix.corrected_negative_modes == set(["wind"])
+        assert mix.corrected_negative_modes == {"wind"}
 
     def test_production_with_none(self):
         mix = ProductionMix()

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
@@ -60,8 +59,8 @@ def get_wind_capacity(datetime: datetime, zone_key, logger: Logger):
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -93,7 +92,7 @@ def fetch_production(
                 "unknown": df.loc[i, "unknown"],
             },
             "capacity": {"wind": capacity if capacity is not None else {}},
-            "source": "occtonet.or.jp, {}".format(sources[zone_key]),
+            "source": f"occtonet.or.jp, {sources[zone_key]}",
         }
         datalist.append(data)
     return datalist
@@ -101,8 +100,8 @@ def fetch_production(
 
 def fetch_production_df(
     zone_key: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -149,7 +148,7 @@ def fetch_production_df(
 
 def fetch_consumption_df(
     zone_key: str = "JP-TK",
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -179,7 +178,7 @@ def fetch_consumption_df(
         "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
             datestamp
         ),
-        "JP-ON": "https://www.okiden.co.jp/denki2/juyo_10_{}.csv".format(datestamp),
+        "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
 
     # First roughly 40 rows of the consumption files have hourly data,
@@ -217,8 +216,8 @@ def fetch_consumption_df(
 
 def fetch_consumption_forecast(
     zone_key: str = "JP-KY",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
@@ -252,7 +251,7 @@ def fetch_consumption_forecast(
         "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
             datestamp
         ),
-        "JP-ON": "https://www.okiden.co.jp/denki2/juyo_10_{}.csv".format(datestamp),
+        "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
     # Skip non-tabular data at the start of source files
     if zone_key == "JP-KN":
@@ -296,8 +295,8 @@ def fetch_consumption_forecast(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
@@ -308,7 +307,7 @@ def fetch_price(
         fiscal_year = target_datetime.year - 1
     else:
         fiscal_year = target_datetime.year
-    url = "http://www.jepx.org/market/excel/spot_{}.csv".format(fiscal_year)
+    url = f"http://www.jepx.org/market/excel/spot_{fiscal_year}.csv"
     df = pd.read_csv(url, encoding="shift-jis")
 
     df = df.iloc[:, [0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14]]

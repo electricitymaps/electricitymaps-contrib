@@ -276,8 +276,8 @@ class TestEIAProduction(TestEIA):
 
     def check_production_matches(
         self,
-        actual: List[Dict[str, Union[str, Dict]]],
-        expected: List[Dict[str, Union[str, Dict]]],
+        actual: list[dict[str, str | dict]],
+        expected: list[dict[str, str | dict]],
     ):
         self.assertIsNotNone(actual)
         self.assertEqual(len(expected), len(actual))

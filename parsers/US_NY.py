@@ -101,8 +101,8 @@ def data_parser(df) -> list:
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-NY",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -148,8 +148,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
@@ -191,7 +191,7 @@ def fetch_exchange(
         relevant_exchanges = ["SCH - HQ_CEDARS", "SCH - HQ - NY"]
     else:
         raise NotImplementedError(
-            "Exchange pair not supported: {}".format(sorted_zone_keys)
+            f"Exchange pair not supported: {sorted_zone_keys}"
         )
 
     if target_datetime:

@@ -21,8 +21,8 @@ plants = {
 
 def fetch_consumption(
     zone_key: str = "IN-DL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Delhi consumption"""
@@ -52,15 +52,15 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str = "IN-DL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Delhi production"""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    energy: Dict[str, float] = {"Gas": 0, "G2E": 0, "Coal": 0}
+    energy: dict[str, float] = {"Gas": 0, "G2E": 0, "Coal": 0}
 
     zonekey.assert_zone_key(zone_key, "IN-DL")
 

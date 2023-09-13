@@ -37,7 +37,7 @@ TYPE_MAPPING = {
 }
 
 
-def get_data_live(session: Optional[Session], logger: Logger):
+def get_data_live(session: Session | None, logger: Logger):
     """Requests live generation data in json format."""
 
     s = session or Session()
@@ -146,8 +146,8 @@ def production_processor_historical(raw_data):
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "CL-SEN",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None and ENABLE_LIVE_PARSER:
@@ -179,7 +179,7 @@ def fetch_production(
     start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
     end = arr_target_datetime.format("YYYY-MM-DD")
 
-    date_component = "fecha__gte={}&fecha__lte={}".format(start, end)
+    date_component = f"fecha__gte={start}&fecha__lte={end}"
 
     # required for access
     headers = {

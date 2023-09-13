@@ -13,8 +13,8 @@ timezone = "America/Whitehorse"
 
 def fetch_production(
     zone_key: str = "CA-YT",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given region."""
@@ -75,7 +75,7 @@ def fetch_production(
 
     # time is specified like "11:55 pm" or "2:25 am"
     source_time = find_div_by_class(soup, "current_time").text
-    datetime_text = "{} {}".format(source_date, source_time)
+    datetime_text = f"{source_date} {source_time}"
     datetime_arrow = arrow.get(datetime_text, "dddd, MMMM D, YYYY h:mm A")
     datetime_datetime = arrow.get(datetime_arrow.datetime, timezone).datetime
 

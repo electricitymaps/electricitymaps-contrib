@@ -14,8 +14,8 @@ SOURCE = "core.ap.gov.in"
 
 def fetch_production(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Andhra Pradesh  production"""
@@ -63,8 +63,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Andhra Pradesh consumption"""

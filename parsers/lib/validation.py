@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 
-def has_value_for_key(datapoint: Dict[str, Any], key: str, logger: Logger):
+def has_value_for_key(datapoint: dict[str, Any], key: str, logger: Logger):
     """
     Checks that the key exists in datapoint and that the corresponding value is not None.
     """
@@ -25,15 +25,15 @@ def has_value_for_key(datapoint: Dict[str, Any], key: str, logger: Logger):
 
 
 def check_expected_range(
-    datapoint: Dict[str, Any],
-    value: Union[float, int],
-    expected_range: Tuple[float, float],
+    datapoint: dict[str, Any],
+    value: float | int,
+    expected_range: tuple[float, float],
     logger: Logger,
-    key: Union[str, None] = None,
+    key: str | None = None,
 ):
     low, high = min(expected_range), max(expected_range)
     if not (low <= value <= high):
-        key_str = "for key `{}`".format(key) if key else ""
+        key_str = f"for key `{key}`" if key else ""
         logger.warning(
             "{} reported total of {:.2f}MW falls outside range "
             "of {} {}".format(datapoint["zoneKey"], value, expected_range, key_str),
@@ -44,7 +44,7 @@ def check_expected_range(
 
 
 def validate_production_diffs(
-    datapoints: List[Dict[str, Any]], max_diff: Dict, logger: Logger
+    datapoints: list[dict[str, Any]], max_diff: dict, logger: Logger
 ):
     """
     Parameters
@@ -109,8 +109,8 @@ def validate_production_diffs(
 
 
 def validate_consumption(
-    datapoint: Dict, logger: Union[Logger, None]
-) -> Union[Dict[str, Any], None]:
+    datapoint: dict, logger: Logger | None
+) -> dict[str, Any] | None:
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.
@@ -130,8 +130,8 @@ def validate_consumption(
 
 
 def validate_exchange(
-    datapoint: Dict, logger: Logger = getLogger(__name__)
-) -> Union[Dict[str, Any], None]:
+    datapoint: dict, logger: Logger = getLogger(__name__)
+) -> dict[str, Any] | None:
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.
@@ -149,8 +149,8 @@ def validate_exchange(
 
 
 def validate(
-    datapoint: Dict, logger: Union[Logger, None], **kwargs
-) -> Union[Dict[str, Any], None]:
+    datapoint: dict, logger: Logger | None, **kwargs
+) -> dict[str, Any] | None:
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.
@@ -221,21 +221,21 @@ def validate(
 
     remove_negative: bool = kwargs.pop("remove_negative", False)
     required: list[Any] = kwargs.pop("required", [])
-    floor: Union[float, int, None] = kwargs.pop("floor", None)
-    expected_range: Union[Tuple, Dict, None] = kwargs.pop("expected_range", None)
+    floor: float | int | None = kwargs.pop("floor", None)
+    expected_range: tuple | dict | None = kwargs.pop("expected_range", None)
     fake_zeros: bool = kwargs.pop("fake_zeros", False)
 
     if kwargs:
         raise TypeError("Unexpected **kwargs: %r" % kwargs)
 
-    generation: Dict[str, Any] = datapoint["production"]
-    storage: Dict[str, Any] = datapoint.get("storage", {})
+    generation: dict[str, Any] = datapoint["production"]
+    storage: dict[str, Any] = datapoint.get("storage", {})
 
     if remove_negative:
         for key, val in generation.items():
             if val is not None and -5.0 < val < 0.0:
                 logger.warning(
-                    "{} returned {:.2f}, setting to None".format(key, val),
+                    f"{key} returned {val:.2f}, setting to None",
                     extra={"key": datapoint["zoneKey"]},
                 )
                 generation[key] = None

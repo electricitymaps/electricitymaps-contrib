@@ -26,8 +26,8 @@ URL = f"https://{DOMAIN}/GraficaPW/graficaCombustible"
 
 def fetch_consumption(
     zone_key: str = DEFAULT_ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """Fetch a list of hourly consumption data, in MW, for the day of the
@@ -52,8 +52,8 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str = DEFAULT_ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """Fetch a list of hourly production data, in MW, for the day of the

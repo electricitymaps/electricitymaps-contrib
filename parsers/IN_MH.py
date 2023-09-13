@@ -120,8 +120,8 @@ def read_image_sections(location, source):
 # TODO: this function actually fetches consumption data
 def fetch_production(
     zone_key: str = "IN-MH",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
 

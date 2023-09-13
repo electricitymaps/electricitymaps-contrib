@@ -64,7 +64,7 @@ def fetch_data(
 def fetch_production(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets values for wind production and estimates unknwon production as demand - wind - exchange"""
@@ -123,7 +123,7 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -172,7 +172,7 @@ def fetch_exchange(
 def fetch_consumption(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """gets consumption values for ROI"""
@@ -206,7 +206,7 @@ def fetch_consumption(
 def fetch_consumption_forecast(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """gets forecasted consumption values for ROI"""
@@ -241,7 +241,7 @@ def fetch_consumption_forecast(
 def fetch_wind_forecasts(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """

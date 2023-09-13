@@ -12,8 +12,8 @@ from .lib.exceptions import ParserException
 
 def fetch_consumption(
     zone_key: str = "IN-KA",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Karnataka consumption"""
@@ -39,8 +39,8 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str = "IN-KA",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Karnataka  production"""

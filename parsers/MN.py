@@ -29,7 +29,7 @@ JSON_QUERY_TO_SRC = {
 }
 
 
-def parse_json(web_json: dict) -> Dict[str, Any]:
+def parse_json(web_json: dict) -> dict[str, Any]:
     """
     Parse the fetched JSON data to our query format according to JSON_QUERY_TO_SRC.
     Example of expected JSON format present at URL:
@@ -64,7 +64,7 @@ def parse_json(web_json: dict) -> Dict[str, Any]:
     return query_data
 
 
-def query(session: Session) -> Dict[str, Any]:
+def query(session: Session) -> dict[str, Any]:
     """
     Query the JSON endpoint and parse it.
     """
@@ -87,7 +87,7 @@ def query(session: Session) -> Dict[str, Any]:
 def fetch_production(
     zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
@@ -125,7 +125,7 @@ def fetch_production(
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:

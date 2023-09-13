@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 from datetime import datetime
 from io import StringIO
 from logging import Logger, getLogger
@@ -52,7 +51,7 @@ EXCHANGE_COLUMNS = ["sortedZoneKeys", "netFlow", "source"]
 
 def _fetch_exchange(
     session: Session, datetime: datetime, sorted_zone_keys: str
-) -> List[dict]:
+) -> list[dict]:
     exch_id = EXCHANGE_MAPPING[sorted_zone_keys]
 
     # This authorises subsequent calls
@@ -88,10 +87,10 @@ def _fetch_exchange(
 def fetch_exchange(
     zone_key1: str = "JP-TH",
     zone_key2: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known power exchange (in MW) between two zones."""
     if not session:
         session = Session()
@@ -105,10 +104,10 @@ def fetch_exchange(
 def fetch_exchange_forecast(
     zone_key1: str = "JP-TH",
     zone_key2: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Gets exchange forecast between two specified zones."""
     if not session:
         session = Session()
@@ -124,14 +123,14 @@ def fetch_exchange_forecast(
     return _fetch_exchange(session, query_datetime, sorted_zone_keys)
 
 
-def get_cookies(session: Optional[Session] = None) -> cookies.RequestsCookieJar:
+def get_cookies(session: Session | None = None) -> cookies.RequestsCookieJar:
     if not session:
         session = Session()
     session.get("http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/LOGIN_login")
     return session.cookies
 
 
-def get_form_data(session: Session, exchange_id: int, datetime: str) -> Dict[str, str]:
+def get_form_data(session: Session, exchange_id: int, datetime: str) -> dict[str, str]:
     form_data = {
         "ajaxToken": "",
         "downloadKey": "",
@@ -150,7 +149,7 @@ def get_form_data(session: Session, exchange_id: int, datetime: str) -> Dict[str
         "sntkTgtRklCdHdn": "",
         "spcDay": datetime,
         "spcDayHdn": "",
-        "tgtRkl": "{:02d}".format(exchange_id),
+        "tgtRkl": f"{exchange_id:02d}",
         "tgtRklHdn": "01,北海道・本州間電力連系設備,02,相馬双葉幹線,03,周波数変換設備,04,三重東近江線,05,南福光連系所・南福光変電所の連系設備,06,越前嶺南線,07,西播東岡山線・山崎智頭線,08,阿南紀北直流幹線,09,本四連系線,10,関門連系線,11,北陸フェンス",
         "transitionContextKey": "DEFAULT",
         "updDaytime": "",
@@ -207,7 +206,7 @@ def get_form_data(session: Session, exchange_id: int, datetime: str) -> Dict[str
     return form_data
 
 
-def _get_exchange(session: Session, form_data: Dict[str, str], columns: List[str]):
+def _get_exchange(session: Session, form_data: dict[str, str], columns: list[str]):
     def parse_dt(str_dt: str) -> datetime:
         return arrow.get(str_dt).replace(tzinfo="Asia/Tokyo").datetime
 

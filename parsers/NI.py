@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 from collections import defaultdict
 from datetime import datetime
@@ -74,7 +73,7 @@ PLANT_CLASSIFICATIONS = [
 # REFERENCE_TOTAL_PRODUCTION = 433  # MW
 
 
-def extract_text(full_text: str, start_text: str, end_text: Union[str, None] = None):
+def extract_text(full_text: str, start_text: str, end_text: str | None = None):
     start = full_text.find(start_text)
 
     if start == -1:
@@ -210,10 +209,10 @@ def get_production_from_summary(requests_obj) -> tuple:
 
 def fetch_production(
     zone_key: str = "NI",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of Nicaragua."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -251,10 +250,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -300,10 +299,10 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: str = "NI",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the most recent known power prices in Nicaragua grid."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

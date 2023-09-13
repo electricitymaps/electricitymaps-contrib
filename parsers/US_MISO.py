@@ -34,7 +34,7 @@ wind_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerSer
 # Unsure exactly why EST is used, possibly due to operational connections with PJM.
 
 
-def get_json_data(logger: Logger, session: Optional[Session] = None):
+def get_json_data(logger: Logger, session: Session | None = None):
     """Returns 5 minute generation data in json format."""
 
     s = session or Session()
@@ -83,8 +83,8 @@ def data_processer(json_data, logger: Logger):
 
 def fetch_production(
     zone_key: str = "US-MISO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -108,8 +108,8 @@ def fetch_production(
 
 def fetch_wind_forecast(
     zone_key: str = "US-MISO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the day ahead wind forecast (in MW) of a given zone."""

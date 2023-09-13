@@ -29,7 +29,7 @@ class Test_IN_KA(unittest.TestCase):
             self.assertEqual(data["consumption"], 7430.0)
         except Exception as ex:
             self.fail(
-                "IN_KA.fetch_consumption() raised Exception: {0}".format(ex.message)
+                f"IN_KA.fetch_consumption() raised Exception: {ex.message}"
             )
 
     def test_fetch_production(self):
@@ -53,7 +53,7 @@ class Test_IN_KA(unittest.TestCase):
             self.assertIsNotNone(data["storage"])
         except Exception as ex:
             self.fail(
-                "IN_KA.fetch_production() raised Exception: {0}".format(ex.message)
+                f"IN_KA.fetch_production() raised Exception: {ex.message}"
             )
 
 

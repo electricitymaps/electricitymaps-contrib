@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 import json
 import re
@@ -144,8 +143,8 @@ def sum_thermal_units(soup) -> float:
 
 def fetch_production(
     zone_key: str = "PA",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -235,7 +234,7 @@ def fetch_production(
                 data["production"]["unknown"] -= unit_generation
         else:
             logger.warning(
-                "{} is not mapped to generation type".format(unit_name),
+                f"{unit_name} is not mapped to generation type",
                 extra={"key": zone_key},
             )
 
@@ -265,8 +264,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "CR",
     zone_key2: str = "PA",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -340,8 +339,8 @@ def fetch_exchange(
 
 def fetch_consumption(
     zone_key: str = "PA",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """

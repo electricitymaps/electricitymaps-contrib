@@ -79,8 +79,8 @@ exchanges_mapping = {
 @refetch_frequency(timedelta(hours=1))
 def fetch_production(
     zone_key: str = "SE",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     r = session or Session()
@@ -101,7 +101,7 @@ def fetch_production(
                 list(
                     filter(
                         lambda x: x["titleTranslationId"]
-                        == "ProductionConsumption.%s%sDesc" % ("Nuclear", zone_key),
+                        == "ProductionConsumption.{}{}Desc".format("Nuclear", zone_key),
                         obj["NuclearData"],
                     )
                 )[0]["value"].replace("\xa0", "")
@@ -110,7 +110,7 @@ def fetch_production(
                 list(
                     filter(
                         lambda x: x["titleTranslationId"]
-                        == "ProductionConsumption.%s%sDesc" % ("Hydro", zone_key),
+                        == "ProductionConsumption.{}{}Desc".format("Hydro", zone_key),
                         obj["HydroData"],
                     )
                 )[0]["value"].replace("\xa0", "")
@@ -119,7 +119,7 @@ def fetch_production(
                 list(
                     filter(
                         lambda x: x["titleTranslationId"]
-                        == "ProductionConsumption.%s%sDesc" % ("Wind", zone_key),
+                        == "ProductionConsumption.{}{}Desc".format("Wind", zone_key),
                         obj["WindData"],
                     )
                 )[0]["value"].replace("\xa0", "")
@@ -128,7 +128,7 @@ def fetch_production(
                 list(
                     filter(
                         lambda x: x["titleTranslationId"]
-                        == "ProductionConsumption.%s%sDesc" % ("Thermal", zone_key),
+                        == "ProductionConsumption.{}{}Desc".format("Thermal", zone_key),
                         obj["ThermalData"],
                     )
                 )[0]["value"].replace("\xa0", "")
@@ -156,14 +156,14 @@ def fetch_production(
 def fetch_exchange_by_bidding_zone(
     bidding_zone1: str = "DK1",
     bidding_zone2: str = "NO2",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     # Convert bidding zone names into statnett zones
-    bidding_zone_1_trimmed, bidding_zone_2_trimmed = [
+    bidding_zone_1_trimmed, bidding_zone_2_trimmed = (
         x.split("-")[-1] for x in [bidding_zone1, bidding_zone2]
-    ]
+    )
     bidding_zone_a, bidding_zone_b = sorted(
         [bidding_zone_1_trimmed, bidding_zone_2_trimmed]
     )
@@ -180,8 +180,8 @@ def fetch_exchange_by_bidding_zone(
 
     exchange = list(
         filter(
-            lambda x: set([x["OutAreaElspotId"], x["InAreaElspotId"]])
-            == set([bidding_zone_a, bidding_zone_b]),
+            lambda x: {x["OutAreaElspotId"], x["InAreaElspotId"]}
+            == {bidding_zone_a, bidding_zone_b},
             obj,
         )
     )[0]
@@ -198,8 +198,8 @@ def fetch_exchange_by_bidding_zone(
 
 def _fetch_exchanges_from_sorted_bidding_zones(
     sorted_bidding_zones,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
 ):
     zones = sorted_bidding_zones.split("->")
     return fetch_exchange_by_bidding_zone(zones[0], zones[1], session, target_datetime)
@@ -218,8 +218,8 @@ def _sum_of_exchanges(exchanges):
 def fetch_exchange(
     zone_key1: str = "DK",
     zone_key2: str = "NO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     r = session or Session()

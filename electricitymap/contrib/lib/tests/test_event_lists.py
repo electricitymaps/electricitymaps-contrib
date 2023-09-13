@@ -3,7 +3,7 @@ import unittest
 from datetime import datetime, timezone
 
 import numpy as np
-from mock import patch
+from unittest.mock import patch
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,

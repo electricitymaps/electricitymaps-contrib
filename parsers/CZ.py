@@ -62,7 +62,7 @@ def make_request(session, payload, zone_key):
     return res
 
 
-def get_target_datetime(dt: Optional[datetime]) -> datetime:
+def get_target_datetime(dt: datetime | None) -> datetime:
     if dt is None:
         now = datetime.now()
         dt = (now - timedelta(minutes=now.minute % 15)).replace(second=0, microsecond=0)
@@ -73,10 +73,10 @@ def __get_exchange_data(
     zone_key1: str = "CZ",
     zone_key2: str = "DE",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
     mode: str = "Actual",
-) -> List[dict]:
+) -> list[dict]:
     target_datetime = get_target_datetime(target_datetime)
     from_datetime = target_datetime - timedelta(hours=48)
 
@@ -84,11 +84,11 @@ def __get_exchange_data(
     <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
       <soap12:Body>
         <CrossborderPowerFlows xmlns="https://www.ceps.cz/CepsData/">
-          <dateFrom>{0}</dateFrom>
-          <dateTo>{1}</dateTo>
-          <agregation>{2}</agregation>
-          <function>{3}</function>
-          <version>{4}</version>
+          <dateFrom>{}</dateFrom>
+          <dateTo>{}</dateTo>
+          <agregation>{}</agregation>
+          <function>{}</function>
+          <version>{}</version>
         </CrossborderPowerFlows>
       </soap12:Body>
     </soap12:Envelope>""".format(
@@ -100,7 +100,7 @@ def __get_exchange_data(
     mapper = get_mapper(xml)
 
     data_tag = xml.find("data")
-    data_list: List[dict] = []
+    data_list: list[dict] = []
 
     if data_tag is not None:
         for values in data_tag:
@@ -140,9 +140,9 @@ def __get_exchange_data(
 def fetch_production(
     zone_key: str = "CZ",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     target_datetime = get_target_datetime(target_datetime)
     from_datetime = target_datetime - timedelta(hours=48)
 
@@ -150,12 +150,12 @@ def fetch_production(
             <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
               <soap12:Body>
                 <Generation xmlns="https://www.ceps.cz/CepsData/">
-                  <dateFrom>{0}</dateFrom>
-                  <dateTo>{1}</dateTo>
-                  <agregation>{2}</agregation>
-                  <function>{3}</function>
-                  <version>{4}</version>
-                  <para1>{5}</para1>
+                  <dateFrom>{}</dateFrom>
+                  <dateTo>{}</dateTo>
+                  <agregation>{}</agregation>
+                  <function>{}</function>
+                  <version>{}</version>
+                  <para1>{}</para1>
                 </Generation>
               </soap12:Body>
             </soap12:Envelope>""".format(
@@ -203,9 +203,9 @@ def fetch_exchange(
     zone_key1: str = "CZ",
     zone_key2: str = "DE",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     return __get_exchange_data(
         zone_key1, zone_key2, session, target_datetime, logger, mode="Actual"
     )
@@ -215,9 +215,9 @@ def fetch_exchange_forecast(
     zone_key1: str = "CZ",
     zone_key2: str = "DE",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     return __get_exchange_data(
         zone_key1, zone_key2, session, target_datetime, logger, mode="Planned"
     )

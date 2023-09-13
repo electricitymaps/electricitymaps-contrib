@@ -57,10 +57,10 @@ def _get_new_brunswick_flows(requests_obj):
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("CA-NB"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
 
     """
@@ -107,10 +107,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

@@ -4,7 +4,7 @@ import unittest
 from datetime import datetime
 from unittest import mock
 
-from mock import patch
+from unittest.mock import patch
 from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter

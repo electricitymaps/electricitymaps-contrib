@@ -14,7 +14,7 @@ PRODUCTION_MAPPING = {
 }
 
 
-def _fetch_data(session: Optional[Session] = None):
+def _fetch_data(session: Session | None = None):
     r = session or Session()
     url = "http://bornholm.powerlab.dk/visualizer/latestdata"
     response = r.get(url)
@@ -24,8 +24,8 @@ def _fetch_data(session: Optional[Session] = None):
 
 def fetch_production(
     zone_key: str = "DK-BHM",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -50,8 +50,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "DK-BHM",
     zone_key2: str = "SE-SE4",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
