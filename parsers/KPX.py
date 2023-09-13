@@ -172,6 +172,7 @@ def parse_chart_prod_data(
             nuclear=float(item["nuclearPower"]),
             oil=float(item["oil"]),
             unknown=float(item["newRenewable"]),
+            solar=float(item["sunlight"]),
         )
         storage_mix = StorageMix(hydro=-float(item["raisingWater"]))
         production_list.append(
