@@ -33,7 +33,7 @@ class TestKPX(TestCase):
                     "consumption": element["consumption"],
                     "source": element["source"],
                     "zoneKey": element["zoneKey"],
-                    "sourceType": element["sourceType"],
+                    "sourceType": element["sourceType"].value,
                 }
                 for element in production
             ]

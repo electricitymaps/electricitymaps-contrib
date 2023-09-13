@@ -5,21 +5,25 @@ import pprint
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
+from pytz import timezone
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 
-TIMEZONE = "Asia/Seoul"
+TIMEZONE = timezone("Asia/Seoul")
 REAL_TIME_URL = "https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000"
 PRICE_URL = "https://new.kpx.or.kr/smpInland.es?mid=a10606080100&device=pc"
 LONG_TERM_PRODUCTION_URL = (
     "https://new.kpx.or.kr/powerSource.es?mid=a10606030000&device=chart"
 )
+SOURCE = "new.kpx.or.kr"
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -75,11 +79,11 @@ def extract_chart_data(html):
 
 @refetch_frequency(timedelta(minutes=5))
 def fetch_consumption(
-    zone_key: str = "KR",
+    zone_key: ZoneKey = ZoneKey("KR"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[dict]:
     """
     Fetches consumption.
     """
@@ -88,12 +92,27 @@ def fetch_consumption(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or Session()
-    url = REAL_TIME_URL
-
-    response = r.get(url, verify=False)
+    response = r.get(REAL_TIME_URL, verify=False)
     assert response.status_code == 200
 
     soup = BeautifulSoup(response.text, "html.parser")
+    consumption_val, consumption_date = extract_consumption_from_soup(soup)
+
+    consumption = TotalConsumptionList(logger)
+    consumption.append(
+        zoneKey=zone_key,
+        datetime=consumption_date,
+        consumption=consumption_val,
+        source=SOURCE,
+    )
+
+    return consumption.to_list()
+
+
+def extract_consumption_from_soup(soup: BeautifulSoup) -> Tuple[float, datetime]:
+    """
+    Extracts consumption from the source code of the page.
+    """
     consumption_title = soup.find("th", string=re.compile(r"\s*현재부하\s*"))
     consumption_val = float(
         consumption_title.find_next_sibling().text.split()[0].replace(",", "")
@@ -101,19 +120,11 @@ def fetch_consumption(
 
     consumption_date_list = soup.find("p", {"class": "info_top"}).text.split(" ")[:2]
     consumption_date_list[0] = consumption_date_list[0].replace(".", "-").split("(")[0]
-    consumption_date = datetime.strptime(
-        " ".join(consumption_date_list), "%Y-%m-%d %H:%M"
+    consumption_date = TIMEZONE.localize(
+        datetime.strptime(" ".join(consumption_date_list), "%Y-%m-%d %H:%M")
     )
-    consumption_date = arrow.get(consumption_date, TIMEZONE).datetime
 
-    data = {
-        "consumption": consumption_val,
-        "datetime": consumption_date,
-        "source": url,
-        "zoneKey": zone_key,
-    }
-
-    return data
+    return consumption_val, consumption_date
 
 
 @refetch_frequency(timedelta(hours=1))
