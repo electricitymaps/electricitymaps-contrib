@@ -176,7 +176,7 @@ fallbackZoneMixes:
         wind: 0.44854268265802816
 parsers:
   price: ENTSOE.fetch_price
-  production: DK_BHM.fetch_production
+  production: BORNHOLM_POWERLAB.fetch_production
 price_displayed: false
 sources:
   EU-ETS, ENTSO-E 2021:
