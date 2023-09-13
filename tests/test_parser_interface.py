@@ -36,7 +36,7 @@ _RETURN_PARSER_TYPE = [
     list[dict[str, Any]],
     list | dict,
     list[dict] | dict,
-    str | Any,
+    dict[str, Any],
     dict[str, Any] | list[dict[str, Any]],
 ]
 EXPECTED_MODE_RETURN_ANNOTATIONS = {

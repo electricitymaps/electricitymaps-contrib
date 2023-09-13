@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
-from typing import AbstractSet, Any
+from typing import AbstractSet, Any, Optional
 
 import pandas as pd
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
@@ -357,7 +357,7 @@ class Exchange(Event):
         source: str,
         netFlow: float,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> "Exchange" | None:
+    ) -> Optional["Exchange"]:
         try:
             return Exchange(
                 zoneKey=zoneKey,
@@ -401,7 +401,7 @@ class TotalProduction(Event):
         source: str,
         value: float,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> "TotalProduction" | None:
+    ) -> Optional["TotalProduction"]:
         try:
             return TotalProduction(
                 zoneKey=zoneKey,
@@ -454,7 +454,7 @@ class ProductionBreakdown(AggregatableEvent):
         production: ProductionMix | None = None,
         storage: StorageMix | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> "ProductionBreakdown" | None:
+    ) -> Optional["ProductionBreakdown"]:
         try:
             # Log warning if production has been corrected.
             if production is not None and production.has_corrected_negative_values:
@@ -556,7 +556,7 @@ class TotalConsumption(Event):
         source: str,
         consumption: float,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> "TotalConsumption" | None:
+    ) -> Optional["TotalConsumption"]:
         try:
             return TotalConsumption(
                 zoneKey=zoneKey,
@@ -613,7 +613,7 @@ class Price(Event):
         price: float,
         currency: str,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> "Price" | None:
+    ) -> Optional["Price"]:
         try:
             return Price(
                 zoneKey=zoneKey,
