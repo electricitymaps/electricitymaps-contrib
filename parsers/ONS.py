@@ -1,12 +1,14 @@
 from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple
 
-import arrow
 from requests import Session
 
-from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 
@@ -34,24 +36,14 @@ REGIONS = {
     "BR-S": "sul",
 }
 
-REGION_EXCHANGES = {
-    "BR-CS->BR-S": "sul_sudeste",
-    "BR-CS->BR-NE": "sudeste_nordeste",
-    "BR-CS->BR-N": "sudeste_norteFic",
-    "BR-N->BR-NE": "norteFic_nordeste",
-}
-
-REGION_EXCHANGES_DIRECTIONS = {
-    "BR-CS->BR-S": -1,
-    "BR-CS->BR-NE": 1,
-    "BR-CS->BR-N": 1,
-    "BR-N->BR-NE": 1,
-}
-
-COUNTRIES_EXCHANGE = {
-    "UY": {"name": "uruguai", "flow": 1},
-    "AR": {"name": "argentina", "flow": -1},
-    "PY": {"name": "paraguai", "flow": -1},
+EXCHANGES = {
+    "BR-CS->BR-S": {"name": "sul_sudeste", "flow": -1, "level": "intercambio"},
+    "BR-CS->BR-NE": {"name": "sudeste_nordeste", "flow": 1, "level": "intercambio"},
+    "BR-CS->BR-N": {"name": "sudeste_norteFic", "flow": 1, "level": "intercambio"},
+    "BR-N->BR-NE": {"name": "norteFic_nordeste", "flow": 1, "level": "intercambio"},
+    "BR-S->UY": {"name": "uruguai", "flow": 1, "level": "internacional"},
+    "AR->BR-S": {"name": "argentina", "flow": -1, "level": "internacional"},
+    "BR-S->PY": {"name": "paraguai", "flow": -1, "level": "internacional"},
 }
 
 
@@ -110,64 +102,36 @@ def fetch_production(
     return productions.to_list()
 
 
+def get_exchange_flow(sorted_zone_keys: ZoneKey, raw_data: dict) -> float:
+    """Returns the flow of the exchange between two regions."""
+    name, flow, level = EXCHANGES[sorted_zone_keys].values()
+    return raw_data[level][name] * flow
+
+
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[Dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     data = get_data(session)
-    dt = arrow.get(data["Data"]).datetime
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    dt = datetime.fromisoformat(data["Data"])
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    exchanges = ExchangeList(logger)
 
-    country_exchange = COUNTRIES_EXCHANGE.get(zone_key1) or COUNTRIES_EXCHANGE.get(
-        zone_key2
+    net_flow = get_exchange_flow(sorted_zone_keys, data)
+    exchanges.append(
+        zoneKey=sorted_zone_keys,
+        datetime=dt,
+        source=SOURCE,
+        netFlow=net_flow,
     )
-    net_flow: Union[float, None] = None
-    if country_exchange:
-        net_flow = (
-            data["internacional"][country_exchange["name"]] * country_exchange["flow"]
-        )
-
-    return {
-        "datetime": dt,
-        "sortedZoneKeys": sorted_zone_keys,
-        "netFlow": net_flow,
-        "source": SOURCE,
-    }
-
-
-def fetch_region_exchange(
-    zone_key1: str,
-    zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    """Requests the last known power exchange (in MW) between two Brazilian regions."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    data = get_data(session)
-    dt = arrow.get(data["Data"]).datetime
-    sorted_regions = "->".join(sorted([zone_key1, zone_key2]))
-
-    exchange = REGION_EXCHANGES[sorted_regions]
-    net_flow = (
-        data["intercambio"][exchange] * REGION_EXCHANGES_DIRECTIONS[sorted_regions]
-    )
-
-    return {
-        "datetime": dt,
-        "sortedZoneKeys": sorted_regions,
-        "netFlow": net_flow,
-        "source": SOURCE,
-    }
+    return exchanges.to_list()
 
 
 if __name__ == "__main__":
@@ -192,13 +156,13 @@ if __name__ == "__main__":
     print(fetch_exchange("BR-S", "AR"))
 
     print("fetch_region_exchange(BR-CS->BR-S)")
-    print(fetch_region_exchange("BR-CS", "BR-S"))
+    print(fetch_exchange("BR-CS", "BR-S"))
 
     print("fetch_region_exchange(BR-CS->BR-NE)")
-    print(fetch_region_exchange("BR-CS", "BR-NE"))
+    print(fetch_exchange("BR-CS", "BR-NE"))
 
     print("fetch_region_exchange(BR-CS->BR-N)")
-    print(fetch_region_exchange("BR-CS", "BR-N"))
+    print(fetch_exchange("BR-CS", "BR-N"))
 
     print("fetch_region_exchange(BR-N->BR-NE)")
-    print(fetch_region_exchange("BR-N", "BR-NE"))
+    print(fetch_exchange("BR-N", "BR-NE"))
