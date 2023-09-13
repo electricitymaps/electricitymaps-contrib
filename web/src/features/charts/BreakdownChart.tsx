@@ -45,7 +45,7 @@ function BreakdownChart({
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
-        translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
+        title={`country-history.${titleDisplayMode}${titleMixMode}`}
       />
     );
   }

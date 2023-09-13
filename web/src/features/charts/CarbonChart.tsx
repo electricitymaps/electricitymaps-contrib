@@ -23,7 +23,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
   if (!hasEnoughDataToDisplay) {
-    return <NotEnoughDataMessage translationKey="country-history.carbonintensity" />;
+    return <NotEnoughDataMessage title="country-history.carbonintensity" />;
   }
   return (
     <>

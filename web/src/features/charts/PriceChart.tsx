@@ -46,7 +46,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
   if (!hasEnoughDataToDisplay) {
-    return <NotEnoughDataMessage translationKey="country-history.electricityprices" />;
+    return <NotEnoughDataMessage title="country-history.electricityprices" />;
   }
 
   return (
