@@ -6,18 +6,21 @@ from typing import Optional
 
 import arrow
 from requests import Session
+from electricitymap.contrib.lib.models.event_lists import ExchangeList, ProductionBreakdownList
 
 PRODUCTION_MAPPING = {
     "wind": "wind_turbines",
     "biomass": "factory",
     "solar": "solar_cells",
 }
+LATEST_DATA_URL = "http://bornholm.powerlab.dk/visualizer/latestdata"
+
+SOURCE = "bornholm.powerlab.dk"
 
 
 def _fetch_data(session: Optional[Session] = None):
     r = session or Session()
-    url = "http://bornholm.powerlab.dk/visualizer/latestdata"
-    response = r.get(url)
+    response = r.get(LATEST_DATA_URL)
     obj = response.json()
     return obj
 
@@ -33,12 +36,13 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     obj = _fetch_data(session)
+    production = ProductionBreakdownList(logger)
 
     data = {
         "zoneKey": zone_key,
         "production": {},
         "storage": {},
-        "source": "bornholm.powerlab.dk",
+        "source": SOURCE,
         "datetime": arrow.get(obj["latest"]).datetime,
     }
     for productionKey, objKey in PRODUCTION_MAPPING.items():
