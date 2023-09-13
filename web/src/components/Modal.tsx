@@ -42,7 +42,9 @@ export default function Modal({
           >
             <HiXMark size="18" />
           </Dialog.Close>
-          <div className={fullWidth ? 'p-0' : 'px-2 py-3 sm:p-[25px_55px]'}>
+          <div
+            className={fullWidth ? 'p-0' : 'px-2 py-3 sm:p-[25px_55px] md:px-2 md:py-4'}
+          >
             {children}
           </div>
         </Dialog.Content>

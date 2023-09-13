@@ -44,7 +44,7 @@ function FAQContent() {
   const { __ } = useTranslation();
 
   return (
-    <Accordion.Root type="multiple" className="space-y-4  pr-2">
+    <Accordion.Root type="multiple" className="space-y-4 pr-2">
       {orderings.map(({ groupKey, entryOrder }) => (
         <div key={`group-${groupKey}`} className="space-y-2">
           <h3 className="font-bold">{__(`${groupKey}.groupName`)}</h3>
@@ -62,7 +62,7 @@ function FAQContent() {
               </Accordion.Header>
               <Accordion.Content className="ml-2 border-l border-gray-300 pl-4 radix-state-closed:animate-slide-up radix-state-open:animate-slide-down">
                 <div
-                  className="prose prose-sm text-md leading-5 dark:prose-invert prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:invert "
+                  className="prose prose-sm text-md leading-5 dark:prose-invert prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:invert md:max-w-none"
                   dangerouslySetInnerHTML={{
                     __html: __(`${groupKey}.${entryKey}-answer`),
                   }}
