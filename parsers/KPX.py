@@ -6,7 +6,7 @@ import pprint
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Optional, Union
+from typing import List, Optional
 
 import arrow
 import pandas as pd
@@ -22,6 +22,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 TIMEZONE = timezone("Asia/Seoul")
 KR_CURRENCY = "KRW"
@@ -48,7 +49,11 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+        raise ParserException(
+            "KPX.py",
+            "This parser is not yet able to parse past dates",
+            zone_key,
+        )
 
     logger.debug(f"Fetching consumption data from {REAL_TIME_URL}")
 
@@ -90,8 +95,10 @@ def fetch_price(
     )
 
     if target_datetime is not None and target_datetime < first_available_date:
-        raise NotImplementedError(
-            "This parser is not able to parse dates more than one week in the past."
+        raise ParserException(
+            "KPX.py",
+            "This parser is not able to parse dates more than one week in the past.",
+            zone_key,
         )
 
     if target_datetime is None:
@@ -134,79 +141,15 @@ def fetch_price(
     return price_list.to_list()
 
 
-def get_historical_prod_data(
+def parse_chart_prod_data(
+    raw_data: str,
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
-    target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
-
-    # CSRF token is needed to access the production data
-    logger.debug(
-        f"Fetching CSRF token to access production data from {HISTORICAL_PRODUCTION_URL}"
-    )
-    session.get(HISTORICAL_PRODUCTION_URL, verify=False)
-    cookies_dict = session.cookies.get_dict()
-
-    payload = {
-        "mid": "a10606030000",
-        "device": "chart",
-        "view_sdate": target_datetime_formatted_daily,
-        "view_edate": target_datetime_formatted_daily,
-        "_csrf": cookies_dict.get("XSRF-TOKEN", None),
-    }
-
-    logger.debug(f"Fetching production data from {HISTORICAL_PRODUCTION_URL}")
-    res = session.post(HISTORICAL_PRODUCTION_URL, payload)
-
-    assert res.status_code == 200
-
-    production_list = ProductionBreakdownList(logger)
-    soup = BeautifulSoup(res.text, "html.parser")
-    table_rows = soup.find_all("tr")[1:]
-    for row in table_rows:
-        sanitized_date = [value[:-1] for value in row.find_all("td")[0].text.split(" ")]
-        curr_prod_datetime_string = (
-            "-".join(sanitized_date[:3]) + "T" + ":".join(sanitized_date[3:]) + ":00"
-        )
-        dt = arrow.get(
-            curr_prod_datetime_string, "YYYY-MM-DDTHH:mm:ss", tzinfo=TIMEZONE
-        ).datetime
-
-        row_values = row.find_all("td")
-        production_values = [
-            int("".join(value.text.split(","))) for value in row_values[1:]
-        ]
-
-        # order of production_values
-        # 0. other, 1. gas, 2. renewable, 3. coal, 4. nuclear
-        # other can be negative as well as positive due to pumped hydro
-        production_mix = ProductionMix()
-        production_mix.add_value("unknown", production_values[0] + production_values[2])
-        production_mix.add_value("gas", production_values[1])
-        production_mix.add_value("coal", production_values[3])
-        production_mix.add_value("nuclear", production_values[4])
-        production_list.append(
-            zoneKey=zone_key,
-            datetime=dt,
-            source=KR_SOURCE,
-            production=production_mix,
-        )
-    return production_list
-
-
-def get_real_time_prod_data(
-    zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
-    logger: Logger = getLogger(__name__),
-) -> ProductionBreakdownList:
-    res = session.get(REAL_TIME_URL, verify=False)
-
     production_list = ProductionBreakdownList(logger)
 
     # Extract object with data
-    data_source = re.search(r"var ictArr = (\[\{.+\}\]);", res.text).group(1)
+    data_source = re.search(r"var ictArr = (\[\{.+\}\]);", raw_data).group(1)
     # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}).
     # Will break if other keys than these are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
     data_source = re.sub(
@@ -254,6 +197,46 @@ def get_real_time_prod_data(
     return production_list
 
 
+def get_real_time_prod_data(
+    zone_key: ZoneKey = ZoneKey("KR"),
+    session: Session = Session(),
+    logger: Logger = getLogger(__name__),
+) -> ProductionBreakdownList:
+    res = session.get(REAL_TIME_URL, verify=False)
+    return parse_chart_prod_data(res.text, zone_key, logger)
+
+
+def get_historical_prod_data(
+    zone_key: ZoneKey = ZoneKey("KR"),
+    session: Session = Session(),
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> ProductionBreakdownList:
+    target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
+
+    # CSRF token is needed to access the production data
+    logger.debug(
+        f"Fetching CSRF token to access production data from {HISTORICAL_PRODUCTION_URL}"
+    )
+    session.get(HISTORICAL_PRODUCTION_URL, verify=False)
+    cookies_dict = session.cookies.get_dict()
+
+    payload = {
+        "mid": "a10606030000",
+        "device": "chart",
+        "view_sdate": target_datetime_formatted_daily,
+        "view_edate": target_datetime_formatted_daily,
+        "_csrf": cookies_dict.get("XSRF-TOKEN", None),
+    }
+
+    logger.debug(f"Fetching production data from {HISTORICAL_PRODUCTION_URL}")
+    res = session.post(HISTORICAL_PRODUCTION_URL, payload)
+
+    assert res.status_code == 200
+
+    return parse_chart_prod_data(res.text, zone_key, logger)
+
+
 @refetch_frequency(timedelta(minutes=5))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
@@ -263,8 +246,10 @@ def fetch_production(
 ) -> List[dict]:
     first_available_date = arrow.get(2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE)
     if target_datetime is not None and target_datetime < first_available_date:
-        raise NotImplementedError(
-            "This parser is not able to parse dates before 2021-12-22."
+        raise ParserException(
+            "KPX.py",
+            "This parser is not able to parse dates before 2021-12-22.",
+            zone_key,
         )
 
     if target_datetime is None:
