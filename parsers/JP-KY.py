@@ -2,7 +2,6 @@
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional, Union
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -112,7 +111,6 @@ def fetch_production(
     exch = nearest_exchanges[0]
     # check that consumption and exchange timestamps are within a 15 minute window
     if abs(dt - exch["datetime"]).seconds <= 900:
-
         generation = cons - exch["netFlow"]
         data["production"]["solar"] = solar
         data["production"]["nuclear"] = nuclear

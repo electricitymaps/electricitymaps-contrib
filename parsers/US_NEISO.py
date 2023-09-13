@@ -6,7 +6,7 @@
 import time
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 import pytz
 from requests import Session

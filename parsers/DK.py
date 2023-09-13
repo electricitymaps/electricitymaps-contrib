@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import List, Optional, Union
 
 from requests import Response, Session
 

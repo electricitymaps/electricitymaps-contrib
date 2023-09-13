@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 class ParserException(Exception):
     """Parser Exception
 

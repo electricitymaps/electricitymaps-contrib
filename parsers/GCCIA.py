@@ -15,7 +15,6 @@ import re
 from datetime import datetime
 from logging import Logger, getLogger
 from sys import stderr
-from typing import Optional
 
 from pytz import timezone
 from requests import Session
@@ -52,7 +51,6 @@ def fetch_consumption(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

@@ -4,7 +4,6 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import List, Optional
 
 # The arrow library is used to handle datetimes
 import arrow

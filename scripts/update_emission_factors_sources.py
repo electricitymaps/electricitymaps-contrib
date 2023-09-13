@@ -9,7 +9,6 @@ Usage:
 import logging
 from copy import copy
 from pathlib import Path
-from typing import Dict
 
 import yaml
 

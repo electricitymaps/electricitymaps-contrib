@@ -4,7 +4,6 @@ import json
 import pathlib
 import subprocess
 from os import PathLike, listdir, path
-from typing import Dict, Union
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
 LOCALES_FOLDER_PATH = ROOT_PATH / "web/public/locales/"

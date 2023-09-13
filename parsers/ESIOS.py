@@ -2,7 +2,6 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 from urllib.parse import urlencode
 
 # The arrow library is used to handle datetimes
@@ -47,7 +46,6 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     # Get ESIOS token
     token = get_token("ESIOS_TOKEN")
 

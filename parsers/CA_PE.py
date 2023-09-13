@@ -3,7 +3,7 @@
 import json
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, Optional
+from typing import Any
 
 # The arrow library is used to handle datetimes consistently with other parsers
 import arrow

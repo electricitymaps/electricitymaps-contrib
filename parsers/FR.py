@@ -4,7 +4,6 @@ import json
 import math
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import pandas as pd

@@ -8,7 +8,6 @@ Mayorista (AMM) API.
 import collections
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 # Third-party library imports
 import arrow

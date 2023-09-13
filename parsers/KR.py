@@ -5,7 +5,6 @@ import pprint
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
 
 import arrow
 import pandas as pd
@@ -27,6 +26,7 @@ pp = pprint.PrettyPrinter(indent=4)
 # Source: https://cms.khnp.co.kr/eng/content/563/main.do?mnCd=EN040101
 # New energy: Hydrogen, Fuel Cell, Coal liquefied or gasified energy, and vacuum residue gasified energy, etc.
 # Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
+
 
 # src: https://stackoverflow.com/questions/3463930/how-to-round-the-minute-of-a-datetime-object
 def time_floor(time, delta, epoch=None):
@@ -123,7 +123,6 @@ def fetch_price(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-
     first_available_date = time_floor(
         arrow.now(TIMEZONE).shift(days=-6), timedelta(days=1)
     ).shift(hours=1)
@@ -147,7 +146,6 @@ def fetch_price(
 
     for col_idx in range(1, table_prices.shape[1]):
         for row_idx in range(24):
-
             day = col_idx
             hour = row_idx + 1
 
@@ -206,7 +204,6 @@ def get_long_term_prod_data(
     table_rows = soup.find_all("tr")[1:]
 
     for row in table_rows:
-
         sanitized_date = [value[:-1] for value in row.find_all("td")[0].text.split(" ")]
         curr_prod_datetime_string = (
             "-".join(sanitized_date[:3]) + "T" + ":".join(sanitized_date[3:]) + ":00"
@@ -259,7 +256,6 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-
     if target_datetime is not None and target_datetime < arrow.get(
         2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE
     ):

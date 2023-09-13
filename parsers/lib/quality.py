@@ -3,7 +3,7 @@ This library contains validation functions applied to all parsers by the feeder.
 This is a higher level validation than validation.py
 """
 from datetime import datetime, timezone
-from typing import Any, Dict, List
+from typing import Any
 from warnings import warn
 
 import arrow

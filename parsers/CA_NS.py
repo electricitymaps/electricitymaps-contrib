@@ -3,7 +3,6 @@
 # The arrow library is used to handle datetimes
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Optional
 
 import arrow
 from requests import Session

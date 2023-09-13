@@ -1,7 +1,6 @@
 #!python3
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow

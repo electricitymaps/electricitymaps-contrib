@@ -2,7 +2,6 @@
 
 
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from requests import Session

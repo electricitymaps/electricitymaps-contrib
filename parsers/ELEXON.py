@@ -14,7 +14,6 @@ import re
 from datetime import date, datetime, time, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Dict, List, Optional
 
 import arrow
 import pandas as pd

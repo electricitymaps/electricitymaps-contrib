@@ -2,7 +2,6 @@ import csv
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
-from typing import List, Optional
 
 from pytz import timezone
 from requests import Response, Session

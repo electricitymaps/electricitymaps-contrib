@@ -2,7 +2,6 @@ import datetime as dt
 import json
 import re
 from logging import Logger, getLogger
-from typing import List, Optional
 
 import arrow
 import pytz

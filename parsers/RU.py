@@ -4,7 +4,6 @@ import json
 from datetime import datetime
 from functools import reduce
 from logging import Logger, getLogger
-from typing import List, Optional, Union
 
 import arrow
 import pandas as pd

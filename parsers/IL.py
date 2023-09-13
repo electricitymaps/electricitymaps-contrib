@@ -15,7 +15,6 @@ Shares of Electricity production in 2019:
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup

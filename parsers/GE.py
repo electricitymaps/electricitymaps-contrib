@@ -4,7 +4,7 @@
 import urllib.parse
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 # Third-party library imports
 import arrow

@@ -6,7 +6,6 @@ from collections import namedtuple
 from collections.abc import Callable
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Optional, Union
 
 import arrow
 from requests import Session

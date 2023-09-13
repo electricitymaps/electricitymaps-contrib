@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, NamedTuple, Optional, Union
+from typing import NamedTuple
 
 import pandas as pd
 import requests

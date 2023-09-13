@@ -5,7 +5,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 from dateutil import parser, tz
 from requests import Session

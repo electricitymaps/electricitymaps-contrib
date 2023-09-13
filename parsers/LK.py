@@ -8,7 +8,6 @@ Data is from the backend for the load curve graph on https://cebcare.ceb.lk/gens
 import json
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -53,7 +52,6 @@ def fetch_production(
     output = []
 
     for quarter_hourly_source_data in source_data:
-
         output_for_timestamp = {
             "zoneKey": zone_key,
             "datetime": arrow.get(

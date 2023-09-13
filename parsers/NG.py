@@ -6,7 +6,6 @@ import re
 import urllib.parse
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import bs4

@@ -2,7 +2,6 @@
 from datetime import datetime
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Dict, List, Optional
 
 import arrow
 import pandas as pd

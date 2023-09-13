@@ -4,7 +4,6 @@
 import json
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup

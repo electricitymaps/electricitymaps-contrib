@@ -2,7 +2,6 @@
 
 from copy import deepcopy
 from pathlib import Path
-from typing import Dict, List
 
 from electricitymap.contrib.config.co2eq_parameters import generate_co2eq_parameters
 from electricitymap.contrib.config.reading import (

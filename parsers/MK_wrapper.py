@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 from pytz import utc
 from requests import Session

@@ -2,7 +2,7 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Literal, Optional, TypedDict
+from typing import Literal, TypedDict
 
 import arrow
 from requests import Response, Session

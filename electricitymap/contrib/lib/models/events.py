@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
-from typing import AbstractSet, Any, Dict, List, Optional, Tuple, Union
+from typing import AbstractSet, Any
 
 import pandas as pd
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
@@ -357,7 +357,7 @@ class Exchange(Event):
         source: str,
         netFlow: float,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["Exchange"]:
+    ) -> "Exchange" | None:
         try:
             return Exchange(
                 zoneKey=zoneKey,
@@ -401,7 +401,7 @@ class TotalProduction(Event):
         source: str,
         value: float,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["TotalProduction"]:
+    ) -> "TotalProduction" | None:
         try:
             return TotalProduction(
                 zoneKey=zoneKey,
@@ -454,7 +454,7 @@ class ProductionBreakdown(AggregatableEvent):
         production: ProductionMix | None = None,
         storage: StorageMix | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["ProductionBreakdown"]:
+    ) -> "ProductionBreakdown" | None:
         try:
             # Log warning if production has been corrected.
             if production is not None and production.has_corrected_negative_values:
@@ -556,7 +556,7 @@ class TotalConsumption(Event):
         source: str,
         consumption: float,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["TotalConsumption"]:
+    ) -> "TotalConsumption" | None:
         try:
             return TotalConsumption(
                 zoneKey=zoneKey,
@@ -613,7 +613,7 @@ class Price(Event):
         price: float,
         currency: str,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["Price"]:
+    ) -> "Price" | None:
         try:
             return Price(
                 zoneKey=zoneKey,

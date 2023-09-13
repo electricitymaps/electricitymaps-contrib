@@ -8,7 +8,7 @@ import time
 from collections.abc import Callable
 from datetime import datetime, timezone
 from logging import DEBUG, basicConfig, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 import click
 

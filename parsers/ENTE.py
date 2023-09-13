@@ -2,7 +2,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from requests import Session
@@ -32,7 +31,6 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-
     r = session or Session()
     response = r.get(DATA_URL).json()
 

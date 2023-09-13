@@ -10,7 +10,7 @@ import re
 import urllib.parse
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 # Third-party library imports
 import arrow

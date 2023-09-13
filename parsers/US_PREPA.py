@@ -12,7 +12,6 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -129,7 +128,6 @@ def fetch_production(
     ) in (
         sourceData
     ):  # Item has a label with fuel type + generation in MW, and a value with a percentage
-
         if item["label"] == "  MW":  # There's one empty item for some reason. Skip it.
             continue
 

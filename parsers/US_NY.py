@@ -5,7 +5,6 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from operator import itemgetter
-from typing import Optional
 from urllib.error import HTTPError
 
 import arrow

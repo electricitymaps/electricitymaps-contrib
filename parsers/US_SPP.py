@@ -6,7 +6,6 @@
 from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import pandas as pd
@@ -335,7 +334,6 @@ def fetch_live_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     data = get_data(EXCHANGE_URL, session)
 
     data = data.dropna(axis=0)
@@ -356,7 +354,6 @@ def fetch_historical_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     filename = target_datetime.strftime("TieFlows_%b%Y.csv")
     file_url = f"{US_PROXY}/file-browser-api/download/historical-tie-flow?{HOST_PARAMETER}&path={filename}"
 
@@ -413,7 +410,6 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     now = datetime.now(tz=utc)
     if (
         target_datetime is None

@@ -3,7 +3,6 @@ import json
 import time
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
 
 import arrow  # the arrow library is used to handle datetimes
 import pandas as pd
@@ -102,7 +101,6 @@ def fetch_production(
     # Format output as a list of dictionaries
     output = []
     for dt in df.index:
-
         data = {
             "zoneKey": zone_key,
             "datetime": None,

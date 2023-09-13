@@ -4,7 +4,6 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import pandas as pd

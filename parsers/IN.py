@@ -5,7 +5,7 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import arrow
 import numpy as np
@@ -202,7 +202,8 @@ def fetch_consumption_from_vidyutpravah(
     logger: Logger = getLogger(__name__),
 ) -> TotalConsumptionList:
     """Fetches live consumption from government dashboard. Consumption is available per state and is then aggregated at regional level.
-    Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep"""
+    Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep
+    """
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -488,6 +489,5 @@ def get_start_of_day(dt: datetime) -> datetime:
 
 
 if __name__ == "__main__":
-
     # print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
     print(fetch_consumption(zone_key=ZoneKey("IN-NO")))

@@ -5,7 +5,6 @@
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional, Union
 
 import arrow
 import demjson3 as demjson
@@ -77,7 +76,6 @@ def get_api_subscription_key(session: Session) -> str:
 
 
 def fetch_api_data(kind: str, params: dict, session: Session) -> list:
-
     headers = {
         "Host": "api.pjm.com",
         "Ocp-Apim-Subscription-Key": get_api_subscription_key(session=session),

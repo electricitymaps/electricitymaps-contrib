@@ -1,6 +1,6 @@
 import unittest
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 from electricitymap.contrib.config import (
     generate_all_neighbours,

@@ -5,7 +5,6 @@
 from datetime import datetime
 from enum import Enum
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup

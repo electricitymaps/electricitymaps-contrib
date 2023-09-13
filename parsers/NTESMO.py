@@ -7,7 +7,7 @@ https://territorygeneration.com.au/about-us/our-power-stations/
 from collections.abc import Callable
 from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, TypedDict
+from typing import TypedDict
 
 import arrow
 import pandas as pd

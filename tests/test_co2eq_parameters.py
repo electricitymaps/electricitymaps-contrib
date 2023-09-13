@@ -5,7 +5,7 @@ import json
 import numbers
 import re
 import unittest
-from typing import Any, Dict, Set, Tuple, Union
+from typing import Any
 
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS,
@@ -234,7 +234,6 @@ class CO2eqParametersAll(unittest.TestCase):
         contribution_name = "isLowCarbon"
 
         def callback(mode, contribution, zone):
-
             if isinstance(contribution, list):
                 for c in contribution:
                     self.check_contribution_object(c, zone, mode, contribution_name)

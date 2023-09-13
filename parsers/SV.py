@@ -6,7 +6,6 @@ from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
 from operator import itemgetter
-from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup

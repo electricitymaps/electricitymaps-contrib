@@ -1,6 +1,5 @@
 from datetime import datetime
 from logging import getLogger
-from typing import Dict, Optional, Tuple, Union
 
 from requests import Response, Session
 

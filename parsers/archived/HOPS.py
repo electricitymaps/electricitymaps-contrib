@@ -6,7 +6,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional, Union
 
 import arrow
 import pandas as pd

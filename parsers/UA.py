@@ -4,7 +4,6 @@ import http.client
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 from pytz import timezone
 from requests import Session

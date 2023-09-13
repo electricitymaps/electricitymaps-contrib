@@ -4,7 +4,6 @@ import re
 from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from PIL import Image, ImageOps

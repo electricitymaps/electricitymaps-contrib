@@ -3,7 +3,7 @@
 # The arrow library is used to handle datetimes consistently with other parsers
 from datetime import datetime, timezone
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 # BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup

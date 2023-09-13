@@ -1,7 +1,7 @@
 from csv import reader
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any
 
 from pytz import timezone
 from requests import Response, Session

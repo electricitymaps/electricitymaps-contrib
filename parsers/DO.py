@@ -5,7 +5,6 @@ from datetime import datetime
 from logging import Logger, getLogger
 from math import isnan
 from operator import itemgetter
-from typing import List, Optional
 
 import arrow
 import numpy as np

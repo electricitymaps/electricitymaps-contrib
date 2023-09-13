@@ -4,7 +4,7 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, NamedTuple, Optional
+from typing import NamedTuple
 
 import arrow
 from requests import Session

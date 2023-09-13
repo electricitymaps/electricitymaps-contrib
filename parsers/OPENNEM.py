@@ -1,7 +1,6 @@
 from collections.abc import Mapping
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Optional, Tuple, Union
 
 import arrow
 import pandas as pd

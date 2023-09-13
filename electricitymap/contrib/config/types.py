@@ -1,4 +1,4 @@
-from typing import List, NewType, Tuple
+from typing import NewType
 
 # BoundingBoxes indicate a geographic area of a zone.
 # An example bounding box looks like: [[140.46, -39.64], [150.47, -33.48]],

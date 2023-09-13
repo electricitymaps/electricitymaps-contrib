@@ -1,7 +1,7 @@
 from collections.abc import Callable
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Literal, Optional
+from typing import Literal
 
 from requests import Session
 
@@ -30,7 +30,6 @@ def fetch_data(
     logger: Logger,
     type: Literal["exchange", "exchange_forecast"],
 ) -> list[dict]:
-
     if target_datetime is None:
         target_datetime = datetime.utcnow()
 

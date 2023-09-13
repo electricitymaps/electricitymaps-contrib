@@ -5,7 +5,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import requests
@@ -76,7 +75,6 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

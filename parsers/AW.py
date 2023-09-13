@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from pytz import timezone
 from requests import Session

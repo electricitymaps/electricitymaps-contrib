@@ -1,7 +1,7 @@
 """This module contains functions for working with zones configs."""
 
 from collections import defaultdict
-from typing import Any, Dict, List
+from typing import Any
 
 from electricitymap.contrib.config.types import BoundingBox
 from electricitymap.contrib.lib.types import ZoneKey

@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 import arrow
 import pytz
@@ -103,7 +103,6 @@ def fetch_consumption(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict[str, Any] | list[dict[str, Any]]:
-
     request_latest = target_datetime is None
 
     if request_latest:
@@ -162,7 +161,6 @@ def fetch_price(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
-
     request_latest = target_datetime is None
 
     if request_latest:

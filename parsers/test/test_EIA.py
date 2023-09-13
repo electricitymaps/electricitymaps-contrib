@@ -2,7 +2,6 @@ import os
 import unittest
 from datetime import datetime
 from json import loads
-from typing import Dict, List, Union
 
 from pkg_resources import resource_string
 from pytz import utc

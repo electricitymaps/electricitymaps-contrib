@@ -10,7 +10,7 @@ https://www.eia.gov/opendata/register.php
 """
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 import arrow
 from dateutil import parser, tz

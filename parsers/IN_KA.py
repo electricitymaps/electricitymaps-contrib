@@ -2,7 +2,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 from requests import Session
 
