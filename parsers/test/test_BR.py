@@ -9,7 +9,7 @@ from unittest.mock import patch
 from arrow import get
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers import BR
+from parsers import ONS
 
 
 class ProductionTestcase(unittest.TestCase):
@@ -23,7 +23,7 @@ class ProductionTestcase(unittest.TestCase):
             self.fake_data = json.load(f)
 
         with patch("parsers.BR.get_data", return_value=self.fake_data) as gd:
-            self.data = BR.fetch_production(ZoneKey("BR-CS"))
+            self.data = ONS.fetch_production(ZoneKey("BR-CS"))
 
     def test_is_not_none(self):
         data = self.data
@@ -61,7 +61,7 @@ class ProductionTestcase(unittest.TestCase):
             fake_data = json.load(f)
 
             with patch("parsers.BR.get_data", return_value=fake_data) as gd:
-                data = BR.fetch_production(ZoneKey("BR-CS"))
+                data = ONS.fetch_production(ZoneKey("BR-CS"))
                 self.assertEqual(data[0]["production"]["solar"], 0)
 
 
@@ -76,7 +76,7 @@ class ExchangeTestcase(unittest.TestCase):
             self.fake_data = json.load(f)
 
         with patch("parsers.BR.get_data", return_value=self.fake_data) as gd:
-            self.data = BR.fetch_exchange("BR-S", "UY")
+            self.data = ONS.fetch_exchange("BR-S", "UY")
 
     def test_is_not_none(self):
         data = self.data
@@ -111,7 +111,7 @@ class RegionTestcase(unittest.TestCase):
             self.fake_data = json.load(f)
 
         with patch("parsers.BR.get_data", return_value=self.fake_data) as gd:
-            self.data = BR.fetch_region_exchange("BR-N", "BR-NE")
+            self.data = ONS.fetch_region_exchange("BR-N", "BR-NE")
 
     def test_is_not_none(self):
         data = self.data

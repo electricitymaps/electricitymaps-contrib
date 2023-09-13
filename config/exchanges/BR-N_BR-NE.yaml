@@ -2,5 +2,5 @@ lonlat:
   - -45.610678
   - -8.187852
 parsers:
-  exchange: BR.fetch_region_exchange
+  exchange: ONS.fetch_region_exchange
 rotation: 110
