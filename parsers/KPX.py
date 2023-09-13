@@ -28,7 +28,7 @@ KR_CURRENCY = "KRW"
 KR_SOURCE = "new.kpx.or.kr"
 REAL_TIME_URL = "https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000"
 PRICE_URL = "https://new.kpx.or.kr/smpInland.es?mid=a10606080100&device=pc"
-LONG_TERM_PRODUCTION_URL = (
+HISTORICAL_PRODUCTION_URL = (
     "https://new.kpx.or.kr/powerSource.es?mid=a10606030000&device=chart"
 )
 
@@ -144,9 +144,9 @@ def get_historical_prod_data(
 
     # CSRF token is needed to access the production data
     logger.debug(
-        f"Fetching CSRF token to access production data from {LONG_TERM_PRODUCTION_URL}"
+        f"Fetching CSRF token to access production data from {HISTORICAL_PRODUCTION_URL}"
     )
-    session.get(LONG_TERM_PRODUCTION_URL)
+    session.get(HISTORICAL_PRODUCTION_URL, verify=False)
     cookies_dict = session.cookies.get_dict()
 
     payload = {
@@ -154,11 +154,11 @@ def get_historical_prod_data(
         "device": "chart",
         "view_sdate": target_datetime_formatted_daily,
         "view_edate": target_datetime_formatted_daily,
-        "_csrf": cookies_dict["XSRF-TOKEN"],
+        "_csrf": cookies_dict.get("XSRF-TOKEN", None),
     }
 
-    logger.debug(f"Fetching production data from {LONG_TERM_PRODUCTION_URL}")
-    res = session.post(LONG_TERM_PRODUCTION_URL, payload)
+    logger.debug(f"Fetching production data from {HISTORICAL_PRODUCTION_URL}")
+    res = session.post(HISTORICAL_PRODUCTION_URL, payload)
 
     assert res.status_code == 200
 
