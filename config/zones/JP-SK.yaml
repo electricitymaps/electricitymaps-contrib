@@ -31,5 +31,5 @@ emissionFactors:
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
-  production: JP_SK.fetch_production
+  production: JP.fetch_production
 timezone: Asia/Tokyo
