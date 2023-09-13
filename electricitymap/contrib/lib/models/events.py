@@ -232,13 +232,13 @@ class Event(BaseModel, ABC):
     datetime: datetime
     source: str
 
-    @validator("zoneKey")
+    @validator("zoneKey", allow_reuse=True)
     def _validate_zone_key(cls, v):
         if v not in ZONES_CONFIG:
             raise ValueError(f"Unknown zone: {v}")
         return v
 
-    @validator("datetime")
+    @validator("datetime", allow_reuse=True)
     def _validate_datetime(cls, v: dt.datetime, values: dict[str, Any]):
         if v.tzinfo is None:
             raise ValueError(f"Missing timezone: {v}")
@@ -331,7 +331,7 @@ class Exchange(Event):
 
     netFlow: float
 
-    @validator("zoneKey")
+    @validator("zoneKey", allow_reuse=True)
     def _validate_zone_key(cls, v: str):
         if "->" not in v:
             raise ValueError(f"Not an exchange key: {v}")
@@ -342,7 +342,7 @@ class Exchange(Event):
             raise ValueError(f"Unknown zone: {v}")
         return v
 
-    @validator("netFlow")
+    @validator("netFlow", allow_reuse=True)
     def _validate_value(cls, v: float):
         # TODO in the future those checks should be performed in the data quality layer.
         if abs(v) > 100000:
