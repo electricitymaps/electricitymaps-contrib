@@ -165,27 +165,15 @@ def parse_chart_prod_data(
 
         dt = TIMEZONE.localize(datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M"))
 
-        production_mix = ProductionMix()
-        production_mix.add_value(
-            "coal",
-            round(float(item["coal"]) + float(item["localCoal"]), 5),
+        production_mix = ProductionMix(
+            coal=float(item["coal"]) + float(item["localCoal"]),
+            gas=float(item["gas"]),
+            hydro=float(item["waterPower"]),
+            nuclear=float(item["nuclearPower"]),
+            oil=float(item["oil"]),
+            unknown=float(item["newRenewable"]),
         )
-        production_mix.add_value(
-            "gas",
-            round(float(item["gas"]), 5),
-        )
-        production_mix.add_value(
-            "hydro",
-            round(float(item["waterPower"]), 5),
-        )
-        production_mix.add_value(
-            "nuclear",
-            round(float(item["nuclearPower"]), 5),
-        )
-        production_mix.add_value("oil", round(float(item["oil"]), 5))
-        production_mix.add_value("unknown", round(float(item["newRenewable"]), 5))
-        storage_mix = StorageMix()
-        storage_mix.add_value("hydro", -round(float(item["raisingWater"]), 5))
+        storage_mix = StorageMix(hydro=-float(item["raisingWater"]))
         production_list.append(
             zoneKey=zone_key,
             datetime=dt,
