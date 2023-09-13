@@ -1,10 +1,10 @@
+from datetime import datetime
 from json import loads
 
 from pkg_resources import resource_string
 from requests import Session
 from requests_mock import GET, Adapter
 from snapshottest import TestCase
-from datetime import datetime
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.KPX import REAL_TIME_URL, fetch_consumption, fetch_production
