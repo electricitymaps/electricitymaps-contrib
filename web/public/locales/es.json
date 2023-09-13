@@ -90,6 +90,7 @@
       "yearly": "Intensidad de carbono en los últimos 5 años"
     },
     "Getdata": "Obtener datos históricos por horas y en tiempo real + pronóstico con la API de Electricity Maps",
+    "not-enough-data": "No hay datos suficientes disponibles para mostrar el gráfico",
     "emissionsorigin": {
       "hourly": "Origen de las emisiones en las últimas 24 horas"
     },
