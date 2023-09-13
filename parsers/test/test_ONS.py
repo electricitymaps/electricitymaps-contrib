@@ -19,10 +19,10 @@ class ProductionTestcase(unittest.TestCase):
     """
 
     def setUp(self):
-        with open("parsers/test/mocks/BR/BR.json") as f:
+        with open("parsers/test/mocks/ONS/BR.json") as f:
             self.fake_data = json.load(f)
 
-        with patch("parsers.BR.get_data", return_value=self.fake_data) as gd:
+        with patch("parsers.ONS.get_data", return_value=self.fake_data) as gd:
             self.data = ONS.fetch_production(ZoneKey("BR-CS"))
 
     def test_is_not_none(self):
@@ -57,10 +57,10 @@ class ProductionTestcase(unittest.TestCase):
         self.assertIsInstance(data[0]["storage"], dict)
 
     def test_negative_solar(self):
-        with open("parsers/test/mocks/BR/BR_negative_solar.json") as f:
+        with open("parsers/test/mocks/ONS/BR_negative_solar.json") as f:
             fake_data = json.load(f)
 
-            with patch("parsers.BR.get_data", return_value=fake_data) as gd:
+            with patch("parsers.ONS.get_data", return_value=fake_data) as gd:
                 data = ONS.fetch_production(ZoneKey("BR-CS"))
                 self.assertEqual(data[0]["production"]["solar"], 0)
 
@@ -72,11 +72,11 @@ class ExchangeTestcase(unittest.TestCase):
     """
 
     def setUp(self):
-        with open("parsers/test/mocks/BR/BR.json") as f:
+        with open("parsers/test/mocks/ONS/BR.json") as f:
             self.fake_data = json.load(f)
 
-        with patch("parsers.BR.get_data", return_value=self.fake_data) as gd:
-            self.data = ONS.fetch_exchange("BR-S", "UY")
+        with patch("parsers.ONS.get_data", return_value=self.fake_data) as gd:
+            self.data = ONS.fetch_exchange("BR-S", "UY")[0]
 
     def test_is_not_none(self):
         data = self.data
@@ -107,11 +107,11 @@ class RegionTestcase(unittest.TestCase):
     """
 
     def setUp(self):
-        with open("parsers/test/mocks/BR/BR.json") as f:
+        with open("parsers/test/mocks/ONS/BR.json") as f:
             self.fake_data = json.load(f)
 
-        with patch("parsers.BR.get_data", return_value=self.fake_data) as gd:
-            self.data = ONS.fetch_region_exchange("BR-N", "BR-NE")
+        with patch("parsers.ONS.get_data", return_value=self.fake_data) as gd:
+            self.data = ONS.fetch_exchange("BR-N", "BR-NE")[0]
 
     def test_is_not_none(self):
         data = self.data
