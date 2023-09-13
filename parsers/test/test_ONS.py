@@ -6,7 +6,7 @@ import json
 import unittest
 from unittest.mock import patch
 
-from arrow import get
+from datetime import datetime
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ONS
@@ -41,7 +41,7 @@ class ProductionTestcase(unittest.TestCase):
 
     def test_correct_datetime(self):
         data = self.data
-        expected_dt = get("2018-01-27T20:19:00-02:00").datetime
+        expected_dt = datetime.fromisoformat("2018-01-27T20:19:00-02:00")
         self.assertEqual(data[0]["datetime"], expected_dt)
 
     def test_source(self):
@@ -88,7 +88,7 @@ class ExchangeTestcase(unittest.TestCase):
 
     def test_correct_datetime(self):
         data = self.data
-        expected_dt = get("2018-01-27T20:19:00-02:00").datetime
+        expected_dt = datetime.fromisoformat("2018-01-27T20:19:00-02:00")
         self.assertEqual(data["datetime"], expected_dt)
 
     def test_flow(self):
@@ -123,7 +123,7 @@ class RegionTestcase(unittest.TestCase):
 
     def test_correct_datetime(self):
         data = self.data
-        expected_dt = get("2018-01-27T20:19:00-02:00").datetime
+        expected_dt = datetime.fromisoformat("2018-01-27T20:19:00-02:00")
         self.assertEqual(data["datetime"], expected_dt)
 
     def test_flow(self):
