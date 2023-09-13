@@ -134,43 +134,12 @@ def fetch_price(
     return price_list.to_list()
 
 
-def _parse_long_term_prod_data(html: str) -> Dict[datetime, ProductionMix]:
-    all_data = {}
-    soup = BeautifulSoup(html, "html.parser")
-    table_rows = soup.find_all("tr")[1:]
-    for row in table_rows:
-        sanitized_date = [value[:-1] for value in row.find_all("td")[0].text.split(" ")]
-        curr_prod_datetime_string = (
-            "-".join(sanitized_date[:3]) + "T" + ":".join(sanitized_date[3:]) + ":00"
-        )
-        dt = arrow.get(
-            curr_prod_datetime_string, "YYYY-MM-DDTHH:mm:ss", tzinfo=TIMEZONE
-        ).datetime
-
-        row_values = row.find_all("td")
-        production_values = [
-            int("".join(value.text.split(","))) for value in row_values[1:]
-        ]
-
-        # order of production_values
-        # 0. other, 1. gas, 2. renewable, 3. coal, 4. nuclear
-        # other can be negative as well as positive due to pumped hydro
-        production_mix = ProductionMix()
-        production_mix.add_value("unknown", production_values[0] + production_values[2])
-        production_mix.add_value("gas", production_values[1])
-        production_mix.add_value("coal", production_values[3])
-        production_mix.add_value("nuclear", production_values[4])
-
-        all_data[dt] = production_mix
-    return all_data
-
-
-def get_long_term_prod_data(
+def get_historical_prod_data(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> ProductionBreakdownList:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
 
     # CSRF token is needed to access the production data
@@ -194,25 +163,50 @@ def get_long_term_prod_data(
     assert res.status_code == 200
 
     production_list = ProductionBreakdownList(logger)
-    events = _parse_long_term_prod_data(res.text)
-    for dt, event in events.items():
+    soup = BeautifulSoup(res.text, "html.parser")
+    table_rows = soup.find_all("tr")[1:]
+    for row in table_rows:
+        sanitized_date = [value[:-1] for value in row.find_all("td")[0].text.split(" ")]
+        curr_prod_datetime_string = (
+            "-".join(sanitized_date[:3]) + "T" + ":".join(sanitized_date[3:]) + ":00"
+        )
+        dt = arrow.get(
+            curr_prod_datetime_string, "YYYY-MM-DDTHH:mm:ss", tzinfo=TIMEZONE
+        ).datetime
+
+        row_values = row.find_all("td")
+        production_values = [
+            int("".join(value.text.split(","))) for value in row_values[1:]
+        ]
+
+        # order of production_values
+        # 0. other, 1. gas, 2. renewable, 3. coal, 4. nuclear
+        # other can be negative as well as positive due to pumped hydro
+        production_mix = ProductionMix()
+        production_mix.add_value("unknown", production_values[0] + production_values[2])
+        production_mix.add_value("gas", production_values[1])
+        production_mix.add_value("coal", production_values[3])
+        production_mix.add_value("nuclear", production_values[4])
         production_list.append(
             zoneKey=zone_key,
             datetime=dt,
             source=KR_SOURCE,
-            production=event,
+            production=production_mix,
         )
-    return production_list.to_list()
+    return production_list
 
 
-def _parse_real_time_chart_data(
-    html: str,
-) -> Dict[datetime, Dict[str, Dict[str, Union[ProductionMix, StorageMix]]]]:
-    """
-    Extracts generation breakdown chart data from the source code of the page.
-    """
+def get_real_time_prod_data(
+    zone_key: ZoneKey = ZoneKey("KR"),
+    session: Session = Session(),
+    logger: Logger = getLogger(__name__),
+) -> ProductionBreakdownList:
+    res = session.get(REAL_TIME_URL, verify=False)
+
+    production_list = ProductionBreakdownList(logger)
+
     # Extract object with data
-    data_source = re.search(r"var ictArr = (\[\{.+\}\]);", html).group(1)
+    data_source = re.search(r"var ictArr = (\[\{.+\}\]);", res.text).group(1)
     # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}).
     # Will break if other keys than these are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
     data_source = re.sub(
@@ -222,14 +216,11 @@ def _parse_real_time_chart_data(
     )
     json_obj = json.loads(data_source)
 
-    timed_data = {}
-
     for item in json_obj:
         if item["regDate"] == "0":
             break
 
-        date = datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M")
-        date = arrow.get(date, TIMEZONE).datetime
+        dt = TIMEZONE.localize(datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M"))
 
         production_mix = ProductionMix()
         production_mix.add_value(
@@ -252,31 +243,15 @@ def _parse_real_time_chart_data(
         production_mix.add_value("unknown", round(float(item["newRenewable"]), 5))
         storage_mix = StorageMix()
         storage_mix.add_value("hydro", -round(float(item["raisingWater"]), 5))
-        timed_data[date] = {"production": production_mix, "storage": storage_mix}
-
-    return timed_data
-
-
-def get_granular_real_time_prod_data(
-    zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
-    logger: Logger = getLogger(__name__),
-) -> List[dict]:
-    res = session.get(REAL_TIME_URL, verify=False)
-
-    production_list = ProductionBreakdownList(logger)
-
-    events = _parse_real_time_chart_data(res.text)
-    for dt, event in events.items():
         production_list.append(
             zoneKey=zone_key,
             datetime=dt,
             source=KR_SOURCE,
-            production=event["production"],
-            storage=event["storage"],
+            production=production_mix,
+            storage=storage_mix,
         )
 
-    return production_list.to_list()
+    return production_list
 
 
 @refetch_frequency(timedelta(minutes=5))
@@ -292,23 +267,19 @@ def fetch_production(
             "This parser is not able to parse dates before 2021-12-22."
         )
 
-    _now = arrow.now(TIMEZONE)
-
     if target_datetime is None:
-        target_datetime = _now.datetime
-
-    if target_datetime.date() == _now.date():
-        return get_granular_real_time_prod_data(
+        production_list = get_real_time_prod_data(
             zone_key=zone_key, session=session, logger=logger
         )
 
     else:
-        return get_long_term_prod_data(
+        production_list = get_historical_prod_data(
             zone_key=zone_key,
             session=session,
             target_datetime=target_datetime,
             logger=logger,
         )
+    return production_list.to_list()
 
 
 if __name__ == "__main__":
