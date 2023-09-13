@@ -1,10 +1,10 @@
 import logging
 import unittest
 from datetime import datetime, timezone
+from unittest.mock import patch
 
 import freezegun
 import pytz
-from unittest.mock import patch
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (

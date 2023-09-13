@@ -28,9 +28,7 @@ class Test_IN_KA(unittest.TestCase):
             self.assertIsNotNone(data["consumption"])
             self.assertEqual(data["consumption"], 7430.0)
         except Exception as ex:
-            self.fail(
-                f"IN_KA.fetch_consumption() raised Exception: {ex.message}"
-            )
+            self.fail(f"IN_KA.fetch_consumption() raised Exception: {ex.message}")
 
     def test_fetch_production(self):
         response_text = resource_string("parsers.test.mocks", "IN_KA_StateGen.html")
@@ -52,9 +50,7 @@ class Test_IN_KA(unittest.TestCase):
             self.assertEqual(data["production"]["hydro"], 2434.0)
             self.assertIsNotNone(data["storage"])
         except Exception as ex:
-            self.fail(
-                f"IN_KA.fetch_production() raised Exception: {ex.message}"
-            )
+            self.fail(f"IN_KA.fetch_production() raised Exception: {ex.message}")
 
 
 if __name__ == "__main__":

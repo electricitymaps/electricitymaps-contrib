@@ -3,10 +3,10 @@
 """Parser for Moldova."""
 
 from collections import namedtuple
+from collections.abc import Callable
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import List, Optional, Union
-from collections.abc import Callable
 
 import arrow
 from requests import Session
@@ -158,7 +158,7 @@ def get_archive_data(session: Session | None = None, dates=None) -> list:
                 arrow.get(
                     entry[0], archive_datetime_format, tzinfo="Europe/Chisinau"
                 ).datetime,
-                *map(float, entry[1:])
+                *map(float, entry[1:]),
             )
             for entry in data
         ]

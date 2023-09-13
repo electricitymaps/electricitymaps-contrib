@@ -1,9 +1,9 @@
 import logging
 import unittest
 from datetime import datetime, timezone
+from unittest.mock import patch
 
 import numpy as np
-from unittest.mock import patch
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,

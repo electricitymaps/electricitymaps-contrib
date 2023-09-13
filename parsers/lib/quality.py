@@ -81,7 +81,9 @@ def validate_exchange(item, k) -> None:
     if "datetime" not in item:
         raise ValidationError("datetime was not returned for %s" % k)
     if type(item["datetime"]) != datetime:
-        raise ValidationError("datetime {} is not valid for {}".format(item["datetime"], k))
+        raise ValidationError(
+            "datetime {} is not valid for {}".format(item["datetime"], k)
+        )
     validate_reasonable_time(item, k)
     if "netFlow" not in item:
         raise ValidationError("netFlow was not returned for %s" % k)
@@ -176,9 +178,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             )
         not_allowed_keys = set(obj["storage"]) - {"battery", "hydro"}
         if not_allowed_keys:
-            raise ValidationError(
-                f"unexpected keys in storage: {not_allowed_keys}"
-            )
+            raise ValidationError(f"unexpected keys in storage: {not_allowed_keys}")
     for key, value in obj["production"].items():
         if value is None:
             continue

@@ -1,7 +1,7 @@
+from collections.abc import Mapping
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Dict, List, Optional, Tuple, Union
-from collections.abc import Mapping
 
 import arrow
 import pandas as pd
@@ -101,9 +101,9 @@ def process_solar_rooftop(df: pd.DataFrame) -> pd.DataFrame:
 def get_capacities(filtered_datasets: list[Mapping], region: str) -> pd.Series:
     # Parse capacity data
     capacities = {
-            obj["id"].split(".")[-2].upper(): obj.get("x_capacity_at_present")
-            for obj in filtered_datasets
-            if obj["region"] == region
+        obj["id"].split(".")[-2].upper(): obj.get("x_capacity_at_present")
+        for obj in filtered_datasets
+        if obj["region"] == region
     }
     return pd.Series(capacities)
 

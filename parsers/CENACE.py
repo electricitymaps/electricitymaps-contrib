@@ -164,9 +164,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     if zone_key != "MX":
-        raise ValueError(
-            f"MX parser cannot fetch production for zone {zone_key}"
-        )
+        raise ValueError(f"MX parser cannot fetch production for zone {zone_key}")
 
     if target_datetime is None:
         raise ValueError(
@@ -223,9 +221,7 @@ def fetch_exchange(
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     if sorted_zone_keys not in EXCHANGES:
-        raise NotImplementedError(
-            f"Exchange pair not supported: {sorted_zone_keys}"
-        )
+        raise NotImplementedError(f"Exchange pair not supported: {sorted_zone_keys}")
 
     s = session or Session()
 

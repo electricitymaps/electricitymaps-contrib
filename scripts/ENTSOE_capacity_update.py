@@ -148,9 +148,7 @@ def main():
 
     if data_file is not None:
         if not os.path.exists(data_file):
-            print(
-                f"ERROR: Data file {data_file} does not exist.", file=sys.stderr
-            )
+            print(f"ERROR: Data file {data_file} does not exist.", file=sys.stderr)
             sys.exit(1)
         data = parse_from_csv(data_file)
     else:

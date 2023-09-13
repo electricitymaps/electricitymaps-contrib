@@ -49,9 +49,7 @@ def fetch_solar_production(
         # Converting to MW
         solar *= 0.001
     except KeyError:
-        logger.warning(
-            f"No value for Solar power production on {solar_production_dt}"
-        )
+        logger.warning(f"No value for Solar power production on {solar_production_dt}")
         solar = None
 
     return solar

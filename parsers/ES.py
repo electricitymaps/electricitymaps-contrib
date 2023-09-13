@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
+from collections.abc import Callable
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Dict, List, Optional
-from collections.abc import Callable
 
 # package "ree" is used to parse data from www.ree.es
 # maintained on github by @hectorespert at https://github.com/hectorespert/ree

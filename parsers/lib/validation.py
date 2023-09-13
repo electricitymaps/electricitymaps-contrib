@@ -148,9 +148,7 @@ def validate_exchange(
     return datapoint
 
 
-def validate(
-    datapoint: dict, logger: Logger | None, **kwargs
-) -> dict[str, Any] | None:
+def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any] | None:
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.

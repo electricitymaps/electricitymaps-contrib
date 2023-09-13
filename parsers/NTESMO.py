@@ -4,10 +4,10 @@ Mapping is done using EDL's website and Territory Generation.
 https://edlenergy.com/project/pine-creek/
 https://territorygeneration.com.au/about-us/our-power-stations/
 """
+from collections.abc import Callable
 from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import Dict, List, TypedDict
-from collections.abc import Callable
 
 import arrow
 import pandas as pd

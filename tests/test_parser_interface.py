@@ -1,10 +1,10 @@
 import glob
 import inspect
 import unittest
+from collections.abc import Callable
 from inspect import isfunction
 from pathlib import Path
 from typing import Any, Dict, List, NamedTuple, Union
-from collections.abc import Callable
 
 from electricitymap.contrib.config.model import CONFIG_MODEL
 

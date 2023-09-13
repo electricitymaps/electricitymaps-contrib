@@ -190,9 +190,7 @@ def fetch_exchange(
         direction = 1
         relevant_exchanges = ["SCH - HQ_CEDARS", "SCH - HQ - NY"]
     else:
-        raise NotImplementedError(
-            f"Exchange pair not supported: {sorted_zone_keys}"
-        )
+        raise NotImplementedError(f"Exchange pair not supported: {sorted_zone_keys}")
 
     if target_datetime:
         # ensure we have an arrow object

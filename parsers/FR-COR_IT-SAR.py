@@ -1,7 +1,7 @@
+from collections.abc import Callable
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Dict, List, Literal, Optional
-from collections.abc import Callable
 
 from requests import Session
 

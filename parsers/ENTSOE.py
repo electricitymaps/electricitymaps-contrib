@@ -468,9 +468,7 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
 }
 
 
-def closest_in_time_key(
-    x, target_datetime: datetime | None, datetime_key="datetime"
-):
+def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datetime"):
     if target_datetime is None:
         target_datetime = datetime.utcnow()
     if isinstance(target_datetime, datetime):

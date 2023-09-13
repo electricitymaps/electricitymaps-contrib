@@ -1,6 +1,6 @@
+from collections.abc import Callable
 from datetime import date, datetime
 from typing import Dict, List, Optional, Tuple, Union
-from collections.abc import Callable
 
 from pydantic import (
     BaseModel,
@@ -200,9 +200,7 @@ class CategoryContribution(StrictBaseModelWithAlias):
     biomass: ModeCategoryContribution | list[ModeCategoryContribution] | None
     coal: ModeCategoryContribution | list[ModeCategoryContribution] | None
     gas: ModeCategoryContribution | list[ModeCategoryContribution] | None
-    geothermal: None | (
-        ModeCategoryContribution | list[ModeCategoryContribution]
-    )
+    geothermal: None | (ModeCategoryContribution | list[ModeCategoryContribution])
     hydro_charge: None | (
         ModeCategoryContribution | list[ModeCategoryContribution]
     ) = Field(None, alias="hydro charge")
@@ -247,12 +245,12 @@ class ModeEmissionFactor(StrictBaseModelWithAlias):
 
 
 class AllModesEmissionFactors(StrictBaseModelWithAlias):
-    battery_charge: None | (
-        list[ModeEmissionFactor] | ModeEmissionFactor
-    ) = Field(None, alias="battery charge")
-    battery_discharge: None | (
-        list[ModeEmissionFactor] | ModeEmissionFactor
-    ) = Field(None, alias="battery discharge")
+    battery_charge: None | (list[ModeEmissionFactor] | ModeEmissionFactor) = Field(
+        None, alias="battery charge"
+    )
+    battery_discharge: None | (list[ModeEmissionFactor] | ModeEmissionFactor) = Field(
+        None, alias="battery discharge"
+    )
     biomass: list[ModeEmissionFactor] | ModeEmissionFactor | None
     coal: list[ModeEmissionFactor] | ModeEmissionFactor | None
     gas: list[ModeEmissionFactor] | ModeEmissionFactor | None
@@ -260,9 +258,9 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
     hydro_charge: list[ModeEmissionFactor] | ModeEmissionFactor | None = Field(
         None, alias="hydro charge"
     )
-    hydro_discharge: None | (
-        list[ModeEmissionFactor] | ModeEmissionFactor
-    ) = Field(None, alias="hydro discharge")
+    hydro_discharge: None | (list[ModeEmissionFactor] | ModeEmissionFactor) = Field(
+        None, alias="hydro discharge"
+    )
     hydro: list[ModeEmissionFactor] | ModeEmissionFactor | None
     nuclear: list[ModeEmissionFactor] | ModeEmissionFactor | None
     oil: list[ModeEmissionFactor] | ModeEmissionFactor | None

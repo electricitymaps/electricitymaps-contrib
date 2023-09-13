@@ -36,9 +36,7 @@ def fetch_production(
     r = session or Session()
 
     if zone_key not in ["DK-DK1", "DK-DK2"]:
-        raise NotImplementedError(
-            f"fetch_production() for {zone_key} not implemented"
-        )
+        raise NotImplementedError(f"fetch_production() for {zone_key} not implemented")
 
     zone = zone_key[-3:]
 

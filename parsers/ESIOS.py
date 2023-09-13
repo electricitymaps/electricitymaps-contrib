@@ -74,9 +74,7 @@ def fetch_exchange(
 
     response: Response = ses.get(url, headers=headers)
     if response.status_code != 200 or not response.text:
-        raise ParserException(
-            "ESIOS", f"Response code: {response.status_code}"
-        )
+        raise ParserException("ESIOS", f"Response code: {response.status_code}")
 
     json = response.json()
     values = json["indicator"]["values"]

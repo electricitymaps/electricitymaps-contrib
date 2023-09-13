@@ -10,9 +10,7 @@ def get_response(zone_key: str, url: str, session: Session | None = None):
     ses = session or Session()
     response: Response = ses.get(url)
     if response.status_code != 200:
-        raise ParserException(
-            zone_key, f"Response code: {response.status_code}"
-        )
+        raise ParserException(zone_key, f"Response code: {response.status_code}")
     return response
 
 
@@ -22,9 +20,7 @@ def get_response_with_params(
     ses = session or Session()
     response: Response = ses.get(url, params=params)
     if response.status_code != 200:
-        raise ParserException(
-            zone_key, f"Response code: {response.status_code}"
-        )
+        raise ParserException(zone_key, f"Response code: {response.status_code}")
     return response
 
 

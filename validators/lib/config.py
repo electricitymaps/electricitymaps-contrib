@@ -1,5 +1,5 @@
-from typing import List
 from collections.abc import Callable
+from typing import List
 
 
 def validator(
