@@ -265,25 +265,21 @@ def get_granular_real_time_prod_data(session: Optional[Session] = None) -> dict:
 
 @refetch_frequency(timedelta(minutes=5))
 def fetch_production(
-    zone_key: str = "KR",
+    zone_key: ZoneKey = ZoneKey("KR"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
 
-    if target_datetime is not None and target_datetime < arrow.get(
-        2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE
+    if target_datetime is not None and target_datetime < datetime(
+        2021, 12, 22, tzinfo=TIMEZONE
     ):
         raise NotImplementedError(
             "This parser is not able to parse dates before 2021-12-22."
         )
-
-    if target_datetime is None:
-        target_datetime = arrow.now(TIMEZONE).datetime
-
     all_data = []
-
-    if target_datetime.date() == arrow.now(TIMEZONE).date():
+    if target_datetime is None:
+        target_datetime = datetime.now(TIMEZONE)
         chart_data = get_granular_real_time_prod_data(session=session)
 
         for datetime_key, chart_data_values in chart_data.items():
@@ -294,6 +290,7 @@ def fetch_production(
                 "production": {},
                 "storage": {},
                 "source": "https://new.kpx.or.kr",
+                "sourceType": "mix",
             }
 
             data["storage"]["hydro"] = -chart_data_values["pumpedHydro"]
@@ -306,11 +303,9 @@ def fetch_production(
             data["production"]["unknown"] = chart_data_values["renewable"]
 
             all_data.append(data)
+        return all_data
 
-    else:
-        all_data = get_long_term_prod_data(
-            session=session, target_datetime=target_datetime
-        )
+    all_data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
 
     return all_data
 
