@@ -1,5 +1,5 @@
 VERSION 0.7
-FROM python:3.8
+FROM python:3.10
 WORKDIR /contrib
 
 src-files:
