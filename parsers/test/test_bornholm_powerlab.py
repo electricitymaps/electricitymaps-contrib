@@ -14,6 +14,7 @@ class TestBornholmPowerlab(TestCase):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
+        self.session.mount("http://", self.adapter)
 
     def test_fetch_production(self):
         production = resource_string(
@@ -24,7 +25,6 @@ class TestBornholmPowerlab(TestCase):
             LATEST_DATA_URL,
             json=loads(production.decode("utf-8")),
         )
-        breakpoint()
         production = fetch_production(
             zone_key=ZoneKey("DK-BHM"),
             session=self.session,

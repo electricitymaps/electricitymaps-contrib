@@ -1,0 +1,44 @@
+{
+    "sub": {
+        "wind_turbines": 8.2,
+        "seacable": -15.4,
+        "factory": 1.2,
+        "solar_cells": 3.6,
+        "houses": 28.4
+    },
+    "seacable": -15.4,
+    "latest": 1694608180,
+    "latest_reading": "2023-09-13 14:29:40",
+    "main": {
+        "production": 13,
+        "consumption": 28.4
+    },
+    "wind_turbines": {
+        "Snorrebakken": 1,
+        "Hasle": 2,
+        "Aakirkeby": 1,
+        "Nylars": 1,
+        "Bodilsker": 1
+    },
+    "houses": {
+        "Svaneke": 2,
+        "Nexoe": 1,
+        "Aakirkeby": 3,
+        "Allinge": 0,
+        "Gudhjem": 2,
+        "Roenne": 0
+    },
+    "factory": {
+        "Roenne": 0
+    },
+    "solar_cells": {
+        "Allinge": 1,
+        "Stenseby": 2,
+        "Roenne": 1
+    },
+    "extras": {
+        "biogas": 1.2,
+        "old_factory": 0,
+        "old_solar_cells": 2.9
+    }
+}
