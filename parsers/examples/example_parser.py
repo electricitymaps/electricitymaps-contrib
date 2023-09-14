@@ -1,6 +1,6 @@
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 from pytz import timezone
 
@@ -22,9 +22,9 @@ from parsers.lib.exceptions import ParserException
 def fetch_production(
     zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """
         Requests the last known production mix (in MW) of a given country.
 
@@ -138,9 +138,9 @@ def fetch_production(
 def fetch_price(
     zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """
     Requests the last known power price of a given country.
 
@@ -208,9 +208,9 @@ def fetch_exchange(
     zone_key1: ZoneKey = ZoneKey("XX"),
     zone_key2: ZoneKey = ZoneKey("YY"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """
     Requests the last known power exchange (in MW) between two countries.
 
@@ -279,9 +279,9 @@ def fetch_exchange(
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
+) -> dict[str, Any] | list[dict[str, Any]]:
     """
     Requests the last known power consumption (in MW) of a given zone.
 
@@ -344,9 +344,9 @@ def fetch_consumption(
 def fetch_total_production(
     zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[dict, List[dict]]:
+) -> dict | list[dict]:
     """
     Requests the last known power production (in MW) of a given zone.
 

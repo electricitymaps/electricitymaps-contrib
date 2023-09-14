@@ -4,7 +4,6 @@ import urllib
 from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Optional
 
 import pandas as pd
 import pytz
@@ -84,7 +83,7 @@ def parse_date(date, hour):
     return dt
 
 
-def fetch_csv_for_date(dt, session: Optional[Session] = None):
+def fetch_csv_for_date(dt, session: Session | None = None):
     """
     Fetches the whole month of the give datetime.
     returns the data as a DataFrame.
@@ -159,14 +158,12 @@ def convert_production(series: pd.Series) -> ProductionMix:
 
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if zone_key != "MX":
-        raise ValueError(
-            "MX parser cannot fetch production for zone {}".format(zone_key)
-        )
+        raise ValueError(f"MX parser cannot fetch production for zone {zone_key}")
 
     if target_datetime is None:
         raise ValueError(
@@ -215,17 +212,15 @@ def fetch_MX_exchange(sorted_zone_keys: ZoneKey, s: Session) -> float:
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     if sorted_zone_keys not in EXCHANGES:
-        raise NotImplementedError(
-            "Exchange pair not supported: {}".format(sorted_zone_keys)
-        )
+        raise NotImplementedError(f"Exchange pair not supported: {sorted_zone_keys}")
 
     s = session or Session()
 
@@ -244,8 +239,8 @@ def fetch_exchange(
 @refetch_frequency(timedelta(hours=1))
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets the consumption data for a region using the live dashboard."""

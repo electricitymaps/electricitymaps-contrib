@@ -4,7 +4,6 @@ import json
 import pathlib
 import subprocess
 from os import PathLike, listdir, path
-from typing import Dict, Union
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
 LOCALES_FOLDER_PATH = ROOT_PATH / "web/public/locales/"
@@ -15,13 +14,13 @@ LOCALE_FILE_PATHS = [
 ]
 
 
-def run_shell_command(cmd: str, cwd: Union[PathLike, str] = "") -> str:
+def run_shell_command(cmd: str, cwd: PathLike | str = "") -> str:
     return subprocess.check_output(cmd, shell=True, encoding="utf8", cwd=cwd).rstrip(
         "\n"
     )
 
 
-class JsonFilePatcher(object):
+class JsonFilePatcher:
     """
     A helping hand to patch JSON files.
 
@@ -32,13 +31,13 @@ class JsonFilePatcher(object):
             del f.content[zone]
     """
 
-    def __init__(self, file_path: Union[PathLike, str], indent=2):
+    def __init__(self, file_path: PathLike | str, indent=2):
         self.file_path = file_path
         self.indent = indent
 
     def __enter__(self):
         with open(self.file_path) as f:
-            self.content: Dict = json.load(f)
+            self.content: dict = json.load(f)
 
         return self
 

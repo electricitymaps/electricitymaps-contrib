@@ -25,7 +25,7 @@ class Test_IN_AP(unittest.TestCase):
             self.assertIsNotNone(data["production"])
             self.assertIsNotNone(data["storage"])
         except Exception as ex:
-            self.fail("IN_AP.fetch_production() raised Exception: {0}".format(ex))
+            self.fail(f"IN_AP.fetch_production() raised Exception: {ex}")
 
     def test_fetch_consumption(self):
         try:
@@ -36,7 +36,7 @@ class Test_IN_AP(unittest.TestCase):
             self.assertIsNotNone(data["datetime"])
             self.assertIsNotNone(data["consumption"])
         except Exception as ex:
-            self.fail("IN_AP.fetch_consumption() raised Exception: {0}".format(ex))
+            self.fail(f"IN_AP.fetch_consumption() raised Exception: {ex}")
 
 
 if __name__ == "__main__":

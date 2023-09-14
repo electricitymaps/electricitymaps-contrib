@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import pytz
@@ -75,8 +74,8 @@ def validate_production_data(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "TR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     # For real-time data, the last data point seems to but continously updated thoughout the hour and will be excluded as not final
@@ -114,8 +113,8 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "TR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
@@ -139,8 +138,8 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str = "TR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:

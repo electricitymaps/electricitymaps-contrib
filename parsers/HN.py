@@ -1,7 +1,7 @@
 from csv import reader
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any
 
 from pytz import timezone
 from requests import Response, Session
@@ -38,7 +38,7 @@ EXCHANGE_DIRECTION_MAP = {
 
 def get_data(
     session: Session, type: str = "production"
-) -> Tuple[List[Any], Dict[str, str]]:
+) -> tuple[list[Any], dict[str, str]]:
     """
     Gets the data from otr.ods.org.hn and returns it as a list with
     the data and a dictionary with the plant to type mapping or an exchange mapping.
@@ -79,7 +79,7 @@ def get_data(
 
 
 def format_values(
-    values_by_hour: Dict[int, Any],
+    values_by_hour: dict[int, Any],
     mapping: dict,
     value: str,
     kind: str,
@@ -107,7 +107,7 @@ def get_values(CSV_data: list, mapping: dict, kind: str = "production"):
     Gets the values from the CSV data and returns a dictionary with the values by hour and the date
     """
     values_by_hour = {i: {} for i in range(0, 24)}
-    date: Union[str, None] = None
+    date: str | None = None
     for row in CSV_data:
         if date is None:
             date = row[0] if row[0] != "Fecha" else None
@@ -143,7 +143,7 @@ def get_datetime(date: str, hour: int) -> datetime:
 def fetch_production(
     zone_key: str = "HN",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is not None:
@@ -174,7 +174,7 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is not None:

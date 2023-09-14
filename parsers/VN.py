@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 import arrow
 import pytz
@@ -100,10 +100,9 @@ def data_index_to_valid_time(base_day: datetime, idx: int):
 def fetch_consumption(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
-
+) -> dict[str, Any] | list[dict[str, Any]]:
     request_latest = target_datetime is None
 
     if request_latest:
@@ -159,10 +158,9 @@ def fetch_consumption(
 def fetch_price(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
-
+) -> list[dict] | dict:
     request_latest = target_datetime is None
 
     if request_latest:

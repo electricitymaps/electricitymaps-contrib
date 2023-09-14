@@ -6,7 +6,6 @@ import pprint
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
 
 import arrow
 import pandas as pd
@@ -45,9 +44,9 @@ pp = pprint.PrettyPrinter(indent=4)
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     if target_datetime:
         raise ParserException(
             "KPX.py",
@@ -87,9 +86,9 @@ def fetch_consumption(
 def fetch_price(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     first_available_date = (
         arrow.now(TIMEZONE).shift(days=-6).floor("day").shift(hours=1)
     )
@@ -198,7 +197,7 @@ def get_real_time_prod_data(
 def get_historical_prod_data(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
@@ -230,9 +229,9 @@ def get_historical_prod_data(
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     first_available_date = arrow.get(2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE)
     if target_datetime is not None and target_datetime < first_available_date:
         raise ParserException(

@@ -3,7 +3,7 @@
 import json
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, Optional
+from typing import Any
 
 # The arrow library is used to handle datetimes consistently with other parsers
 import arrow
@@ -65,10 +65,10 @@ def _get_pei_info(requests_obj):
 
 def fetch_production(
     zone_key: str = "CA-PE",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -104,10 +104,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
