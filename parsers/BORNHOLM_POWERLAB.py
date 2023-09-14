@@ -4,7 +4,6 @@ from datetime import datetime
 from logging import Logger, getLogger
 from typing import List, Optional
 
-import arrow
 from pytz import timezone
 from requests import Session
 
