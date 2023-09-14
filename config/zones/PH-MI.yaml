@@ -20,5 +20,5 @@ contributors:
   - pierresegonne
   - xomanuel
 parsers:
-  production: PH.fetch_production
+  production: IEMOP.fetch_production
 timezone: Asia/Manila
