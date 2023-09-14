@@ -617,9 +617,13 @@ def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
     # Flatten columns and make them "production.{mode}"
     df.columns = df.columns.to_series().str.join(".")
     # Handle storage
-    if "production.hydro_storage" in df.columns:
-        df = df.rename(columns={"production.hydro_storage": "storage.hydro"})
-        df["storage.hydro"] *= -1
+    storage_methods = {"hydro_storage": "hydro", "battery": "battery"}
+    for storage_method, storage_mode in storage_methods.items():
+        if f"production.{storage_method}" in df.columns:
+            df = df.rename(
+                columns={f"production.{storage_method}": f"storage.{storage_mode}"}
+            )
+            df[f"storage.{storage_mode}"] *= -1
     return df
 
 
@@ -690,8 +694,8 @@ def fetch_production(
         for mode in [m for m in row.index if "production." in m]:
             production_mix.add_value(mode.replace("production.", ""), row[mode])
         storage_mix = StorageMix()
-        if "storage.hydro" in row.index:
-            storage_mix.add_value("hydro", row["storage.hydro"])
+        for mode in [m for m in row.index if "storage." in m]:
+            storage_mix.add_value(mode.replace("storage.", ""), row[mode])
         production_breakdown.append(
             zone_key,
             tstamp.to_pydatetime(),

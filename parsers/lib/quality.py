@@ -184,7 +184,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             continue
         if value < 0:
             raise ValidationError(
-                "{}: key {} has negative value {}".format(zone_key, key, value)
+                f"{zone_key}: key {key} has negative value {value}"
             )
         # Plausibility Check, no more than 500GW
         if value > 500000:

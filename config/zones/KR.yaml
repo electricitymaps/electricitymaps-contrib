@@ -224,7 +224,7 @@ fallbackZoneMixes:
         unknown: 0.0040307004942505865
         wind: 0.0
 parsers:
-  consumption: KR.fetch_consumption
-  price: KR.fetch_price
-  production: KR.fetch_production
+  consumption: KPX.fetch_consumption
+  price: KPX.fetch_price
+  production: KPX.fetch_production
 timezone: Asia/Seoul
