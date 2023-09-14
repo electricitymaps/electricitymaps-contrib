@@ -1,3 +1,4 @@
+import json
 import logging
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
@@ -20,8 +21,10 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
+REPORTS_ADMIN_URL = "https://www.iemop.ph/wp-admin/admin-ajax.php"
 DIPC_URL = "https://www.iemop.ph/market-data/dipc-energy-results-raw/"
 RTDHS_URL = "https://www.iemop.ph/market-data/rtd-hvdc-schedules/"
+
 TIMEZONE = "Asia/Manila"
 SOURCE = "iemop.ph"
 REGION_TO_ZONE_KEY = {
@@ -462,7 +465,7 @@ class MarketReportsItem(NamedTuple):
 
 
 def get_all_market_reports_items(
-    kind: str, logger: Logger = getLogger(__name__)
+    zone_key: ZoneKey, kind: str, logger: Logger = getLogger(__name__)
 ) -> dict[datetime, MarketReportsItem]:
     """
     Gets a dictionary that converts a date into its code and filename
@@ -477,10 +480,14 @@ def get_all_market_reports_items(
         "page": "1",
         "post_id": KIND_TO_POST_ID[kind],
     }
-    r = requests.post(
-        "https://www.iemop.ph/wp-admin/admin-ajax.php", data=form_data, verify=False
-    )
-    id_to_items = eval(r.text)["data"]
+    r = requests.post(REPORTS_ADMIN_URL, data=form_data, verify=False)
+    id_to_items = json.loads(r.text).get("data", {})
+    if not id_to_items:
+        raise ParserException(
+            parser="PH.py",
+            zone_key=zone_key,
+            message=f"No reports available to fetch {kind} data",
+        )
     datetime_to_items = {}
     for id, items in id_to_items.items():
         market_reports_item = MarketReportsItem(
@@ -489,7 +496,9 @@ def get_all_market_reports_items(
             KIND_TO_URL[kind] + f"?md_file={id}",
         )
         datetime_to_items[market_reports_item.datetime] = market_reports_item
-    logger.info(f"PH - {kind}: Succesfully recovered market reports items")
+    logger.info(
+        f"{zone_key} - {kind}: Succesfully recovered {len(datetime_to_items)} market reports items"
+    )
     return datetime_to_items
 
 
@@ -674,7 +683,7 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    reports_items = get_all_market_reports_items("production", logger)
+    reports_items = get_all_market_reports_items(zone_key, "production", logger)
     reports_items = filter_reports_items(
         "production", zone_key, reports_items, target_datetime
     )
@@ -717,7 +726,9 @@ def fetch_exchange(
 ) -> list[dict] | dict:
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
-    all_exchange_items = get_all_market_reports_items("exchange", logger)
+    all_exchange_items = get_all_market_reports_items(
+        sorted_zone_keys, "exchange", logger
+    )
     reports_items = filter_reports_items(
         "exchange", sorted_zone_keys, all_exchange_items, target_datetime
     )
