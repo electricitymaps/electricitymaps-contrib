@@ -3,7 +3,6 @@ import json
 import time
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
 
 import arrow  # the arrow library is used to handle datetimes
 import pandas as pd
@@ -23,10 +22,10 @@ ids = {
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "DK-DK1",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """
     Queries "Electricity balance Non-Validated" from energinet api
     for Danish bidding zones
@@ -36,9 +35,7 @@ def fetch_production(
     r = session or Session()
 
     if zone_key not in ["DK-DK1", "DK-DK2"]:
-        raise NotImplementedError(
-            "fetch_production() for {} not implemented".format(zone_key)
-        )
+        raise NotImplementedError(f"fetch_production() for {zone_key} not implemented")
 
     zone = zone_key[-3:]
 
@@ -57,7 +54,7 @@ def fetch_production(
         ids["energy_bal"], zone, timestamp
     )
 
-    url = "https://api.energidataservice.dk/datastore_search_sql?sql={}".format(sqlstr)
+    url = f"https://api.energidataservice.dk/datastore_search_sql?sql={sqlstr}"
     response = r.get(url)
 
     # raise errors for responses with an error or no data
@@ -104,7 +101,6 @@ def fetch_production(
     # Format output as a list of dictionaries
     output = []
     for dt in df.index:
-
         data = {
             "zoneKey": zone_key,
             "datetime": None,
@@ -135,8 +131,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "DK-DK1",
     zone_key2: str = "DK-DK2",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -174,7 +170,7 @@ def fetch_exchange(
         "DK-BHM->SE-SE4": '"BornholmSE4"',
     }
     if sorted_keys not in exch_map:
-        raise NotImplementedError("Exchange {} not implemented".format(sorted_keys))
+        raise NotImplementedError(f"Exchange {sorted_keys} not implemented")
 
     timestamp = arrow.get(target_datetime).strftime("%Y-%m-%d %H:%M")
 
@@ -187,7 +183,7 @@ def fetch_exchange(
         exch_map[sorted_keys], ids["real_time"], zone, timestamp
     )
 
-    url = "https://api.energidataservice.dk/datastore_search_sql?sql={}".format(sqlstr)
+    url = f"https://api.energidataservice.dk/datastore_search_sql?sql={sqlstr}"
     response = r.get(url)
 
     # raise errors for responses with an error or no data

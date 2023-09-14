@@ -133,7 +133,6 @@
   "emissionsExportedTo": "%1$s %% of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%1$s %% of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "%1$s %% of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "Bản đồ",
     "mapColors-question": "Những màu trên bản đồ có ý nghĩa gì?",

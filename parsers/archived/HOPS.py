@@ -6,7 +6,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional, Union
 
 import arrow
 import pandas as pd
@@ -16,8 +15,8 @@ URL = "https://www.hops.hr/Home/PowerExchange"
 
 
 def fetch_solar_production(
-    feed_date, session: Optional[Session] = None, logger: Logger = getLogger(__name__)
-) -> Union[float, None]:
+    feed_date, session: Session | None = None, logger: Logger = getLogger(__name__)
+) -> float | None:
     """
     Calls extra resource at https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/<dd.m.yyyy>.json
     to get Solar power production in MW.
@@ -34,7 +33,7 @@ def fetch_solar_production(
     dates = response.json()
     # Use latest file to get more up to date estimation
     solar_url = (
-        "https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/{0}".format(
+        "https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/{}".format(
             dates[-1]["Filename"]
         )
     )
@@ -49,9 +48,7 @@ def fetch_solar_production(
         # Converting to MW
         solar *= 0.001
     except KeyError:
-        logger.warning(
-            "No value for Solar power production on {0}".format(solar_production_dt)
-        )
+        logger.warning(f"No value for Solar power production on {solar_production_dt}")
         solar = None
 
     return solar
@@ -59,8 +56,8 @@ def fetch_solar_production(
 
 def fetch_production(
     zone_key: str = "HR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:

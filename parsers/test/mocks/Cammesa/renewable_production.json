@@ -1,0 +1,162 @@
+[
+    {
+        "momento": "2023-09-07T03:15:00.000-0300",
+        "eolica": 1575.37,
+        "fotovoltaica": 0.0,
+        "biocombustible": 157.63,
+        "hidraulica": 246.69,
+        "cubrimientoDem": 12.37
+    },
+    {
+        "momento": "2023-09-07T00:20:00.000-0300",
+        "eolica": 2009.54,
+        "fotovoltaica": 0.0,
+        "biocombustible": 161.85,
+        "hidraulica": 245.8,
+        "cubrimientoDem": 12.96
+    },
+    {
+        "momento": "2023-09-07T03:45:00.000-0300",
+        "eolica": 1513.85,
+        "fotovoltaica": 0.0,
+        "biocombustible": 159.64,
+        "hidraulica": 247.02,
+        "cubrimientoDem": 12.17
+    },
+    {
+        "momento": "2023-09-07T02:15:00.000-0300",
+        "eolica": 1770.28,
+        "fotovoltaica": 0.0,
+        "biocombustible": 155.44,
+        "hidraulica": 246.63,
+        "cubrimientoDem": 13.06
+    },
+    {
+        "momento": "2023-09-07T04:20:00.000-0300",
+        "eolica": 1445.85,
+        "fotovoltaica": 0.0,
+        "biocombustible": 151.71,
+        "hidraulica": 247.2,
+        "cubrimientoDem": 11.69
+    },
+    {
+        "momento": "2023-09-07T02:45:00.000-0300",
+        "eolica": 1606.52,
+        "fotovoltaica": 0.0,
+        "biocombustible": 157.37,
+        "hidraulica": 247.26,
+        "cubrimientoDem": 12.39
+    },
+    {
+        "momento": "2023-09-07T03:20:00.000-0300",
+        "eolica": 1566.2,
+        "fotovoltaica": 0.0,
+        "biocombustible": 158.4,
+        "hidraulica": 246.96,
+        "cubrimientoDem": 12.39
+    },
+    {
+        "momento": "2023-09-07T01:45:00.000-0300",
+        "eolica": 1900.64,
+        "fotovoltaica": 0.0,
+        "biocombustible": 148.3,
+        "hidraulica": 247.2,
+        "cubrimientoDem": 13.65
+    },
+    {
+        "momento": "2023-09-07T03:50:00.000-0300",
+        "eolica": 1502.28,
+        "fotovoltaica": 0.0,
+        "biocombustible": 161.1,
+        "hidraulica": 246.9,
+        "cubrimientoDem": 12.11
+    },
+    {
+        "momento": "2023-09-07T00:45:00.000-0300",
+        "eolica": 1944.1,
+        "fotovoltaica": 0.0,
+        "biocombustible": 157.2,
+        "hidraulica": 246.63,
+        "cubrimientoDem": 13.24
+    },
+    {
+        "momento": "2023-09-07T02:20:00.000-0300",
+        "eolica": 1745.53,
+        "fotovoltaica": 0.0,
+        "biocombustible": 158.11,
+        "hidraulica": 246.91,
+        "cubrimientoDem": 12.9
+    },
+    {
+        "momento": "2023-09-07T02:50:00.000-0300",
+        "eolica": 1591.1,
+        "fotovoltaica": 0.0,
+        "biocombustible": 157.46,
+        "hidraulica": 246.97,
+        "cubrimientoDem": 12.32
+    },
+    {
+        "momento": "2023-09-07T04:45:00.000-0300",
+        "eolica": 1408.73,
+        "fotovoltaica": 0.0,
+        "biocombustible": 151.6,
+        "hidraulica": 247.04,
+        "cubrimientoDem": 11.45
+    },
+    {
+        "momento": "2023-09-07T01:50:00.000-0300",
+        "eolica": 1871.5,
+        "fotovoltaica": 0.0,
+        "biocombustible": 149.74,
+        "hidraulica": 247.36,
+        "cubrimientoDem": 13.51
+    },
+    {
+        "momento": "2023-09-07T03:55:00.000-0300",
+        "eolica": 1487.07,
+        "fotovoltaica": 0.0,
+        "biocombustible": 160.19,
+        "hidraulica": 246.82,
+        "cubrimientoDem": 11.97
+    },
+    {
+        "momento": "2023-09-07T00:50:00.000-0300",
+        "eolica": 1922.51,
+        "fotovoltaica": 0.0,
+        "biocombustible": 158.55,
+        "hidraulica": 247.32,
+        "cubrimientoDem": 13.11
+    },
+    {
+        "momento": "2023-09-07T02:55:00.000-0300",
+        "eolica": 1570.81,
+        "fotovoltaica": 0.0,
+        "biocombustible": 157.34,
+        "hidraulica": 247.16,
+        "cubrimientoDem": 12.24
+    },
+    {
+        "momento": "2023-09-07T04:50:00.000-0300",
+        "eolica": 1393.86,
+        "fotovoltaica": 0.0,
+        "biocombustible": 150.99,
+        "hidraulica": 247.15,
+        "cubrimientoDem": 11.33
+    },
+    {
+        "momento": "2023-09-07T01:55:00.000-0300",
+        "eolica": 1835.68,
+        "fotovoltaica": 0.0,
+        "biocombustible": 155.96,
+        "hidraulica": 246.86,
+        "cubrimientoDem": 13.44
+    },
+    {
+        "momento": "2023-09-07T04:00:00.000-0300",
+        "eolica": 1483.27,
+        "fotovoltaica": 0.0,
+        "biocombustible": 160.43,
+        "hidraulica": 247.33,
+        "cubrimientoDem": 11.98
+    }
+]

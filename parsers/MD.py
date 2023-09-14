@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 """Parser for Moldova."""
 
 from collections import namedtuple
+from collections.abc import Callable
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Callable, List, Optional, Union
 
 import arrow
 from requests import Session
@@ -125,7 +124,7 @@ def template_exchange_response(
     }
 
 
-def get_archive_data(session: Optional[Session] = None, dates=None) -> list:
+def get_archive_data(session: Session | None = None, dates=None) -> list:
     """
     Returns archive data as a list of ArchiveDatapoint.
 
@@ -158,7 +157,7 @@ def get_archive_data(session: Optional[Session] = None, dates=None) -> list:
                 arrow.get(
                     entry[0], archive_datetime_format, tzinfo="Europe/Chisinau"
                 ).datetime,
-                *map(float, entry[1:])
+                *map(float, entry[1:]),
             )
             for entry in data
         ]
@@ -168,7 +167,7 @@ def get_archive_data(session: Optional[Session] = None, dates=None) -> list:
         )
 
 
-def get_data(session: Optional[Session] = None) -> list:
+def get_data(session: Session | None = None) -> list:
     """Returns data as a list of floats."""
     s = session or Session()
 
@@ -188,8 +187,8 @@ def get_data(session: Optional[Session] = None) -> list:
 
 def fetch_price(
     zone_key: str = "MD",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -210,10 +209,10 @@ def fetch_price(
 
 def fetch_consumption(
     zone_key: str = "MD",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Requests the consumption (in MW) of a given country."""
     if target_datetime:
         archive_data = get_archive_data(session, target_datetime)
@@ -239,10 +238,10 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str = "MD",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Requests the production mix (in MW) of a given country."""
     if target_datetime:
         archive_data = get_archive_data(session, target_datetime)
@@ -308,10 +307,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Requests the last known power exchange (in MW) between two countries."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
@@ -356,14 +355,14 @@ if __name__ == "__main__":
         try:
             result = callable(*args, **kwargs)
             try:
-                print("[{}, ... ({} more elements)]".format(result[0], len(result)))
+                print(f"[{result[0]}, ... ({len(result)} more elements)]")
             except:
                 print(result)
         except Exception as e:
             print(repr(e))
 
     for target_datetime in (None, "2021-07-25T15:00"):
-        print("For target_datetime {}:".format(target_datetime))
+        print(f"For target_datetime {target_datetime}:")
         print("fetch_price() ->")
         try_print(fetch_price, target_datetime=target_datetime)
         print("fetch_consumption() ->")

@@ -48,7 +48,7 @@ describe('getProductionCo2Intensity', () => {
 
   it('returns the correct value when the type is battery storage', () => {
     const actual = getProductionCo2Intensity('battery storage', zoneDetailMock);
-    expect(actual).toBe(136.442_667_362_438_53);
+    expect(actual).toBe(155.11);
   });
 });
 

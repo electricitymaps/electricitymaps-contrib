@@ -2,17 +2,19 @@ import csv
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
-from typing import List, Optional
 
 from pytz import timezone
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
 pp = PrettyPrinter(indent=4)
 
 TIMEZONE = "Africa/Johannesburg"
+SOURCE = "eskom.co.za"
 
 # Mapping columns to keys
 # Helpful: https://www.eskom.co.za/dataportal/glossary/
@@ -57,9 +59,9 @@ def get_url() -> str:
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("ZA"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     if target_datetime is not None:
         local_target_datetime = target_datetime.astimezone(timezone(TIMEZONE))
         local_one_week_ago = datetime.now(timezone(TIMEZONE)) - timedelta(days=7)
@@ -72,14 +74,14 @@ def fetch_production(
     res: Response = session.get(get_url())
     if not res.ok:
         raise ParserException(
-            "ZA.py",
+            "ESKOM.py",
             f"Exception when fetching production for {zone_key}: error when calling url={get_url()}",
             zone_key=zone_key,
         )
 
     csv_data = csv.reader(res.text.splitlines())
 
-    return_list = []
+    return_list = ProductionBreakdownList(logger)
 
     for row in csv_data:
         if row[0] == "Date_Time_Hour_Beginning":
@@ -91,37 +93,29 @@ def fetch_production(
 
         returned_production = row[1:]  # First column is datetime
 
-        production = {}
-        storage = {}
+        production = ProductionMix()
+        storage = StorageMix()
 
         for index, prod_data_value in enumerate(returned_production):
             prod_data_value = float(prod_data_value)
             if index in PRODUCTION_IDS:
-                if COLUMN_MAPPING[index] in production.keys():
-                    production[COLUMN_MAPPING[index]] += (
-                        prod_data_value if prod_data_value >= 0 else 0
-                    )
-                else:
-                    production[COLUMN_MAPPING[index]] = (
-                        prod_data_value if prod_data_value >= 0 else 0
-                    )
+                production.add_value(
+                    COLUMN_MAPPING[index],
+                    prod_data_value,
+                    correct_negative_with_zero=True,
+                )
             elif index in STORAGE_IDS:
-                if COLUMN_MAPPING[index] in storage.keys():
-                    storage[COLUMN_MAPPING[index]] += prod_data_value * -1
-                else:
-                    storage[COLUMN_MAPPING[index]] = prod_data_value * -1
+                storage.add_value(COLUMN_MAPPING[index], prod_data_value * -1)
 
         return_list.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": returned_datetime,
-                "production": production,
-                "storage": storage,
-                "source": "eskom.co.za",
-            }
+            zoneKey=zone_key,
+            datetime=returned_datetime,
+            production=production,
+            storage=storage,
+            source=SOURCE,
         )
 
-    return return_list
+    return return_list.to_list()
 
 
 if __name__ == "__main__":

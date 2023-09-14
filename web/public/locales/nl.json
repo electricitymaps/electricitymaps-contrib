@@ -112,7 +112,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> van de uitstoot in %4$s <b>%2$s</b> wordt uitgevoerd naar %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> van de elektriciteit in %4$s <b>%2$s</b> wordt ingevoerd vanuit %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> van de uitstoot in %4$s <b>%2$s</b> wordt ingevoerd vanuit %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq per minuut",
   "zoneShortName": {
     "AL": {
       "zoneName": "Albanië"
