@@ -14,7 +14,7 @@ export function InfoModalContent() {
   return (
     <>
       <div
-        className={`block h-72 w-full rounded-t-xl bg-auto bg-top bg-no-repeat`}
+        className={`block w-full rounded-t-xl bg-auto bg-top bg-no-repeat xs:h-60 sm:h-72 md:h-80 lg:h-96`}
         style={{
           backgroundImage: `url("${image}")`,
           backgroundSize: `cover`,
@@ -27,7 +27,7 @@ export function InfoModalContent() {
         <h2 className="mb-2 text-base sm:text-xl">
           Now showing total electricity usage over time!
         </h2>
-        <div className="px-12 text-sm sm:text-base">
+        <div className="text-sm sm:px-12 sm:text-base">
           <p className="mb-4">
             Instead of showing average numbers for the daily, monthly and yearly periods,
             the app now displays the <strong>total amount of electricity</strong>{' '}
