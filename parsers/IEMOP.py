@@ -481,7 +481,7 @@ def get_all_market_reports_items(
         "post_id": KIND_TO_POST_ID[kind],
     }
     r = requests.post(REPORTS_ADMIN_URL, data=form_data, verify=False)
-    id_to_items = json.loads(r.text).get("data", {})
+    id_to_items = r.json().get("data", {})
     if not id_to_items:
         raise ParserException(
             parser="PH.py",
