@@ -4,7 +4,6 @@ import http.client
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 from pytz import timezone
 from requests import Session
@@ -42,8 +41,8 @@ TZ = timezone("Europe/Kiev")
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("UA"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:

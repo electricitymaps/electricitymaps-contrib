@@ -2,7 +2,6 @@ import csv
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
-from typing import List, Optional
 
 from pytz import timezone
 from requests import Response, Session
@@ -60,9 +59,9 @@ def get_url() -> str:
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("ZA"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     if target_datetime is not None:
         local_target_datetime = target_datetime.astimezone(timezone(TIMEZONE))
         local_one_week_ago = datetime.now(timezone(TIMEZONE)) - timedelta(days=7)

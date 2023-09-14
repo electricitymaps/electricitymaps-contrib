@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 """
 This parser returns Gulf Cooperation Council countries (United Arab Emirates, Bahrain, Saudi Arabia, Oman, Qatar, and Kuwait) electricity demand (only consumption, production data is not available)
@@ -16,7 +15,6 @@ import re
 from datetime import datetime
 from logging import Logger, getLogger
 from sys import stderr
-from typing import Optional
 
 from pytz import timezone
 from requests import Session
@@ -49,11 +47,10 @@ TIME_ZONE_MAPPING = {
 
 def fetch_consumption(
     zone_key,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -83,10 +80,10 @@ if __name__ == "__main__":
     """Main method, never used by the electricityMap backend, but handy for testing."""
 
     for i in COUNTRY_CODE_MAPPING:
-        print("fetch_consumption('{0}') ->".format(i))
+        print(f"fetch_consumption('{i}') ->")
         try:
             print(fetch_consumption(i))
         except IndexError as error:
-            print("Could not fetch consumption data for {0}".format(i), file=stderr)
+            print(f"Could not fetch consumption data for {i}", file=stderr)
             print(type(error), ":", error, file=stderr)
         print()

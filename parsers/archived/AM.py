@@ -59,7 +59,7 @@ SOUP_CONTENT_VARIABLES_MAPPING = {
     "[28]": "sparum2",
 }
 
-REGEX = "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?"
+REGEX = r"[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?"
 
 
 def fetch_production(

@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from unittest import TestCase, main
+from unittest.mock import patch
 
-from mock import patch
 from ree import ElHierro, Formentera, Mallorca, Response
 from requests import Session
 

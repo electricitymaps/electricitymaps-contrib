@@ -4,7 +4,6 @@ import math
 from copy import copy
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import pandas as pd
@@ -22,8 +21,8 @@ UTC = pytz.UTC
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "NL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
@@ -160,8 +159,8 @@ def fetch_production(
 
 
 def fetch_production_energieopwek_nl(
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
@@ -193,7 +192,7 @@ def fetch_production_energieopwek_nl(
     return output
 
 
-def get_production_data_energieopwek(date, session: Optional[Session] = None):
+def get_production_data_energieopwek(date, session: Session | None = None):
     r = session or Session()
 
     # The API returns values per day from local time midnight until the last

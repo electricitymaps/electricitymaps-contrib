@@ -1,9 +1,10 @@
 import glob
 import inspect
 import unittest
+from collections.abc import Callable
 from inspect import isfunction
 from pathlib import Path
-from typing import Any, Callable, Dict, List, NamedTuple, Union
+from typing import Any, NamedTuple
 
 from electricitymap.contrib.config.model import CONFIG_MODEL
 
@@ -31,12 +32,12 @@ EXPECTED_MODE_FUNCTION_ARGS = {
 _RETURN_PARSER_TYPE = [
     dict,
     list,
-    List[dict],
-    List[Dict[str, Any]],
-    Union[list, dict],
-    Union[List[dict], dict],
-    Dict[str, Any],
-    Union[Dict[str, Any], List[Dict[str, Any]]],
+    list[dict],
+    list[dict[str, Any]],
+    list | dict,
+    list[dict] | dict,
+    dict[str, Any],
+    dict[str, Any] | list[dict[str, Any]],
 ]
 EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "consumption": _RETURN_PARSER_TYPE,
@@ -82,7 +83,7 @@ def undecorated(o):
 
 class ParserInterfaceTestcase(unittest.TestCase):
     def setUp(self):
-        self.zone_parser_functions: List[ZoneParserFunction] = []
+        self.zone_parser_functions: list[ZoneParserFunction] = []
 
         for model_map in [CONFIG_MODEL.exchanges, CONFIG_MODEL.zones]:
             for zone in model_map.keys():

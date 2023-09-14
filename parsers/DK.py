@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import List, Optional, Union
 
 from requests import Response, Session
 
@@ -23,8 +22,8 @@ EXCHANGE_MAPPING = {
 
 def fetch_data(
     sorted_keys: ZoneKey,
-    session: Optional[Session],
-    target_datetime: Optional[datetime],
+    session: Session | None,
+    target_datetime: datetime | None,
     logger: Logger,
 ) -> dict:
     """
@@ -72,7 +71,7 @@ def fetch_data(
         )
 
 
-def flow(sorted_keys: ZoneKey, datapoint: dict) -> Union[int, float, None]:
+def flow(sorted_keys: ZoneKey, datapoint: dict) -> int | float | None:
     """
     Helper function to extract the net flow from a datapoint.
     """
@@ -102,9 +101,9 @@ def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     sorted_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     data = fetch_data(sorted_keys, session, target_datetime, logger)
     all_exchange_data = ExchangeList(logger)

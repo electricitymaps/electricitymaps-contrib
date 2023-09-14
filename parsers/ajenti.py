@@ -11,7 +11,6 @@ To get the very exact data, we would need to have a parser running constanty to 
 
 import json
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from requests import Session
@@ -131,11 +130,10 @@ def sum_storage_techs(technologies_parsed):
 
 def fetch_production(
     zone_key: str = "AU-TAS-KI",
-    session: Optional[Session] = None,
+    session: Session | None = None,
     target_datetime=None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-
     if target_datetime is not None:
         raise NotImplementedError(
             "The datasource currently implemented is only real time"

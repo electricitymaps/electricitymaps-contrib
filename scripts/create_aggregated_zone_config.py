@@ -30,7 +30,7 @@ def create_aggregated_config(zoneKey: str, timezone: str):
     zone.parsers = None
     for path in Path("config/zones").glob(f"{zoneKey}-*.yaml"):
         if path.is_file():
-            with open(path, "r") as file:
+            with open(path) as file:
                 subzone = yaml.safe_load(file.read())
                 zone.sub_zone_names.append(path.stem)
                 if "contributors" in subzone.keys():

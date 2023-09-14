@@ -4,7 +4,7 @@
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import arrow
 import pandas as pd
@@ -43,9 +43,9 @@ def get_date_range(dt: datetime):
 
 
 def fetch_data(
-    kind: Optional[str] = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    kind: str | None = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
 ) -> dict:
     """- get production data from wrldc.in
     - filter all rows with same hour as target_datetime"""
@@ -171,10 +171,10 @@ def format_consumption_data(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
 
@@ -205,10 +205,10 @@ def fetch_exchange(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("IN-WE"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
     data = fetch_data(

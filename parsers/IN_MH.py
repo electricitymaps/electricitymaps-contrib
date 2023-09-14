@@ -1,6 +1,5 @@
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import cv2
@@ -101,6 +100,7 @@ CS = [
     "CS GEN. TTL.",
 ]
 
+
 # converts image into a black and white
 def RGBtoBW(pil_image):
     # pylint: disable=no-member
@@ -120,11 +120,10 @@ def read_image_sections(location, source):
 # TODO: this function actually fetches consumption data
 def fetch_production(
     zone_key: str = "IN-MH",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -200,5 +199,4 @@ def fetch_production(
 
 
 if __name__ == "__main__":
-
     print(fetch_production())

@@ -6,7 +6,6 @@ import re
 from datetime import datetime
 from logging import Logger, getLogger
 from operator import itemgetter
-from typing import Optional
 
 import arrow
 from requests import Session
@@ -61,7 +60,7 @@ def split_and_sum(expression) -> float:
 
 def fetch_data(
     zone_key: str,
-    session: Optional[Session] = None,
+    session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ):
     session = session or Session()
@@ -86,7 +85,7 @@ def fetch_data(
         i for i, c in enumerate(cells) if c == "(Wind+Solar) Generation"
     ]
     value = cells[wind_solar_index + 1]
-    values["wind"], values["solar"] = [int(v) for v in value.split(" + ")]
+    values["wind"], values["solar"] = (int(v) for v in value.split(" + "))
 
     # get other production values
     for row in rows:
@@ -107,7 +106,7 @@ def fetch_data(
                 else:
                     try:
                         logger.warning(
-                            "Unknown fuel for station name: {}".format(v1),
+                            f"Unknown fuel for station name: {v1}",
                             extra={"key": zone_key},
                         )
                         v2 = split_and_sum(v2)
@@ -115,7 +114,7 @@ def fetch_data(
                     except ValueError as e:
                         # handle float failures
                         logger.warning(
-                            "couldn't convert {} to float".format(v2),
+                            f"couldn't convert {v2} to float",
                             extra={"key": zone_key},
                         )
                         continue
@@ -140,7 +139,7 @@ def fetch_data(
                 if plant_name and plant_name != "GMR":
                     # GMR is outside Gujarat, sometimes plant_name is ''
                     logger.warning(
-                        "Unknown fuel for station name: {}".format(plant_name),
+                        f"Unknown fuel for station name: {plant_name}",
                         extra={"key": zone_key},
                     )
 
@@ -149,8 +148,8 @@ def fetch_data(
 
 def fetch_production(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -186,8 +185,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key="IN-GJ",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger("IN-GJ"),
 ) -> dict:
     """Method to get consumption data of Gujarat."""

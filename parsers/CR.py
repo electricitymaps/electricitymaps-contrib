@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 
 from datetime import datetime, time
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from requests import Session
@@ -39,7 +37,7 @@ def empty_record(zone_key: str):
     }
 
 
-def extract_exchange(raw_data, exchange) -> Optional[float]:
+def extract_exchange(raw_data, exchange) -> float | None:
     """Extracts flow value and direction for a given exchange."""
     search_value = EXCHANGE_JSON_MAPPING[exchange]
 
@@ -60,8 +58,8 @@ def extract_exchange(raw_data, exchange) -> Optional[float]:
 
 def fetch_production(
     zone_key: str = "CR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     # ensure we have an arrow object.
@@ -126,8 +124,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "CR",
     zone_key2: str = "PA",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Gets an exchange pair from the SIEPAC system."""
@@ -144,7 +142,7 @@ def fetch_exchange(
     raw_data = s.get(EXCHANGE_URL).json()
     raw_flow = extract_exchange(raw_data, sorted_zones)
     if raw_flow is None:
-        raise ValueError("No flow value found for exchange {}".format(sorted_zones))
+        raise ValueError(f"No flow value found for exchange {sorted_zones}")
 
     flow = round(raw_flow, 1)
     dt = arrow.now("UTC-6").floor("minute")

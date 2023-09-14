@@ -6,7 +6,7 @@
 import time
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 import pytz
 from requests import Session
@@ -39,7 +39,7 @@ generation_mapping = {
 
 
 def get_json_data(
-    target_datetime: Optional[datetime], params, session: Optional[Session] = None
+    target_datetime: datetime | None, params, session: Session | None = None
 ) -> dict:
     """Fetches json data for requested params and target_datetime using a post request."""
 
@@ -68,7 +68,7 @@ def get_json_data(
 
 
 def production_data_processer(
-    zone_key: ZoneKey, raw_data: Union[dict, list], logger: Logger
+    zone_key: ZoneKey, raw_data: dict | list, logger: Logger
 ) -> ProductionBreakdownList:
     """
     Takes raw json data and removes unnecessary keys.
@@ -138,10 +138,10 @@ def production_data_processer(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = US_NEISO_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
 
     postdata = {
@@ -160,10 +160,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
@@ -195,7 +195,7 @@ def fetch_exchange(
         }
 
     else:
-        raise Exception("Exchange pair not supported: {}".format(sorted_zone_keys))
+        raise Exception(f"Exchange pair not supported: {sorted_zone_keys}")
 
     postdata["_nstmp_requestType"] = "externalflow"
 

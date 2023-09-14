@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from pytz import timezone
 from requests import Session
@@ -28,10 +28,10 @@ SOURCE = "webaruba.com"
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("AW"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
