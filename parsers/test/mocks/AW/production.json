@@ -1,0 +1,3361 @@
+{
+    "dashboard_top_data": {
+        "TotalPower": {
+            "name": "CurrentTotalPower",
+            "value": "113.062271",
+            "timestamp": "2023-01-01 03:44:00.0"
+        },
+        "Wind": {
+            "name": "CurrentWind",
+            "value": "4.692129",
+            "timestamp": "2023-01-01 03:44:00.0"
+        },
+        "DailyCarbonRed": {
+            "name": "CurrentDailyCarbonReduction",
+            "value": "10156.9131",
+            "timestamp": "2023-01-01 03:45:00.0"
+        },
+        "DailyEquivCars": {
+            "name": "CurrentEquivCars",
+            "value": "256.0",
+            "timestamp": "2023-01-01 03:37:00.0"
+        },
+        "TotalSolar": {
+            "name": "CurrentSolar",
+            "value": 0,
+            "timestamp": "2023-01-01 03:45:00.0"
+        },
+        "Fossil": {
+            "name": "CurrentFossil",
+            "value": "108.567078",
+            "timestamp": "2023-01-01 03:45:00.0"
+        },
+        "RenewablePerc": {
+            "name": "CurrentRenewPerc",
+            "value": "3.67020679",
+            "timestamp": "2023-01-01 03:44:00.0"
+        },
+        "total_bio_gas": {
+            "name": "CurrentBiogas",
+            "value": "0.0",
+            "timestamp": "2023-09-12 03:45:02.384"
+        }
+    },
+    "wind_chart_data": [
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 am",
+            "value": 3643.72683
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5235.969
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2666.82935
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4782.769
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5366.894
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3230.8116
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:14 am",
+            "value": 6545.213000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5930.875999999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 6192.724
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 6828.211310000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3955.93119
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4833.12464
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:45 am",
+            "value": 5004.333500000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3935.789
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 7170.629
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5900.66242
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5961.089
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 6697.287
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "8:28 pm",
+            "value": 3130.10049
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 4490.706999999999
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 4742.485000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4802.91128
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2797.75381
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3361.73582
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "9:45 am",
+            "value": 3190.527
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4410.138
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2717.1850000000004
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3623.58475
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3986.1445400000002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2928.67827
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "11:43 am",
+            "value": 5517.96
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5407.178
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5497.817999999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 6112.15544
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3925.718
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5165.47155
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:45 pm",
+            "value": 5437.39128
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4752.5560000000005
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 7210.91366
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5215.827
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5105.044999999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3955.93119
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "2:43 pm",
+            "value": 6233.009
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 6212.867
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5830.16443
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4893.55135
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 8601.733
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 8177.74
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 pm",
+            "value": 8621.876
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 7341.838
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 10213.1109
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 8309.671
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 8339.885
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 7281.411
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:40 pm",
+            "value": 11975.5545
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 10001.617400000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 10333.9643
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 9749.84
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 15894.2232
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 14625.2632
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:45 pm",
+            "value": 14182.1346
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 15390.6679
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 10333.9643
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 10746.880000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 10827.4479
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 11592.8526
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "8:37 pm",
+            "value": 7130.34439
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 8823.2975
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 8490.952
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 9588.702
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 6001.37329
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 6112.15544
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "9:45 pm",
+            "value": 6504.9285899999995
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 6908.78
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 4168.4317599999995
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 6152.4400000000005
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 6687.216
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 5971.16
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "11:37 pm",
+            "value": 8873.652999999998
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 7331.76661
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 7100.131
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 7382.122
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3764.58025
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4026.429
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:45 am",
+            "value": 3955.93119
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3381.87814
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 6253.151
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5940.946580000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5658.95557
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 6707.358
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "2:42 am",
+            "value": 4470.565
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4893.55135
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4843.196
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5125.187000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3049.5314599999997
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4692.129000000001
+        }
+    ],
+    "solar_chart_data": [
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:26 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 22.554
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 20.411
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:45 am",
+            "value": 29.974
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 29.114
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 442.759
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 499.352
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 515.319
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 1822.689
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "8:44 pm",
+            "value": 1980.059
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 1960.768
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 1436.559
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2771.286
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2752.502
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2776.798
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "9:57 am",
+            "value": 2705.586
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3443.528
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3398.621
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3277.407
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3853.714
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 1640.436
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "11:44 am",
+            "value": 3607.824
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3599.421
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4105.561
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3764.659
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3641.495
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 1732.404
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "1:40 pm",
+            "value": 4142.113
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3888.824
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3899.032
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3985.746
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3660.455
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3537.688
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "2:46 pm",
+            "value": 3974.343
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3290.025
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3240.611
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3065.347
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3206.692
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2198.583
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "4:44 pm",
+            "value": 2191.791
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2149.222
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 732.996
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 469.209
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 221.489
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 447.515
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:41 pm",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 6.455
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "7:46 pm",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 2.807
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 3.979
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "9:36 pm",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "10:45 pm",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.361
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:42 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "1:59 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 8.635
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "3:38 am",
+            "value": 0
+        }
+    ],
+    "solar_chart_data_mega_watt": [
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:26 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.022554
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.020411
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:45 am",
+            "value": 0.029974
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.029114
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.442759
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.499352
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.515319
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 1.822689
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "8:44 pm",
+            "value": 1.980059
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 1.960768
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 1.436559
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2.771286
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2.752502
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2.776798
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "9:57 am",
+            "value": 2.705586
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.443528
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.398621
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.277407
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.853714
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 1.640436
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "11:44 am",
+            "value": 3.607824
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.599421
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4.105561
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.764659
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.641495
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 1.732404
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "1:40 pm",
+            "value": 4.142113
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.888824
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.899032
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.985746
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.660455
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.537688
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "2:46 pm",
+            "value": 3.974343
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.290025
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.240611
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.065347
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 3.206692
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2.198583
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "4:44 pm",
+            "value": 2.191791
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2.149222
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.732996
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.469209
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.221489
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.447515
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:41 pm",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.006455
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "7:46 pm",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0.002807
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0.003979
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "9:36 pm",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "10:45 pm",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.000361
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:42 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "1:59 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.008635
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "3:38 am",
+            "value": 0
+        }
+    ],
+    "carbon_chart_data": [
+        {
+            "timeStamp": 20230101,
+            "time": "12:00 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2027.048
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 4626.284
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 7752.342
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 10156.913
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 14891.432
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:50 am",
+            "value": 17938.312
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 20894.193
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 24296.412
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 30758.834
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 34815.964
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 38702.675
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:47 pm",
+            "value": 43465.765
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 48314.804
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 52846.9
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 57500.88
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 62645.79
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 67558.51
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:46 pm",
+            "value": 73436.66
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 79030.21
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 27176.246
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 27604.054
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 86075.06
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 88621.52
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "11:50 pm",
+            "value": 92142.72
+        }
+    ],
+    "fossil_chart_data": [
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 am",
+            "value": 106968.75
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 107110.283
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 104465.08799999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 103349.80799999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 103114.00600000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 105409.706
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:17 am",
+            "value": 101710
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 102480
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 101731.071
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 101157.982
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 105033.8
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 101787
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:46 am",
+            "value": 101909
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 99789.42000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 104518.48599999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 104179.306
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 104380
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 113172.70700000001
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "8:45 pm",
+            "value": 110604.1
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 110905.7
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 110824.654
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 114327
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 113863.82299999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 113285.79999999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "10:25 am",
+            "value": 116384.766
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 115895.386
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 116303.62700000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 113800
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 117075.356
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 115295
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "11:46 am",
+            "value": 115897.873
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 115075.966
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 121171.78300000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 120271.27799999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 120921.509
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 119356.369
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "1:35 pm",
+            "value": 125733
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 125247.551
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 125602
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 125411.957
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 129066
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 128335.66300000002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "2:46 pm",
+            "value": 128119
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 131877.136
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 131087.37199999997
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 131177.658
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 129876.74
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 134107.956
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "4:43 pm",
+            "value": 133569.626
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 134250.5
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 132713.15000000002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 137173
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 134317
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 134558
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:51 pm",
+            "value": 135250.748
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 126729.225
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 129043.1
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 130196.732
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 129401.00000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 137854.889
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "7:45 pm",
+            "value": 138840
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 138308.655
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 142380.646
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 140205
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 140408.46300000002
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 142218.277
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "9:41 pm",
+            "value": 138270
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 138936.188
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 137968
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 139977.264
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 132908
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 131235
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "10:47 pm",
+            "value": 130998.64199999999
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 131036
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 122145.6
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 123451.744
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 123960.21299999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 118803
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:45 am",
+            "value": 119357.178
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 119564
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 120057
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 114540
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 114077.095
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 113426.979
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "1:48 am",
+            "value": 113827
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 110604.34
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 110940.60500000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 111512.611
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 111855.927
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 108484
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 am",
+            "value": 108567.078
+        }
+    ],
+    "total_chart_data": [
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 am",
+            "value": 110396.614
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 110590.996
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 108159.683
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 108732.559
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 108176.125
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 109377.274
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:23 am",
+            "value": 107002.92199999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 107911.53
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 107969.68800000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 109641.724
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 105816.43699999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 106703.75799999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:45 am",
+            "value": 106683.09999999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 105639.206
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 110689.95700000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 110742.859
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 110829.346
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 118436.37800000001
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "8:45 pm",
+            "value": 117259.514
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 117683.372
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 117075.874
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 120671.028
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 120151.489
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 119666.367
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "9:47 am",
+            "value": 119312.15699999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 123447.31899999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 123458.054
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 123328.606
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 121642.52500000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 125097.96900000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "11:44 am",
+            "value": 124544.212
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 124533.66900000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 124488.22
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 131012.65000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 129072.20000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 130399.40000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:47 pm",
+            "value": 128750.732
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 135545.837
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 135210.55599999998
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 134898.42200000002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 134532.562
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 138639.557
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "2:45 pm",
+            "value": 138005.478
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 138005.478
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 137622.78699999998
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 143057.327
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 142390.4
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 142629.059
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 pm",
+            "value": 142012.909
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 145502.136
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 144628.082
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 144658
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 143298.645
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 147370.728
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:44 pm",
+            "value": 145583.557
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 145221.31300000002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 146245.209
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 141925.3
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 144925.446
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 144572.31100000002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:46 pm",
+            "value": 144128.586
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 149944.031
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 149241.074
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 149482.559
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 150380.035
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 148549.759
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "8:45 pm",
+            "value": 149387.39
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 149171.738
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 149628.876
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 144494.11000000002
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 145059.81399999998
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 145452.59100000001
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "9:45 pm",
+            "value": 145617.1
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 137457.474
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 137612.488
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 138147.217
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 129909.50000000001
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 130379.608
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "11:45 pm",
+            "value": 130147.964
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 130933.121
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 123135.40000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 123744.72799999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 123385.742
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 123941.01000000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "1:39 am",
+            "value": 119656
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 120086.72300000001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 119775.55099999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 120104.76699999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 115574.966
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 116154.38799999999
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "2:45 am",
+            "value": 115912.514
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 116538.414
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 112799.149
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 113102.26400000001
+        }
+    ],
+    "mfa_noord_chart_data": [
+        {
+            "timeStamp": 20230101,
+            "time": "6:44 am",
+            "value": 0.023
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.26
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.45
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 7.716
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 13.135
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 13.329
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "8:38 pm",
+            "value": 29.043
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 31.453
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 31.668
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 21.992
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 44.548
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 46.485
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "9:45 am",
+            "value": 46.691
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 21.361
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 57.277
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 49.59
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 49.502
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 47.632
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "11:26 am",
+            "value": 60.08
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 60.072
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 59.876
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 36.191
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 64.09
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 62.257
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:45 pm",
+            "value": 62.33
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 64.743
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 21.879
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 62.596
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 62.682
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 64.009
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "2:08 pm",
+            "value": 25.205
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 53.652
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 53.484
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 24.926
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 42.466
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 42.291
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "4:39 pm",
+            "value": 28.232
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 27.551
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 27.394
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 15.513
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5.602
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 5.389
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "6:38 pm",
+            "value": 0.004
+        }
+    ],
+    "mfa_noord_current_data": {
+        "timestamp": 1694504704179,
+        "status": 500,
+        "error": "Internal Server Error",
+        "exception": "org.json.JSONException",
+        "message": "JSONObject[\"Value\"] is not a long.",
+        "path": "\/WEB-API-REST\/rest\/getPiData\/solarByLocation\/getCurrent"
+    },
+    "kudawecha_chart_data": [
+        {
+            "timeStamp": 20230101,
+            "time": "6:36 am",
+            "value": 0.006
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.001
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.128
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.497
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.551
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.471
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "7:39 am",
+            "value": 22.186
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 25.188
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 25.357
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 51.321
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 50.297
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 50.119
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "8:45 pm",
+            "value": 49.257
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 74.045
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 76.096
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 76.287
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 69.122
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 90.591
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "10:45 am",
+            "value": 83.87
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 83.592
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 78.643
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 95.634
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 93.594
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 93.575
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "11:52 am",
+            "value": 88.474
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 103.101
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 100.356
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 100.181
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 100.607
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 83.687
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "1:44 pm",
+            "value": 95.946
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 95.766
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 85.293
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 100.912
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 84.356
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 84.259
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "3:42 pm",
+            "value": 50.975
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 50.478
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 59.572
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 44.547
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 71.59
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 45.235
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "4:45 pm",
+            "value": 45.178
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 30.878
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 12.002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 11.738
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.011
+        }
+    ],
+    "kudawecha_current_data": {
+        "timestamp": 1694504704671,
+        "status": 500,
+        "error": "Internal Server Error",
+        "exception": "org.json.JSONException",
+        "message": "JSONObject[\"Value\"] is not a long.",
+        "path": "\/WEB-API-REST\/rest\/getPiData\/solarByLocation\/getCurrent"
+    },
+    "airport_chart_data": [
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 am",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        }
+    ],
+    "airport_current_data": {
+        "timestamp": 1528291826065,
+        "status": 500,
+        "error": "Internal Server Error",
+        "exception": "java.lang.IllegalStateException",
+        "message": "Failed to invoke handler method\nHandlerMethod details: \nController [aw.web.aruba.esb.resources.PieDataResource]\nMethod [public java.lang.String aw.web.aruba.esb.resources.PieDataResource.getSolarDataAirport() throws aw.web.aruba.esb.common.utilities.exceptions.RestAccessException,aw.web.aruba.esb.common.utilities.exceptions.DaoException]\nResolved arguments: \n",
+        "path": "\/WEB-API-REST\/rest\/getPiData\/solar\/getDataAirport"
+    },
+    "abraham_chart_data": [
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 am",
+            "value": 0.01
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.015
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.006
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.016
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:46 am",
+            "value": 0.002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.546
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 1.926
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 2.114
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 38.002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "7:45 am",
+            "value": 37.962
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 37.763
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 31.472
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 69.285
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 69.53
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 69.616
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "9:44 am",
+            "value": 98.292
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 97.044
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 96.828
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 89.424
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 129.477
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 127.116
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "10:45 am",
+            "value": 127.472
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 117.55
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 139.726
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 131.129
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 131.027
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 148.761
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:44 pm",
+            "value": 143.065
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 142.903
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 147.169
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 134.472
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 141.933
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 141.669
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "1:51 pm",
+            "value": 91.012
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 144.476
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 124.465
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 125.04
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 86.061
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 96.535
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "3:45 pm",
+            "value": 96.414
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 97.331
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 65.975
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 66.33
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 66.127
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 23.444
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "5:44 pm",
+            "value": 16.305
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 16.123
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.01
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0.014
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0.017
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "10:26 pm",
+            "value": 0.002
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0.004
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0.006
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0.001
+        },
+        {
+            "timeStamp": 202212365,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "12:35 am",
+            "value": 0.016
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.002
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.016
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.006
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "2:56 am",
+            "value": 0.007
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.018
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0
+        },
+        {
+            "timeStamp": 20230101,
+            "time": "",
+            "value": 0.01
+        }
+    ],
+    "abraham_current_data": {
+        "timestamp": 1694504705672,
+        "status": 500,
+        "error": "Internal Server Error",
+        "exception": "org.json.JSONException",
+        "message": "JSONObject[\"Value\"] is not a long.",
+        "path": "\/WEB-API-REST\/rest\/getPiData\/solarByLocation\/getCurrent"
+    }
+}

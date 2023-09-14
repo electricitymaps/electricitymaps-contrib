@@ -182,6 +182,6 @@ fallbackZoneMixes:
         unknown: 0.20315444640053434
         wind: 0.48304371118414346
 parsers:
-  production: BR.fetch_production
+  production: ONS.fetch_production
 disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 timezone: null

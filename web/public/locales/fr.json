@@ -69,6 +69,7 @@
   },
   "country-history": {
     "Getdata": "Obtenir l’historique et l’API de prévision + marginal",
+    "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "carbonintensity": {
       "hourly": "Intensité carbone des 24 dernières heures",
       "default": "Intensité en carbone dans les derniers %1$s",
