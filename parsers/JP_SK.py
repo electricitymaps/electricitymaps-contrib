@@ -56,14 +56,17 @@ def get_nuclear_power_image_url(url, session) -> (datetime, float):
     session = Session()
     response_main_page = session.get(URL)
     breakpoint()
-    soup = BeautifulSoup(response_main_page.content, 'html.parser')
-    images_links = soup.find_all('img', src=True)
-    filtered_img_tags = [tag for tag in images_links if tag['src'].startswith('ikt721-1')]
+    soup = BeautifulSoup(response_main_page.content, "html.parser")
+    images_links = soup.find_all("img", src=True)
+    filtered_img_tags = [
+        tag for tag in images_links if tag["src"].startswith("ikt721-1")
+    ]
     if len(filtered_img_tags) == 0:
         raise Exception("No image found")
-    img_url = IMAGE_CORE_URL + filtered_img_tags[0]['src']
+    img_url = IMAGE_CORE_URL + filtered_img_tags[0]["src"]
     breakpoint()
     return img_url
+
 
 def get_nuclear_power_from_image_url(img_url, session):
     response_image = session.get(img_url)
@@ -72,12 +75,11 @@ def get_nuclear_power_from_image_url(img_url, session):
     img = image.crop((0, 0, width, height))
     # image.save("test.png")
     text = image_to_string(img)
-    numeric_pattern = r'\d+'
+    numeric_pattern = r"\d+"
     # this method extracts the second number from the image since it is the nuclear power value from the image
     # in case the image format changes, this method will need to be updated
     nuclear_power = float(re.findall(numeric_pattern, text)[1])
     return nuclear_power
-
 
 
 if __name__ == "__main__":
