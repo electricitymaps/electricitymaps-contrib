@@ -450,12 +450,6 @@ RESOURCE_NAME_TO_MODE = {
     "13MALITA_BAT": "battery",
     "13MACO_BAT": "battery",
 }
-STORAGE_METHODS_TO_MODE = {"hydro_storage": "hydro", "battery": "battery"}
-STORAGE_RESOURCE_NAMES = {
-    r_n
-    for r_n, r_m in RESOURCE_NAME_TO_MODE.items()
-    if r_m in STORAGE_METHODS_TO_MODE.keys()
-}
 EXCHANGE_KEY_MAPPING = {
     "MINVIS1": {"zone_key": "PH-MI->PH-VI", "flow": 1},
     "VISLUZ1": {"zone_key": "PH-LU->PH-VI", "flow": -1},
@@ -601,14 +595,8 @@ def filter_for_zone(df: pd.DataFrame, zone_key: ZoneKey) -> pd.DataFrame:
 
 def filter_generation(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    # Filter out non generation resources - with the exception of storage resources
-    df_production = df[df["production"] >= 0]
-    df_storage = df[df["resource_name"].isin(STORAGE_RESOURCE_NAMES)]
-    df = pd.concat([df_production, df_storage])
-    # Remove duplicates if there is discharge
-    df = df.drop_duplicates(
-        subset=["datetime", "zone_key", "resource_name"], keep="first"
-    )
+    # Filter out non generation resources
+    df = df[df["production"] >= 0]
     return df
 
 
@@ -638,7 +626,8 @@ def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
     # Flatten columns and make them "production.{mode}"
     df.columns = df.columns.to_series().str.join(".")
     # Handle storage
-    for storage_method, storage_mode in STORAGE_METHODS_TO_MODE.items():
+    storage_methods = {"hydro_storage": "hydro", "battery": "battery"}
+    for storage_method, storage_mode in storage_methods.items():
         if f"production.{storage_method}" in df.columns:
             df = df.rename(
                 columns={f"production.{storage_method}": f"storage.{storage_mode}"}
