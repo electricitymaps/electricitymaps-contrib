@@ -1,3 +1,4 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
 const defaultConfig = require('tailwindcss/defaultConfig');
 const formsPlugin = require('@tailwindcss/forms');
 const radix = require('tailwindcss-radix');
@@ -9,6 +10,9 @@ const config = {
   darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        xs: '475px',
+      },
       animation: {
         'slide-down': 'slide-down 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
         'slide-up': 'slide-up 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
