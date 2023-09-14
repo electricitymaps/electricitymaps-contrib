@@ -6,6 +6,16 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
+snapshots["TestBornholmPowerlab::test_fetch_exchange 1"] = [
+    {
+        "datetime": "2023-09-13T14:29:40+02:00",
+        "netFlow": -15.4,
+        "sortedZoneKeys": "DK-BHM->SE-SE4",
+        "source": "bornholm.powerlab.dk",
+        "sourceType": "measured",
+    }
+]
+
 snapshots["TestBornholmPowerlab::test_fetch_production 1"] = [
     {
         "datetime": "2023-09-13T14:29:40+02:00",

@@ -26,12 +26,6 @@ SOURCE = "bornholm.powerlab.dk"
 TIMEZONE = timezone("Europe/Copenhagen")
 
 
-def _fetch_data(session: Session):
-    response = session.get(LATEST_DATA_URL)
-    obj = response.json()
-    return obj
-
-
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("DK-BHM"),
     session: Optional[Session] = None,
@@ -59,34 +53,29 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1: str = "DK-BHM",
-    zone_key2: str = "SE-SE4",
+    zone_key1: ZoneKey = ZoneKey("DK-BHM"),
+    zone_key2: ZoneKey = ZoneKey("SE-SE4"),
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> List[dict]:
     """Requests the last known power exchange (in MW) between two countries."""
-
-    obj = _fetch_data(session)
-
-    data = {
-        "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
-        "source": "bornholm.powerlab.dk",
-        "datetime": arrow.get(obj["latest"]).datetime,
-    }
-
-    # Country codes are sorted in order to enable easier indexing in the database
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+    if session is None:
+        session = Session()
+    response = session.get(LATEST_DATA_URL).json()
+    exchange = ExchangeList(logger)
     sorted_zone_keys = sorted([zone_key1, zone_key2])
-    # Here we assume that the net flow returned by the api is the flow from
-    # country1 to country2. A positive flow indicates an export from country1
-    # to country2. A negative flow indicates an import.
-    netFlow = obj["sub"]["seacable"]  # Export is positive
-    # The net flow to be reported should be from the first country to the second
-    # (sorted alphabetically). This is NOT necessarily the same direction as the flow
-    # from country1 to country2
-    data["netFlow"] = netFlow if zone_key1 == sorted_zone_keys[0] else -1 * netFlow
+    flow = 1 if zone_key1 == sorted_zone_keys[0] else -1
+    exchange.append(
+        zoneKey=ZoneKey("->".join(sorted_zone_keys)),
+        datetime=datetime.fromtimestamp(response["latest"], tz=TIMEZONE),
+        source=SOURCE,
+        netFlow=flow * response["sub"]["seacable"],
+    )
 
-    return data
+    return exchange.to_list()
 
 
 if __name__ == "__main__":
@@ -95,4 +84,4 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
     print("fetch_exchange(DK-BHM, SE-SE4) ->")
-    print(fetch_exchange("DK-BHM", "SE-SE4"))
+    print(fetch_exchange())
