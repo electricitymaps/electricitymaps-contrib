@@ -12,7 +12,6 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { useTranslation } from 'translation/translation';
-import FAQPanel from './faq/FAQPanel';
 import { leftPanelOpenAtom } from './panelAtoms';
 import RankingPanel from './ranking-panel/RankingPanel';
 
@@ -121,7 +120,6 @@ export default function LeftPanel() {
             </ValidZoneIdGuardWrapper>
           }
         />
-        <Route path="/faq" element={<FAQPanel />} />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
         <Route path="*" element={<RankingPanel />} />
       </SentryRoutes>

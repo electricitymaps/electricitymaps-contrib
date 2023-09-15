@@ -4,6 +4,7 @@ import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
+import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 
 interface CarbonChartProps {
   datetimes: Date[];
@@ -19,6 +20,11 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const { chartData, layerFill, layerKeys } = data;
 
+  const hasEnoughDataToDisplay = datetimes?.length > 2;
+
+  if (!hasEnoughDataToDisplay) {
+    return <NotEnoughDataMessage title="country-history.carbonintensity" />;
+  }
   return (
     <>
       <ChartTitle translationKey="country-history.carbonintensity" />

@@ -16,7 +16,6 @@ capacity:
   nuclear: 0
   oil: 189.78
   wind: 28
-disclaimer: The data provider (Okiden Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 emissionFactors:
   lifecycle:
     unknown:

@@ -49,7 +49,14 @@
     "renewable": "Renovables",
     "electricityproduction": "Producción de electricidad",
     "electricityconsumption": "Consumo de electricidad",
-    "bysource": "por fuente",
+    "by-source": {
+      "emissions": "Emisiones de CO₂ por fuente",
+      "electricity-production": "Producción de electricidad por fuente",
+      "electricity-consumption": "Consumo de electricidad por fuente",
+      "total-emissions": "Emisiones totales de CO₂ por fuente",
+      "total-electricity-production": "Producción total de electricidad por fuente",
+      "total-electricity-consumption": "Consumo total de electricidad por fuente"
+    },
     "emissions": "Emisiones de CO₂",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o modificar fuente</a>",
     "helpfrom": "con la ayuda de",
@@ -83,6 +90,7 @@
       "yearly": "Intensidad de carbono en los últimos 5 años"
     },
     "Getdata": "Obtener datos históricos por horas y en tiempo real + pronóstico con la API de Electricity Maps",
+    "not-enough-data": "No hay datos suficientes disponibles para mostrar el gráfico",
     "emissionsorigin": {
       "hourly": "Origen de las emisiones en las últimas 24 horas"
     },
@@ -180,7 +188,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> de las emisiones de %4$s <b>%2$s</b> se exporta a %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> de la electricidad de %4$s <b>%2$s</b> se importa de %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> de las emisiones de %4$s <b>%2$s</b> se importa de %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "de CO₂eq por minuto",
+  "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "El mapa",
     "mapColors-question": "¿Qué significan los colores del mapa?",

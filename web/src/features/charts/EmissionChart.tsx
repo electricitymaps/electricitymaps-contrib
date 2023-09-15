@@ -2,6 +2,7 @@ import { TimeAverages } from 'utils/constants';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 
+import { formatCo2 } from 'utils/formatting';
 import { noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
 import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
@@ -20,6 +21,9 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
 
   const { chartData, layerFill, layerKeys } = data;
 
+  const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
+  const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
+
   return (
     <>
       <ChartTitle translationKey="country-history.emissions" />
@@ -28,7 +32,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         data={chartData}
         layerKeys={layerKeys}
         layerFill={layerFill}
-        valueAxisLabel="tCO₂eq / min"
+        valueAxisLabel="CO₂eq"
         markerUpdateHandler={noop}
         markerHideHandler={noop}
         datetimes={datetimes}
@@ -36,6 +40,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         selectedTimeAggregate={timeAverage}
         height="8em"
         tooltip={EmissionChartTooltip}
+        formatTick={formatAxisTick}
       />
     </>
   );

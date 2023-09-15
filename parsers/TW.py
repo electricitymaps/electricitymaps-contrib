@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import dateutil
@@ -15,8 +14,8 @@ from parsers.lib.exceptions import ParserException
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "TW",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:

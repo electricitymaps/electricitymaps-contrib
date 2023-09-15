@@ -33,7 +33,7 @@ class Test_IN_HP(unittest.TestCase):
                 self.assertRegex(logs[0][2], re.compile("UNKNOWN HP PLANT"))
                 self.assertRegex(logs[1][2], re.compile("UNKNOWN ISGS PLANT"))
         except Exception as ex:
-            self.fail("IN_HP.fetch_production() raised Exception: {0}".format(ex))
+            self.fail(f"IN_HP.fetch_production() raised Exception: {ex}")
 
 
 if __name__ == "__main__":

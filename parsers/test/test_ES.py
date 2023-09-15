@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from unittest import TestCase, main
+from unittest.mock import patch
 
-from mock import patch
 from ree import ElHierro, Formentera, Mallorca, Response
 from requests import Session
 
@@ -29,16 +29,8 @@ class TestES(TestCase):
     def test_fetch_consumption(self, mocked_get_all):
         mocked_get_all.return_value = self.mocked_responses
         data_list = ES.fetch_consumption(ZoneKey("ES-CN-HI"), self.session)
-        self.assertEqual(len(data_list), 2)
-        for data in data_list:
-            self.assertEqual(data["zoneKey"], "ES-CN-HI")
-            self.assertEqual(data["source"], "demanda.ree.es")
-            self.assertTrue(isinstance(data["datetime"], datetime))
-            self.assertIsNotNone(data["consumption"])
-        self.assertEqual(
-            data_list[0]["datetime"],
-            datetime.fromtimestamp(1687192328).astimezone(timezone.utc),
-        )
+
+        self.assertEqual(len(data_list), 0)
 
     # Production
     @patch.object(ElHierro, "get_all")

@@ -5,9 +5,10 @@ Usage: poetry run test_parser FR production
 
 import pprint
 import time
+from collections.abc import Callable
 from datetime import datetime, timezone
 from logging import DEBUG, basicConfig, getLogger
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any
 
 import click
 
@@ -28,7 +29,7 @@ basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(messa
 @click.argument("zone")
 @click.argument("data-type", default="")
 @click.option("--target_datetime", default=None, show_default=True)
-def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
+def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
     """
     Parameters
     ----------
@@ -53,9 +54,9 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
     if not data_type:
         data_type = "exchange" if "->" in zone else "production"
 
-    parser: Callable[
-        ..., Union[List[Dict[str, Any]], Dict[str, Any]]
-    ] = PARSER_KEY_TO_DICT[data_type][zone]
+    parser: Callable[..., list[dict[str, Any]] | dict[str, Any]] = PARSER_KEY_TO_DICT[
+        data_type
+    ][zone]
 
     if data_type in ["exchange", "exchangeForecast"]:
         args = zone.split("->")

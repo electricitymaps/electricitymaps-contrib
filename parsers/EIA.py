@@ -10,7 +10,7 @@ https://www.eia.gov/opendata/register.php
 """
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 import arrow
 from dateutil import parser, tz
@@ -374,8 +374,8 @@ EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourl
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     return _fetch(
@@ -390,10 +390,10 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     consumption_list = TotalConsumptionList(logger)
     consumption = _fetch(
         zone_key,
@@ -416,8 +416,8 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     consumptions = TotalConsumptionList(logger)
@@ -440,22 +440,18 @@ def fetch_consumption_forecast(
 
 
 def create_production_storage(
-    fuel_type: str, production_point: Dict[str, float], negative_threshold: float
-) -> Tuple[Optional[ProductionMix], Optional[StorageMix]]:
+    fuel_type: str, production_point: dict[str, float], negative_threshold: float
+) -> tuple[ProductionMix | None, StorageMix | None]:
     """Create a production mix or a storage mix from a production point
     handling the special cases of hydro storage and self consumption"""
     production_value = production_point["value"]
     production_mix = ProductionMix()
     storage_mix = StorageMix()
-    if production_value > 0:
-        production_mix.add_value(fuel_type, production_value)
-        return production_mix, None
-    if fuel_type == "hydro":
+    if production_value < 0 and fuel_type == "hydro":
         # Negative hydro is reported by some BAs, according to the EIA those are pumped storage.
         # https://www.eia.gov/electricity/gridmonitor/about
         storage_mix.add_value("hydro", abs(production_value))
         return None, storage_mix
-
     # production_value > negative_threshold, this is considered to be self consumption and should be reported as 0.
     # Lower values are set to None as they are most likely outliers.
     production_mix.add_value(
@@ -467,11 +463,11 @@ def create_production_storage(
 @refetch_frequency(timedelta(days=1))
 def fetch_production_mix(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    all_production_breakdowns: List[ProductionBreakdownList] = []
+    all_production_breakdowns: list[ProductionBreakdownList] = []
     for production_mode, code in TYPES.items():
         negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
             production_mode, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
@@ -591,10 +587,10 @@ def fetch_production_mix(
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
     exchange_list = ExchangeList(logger)
     exchange = _fetch(
@@ -645,8 +641,8 @@ def fetch_exchange(
 def _fetch(
     zone_key: str,
     url_prefix: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     # get EIA API key

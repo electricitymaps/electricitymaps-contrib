@@ -5,6 +5,7 @@ describe('Map', () => {
     cy.interceptAPI('v6/state/hourly');
     cy.visit('/?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
+    cy.get('[data-test-id=total-energy-modal] [data-test-id=close-modal-button]').click();
     cy.waitForAPISuccess(`v6/state/hourly`);
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
 

@@ -133,7 +133,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se izvozi u %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> električne energije se uvozi iz %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se uvozi iz %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq po minuti",
   "theMap": {
     "groupName": "Karta",
     "mapColors-question": "Što znače boje na karti?",

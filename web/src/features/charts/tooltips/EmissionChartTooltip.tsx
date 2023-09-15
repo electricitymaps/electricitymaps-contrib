@@ -1,23 +1,21 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { productionConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
-import { getTotalElectricity, tonsPerHourToGramsPerMinute } from '../graphUtils';
+import { getTotalEmissions } from '../graphUtils';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
+import { formatCo2 } from 'utils/formatting';
 
 export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);
-  const { __ } = useTranslation();
   const [mixMode] = useAtom(productionConsumptionAtom);
+  const { __ } = useTranslation();
 
   if (!zoneDetail) {
     return null;
   }
 
-  const totalEmissions =
-    Math.round(
-      tonsPerHourToGramsPerMinute(getTotalElectricity(zoneDetail, true, mixMode)) * 100
-    ) / 100;
+  const totalEmissions = getTotalEmissions(zoneDetail, mixMode);
   const { stateDatetime } = zoneDetail;
 
   return (
@@ -29,7 +27,7 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
         title={__('country-panel.emissions')}
       />
       <p className="flex justify-center text-base">
-        <b className="mr-1">{totalEmissions}t</b> {__('ofCO2eqPerMinute')}
+        <b className="mr-1">{formatCo2(totalEmissions)}</b> {__('ofCO2eq')}
       </p>
     </div>
   );

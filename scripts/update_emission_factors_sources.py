@@ -9,7 +9,6 @@ Usage:
 import logging
 from copy import copy
 from pathlib import Path
-from typing import Dict
 
 import yaml
 
@@ -37,10 +36,10 @@ It only describes zone specific emission factors. Our default emission factors c
 
 def _find_emission_factor_sources(
     zone_config: dict,
-) -> Dict[str, Dict[str, Dict[str, str]]]:
+) -> dict[str, dict[str, dict[str, str]]]:
     zone_sources = zone_config.get("sources", {})
 
-    def _get_sources_for_type(_type: str) -> Dict[str, Dict[str, str]]:
+    def _get_sources_for_type(_type: str) -> dict[str, dict[str, str]]:
         sources = {}
         for mode, ef in zone_config.get("emissionFactors", {}).get(_type, {}).items():
             sources_per_mode = {}

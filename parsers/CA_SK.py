@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
 
 from pytz import timezone
 from requests import Response, Session
@@ -36,7 +35,7 @@ def validate_zone_key(zone_key: str) -> None:
         )
 
 
-def validate_no_datetime(target_datetime: Optional[datetime], zone_key) -> None:
+def validate_no_datetime(target_datetime: datetime | None, zone_key) -> None:
     if target_datetime:
         raise ParserException(
             "CA_SK.py",
@@ -47,8 +46,8 @@ def validate_no_datetime(target_datetime: Optional[datetime], zone_key) -> None:
 
 def fetch_production(
     zone_key: str = "CA-SK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """This parser function will currently return the daily average of the day in question as hourly data.
@@ -84,7 +83,7 @@ def fetch_production(
             "totalGenerationForType"
         ]
 
-    data_list: List[dict] = []
+    data_list: list[dict] = []
     # Hack to return hourly data from daily data for the backend as it expects hourly data.
     for hour in range(0, 24):
         data_list.append(
@@ -101,8 +100,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = "CA-SK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     # Validate that the zone key is equal to CA-SK.

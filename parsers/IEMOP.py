@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, NamedTuple, Optional, Union
+from typing import NamedTuple
 
 import pandas as pd
 import requests
@@ -21,6 +21,7 @@ from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 DIPC_URL = "https://www.iemop.ph/market-data/dipc-energy-results-raw/"
+RTDHS_URL = "https://www.iemop.ph/market-data/rtd-hvdc-schedules/"
 TIMEZONE = "Asia/Manila"
 SOURCE = "iemop.ph"
 REGION_TO_ZONE_KEY = {
@@ -403,11 +404,54 @@ RESOURCE_NAME_TO_MODE = {
     "14SARANG_U02": "coal",
     "14SPGI_U01": "biomass",
     "14SUPKOR_G01": "oil",
+    "1ANGAT_A": "hydro",
+    "1ANGAT_M": "hydro",
+    "1BAUANG_GS2": "oil",
+    "1BAUANG_GS3": "oil",
+    "1BAUANG_GS1": "oil",
+    "1CNCEP_BAT": "battery",
+    "1LAMAO_BAT": "battery",
+    "1LIMAY_BAT": "battery",
+    "1BTSOLEN_BAT": "battery",
+    "1MAGAT_BAT": "battery",
+    "1MSINLO_BAT": "battery",
+    "1SNMAN_BAT": "battery",
+    "1MAGAPIT_BAT": "battery",
+    "3INGRID_GS1": "oil",
+    "3INGRID_GS4": "oil",
+    "3INGRID_GS6": "oil",
+    "3INGRID_GS2": "oil",
+    "3INGRID_GS3": "oil",
+    "3INGRID_GS5": "oil",
+    "3MKBN_A": "geothermal",
+    "3MKBN_E": "geothermal",
+    "3ALMNOS_BAT1": "battery",
+    "3ALMNOS_BAT2": "battery",
+    "3MKBN_B": "geothermal",
+    "3MKBN_C": "geothermal",
+    "3MKBN_D": "geothermal",
+    "3TIWI_A": "geothermal",
+    "3TIWI_C": "geothermal",
+    "4ORMOC_BAT": "battery",
+    "5CPPC_U10": "oil",
+    "5TOLEDO_BAT": "battery",
+    "6KABAN_BAT": "battery",
+    "7UBAY_BAT": "battery",
+    "8PDPP3_C": "oil",
+    "8PDPP3_E": "oil",
+    "8PDPP3_G": "oil",
+    "8PDPP3_H": "oil",
+    "9WMPC_U10": "oil",
+    "11JASA_BAT": "battery",
+    "11VILLA_BAT": "battery",
+    "13MALITA_BAT": "battery",
+    "13MACO_BAT": "battery",
 }
 EXCHANGE_KEY_MAPPING = {
     "MINVIS1": {"zone_key": "PH-MI->PH-VI", "flow": 1},
     "VISLUZ1": {"zone_key": "PH-LU->PH-VI", "flow": -1},
 }
+KIND_TO_URL = {"production": DIPC_URL, "exchange": RTDHS_URL}
 KIND_TO_POST_ID = {"production": "5754", "exchange": "5770"}
 
 
@@ -419,7 +463,7 @@ class MarketReportsItem(NamedTuple):
 
 def get_all_market_reports_items(
     kind: str, logger: Logger = getLogger(__name__)
-) -> Dict[datetime, MarketReportsItem]:
+) -> dict[datetime, MarketReportsItem]:
     """
     Gets a dictionary that converts a date into its code and filename
     """
@@ -442,7 +486,7 @@ def get_all_market_reports_items(
         market_reports_item = MarketReportsItem(
             datetime.strptime(items["date"], "%d %B %Y %H:%M"),
             items["filename"],
-            DIPC_URL + f"?md_file={id}",
+            KIND_TO_URL[kind] + f"?md_file={id}",
         )
         datetime_to_items[market_reports_item.datetime] = market_reports_item
     logger.info(f"PH - {kind}: Succesfully recovered market reports items")
@@ -452,9 +496,9 @@ def get_all_market_reports_items(
 def filter_reports_items(
     kind: str,
     zone_key: ZoneKey,
-    reports_items: Dict[datetime, MarketReportsItem],
-    target_datetime: Optional[datetime],
-) -> List[MarketReportsItem]:
+    reports_items: dict[datetime, MarketReportsItem],
+    target_datetime: datetime | None,
+) -> list[MarketReportsItem]:
     # Date filtering
     if target_datetime is None:
         last_available_datetime = max(reports_items.keys())
@@ -474,7 +518,7 @@ def filter_reports_items(
 
     if len(_reports_items) == 0:
         raise ParserException(
-            parser="PH.py",
+            parser="IEMOP.py",
             zone_key=zone_key,
             message=f"{zone_key}: No {kind} data available for {_exception_date} ",
         )
@@ -483,7 +527,7 @@ def filter_reports_items(
 
 
 def download_production_market_reports_items(
-    session: Session, reports_items: List[MarketReportsItem], logger: Logger
+    session: Session, reports_items: list[MarketReportsItem], logger: Logger
 ) -> pd.DataFrame:
     from io import BytesIO
     from zipfile import ZipFile
@@ -573,14 +617,18 @@ def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
     # Flatten columns and make them "production.{mode}"
     df.columns = df.columns.to_series().str.join(".")
     # Handle storage
-    if "production.hydro_storage" in df.columns:
-        df = df.rename(columns={"production.hydro_storage": "storage.hydro"})
-        df["storage.hydro"] *= -1
+    storage_methods = {"hydro_storage": "hydro", "battery": "battery"}
+    for storage_method, storage_mode in storage_methods.items():
+        if f"production.{storage_method}" in df.columns:
+            df = df.rename(
+                columns={f"production.{storage_method}": f"storage.{storage_mode}"}
+            )
+            df[f"storage.{storage_mode}"] *= -1
     return df
 
 
 def download_exchange_market_reports_items(
-    session: Session, reports_items: List[MarketReportsItem], logger: Logger
+    session: Session, reports_items: list[MarketReportsItem], logger: Logger
 ) -> pd.DataFrame:
     _all_items_df = []
     for reports_item in reports_items:
@@ -623,7 +671,7 @@ def convert_column_to_datetime(df: pd.DataFrame, datetime_column: str) -> pd.Dat
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("PH-LU"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     reports_items = get_all_market_reports_items("production", logger)
@@ -646,8 +694,8 @@ def fetch_production(
         for mode in [m for m in row.index if "production." in m]:
             production_mix.add_value(mode.replace("production.", ""), row[mode])
         storage_mix = StorageMix()
-        if "storage.hydro" in row.index:
-            storage_mix.add_value("hydro", row["storage.hydro"])
+        for mode in [m for m in row.index if "storage." in m]:
+            storage_mix.add_value(mode.replace("storage.", ""), row[mode])
         production_breakdown.append(
             zone_key,
             tstamp.to_pydatetime(),
@@ -664,9 +712,9 @@ def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     all_exchange_items = get_all_market_reports_items("exchange", logger)
@@ -694,8 +742,8 @@ if __name__ == "__main__":
     logger = getLogger(__name__)
     logging.basicConfig(level=logging.DEBUG)
 
-    print(fetch_production())
-    print(fetch_production(ZoneKey("PH-VI"), target_datetime=datetime(2023, 8, 15)))
+    # print(fetch_production())
+    # print(fetch_production(ZoneKey("PH-VI"), target_datetime=datetime(2023, 8, 15)))
     print(fetch_exchange(ZoneKey("PH-LU"), ZoneKey("PH-VI")))
     print(
         fetch_exchange(

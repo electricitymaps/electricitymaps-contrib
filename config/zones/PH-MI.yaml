@@ -3,6 +3,14 @@ bounding_box:
     - 4.57480853775256
   - - 127.08266582665826
     - 10.957111072508837
+capacity:
+  battery storage: 49
+  biomass: 79
+  coal: 2268
+  gas: 0
+  hydro: 1191
+  oil: 833
+  solar: 84
 contributors:
   - VIKTORVAV99
   - jarek
@@ -10,6 +18,7 @@ contributors:
   - q--
   - mathilde-daugy
   - pierresegonne
+  - xomanuel
 parsers:
-  production: PH.fetch_production
+  production: IEMOP.fetch_production
 timezone: Asia/Manila
