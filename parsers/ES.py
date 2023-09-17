@@ -54,7 +54,7 @@ PRODUCTION_PARSE_MAPPING = {
     "tnr": "unknown",
     "trn": "unknown",
     "otrRen": "unknown",
-    "cogen": "gas",
+    "cogen": "unknown",
 }
 
 EXCHANGE_PARSE_MAPPING = {
