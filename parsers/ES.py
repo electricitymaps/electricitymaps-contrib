@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from collections.abc import Callable
 from datetime import datetime, timedelta, timezone
 from json import loads
 from logging import Logger, getLogger
