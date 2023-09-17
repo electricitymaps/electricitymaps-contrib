@@ -130,7 +130,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> эмисии CO₂ зоны %4$s <b>%2$s</b> экспортируются в зону %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> доступного электричества зоны %4$s <b>%2$s</b> имспортируются из зоны %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> эмисии CO₂ зоны %4$s <b>%2$s</b> импортируются из зоны %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂эк в минуту",
   "zoneShortName": {
     "AD": {
       "zoneName": "Андорра"

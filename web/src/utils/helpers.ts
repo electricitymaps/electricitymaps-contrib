@@ -144,7 +144,25 @@ export function getNetExchange(
   if (Object.keys(zoneData.exchange).length === 0) {
     return Number.NaN;
   }
-  return displayByEmissions
-    ? round(zoneData.totalCo2NetExchange / 1e6 / 60) // in tCO₂eq/min
-    : round(zoneData.totalImport - zoneData.totalExport);
+
+  if (
+    !displayByEmissions &&
+    zoneData.totalImport === null &&
+    zoneData.totalExport === null
+  ) {
+    return Number.NaN;
+  }
+  if (
+    displayByEmissions &&
+    zoneData.totalCo2Import == null &&
+    zoneData.totalCo2Export == null
+  ) {
+    return Number.NaN;
+  }
+
+  const netExchangeValue = displayByEmissions
+    ? round((zoneData.totalCo2Import ?? 0) - (zoneData.totalCo2Export ?? 0)) // in CO₂eq
+    : round((zoneData.totalImport ?? 0) - (zoneData.totalExport ?? 0));
+
+  return netExchangeValue;
 }

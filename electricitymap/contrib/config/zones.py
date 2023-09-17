@@ -1,13 +1,13 @@
 """This module contains functions for working with zones configs."""
 
 from collections import defaultdict
-from typing import Any, Dict, List
+from typing import Any
 
 from electricitymap.contrib.config.types import BoundingBox
 from electricitymap.contrib.lib.types import ZoneKey
 
 
-def zone_bounding_boxes(zones_config: Dict[ZoneKey, Any]) -> Dict[ZoneKey, BoundingBox]:
+def zone_bounding_boxes(zones_config: dict[ZoneKey, Any]) -> dict[ZoneKey, BoundingBox]:
     """Returns a dict mapping each zone to its bounding box."""
     bounding_boxes = {}
     for zone_id, zone_config in zones_config.items():
@@ -16,7 +16,7 @@ def zone_bounding_boxes(zones_config: Dict[ZoneKey, Any]) -> Dict[ZoneKey, Bound
     return bounding_boxes
 
 
-def zone_parents(zones_config: Dict[ZoneKey, Any]) -> Dict[ZoneKey, ZoneKey]:
+def zone_parents(zones_config: dict[ZoneKey, Any]) -> dict[ZoneKey, ZoneKey]:
     """Returns a dict mapping each zone to its parent zone."""
     zone_parents = {}
     for zone_id, zone_config in zones_config.items():
@@ -27,8 +27,8 @@ def zone_parents(zones_config: Dict[ZoneKey, Any]) -> Dict[ZoneKey, ZoneKey]:
 
 
 def generate_zone_neighbours(
-    zones_config: Dict[ZoneKey, Any], exchanges_config: Dict[str, Any]
-) -> Dict[ZoneKey, List[ZoneKey]]:
+    zones_config: dict[ZoneKey, Any], exchanges_config: dict[str, Any]
+) -> dict[ZoneKey, list[ZoneKey]]:
     """Returns a dict mapping each zone to its neighbours.
 
     Neighbours are defined as zones that are connected by an exchange.
@@ -56,8 +56,8 @@ def generate_zone_neighbours(
 
 
 def generate_all_neighbours(
-    exchanges_config: Dict[str, Any]
-) -> Dict[ZoneKey, List[ZoneKey]]:
+    exchanges_config: dict[str, Any]
+) -> dict[ZoneKey, list[ZoneKey]]:
     """This object represents all neighbours regardless of granularity."""
     zone_neighbours = defaultdict(set)
     for k, v in exchanges_config.items():

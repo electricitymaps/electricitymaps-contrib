@@ -19,7 +19,14 @@
     "electricity": "Elektricitet",
     "electricityproduction": "Elproduktion",
     "electricityconsumption": "Elforbrug",
-    "bysource": "efter kilde",
+    "by-source": {
+      "emissions": "CO₂-udledning per kilde",
+      "electricity-production": "Elproduktion per kilde",
+      "electricity-consumption": "Elforbrug per kilde",
+      "total-emissions": "Samlede CO₂-udledninger per kilde",
+      "total-electricity-production": "Samlet elproduktion per kilde",
+      "total-electricity-consumption": "Samlet elforbrug per kilde"
+    },
     "emissions": "CO₂-udledning",
     "helpfrom": "med hjælp fra",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",
@@ -35,23 +42,26 @@
   },
   "country-history": {
     "carbonintensity": {
-      "hourly": "CO₂-intensitet i de sidste 24 timer"
+      "default": "CO₂-intensitet i de sidste %1$s"
     },
     "emissionsorigin": {
-      "hourly": "CO₂-udledningens oprindelse i de sidste 24 timer"
+      "default": "CO₂-udledningens oprindelse i de sidste %1$s"
     },
     "emissionsproduction": {
-      "hourly": "CO₂ udledt i de sidste 24 timer"
+      "default": "CO₂ udledt i de sidste %1$s"
     },
     "electricityorigin": {
-      "hourly": "Elektricitetens oprindelse i de sidste 24 timer"
+      "default": "Elektricitetens oprindelse i de sidste %1$s"
     },
     "electricityproduction": {
-      "hourly": "Elproduktionen i de sidste 24 timer"
+      "default": "Elproduktionen i de sidste %1$s"
     },
     "electricityprices": {
-      "hourly": "Elprisen i de sidste 24 timer"
-    }
+      "default": "Elprisen i de sidste %1$s"
+    },
+    "netExchange": { "default": "Nettoudveksling i de sidste %1$s" },
+    "Getdata": "Få adgang til historisk, real-time og prognoser med Electricity Maps API",
+    "not-enough-data": "Ikke nok data tilgængeligt til at vise diagrammet"
   },
   "footer": {
     "foundbugs": "Har du fundet fejl eller har du ideer? Skriv",
@@ -89,7 +99,10 @@
     "dataIsDelayed": "Data er forsinket",
     "representing": "forårsager",
     "ofemissions": "af CO₂-udledninger",
-    "price": "Pris"
+    "price": "Pris",
+    "netExchange": "Nettoudveksling",
+    "importing": "Importeret",
+    "exporting": "Eksporteret"
   },
   "themeOptions": {
     "dark": "Mørk",
@@ -128,7 +141,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "af CO₂-ækvivalenter per minut",
+  "ofCO2eq": "af CO₂-ækvivalenter",
   "zoneShortName": {
     "AL": {
       "zoneName": "Albanien"

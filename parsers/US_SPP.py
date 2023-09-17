@@ -6,7 +6,6 @@
 from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import pandas as pd
@@ -73,7 +72,7 @@ EXCHANGE_MAPPING = {
 # Energy storage situation unclear as of 16/03/2018, likely to change quickly in future.
 
 
-def get_data(url, session: Optional[Session] = None):
+def get_data(url, session: Session | None = None):
     """Returns a pandas dataframe."""
 
     s = session or Session()
@@ -126,7 +125,7 @@ def data_processor(df, logger: Logger) -> list:
     for heading in unknown_keys:
         if heading not in ["Other", "Waste Heat"]:
             logger.warning(
-                "New column '{}' present in US-SPP data source.".format(heading),
+                f"New column '{heading}' present in US-SPP data source.",
                 extra={"key": "US-SPP"},
             )
 
@@ -151,8 +150,8 @@ def data_processor(df, logger: Logger) -> list:
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-SPP",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -207,7 +206,7 @@ def fetch_production(
     return data
 
 
-def _NaN_safe_get(forecast: dict, key: str) -> Optional[float]:
+def _NaN_safe_get(forecast: dict, key: str) -> float | None:
     try:
         return float(forecast[key])
     except ValueError:
@@ -216,8 +215,8 @@ def _NaN_safe_get(forecast: dict, key: str) -> Optional[float]:
 
 def fetch_load_forecast(
     zone_key: str = "US-SPP",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the load forecast (in MW) of a given zone."""
@@ -259,8 +258,8 @@ def fetch_load_forecast(
 @refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
     zone_key: str = "US-SPP",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the load forecast (in MW) of a given zone."""
@@ -331,11 +330,10 @@ def fetch_wind_solar_forecasts(
 def fetch_live_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     data = get_data(EXCHANGE_URL, session)
 
     data = data.dropna(axis=0)
@@ -352,11 +350,10 @@ def fetch_live_exchange(
 def fetch_historical_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     filename = target_datetime.strftime("TieFlows_%b%Y.csv")
     file_url = f"{US_PROXY}/file-browser-api/download/historical-tie-flow?{HOST_PARAMETER}&path={filename}"
 
@@ -410,10 +407,9 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     now = datetime.now(tz=utc)
     if (
         target_datetime is None

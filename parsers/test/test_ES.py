@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 from unittest import TestCase, main
+from unittest.mock import patch
 
 from mock import patch
 from requests import Session

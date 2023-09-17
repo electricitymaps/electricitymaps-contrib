@@ -142,7 +142,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> eksporditakse riiki %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq minutis",
   "theMap": {
     "groupName": "Kaart",
     "mapColors-question": "Mida värvid kaardil tähistavad?",

@@ -133,7 +133,6 @@
   "emissionsExportedTo": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> diekspor ke %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "%1$s %% emisi energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq per menit",
   "theMap": {
     "groupName": "Peta",
     "mapColors-question": "Apa arti dari warna di dalam peta?",

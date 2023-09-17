@@ -3,7 +3,6 @@ import re
 from datetime import datetime
 from io import BytesIO
 from logging import Logger, getLogger
-from typing import Optional
 from urllib.request import Request, urlopen
 
 # The arrow library is used to handle datetimes
@@ -23,11 +22,10 @@ from .JP import fetch_production as JP_fetch_production
 
 def fetch_production(
     zone_key: str = "JP-KN",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-
     """
     This method adds nuclear production on top of the solar data returned by the JP parser.
     It tries to match the solar data with the nuclear data.

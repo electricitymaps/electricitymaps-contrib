@@ -50,7 +50,7 @@ export function usePriceChartData() {
   const currencySymbol: string = getSymbolFromCurrency(
     Object.values(zoneData.zoneStates)[0].price?.currency // Every price has the same currency
   );
-  const valueAxisLabel = `${currencySymbol || '?'} / ${EnergyUnits.MEGAWATT_HOURS}}`;
+  const valueAxisLabel = `${currencySymbol || '?'} / ${EnergyUnits.MEGAWATT_HOURS}`;
 
   const { layerFill, markerFill } = getFills(chartData);
 

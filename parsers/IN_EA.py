@@ -1,6 +1,7 @@
+from collections.abc import Callable
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Any
 
 import pytz
 from requests import Session
@@ -35,7 +36,7 @@ MAPPING = {
 
 def get_fetch_function(
     exchange_key: ZoneKey,
-) -> Tuple[str, Callable[[List, ZoneKey, Logger], ExchangeList]]:
+) -> tuple[str, Callable[[list, ZoneKey, Logger], ExchangeList]]:
     """Get the url, the lookup key and the extract function for the exchange."""
     if exchange_key not in MAPPING:
         raise ParserException(
@@ -55,7 +56,7 @@ def get_fetch_function(
 
 
 def extract_international_exchanges(
-    raw_data: List, exchange_key: ZoneKey, logger: Logger
+    raw_data: list, exchange_key: ZoneKey, logger: Logger
 ) -> ExchangeList:
     exchanges = ExchangeList(logger)
     zone_data = [item for item in raw_data if item["Region"] == MAPPING[exchange_key]][
@@ -73,7 +74,7 @@ def extract_international_exchanges(
 
 
 def extract_interregional_exchanges(
-    raw_data: List, exchange_key: ZoneKey, logger: Logger
+    raw_data: list, exchange_key: ZoneKey, logger: Logger
 ) -> ExchangeList:
     exchanges = ExchangeList(logger)
     zone_data = [item for item in raw_data if item["Type"] == MAPPING[exchange_key]]
@@ -95,9 +96,9 @@ def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """collects average daily exchanges for ERLC"""
     if target_datetime is None:
         # 1 day delay observed

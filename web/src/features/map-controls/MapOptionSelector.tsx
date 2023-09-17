@@ -1,7 +1,7 @@
-import { useTranslation } from 'translation/translation';
-import { Root, Trigger, Content, Arrow } from '@radix-ui/react-dropdown-menu';
+import { Arrow, Content, Root, Trigger } from '@radix-ui/react-dropdown-menu';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { useTranslation } from 'translation/translation';
 
 interface MapOptionSelectorProps {
   trigger: React.ReactNode;
@@ -26,7 +26,7 @@ export default function MapOptionSelector({
         className={twMerge(
           isOpen ? 'pointer-events-none' : 'pointer-events-auto',
           isMobile &&
-            'rounded-full bg-white py-3  text-md font-bold shadow-[0px_0px_13px_rgb(0_0_0/12%)] transition duration-200 hover:shadow-[0px_0px_23px_rgb(0_0_0/20%)] dark:bg-gray-600 dark:hover:shadow-[0px_0px_23px_rgb(0_0_0/50%)]'
+            'rounded-full bg-white py-3  text-md font-bold shadow-[0px_0px_13px_rgb(0_0_0/12%)] transition duration-200 hover:shadow-[0px_0px_23px_rgb(0_0_0/20%)] dark:border dark:border-gray-700 dark:bg-gray-800 '
         )}
         data-test-id={testId}
         onClick={toggleTooltip}
@@ -35,7 +35,7 @@ export default function MapOptionSelector({
         {trigger}
       </Trigger>
       <Content
-        className="pointer-events-auto z-50 max-h-[190px] w-[120px] overflow-auto rounded bg-white dark:bg-gray-900"
+        className="pointer-events-auto z-50 max-h-[190px] w-[120px] overflow-auto rounded bg-white dark:bg-gray-800"
         sideOffset={isMobile ? -10 : 5}
         side={isMobile ? 'bottom' : 'left'}
         onClick={toggleTooltip}

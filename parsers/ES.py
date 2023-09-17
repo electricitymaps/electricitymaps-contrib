@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
+from collections.abc import Callable
 from datetime import datetime, timedelta, timezone
 from json import loads
 from logging import Logger, getLogger
 from typing import Dict, List, Optional
 from zoneinfo import ZoneInfo
+
 
 # The request library is used to fetch content through HTTP
 from requests import Session
@@ -126,8 +128,8 @@ EXCHANGE_FUNCTION_MAP: Dict[ZoneKey, ZoneKey] = {
 
 def check_valid_parameters(
     zone_key: ZoneKey,
-    session: Optional[Session],
-    target_datetime: Optional[datetime],
+    session: Session | None,
+    target_datetime: datetime | None,
 ):
     """Raise an exception if the parameters are not valid for this parser."""
     if "->" not in zone_key and zone_key not in ZONE_MAPPING.keys():
@@ -206,10 +208,10 @@ def fetch_island_data(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     check_valid_parameters(zone_key, session, target_datetime)
 
     ses = session or Session()
@@ -228,10 +230,10 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     check_valid_parameters(zone_key, session, target_datetime)
     ses = session or Session()
     data_mapping = PRODUCTION_PARSE_MAPPING.copy()
@@ -281,10 +283,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     check_valid_parameters(sorted_zone_keys, session, target_datetime)
     ses = session or Session()
