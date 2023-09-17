@@ -4,9 +4,8 @@ from collections.abc import Callable
 from datetime import datetime, timedelta, timezone
 from json import loads
 from logging import Logger, getLogger
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from zoneinfo import ZoneInfo
-
 
 # The request library is used to fetch content through HTTP
 from requests import Session
