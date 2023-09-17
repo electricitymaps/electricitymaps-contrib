@@ -4,8 +4,7 @@ from datetime import datetime, timedelta, timezone
 from json import loads
 from logging import Logger, getLogger
 from typing import Dict, List, Optional
-
-from arrow import get, utcnow
+from zoneinfo import ZoneInfo
 
 # The request library is used to fetch content through HTTP
 from requests import Session
@@ -162,7 +161,7 @@ def fetch_data_ree(
     zone_key: ZoneKey, session: Session, target_datetime: Optional[datetime], tz: str
 ) -> Dict:
     if target_datetime is None:
-        date = utcnow().to(tz).format("YYYY-MM-DD")
+        date = datetime.now(tz=ZoneInfo(tz)).strftime("%Y-%m-%d")
     else:
         date = target_datetime.strftime("%Y-%m-%d")
     system = ZONE_MAPPING[zone_key]
@@ -191,8 +190,8 @@ def fetch_island_data(
     responses = []
     for value in data:
         ts = value.pop("ts")
-        arrow = get(f"{ts} {tz}", "YYYY-MM-DD HH:mm ZZZ")
-        value["timestamp"] = arrow
+        date = datetime.fromisoformat(ts).replace(tzinfo=ZoneInfo(tz))
+        value["timestamp"] = date
         responses.append(value)
     if responses:
         return responses
