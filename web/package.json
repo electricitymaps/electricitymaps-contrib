@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.65.0",
+  "version": "1.66.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "repository": {
     "type": "git",
@@ -65,7 +65,6 @@
     "@sentry/react": "^7.66.0",
     "@tailwindcss/typography": "^0.5.9",
     "@tanstack/react-query": "4.33.0",
-    "@tanstack/react-query-devtools": "^4.33.0",
     "@turf/helpers": "^6.5.0",
     "country-flag-icons": "^1.5.7",
     "currency-symbol-map": "^5.1.0",
@@ -122,6 +121,7 @@
     "@storybook/react-vite": "^7.4.0",
     "@storybook/testing-library": "^0.2.0",
     "@tailwindcss/forms": "0.5.3",
+    "@tanstack/react-query-devtools": "^4.33.0",
     "@testing-library/cypress": "8.0.3",
     "@testing-library/dom": "8.20.1",
     "@testing-library/jest-dom": "5.16.5",
@@ -186,12 +186,12 @@
     "ts-node": "^10.9.1",
     "typescript": "5.2.2",
     "vite": "4.4.9",
-    "vite-plugin-pwa": "0.15.2",
+    "vite-plugin-pwa": "0.16.5",
     "vite-tsconfig-paths": "3.5.2",
     "vitest": "0.24.3",
     "whatwg-fetch": "3.6.17",
-    "workbox-build": "6.6.0",
-    "workbox-window": "6.6.0"
+    "workbox-build": "7.0.0",
+    "workbox-window": "7.0.0"
   },
   "engines": {
     "node": ">=18",

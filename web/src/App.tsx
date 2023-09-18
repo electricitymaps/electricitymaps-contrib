@@ -18,6 +18,7 @@ import TotalEnergyIntroModal from 'features/modals/TotalEnergyIntroModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { useDarkMode } from 'hooks/theme';
 import { ReactElement, Suspense, lazy, useEffect, useLayoutEffect } from 'react';
+import { useTranslation } from 'translation/translation';
 import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
@@ -66,6 +67,7 @@ export default function App(): ReactElement {
       });
     }
   }, []);
+  const { __ } = useTranslation();
 
   return (
     <Suspense fallback={<div />}>
@@ -76,10 +78,10 @@ export default function App(): ReactElement {
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               {isSuccess && isNewVersionAvailable && (
                 <Toast
-                  title="A new app version is available"
+                  title={__('misc.newversion')}
                   toastAction={handleReload}
                   isCloseable={true}
-                  toastActionText="Reload"
+                  toastActionText={__('misc.reload')}
                 />
               )}
               <LoadingOverlay />

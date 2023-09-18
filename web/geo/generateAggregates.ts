@@ -6,7 +6,6 @@ const emptyFeature: Feature<MultiPolygon, FeatureProperties> = {
   properties: {
     zoneName: '',
     countryKey: '',
-    countryName: '',
     isHighestGranularity: false,
     isAggregatedView: true,
     isCombined: true,
@@ -56,7 +55,6 @@ const generateAggregates = (fc: WorldFeatureCollection, zones: ZonesConfig) => {
           ...emptyFeature.properties,
           countryKey: multiZoneCountry?.properties.countryKey || '',
           zoneName: multiZoneCountry?.properties.countryKey || '',
-          countryName: multiZoneCountry?.properties.countryName || '',
         },
       };
 
