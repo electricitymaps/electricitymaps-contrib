@@ -82,7 +82,7 @@ def fetch_consumption(
     return consumption_list.to_list()
 
 
-@refetch_frequency(timedelta(hours=1))
+@refetch_frequency(timedelta(hours=167))
 def fetch_price(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),
@@ -225,7 +225,7 @@ def get_historical_prod_data(
     return parse_chart_prod_data(res.text, zone_key, logger)
 
 
-@refetch_frequency(timedelta(minutes=5))
+@refetch_frequency(timedelta(hours=20))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),
