@@ -518,7 +518,7 @@ def filter_reports_items(
 
     if len(_reports_items) == 0:
         raise ParserException(
-            parser="PH.py",
+            parser="IEMOP.py",
             zone_key=zone_key,
             message=f"{zone_key}: No {kind} data available for {_exception_date} ",
         )

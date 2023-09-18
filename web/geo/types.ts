@@ -35,7 +35,6 @@ export interface ExchangesConfig {
 export declare type FeatureProperties = {
   zoneName: string;
   countryKey: string;
-  countryName: string;
   isAggregatedView?: boolean;
   isHighestGranularity?: boolean;
   isCombined?: boolean;
