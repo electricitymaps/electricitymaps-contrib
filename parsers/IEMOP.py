@@ -4,7 +4,6 @@ from logging import Logger, getLogger
 from typing import NamedTuple
 
 import pandas as pd
-import requests
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
