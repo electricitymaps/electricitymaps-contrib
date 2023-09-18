@@ -483,7 +483,7 @@ def get_all_market_reports_items(
     id_to_items = r.json().get("data", {})
     if not id_to_items:
         raise ParserException(
-            parser="PH.py",
+            parser="IEMOP.py",
             zone_key=zone_key,
             message=f"No reports available to fetch {kind} data",
         )
