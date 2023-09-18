@@ -32,4 +32,4 @@ jobs:
       - name: Prettier Check
         # Uses the prettier binary from the web node_modules so it's always in sync.
         run: |
-          web/node_modules/.bin/prettier --check .
+          web/node_modules/.bin/prettier --check . --config web/.prettierrc.json
