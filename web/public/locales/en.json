@@ -1192,6 +1192,10 @@
       "countryName": "Mexico",
       "zoneName": "Baja California"
     },
+    "MX-BCS": {
+      "countryName": "Mexico",
+      "zoneName": "Baja California Sur"
+    },
     "MX-CE": {
       "countryName": "Mexico",
       "zoneName": "Central"
