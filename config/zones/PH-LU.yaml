@@ -10,6 +10,7 @@ capacity:
   gas: 3731
   hydro: 1806
   hydro storage: 736
+  nuclear: 0
   oil: 2357
   solar: 960
   wind: 337
