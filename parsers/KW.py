@@ -15,33 +15,6 @@ import arrow
 from requests import Session
 
 
-def fetch_production(
-    zone_key: str = "KW",
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-):
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    # Kuwait very rarely imports power, so we assume that production is equal to consumption
-    # "Kuwait imports power in an emergency and only for a few hours at a time"
-    # See https://github.com/electricitymaps/electricitymaps-contrib/pull/2457#pullrequestreview-408781556
-    consumption_dict = fetch_consumption(
-        zone_key=zone_key, session=session, logger=logger
-    )
-    consumption = consumption_dict["consumption"]
-
-    datapoint = {
-        "zoneKey": zone_key,
-        "datetime": arrow.now("Asia/Kuwait").datetime,
-        "production": {"unknown": consumption},
-        "source": "mew.gov.kw",
-    }
-
-    return datapoint
-
-
 def fetch_consumption(
     zone_key: str = "KW",
     session: Session | None = None,
