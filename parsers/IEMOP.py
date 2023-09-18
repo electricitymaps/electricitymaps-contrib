@@ -464,7 +464,7 @@ class MarketReportsItem(NamedTuple):
 
 
 def get_all_market_reports_items(
-    zone_key: ZoneKey, kind: str, logger: Logger = getLogger(__name__)
+    session: Session, zone_key: ZoneKey, kind: str, logger: Logger = getLogger(__name__)
 ) -> dict[datetime, MarketReportsItem]:
     """
     Gets a dictionary that converts a date into its code and filename
@@ -479,8 +479,8 @@ def get_all_market_reports_items(
         "page": "1",
         "post_id": KIND_TO_POST_ID[kind],
     }
-    r = requests.post(REPORTS_ADMIN_URL, data=form_data, verify=False)
-    id_to_items = r.json().get("data", {})
+    res = session.post(REPORTS_ADMIN_URL, data=form_data, verify=False)
+    id_to_items = res.json().get("data", {})
     if not id_to_items:
         raise ParserException(
             parser="IEMOP.py",
@@ -682,7 +682,9 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    reports_items = get_all_market_reports_items(zone_key, "production", logger)
+    reports_items = get_all_market_reports_items(
+        session, zone_key, "production", logger
+    )
     reports_items = filter_reports_items(
         "production", zone_key, reports_items, target_datetime
     )
@@ -726,7 +728,7 @@ def fetch_exchange(
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     all_exchange_items = get_all_market_reports_items(
-        sorted_zone_keys, "exchange", logger
+        session, sorted_zone_keys, "exchange", logger
     )
     reports_items = filter_reports_items(
         "exchange", sorted_zone_keys, all_exchange_items, target_datetime

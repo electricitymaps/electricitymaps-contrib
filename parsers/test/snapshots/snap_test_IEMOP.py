@@ -6,7 +6,7 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots["TestPH::test_production 1"] = [
+snapshots["test_production[PH-LU] 1"] = [
     {
         "datetime": "2023-09-13T23:00:00+08:00",
         "production": {
@@ -225,7 +225,7 @@ snapshots["TestPH::test_production 1"] = [
     },
 ]
 
-snapshots["TestPH::test_production 2"] = [
+snapshots["test_production[PH-MI] 1"] = [
     {
         "datetime": "2023-09-13T23:00:00+08:00",
         "production": {
@@ -420,7 +420,7 @@ snapshots["TestPH::test_production 2"] = [
     },
 ]
 
-snapshots["TestPH::test_production 3"] = [
+snapshots["test_production[PH-VI] 1"] = [
     {
         "datetime": "2023-09-13T23:00:00+08:00",
         "production": {
