@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -38,6 +39,8 @@ EXCHANGES_MAPPING = {
     "Imp_Intercon_BR_RIVERA": "BR-S->UY",
 }
 
+SOURCE = "pronos.adme.com.uy"
+
 
 def get_adme_url(target_datetime: datetime, session: Session) -> str:
     """"""
@@ -60,7 +63,7 @@ def get_adme_url(target_datetime: datetime, session: Session) -> str:
 
 
 def fetch_data(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Session,
     target_datetime: datetime,
     sheet_name: str,
@@ -72,20 +75,21 @@ def fetch_data(
     assert sheet_name != "" or sheet_name is not None
     adme_url = get_adme_url(target_datetime=target_datetime, session=session)
     r = session.get(url=adme_url)
-    if r.status_code == 200:
-        df_data = pd.read_excel(
-            io.BytesIO(r.content), engine="odf", header=2, sheet_name=sheet_name
-        )
-        df_data.columns = df_data.columns.str.strip()
-        df_data = df_data.rename(columns={"Fecha": "datetime"})
-
-        df_data = df_data.set_index("datetime")
-        return df_data
-    else:
+    if not r.ok:
         raise ParserException(
             parser="UY.py",
             message="no data available for target_dateitme",
+            zone_key=zone_key,
         )
+
+    df_data = pd.read_excel(
+        io.BytesIO(r.content), engine="odf", header=2, sheet_name=sheet_name
+    )
+    df_data.columns = df_data.columns.str.strip()
+    df_data = df_data.rename(columns={"Fecha": "datetime"})
+
+    df_data = df_data.set_index("datetime")
+    return df_data
 
 
 def fix_solar_production(dt: datetime, row: pd.Series) -> int:
@@ -98,7 +102,7 @@ def fix_solar_production(dt: datetime, row: pd.Series) -> int:
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "UY",
+    zone_key: ZoneKey = ZoneKey("UY"),
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -134,7 +138,7 @@ def fetch_production(
             "zoneKey": "UY",
             "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
             "production": production_dict,
-            "source": "pronos.adme.com.uy",
+            "source": SOURCE,
         }
         all_data_points += [data_point]
     return all_data_points
@@ -142,7 +146,7 @@ def fetch_production(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "UY",
+    zone_key: ZoneKey = ZoneKey("UY"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -168,7 +172,7 @@ def fetch_consumption(
             "zoneKey": "UY",
             "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
             "consumption": round(consumption[dt]["consumption"], 3),
-            "source": "pronos.adme.com.uy",
+            "source": SOURCE,
         }
         all_data_points += [data_point]
     return all_data_points
@@ -176,8 +180,8 @@ def fetch_consumption(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -200,7 +204,7 @@ def fetch_exchange(
 
     data = data.rename(columns=EXCHANGES_MAPPING)
     data = data.groupby(data.columns, axis=1).sum()
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
+    sortedZoneKeys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     exchange = data[[sortedZoneKeys]].to_dict(orient="index")
     all_data_points = []
     for dt in exchange:
@@ -208,7 +212,7 @@ def fetch_exchange(
             "netFlow": round(exchange[dt][sortedZoneKeys], 3),
             "sortedZoneKeys": sortedZoneKeys,
             "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
-            "source": "pronos.adme.com.uy",
+            "source": SOURCE,
         }
         all_data_points += [data_point]
     return all_data_points
