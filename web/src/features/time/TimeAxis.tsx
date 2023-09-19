@@ -46,6 +46,7 @@ const renderTickValue = (
   selectedTimeAggregate: TimeAverages
 ) => {
   const shouldDisplayLive = index === 24 && displayLive;
+  const textOffset = selectedTimeAggregate === TimeAverages.HOURLY ? 5 : 0;
   return shouldDisplayLive ? (
     <g>
       <circle cx="-1em" cy="1.15em" r="2" fill="red" />
@@ -54,7 +55,7 @@ const renderTickValue = (
       </text>
     </g>
   ) : (
-    <text fill="currentColor" y="9" x="5" dy="0.71em">
+    <text fill="currentColor" y="9" x={textOffset} dy="0.71em">
       {formatDateTick(v, lang, selectedTimeAggregate)}
     </text>
   );

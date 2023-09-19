@@ -1,7 +1,7 @@
 // TODO: Convert to component test
 describe('Country Panel', () => {
   beforeEach(() => {
-    cy.interceptAPI('v6/state/hourly');
+    cy.interceptAPI('v7/state/hourly');
   });
 
   it('interacts with details', () => {
@@ -10,7 +10,7 @@ describe('Country Panel', () => {
     cy.visit('/zone/DK-DK2?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
     cy.get('[data-test-id=total-energy-modal] [data-test-id=close-modal-button]').click();
-    cy.waitForAPISuccess('v6/state/hourly');
+    cy.waitForAPISuccess('v7/state/hourly');
     cy.waitForAPISuccess('v7/details/hourly/DK-DK2');
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
     cy.contains('East Denmark');
@@ -60,7 +60,7 @@ describe('Country Panel', () => {
   it.skip('asserts countryPanel contains "no-recent-data" message', () => {
     cy.interceptAPI('v7/details/hourly/UA');
     cy.visit('/zone/UA?lang=en-GB');
-    cy.waitForAPISuccess('v6/state/hourly');
+    cy.waitForAPISuccess('v7/state/hourly');
     cy.waitForAPISuccess('v7/details/hourly/UA');
 
     cy.get('[data-test-id=no-data-overlay-message]')
@@ -70,7 +70,7 @@ describe('Country Panel', () => {
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
     cy.visit('/zone/CN?lang=en-GB');
-    cy.waitForAPISuccess('v6/state/hourly');
+    cy.waitForAPISuccess('v7/state/hourly');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });
