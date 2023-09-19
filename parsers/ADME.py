@@ -111,6 +111,12 @@ def fetch_production(
     """collects production data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
         target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
+    if zone_key != ZoneKey("UY"):
+        raise ParserException(
+            parser="UY.py",
+            message="only UY is supported",
+            zone_key=zone_key,
+        )
     session = session or Session()
 
     data = fetch_data(
@@ -155,6 +161,12 @@ def fetch_consumption(
     """collects consumption data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
         target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
+    if zone_key != ZoneKey("UY"):
+        raise ParserException(
+            parser="UY.py",
+            message="consumption data is only available for UY",
+            zone_key=zone_key,
+        )
     session = session or Session()
 
     data = fetch_data(
@@ -189,10 +201,16 @@ def fetch_exchange(
     """collects exchanges data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
         target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
+    if zone_key1 != ZoneKey("UY") and zone_key2 != ZoneKey("UY"):
+        raise ParserException(
+            parser="UY.py",
+            message="oOly UY is supported",
+            zone_key=zone_key1,
+        )
     session = session or Session()
 
     data = fetch_data(
-        zone_key=zone_key1,
+        zone_key=ZoneKey("UY"),
         session=session,
         target_datetime=target_datetime,
         sheet_name="Intercambios.",
@@ -206,16 +224,15 @@ def fetch_exchange(
     data = data.groupby(data.columns, axis=1).sum()
     sortedZoneKeys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     exchange = data[[sortedZoneKeys]].to_dict(orient="index")
-    all_data_points = []
+    exchanges = ExchangeList(logger=logger)
     for dt in exchange:
-        data_point = {
-            "netFlow": round(exchange[dt][sortedZoneKeys], 3),
-            "sortedZoneKeys": sortedZoneKeys,
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
-            "source": SOURCE,
-        }
-        all_data_points += [data_point]
-    return all_data_points
+        exchanges.append(
+            zoneKey=sortedZoneKeys,
+            datetime=arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
+            netFlow=round(exchange[dt][sortedZoneKeys], 3),
+            source=SOURCE,
+        )
+    return exchanges.to_list()
 
 
 if __name__ == "__main__":
