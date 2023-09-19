@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
+from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList, ExchangeList, ProductionBreakdownList
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -166,16 +167,15 @@ def fetch_consumption(
     data = data.rename(columns={"Demanda": "consumption"})
 
     consumption = data[["consumption"]].to_dict(orient="index")
-    all_data_points = []
+    consumptions = TotalConsumptionList(logger=logger)
     for dt in consumption:
-        data_point = {
-            "zoneKey": "UY",
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
-            "consumption": round(consumption[dt]["consumption"], 3),
-            "source": SOURCE,
-        }
-        all_data_points += [data_point]
-    return all_data_points
+        consumptions.append(
+            zoneKey=zone_key,
+            datetime=arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
+            consumption=round(consumption[dt]["consumption"], 3),
+            source=SOURCE,
+        )
+    return consumptions.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
