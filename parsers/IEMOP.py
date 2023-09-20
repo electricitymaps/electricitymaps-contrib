@@ -612,7 +612,7 @@ def filter_valid_values(df: pd.DataFrame, logger: Logger) -> pd.DataFrame:
     df = df.copy()
     # Filter out non generation resources - with the exception of storage resources
     df_production = df[df["resource_kind"] == "production"]
-    df_production = df_production[df_production["value"] > 0]
+    df_production = df_production[df_production["value"] >= 0]
     df_storage = df[df["resource_kind"] == "storage"]
     df = pd.concat([df_production, df_storage])
     # Remove duplicates if there is discharge
@@ -658,9 +658,16 @@ def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
     df.columns = df.columns.droplevel()  # reset columns index
 
     # Handle storage
-    for storage_method, storage_mode in STORAGE_METHODS_TO_MODE.items():
-        df = df.rename(columns={f"storage.{storage_method}": f"storage.{storage_mode}"})
-        df[f"storage.{storage_mode}"] *= -1
+    df = df.rename(
+        columns={
+            f"storage.{storage_method}": f"storage.{storage_mode}"
+            for storage_method, storage_mode in STORAGE_METHODS_TO_MODE.items()
+        }
+    )
+    for storage_mode in STORAGE_METHODS_TO_MODE.values():
+        col_name = f"storage.{storage_mode}"
+        if col_name in df.columns:
+            df[col_name] *= -1
     # With the pivot if some modes only have data for some datetimes, we will have NaNs
     # Fill them with 0
     df = df.fillna(0)
