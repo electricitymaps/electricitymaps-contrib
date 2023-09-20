@@ -8,7 +8,7 @@ import { timeAverageAtom } from 'utils/state/atoms';
 import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 
 const getState = async (timeAverage: string): Promise<GridState> => {
-  const path = `v6/state/${timeAverage}`;
+  const path = `v7/state/${timeAverage}`;
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
