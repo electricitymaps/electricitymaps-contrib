@@ -641,22 +641,26 @@ def match_resources_to_modes(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def aggregate_per_datetime_mode(df: pd.DataFrame) -> pd.DataFrame:
-    return df.groupby(["datetime", "mode", "resource_kind"]).sum(numeric_only=True).reset_index()
+    return (
+        df.groupby(["datetime", "mode", "resource_kind"])
+        .sum(numeric_only=True)
+        .reset_index()
+    )
 
 
 def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     # Flatten columns and make them "{resource_kind}.{mode}"
-    df["resource_kind_mode"] = df["resource_kind"] + "."+ df["mode"]
-    df = df[["resource_kind_mode", "datetime","value"]].pivot(index="datetime", columns="resource_kind_mode")
-    df.columns = df.columns.droplevel() # reset columns index
+    df["resource_kind_mode"] = df["resource_kind"] + "." + df["mode"]
+    df = df[["resource_kind_mode", "datetime", "value"]].pivot(
+        index="datetime", columns="resource_kind_mode"
+    )
+    df.columns = df.columns.droplevel()  # reset columns index
 
     # Handle storage
     for storage_method, storage_mode in STORAGE_METHODS_TO_MODE.items():
-            df = df.rename(
-                columns={f"storage.{storage_method}": f"storage.{storage_mode}"}
-            )
-            df[f"storage.{storage_mode}"] *= -1
+        df = df.rename(columns={f"storage.{storage_method}": f"storage.{storage_mode}"})
+        df[f"storage.{storage_mode}"] *= -1
     # With the pivot if some modes only have data for some datetimes, we will have NaNs
     # Fill them with 0
     df = df.fillna(0)
