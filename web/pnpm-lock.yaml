@@ -364,6 +364,9 @@ devDependencies:
   eslint-plugin-react-prefer-function-component:
     specifier: ^3.3.0
     version: 3.3.0
+  eslint-plugin-simple-import-sort:
+    specifier: ^10.0.0
+    version: 10.0.0(eslint@8.48.0)
   eslint-plugin-storybook:
     specifier: ^0.6.13
     version: 0.6.13(eslint@8.48.0)(typescript@5.2.2)
@@ -10022,6 +10025,14 @@ packages:
       resolve: 2.0.0-next.4
       semver: 6.3.1
       string.prototype.matchall: 4.0.8
+    dev: true
+
+  /eslint-plugin-simple-import-sort@10.0.0(eslint@8.48.0):
+    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
+    peerDependencies:
+      eslint: '>=5.0.0'
+    dependencies:
+      eslint: 8.48.0
     dev: true
 
   /eslint-plugin-storybook@0.6.13(eslint@8.48.0)(typescript@5.2.2):
