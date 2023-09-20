@@ -1,6 +1,5 @@
 from datetime import datetime
 from logging import getLogger
-from typing import Dict, Optional, Tuple, Union
 
 from requests import Response, Session
 
@@ -29,6 +28,8 @@ LIVE_DATASETS = {
     "FR-COR": "production-delectricite-par-filiere-en-temps-reel",
     "GP": "mix-temps-reel-guadeloupe",
     "RE": "prod-electricite-temps-reel",
+    "GF": "production-d-electricite-par-filiere-en-temps-reel",
+    "MQ": "production-delectricite-par-filiere-en-temps-reel",
 }
 
 HISTORICAL_DATASETS = {
@@ -68,7 +69,7 @@ API_PARAMETER_GROUPS = {
             "micro_hydro",
             "micro_hydraulique_mw",
         ],
-        "oil": ["diesel", "moteur_diesel"],
+        "oil": ["diesel", "moteur_diesel", "centrale_au_fioul", "moteurs_diesels"],
         "solar": [
             "photovoltaique",
             "photovoltaique0",
@@ -124,16 +125,16 @@ def generate_source(zone_key: ZoneKey):
 
 def fetch_data(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-) -> Tuple[list, str]:
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+) -> tuple[list, str]:
     ses = session or Session()
 
     DATE_STRING_MAPPING = {
         "FR-COR": "date_heure" if target_datetime else "date",
         "RE": "date_heure" if target_datetime else "date",
         "GF": "date",
-        "MQ": "date_heure",
+        "MQ": "date_heure" if target_datetime else "date",
         "GP": "date",
     }
 
@@ -150,7 +151,7 @@ def fetch_data(
             zone_key,
         )
 
-    URL_QUERIES: Dict[str, Union[str, None]] = {
+    URL_QUERIES: dict[str, str | None] = {
         #   "refine": "statut:Validé" if target_datetime else None,
         "timezone": "UTC",
         "order_by": f"{DATE_STRING_MAPPING[zone_key]} desc",
@@ -161,7 +162,7 @@ def fetch_data(
 
     url = generate_url(zone_key, target_datetime)
     response: Response = ses.get(url, params=URL_QUERIES)
-    data: Union[dict, list, None] = response.json()
+    data: dict | list | None = response.json()
     if data == []:
         raise ParserException(
             "FR_O.py",
@@ -194,8 +195,8 @@ def fetch_data(
 
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger=getLogger(__name__),
 ):
     production_objects, date_string = fetch_data(zone_key, session, target_datetime)
@@ -229,7 +230,7 @@ def fetch_production(
             storage=storage,
             source=generate_source(zone_key),
             sourceType=EventSourceType.estimated
-            if production_object["statut"] == "Estimé"
+            if production_object.get("statut") == "Estimé"
             else EventSourceType.measured,
         )
     return production_breakdown_list.to_list()
@@ -237,15 +238,15 @@ def fetch_production(
 
 def fetch_price(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger=getLogger(__name__),
 ):
     data_objects, date_string = fetch_data(zone_key, session, target_datetime)
 
     price_list = PriceList(logger=logger)
     for data_object in data_objects:
-        price: Union[float, int, None] = None
+        price: float | int | None = None
         for mode_key in data_object:
             if mode_key in PRICE_MAPPING:
                 price = data_object[mode_key]

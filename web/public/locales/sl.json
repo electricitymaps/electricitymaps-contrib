@@ -49,8 +49,14 @@
     "renewable": "obnovljiva",
     "electricityproduction": "Proizvodnja električne energije",
     "electricityconsumption": "Poraba električne energije",
-    "bysource": "po viru",
-    "averagebysource": "povprečje glede na vir",
+    "by-source": {
+      "emissions": "Izpusti ogljika po virih",
+      "electricity-production": "Proizvodnja električne energije po virih",
+      "electricity-consumption": "Poraba električne energije po virih",
+      "total-emissions": "Skupni izpusti ogljika po virih",
+      "total-electricity-production": "Skupna proizvodnja električne energije po virih",
+      "total-electricity-consumption": "Skupna poraba električne energije po virih"
+    },
     "emissions": "ogljične emisije",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj ali uredi vir</a>",
     "helpfrom": "s pomočjo od",
@@ -183,7 +189,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> emisij iz električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, se izvozi v <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> emisij električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, so uvožene iz<img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq na minuto",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Kaj pomenijo barve na zemljevidu?",

@@ -1,7 +1,7 @@
-// import dailyData from '../../../mockserver/public/v6/details/daily/DK-DK2.json';
-import hourlyData from '../../../mockserver/public/v6/details/hourly/DK-DK2.json';
-import monthlyData from '../../../mockserver/public/v6/details/monthly/DK-DK2.json';
-import yearlyData from '../../../mockserver/public/v6/details/yearly/DK-DK2.json';
+// import dailyData from '../../../mockserver/public/v7/details/daily/DK-DK2.json';
+import hourlyData from '../../../mockserver/public/v7/details/hourly/DK-DK2.json';
+import monthlyData from '../../../mockserver/public/v7/details/monthly/DK-DK2.json';
+import yearlyData from '../../../mockserver/public/v7/details/yearly/DK-DK2.json';
 
 // TODO: For some reason the project's date formatter
 // cannot be imported (webpack compilation error) here
@@ -38,22 +38,23 @@ const getco2intensity = (index: number, data: Data) => {
 describe('TimeController', () => {
   it('interacts with the timecontroller on map', () => {
     // Intercepts all API network requests and serves fixtures directly
-    cy.interceptAPI('v6/state/hourly');
-    cy.interceptAPI('v6/details/hourly/DK-DK2');
-    cy.interceptAPI('v6/state/daily');
-    cy.interceptAPI('v6/state/monthly');
-    cy.interceptAPI('v6/state/yearly');
-    cy.interceptAPI('v6/details/daily/DK-DK2');
-    cy.interceptAPI('v6/details/monthly/DK-DK2');
-    cy.interceptAPI('v6/details/yearly/DK-DK2');
+    cy.interceptAPI('v7/state/hourly');
+    cy.interceptAPI('v7/details/hourly/DK-DK2');
+    cy.interceptAPI('v7/state/daily');
+    cy.interceptAPI('v7/state/monthly');
+    cy.interceptAPI('v7/state/yearly');
+    cy.interceptAPI('v7/details/daily/DK-DK2');
+    cy.interceptAPI('v7/details/monthly/DK-DK2');
+    cy.interceptAPI('v7/details/yearly/DK-DK2');
 
     // Note that we force language here as CI and local machines might display dates differently otherwise
     cy.visit('/zone/DK-DK2?lang=en-GB');
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
     cy.get('[data-test-id=close-modal]').click();
+    cy.get('[data-test-id=total-energy-modal] [data-test-id=close-modal-button]').click();
     // Hourly
-    cy.waitForAPISuccess(`v6/state/hourly`);
-    cy.waitForAPISuccess(`v6/details/hourly/DK-DK2`);
+    cy.waitForAPISuccess(`v7/state/hourly`);
+    cy.waitForAPISuccess(`v7/details/hourly/DK-DK2`);
     cy.contains('LIVE');
     cy.get('[data-test-id=co2-square-value').should(
       'contain.text',
@@ -71,8 +72,8 @@ describe('TimeController', () => {
 
     // Monthly
     cy.get('[data-test-id="time-controller-daily"]').click();
-    cy.waitForAPISuccess(`v6/state/daily`);
-    cy.waitForAPISuccess(`v6/details/daily/DK-DK2`);
+    cy.waitForAPISuccess(`v7/state/daily`);
+    cy.waitForAPISuccess(`v7/details/daily/DK-DK2`);
     // cy.get('[data-test-id=co2-square-value').should(
     //   'contain.text',
     //   getco2intensity(30, dailyData)
@@ -93,8 +94,8 @@ describe('TimeController', () => {
 
     // Yearly
     cy.get('[data-test-id="time-controller-monthly"]').click();
-    cy.waitForAPISuccess(`v6/state/monthly`);
-    cy.waitForAPISuccess(`v6/details/monthly/DK-DK2`);
+    cy.waitForAPISuccess(`v7/state/monthly`);
+    cy.waitForAPISuccess(`v7/details/monthly/DK-DK2`);
     cy.get('[data-test-id=co2-square-value').should(
       'contain.text',
       getco2intensity(11, monthlyData)
@@ -115,8 +116,8 @@ describe('TimeController', () => {
 
     // 5 Years
     cy.get('[data-test-id="time-controller-yearly"]').click();
-    cy.waitForAPISuccess(`v6/state/yearly`);
-    cy.waitForAPISuccess(`v6/details/yearly/DK-DK2`);
+    cy.waitForAPISuccess(`v7/state/yearly`);
+    cy.waitForAPISuccess(`v7/details/yearly/DK-DK2`);
     cy.get('[data-test-id=co2-square-value').should(
       'contain.text',
       getco2intensity(4, yearlyData)

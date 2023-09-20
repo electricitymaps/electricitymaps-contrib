@@ -2,7 +2,6 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 from urllib.parse import urlencode
 
 # The arrow library is used to handle datetimes
@@ -43,11 +42,10 @@ def format_url(target_datetime: datetime, ID: str):
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     # Get ESIOS token
     token = get_token("ESIOS_TOKEN")
 
@@ -74,9 +72,7 @@ def fetch_exchange(
 
     response: Response = ses.get(url, headers=headers)
     if response.status_code != 200 or not response.text:
-        raise ParserException(
-            "ESIOS", "Response code: {0}".format(response.status_code)
-        )
+        raise ParserException("ESIOS", f"Response code: {response.status_code}")
 
     json = response.json()
     values = json["indicator"]["values"]

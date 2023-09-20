@@ -3,7 +3,7 @@
 # The arrow library is used to handle datetimes
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import arrow
 import pandas as pd
@@ -37,8 +37,8 @@ EXCHANGE_POSITION_MULTIPLIER = {
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     r = session or Session()
@@ -56,7 +56,7 @@ def fetch_consumption(
         if not response.ok:
             raise ParserException(
                 "CA_BC.py",
-                "Could not fetch load report for year {0}".format(year),
+                f"Could not fetch load report for year {year}",
                 zone_key,
             )
         df = pd.read_excel(response.content, skiprows=3)
@@ -82,10 +82,10 @@ def fetch_consumption(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

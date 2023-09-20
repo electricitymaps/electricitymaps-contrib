@@ -1,6 +1,7 @@
 import * as d3 from 'd3-format';
+
 import { TimeAverages } from './constants';
-import { EnergyUnits } from './units';
+import { EnergyUnits, PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 2;
 
@@ -17,48 +18,53 @@ export const formatPower = function (
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
-  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}Wh`;
+  const significantFigures = d.toString().length > 1 ? numberDigits : 1;
+  const power =
+    d < 1e9
+      ? d3.format(`.${significantFigures}s`)(d * 1e6) + 'W'
+      : d3.format(`.${significantFigures}r`)(d / 1e6) + 'TW';
   return addSpaceBetweenNumberAndUnit(power);
 };
 
-export const formatCo2 = function (gramPerHour: number, valueToMatch?: number) {
-  if (gramPerHour == undefined || Number.isNaN(gramPerHour)) {
-    return gramPerHour;
+export const formatEnergy = function (
+  d: number,
+  numberDigits: number = DEFAULT_NUM_DIGITS
+) {
+  const power = formatPower(d, numberDigits);
+  // Assume MW input
+  if (power == undefined || Number.isNaN(power)) {
+    return power;
   }
-
-  // Assume gCO₂ / h input
-  let value = gramPerHour;
-  value /= 60; // Convert to gCO₂ / min
-  value /= 1e6; // Convert to tCO₂ / min
-
-  // Ensure both numbers are at the same scale
-  const checkAgainst = valueToMatch ? valueToMatch / 1e6 : value;
-
-  // grams and kilograms
-  if (checkAgainst < 1) {
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.0~s`)(value * 1e6)}g`);
-  }
-
-  // tons
-  if (Math.round(checkAgainst) < 1e5) {
-    let decimals = value < 1 ? 2 : 1;
-    // Remove decimals for large values
-    if (value > 1000) {
-      decimals = 0;
-    }
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~f`)(value)}t`);
-  }
-
-  // Hundred thousands of tons
-  if (Math.round(checkAgainst) < 1e6) {
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.1~f`)(value / 1e6)}Mt`);
-  }
-
-  // megatons or above
-  return addSpaceBetweenNumberAndUnit(`${d3.format(`,.2~s`)(value)}t`);
+  return power + 'h';
 };
 
-const scalePower = function (maxPower: number | undefined) {
+export const formatCo2 = function (grams: number, valueToMatch?: number): string {
+  // Validate input
+  if (grams == null || Number.isNaN(grams)) {
+    return '?';
+  }
+
+  // Ensure both numbers are at the same scale
+  const checkAgainst = valueToMatch ?? grams;
+
+  //Values less than 1Mt
+  if (Math.round(checkAgainst) < 1e9) {
+    let decimals = grams < 1 ? 2 : 1;
+    // Remove decimals for large values
+    if (grams > 1_000_000) {
+      decimals = 2;
+    }
+    if (checkAgainst < 1e6) {
+      return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~s`)(grams)}g`);
+    }
+
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~r`)(grams / 1e6)}t`);
+  }
+  // tonnes or above with significant figures as a default
+  return addSpaceBetweenNumberAndUnit(`${d3.format(',.2~s')(grams / 1e6)}t`);
+};
+
+const scalePower = function (maxPower: number | undefined, isPower = false) {
   // Assume MW input
   if (maxPower == undefined) {
     return {
@@ -67,13 +73,21 @@ const scalePower = function (maxPower: number | undefined) {
     };
   }
 
-  const thresholds: [number, EnergyUnits][] = [
-    [1e9, EnergyUnits.PETAWATT_HOURS],
-    [1e6, EnergyUnits.TERAWATT_HOURS],
-    [1e3, EnergyUnits.GIGAWATT_HOURS],
-    [1, EnergyUnits.MEGAWATT_HOURS],
-    [1e-3, EnergyUnits.KILOWATT_HOURS],
-  ];
+  const thresholds: [number, EnergyUnits | PowerUnits][] = isPower
+    ? [
+        [1e9, PowerUnits.PETAWATTS],
+        [1e6, PowerUnits.TERAWATTS],
+        [1e3, PowerUnits.GIGAWATTS],
+        [1, PowerUnits.MEGAWATTS],
+        [1e-3, PowerUnits.KILOWATTS],
+      ]
+    : [
+        [1e9, EnergyUnits.PETAWATT_HOURS],
+        [1e6, EnergyUnits.TERAWATT_HOURS],
+        [1e3, EnergyUnits.GIGAWATT_HOURS],
+        [1, EnergyUnits.MEGAWATT_HOURS],
+        [1e-3, EnergyUnits.KILOWATT_HOURS],
+      ];
 
   // Use absolute value to handle negative values
   const value = Math.abs(maxPower);

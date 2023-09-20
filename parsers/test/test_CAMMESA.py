@@ -6,7 +6,7 @@ from requests_mock import ANY, GET, Adapter
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.AR import (
+from parsers.CAMMESA import (
     CAMMESA_DEMANDA_ENDPOINT,
     CAMMESA_RENEWABLES_ENDPOINT,
     fetch_exchange,

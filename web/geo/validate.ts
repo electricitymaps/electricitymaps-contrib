@@ -44,9 +44,7 @@ function zeroNullGeometries(fc: WorldFeatureCollection) {
 function containsRequiredProperties(fc: WorldFeatureCollection) {
   const indexes = getPolygons(fc)
     .features.map(({ properties }, index) =>
-      properties?.zoneName || properties?.countryKey || properties?.countryName
-        ? null
-        : index
+      properties?.zoneName || properties?.countryKey ? null : index
     )
     .filter(Boolean);
 

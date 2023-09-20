@@ -52,11 +52,12 @@ function BarBreakdownEmissionsChart({
     exchangeData
   );
 
-  const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.tCo2eqPerMin)) || 0;
-  const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.tCo2eqPerMin));
-  const maxCO2eqProduction = d3Max(productionData, (d) => d.tCo2eqPerMin);
+  const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.gCo2eq)) || 0;
+  const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.gCo2eq));
+  const maxCO2eqProduction = d3Max(productionData, (d) => d.gCo2eq);
 
-  // in tCO₂eq/min
+  // in CO₂eq
+
   const co2Scale = useMemo(
     () =>
       scaleLinear()
@@ -69,12 +70,9 @@ function BarBreakdownEmissionsChart({
   );
 
   const formatTick = (t: number) => {
-    // Convert from t/min to g/hour as the formatCo2 function expects g/hour
-    // TODO: This is a temporary solution until we have a better way of handling this on the backend
-    const value = t * 1e6 * 60;
-    const maxValue = (maxCO2eqProduction || 1) * 1e6 * 60;
+    const maxValue = maxCO2eqProduction || 1;
 
-    return `${formatCo2(value, maxValue)}/min`;
+    return formatCo2(t, maxValue);
   };
 
   return (
@@ -88,7 +86,7 @@ function BarBreakdownEmissionsChart({
             label={__(d.mode)}
             width={width}
             scale={co2Scale}
-            value={Math.abs(d.tCo2eqPerMin)}
+            value={Math.abs(d.gCo2eq)}
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, data, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
@@ -96,7 +94,7 @@ function BarBreakdownEmissionsChart({
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}
-              range={[0, Math.abs(d.tCo2eqPerMin)]}
+              range={[0, Math.abs(d.gCo2eq)]}
               scale={co2Scale}
             />
           </Row>
@@ -119,7 +117,7 @@ function BarBreakdownEmissionsChart({
             <HorizontalBar
               className="exchange"
               fill={'gray'}
-              range={[0, d.tCo2eqPerMin]}
+              range={[0, d.gCo2eq]}
               scale={co2Scale}
             />
           </Row>

@@ -10,7 +10,6 @@ const mockFeatureCollection: WorldFeatureCollection = {
       properties: {
         zoneName: 'SE-SE4',
         countryKey: 'SE',
-        countryName: 'Sweden',
         isAggregatedView: false,
         isHighestGranularity: true,
       },
@@ -70,7 +69,6 @@ const mockFeatureCollection: WorldFeatureCollection = {
       properties: {
         zoneName: 'SE-SE3',
         countryKey: 'SE',
-        countryName: 'Sweden',
         isAggregatedView: false,
         isHighestGranularity: true,
       },

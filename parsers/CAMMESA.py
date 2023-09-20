@@ -3,7 +3,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Optional
 
 import arrow
 from requests import Session
@@ -57,10 +56,10 @@ SOURCE = "cammesaweb.cammesa.com"
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("AR"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests up to date list of production mixes (in MW) of a given country."""
 
     if target_datetime:
@@ -149,10 +148,10 @@ def non_renewables_production_mix(
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known power exchange (in MW) between two zones."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -160,7 +159,7 @@ def fetch_exchange(
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     if sorted_zone_keys not in EXCHANGE_NAME_DIRECTION_MAPPING:
         raise ParserException(
-            parser="AR.py",
+            parser="CAMMESA.py",
             message="This exchange is not currently implemented",
             zone_key=sorted_zone_keys,
         )
@@ -170,7 +169,7 @@ def fetch_exchange(
     api_cammesa_response = current_session.get(CAMMESA_EXCHANGE_ENDPOINT)
     if not api_cammesa_response.ok:
         raise ParserException(
-            parser="AR.py",
+            parser="CAMMESA.py",
             message=f"Exception when fetching exchange for {sorted_zone_keys}: error when calling url={CAMMESA_EXCHANGE_ENDPOINT}",
             zone_key=sorted_zone_keys,
         )
@@ -186,7 +185,7 @@ def fetch_exchange(
     )
     if exchange_data is None:
         raise ParserException(
-            parser="AR.py",
+            parser="CAMMESA.py",
             message=f"Exception when fetching exchange for {sorted_zone_keys}: exchange not found",
             zone_key=sorted_zone_keys,
         )
@@ -211,8 +210,8 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: str = "AR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power price of a given country."""

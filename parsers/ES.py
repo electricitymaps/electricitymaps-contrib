@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
+from collections.abc import Callable
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, Optional
 
 # package "ree" is used to parse data from www.ree.es
 # maintained on github by @hectorespert at https://github.com/hectorespert/ree
@@ -40,7 +40,7 @@ from .lib.exceptions import ParserException
 SOURCE = "demanda.ree.es"
 
 
-ZONE_FUNCTION_MAP: Dict[ZoneKey, Callable] = {
+ZONE_FUNCTION_MAP: dict[ZoneKey, Callable] = {
     ZoneKey("ES"): IberianPeninsula,
     ZoneKey("ES-CE"): Ceuta,
     ZoneKey("ES-CN-FVLZ"): LanzaroteFuerteventura,
@@ -56,7 +56,7 @@ ZONE_FUNCTION_MAP: Dict[ZoneKey, Callable] = {
     ZoneKey("ES-ML"): Melilla,
 }
 
-EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
+EXCHANGE_FUNCTION_MAP: dict[str, Callable] = {
     "ES->ES-IB-MA": Mallorca,
     "ES-IB-IZ->ES-IB-MA": Mallorca,
     "ES-IB-FO->ES-IB-IZ": Formentera,
@@ -81,8 +81,8 @@ PRODUCTION_MAPPING = {
 
 def check_valid_parameters(
     zone_key: ZoneKey,
-    session: Optional[Session],
-    target_datetime: Optional[datetime],
+    session: Session | None,
+    target_datetime: datetime | None,
 ):
     """Raise an exception if the parameters are not valid for this parser."""
     if "->" not in zone_key and zone_key not in ZONE_FUNCTION_MAP.keys():
@@ -113,15 +113,15 @@ def check_valid_parameters(
 
 
 def fetch_island_data(
-    zone_key: ZoneKey, session: Session, target_datetime: Optional[datetime]
-) -> List[Response]:
+    zone_key: ZoneKey, session: Session, target_datetime: datetime | None
+) -> list[Response]:
     """Fetch data for the given zone key."""
     if target_datetime is None:
         date = target_datetime
     else:
         date = target_datetime.strftime("%Y-%m-%d")
 
-    data: List[Response] = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
+    data: list[Response] = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
     if data:
         return data
     else:
@@ -135,10 +135,10 @@ def fetch_island_data(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     check_valid_parameters(zone_key, session, target_datetime)
 
     ses = session or Session()
@@ -157,10 +157,10 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     check_valid_parameters(zone_key, session, target_datetime)
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
@@ -209,10 +209,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     check_valid_parameters(sorted_zone_keys, session, target_datetime)
 
@@ -223,7 +223,7 @@ def fetch_exchange(
 
     ses = session or Session()
 
-    responses: List[Response] = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all(
+    responses: list[Response] = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all(
         date
     )
 

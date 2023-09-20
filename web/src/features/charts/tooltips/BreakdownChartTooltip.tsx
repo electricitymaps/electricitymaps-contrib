@@ -7,16 +7,17 @@ import { renderToString } from 'react-dom/server';
 import { getZoneName, useTranslation } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
 import { Mode, TimeAverages, modeColor } from 'utils/constants';
-import { formatCo2, formatPower } from 'utils/formatting';
+import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+
+import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
 import { InnerAreaGraphTooltipProps, LayerKey } from '../types';
-import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 function calculateTooltipContentData(
   selectedLayerKey: LayerKey,
@@ -125,10 +126,13 @@ export function BreakdownChartTooltipContent({
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   // Dynamically generate the translated headline HTML based on the exchange or generation type
+  const percentageUsage = displayByEmissions
+    ? getRatioPercent(emissions, totalEmissions)
+    : getRatioPercent(usage, totalElectricity);
   const headline = isExchange
     ? __(
         originTranslateKey,
-        getRatioPercent(usage, totalElectricity).toString(),
+        percentageUsage.toString(),
         getZoneName(zoneKey),
         getZoneName(selectedLayerKey),
         renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />),
@@ -136,7 +140,7 @@ export function BreakdownChartTooltipContent({
       ) // Eg: "7 % of electricity in Denmark is imported from Germany"
     : __(
         originTranslateKey,
-        getRatioPercent(usage, totalElectricity).toString(),
+        percentageUsage.toString(),
         getZoneName(zoneKey),
         __(selectedLayerKey),
         renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />)
@@ -166,14 +170,18 @@ export function BreakdownChartTooltipContent({
           value={emissions}
           total={totalEmissions}
           format={formatCo2}
-          label={__('ofCO2eqPerMinute')}
+          label={__('ofCO2eq')}
           useTotalUnit
         />
       )}
 
       {!displayByEmissions && (
         <>
-          <MetricRatio value={usage} total={totalElectricity} format={formatPower} />
+          <MetricRatio
+            value={usage}
+            total={totalElectricity}
+            format={timeAverage === TimeAverages.HOURLY ? formatPower : formatEnergy}
+          />
           <br />
           {timeAverage === TimeAverages.HOURLY && (
             <>
@@ -194,7 +202,7 @@ export function BreakdownChartTooltipContent({
             value={emissions}
             total={totalEmissions}
             format={formatCo2}
-            label={__('ofCO2eqPerMinute')}
+            label={__('ofCO2eq')}
             useTotalUnit
           />
         </>

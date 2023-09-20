@@ -2,10 +2,11 @@
 // TODO: Uncomment tests
 describe('Map', () => {
   it('interacts with the map', () => {
-    cy.interceptAPI('v6/state/hourly');
+    cy.interceptAPI('v7/state/hourly');
     cy.visit('/?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
-    cy.waitForAPISuccess(`v6/state/hourly`);
+    cy.get('[data-test-id=total-energy-modal] [data-test-id=close-modal-button]').click();
+    cy.waitForAPISuccess(`v7/state/hourly`);
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
 
     // closes left panel

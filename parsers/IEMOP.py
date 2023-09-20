@@ -1,10 +1,9 @@
 import logging
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, NamedTuple, Optional, Union
+from typing import NamedTuple
 
 import pandas as pd
-import requests
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -20,8 +19,10 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
+REPORTS_ADMIN_URL = "https://www.iemop.ph/wp-admin/admin-ajax.php"
 DIPC_URL = "https://www.iemop.ph/market-data/dipc-energy-results-raw/"
 RTDHS_URL = "https://www.iemop.ph/market-data/rtd-hvdc-schedules/"
+
 TIMEZONE = "Asia/Manila"
 SOURCE = "iemop.ph"
 REGION_TO_ZONE_KEY = {
@@ -462,8 +463,8 @@ class MarketReportsItem(NamedTuple):
 
 
 def get_all_market_reports_items(
-    kind: str, logger: Logger = getLogger(__name__)
-) -> Dict[datetime, MarketReportsItem]:
+    session: Session, zone_key: ZoneKey, kind: str, logger: Logger = getLogger(__name__)
+) -> dict[datetime, MarketReportsItem]:
     """
     Gets a dictionary that converts a date into its code and filename
     """
@@ -477,10 +478,14 @@ def get_all_market_reports_items(
         "page": "1",
         "post_id": KIND_TO_POST_ID[kind],
     }
-    r = requests.post(
-        "https://www.iemop.ph/wp-admin/admin-ajax.php", data=form_data, verify=False
-    )
-    id_to_items = eval(r.text)["data"]
+    res = session.post(REPORTS_ADMIN_URL, data=form_data, verify=False)
+    id_to_items = res.json().get("data", {})
+    if not id_to_items:
+        raise ParserException(
+            parser="IEMOP.py",
+            zone_key=zone_key,
+            message=f"No reports available to fetch {kind} data",
+        )
     datetime_to_items = {}
     for id, items in id_to_items.items():
         market_reports_item = MarketReportsItem(
@@ -489,16 +494,18 @@ def get_all_market_reports_items(
             KIND_TO_URL[kind] + f"?md_file={id}",
         )
         datetime_to_items[market_reports_item.datetime] = market_reports_item
-    logger.info(f"PH - {kind}: Succesfully recovered market reports items")
+    logger.info(
+        f"{zone_key} - {kind}: Succesfully recovered {len(datetime_to_items)} market reports items"
+    )
     return datetime_to_items
 
 
 def filter_reports_items(
     kind: str,
     zone_key: ZoneKey,
-    reports_items: Dict[datetime, MarketReportsItem],
-    target_datetime: Optional[datetime],
-) -> List[MarketReportsItem]:
+    reports_items: dict[datetime, MarketReportsItem],
+    target_datetime: datetime | None,
+) -> list[MarketReportsItem]:
     # Date filtering
     if target_datetime is None:
         last_available_datetime = max(reports_items.keys())
@@ -518,7 +525,7 @@ def filter_reports_items(
 
     if len(_reports_items) == 0:
         raise ParserException(
-            parser="PH.py",
+            parser="IEMOP.py",
             zone_key=zone_key,
             message=f"{zone_key}: No {kind} data available for {_exception_date} ",
         )
@@ -527,7 +534,7 @@ def filter_reports_items(
 
 
 def download_production_market_reports_items(
-    session: Session, reports_items: List[MarketReportsItem], logger: Logger
+    session: Session, reports_items: list[MarketReportsItem], logger: Logger
 ) -> pd.DataFrame:
     from io import BytesIO
     from zipfile import ZipFile
@@ -617,14 +624,18 @@ def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
     # Flatten columns and make them "production.{mode}"
     df.columns = df.columns.to_series().str.join(".")
     # Handle storage
-    if "production.hydro_storage" in df.columns:
-        df = df.rename(columns={"production.hydro_storage": "storage.hydro"})
-        df["storage.hydro"] *= -1
+    storage_methods = {"hydro_storage": "hydro", "battery": "battery"}
+    for storage_method, storage_mode in storage_methods.items():
+        if f"production.{storage_method}" in df.columns:
+            df = df.rename(
+                columns={f"production.{storage_method}": f"storage.{storage_mode}"}
+            )
+            df[f"storage.{storage_mode}"] *= -1
     return df
 
 
 def download_exchange_market_reports_items(
-    session: Session, reports_items: List[MarketReportsItem], logger: Logger
+    session: Session, reports_items: list[MarketReportsItem], logger: Logger
 ) -> pd.DataFrame:
     _all_items_df = []
     for reports_item in reports_items:
@@ -667,10 +678,12 @@ def convert_column_to_datetime(df: pd.DataFrame, datetime_column: str) -> pd.Dat
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("PH-LU"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    reports_items = get_all_market_reports_items("production", logger)
+    reports_items = get_all_market_reports_items(
+        session, zone_key, "production", logger
+    )
     reports_items = filter_reports_items(
         "production", zone_key, reports_items, target_datetime
     )
@@ -690,8 +703,8 @@ def fetch_production(
         for mode in [m for m in row.index if "production." in m]:
             production_mix.add_value(mode.replace("production.", ""), row[mode])
         storage_mix = StorageMix()
-        if "storage.hydro" in row.index:
-            storage_mix.add_value("hydro", row["storage.hydro"])
+        for mode in [m for m in row.index if "storage." in m]:
+            storage_mix.add_value(mode.replace("storage.", ""), row[mode])
         production_breakdown.append(
             zone_key,
             tstamp.to_pydatetime(),
@@ -708,12 +721,14 @@ def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
-    all_exchange_items = get_all_market_reports_items("exchange", logger)
+    all_exchange_items = get_all_market_reports_items(
+        session, sorted_zone_keys, "exchange", logger
+    )
     reports_items = filter_reports_items(
         "exchange", sorted_zone_keys, all_exchange_items, target_datetime
     )

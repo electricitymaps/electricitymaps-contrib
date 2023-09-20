@@ -3,7 +3,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from requests import Session
@@ -50,7 +49,7 @@ def validate_prod_timestamp(logger: Logger, energy_dt, request_dt):
     diff = energy_dt - request_dt
     if diff.total_seconds() > 7200:
         msg = (
-            "Hawaii data is too old to use, " "parsed data timestamp was {0}."
+            "Hawaii data is too old to use, " "parsed data timestamp was {}."
         ).format(energy_dt)
         logger.warning(msg, extra={"key": "US-HI-OA"})
         return False
@@ -60,8 +59,8 @@ def validate_prod_timestamp(logger: Logger, energy_dt, request_dt):
 
 def fetch_production(
     zone_key: str = "US-HI-OA",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""

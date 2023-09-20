@@ -2,7 +2,6 @@ import os
 import unittest
 from datetime import datetime
 from json import loads
-from typing import Dict, List, Union
 
 from pkg_resources import resource_string
 from pytz import utc
@@ -276,8 +275,8 @@ class TestEIAProduction(TestEIA):
 
     def check_production_matches(
         self,
-        actual: List[Dict[str, Union[str, Dict]]],
-        expected: List[Dict[str, Union[str, Dict]]],
+        actual: list[dict[str, str | dict]],
+        expected: list[dict[str, str | dict]],
     ):
         self.assertIsNotNone(actual)
         self.assertEqual(len(expected), len(actual))

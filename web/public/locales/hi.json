@@ -49,8 +49,6 @@
     "renewable": "अक्षय",
     "electricityproduction": "बिजली उत्पादन",
     "electricityconsumption": "बिजली खर्च",
-    "bysource": "श्रोत से",
-    "averagebysource": "श्रोतों का औसत",
     "emissions": "कार्बन उत्सर्जन",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">श्रोत जोड़ें या श्रोत में बदलाव करें</a>",
     "helpfrom": "की मदद से",
