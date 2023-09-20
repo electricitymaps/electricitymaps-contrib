@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Visualisierung der klimarelevanten Emissionen der Stromerzeugung"
+      "header": "Visualisierung der klimarelevanten Emissionen der Stromerzeugung"
     },
     "view2": {
       "header": "Betrachte in Echtzeit, wie viel CO₂-Äquivalente bei der Stromerzeugung freigesetzt werden.",
@@ -23,7 +23,7 @@
       "header": "Erfahre, aus welchen Quellen deine Elektrizität stammt.",
       "text": "Die Pfeile auf der Karte stellen den physischen Stromaustausch zwischen den Regionen dar. Tippe auf eine Region, um mehr Details zur Herkunft des verfügbaren Stromes zu erhalten."
     },
-    "view4": {
+    "view7": {
       "header": "Echtzeit-Potenzial von Wind und Sonne",
       "text": "Die Verfügbarkeit von Wind- und Solarstrom ist wetterabhängig. Tippe auf den Wind- und Sonnenbutton, um das globale Echtzeit-Potenzial von Wind und Sonne anzuzeigen."
     }

@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Cartographie de l’impact de l’électricité sur le climat"
+      "header": "Cartographie de l’impact de l’électricité sur le climat"
     },
     "view2": {
       "header": "Visualisez la quantité de CO₂ émise pour produire votre électricité, en temps réel.",
@@ -23,7 +23,7 @@
       "header": "Comprenez d’où vient votre électricité",
       "text": "Les flèches sur la carte indiquent les flux d’électricité entre différentes zones. Cliquez sur une zone pour voir plus d’informations sur les origines de son électricité."
     },
-    "view4": {
+    "view7": {
       "header": "Conditions de vent et d’ensoleillement en temps réel",
       "text": "La production d’énergie éolienne et solaire dépend de la météo. Appuyez sur les boutons Soleil et Vent pour afficher la force du vent et du soleil en temps réel dans le monde entier."
     }

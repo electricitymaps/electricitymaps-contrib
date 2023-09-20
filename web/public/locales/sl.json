@@ -27,7 +27,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Kartiranje vpliva električne energije na podnebje"
+      "header": "Kartiranje vpliva električne energije na podnebje"
     },
     "view2": {
       "header": "Sprotno si oglejte, koliko CO₂ se izpusti za proizvodnjo vaše električne energije.",
@@ -37,7 +37,7 @@
       "header": "Vedite, od kod prihaja vaša elektrika",
       "text": "Puščice na zemljevidu označujejo pretok električne energije med različnimi območji. Kliknite na območje, da vidite več informacij o izvoru električne energije."
     },
-    "view4": {
+    "view7": {
       "header": "Vetrne in sončne razmere v realnem času",
       "text": "Proizvodnja vetrne in sončne energije je odvisna od vremena. Pritisnite gumba za sonce in veter, da prikažete moč vetra in sonca po vsem svetu v realnem času."
     }

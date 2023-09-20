@@ -53,10 +53,10 @@ const views = [
       <>
         <div>
           <h2 className="mb-2 text-base sm:text-xl">
-            {__('onboarding-modal.view4.header')}
+            {__('onboarding-modal.view7.header')}
           </h2>
         </div>
-        <div className="text-sm sm:text-base">{__('onboarding-modal.view4.text')}</div>
+        <div className="text-sm sm:text-base">{__('onboarding-modal.view7.text')}</div>
       </>
     ),
   },
