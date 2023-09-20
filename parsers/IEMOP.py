@@ -657,6 +657,9 @@ def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
                 columns={f"production.{storage_method}": f"storage.{storage_mode}"}
             )
             df[f"storage.{storage_mode}"] *= -1
+    # With the pivot if some modes only have data for some datetimes, we will have NaNs
+    # Fill them with 0
+    df = df.fillna(0)
     return df
 
 
