@@ -12,9 +12,9 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { useTranslation } from 'translation/translation';
+
 import { leftPanelOpenAtom } from './panelAtoms';
 import RankingPanel from './ranking-panel/RankingPanel';
-
 import ZoneDetails from './zone/ZoneDetails';
 
 function HandleLegacyRoutes() {

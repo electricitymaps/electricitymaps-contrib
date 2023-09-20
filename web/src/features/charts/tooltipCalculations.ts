@@ -4,13 +4,14 @@ import {
   GenerationType,
   ZoneDetail,
 } from 'types';
+import { Mode } from 'utils/constants';
 import { getProductionCo2Intensity } from 'utils/helpers';
+
 import {
   getElectricityProductionValue,
-  getTotalEmissions,
   getTotalElectricity,
+  getTotalEmissions,
 } from './graphUtils';
-import { Mode } from 'utils/constants';
 
 export function getProductionTooltipData(
   selectedLayerKey: ElectricityModeType,

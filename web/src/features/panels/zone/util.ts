@@ -1,4 +1,5 @@
 import { ZoneDetails } from 'types';
+
 import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
 
 type zoneConfigItem = {

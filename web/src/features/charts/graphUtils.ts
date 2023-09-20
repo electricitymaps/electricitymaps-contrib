@@ -2,7 +2,6 @@
 import { bisectLeft } from 'd3-array';
 // import { pointer } from 'd3-selection';
 // // https://observablehq.com/@d3/d3-selection-2-0
-
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';

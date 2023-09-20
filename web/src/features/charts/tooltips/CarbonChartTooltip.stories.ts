@@ -1,6 +1,7 @@
 /* eslint-disable unicorn/no-null */
 import { Meta, StoryObj } from '@storybook/react';
 import { zoneDetailMock } from 'stories/mockData';
+
 import CarbonChartTooltip from './CarbonChartTooltip';
 
 const meta: Meta<typeof CarbonChartTooltip> = {
