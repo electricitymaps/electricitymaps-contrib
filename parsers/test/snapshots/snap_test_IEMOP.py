@@ -22,7 +22,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -40,7 +40,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -58,7 +58,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -76,7 +76,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -94,7 +94,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -112,7 +112,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -130,7 +130,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -148,7 +148,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -166,7 +166,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -184,7 +184,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -202,7 +202,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
     {
@@ -220,7 +220,7 @@ snapshots["test_production[PH-LU] 1"] = [
         },
         "source": "iemop.ph",
         "sourceType": "measured",
-        "storage": {"battery": -0.0, "hydro": -0.0},
+        "storage": {"battery": -0.0, "hydro": 306.0},
         "zoneKey": "PH-LU",
     },
 ]
