@@ -75,8 +75,9 @@ def fetch_data(
     assert session is not None
     assert sheet_name != "" or sheet_name is not None
     adme_url = get_adme_url(target_datetime=target_datetime, session=session)
-    r = session.get(url=adme_url)
-    if not r.ok:
+    response = session.get(url=adme_url)
+    breakpoint()
+    if not response.ok:
         raise ParserException(
             parser="UY.py",
             message="no data available for target_dateitme",
@@ -84,7 +85,7 @@ def fetch_data(
         )
 
     df_data = pd.read_excel(
-        io.BytesIO(r.content), engine="odf", header=2, sheet_name=sheet_name
+        io.BytesIO(response.content), engine="odf", header=2, sheet_name=sheet_name
     )
     df_data.columns = df_data.columns.str.strip()
     df_data = df_data.rename(columns={"Fecha": "datetime"})
