@@ -135,7 +135,7 @@
       "yearly": "Elpriser de senaste 5 åren"
     },
     "netExchange": {
-      "default": "Nettoöverföring de senaste %1$s"
+      "default": "Nettoöverföring de senaste %1$s",
       "hourly": "Nettoöverföring de senaste 24 timmarna",
       "daily": "Nettoöverföring den senaste månaden",
       "monthly": "Nettoöverföring det senaste året",
@@ -180,7 +180,7 @@
     "production": "produktion",
     "consumption": "konsumtion",
     "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
-    "aggregateInfo": "Växla mellan en detaljerad zon vy och en aggregerad lands vy"
+    "aggregateInfo": "Växla mellan en detaljerad zon vy och en aggregerad lands vy",
     "selectLanguage": "Välj språk",
     "lowCarbDescription": "Inkluderar förnybart och kärnkraft",
     "dataIsDelayed": "Data är fördröjd",
