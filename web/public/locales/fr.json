@@ -13,19 +13,32 @@
   },
   "onboarding-modal": {
     "view1": {
-      "header": "Cartographie de l’impact de l’électricité sur le climat"
+      "header": "Bienvenue sur Electricity Maps",
+      "text": "Explorez l’impact climatique de l’électricité dans de nombreux pays à travers le monde. Laissez nous vous expliquer Electricity Maps en quelques simples étapes !"
     },
     "view2": {
-      "header": "Visualisez la quantité de CO₂ émise pour produire votre électricité, en temps réel.",
-      "text": "Les régions du monde sont colorées en fonction de l’intensité en carbone (incluant tous les gaz à effet de serre) de l’électricité qui y est consommée. Des couleurs plus vertes signifient une électricité plus respectueuse du climat."
+      "header": "Visualisez la quantité de CO2 émis en temps réel pour produire votre électricité",
+      "text": "Les différentes zones qui apparaissent sur la carte sont colorées en fonction de l’intensité carbone de l’électricité consommée (sont inclus tous les gaz à effet de serre). Plus la couleur est verte, moins l’électricité est carbonée."
     },
     "view3": {
-      "header": "Comprenez d’où vient votre électricité",
-      "text": "Les flèches sur la carte indiquent les flux d’électricité entre différentes zones. Cliquez sur une zone pour voir plus d’informations sur les origines de son électricité."
+      "header": "Découvrez d’où vient votre électricité",
+      "text": "Les flèches sur la carte représentent les flux d’électricité entre les différentes zones. Cliquez sur une zone pour en découvrir plus sur l’origine de l’électricité qui y est consommée."
+    },
+    "view4": {
+      "header": "Alternez entre différentes vues",
+      "text": "Visualisez les données de production ou de consommation, par pays ou par zone, et découvrez en temps réel les dynamiques énergétiques dans le monde pour faire des choix éclairés en faveur d’un avenir durable."
+    },
+    "view5": {
+      "header": "Alternez entre les données d’électricité et d’émissions",
+      "text": "Passez des graphiques détaillant nos données pour l’électricité à ceux présentants les émissions carbone. Les valeurs affichées représentent le total pour la période sélectionnée, et les valeurs correspondent au mode de production ou de consommation choisi."
+    },
+    "view6": {
+      "header": "Explorez l’historique de données",
+      "text": "En bas à gauche, vous pouvez visualiser à la fois les données d’émissions et d’électricité en temps réel et dans le passé, pour le monde entier. Modifiez la période d’aggrégation des données à l’aide des différents boutons et déplacez le sélecteur de date pour explorer l’évolution de nos données au fil du temps."
     },
     "view7": {
-      "header": "Conditions de vent et d’ensoleillement en temps réel",
-      "text": "La production d’énergie éolienne et solaire dépend de la météo. Appuyez sur les boutons Soleil et Vent pour afficher la force du vent et du soleil en temps réel dans le monde entier."
+      "header": "Vitesse du vent et ensoleillement en temps réel",
+      "text": "La production d’énergie éolienne et solaire dépend de la météo. Afficher la vitesse du vent et de l’ensoleillement en temps réel à travers le monde grâce aux boutons dédiés à droite de l’écran."
     }
   },
   "country-panel": {

@@ -13,19 +13,32 @@
   },
   "onboarding-modal": {
     "view1": {
-      "header": "Visualisierung der klimarelevanten Emissionen der Stromerzeugung"
+      "header": "Willkommen bei Electricity Maps",
+      "text": "Hier können Sie die Klimaauswirkungen von Strom für viele Länder weltweit erkunden. <br/><br/>Lassen Sie sich in wenigen einfachen Schritten durch unsere Karte führen!"
     },
     "view2": {
-      "header": "Betrachte in Echtzeit, wie viel CO₂-Äquivalente bei der Stromerzeugung freigesetzt werden.",
-      "text": "Die Färbung der Zonen erfolgt anhand der spezifischen Emissionen klimawirksamer Gase (CO₂-Intensität), die zur Deckung des Strombedarfs einer Region freigesetzt werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung."
+      "header": "Erfahren Sie in Echtzeit, wie viel CO2 zur Erzeugung Ihres Stroms ausgestoßen wird",
+      "text": "Wir färben Gebiete auf der ganzen Welt nach der CO2 Intensität des verbrauchten Stroms (einschließlich aller Treibhausgase). Je grüner die Farbe, desto klimafreundlicher der Strom."
     },
     "view3": {
-      "header": "Erfahre, aus welchen Quellen deine Elektrizität stammt.",
-      "text": "Die Pfeile auf der Karte stellen den physischen Stromaustausch zwischen den Regionen dar. Tippe auf eine Region, um mehr Details zur Herkunft des verfügbaren Stromes zu erhalten."
+      "header": "Entdecken Sie woher Ihr Strom kommt",
+      "text": "Pfeile auf der Karte zeigen Stromflüsse zwischen verschiedenen Gebieten an. Klicken Sie auf ein Gebiet, um mehr Informationen über die Herkunft des Stroms zu erhalten.."
+    },
+    "view4": {
+      "header": "Wechseln Sie zwischen verschiedenen Ansichten",
+      "text": "Wechseln Sie zwischen Stromerzeugung und -verbrauch sowie zwischen Länder- oder Zonenansichten und entdecken Sie Echtzeiteinblicke in die globalen Energiedynamiken, um informierte Entscheidungen für eine nachhaltige Zukunft zu treffen."
+    },
+    "view5": {
+      "header": "Wählen Sie zwischen Strom- und Emissionsansichten",
+      "text": "Wechseln Sie zwischen den Grafiken, die Strominformationen oder CO2 Emissionen eines Gebiets anzeigen. Die angezeigten Werte repräsentieren die Gesamtmenge für den ausgewählten Zeitraum und sind auf die gewählte Produktions- oder Verbrauchsansicht abgestimmt."
+    },
+    "view6": {
+      "header": "Erforschen Sie vergangene Situationen",
+      "text": "Unten links können Sie sowohl Echtzeit- als auch vergangene Emissions- und Stromdaten aus der ganzen Welt einsehen. Ändern Sie die aggregierten Daten mithilfe des Schalters oder navigieren Sie durch die Zeitleiste, um die Veränderungen im Laufe der Zeit zu sehen."
     },
     "view7": {
-      "header": "Echtzeit-Potenzial von Wind und Sonne",
-      "text": "Die Verfügbarkeit von Wind- und Solarstrom ist wetterabhängig. Tippe auf den Wind- und Sonnenbutton, um das globale Echtzeit-Potenzial von Wind und Sonne anzuzeigen."
+      "header": "Wind- und Sonnenverhältnisse in Echtzeit",
+      "text": "Die Produktion von Wind- und Solarenergie hängt vom Wetter ab. Drücken Sie die Schaltflächen für Sonne und Wind, um die Wind- und Sonnenscheinstärke auf der ganzen Welt in Echtzeit anzuzeigen."
     }
   },
   "country-panel": {

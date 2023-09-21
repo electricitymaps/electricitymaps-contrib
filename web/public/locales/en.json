@@ -28,31 +28,31 @@
   "onboarding-modal": {
     "view1": {
       "header": "Welcome to Electricity Maps",
-      "text": "Explore the climate impact of electricity across various countries. Let us guide you through our map in a few simple steps!"
+      "text": "Here you can explore the climate impact of electricity for many countries globally. <br/><br/>Let us guide you through our map in a few simple steps!"
     },
     "view2": {
-      "header": "Monitor Real-time CO2 Emissions from Electricity Production",
-      "text": "We shade regions globally based on the carbon intensity of the electricity they consume, including all greenhouse gases. The greener the region, the more climate-friendly its electricity."
+      "header": "See how much CO2 is emitted to produce your electricity, in real-time",
+      "text": "We color areas around the world by the carbon intensity of consumed electricity (includes all greenhouse gases). The greener the color, the more climate-friendly the electricity."
     },
     "view3": {
-      "header": "Understand Your Electricity's Origin",
-      "text": "Arrows on the map show electricity flows between different regions. Click on a region to learn more about where its electricity comes from."
+      "header": "Know where your electricity comes from",
+      "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
     },
     "view4": {
-      "header": "Toggle Between Different Views",
-      "text": "Switch between views on Electricity Production and Consumption. Also, toggle between Country or Zone views to gain real-time insights into global energy patterns, empowering you to make informed decisions for a sustainable future."
+      "header": "Switch between different views",
+      "text": "Toggle between Electricity Production and Consumption, as well as Country or Zone views and discover real-time insights into global energy dynamics and make informed choices for a sustainable future."
     },
     "view5": {
-      "header": "Alternate Between Electricity and Emissions Views",
-      "text": "Switch between charts that showcase a zone's electricity details or its carbon emissions. The displayed values represent the total for your selected timeframe, aligned with your chosen mode of production or consumption."
+      "header": "Switch between electricity and emissions views",
+      "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen production or consumption mode."
     },
     "view6": {
-      "header": "Dive into Historical Data",
-      "text": "In the bottom left, access both real-time and historical emission and electricity data from around the world. Adjust the aggregated data using the toggles, or scroll through the timeline to observe trends over time."
+      "header": "Explore past situations",
+      "text": "In the bottom left, you can view both real-time and past emission and electricity data all around the world. Change the aggregated data using the toggles or browse through the timeline to see the changes over time."
     },
     "view7": {
-      "header": "Check Real-time Wind and Solar Conditions",
-      "text": "Wind and solar energy outputs are weather-dependent. Click on the sun and wind icons to see the current strength of wind and sunlight across the globe."
+      "header": "Real-time wind and solar conditions",
+      "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
     }
   },
   "country-panel": {
@@ -78,7 +78,7 @@
     "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
     "helpUs": "Help us identify the problem by taking a look at the <a href=\"%s\" target=\"_blank\">runtime logs</a> or contact the data provider.",
-    "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
+    "noParserInfo": "We do not yet have any information about this area.<br/>Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
     "now": "Now",
     "by-source": {
       "emissions": "Carbon emissions by source",
