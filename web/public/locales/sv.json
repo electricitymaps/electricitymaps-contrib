@@ -66,7 +66,7 @@
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
     "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
-    "now": "Nu"
+    "now": "Nu",
     "by-source": {
       "emissions": "Koldioxidutsläpp per källa",
       "electricity-production": "Elproduktion per källa",
