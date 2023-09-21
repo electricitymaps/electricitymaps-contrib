@@ -6,6 +6,7 @@ from typing import NamedTuple
 import pandas as pd
 from requests import Response, Session
 
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
@@ -454,6 +455,19 @@ EXCHANGE_KEY_MAPPING = {
 }
 KIND_TO_URL = {"production": DIPC_URL, "exchange": RTDHS_URL}
 KIND_TO_POST_ID = {"production": "5754", "exchange": "5770"}
+STORAGE_METHODS_TO_MODE = {"hydro_storage": "hydro", "battery": "battery"}
+MODES_TO_RESOURCE_KIND = {
+    **{m: "production" for m in PRODUCTION_MODES},
+    **{m: "storage" for m in STORAGE_METHODS_TO_MODE.keys()},
+}
+
+
+def _validate_resource_name_to_mode_mapping():
+    for resource_name, mode in RESOURCE_NAME_TO_MODE.items():
+        if mode not in set(PRODUCTION_MODES).union(STORAGE_METHODS_TO_MODE.keys()):
+            raise ValueError(
+                f"Resource {resource_name} has an unknown mode {mode} in RESOURCE_NAME_TO_MODE"
+            )
 
 
 class MarketReportsItem(NamedTuple):
@@ -542,7 +556,7 @@ def download_production_market_reports_items(
     COLUMNS_MAPPING = {
         "REGION_NAME": "zone_key",
         "RESOURCE_NAME": "resource_name",
-        "SCHED_MW": "production",
+        "SCHED_MW": "value",
     }
 
     _all_items_df = []
@@ -579,6 +593,9 @@ def download_production_market_reports_items(
 
     df = pd.concat(_all_items_df, ignore_index=True)
 
+    # Add kind column for production/storage
+    df.loc[:, "resource_kind"] = ""
+
     logger.info(
         f"Succesfully extracted unit level production between the {df.datetime.min()} and the {df.datetime.max()}"
     )
@@ -591,20 +608,16 @@ def filter_for_zone(df: pd.DataFrame, zone_key: ZoneKey) -> pd.DataFrame:
     return df.query(f"zone_key == '{zone_key}'")
 
 
-def filter_generation(df: pd.DataFrame) -> pd.DataFrame:
+def filter_valid_values(df: pd.DataFrame, logger: Logger) -> pd.DataFrame:
     df = df.copy()
-    # Filter out non generation resources
-    df = df[df["production"] >= 0]
-    return df
-
-
-def match_resources_to_modes(df: pd.DataFrame, logger: Logger) -> pd.DataFrame:
-    df = df.copy()
-    # Remove 0 padding in resource name
-    df["resource_name"] = df["resource_name"].apply(lambda x: x.strip("0"))
-    # Match resource name to mode
-    df["mode"] = df["resource_name"].apply(
-        lambda x: RESOURCE_NAME_TO_MODE[x] if x in RESOURCE_NAME_TO_MODE else "unknown"
+    # Filter out non generation resources - with the exception of storage resources
+    df_production = df[df["resource_kind"] == "production"]
+    df_production = df_production[df_production["value"] >= 0]
+    df_storage = df[df["resource_kind"] == "storage"]
+    df = pd.concat([df_production, df_storage])
+    # Remove duplicates if there is discharge
+    df = df.drop_duplicates(
+        subset=["datetime", "zone_key", "resource_name"], keep="first"
     )
     # Fill a list of all unknown resources
     unknown_resources = df[df["mode"] == "unknown"]["resource_name"].unique()
@@ -614,23 +627,50 @@ def match_resources_to_modes(df: pd.DataFrame, logger: Logger) -> pd.DataFrame:
     return df
 
 
+def match_resources_to_modes(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    # Remove 0 padding in resource name
+    df["resource_name"] = df["resource_name"].apply(lambda x: x.strip("0"))
+    # Match resource name to mode
+    df["mode"] = df["resource_name"].apply(
+        lambda x: RESOURCE_NAME_TO_MODE[x] if x in RESOURCE_NAME_TO_MODE else "unknown"
+    )
+    # Match resource name to kind
+    df["resource_kind"] = df["mode"].map(MODES_TO_RESOURCE_KIND)
+    return df
+
+
 def aggregate_per_datetime_mode(df: pd.DataFrame) -> pd.DataFrame:
-    return df.groupby(["datetime", "mode"]).sum(numeric_only=True).reset_index()
+    return (
+        df.groupby(["datetime", "mode", "resource_kind"])
+        .sum(numeric_only=True)
+        .reset_index()
+    )
 
 
 def pivot_per_mode(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    df = df.pivot(index="datetime", columns="mode")
-    # Flatten columns and make them "production.{mode}"
-    df.columns = df.columns.to_series().str.join(".")
+    # Flatten columns and make them "{resource_kind}.{mode}"
+    df["resource_kind_mode"] = df["resource_kind"] + "." + df["mode"]
+    df = df[["resource_kind_mode", "datetime", "value"]].pivot(
+        index="datetime", columns="resource_kind_mode"
+    )
+    df.columns = df.columns.droplevel()  # reset columns index
+
     # Handle storage
-    storage_methods = {"hydro_storage": "hydro", "battery": "battery"}
-    for storage_method, storage_mode in storage_methods.items():
-        if f"production.{storage_method}" in df.columns:
-            df = df.rename(
-                columns={f"production.{storage_method}": f"storage.{storage_mode}"}
-            )
-            df[f"storage.{storage_mode}"] *= -1
+    df = df.rename(
+        columns={
+            f"storage.{storage_method}": f"storage.{storage_mode}"
+            for storage_method, storage_mode in STORAGE_METHODS_TO_MODE.items()
+        }
+    )
+    for storage_mode in STORAGE_METHODS_TO_MODE.values():
+        col_name = f"storage.{storage_mode}"
+        if col_name in df.columns:
+            df[col_name] *= -1
+    # With the pivot if some modes only have data for some datetimes, we will have NaNs
+    # Fill them with 0
+    df = df.fillna(0)
     return df
 
 
@@ -681,6 +721,7 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    _validate_resource_name_to_mode_mapping()
     reports_items = get_all_market_reports_items(
         session, zone_key, "production", logger
     )
@@ -691,8 +732,8 @@ def fetch_production(
     df = download_production_market_reports_items(session, reports_items, logger)
     df = (
         df.pipe(filter_for_zone, zone_key)
-        .pipe(filter_generation)
-        .pipe(match_resources_to_modes, logger)
+        .pipe(match_resources_to_modes)
+        .pipe(filter_valid_values, logger)
         .pipe(aggregate_per_datetime_mode)
         .pipe(pivot_per_mode)
     )
