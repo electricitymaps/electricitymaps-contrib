@@ -52,6 +52,10 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
       <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
     );
   }
+  const upperCaseZoneId = zoneId.toUpperCase();
+  if (zoneId !== upperCaseZoneId) {
+    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
+  }
 
   return children;
 }

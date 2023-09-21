@@ -9,6 +9,7 @@ capacity:
   coal: 1412
   gas: 1
   hydro: 36
+  nuclear: 0
   oil: 644
   solar: 487
   wind: 90
