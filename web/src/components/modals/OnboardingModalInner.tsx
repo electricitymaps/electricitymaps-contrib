@@ -3,7 +3,7 @@ import { ReactElement, useState } from 'react';
 import { HiCheck, HiChevronLeft, HiChevronRight, HiXMark } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 
-interface Page {
+export interface Page {
   headerImage: { pathname: string };
   isMainTitle?: boolean;
   renderContent: (translator: any) => ReactElement;
@@ -110,13 +110,14 @@ function Modal({
             {currentView.renderContent(__)}
           </div>
         </div>
-        <div className="absolute bottom-[-60px] left-auto h-[40px] self-center  ">
+        <div className="pointer-events-auto absolute bottom-[-60px] left-auto  h-[40px] self-center">
           {views.map((view: Page, index: number) => (
-            <div
+            <button
               key={`modal-step-item-${index}`}
-              className={`mx-2 inline-block h-[14px] w-[14px] rounded-xl bg-white ${
-                index === currentViewIndex ? 'bg-brand-green' : ''
+              className={` mx-2 inline-block h-[14px] w-[14px] rounded-xl ${
+                index === currentViewIndex ? 'bg-brand-green' : 'bg-white'
               }`}
+              onClick={() => setCurrentViewIndex(index)}
             />
           ))}
         </div>
