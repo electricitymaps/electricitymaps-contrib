@@ -1,8 +1,5 @@
-from datetime import datetime, timezone
-
-import pytest
 from requests import Session
-from requests_mock import GET, POST, Adapter
+from requests_mock import GET, Adapter
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.TAIPOWER import PRODUCTION_URL, fetch_production
