@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
 
+from numpy import nan
 from pytz import timezone
 from requests import Response, Session
 
@@ -96,24 +97,30 @@ def fetch_production(
         production = ProductionMix()
         storage = StorageMix()
 
-        for index, prod_data_value in enumerate(returned_production):
-            prod_data_value = float(prod_data_value)
-            if index in PRODUCTION_IDS:
-                production.add_value(
-                    COLUMN_MAPPING[index],
-                    prod_data_value,
-                    correct_negative_with_zero=True,
-                )
-            elif index in STORAGE_IDS:
-                storage.add_value(COLUMN_MAPPING[index], prod_data_value * -1)
+        if all(value == "" for value in returned_production):
+            logger.warning(
+                f"Empty data for {returned_datetime} in {zone_key}. Skipping."
+            )
+            continue
+        else:
+            for index, prod_data_value in enumerate(returned_production):
+                prod_data_value = float(prod_data_value) if prod_data_value else nan
+                if index in PRODUCTION_IDS:
+                    production.add_value(
+                        COLUMN_MAPPING[index],
+                        prod_data_value,
+                        correct_negative_with_zero=True,
+                    )
+                elif index in STORAGE_IDS:
+                    storage.add_value(COLUMN_MAPPING[index], prod_data_value * -1)
 
-        return_list.append(
-            zoneKey=zone_key,
-            datetime=returned_datetime,
-            production=production,
-            storage=storage,
-            source=SOURCE,
-        )
+            return_list.append(
+                zoneKey=zone_key,
+                datetime=returned_datetime,
+                production=production,
+                storage=storage,
+                source=SOURCE,
+            )
 
     return return_list.to_list()
 
