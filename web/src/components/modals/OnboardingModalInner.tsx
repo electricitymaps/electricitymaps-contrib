@@ -8,6 +8,7 @@ export interface Page {
   isMainTitle?: boolean;
   renderContent: (translator: any) => ReactElement;
   title?: (translator: any) => ReactElement;
+  hasWebp?: boolean;
 }
 
 function Modal({
@@ -93,17 +94,33 @@ function Modal({
             </button>
           </div>
           <div
-            className={`flex h-1/2 max-h-[264px] w-full flex-grow
-              self-center rounded-t-xl bg-auto bg-center bg-no-repeat ${
-                isOnFirstView() ? 'max-w-[12rem] dark:invert' : ''
-              }`}
+            className={`flex h-1/2 max-h-[264px] w-full flex-grow self-center
+              rounded-t-3xl bg-auto bg-center bg-no-repeat ${
+                isOnFirstView() ? 'max-w-[10rem] dark:invert' : ''
+              }}`}
             style={
-              currentView.headerImage && {
-                backgroundImage: `url("${currentView.headerImage.pathname}")`,
-                backgroundSize: `${currentView.isMainTitle ? 'contain' : 'cover'} `,
-              }
+              currentView.headerImage && !currentView.hasWebp
+                ? {
+                    backgroundImage: `url("${currentView.headerImage.pathname}")`,
+                    backgroundSize: `${currentView.isMainTitle ? 'contain' : 'cover'} `,
+                  }
+                : {}
             }
           >
+            {currentView.headerImage && currentView.hasWebp && (
+              <picture className="overflow-hidden" style={{}}>
+                <source
+                  srcSet={`${currentView.headerImage.pathname}.webp`}
+                  type="image/webp"
+                />
+                <img
+                  src={`${currentView.headerImage.pathname}.png`}
+                  alt=""
+                  className="w-full rounded-t-3xl object-top"
+                  draggable={false}
+                />
+              </picture>
+            )}
             <div>{currentView.title && <h1>{currentView.title(__)}</h1>}</div>
           </div>
           <div className="flex w-auto flex-col justify-center px-4 pt-6 text-center dark:bg-gray-700">

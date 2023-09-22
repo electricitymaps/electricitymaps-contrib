@@ -43,7 +43,8 @@ const views: Page[] = [
     ),
   },
   {
-    headerImage: resolvePath('images/onboarding/mapExtract.png'),
+    headerImage: resolvePath('images/onboarding/mapExtract'),
+    hasWebp: true,
     renderContent: (__) => (
       <ViewContent __={__} translationKey="onboarding-modal.view2" />
     ),
@@ -55,25 +56,29 @@ const views: Page[] = [
     ),
   },
   {
-    headerImage: resolvePath('images/onboarding/switchViews.png'),
+    headerImage: resolvePath('images/onboarding/switchViews'),
+    hasWebp: true,
     renderContent: (__) => (
       <ViewContent __={__} translationKey="onboarding-modal.view4" />
     ),
   },
   {
-    headerImage: resolvePath('images/onboarding/switchEmissions.png'),
+    headerImage: resolvePath('images/onboarding/switchEmissions'),
+    hasWebp: true,
     renderContent: (__) => (
       <ViewContent __={__} translationKey="onboarding-modal.view5" />
     ),
   },
   {
-    headerImage: resolvePath('images/onboarding/pastData.png'),
+    headerImage: resolvePath('images/onboarding/pastData'),
+    hasWebp: true,
     renderContent: (__) => (
       <ViewContent __={__} translationKey="onboarding-modal.view6" />
     ),
   },
   {
-    headerImage: resolvePath('images/onboarding/splitLayers.png'),
+    headerImage: resolvePath('images/onboarding/splitLayers'),
+    hasWebp: true,
     renderContent: (__) => (
       <ViewContent __={__} translationKey="onboarding-modal.view7" />
     ),
