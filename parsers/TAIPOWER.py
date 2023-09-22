@@ -26,8 +26,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    s = session
-    response = s.get(PRODUCTION_URL)
+    response = session.get(PRODUCTION_URL)
     if not response.status_code == 200:
         raise ParserException(
             "TW",
