@@ -26,9 +26,11 @@ class TestCEB(TestCase):
             [
                 {
                     "datetime": element["datetime"].isoformat(),
+                    "production": element["production"],
+                    "storage": element["storage"],
                     "source": element["source"],
                     "zoneKey": element["zoneKey"],
-                    "production": element["production"],
+                    "sourceType": element["sourceType"].value,
                 }
                 for element in production
             ]

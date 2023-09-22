@@ -18,6 +18,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 134.589145,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -31,6 +33,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 128.617261,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -44,6 +48,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 140.47863,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -57,6 +63,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 138.62259,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -70,6 +78,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 142.72405,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -83,6 +93,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 138.58616,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -96,6 +108,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 143.72577,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -109,6 +123,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 142.10192,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -122,6 +138,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 139.46731,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -135,6 +153,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 139.67993,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -148,6 +168,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 125.44663,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -161,6 +183,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 126.40797,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -174,6 +198,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 130.46761,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -187,6 +213,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 129.6132,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -200,6 +228,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 135.51611,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -213,6 +243,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 137.77664,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -226,6 +258,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 134.40364,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -239,6 +273,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 136.66579,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -252,6 +288,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 135.81862,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -265,6 +303,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 139.23463,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -278,6 +318,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 143.28454,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -291,6 +333,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 139.28339,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -304,6 +348,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 144.88414,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -317,6 +363,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 141.4328,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -330,6 +378,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 142.58908,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -343,6 +393,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 136.4606,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -356,6 +408,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 127.58743,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -369,6 +423,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 129.17974,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -382,6 +438,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 132.70247,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -395,6 +453,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 137.85714,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -408,6 +468,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 130.68616,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -421,6 +483,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 124.50251,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -434,6 +498,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 122.46324,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -447,6 +513,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 118.80545,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -460,6 +528,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 103.65566,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -473,6 +543,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 100.78531,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -486,6 +558,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 99.5733,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -499,6 +573,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 83.66355,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -512,6 +588,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 81.47051,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -525,6 +603,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 70.10661,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -538,6 +618,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 81.88009,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -551,6 +633,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 78.567862,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -564,6 +648,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 77.06822,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -577,6 +663,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 75.635324,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -590,6 +678,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 80.8908,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -603,6 +693,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 84.82274,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -616,6 +708,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 81.930272,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -629,6 +723,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 80.171483,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -642,6 +738,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 73.14363,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -655,6 +753,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 71.504827,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -668,6 +768,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 71.991664,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -681,6 +783,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 81.49898,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -694,6 +798,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 87.16048,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -707,6 +813,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 86.6778,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -720,6 +828,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 87.86155,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -733,6 +843,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 88.54005,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -746,6 +858,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 82.03813,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -759,6 +873,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 79.88274,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -772,6 +888,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 76.56565,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -785,6 +903,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 72.88342,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -798,6 +918,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 82.80592,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -811,6 +933,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 86.96032,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -824,6 +948,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 93.33382,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -837,6 +963,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 92.62987,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -850,6 +978,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 110.85673,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -863,6 +993,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 99.53248,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -876,6 +1008,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 109.11659,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -889,6 +1023,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 121.85211,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -902,6 +1038,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 123.51388,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -915,6 +1053,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 107.75946,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -928,6 +1068,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 112.73453,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -941,6 +1083,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 117.44817,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -954,6 +1098,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 119.52368,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -967,6 +1113,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 124.01588,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -980,6 +1128,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 127.77465,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -993,6 +1143,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 128.19678,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1006,6 +1158,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 135.25679,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1019,6 +1173,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 132.80013,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1032,6 +1188,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 132.28857,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1045,6 +1203,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 128.92568,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1058,6 +1218,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 135.84487,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1071,6 +1233,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 133.03643,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1084,6 +1248,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 136.50999,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1097,6 +1263,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 128.78328,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1110,6 +1278,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 132.36975,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1123,6 +1293,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 134.21474,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1136,6 +1308,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 138.08055,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1149,6 +1323,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 134.91349,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1162,6 +1338,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 139.09804,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1175,6 +1353,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 137.1403,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1188,6 +1368,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 140.37154,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1201,6 +1383,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 143.09553,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1214,6 +1398,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 141.17221,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1227,6 +1413,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 143.44182,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
     {
@@ -1240,6 +1428,8 @@ snapshots["TestCEB::test_production 1"] = [
             "wind": 143.09574,
         },
         "source": "ceb.lk",
+        "sourceType": "measured",
+        "storage": {},
         "zoneKey": "LK",
     },
 ]
