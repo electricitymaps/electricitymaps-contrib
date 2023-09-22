@@ -22,8 +22,6 @@ class TestCEB(TestCase):
 
         production = fetch_production(zone_key=ZoneKey("LK"), session=self.session)
 
-        print(production)
-
         self.assertMatchSnapshot(
             [
                 {
