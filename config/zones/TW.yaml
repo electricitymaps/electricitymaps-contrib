@@ -220,5 +220,5 @@ fallbackZoneMixes:
         unknown: 0.03206996746142614
         wind: 0.007647678020171424
 parsers:
-  production: TW.fetch_production
+  production: TAIPOWER.fetch_production
 timezone: Asia/Taipei

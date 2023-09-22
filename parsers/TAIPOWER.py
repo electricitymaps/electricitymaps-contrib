@@ -1,43 +1,45 @@
 #!/usr/bin/env python3
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 
-import arrow
-import dateutil
 import pandas as pd
+from pytz import timezone
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
+
+SOURCE = "taipower.com.tw"
+TIMEZONE = timezone("Asia/Taipei")
+PRODUCTION_URL = "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary.txt"
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "TW",
-    session: Session | None = None,
+    session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    url = "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary.txt"
-    s = session or Session()
-    response = s.get(url)
+    s = session
+    response = s.get(PRODUCTION_URL)
     if not response.status_code == 200:
         raise ParserException(
             "TW",
             f"Query failed with status code {response.status_code} and {response.content}",
         )
+
     data = response.json()
 
-    dumpDate = data[""]
+    dt = data[""]
     prodData = data["aaData"]
 
-    tz = "Asia/Taipei"
-    dumpDate = arrow.get(dumpDate, "YYYY-MM-DD HH:mm").replace(
-        tzinfo=dateutil.tz.gettz(tz)
-    )
+    dt = TIMEZONE.localize(datetime.strptime(dt, "%Y-%m-%d %H:%M"))
 
     objData = pd.DataFrame(prodData)
 
@@ -87,59 +89,63 @@ def fetch_production(
     check_values = production.output <= production.capacity
     modes_with_capacity_exceeded = production[~check_values].index.tolist()
     for mode in modes_with_capacity_exceeded:
-        logger.warning(
-            f"Capacity exceeded for {mode} in {zone_key} at {dumpDate.datetime}"
-        )
-
-    coal_capacity = (
-        production.loc["Coal"].capacity + production.loc["IPP-Coal"].capacity
-    )
-    gas_capacity = production.loc["LNG"].capacity + production.loc["IPP-LNG"].capacity
-    oil_capacity = production.loc["Oil"].capacity + production.loc["Diesel"].capacity
-
-    coal_production = production.loc["Coal"].output + production.loc["IPP-Coal"].output
-    gas_production = production.loc["LNG"].output + production.loc["IPP-LNG"].output
-    oil_production = production.loc["Oil"].output + production.loc["Diesel"].output
+        logger.warning(f"Capacity exceeded for {mode} in {zone_key} at {dt}")
 
     # For storage, note that load will be negative, and generation positive.
     # We require the opposite
-
-    returndata = {
-        "zoneKey": zone_key,
-        "datetime": dumpDate.datetime,
-        "production": {
-            "biomass": production.loc["Biofuel"].output,
-            "coal": coal_production,
-            "gas": gas_production,
-            "geothermal": production.loc["Geothermal"].output,
-            "oil": oil_production,
-            "hydro": production.loc["Hydro"].output,
-            "nuclear": production.loc["Nuclear"].output,
-            "solar": production.loc["Solar"].output,
-            "wind": production.loc["Wind"].output,
-            "unknown": production.loc["Co-Gen"].output,
-        },
-        "capacity": {
-            "biomass": production.loc["Biofuel"].capacity,
-            "coal": coal_capacity,
-            "gas": gas_capacity,
-            "geothermal": production.loc["Geothermal"].capacity,
-            "oil": oil_capacity,
-            "hydro": production.loc["Hydro"].capacity,
-            "hydro storage": production.loc["Pumping Gen"].capacity,
-            "nuclear": production.loc["Nuclear"].capacity,
-            "solar": production.loc["Solar"].capacity,
-            "wind": production.loc["Wind"].capacity,
-            "unknown": production.loc["Co-Gen"].capacity,
-        },
-        "storage": {
-            "hydro": -1 * production.loc["Pumping Load"].output
-            - production.loc["Pumping Gen"].output
-        },
-        "source": "taipower.com.tw",
+    PRODUCTION_MODE_MAPPING = {
+        "biomass": ["Biofuel"],
+        "coal": ["Coal", "IPP-Coal"],
+        "gas": ["LNG", "IPP-LNG"],
+        "geothermal": ["Geothermal"],
+        "oil": ["Oil", "Diesel"],
+        "hydro": ["Hydro"],
+        "nuclear": ["Nuclear"],
+        "solar": ["Solar"],
+        "wind": ["Wind"],
+        "unknown": ["Co-Gen"],
+    }
+    STORAGE_MODE_MAPPING = {
+        "hydro": ["Pumping Load", "Pumping Gen"],
     }
 
-    return returndata
+    production_breakdown = ProductionBreakdownList(logger)
+    production_mix = ProductionMix()
+    for mode, parser_modes in PRODUCTION_MODE_MAPPING.items():
+        parser_modes_in_df = [
+            parser_mode
+            for parser_mode in parser_modes
+            if parser_mode in production.index
+        ]
+        production_mix.add_value(mode, production.loc[parser_modes_in_df].output.sum())
+    storage_mix = StorageMix()
+    for mode, storage_modes in STORAGE_MODE_MAPPING.items():
+        storage_modes_in_df = [
+            storage_mode
+            for storage_mode in storage_modes
+            if storage_mode in production.index
+        ]
+        storage_mix.add_value(
+            mode, -1 * production.loc[storage_modes_in_df].output.sum()
+        )
+    production_breakdown.append(
+        zone_key,
+        dt,
+        SOURCE,
+        production_mix,
+        storage_mix,
+    )
+
+    capacity = {}
+    for mode, parser_modes in PRODUCTION_MODE_MAPPING.items():
+        parser_modes_in_df = [
+            parser_mode
+            for parser_mode in parser_modes
+            if parser_mode in production.index
+        ]
+        capacity[mode] = production.loc[parser_modes_in_df].capacity.sum()
+
+    return [{**e, **{"capacity": capacity}} for e in production_breakdown.to_list()]
 
 
 if __name__ == "__main__":
