@@ -97,7 +97,7 @@ function Modal({
             className={`flex h-1/2 max-h-[264px] w-full flex-grow self-center
               rounded-t-3xl bg-auto bg-center bg-no-repeat ${
                 isOnFirstView() ? 'max-w-[10rem] dark:invert' : ''
-              }}`}
+              }`}
             style={
               currentView.headerImage && !currentView.hasWebp
                 ? {
