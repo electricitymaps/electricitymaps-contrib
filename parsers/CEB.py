@@ -49,16 +49,12 @@ def fetch_production(
 
     response = r.get(GENERATION_BREAKDOWN_URL)
 
-    print(response.text)
-
     if not response.ok:
         raise ParserException(
             "CEB.py",
             f"Failed to fetch production data. Response Code: {response.status_code}\nError:\n{response.text}",
             zone_key,
         )
-
-    print(response.json())
 
     source_data = json.loads(
         response.json()
