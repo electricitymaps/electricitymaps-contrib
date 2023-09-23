@@ -13,7 +13,9 @@ from parsers.lib.exceptions import ParserException
 
 SOURCE = "taipower.com.tw"
 TIMEZONE = timezone("Asia/Taipei")
-PRODUCTION_URL = "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary_eng.json"
+PRODUCTION_URL = (
+    "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary_eng.json"
+)
 
 
 @refetch_frequency(timedelta(days=1))
