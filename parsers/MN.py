@@ -3,8 +3,8 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
-
 from zoneinfo import ZoneInfo
+
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -22,7 +22,7 @@ TZ = ZoneInfo("Asia/Ulaanbaatar")  # UTC+8
 JSON_QUERY_TO_SRC = {
     "time": "date",
     "consumptionMW": "syssum",
-    "thermal": "tpp", # currently ignored
+    "thermal": "tpp",  # currently ignored
     "solarMW": "sumnar",
     "windMW": "sums",
     "importMW": "energyimport",  # positive = import
