@@ -13,7 +13,7 @@ from parsers.lib.exceptions import ParserException
 
 SOURCE = "taipower.com.tw"
 TIMEZONE = timezone("Asia/Taipei")
-PRODUCTION_URL = "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary.txt"
+PRODUCTION_URL = "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary_eng.json"
 
 
 @refetch_frequency(timedelta(days=1))
@@ -36,7 +36,7 @@ def fetch_production(
     data = response.json()
 
     dt = data[""]
-    prodData = data["aaData"]
+    prodData = data["dataset"]
 
     dt = TIMEZONE.localize(datetime.strptime(dt, "%Y-%m-%d %H:%M"))
 
@@ -54,13 +54,13 @@ def fetch_production(
     assert len(objData.iloc[0]) == len(columns), "number of input columns changed"
     objData.columns = columns
 
-    objData["fueltype"] = objData.fueltype.str.split("(").str[1]
-    objData["fueltype"] = objData.fueltype.str.split(")").str[0]
+    objData["fueltype"] = objData.fueltype.str.split("<b>").str[1]
+    objData["fueltype"] = objData.fueltype.str.split("</b>").str[0]
     objData.loc[:, ["capacity", "output"]] = objData[["capacity", "output"]].apply(
         pd.to_numeric, errors="coerce"
     )
 
-    if objData["fueltype"].str.contains("Other Renewable Energy").any():
+    if objData["fueltype"].str.contains("OTHERRENEWABLEENERGY").any():
         if objData["name"].str.contains("Geothermal").any():
             objData.loc[
                 objData["name"].str.contains("Geothermal"), "fueltype"
@@ -94,18 +94,18 @@ def fetch_production(
     # We require the opposite
     PRODUCTION_MODE_MAPPING = {
         "biomass": ["Biofuel"],
-        "coal": ["Coal", "IPP-Coal"],
-        "gas": ["LNG", "IPP-LNG"],
+        "coal": ["COAL", "IPPCOAL"],
+        "gas": ["LNG", "IPPLNG"],
         "geothermal": ["Geothermal"],
-        "oil": ["Oil", "Diesel"],
-        "hydro": ["Hydro"],
-        "nuclear": ["Nuclear"],
-        "solar": ["Solar"],
-        "wind": ["Wind"],
-        "unknown": ["Co-Gen"],
+        "oil": ["OIL", "DIESEL"],
+        "hydro": ["HYDRO"],
+        "nuclear": ["NUCLEAR"],
+        "solar": ["SOLAR"],
+        "wind": ["WIND"],
+        "unknown": ["COGEN", ""],
     }
     STORAGE_MODE_MAPPING = {
-        "hydro": ["Pumping Load", "Pumping Gen"],
+        "hydro": ["PUMPINGLOAD", "PUMPINGGEN"],
     }
 
     production_breakdown = ProductionBreakdownList(logger)
