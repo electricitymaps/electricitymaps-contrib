@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 # snapshottest: v1 - https://goo.gl/zC4yUc
+from __future__ import unicode_literals
 
 from snapshottest import Snapshot
 
@@ -82,7 +84,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T00:20:00+09:00",
         "production": {
-            "coal": 22909.483999999997,
+            "coal": 22909.484,
             "gas": 12739.8,
             "hydro": 916.159,
             "nuclear": 21036.2,
@@ -258,7 +260,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T01:15:00+09:00",
         "production": {
-            "coal": 22513.184999999998,
+            "coal": 22513.185,
             "gas": 11290.9,
             "hydro": 916.142,
             "nuclear": 21032.2,
@@ -290,7 +292,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T01:25:00+09:00",
         "production": {
-            "coal": 22584.408000000003,
+            "coal": 22584.408,
             "gas": 11000.1,
             "hydro": 923.6,
             "nuclear": 21024.3,
@@ -322,7 +324,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T01:35:00+09:00",
         "production": {
-            "coal": 22591.472999999998,
+            "coal": 22591.473,
             "gas": 10969.8,
             "hydro": 921.963,
             "nuclear": 21013.4,
@@ -338,7 +340,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T01:40:00+09:00",
         "production": {
-            "coal": 22531.011000000002,
+            "coal": 22531.011,
             "gas": 10821.3,
             "hydro": 917.243,
             "nuclear": 21024.7,
@@ -418,7 +420,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T02:05:00+09:00",
         "production": {
-            "coal": 22790.829999999998,
+            "coal": 22790.83,
             "gas": 10728.1,
             "hydro": 918.194,
             "nuclear": 21027.0,
@@ -578,7 +580,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T02:55:00+09:00",
         "production": {
-            "coal": 22752.436999999998,
+            "coal": 22752.437,
             "gas": 10013.8,
             "hydro": 905.551,
             "nuclear": 20991.4,
@@ -594,7 +596,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T03:00:00+09:00",
         "production": {
-            "coal": 22703.064000000002,
+            "coal": 22703.064,
             "gas": 9986.0,
             "hydro": 920.526,
             "nuclear": 20983.0,
@@ -658,7 +660,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T03:20:00+09:00",
         "production": {
-            "coal": 22483.342999999997,
+            "coal": 22483.343,
             "gas": 9987.6,
             "hydro": 912.955,
             "nuclear": 20981.8,
@@ -722,7 +724,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T03:40:00+09:00",
         "production": {
-            "coal": 22960.916999999998,
+            "coal": 22960.917,
             "gas": 10091.0,
             "hydro": 914.431,
             "nuclear": 20966.6,
@@ -770,7 +772,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T03:55:00+09:00",
         "production": {
-            "coal": 22858.256999999998,
+            "coal": 22858.257,
             "gas": 10053.7,
             "hydro": 914.063,
             "nuclear": 20985.6,
@@ -834,7 +836,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T04:15:00+09:00",
         "production": {
-            "coal": 22952.470999999998,
+            "coal": 22952.471,
             "gas": 10111.0,
             "hydro": 913.066,
             "nuclear": 20962.4,
@@ -866,7 +868,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T04:25:00+09:00",
         "production": {
-            "coal": 22751.100000000002,
+            "coal": 22751.1,
             "gas": 10068.3,
             "hydro": 913.646,
             "nuclear": 20960.3,
@@ -930,7 +932,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T04:45:00+09:00",
         "production": {
-            "coal": 22781.908000000003,
+            "coal": 22781.908,
             "gas": 10172.8,
             "hydro": 908.601,
             "nuclear": 20972.8,
@@ -962,7 +964,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T04:55:00+09:00",
         "production": {
-            "coal": 22854.251999999997,
+            "coal": 22854.252,
             "gas": 10387.5,
             "hydro": 910.003,
             "nuclear": 20989.6,
@@ -1042,7 +1044,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T05:20:00+09:00",
         "production": {
-            "coal": 23009.264000000003,
+            "coal": 23009.264,
             "gas": 10470.5,
             "hydro": 905.958,
             "nuclear": 20990.1,
@@ -1058,7 +1060,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T05:25:00+09:00",
         "production": {
-            "coal": 22808.522999999997,
+            "coal": 22808.523,
             "gas": 10626.6,
             "hydro": 901.12,
             "nuclear": 20988.2,
@@ -1074,7 +1076,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T05:30:00+09:00",
         "production": {
-            "coal": 22801.412999999997,
+            "coal": 22801.413,
             "gas": 10615.6,
             "hydro": 901.758,
             "nuclear": 20987.1,
@@ -1090,7 +1092,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T05:35:00+09:00",
         "production": {
-            "coal": 22853.189000000002,
+            "coal": 22853.189,
             "gas": 10810.3,
             "hydro": 903.4,
             "nuclear": 20988.5,
@@ -1154,7 +1156,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T05:55:00+09:00",
         "production": {
-            "coal": 22704.194000000003,
+            "coal": 22704.194,
             "gas": 11238.6,
             "hydro": 901.749,
             "nuclear": 21001.0,
@@ -1170,7 +1172,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T06:00:00+09:00",
         "production": {
-            "coal": 22913.380999999998,
+            "coal": 22913.381,
             "gas": 11449.5,
             "hydro": 927.439,
             "nuclear": 20984.7,
@@ -1186,7 +1188,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T06:05:00+09:00",
         "production": {
-            "coal": 23026.935999999998,
+            "coal": 23026.936,
             "gas": 11830.9,
             "hydro": 944.4,
             "nuclear": 20994.8,
@@ -1234,7 +1236,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T06:20:00+09:00",
         "production": {
-            "coal": 22811.510000000002,
+            "coal": 22811.51,
             "gas": 12184.7,
             "hydro": 931.446,
             "nuclear": 20995.9,
@@ -1330,7 +1332,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T06:50:00+09:00",
         "production": {
-            "coal": 23056.439000000002,
+            "coal": 23056.439,
             "gas": 13448.3,
             "hydro": 933.88,
             "nuclear": 21008.3,
@@ -1458,7 +1460,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T07:30:00+09:00",
         "production": {
-            "coal": 23449.430999999997,
+            "coal": 23449.431,
             "gas": 15641.6,
             "hydro": 943.498,
             "nuclear": 21008.9,
@@ -1474,7 +1476,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T07:35:00+09:00",
         "production": {
-            "coal": 23495.593999999997,
+            "coal": 23495.594,
             "gas": 15513.2,
             "hydro": 929.45,
             "nuclear": 21007.7,
@@ -1634,7 +1636,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T08:25:00+09:00",
         "production": {
-            "coal": 24194.405000000002,
+            "coal": 24194.405,
             "gas": 18597.7,
             "hydro": 1033.72,
             "nuclear": 21012.7,
@@ -1794,7 +1796,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T09:15:00+09:00",
         "production": {
-            "coal": 24310.564000000002,
+            "coal": 24310.564,
             "gas": 20299.3,
             "hydro": 983.098,
             "nuclear": 21020.3,
@@ -1842,7 +1844,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T09:30:00+09:00",
         "production": {
-            "coal": 24240.619000000002,
+            "coal": 24240.619,
             "gas": 20354.8,
             "hydro": 989.42,
             "nuclear": 21005.1,
@@ -1874,7 +1876,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T09:40:00+09:00",
         "production": {
-            "coal": 23955.793999999998,
+            "coal": 23955.794,
             "gas": 20123.9,
             "hydro": 959.183,
             "nuclear": 21005.5,
@@ -1906,7 +1908,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T09:50:00+09:00",
         "production": {
-            "coal": 23833.672000000002,
+            "coal": 23833.672,
             "gas": 20189.7,
             "hydro": 956.031,
             "nuclear": 21007.4,
@@ -1938,7 +1940,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T10:00:00+09:00",
         "production": {
-            "coal": 23572.387000000002,
+            "coal": 23572.387,
             "gas": 19850.4,
             "hydro": 882.371,
             "nuclear": 21008.8,
@@ -1954,7 +1956,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T10:05:00+09:00",
         "production": {
-            "coal": 23315.242000000002,
+            "coal": 23315.242,
             "gas": 19683.6,
             "hydro": 874.296,
             "nuclear": 21033.2,
@@ -1970,7 +1972,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T10:10:00+09:00",
         "production": {
-            "coal": 23262.460000000003,
+            "coal": 23262.46,
             "gas": 20171.2,
             "hydro": 886.226,
             "nuclear": 21011.0,
@@ -1986,7 +1988,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T10:15:00+09:00",
         "production": {
-            "coal": 23283.227000000003,
+            "coal": 23283.227,
             "gas": 20375.8,
             "hydro": 898.505,
             "nuclear": 21004.9,
@@ -2066,7 +2068,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T10:40:00+09:00",
         "production": {
-            "coal": 22916.341999999997,
+            "coal": 22916.342,
             "gas": 20475.9,
             "hydro": 901.524,
             "nuclear": 21024.9,
@@ -2114,7 +2116,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T10:55:00+09:00",
         "production": {
-            "coal": 22775.636000000002,
+            "coal": 22775.636,
             "gas": 20195.2,
             "hydro": 886.276,
             "nuclear": 21035.4,
@@ -2130,7 +2132,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T11:00:00+09:00",
         "production": {
-            "coal": 22498.577999999998,
+            "coal": 22498.578,
             "gas": 20062.0,
             "hydro": 880.7,
             "nuclear": 21042.2,
@@ -2210,7 +2212,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T11:25:00+09:00",
         "production": {
-            "coal": 21285.135000000002,
+            "coal": 21285.135,
             "gas": 19919.8,
             "hydro": 886.234,
             "nuclear": 21029.4,
@@ -2306,7 +2308,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T11:55:00+09:00",
         "production": {
-            "coal": 20119.291999999998,
+            "coal": 20119.292,
             "gas": 19505.0,
             "hydro": 849.896,
             "nuclear": 21021.6,
@@ -2354,7 +2356,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T12:10:00+09:00",
         "production": {
-            "coal": 20002.405000000002,
+            "coal": 20002.405,
             "gas": 19321.2,
             "hydro": 890.994,
             "nuclear": 21014.0,
@@ -2386,7 +2388,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T12:20:00+09:00",
         "production": {
-            "coal": 19992.881999999998,
+            "coal": 19992.882,
             "gas": 19060.9,
             "hydro": 856.88,
             "nuclear": 21023.5,
@@ -2434,7 +2436,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T12:35:00+09:00",
         "production": {
-            "coal": 19957.614999999998,
+            "coal": 19957.615,
             "gas": 19157.2,
             "hydro": 877.041,
             "nuclear": 21015.9,
@@ -2450,7 +2452,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T12:40:00+09:00",
         "production": {
-            "coal": 19860.862999999998,
+            "coal": 19860.863,
             "gas": 19151.4,
             "hydro": 893.316,
             "nuclear": 21016.1,
@@ -2498,7 +2500,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T12:55:00+09:00",
         "production": {
-            "coal": 20083.426000000003,
+            "coal": 20083.426,
             "gas": 19144.7,
             "hydro": 915.343,
             "nuclear": 21029.9,
@@ -2530,7 +2532,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T13:05:00+09:00",
         "production": {
-            "coal": 20331.763000000003,
+            "coal": 20331.763,
             "gas": 19480.7,
             "hydro": 958.656,
             "nuclear": 21027.1,
@@ -2594,7 +2596,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T13:25:00+09:00",
         "production": {
-            "coal": 20689.412999999997,
+            "coal": 20689.413,
             "gas": 19929.4,
             "hydro": 961.871,
             "nuclear": 21020.5,
@@ -2658,7 +2660,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T13:45:00+09:00",
         "production": {
-            "coal": 20769.255999999998,
+            "coal": 20769.256,
             "gas": 20552.3,
             "hydro": 932.684,
             "nuclear": 21023.9,
@@ -2770,7 +2772,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T14:20:00+09:00",
         "production": {
-            "coal": 21037.361999999997,
+            "coal": 21037.362,
             "gas": 21116.1,
             "hydro": 882.38,
             "nuclear": 21025.3,
@@ -2850,7 +2852,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T14:45:00+09:00",
         "production": {
-            "coal": 20605.202999999998,
+            "coal": 20605.203,
             "gas": 21992.1,
             "hydro": 894.862,
             "nuclear": 21042.5,
@@ -2914,7 +2916,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T15:05:00+09:00",
         "production": {
-            "coal": 20380.209000000003,
+            "coal": 20380.209,
             "gas": 22142.6,
             "hydro": 950.536,
             "nuclear": 21035.0,
@@ -2930,7 +2932,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T15:10:00+09:00",
         "production": {
-            "coal": 20400.595999999998,
+            "coal": 20400.596,
             "gas": 22385.7,
             "hydro": 982.388,
             "nuclear": 21031.2,
@@ -2946,7 +2948,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T15:15:00+09:00",
         "production": {
-            "coal": 20465.478000000003,
+            "coal": 20465.478,
             "gas": 22448.1,
             "hydro": 962.61,
             "nuclear": 21030.0,
@@ -2962,7 +2964,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T15:20:00+09:00",
         "production": {
-            "coal": 20674.282000000003,
+            "coal": 20674.282,
             "gas": 22632.0,
             "hydro": 1014.95,
             "nuclear": 21028.0,
@@ -3058,7 +3060,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T15:50:00+09:00",
         "production": {
-            "coal": 21557.543999999998,
+            "coal": 21557.544,
             "gas": 22784.1,
             "hydro": 1005.31,
             "nuclear": 21037.2,
@@ -3106,7 +3108,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T16:05:00+09:00",
         "production": {
-            "coal": 22134.452999999998,
+            "coal": 22134.453,
             "gas": 22687.9,
             "hydro": 970.734,
             "nuclear": 21034.3,
@@ -3170,7 +3172,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T16:25:00+09:00",
         "production": {
-            "coal": 22790.516000000003,
+            "coal": 22790.516,
             "gas": 23153.9,
             "hydro": 966.915,
             "nuclear": 21035.4,
@@ -3218,7 +3220,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T16:40:00+09:00",
         "production": {
-            "coal": 23290.400999999998,
+            "coal": 23290.401,
             "gas": 23321.6,
             "hydro": 1065.33,
             "nuclear": 21031.2,
@@ -3314,7 +3316,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T17:10:00+09:00",
         "production": {
-            "coal": 23385.523999999998,
+            "coal": 23385.524,
             "gas": 23177.7,
             "hydro": 1000.92,
             "nuclear": 21007.7,
@@ -3346,7 +3348,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T17:20:00+09:00",
         "production": {
-            "coal": 23794.602000000003,
+            "coal": 23794.602,
             "gas": 23199.4,
             "hydro": 1023.72,
             "nuclear": 21006.1,
@@ -3458,7 +3460,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T17:55:00+09:00",
         "production": {
-            "coal": 23920.998000000003,
+            "coal": 23920.998,
             "gas": 23429.0,
             "hydro": 944.57,
             "nuclear": 21005.8,
@@ -3506,7 +3508,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T18:10:00+09:00",
         "production": {
-            "coal": 23989.188000000002,
+            "coal": 23989.188,
             "gas": 23102.9,
             "hydro": 838.787,
             "nuclear": 21007.5,
@@ -3538,7 +3540,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T18:20:00+09:00",
         "production": {
-            "coal": 24002.906000000003,
+            "coal": 24002.906,
             "gas": 23383.5,
             "hydro": 836.092,
             "nuclear": 20995.7,
@@ -3570,7 +3572,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T18:30:00+09:00",
         "production": {
-            "coal": 24014.974000000002,
+            "coal": 24014.974,
             "gas": 23570.9,
             "hydro": 834.371,
             "nuclear": 21004.7,
@@ -3602,7 +3604,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T18:40:00+09:00",
         "production": {
-            "coal": 24029.884000000002,
+            "coal": 24029.884,
             "gas": 23512.7,
             "hydro": 830.666,
             "nuclear": 20993.2,
@@ -3634,7 +3636,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T18:50:00+09:00",
         "production": {
-            "coal": 23979.064000000002,
+            "coal": 23979.064,
             "gas": 23759.8,
             "hydro": 834.088,
             "nuclear": 20983.8,
@@ -3666,7 +3668,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T19:00:00+09:00",
         "production": {
-            "coal": 24050.507999999998,
+            "coal": 24050.508,
             "gas": 23885.8,
             "hydro": 835.146,
             "nuclear": 20991.0,
@@ -3714,7 +3716,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T19:15:00+09:00",
         "production": {
-            "coal": 24169.009000000002,
+            "coal": 24169.009,
             "gas": 23921.9,
             "hydro": 837.595,
             "nuclear": 20977.2,
@@ -3906,7 +3908,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T20:15:00+09:00",
         "production": {
-            "coal": 23716.283000000003,
+            "coal": 23716.283,
             "gas": 22062.2,
             "hydro": 689.704,
             "nuclear": 20991.9,
@@ -3954,7 +3956,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T20:30:00+09:00",
         "production": {
-            "coal": 23572.688000000002,
+            "coal": 23572.688,
             "gas": 21194.2,
             "hydro": 688.682,
             "nuclear": 21008.5,
@@ -4082,7 +4084,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T21:10:00+09:00",
         "production": {
-            "coal": 23725.711000000003,
+            "coal": 23725.711,
             "gas": 20034.4,
             "hydro": 689.515,
             "nuclear": 21005.4,
@@ -4130,7 +4132,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T21:25:00+09:00",
         "production": {
-            "coal": 23561.426000000003,
+            "coal": 23561.426,
             "gas": 19350.6,
             "hydro": 688.647,
             "nuclear": 21013.3,
@@ -4210,7 +4212,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T21:50:00+09:00",
         "production": {
-            "coal": 23489.484999999997,
+            "coal": 23489.485,
             "gas": 18448.1,
             "hydro": 689.612,
             "nuclear": 21014.8,
@@ -4290,7 +4292,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T22:15:00+09:00",
         "production": {
-            "coal": 23688.953999999998,
+            "coal": 23688.954,
             "gas": 18242.5,
             "hydro": 662.178,
             "nuclear": 21025.4,
@@ -4306,7 +4308,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T22:20:00+09:00",
         "production": {
-            "coal": 23889.313000000002,
+            "coal": 23889.313,
             "gas": 18128.7,
             "hydro": 665.263,
             "nuclear": 21017.5,
@@ -4354,7 +4356,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T22:35:00+09:00",
         "production": {
-            "coal": 23673.076999999997,
+            "coal": 23673.077,
             "gas": 17514.7,
             "hydro": 649.58,
             "nuclear": 21019.3,
@@ -4482,7 +4484,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T23:15:00+09:00",
         "production": {
-            "coal": 23568.114999999998,
+            "coal": 23568.115,
             "gas": 16460.8,
             "hydro": 651.741,
             "nuclear": 21022.0,
@@ -4578,7 +4580,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T23:45:00+09:00",
         "production": {
-            "coal": 23301.872000000003,
+            "coal": 23301.872,
             "gas": 14911.3,
             "hydro": 630.929,
             "nuclear": 21015.4,
@@ -4594,7 +4596,7 @@ snapshots["TestKPX::test_production_historical 1"] = [
     {
         "datetime": "2023-09-01T23:50:00+09:00",
         "production": {
-            "coal": 23196.115999999998,
+            "coal": 23196.116,
             "gas": 14573.8,
             "hydro": 619.958,
             "nuclear": 21023.7,
@@ -4645,7 +4647,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T00:05:00+09:00",
         "production": {
-            "coal": 24754.673000000003,
+            "coal": 24754.673,
             "gas": 15643.1,
             "hydro": 69.6052,
             "nuclear": 21354.8,
@@ -4901,7 +4903,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T01:25:00+09:00",
         "production": {
-            "coal": 24712.131999999998,
+            "coal": 24712.132,
             "gas": 12880.6,
             "hydro": 69.7432,
             "nuclear": 21404.4,
@@ -4949,7 +4951,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T01:40:00+09:00",
         "production": {
-            "coal": 24883.452999999998,
+            "coal": 24883.453,
             "gas": 12688.5,
             "hydro": 69.9748,
             "nuclear": 21365.5,
@@ -4981,7 +4983,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T01:50:00+09:00",
         "production": {
-            "coal": 24589.225000000002,
+            "coal": 24589.225,
             "gas": 12319.4,
             "hydro": 69.5709,
             "nuclear": 21346.6,
@@ -5045,7 +5047,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T02:10:00+09:00",
         "production": {
-            "coal": 24825.509000000002,
+            "coal": 24825.509,
             "gas": 12271.7,
             "hydro": 69.8554,
             "nuclear": 21351.2,
@@ -5077,7 +5079,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T02:20:00+09:00",
         "production": {
-            "coal": 24803.362999999998,
+            "coal": 24803.363,
             "gas": 12069.2,
             "hydro": 69.6763,
             "nuclear": 21376.4,
@@ -5125,7 +5127,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T02:35:00+09:00",
         "production": {
-            "coal": 24746.671000000002,
+            "coal": 24746.671,
             "gas": 12206.8,
             "hydro": 69.9393,
             "nuclear": 21373.9,
@@ -5285,7 +5287,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T03:25:00+09:00",
         "production": {
-            "coal": 24695.683999999997,
+            "coal": 24695.684,
             "gas": 11591.9,
             "hydro": 69.69,
             "nuclear": 21356.7,
@@ -5333,7 +5335,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T03:40:00+09:00",
         "production": {
-            "coal": 24578.497000000003,
+            "coal": 24578.497,
             "gas": 11549.4,
             "hydro": 69.7223,
             "nuclear": 21361.3,
@@ -5525,7 +5527,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T04:40:00+09:00",
         "production": {
-            "coal": 24441.584000000003,
+            "coal": 24441.584,
             "gas": 11533.6,
             "hydro": 69.5939,
             "nuclear": 21375.5,
@@ -5573,7 +5575,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T04:55:00+09:00",
         "production": {
-            "coal": 24609.564000000002,
+            "coal": 24609.564,
             "gas": 11773.6,
             "hydro": 69.8727,
             "nuclear": 21366.3,
@@ -5605,7 +5607,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T05:05:00+09:00",
         "production": {
-            "coal": 24526.478000000003,
+            "coal": 24526.478,
             "gas": 12003.0,
             "hydro": 69.5904,
             "nuclear": 21366.7,
@@ -5685,7 +5687,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T05:30:00+09:00",
         "production": {
-            "coal": 24594.922000000002,
+            "coal": 24594.922,
             "gas": 12730.4,
             "hydro": 69.4601,
             "nuclear": 21377.9,
@@ -5813,7 +5815,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T06:10:00+09:00",
         "production": {
-            "coal": 25022.198999999997,
+            "coal": 25022.199,
             "gas": 14141.3,
             "hydro": 109.796,
             "nuclear": 21347.2,
@@ -5845,7 +5847,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T06:20:00+09:00",
         "production": {
-            "coal": 25067.978000000003,
+            "coal": 25067.978,
             "gas": 14562.8,
             "hydro": 113.58,
             "nuclear": 21392.5,
@@ -5861,7 +5863,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T06:25:00+09:00",
         "production": {
-            "coal": 24959.547000000002,
+            "coal": 24959.547,
             "gas": 14781.5,
             "hydro": 109.957,
             "nuclear": 21374.6,
@@ -5893,7 +5895,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T06:35:00+09:00",
         "production": {
-            "coal": 24868.924000000003,
+            "coal": 24868.924,
             "gas": 15264.0,
             "hydro": 107.264,
             "nuclear": 21376.2,
@@ -5941,7 +5943,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T06:50:00+09:00",
         "production": {
-            "coal": 24767.620000000003,
+            "coal": 24767.62,
             "gas": 16003.1,
             "hydro": 112.171,
             "nuclear": 21363.6,
@@ -5957,7 +5959,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T06:55:00+09:00",
         "production": {
-            "coal": 24817.702999999998,
+            "coal": 24817.703,
             "gas": 16166.8,
             "hydro": 104.905,
             "nuclear": 21366.7,
@@ -6085,7 +6087,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T07:35:00+09:00",
         "production": {
-            "coal": 24836.791999999998,
+            "coal": 24836.792,
             "gas": 19664.0,
             "hydro": 113.857,
             "nuclear": 21364.4,
@@ -6101,7 +6103,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T07:40:00+09:00",
         "production": {
-            "coal": 24833.777000000002,
+            "coal": 24833.777,
             "gas": 20182.8,
             "hydro": 111.669,
             "nuclear": 21359.7,
@@ -6149,7 +6151,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T07:55:00+09:00",
         "production": {
-            "coal": 24836.470999999998,
+            "coal": 24836.471,
             "gas": 21041.8,
             "hydro": 117.787,
             "nuclear": 21348.6,
@@ -6165,7 +6167,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T08:00:00+09:00",
         "production": {
-            "coal": 24817.666999999998,
+            "coal": 24817.667,
             "gas": 21400.9,
             "hydro": 319.652,
             "nuclear": 21384.7,
@@ -6197,7 +6199,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T08:10:00+09:00",
         "production": {
-            "coal": 24904.295000000002,
+            "coal": 24904.295,
             "gas": 22890.4,
             "hydro": 542.435,
             "nuclear": 21382.0,
@@ -6213,7 +6215,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T08:15:00+09:00",
         "production": {
-            "coal": 24884.099000000002,
+            "coal": 24884.099,
             "gas": 23510.0,
             "hydro": 590.403,
             "nuclear": 21354.6,
@@ -6341,7 +6343,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T08:55:00+09:00",
         "production": {
-            "coal": 25341.797000000002,
+            "coal": 25341.797,
             "gas": 25952.4,
             "hydro": 607.987,
             "nuclear": 21364.9,
@@ -6437,7 +6439,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T09:25:00+09:00",
         "production": {
-            "coal": 25607.461000000003,
+            "coal": 25607.461,
             "gas": 27257.6,
             "hydro": 621.365,
             "nuclear": 21386.3,
@@ -6469,7 +6471,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T09:35:00+09:00",
         "production": {
-            "coal": 25709.773999999998,
+            "coal": 25709.774,
             "gas": 27584.5,
             "hydro": 651.189,
             "nuclear": 21370.9,
@@ -6501,7 +6503,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T09:45:00+09:00",
         "production": {
-            "coal": 25655.994000000002,
+            "coal": 25655.994,
             "gas": 27307.7,
             "hydro": 594.045,
             "nuclear": 21392.4,
@@ -6549,7 +6551,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T10:00:00+09:00",
         "production": {
-            "coal": 25670.745000000003,
+            "coal": 25670.745,
             "gas": 27501.9,
             "hydro": 632.762,
             "nuclear": 21363.8,
@@ -6645,7 +6647,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T10:30:00+09:00",
         "production": {
-            "coal": 25640.477000000003,
+            "coal": 25640.477,
             "gas": 28610.1,
             "hydro": 661.979,
             "nuclear": 21370.8,
@@ -6725,7 +6727,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T10:55:00+09:00",
         "production": {
-            "coal": 25645.466999999997,
+            "coal": 25645.467,
             "gas": 28948.5,
             "hydro": 664.405,
             "nuclear": 21377.5,
@@ -6789,7 +6791,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T11:15:00+09:00",
         "production": {
-            "coal": 25890.674000000003,
+            "coal": 25890.674,
             "gas": 29030.0,
             "hydro": 573.486,
             "nuclear": 21378.5,
@@ -6917,7 +6919,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T11:55:00+09:00",
         "production": {
-            "coal": 25554.095999999998,
+            "coal": 25554.096,
             "gas": 27766.4,
             "hydro": 477.243,
             "nuclear": 21346.3,
@@ -6997,7 +6999,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T12:20:00+09:00",
         "production": {
-            "coal": 25904.264000000003,
+            "coal": 25904.264,
             "gas": 27770.8,
             "hydro": 225.822,
             "nuclear": 21375.0,
@@ -7045,7 +7047,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T12:35:00+09:00",
         "production": {
-            "coal": 25732.556999999997,
+            "coal": 25732.557,
             "gas": 27065.0,
             "hydro": 219.236,
             "nuclear": 21352.9,
@@ -7381,7 +7383,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T14:20:00+09:00",
         "production": {
-            "coal": 26608.082000000002,
+            "coal": 26608.082,
             "gas": 28536.4,
             "hydro": 252.893,
             "nuclear": 21358.9,
@@ -7413,7 +7415,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T14:30:00+09:00",
         "production": {
-            "coal": 26771.789999999997,
+            "coal": 26771.79,
             "gas": 28467.3,
             "hydro": 265.173,
             "nuclear": 21355.2,
@@ -7445,7 +7447,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T14:40:00+09:00",
         "production": {
-            "coal": 26700.720999999998,
+            "coal": 26700.721,
             "gas": 28047.5,
             "hydro": 264.431,
             "nuclear": 21356.4,
@@ -7541,7 +7543,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T15:10:00+09:00",
         "production": {
-            "coal": 26777.585000000003,
+            "coal": 26777.585,
             "gas": 27320.5,
             "hydro": 325.34,
             "nuclear": 21357.4,
@@ -7573,7 +7575,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T15:20:00+09:00",
         "production": {
-            "coal": 26803.191000000003,
+            "coal": 26803.191,
             "gas": 27520.0,
             "hydro": 354.898,
             "nuclear": 21361.4,
@@ -7605,7 +7607,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T15:30:00+09:00",
         "production": {
-            "coal": 26755.703999999998,
+            "coal": 26755.704,
             "gas": 27071.9,
             "hydro": 334.31,
             "nuclear": 21373.7,
@@ -7653,7 +7655,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T15:45:00+09:00",
         "production": {
-            "coal": 26868.027000000002,
+            "coal": 26868.027,
             "gas": 27288.4,
             "hydro": 345.994,
             "nuclear": 21363.3,
@@ -7701,7 +7703,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T16:00:00+09:00",
         "production": {
-            "coal": 26825.079999999998,
+            "coal": 26825.08,
             "gas": 27348.3,
             "hydro": 384.656,
             "nuclear": 21373.6,
@@ -7845,7 +7847,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T16:45:00+09:00",
         "production": {
-            "coal": 26387.097999999998,
+            "coal": 26387.098,
             "gas": 26574.5,
             "hydro": 420.4,
             "nuclear": 21318.8,
@@ -7909,7 +7911,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T17:05:00+09:00",
         "production": {
-            "coal": 26006.978000000003,
+            "coal": 26006.978,
             "gas": 25718.6,
             "hydro": 552.474,
             "nuclear": 21365.2,
@@ -7973,7 +7975,7 @@ snapshots["TestKPX::test_production_realtime 1"] = [
     {
         "datetime": "2023-09-13T17:25:00+09:00",
         "production": {
-            "coal": 25870.798000000003,
+            "coal": 25870.798,
             "gas": 25430.4,
             "hydro": 569.24,
             "nuclear": 21379.1,
