@@ -4,12 +4,11 @@ import urllib
 from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import pandas as pd
-import pytz
 from bs4 import BeautifulSoup
 from dateutil import tz
-from pytz import timezone
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
@@ -39,6 +38,7 @@ EXCHANGES = {
     "MX-NE->MX-OC": "IntercambioNES-OCC",
     "MX-NO->MX-OC": "IntercambioNTE-OCC",
     "MX-NW->MX-OC": "IntercambioNOR-OCC",
+    "MX-BC->US-CAL-CISO": "IntercambioUSA-BCA",
     "MX-NO->US-TEX-ERCO": "IntercambioUSA-NTE",
     "MX-NE->US-TEX-ERCO": "IntercambioUSA-NES",
     "BZ->MX-PN": "IntercambioPEN-BEL",
@@ -70,7 +70,7 @@ MAPPING = {
     "Turbo Gas": "gas",
 }
 SOURCE = "cenace.gob.mx"
-TIMEZONE = timezone("America/Tijuana")
+TIMEZONE = ZoneInfo("America/Tijuana")
 
 # cache where the data for whole months is stored as soon as it has been fetched once
 DATA_CACHE = {}
@@ -131,9 +131,7 @@ def fetch_csv_for_date(dt, session: Session | None = None):
         or response.headers["Content-Type"] != "application/octet-stream"
     ):
         raise Exception(
-            "Error while fetching csv for date {}: No CSV was returned by the API. Probably the data for this date has not yet been published.".format(
-                datestr
-            )
+            f"Error while fetching csv for date {datestr}: No CSV was returned by the API. Probably the data for this date has not yet been published."
         )
 
     # skip non-csv data, the header starts with "Sistema"
@@ -271,7 +269,7 @@ def fetch_consumption(
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
         zoneKey=zone_key,
-        datetime=datetime.now(tz=pytz.timezone(timezone)),
+        datetime=datetime.now(tz=ZoneInfo(timezone)),
         consumption=demand,
         source="cenace.gob.mx",
     )
