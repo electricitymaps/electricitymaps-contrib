@@ -1,10 +1,11 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
+import { formatCo2 } from 'utils/formatting';
 import { productionConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
+
 import { getTotalEmissions } from '../graphUtils';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
-import { formatCo2 } from 'utils/formatting';
 
 export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);

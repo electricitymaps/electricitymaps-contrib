@@ -1,11 +1,12 @@
+import { ZoneDetail } from 'types';
 import { Mode } from 'utils/constants';
+
 import {
   getElectricityProductionValue,
   getRatioPercent,
-  getTotalEmissions,
   getTotalElectricity,
+  getTotalEmissions,
 } from './graphUtils';
-import { ZoneDetail } from 'types';
 
 describe('getRatioPercent', () => {
   it('handles 0 of 0', () => {

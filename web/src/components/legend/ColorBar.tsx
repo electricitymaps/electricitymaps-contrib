@@ -1,5 +1,5 @@
-import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
+import { ScaleLinear, scaleLinear } from 'd3-scale';
 
 const spreadOverDomain = (scale: any, count: number) => {
   const [x1, x2] = (extent(scale.domain()) as unknown as [number, number]) ?? [0, 0];

@@ -1,13 +1,14 @@
-import {
-  getDataBlockPositions,
-  getProductionData,
-  getElectricityProductionValue,
-  ExchangeDataType,
-  getExchangesToDisplay,
-  getExchangeData,
-  getExchangeCo2Intensity,
-} from './utils';
 import { Mode } from 'utils/constants';
+
+import {
+  ExchangeDataType,
+  getDataBlockPositions,
+  getElectricityProductionValue,
+  getExchangeCo2Intensity,
+  getExchangeData,
+  getExchangesToDisplay,
+  getProductionData,
+} from './utils';
 
 const zoneDetailsData = {
   co2intensity: 187.32,

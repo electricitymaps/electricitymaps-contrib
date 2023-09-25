@@ -1,4 +1,5 @@
 import ExchangeTooltip from './ExchangeTooltip';
+
 const data = {
   rotation: 90,
   lonlat: [75, 75] as [number, number],

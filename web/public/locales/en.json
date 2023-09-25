@@ -78,7 +78,8 @@
     "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
     "helpUs": "Help us identify the problem by taking a look at the <a href=\"%s\" target=\"_blank\">runtime logs</a> or contact the data provider.",
-    "noParserInfo": "We do not yet have any information about this area.<br/>Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
+    "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
+    "aggregationDisabled": "Data is not available for the selected time period due to missing granular breakdown. Try a broader time period.",
     "now": "Now",
     "by-source": {
       "emissions": "Carbon emissions by source",

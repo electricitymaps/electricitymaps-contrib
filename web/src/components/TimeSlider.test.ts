@@ -1,4 +1,4 @@
-import { getThumbIcon, getTrackBackground, COLORS } from './TimeSlider';
+import { COLORS, getThumbIcon, getTrackBackground } from './TimeSlider';
 
 describe('getTrackBackground', () => {
   it('returns the day color when no sets are provided', () => {

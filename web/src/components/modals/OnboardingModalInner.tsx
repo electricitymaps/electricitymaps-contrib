@@ -1,5 +1,4 @@
 import { ReactElement, useState } from 'react';
-
 import { HiCheck, HiChevronLeft, HiChevronRight, HiXMark } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 
