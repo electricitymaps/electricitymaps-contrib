@@ -9,6 +9,7 @@ import {
 } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
 import { getProductionCo2Intensity } from 'utils/helpers';
+
 import exchangesToExclude from '../../../../config/excludedAggregatedExchanges.json';
 
 const LABEL_MAX_WIDTH = 102;

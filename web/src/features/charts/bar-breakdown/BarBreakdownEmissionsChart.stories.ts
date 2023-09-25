@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { zoneDetailMock } from 'stories/mockData';
+
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import type { ExchangeDataType, ProductionDataType } from './utils';
-import { zoneDetailMock } from 'stories/mockData';
 
 const meta: Meta<typeof BarBreakdownEmissionsChart> = {
   title: 'charts/BarBreakdownEmissionsChart',

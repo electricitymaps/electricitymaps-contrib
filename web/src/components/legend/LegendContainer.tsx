@@ -6,6 +6,7 @@ import {
   solarLayerEnabledAtom,
   windLayerAtom,
 } from 'utils/state/atoms';
+
 import Co2Legend from './Co2Legend';
 import SolarLegend from './SolarLegend';
 import WindLegend from './WindLegend';
