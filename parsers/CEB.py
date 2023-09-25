@@ -6,7 +6,7 @@ Data is from the backend for the load curve graph on https://cebcare.ceb.lk/gens
 """
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -18,7 +18,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
-TIMEZONE_NAME = "Asia/Colombo"
+TIMEZONE = ZoneInfo("Asia/Colombo")
 GENERATION_BREAKDOWN_URL = "https://cebcare.ceb.lk/GenSum/GetLoadCurveData"
 SOURCE_NAME = "ceb.lk"
 
@@ -40,14 +40,16 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ):
     """Requests the previous day's production mix (in MW) for Sri Lanka, per quarter-hour"""
-    if target_datetime is not None:
-        raise NotImplementedError(
-            "It is not possible to fetch historical data for this datasource, it only has data for the previous day"
-        )
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=timezone.utc)
 
-    r = session or Session()
+    ses = session or Session()
 
-    response = r.get(GENERATION_BREAKDOWN_URL)
+    params = {
+        "date": target_datetime.astimezone(TIMEZONE).strftime("%Y-%m-%d"),
+    }
+
+    response = ses.get(GENERATION_BREAKDOWN_URL, params=params)
 
     if not response.ok:
         raise ParserException(
@@ -80,7 +82,7 @@ def fetch_production(
             zoneKey=zone_key,
             datetime=datetime.fromisoformat(
                 quarter_hourly_source_data["DateTime"]
-            ).astimezone(ZoneInfo(TIMEZONE_NAME)),
+            ).astimezone(TIMEZONE),
             production=production,
             source=SOURCE_NAME,
         )
