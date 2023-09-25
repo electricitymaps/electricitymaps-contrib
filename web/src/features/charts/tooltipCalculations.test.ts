@@ -1,6 +1,7 @@
 import { ZoneDetail } from 'types';
-import { getExchangeTooltipData, getProductionTooltipData } from './tooltipCalculations';
 import { Mode } from 'utils/constants';
+
+import { getExchangeTooltipData, getProductionTooltipData } from './tooltipCalculations';
 
 const zoneDetailsData = {
   _isFinestGranularity: true,

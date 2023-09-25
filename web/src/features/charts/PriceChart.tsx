@@ -1,11 +1,12 @@
 import { useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
+
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { usePriceChartData } from './hooks/usePriceChartData';
-import PriceChartTooltip from './tooltips/PriceChartTooltip';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
+import PriceChartTooltip from './tooltips/PriceChartTooltip';
 
 interface PriceChartProps {
   datetimes: Date[];
