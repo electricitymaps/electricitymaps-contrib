@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
-import type { ZoneDetails } from 'types';
-import { ExchangeDataType, ProductionDataType } from './utils';
 import { zoneDetailMock } from 'stories/mockData';
+import type { ZoneDetails } from 'types';
+
+import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
+import { ExchangeDataType, ProductionDataType } from './utils';
 
 const meta: Meta<typeof BarElectricityBreakdownChart> = {
   title: 'charts/BarElectricityBreakdownChart',

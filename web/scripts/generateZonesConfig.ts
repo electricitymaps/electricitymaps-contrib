@@ -1,9 +1,11 @@
 /* This script aggregates the per-zone config files into a single zones.json/exchanges.json
 file to enable easy importing within web/ */
-import * as yaml from 'js-yaml';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import * as yaml from 'js-yaml';
+
 import {
   ExchangeConfig,
   ExchangesConfig,
