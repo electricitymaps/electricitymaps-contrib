@@ -5,6 +5,7 @@ import { useSetAtom } from 'jotai';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
+
 import Logo from './Logo';
 
 interface MenuLinkProps {

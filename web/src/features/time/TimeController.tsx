@@ -7,6 +7,7 @@ import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { dateToDatetimeString } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+
 import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
 

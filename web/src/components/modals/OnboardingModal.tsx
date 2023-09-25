@@ -1,7 +1,7 @@
+import { useAtom } from 'jotai';
 import { resolvePath, useSearchParams } from 'react-router-dom';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 
-import { useAtom } from 'jotai';
 import Modal from './OnboardingModalInner';
 
 const views = [

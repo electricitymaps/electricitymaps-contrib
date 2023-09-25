@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
-import PriceChartTooltip from './PriceChartTooltip';
 import { zoneDetailMock } from 'stories/mockData';
+
+import PriceChartTooltip from './PriceChartTooltip';
 
 const meta: Meta<typeof PriceChartTooltip> = {
   title: 'tooltips/PriceChartTooltip',
