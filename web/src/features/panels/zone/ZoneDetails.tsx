@@ -19,6 +19,7 @@ import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
+import { ZoneDataStatus, getHasSubZones, getZoneDataStatus } from './util';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
@@ -52,7 +53,7 @@ export default function ZoneDetails(): JSX.Element {
     }
   }, []);
 
-  const zoneDataStatus = getZoneDataStatus(zoneId, data);
+  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
 
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
 
@@ -70,7 +71,10 @@ export default function ZoneDetails(): JSX.Element {
       />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
         <ZoneHeaderGauges data={data} />
-        {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && <DisplayByEmissionToggle />}
+        {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
+          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
+            <DisplayByEmissionToggle />
+          )}
         <ZoneDetailsContent
           isLoading={isLoading}
           isError={isError}
@@ -122,8 +126,12 @@ function ZoneDetailsContent({
     );
   }
 
-  if (zoneDataStatus === ZoneDataStatus.NO_INFORMATION) {
-    return <NoInformationMessage />;
+  if (
+    [ZoneDataStatus.NO_INFORMATION, ZoneDataStatus.AGGREGATE_DISABLED].includes(
+      zoneDataStatus
+    )
+  ) {
+    return <NoInformationMessage status={zoneDataStatus} />;
   }
 
   return children as JSX.Element;
