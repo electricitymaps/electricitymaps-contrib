@@ -2,6 +2,7 @@ import Modal from 'components/Modal';
 import FAQContent from 'features/panels/faq/FAQContent';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
+
 import { isFAQModalOpenAtom } from './modalAtoms';
 
 export function FAQModalContent() {
