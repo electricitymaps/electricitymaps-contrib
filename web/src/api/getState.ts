@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import type { GridState } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { timeAverageAtom } from 'utils/state/atoms';
+
 import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 
 const getState = async (timeAverage: string): Promise<GridState> => {

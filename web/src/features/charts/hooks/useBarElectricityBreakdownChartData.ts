@@ -7,6 +7,7 @@ import {
   selectedDatetimeIndexAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
+
 import {
   getDataBlockPositions,
   getExchangeData,

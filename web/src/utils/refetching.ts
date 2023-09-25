@@ -1,5 +1,6 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { ONE_MINUTE, QUERY_KEYS } from 'api/helpers';
+
 import { TimeAverages } from './constants';
 
 /**
