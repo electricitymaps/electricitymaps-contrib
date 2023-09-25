@@ -1,7 +1,7 @@
 import { ZoneDetails } from 'types';
+import { TimeAverages } from 'utils/constants';
 
 import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
-import { TimeAverages } from 'utils/constants';
 
 type zoneConfigItem = {
   aggregates_displayed?: string[];
