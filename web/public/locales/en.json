@@ -47,7 +47,7 @@
       "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen production or consumption mode."
     },
     "view6": {
-      "header": "Explore past situations",
+      "header": "Explore the past",
       "text": "In the bottom left, you can view both real-time and past emission and electricity data all around the world. Change the aggregated data using the toggles or browse through the timeline to see the changes over time."
     },
     "view7": {
