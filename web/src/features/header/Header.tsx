@@ -91,7 +91,7 @@ export default function Header(): JSX.Element {
             Blog
           </MenuLink>
           <MenuLink
-            href="https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral"
+            href="https://electricitymaps.com/get-our-data?utm_source=app.electricitymaps.com&utm_medium=referral"
             id="get-data"
             isExternal
           >
