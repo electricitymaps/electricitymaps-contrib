@@ -13,7 +13,7 @@ Consumption Forecast
 """
 import itertools
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from random import shuffle
 from typing import Any
@@ -21,11 +21,11 @@ from typing import Any
 import arrow
 import numpy as np
 from bs4 import BeautifulSoup
-from pytz import utc
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
     PriceList,
     ProductionBreakdownList,
 )
@@ -470,7 +470,7 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
 
 def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datetime"):
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(tz=timezone.utc)
     if isinstance(target_datetime, datetime):
         return np.abs((x[datetime_key] - target_datetime).seconds)
 
@@ -491,7 +491,7 @@ def query_ENTSOE(
     env_var = "ENTSOE_REFETCH_TOKEN"
     url = ENTSOE_EU_PROXY_ENDPOINT
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(tz=timezone.utc)
         env_var = "ENTSOE_TOKEN"
         url = ENTSOE_ENDPOINT
 
@@ -932,13 +932,23 @@ def parse_production_per_units(xml_text: str) -> Any | None:
 def parse_exchange(
     xml_text: str,
     is_import: bool,
-    quantities: list[float] | None = None,
-    datetimes: list[datetime] | None = None,
-) -> tuple[list[float], list[datetime]] | None:
+    zoneKey1: ZoneKey,
+    zoneKey2: ZoneKey,
+    logger: Logger,
+    existingExchangeList: ExchangeList | None = None,
+    forecasted: bool = False,
+) -> ExchangeList:
     if not xml_text:
-        return None
-    quantities = quantities or []
-    datetimes = datetimes or []
+        raise ParserException(
+            parser="ENTSOE.py",
+            message="No forcasted exchange data found"
+            if forecasted
+            else "No exchange data found",
+            zone_key="->".join(sorted([zoneKey1, zoneKey2])),
+        )
+
+    newExchangeList = ExchangeList(logger)
+
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
@@ -961,14 +971,22 @@ def parse_exchange(
             position = int(entry.find_all("position")[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
-            try:
-                i = datetimes.index(datetime)
-                quantities[i] += quantity
-            except ValueError:  # Not in list
-                quantities.append(quantity)
-                datetimes.append(datetime)
+            newExchangeList.append(
+                zoneKey=ZoneKey("->".join(sorted([zoneKey1, zoneKey2]))),
+                datetime=datetime,
+                source=SOURCE,
+                netFlow=quantity,
+                sourceType=EventSourceType.forecasted
+                if forecasted
+                else EventSourceType.measured,
+            )
 
-    return quantities, datetimes
+    if existingExchangeList is not None:
+        return ExchangeList.merge_exchanges(
+            ungrouped_exchanges=[existingExchangeList, newExchangeList], logger=logger
+        )
+    else:
+        return newExchangeList
 
 
 def parse_prices(
@@ -998,6 +1016,67 @@ def parse_prices(
             )
 
     return prices
+
+
+def get_exchange(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+    forecasted: bool = False,
+) -> list:
+    """Gets either the forcasted or measured net exchange between two zones."""
+    session = session or Session()
+
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
+    key = ZoneKey("->".join(sorted_zone_keys))
+    if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
+        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
+    else:
+        domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
+        domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
+    # Grab exchange
+    # Export
+    raw_exchange = (
+        query_exchange_forecast(domain1, domain2, session, target_datetime)
+        if forecasted
+        else query_exchange(domain1, domain2, session, target_datetime)
+    )
+    if raw_exchange is not None:
+        parsed = parse_exchange(
+            raw_exchange,
+            is_import=False,
+            zoneKey1=zone_key1,
+            zoneKey2=zone_key2,
+            logger=logger,
+            forecasted=forecasted,
+        )
+        if parsed:
+            # Import
+            raw_exchange = (
+                query_exchange_forecast(domain2, domain1, session, target_datetime)
+                if forecasted
+                else query_exchange(domain2, domain1, session, target_datetime)
+            )
+            if raw_exchange is not None:
+                parsed = parse_exchange(
+                    xml_text=raw_exchange,
+                    is_import=True,
+                    zoneKey1=zone_key1,
+                    zoneKey2=zone_key2,
+                    logger=logger,
+                    existingExchangeList=parsed,
+                    forecasted=forecasted,
+                )
+        return parsed.to_list()
+    else:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No forecasted exchange data found for {zone_key1} -> {zone_key2}"
+            if forecasted
+            else f"No exchange data found for {zone_key1} -> {zone_key2}",
+        )
 
 
 def validate_production(
@@ -1142,13 +1221,13 @@ def fetch_production_per_units(
 
     # If no target_datetime is specified, or the target datetime is less
     # than 5 days ago we set the target_datetime to 5 days ago.
-    if target_datetime is None or target_datetime > datetime.now(tz=utc) - timedelta(
-        days=5
-    ):
+    if target_datetime is None or target_datetime > datetime.now(
+        tz=timezone.utc
+    ) - timedelta(days=5):
         logger.info(
             "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
         )
-        target_datetime = datetime.now(tz=utc) - timedelta(days=5)
+        target_datetime = datetime.now(tz=timezone.utc) - timedelta(days=5)
 
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
@@ -1184,8 +1263,8 @@ def fetch_production_per_units(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -1194,137 +1273,32 @@ def fetch_exchange(
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
     """
-    if not session:
-        session = Session()
-    sorted_zone_keys = sorted([zone_key1, zone_key2])
-    key = "->".join(sorted_zone_keys)
-    if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
-        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
-    else:
-        domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
-        domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
-    # Create a hashmap with key (datetime)
-    exchange_hashmap = {}
-    # Grab exchange
-    # Import
-    raw_exchange = query_exchange(domain1, domain2, session, target_datetime)
-    if raw_exchange is not None:
-        parsed = parse_exchange(
-            raw_exchange,
-            is_import=True,
-        )
-        if parsed:
-            # Export
-            raw_exchange = query_exchange(domain2, domain1, session, target_datetime)
-            if raw_exchange is not None:
-                parsed = parse_exchange(
-                    xml_text=raw_exchange,
-                    is_import=False,
-                    quantities=parsed[0],
-                    datetimes=parsed[1],
-                )
-                if parsed:
-                    quantities, datetimes = parsed
-                    for i in range(len(quantities)):
-                        exchange_hashmap[datetimes[i]] = quantities[i]
-
-        # Remove all dates in the future
-        exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
-        exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
-        if not len(exchange_dates):
-            raise ParserException(parser="ENTSOE.py", message="No exchange data found")
-        data = []
-        for exchange_date in exchange_dates:
-            net_flow = float(exchange_hashmap[exchange_date])
-            data.append(
-                {
-                    "sortedZoneKeys": key,
-                    "datetime": exchange_date,
-                    "netFlow": net_flow
-                    if zone_key1[0] == sorted_zone_keys
-                    else -1 * net_flow,
-                    "source": "entsoe.eu",
-                }
-            )
-
-        return data
-    else:
-        raise ParserException(
-            parser="entsoe.eu",
-            message=f"No exchange data found for {zone_key1} -> {zone_key2}",
-        )
+    return get_exchange(
+        zone_key1=zone_key1,
+        zone_key2=zone_key2,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )
 
 
 @refetch_frequency(timedelta(days=2))
 def fetch_exchange_forecast(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets exchange forecast between two specified zones."""
-    if not session:
-        session = Session()
-    sorted_zone_keys = sorted([zone_key1, zone_key2])
-    key = "->".join(sorted_zone_keys)
-    if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
-        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
-    else:
-        domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
-        domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
-    # Create a hashmap with key (datetime)
-    exchange_hashmap = {}
-    # Grab exchange
-    # Import
-    parsed = None
-    raw_exchange_forecast = query_exchange_forecast(
-        domain1, domain2, session, target_datetime=target_datetime
+    return get_exchange(
+        zone_key1=zone_key1,
+        zone_key2=zone_key2,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+        forecasted=True,
     )
-    if raw_exchange_forecast is not None:
-        parsed = parse_exchange(
-            raw_exchange_forecast,
-            is_import=True,
-        )
-    if parsed is not None:
-        # Export
-        raw_exchange_forecast = query_exchange_forecast(
-            domain2, domain1, session, target_datetime=target_datetime
-        )
-        if raw_exchange_forecast is not None:
-            parsed = parse_exchange(
-                xml_text=raw_exchange_forecast,
-                is_import=False,
-                quantities=parsed[0],
-                datetimes=parsed[1],
-            )
-        if parsed is not None:
-            quantities, datetimes = parsed
-            for i in range(len(quantities)):
-                exchange_hashmap[datetimes[i]] = quantities[i]
-
-    # Remove all dates in the future
-    sorted_zone_keys = sorted([zone_key1, zone_key2])
-    exchange_dates = list(sorted(set(exchange_hashmap.keys()), reverse=True))
-    if not len(exchange_dates):
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No exchange forecast data found for {zone_key1} -> {zone_key2}",
-        )
-    data = []
-    for exchange_date in exchange_dates:
-        netFlow = exchange_hashmap[exchange_date]
-        data.append(
-            {
-                "sortedZoneKeys": key,
-                "datetime": exchange_date,
-                "netFlow": netFlow
-                if zone_key1[0] == sorted_zone_keys
-                else -1 * netFlow,
-                "source": "entsoe.eu",
-            }
-        )
-    return data
 
 
 @refetch_frequency(timedelta(days=2))
