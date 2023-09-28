@@ -1,10 +1,11 @@
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import { colorblindModeAtom } from 'utils/state/atoms';
 import { useExchangeArrowsData } from 'hooks/arrows';
 import { useAtom } from 'jotai';
 import React from 'react';
 import { MapboxMap } from 'react-map-gl';
+import { colorblindModeAtom } from 'utils/state/atoms';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
+
 import ExchangeArrow from './ExchangeArrow';
 
 function ExchangeLayer({ map }: { map?: MapboxMap }) {

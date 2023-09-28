@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+
 import { useMediaQuery } from './styling';
 
 const BELOW_MIN_WIDTH = 599;

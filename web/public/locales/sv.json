@@ -27,7 +27,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Kartlägger klimatpåverkan från elkonsumtion"
+      "header": "Kartlägger klimatpåverkan från elkonsumtion"
     },
     "view2": {
       "header": "Se hur mycket CO₂ som släpps ut när din el produceras, i realtid.",
@@ -37,7 +37,7 @@
       "header": "Kolla var din el kommer ifrån",
       "text": "Pilar på kartan visar flöden av el mellan olika regioner. Tryck på en region för att se mer information om var elen kommer från."
     },
-    "view4": {
+    "view7": {
       "header": "Vind- och solförhållanden i realtid",
       "text": "Elproduktion från sol och vind är beroende av vädret. Tryck på knapparna sol och vind för att i realtid visa vindstyrka och solsken över hela världen."
     }
