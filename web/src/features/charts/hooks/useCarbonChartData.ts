@@ -1,9 +1,9 @@
 import useGetZone from 'api/getZone';
 import { useCo2ColorScale } from 'hooks/theme';
-
 import { useAtom } from 'jotai';
 import { getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom } from 'utils/state/atoms';
+
 import { AreaGraphElement } from '../types';
 
 export function useCarbonChartData() {

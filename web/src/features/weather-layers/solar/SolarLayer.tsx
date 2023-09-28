@@ -1,6 +1,5 @@
 import { useGetSolar } from 'api/getWeatherData';
 import { useAtom, useSetAtom } from 'jotai';
-
 import { useEffect, useMemo, useRef } from 'react';
 import { MapboxMap } from 'react-map-gl';
 import { ToggleOptions } from 'utils/constants';
@@ -9,6 +8,7 @@ import {
   solarLayerEnabledAtom,
   solarLayerLoadingAtom,
 } from 'utils/state/atoms';
+
 import { stackBlurImageOpacity } from './stackBlurImageOpacity';
 import {
   opacityToSolarIntensity,

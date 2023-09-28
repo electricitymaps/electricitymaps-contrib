@@ -1,8 +1,8 @@
 import { TimeAverages } from 'utils/constants';
+import { formatCo2 } from 'utils/formatting';
+
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-
-import { formatCo2 } from 'utils/formatting';
 import { noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
 import EmissionChartTooltip from './tooltips/EmissionChartTooltip';

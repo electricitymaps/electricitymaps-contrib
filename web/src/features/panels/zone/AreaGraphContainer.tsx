@@ -1,10 +1,11 @@
 import BreakdownChart from 'features/charts/BreakdownChart';
 import CarbonChart from 'features/charts/CarbonChart';
 import EmissionChart from 'features/charts/EmissionChart';
+import NetExchangeChart from 'features/charts/NetExchangeChart';
 import PriceChart from 'features/charts/PriceChart';
 import { TimeAverages } from 'utils/constants';
+
 import Divider from './Divider';
-import NetExchangeChart from 'features/charts/NetExchangeChart';
 
 export default function AreaGraphContainer({
   datetimes,

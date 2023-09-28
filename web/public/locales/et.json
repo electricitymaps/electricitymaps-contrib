@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Elektrienergia kliimamõju kaardistamine"
+      "header": "Elektrienergia kliimamõju kaardistamine"
     },
     "view2": {
       "header": "Vaadake reaalajas, kui palju CO₂ eraldub teie elektri tootmiseks.",
@@ -23,7 +23,7 @@
       "header": "Tea, kust tuleb teie elekter",
       "text": "Nooled kaardil näitavad elektrivooge erinevate piirkondade vahel. Klõpsake piirkonnal, et näha lisateavet selle elektrienergia päritolu kohta."
     },
-    "view4": {
+    "view7": {
       "header": "Reaalajas tuule- ja päikeseolud",
       "text": "Tuule- ja päikeseenergia tootmine sõltub ilmast. Vajutage päikese ja tuule nuppe, et kuvada reaalajas kogu maailma tuule ja päikesepaiste tugevus."
     }
