@@ -104,7 +104,7 @@ def fetch_production(
         "nuclear": ["NUCLEAR"],
         "solar": ["SOLAR"],
         "wind": ["WIND"],
-        "unknown": ["COGEN", ""],
+        "unknown": ["COGEN"],
     }
     STORAGE_MODE_MAPPING = {
         "hydro": ["PUMPINGLOAD", "PUMPINGGEN"],
