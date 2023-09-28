@@ -3,7 +3,6 @@
 from datetime import datetime, timedelta, timezone
 from json import loads
 from logging import Logger, getLogger
-from typing import Dict, Optional
 from zoneinfo import ZoneInfo
 
 # The request library is used to fetch content through HTTP
@@ -66,57 +65,77 @@ EXCHANGE_PARSE_MAPPING = {
     "inter": "int",
 }
 
-API_CODE_MAPPING = {
-    ZoneKey("ES"): "DEMANDAQH",
-    ZoneKey("ES-CE"): "CEUTA5M",
-    ZoneKey("ES-CN-FVLZ"): "LZ_FV5M",
-    ZoneKey("ES-CN-GC"): "GCANARIA5M",
-    ZoneKey("ES-CN-HI"): "EL_HIERRO5M",
-    ZoneKey("ES-CN-IG"): "LA_GOMERA5M",
-    ZoneKey("ES-CN-LP"): "LA_PALMA5M",
-    ZoneKey("ES-CN-TE"): "TENERIFE5M",
-    ZoneKey("ES-IB-FO"): "FORMENTERA5M",
-    ZoneKey("ES-IB-IZ"): "IBIZA5M",
-    ZoneKey("ES-IB-MA"): "MALLORCA5M",
-    ZoneKey("ES-IB-ME"): "MENORCA5M",
-    ZoneKey("ES-ML"): "MELILLA5M",
-}
-
 ZONE_MAPPING = {
-    ZoneKey("ES"): "Peninsula",
-    ZoneKey("ES-CE"): "Peninsula",
-    ZoneKey("ES-CN-FVLZ"): "Canarias",
-    ZoneKey("ES-CN-GC"): "Canarias",
-    ZoneKey("ES-CN-HI"): "Canarias",
-    ZoneKey("ES-CN-IG"): "Canarias",
-    ZoneKey("ES-CN-LP"): "Canarias",
-    ZoneKey("ES-CN-TE"): "Canarias",
-    ZoneKey("ES-IB-FO"): "Baleares",
-    ZoneKey("ES-IB-IZ"): "Baleares",
-    ZoneKey("ES-IB-MA"): "Baleares",
-    ZoneKey("ES-IB-ME"): "Baleares",
-    ZoneKey("ES-ML"): "Peninsula",
-}
-
-TIMEZONES_MAPPING = {
-    ZoneKey("ES"): "Europe/Madrid",
-    ZoneKey("ES-CE"): "Africa/Ceuta",
-    ZoneKey("ES-CN-FVLZ"): "Atlantic/Canary",
-    ZoneKey("ES-CN-GC"): "Atlantic/Canary",
-    ZoneKey("ES-CN-HI"): "Atlantic/Canary",
-    ZoneKey("ES-CN-IG"): "Atlantic/Canary",
-    ZoneKey("ES-CN-LP"): "Atlantic/Canary",
-    ZoneKey("ES-CN-TE"): "Atlantic/Canary",
-    ZoneKey("ES-IB-FO"): "Europe/Madrid",
-    ZoneKey("ES-IB-IZ"): "Europe/Madrid",
-    ZoneKey("ES-IB-MA"): "Europe/Madrid",
-    ZoneKey("ES-IB-ME"): "Europe/Madrid",
-    ZoneKey("ES-ML"): "Africa/Ceuta",
+    ZoneKey("ES"): {
+        "API_CODE": "DEMANDAQH",
+        "SYSTEM": "Peninsula",
+        "TZ": "Europe/Madrid",
+    },
+    ZoneKey("ES-CE"): {
+        "API_CODE": "CEUTA5M",
+        "SYSTEM": "Peninsula",
+        "TZ": "Africa/Ceuta",
+    },
+    ZoneKey("ES-CN-FVLZ"): {
+        "API_CODE": "LZ_FV5M",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
+    ZoneKey("ES-CN-GC"): {
+        "API_CODE": "GCANARIA5M",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
+    ZoneKey("ES-CN-HI"): {
+        "API_CODE": "EL_HIERRO5M",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
+    ZoneKey("ES-CN-IG"): {
+        "API_CODE": "LA_GOMERA5M",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
+    ZoneKey("ES-CN-LP"): {
+        "API_CODE": "LA_PALMA5M",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
+    ZoneKey("ES-CN-TE"): {
+        "API_CODE": "TENERIFE5M",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
+    ZoneKey("ES-IB-FO"): {
+        "API_CODE": "FORMENTERA5M",
+        "SYSTEM": "Baleares",
+        "TZ": "Europe/Madrid",
+    },
+    ZoneKey("ES-IB-IZ"): {
+        "API_CODE": "IBIZA5M",
+        "SYSTEM": "Baleares",
+        "TZ": "Europe/Madrid",
+    },
+    ZoneKey("ES-IB-MA"): {
+        "API_CODE": "MALLORCA5M",
+        "SYSTEM": "Baleares",
+        "TZ": "Europe/Madrid",
+    },
+    ZoneKey("ES-IB-ME"): {
+        "API_CODE": "MENORCA5M",
+        "SYSTEM": "Baleares",
+        "TZ": "Europe/Madrid",
+    },
+    ZoneKey("ES-ML"): {
+        "API_CODE": "MELILLA5M",
+        "SYSTEM": "Peninsula",
+        "TZ": "Africa/Ceuta",
+    },
 }
 
 SOURCE = "demanda.ree.es"
 
-EXCHANGE_FUNCTION_MAP: Dict[ZoneKey, ZoneKey] = {
+EXCHANGE_FUNCTION_MAP: dict[ZoneKey, ZoneKey] = {
     ZoneKey("ES->ES-IB-MA"): ZoneKey("ES-IB-MA"),
     ZoneKey("ES-IB-IZ->ES-IB-MA"): ZoneKey("ES-IB-MA"),
     ZoneKey("ES-IB-FO->ES-IB-IZ"): ZoneKey("ES-IB-FO"),
@@ -158,14 +177,14 @@ def check_valid_parameters(
 
 
 def fetch_data_ree(
-    zone_key: ZoneKey, session: Session, target_datetime: Optional[datetime], tz: str
-) -> Dict:
+    zone_key: ZoneKey, session: Session, target_datetime: datetime | None, tz: str
+) -> dict:
     if target_datetime is None:
         date = datetime.now(tz=ZoneInfo(tz)).strftime("%Y-%m-%d")
     else:
         date = target_datetime.strftime("%Y-%m-%d")
-    system = ZONE_MAPPING[zone_key]
-    zone = API_CODE_MAPPING[zone_key]
+    system = ZONE_MAPPING[zone_key]["SYSTEM"]
+    zone = ZONE_MAPPING[zone_key]["API_CODE"]
     res = session.get(
         f"https://demanda.ree.es/WSvisionaMoviles{system}Rest/resources/demandaGeneracion{system}?curva={zone}&fecha={date}"
     )
@@ -182,16 +201,16 @@ def fetch_data_ree(
 def fetch_island_data(
     zone_key: ZoneKey,
     session: Session,
-    target_datetime: Optional[datetime],
+    target_datetime: datetime | None,
 ):
     """Fetch data for the given zone key."""
-    tz = TIMEZONES_MAPPING[zone_key]
+    tz = ZONE_MAPPING[zone_key]["TZ"]
     data = fetch_data_ree(zone_key, session, target_datetime, tz)
     responses = []
     for value in data:
         ts = value.pop("ts")
         date = datetime.fromisoformat(ts).replace(tzinfo=ZoneInfo(tz))
-        value["timestamp"] = date
+        value["datetime"] = date
         responses.append(value)
     if responses:
         return responses
@@ -218,7 +237,7 @@ def fetch_consumption(
     for event in island_data:
         consumption.append(
             zoneKey=zone_key,
-            datetime=event["timestamp"].astimezone(timezone.utc),
+            datetime=event["datetime"].astimezone(timezone.utc),
             consumption=event["dem"],
             source="demanda.ree.es",
         )
@@ -257,18 +276,21 @@ def fetch_production(
         if "hid" in event:
             storage.add_value("hydro", -event["hid"])
 
-        timestamp = event.pop("timestamp").astimezone(timezone.utc)
-
         production = ProductionMix()
         for key in event:
             if key in data_mapping.keys():
                 production.add_value(data_mapping[key], event[key])
-            elif key not in EXCHANGE_PARSE_MAPPING and key != "dem" and key != "hid":
+            elif (
+                key not in EXCHANGE_PARSE_MAPPING
+                and key != "dem"
+                and key != "hid"
+                and key != "datetime"
+            ):
                 logger.warning(f'Key "{key}" could not be parsed!')
 
         productionEventList.append(
             zoneKey=zone_key,
-            datetime=timestamp,
+            datetime=event["datetime"],
             production=production,
             storage=storage,
             source="demanda.ree.es",
@@ -316,7 +338,7 @@ def fetch_exchange(
 
         exchangeList.append(
             zoneKey=sorted_zone_keys,
-            datetime=event["timestamp"].astimezone(timezone.utc),
+            datetime=event["datetime"].astimezone(timezone.utc),
             netFlow=net_flow,
             source="demanda.ree.es",
         )
