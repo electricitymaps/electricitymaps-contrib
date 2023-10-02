@@ -139,7 +139,7 @@
     "@types/geojson": "^7946.0.10",
     "@types/js-yaml": "^4.0.5",
     "@types/mapbox-gl": "^2.7.13",
-    "@types/node": "^18.17.1",
+    "@types/node": "^18.18.1",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "@types/react-router-dom": "5.3.3",
