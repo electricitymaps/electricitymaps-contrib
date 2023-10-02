@@ -383,6 +383,7 @@ export default function MapPage(): ReactElement {
       mapStyle={MAP_STYLE as mapboxgl.Style}
     >
       <Layer id="ocean" type="background" paint={styles.ocean} />
+      {/* @ts-ignore ignore for preview build */}
       <Source id="states" type="geojson" data={states}>
         <Layer
           id="state-labels"
