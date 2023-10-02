@@ -123,8 +123,8 @@ dependencies:
     specifier: ^13.2.1
     version: 13.2.1(i18next@23.4.1)(react-dom@18.2.0)(react-native@0.72.5)(react@18.2.0)
   react-icons:
-    specifier: ^4.7.0
-    version: 4.7.1(react@18.2.0)
+    specifier: ^4.11.0
+    version: 4.11.0(react@18.2.0)
   react-map-gl:
     specifier: ^7.0.19
     version: 7.0.19(empty-npm-package@1.0.0)(react@18.2.0)
@@ -15246,8 +15246,8 @@ packages:
       react-native: 0.72.5(@babel/core@7.22.11)(@babel/preset-env@7.22.14)(react@18.2.0)
     dev: false
 
-  /react-icons@4.7.1(react@18.2.0):
-    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
+  /react-icons@4.11.0(react@18.2.0):
+    resolution: {integrity: sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA==}
     peerDependencies:
       react: '*'
     dependencies:
