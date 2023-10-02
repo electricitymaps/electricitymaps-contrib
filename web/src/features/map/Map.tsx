@@ -26,11 +26,17 @@ import {
   mousePositionAtom,
 } from './mapAtoms';
 import { FeatureId } from './mapTypes';
+import states from './usa-borders.json';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
 const NORTHERN_LATITUDE_BOUND = 85;
-const MAP_STYLE = { version: 8, sources: {}, layers: [] };
+const MAP_STYLE = {
+  version: 8,
+  sources: {},
+  layers: [],
+  glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+};
 const isMobile = window.innerWidth < 768;
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
@@ -52,6 +58,12 @@ export default function MapPage(): ReactElement {
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
 
+  useEffect(() => {
+    const map = mapReference.current?.getMap();
+    console.log('Map Loaded:', Boolean(map));
+    console.log('States Source Loaded:', Boolean(map?.getSource('states')));
+    console.log('State-Labels Layer Loaded:', Boolean(map?.getLayer('state-labels')));
+  }, []);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
   const styles = useMemo(
@@ -72,6 +84,11 @@ export default function MapPage(): ReactElement {
           theme.strokeWidth,
         ],
       } as mapboxgl.LinePaint,
+      statesBorder: {
+        'line-color': 'white',
+        // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
+        'line-width': 1,
+      } as mapboxgl.LinePaint,
       zonesClickable: {
         'fill-color': [
           'coalesce',
@@ -79,6 +96,7 @@ export default function MapPage(): ReactElement {
           ['get', 'color'],
           theme.clickableFill,
         ],
+        'fill-opacity': 0.6,
       } as mapboxgl.FillPaint,
       zonesHover: {
         'fill-color': '#FFFFFF',
@@ -102,10 +120,26 @@ export default function MapPage(): ReactElement {
     }
 
     // An issue where the map has not loaded source yet causing map errors
-    const isSourceLoaded = map.getSource('zones-clickable') != undefined;
+    const isSourceLoaded =
+      map.getSource('zones-clickable') != undefined &&
+      map.isSourceLoaded('zones-clickable') &&
+      map.isSourceLoaded('states') &&
+      map.getSource('states') != undefined;
     if (!isSourceLoaded || isLoadingMap) {
       return;
     }
+    // map.setLayoutProperty('states-names', 'text-field', [
+    //   'format',
+    //   ['get', 'name'],
+    //   { 'font-scale': 1.2 },
+    //   '\n',
+    //   {},
+    //   ['get', 'name'],
+    //   {
+    //     'font-scale': 0.8,
+    //     'text-font': ['literal', ['DIN Offc Pro Italic', 'Arial Unicode MS Regular']],
+    //   },
+    // ]);
     for (const feature of geometries.features) {
       const { zoneId } = feature.properties;
       const zone = data.data?.zones[zoneId];
@@ -349,11 +383,40 @@ export default function MapPage(): ReactElement {
       mapStyle={MAP_STYLE as mapboxgl.Style}
     >
       <Layer id="ocean" type="background" paint={styles.ocean} />
+      <Source id="states" type="geojson" data={states}>
+        <Layer
+          id="state-labels"
+          type="symbol"
+          source="states"
+          layout={{
+            'text-field': ['get', 'name'],
+            'text-size': 20, // Increase text size for visibility
+            'text-offset': [0, 0], // Adjust text offset if needed
+          }}
+          paint={{
+            'text-color': 'white', // Set to a contrasting color
+          }}
+          minzoom={4}
+        />
+
+        <Layer id="states-layer" type="fill" paint={styles.zonesClickable} />
+        <Layer id="states-hoverable-layer" type="fill" paint={styles.zonesHover} />
+        <Layer id="states-border" type="line" paint={styles.statesBorder} />
+        {/* <Layer
+          id="state-names"
+          source={states}
+          type="symbol"
+          // layout={{ 'text-field': ['get', 'name'] }}
+          // paint={{ 'text-color': 'pink' }}
+        /> */}
+      </Source>
+
       <Source id="zones-clickable" promoteId={'zoneId'} type="geojson" data={geometries}>
         <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
         <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
         <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
       </Source>
+
       <CustomLayer>
         <WindLayer />
       </CustomLayer>
