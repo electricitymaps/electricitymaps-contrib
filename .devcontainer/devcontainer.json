@@ -10,30 +10,30 @@
     },
     "ghcr.io/devcontainers-contrib/features/poetry:2": {},
     "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
-},
-"customizations": {
-	"vscode": {
-		"extensions": [
-			"ms-python.vscode-pylance",
-			"ms-python.python",
-			"esbenp.prettier-vscode",
-			"dbaeumer.vscode-eslint",
-			"ms-python.isort",
-			"redhat.vscode-yaml",
-			"ms-python.black-formatter"
-		],
-    "settings" : {
-      "python.languageServer": "Pylance",
-      "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-          "source.organizeImports": true
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-python.isort",
+        "redhat.vscode-yaml",
+        "ms-python.black-formatter"
+      ],
+      "settings": {
+        "python.languageServer": "Pylance",
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+          },
+          "editor.formatOnType": true
         },
-        "editor.formatOnType": true
-      },
-      "isort.args": ["--profile", "black", "--skip-gitignore"]
+        "isort.args": ["--profile", "black", "--skip-gitignore"]
+      }
     }
-	}
-}
+  }
 }
