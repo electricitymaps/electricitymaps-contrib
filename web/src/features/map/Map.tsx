@@ -70,24 +70,18 @@ export default function MapPage(): ReactElement {
     () => ({
       ocean: { 'background-color': theme.oceanColor },
       zonesBorder: {
-        'line-color': [
-          'case',
-          ['boolean', ['feature-state', 'selected'], false],
-          'white',
-          theme.strokeColor,
-        ],
+        'line-color': 'white',
+
+        'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.2],
         // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
-        'line-width': [
-          'case',
-          ['boolean', ['feature-state', 'selected'], false],
-          (theme.strokeWidth as number) * 10,
-          theme.strokeWidth,
-        ],
+        'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1.5, 0.15],
+        // 'line-width': 1,
       } as mapboxgl.LinePaint,
       statesBorder: {
-        'line-color': 'white',
+        'line-color': '#303030',
         // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
         'line-width': 1,
+        'line-opacity': 0.15,
       } as mapboxgl.LinePaint,
       zonesClickable: {
         'fill-color': [
@@ -96,11 +90,16 @@ export default function MapPage(): ReactElement {
           ['get', 'color'],
           theme.clickableFill,
         ],
-        'fill-opacity': 0.6,
+        'fill-opacity': 1,
+      } as mapboxgl.FillPaint,
+      statesClickable: {
+        'fill-opacity': 0,
+        'fill-color': 'white',
+        // 'fill-outline-color': 'white',
       } as mapboxgl.FillPaint,
       zonesHover: {
-        'fill-color': '#FFFFFF',
-        'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.3, 0],
+        'fill-color': 'black',
+        'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0, 0.15],
       } as mapboxgl.FillPaint,
     }),
     [theme]
@@ -383,9 +382,15 @@ export default function MapPage(): ReactElement {
       mapStyle={MAP_STYLE as mapboxgl.Style}
     >
       <Layer id="ocean" type="background" paint={styles.ocean} />
+
+      <Source id="zones-clickable" promoteId={'zoneId'} type="geojson" data={geometries}>
+        <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
+        <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
+        <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
+      </Source>
       {/* @ts-ignore ignore for preview build */}
       <Source id="states" type="geojson" data={states}>
-        <Layer
+        {/* <Layer
           id="state-labels"
           type="symbol"
           source="states"
@@ -398,24 +403,29 @@ export default function MapPage(): ReactElement {
             'text-color': 'white', // Set to a contrasting color
           }}
           minzoom={4}
-        />
-
-        <Layer id="states-layer" type="fill" paint={styles.zonesClickable} />
-        <Layer id="states-hoverable-layer" type="fill" paint={styles.zonesHover} />
-        <Layer id="states-border" type="line" paint={styles.statesBorder} />
-        {/* <Layer
-          id="state-names"
-          source={states}
-          type="symbol"
-          // layout={{ 'text-field': ['get', 'name'] }}
-          // paint={{ 'text-color': 'pink' }}
         /> */}
-      </Source>
 
-      <Source id="zones-clickable" promoteId={'zoneId'} type="geojson" data={geometries}>
-        <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
-        <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
-        <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
+        <Layer id="states-layer" type="fill" paint={styles.statesClickable} />
+        {/* <Layer id="states-hoverable-layer" type="fill" paint={styles.zonesHover} /> */}
+        <Layer id="states-border" type="line" paint={styles.statesBorder} />
+      </Source>
+      {/* @ts-ignore ignore for preview build */}
+      <Source id="states" type="geojson" data={states}>
+        <Layer
+          id="state-labels"
+          type="symbol"
+          source="states"
+          layout={{
+            'text-field': ['get', 'name'],
+            'text-size': 16, // Increase text size for visibility
+            'text-offset': [0, 0], // Adjust text offset if needed
+          }}
+          paint={{
+            'text-opacity': 0.9,
+            'text-color': 'white', // Set to a contrasting color
+          }}
+          minzoom={3}
+        />
       </Source>
 
       <CustomLayer>
