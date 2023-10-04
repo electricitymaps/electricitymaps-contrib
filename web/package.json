@@ -76,7 +76,7 @@
     "d3-shape": "^3.2.0",
     "date-fns": "^2.30.0",
     "geojson": "^0.5.0",
-    "i18next": "^23.4.1",
+    "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-http-backend": "^2.2.1",
     "jotai": "^2.4.2",
