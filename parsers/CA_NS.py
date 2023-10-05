@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes
-from datetime import datetime
+# The datetime library is used to handle datetimes
+from datetime import datetime, timezone
 from logging import Logger, getLogger
 
-import arrow
 from requests import Session
 
 
@@ -18,12 +17,12 @@ def _get_ns_info(requests_obj, logger: Logger):
         # The validation JS reports error when Solid Fuel (coal) is over 85%,
         # but as far as I can tell, that can actually be a valid result, I've seen it a few times.
         # Use 98% instead.
-        "coal": (0.25, 0.98),
+        "coal": (0, 0.98),
         "gas": (0, 0.5),
         "biomass": (0, 0.15),
         "hydro": (0, 0.60),
         "wind": (0, 0.55),
-        "imports": (0, 0.20),
+        "imports": (0, 0.50),
     }
 
     # Sanity checks: verify that reported production doesn't exceed listed capacity by a lot.
@@ -58,7 +57,7 @@ def _get_ns_info(requests_obj, logger: Logger):
         # datetime is in format '/Date(1493924400000)/'
         # get the timestamp 1493924400 (cutting out last three zeros as well)
         data_timestamp = int(mix["datetime"][6:-5])
-        data_date = arrow.get(data_timestamp).datetime
+        data_date = datetime.fromtimestamp(data_timestamp, tz=timezone.utc)
 
         # validate
         valid = True
