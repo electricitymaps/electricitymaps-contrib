@@ -1,3 +1,7 @@
+aggregates_displayed:
+  - daily
+  - monthly
+  - yearly
 bounding_box:
   - - -110.49997270417693
     - 48.49261789994816

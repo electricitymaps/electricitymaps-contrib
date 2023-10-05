@@ -5,8 +5,8 @@ import { formatCo2, scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
 import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
 
-import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 import { InnerAreaGraphTooltipProps } from '../types';
+import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function NetExchangeChartTooltip({
   zoneDetail,

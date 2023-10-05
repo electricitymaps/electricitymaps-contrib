@@ -32,6 +32,19 @@ HISTORICAL_PRODUCTION_URL = (
     "https://new.kpx.or.kr/powerSource.es?mid=a10606030000&device=chart"
 )
 
+PRODUCTION_MAPPING = {
+    "coal": "coal",
+    "localCoal": "coal",
+    "gas": "gas",
+    "oil": "oil",
+    "nuclearPower": "nuclear",
+    "waterPower": "hydro",
+    "sunlight": "solar",
+    "newRenewable": "unknown",
+}
+
+STORAGE_MAPPING = {"raisingWater": "hydro"}
+
 pp = pprint.PrettyPrinter(indent=4)
 
 #### Classification of New & Renewable Energy Sources ####
@@ -82,7 +95,7 @@ def fetch_consumption(
     return consumption_list.to_list()
 
 
-@refetch_frequency(timedelta(hours=1))
+@refetch_frequency(timedelta(hours=167))
 def fetch_price(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),
@@ -164,16 +177,22 @@ def parse_chart_prod_data(
 
         dt = TIMEZONE.localize(datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M"))
 
-        production_mix = ProductionMix(
-            coal=float(item["coal"]) + float(item["localCoal"]),
-            gas=float(item["gas"]),
-            hydro=float(item["waterPower"]),
-            nuclear=float(item["nuclearPower"]),
-            oil=float(item["oil"]),
-            unknown=float(item["newRenewable"]),
-            solar=float(item["sunlight"]),
-        )
-        storage_mix = StorageMix(hydro=-float(item["raisingWater"]))
+        production_mix = ProductionMix()
+        storage_mix = StorageMix()
+        for item_key, item_value in item.items():
+            if item_key == "regDate":
+                continue
+            elif item_key in PRODUCTION_MAPPING:
+                production_mix.add_value(
+                    PRODUCTION_MAPPING[item_key],
+                    float(item_value),
+                    correct_negative_with_zero=True,
+                )
+            elif item_key in STORAGE_MAPPING:
+                storage_mix.add_value(STORAGE_MAPPING[item_key], -float(item_value))
+            else:
+                logger.warning(f"Unknown mode {item_key} with value {item_value}")
+
         production_list.append(
             zoneKey=zone_key,
             datetime=dt,
@@ -225,7 +244,7 @@ def get_historical_prod_data(
     return parse_chart_prod_data(res.text, zone_key, logger)
 
 
-@refetch_frequency(timedelta(minutes=5))
+@refetch_frequency(timedelta(hours=20))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),

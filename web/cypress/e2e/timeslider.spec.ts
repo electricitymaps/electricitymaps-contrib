@@ -38,11 +38,11 @@ const getco2intensity = (index: number, data: Data) => {
 describe('TimeController', () => {
   it('interacts with the timecontroller on map', () => {
     // Intercepts all API network requests and serves fixtures directly
-    cy.interceptAPI('v6/state/hourly');
+    cy.interceptAPI('v7/state/hourly');
     cy.interceptAPI('v7/details/hourly/DK-DK2');
-    cy.interceptAPI('v6/state/daily');
-    cy.interceptAPI('v6/state/monthly');
-    cy.interceptAPI('v6/state/yearly');
+    cy.interceptAPI('v7/state/daily');
+    cy.interceptAPI('v7/state/monthly');
+    cy.interceptAPI('v7/state/yearly');
     cy.interceptAPI('v7/details/daily/DK-DK2');
     cy.interceptAPI('v7/details/monthly/DK-DK2');
     cy.interceptAPI('v7/details/yearly/DK-DK2');
@@ -53,7 +53,7 @@ describe('TimeController', () => {
     cy.get('[data-test-id=close-modal]').click();
     cy.get('[data-test-id=total-energy-modal] [data-test-id=close-modal-button]').click();
     // Hourly
-    cy.waitForAPISuccess(`v6/state/hourly`);
+    cy.waitForAPISuccess(`v7/state/hourly`);
     cy.waitForAPISuccess(`v7/details/hourly/DK-DK2`);
     cy.contains('LIVE');
     cy.get('[data-test-id=co2-square-value').should(
@@ -72,7 +72,7 @@ describe('TimeController', () => {
 
     // Monthly
     cy.get('[data-test-id="time-controller-daily"]').click();
-    cy.waitForAPISuccess(`v6/state/daily`);
+    cy.waitForAPISuccess(`v7/state/daily`);
     cy.waitForAPISuccess(`v7/details/daily/DK-DK2`);
     // cy.get('[data-test-id=co2-square-value').should(
     //   'contain.text',
@@ -94,7 +94,7 @@ describe('TimeController', () => {
 
     // Yearly
     cy.get('[data-test-id="time-controller-monthly"]').click();
-    cy.waitForAPISuccess(`v6/state/monthly`);
+    cy.waitForAPISuccess(`v7/state/monthly`);
     cy.waitForAPISuccess(`v7/details/monthly/DK-DK2`);
     cy.get('[data-test-id=co2-square-value').should(
       'contain.text',
@@ -116,7 +116,7 @@ describe('TimeController', () => {
 
     // 5 Years
     cy.get('[data-test-id="time-controller-yearly"]').click();
-    cy.waitForAPISuccess(`v6/state/yearly`);
+    cy.waitForAPISuccess(`v7/state/yearly`);
     cy.waitForAPISuccess(`v7/details/yearly/DK-DK2`);
     cy.get('[data-test-id=co2-square-value').should(
       'contain.text',

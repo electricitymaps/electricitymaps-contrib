@@ -1,4 +1,5 @@
 import { Label, Pie, PieChart } from 'recharts';
+
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
 const PIE_START_ANGLE = 90;
