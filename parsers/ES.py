@@ -176,7 +176,17 @@ def check_valid_parameters(
         )
 
 
-def fetch_data_ree(
+def check_known_key(key: str, logger: Logger):
+    """Check if the given key is already known and log a warning if not."""
+    if (
+        key not in EXCHANGE_PARSE_MAPPING
+        and key not in PRODUCTION_PARSE_MAPPING
+        and key not in {"dem", "hid", "ts"}
+    ):
+        logger.warning(f'Key "{key}" could not be parsed!')
+
+
+def get_ree_data(
     zone_key: ZoneKey, session: Session, target_datetime: datetime | None, tz: str
 ) -> dict:
     if target_datetime is None:
@@ -198,22 +208,23 @@ def fetch_data_ree(
     return json["valoresHorariosGeneracion"]
 
 
-def fetch_island_data(
+def fetch_and_preprocess_data(
     zone_key: ZoneKey,
     session: Session,
+    logger: Logger,
     target_datetime: datetime | None,
 ):
     """Fetch data for the given zone key."""
     tz = ZONE_MAPPING[zone_key]["TZ"]
-    data = fetch_data_ree(zone_key, session, target_datetime, tz)
-    responses = []
+    data = get_ree_data(zone_key, session, target_datetime, tz)
     for value in data:
-        ts = value.pop("ts")
-        date = datetime.fromisoformat(ts).replace(tzinfo=ZoneInfo(tz))
-        value["datetime"] = date
-        responses.append(value)
-    if responses:
-        return responses
+        # Add timezone info to time object
+        value["ts"] = datetime.fromisoformat(value["ts"]).replace(tzinfo=ZoneInfo(tz))
+
+        for key in value.keys():
+            check_known_key(key, logger)
+    if data:
+        return data
     else:
         raise ParserException(
             "ES.py",
@@ -232,12 +243,12 @@ def fetch_consumption(
     check_valid_parameters(zone_key, session, target_datetime)
 
     ses = session or Session()
-    island_data = fetch_island_data(zone_key, ses, target_datetime)
+    data = fetch_and_preprocess_data(zone_key, ses, logger, target_datetime)
     consumption = TotalConsumptionList(logger)
-    for event in island_data:
+    for event in data:
         consumption.append(
             zoneKey=zone_key,
-            datetime=event["datetime"].astimezone(timezone.utc),
+            datetime=event["ts"],
             consumption=event["dem"],
             source="demanda.ree.es",
         )
@@ -268,9 +279,9 @@ def fetch_production(
     if zone_key == "ES-IB-IZ":
         data_mapping["die"] = "gas"
 
-    island_data = fetch_island_data(zone_key, ses, target_datetime)
+    data = fetch_and_preprocess_data(zone_key, ses, logger, target_datetime)
     productionEventList = ProductionBreakdownList(logger)
-    for event in island_data:
+    for event in data:
 
         storage = StorageMix()
         if "hid" in event:
@@ -280,17 +291,10 @@ def fetch_production(
         for key in event:
             if key in data_mapping.keys():
                 production.add_value(data_mapping[key], event[key])
-            elif (
-                key not in EXCHANGE_PARSE_MAPPING
-                and key != "dem"
-                and key != "hid"
-                and key != "datetime"
-            ):
-                logger.warning(f'Key "{key}" could not be parsed!')
 
         productionEventList.append(
             zoneKey=zone_key,
-            datetime=event["datetime"],
+            datetime=event["ts"],
             production=production,
             storage=storage,
             source="demanda.ree.es",
@@ -311,20 +315,19 @@ def fetch_exchange(
     check_valid_parameters(sorted_zone_keys, session, target_datetime)
     ses = session or Session()
 
-    responses = fetch_island_data(
+    data = fetch_and_preprocess_data(
         EXCHANGE_FUNCTION_MAP[sorted_zone_keys],
         ses,
+        logger,
         target_datetime,
     )
 
     exchangeList = ExchangeList(logger)
-    for event in responses:
+    for event in data:
         exchanges = {}
         for key in event:
             if key in EXCHANGE_PARSE_MAPPING.keys():
                 exchanges[EXCHANGE_PARSE_MAPPING[key]] = event[key]
-            elif key not in PRODUCTION_PARSE_MAPPING and key != "dem" and key != "hid":
-                logger.warning(f'Key "{key}" could not be parsed!')
 
         net_flow: float
         if sorted_zone_keys == "ES-IB-MA->ES-IB-ME":
@@ -338,7 +341,7 @@ def fetch_exchange(
 
         exchangeList.append(
             zoneKey=sorted_zone_keys,
-            datetime=event["datetime"].astimezone(timezone.utc),
+            datetime=event["ts"],
             netFlow=net_flow,
             source="demanda.ree.es",
         )
