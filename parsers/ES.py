@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from json import loads
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
