@@ -1064,21 +1064,6 @@ files = [
 ]
 
 [[package]]
-name = "ree"
-version = "2.3.2"
-description = "UNOFFICIAL Red Eléctrica de España data client"
-optional = true
-python-versions = "*"
-files = [
-    {file = "ree-2.3.2-py3-none-any.whl", hash = "sha256:48cee0ebe8b019994d173a9712b33af7d2c2555893b427606cb78a7327918bdf"},
-    {file = "ree-2.3.2.tar.gz", hash = "sha256:a07d86df2525e6a9c0fc897c4b6fd6c4315e1c13de2e9558bc2567308ec4d95b"},
-]
-
-[package.dependencies]
-arrow = "*"
-requests = "*"
-
-[[package]]
 name = "requests"
 version = "2.25.1"
 description = "Python HTTP for Humans."
@@ -1590,11 +1575,11 @@ test = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 
 [extras]
-parsers = ["Pillow", "arrow", "beautifulsoup4", "demjson3", "freezegun", "html5lib", "imageio", "lxml", "mock", "odfpy", "opencv-python", "openpyxl", "pandas", "pydataxm", "pytesseract", "ree", "requests", "signalr-client-threads", "tqdm", "xlrd"]
+parsers = ["Pillow", "arrow", "beautifulsoup4", "demjson3", "freezegun", "html5lib", "imageio", "lxml", "mock", "odfpy", "opencv-python", "openpyxl", "pandas", "pydataxm", "pytesseract", "requests", "signalr-client-threads", "tqdm", "xlrd"]
 scripts = ["xmltodict"]
 validators = ["arrow", "pandas"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = ">= 3.10, < 4.0"
-content-hash = "54ccb6a936945bb79d2bfcf48461a6f22ae20ed41dada4640b561a009db7e12f"
+python-versions = ">= 3.10, < 3.11"
+content-hash = "541bf80278d84046a90bf3afd8b01f6fdc6c08e1f30d2182be66e5269b815cd7"
