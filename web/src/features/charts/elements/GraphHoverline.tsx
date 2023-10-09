@@ -41,7 +41,6 @@ const GraphHoverLine = React.memo(
 
     const showVerticalLine = Number.isFinite(x);
     const showMarker = Number.isFinite(x) && Number.isFinite(y);
-
     // Marker callbacks
     useEffect(() => {
       if (showMarker) {
@@ -94,7 +93,7 @@ const GraphHoverLine = React.memo(
             style={{
               display: 'block',
               pointerEvents: 'none',
-              shapeRendering: 'crispEdges',
+              shapeRendering: 'geometricPrecision',
               stroke: 'black',
               strokeWidth: 1.5,
               fill: typeof fill === 'function' ? fill(datapoint) : fill,
