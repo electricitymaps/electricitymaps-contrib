@@ -52,7 +52,16 @@
         "[typescriptreact]": {
           "editor.defaultFormatter": "esbenp.prettier-vscode",
           "editor.formatOnSave": true
-        }
+        },
+        "python.testing.pytestArgs": [
+          ".",
+          "--ignore",
+          "electricitymap/contrib/parsers",
+          "--ignore",
+          "electricitymap/contrib/validators"
+        ],
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestEnabled": true
       }
     }
   }
