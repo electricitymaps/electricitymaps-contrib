@@ -932,10 +932,8 @@ def parse_production_per_units(xml_text: str) -> Any | None:
 def parse_exchange(
     xml_text: str,
     is_import: bool,
-    zoneKey1: ZoneKey,
-    zoneKey2: ZoneKey,
+    exchangeKey: ZoneKey,
     logger: Logger,
-    existingExchangeList: ExchangeList | None = None,
     forecasted: bool = False,
 ) -> ExchangeList:
     if not xml_text:
@@ -944,10 +942,10 @@ def parse_exchange(
             message="No forcasted exchange data found"
             if forecasted
             else "No exchange data found",
-            zone_key="->".join(sorted([zoneKey1, zoneKey2])),
+            zone_key=exchangeKey,
         )
 
-    newExchangeList = ExchangeList(logger)
+    exchangeList = ExchangeList(logger)
 
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
@@ -971,8 +969,8 @@ def parse_exchange(
             position = int(entry.find_all("position")[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
-            newExchangeList.append(
-                zoneKey=ZoneKey("->".join(sorted([zoneKey1, zoneKey2]))),
+            exchangeList.append(
+                zoneKey=exchangeKey,
                 datetime=datetime,
                 source=SOURCE,
                 netFlow=quantity,
@@ -981,12 +979,7 @@ def parse_exchange(
                 else EventSourceType.measured,
             )
 
-    if existingExchangeList is not None:
-        return ExchangeList.merge_exchanges(
-            ungrouped_exchanges=[existingExchangeList, newExchangeList], logger=logger
-        )
-    else:
-        return newExchangeList
+    return exchangeList
 
 
 def parse_prices(
@@ -1030,53 +1023,47 @@ def get_exchange(
     session = session or Session()
 
     sorted_zone_keys = sorted([zone_key1, zone_key2])
-    key = ZoneKey("->".join(sorted_zone_keys))
-    if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
-        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
+    exchangeKey = ZoneKey("->".join(sorted_zone_keys))
+    if exchangeKey in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
+        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[exchangeKey]
     else:
         domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
         domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
     # Grab exchange
+    query_function = query_exchange_forecast if forecasted else query_exchange
+
+    imports = ExchangeList(logger)  # Defined here to avoid UnboundLocalError
+
     # Export
-    raw_exchange = (
-        query_exchange_forecast(domain1, domain2, session, target_datetime)
-        if forecasted
-        else query_exchange(domain1, domain2, session, target_datetime)
-    )
-    if raw_exchange is not None:
-        parsed = parse_exchange(
-            raw_exchange,
-            is_import=False,
-            zoneKey1=zone_key1,
-            zoneKey2=zone_key2,
-            logger=logger,
-            forecasted=forecasted,
-        )
-        if parsed:
-            # Import
-            raw_exchange = (
-                query_exchange_forecast(domain2, domain1, session, target_datetime)
-                if forecasted
-                else query_exchange(domain2, domain1, session, target_datetime)
-            )
-            if raw_exchange is not None:
-                parsed = parse_exchange(
-                    xml_text=raw_exchange,
-                    is_import=True,
-                    zoneKey1=zone_key1,
-                    zoneKey2=zone_key2,
-                    logger=logger,
-                    existingExchangeList=parsed,
-                    forecasted=forecasted,
-                )
-        return parsed.to_list()
-    else:
+    raw_exchange = query_function(domain1, domain2, session, target_datetime)
+    if raw_exchange is None:
         raise ParserException(
             parser="ENTSOE.py",
             message=f"No forecasted exchange data found for {zone_key1} -> {zone_key2}"
             if forecasted
             else f"No exchange data found for {zone_key1} -> {zone_key2}",
         )
+    exports = parse_exchange(
+        raw_exchange,
+        is_import=False,
+        exchangeKey=exchangeKey,
+        logger=logger,
+        forecasted=forecasted,
+    )
+    if exports:
+        # Import
+        raw_exchange = query_function(domain2, domain1, session, target_datetime)
+        if raw_exchange is not None:
+            imports = parse_exchange(
+                xml_text=raw_exchange,
+                is_import=True,
+                exchangeKey=exchangeKey,
+                logger=logger,
+                forecasted=forecasted,
+            )
+    return ExchangeList.merge_exchanges(
+        ungrouped_exchanges=[exports, imports], logger=logger
+    ).to_list()
 
 
 def validate_production(
