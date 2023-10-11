@@ -58,6 +58,5 @@ def generate_co2eq_parameters(
                         co2eq_parameters_lifecycle["emissionFactors"]["zoneOverrides"][
                             zone_key
                         ] = zone_config["emissionFactors"][k]
-            del zone_config["emissionFactors"]
 
     return co2eq_parameters_all, co2eq_parameters_direct, co2eq_parameters_lifecycle
