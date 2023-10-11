@@ -90,7 +90,7 @@ emissionFactors:
       _comment: estimated yearly share of solar & wind in this mixed renewable category
         based on installed capacity in 2018
       _url: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
-      source: renewable mix; assumes 50% solar, 50% wind
+      source: assumes 50% solar, 50% wind renewable mix
       value: 28
 fallbackZoneMixes:
   powerOriginRatios:
