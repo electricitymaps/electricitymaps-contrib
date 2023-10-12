@@ -114,7 +114,6 @@ class Zone(StrictBaseModelWithAlias):
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
     estimation_method: str | None
     sources: dict[str, Source] | None
-    emissionFactors: dict | None  # TODO: represent using CO2eqParameters model?
 
     def neighbors(self) -> list[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])
