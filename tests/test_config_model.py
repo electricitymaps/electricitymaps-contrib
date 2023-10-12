@@ -1,9 +1,6 @@
 import unittest
 
-from electricitymap.contrib.config.model import (
-    CO2EQ_CONFIG_MODEL,
-    CONFIG_MODEL,
-)
+from electricitymap.contrib.config.model import CO2EQ_CONFIG_MODEL, CONFIG_MODEL
 
 
 class ConfigModelTestcase(unittest.TestCase):
