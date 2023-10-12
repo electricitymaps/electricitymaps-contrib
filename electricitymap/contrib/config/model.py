@@ -269,6 +269,11 @@ class CO2eqParameters(StrictBaseModelWithAlias):
     emission_factors: EmissionFactors = Field(alias="emissionFactors")
 
 
+class ZoneEmissionFactors(StrictBaseModel):
+    direct: AllModesEmissionFactors | None
+    lifecycle: AllModesEmissionFactors
+
+
 class Zone(StrictBaseModelWithAlias):
     bounding_box: list[Point] | None
     bypass_aggregation_checks: list[ZoneKey] | None = Field(
@@ -287,7 +292,7 @@ class Zone(StrictBaseModelWithAlias):
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
     estimation_method: str | None
     sources: dict[str, Source] | None
-    emissionFactors: dict | None  # TODO: represent using CO2eqParameters model?
+    emissionFactors: ZoneEmissionFactors | None  # TODO: represent using CO2eqParameters model?
 
     def neighbors(self) -> list[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])
