@@ -20,7 +20,6 @@ class ConfigModelTestcase(unittest.TestCase):
         "Enerdata 2022",
         "EU-ETS 2021",
         "EU-ETS, ENTSO-E 2021",
-        "Guatemala AMM 2021-2022",
         "IEA 2019",
         "IEA 2020",
         'Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."',
