@@ -1,6 +1,9 @@
 import unittest
 
-from electricitymap.contrib.config.model import CONFIG_MODEL
+from electricitymap.contrib.config.model import (
+    CO2EQ_CONFIG_MODEL,
+    CONFIG_MODEL,
+)
 
 
 class ConfigModelTestcase(unittest.TestCase):
@@ -30,9 +33,13 @@ class ConfigModelTestcase(unittest.TestCase):
     }
 
     def test_zone_sources(self):
-        for _, zone in CONFIG_MODEL.zones.items():
-            for _, production_mode in zone.emission_factors or ():
-                for _, estimate in production_mode or ():
+        for _, model in CO2EQ_CONFIG_MODEL:
+            if not model.emission_factors:
+                continue
+            if not model.emission_factors.zone_overrides:
+                continue
+            for zone_key, zone_modes in model.emission_factors.zone_overrides.items():
+                for _, estimate in zone_modes or ():
                     if estimate is None:
                         continue
                     estimates = estimate if isinstance(estimate, list) else [estimate]
@@ -48,7 +55,7 @@ class ConfigModelTestcase(unittest.TestCase):
                                 continue
                             if source in self.GLOBAL_SOURCE_REFERENCES:
                                 continue
-                            self.assertIn(source, zone.sources)
+                            self.assertIn(source, CONFIG_MODEL.zones[zone_key].sources)
 
 
 if __name__ == "__main__":
