@@ -1,5 +1,6 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
+
 import {
   Mode,
   SpatialAggregate,
@@ -34,6 +35,10 @@ export const themeAtom = atomWithStorage('theme', ThemeOptions.SYSTEM);
 export const hasOnboardingBeenSeenAtom = atomWithStorage(
   'onboardingSeen',
   localStorage.getItem('onboardingSeen') ?? false
+);
+export const hasTotalEnergyIntroBeenSeenAtom = atomWithStorage(
+  'totalEnergyIntroSeen',
+  localStorage.getItem('totalEnergyIntroSeen') ?? false
 );
 
 export const colorblindModeAtom = atomWithStorage('colorblindModeEnabled', false);

@@ -1,22 +1,25 @@
 import { Button } from 'components/Button';
 import { isInfoModalOpenAtom, isSettingsModalOpenAtom } from 'features/modals/modalAtoms';
 import { useAtom, useSetAtom } from 'jotai';
+import { useTransition } from 'react';
 import { FiWind } from 'react-icons/fi';
 import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
 import { HiCog6Tooth, HiOutlineInformationCircle } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, ToggleOptions } from 'utils/constants';
+import { ThemeOptions, TimeAverages, ToggleOptions } from 'utils/constants';
 import {
   colorblindModeAtom,
   selectedDatetimeIndexAtom,
   solarLayerEnabledAtom,
   solarLayerLoadingAtom,
+  themeAtom,
   timeAverageAtom,
   windLayerAtom,
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
+
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
@@ -65,6 +68,8 @@ export const weatherButtonMap = {
 };
 
 function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
+  const [theme] = useAtom(themeAtom);
+  const [, startTransition] = useTransition();
   const { __ } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
   const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
@@ -75,6 +80,7 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
     solar: isEnabled ? __('tooltips.hideSolarLayer') : __('tooltips.showSolarLayer'),
   };
 
+  const spinnerColor = theme === ThemeOptions.DARK ? 'white' : 'black';
   const weatherId = `${type.charAt(0).toUpperCase() + type.slice(1)}`; // Capitalize first letter
 
   const onToggle = () => {
@@ -85,14 +91,16 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       trackEvent(`${weatherId} Enabled`);
     }
 
-    setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
+    startTransition(() => {
+      setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
+    });
   };
 
   return (
     <MapButton
       icon={
         isLoadingLayer ? (
-          <MoonLoader size={14} color="#135836" />
+          <MoonLoader size={14} color={spinnerColor} />
         ) : (
           <Icon size={weatherButtonMap[type].iconSize} color={isEnabled ? '' : 'gray'} />
         )
@@ -125,7 +133,7 @@ function DesktopMapControls() {
   };
 
   return (
-    <div className="pointer-events-none absolute right-3 top-3 z-30 hidden flex-col items-end md:flex">
+    <div className="pointer-events-none absolute right-3 top-2 z-30 hidden flex-col items-end md:flex">
       <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-2">
         <ConsumptionProductionToggle />
         <SpatialAggregatesToggle />

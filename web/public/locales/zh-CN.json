@@ -24,8 +24,6 @@
     "source": "来源",
     "carbonintensity": "碳强度",
     "electricityproduction": "电力生产",
-    "bysource": "按来源",
-    "averagebysource": "按来源平均",
     "helpfrom": "得力于",
     "emissions": "碳排放量",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或编辑来源</a>",
@@ -143,7 +141,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量被汇出到 %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的电力从 %5$s <b>%3$s</b> 汇入",
   "emissionsImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量从 %5$s <b>%3$s</b> 汇入",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "地图",
     "mapColors-question": "在地图上的颜色是什么意思?",
@@ -1740,7 +1737,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "以地图的形式绘制电力对气候的影响"
+      "header": "以地图的形式绘制电力对气候的影响"
     },
     "view2": {
       "header": "实时查看发电过程中排放了多少二氧化碳",
@@ -1750,7 +1747,7 @@
       "header": "了解你用的电从哪来",
       "text": "地图上的箭头表示不同区域之间的电流流动。单击某个区域可查看有关其电力来源的更多信息。"
     },
-    "view4": {
+    "view7": {
       "header": "风力和太阳能实况",
       "text": "风能和太阳能的生产取决于天气。按下太阳和风按钮以显示全球风和阳光的实时强度。"
     }

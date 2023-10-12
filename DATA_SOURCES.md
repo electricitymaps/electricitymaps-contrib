@@ -154,9 +154,6 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 
 Production capacities are centralized in the [config/zones](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones) folder. Capacities are included in the respective zone configurations. Values in the `capacity` maps are in MW.
 
-- India South Conventional: [NPP](https://npp.gov.in/public-reports/cea/monthly/installcap/2023/APR/capacity2-Southern-2023-04.pdf)
-- India South Renewables: [MRE](https://mnre.gov.in/img/documents/uploads/file_s-1683779844352.pdf)
-
 #### International sources
 
 When determining the installed capacity for a country, these sources might help you get started. Note that if you end up using one of these sources, it _also_ needs to be listed with the country/region.
@@ -272,7 +269,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
 - Hungary:
   - Biomass: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246425808/PV+STATISZTIKA_HU_20230701_ig_v1.pdf)
+  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246725019/PV+STATISZTIKA_HU_20230914_ig_v1.pdf)
   - Other: [MAVIR](https://www.mavir.hu/web/mavir/energia-mix-eromuvi-beepitett-teljesitokepesseg-adatok)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
@@ -290,7 +287,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)
 - India:
-  - Renewable: [NPP](https://npp.gov.in/dashBoard/cp-map-dashboard)
+  - Renewable: [MRE](https://mnre.gov.in/img/documents/uploads/file_s-1683779844352.pdf)
   - Non-Renewable: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
   - (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
@@ -378,7 +375,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Oil, Gas and Coal: [CND](http://www.cnd.com.pa/index.php/estadisticas)
   - Biomass: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
-- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/list-existing-power-plants-june-30-2022)
+- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/sites/default/files/pdf/electric_power/04_LVM-Grid-Summary-June-2023-updated.pdf)
 - Poland: [ARE](https://www.are.waw.pl/badania-statystyczne/wynikowe-informacje-statystyczne/publikacje-miesieczne#informacja-statystyczna-o-energii-elektrycznej)
 - Portugal:
   - Biomass, Hydro, Solar, Wind, Gas: [REN](https://datahub.ren.pt/en/electricity/monthly-balance/)

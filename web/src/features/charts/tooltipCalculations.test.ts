@@ -1,6 +1,7 @@
 import { ZoneDetail } from 'types';
-import { getExchangeTooltipData, getProductionTooltipData } from './tooltipCalculations';
 import { Mode } from 'utils/constants';
+
+import { getExchangeTooltipData, getProductionTooltipData } from './tooltipCalculations';
 
 const zoneDetailsData = {
   _isFinestGranularity: true,
@@ -97,9 +98,10 @@ const zoneDetailsData = {
   totalCo2Export: 466_555_020.000_000_06,
   totalCo2Import: 3_418_826_830,
   totalCo2NetExchange: 2_952_271_810,
-  totalCo2Production: 9_586_586_600.990_326,
+  totalCo2Production: 9_586_586_600_000.99,
+  totalCo2Consumption: 6_586_586_600_000.99,
   totalCo2Storage: 0,
-  totalConsumption: 81_551.75,
+  totalConsumption: 84_545.75,
   totalDischarge: 3738.75,
   totalExport: 2994,
   totalImport: 9251,
@@ -122,7 +124,7 @@ describe('getProductionTooltipData', () => {
       co2IntensitySource: 'UNECE 2022',
       displayByEmissions: false,
       totalElectricity: 84_545.75,
-      totalEmissions: 13_208_019_616.973_745,
+      totalEmissions: 6_586_586_600_000.99,
       production: 41_161,
       zoneKey: 'FR',
       storage: undefined,
@@ -145,8 +147,8 @@ describe('getProductionTooltipData', () => {
       co2Intensity: 5.13,
       co2IntensitySource: 'UNECE 2022',
       displayByEmissions: true,
-      totalElectricity: 13_208_019_616.973_745,
-      totalEmissions: 13_208_019_616.973_745,
+      totalElectricity: 84_545.75,
+      totalEmissions: 6_586_586_600_000.99,
       production: 41_161,
       zoneKey: 'FR',
       storage: undefined,
@@ -170,7 +172,7 @@ describe('getProductionTooltipData', () => {
       co2IntensitySource: 'Electricity Maps, 2021 average',
       displayByEmissions: false,
       totalElectricity: 84_545.75,
-      totalEmissions: 13_208_019_616.973_745,
+      totalEmissions: 6_586_586_600_000.99,
       production: 11_930.25,
       zoneKey: 'FR',
       storage: -3738.75,
@@ -221,7 +223,7 @@ describe('getProductionTooltipData', () => {
       co2IntensitySource: 'UNECE 2022',
       displayByEmissions: false,
       totalElectricity: 84_545.75,
-      totalEmissions: 13_208_019_616.973_745,
+      totalEmissions: 6_586_586_600_000.99,
       production: null,
       zoneKey: 'FR',
       storage: undefined,
@@ -253,7 +255,7 @@ describe('getExchangeTooltipData', () => {
       co2Intensity: 123.56,
       displayByEmissions: false,
       totalElectricity: 84_545.75,
-      totalEmissions: 13_208_019_616.973_745,
+      totalEmissions: 6_586_586_600_000.99,
       zoneKey: 'FR',
       isExport: false,
       emissions: 215_612_200,
@@ -269,7 +271,7 @@ describe('getExchangeTooltipData', () => {
       co2Intensity: undefined,
       displayByEmissions: false,
       totalElectricity: 84_545.75,
-      totalEmissions: 13_208_019_616.973_745,
+      totalEmissions: 6_586_586_600_000.99,
       zoneKey: 'FR',
       isExport: false,
       emissions: Number.NaN,

@@ -1,4 +1,5 @@
 import * as Toggle from '@radix-ui/react-toggle';
+
 import TooltipWrapper from '../../components/tooltips/TooltipWrapper';
 
 interface MapButtonProperties {
@@ -25,7 +26,7 @@ export default function MapButton({
     <TooltipWrapper tooltipContent={tooltipText}>
       <Component
         onClick={onClick}
-        className={`pointer-events-auto flex h-8 w-8 items-center justify-center rounded bg-white text-left shadow-lg transition hover:bg-gray-100 dark:bg-gray-900 dark:hover:bg-gray-800 ${className}`}
+        className={`pointer-events-auto flex h-8 w-8 items-center justify-center rounded bg-white/80 text-left shadow-lg backdrop-blur-sm transition hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-900/90 ${className}`}
         aria-label={ariaLabel}
         data-test-id={dataTestId}
         role="button"

@@ -1,11 +1,12 @@
 import { ScaleLinear } from 'd3-scale';
 import { Maybe } from 'types';
+
 import { LABEL_MAX_WIDTH, RECT_OPACITY, ROW_HEIGHT } from '../constants';
 
 type Props = {
   className: string;
   fill: string;
-  range: [Maybe<number>, Maybe<number>];
+  range: Maybe<number>[];
   scale: ScaleLinear<number, number, never>;
 };
 

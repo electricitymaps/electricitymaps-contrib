@@ -27,7 +27,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "將電力對氣候變遷的影響製成地圖"
+      "header": "將電力對氣候變遷的影響製成地圖"
     },
     "view2": {
       "header": "檢視即時的發電碳排量",
@@ -37,7 +37,7 @@
       "header": "瞭解你使用的電力從何而來",
       "text": "地圖上的箭頭標示地區之間的電力流動。點選地區以檢視更多關於該地區的用電資訊。"
     },
-    "view4": {
+    "view7": {
       "header": "風力、太陽能即時資訊",
       "text": "風力、太陽能的發電效率取決於天氣。點選「風」和「太陽」按鈕以顯示風力和太陽能的發電強度。"
     }
@@ -49,8 +49,6 @@
     "renewable": "可再生能源",
     "electricityproduction": "電力生產",
     "electricityconsumption": "用電量",
-    "bysource": "按來源",
-    "averagebysource": "來源平均",
     "emissions": "碳排放量",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或編輯來源</a>",
     "helpfrom": "with help from",
@@ -138,7 +136,7 @@
   },
   "misc": {
     "maintitle": "生活用電二氧化碳排放量",
-    "oops": "哎呀！ 我們無法連線到服務器。 我們會在幾秒鐘後再試一次。",
+    "oops": "哎呀！ 我們無法連線到伺服器。 我們會在幾秒鐘後再試一次。",
     "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">這裏</a>重新載入。",
     "webgl-not-supported": "無法渲染地圖，因為您的瀏覽器不支援 WebGL。",
     "retrynow": "再試一次",
@@ -171,7 +169,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量被匯出到 %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力從 %5$s <b>%3$s</b> 匯入",
   "emissionsImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量從 %5$s <b>%3$s</b> 匯入",
-  "ofCO2eqPerMinute": "每分鐘 CO₂eq",
   "theMap": {
     "groupName": "地圖",
     "mapColors-question": "地圖上的顏色代表什麼呢？",

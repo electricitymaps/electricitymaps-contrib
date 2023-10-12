@@ -4,9 +4,9 @@ import { useAtom } from 'jotai';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
+import { getZoneFromPath } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
-import { getZoneFromPath } from 'utils/helpers';
 import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 
 const getZone = async (
@@ -14,7 +14,7 @@ const getZone = async (
   zoneId?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
-  const path = `/v6/details/${timeAverage}/${zoneId}`;
+  const path = `/v7/details/${timeAverage}/${zoneId}`;
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),

@@ -1,12 +1,12 @@
 import { Feature, MultiPolygon, union } from '@turf/turf';
-import { ZonesConfig, WorldFeatureCollection, FeatureProperties } from './types';
+
+import { FeatureProperties, WorldFeatureCollection, ZonesConfig } from './types';
 
 const emptyFeature: Feature<MultiPolygon, FeatureProperties> = {
   type: 'Feature',
   properties: {
     zoneName: '',
     countryKey: '',
-    countryName: '',
     isHighestGranularity: false,
     isAggregatedView: true,
     isCombined: true,
@@ -56,7 +56,6 @@ const generateAggregates = (fc: WorldFeatureCollection, zones: ZonesConfig) => {
           ...emptyFeature.properties,
           countryKey: multiZoneCountry?.properties.countryKey || '',
           zoneName: multiZoneCountry?.properties.countryKey || '',
-          countryName: multiZoneCountry?.properties.countryName || '',
         },
       };
 

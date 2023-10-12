@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 """
 This parser returns Kuwait's electricity system load (assumed to be equal to electricity production)
 Source: Ministry of Electricity and Water / State of Kuwait
@@ -11,43 +10,15 @@ Shares of Electricity production in 2017: 65.6% oil, 34.4% gas (source: IEA; htt
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from requests import Session
 
 
-def fetch_production(
-    zone_key: str = "KW",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-):
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    # Kuwait very rarely imports power, so we assume that production is equal to consumption
-    # "Kuwait imports power in an emergency and only for a few hours at a time"
-    # See https://github.com/electricitymaps/electricitymaps-contrib/pull/2457#pullrequestreview-408781556
-    consumption_dict = fetch_consumption(
-        zone_key=zone_key, session=session, logger=logger
-    )
-    consumption = consumption_dict["consumption"]
-
-    datapoint = {
-        "zoneKey": zone_key,
-        "datetime": arrow.now("Asia/Kuwait").datetime,
-        "production": {"unknown": consumption},
-        "source": "mew.gov.kw",
-    }
-
-    return datapoint
-
-
 def fetch_consumption(
     zone_key: str = "KW",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
@@ -75,5 +46,3 @@ if __name__ == "__main__":
 
     print("fetch_consumption() ->")
     print(fetch_consumption())
-    print("fetch_production() ->")
-    print(fetch_production())

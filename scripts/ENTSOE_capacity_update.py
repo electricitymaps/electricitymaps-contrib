@@ -37,7 +37,7 @@ ZONES_CONFIG = read_zones_config(config_dir=CONFIG_DIR)
 
 def update_zone(zone_key: ZoneKey, data: dict) -> None:
     if zone_key not in ZONES_CONFIG:
-        raise ValueError("Zone {} does not exist in the zones config".format(zone_key))
+        raise ValueError(f"Zone {zone_key} does not exist in the zones config")
 
     _new_zone_config = deepcopy(ZONES_CONFIG[zone_key])
     _new_zone_config["capacity"].update(data)
@@ -148,9 +148,7 @@ def main():
 
     if data_file is not None:
         if not os.path.exists(data_file):
-            print(
-                "ERROR: Data file {} does not exist.".format(data_file), file=sys.stderr
-            )
+            print(f"ERROR: Data file {data_file} does not exist.", file=sys.stderr)
             sys.exit(1)
         data = parse_from_csv(data_file)
     else:
@@ -166,7 +164,7 @@ def main():
 
     aggregated_data = aggregate_data(data)
 
-    print("Aggregated capacities: {}".format(json.dumps(aggregated_data)))
+    print(f"Aggregated capacities: {json.dumps(aggregated_data)}")
     print(f"Updating zone {zone_key}")
 
     update_zone(zone_key, aggregated_data)

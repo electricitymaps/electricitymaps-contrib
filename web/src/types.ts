@@ -66,7 +66,7 @@ export interface ZoneOverview {
   stateDatetime: string;
   fossilFuelRatio: number;
   renewableRatio: number;
-  estimationMethod: string;
+  estimationMethod?: string;
 }
 
 export type GenerationType =
@@ -96,7 +96,7 @@ export interface ZoneDetail extends ZoneOverview {
   dischargeCo2IntensitySources: { [key in ElectricityStorageKeyType]: string };
   exchange: Exchange;
   exchangeCapacities?: {
-    [key: ZoneKey]: [number, number];
+    [key: ZoneKey]: number[];
   };
   exchangeCo2Intensities: Exchange;
   fossilFuelRatio: number;
@@ -123,18 +123,19 @@ export interface ZoneDetail extends ZoneOverview {
   renewableRatioProduction: number;
   source: string;
   storage: { [key in ElectricityStorageKeyType]: Maybe<number> };
-  totalCo2Discharge: number;
-  totalCo2Export: number;
-  totalCo2Import: number;
-  totalCo2NetExchange: number;
+  totalCo2Consumption: number;
+  totalCo2Discharge: number | null;
+  totalCo2Export: number | null;
+  totalCo2Import: number | null;
+  totalCo2NetExchange: number | null;
   totalCo2Production: number;
-  totalCo2Storage: number;
+  totalCo2Storage: number | null;
   totalConsumption: number;
-  totalDischarge: number;
-  totalExport: number;
-  totalImport: number;
+  totalDischarge: number | null;
+  totalExport: number | null;
+  totalImport: number | null;
   totalProduction: number;
-  totalStorage: number;
+  totalStorage: number | null;
 }
 
 export interface ZoneDetails {
@@ -150,7 +151,6 @@ export interface GeometryProperties {
   center: [number, number];
   color: string;
   countryKey: string;
-  countryName: string;
   isAggregatedView: boolean;
   isHighestGranularity: boolean;
   zoneId: string;

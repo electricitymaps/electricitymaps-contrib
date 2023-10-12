@@ -1,8 +1,10 @@
 import { TimeAverages } from 'utils/constants';
+
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
+import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
 
 interface CarbonChartProps {
@@ -19,6 +21,11 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const { chartData, layerFill, layerKeys } = data;
 
+  const hasEnoughDataToDisplay = datetimes?.length > 2;
+
+  if (!hasEnoughDataToDisplay) {
+    return <NotEnoughDataMessage title="country-history.carbonintensity" />;
+  }
   return (
     <>
       <ChartTitle translationKey="country-history.carbonintensity" />

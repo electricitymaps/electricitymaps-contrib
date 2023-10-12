@@ -18,7 +18,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Kartlegger klimaeffekten av el-energi"
+      "header": "Kartlegger klimaeffekten av el-energi"
     },
     "view2": {
       "header": "Hvor mye CO₂ blir sluppet ut for å produsere din elektrisitet, vist i sanntid",
@@ -28,7 +28,7 @@
       "header": "Lær hvor din elektrisitet kommer fra",
       "text": "Piler på kartet viser overføring av elektrisitet mellom ulike områder. Klikk på et område for å få mer informasjon om hvike energikilder som forbrukes i området."
     },
-    "view4": {
+    "view7": {
       "header": "Visning i sanntid av forholdene for vind- og solenergi",
       "text": "Vind- og solenergiproduksjon er væravhengig. Klikk på sol- og vind-knappene for å få oversikt over forholdene for solskinn og vind i verden akkurat nå."
     }
@@ -217,7 +217,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "av CO₂-ekvivalenter per minutt",
+  "ofCO2eq": "av CO₂-ekvivalenter",
   "zoneShortName": {
     "AD": {
       "zoneName": "Andorra"

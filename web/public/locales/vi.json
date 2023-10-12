@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Mapping the climate impact of electricity"
+      "header": "Mapping the climate impact of electricity"
     },
     "view2": {
       "header": "Xem lượng CO₂ được thải ra trong quá trình sản xuất điện năng của bạn trong thời gian thực",
@@ -23,7 +23,7 @@
       "header": "Xem nguồn điện bạn đang dùng đến từ đâu",
       "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
     },
-    "view4": {
+    "view7": {
       "header": "Real-time wind and solar conditions",
       "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
     }
@@ -133,7 +133,6 @@
   "emissionsExportedTo": "%1$s %% of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%1$s %% of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "%1$s %% of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "Bản đồ",
     "mapColors-question": "Những màu trên bản đồ có ý nghĩa gì?",

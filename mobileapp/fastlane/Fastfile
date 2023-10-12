@@ -64,27 +64,29 @@ platform :ios do
 
   desc "Promote latest beta build to production"
   lane :release do
+    ensure_git_status_clean(
+      show_uncommitted_changes: true,
+      ignore_files: ["mobileapp/fastlane/Fastfile"]
+    )
+    bump_version
     package = read_json(json_path: "./package.json")
     upload_to_app_store(
       skip_metadata: true,
       build_number: package[:version],
       skip_screenshots: true,
-      skip_binary_upload: true
-    )
-    git_commit(path: ["./package.json", File.join(ios_dir, "App/App.xcodeproj/project.pbxproj")], message: "Bumps mobile version")
-    # Note: This step requires admin privileges
-    push_to_git_remote(
-      tags: false
+      skip_binary_upload: true,
+      ignore_language_directory_validation: true
     )
 
     UI.success("-------------------------")
     UI.success("--- Step: manual part ---")
     UI.success("-------------------------")
     UI.important("YOU ARE ALMOST THERE! Please follow the steps below to submit the new version for review:")
-    UI.message("1. Open https://appstoreconnect.apple.com, My Apps and then find our app.")
-    UI.message("2. Click on the blue plus icon in the sidebar and add version #{package[:version]}.")
-    UI.message("3. Fill in 'what's new in this version' (look at commits on master).")
+    UI.message("1. Open https://appstoreconnect.apple.com > My Apps > Electricity Maps ")
+    UI.message("2. Click on the blue plus icon in the sidebar and add version #{package[:version]} or use existing version.")
+    UI.message("3. Fill in 'what's new in this version' (look at changes in GH Releases).")
     UI.success("4. Click 'Save' and then 'Submit for Review'.")
+    UI.success("5. Run the 'commit' lane after both releases are done.")
   end
 end
 
@@ -143,11 +145,6 @@ platform :android do
       version_name: package[:version],
       track: 'internal', track_promote_to: 'production'
     )
-    git_commit(path: ["./package.json", File.join(android_dir, "app/build.gradle")], message: "Bumps mobile version")
-    # Note: This step requires admin privileges
-    push_to_git_remote(
-      tags: false
-    )
 
     UI.success("-------------------------")
     UI.success("--- Step: manual part ---")
@@ -156,5 +153,15 @@ platform :android do
     UI.message("1. Open https://play.google.com/console/u/0/developers/7105597502658203364/app/4972478320592934095/tracks/internal-testing")
     UI.message("2. Promote the latest version to production.")
     UI.success("3. Remember to add release notes and save.")
+    UI.success("4. Run the 'commit' lane after both releases are done.")
   end
+end
+
+desc "Push new version to GitHub"
+lane :commit do
+  git_commit(path: ["./package.json", File.join(ios_dir, "App/App.xcodeproj/project.pbxproj"), File.join(android_dir, "app/build.gradle")], message: "Bumps mobile version")
+  # Note: This step requires GitHub admin privileges in order to push directly to master
+  push_to_git_remote(
+    tags: false
+  )
 end

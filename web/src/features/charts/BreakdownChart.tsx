@@ -1,9 +1,13 @@
+import { max, sum } from 'd3-array';
 import { useTranslation } from 'translation/translation';
 import { Mode, TimeAverages } from 'utils/constants';
+import { formatCo2 } from 'utils/formatting';
+
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
+import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 
 interface BreakdownChartProps {
@@ -29,8 +33,24 @@ function BreakdownChart({
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
 
+  // Find highest daily emissions to show correct unit on chart
+  const maxEmissions = max(chartData.map((day) => sum(Object.values(day.layerData))));
+
+  const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
+
   const titleDisplayMode = displayByEmissions ? 'emissions' : 'electricity';
   const titleMixMode = mixMode === Mode.CONSUMPTION ? 'origin' : 'production';
+
+  const hasEnoughDataToDisplay = datetimes?.length > 2;
+
+  if (!hasEnoughDataToDisplay) {
+    return (
+      <NotEnoughDataMessage
+        title={`country-history.${titleDisplayMode}${titleMixMode}`}
+      />
+    );
+  }
+
   return (
     <>
       <ChartTitle translationKey={`country-history.${titleDisplayMode}${titleMixMode}`} />
@@ -59,6 +79,7 @@ function BreakdownChart({
           selectedTimeAggregate={timeAverage}
           tooltip={BreakdownChartTooltip}
           tooltipSize={displayByEmissions ? 'small' : 'large'}
+          {...(displayByEmissions && { formatTick: formatAxisTick })}
         />
       </div>
       {isBreakdownGraphOverlayEnabled && (

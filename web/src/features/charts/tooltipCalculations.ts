@@ -4,9 +4,14 @@ import {
   GenerationType,
   ZoneDetail,
 } from 'types';
-import { getProductionCo2Intensity } from 'utils/helpers';
-import { getElectricityProductionValue, getTotalElectricity } from './graphUtils';
 import { Mode } from 'utils/constants';
+import { getProductionCo2Intensity } from 'utils/helpers';
+
+import {
+  getElectricityProductionValue,
+  getTotalElectricity,
+  getTotalEmissions,
+} from './graphUtils';
 
 export function getProductionTooltipData(
   selectedLayerKey: ElectricityModeType,
@@ -23,8 +28,8 @@ export function getProductionTooltipData(
 
   const storageKey = generationType as ElectricityStorageKeyType;
 
-  const totalElectricity = getTotalElectricity(zoneDetail, displayByEmissions, mixMode);
-  const totalEmissions = getTotalElectricity(zoneDetail, true, mixMode);
+  const totalElectricity = getTotalElectricity(zoneDetail, mixMode);
+  const totalEmissions = getTotalEmissions(zoneDetail, mixMode);
 
   const {
     capacity,
@@ -92,17 +97,17 @@ export function getExchangeTooltipData(
 
   const isExport = exchange < 0;
 
-  const usage = Math.abs(displayByEmissions ? exchange * 1000 * co2Intensity : exchange);
-  const totalElectricity = getTotalElectricity(
-    zoneDetail,
-    displayByEmissions,
-    Mode.CONSUMPTION
-  );
+  const usage = Math.abs(displayByEmissions ? exchange * co2Intensity * 1000 : exchange);
+  const totalElectricity = getTotalElectricity(zoneDetail, Mode.CONSUMPTION);
   const totalCapacity = exchangeCapacityRange
     ? Math.abs(exchangeCapacityRange[isExport ? 0 : 1])
     : undefined;
-  const emissions = Math.abs(exchange * 1000 * co2Intensity);
-  const totalEmissions = getTotalElectricity(zoneDetail, true, Mode.CONSUMPTION);
+  const emissions = Math.abs(exchange * co2Intensity * 1000);
+  const totalEmissions = getTotalEmissions(
+    zoneDetail,
+
+    Mode.CONSUMPTION
+  );
 
   return {
     co2Intensity,

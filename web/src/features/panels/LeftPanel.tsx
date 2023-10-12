@@ -12,10 +12,9 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { useTranslation } from 'translation/translation';
-import FAQPanel from './faq/FAQPanel';
+
 import { leftPanelOpenAtom } from './panelAtoms';
 import RankingPanel from './ranking-panel/RankingPanel';
-
 import ZoneDetails from './zone/ZoneDetails';
 
 function HandleLegacyRoutes() {
@@ -52,6 +51,10 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
     return (
       <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
     );
+  }
+  const upperCaseZoneId = zoneId.toUpperCase();
+  if (zoneId !== upperCaseZoneId) {
+    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
   }
 
   return children;
@@ -121,7 +124,6 @@ export default function LeftPanel() {
             </ValidZoneIdGuardWrapper>
           }
         />
-        <Route path="/faq" element={<FAQPanel />} />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
         <Route path="*" element={<RankingPanel />} />
       </SentryRoutes>

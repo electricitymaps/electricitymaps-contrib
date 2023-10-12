@@ -1,9 +1,4 @@
-import mapboxgl from 'mapbox-gl';
-import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
-import { Layer, Map, MapRef, Source } from 'react-map-gl';
-import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
@@ -12,10 +7,16 @@ import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
+import mapboxgl from 'mapbox-gl';
+import maplibregl from 'maplibre-gl';
+import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
+import { Layer, Map, MapRef, Source } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
+
+import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 import {
@@ -188,7 +189,7 @@ export default function MapPage(): ReactElement {
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
       map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
-  }, [location.pathname, isLoadingMap, geometries]);
+  }, [location.pathname, isLoadingMap]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     const map = mapReference.current?.getMap();

@@ -80,5 +80,4 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   consumption: KW.fetch_consumption
-  production: KW.fetch_production
 timezone: Asia/Kuwait

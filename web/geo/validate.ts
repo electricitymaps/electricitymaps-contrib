@@ -1,20 +1,20 @@
 import {
-  Feature,
-  Polygon,
   area,
   bbox,
   bboxPolygon,
   convex,
   dissolve,
+  Feature,
   featureCollection,
   featureEach,
   getGeom,
   intersect,
+  Polygon,
 } from '@turf/turf';
-import { getHoles, getPolygons, log, writeJSON } from './utilities.js';
 
 import { mergeZones } from '../scripts/generateZonesConfig.js';
 import { GeoConfig, WorldFeatureCollection } from './types.js';
+import { getHoles, getPolygons, log, writeJSON } from './utilities.js';
 
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
@@ -44,9 +44,7 @@ function zeroNullGeometries(fc: WorldFeatureCollection) {
 function containsRequiredProperties(fc: WorldFeatureCollection) {
   const indexes = getPolygons(fc)
     .features.map(({ properties }, index) =>
-      properties?.zoneName || properties?.countryKey || properties?.countryName
-        ? null
-        : index
+      properties?.zoneName || properties?.countryKey ? null : index
     )
     .filter(Boolean);
 

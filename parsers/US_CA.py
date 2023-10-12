@@ -2,13 +2,11 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional, Union
 
 import arrow
 import numpy as np
 import pandas
 import pytz
-from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -54,10 +52,8 @@ CORRECT_NEGATIVE_PRODUCTION_MODES_WITH_ZERO = [
 ]
 STORAGE_MAPPING = {"batteries": "battery"}
 
-MX_EXCHANGE_URL = "http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
 
-
-def get_target_url(target_datetime: Optional[datetime], kind: str) -> str:
+def get_target_url(target_datetime: datetime | None, kind: str) -> str:
     if target_datetime is None:
         target_datetime = datetime.now(tz=pytz.UTC)
         target_url = REAL_TIME_URL_MAPPING[kind]
@@ -78,8 +74,8 @@ def add_production_to_dict(mode: str, value: float, production_dict: dict) -> di
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
@@ -142,8 +138,8 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
@@ -179,45 +175,16 @@ def fetch_consumption(
     return all_data_points.to_list()
 
 
-def fetch_MX_exchange(s: Session) -> float:
-    req = s.get(MX_EXCHANGE_URL)
-    soup = BeautifulSoup(req.text, "html.parser")
-    exchange_div = soup.find("div", attrs={"id": "IntercambioUSA-BCA"})
-    val = exchange_div.text
-
-    # cenace html uses unicode hyphens instead of minus signs
-    try:
-        val = val.replace(chr(8208), chr(45))
-    except ValueError:
-        pass
-
-    # negative value indicates flow from CA to MX
-
-    return float(val)
-
-
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-
-    s = session or Session()
-
-    if sorted_zone_keys == "MX-BC->US-CA" or sorted_zone_keys == "MX-BC->US-CAL-CISO":
-        netflow = fetch_MX_exchange(s)
-        exchange = {
-            "sortedZoneKeys": sorted_zone_keys,
-            "datetime": arrow.now("America/Tijuana").datetime,
-            "netFlow": netflow,
-            "source": "cenace.gob.mx",
-        }
-        return exchange
 
     # CSV has imports to California as positive.
     # Electricity Map expects A->B to indicate flow to B as positive.
@@ -256,7 +223,5 @@ if __name__ == "__main__":
     print('fetch_exchange("US-CA", "US") ->')
     # pprint(fetch_exchange("US-CA", "US"))
 
-    print('fetch_exchange("MX-BC", "US-CA")')
-    pprint(fetch_exchange("MX-BC", "US-CA"))
     # pprint(fetch_production(target_datetime=datetime(2023,1,20)))s
     pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))

@@ -1,4 +1,5 @@
-import { FeatureCollection, Feature, MultiPolygon, Polygon } from '@turf/turf';
+import { Feature, FeatureCollection, MultiPolygon, Polygon } from '@turf/turf';
+
 import { config } from './generateWorld';
 
 export type GeoConfig = typeof config;
@@ -35,7 +36,6 @@ export interface ExchangesConfig {
 export declare type FeatureProperties = {
   zoneName: string;
   countryKey: string;
-  countryName: string;
   isAggregatedView?: boolean;
   isHighestGranularity?: boolean;
   isCombined?: boolean;
