@@ -4,11 +4,11 @@ from datetime import datetime
 from io import BytesIO
 from logging import Logger, getLogger
 from typing import Optional
-import pytz
 from urllib.request import Request, urlopen
 
 # The arrow library is used to handle datetimes
 import arrow
+import pytz
 from bs4 import BeautifulSoup
 from PIL import Image
 from pytesseract import image_to_string
@@ -28,7 +28,6 @@ def fetch_production(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    breakpoint()
     """
     This method adds nuclear production on top of the solar data returned by the JP parser.
     It tries to match the solar + unknown data with the nuclear data.
@@ -44,13 +43,19 @@ def fetch_production(
     ## fetch image url
     image_url = get_nuclear_power_image_url(URL, session)
     ## fetch nuclear power from image url
-    nuclear_power_MW, datetime_nuclear = get_nuclear_power_from_image_url(image_url, session)
-    breakpoint()
-    # TODO - Check if the datetime of the nuclear data is close to the solar data
-
-
-    latest_data_point_JP_SK["production"]["nuclear"] = nuclear_power_MW
-
+    (
+        nuclear_power_MW,
+        datetime_nuclear,
+    ) = get_nuclear_power_value_and_timestamp_from_image_url(image_url, session)
+    if (
+        latest_data_point_JP_SK["datetime"] - datetime_nuclear
+    ).total_seconds() / 3600 > 1:
+        latest_data_point_JP_SK["production"]["nuclear"] = None
+        logger.info("The nuclear data is not close to the parser data")
+    elif (
+        latest_data_point_JP_SK["datetime"] - datetime_nuclear
+    ).total_seconds() / 3600 <= 1:
+        latest_data_point_JP_SK["production"]["nuclear"] = nuclear_power_MW
     return latest_data_point_JP_SK
 
 
@@ -58,11 +63,10 @@ URL = "https://www.yonden.co.jp/energy/atom/ikata/ikt722.html"
 IMAGE_CORE_URL = "https://www.yonden.co.jp/energy/atom/ikata/"
 
 
-def get_nuclear_power_image_url(url, session) -> (datetime, float):
-    # TODO: extract production value from image on TOP
+def get_nuclear_power_image_url(url: str, session: Session) -> str:
+    """This method fetches the image url from the nuclear power plant website"""
     session = Session()
     response_main_page = session.get(URL)
-    # breakpoint()
     soup = BeautifulSoup(response_main_page.content, "html.parser")
     images_links = soup.find_all("img", src=True)
     filtered_img_tags = [
@@ -71,18 +75,17 @@ def get_nuclear_power_image_url(url, session) -> (datetime, float):
     if len(filtered_img_tags) == 0:
         raise Exception("No image found")
     img_url = IMAGE_CORE_URL + filtered_img_tags[0]["src"]
-    # breakpoint()
     return img_url
 
 
-def get_nuclear_power_from_image_url(img_url, session):
+def get_nuclear_power_value_and_timestamp_from_image_url(
+    img_url: str, session: Session
+) -> (float, datetime):
     session = Session()
     response_image = session.get(img_url)
     image = Image.open(BytesIO(response_image.content))
     width, height = image.size
     img = image.crop((0, 0, width, height))
-    # image.save("test.png")
-    breakpoint()
     text = image_to_string(img)
     numeric_pattern = r"\d+"
     # this method extracts the second number from the image since it is the nuclear power value from the image
@@ -91,12 +94,9 @@ def get_nuclear_power_from_image_url(img_url, session):
     # extract timestamp from image_url and convert it to datetime
     timestamp_pattern = r"\d{12}"
     timestamp = re.findall(timestamp_pattern, img_url)[0]
-    # convert timestamp to datetime
-    # TODO - include tzone
-    datetime_nuclear = datetime.strptime(timestamp, "%Y%m%d%H%M").replace(tzinfo=pytz.timezone('Asia/Tokyo'))
-    # datetime_nuclear.astimezone(pytz.timezone('Asia/Tokyo'))
-    breakpoint()
-    # datetime_nuclear = datetime_nuclear.replace(tzinfo=timezone.utc).astimezone(tz=timezone(timedelta(hours=9)))
+    datetime_nuclear = datetime.strptime(timestamp, "%Y%m%d%H%M").replace(
+        tzinfo=pytz.timezone("Asia/Tokyo")
+    )
     return nuclear_power, datetime_nuclear
 
 
