@@ -36,15 +36,16 @@ class ConfigModelTestcase(unittest.TestCase):
             if not model.emission_factors.zone_overrides:
                 continue
             for zone_key, zone_modes in model.emission_factors.zone_overrides.items():
-                for _, estimate in zone_modes or ():
+                for mode, estimate in zone_modes or ():
                     if estimate is None:
                         continue
                     estimates = estimate if isinstance(estimate, list) else [estimate]
                     for estimate in estimates:
-                        source_list = estimate.source
-                        if source_list is None:
-                            continue
-                        for source in source_list.split(";"):
+                        self.assertIsNotNone(
+                            estimate.source,
+                            msg=f"Source is required for {mode} in {zone_key}",
+                        )
+                        for source in estimate.source.split(";"):
                             source = source.strip()
                             if source.startswith("assumes"):
                                 continue
