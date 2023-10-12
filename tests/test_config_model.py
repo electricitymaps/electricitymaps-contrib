@@ -24,7 +24,6 @@ class ConfigModelTestcase(unittest.TestCase):
         "IEA 2019",
         "IEA 2020",
         'Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."',
-        "Tidal (IPCC 2014)",
     }
 
     def test_zone_sources(self):
