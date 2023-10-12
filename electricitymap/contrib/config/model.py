@@ -96,6 +96,30 @@ class Delays(StrictBaseModel):
     productionPerUnit: PositiveInt | None
 
 
+class Zone(StrictBaseModelWithAlias):
+    bounding_box: list[Point] | None
+    bypass_aggregation_checks: list[ZoneKey] | None = Field(
+        [], alias="bypassedSubZones"
+    )
+    capacity: Capacity | None
+    comment: str | None = Field(None, alias="_comment")
+    contributors: list[str] | None
+    delays: Delays | None
+    disclaimer: str | None
+    parsers: Parsers = Parsers()
+    price_displayed: bool | None
+    aggregates_displayed: list[str] | None
+    sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
+    timezone: str | None
+    key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
+    estimation_method: str | None
+    sources: dict[str, Source] | None
+    emissionFactors: dict | None  # TODO: represent using CO2eqParameters model?
+
+    def neighbors(self) -> list[ZoneKey]:
+        return ZONE_NEIGHBOURS.get(self.key, [])
+
+
 class ExchangeParsers(ParsersBaseModel):
     exchange: str | None
     exchangeForecast: str | None
@@ -267,30 +291,6 @@ class CO2eqParameters(StrictBaseModelWithAlias):
     is_low_carbon: IsLowCarbon = Field(alias="isLowCarbon")
     is_renewable: IsRenewable = Field(alias="isRenewable")
     emission_factors: EmissionFactors = Field(alias="emissionFactors")
-
-
-class Zone(StrictBaseModelWithAlias):
-    bounding_box: list[Point] | None
-    bypass_aggregation_checks: list[ZoneKey] | None = Field(
-        [], alias="bypassedSubZones"
-    )
-    capacity: Capacity | None
-    comment: str | None = Field(None, alias="_comment")
-    contributors: list[str] | None
-    delays: Delays | None
-    disclaimer: str | None
-    parsers: Parsers = Parsers()
-    price_displayed: bool | None
-    aggregates_displayed: list[str] | None
-    sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
-    timezone: str | None
-    key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
-    estimation_method: str | None
-    sources: dict[str, Source] | None
-    emissionFactors: dict | None  # TODO: represent using CO2eqParameters model?
-
-    def neighbors(self) -> list[ZoneKey]:
-        return ZONE_NEIGHBOURS.get(self.key, [])
 
 
 class ConfigModel(StrictBaseModel):
