@@ -1,13 +1,17 @@
 from json import loads
+
 import pytest
+import requests_mock
 from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, GET, Adapter
-import requests_mock
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.JP_SK import get_nuclear_power_image_url, get_nuclear_power_value_and_timestamp_from_image_url
+from parsers.JP_SK import (
+    get_nuclear_power_image_url,
+    get_nuclear_power_value_and_timestamp_from_image_url,
+)
 
 
 class TestWebaruba(TestCase):
@@ -41,11 +45,15 @@ class TestWebaruba(TestCase):
                 html_content = file.read()
 
             # Set up the mock response using the HTML content
-            mock.get("https://www.yonden.co.jp/energy/atom/ikata/ikt722.html", text=html_content)
-
+            mock.get(
+                "https://www.yonden.co.jp/energy/atom/ikata/ikt722.html",
+                text=html_content,
+            )
 
             # Call the function that you want to test
-            nuclear_url = get_nuclear_power_image_url("https://www.yonden.co.jp/energy/atom/ikata/ikt722.html", self.session)
+            nuclear_url = get_nuclear_power_image_url(
+                "https://www.yonden.co.jp/energy/atom/ikata/ikt722.html", self.session
+            )
 
             # Assert the result
             self.assertEqual(
@@ -64,6 +72,7 @@ class TestWebaruba(TestCase):
     #         "https://test", self.session
     #     )
     #     self.assertEqual(nuclear_production, 909.0)
+
 
 # import os
 
