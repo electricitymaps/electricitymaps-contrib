@@ -25,7 +25,6 @@ class ConfigModelTestcase(unittest.TestCase):
         "IEA 2020",
         'Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."',
         "Tidal (IPCC 2014)",
-        "https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020",
     }
 
     def test_zone_sources(self):

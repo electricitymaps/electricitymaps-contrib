@@ -8,14 +8,17 @@ emissionFactors:
   direct:
     unknown:
       - datetime: '2020-01-01'
-        source: 'https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020'
+        source: 'IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris'
         comment: 'Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2% coal, 4.3%solar, 5.9% wind, 1.5% other renewables with default IPCC2014 values.'
         value: 305
   lifecycle:
     unknown:
       - datetime: '2020-01-01'
-        source: 'https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020'
+        source: 'IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris'
         comment: 'Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2% coal, 4.3%solar, 5.9% wind, 1.5% other renewables with default IPCC2014 values.'
         value: 411
 parsers:
   consumption: CENACE.fetch_consumption
+sources:
+  'IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris':
+    link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
