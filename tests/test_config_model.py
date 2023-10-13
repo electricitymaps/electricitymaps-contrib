@@ -17,7 +17,6 @@ class ConfigModelTestcase(unittest.TestCase):
         "BEIS 2021",
         "CEA 2022",
         "EIA 2020/BEIS 2021",
-        "Enerdata 2022",
         "EU-ETS 2021",
         "EU-ETS, ENTSO-E 2021",
         "IEA 2019",
