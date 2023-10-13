@@ -13,7 +13,6 @@ class ConfigModelTestcase(unittest.TestCase):
 
     # Add well-known sources that don't require config-based references here
     GLOBAL_SOURCE_REFERENCES = {
-        "2020 average by Electricity Maps. See disclaimer",
         "BEIS 2021",
         "CEA 2022",
         "EIA 2020/BEIS 2021",
