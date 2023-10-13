@@ -24,11 +24,7 @@ class ConfigModelTestcase(unittest.TestCase):
     }
 
     def test_zone_sources(self):
-        for _, model in CO2EQ_CONFIG_MODEL:
-            if not model.emission_factors:
-                continue
-            if not model.emission_factors.zone_overrides:
-                continue
+        for measurement_basis, model in CO2EQ_CONFIG_MODEL:
             for zone_key, zone_modes in model.emission_factors.zone_overrides.items():
                 for mode, estimate in zone_modes or ():
                     if estimate is None:
