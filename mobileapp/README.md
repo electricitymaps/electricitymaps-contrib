@@ -19,10 +19,9 @@ This is a capacitor project that builds the mobile apps from the web directory
   export ANDROID_SDK_ROOT=~/Library/Android/sdk
   export ANDROID_HOME=~/Library/Android/sdk
   ```
-- Navigate to the **web** directory then:
-  - `pnpm install`
-- Run `pnpm install` in the root of the project
-- Set up Capacitor apps: `pnpm exec cap add android` and `pnpm exec cap add ios`
+- Run `pnpm install` in the **mobileapp** directory
+- Navigate to the **web** directory and run `pnpm install`
+- Navigate back to the **mobileapp** directory and add Capacitor apps: `pnpm exec cap add android` and `pnpm exec cap add ios`
 - Run `pnpm prepare-mobile` to copy and sync assets to the capacitor apps
 
 ---
