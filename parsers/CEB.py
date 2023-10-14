@@ -43,13 +43,14 @@ def fetch_production(
     if target_datetime is None:
         target_datetime = datetime.now(tz=timezone.utc)
 
-    ses = session or Session()
+    if session is None:
+        session = Session()
 
     params = {
         "date": target_datetime.astimezone(TIMEZONE).strftime("%Y-%m-%d"),
     }
 
-    response = ses.get(GENERATION_BREAKDOWN_URL, params=params)
+    response = session.get(GENERATION_BREAKDOWN_URL, params=params)
 
     if not response.ok:
         raise ParserException(
