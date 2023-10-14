@@ -4,18 +4,6 @@ import { TimeAverages } from 'utils/constants';
 import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
 import { CombinedZonesConfig } from '../../../../geo/types';
 
-type zoneConfigItem = {
-  aggregates_displayed?: string[];
-  contributors?: string[];
-  capacity?: any;
-  disclaimer?: string;
-  timezone?: string | null;
-  bounding_box?: any;
-  parsers?: any;
-  estimation_method?: string;
-  subZoneNames?: string[];
-};
-
 const config = zonesConfigJSON as unknown as CombinedZonesConfig;
 
 export const getHasSubZones = (zoneId?: string) => {
@@ -61,7 +49,10 @@ export const getZoneDataStatus = (
     return ZoneDataStatus.NO_INFORMATION;
   }
 
-  if (config.aggregates_displayed && !config.aggregates_displayed.includes(timeAverage)) {
+  if (
+    config.zones[zoneId].aggregates_displayed &&
+    !config.zones[zoneId].aggregates_displayed.includes(timeAverage)
+  ) {
     return ZoneDataStatus.AGGREGATE_DISABLED;
   }
 
