@@ -27,7 +27,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Visualización del impacto climático de la electricidad"
+      "header": "Visualización del impacto climático de la electricidad"
     },
     "view2": {
       "header": "Visualiza cuánto CO₂ se emite para producir tu electricidad, en tiempo real.",
@@ -37,7 +37,7 @@
       "header": "Descubre de dónde viene tu electricidad",
       "text": "Las flechas del mapa indican flujos de electricidad entre diferentes zonas. Haz clic en una zona para ver más información sobre los orígenes de su electricidad."
     },
-    "view4": {
+    "view7": {
       "header": "Intensidad del viento y del sol en tiempo real",
       "text": "La producción de energía eólica y solar depende del tiempo. Presiona los botones Sol y Viento para ver en tiempo real la fuerza del viento y del sol en todo el mundo."
     }

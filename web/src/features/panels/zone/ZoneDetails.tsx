@@ -19,7 +19,6 @@ import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
-import { ZoneDataStatus, getHasSubZones, getZoneDataStatus } from './util';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();

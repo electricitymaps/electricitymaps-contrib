@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Obrazujemy wpływ produkcji energii elektrycznej na klimat"
+      "header": "Obrazujemy wpływ produkcji energii elektrycznej na klimat"
     },
     "view2": {
       "header": "Zobacz ile CO₂ jest aktualnie emitowane podczas produkcji twojej energii elektrycznej, w czasie rzeczywistym",
@@ -23,7 +23,7 @@
       "header": "Dowiedz się skąd pochodzi twój prąd",
       "text": "Strzałki na mapie wskazują przepływy energii elektrycznej pomiędzy różnymi obszarami. Kliknij obszar, aby zobaczyć więcej informacji o pochodzeniu jego energii elektrycznej."
     },
-    "view4": {
+    "view7": {
       "header": "Warunki wiatrowe i słoneczne w czasie rzeczywistym",
       "text": "Produkcja energii wiatrowej i słonecznej zależy od pogody. Naćiśnij przyciski \"wiatr\" i \"słońce\", aby wyświetlić siłę wiatru i nasłonecznienie w czasie rzeczywistym na całym świecie."
     }

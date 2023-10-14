@@ -25,7 +25,6 @@ opencv-python = {version="4.6.0.66", optional=true}
 pandas = {version="^1.4.4", optional=true}
 Pillow = {version="^9.1.1", optional=true}
 pytesseract = {version="0.2.0", optional=true}
-ree = {version = "2.3.2", optional = true}
 requests = {version="~2.25.1", optional=true}
 signalr-client-threads = {version="~0.0.12", optional=true}
 tqdm = {version="^4.64.0", optional=true}
@@ -72,7 +71,6 @@ parsers = [
     "pandas",
     "Pillow",
     "pytesseract",
-    "ree",
     "requests",
     "opencv-python",
     "xlrd",
