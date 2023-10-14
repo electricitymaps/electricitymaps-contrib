@@ -24,7 +24,7 @@ def fetch_production(
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict]:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
