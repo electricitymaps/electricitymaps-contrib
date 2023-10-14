@@ -2,7 +2,6 @@
 import { bisectLeft } from 'd3-array';
 // import { pointer } from 'd3-selection';
 // // https://observablehq.com/@d3/d3-selection-2-0
-
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
@@ -17,10 +16,14 @@ export const detectHoveredDatapointIndex = (
   if (datetimes.length === 0) {
     return null;
   }
+  const timeIntervalWidth = timeScale(datetimes[1]) - timeScale(datetimes[0]);
+
   const dx = event_.pageX
     ? event_.pageX - svgNode.getBoundingClientRect().left
-    : pointer(event_); // TODO: check if this works
-  const datetime = timeScale.invert(dx);
+    : pointer(event_)[0];
+  const adjustedDx = dx - timeIntervalWidth / 2;
+  const datetime = timeScale.invert(adjustedDx);
+
   // Find data point closest to
   let index = bisectLeft(datetimes, datetime);
   if (index > 0 && datetime - datetimes[index - 1] < datetimes[index] - datetime) {

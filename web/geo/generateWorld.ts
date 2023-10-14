@@ -1,13 +1,15 @@
-import { coordEach } from '@turf/turf';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { coordEach } from '@turf/turf';
+
 import { getConfig } from '../scripts/generateZonesConfig.js';
 import { generateAggregates } from './generateAggregates.js';
 import { generateExchangesToIgnore } from './generateExchangesToExclude.js';
 import { generateTopojson } from './generateTopojson.js';
+import { WorldFeatureCollection } from './types.js';
 import { getJSON, round } from './utilities.js';
 import { validateGeometry } from './validate.js';
-import { WorldFeatureCollection } from './types.js';
 
 export const GEO_CONFIG = {
   WORLD_PATH: path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url))),

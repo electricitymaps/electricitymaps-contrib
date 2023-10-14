@@ -1,4 +1,5 @@
-import { FeatureCollection, Feature, MultiPolygon, Polygon } from '@turf/turf';
+import { Feature, FeatureCollection, MultiPolygon, Polygon } from '@turf/turf';
+
 import { GEO_CONFIG } from './generateWorld';
 
 export type GeoConfig = typeof GEO_CONFIG;

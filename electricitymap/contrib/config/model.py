@@ -108,6 +108,7 @@ class Zone(StrictBaseModelWithAlias):
     disclaimer: str | None
     parsers: Parsers = Parsers()
     price_displayed: bool | None
+    aggregates_displayed: list[str] | None
     sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
     timezone: str | None
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing

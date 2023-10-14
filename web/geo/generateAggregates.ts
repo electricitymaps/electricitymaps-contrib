@@ -1,5 +1,6 @@
 import { Feature, MultiPolygon, union } from '@turf/turf';
-import { OptimizedZonesConfig, WorldFeatureCollection, FeatureProperties } from './types';
+
+import { FeatureProperties, OptimizedZonesConfig, WorldFeatureCollection } from './types';
 
 const emptyFeature: Feature<MultiPolygon, FeatureProperties> = {
   type: 'Feature',

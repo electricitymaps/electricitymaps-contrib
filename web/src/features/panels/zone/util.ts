@@ -1,8 +1,11 @@
 import { ZoneDetails } from 'types';
+import { TimeAverages } from 'utils/constants';
+
 import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
 import { CombinedZonesConfig } from '../../../../geo/types';
 
 type zoneConfigItem = {
+  aggregates_displayed?: string[];
   contributors?: string[];
   capacity?: any;
   disclaimer?: string;
@@ -28,6 +31,7 @@ export const getHasSubZones = (zoneId?: string) => {
 };
 
 export enum ZoneDataStatus {
+  AGGREGATE_DISABLED = 'aggregate_disabled',
   NO_INFORMATION = 'no_information',
   NO_REAL_TIME_DATA = 'dark',
   AVAILABLE = 'available',
@@ -36,7 +40,8 @@ export enum ZoneDataStatus {
 
 export const getZoneDataStatus = (
   zoneId: string,
-  zoneDetails: ZoneDetails | undefined
+  zoneDetails: ZoneDetails | undefined,
+  timeAverage: TimeAverages
 ) => {
   // If there is no zoneDetails, we do not make any assumptions and return unknown
   if (!zoneDetails) {
@@ -54,6 +59,10 @@ export const getZoneDataStatus = (
     console.log(zoneConfig);
 
     return ZoneDataStatus.NO_INFORMATION;
+  }
+
+  if (config.aggregates_displayed && !config.aggregates_displayed.includes(timeAverage)) {
+    return ZoneDataStatus.AGGREGATE_DISABLED;
   }
 
   // If there are no production parsers or no defined estimation method in the config,

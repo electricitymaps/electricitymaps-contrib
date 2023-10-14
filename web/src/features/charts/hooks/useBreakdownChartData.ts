@@ -12,10 +12,10 @@ import {
 } from 'types';
 import {
   Mode,
-  SpatialAggregate,
-  TimeAverages,
   modeColor,
   modeOrder,
+  SpatialAggregate,
+  TimeAverages,
 } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
@@ -28,8 +28,8 @@ import {
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import {
   getGenerationTypeKey,
-  getTotalEmissions,
   getTotalElectricity,
+  getTotalEmissions,
 } from '../graphUtils';
 import { AreaGraphElement, LayerKey } from '../types';
 

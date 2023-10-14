@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Mapeando o impacto climático da eletricidade"
+      "header": "Mapeando o impacto climático da eletricidade"
     },
     "view2": {
       "header": "Veja o quanto de CO₂ é emitido para produzir sua eletricidade em tempo real.",
@@ -23,7 +23,7 @@
       "header": "Saiba de onde sua eletricidade vem",
       "text": "As setas no mapa indicam fluxos de eletricidade entre áreas diferentes. Clique em uma área para ver mais informações sobre as origens de sua eletricidade."
     },
-    "view4": {
+    "view7": {
       "header": "Condições eólicas e solares em tempo real",
       "text": " A produção de energias eólicas e solares dependem do tempo. Para ver dados em tempo real em todo mundo sobre luminosidade e força do vento, pressione o botão do Sol para ver dados sobre a luz do Sol e pressione o botão do Vento para ver dados sobre a força do vento."
     }

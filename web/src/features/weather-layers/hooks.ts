@@ -1,8 +1,8 @@
+import { GfsForecastResponse, WeatherType } from 'api/getWeatherData';
 import { interpolate } from 'd3-interpolate';
 import { formatDistance } from 'date-fns';
-
-import { GfsForecastResponse, WeatherType } from 'api/getWeatherData';
 import { Maybe } from 'types';
+
 import { getReferenceTime, getTargetTime } from './grib';
 
 export function useInterpolatedData(
