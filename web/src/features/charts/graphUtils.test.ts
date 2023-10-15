@@ -96,8 +96,8 @@ describe('getElectricityProductionValue', () => {
 describe('getTotalEmissionsOrElectricity', () => {
   const zoneData = {
     totalCo2Production: 100,
-    totalCo2Consumption: 175,
-    totalConsumption: 350,
+    totalCo2Consumption: 5,
+    totalConsumption: 50,
     totalCo2Discharge: 50,
     totalProduction: 200,
     totalDischarge: 50,
@@ -131,5 +131,12 @@ describe('getTotalEmissionsOrElectricity', () => {
       Mode.PRODUCTION
     );
     expect(actual).toEqual(0);
+  });
+  it('returns NaN when missing productionValue', () => {
+    const actual = getTotalElectricity(
+      { ...zoneData, totalProduction: null },
+      Mode.PRODUCTION
+    );
+    expect(actual).toEqual(Number.NaN);
   });
 });
