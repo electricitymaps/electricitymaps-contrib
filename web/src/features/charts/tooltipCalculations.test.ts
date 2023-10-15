@@ -112,27 +112,29 @@ const zoneDetailsData = {
 
 describe('getProductionTooltipData', () => {
   it('returns correct data for nuclear', () => {
-    const data = getProductionTooltipData(
+    const actual = getProductionTooltipData(
       'nuclear',
       zoneDetailsData,
       false,
       Mode.CONSUMPTION
     );
-    const expectedData = {
-      capacity: 61_370,
-      co2Intensity: 5.13,
-      co2IntensitySource: 'UNECE 2022',
-      displayByEmissions: false,
-      totalElectricity: 84_545.75,
-      totalEmissions: 6_586_586_600_000.99,
-      production: 41_161,
-      zoneKey: 'FR',
-      storage: undefined,
-      isExport: false,
-      emissions: 211_155_930,
-      usage: 41_161,
-    };
-    expect(data).toEqual(expectedData);
+
+    expect(actual).toMatchInlineSnapshot(`
+      {
+        "capacity": 61370,
+        "co2Intensity": 5.13,
+        "co2IntensitySource": "UNECE 2022",
+        "displayByEmissions": false,
+        "emissions": 211155930,
+        "isExport": false,
+        "production": 41161,
+        "storage": undefined,
+        "totalElectricity": 84545.75,
+        "totalEmissions": 9590208033016.975,
+        "usage": 41161,
+        "zoneKey": "FR",
+      }
+    `);
   });
 
   it('returns correct data for nuclear with displayEmissions', () => {
@@ -142,21 +144,23 @@ describe('getProductionTooltipData', () => {
       true,
       Mode.CONSUMPTION
     );
-    const expected = {
-      capacity: 61_370,
-      co2Intensity: 5.13,
-      co2IntensitySource: 'UNECE 2022',
-      displayByEmissions: true,
-      totalElectricity: 84_545.75,
-      totalEmissions: 6_586_586_600_000.99,
-      production: 41_161,
-      zoneKey: 'FR',
-      storage: undefined,
-      isExport: false,
-      emissions: 211_155_930,
-      usage: 211_155_930,
-    };
-    expect(actual).toEqual(expected);
+
+    expect(actual).toMatchInlineSnapshot(`
+      {
+        "capacity": 61370,
+        "co2Intensity": 5.13,
+        "co2IntensitySource": "UNECE 2022",
+        "displayByEmissions": true,
+        "emissions": 211155930,
+        "isExport": false,
+        "production": 41161,
+        "storage": undefined,
+        "totalElectricity": 84545.75,
+        "totalEmissions": 9590208033016.975,
+        "usage": 211155930,
+        "zoneKey": "FR",
+      }
+    `);
   });
 
   it('returns correct data for hydro storage', () => {
@@ -166,21 +170,23 @@ describe('getProductionTooltipData', () => {
       false,
       Mode.CONSUMPTION
     );
-    const expected = {
-      capacity: 5053.47,
-      co2Intensity: 54.190_888_929_032_22,
-      co2IntensitySource: 'Electricity Maps, 2021 average',
-      displayByEmissions: false,
-      totalElectricity: 84_545.75,
-      totalEmissions: 6_586_586_600_000.99,
-      production: 11_930.25,
-      zoneKey: 'FR',
-      storage: -3738.75,
-      isExport: false,
-      emissions: 202_606_185.983_419_2,
-      usage: 3738.75,
-    };
-    expect(actual).toEqual(expected);
+
+    expect(actual).toMatchInlineSnapshot(`
+      {
+        "capacity": 5053.47,
+        "co2Intensity": 54.19088892903222,
+        "co2IntensitySource": "Electricity Maps, 2021 average",
+        "displayByEmissions": false,
+        "emissions": 202606185.9834192,
+        "isExport": false,
+        "production": 11930.25,
+        "storage": -3738.75,
+        "totalElectricity": 84545.75,
+        "totalEmissions": 9590208033016.975,
+        "usage": 3738.75,
+        "zoneKey": "FR",
+      }
+    `);
   });
 
   it('returns 0 usage for zero production', () => {
@@ -211,27 +217,29 @@ describe('getProductionTooltipData', () => {
         Object.keys(zoneDetailsData.production).map((key) => [key, null])
       ),
     } as unknown as ZoneDetail;
-    const data = getProductionTooltipData(
+    const actual = getProductionTooltipData(
       'nuclear',
       zoneDetailsDataWithMissingProductionModes,
       false,
       Mode.CONSUMPTION
     );
-    const expectedData = {
-      capacity: 61_370,
-      co2Intensity: 5.13,
-      co2IntensitySource: 'UNECE 2022',
-      displayByEmissions: false,
-      totalElectricity: 84_545.75,
-      totalEmissions: 6_586_586_600_000.99,
-      production: null,
-      zoneKey: 'FR',
-      storage: undefined,
-      isExport: false,
-      emissions: Number.NaN,
-      usage: Number.NaN,
-    };
-    expect(data).toEqual(expectedData);
+
+    expect(actual).toMatchInlineSnapshot(`
+      {
+        "capacity": 61370,
+        "co2Intensity": 5.13,
+        "co2IntensitySource": "UNECE 2022",
+        "displayByEmissions": false,
+        "emissions": NaN,
+        "isExport": false,
+        "production": null,
+        "storage": undefined,
+        "totalElectricity": 84545.75,
+        "totalEmissions": 9590208033016.975,
+        "usage": NaN,
+        "zoneKey": "FR",
+      }
+    `);
   });
 
   it('handles missing capacity', () => {
@@ -250,33 +258,37 @@ describe('getProductionTooltipData', () => {
 describe('getExchangeTooltipData', () => {
   it('returns correct data for ES', () => {
     const actual = getExchangeTooltipData('ES', zoneDetailsData, false);
-    const expected = {
-      capacity: 2800,
-      co2Intensity: 123.56,
-      displayByEmissions: false,
-      totalElectricity: 84_545.75,
-      totalEmissions: 6_586_586_600_000.99,
-      zoneKey: 'FR',
-      isExport: false,
-      emissions: 215_612_200,
-      usage: 1745,
-    };
-    expect(actual).toEqual(expected);
+
+    expect(actual).toMatchInlineSnapshot(`
+      {
+        "capacity": 2800,
+        "co2Intensity": 123.56,
+        "displayByEmissions": false,
+        "emissions": 215612200,
+        "isExport": false,
+        "totalElectricity": 84545.75,
+        "totalEmissions": 9590208033016.975,
+        "usage": 1745,
+        "zoneKey": "FR",
+      }
+    `);
   });
 
   it('returns correct data for non-existing exchange', () => {
     const actual = getExchangeTooltipData('XXX', zoneDetailsData, false);
-    const expected = {
-      capacity: undefined,
-      co2Intensity: undefined,
-      displayByEmissions: false,
-      totalElectricity: 84_545.75,
-      totalEmissions: 6_586_586_600_000.99,
-      zoneKey: 'FR',
-      isExport: false,
-      emissions: Number.NaN,
-      usage: Number.NaN,
-    };
-    expect(actual).toEqual(expected);
+
+    expect(actual).toMatchInlineSnapshot(`
+      {
+        "capacity": undefined,
+        "co2Intensity": undefined,
+        "displayByEmissions": false,
+        "emissions": NaN,
+        "isExport": false,
+        "totalElectricity": 84545.75,
+        "totalEmissions": 9590208033016.975,
+        "usage": NaN,
+        "zoneKey": "FR",
+      }
+    `);
   });
 });
