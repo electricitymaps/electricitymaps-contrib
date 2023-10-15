@@ -30,7 +30,7 @@ JSON_QUERY_TO_SRC = {
 }
 
 
-def parse_json(web_json: dict) -> dict[str, Any]:
+def parse_json(web_json: dict, logger: Logger) -> dict[str, Any]:
     """
     Parse the fetched JSON data to our query format according to JSON_QUERY_TO_SRC.
     Example of expected JSON format present at URL:
@@ -39,9 +39,8 @@ def parse_json(web_json: dict) -> dict[str, Any]:
 
     # Validate first if keys in fetched dict match expected keys
     if set(JSON_QUERY_TO_SRC.values()) != set(web_json.keys()):
-        raise ParserException(
-            parser="MN.py",
-            message=f"Fetched keys from source {web_json.keys()} do not match expected keys {JSON_QUERY_TO_SRC.values()}.",
+        logger.warning(
+            msg=f"Fetched keys from source {web_json.keys()} do not match expected keys {JSON_QUERY_TO_SRC.values()}.",
         )
 
     if None in web_json.values():
@@ -65,7 +64,7 @@ def parse_json(web_json: dict) -> dict[str, Any]:
     return query_data
 
 
-def query(session: Session) -> dict[str, Any]:
+def query(session: Session, logger: Logger) -> dict[str, Any]:
     """
     Query the JSON endpoint and parse it.
     """
@@ -80,7 +79,7 @@ def query(session: Session) -> dict[str, Any]:
 
     # Read as JSON
     response_json = target_response.json()
-    query_result = parse_json(response_json)
+    query_result = parse_json(response_json, logger)
 
     return query_result
 
@@ -94,7 +93,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates.")
 
-    query_data = query(session)
+    query_data = query(session, logger)
 
     # Calculated 'unknown' production from available data (consumption, import, solar, wind).
     # 'unknown' consists of 92.8% coal, 5.8% oil and 1.4% hydro as per 2020; sources: IEA and IRENA statistics.
