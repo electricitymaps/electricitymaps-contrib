@@ -22,11 +22,15 @@ TZ = ZoneInfo("Asia/Ulaanbaatar")  # UTC+8
 JSON_QUERY_TO_SRC = {
     "time": "date",
     "consumptionMW": "syssum",
-    "thermal": "tpp",  # currently ignored
+    "thermal": "tpp",
     "solarMW": "sumnar",
     "windMW": "sums",
     "importMW": "energyimport",  # positive = import
     "temperatureC": "t",  # current temperature
+    "max_time": "systime",  # date when max_value was recorded
+    "max_value": "sysmax",
+    "min_time": "sysmintime",
+    "min_value": "sysmin",
 }
 
 
@@ -52,7 +56,7 @@ def parse_json(web_json: dict, logger: Logger) -> dict[str, Any]:
     # Then we can safely parse them
     query_data = dict()
     for query_key, src_key in JSON_QUERY_TO_SRC.items():
-        if query_key == "time":
+        if "time" in query_key:
             # convert to datetime
             query_data[query_key] = datetime.fromisoformat(web_json[src_key]).replace(
                 tzinfo=TZ
@@ -95,21 +99,23 @@ def fetch_production(
 
     query_data = query(session, logger)
 
-    # Calculated 'unknown' production from available data (consumption, import, solar, wind).
+    # Calculated 'unknown' production from available data (consumption, import, solar, wind, tpp).
     # 'unknown' consists of 92.8% coal, 5.8% oil and 1.4% hydro as per 2020; sources: IEA and IRENA statistics.
-    query_data["unknownMW"] = round(
+    query_data["leftoverMW"] = round(
         query_data["consumptionMW"]
         - query_data["importMW"]
         - query_data["solarMW"]
-        - query_data["windMW"],
+        - query_data["windMW"]
+        - query_data["thermal"],
         13,
     )
 
-    prod_mix = ProductionMix(
-        solar=query_data["solarMW"],
-        wind=query_data["windMW"],
-        unknown=query_data["unknownMW"],
-    )
+    prod_mix = ProductionMix()
+    prod_mix.add_value("solar", query_data["solarMW"])
+    prod_mix.add_value("wind", query_data["windMW"])
+    prod_mix.add_value(
+        "unknown", query_data["leftoverMW"] + query_data["thermal"]
+    )  # Thermal is currently unknown
 
     prod_breakdown_list = ProductionBreakdownList(logger)
     prod_breakdown_list.append(
