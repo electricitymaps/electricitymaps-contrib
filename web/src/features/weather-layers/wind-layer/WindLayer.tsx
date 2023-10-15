@@ -11,6 +11,7 @@ import {
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
+
 import Windy from './windy';
 
 type WindyType = ReturnType<typeof Windy>;

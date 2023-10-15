@@ -1,20 +1,20 @@
 import {
-  Feature,
-  Polygon,
   area,
   bbox,
   bboxPolygon,
   convex,
   dissolve,
+  Feature,
   featureCollection,
   featureEach,
   getGeom,
   intersect,
+  Polygon,
 } from '@turf/turf';
-import { getHoles, getPolygons, log, writeJSON } from './utilities.js';
 
-import { mergeZones } from '../scripts/generateZonesConfig.js';
+import { getConfig } from '../scripts/generateZonesConfig.js';
 import { GeoConfig, WorldFeatureCollection } from './types.js';
+import { getHoles, getPolygons, log, writeJSON } from './utilities.js';
 
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
@@ -91,11 +91,11 @@ function zeroComplexPolygons(
 }
 
 function matchesZonesConfig(fc: WorldFeatureCollection) {
-  const zonesJson = mergeZones();
+  const config = getConfig();
 
   const missingZones: string[] = [];
   featureEach(fc, (ft) => {
-    if (!(ft.properties?.zoneName in zonesJson)) {
+    if (!(ft.properties?.zoneName in config.zones)) {
       missingZones.push(ft.properties?.zoneName);
     }
   });

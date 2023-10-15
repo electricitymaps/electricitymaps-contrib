@@ -1,17 +1,45 @@
-import { FeatureCollection, Feature, MultiPolygon, Polygon } from '@turf/turf';
-import { config } from './generateWorld';
+import { Feature, FeatureCollection, MultiPolygon, Polygon } from '@turf/turf';
 
-export type GeoConfig = typeof config;
+import { GEO_CONFIG } from './generateWorld';
+
+export type GeoConfig = typeof GEO_CONFIG;
 
 export interface ZoneConfig {
+  aggregates_displayed?: string[];
   subZoneNames?: string[];
-  bounding_box: number[][];
-  timezone: string;
+  bounding_box?: number[][];
+  contributors?: string[];
+  disclaimer?: string;
+  estimation_method?: string;
+  parsers?: {
+    consumption?: string;
+    consumptionForecast?: string;
+    generationForecast?: string;
+    price?: string;
+    production?: string;
+    productionPerModeForecast?: string;
+    productionPerUnit?: string;
+  };
   [key: string]: any;
+}
+
+export interface OptimizedZoneConfig
+  extends Omit<ZoneConfig, 'contributors' | 'parsers'> {
+  contributors: number[];
+  parsers: boolean;
 }
 
 export interface ZonesConfig {
   [key: string]: ZoneConfig;
+}
+
+export interface OptimizedZonesConfig {
+  [key: string]: OptimizedZoneConfig;
+}
+
+export interface CombinedZonesConfig {
+  contributors: string[];
+  zones: OptimizedZonesConfig;
 }
 
 export interface ExchangeConfig {

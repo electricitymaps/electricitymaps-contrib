@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { TimeAverages } from 'utils/constants';
+
 import { BreakdownChartTooltipContent } from './BreakdownChartTooltip';
 
 const meta: Meta<typeof BreakdownChartTooltipContent> = {

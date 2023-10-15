@@ -27,17 +27,30 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Mapping the climate impact of electricity"
+      "header": "Welcome to Electricity Maps",
+      "text": "Here you can explore the climate impact of electricity for many countries globally. <br/><br/>Let us guide you through our map in a few simple steps!"
     },
     "view2": {
-      "header": "See how much CO₂ is emitted to produce your electricity, in real-time.",
-      "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. The greener the color, the more climate-friendly the electricity."
+      "header": "See how much CO2 is emitted to produce your electricity, in real-time",
+      "text": "We color areas around the world by the carbon intensity of consumed electricity (includes all greenhouse gases). The greener the color, the more climate-friendly the electricity."
     },
     "view3": {
       "header": "Know where your electricity comes from",
       "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
     },
     "view4": {
+      "header": "Switch between different views",
+      "text": "Toggle between Electricity Production and Consumption, as well as Country or Zone views and discover real-time insights into global energy dynamics and make informed choices for a sustainable future."
+    },
+    "view5": {
+      "header": "Switch between electricity and emissions views",
+      "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen production or consumption mode."
+    },
+    "view6": {
+      "header": "Explore the past",
+      "text": "In the bottom left, you can view both real-time and past emission and electricity data all around the world. Change the aggregated data using the toggles or browse through the timeline to see the changes over time."
+    },
+    "view7": {
       "header": "Real-time wind and solar conditions",
       "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
     }
