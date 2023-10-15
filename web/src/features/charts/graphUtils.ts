@@ -73,7 +73,9 @@ export const getGenerationTypeKey = (name: string): GenerationType | undefined =
 
   return undefined;
 };
-export function getTotalElectricity(zoneData: ZoneDetail, mixMode: Mode) {
+
+/** Returns the total electricity that is available in the zone (e.g. production + discharge + imports) */
+export function getTotalElectricityAvailable(zoneData: ZoneDetail, mixMode: Mode) {
   const includeImports = mixMode === Mode.CONSUMPTION;
   const totalDischarge = zoneData.totalDischarge ?? 0;
   const totalImport = zoneData.totalImport ?? 0;
@@ -85,7 +87,8 @@ export function getTotalElectricity(zoneData: ZoneDetail, mixMode: Mode) {
   return zoneData.totalProduction + totalDischarge + (includeImports ? totalImport : 0);
 }
 
-export function getTotalEmissions(zoneData: ZoneDetail, mixMode: Mode) {
+/** Returns the total emissions that is available in the zone (e.g. production + discharge + imports) */
+export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) {
   const includeImports = mixMode === Mode.CONSUMPTION;
   const totalCo2Discharge = zoneData.totalCo2Discharge ?? 0;
   const totalCo2Import = zoneData.totalCo2Import ?? 0;
