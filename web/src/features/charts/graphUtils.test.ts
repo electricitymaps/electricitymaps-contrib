@@ -93,7 +93,7 @@ describe('getElectricityProductionValue', () => {
   });
 });
 
-describe('getTotalEmissionsAvailableOrElectricity', () => {
+describe('getTotalEmissionsAvailableOrElectricityAvailable', () => {
   const zoneData = {
     totalCo2Production: 100,
     totalCo2Consumption: 5,
