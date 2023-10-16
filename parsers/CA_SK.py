@@ -1,8 +1,8 @@
-import typing
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from typing import Any
+from zoneinfo import ZoneInfo
 
-from pytz import timezone
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -10,7 +10,7 @@ from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownLis
 from electricitymap.contrib.lib.models.events import ProductionMix, TotalConsumption
 from parsers.lib.exceptions import ParserException
 
-TIMEZONE = timezone("America/Regina")
+TIMEZONE = ZoneInfo("America/Regina")
 PRODUCTION_URL = (
     "https://www.saskpower.com/ignitionapi/PowerUseDashboard"
     "/GetPowerUseDashboardData"
@@ -37,7 +37,7 @@ def _request(
     target_datetime: datetime | None,
     url: str,
     zone_key: ZoneKey,
-) -> typing.Any:
+) -> dict | str:
     # The source does not offer historical data, so bail out if it's requested.
     if target_datetime:
         raise ParserException("CA_SK.py", "Unable to fetch historical data", zone_key)
@@ -62,19 +62,19 @@ def fetch_production(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict[str, typing.Any]]:
+) -> list[dict[str, Any]]:
     payload = _request(session, target_datetime, PRODUCTION_URL, zone_key)
     # Date is in the format "Jan 01, 2020"
     date = datetime.strptime(payload["SupplyDataText"], "%b %d, %Y")
-    production_mix = ProductionMix(
-        **{
-            PRODUCTION_MAPPING[value["type"]]: value["totalGenerationForType"]
-            for value in payload["PowerCacheData"]["generationByType"]
-        }
-    )
+    production_mix = ProductionMix()
+    for generation_by_type in payload["PowerCacheData"]["generationByType"]:
+        production_mix.add_value(
+            PRODUCTION_MAPPING[generation_by_type["type"]],
+            generation_by_type["totalGenerationForType"],
+        )
     production_breakdown_list = ProductionBreakdownList(logger)
-    # Convert the daily average returned by the API into hourly values. This is
-    # a bit of a hack, but it's required because the back-end requires hourly
+    # Copy the daily average returned by the API into hourly values. This is a
+    # bit of a hack, but it's required because the back-end requires hourly
     # datapoints while the API only provides daily averages.
     for hour in range(24):
         production_breakdown_list.append(
@@ -91,7 +91,7 @@ def fetch_consumption(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict[str, typing.Any]:
+) -> dict[str, Any]:
     payload = _request(session, target_datetime, CONSUMPTION_URL, zone_key)
     # The source refreshes every 5 minutes, so we assume the current data is
     # from 5 minutes before the most recent multiple of 5 minutes.
