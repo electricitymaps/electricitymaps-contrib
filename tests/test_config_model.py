@@ -48,7 +48,7 @@ class ConfigModelTestcase(unittest.TestCase):
                                 zone_sources,
                                 msg=f"Missing top-level sources configuration for zone {zone_key}",
                             )
-                            assert zone_sources is not None  # to assist with pyright type narrowing
+                            assert zone_sources is not None  # pyright type-narrowing
                             self.assertIn(source, zone_sources)
 
 
