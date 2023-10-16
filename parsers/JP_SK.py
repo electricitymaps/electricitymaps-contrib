@@ -41,7 +41,7 @@ def fetch_production(
     latest_data_point_JP_SK = JP_data[-1]
     # Fetch nuclear data from the nuclear power plant website
     ## fetch image url
-    image_url = get_nuclear_power_image_url(URL, session)
+    image_url = get_nuclear_power_image_url(session)
     ## fetch nuclear power from image url
     (
         nuclear_power_MW,
@@ -59,14 +59,13 @@ def fetch_production(
     return latest_data_point_JP_SK
 
 
-URL = "https://www.yonden.co.jp/energy/atom/ikata/ikt722.html"
+NUCLEAR_REPORT_URL = "https://www.yonden.co.jp/energy/atom/ikata/ikt722.html"
 IMAGE_CORE_URL = "https://www.yonden.co.jp/energy/atom/ikata/"
 
 
-def get_nuclear_power_image_url(url: str, session: Session) -> str:
+def get_nuclear_power_image_url(session: Session) -> str:
     """This method fetches the image url from the nuclear power plant website"""
-    session = Session()
-    response_main_page = session.get(URL)
+    response_main_page = session.get(NUCLEAR_REPORT_URL)
     soup = BeautifulSoup(response_main_page.content, "html.parser")
     images_links = soup.find_all("img", src=True)
     filtered_img_tags = [
@@ -81,7 +80,6 @@ def get_nuclear_power_image_url(url: str, session: Session) -> str:
 def get_nuclear_power_value_and_timestamp_from_image_url(
     img_url: str, session: Session
 ) -> (float, datetime):
-    session = Session()
     response_image = session.get(img_url)
     image = Image.open(BytesIO(response_image.content))
     width, height = image.size
