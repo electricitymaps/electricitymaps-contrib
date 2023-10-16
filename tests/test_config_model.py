@@ -26,6 +26,7 @@ class ConfigModelTestcase(unittest.TestCase):
     def test_zone_sources(self):
         for measurement_basis, model in CO2EQ_CONFIG_MODEL:
             for zone_key, zone_modes in model.emission_factors.zone_overrides.items():
+                zone_sources = CONFIG_MODEL.zones[zone_key].sources
                 for mode, estimate in zone_modes or ():
                     if estimate is None:
                         continue
@@ -43,7 +44,12 @@ class ConfigModelTestcase(unittest.TestCase):
                                 continue
                             if source in self.GLOBAL_SOURCE_REFERENCES:
                                 continue
-                            self.assertIn(source, CONFIG_MODEL.zones[zone_key].sources)
+                            self.assertIsNotNone(
+                                zone_sources,
+                                msg=f"Missing top-level sources configuration for zone {zone_key}",
+                            )
+                            assert zone_sources is not None  # to assist with pyright type narrowing
+                            self.assertIn(source, zone_sources)
 
 
 if __name__ == "__main__":
