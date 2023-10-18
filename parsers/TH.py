@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 
 import pytz
-import requests
 from bs4 import BeautifulSoup
 from requests import Session
 
@@ -88,10 +87,11 @@ def _fetch_data(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "TH",
-    session: requests.Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     """Request the last known production mix (in MW) of a given country."""
     data = _fetch_data(session, _as_localtime(target_datetime), "actual")
 
@@ -112,7 +112,7 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "TH",
-    session: requests.Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
@@ -122,6 +122,7 @@ def fetch_consumption(
     We use the same value as the production for now.
     But it would be better to include exchanged electricity data if available.
     """
+    session = session or Session()
     production = fetch_production(
         session=session, target_datetime=_as_localtime(target_datetime)
     )
@@ -136,11 +137,12 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_generation_forecast(
     zone_key: str = "TH",
-    session: requests.Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     """Gets generation forecast for specified zone."""
+    session = session or Session()
     data = _fetch_data(session, _as_localtime(target_datetime), "plan")
 
     production = []
@@ -159,7 +161,7 @@ def fetch_generation_forecast(
 
 def fetch_price(
     zone_key: str = "TH",
-    session: requests.Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
@@ -175,6 +177,7 @@ def fetch_price(
     **While actual BasePrice is done in a progressive manner, For Electricity Maps -
       we use "AmountDue" at 1MWh calculated at the highest pricing bracket for simplification.
     """
+    session = session or Session()
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
