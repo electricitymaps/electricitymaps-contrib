@@ -34,7 +34,7 @@ class ConfigModelTestcase(unittest.TestCase):
                     for estimate in estimates:
                         self.assertIsNotNone(
                             estimate.source,
-                            msg=f"Source is required for {mode} in {zone_key}",
+                            msg=f"{zone_key}: missing required field: emissionFactors.{measurement_basis}.{mode}.source",
                         )
                         for source in estimate.source.split(";"):
                             source = source.strip()
@@ -46,7 +46,7 @@ class ConfigModelTestcase(unittest.TestCase):
                                 continue
                             self.assertIsNotNone(
                                 zone_sources,
-                                msg=f"Missing top-level sources configuration for zone {zone_key}",
+                                msg=f"{zone_key}: missing required field: sources",
                             )
                             assert zone_sources is not None  # pyright type-narrowing
                             self.assertIn(source, zone_sources)
