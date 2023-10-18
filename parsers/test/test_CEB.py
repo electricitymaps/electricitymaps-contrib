@@ -25,7 +25,7 @@ class TestCEB(TestCase):
         self.assertMatchSnapshot(
             [
                 {
-                    "datetime": element["datetime"],
+                    "datetime": element["datetime"].isoformat(),
                     "production": element["production"],
                     "storage": element["storage"],
                     "source": element["source"],

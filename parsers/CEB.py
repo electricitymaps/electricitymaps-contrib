@@ -49,7 +49,7 @@ def fetch_production(
         session = Session()
 
     params = {
-        "date": target_datetime.astimezone(TIMEZONE).strftime("%Y-%m-%d"),
+        "date": target_datetime.strftime("%Y-%m-%d"),
     }
 
     response = session.get(GENERATION_BREAKDOWN_URL, params=params)
@@ -85,7 +85,7 @@ def fetch_production(
             zoneKey=zone_key,
             datetime=datetime.fromisoformat(
                 quarter_hourly_source_data["DateTime"]
-            ).astimezone(TIMEZONE),
+            ).replace(tzinfo=TIMEZONE),
             production=production,
             source=SOURCE_NAME,
         )

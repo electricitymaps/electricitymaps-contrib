@@ -2,14 +2,14 @@
 # snapshottest: v1 - https://goo.gl/zC4yUc
 from __future__ import unicode_literals
 
-from snapshottest import GenericRepr, Snapshot
+from snapshottest import Snapshot
 
 
 snapshots = Snapshot()
 
 snapshots['TestCEB::test_production 1'] = [
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T00:15:00+05:30',
         'production': {
             'biomass': 9.582844,
             'coal': 535.0471,
@@ -25,7 +25,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T00:30:00+05:30',
         'production': {
             'biomass': 9.582244,
             'coal': 534.5295,
@@ -41,7 +41,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T00:45:00+05:30',
         'production': {
             'biomass': 9.543541,
             'coal': 540.2533,
@@ -57,7 +57,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T01:00:00+05:30',
         'production': {
             'biomass': 9.444535,
             'coal': 538.7913,
@@ -73,7 +73,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T01:15:00+05:30',
         'production': {
             'biomass': 9.742753,
             'coal': 540.999,
@@ -89,7 +89,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T01:30:00+05:30',
         'production': {
             'biomass': 9.940463,
             'coal': 542.7344,
@@ -105,7 +105,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T01:45:00+05:30',
         'production': {
             'biomass': 10.24288,
             'coal': 540.1766,
@@ -121,7 +121,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T02:00:00+05:30',
         'production': {
             'biomass': 10.11927,
             'coal': 542.1865,
@@ -137,7 +137,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T02:15:00+05:30',
         'production': {
             'biomass': 11.02983,
             'coal': 542.2016,
@@ -153,7 +153,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T02:30:00+05:30',
         'production': {
             'biomass': 11.49665,
             'coal': 542.582,
@@ -169,7 +169,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T02:45:00+05:30',
         'production': {
             'biomass': 11.55215,
             'coal': 540.9233,
@@ -185,7 +185,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T03:00:00+05:30',
         'production': {
             'biomass': 11.26534,
             'coal': 540.4814,
@@ -201,7 +201,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T03:15:00+05:30',
         'production': {
             'biomass': 11.32924,
             'coal': 539.6136,
@@ -217,7 +217,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T03:30:00+05:30',
         'production': {
             'biomass': 10.83031,
             'coal': 541.7597,
@@ -233,7 +233,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T03:45:00+05:30',
         'production': {
             'biomass': 10.74121,
             'coal': 540.4814,
@@ -249,7 +249,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T04:00:00+05:30',
         'production': {
             'biomass': 10.5969,
             'coal': 541.1967,
@@ -265,7 +265,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T04:15:00+05:30',
         'production': {
             'biomass': 10.48319,
             'coal': 541.5014,
@@ -281,7 +281,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T04:30:00+05:30',
         'production': {
             'biomass': 10.70821,
             'coal': 542.0341,
@@ -297,7 +297,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T04:45:00+05:30',
         'production': {
             'biomass': 11.51315,
             'coal': 537.1942,
@@ -313,7 +313,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T05:00:00+05:30',
         'production': {
             'biomass': 11.33764,
             'coal': 538.1072,
@@ -329,7 +329,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T05:15:00+05:30',
         'production': {
             'biomass': 11.17533,
             'coal': 537.6209,
@@ -345,7 +345,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T05:30:00+05:30',
         'production': {
             'biomass': 11.04993,
             'coal': 539.9344,
@@ -361,7 +361,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T05:45:00+05:30',
         'production': {
             'biomass': 11.01482,
             'coal': 541.3036,
@@ -377,7 +377,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T06:00:00+05:30',
         'production': {
             'biomass': 11.51555,
             'coal': 539.5076,
@@ -393,7 +393,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T06:15:00+05:30',
         'production': {
             'biomass': 11.94218,
             'coal': 540.9535,
@@ -409,7 +409,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T06:30:00+05:30',
         'production': {
             'biomass': 11.69406,
             'coal': 538.8377,
@@ -425,7 +425,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T06:45:00+05:30',
         'production': {
             'biomass': 11.62506,
             'coal': 540.1312,
@@ -441,7 +441,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T07:00:00+05:30',
         'production': {
             'biomass': 11.68836,
             'coal': 540.892,
@@ -457,7 +457,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T07:15:00+05:30',
         'production': {
             'biomass': 11.63016,
             'coal': 539.4613,
@@ -473,7 +473,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T07:30:00+05:30',
         'production': {
             'biomass': 11.47685,
             'coal': 540.7245,
@@ -489,7 +489,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T07:45:00+05:30',
         'production': {
             'biomass': 11.51105,
             'coal': 540.6942,
@@ -505,7 +505,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T08:00:00+05:30',
         'production': {
             'biomass': 11.22874,
             'coal': 542.019,
@@ -521,7 +521,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T08:15:00+05:30',
         'production': {
             'biomass': 11.31844,
             'coal': 540.5267,
@@ -537,7 +537,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T08:30:00+05:30',
         'production': {
             'biomass': 10.662,
             'coal': 541.9121,
@@ -553,7 +553,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T08:45:00+05:30',
         'production': {
             'biomass': 11.05563,
             'coal': 538.6844,
@@ -569,7 +569,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T09:00:00+05:30',
         'production': {
             'biomass': 11.01302,
             'coal': 540.8002,
@@ -585,7 +585,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T09:15:00+05:30',
         'production': {
             'biomass': 10.84052,
             'coal': 536.8572,
@@ -601,7 +601,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T09:30:00+05:30',
         'production': {
             'biomass': 11.13573,
             'coal': 537.0398,
@@ -617,7 +617,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T09:45:00+05:30',
         'production': {
             'biomass': 11.12013,
             'coal': 537.8167,
@@ -633,7 +633,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T10:00:00+05:30',
         'production': {
             'biomass': 11.26894,
             'coal': 539.5218,
@@ -649,7 +649,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T10:15:00+05:30',
         'production': {
             'biomass': 10.92362,
             'coal': 539.7196,
@@ -665,7 +665,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T10:30:00+05:30',
         'production': {
             'biomass': 10.6434,
             'coal': 539.095,
@@ -681,7 +681,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T10:45:00+05:30',
         'production': {
             'biomass': 11.18463,
             'coal': 540.4349,
@@ -697,7 +697,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T11:00:00+05:30',
         'production': {
             'biomass': 11.35174,
             'coal': 539.5673,
@@ -713,7 +713,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T11:15:00+05:30',
         'production': {
             'biomass': 11.53986,
             'coal': 541.12,
@@ -729,7 +729,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T11:30:00+05:30',
         'production': {
             'biomass': 11.14413,
             'coal': 539.309,
@@ -745,7 +745,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T11:45:00+05:30',
         'production': {
             'biomass': 11.22784,
             'coal': 541.4549,
@@ -761,7 +761,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T12:00:00+05:30',
         'production': {
             'biomass': 10.75201,
             'coal': 538.8671,
@@ -777,7 +777,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T12:15:00+05:30',
         'production': {
             'biomass': 11.02833,
             'coal': 542.4145,
@@ -793,7 +793,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T12:30:00+05:30',
         'production': {
             'biomass': 11.26774,
             'coal': 542.5669,
@@ -809,7 +809,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T12:45:00+05:30',
         'production': {
             'biomass': 11.22304,
             'coal': 541.0897,
@@ -825,7 +825,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T13:00:00+05:30',
         'production': {
             'biomass': 11.18493,
             'coal': 543.6322,
@@ -841,7 +841,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T13:15:00+05:30',
         'production': {
             'biomass': 10.88222,
             'coal': 541.5469,
@@ -857,7 +857,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T13:30:00+05:30',
         'production': {
             'biomass': 11.00732,
             'coal': 542.2016,
@@ -873,7 +873,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T13:45:00+05:30',
         'production': {
             'biomass': 11.05023,
             'coal': 541.4096,
@@ -889,7 +889,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T14:00:00+05:30',
         'production': {
             'biomass': 10.5171,
             'coal': 542.3994,
@@ -905,7 +905,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T14:15:00+05:30',
         'production': {
             'biomass': 10.81201,
             'coal': 541.2572,
@@ -921,7 +921,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T14:30:00+05:30',
         'production': {
             'biomass': 11.21764,
             'coal': 541.0746,
@@ -937,7 +937,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T14:45:00+05:30',
         'production': {
             'biomass': 11.13843,
             'coal': 542.6577,
@@ -953,7 +953,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T15:00:00+05:30',
         'production': {
             'biomass': 10.99532,
             'coal': 543.4345,
@@ -969,7 +969,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T15:15:00+05:30',
         'production': {
             'biomass': 10.557,
             'coal': 543.6475,
@@ -985,7 +985,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T15:30:00+05:30',
         'production': {
             'biomass': 10.68331,
             'coal': 542.3227,
@@ -1001,7 +1001,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T15:45:00+05:30',
         'production': {
             'biomass': 10.87652,
             'coal': 541.2875,
@@ -1017,7 +1017,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T16:00:00+05:30',
         'production': {
             'biomass': 10.84712,
             'coal': 540.7548,
@@ -1033,7 +1033,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T16:15:00+05:30',
         'production': {
             'biomass': 11.30254,
             'coal': 541.8051,
@@ -1049,7 +1049,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T16:30:00+05:30',
         'production': {
             'biomass': 10.87802,
             'coal': 542.8554,
@@ -1065,7 +1065,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T16:45:00+05:30',
         'production': {
             'biomass': 10.88762,
             'coal': 538.303,
@@ -1081,7 +1081,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T17:00:00+05:30',
         'production': {
             'biomass': 7.305864,
             'coal': 539.095,
@@ -1097,7 +1097,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T17:15:00+05:30',
         'production': {
             'biomass': 9.036512,
             'coal': 539.6429,
@@ -1113,7 +1113,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T17:30:00+05:30',
         'production': {
             'biomass': 10.95242,
             'coal': 539.2776,
@@ -1129,7 +1129,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T17:45:00+05:30',
         'production': {
             'biomass': 11.89627,
             'coal': 538.3948,
@@ -1145,7 +1145,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T18:00:00+05:30',
         'production': {
             'biomass': 11.47415,
             'coal': 539.4755,
@@ -1161,7 +1161,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T18:15:00+05:30',
         'production': {
             'biomass': 10.80931,
             'coal': 541.227,
@@ -1177,7 +1177,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T18:30:00+05:30',
         'production': {
             'biomass': 10.99952,
             'coal': 542.6273,
@@ -1193,7 +1193,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T18:45:00+05:30',
         'production': {
             'biomass': 10.90562,
             'coal': 543.2822,
@@ -1209,7 +1209,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T19:00:00+05:30',
         'production': {
             'biomass': 10.90292,
             'coal': 541.9272,
@@ -1225,7 +1225,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T19:15:00+05:30',
         'production': {
             'biomass': 11.12523,
             'coal': 543.4648,
@@ -1241,7 +1241,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T19:30:00+05:30',
         'production': {
             'biomass': 11.51105,
             'coal': 542.3994,
@@ -1257,7 +1257,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T19:45:00+05:30',
         'production': {
             'biomass': 11.09703,
             'coal': 541.8969,
@@ -1273,7 +1273,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T20:00:00+05:30',
         'production': {
             'biomass': 11.03703,
             'coal': 543.8301,
@@ -1289,7 +1289,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 23, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T20:15:00+05:30',
         'production': {
             'biomass': 10.75861,
             'coal': 540.8466,
@@ -1305,7 +1305,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T20:30:00+05:30',
         'production': {
             'biomass': 10.71571,
             'coal': 541.5771,
@@ -1321,7 +1321,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T20:45:00+05:30',
         'production': {
             'biomass': 10.78921,
             'coal': 542.3076,
@@ -1337,7 +1337,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T21:00:00+05:30',
         'production': {
             'biomass': 11.49455,
             'coal': 543.6475,
@@ -1353,7 +1353,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T21:15:00+05:30',
         'production': {
             'biomass': 11.54045,
             'coal': 542.7495,
@@ -1369,7 +1369,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T21:30:00+05:30',
         'production': {
             'biomass': 10.93472,
             'coal': 542.7344,
@@ -1385,7 +1385,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T21:45:00+05:30',
         'production': {
             'biomass': 11.02293,
             'coal': 542.917,
@@ -1401,7 +1401,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T22:00:00+05:30',
         'production': {
             'biomass': 10.72171,
             'coal': 542.2621,
@@ -1417,7 +1417,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T22:15:00+05:30',
         'production': {
             'biomass': 10.5537,
             'coal': 543.4648,
@@ -1433,7 +1433,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T22:30:00+05:30',
         'production': {
             'biomass': 11.16753,
             'coal': 542.9623,
@@ -1449,7 +1449,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T22:45:00+05:30',
         'production': {
             'biomass': 10.94912,
             'coal': 541.2421,
@@ -1465,7 +1465,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T23:00:00+05:30',
         'production': {
             'biomass': 10.509,
             'coal': 541.7748,
@@ -1481,7 +1481,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T23:15:00+05:30',
         'production': {
             'biomass': 9.970466,
             'coal': 545.4434,
@@ -1497,7 +1497,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T23:30:00+05:30',
         'production': {
             'biomass': 10.36919,
             'coal': 542.6577,
@@ -1513,7 +1513,7 @@ snapshots['TestCEB::test_production 1'] = [
         'zoneKey': 'LK'
     },
     {
-        'datetime': GenericRepr("datetime.datetime(2023, 8, 24, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo'))"),
+        'datetime': '2023-08-23T23:45:00+05:30',
         'production': {
             'biomass': 11.19843,
             'coal': 542.2319,
