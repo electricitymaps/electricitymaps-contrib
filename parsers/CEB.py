@@ -6,7 +6,7 @@ Data is from the backend for the load curve graph on https://cebcare.ceb.lk/gens
 """
 
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -16,6 +16,7 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 TIMEZONE = ZoneInfo("Asia/Colombo")
@@ -33,6 +34,7 @@ PRODUCTION_MAPPING = {
 }
 
 
+@refetch_frequency(timedelta(hours=24))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("LK"),
     session: Session | None = None,
@@ -41,7 +43,7 @@ def fetch_production(
 ):
     """Requests the previous day's production mix (in MW) for Sri Lanka, per quarter-hour"""
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=TIMEZONE)
 
     if session is None:
         session = Session()
