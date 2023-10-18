@@ -74,10 +74,10 @@ def _fetch_data(
         seconds_in_day = item[0]
         generation = item[1]
 
-        datetime = _seconds_to_time(target_datetime, seconds_in_day)
+        dt = _seconds_to_time(target_datetime, seconds_in_day)
         data.append(
             {
-                "datetime": datetime,
+                "datetime": dt,
                 "generation": generation,
             }
         )

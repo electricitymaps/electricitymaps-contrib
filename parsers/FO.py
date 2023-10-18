@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from logging import Logger, getLogger
 from typing import Literal, TypedDict
 
 import arrow
 from requests import Response, Session
-
-from parsers.lib.config import refetch_frequency
 
 from .lib.exceptions import ParserException
 from .lib.validation import validate
