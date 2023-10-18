@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
 
-from datetime import datetime, time
+from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 
-import arrow
+from pytz import timezone
 from requests import Session
+
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 TIMEZONE = "America/Costa_Rica"
 EXCHANGE_URL = (
@@ -25,6 +28,13 @@ EXCHANGE_JSON_MAPPING = {
     "CR->NI": "5SISTEMA.LT230.INTER_NET_CR.CMW.MW",
     "CR->PA": "6SISTEMA.LT230.INTER_NET_PAN.CMW.MW",
 }
+
+
+def _to_local_datetime(dt: datetime) -> datetime:
+    if dt.tzinfo is None:
+        tz = timezone(TIMEZONE)
+        return tz.localize(dt)
+    return dt.astimezone(timezone(TIMEZONE))
 
 
 def empty_record(zone_key: str):
@@ -56,40 +66,41 @@ def extract_exchange(raw_data, exchange) -> float | None:
     return interconnection
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "CR",
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    # ensure we have an arrow object.
     # if no target_datetime is specified, this defaults to now.
-    arw_datetime = arrow.get(target_datetime).to(TIMEZONE)
+    target_datetime = target_datetime or datetime.now()
+    local_datetime = _to_local_datetime(target_datetime)
 
     # if before 01:30am on the current day then fetch previous day due to
     # data lag.
-    today = arrow.get().to(TIMEZONE).date()
-    if arw_datetime.date() == today:
-        arw_datetime = (
-            arw_datetime
-            if arw_datetime.time() >= time(1, 30)
-            else arw_datetime.shift(days=-1)
+    today = _to_local_datetime(datetime.now()).date()
+    if local_datetime.date() == today:
+        local_datetime = (
+            local_datetime
+            if local_datetime.time() >= time(1, 30)
+            else local_datetime - timedelta(days=1)
         )
 
-    if arw_datetime < arrow.get("2012-07-01"):
+    cutoff_datetime = _to_local_datetime(datetime(2017, 7, 1))
+    if local_datetime < cutoff_datetime:
         # data availability limit found by manual trial and error
-        logger.error(
-            "CR API does not provide data before 2012-07-01, "
-            "{} was requested".format(arw_datetime),
-            extra={"key": zone_key},
+        raise ParserException(
+            parser="CR.py",
+            message=f"CR API does not provide data before {cutoff_datetime.isoformat()}, {local_datetime.isoformat()} was requested.",
+            zone_key=zone_key,
         )
-        return None
 
     # Do not use existing session as some amount of cache is taking place
     r = Session()
-    day = arw_datetime.format("DD")
-    month = arw_datetime.format("MM")
-    year = arw_datetime.format("YYYY")
+    day = local_datetime.strftime("%d")
+    month = local_datetime.strftime("%m")
+    year = local_datetime.strftime("%Y")
     url = f"https://apps.grupoice.com/CenceWeb/data/sen/json/EnergiaHorariaFuentePlanta?anno={year}&mes={month}&dia={day}"
 
     response = r.get(url)
@@ -102,9 +113,9 @@ def fetch_production(
         if hourly_item["fecha"] not in results:
             results[hourly_item["fecha"]] = empty_record(zone_key)
 
-        results[hourly_item["fecha"]]["datetime"] = arrow.get(
-            hourly_item["fecha"], tzinfo=TIMEZONE
-        ).datetime
+        results[hourly_item["fecha"]]["datetime"] = _to_local_datetime(
+            datetime.strptime(hourly_item["fecha"], "%Y-%m-%d %H:%M:%S.%f")
+        )
 
         if (
             SPANISH_TO_ENGLISH[hourly_item["fuente"]]
@@ -145,7 +156,7 @@ def fetch_exchange(
         raise ValueError(f"No flow value found for exchange {sorted_zones}")
 
     flow = round(raw_flow, 1)
-    dt = arrow.now("UTC-6").floor("minute")
+    dt = _to_local_datetime(datetime.now()).replace(minute=0)
 
     exchange = {
         "sortedZoneKeys": sorted_zones,
@@ -165,16 +176,16 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     pprint(fetch_production())
 
-    # print('fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z") ->')
-    # pprint(fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z")))
+    # print('fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ") ->')
+    # pprint(fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ")))
 
     # # this should work
-    # print('fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z") ->')
-    # pprint(fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z")))
+    # print('fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ") ->')
+    # pprint(fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ")))
 
     # # this should return None
-    # print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
-    # pprint(fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z")))
+    # print('fetch_production(target_datetime=datetime.strptime("2007-03-13T12:00Z", "%Y-%m-%dT%H:%MZ") ->')
+    # pprint(fetch_production(target_datetime=datetime.strptime("2007-03-13T12:00Z", "%Y-%m-%dT%H:%MZ")))
 
     print("fetch_exchange() ->")
     print(fetch_exchange())
