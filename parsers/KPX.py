@@ -53,7 +53,6 @@ pp = pprint.PrettyPrinter(indent=4)
 # Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
 
 
-@refetch_frequency(timedelta(minutes=5))
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),
@@ -244,7 +243,7 @@ def get_historical_prod_data(
     return parse_chart_prod_data(res.text, zone_key, logger)
 
 
-@refetch_frequency(timedelta(hours=20))
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session = Session(),

@@ -5,5 +5,5 @@ lonlat:
   - 103.539048
   - 2.016154
 parsers:
-  exchange: MY_WM.fetch_exchange
+  exchange: GSO.fetch_exchange
 rotation: 155

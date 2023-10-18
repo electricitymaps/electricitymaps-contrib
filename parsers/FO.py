@@ -46,7 +46,6 @@ def map_generation_type(raw_generation_type):
     return MAP_GENERATION.get(raw_generation_type, None)
 
 
-@refetch_frequency(timedelta(minutes=5))
 def fetch_production(
     zone_key: VALID_ZONE_KEYS = "FO",
     session: Session | None = None,
