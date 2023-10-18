@@ -28,8 +28,8 @@ import {
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import {
   getGenerationTypeKey,
-  getTotalElectricity,
-  getTotalEmissions,
+  getTotalElectricityAvailable,
+  getTotalEmissionsAvailable,
 } from '../graphUtils';
 import { AreaGraphElement, LayerKey } from '../types';
 
@@ -185,8 +185,8 @@ function getValuesInfo(
 ): ValuesInfo {
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     displayByEmissions
-      ? getTotalEmissions(d, Mode.CONSUMPTION)
-      : getTotalElectricity(d, Mode.CONSUMPTION)
+      ? getTotalEmissionsAvailable(d, Mode.CONSUMPTION)
+      : getTotalElectricityAvailable(d, Mode.CONSUMPTION)
   );
   const isHourly = timeAggregate === TimeAverages.HOURLY;
   const format = displayByEmissions

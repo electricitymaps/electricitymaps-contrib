@@ -35,9 +35,12 @@ export function useCarbonChartData() {
     }
   );
 
-  const layerFill = (key: string) => (d: { data: AreaGraphElement }) =>
-    co2ColorScale(d.data.layerData[key]);
-
+  const layerFill = (key: string) => (d: { data: AreaGraphElement }) => {
+    if (d.data.layerData[key] === 0) {
+      return co2ColorScale(Number.NaN);
+    }
+    return co2ColorScale(d.data.layerData[key]);
+  };
   const result = {
     chartData,
     layerKeys: ['carbonIntensity'],

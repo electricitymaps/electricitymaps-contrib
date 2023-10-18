@@ -1,10 +1,13 @@
 import { mergeExchanges } from '../scripts/generateZonesConfig.js';
-import { ZonesConfig } from './types.js';
+import { OptimizedZonesConfig } from './types.js';
 import { fileExists, getJSON, writeJSON } from './utilities.js';
 
 const exchangeConfig = mergeExchanges();
 
-const generateExchangesToIgnore = (OUT_PATH: string, zonesConfig: ZonesConfig) => {
+const generateExchangesToIgnore = (
+  OUT_PATH: string,
+  zonesConfig: OptimizedZonesConfig
+) => {
   console.info(`Generating new excludedAggregatedExchanges.json...`);
   const countryKeysToExclude = new Set(
     Object.keys(zonesConfig).filter((key) => {
