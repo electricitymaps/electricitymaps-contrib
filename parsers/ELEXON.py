@@ -475,7 +475,7 @@ def fetch_exchange(
 
 
 # While using the FUELINST report we can increase the refetch frequency.
-@refetch_frequency(timedelta(hours=6))
+@refetch_frequency(timedelta(days=2))
 def fetch_production(
     zone_key: str = "GB",
     session: Session | None = None,
