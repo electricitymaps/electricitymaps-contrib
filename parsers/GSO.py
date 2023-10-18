@@ -24,7 +24,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 
 # Local library imports
-from parsers.lib import config
+from parsers.lib.config import refetch_frequency
 
 DEFAULT_ZONE_KEY = ZoneKey("MY-WM")
 DOMAIN = "www.gso.org.my"
@@ -44,7 +44,15 @@ PRODUCTION_BREAKDOWN = {
 }
 
 
-@config.refetch_frequency(timedelta(minutes=10))
+def get_api_data(session: Session, url, data):
+    """Parse JSON data from the API."""
+    # The API returns a JSON string containing only one key-value pair whose
+    # value is another JSON string. We must therefore parse the response as
+    # JSON, access the lone value, and parse it as JSON again!
+    return json.loads(session.post(url, json=data).json()["d"])
+
+
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Session = Session(),
@@ -73,7 +81,7 @@ def fetch_consumption(
     return all_consumption_data.to_list()
 
 
-@config.refetch_frequency(timedelta(minutes=10))
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -141,7 +149,7 @@ def fetch_exchange(
     return all_exchange_data.to_list()
 
 
-@config.refetch_frequency(timedelta(minutes=10))
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Session = Session(),
@@ -172,14 +180,6 @@ def fetch_production(
             datetime=item_datetime,
         )
     return all_production_data.to_list()
-
-
-def get_api_data(session: Session, url, data):
-    """Parse JSON data from the API."""
-    # The API returns a JSON string containing only one key-value pair whose
-    # value is another JSON string. We must therefore parse the response as
-    # JSON, access the lone value, and parse it as JSON again!
-    return json.loads(session.post(url, json=data).json()["d"])
 
 
 if __name__ == "__main__":
