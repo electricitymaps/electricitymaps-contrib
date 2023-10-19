@@ -301,20 +301,60 @@ isLowCarbon:
     source: Electricity Maps, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E
     value: 0.894
   unknown:
-    _comment: Around 50% of unknown in CH is made up of hydro discharge, which is
-      in turn mostly made up of low-carbon.
-    source: Electricity Maps, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E
-    value: 0.465
+    - datetime: '2017-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.53
+    - datetime: '2018-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.42
+    - datetime: '2019-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.51
+    - datetime: '2020-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.57
+    - datetime: '2021-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.64
+    - datetime: '2022-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.66
 isRenewable:
   hydro discharge:
     _comment: Average share of electricity coming from renewable sources in 2021
     source: Electricity Maps, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E
     value: 0.5771
   unknown:
-    _comment: Around 50% of unknown in CH is made up of hydro discharge, which is
-      in turn half made up of renewables.
-    source: Electricity Maps, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E
-    value: 0.3
+    - datetime: '2017-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.53
+    - datetime: '2018-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.42
+    - datetime: '2019-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.51
+    - datetime: '2020-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.57
+    - datetime: '2021-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.64
+    - datetime: '2022-01-01'
+      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+      source: SFOE, Electricity Maps
+      value: 0.66
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
