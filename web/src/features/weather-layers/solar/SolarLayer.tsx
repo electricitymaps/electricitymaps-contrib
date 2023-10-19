@@ -84,7 +84,7 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   }, [map, node]);
 
   useEffect(() => {
-    if (!node || !map || !isVisibleReference.current) {
+    if (!node || !map?.isStyleLoaded() || !isVisibleReference.current) {
       return;
     }
     if (!map.getLayer('solar-point')) {
