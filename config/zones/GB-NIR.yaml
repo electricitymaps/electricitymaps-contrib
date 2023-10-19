@@ -6,13 +6,14 @@ bounding_box:
 capacity:
   battery storage: 150
   biomass: 82
-  coal: 514
+  coal: 0
   gas: 1008
   hydro: 6
   oil: 394
   solar: 285
   wind: 1430
 contributors:
+  - brandongalbraith
   - corradio
   - systemcatch
   - brunolajoie
