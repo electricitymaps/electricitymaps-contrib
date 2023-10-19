@@ -84,7 +84,7 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   }, [map, node]);
 
   useEffect(() => {
-    if (!node || !map || !isVisibleReference.current) {
+    if (!node || !map?.isStyleLoaded() || !isVisibleReference.current) {
       return;
     }
     if (!map.getLayer('solar-point')) {
@@ -101,7 +101,7 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {
-    if (!map || !node || !solarData || !isVisibleReference.current) {
+    if (!map?.isStyleLoaded() || !node || !solarData || !isVisibleReference.current) {
       return;
     }
     const canvas = node.getContext('2d');
