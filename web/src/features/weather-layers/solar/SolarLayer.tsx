@@ -58,7 +58,7 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   }, [solarData?.header.nx, solarData?.header.ny]);
 
   useEffect(() => {
-    if (!node || !map) {
+    if (!node || !map?.isStyleLoaded()) {
       return;
     }
     const north = gudermannian(convertYToLat(node.height - 1, 0));
