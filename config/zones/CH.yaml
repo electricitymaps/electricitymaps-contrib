@@ -73,11 +73,30 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 113.07156762843732
     unknown:
-      _comment:
-        'Source ENTSOE, Swiss government and Electricity Maps: https://github.com/electricitymaps/electricitymaps-contrib/pull/2898
-        and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/'
-      source: 52% hydro storage, 48% unknown thermal
-      value: 288
+      - datetime: '2017-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 271
+      - datetime: '2018-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 335
+      - datetime: '2019-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 279
+      - datetime: '2020-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 244
+      - datetime: '2021-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 209
+      - datetime: '2022-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 195
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -144,11 +163,30 @@ emissionFactors:
       source: INCER ACV
       value: 29.5
     unknown:
-      _comment:
-        'Source ENTSOE, Swiss government and Electricity Maps: https://github.com/electricitymaps/electricitymaps-contrib/pull/2898
-        and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/'
-      source: 52% hydro storage, 48% unknown thermal
-      value: 383
+      - datetime: '2017-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 343
+      - datetime: '2018-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 418
+      - datetime: '2019-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 353
+      - datetime: '2020-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 312
+      - datetime: '2021-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 270
+      - datetime: '2022-01-01'
+        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
+        source: SFOE, Electricity Maps
+        value: 253
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
