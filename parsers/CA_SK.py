@@ -6,8 +6,11 @@ from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
-from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
-from electricitymap.contrib.lib.models.events import ProductionMix, TotalConsumption
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
 
 TIMEZONE = ZoneInfo("America/Regina")
@@ -91,7 +94,7 @@ def fetch_consumption(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict[str, Any]:
+) -> list[dict[str, Any]]:
     payload = _request(session, target_datetime, CONSUMPTION_URL, zone_key)
     # The source refreshes every 5 minutes, so we assume the current data is
     # from 5 minutes before the most recent multiple of 5 minutes.
@@ -99,10 +102,11 @@ def fetch_consumption(
     assumed_datetime = now.replace(second=0, microsecond=0) - timedelta(
         minutes=(5 + now.minute % 5)
     )
-    return TotalConsumption.create(
+    total_consumption = TotalConsumptionList(logger)
+    total_consumption.append(
         consumption=float(payload),
         datetime=assumed_datetime,
-        logger=logger,
         source="saskpower.com",
         zoneKey=zone_key,
-    ).to_dict()
+    )
+    return total_consumption.to_list()
