@@ -67,6 +67,8 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     payload = _request(session, target_datetime, PRODUCTION_URL, zone_key)
+    if not isinstance(payload, dict):
+        raise ParserException("CA_SK.py", "Unexpected payload type", zone_key)
     # Date is in the format "Jan 01, 2020"
     date = datetime.strptime(payload["SupplyDataText"], "%b %d, %Y")
     production_mix = ProductionMix()
@@ -96,6 +98,8 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     payload = _request(session, target_datetime, CONSUMPTION_URL, zone_key)
+    if not isinstance(payload, str):
+        raise ParserException("CA_SK.py", "Unexpected payload type", zone_key)
     # The source refreshes every 5 minutes, so we assume the current data is
     # from 5 minutes before the most recent multiple of 5 minutes.
     now = datetime.now(TIMEZONE)
