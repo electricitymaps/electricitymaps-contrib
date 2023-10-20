@@ -105,10 +105,19 @@ def fetch_production(
     # We only run this check when target_datetime is None, as to not affect refetches
     # TODO: remove this in the future, when this is automatically detected by QA layer
     data = sorted(data, key=lambda d: d["datetime"])
-    total_production_per_datapoint = list(map(lambda d: sum(d["production"].values()),data))
-    mean_production = sum(total_production_per_datapoint) / len(total_production_per_datapoint)
-    if total_production_per_datapoint[-1] < mean_production * 0.9 and target_datetime is None:
-        logger.warning("Dropping last datapoint as it is probably incomplete. Total production is less than 90% of the mean.")
+    total_production_per_datapoint = list(
+        map(lambda d: sum(d["production"].values()), data)
+    )
+    mean_production = sum(total_production_per_datapoint) / len(
+        total_production_per_datapoint
+    )
+    if (
+        total_production_per_datapoint[-1] < mean_production * 0.9
+        and target_datetime is None
+    ):
+        logger.warning(
+            "Dropping last datapoint as it is probably incomplete. Total production is less than 90% of the mean."
+        )
         data = data[:-1]
 
     return list(
