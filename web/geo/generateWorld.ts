@@ -37,7 +37,7 @@ export const STATES_CONFIG = {
 } as const;
 
 const EXCHANGE_OUT_PATH = path.resolve(
-  fileURLToPath(new URL('../config/excludedAggregatedExchanges.json', import.meta.url))
+  fileURLToPath(new URL('../config/excluded-aggregated-exchanges.json', import.meta.url))
 );
 
 const worldFC: WorldFeatureCollection = getJSON(GEO_CONFIG.WORLD_PATH);

@@ -35,7 +35,8 @@ build:
 
   # Local outputs for debugging
   SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json
-  SAVE ARTIFACT ./config/excludedAggregatedExchanges.json AS LOCAL ./config/excludedAggregatedExchanges.json
+  SAVE ARTIFACT ./config/usa-states.json AS LOCAL ./config/usa-states.json
+  SAVE ARTIFACT ./config/excluded-aggregated-exchanges.json AS LOCAL ./config/excluded-aggregated-exchanges.json
   # NOTE: We could consider dropping source maps from dist since it has already been uploaded to Sentry at this point
   SAVE ARTIFACT ./dist AS LOCAL ./dist
 

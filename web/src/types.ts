@@ -156,14 +156,29 @@ export interface GeometryProperties {
   zoneId: string;
   zoneName: string;
 }
+export interface StateGeometryProperties {
+  center: [number, number];
+  stateName: string;
+  stateId: string;
+}
 
 export interface MapGeometries extends FeatureCollection<Geometry> {
   features: Array<MapGeometry>;
+}
+
+export interface StatesGeometries extends FeatureCollection<Geometry> {
+  features: Array<StatesGeometry>;
 }
 export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   geometry: MultiPolygon | Polygon;
   Id?: number;
   properties: GeometryProperties;
+}
+
+export interface StatesGeometry extends Feature<Polygon | MultiPolygon> {
+  geometry: MultiPolygon | Polygon;
+  Id?: number;
+  properties: StateGeometryProperties;
 }
 
 export interface MapTheme {

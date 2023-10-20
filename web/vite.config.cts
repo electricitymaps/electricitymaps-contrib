@@ -15,9 +15,10 @@ const manualChunkMap = {
   'country-flag-icons': 'flags',
   recharts: 'recharts',
   'world.json': 'world',
+  'usa-states.json': 'states',
   'zones.json': 'config',
   'exchanges.json': 'config',
-  'excludedAggregatedExchanges.json': 'config',
+  'excluded-aggregated-exchanges.json': 'config',
 };
 
 const sentryPluginOptions: SentryVitePluginOptions = {

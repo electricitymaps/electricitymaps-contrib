@@ -20,7 +20,7 @@ function getCenter(geojson: WorldFeatureCollection, zoneName: string) {
     }
   }
   const geojsonFeatures = geojson.features.filter(
-    (f) => f.properties.zoneName === zoneName
+    (f) => f.properties?.zoneName === zoneName
   );
   if (geojsonFeatures.length !== 1) {
     console.error(
@@ -70,7 +70,9 @@ function generateTopojson(
       delete geo.properties.countryName;
     }
     // Precompute center for enable centering on the zone
-    geo.properties.center = getCenter(fc, geo.properties.zoneName);
+    if (geo.properties?.zoneName) {
+      geo.properties.center = getCenter(fc, geo.properties.zoneName);
+    }
 
     newObjects[geo.properties.zoneName] = geo;
   }
