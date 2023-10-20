@@ -103,6 +103,9 @@ def fetch_production(
                 x,
                 logger,
                 required=["gas"],
+                expected_range={
+                    "gas": (100, 6000),
+                },
                 floor=0.0,
             )
             is not None,
