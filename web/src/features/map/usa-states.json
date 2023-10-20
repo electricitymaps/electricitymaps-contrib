@@ -1167,7 +1167,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Michigan1",
+        "name": "Michigan",
         "layer": "USA Borders"
       },
       "geometry": {
