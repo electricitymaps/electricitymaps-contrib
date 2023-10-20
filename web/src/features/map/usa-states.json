@@ -1,25 +1,12 @@
 {
   "type": "FeatureCollection",
-  "name": "latenightlayer",
-  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "name": "USA States",
   "features": [
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Alabama",
-        "density": 94.65,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Alabama",
-        "density_2": 94.65,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -67,20 +54,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Arizona",
-        "density": 57.05,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Arizona",
-        "density_2": 57.05,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -127,20 +102,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Arkansas",
-        "density": 56.43,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Arkansas",
-        "density_2": 56.43,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -192,20 +155,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "California",
-        "density": 241.7,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "California",
-        "density_2": 241.7,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -313,20 +264,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Colorado",
-        "density": 49.33,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Colorado",
-        "density_2": 49.33,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -357,20 +296,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Connecticut",
-        "density": 739.1,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Connecticut",
-        "density_2": 739.1,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -401,20 +328,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Delaware",
-        "density": 464.3,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Delaware",
-        "density_2": 464.3,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -442,20 +357,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "District of Columbia",
-        "density": 10065.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "District of Columbia",
-        "density_2": 10065.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -475,100 +378,40 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Florida",
-        "density": 353.4,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Florida",
-        "density_2": 353.4,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Hawaii",
-        "density": 214.1,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Florida",
-        "density_2": 353.4,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Louisiana",
-        "density": 105.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Florida",
-        "density_2": 353.4,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Puerto Rico",
-        "density": 1082.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Florida",
-        "density_2": 353.4,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Georgia",
-        "density": 169.5,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Georgia",
-        "density_2": 169.5,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -635,100 +478,40 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Florida",
-        "density": 353.4,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Hawaii",
-        "density_2": 214.1,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Hawaii",
-        "density": 214.1,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Hawaii",
-        "density_2": 214.1,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Louisiana",
-        "density": 105.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Hawaii",
-        "density_2": 214.1,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Puerto Rico",
-        "density": 1082.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Hawaii",
-        "density_2": 214.1,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Idaho",
-        "density": 19.15,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Idaho",
-        "density_2": 19.15,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -809,20 +592,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Illinois",
-        "density": 231.5,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Illinois",
-        "density_2": 231.5,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -904,20 +675,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Indiana",
-        "density": 181.7,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Indiana",
-        "density_2": 181.7,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -978,20 +737,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Iowa",
-        "density": 54.81,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Iowa",
-        "density_2": 54.81,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1056,20 +803,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Kansas",
-        "density": 35.09,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Kansas",
-        "density_2": 35.09,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1097,20 +832,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Kentucky",
-        "density": 110.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Kentucky",
-        "density_2": 110.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1200,100 +923,40 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Florida",
-        "density": 353.4,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Louisiana",
-        "density_2": 105.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Hawaii",
-        "density": 214.1,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Louisiana",
-        "density_2": 105.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Louisiana",
-        "density": 105.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Louisiana",
-        "density_2": 105.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Puerto Rico",
-        "density": 1082.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Louisiana",
-        "density_2": 105.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Maine",
-        "density": 43.04,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Maine",
-        "density_2": 43.04,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1377,20 +1040,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Maryland",
-        "density": 596.3,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Maryland",
-        "density_2": 596.3,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1465,20 +1116,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Massachusetts",
-        "density": 840.2,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Massachusetts",
-        "density_2": 840.2,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1528,20 +1167,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
-        "name": "Michigan",
-        "density": 173.9,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Michigan",
-        "density_2": 173.9,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "name": "Michigan1",
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1612,15 +1239,6 @@
               [-83.1859, 42.0062],
               [-83.4378, 41.8145],
               [-83.4542, 41.7323]
-            ]
-          ],
-          [
-            [
-              [-85.5081, 45.7305],
-              [-85.4917, 45.61],
-              [-85.6231, 45.5881],
-              [-85.5683, 45.7579],
-              [-85.5081, 45.7305]
             ]
           ],
           [
@@ -1702,7 +1320,18 @@
               [-87.6112, 45.1226],
               [-87.5893, 45.0952]
             ]
-          ],
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "USA Borders"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [-88.8052, 47.9761],
@@ -1720,20 +1349,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Minnesota",
-        "density": 67.14,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Minnesota",
-        "density_2": 67.14,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1838,20 +1455,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Mississippi",
-        "density": 63.5,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Mississippi",
-        "density_2": 63.5,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1912,20 +1517,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Missouri",
-        "density": 87.26,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Missouri",
-        "density_2": 87.26,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1993,20 +1586,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Montana",
-        "density": 6.858,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Montana",
-        "density_2": 6.858,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2073,20 +1654,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Nebraska",
-        "density": 23.97,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Nebraska",
-        "density_2": 23.97,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2130,20 +1699,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Nevada",
-        "density": 24.8,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Nevada",
-        "density_2": 24.8,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2179,20 +1736,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "New Hampshire",
-        "density": 147.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "New Hampshire",
-        "density_2": 147.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2235,20 +1780,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "New Jersey",
-        "density": 1189.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "New Jersey",
-        "density_2": 1189.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2295,20 +1828,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "New Mexico",
-        "density": 17.16,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "New Mexico",
-        "density_2": 17.16,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2340,20 +1861,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "New York",
-        "density": 412.3,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "New York",
-        "density_2": 412.3,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2436,20 +1945,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "North Carolina",
-        "density": 198.2,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "North Carolina",
-        "density_2": 198.2,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2534,20 +2031,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "North Dakota",
-        "density": 9.916,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "North Dakota",
-        "density_2": 9.916,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2578,20 +2063,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Ohio",
-        "density": 281.9,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Ohio",
-        "density_2": 281.9,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2653,20 +2126,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Oklahoma",
-        "density": 55.22,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Oklahoma",
-        "density_2": 55.22,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2726,20 +2187,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Oregon",
-        "density": 40.33,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Oregon",
-        "density_2": 40.33,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2810,20 +2259,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Pennsylvania",
-        "density": 284.3,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Pennsylvania",
-        "density_2": 284.3,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2871,20 +2308,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Rhode Island",
-        "density": 1006.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Rhode Island",
-        "density_2": 1006.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2923,20 +2348,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "South Carolina",
-        "density": 155.4,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "South Carolina",
-        "density_2": 155.4,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2995,20 +2408,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "South Dakota",
-        "density": 98.07,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "South Dakota",
-        "density_2": 98.07,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3052,20 +2453,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Tennessee",
-        "density": 88.08,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Tennessee",
-        "density_2": 88.08,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3123,20 +2512,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Texas",
-        "density": 98.07,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Texas",
-        "density_2": 98.07,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3303,20 +2680,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Utah",
-        "density": 34.3,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Utah",
-        "density_2": 34.3,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3343,20 +2708,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Vermont",
-        "density": 67.73,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Vermont",
-        "density_2": 67.73,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3399,20 +2752,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Virginia",
-        "density": 204.5,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Virginia",
-        "density_2": 204.5,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3507,20 +2848,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Washington",
-        "density": 102.6,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Washington",
-        "density_2": 102.6,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3596,20 +2925,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "West Virginia",
-        "density": 77.06,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "West Virginia",
-        "density_2": 77.06,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3689,20 +3006,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Wisconsin",
-        "density": 105.2,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Wisconsin",
-        "density_2": 105.2,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3792,20 +3097,8 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Wyoming",
-        "density": 5.851,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Wyoming",
-        "density_2": 5.851,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3833,98 +3126,42 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Florida",
-        "density": 353.4,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Puerto Rico",
-        "density_2": 1082.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Hawaii",
-        "density": 214.1,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Puerto Rico",
-        "density_2": 1082.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Louisiana",
-        "density": 105.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Puerto Rico",
-        "density_2": 1082.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Puerto Rico",
-        "density": 1082.0,
-        "layer": "USA Borders copy",
-        "path": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes",
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": "Puerto Rico",
-        "density_2": 1082.0,
-        "layer_2": "USA Borders copy",
-        "path_2": "/Volumes/Macintosh HD/Users/tvs/Downloads/geos/USA Borders copy.geojson|geometrytype=Polygon|uniqueGeometryType=yes"
+        "layer": "USA Borders"
       },
       "geometry": { "type": "MultiPolygon", "coordinates": [] }
     },
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Florida",
-        "density": 353.4,
         "layer": null,
         "path": null,
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": null,
-        "density_2": null,
+
         "layer_2": null,
         "path_2": null
       },
@@ -4020,18 +3257,10 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": null,
-        "countryKey": null,
-        "countryName": null,
         "name": "Louisiana",
-        "density": 105.0,
         "layer": null,
         "path": null,
-        "zoneName_2": null,
-        "countryKey_2": null,
-        "countryName_2": null,
-        "name_2": null,
-        "density_2": null,
+
         "layer_2": null,
         "path_2": null
       },
