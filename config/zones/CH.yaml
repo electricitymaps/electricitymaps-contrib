@@ -166,27 +166,27 @@ emissionFactors:
       - datetime: '2017-01-01'
         _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
-        value: 343
+        value: 384
       - datetime: '2018-01-01'
         _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
-        value: 418
+        value: 464
       - datetime: '2019-01-01'
         _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
-        value: 353
+        value: 391
       - datetime: '2020-01-01'
         _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
-        value: 312
+        value: 349
       - datetime: '2021-01-01'
         _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
-        value: 270
+        value: 306
       - datetime: '2022-01-01'
         _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
-        value: 253
+        value: 292
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
