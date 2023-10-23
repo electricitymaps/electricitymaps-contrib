@@ -65,6 +65,7 @@ function generateTopojson(
   const objects = topo.objects.objects as any;
   const newObjects = {} as typeof topo.objects;
   for (const geo of objects.geometries) {
+    const isZoneFC = geo.properties?.zoneName ? true : false;
     // Remove countryName as it is not used in the frontend
     if (geo.properties?.countryName) {
       delete geo.properties.countryName;
@@ -74,7 +75,9 @@ function generateTopojson(
       geo.properties.center = getCenter(fc, geo.properties.zoneName);
     }
 
-    newObjects[geo.properties.zoneName] = geo;
+    isZoneFC
+      ? (newObjects[geo.properties.zoneName] = geo)
+      : (newObjects[geo.properties.stateName] = geo);
   }
   topo.objects = newObjects;
 

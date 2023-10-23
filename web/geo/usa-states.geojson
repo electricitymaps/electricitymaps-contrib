@@ -335,7 +335,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "stateName": "District of Columbia", "stateId": "Unknown" },
+      "properties": { "stateName": "District of Columbia", "stateId": "DC" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1173,7 +1173,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "stateName": "", "stateId": "Unknown" },
+      "properties": { "stateName": "", "stateId": "" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
