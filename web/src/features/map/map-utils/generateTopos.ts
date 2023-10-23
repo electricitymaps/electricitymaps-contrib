@@ -13,13 +13,13 @@ import statesTopo from '../../../../config/usa-states.json';
 import worldTopo from '../../../../config/world.json';
 // TODO: Investigate if we can move this step to buildtime geo scripts
 export interface TopoObject {
-  type: any;
+  type: 'MultiPolygon';
   arcs: number[][][];
   properties: Omit<GeometryProperties, 'color' | 'zoneId'>;
 }
 
 export interface Topo {
-  type: any;
+  type: 'Topology';
   arcs: number[][][];
   objects: {
     [key: string]: TopoObject;
@@ -27,13 +27,13 @@ export interface Topo {
 }
 
 export interface StatesTopoObject {
-  type: any;
+  type: 'MultiPolygon';
   arcs: number[][][];
   properties: Omit<StateGeometryProperties, 'zoneId'>;
 }
 
 export interface StatesTopo {
-  type: any;
+  type: 'Topology';
   arcs: number[][][];
   objects: {
     [key: string]: StatesTopoObject;
