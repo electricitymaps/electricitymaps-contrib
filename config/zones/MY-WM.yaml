@@ -130,6 +130,6 @@ fallbackZoneMixes:
         unknown: 0.010852222664167967
         wind: 2.829979460437189e-05
 parsers:
-  consumption: MY_WM.fetch_consumption
-  production: MY_WM.fetch_production
+  consumption: GSO.fetch_consumption
+  production: GSO.fetch_production
 timezone: null

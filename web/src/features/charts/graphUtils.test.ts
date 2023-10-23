@@ -4,8 +4,8 @@ import { Mode } from 'utils/constants';
 import {
   getElectricityProductionValue,
   getRatioPercent,
-  getTotalElectricity,
-  getTotalEmissions,
+  getTotalElectricityAvailable,
+  getTotalEmissionsAvailable,
 } from './graphUtils';
 
 describe('getRatioPercent', () => {
@@ -93,11 +93,11 @@ describe('getElectricityProductionValue', () => {
   });
 });
 
-describe('getTotalEmissionsOrElectricity', () => {
+describe('getTotalEmissionsAvailableOrElectricityAvailable', () => {
   const zoneData = {
     totalCo2Production: 100,
-    totalCo2Consumption: 175,
-    totalConsumption: 350,
+    totalCo2Consumption: 5,
+    totalConsumption: 50,
     totalCo2Discharge: 50,
     totalProduction: 200,
     totalDischarge: 50,
@@ -106,30 +106,37 @@ describe('getTotalEmissionsOrElectricity', () => {
   } as ZoneDetail;
 
   it('handles emissions for consumption', () => {
-    const actual = getTotalEmissions(zoneData, Mode.CONSUMPTION);
+    const actual = getTotalEmissionsAvailable(zoneData, Mode.CONSUMPTION);
     expect(actual).toEqual(175);
   });
 
   it('handles power for consumption', () => {
-    const actual = getTotalElectricity(zoneData, Mode.CONSUMPTION);
+    const actual = getTotalElectricityAvailable(zoneData, Mode.CONSUMPTION);
     expect(actual).toEqual(350);
   });
 
   it('handles emissions for production', () => {
-    const actual = getTotalEmissions(zoneData, Mode.PRODUCTION);
+    const actual = getTotalEmissionsAvailable(zoneData, Mode.PRODUCTION);
     expect(actual).toEqual(150);
   });
 
   it('handles power for production', () => {
-    const actual = getTotalElectricity(zoneData, Mode.PRODUCTION);
+    const actual = getTotalElectricityAvailable(zoneData, Mode.PRODUCTION);
     expect(actual).toEqual(250);
   });
 
   it('returns 0 when productionValue is 0', () => {
-    const actual = getTotalElectricity(
+    const actual = getTotalElectricityAvailable(
       { ...zoneData, totalProduction: 0, totalDischarge: 0 },
       Mode.PRODUCTION
     );
     expect(actual).toEqual(0);
+  });
+  it('returns NaN when missing productionValue', () => {
+    const actual = getTotalElectricityAvailable(
+      { ...zoneData, totalProduction: null },
+      Mode.PRODUCTION
+    );
+    expect(actual).toEqual(Number.NaN);
   });
 });

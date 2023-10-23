@@ -58,7 +58,7 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   }, [solarData?.header.nx, solarData?.header.ny]);
 
   useEffect(() => {
-    if (!node || !map) {
+    if (!node || !map?.isStyleLoaded()) {
       return;
     }
     const north = gudermannian(convertYToLat(node.height - 1, 0));
@@ -84,7 +84,7 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   }, [map, node]);
 
   useEffect(() => {
-    if (!node || !map || !isVisibleReference.current) {
+    if (!node || !map?.isStyleLoaded() || !isVisibleReference.current) {
       return;
     }
     if (!map.getLayer('solar-point')) {
