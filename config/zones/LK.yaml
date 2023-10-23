@@ -19,5 +19,5 @@ capacity:
 contributors:
   - q--
 parsers:
-  production: LK.fetch_production
+  production: CEB.fetch_production
 timezone: Asia/Colombo
