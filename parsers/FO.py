@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from logging import Logger, getLogger
 from typing import Literal, TypedDict
 
 import arrow
 from requests import Response, Session
-
-from parsers.lib.config import refetch_frequency
 
 from .lib.exceptions import ParserException
 from .lib.validation import validate
@@ -46,7 +44,6 @@ def map_generation_type(raw_generation_type):
     return MAP_GENERATION.get(raw_generation_type, None)
 
 
-@refetch_frequency(timedelta(minutes=5))
 def fetch_production(
     zone_key: VALID_ZONE_KEYS = "FO",
     session: Session | None = None,

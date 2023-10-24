@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { useAtom } from 'jotai';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
-import { getTotalEmissions } from '../graphUtils';
+import { getTotalEmissionsAvailable } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
 export function useEmissionChartData() {
@@ -21,7 +21,7 @@ export function useEmissionChartData() {
       return {
         datetime,
         layerData: {
-          emissions: getTotalEmissions(value, mixMode),
+          emissions: getTotalEmissionsAvailable(value, mixMode),
         },
         meta: value,
       };
