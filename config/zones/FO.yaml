@@ -64,7 +64,8 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2021
       value: 1193.417464
     unknown:
-      source: Tidal (IPCC 2014)
+      comment: Data reflects Ocean (tidal) direct emissions from table A.III.2
+      source: IPCC 2014
       value: 0
   lifecycle:
     battery discharge:
@@ -124,7 +125,8 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
       value: 1437.417464
     unknown:
-      source: Tidal (IPCC 2014)
+      comment: Data reflects median Ocean (tidal) lifecycle emissions from table A.III.2
+      source: IPCC 2014
       value: 17
     wind:
       datetime: '2014-01-01'
