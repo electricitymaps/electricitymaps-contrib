@@ -27,17 +27,17 @@ export const GEO_CONFIG = {
 
 export const STATES_CONFIG = {
   STATES_PATH: path.resolve(
-    fileURLToPath(new URL('usa-states.geojson', import.meta.url))
+    fileURLToPath(new URL('usa_states.geojson', import.meta.url))
   ),
   OUT_PATH: path.resolve(
-    fileURLToPath(new URL('../config/usa-states.json', import.meta.url))
+    fileURLToPath(new URL('../config/usa_states.json', import.meta.url))
   ),
   ERROR_PATH: path.resolve(fileURLToPath(new URL('.', import.meta.url))),
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 } as const;
 
 const EXCHANGE_OUT_PATH = path.resolve(
-  fileURLToPath(new URL('../config/excluded-aggregated-exchanges.json', import.meta.url))
+  fileURLToPath(new URL('../config/excluded_aggregated_exchanges.json', import.meta.url))
 );
 
 const worldFC: WorldFeatureCollection = getJSON(GEO_CONFIG.WORLD_PATH);
@@ -66,5 +66,5 @@ if (skipped === true) {
 }
 
 if (statesSkipped === true) {
-  console.info('No changes to usa-states.json');
+  console.info('No changes to usa_states.json');
 }
