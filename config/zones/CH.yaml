@@ -74,27 +74,21 @@ emissionFactors:
         value: 113.07156762843732
     unknown:
       - datetime: '2017-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 271
       - datetime: '2018-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 335
       - datetime: '2019-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 279
       - datetime: '2020-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 244
       - datetime: '2021-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 209
       - datetime: '2022-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 195
   lifecycle:
@@ -164,27 +158,21 @@ emissionFactors:
       value: 29.5
     unknown:
       - datetime: '2017-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 384
       - datetime: '2018-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 464
       - datetime: '2019-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 391
       - datetime: '2020-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 349
       - datetime: '2021-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 306
       - datetime: '2022-01-01'
-        _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
         source: SFOE, Electricity Maps
         value: 292
 estimation_method: RECONSTRUCT_BREAKDOWN
@@ -302,27 +290,21 @@ isLowCarbon:
     value: 0.894
   unknown:
     - datetime: '2017-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.53
     - datetime: '2018-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.42
     - datetime: '2019-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.51
     - datetime: '2020-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.57
     - datetime: '2021-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.64
     - datetime: '2022-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.66
 isRenewable:
@@ -332,27 +314,21 @@ isRenewable:
     value: 0.5771
   unknown:
     - datetime: '2017-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.53
     - datetime: '2018-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.42
     - datetime: '2019-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.51
     - datetime: '2020-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.57
     - datetime: '2021-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.64
     - datetime: '2022-01-01'
-      _comment: 'Assumed make up of the unknown production is detailed here: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E'
       source: SFOE, Electricity Maps
       value: 0.66
 parsers:
@@ -368,4 +344,6 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  SFOE, Electricity Maps:
+    link: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E
 timezone: Europe/Zurich
