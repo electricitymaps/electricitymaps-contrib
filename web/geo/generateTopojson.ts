@@ -66,7 +66,9 @@ function generateTopojson(
   const newObjects = {} as typeof topo.objects;
   for (const geo of objects.geometries) {
     // Remove countryName as it is not used in the frontend
-    delete geo.properties.countryName;
+    if (geo.properties?.countryName) {
+      delete geo.properties.countryName;
+    }
     // Precompute center for enable centering on the zone
     geo.properties.center = getCenter(fc, geo.properties.zoneName);
 

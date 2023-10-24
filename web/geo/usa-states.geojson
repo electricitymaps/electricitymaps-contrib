@@ -4,10 +4,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "name": "Alabama",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Alabama", "stateId": "AL" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -53,10 +50,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Arizona",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Arizona", "stateId": "AZ" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -101,10 +95,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Arkansas",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Arkansas", "stateId": "AR" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -154,10 +145,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "California",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "California", "stateId": "CA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -263,10 +251,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Colorado",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Colorado", "stateId": "CO" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -295,10 +280,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Connecticut",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Connecticut", "stateId": "CT" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -327,10 +309,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Delaware",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Delaware", "stateId": "DE" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -356,10 +335,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "District of Columbia",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "District of Columbia", "stateId": "Unknown" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -377,42 +353,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Florida",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Hawaii",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Louisiana",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Puerto Rico",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Georgia",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Georgia", "stateId": "GA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -477,42 +418,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Florida",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Hawaii",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Louisiana",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Puerto Rico",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Idaho",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Idaho", "stateId": "ID" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -591,10 +497,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Illinois",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Illinois", "stateId": "IL" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -674,10 +577,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Indiana",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Indiana", "stateId": "IN" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -736,10 +636,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Iowa",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Iowa", "stateId": "IA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -802,10 +699,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Kansas",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Kansas", "stateId": "KS" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -831,10 +725,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Kentucky",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Kentucky", "stateId": "KY" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -922,42 +813,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Florida",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Hawaii",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Louisiana",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Puerto Rico",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Maine",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Maine", "stateId": "ME" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1039,10 +895,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Maryland",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Maryland", "stateId": "MD" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1115,10 +968,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Massachusetts",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Massachusetts", "stateId": "MA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1166,10 +1016,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Michigan",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Michigan", "stateId": "MI" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1326,9 +1173,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "", "stateId": "Unknown" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1348,10 +1193,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Minnesota",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Minnesota", "stateId": "MN" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1454,10 +1296,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Mississippi",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Mississippi", "stateId": "MS" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1516,10 +1355,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Missouri",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Missouri", "stateId": "MO" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1585,10 +1421,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Montana",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Montana", "stateId": "MT" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1653,10 +1486,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Nebraska",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Nebraska", "stateId": "NE" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1698,10 +1528,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Nevada",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Nevada", "stateId": "NV" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1735,10 +1562,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "New Hampshire",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "New Hampshire", "stateId": "NH" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1779,10 +1603,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "New Jersey",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "New Jersey", "stateId": "NJ" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1827,10 +1648,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "New Mexico",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "New Mexico", "stateId": "NM" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1860,10 +1678,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "New York",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "New York", "stateId": "NY" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1944,10 +1759,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "North Carolina",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "North Carolina", "stateId": "NC" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2030,10 +1842,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "North Dakota",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "North Dakota", "stateId": "ND" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2062,10 +1871,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Ohio",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Ohio", "stateId": "OH" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2125,10 +1931,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Oklahoma",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Oklahoma", "stateId": "OK" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2186,10 +1989,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Oregon",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Oregon", "stateId": "OR" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2258,10 +2058,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Pennsylvania",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Pennsylvania", "stateId": "PA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2307,10 +2104,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Rhode Island",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Rhode Island", "stateId": "RI" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2347,10 +2141,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "South Carolina",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "South Carolina", "stateId": "SC" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2407,10 +2198,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "South Dakota",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "South Dakota", "stateId": "SD" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2452,10 +2240,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Tennessee",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Tennessee", "stateId": "TN" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2511,10 +2296,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Texas",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Texas", "stateId": "TX" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2679,10 +2461,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Utah",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Utah", "stateId": "UT" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2707,10 +2486,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Vermont",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Vermont", "stateId": "VT" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2751,10 +2527,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Virginia",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Virginia", "stateId": "VA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2847,10 +2620,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Washington",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Washington", "stateId": "WA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2924,10 +2694,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "West Virginia",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "West Virginia", "stateId": "WV" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -3005,10 +2772,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Wisconsin",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Wisconsin", "stateId": "WI" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -3096,10 +2860,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Wyoming",
-        "layer": "USA Borders"
-      },
+      "properties": { "zoneName": "Wyoming", "stateId": "WY" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -3125,46 +2886,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Florida",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Hawaii",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Louisiana",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Puerto Rico",
-        "layer": "USA Borders"
-      },
-      "geometry": { "type": "MultiPolygon", "coordinates": [] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Florida",
-        "layer": null,
-        "path": null,
-
-        "layer_2": null,
-        "path_2": null
-      },
+      "properties": { "zoneName": "Florida", "stateId": "FL" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -3256,14 +2978,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Louisiana",
-        "layer": null,
-        "path": null,
-
-        "layer_2": null,
-        "path_2": null
-      },
+      "properties": { "zoneName": "Louisiana", "stateId": "LA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
