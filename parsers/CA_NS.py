@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 from datetime import datetime, timezone
 from logging import Logger, getLogger
 from typing import Any
@@ -51,10 +50,23 @@ def _get_ns_info(
 ) -> (ExchangeList, ProductionBreakdownList):
     base_loads = session.get(LOAD_URL).json()  # Base loads in MW
     mixes_percent = session.get(MIX_URL).json()  # Electricity breakdowns in %
+    if any(
+        base_load["datetime"] != mix_percent["datetime"]
+        for base_load, mix_percent in zip(base_loads, mixes_percent)
+    ):
+        raise ParserException(PARSER, "source data is out of sync", ZONE_KEY)
 
     exchanges = ExchangeList(logger)
     production_breakdowns = ProductionBreakdownList(logger)
-    for mix_percent in mixes_percent:
+    # Skip the first element of each JSON array because the reported base load
+    # is always 0 MW.
+    for base_load, mix_percent in zip(base_loads[1:], mixes_percent[1:]):
+        # The datetime key is in the format '/Date(1493924400000)/'; extract
+        # the timestamp 1493924400 (cutting out the last three zeros as well).
+        date_time = datetime.fromtimestamp(
+            int(base_load["datetime"][6:-5]), tz=timezone.utc
+        )
+
         mix_fraction = {
             "coal": mix_percent["Solid Fuel"] / 100.0,
             "gas": (
@@ -68,12 +80,6 @@ def _get_ns_info(
             "wind": mix_percent["Wind"] / 100.0,
             "imports": mix_percent["Imports"] / 100.0,
         }
-
-        # The datetime key is in the format '/Date(1493924400000)/'; extract
-        # the timestamp 1493924400 (cutting out the last three zeros as well).
-        date_time = datetime.fromtimestamp(
-            int(mix_percent["datetime"][6:-5]), tz=timezone.utc
-        )
 
         # Ensure the fractions are within bounds.
         valid = True
@@ -89,28 +95,10 @@ def _get_ns_info(
         if not valid:
             continue
 
-        # Find the base load that corresponds with this mix so we can convert
-        # the mix values to megawatts.
-        corresponding_load = [
-            base_load
-            for base_load in base_loads
-            if base_load["datetime"] == mix_percent["datetime"]
-        ]
-        if corresponding_load:
-            load = corresponding_load[0]["Base Load"]
-        else:
-            # If not found, assume 1244 MW, based on average yearly electricity
-            # available for use in 2014 and 2015 (Statistics Canada table
-            # 127-0008 for Nova Scotia).
-            load = 1244
-            logger.warning(
-                f"unable to find load for {date_time}, assuming 1244 MW",
-                extra={"key": ZONE_KEY},
-            )
-
         # Convert the mix fractions to megawatts.
         mix_megawatt = {
-            mode: fraction * load for mode, fraction in mix_fraction.items()
+            mode: base_load["Base Load"] * fraction
+            for mode, fraction in mix_fraction.items()
         }
 
         # Ensure the power values (MW) are within bounds.
