@@ -7,20 +7,17 @@ capacity:
   geothermal: 0
   oil: 850
   coal: 3850
-  gas: 2875
+  gas: 4000
   hydro: 780
   hydro storage: 2123
-  nuclear: 920
-  solar: 55.9
+  nuclear: 0
+  solar: 5690
   wind: 365
-disclaimer: The data provider (Chugoku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
+  biomass: 500
 emissionFactors:
   lifecycle:
     unknown:
-      _comment: 'Source: Enerdata 2022 Japanese National Average'
-      _url:
-        - https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
-      source: Enerdata 2022
+      source: 'Enerdata 2022 Japanese National Average'
       value: 462
 contributors:
   - tmslaine
@@ -31,3 +28,6 @@ parsers:
   price: JP.fetch_price
   production: JP.fetch_production
 timezone: Asia/Tokyo
+sources:
+  Enerdata 2022 Japanese National Average:
+    link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf

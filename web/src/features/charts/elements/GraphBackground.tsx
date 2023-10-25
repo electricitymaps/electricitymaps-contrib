@@ -2,6 +2,7 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable react/display-name */
 import React from 'react';
+
 import { detectHoveredDatapointIndex, noop } from '../graphUtils';
 
 const GraphBackground = React.memo(
@@ -56,9 +57,9 @@ const GraphBackground = React.memo(
         style={{ cursor: 'pointer', opacity: 0 }}
         /* Support only click events in mobile mode, otherwise react to mouse hovers */
         onClick={isMobile ? handleRectMouseMove : noop}
-        onFocus={!isMobile ? handleRectMouseMove : noop}
-        onMouseOver={!isMobile ? handleRectMouseMove : noop}
-        onMouseMove={!isMobile ? handleRectMouseMove : noop}
+        onFocus={isMobile ? noop : handleRectMouseMove}
+        onMouseOver={isMobile ? noop : handleRectMouseMove}
+        onMouseMove={isMobile ? noop : handleRectMouseMove}
         onMouseOut={handleRectMouseOut}
         onBlur={handleRectMouseOut}
       />

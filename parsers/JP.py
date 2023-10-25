@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-# coding=utf-8
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
 import pandas as pd
 from requests import Session
 
+from electricitymap.contrib.config import ZONES_CONFIG
 from parsers import occtonet
 from parsers.lib.config import refetch_frequency
 
@@ -39,11 +38,28 @@ sources = {
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
 
+def get_wind_capacity(datetime: datetime, zone_key, logger: Logger):
+    ZONE_CONFIG = ZONES_CONFIG[zone_key]
+    try:
+        capacity = ZONE_CONFIG["capacity"]["wind"]
+        if zone_key == "JP-HKD":
+            if datetime.year <= 2019:
+                capacity = 480
+            elif datetime.year == 2020:
+                capacity = 520
+            elif datetime.year >= 2021:
+                capacity = 577
+    except Exception as e:
+        logger.error(f"Wind capacity not found in configuration file: {e.args}")
+        capacity = None
+    return capacity
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -56,6 +72,9 @@ def fetch_production(
     datalist = []
 
     for i in df.index:
+        capacity = get_wind_capacity(
+            df.loc[i, "datetime"].to_pydatetime(), zone_key, logger
+        )
         data = {
             "zoneKey": zone_key,
             "datetime": df.loc[i, "datetime"].to_pydatetime(),
@@ -71,17 +90,17 @@ def fetch_production(
                 "geothermal": None,
                 "unknown": df.loc[i, "unknown"],
             },
-            "source": "occtonet.or.jp, {}".format(sources[zone_key]),
+            "capacity": {"wind": capacity if capacity is not None else {}},
+            "source": f"occtonet.or.jp, {sources[zone_key]}",
         }
         datalist.append(data)
-
     return datalist
 
 
 def fetch_production_df(
     zone_key: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -123,13 +142,12 @@ def fetch_production_df(
     # When there is solar, remove it from other production
     if "solar" in df.columns:
         df["unknown"] = df["unknown"] - df["solar"]
-
     return df
 
 
 def fetch_consumption_df(
     zone_key: str = "JP-TK",
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -159,7 +177,7 @@ def fetch_consumption_df(
         "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
             datestamp
         ),
-        "JP-ON": "https://www.okiden.co.jp/denki2/juyo_10_{}.csv".format(datestamp),
+        "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
 
     # First roughly 40 rows of the consumption files have hourly data,
@@ -197,8 +215,8 @@ def fetch_consumption_df(
 
 def fetch_consumption_forecast(
     zone_key: str = "JP-KY",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
@@ -232,7 +250,7 @@ def fetch_consumption_forecast(
         "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
             datestamp
         ),
-        "JP-ON": "https://www.okiden.co.jp/denki2/juyo_10_{}.csv".format(datestamp),
+        "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
     # Skip non-tabular data at the start of source files
     if zone_key == "JP-KN":
@@ -276,8 +294,8 @@ def fetch_consumption_forecast(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
@@ -288,7 +306,7 @@ def fetch_price(
         fiscal_year = target_datetime.year - 1
     else:
         fiscal_year = target_datetime.year
-    url = "http://www.jepx.org/market/excel/spot_{}.csv".format(fiscal_year)
+    url = f"http://www.jepx.org/market/excel/spot_{fiscal_year}.csv"
     df = pd.read_csv(url, encoding="shift-jis")
 
     df = df.iloc[:, [0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14]]

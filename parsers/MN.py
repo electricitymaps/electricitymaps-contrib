@@ -2,94 +2,150 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
+from typing import Any
 
-from bs4 import BeautifulSoup
 from pytz import timezone
-from requests import Session
+from requests import Response, Session
 
-#   MAIN_WEBSITE = https://ndc.energy.mn/
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from parsers.lib.exceptions import ParserException
+
 NDC_GENERATION = "https://disnews.energy.mn/test/convert.php"
-TZ = "Asia/Ulaanbaatar"  # UTC+8
+TZ = timezone("Asia/Ulaanbaatar")  # UTC+8
+
+# Query fields to web API fields
+JSON_QUERY_TO_SRC = {
+    "time": "date",
+    "consumptionMW": "syssum",
+    "solarMW": "sumnar",
+    "windMW": "sums",
+    "importMW": "energyimport",  # positive = import
+    "temperatureC": "t",  # current temperature
+}
+
+
+def parse_json(web_json: dict) -> dict[str, Any]:
+    """
+    Parse the fetched JSON data to our query format according to JSON_QUERY_TO_SRC.
+    Example of expected JSON format present at URL:
+    {"date":"2023-06-27 18:00:00","syssum":"869.37","sumnar":42.34,"sums":119.79,"energyimport":"49.58","t":"17"}
+    """
+
+    # Validate first if keys in fetched dict match expected keys
+    if set(JSON_QUERY_TO_SRC.values()) != set(web_json.keys()):
+        raise ParserException(
+            parser="MN.py",
+            message=f"Fetched keys from source {web_json.keys()} do not match expected keys {JSON_QUERY_TO_SRC.values()}.",
+        )
+
+    if None in web_json.values():
+        raise ParserException(
+            parser="MN.py",
+            message=f"Fetched values contain null. Fetched data: {web_json}.",
+        )
+
+    # Then we can safely parse them
+    query_data = dict()
+    for query_key, src_key in JSON_QUERY_TO_SRC.items():
+        if query_key == "time":
+            # convert to datetime
+            query_data[query_key] = datetime.fromisoformat(web_json[src_key]).replace(
+                tzinfo=TZ
+            )
+        else:
+            # or convert to float, might also be string
+            query_data[query_key] = float(web_json[src_key])
+
+    return query_data
+
+
+def query(session: Session) -> dict[str, Any]:
+    """
+    Query the JSON endpoint and parse it.
+    """
+
+    target_response: Response = session.get(NDC_GENERATION)
+
+    if not target_response.ok:
+        raise ParserException(
+            parser="MN.py",
+            message=f"Data request did not succeed: {target_response.status_code}",
+        )
+
+    # Read as JSON
+    response_json = target_response.json()
+    query_result = parse_json(response_json)
+
+    return query_result
 
 
 def fetch_production(
-    zone_key: str = "MN",
+    zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates.")
-    with session.get(NDC_GENERATION) as response:
-        NDC_SOUP = BeautifulSoup(response.content, "html.parser")
 
-    # Нийлбэр ачаалал / total load/demand
-    consumption_MW = float(NDC_SOUP.find_all("td")[6].text.strip(" МВт"))
-    # НЦС / Нарны Цахилгаан Станц # Yes, solar DOES produce at night (!) because of the use of thermal-based Concentrated Solar Power / CSP
-    solar_MW = float(NDC_SOUP.find_all("td")[7].text.strip(" МВт"))
-    # СЦС / Салхин Цахилгаан Станц # wind energy
-    wind_MW = float(NDC_SOUP.find_all("td")[8].text.strip(" МВт"))
-    # Импортын чадал # exchange balance - positive=import; negative=export
-    exchanges_MW = float(NDC_SOUP.find_all("td")[9].text.strip(" МВт"))
-    # Calculated 'unknown' production from the 4 values above.
+    query_data = query(session)
+
+    # Calculated 'unknown' production from available data (consumption, import, solar, wind).
     # 'unknown' consists of 92.8% coal, 5.8% oil and 1.4% hydro as per 2020; sources: IEA and IRENA statistics.
-    unknown_MW = round(consumption_MW - exchanges_MW - solar_MW - wind_MW, 2)
+    query_data["unknownMW"] = round(
+        query_data["consumptionMW"]
+        - query_data["importMW"]
+        - query_data["solarMW"]
+        - query_data["windMW"],
+        13,
+    )
 
-    dataset_production = {"unknown": unknown_MW, "solar": solar_MW, "wind": wind_MW}
+    prod_mix = ProductionMix(
+        solar=query_data["solarMW"],
+        wind=query_data["windMW"],
+        unknown=query_data["unknownMW"],
+    )
 
-    date_raw = NDC_SOUP.find_all("td")[0].text.strip("Хоногийн ачаалал: ")
-    date_pretty = datetime.strptime(date_raw, "%Y-%m-%d")
-    time_raw = NDC_SOUP.find_all("td")[14].text.strip("Импортын чадал ")
-    time_time = datetime.strptime(time_raw, "%H:%M:%S")
-    time_pretty = datetime.time(time_time)
+    prod_breakdown_list = ProductionBreakdownList(logger)
+    prod_breakdown_list.append(
+        datetime=query_data["time"],
+        zoneKey=zone_key,
+        source="https://ndc.energy.mn/",
+        production=prod_mix,
+    )
 
-    time_combined = datetime.combine(date_pretty, time_pretty)
-
-    data = {
-        "zoneKey": zone_key,
-        "datetime": time_combined.replace(tzinfo=timezone(TZ)),
-        "production": dataset_production,
-        "source": "https://ndc.energy.mn/",
-    }
-
-    return data
+    return prod_breakdown_list.to_list()
 
 
 def fetch_consumption(
-    zone_key: str = "MN",
+    zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates.")
-    with session.get(NDC_GENERATION) as response:
-        NDC_SOUP = BeautifulSoup(response.content, "html.parser")
 
-    # Нийлбэр ачаалал
-    consumption_MW = float(NDC_SOUP.find_all("td")[6].text.strip(" МВт"))
+    query_data = query(session)
 
-    date_raw = NDC_SOUP.find_all("td")[0].text.strip("Хоногийн ачаалал: ")
-    date_pretty = datetime.strptime(date_raw, "%Y-%m-%d")
-    time_raw = NDC_SOUP.find_all("td")[14].text.strip("Импортын чадал ")
-    time_time = datetime.strptime(time_raw, "%H:%M:%S")
-    time_pretty = datetime.time(time_time)
+    consumption_list = TotalConsumptionList(logger)
+    consumption_list.append(
+        datetime=query_data["time"],
+        zoneKey=zone_key,
+        consumption=query_data["consumptionMW"],
+        source="https://ndc.energy.mn/",
+    )
 
-    time_combined = datetime.combine(date_pretty, time_pretty)
-
-    data = {
-        "zoneKey": zone_key,
-        "datetime": time_combined.replace(tzinfo=timezone(TZ)),
-        "consumption": consumption_MW,
-        "source": "https://ndc.energy.mn/",
-    }
-
-    return data
+    return consumption_list.to_list()
 
 
 if __name__ == "__main__":
     print("fetch_production() ->")
-    print(fetch_production())
+    print(fetch_production(ZoneKey("MN")))
     print("fetch_consumption() ->")
-    print(fetch_consumption())
+    print(fetch_consumption(ZoneKey("MN")))

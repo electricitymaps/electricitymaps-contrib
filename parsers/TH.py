@@ -1,14 +1,13 @@
-import datetime as dt
 import json
 import re
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
 
-import arrow
 import pytz
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
+from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 EGAT_GENERATION_URL = "https://www.sothailand.com/sysgen/ws/sysgen"
@@ -19,90 +18,32 @@ MEA_URL = "www.mea.or.th"
 TZ = "Asia/Bangkok"
 
 
-def fetch_production(
-    zone_key: str = "TH",
-    session: Optional[requests.Session] = None,
-    target_datetime: Optional[dt.datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> List[dict]:
-    """Request the last known production mix (in MW) of a given country."""
-    data = _fetch_data(_as_localtime(target_datetime), "actual")
-
-    production = []
-    for item in data:
-        production.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": item["datetime"],
-                # All mapped to 'unknown' because there is no available breakdown.
-                "production": {"unknown": item["generation"]},
-                "source": EGAT_URL,
-            }
-        )
-    return production
-
-
-def fetch_consumption(
-    zone_key: str = "TH",
-    session: Optional[requests.Session] = None,
-    target_datetime: Optional[dt.datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> List[dict]:
-    """
-    Gets consumption for a specified zone.
-
-    We use the same value as the production for now.
-    But it would be better to include exchanged electricity data if available.
-    """
-    production = fetch_production(target_datetime=_as_localtime(target_datetime))
-    consumption = []
-    for item in production:
-        item["consumption"] = item["production"]["unknown"]
-        del item["production"]
-        consumption.append(item)
-    return consumption
-
-
-def fetch_generation_forecast(
-    zone_key: str = "TH",
-    session: Optional[requests.Session] = None,
-    target_datetime: Optional[dt.datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> List[dict]:
-    """Gets generation forecast for specified zone."""
-    data = _fetch_data(_as_localtime(target_datetime), "plan")
-
-    production = []
-    for item in data:
-        production.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": item["datetime"],
-                # All mapped to unknown as there is no available breakdown
-                "production": {"unknown": item["generation"]},
-                "source": EGAT_URL,
-            }
-        )
-    return production
-
-
-def _as_localtime(datetime):
+def _as_localtime(dt: datetime) -> datetime:
     """
     If there is no datetime given, returns the current datetime with timezone.
     Otherwise, it interprets the datetime as the representation of local time
     since the API server supposes the local timezone instead of UTC.
     """
     tzinfo = pytz.timezone(TZ)
-    if datetime is None:
-        return dt.datetime.now(tz=tzinfo)
-    return datetime.astimezone(tzinfo)
+    if dt is None:
+        return datetime.now(tz=tzinfo)
+    return dt.astimezone(tzinfo)
 
 
-def _fetch_data(target_datetime: dt.datetime, data_type: str) -> List[dict]:
+def _seconds_to_time(target_datetime: datetime, seconds_in_day: int) -> datetime:
+    """Convert a given seconds integer to a datetime value."""
+    today = target_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
+    dt = today + timedelta(seconds=seconds_in_day)
+    return dt
+
+
+def _fetch_data(
+    session: Session, target_datetime: datetime, data_type: str
+) -> list[dict]:
     """Fetch actual or planning generation data from the EGAT API endpoint."""
     url = f"{EGAT_GENERATION_URL}/{data_type}"
     if target_datetime is None:
-        target_datetime = arrow.now(TZ).datetime
+        target_datetime = _as_localtime(datetime.now())
 
     if data_type == "actual":
         params = {"name": "SYSTEM_GEN(MW)", "day": target_datetime.strftime("%d-%m-%Y")}
@@ -115,7 +56,7 @@ def _fetch_data(target_datetime: dt.datetime, data_type: str) -> List[dict]:
     # Example: [[0, 12345], [60, 12345.6], ...]
     # - The first integer is the seconds number since 00:00 am (i.e. 900 == 00:15 am)
     # - The second integer is the total generation (MW)
-    raw_text = requests.post(url, data=params).text
+    raw_text = session.post(url, data=params).text
 
     # Fix programming error of the returned value.
     # This API server returns a invalid string if the list is empty.
@@ -132,10 +73,10 @@ def _fetch_data(target_datetime: dt.datetime, data_type: str) -> List[dict]:
         seconds_in_day = item[0]
         generation = item[1]
 
-        datetime = _seconds_to_time(target_datetime, seconds_in_day)
+        dt = _seconds_to_time(target_datetime, seconds_in_day)
         data.append(
             {
-                "datetime": datetime,
+                "datetime": dt,
                 "generation": generation,
             }
         )
@@ -143,17 +84,85 @@ def _fetch_data(target_datetime: dt.datetime, data_type: str) -> List[dict]:
     return data
 
 
-def _seconds_to_time(target_datetime: dt.datetime, seconds_in_day: int) -> dt.datetime:
-    """Convert a given seconds integer to a datetime value."""
-    today = target_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
-    datetime = today + dt.timedelta(seconds=seconds_in_day)
-    return datetime
+@refetch_frequency(timedelta(days=1))
+def fetch_production(
+    zone_key: str = "TH",
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    session = session or Session()
+    """Request the last known production mix (in MW) of a given country."""
+    data = _fetch_data(session, _as_localtime(target_datetime), "actual")
+
+    production = []
+    for item in data:
+        production.append(
+            {
+                "zoneKey": zone_key,
+                "datetime": item["datetime"],
+                # All mapped to 'unknown' because there is no available breakdown.
+                "production": {"unknown": item["generation"]},
+                "source": EGAT_URL,
+            }
+        )
+    return production
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_consumption(
+    zone_key: str = "TH",
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """
+    Gets consumption for a specified zone.
+
+    We use the same value as the production for now.
+    But it would be better to include exchanged electricity data if available.
+    """
+    session = session or Session()
+    production = fetch_production(
+        session=session, target_datetime=_as_localtime(target_datetime)
+    )
+    consumption = []
+    for item in production:
+        item["consumption"] = item["production"]["unknown"]
+        del item["production"]
+        consumption.append(item)
+    return consumption
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_generation_forecast(
+    zone_key: str = "TH",
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Gets generation forecast for specified zone."""
+    session = session or Session()
+    data = _fetch_data(session, _as_localtime(target_datetime), "plan")
+
+    production = []
+    for item in data:
+        production.append(
+            {
+                "zoneKey": zone_key,
+                "datetime": item["datetime"],
+                # All mapped to unknown as there is no available breakdown
+                "production": {"unknown": item["generation"]},
+                "source": EGAT_URL,
+            }
+        )
+    return production
 
 
 def fetch_price(
     zone_key: str = "TH",
-    session: Optional[requests.Session] = None,
-    target_datetime: Optional[dt.datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -168,13 +177,21 @@ def fetch_price(
     **While actual BasePrice is done in a progressive manner, For Electricity Maps -
       we use "AmountDue" at 1MWh calculated at the highest pricing bracket for simplification.
     """
+    session = session or Session()
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     # Fetch price from MEA table.
     # `price_base` is 'Over 400 kWh (up from 401st)' from Table 1.1
-    with requests.get(MEA_BASEPRICE_URL) as response:
+    with session.get(MEA_BASEPRICE_URL) as response:
         soup_base = BeautifulSoup(response.content, "lxml")
+
+    if response.status_code != 200:
+        raise ParserException(
+            parser="TH.py",
+            message=f"{MEA_BASEPRICE_URL} returned {response.status_code}",
+            zone_key=zone_key,
+        )
 
     unit_price_table = soup_base.find_all("table")[1]
     price_base = unit_price_table.find_all("td")[19].text
@@ -182,11 +199,18 @@ def fetch_price(
     # Available Ft pricing history dated back as far as September 2535 B.E. (1992 C.E.)
     # `price_ft` slot's is 0+(month number), additional +13 is needed if that slot is " "
     # For 2023 multi-Ft rates, we assumed the household rate.
-    with requests.get(MEA_FT_URL) as response:
+    with session.get(MEA_FT_URL) as response:
         soup_ft = BeautifulSoup(response.content, "lxml")
 
+    if response.status_code != 200:
+        raise ParserException(
+            parser="TH.py",
+            message=f"{MEA_FT_URL} returned {response.status_code}",
+            zone_key=zone_key,
+        )
+
     ft_rate_table = soup_ft.find_all("table")[1]
-    curr_ft_month = arrow.now(TZ).month
+    curr_ft_month = _as_localtime(datetime.now()).month
     price_ft = ft_rate_table.find_all("td")[curr_ft_month].text
 
     if price_ft == "\xa0":
@@ -197,7 +221,7 @@ def fetch_price(
     return {
         "zoneKey": zone_key,
         "currency": "THB",
-        "datetime": arrow.now(TZ).datetime,
+        "datetime": _as_localtime(datetime.now()),
         "price": float(price_base) * 1000 + float(price_ft) * 10,
         "source": MEA_URL,
     }

@@ -1,9 +1,4 @@
-import mapboxgl from 'mapbox-gl';
-import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
-import { Layer, Map, MapRef, Source } from 'react-map-gl';
-import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
@@ -12,13 +7,18 @@ import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
+import mapboxgl from 'mapbox-gl';
+import maplibregl from 'maplibre-gl';
+import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
+import { Layer, Map, MapRef, Source } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
+
+import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
-import { getApproximateFeature } from './map-utils/getApproximateFeature';
 import {
   hoveredZoneAtom,
   loadingMapAtom,
@@ -173,20 +173,17 @@ export default function MapPage(): ReactElement {
     const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
     setSelectedZoneId(zoneId);
     if (map && zoneId) {
-      let feature = geometries.features.find(
+      const feature = geometries.features.find(
         (feature) => feature.properties.zoneId === zoneId
       );
       // if no feature matches, it means that the selected zone is not in current spatial resolution.
       // We cannot include geometries in dependencies, as we don't want to flyTo when user switches
       // between spatial resolutions. Therefore we find an approximate feature based on the zoneId.
       if (!feature) {
-        feature = getApproximateFeature(zoneId, geometries);
-      }
-
-      const center = feature?.properties.center;
-      if (!center) {
         return;
       }
+
+      const center = feature.properties.center;
       map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
       setLeftPanelOpen(true);
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
@@ -335,6 +332,7 @@ export default function MapPage(): ReactElement {
       onError={onError}
       onMouseMove={onMouseMove}
       onMouseOut={onMouseOut}
+      onTouchStart={onDragStart}
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
       onZoomStart={onZoomStart}

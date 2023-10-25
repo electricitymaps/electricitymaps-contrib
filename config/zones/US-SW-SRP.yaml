@@ -4,7 +4,7 @@ bounding_box:
   - - -110.438901961
     - 34.54817
 capacity:
-  battery storage: 45
+  battery storage: 305
   biomass: 0
   coal: 821.8
   gas: 10453.7
@@ -13,7 +13,7 @@ capacity:
   hydro storage: 154.1
   nuclear: 4209.6
   oil: 0
-  solar: 560
+  solar: 820
   unknown: 0
   wind: 113.4
 comment: Salt River Project
@@ -25,6 +25,10 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available. This zone includes all electricity production from the
+  generation-only balancing authorities Arlington Valley, LLC - AVBA
+  and New Harquahala Generating Company, LLC - HGBA. Read more on the wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -247,7 +251,6 @@ fallbackZoneMixes:
         solar: 0.017749440673082414
         unknown: 0.0006973867001293964
         wind: 0.008626087900728219
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

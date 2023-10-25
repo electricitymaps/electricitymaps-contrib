@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Mapeando o impacto climático da eletricidade"
+      "header": "Mapeando o impacto climático da eletricidade"
     },
     "view2": {
       "header": "Veja o quanto de CO₂ é emitido para produzir sua eletricidade em tempo real.",
@@ -23,7 +23,7 @@
       "header": "Saiba de onde sua eletricidade vem",
       "text": "As setas no mapa indicam fluxos de eletricidade entre áreas diferentes. Clique em uma área para ver mais informações sobre as origens de sua eletricidade."
     },
-    "view4": {
+    "view7": {
       "header": "Condições eólicas e solares em tempo real",
       "text": " A produção de energias eólicas e solares dependem do tempo. Para ver dados em tempo real em todo mundo sobre luminosidade e força do vento, pressione o botão do Sol para ver dados sobre a luz do Sol e pressione o botão do Vento para ver dados sobre a força do vento."
     }
@@ -35,7 +35,14 @@
     "renewable": "Renovável",
     "electricityproduction": "Produção de eletricidade",
     "electricityconsumption": "Consumo de eletricidade",
-    "bysource": "por fonte",
+    "by-source": {
+      "emissions": "Emissões de carbono por fonte",
+      "electricity-production": "Produção de eletricidade por fonte",
+      "electricity-consumption": "Consumo de eletricidade por fonte",
+      "total-emissions": "Emissões totais de carbono por fonte",
+      "total-electricity-production": "Produção total de eletricidade por fonte",
+      "total-electricity-consumption": "Consumo total de eletricidade por fonte"
+    },
     "emissions": "Emissões de carbono",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">adicionar ou editar fonte de dados</a>",
     "helpfrom": "com ajuda de",
@@ -44,7 +51,6 @@
     "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
     "now": "Agora",
     "dataIsDelayed": "Dados para essa região podem estar até %s horas atrasados. Dados em tempo real estão indisponíveis.",
-    "averagebysource": "média por fonte",
     "estimated": "estimado",
     "aggregated": "agregado",
     "dataIsEstimated": "Parte dos dados dessa região são estimados. Leia mais sobre nossa metodologia de estimativas <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">aqui</a>.",
@@ -169,7 +175,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são exportadas para %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> é importada de %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são importadas de %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "de CO₂eq por minuto",
+  "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "O mapa",
     "mapColors-question": "O que significam as cores no mapa?",
@@ -1558,10 +1564,6 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Cooperativa Avangrid Renewables"
-    },
     "US-NW-BPAT": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Administração de energia de Bonneville"
@@ -1654,10 +1656,6 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Estados Unidos da América",
       "zoneName": "El Paso Electric Company"
@@ -1665,10 +1663,6 @@
     "US-SW-GRIF": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Estados Unidos da América",

@@ -1,9 +1,19 @@
+import { useMatch, useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
   ZoneDetail,
 } from 'types';
+
+export function getZoneFromPath() {
+  const { zoneId } = useParams();
+  if (zoneId) {
+    return zoneId;
+  }
+  const match = useMatch('/zone/:id');
+  return match?.params.id || undefined;
+}
 
 export function getCO2IntensityByMode(
   zoneData: { co2intensity: number; co2intensityProduction: number },
@@ -107,4 +117,52 @@ export function getRenewableRatio(
   renewableRatioProduction: number | null | undefined
 ): number {
   return (isConsumption ? renewableRatio : renewableRatioProduction) ?? Number.NaN;
+}
+
+/**
+ * Function to round a number to a specific amount of decimals.
+ * @param {number} number - The number to round.
+ * @param {number} decimals - Defaults to 2 decimals.
+ * @returns {number} Rounded number.
+ */
+export const round = (number: number, decimals = 2): number => {
+  return (
+    (Math.round((Math.abs(number) + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
+    Math.sign(number)
+  );
+};
+
+/**
+ * Returns the net exchange of a zone
+ * @param zoneData - The zone data
+ * @returns The net exchange
+ */
+export function getNetExchange(
+  zoneData: ZoneDetail,
+  displayByEmissions: boolean
+): number {
+  if (Object.keys(zoneData.exchange).length === 0) {
+    return Number.NaN;
+  }
+
+  if (
+    !displayByEmissions &&
+    zoneData.totalImport === null &&
+    zoneData.totalExport === null
+  ) {
+    return Number.NaN;
+  }
+  if (
+    displayByEmissions &&
+    zoneData.totalCo2Import == null &&
+    zoneData.totalCo2Export == null
+  ) {
+    return Number.NaN;
+  }
+
+  const netExchangeValue = displayByEmissions
+    ? round((zoneData.totalCo2Import ?? 0) - (zoneData.totalCo2Export ?? 0)) // in CO₂eq
+    : round((zoneData.totalImport ?? 0) - (zoneData.totalExport ?? 0));
+
+  return netExchangeValue;
 }

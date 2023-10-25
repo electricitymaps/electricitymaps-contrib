@@ -1,14 +1,34 @@
 import { getCountryName, getZoneName } from 'translation/translation';
-import type { GridState } from 'types';
+import type { GridState, ZoneKey } from 'types';
+import { SpatialAggregate } from 'utils/constants';
 import { getCO2IntensityByMode } from 'utils/helpers';
+
+import { getHasSubZones } from '../zone/util';
 import { ZoneRowType } from './ZoneList';
+
+function filterZonesBySpatialAggregation(
+  zoneKey: ZoneKey,
+  spatialAggregation: string
+): boolean {
+  const hasSubZones = getHasSubZones(zoneKey);
+  const isSubZone = zoneKey ? zoneKey.includes('-') : true;
+  const isCountryView = spatialAggregation === SpatialAggregate.COUNTRY;
+  if (isCountryView && isSubZone) {
+    return false;
+  }
+  if (!isCountryView && hasSubZones) {
+    return false;
+  }
+  return true;
+}
 
 export const getRankedState = (
   data: GridState | undefined,
   getCo2colorScale: (co2intensity: number) => string,
   sortOrder: 'asc' | 'desc',
   datetimeIndex: string,
-  electricityMode: string
+  electricityMode: string,
+  spatialAggregation: string
 ): ZoneRowType[] => {
   if (!data) {
     return [];
@@ -22,6 +42,7 @@ export const getRankedState = (
   const zones = keys
     .map((key) => {
       const zoneData = zonesData.zones[key][datetimeIndex];
+
       const co2intensity = zoneData
         ? getCO2IntensityByMode(zoneData, electricityMode)
         : undefined;
@@ -35,7 +56,11 @@ export const getRankedState = (
         ranking: undefined,
       };
     })
-    .filter((zone) => zone.co2intensity !== undefined);
+    .filter(
+      (zone) =>
+        zone.co2intensity !== undefined &&
+        filterZonesBySpatialAggregation(zone.zoneId, spatialAggregation)
+    );
 
   const orderedZones =
     sortOrder === 'asc'

@@ -1,19 +1,19 @@
-import { StrictMode } from 'react';
+// Init CSS
+import 'react-spring-bottom-sheet/dist/style.css';
+import './index.css';
+
 import * as Sentry from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
-import { REFETCH_INTERVAL_FIVE_MINUTES } from 'api/helpers';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
+import { refetchDataOnHourChange } from 'utils/refetching';
 //import { registerSW } from 'virtual:pwa-register';
 
 const isProduction = import.meta.env.PROD;
-
-// Init CSS
-import 'react-spring-bottom-sheet/dist/style.css';
-import './index.css';
 
 if (isProduction) {
   Sentry.init({
@@ -53,10 +53,15 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: MAX_RETRIES,
-      refetchInterval: REFETCH_INTERVAL_FIVE_MINUTES,
+      refetchOnWindowFocus: false,
+      // by default data is cached and valid forever, as we handle invalidation ourselves
+      cacheTime: Number.POSITIVE_INFINITY,
+      staleTime: Number.POSITIVE_INFINITY,
     },
   },
 });
+
+refetchDataOnHourChange(queryClient);
 
 const container = document.querySelector('#root');
 if (container) {

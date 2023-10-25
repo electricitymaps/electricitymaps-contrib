@@ -3,7 +3,7 @@ This library contains validation functions applied to all parsers by the feeder.
 This is a higher level validation than validation.py
 """
 from datetime import datetime, timezone
-from typing import Any, Dict, List
+from typing import Any
 from warnings import warn
 
 import arrow
@@ -16,7 +16,7 @@ class ValidationError(ValueError):
     pass
 
 
-def validate_datapoint_format(datapoint: Dict[str, Any], kind: str, zone_key: ZoneKey):
+def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: ZoneKey):
     """
     Checks that a datapoint has the required keys. A parser can only be merged if the datapoints for each function have the correct format.
     """
@@ -56,7 +56,7 @@ def validate_reasonable_time(item, k):
         )
 
 
-def validate_consumption(obj: Dict, zone_key: ZoneKey) -> None:
+def validate_consumption(obj: dict, zone_key: ZoneKey) -> None:
     validate_datapoint_format(datapoint=obj, kind="consumption", zone_key=zone_key)
     if (obj.get("consumption") or 0) < 0:
         raise ValidationError(
@@ -81,7 +81,9 @@ def validate_exchange(item, k) -> None:
     if "datetime" not in item:
         raise ValidationError("datetime was not returned for %s" % k)
     if type(item["datetime"]) != datetime:
-        raise ValidationError("datetime %s is not valid for %s" % (item["datetime"], k))
+        raise ValidationError(
+            "datetime {} is not valid for {}".format(item["datetime"], k)
+        )
     validate_reasonable_time(item, k)
     if "netFlow" not in item:
         raise ValidationError("netFlow was not returned for %s" % k)
@@ -89,7 +91,7 @@ def validate_exchange(item, k) -> None:
     # capacity and has physical sense (no exchange should exceed 100GW)
     # Use https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/example.py for expected format
     if item.get("sortedZoneKeys", None) and item.get("netFlow", None):
-        zone_names: List[str] = item["sortedZoneKeys"]
+        zone_names: list[str] = item["sortedZoneKeys"]
         if abs(item.get("netFlow", 0)) > 100000:
             raise ValidationError(
                 "netFlow %s exceeds physical plausibility (>100GW) for %s"
@@ -112,7 +114,7 @@ def validate_exchange(item, k) -> None:
                     )
 
 
-def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
+def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
     validate_datapoint_format(datapoint=obj, kind="production", zone_key=zone_key)
     if "datetime" not in obj:
         raise ValidationError("datetime was not returned for %s" % zone_key)
@@ -125,7 +127,7 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
         raise ValidationError("zoneKey was not returned for %s" % zone_key)
     if not isinstance(obj["datetime"], datetime):
         raise ValidationError(
-            "datetime %s is not valid for %s" % (obj["datetime"], zone_key)
+            "datetime {} is not valid for {}".format(obj["datetime"], zone_key)
         )
     if (obj.get("zoneKey", None) or obj.get("countryCode", None)) != zone_key:
         raise ValidationError(
@@ -154,7 +156,6 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
             "US-SE-SEPA",
             "US-NW-GWA",
             "US-NW-DOPD",
-            "US-NW-AVRN",
             "LU",
         ]
     ):
@@ -177,16 +178,12 @@ def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
             )
         not_allowed_keys = set(obj["storage"]) - {"battery", "hydro"}
         if not_allowed_keys:
-            raise ValidationError(
-                "unexpected keys in storage: {}".format(not_allowed_keys)
-            )
+            raise ValidationError(f"unexpected keys in storage: {not_allowed_keys}")
     for key, value in obj["production"].items():
         if value is None:
             continue
         if value < 0:
-            raise ValidationError(
-                "%s: key %s has negative value %s" % (zone_key, key, value)
-            )
+            raise ValidationError(f"{zone_key}: key {key} has negative value {value}")
         # Plausibility Check, no more than 500GW
         if value > 500000:
             raise ValidationError(

@@ -1,41 +1,35 @@
 import { ZoneDetails } from 'types';
-import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
+import { TimeAverages } from 'utils/constants';
 
-type zoneConfigItem = {
-  contributors?: string[];
-  capacity?: any;
-  disclaimer?: string;
-  timezone?: string | null;
-  bounding_box?: any;
-  parsers?: any;
-  flag_file_name?: string;
-  estimation_method?: string;
-  subZoneNames?: string[];
-};
+import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
+import { CombinedZonesConfig } from '../../../../geo/types';
+
+const config = zonesConfigJSON as unknown as CombinedZonesConfig;
 
 export const getHasSubZones = (zoneId?: string) => {
   if (!zoneId) {
     return null;
   }
 
-  const config = zonesConfig[zoneId];
-  if (!config || !config.subZoneNames) {
+  const zoneConfig = config.zones[zoneId];
+  if (!zoneConfig || !zoneConfig.subZoneNames) {
     return false;
   }
-  return config.subZoneNames.length > 0;
+  return zoneConfig.subZoneNames.length > 0;
 };
 
 export enum ZoneDataStatus {
+  AGGREGATE_DISABLED = 'aggregate_disabled',
   NO_INFORMATION = 'no_information',
   NO_REAL_TIME_DATA = 'dark',
   AVAILABLE = 'available',
   UNKNOWN = 'unknown',
 }
 
-const zonesConfig: Record<string, zoneConfigItem | undefined> = zonesConfigJSON;
 export const getZoneDataStatus = (
   zoneId: string,
-  zoneDetails: ZoneDetails | undefined
+  zoneDetails: ZoneDetails | undefined,
+  timeAverage: TimeAverages
 ) => {
   // If there is no zoneDetails, we do not make any assumptions and return unknown
   if (!zoneDetails) {
@@ -48,19 +42,23 @@ export const getZoneDataStatus = (
   }
 
   // If there is no config for the zone, we assume we do not have any data
-  const config = zonesConfig[zoneId];
-  if (!config) {
-    console.log(config);
+  const zoneConfig = config.zones[zoneId];
+  if (!zoneConfig) {
+    console.log(zoneConfig);
 
     return ZoneDataStatus.NO_INFORMATION;
   }
 
+  if (
+    config.zones[zoneId].aggregates_displayed &&
+    !config.zones[zoneId].aggregates_displayed.includes(timeAverage)
+  ) {
+    return ZoneDataStatus.AGGREGATE_DISABLED;
+  }
+
   // If there are no production parsers or no defined estimation method in the config,
   // we assume we do not have data for the zone
-  if (
-    config.parsers?.production === undefined &&
-    config.estimation_method === undefined
-  ) {
+  if (zoneConfig.parsers === false && zoneConfig.estimation_method === undefined) {
     return ZoneDataStatus.NO_INFORMATION;
   }
 
@@ -69,11 +67,13 @@ export const getZoneDataStatus = (
 };
 
 export function getContributors(zoneId: string) {
-  const config = zonesConfig[zoneId];
-  return config?.contributors;
+  return {
+    zoneContributorsIndexArray: config.zones[zoneId]?.contributors as number[],
+    contributors: config.contributors,
+  };
 }
 
 export function getDisclaimer(zoneId: string) {
-  const config = zonesConfig[zoneId];
-  return config?.disclaimer;
+  const zoneConfig = config.zones[zoneId];
+  return zoneConfig?.disclaimer;
 }

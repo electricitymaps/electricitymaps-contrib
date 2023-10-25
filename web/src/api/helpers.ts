@@ -1,7 +1,8 @@
 import invariant from 'tiny-invariant';
 
-export const REFETCH_INTERVAL_FIVE_MINUTES = 5 * 60 * 1000;
-export const REFETCH_INTERVAL_ONE_HOUR = 60 * 60 * 1000;
+export const ONE_MINUTE = 60 * 1000;
+export const FIVE_MINUTES = 5 * ONE_MINUTE;
+export const ONE_HOUR = 60 * ONE_MINUTE;
 
 async function sha256(message: string): Promise<string> {
   const BASE = 16;
@@ -69,4 +70,5 @@ export function getBasePath() {
 export const QUERY_KEYS = {
   STATE: 'state',
   ZONE: 'zone',
+  FEATURE_FLAGS: 'feature-flags',
 };

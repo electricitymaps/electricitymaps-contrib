@@ -13,7 +13,7 @@ capacity:
   nuclear: 2070
   oil: 1815
   solar: 1880
-  wind: 530
+  wind: 577
   unknown: 0
 contributors:
   - tmslaine
@@ -21,17 +21,16 @@ contributors:
   - pierresegonne
   - wobniarin
   - PPsyrius
-disclaimer: The data provider (Hokkaido Electric Power Network HEPCO) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 emissionFactors:
   lifecycle:
     unknown:
-      _comment: 'Source: Enerdata 2022 Japanese National Average'
-      _url:
-        - https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
-      source: Enerdata 2022
+      source: 'Enerdata 2022 Japanese National Average'
       value: 462
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP.fetch_production
 timezone: Asia/Tokyo
+sources:
+  Enerdata 2022 Japanese National Average:
+    link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf

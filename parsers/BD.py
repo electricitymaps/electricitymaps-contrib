@@ -2,7 +2,7 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 import arrow
 import pytz
@@ -128,8 +128,8 @@ def verify_table(table_header: Tag):
 
 
 def query(
-    session: Session, target_datetime: Optional[datetime], logger: Logger
-) -> List[Dict[str, Any]]:
+    session: Session, target_datetime: datetime | None, logger: Logger
+) -> list[dict[str, Any]]:
     """
     Query the table and read it into list.
     """
@@ -184,9 +184,9 @@ def query(
 def fetch_production(
     zone_key: str = "BD",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
+) -> dict[str, Any] | list[dict[str, Any]]:
     row_data = query(session, target_datetime, logger)
 
     production_data_list = []
@@ -232,9 +232,9 @@ def fetch_production(
 def fetch_consumption(
     zone_key: str = "BD",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
+) -> dict[str, Any] | list[dict[str, Any]]:
     row_data = query(session, target_datetime, logger)
 
     result_list = []
@@ -268,9 +268,9 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     # Query table, contains import from india.
     row_data = query(session, target_datetime, logger)
 

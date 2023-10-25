@@ -9,6 +9,7 @@ import {
   FaTwitter,
 } from 'react-icons/fa';
 import { useTranslation } from 'translation/translation';
+
 import { isFAQModalOpenAtom, isInfoModalOpenAtom } from './modalAtoms';
 
 const ICON_SIZE = 16;
@@ -19,7 +20,7 @@ export function InfoModalContent() {
 
   return (
     <div className=" flex flex-col items-center ">
-      <div className="prose text-center text-md prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 hover:prose-a:underline dark:prose-invert">
+      <div className="prose text-center text-md dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 hover:prose-a:underline">
         <p>{__('info-modal.intro-text')}</p>
         <p
           className=""

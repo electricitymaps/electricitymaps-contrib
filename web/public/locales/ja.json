@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "電力による環境負荷のマッピング"
+      "header": "電力による環境負荷のマッピング"
     },
     "view2": {
       "header": "あなたの電気を消費するのにどれほどのCO₂が生み出されるかをリアルタイムで見る",
@@ -23,7 +23,7 @@
       "header": "あなたの電気がどこから来るかを知る",
       "text": "地図上の矢印は電力の異なる場所からの流れを示します。電力源についてより詳しく知るにはそのエリアをクリックしてください。"
     },
-    "view4": {
+    "view7": {
       "header": "風と太陽光のリアルタイムの状態",
       "text": "風力・太陽光発電は気象に左右されます。太陽・風のボタンを押すと世界中の風と太陽光の強さをリアルタイムで表示します。"
     }
@@ -140,7 +140,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "地図",
     "mapColors-question": "地図中の色は何を意味しますか?",
@@ -1510,10 +1509,6 @@
       "countryName": "アメリカ合衆国",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "アメリカ合衆国",
       "zoneName": "Bonneville Power Administration"
@@ -1606,10 +1601,6 @@
       "countryName": "アメリカ合衆国",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "アメリカ合衆国",
       "zoneName": "El Paso Electric Company"
@@ -1617,10 +1608,6 @@
     "US-SW-GRIF": {
       "countryName": "アメリカ合衆国",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "アメリカ合衆国",

@@ -6,7 +6,7 @@
     "es2021": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-prefer-function-component"],
+  "plugins": ["react-prefer-function-component", "simple-import-sort", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -144,7 +144,12 @@
     ],
     "unicorn/no-nested-ternary": ["error"],
     "unicorn/no-useless-undefined": "off",
-    "unicorn/no-null": "off"
+    "unicorn/no-null": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error"
   },
   "settings": {
     "react": {
@@ -155,7 +160,8 @@
     {
       "files": ["src/**/*.ts?(x)"],
       "parserOptions": {
-        "project": ["./tsconfig.json"]
+        "project": ["./tsconfig.json"],
+        "sourceType": "module"
       }
     },
     {

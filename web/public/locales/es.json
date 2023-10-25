@@ -27,7 +27,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Visualización del impacto climático de la electricidad"
+      "header": "Visualización del impacto climático de la electricidad"
     },
     "view2": {
       "header": "Visualiza cuánto CO₂ se emite para producir tu electricidad, en tiempo real.",
@@ -37,7 +37,7 @@
       "header": "Descubre de dónde viene tu electricidad",
       "text": "Las flechas del mapa indican flujos de electricidad entre diferentes zonas. Haz clic en una zona para ver más información sobre los orígenes de su electricidad."
     },
-    "view4": {
+    "view7": {
       "header": "Intensidad del viento y del sol en tiempo real",
       "text": "La producción de energía eólica y solar depende del tiempo. Presiona los botones Sol y Viento para ver en tiempo real la fuerza del viento y del sol en todo el mundo."
     }
@@ -49,7 +49,14 @@
     "renewable": "Renovables",
     "electricityproduction": "Producción de electricidad",
     "electricityconsumption": "Consumo de electricidad",
-    "bysource": "por fuente",
+    "by-source": {
+      "emissions": "Emisiones de CO₂ por fuente",
+      "electricity-production": "Producción de electricidad por fuente",
+      "electricity-consumption": "Consumo de electricidad por fuente",
+      "total-emissions": "Emisiones totales de CO₂ por fuente",
+      "total-electricity-production": "Producción total de electricidad por fuente",
+      "total-electricity-consumption": "Consumo total de electricidad por fuente"
+    },
     "emissions": "Emisiones de CO₂",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o modificar fuente</a>",
     "helpfrom": "con la ayuda de",
@@ -83,6 +90,7 @@
       "yearly": "Intensidad de carbono en los últimos 5 años"
     },
     "Getdata": "Obtener datos históricos por horas y en tiempo real + pronóstico con la API de Electricity Maps",
+    "not-enough-data": "No hay datos suficientes disponibles para mostrar el gráfico",
     "emissionsorigin": {
       "hourly": "Origen de las emisiones en las últimas 24 horas"
     },
@@ -180,7 +188,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> de las emisiones de %4$s <b>%2$s</b> se exporta a %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> de la electricidad de %4$s <b>%2$s</b> se importa de %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> de las emisiones de %4$s <b>%2$s</b> se importa de %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "de CO₂eq por minuto",
+  "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "El mapa",
     "mapColors-question": "¿Qué significan los colores del mapa?",
@@ -1563,10 +1571,6 @@
       "countryName": "Estados Unidos",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "Estados Unidos",
       "zoneName": "Bonneville Power Administration"
@@ -1659,10 +1663,6 @@
       "countryName": "Estados Unidos",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Estados Unidos",
       "zoneName": "El Paso Electric Company"
@@ -1670,10 +1670,6 @@
     "US-SW-GRIF": {
       "countryName": "Estados Unidos",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Estados Unidos",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Estados Unidos",

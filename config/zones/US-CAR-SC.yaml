@@ -25,6 +25,9 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available. This zone includes a third of the nuclear related electricity production
+  from the balancing authority South Carolina Electric & Gas Company. Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -256,7 +259,6 @@ fallbackZoneMixes:
         solar: 0.025884925422977215
         unknown: 0.026264676829403106
         wind: 0.00017610253156315076
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

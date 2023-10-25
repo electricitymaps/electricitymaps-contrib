@@ -25,6 +25,10 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available. A third of the nuclear related electricity production
+  is attributed to the balancing authority South Carolina Public Service Authority US-CAR-SC,
+  due to an aggrement between the two balancing authorities. Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -256,7 +260,6 @@ fallbackZoneMixes:
         solar: 0.07064558608613784
         unknown: 0.002588342445884597
         wind: 6.808856794717761e-05
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

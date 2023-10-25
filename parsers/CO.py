@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import arrow
 import pydataxm.pydataxm as pydataxm
@@ -37,17 +37,17 @@ PRODUCTION_MAPPING = {
     "JET-A1": "oil",
 }
 
-XM_DELAY = 2
+XM_DELAY_MIN = 2
+XM_DELAY_MAX = 5
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
-
+) -> list[dict[str, Any]]:
     session = session or Session()
 
     if target_datetime is None:
@@ -58,8 +58,7 @@ def fetch_consumption(
 
 def fetch_live_consumption(
     zone_key: ZoneKey, session: Session, logger: Logger
-) -> List[Dict[str, Any]]:
-
+) -> list[dict[str, Any]]:
     response: Response = session.get(colombia_demand_URL, verify=False)
 
     if not response.ok:
@@ -86,10 +85,10 @@ def fetch_live_consumption(
 
 def fetch_historical_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     demand_list = TotalConsumptionList(logger)
     # Convert datetime to local time
     target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
@@ -104,7 +103,6 @@ def fetch_historical_consumption(
     if not df_consumption.empty:
         hour_columns = [col for col in df_consumption.columns if "Hour" in col]
         for hour_col in hour_columns:
-
             target_datetime_in_tz = target_arrow_in_tz.datetime.replace(
                 hour=int(hour_col[-2:]) - 1
             )
@@ -127,31 +125,57 @@ def fetch_historical_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
+    objetoAPI = pydataxm.ReadDB()
+
+    df_recursos = None
+    df_generation = None
+    target_arrow_in_tz = arrow.now()
+
     if target_datetime is None:
-        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY)
+        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY_MIN)
+        # Allow retries for most recent data
+        for xm_delay in range(XM_DELAY_MIN, XM_DELAY_MAX + 1):
+            target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-xm_delay)
+
+            # API request list of power plants with ID (column 1) and type (column 7)
+            df_recursos = objetoAPI.request_data(
+                "ListadoRecursos",
+                "Sistema",
+                target_arrow_in_tz.date(),
+                target_arrow_in_tz.date(),
+            )
+            df_generation = objetoAPI.request_data(
+                "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
+            )
+
+            if not df_generation.empty and not df_recursos.empty:
+                break
     else:
         target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
 
-    objetoAPI = pydataxm.ReadDB()
+        # API request list of power plants with ID (column 1) and type (column 7)
+        df_recursos = objetoAPI.request_data(
+            "ListadoRecursos",
+            "Sistema",
+            target_arrow_in_tz.date(),
+            target_arrow_in_tz.date(),
+        )
 
-    # API request list of power plants with ID (column 1) and type (column 7)
-    df_recursos = objetoAPI.request_data(
-        "ListadoRecursos",
-        "Sistema",
-        target_arrow_in_tz.date(),
-        target_arrow_in_tz.date(),
-    )
+        # API request generation per power plant
+        df_generation = objetoAPI.request_data(
+            "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
+        )
 
-    # API request generation per power plant
-    df_generation = objetoAPI.request_data(
-        "Gene", "Recurso", target_arrow_in_tz.date(), target_arrow_in_tz.date()
-    )
-
-    if not df_generation.empty and not df_recursos.empty:
+    if (
+        df_generation is not None
+        and not df_generation.empty
+        and df_recursos is not None
+        and not df_recursos.empty
+    ):
         df_units = (
             df_recursos[["Values_Code", "Values_EnerSource"]]
             .copy()
@@ -183,7 +207,7 @@ def fetch_production(
             production_mix = ProductionMix()
 
             for mode, value in production_mw.items():
-                production_mix.set_value(mode, value)
+                production_mix.add_value(mode, value)
 
             co_datetime = target_arrow_in_tz.datetime.replace(hour=int(col[-2:]) - 1)
             production_list.append(
@@ -205,26 +229,43 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
-
+) -> list[dict[str, Any]]:
     session = session or Session()
-
-    if target_datetime is None:
-        target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-XM_DELAY)
-    else:
-        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
 
     objetoAPI = pydataxm.ReadDB()
 
-    # API request consumption
-    df_price = objetoAPI.request_data(
-        "PrecBolsNaci", "Sistema", target_arrow_in_tz.date(), target_arrow_in_tz.date()
-    )
+    df_price = None
+    target_arrow_in_tz = arrow.now()
+
+    if target_datetime is None:
+        # Allow retries for most recent data
+        for xm_delay in range(XM_DELAY_MIN, XM_DELAY_MAX + 1):
+            target_arrow_in_tz = arrow.now().floor("day").to(TZ).shift(days=-xm_delay)
+
+            df_price = objetoAPI.request_data(
+                "PrecBolsNaci",
+                "Sistema",
+                target_arrow_in_tz.date(),
+                target_arrow_in_tz.date(),
+            )
+
+            if not df_price.empty:
+                break
+    else:
+        target_arrow_in_tz = arrow.get(target_datetime).to(TZ)
+        # API request consumption
+        df_price = objetoAPI.request_data(
+            "PrecBolsNaci",
+            "Sistema",
+            target_arrow_in_tz.date(),
+            target_arrow_in_tz.date(),
+        )
+
     price_list = PriceList(logger)
-    if not df_price.empty:
+    if df_price is not None and not df_price.empty:
         hour_columns = [col for col in df_price.columns if "Hour" in col]
         for col in hour_columns:
             target_datetime_in_tz = target_arrow_in_tz.datetime.replace(

@@ -4,7 +4,7 @@ bounding_box:
   - - -102.094762152
     - 41.7250704890001
 capacity:
-  battery storage: 102
+  battery storage: 227
   biomass: 30.8
   coal: 2946.6
   gas: 6426
@@ -13,7 +13,7 @@ capacity:
   hydro storage: 300
   nuclear: 0
   oil: 33.2
-  solar: 1341.9
+  solar: 1904.6
   unknown: 0
   wind: 4490.8
 comment: Public Service Company Of Colorado
@@ -25,6 +25,8 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
@@ -248,7 +250,6 @@ fallbackZoneMixes:
         solar: 0.029488466589072455
         unknown: 4.6296727929385286e-05
         wind: 0.2870451980008962
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

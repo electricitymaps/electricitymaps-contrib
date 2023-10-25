@@ -5,20 +5,22 @@ bounding_box:
     - 25.2954588893
 capacity:
   biomass: 92
-  coal: 14681
-  gas: 18365
+  coal: 14697
+  gas: 18380
   geothermal: 5
-  hydro: 2094
-  hydro storage: 2609
-  nuclear: 2865
-  oil: 1586
-  solar: 7700
+  hydro: 2098
+  hydro storage: 2602
+  nuclear: 2887
+  oil: 1593
+  solar: 9724
   unknown: 632
-  wind: 1062
+  wind: 1581
 contributors:
   - corradio
   - MariusKroon
   - nessie2013
+  - Manu1400
+  - VIKTORVAV99
 emissionFactors:
   direct:
     battery discharge:
@@ -218,5 +220,5 @@ fallbackZoneMixes:
         unknown: 0.03206996746142614
         wind: 0.007647678020171424
 parsers:
-  production: TW.fetch_production
+  production: TAIPOWER.fetch_production
 timezone: Asia/Taipei

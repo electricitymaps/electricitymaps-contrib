@@ -160,5 +160,6 @@ fallbackZoneMixes:
         unknown: 0.03856859325418157
         wind: 0.0772943608308855
 parsers:
-  production: AR.fetch_production
+  production: CAMMESA.fetch_production
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas.
 timezone: America/Argentina/Buenos_Aires

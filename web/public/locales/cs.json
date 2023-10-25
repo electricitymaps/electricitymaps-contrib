@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Mapování dopadu spotřeby elektřiny na klima"
+      "header": "Mapování dopadu spotřeby elektřiny na klima"
     },
     "view2": {
       "header": "Sledujte, kolik CO₂ je vyprodukovaného vaší spotřebou elektřiny v reálném čase",
@@ -23,7 +23,7 @@
       "header": "Zjistěte, odkud pochází Vaše elektřina",
       "text": "Šipky na mapě znázorňují tok elektřiny mezi různými oblastmi. Klikněte na oblast, pro kterou chcete zobrazit více informací o původu její elektřiny."
     },
-    "view4": {
+    "view7": {
       "header": "Větrné a solární podmínky v reálném čase",
       "text": "Produkce větrné a solární energie je závislá na počasí. Stiskněte tlačítka Slunce a Vítr k zobrazení aktuální síly větru a slunečního záření na celém světě."
     }
@@ -136,7 +136,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je exportovaných do %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq za minutu",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Co znamenají barvy na mapě?",

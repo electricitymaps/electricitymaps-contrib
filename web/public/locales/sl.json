@@ -27,7 +27,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Kartiranje vpliva električne energije na podnebje"
+      "header": "Kartiranje vpliva električne energije na podnebje"
     },
     "view2": {
       "header": "Sprotno si oglejte, koliko CO₂ se izpusti za proizvodnjo vaše električne energije.",
@@ -37,7 +37,7 @@
       "header": "Vedite, od kod prihaja vaša elektrika",
       "text": "Puščice na zemljevidu označujejo pretok električne energije med različnimi območji. Kliknite na območje, da vidite več informacij o izvoru električne energije."
     },
-    "view4": {
+    "view7": {
       "header": "Vetrne in sončne razmere v realnem času",
       "text": "Proizvodnja vetrne in sončne energije je odvisna od vremena. Pritisnite gumba za sonce in veter, da prikažete moč vetra in sonca po vsem svetu v realnem času."
     }
@@ -49,8 +49,14 @@
     "renewable": "obnovljiva",
     "electricityproduction": "Proizvodnja električne energije",
     "electricityconsumption": "Poraba električne energije",
-    "bysource": "po viru",
-    "averagebysource": "povprečje glede na vir",
+    "by-source": {
+      "emissions": "Izpusti ogljika po virih",
+      "electricity-production": "Proizvodnja električne energije po virih",
+      "electricity-consumption": "Poraba električne energije po virih",
+      "total-emissions": "Skupni izpusti ogljika po virih",
+      "total-electricity-production": "Skupna proizvodnja električne energije po virih",
+      "total-electricity-consumption": "Skupna poraba električne energije po virih"
+    },
     "emissions": "ogljične emisije",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj ali uredi vir</a>",
     "helpfrom": "s pomočjo od",
@@ -183,7 +189,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> emisij iz električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, se izvozi v <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> emisij električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, so uvožene iz<img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq na minuto",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Kaj pomenijo barve na zemljevidu?",
@@ -686,10 +691,6 @@
     "GB-ORK": {
       "countryName": "Velika Britanija",
       "zoneName": "Orkneyjski otoki"
-    },
-    "GB-ZET": {
-      "countryName": "Velika Britanija",
-      "zoneName": "Šetlandski otoki"
     },
     "GB-ZET": {
       "countryName": "Velika Britanija",
@@ -1631,10 +1632,6 @@
       "countryName": "ZDA",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "ZDA",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "ZDA",
       "zoneName": "Bonneville Power Administration"
@@ -1727,10 +1724,6 @@
       "countryName": "ZDA",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "ZDA",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "ZDA",
       "zoneName": "El Paso Electric Company"
@@ -1738,10 +1731,6 @@
     "US-SW-GRIF": {
       "countryName": "ZDA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "ZDA",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "ZDA",

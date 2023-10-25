@@ -2,6 +2,8 @@ import getSymbolFromCurrency from 'currency-symbol-map';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { timeAverageAtom } from 'utils/state/atoms';
+import { EnergyUnits } from 'utils/units';
+
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
@@ -19,7 +21,7 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
   const value = priceIsDefined ? price?.value : '';
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:bg-gray-900 sm:w-64">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800  sm:w-64">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
@@ -28,7 +30,7 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
       />
       <p className="flex justify-center text-base">
         <b className="mr-1">{value}</b>
-        {currency} / MWh
+        {currency} / {EnergyUnits.MEGAWATT_HOURS}
       </p>
     </div>
   );

@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+
 import { HoveredZone } from './mapTypes';
 
 export const loadingMapAtom = atom(true);

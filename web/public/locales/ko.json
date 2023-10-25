@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "기후가 전력생산에 미치는 영향"
+      "header": "기후가 전력생산에 미치는 영향"
     },
     "view2": {
       "header": "전력 생산으로 인해향 얼마나 많은 이산화탄소가 실시간으로 배출되는지 보십시오",
@@ -23,7 +23,7 @@
       "header": "어느 곳에서 전력이 생산되는지 보십시오",
       "text": "지도에 표시되어 있는 화살표들은 지역간 전기의 흐름을 나타냅니다. 전력생산의 근원지에 관한 정보를 보려면 특정 지역을 누르세요."
     },
-    "view4": {
+    "view7": {
       "header": "실시간 풍력과 태양열 조건",
       "text": "풍력발전과 태양열 에너지 생산은 기후에 의존합니다. 전 세계의 풍력과 태양열의 강도를 실시간으로 보기 위해 태양과 바람 버튼을 누르세요."
     }
@@ -133,7 +133,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "지도",
     "mapColors-question": "지도에서 색은 무엇을 의미 합니까?",

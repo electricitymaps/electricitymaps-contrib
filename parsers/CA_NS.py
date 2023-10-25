@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes
-from datetime import datetime
+# The datetime library is used to handle datetimes
+from datetime import datetime, timezone
 from logging import Logger, getLogger
-from typing import List, Optional
 
-import arrow
 from requests import Session
 
 
@@ -19,12 +17,12 @@ def _get_ns_info(requests_obj, logger: Logger):
         # The validation JS reports error when Solid Fuel (coal) is over 85%,
         # but as far as I can tell, that can actually be a valid result, I've seen it a few times.
         # Use 98% instead.
-        "coal": (0.25, 0.98),
+        "coal": (0, 0.98),
         "gas": (0, 0.5),
         "biomass": (0, 0.15),
         "hydro": (0, 0.60),
         "wind": (0, 0.55),
-        "imports": (0, 0.20),
+        "imports": (0, 0.50),
     }
 
     # Sanity checks: verify that reported production doesn't exceed listed capacity by a lot.
@@ -59,7 +57,7 @@ def _get_ns_info(requests_obj, logger: Logger):
         # datetime is in format '/Date(1493924400000)/'
         # get the timestamp 1493924400 (cutting out last three zeros as well)
         data_timestamp = int(mix["datetime"][6:-5])
-        data_date = arrow.get(data_timestamp).datetime
+        data_date = datetime.fromtimestamp(data_timestamp, tz=timezone.utc)
 
         # validate
         valid = True
@@ -93,7 +91,7 @@ def _get_ns_info(requests_obj, logger: Logger):
             # in 2014 and 2015 (Statistics Canada table Table 127-0008 for Nova Scotia)
             load = 1244
             logger.warning(
-                "unable to find load for {}, assuming 1244 MW".format(data_date),
+                f"unable to find load for {data_date}, assuming 1244 MW",
                 extra={"key": zone_key},
             )
 
@@ -152,10 +150,10 @@ def _get_ns_info(requests_obj, logger: Logger):
 
 def fetch_production(
     zone_key: str = "CA-NS",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError(
@@ -172,10 +170,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """
     Requests the last known power exchange (in MW) between two regions.
 

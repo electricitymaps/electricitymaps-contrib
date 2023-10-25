@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Cartografierea impactului electricității asupra climei"
+      "header": "Cartografierea impactului electricității asupra climei"
     },
     "view2": {
       "header": "Vezi cantitatea de CO₂ emisă pentru a produce electricitate, în timp real.",
@@ -23,7 +23,7 @@
       "header": "Află de unde provine electricitatea",
       "text": "Săgețile de pe hartă indică transferul de electriciate între diferite zone. Click pe o zonă pentru a afla mai multe informații despre originea electricității."
     },
-    "view4": {
+    "view7": {
       "header": "Condiții în timp real pentru energie solară și eoliană",
       "text": "Producția de energie solară și eoliană depinde de starea vremii. Apăsați butoanele de soare și vânt pentru a afișa în timp real puterea vântului și a soarelui pe planetă."
     }
@@ -146,7 +146,7 @@
   "emissionsExportedTo": "<b>%1$s %%</b> din emisiile din electricitatea disponibilă în %4$s <b>%2$s</b> sunt exportate în %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> din electricitatea disponibilă în %4$s <b>%2$s</b> este importată din %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> din emisiile din electricitatea disponibilă în %4$s <b>%2$s</b> sunt importate din %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "de CO₂echivalent pe minut",
+  "ofCO2eq": "de CO₂echivalent",
   "theMap": {
     "groupName": "Harta",
     "mapColors-question": "Ce semnificație au culorile de pe hartă",
@@ -1555,10 +1555,6 @@
       "countryName": "United States of America",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "United States of America",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "United States of America",
       "zoneName": "Bonneville Power Administration"
@@ -1651,10 +1647,6 @@
       "countryName": "United States of America",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "United States of America",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "United States of America",
       "zoneName": "El Paso Electric Company"
@@ -1662,10 +1654,6 @@
     "US-SW-GRIF": {
       "countryName": "United States of America",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "United States of America",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "United States of America",

@@ -1,21 +1,24 @@
 import { CountryFlag } from 'components/Flag';
 import { max as d3Max, min as d3Min } from 'd3-array';
-
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
+import { useAtom } from 'jotai';
 import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
-import { modeColor } from 'utils/constants';
+import { modeColor, TimeAverages } from 'utils/constants';
+import { formatEnergy, formatPower } from 'utils/formatting';
+import { timeAverageAtom } from 'utils/state/atoms';
+
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import {
   ExchangeDataType,
-  ProductionDataType,
   getDataBlockPositions,
   getElectricityProductionValue,
+  ProductionDataType,
 } from './utils';
 
 interface BarElectricityBreakdownChartProps {
@@ -59,6 +62,8 @@ function BarElectricityBreakdownChart({
     productionData.length,
     exchangeData
   );
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const isHourly = timeAverage === TimeAverages.HOURLY;
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
@@ -95,16 +100,13 @@ function BarElectricityBreakdownChart({
     .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
 
   const formatTick = (t: number) => {
-    const [x1, x2] = powerScale.domain();
-    if (x2 - x1 <= 1) {
-      return `${t * 1e3} kW`;
+    // Use same unit as max value for tick with value 0
+    if (t === 0) {
+      const tickValue = isHourly ? formatPower(maxPower, 1) : formatEnergy(maxPower, 1);
+      return tickValue.toString().replace(/[\d.]+/, '0');
     }
-    if (x2 - x1 <= 1e3) {
-      return `${t} MW`;
-    }
-    return `${t * 1e-3} GW`;
+    return isHourly ? formatPower(t) : formatEnergy(t);
   };
-
   return (
     <svg className="w-full overflow-visible" height={height}>
       <Axis formatTick={formatTick} height={height} scale={powerScale} />

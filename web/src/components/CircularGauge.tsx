@@ -1,4 +1,5 @@
 import { Label, Pie, PieChart } from 'recharts';
+
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
 const PIE_START_ANGLE = 90;
@@ -52,7 +53,7 @@ export function CircularGauge({
                 position="center"
                 offset={0}
                 formatter={(value: number) =>
-                  !Number.isNaN(value) ? `${Math.round(value * 100)}%` : '?%'
+                  Number.isNaN(value) ? '?%' : `${Math.round(value * 100)}%`
                 }
                 value={ratio}
               />

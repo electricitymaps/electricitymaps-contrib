@@ -25,6 +25,8 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
@@ -220,7 +222,6 @@ fallbackZoneMixes:
         solar: 7.402256161105289e-05
         unknown: 0.00037006451847462513
         wind: 0.003761377380663583
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

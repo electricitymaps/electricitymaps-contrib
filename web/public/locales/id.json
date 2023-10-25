@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Pemetaan klimatologi yang berdampak pada daya listrik"
+      "header": "Pemetaan klimatologi yang berdampak pada daya listrik"
     },
     "view2": {
       "header": "Lihat seberapa banyak CO₂ yang dipancarkan untuk memproduksi listrik, secara langsung.",
@@ -23,7 +23,7 @@
       "header": "Ketahui dari mana listrik kamu berasal",
       "text": "Penunjuk panah pada peta mengindikasikan penyebaran listrik di beberapa area yang berbeda. Klik pada area untuk melihat informasi lebih lanjut  tentang asal dari listrik."
     },
-    "view4": {
+    "view7": {
       "header": "Kondisi langsung angin dan matahari",
       "text": "Produksi angin dan energi matahari bergantung pada cuaca. Tekan pada tombol matahari dan angin untuk menampilkan kondisi kekuatan angin dan matahari di seluruh dunia secara langsung."
     }
@@ -133,7 +133,6 @@
   "emissionsExportedTo": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> diekspor ke %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "%1$s %% emisi energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq per menit",
   "theMap": {
     "groupName": "Peta",
     "mapColors-question": "Apa arti dari warna di dalam peta?",

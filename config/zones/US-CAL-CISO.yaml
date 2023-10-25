@@ -4,7 +4,7 @@ bounding_box:
   - - -113.631212
     - 41.965851
 capacity:
-  battery storage: 4681.4
+  battery storage: 4941.3
   biomass: 1147.1
   coal: 62.5
   gas: 33062.9
@@ -13,7 +13,7 @@ capacity:
   hydro storage: 2119.6
   nuclear: 2323
   oil: 391.5
-  solar: 17947.7
+  solar: 18162.4
   unknown: 66.7
   wind: 6141.5
 comment: California Independent System Operator
@@ -264,7 +264,6 @@ fallbackZoneMixes:
         solar: 0.15825656177245656
         unknown: 0.014146646578320266
         wind: 0.09391255875402638
-flag_file_name: us.png
 parsers:
   consumption: US_CA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

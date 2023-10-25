@@ -218,4 +218,4 @@ fallbackZoneMixes:
         wind: 0.11879820724119527
 parsers:
   production: CR.fetch_production
-timezone: null
+timezone: America/Costa_Rica

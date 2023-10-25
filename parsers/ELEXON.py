@@ -7,15 +7,13 @@ Production
 Exchanges
 
 Documentation:
-https://www.elexon.co.uk/wp-content/uploads/2017/06/
-bmrs_api_data_push_user_guide_v1.1.pdf
+https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide
 """
 
 import re
 from datetime import date, datetime, time, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Dict, List, Optional
 
 import arrow
 import pandas as pd
@@ -96,7 +94,7 @@ EXCHANGES = {
 }
 
 
-def _create_eso_historical_demand_index(session: Session) -> Dict[int, str]:
+def _create_eso_historical_demand_index(session: Session) -> dict[int, str]:
     """Get the ids of all historical_demand_data reports"""
     index = {}
     response = session.get(
@@ -113,7 +111,7 @@ def _create_eso_historical_demand_index(session: Session) -> Dict[int, str]:
 
 def query_additional_eso_data(
     target_datetime: datetime, session: Session
-) -> List[dict]:
+) -> list[dict]:
     begin = (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d")
     end = (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d")
     if target_datetime > (datetime.now(tz=pytz.UTC) - timedelta(days=30)):
@@ -146,7 +144,7 @@ def query_exchange(session: Session, target_datetime=None):
 
 
 def query_production(
-    session: Session, target_datetime: Optional[datetime] = None, report: str = "B1620"
+    session: Session, target_datetime: datetime | None = None, report: str = "B1620"
 ):
     if target_datetime is None:
         target_datetime = datetime.now()
@@ -183,7 +181,7 @@ def parse_exchange(
     zone_key1: str,
     zone_key2: str,
     csv_text: str,
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if not csv_text:
@@ -235,7 +233,7 @@ def parse_exchange(
 
 def parse_production_FUELINST(
     csv_data: str,
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> pd.DataFrame:
     """A temporary parser for the FUELINST report.
@@ -273,7 +271,7 @@ def parse_production_FUELINST(
     return df.set_index("datetime")
 
 
-def parse_additional_eso_production(raw_data: List[dict]) -> pd.DataFrame:
+def parse_additional_eso_production(raw_data: list[dict]) -> pd.DataFrame:
     """Parse additional eso data for embedded wind/solar and hydro storage."""
     df = pd.DataFrame.from_records(raw_data)
     df["datetime"] = df.apply(
@@ -286,7 +284,7 @@ def parse_additional_eso_production(raw_data: List[dict]) -> pd.DataFrame:
 
 def process_production_events(
     fuel_inst_data: pd.DataFrame, eso_data: pd.DataFrame
-) -> List[dict]:
+) -> list[dict]:
     """Combine FUELINST report and ESO data together to get the full picture and to EM Format."""
     df = fuel_inst_data.join(eso_data, rsuffix="_eso")
     df = df.rename(columns={"wind_eso": "wind", "solar_eso": "solar"})
@@ -320,7 +318,7 @@ def process_production_events(
 
 def parse_production(
     csv_text: str,
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if not csv_text:
@@ -400,7 +398,7 @@ def datetime_from_date_sp(date, sp):
 
 
 def _fetch_wind(
-    target_datetime: Optional[datetime] = None, logger: Logger = getLogger(__name__)
+    target_datetime: datetime | None = None, logger: Logger = getLogger(__name__)
 ):
     if target_datetime is None:
         target_datetime = datetime.now()
@@ -462,33 +460,33 @@ def _fetch_wind(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
     except arrow.parser.ParserError:
-        raise ValueError("Invalid target_datetime: {}".format(target_datetime))
+        raise ValueError(f"Invalid target_datetime: {target_datetime}")
     response = query_exchange(session, target_datetime)
     data = parse_exchange(zone_key1, zone_key2, response, target_datetime, logger)
     return data
 
 
 # While using the FUELINST report we can increase the refetch frequency.
-@refetch_frequency(timedelta(hours=6))
+@refetch_frequency(timedelta(days=2))
 def fetch_production(
     zone_key: str = "GB",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
     except arrow.parser.ParserError:
-        raise ValueError("Invalid target_datetime: {}".format(target_datetime))
+        raise ValueError(f"Invalid target_datetime: {target_datetime}")
     # TODO currently resorting to FUELINST as B1620 reports 0 production in most production
     # modes at the moment. (16/12/2022) FUELINST will be decomissioned in 2023, so we should
     # switch back to B1620 at some point.

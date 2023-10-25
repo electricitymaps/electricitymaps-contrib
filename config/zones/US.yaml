@@ -8,18 +8,18 @@ bypassedSubZones:
   - US-SE-SEPA
   - US-CAR-YAD
 capacity:
-  battery storage: 7582.6
-  biomass: 13868.9
-  coal: 218508
-  gas: 562644.1
+  battery storage: 10593.7
+  biomass: 13926.4
+  coal: 212232.6
+  gas: 566059.9
   geothermal: 3910.8
-  hydro: 79543.4
+  hydro: 79458.5
   hydro storage: 22008.1
-  nuclear: 99148.5
-  oil: 28194.5
-  solar: 69336
-  unknown: 1712.2
-  wind: 139655.7
+  nuclear: 100262.5
+  oil: 29667.3
+  solar: 78322.4
+  unknown: 1690.2
+  wind: 146015.7
 contributors:
   - kepiej
   - KabelWlan
@@ -28,6 +28,7 @@ contributors:
   - brandongalbraith
   - systemcatch
   - VIKTORVAV99
+  - MisterClean
 emissionFactors:
   direct:
     battery discharge:

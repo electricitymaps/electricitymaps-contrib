@@ -27,7 +27,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Mappatura dell'impatto climatico dell'elettricità"
+      "header": "Mappatura dell'impatto climatico dell'elettricità"
     },
     "view2": {
       "header": "Guarda quanta CO₂ è emessa nel produrre la tua elettricità, in tempo reale.",
@@ -37,7 +37,7 @@
       "header": "Conosci da dove proviene la tua elettricità",
       "text": "Le frecce sulla mappa indicando i flussi di elettricità tra le diverse aree. Clicca su un'area per vedere più informazioni sull'origine dell'elettricità."
     },
-    "view4": {
+    "view7": {
       "header": "Livelli di vento e sole in tempo reale",
       "text": "La produzione eolica e solare dipendono dal tempo. Premi sui pulsanti del vento e del sole per vedere in tempo reale la forza del vento e del sole nel mondo."
     }
@@ -49,8 +49,14 @@
     "renewable": "Rinnovabile",
     "electricityproduction": "Produzione elettrica",
     "electricityconsumption": "Consumo elettrico",
-    "bysource": "per fonte",
-    "averagebysource": "media per fonte",
+    "by-source": {
+      "emissions": "Emissioni di carbonio per fonte",
+      "electricity-production": "Produzione di elettricità per fonte",
+      "electricity-consumption": "Consumo di elettricità per fonte",
+      "total-emissions": "Emissioni totali di carbonio per fonte",
+      "total-electricity-production": "Produzione totale di elettricità per fonte",
+      "total-electricity-consumption": "Consumo totale di elettricità per fonte"
+    },
     "emissions": "Emissioni di carbonio",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica fonte</a>",
     "helpfrom": "con l'aiuto di",
@@ -208,7 +214,7 @@
   "emissionsExportedTo": "Il <b>%1$s %%</b> delle emissioni di CO₂ di %4$s <b>%2$s</b> è esportata in %5$s <b>%3$s</b>",
   "electricityImportedFrom": "Il <b>%1$s %%</b> dell'elettricità di %4$s <b>%2$s</b> è importato da %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di %4$s <b>%2$s</b> è importato da %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "di CO₂eq per minuto",
+  "ofCO2eq": "di CO₂eq",
   "theMap": {
     "groupName": "La mappa",
     "mapColors-question": "Cosa significano i colori sulla mappa?",
@@ -1647,10 +1653,6 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Bonneville Power Administration"
@@ -1743,10 +1745,6 @@
       "countryName": "Stati Uniti d'America",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "El Paso Electric Company"
@@ -1754,10 +1752,6 @@
     "US-SW-GRIF": {
       "countryName": "Stati Uniti d'America",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Stati Uniti d'America",

@@ -1,4 +1,12 @@
-import { getElectricityProductionValue, getRatioPercent } from './graphUtils';
+import { ZoneDetail } from 'types';
+import { Mode } from 'utils/constants';
+
+import {
+  getElectricityProductionValue,
+  getRatioPercent,
+  getTotalElectricityAvailable,
+  getTotalEmissionsAvailable,
+} from './graphUtils';
 
 describe('getRatioPercent', () => {
   it('handles 0 of 0', () => {
@@ -82,5 +90,53 @@ describe('getElectricityProductionValue', () => {
       generationTypeProduction: null,
     });
     expect(actual).toEqual(null);
+  });
+});
+
+describe('getTotalEmissionsAvailableOrElectricityAvailable', () => {
+  const zoneData = {
+    totalCo2Production: 100,
+    totalCo2Consumption: 5,
+    totalConsumption: 50,
+    totalCo2Discharge: 50,
+    totalProduction: 200,
+    totalDischarge: 50,
+    totalImport: 100,
+    totalCo2Import: 25,
+  } as ZoneDetail;
+
+  it('handles emissions for consumption', () => {
+    const actual = getTotalEmissionsAvailable(zoneData, Mode.CONSUMPTION);
+    expect(actual).toEqual(175);
+  });
+
+  it('handles power for consumption', () => {
+    const actual = getTotalElectricityAvailable(zoneData, Mode.CONSUMPTION);
+    expect(actual).toEqual(350);
+  });
+
+  it('handles emissions for production', () => {
+    const actual = getTotalEmissionsAvailable(zoneData, Mode.PRODUCTION);
+    expect(actual).toEqual(150);
+  });
+
+  it('handles power for production', () => {
+    const actual = getTotalElectricityAvailable(zoneData, Mode.PRODUCTION);
+    expect(actual).toEqual(250);
+  });
+
+  it('returns 0 when productionValue is 0', () => {
+    const actual = getTotalElectricityAvailable(
+      { ...zoneData, totalProduction: 0, totalDischarge: 0 },
+      Mode.PRODUCTION
+    );
+    expect(actual).toEqual(0);
+  });
+  it('returns NaN when missing productionValue', () => {
+    const actual = getTotalElectricityAvailable(
+      { ...zoneData, totalProduction: null },
+      Mode.PRODUCTION
+    );
+    expect(actual).toEqual(Number.NaN);
   });
 });

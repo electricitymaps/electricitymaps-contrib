@@ -1,9 +1,9 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { add, startOfHour, sub } from 'date-fns';
 import { useInterpolatedData } from 'features/weather-layers/hooks';
 import type { Maybe } from 'types';
 
-import { REFETCH_INTERVAL_FIVE_MINUTES, getBasePath, getHeaders } from './helpers';
+import { FIVE_MINUTES, getBasePath, getHeaders } from './helpers';
 
 export type WeatherType = 'wind' | 'solar';
 
@@ -111,8 +111,8 @@ const useGetWeather = (
     [type],
     async () => await getWeatherData(type),
     {
-      staleTime: REFETCH_INTERVAL_FIVE_MINUTES,
-      refetchOnWindowFocus: false,
+      staleTime: FIVE_MINUTES,
+      cacheTime: FIVE_MINUTES,
       retry: false, // Disables retrying as getWeatherData handles retrying with new timestamps
       ...options,
     }

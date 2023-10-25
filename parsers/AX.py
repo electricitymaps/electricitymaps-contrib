@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from re import findall
-from typing import List, Optional
 
 from bs4 import BeautifulSoup
 from pytz import timezone
@@ -27,8 +26,8 @@ def fetch_data(session: Session, logger: Logger):
             "AX.py",
             "Did not find the expected amount of results. Check if the website has changed.",
         )
-    time_series: List = result_time_series[0].split(",")
-    raw_data: List[str] = findall(r"data:\[(.*?)\]", str(soup))
+    time_series: list = result_time_series[0].split(",")
+    raw_data: list[str] = findall(r"data:\[(.*?)\]", str(soup))
     if len(raw_data) != 6:
         raise ParserException(
             "AX.py",
@@ -65,9 +64,9 @@ def fetch_data(session: Session, logger: Logger):
 
 
 def formated_data(
-    zone_key: Optional[str],
-    zone_key1: Optional[str],
-    zone_key2: Optional[str],
+    zone_key: str | None,
+    zone_key1: str | None,
+    zone_key2: str | None,
     session: Session,
     logger: Logger,
     type: str,
@@ -144,9 +143,9 @@ def formated_data(
 def fetch_production(
     zone_key: str = "AX",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Fetch production data."""
 
     if target_datetime is not None:
@@ -167,9 +166,9 @@ def fetch_production(
 def fetch_consumption(
     zone_key: str = "AX",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Fetch consumption data."""
 
     if target_datetime is not None:
@@ -191,9 +190,9 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Fetch exchange data."""
 
     if target_datetime is not None:

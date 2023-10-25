@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Prikaz utjecaja struje na klimu"
+      "header": "Prikaz utjecaja struje na klimu"
     },
     "view2": {
       "header": "Pogledaj koliko CO₂ se emitira za proizvodnju tvoje struje, u realnom vremenu",
@@ -23,7 +23,7 @@
       "header": "Saznaj otkud dolazi tvoja struja",
       "text": "Strelice na mapi označavaju razmijenu struje među raznim područjima. Klikni na područje za više informacija o porijeklu njegove struje."
     },
-    "view4": {
+    "view7": {
       "header": "Vremenski uvjeti u realnom vremenu",
       "text": "Proizvodnja struje solarnom energijom ili energijom vjetra ovisi o vremenskim prigodama. Klikni na ikonu sunca/vjetra za prikaz snage vjetra i sunca na mapi."
     }
@@ -133,7 +133,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se izvozi u %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> električne energije se uvozi iz %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se uvozi iz %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq po minuti",
   "theMap": {
     "groupName": "Karta",
     "mapColors-question": "Što znače boje na karti?",

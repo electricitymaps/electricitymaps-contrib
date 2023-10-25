@@ -2,11 +2,10 @@
 import { bisectLeft } from 'd3-array';
 // import { pointer } from 'd3-selection';
 // // https://observablehq.com/@d3/d3-selection-2-0
-
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { modeOrder } from 'utils/constants';
+import { Mode, modeOrder } from 'utils/constants';
 
 export const detectHoveredDatapointIndex = (
   event_: any,
@@ -17,10 +16,14 @@ export const detectHoveredDatapointIndex = (
   if (datetimes.length === 0) {
     return null;
   }
+  const timeIntervalWidth = timeScale(datetimes[1]) - timeScale(datetimes[0]);
+
   const dx = event_.pageX
     ? event_.pageX - svgNode.getBoundingClientRect().left
-    : pointer(event_); // TODO: check if this works
-  const datetime = timeScale.invert(dx);
+    : pointer(event_)[0];
+  const adjustedDx = dx - timeIntervalWidth / 2;
+  const datetime = timeScale.invert(adjustedDx);
+
   // Find data point closest to
   let index = bisectLeft(datetimes, datetime);
   if (index > 0 && datetime - datetimes[index - 1] < datetimes[index] - datetime) {
@@ -71,22 +74,34 @@ export const getGenerationTypeKey = (name: string): GenerationType | undefined =
   return undefined;
 };
 
-export function tonsPerHourToGramsPerMinute(value: number) {
-  return value / 1e6 / 60;
-}
+/** Returns the total electricity that is available in the zone (e.g. production + discharge + imports) */
+export function getTotalElectricityAvailable(zoneData: ZoneDetail, mixMode: Mode) {
+  const includeImports = mixMode === Mode.CONSUMPTION;
+  const totalDischarge = zoneData.totalDischarge ?? 0;
+  const totalImport = zoneData.totalImport ?? 0;
 
-export function getTotalElectricity(zoneData: ZoneDetail, displayByEmissions: boolean) {
-  const productionValue = displayByEmissions
-    ? zoneData.totalCo2Production
-    : zoneData.totalProduction;
-
-  if (productionValue == null) {
+  if (zoneData.totalProduction === null) {
     return Number.NaN;
   }
 
-  return displayByEmissions
-    ? productionValue + zoneData.totalCo2Discharge + zoneData.totalCo2Import // gCO₂eq/h
-    : productionValue + zoneData.totalDischarge + zoneData.totalImport;
+  return zoneData.totalProduction + totalDischarge + (includeImports ? totalImport : 0);
+}
+
+/** Returns the total emissions that is available in the zone (e.g. production + discharge + imports) */
+export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) {
+  const includeImports = mixMode === Mode.CONSUMPTION;
+  const totalCo2Discharge = zoneData.totalCo2Discharge ?? 0;
+  const totalCo2Import = zoneData.totalCo2Import ?? 0;
+
+  if (zoneData.totalCo2Production === null) {
+    return Number.NaN;
+  }
+
+  return (
+    zoneData.totalCo2Production +
+    totalCo2Discharge +
+    (includeImports ? totalCo2Import : 0)
+  );
 }
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {

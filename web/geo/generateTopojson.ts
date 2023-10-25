@@ -1,7 +1,8 @@
 import * as turf from '@turf/turf';
 import { topology } from 'topojson-server';
-import { fileExists, getJSON, round, writeJSON } from './utilities.js';
+
 import { WorldFeatureCollection } from './types.js';
+import { fileExists, getJSON, round, writeJSON } from './utilities.js';
 
 function getCenter(geojson: WorldFeatureCollection, zoneName: string) {
   switch (zoneName) {
@@ -64,6 +65,8 @@ function generateTopojson(
   const objects = topo.objects.objects as any;
   const newObjects = {} as typeof topo.objects;
   for (const geo of objects.geometries) {
+    // Remove countryName as it is not used in the frontend
+    delete geo.properties.countryName;
     // Precompute center for enable centering on the zone
     geo.properties.center = getCenter(fc, geo.properties.zoneName);
 

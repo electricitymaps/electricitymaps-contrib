@@ -10,7 +10,7 @@ https://www.eia.gov/opendata/register.php
 """
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 import arrow
 from dateutil import parser, tz
@@ -94,7 +94,7 @@ REGIONS = {
     "US-FLA-GVL": "GVL",  # Gainesville Regional Utilities
     "US-FLA-HST": "HST",  # City Of Homestead
     "US-FLA-JEA": "JEA",  # Jea
-    #    "US-FLA-NSB": "NSB",  # Utilities Commission Of New Smyrna Beach, Decomissioned data is directly integrated in another balancing authority
+    "US-FLA-NSB": "NSB",  # Utilities Commission Of New Smyrna Beach, Decomissioned data is directly integrated in another balancing authority
     # Some solar plants within this zone are operated by Florida Power & Light, therefore on the map the zones got merged.
     "US-FLA-SEC": "SEC",  # Seminole Electric Cooperative
     "US-FLA-TAL": "TAL",  # City Of Tallahassee
@@ -127,7 +127,7 @@ REGIONS = {
     "US-NW-WAUW": "WAUW",  # Western Area Power Administration Ugp West
     "US-NW-WWA": "WWA",  # Naturener Wind Watch, Llc, integrated with US-NW-NWMT
     "US-NY-NYIS": "NYIS",  # New York Independent System Operator
-    # "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative, decomissioned merged with US-SE-SOCO
+    "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative, decomissioned merged with US-SE-SOCO
     # Though it is unclear which BA took over AEC.
     "US-SE-SEPA": "SEPA",  # Southeastern Power Administration
     "US-SE-SOCO": "SOCO",  # Southern Company Services, Inc. - Trans
@@ -135,7 +135,7 @@ REGIONS = {
     "US-SW-DEAA": "DEAA",  # Arlington Valley, LLC, integrated with US-SW-SRP
     "US-SW-EPE": "EPE",  # El Paso Electric Company
     "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc, integrated with US-SW-WALC
-    #   "US-SW-GRMA": "GRMA",  # Gila River Power, Llc Decommissioned,
+    "US-SW-GRMA": "GRMA",  # Gila River Power, Llc Decommissioned,
     #  The only gas power plant is owned by US-SW-SRP but there's a PPA with US-SW-AZPS, so it was merged with
     # US-SW-AZPS https://www.power-technology.com/marketdata/gila-river-power-station-us/
     "US-SW-HGMA": "HGMA",  # New Harquahala Generating Company, Llc - Hgba, integrated with US-SW-SRP
@@ -222,7 +222,7 @@ EXCHANGES = {
     "US-FLA-FPC->US-FLA-SEC": "&facets[fromba][]=FPC&facets[toba][]=SEC",
     "US-FLA-FPC->US-SE-SOCO": "&facets[fromba][]=FPC&facets[toba][]=SOCO",
     "US-FLA-FPC->US-FLA-TEC": "&facets[fromba][]=FPC&facets[toba][]=TEC",
-    #    "US-FLA-FPC->US-FLA-NSB": "&facets[fromba][]=FPC&facets[toba][]=NSB", decomissioned NSB zone
+    "US-FLA-FPC->US-FLA-NSB": "&facets[fromba][]=FPC&facets[toba][]=NSB",  # decomissioned NSB zone, merged with FPL, exchange transfered
     "US-FLA-FPL->US-FLA-HST": "&facets[fromba][]=FPL&facets[toba][]=HST",
     "US-FLA-FPL->US-FLA-GVL": "&facets[fromba][]=FPL&facets[toba][]=GVL",
     "US-FLA-FPL->US-FLA-JEA": "&facets[fromba][]=FPL&facets[toba][]=JEA",
@@ -244,7 +244,7 @@ EXCHANGES = {
     # "US-MIDW-GLHB->US-TEN-TVA": "&facets[fromba][]=EEI&facets[toba][]=TVA", US-MIDW-GLHB decommissioned no more powerplant
     "US-MIDW-LGEE->US-MIDW-MISO": "&facets[fromba][]=LGEE&facets[toba][]=MISO",
     "US-MIDW-LGEE->US-TEN-TVA": "&facets[fromba][]=LGEE&facets[toba][]=TVA",
-    "US-MIDW-MISO->US-SE-AEC": "&facets[fromba][]=MISO&facets[toba][]=AEC",
+    "US-MIDW-MISO->US-SE-AEC": "&facets[fromba][]=MISO&facets[toba][]=AEC",  # US-SE-AEC decommissioned, merged with US-SE-SOCO, exchange transfered
     "US-MIDW-MISO->US-SE-SOCO": "&facets[fromba][]=MISO&facets[toba][]=SOCO",
     "US-MIDW-MISO->US-TEN-TVA": "&facets[fromba][]=MISO&facets[toba][]=TVA",
     "US-NE-ISNE->US-NY-NYIS": "&facets[fromba][]=ISNE&facets[toba][]=NYIS",
@@ -295,7 +295,7 @@ EXCHANGES = {
     # "US-SE-AEC->US-SE-SOCO": "&facets[fromba][]=AEC&facets[toba][]=SOCO", Decommisioned BA
     "US-SE-SEPA->US-SE-SOCO": "&facets[fromba][]=SEPA&facets[toba][]=SOCO",
     "US-SE-SOCO->US-TEN-TVA": "&facets[fromba][]=SOCO&facets[toba][]=TVA",
-    #    "US-SW-AZPS->US-SW-GRMA": "&facets[fromba][]=AZPS&facets[toba][]=GRMA", Decommissioned
+    # "US-SW-AZPS->US-SW-GRMA": "&facets[fromba][]=AZPS&facets[toba][]=GRMA", , directly integrated in US-SW-AZPS
     "US-SW-AZPS->US-SW-PNM": "&facets[fromba][]=AZPS&facets[toba][]=PNM",
     "US-SW-AZPS->US-SW-SRP": "&facets[fromba][]=AZPS&facets[toba][]=SRP",
     "US-SW-AZPS->US-SW-TEPC": "&facets[fromba][]=AZPS&facets[toba][]=TEPC",
@@ -318,6 +318,7 @@ EXCHANGES = {
 SC_VIRGIL_OWNERSHIP = 0.3333333
 
 PRODUCTION_ZONES_TRANSFERS = {
+    # key receives production from the dict of keys
     "US-SW-SRP": {"all": {"US-SW-DEAA": 1.0, "US-SW-HGMA": 1.0}},
     "US-NW-NWMT": {"all": {"US-NW-GWA": 1.0, "US-NW-WWA": 1.0}},
     "US-SW-WALC": {"all": {"US-SW-GRIF": 1.0}},
@@ -326,6 +327,15 @@ PRODUCTION_ZONES_TRANSFERS = {
         "wind": {"US-NW-AVRN": 1.0},
     },
     "US-CAR-SC": {"nuclear": {"US-CAR-SCEG": SC_VIRGIL_OWNERSHIP}},
+    "US-SE-SOCO": {"all": {"US-SE-AEC": 1.0}},
+    "US-FLA-FPL": {"all": {"US-FLA-NSB": 1.0}},
+    "US-SW-AZPS": {"gas": {"US-SW-GRMA": 1.0}},
+}
+
+EXCHANGE_TRANSFERS = {
+    # key receives the exchange from the set of keys
+    "US-FLA-FPC->US-FLA-FPL": {"US-FLA-FPC->US-FLA-NSB"},
+    "US-MIDW-MISO->US-SE-SOCO": {"US-MIDW-MISO->US-SE-AEC"},
 }
 
 TYPES = {
@@ -364,8 +374,8 @@ EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourl
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     return _fetch(
@@ -380,10 +390,10 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     consumption_list = TotalConsumptionList(logger)
     consumption = _fetch(
         zone_key,
@@ -406,8 +416,8 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     consumptions = TotalConsumptionList(logger)
@@ -430,25 +440,21 @@ def fetch_consumption_forecast(
 
 
 def create_production_storage(
-    fuel_type: str, production_point: Dict[str, float], negative_threshold: float
-) -> Tuple[Optional[ProductionMix], Optional[StorageMix]]:
+    fuel_type: str, production_point: dict[str, float], negative_threshold: float
+) -> tuple[ProductionMix | None, StorageMix | None]:
     """Create a production mix or a storage mix from a production point
     handling the special cases of hydro storage and self consumption"""
     production_value = production_point["value"]
     production_mix = ProductionMix()
     storage_mix = StorageMix()
-    if production_value > 0:
-        production_mix.set_value(fuel_type, production_value)
-        return production_mix, None
-    if fuel_type == "hydro":
+    if production_value < 0 and fuel_type == "hydro":
         # Negative hydro is reported by some BAs, according to the EIA those are pumped storage.
         # https://www.eia.gov/electricity/gridmonitor/about
-        storage_mix.set_value("hydro", abs(production_value))
+        storage_mix.add_value("hydro", abs(production_value))
         return None, storage_mix
-
     # production_value > negative_threshold, this is considered to be self consumption and should be reported as 0.
     # Lower values are set to None as they are most likely outliers.
-    production_mix.set_value(
+    production_mix.add_value(
         fuel_type, production_value, production_value > negative_threshold
     )
     return production_mix, None
@@ -457,11 +463,11 @@ def create_production_storage(
 @refetch_frequency(timedelta(days=1))
 def fetch_production_mix(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    all_production_breakdowns: List[ProductionBreakdownList] = []
+    all_production_breakdowns: list[ProductionBreakdownList] = []
     for production_mode, code in TYPES.items():
         negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
             production_mode, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
@@ -581,10 +587,10 @@ def fetch_production_mix(
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
     exchange_list = ExchangeList(logger)
     exchange = _fetch(
@@ -604,14 +610,39 @@ def fetch_exchange(
             source="eia.gov",
         )
 
+    # Integrate remapped exchanges
+    remapped_exchanges = EXCHANGE_TRANSFERS.get(sortedcodes, {})
+    remapped_exchange_list = ExchangeList(logger)
+    for remapped_exchange in remapped_exchanges:
+        exchange = _fetch(
+            remapped_exchange,
+            url_prefix=EXCHANGE.format(EXCHANGES[remapped_exchange]),
+            session=session,
+            target_datetime=target_datetime,
+            logger=logger,
+        )
+        for point in exchange:
+            remapped_exchange_list.append(
+                zoneKey=ZoneKey(sortedcodes),
+                datetime=point["datetime"],
+                netFlow=-point["value"]
+                if remapped_exchange in REVERSE_EXCHANGES
+                else point["value"],
+                source="eia.gov",
+            )
+
+    exchange_list = ExchangeList.merge_exchanges(
+        [exchange_list, remapped_exchange_list], logger
+    )
+
     return exchange_list.to_list()
 
 
 def _fetch(
     zone_key: str,
     url_prefix: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     # get EIA API key

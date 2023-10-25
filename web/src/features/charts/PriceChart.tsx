@@ -1,9 +1,11 @@
 import { useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
+
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { usePriceChartData } from './hooks/usePriceChartData';
+import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import PriceChartTooltip from './tooltips/PriceChartTooltip';
 
 interface PriceChartProps {
@@ -41,14 +43,21 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   if (!chartData[0]?.layerData?.price) {
     return null;
   }
+
+  const hasEnoughDataToDisplay = datetimes?.length > 2;
+
+  if (!hasEnoughDataToDisplay) {
+    return <NotEnoughDataMessage title="country-history.electricityprices" />;
+  }
+
   return (
     <>
       <ChartTitle translationKey="country-history.electricityprices" />
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {isPriceDisabled && (
-          <div className="absolute top-0 h-full w-full">
-            <div className=" h-full w-full rounded bg-white opacity-50 dark:bg-gray-700" />
-            <div className="absolute top-[50%] left-[50%] z-10 w-60 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
+          <div className="absolute top-0 -ml-3 h-full w-[115%]">
+            <div className="h-full w-full rounded bg-white opacity-90 dark:bg-gray-900" />
+            <div className="absolute left-[45%] top-[50%] z-10 w-60 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800">
               {__(`country-panel.disabledPriceReasons.${priceDisabledReason}`)}
             </div>
           </div>

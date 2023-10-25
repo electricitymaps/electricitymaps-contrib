@@ -1,5 +1,6 @@
 import * as ToastPrimitive from '@radix-ui/react-toast';
 import { useState } from 'react';
+import { useTranslation } from 'translation/translation';
 
 type Props = {
   title: string;
@@ -10,6 +11,7 @@ type Props = {
 };
 
 function Toast(props: Props) {
+  const { __ } = useTranslation();
   const { title, description, toastAction, toastActionText } = props;
   const [open, setOpen] = useState(true);
   const handleToastAction = () => {
@@ -22,7 +24,7 @@ function Toast(props: Props) {
       <ToastPrimitive.Root
         open={open}
         onOpenChange={setOpen}
-        className="radix-state-open:animate-toast-slide-in-right radix-swipe-end:animate-toast-swipe-out radix-state-closed:animate-toast-hide fixed top-16 left-1/2 z-50 w-1/4 self-center rounded-lg  bg-white shadow translate-x-radix-toast-swipe-move-x radix-swipe-cancel:translate-x-0 radix-swipe-cancel:duration-200 radix-swipe-cancel:ease-[ease] dark:bg-gray-900"
+        className="radix-state-open:animate-toast-slide-in-right radix-swipe-end:animate-toast-swipe-out radix-state-closed:animate-toast-hide fixed left-1/2 top-16 z-50 w-1/4 self-center rounded-lg  bg-white shadow translate-x-radix-toast-swipe-move-x radix-swipe-cancel:translate-x-0 radix-swipe-cancel:duration-200 radix-swipe-cancel:ease-[ease] dark:bg-gray-900"
       >
         <div className="flex">
           <div className="flex w-0 flex-1 items-start p-4">
@@ -50,7 +52,7 @@ function Toast(props: Props) {
               </div>
               <div className="flex h-0 flex-1 ">
                 <ToastPrimitive.Close className="flex h-6 w-full items-center justify-center rounded border border-transparent px-3 py-2 text-sm font-medium shadow">
-                  Dismiss
+                  {__('misc.dismiss')}
                 </ToastPrimitive.Close>
               </div>
             </div>

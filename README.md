@@ -21,9 +21,8 @@ A real time and historical visualisation of the Greenhouse Gas Intensity (in ter
     <img src="https://img.shields.io/github/license/electricitymaps/electricitymaps-contrib" alt="Electricity Maps is released under the GNU-AGPLv3 license." /></a>
   <a href="https://slack.electricitymaps.com">
     <img src="https://img.shields.io/badge/slack-3700%2B-%23126945" alt="Join our Slack" /></a>
-  <a href="https://slack.electricitymaps.com">
-    <img src="https://img.shields.io/twitter/follow/ElectricityMaps" alt="Twitter Follow"
-    ></a>
+  <a href="https://twitter.com/intent/follow?screen_name=ElectricityMaps">
+    <img src="https://img.shields.io/twitter/follow/ElectricityMaps" alt="Twitter Follow" /></a>
 </p>
 
 ![image](web/public/images/electricitymap_social_image.png#gh-light-mode-only)
@@ -88,3 +87,4 @@ The carbon intensity of each type of power plant takes into account emissions ar
 
 **How can I get access to historical data or the live API?**
 All this and more can be found **[here](https://electricitymaps.com/)**.
+You can also visit our **[data portal](https://www.electricitymaps.com/data-portal)** to download historical datasets.

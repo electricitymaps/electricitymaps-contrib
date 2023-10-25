@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Sähkön ilmastovaikutusten kartoittaminen"
+      "header": "Sähkön ilmastovaikutusten kartoittaminen"
     },
     "view2": {
       "header": "Katso, kuinka paljon hiilidioksidia vapautuu sähkön tuottamiseksi, reaaliajassa.",
@@ -23,7 +23,7 @@
       "header": "Tiedä mistä sähkösi tulee",
       "text": "Kartan nuolet osoittavat sähkövirrat eri alueiden välillä. Napsauta aluetta nähdäksesi lisätietoja sähkön alkuperästä."
     },
-    "view4": {
+    "view7": {
       "header": "Reaaliaikaiset tuuli- ja aurinko-olosuhteet",
       "text": "Tuuli- ja aurinkoenergian tuotanto riippuvat säästä. Paina aurinko- ja tuulinäppäimiä nähdäksesi tuulen ja auringonpaisteen reaaliaikaisen voimakkuuden ympäri maailmaa."
     }
@@ -137,7 +137,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä viedään %3$s",
   "electricityImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä tuodaan %3$s",
   "emissionsImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä tuodaan %3$s",
-  "ofCO2eqPerMinute": "hiilidioksiidia minuutissa",
   "theMap": {
     "groupName": "Kartta",
     "mapColors-question": "Mitä kartan värit tarkoittavat?",
@@ -1515,10 +1514,6 @@
       "countryName": "Yhdysvallat",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "Yhdysvallat",
       "zoneName": "Bonneville Power Administration"
@@ -1611,10 +1606,6 @@
       "countryName": "Yhdysvallat",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Yhdysvallat",
       "zoneName": "El Paso Electric Company"
@@ -1622,10 +1613,6 @@
     "US-SW-GRIF": {
       "countryName": "Yhdysvallat",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Yhdysvallat",

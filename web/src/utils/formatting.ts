@@ -1,8 +1,14 @@
 import * as d3 from 'd3-format';
-import { translate } from '../translation/translation';
-import { TimeAverages } from './constants';
 
-const DEFAULT_NUM_DIGITS = 3;
+import { TimeAverages } from './constants';
+import { EnergyUnits, PowerUnits } from './units';
+
+const DEFAULT_NUM_DIGITS = 2;
+
+function addSpaceBetweenNumberAndUnit(inputString: string) {
+  // Use a regular expression to add a space between the number and unit
+  return inputString.replace(/([A-Za-z])/, ' $1');
+}
 
 export const formatPower = function (
   d: number,
@@ -12,27 +18,53 @@ export const formatPower = function (
   if (d == undefined || Number.isNaN(d)) {
     return d;
   }
-  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}W` //Add a space between the number and the unit
-    .replace(/([A-Za-z])/, ' $1')
-    .trim();
-  return power;
+  const significantFigures = d.toString().length > 1 ? numberDigits : 1;
+  const power =
+    d < 1e9
+      ? d3.format(`.${significantFigures}s`)(d * 1e6) + 'W'
+      : d3.format(`.${significantFigures}r`)(d / 1e6) + 'TW';
+  return addSpaceBetweenNumberAndUnit(power);
 };
 
-export const formatCo2 = function (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) {
-  let value = d;
-  // Assume gCO₂ / h input
-  value /= 60; // Convert to gCO₂ / min
-  value /= 1e6; // Convert to tCO₂ / min
-  if (d == undefined || Number.isNaN(d)) {
-    return d;
+export const formatEnergy = function (
+  d: number,
+  numberDigits: number = DEFAULT_NUM_DIGITS
+) {
+  const power = formatPower(d, numberDigits);
+  // Assume MW input
+  if (power == undefined || Number.isNaN(power)) {
+    return power;
+  }
+  return power + 'h';
+};
+
+export const formatCo2 = function (grams: number, valueToMatch?: number): string {
+  // Validate input
+  if (grams == null || Number.isNaN(grams)) {
+    return '?';
   }
 
-  return value >= 1
-    ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
-    : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
+  // Ensure both numbers are at the same scale
+  const checkAgainst = valueToMatch ?? grams;
+
+  //Values less than 1Mt
+  if (Math.round(checkAgainst) < 1e9) {
+    let decimals = grams < 1 ? 2 : 1;
+    // Remove decimals for large values
+    if (grams > 1_000_000) {
+      decimals = 2;
+    }
+    if (checkAgainst < 1e6) {
+      return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~s`)(grams)}g`);
+    }
+
+    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~r`)(grams / 1e6)}t`);
+  }
+  // tonnes or above with significant figures as a default
+  return addSpaceBetweenNumberAndUnit(`${d3.format(',.2~s')(grams / 1e6)}t`);
 };
 
-const scalePower = function (maxPower: number | undefined) {
+const scalePower = function (maxPower: number | undefined, isPower = false) {
   // Assume MW input
   if (maxPower == undefined) {
     return {
@@ -41,23 +73,38 @@ const scalePower = function (maxPower: number | undefined) {
     };
   }
 
-  if (maxPower < 1) {
-    return {
-      unit: 'kW',
-      formattingFactor: 1e-3,
-    };
+  const thresholds: [number, EnergyUnits | PowerUnits][] = isPower
+    ? [
+        [1e9, PowerUnits.PETAWATTS],
+        [1e6, PowerUnits.TERAWATTS],
+        [1e3, PowerUnits.GIGAWATTS],
+        [1, PowerUnits.MEGAWATTS],
+        [1e-3, PowerUnits.KILOWATTS],
+      ]
+    : [
+        [1e9, EnergyUnits.PETAWATT_HOURS],
+        [1e6, EnergyUnits.TERAWATT_HOURS],
+        [1e3, EnergyUnits.GIGAWATT_HOURS],
+        [1, EnergyUnits.MEGAWATT_HOURS],
+        [1e-3, EnergyUnits.KILOWATT_HOURS],
+      ];
+
+  // Use absolute value to handle negative values
+  const value = Math.abs(maxPower);
+
+  for (const [threshold, unit] of thresholds) {
+    if (value >= threshold) {
+      return {
+        unit,
+        formattingFactor: threshold,
+      };
+    }
   }
 
-  if (maxPower < 1e3) {
-    return {
-      unit: 'MW',
-      formattingFactor: 1,
-    };
-  }
-
+  // Fallback if none of the thresholds are met
   return {
-    unit: 'GW',
-    formattingFactor: 1e3,
+    unit: EnergyUnits.PETAWATT_HOURS,
+    formattingFactor: 1e9,
   };
 };
 
@@ -111,7 +158,7 @@ const getLocaleNumberFormat = (lang: string, { unit, unitDisplay, range }: any) 
   } catch {
     // As Intl.NumberFormat with custom 'unit' is not supported in all browsers, we fallback to
     // a simple English based implementation
-    const plural = range !== 1 ? 's' : '';
+    const plural = range === 1 ? '' : 's';
     return `${range} ${unit}${plural}`;
   }
 };
@@ -129,7 +176,10 @@ const formatTimeRange = (lang: string, timeAggregate: TimeAverages) => {
       return getLocaleNumberFormat(lang, { unit: 'month', range: 12 });
     }
     case TimeAverages.YEARLY: {
-      return getLocaleNumberFormat(lang, { unit: 'year', range: 5 });
+      return getLocaleNumberFormat(lang, {
+        unit: 'year',
+        range: new Date().getUTCFullYear() - 2017,
+      });
     }
     default: {
       console.error(`${timeAggregate} is not implemented`);
@@ -202,11 +252,11 @@ function isValidDate(date: Date) {
  * @returns {string} formatted string of data sources.
  */
 function formatDataSources(dataSources: string[], language: string) {
-  return typeof Intl.ListFormat !== 'undefined'
-    ? new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
+  return Intl.ListFormat === undefined
+    ? dataSources.join(', ')
+    : new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
         dataSources
-      )
-    : dataSources.join(', ');
+      );
 }
 
-export { scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };
+export { formatDataSources, formatDate, formatDateTick, formatTimeRange, scalePower };

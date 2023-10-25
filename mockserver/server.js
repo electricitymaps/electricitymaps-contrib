@@ -10,16 +10,38 @@ app.use(cors());
 
 const DEFAULT_ZONE_KEY = 'DE';
 
-app.get('/v6/details/:aggregate/:zoneId', (req, res, next) => {
+app.get('/v7/details/:aggregate/:zoneId', (req, res, next) => {
   const { aggregate, zoneId } = req.params;
 
   // if file exists return it, otherwise redirect to DEFAULT file
-  if (fs.existsSync(`./public/v6/details/${aggregate}/${zoneId}.json`)) {
+  if (fs.existsSync(`./public/v7/details/${aggregate}/${zoneId}.json`)) {
     // file structure of project will return the correct file
     next();
   } else {
-    res.redirect(`/v6/details/${aggregate}/${DEFAULT_ZONE_KEY}`);
+    res.redirect(`/v7/details/${aggregate}/${DEFAULT_ZONE_KEY}`);
   }
+});
+
+app.get('/v3/gfs/wind', (req, res, next) => {
+  const { refTime, targetTime } = req.query;
+
+  fs.readFile(`./public/v3/gfs/wind.json`, (err, data) => {
+    const jsonData = JSON.parse(data);
+    jsonData.data[0].header.refTime = targetTime;
+
+    res.json(jsonData);
+  });
+});
+
+app.get('/v3/gfs/solar', (req, res, next) => {
+  const { refTime, targetTime } = req.query;
+
+  fs.readFile(`./public/v3/gfs/solar.json`, (err, data) => {
+    const jsonData = JSON.parse(data);
+    jsonData.data.header.refTime = targetTime;
+
+    res.json(jsonData);
+  });
 });
 
 app.use(function (req, res, next) {

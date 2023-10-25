@@ -11,6 +11,7 @@ import argparse
 import os
 import re
 from glob import glob
+from shutil import move
 
 from utils import (
     LOCALE_FILE_PATHS,

@@ -11,10 +11,10 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import FAQPanel from './faq/FAQPanel';
+import { useTranslation } from 'translation/translation';
+
 import { leftPanelOpenAtom } from './panelAtoms';
 import RankingPanel from './ranking-panel/RankingPanel';
-
 import ZoneDetails from './zone/ZoneDetails';
 
 function HandleLegacyRoutes() {
@@ -52,6 +52,10 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
       <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
     );
   }
+  const upperCaseZoneId = zoneId.toUpperCase();
+  if (zoneId !== upperCaseZoneId) {
+    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
+  }
 
   return children;
 }
@@ -62,13 +66,17 @@ type CollapseButtonProps = {
 };
 
 function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
+  const { __ } = useTranslation();
   return (
     <button
       data-test-id="left-panel-collapse-button"
       className={
-        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 pl-1 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-800 dark:hover:bg-gray-600'
+        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 pl-1 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
       }
       onClick={onCollapse}
+      aria-label={
+        isCollapsed ? __('aria.label.showSidePanel') : __('aria.label.hideSidePanel')
+      }
     >
       {isCollapsed ? <HiChevronRight /> : <HiChevronLeft />}
     </button>
@@ -92,12 +100,12 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   return (
     <aside
       data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-800 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
+      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
         location.pathname === '/map' ? 'hidden' : ''
-      } ${!isOpen ? '-translate-x-full' : ''}`}
+      } ${isOpen ? '' : '-translate-x-full'}`}
     >
       <MobileHeader />
-      <section className="h-full w-full p-2 pl-1 pr-0">{children}</section>
+      <section className="h-full w-full p-2 pr-0 sm:pl-1">{children}</section>
       <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
     </aside>
   );
@@ -116,7 +124,6 @@ export default function LeftPanel() {
             </ValidZoneIdGuardWrapper>
           }
         />
-        <Route path="/faq" element={<FAQPanel />} />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
         <Route path="*" element={<RankingPanel />} />
       </SentryRoutes>

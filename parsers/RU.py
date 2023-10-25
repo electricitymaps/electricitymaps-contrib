@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 
 import json
 from datetime import datetime
 from functools import reduce
 from logging import Logger, getLogger
-from typing import List, Optional, Union
 
 import arrow
 import pandas as pd
@@ -60,10 +58,10 @@ tz = "Europe/Moscow"
 
 def fetch_production(
     zone_key: str = "RU",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Requests the last known production mix (in MW) of a given country."""
     if zone_key == "RU":
         # Get data for all zones
@@ -106,8 +104,8 @@ def fetch_production(
 
 def fetch_production_1st_synchronous_zone(
     zone_key: str = "RU-1",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
 ) -> list:
     zone_key_price_zone_mapper = {
         "RU-1": 1,
@@ -159,7 +157,7 @@ def fetch_production_1st_synchronous_zone(
 
         # Date
         hour = "%02d" % (int(datapoint["INTERVAL"]))
-        datetime = arrow.get("%s %s" % (date, hour), "YYYY.MM.DD HH", tzinfo=tz)
+        datetime = arrow.get(f"{date} {hour}", "YYYY.MM.DD HH", tzinfo=tz)
         row["datetime"] = datetime.datetime
         last_dt = arrow.now(tz).shift(hours=-1).datetime
 
@@ -178,9 +176,9 @@ def fetch_production_1st_synchronous_zone(
 
 def fetch_production_2nd_synchronous_zone(
     zone_key: str = "RU-AS",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-) -> List[dict]:
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+) -> list[dict]:
     if zone_key != "RU-AS":
         raise NotImplementedError("This parser is not able to parse given zone")
 
@@ -228,7 +226,7 @@ def fetch_production_2nd_synchronous_zone(
         if len(hour) == 1:
             hour = "0" + hour
 
-        datetime = arrow.get("%s %s" % (date, hour), "YYYY.MM.DD HH", tzinfo=tz)
+        datetime = arrow.get(f"{date} {hour}", "YYYY.MM.DD HH", tzinfo=tz)
         row["datetime"] = datetime.datetime
         last_dt = arrow.now(tz).shift(minutes=-30).datetime
 
@@ -267,8 +265,8 @@ def response_checker(json_content) -> bool:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
@@ -279,18 +277,18 @@ def fetch_exchange(
 
     date = today.format("YYYY-MM-DD")
     r = session or Session()
-    DATE = "Date={}".format(date)
+    DATE = f"Date={date}"
 
     exchange_urls = []
     if target_datetime:
         for hour in range(0, 24):
-            url = BASE_EXCHANGE_URL + DATE + "&Hour={}".format(hour)
+            url = BASE_EXCHANGE_URL + DATE + f"&Hour={hour}"
             exchange_urls.append((url, hour))
     else:
         # Only fetch last 2 hours when not fetching historical data.
         for shift in range(0, 2):
             hour = today.shift(hours=-shift).format("HH")
-            url = BASE_EXCHANGE_URL + DATE + "&Hour={}".format(hour)
+            url = BASE_EXCHANGE_URL + DATE + f"&Hour={hour}"
             exchange_urls.append((url, int(hour)))
 
     datapoints = []

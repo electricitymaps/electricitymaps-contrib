@@ -1,13 +1,13 @@
+import { zoneDetailMock } from 'stories/mockData';
+
 import {
-  getCO2IntensityByMode,
   dateToDatetimeString,
-  getProductionCo2Intensity,
-  getFossilFuelRatio,
   getCarbonIntensity,
+  getCO2IntensityByMode,
+  getFossilFuelRatio,
+  getProductionCo2Intensity,
   getRenewableRatio,
 } from './helpers';
-
-import { zoneDetailMock } from 'stories/mockData';
 
 describe('getCO2IntensityByMode', () => {
   // Tests for consumption
@@ -48,7 +48,7 @@ describe('getProductionCo2Intensity', () => {
 
   it('returns the correct value when the type is battery storage', () => {
     const actual = getProductionCo2Intensity('battery storage', zoneDetailMock);
-    expect(actual).toBe(136.442_667_362_438_53);
+    expect(actual).toBe(155.11);
   });
 });
 
