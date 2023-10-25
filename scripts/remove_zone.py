@@ -44,7 +44,7 @@ def remove_from_parent_config(zone_key: ZoneKey):
             if zone_key in sub_zone_names:
                 sub_zone_names.remove(zone_key)
         run_shell_command(
-            f"npx prettier --config {PRETTIER_CONFIG_PATH} --write {parent_config_path}",
+            f"npx prettier@2 --config {PRETTIER_CONFIG_PATH} --write {parent_config_path}",
             cwd=ROOT_PATH,
         )
 
@@ -76,20 +76,22 @@ def remove_translations(zone_key: ZoneKey):
 
 
 def remove_mockserver_data(zone_key: ZoneKey):
-    for state_level in ["daily", "hourly", "monthly", "yearly"]:
-        try:
-            with JsonFilePatcher(
-                ROOT_PATH / f"mockserver/public/v6/state/{state_level}.json"
-            ) as f:
-                data = f.content["data"]
-                if zone_key in data["zones"]:
-                    del data["zones"][zone_key]
+    for API_version in ["v6", "v7"]:
+        for state_level in ["daily", "hourly", "monthly", "yearly"]:
+            try:
+                with JsonFilePatcher(
+                    ROOT_PATH
+                    / f"mockserver/public/{API_version}/state/{state_level}.json"
+                ) as f:
+                    data = f.content["data"]
+                    if zone_key in data["zones"]:
+                        del data["zones"][zone_key]
 
-                for k in list(data["exchanges"].keys()):
-                    if k.startswith(f"{zone_key}->") or k.endswith(f"->{zone_key}"):
-                        del data["exchanges"][k]
-        except FileNotFoundError:
-            pass
+                    for k in list(data["exchanges"].keys()):
+                        if k.startswith(f"{zone_key}->") or k.endswith(f"->{zone_key}"):
+                            del data["exchanges"][k]
+            except FileNotFoundError:
+                pass
 
 
 def remove_geojson_entry(zone_key: ZoneKey):
@@ -101,7 +103,7 @@ def remove_geojson_entry(zone_key: ZoneKey):
         f.content["features"] = new_features
 
     run_shell_command(
-        f"npx prettier --config {PRETTIER_CONFIG_PATH} --write {geo_json_path}",
+        f"npx prettier@2 --config {PRETTIER_CONFIG_PATH} --write {geo_json_path}",
         cwd=ROOT_PATH,
     )
     run_shell_command(
@@ -128,7 +130,17 @@ def find_files_mentioning_zone(text):
         "dist",
         "archived",
     ]
-    VALID_EXTENSIONS = (".py", ".js", ".ts", ".yaml", ".json", ".md", ".html")
+    VALID_EXTENSIONS = (
+        ".py",
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx",
+        ".yaml",
+        ".json",
+        ".md",
+        ".html",
+    )
     results = []
     for root, dirs, files in os.walk(ROOT_PATH):
         if any([ignored_path in root for ignored_path in IGNORED_PATHS]):
@@ -154,6 +166,11 @@ def find_files_mentioning_zone(text):
 
 def main():
     """Removes a zone by from a bunch of places and lists additional files mentioning the zone key."""
+
+    if os.name != "posix":
+        print("This script only works on Unix-like systems.")
+        exit(1)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("zone", help="The zone abbreviation (e.g. AT)")
     args = parser.parse_args()
