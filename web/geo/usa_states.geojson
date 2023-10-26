@@ -4,7 +4,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": { "zoneName": "Alabama", "stateId": "AL" },
+      "properties": { "stateName": "Alabama", "stateId": "AL" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -50,7 +50,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Arizona", "stateId": "AZ" },
+      "properties": { "stateName": "Arizona", "stateId": "AZ" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -95,7 +95,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Arkansas", "stateId": "AR" },
+      "properties": { "stateName": "Arkansas", "stateId": "AR" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -145,7 +145,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "California", "stateId": "CA" },
+      "properties": { "stateName": "California", "stateId": "CA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -251,7 +251,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Colorado", "stateId": "CO" },
+      "properties": { "stateName": "Colorado", "stateId": "CO" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -280,7 +280,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Connecticut", "stateId": "CT" },
+      "properties": { "stateName": "Connecticut", "stateId": "CT" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -309,7 +309,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Delaware", "stateId": "DE" },
+      "properties": { "stateName": "Delaware", "stateId": "DE" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -335,7 +335,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "District of Columbia", "stateId": "Unknown" },
+      "properties": { "stateName": "District of Columbia", "stateId": "DC" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -353,7 +353,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Georgia", "stateId": "GA" },
+      "properties": { "stateName": "Georgia", "stateId": "GA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -418,7 +418,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Idaho", "stateId": "ID" },
+      "properties": { "stateName": "Idaho", "stateId": "ID" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -497,7 +497,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Illinois", "stateId": "IL" },
+      "properties": { "stateName": "Illinois", "stateId": "IL" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -577,7 +577,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Indiana", "stateId": "IN" },
+      "properties": { "stateName": "Indiana", "stateId": "IN" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -636,7 +636,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Iowa", "stateId": "IA" },
+      "properties": { "stateName": "Iowa", "stateId": "IA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -699,7 +699,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Kansas", "stateId": "KS" },
+      "properties": { "stateName": "Kansas", "stateId": "KS" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -725,7 +725,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Kentucky", "stateId": "KY" },
+      "properties": { "stateName": "Kentucky", "stateId": "KY" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -813,7 +813,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Maine", "stateId": "ME" },
+      "properties": { "stateName": "Maine", "stateId": "ME" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -895,7 +895,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Maryland", "stateId": "MD" },
+      "properties": { "stateName": "Maryland", "stateId": "MD" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -968,7 +968,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Massachusetts", "stateId": "MA" },
+      "properties": { "stateName": "Massachusetts", "stateId": "MA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1016,7 +1016,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Michigan", "stateId": "MI" },
+      "properties": { "stateName": "Michigan", "stateId": "MI" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1173,7 +1173,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "", "stateId": "Unknown" },
+      "properties": { "stateName": "", "stateId": "" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1193,7 +1193,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Minnesota", "stateId": "MN" },
+      "properties": { "stateName": "Minnesota", "stateId": "MN" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1296,7 +1296,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Mississippi", "stateId": "MS" },
+      "properties": { "stateName": "Mississippi", "stateId": "MS" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1355,7 +1355,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Missouri", "stateId": "MO" },
+      "properties": { "stateName": "Missouri", "stateId": "MO" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1421,7 +1421,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Montana", "stateId": "MT" },
+      "properties": { "stateName": "Montana", "stateId": "MT" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1486,7 +1486,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Nebraska", "stateId": "NE" },
+      "properties": { "stateName": "Nebraska", "stateId": "NE" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1528,7 +1528,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Nevada", "stateId": "NV" },
+      "properties": { "stateName": "Nevada", "stateId": "NV" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1562,7 +1562,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "New Hampshire", "stateId": "NH" },
+      "properties": { "stateName": "New Hampshire", "stateId": "NH" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1603,7 +1603,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "New Jersey", "stateId": "NJ" },
+      "properties": { "stateName": "New Jersey", "stateId": "NJ" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1648,7 +1648,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "New Mexico", "stateId": "NM" },
+      "properties": { "stateName": "New Mexico", "stateId": "NM" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1678,7 +1678,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "New York", "stateId": "NY" },
+      "properties": { "stateName": "New York", "stateId": "NY" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1759,7 +1759,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "North Carolina", "stateId": "NC" },
+      "properties": { "stateName": "North Carolina", "stateId": "NC" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1842,7 +1842,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "North Dakota", "stateId": "ND" },
+      "properties": { "stateName": "North Dakota", "stateId": "ND" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1871,7 +1871,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Ohio", "stateId": "OH" },
+      "properties": { "stateName": "Ohio", "stateId": "OH" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1931,7 +1931,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Oklahoma", "stateId": "OK" },
+      "properties": { "stateName": "Oklahoma", "stateId": "OK" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -1989,7 +1989,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Oregon", "stateId": "OR" },
+      "properties": { "stateName": "Oregon", "stateId": "OR" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2058,7 +2058,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Pennsylvania", "stateId": "PA" },
+      "properties": { "stateName": "Pennsylvania", "stateId": "PA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2104,7 +2104,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Rhode Island", "stateId": "RI" },
+      "properties": { "stateName": "Rhode Island", "stateId": "RI" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2141,7 +2141,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "South Carolina", "stateId": "SC" },
+      "properties": { "stateName": "South Carolina", "stateId": "SC" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2198,7 +2198,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "South Dakota", "stateId": "SD" },
+      "properties": { "stateName": "South Dakota", "stateId": "SD" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2240,7 +2240,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Tennessee", "stateId": "TN" },
+      "properties": { "stateName": "Tennessee", "stateId": "TN" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2296,7 +2296,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Texas", "stateId": "TX" },
+      "properties": { "stateName": "Texas", "stateId": "TX" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2461,7 +2461,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Utah", "stateId": "UT" },
+      "properties": { "stateName": "Utah", "stateId": "UT" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2486,7 +2486,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Vermont", "stateId": "VT" },
+      "properties": { "stateName": "Vermont", "stateId": "VT" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2527,7 +2527,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Virginia", "stateId": "VA" },
+      "properties": { "stateName": "Virginia", "stateId": "VA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2620,7 +2620,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Washington", "stateId": "WA" },
+      "properties": { "stateName": "Washington", "stateId": "WA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2694,7 +2694,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "West Virginia", "stateId": "WV" },
+      "properties": { "stateName": "West Virginia", "stateId": "WV" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2772,7 +2772,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Wisconsin", "stateId": "WI" },
+      "properties": { "stateName": "Wisconsin", "stateId": "WI" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2860,7 +2860,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Wyoming", "stateId": "WY" },
+      "properties": { "stateName": "Wyoming", "stateId": "WY" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2886,7 +2886,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Florida", "stateId": "FL" },
+      "properties": { "stateName": "Florida", "stateId": "FL" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
@@ -2978,7 +2978,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "zoneName": "Louisiana", "stateId": "LA" },
+      "properties": { "stateName": "Louisiana", "stateId": "LA" },
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
