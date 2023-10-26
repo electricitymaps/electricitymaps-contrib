@@ -23,13 +23,13 @@ disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides 
 emissionFactors:
   lifecycle:
     unknown:
-      _comment: 'Source: Enerdata 2022 Japanese National Average'
-      _url:
-        - https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
-      source: Enerdata 2022
+      source: 'Enerdata 2022 Japanese National Average'
       value: 462
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP.fetch_production
 timezone: Asia/Tokyo
+sources:
+  Enerdata 2022 Japanese National Average:
+    link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf

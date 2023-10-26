@@ -106,7 +106,7 @@ emissionFactors:
       source: INCER ACV
       value: 29.03333333
     unknown:
-      source: 2018 average estimated from https://www.hops.hr/page-file/oEvvKj779KAhmQg10Gezt2/temeljni-podaci/Temeljni%20podaci%202018.pdf
+      source: HOPS 2018; HOPS 2018 derived calculation
       value: 240
     wind:
       datetime: '2021-01-01'
@@ -171,6 +171,10 @@ price_displayed: false
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  HOPS 2018:
+    link: https://www.hops.hr/page-file/oEvvKj779KAhmQg10Gezt2/temeljni-podaci/Temeljni%20podaci%202018.pdf
+  HOPS 2018 derived calculation:
+    link: https://github.com/electricitymaps/electricitymaps-contrib/pull/1965
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
