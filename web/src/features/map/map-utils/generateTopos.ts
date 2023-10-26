@@ -9,7 +9,7 @@ import {
 } from 'types';
 import { SpatialAggregate } from 'utils/constants';
 
-import statesTopo from '../../../../config/usa-states.json';
+import statesTopo from '../../../../config/usa_states.json';
 import worldTopo from '../../../../config/world.json';
 // TODO: Investigate if we can move this step to buildtime geo scripts
 export interface TopoObject {
