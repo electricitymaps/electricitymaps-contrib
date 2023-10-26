@@ -297,6 +297,19 @@ def get_capacity_data_for_all_zones(target_datetime: datetime):
                 }
     return capacity_dict
 
+def fetch_production_capacity(
+    target_datetime: datetime, zone_key: ZoneKey
+) -> None:
+    all_capacity = get_capacity_data_for_all_zones(target_datetime)
+    zone_capacity = all_capacity[zone_key]
+    if zone_capacity:
+        print(
+            f"Updated capacity for {zone_key} in {target_datetime.year}: \n{zone_capacity}"
+        )
+        return zone_capacity
+    else:
+        raise ValueError(f"No capacity data for {zone_key} in {target_datetime.year}")
+
 
 if __name__ == "__main__":
-    data = get_capacity_data_for_all_zones(datetime(2022, 1, 1))
+    fetch_production_capacity(datetime(2022,1,1), "LK")
