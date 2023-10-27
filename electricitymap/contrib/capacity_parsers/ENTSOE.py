@@ -132,12 +132,12 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> d
                 capacity_dict[ENTSOE_PARAMETER_TO_MODE[fuel_code]] = fuel_capacity_dict
     if capacity_dict:
         print(
-            f"ENTSO-E capacity parser found capacity data for {zone_key} on {target_datetime.date()}: \n{capacity_dict}"
+            f"Capacity data for {zone_key} on {target_datetime.date()}: \n{capacity_dict}"
         )
         return capacity_dict
     else:
         logger.warning(
-            f"ENTSO-E capacity parser failed to find capacity data for {zone_key} on {target_datetime.date()}"
+            f"Failed to fecth capacity data for {zone_key} on {target_datetime.date()}"
         )
 
 
@@ -154,3 +154,7 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
             print(f"Failed to update capacity for {zone} on {target_datetime.date()}")
             continue
     return capacity_dict
+
+
+if __name__ == "__main__":
+    fetch_production_capacity("FR", datetime(2023, 1, 1))
