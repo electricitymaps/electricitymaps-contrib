@@ -2,17 +2,14 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import pytz
 from requests import Response, Session
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
     TotalConsumptionList,
-    TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
-    ProductionBreakdown,
     ProductionMix,
 )
 from electricitymap.contrib.lib.types import ZoneKey
@@ -148,32 +145,34 @@ def fetch_production(
     assert len(wind_data) > 0
     assert len(exchange_data) > 0
 
-    production = []
+    production = ProductionBreakdownList(logger=logger)
     for item in demand_data:
         dt = item["EffectiveTime"]
-        wind_dt = [item for item in wind_data if item["EffectiveTime"] == dt]
-        if len(wind_dt) == 1:
-            wind_prod = wind_dt[0]["Value"]
-        else:
-            wind_prod = 0
-        exchange_dt = [item for item in exchange_data if item["EffectiveTime"] == dt]
-        if len(exchange_dt) == 1:
-            exchange = exchange_dt[0]["Value"]
-        else:
-            exchange = 0
-        data_point = {
-            "zoneKey": zone_key,
-            "datetime": datetime.strptime(dt, "%d-%b-%Y %H:%M:%S").replace(
-                tzinfo=pytz.timezone("Europe/Dublin")
-            ),
-            "production": {
-                "unknown": item["Value"] - exchange - wind_prod,
-                "wind": wind_prod,
-            },
-            "source": "eirgridgroup.com",
-        }
-        production += [data_point]
-    return production
+        wind_dt = [
+            wind_event for wind_event in wind_data if wind_event["EffectiveTime"] == dt
+        ]
+
+        wind_prod = wind_dt[0]["Value"] if len(wind_dt) == 1 else 0
+
+        exchange_dt = [
+            exchange_event
+            for exchange_event in exchange_data
+            if exchange_event["EffectiveTime"] == dt
+        ]
+
+        exchange = exchange_dt[0]["Value"] if len(exchange_dt) == 1 else 0
+        print(item["Value"], exchange, wind_prod)
+        productionMix = ProductionMix()
+        if all([item["Value"], exchange, wind_prod]):
+            productionMix.add_value("wind", wind_prod)
+            productionMix.add_value("unknown", item["Value"] - exchange - wind_prod)
+        production.append(
+            zoneKey=zone_key,
+            production=productionMix,
+            datetime=parse_datetime(dt),
+            source=SOURCE,
+        )
+    return production.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
