@@ -1,11 +1,14 @@
+import io
 from datetime import datetime
 
 import pandas as pd
 import pycountry
+from bs4 import BeautifulSoup
+from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
-""" Collects capacity data from the annual Ember dataset. This data can be downloaded here: https://ember-climate.org/data-catalogue/yearly-electricity-data/"""
+""" Collects capacity data from the yearly electricity data from Ember"""
 
 EMBER_VARIABLE_TO_MODE = {
     "Bioenergy": "biomass",
@@ -81,8 +84,22 @@ def map_variable_to_mode(row: pd.Series) -> pd.DataFrame:
     return row
 
 
-def get_data_from_csv(path: str, year: int) -> pd.DataFrame:
-    df = pd.read_csv(path)
+def get_data_from_url() -> pd.DataFrame:
+    base_url = "https://ember-climate.org"
+    yearly_catalogue_url = base_url + "/data-catalogue/yearly-electricity-data/"
+    session = Session()
+    r: Response = session.get(yearly_catalogue_url)
+    soup = BeautifulSoup(r.text, "html.parser")
+    csv_link = soup.find("a", {"download": "yearly_full_release_long_format.csv"})[
+        "href"
+    ]
+    r_csv: Response = session.get(base_url + csv_link)
+    df = pd.read_csv(io.StringIO(r_csv.text))
+    return df
+
+
+def get_data_from_csv(year: int) -> pd.DataFrame:
+    df = get_data_from_url()
 
     df_capacity = format_ember_data(df, year)
     all_capacity = get_capacity_dict_from_df(df_capacity)
@@ -144,22 +161,28 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict:
 
 
 def fetch_production_capacity_for_all_zones(
-    target_datetime: datetime, path: str
-) -> None:
-    all_capacity = get_data_from_csv(path, target_datetime.year)
+    target_datetime: datetime
+) -> dict:
+    df_capacity = get_data_from_url()
+    df_capacity = format_ember_data(df_capacity, target_datetime.year)
+    all_capacity = get_capacity_dict_from_df(df_capacity)
     print(f"Fetched capacity data from Ember for {target_datetime.year}")
     return all_capacity
 
 
 def fetch_production_capacity(
-    target_datetime: datetime, path: str, zone_key: ZoneKey
-) -> None:
-    all_capacity = get_data_from_csv(path, target_datetime.year)
-    zone_capacity = all_capacity[zone_key]
-    if zone_capacity:
+    target_datetime: datetime, zone_key: ZoneKey
+) -> dict:
+    all_capacity = fetch_production_capacity_for_all_zones(target_datetime)
+    if zone_key in all_capacity:
+        zone_capacity = all_capacity[zone_key]
         print(
-            f"Updated capacity for {zone_key} in {target_datetime.year}: \n {zone_capacity}"
+            f"Fetched capacity for {zone_key} in {target_datetime.year}: \n {zone_capacity}"
         )
         return zone_capacity
     else:
         raise ValueError(f"No capacity data for {zone_key} in {target_datetime.year}")
+
+
+if __name__ == "__main__":
+    fetch_production_capacity(datetime(2022,1,1), "NZ")
