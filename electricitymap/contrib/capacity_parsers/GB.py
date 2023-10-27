@@ -20,7 +20,7 @@ MODE_MAPPING = {
 }
 
 
-def fetch_production_capacity(zone_key:ZoneKey, target_datetime: datetime) -> dict:
+def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> dict:
     url = f"https://www.bmreports.com/bmrs/?q=ajax/year/B1410/{target_datetime.year}/"
     r: Response = Session().get(url)
 
@@ -39,12 +39,15 @@ def fetch_production_capacity(zone_key:ZoneKey, target_datetime: datetime) -> di
                     "value": int(item.find("quantity").string),
                     "source": "bmreports.com",
                 }
-        print(f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}")
+        print(
+            f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
+        )
         return capacity
     else:
         raise ValueError(
             f"GB: No capacity data available for year {target_datetime.year}"
         )
 
-if __name__=="__main__":
-    fetch_production_capacity("GB", datetime(2023,1,1))
+
+if __name__ == "__main__":
+    fetch_production_capacity("GB", datetime(2023, 1, 1))
