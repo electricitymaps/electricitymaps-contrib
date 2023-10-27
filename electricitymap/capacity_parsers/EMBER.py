@@ -98,14 +98,6 @@ def get_data_from_url() -> pd.DataFrame:
     return df
 
 
-def get_data_from_csv(year: int) -> pd.DataFrame:
-    df = get_data_from_url()
-
-    df_capacity = format_ember_data(df, year)
-    all_capacity = get_capacity_dict_from_df(df_capacity)
-    return all_capacity
-
-
 def format_ember_data(df: pd.DataFrame, year: int) -> pd.DataFrame:
     df_filtered = df.loc[df["Area type"] == "Country"].copy()
     df_filtered = df_filtered.loc[df_filtered["Year"] == year]
@@ -160,9 +152,7 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict:
     return all_capacity
 
 
-def fetch_production_capacity_for_all_zones(
-    target_datetime: datetime
-) -> dict:
+def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
     df_capacity = get_data_from_url()
     df_capacity = format_ember_data(df_capacity, target_datetime.year)
     all_capacity = get_capacity_dict_from_df(df_capacity)
@@ -170,9 +160,7 @@ def fetch_production_capacity_for_all_zones(
     return all_capacity
 
 
-def fetch_production_capacity(
-    target_datetime: datetime, zone_key: ZoneKey
-) -> dict:
+def fetch_production_capacity(target_datetime: datetime, zone_key: ZoneKey) -> dict:
     all_capacity = fetch_production_capacity_for_all_zones(target_datetime)
     if zone_key in all_capacity:
         zone_capacity = all_capacity[zone_key]
@@ -185,4 +173,4 @@ def fetch_production_capacity(
 
 
 if __name__ == "__main__":
-    fetch_production_capacity(datetime(2022,1,1), "NZ")
+    fetch_production_capacity(datetime(2022, 1, 1), "NZ")
