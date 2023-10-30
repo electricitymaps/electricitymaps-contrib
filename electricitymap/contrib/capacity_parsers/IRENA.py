@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from logging import getLogger
 
 import pycountry
 from requests import Response, Session
@@ -7,7 +8,7 @@ from requests import Response, Session
 from electricitymap.contrib.config import ZoneKey
 
 """The data is downloaded from the IRENA API. """
-
+logger = getLogger(__name__)
 IRENA_ZONES = ["IL", "IS", "LK", "NI", "GF", "PF"]
 
 IRENA_JSON_TO_MODE_MAPPING = {
@@ -125,21 +126,18 @@ def fetch_production_capacity(target_datetime: datetime, zone_key: ZoneKey) -> d
     zone_capacity = all_capacity[zone_key]
 
     if zone_capacity:
-        print(
+        logger.info(
             f"Fetched capacity for {zone_key} in {target_datetime.year}: \n{zone_capacity}"
         )
         return zone_capacity
     else:
-        raise ValueError(f"No capacity data for {zone_key} in {target_datetime.year}")
+        logger.warning(f"No capacity data for {zone_key} in {target_datetime.year}")
 
 
 def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
     all_capacity = get_capacity_data_for_all_zones(target_datetime)
 
     all_capacity = {k: v for k, v in all_capacity.items() if k in IRENA_ZONES}
-    print(f"Fetched capacity data from IRENA for {target_datetime.year}")
+    logger.info(f"Fetched capacity data from IRENA for {target_datetime.year}")
     return all_capacity
 
-
-if __name__ == "__main__":
-    fetch_production_capacity(datetime(2022, 1, 1), "NI")
