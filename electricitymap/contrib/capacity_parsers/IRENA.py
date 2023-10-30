@@ -45,6 +45,9 @@ def get_data_from_url(target_datetime: datetime) -> list:
         f"ELECCAP_{url_year}_cycle2.px",
         f"ELECCAP_{url_year}_cycle1.px",
         f"ELECCAP_{url_year}.px",
+        f"ELECCAP_{url_year-1}_cycle2.px",
+        f"ELECCAP_{url_year-1}_cycle1.px",
+        f"ELECCAP_{url_year-1}.px",
     ]
     json_query = {
         "query": [
@@ -90,11 +93,14 @@ def get_capacity_data_for_all_zones(target_datetime: datetime):
         else:
             pass
         mode = IRENA_JSON_TO_MODE_MAPPING[int(item["key"][1])]
+        value : float = round(float(item["values"][0]),0)
+        datetime_value = datetime.strptime(item["key"][-1], "%y")
+
         if zone not in capacity_dict:
             zone_dict = {
                 mode: {
-                    "datetime": datetime.strptime(item["key"][-1], "%y"),
-                    "value": float(item["values"][0]),
+                    "datetime": datetime_value,
+                    "value": value,
                 }
             }
             capacity_dict[zone] = zone_dict
@@ -102,14 +108,14 @@ def get_capacity_data_for_all_zones(target_datetime: datetime):
             mode = reallocate_capacity_mode(zone, int(item["key"][1]))
             if mode in capacity_dict[zone]:
                 zone_dict = capacity_dict[zone][mode]
-                capacity_dict[zone][mode]["value"] += float(item["values"][0])
+                capacity_dict[zone][mode]["value"] += value
             else:
                 capacity_dict[zone] = {
                     **capacity_dict[zone],
                     **{
                         mode: {
-                            "datetime": datetime.strptime(item["key"][-1], "%y"),
-                            "value": float(item["values"][0]),
+                            "datetime": datetime_value,
+                            "value": value,
                         }
                     },
                 }
@@ -138,4 +144,4 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
 
 
 if __name__ == "__main__":
-    fetch_production_capacity(datetime(2022, 1, 1), "IS")
+    fetch_production_capacity(datetime(2022, 1, 1), "NI")
