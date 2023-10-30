@@ -1,7 +1,6 @@
 import json
 from datetime import datetime
 
-import pandas as pd
 import pycountry
 from requests import Response, Session
 
@@ -92,9 +91,9 @@ def get_capacity_data_for_all_zones(target_datetime: datetime):
             zone = pycountry.countries.get(alpha_3=item["key"][0]).alpha_2
         else:
             pass
-        mode = IRENA_JSON_TO_MODE_MAPPING[int(item["key"][1])]
-        value : float = round(float(item["values"][0]),0)
-        datetime_value = datetime.strptime(item["key"][-1], "%y")
+        mode: str = IRENA_JSON_TO_MODE_MAPPING[int(item["key"][1])]
+        value: float = round(float(item["values"][0]), 0)
+        datetime_value: datetime = datetime.strptime(item["key"][-1], "%y")
 
         if zone not in capacity_dict:
             zone_dict = {
