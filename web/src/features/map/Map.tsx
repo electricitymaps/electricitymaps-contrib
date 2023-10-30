@@ -93,7 +93,7 @@ export default function MapPage(): ReactElement {
       } as mapboxgl.FillPaint,
       //State borders styles
       statesBorder: {
-        'line-color': 'gray',
+        'line-color': '#6b7280',
         'line-width': 1,
         'line-opacity': 0.5,
       } as mapboxgl.LinePaint,
@@ -405,6 +405,9 @@ export default function MapPage(): ReactElement {
             'text-field': ['get', 'stateId'],
             'symbol-placement': 'point',
             'text-size': 15, // Increase text size for visibility
+            // 'text-font': ['Poppins'], // Use Open Sans Regular font
+
+            // Abbreviations test semi bold font and poppins / inter, letter spacing
             'text-offset': [0, 0], // Adjust text offset if needed
           }}
           paint={{
