@@ -71,7 +71,7 @@ def filter_capacity_data_by_datetime(
     if target_datetime >= max_datetime:
         df = df.copy()
     elif target_datetime <= min_datetime:
-        df = df.loc[df["datetime"] == min_datetime].copy()
+        df = df.loc[df["datetime"] == min_datetime].copy() # we backfill the capacity data using the first data point
     else:
         df = df.loc[df["datetime"] <= target_datetime]
     return df
