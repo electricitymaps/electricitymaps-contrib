@@ -32,7 +32,7 @@ IRENA_JSON_TO_MODE_MAPPING = {
     18: "unknown",
 }
 
-SPECIFIC_MODE_MAPPING = {"IS": {16: "oil"}}  # unknown -> oil
+SPECIFIC_MODE_MAPPING = {"IS": {16: "oil"}}  # After investigating the data, it seems like IRENA reports oil production as unknown so it will be reallocated as oil.
 
 
 def get_data_from_url(target_datetime: datetime) -> list:
@@ -79,8 +79,7 @@ def reallocate_capacity_mode(zone_key: ZoneKey, mode: int) -> dict:
     if zone_key in SPECIFIC_MODE_MAPPING:
         if mode in SPECIFIC_MODE_MAPPING[zone_key]:
             return SPECIFIC_MODE_MAPPING[zone_key][mode]
-    else:
-        return IRENA_JSON_TO_MODE_MAPPING[mode]
+    return IRENA_JSON_TO_MODE_MAPPING[mode]
 
 
 def get_capacity_data_for_all_zones(target_datetime: datetime):
