@@ -53,13 +53,13 @@ pp = pprint.PrettyPrinter(indent=4)
 # Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
 
 
-@refetch_frequency(timedelta(minutes=5))
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     if target_datetime:
         raise ParserException(
             "KPX.py",
@@ -98,10 +98,11 @@ def fetch_consumption(
 @refetch_frequency(timedelta(hours=167))
 def fetch_price(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     first_available_date = (
         arrow.now(TIMEZONE).shift(days=-6).floor("day").shift(hours=1)
     )
@@ -206,19 +207,21 @@ def parse_chart_prod_data(
 
 def get_real_time_prod_data(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
+    session = session or Session()
     res = session.get(REAL_TIME_URL, verify=False)
     return parse_chart_prod_data(res.text, zone_key, logger)
 
 
 def get_historical_prod_data(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
+    session = session or Session()
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
 
     # CSRF token is needed to access the production data
@@ -244,13 +247,14 @@ def get_historical_prod_data(
     return parse_chart_prod_data(res.text, zone_key, logger)
 
 
-@refetch_frequency(timedelta(hours=20))
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     first_available_date = arrow.get(2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE)
     if target_datetime is not None and target_datetime < first_available_date:
         raise ParserException(

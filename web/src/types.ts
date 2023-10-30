@@ -134,7 +134,7 @@ export interface ZoneDetail extends ZoneOverview {
   totalDischarge: number | null;
   totalExport: number | null;
   totalImport: number | null;
-  totalProduction: number;
+  totalProduction: number | null;
   totalStorage: number | null;
 }
 
