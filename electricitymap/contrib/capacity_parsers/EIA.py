@@ -82,7 +82,7 @@ def fetch_production_capacity(
     if not json_data.get("response", {}).get("data", []) == []:
         data = pd.DataFrame(json_data["response"]["data"])
         capacity_dict = format_capacity(data, target_datetime)
-        print(
+        logger.info(
             f"Fetched capacity data for {zone_key} at {target_datetime.strftime('%Y-%m')}: \n{capacity_dict}"
         )
         return capacity_dict
