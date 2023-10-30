@@ -1,7 +1,5 @@
 import unittest
 
-import pandas as pd
-
 from electricitymap.contrib.capacity_parsers.IRENA import (
     IRENA_JSON_TO_MODE_MAPPING,
     reallocate_capacity_mode,
