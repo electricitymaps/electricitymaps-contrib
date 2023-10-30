@@ -12,6 +12,20 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: './web/.node-version'
+      - name: Restore node_modules for web
+        id: cache-web
+        uses: actions/cache@v3
+        with:
+          path: web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache-web.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+        working-directory: ./web
       - name: Cypress run component tests
         uses: cypress-io/github-action@v6
         env:
@@ -38,6 +52,20 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: './web/.node-version'
+      - name: Restore node_modules for web
+        id: cache-web
+        uses: actions/cache@v3
+        with:
+          path: web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache-web.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+        working-directory: ./web
       - name: Cypress run e2e tests
         uses: cypress-io/github-action@v6
         env:
