@@ -33,7 +33,9 @@ IRENA_JSON_TO_MODE_MAPPING = {
     18: "unknown",
 }
 
-SPECIFIC_MODE_MAPPING = {"IS": {16: "oil"}}  # After investigating the data, it seems like IRENA reports oil production as unknown so it will be reallocated as oil.
+SPECIFIC_MODE_MAPPING = {
+    "IS": {16: "oil"}
+}  # After investigating the data, it seems like IRENA reports oil production as unknown so it will be reallocated as oil.
 
 
 def get_data_from_url(target_datetime: datetime) -> list:
@@ -140,4 +142,3 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
     all_capacity = {k: v for k, v in all_capacity.items() if k in IRENA_ZONES}
     logger.info(f"Fetched capacity data from IRENA for {target_datetime.year}")
     return all_capacity
-
