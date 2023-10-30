@@ -8,7 +8,7 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
-""" Collects capacity data from the yearly electricity data from Ember"""
+""" Collects capacity data from the yearly electricity data from Ember. The data and documentation can be found here: https://ember-climate.org/data-catalogue/yearly-electricity-data/"""
 
 EMBER_VARIABLE_TO_MODE = {
     "Bioenergy": "biomass",
@@ -124,7 +124,7 @@ def format_ember_data(df: pd.DataFrame, year: int) -> pd.DataFrame:
         }
     )
     df_capacity["datetime"] = df_capacity["datetime"].apply(lambda x: datetime(x, 1, 1))
-    df_capacity["value"] = df_capacity["value"] * 1000
+    df_capacity["value"] = df_capacity["value"] * 1000 # convert from GW to MW
 
     df_capacity = df_capacity.apply(map_variable_to_mode, axis=1)
 
