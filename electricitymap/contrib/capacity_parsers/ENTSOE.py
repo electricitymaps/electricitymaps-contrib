@@ -151,7 +151,9 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
                 f"Fetched capacity for {zone} on {target_datetime.date()}: {zone_capacity}"
             )
         except:
-            logger.warning(f"Failed to update capacity for {zone} on {target_datetime.date()}")
+            logger.warning(
+                f"Failed to update capacity for {zone} on {target_datetime.date()}"
+            )
             continue
     return capacity_dict
 
