@@ -1,5 +1,6 @@
 import io
 from datetime import datetime
+from logging import getLogger
 
 import pandas as pd
 import pycountry
@@ -9,7 +10,7 @@ from requests import Response, Session
 from electricitymap.contrib.config import ZoneKey
 
 """ Collects capacity data from the yearly electricity data from Ember. The data and documentation can be found here: https://ember-climate.org/data-catalogue/yearly-electricity-data/"""
-
+logger = getLogger(__name__)
 EMBER_VARIABLE_TO_MODE = {
     "Bioenergy": "biomass",
     "Coal": "coal",
@@ -124,7 +125,7 @@ def format_ember_data(df: pd.DataFrame, year: int) -> pd.DataFrame:
         }
     )
     df_capacity["datetime"] = df_capacity["datetime"].apply(lambda x: datetime(x, 1, 1))
-    df_capacity["value"] = df_capacity["value"] * 1000 # convert from GW to MW
+    df_capacity["value"] = df_capacity["value"] * 1000  # convert from GW to MW
 
     df_capacity = df_capacity.apply(map_variable_to_mode, axis=1)
 
@@ -156,7 +157,7 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
     df_capacity = get_data_from_url()
     df_capacity = format_ember_data(df_capacity, target_datetime.year)
     all_capacity = get_capacity_dict_from_df(df_capacity)
-    print(f"Fetched capacity data from Ember for {target_datetime.year}")
+    logger.info(f"Fetched capacity data from Ember for {target_datetime.year}")
     return all_capacity
 
 
@@ -164,13 +165,9 @@ def fetch_production_capacity(target_datetime: datetime, zone_key: ZoneKey) -> d
     all_capacity = fetch_production_capacity_for_all_zones(target_datetime)
     if zone_key in all_capacity:
         zone_capacity = all_capacity[zone_key]
-        print(
+        logger.info(
             f"Fetched capacity for {zone_key} in {target_datetime.year}: \n {zone_capacity}"
         )
         return zone_capacity
     else:
-        raise ValueError(f"No capacity data for {zone_key} in {target_datetime.year}")
-
-
-if __name__ == "__main__":
-    fetch_production_capacity(datetime(2022, 1, 1), "NZ")
+        logger.warning(f"No capacity data for {zone_key} in {target_datetime.year}")
