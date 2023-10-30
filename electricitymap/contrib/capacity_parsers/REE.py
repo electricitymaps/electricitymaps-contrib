@@ -6,6 +6,7 @@ from requests import Response, Session
 from electricitymap.contrib.config import ZoneKey
 
 """Disclaimer: Capacity for the Spanish isles is only avilable per archipelago."""
+
 logger = getLogger(__name__)
 MODE_MAPPING = {
     "Hidráulica": "hydro",
@@ -72,7 +73,7 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
                         "source": "ree.es",
                     }
                     capacity[mode] = mode_capacity
-        print(
+        logger.info(
             f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
         )
         return capacity
@@ -89,9 +90,5 @@ def fetch_production_capacity_for_all_zones(
     for zone in ZONE_KEY_TO_GEO_LIMIT:
         zone_capacity = fetch_production_capacity(zone, target_datetime)
         ree_capacity[zone] = zone_capacity
-    print(f"Fetched capacity for REE zones on {target_datetime.date()}")
+    logger.info(f"Fetched capacity for REE zones on {target_datetime.date()}")
     return ree_capacity
-
-
-if __name__ == "__main__":
-    fetch_production_capacity("ES", datetime(2023, 1, 1))
