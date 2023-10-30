@@ -71,7 +71,9 @@ def filter_capacity_data_by_datetime(
     if target_datetime >= max_datetime:
         df = df.copy()
     elif target_datetime <= min_datetime:
-        df = df.loc[df["datetime"] == min_datetime].copy() # we backfill the capacity data using the first data point
+        df = df.loc[
+            df["datetime"] == min_datetime
+        ].copy()  # we backfill the capacity data using the first data point
     else:
         df = df.loc[df["datetime"] <= target_datetime]
     return df
@@ -104,7 +106,7 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime):
 
 
 def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
-    capacity  = fetch_production_capacity_for_all_zones(target_datetime)[zone_key]
+    capacity = fetch_production_capacity_for_all_zones(target_datetime)[zone_key]
     if capacity:
         print(f"Updated capacity for {zone_key} in {target_datetime}: \n{capacity}")
         return capacity
