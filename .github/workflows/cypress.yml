@@ -32,7 +32,7 @@ jobs:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
-          install: true
+          install: false
           # to run component tests we need to use "component: true"
           component: true
       - name: Upload screenshots
@@ -72,6 +72,7 @@ jobs:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
+          install: false
           build: pnpm run build --mode testing
           start: pnpm run preview
           config: baseUrl=http://127.0.0.1:4173/
