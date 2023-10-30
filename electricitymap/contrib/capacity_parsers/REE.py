@@ -60,18 +60,21 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
         data = r.json()["included"]
         capacity = {}
         for item in data:
+            value: float = round(item["attributes"]["total"], 0)
             if item["type"] in MODE_MAPPING:
                 mode = MODE_MAPPING[item["type"]]
                 if mode in capacity:
-                    capacity[mode]["value"] += round(item["attributes"]["total"], 0)
+                    capacity[mode]["value"] += value
                 else:
                     mode_capacity = {
                         "datetime": target_datetime.strftime("%Y-%m-%d"),
-                        "value": round(item["attributes"]["total"], 0),
+                        "value": value,
                         "source": "ree.es",
                     }
                     capacity[mode] = mode_capacity
-        print(f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}")
+        print(
+            f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
+        )
         return capacity
     else:
         logger.warning(
@@ -88,3 +91,7 @@ def fetch_production_capacity_for_all_zones(
         ree_capacity[zone] = zone_capacity
     print(f"Fetched capacity for REE zones on {target_datetime.date()}")
     return ree_capacity
+
+
+if __name__ == "__main__":
+    fetch_production_capacity("ES", datetime(2023, 1, 1))
