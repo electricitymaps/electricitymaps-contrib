@@ -35,6 +35,7 @@ const MAP_STYLE = {
   sources: {},
   layers: [],
   glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+  // glyphs: 'fonts/Inter.var.woff2',
 };
 const isMobile = window.innerWidth < 768;
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
@@ -69,7 +70,6 @@ export default function MapPage(): ReactElement {
           'white',
           theme.strokeColor,
         ],
-        // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
         'line-width': [
           'case',
           ['boolean', ['feature-state', 'selected'], false],
@@ -91,11 +91,10 @@ export default function MapPage(): ReactElement {
         'fill-color': '#FFFFFF',
         'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.3, 0],
       } as mapboxgl.FillPaint,
-      //State borders styles
       statesBorder: {
-        'line-color': '#6b7280',
-        'line-width': 1,
-        'line-opacity': 0.5,
+        'line-color': theme.stateBorderColor,
+        'line-width': 0.9,
+        'line-opacity': 0.7,
       } as mapboxgl.LinePaint,
     }),
     [theme]
@@ -388,12 +387,14 @@ export default function MapPage(): ReactElement {
           layout={{
             'text-field': ['get', 'stateName'],
             'symbol-placement': 'point',
-            'text-size': 15, // Increase text size for visibility
-            'text-offset': [0, 0], // Adjust text offset if needed
+            'text-size': 15,
+            'text-letter-spacing': 0.12,
           }}
           paint={{
-            'text-opacity': 0.9,
-            'text-color': 'white', // Set to a contrasting color
+            'text-color': 'white',
+            'text-halo-color': '#111827',
+            'text-halo-width': 0.5,
+            'text-halo-blur': 0.5,
           }}
           minzoom={4.5}
         />
@@ -404,15 +405,14 @@ export default function MapPage(): ReactElement {
           layout={{
             'text-field': ['get', 'stateId'],
             'symbol-placement': 'point',
-            'text-size': 15, // Increase text size for visibility
-            // 'text-font': ['Poppins'], // Use Open Sans Regular font
-
-            // Abbreviations test semi bold font and poppins / inter, letter spacing
-            'text-offset': [0, 0], // Adjust text offset if needed
+            'text-size': 15,
+            'text-letter-spacing': 0.12,
           }}
           paint={{
-            'text-opacity': 0.9,
-            'text-color': 'white', // Set to a contrasting color
+            'text-color': 'white',
+            'text-halo-color': '#111827',
+            'text-halo-width': 0.5,
+            'text-halo-blur': 0.5,
           }}
           maxzoom={4.5}
           minzoom={3}

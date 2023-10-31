@@ -189,6 +189,7 @@ export interface MapTheme {
   oceanColor: string;
   strokeWidth: number;
   strokeColor: string;
+  stateBorderColor: string;
   clickableFill: string;
   nonClickableFill: string;
 }
