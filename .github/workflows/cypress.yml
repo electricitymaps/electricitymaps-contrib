@@ -13,7 +13,7 @@ jobs:
         with:
           version: 8
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
       - name: Cache Cypress binary
@@ -63,7 +63,7 @@ jobs:
         with:
           version: 8
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
       - name: Cache Cypress binary
