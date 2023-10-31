@@ -5,7 +5,7 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
-"""Disclaimer: Capacity for the Spanish isles is only avilable per archipelago."""
+"""Disclaimer: Capacity for the Spanish isles is only available per archipelago. This parser should not be used for the Canary Islands and the Balearic Islands as we do not get the capacity per island."""
 
 logger = getLogger(__name__)
 MODE_MAPPING = {
@@ -37,16 +37,16 @@ GEO_LIMIT_TO_GEO_IDS = {
 
 ZONE_KEY_TO_GEO_LIMIT = {
     "ES": "peninsular",
-    "ES-IB-FO": "baleares",
-    "ES-IB-IZ": "baleares",
-    "ES-IB-MA": "baleares",
-    "ES-IB-ME": "baleares",
-    "ES-CN-FVLZ": "canarias",
-    "ES-CN-GC": "canarias",
-    "ES-CN-HI": "canarias",
-    "ES-CN-IG": "canarias",
-    "ES-CN-LP": "canarias",
-    "ES-CN-TE": "canarias",
+    # "ES-IB-FO": "baleares",
+    # "ES-IB-IZ": "baleares",
+    # "ES-IB-MA": "baleares",
+    # "ES-IB-ME": "baleares",
+    # "ES-CN-FVLZ": "canarias",
+    # "ES-CN-GC": "canarias",
+    # "ES-CN-HI": "canarias",
+    # "ES-CN-IG": "canarias",
+    # "ES-CN-LP": "canarias",
+    # "ES-CN-TE": "canarias",
     "ES-CE": "ceuta",
     "ES-ML": "melilla",
 }
@@ -55,8 +55,18 @@ ZONE_KEY_TO_GEO_LIMIT = {
 def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
     geo_limit = ZONE_KEY_TO_GEO_LIMIT[zone_key]
     geo_ids = GEO_LIMIT_TO_GEO_IDS[geo_limit]
-    url = f"https://apidatos.ree.es/es/datos/generacion/potencia-instalada?start_date={target_datetime.strftime('%Y-01-01T00:00')}&end_date={target_datetime.strftime('%Y-12-31T23:59')}&time_trunc=year&geo_trunc=electric_system&geo_limit={geo_limit}&geo_ids={geo_ids}&tecno_select=all"
-    r: Response = Session().get(url)
+    url = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada?"
+    params = {
+        "start_date": target_datetime.strftime("%Y-01-01T00:00"),
+        "end_date": target_datetime.strftime("%Y-12-31T23:59"),
+        "time_trunc": "year",
+        "geo_trunc": "electric_system",
+        "geo_limit": geo_limit,
+        "geo_ids": geo_ids,
+        "tecno_select": "all",
+    }
+
+    r: Response = Session().get(url, params=params)
     if r.status_code == 200:
         data = r.json()["included"]
         capacity = {}
@@ -92,3 +102,7 @@ def fetch_production_capacity_for_all_zones(
         ree_capacity[zone] = zone_capacity
     logger.info(f"Fetched capacity for REE zones on {target_datetime.date()}")
     return ree_capacity
+
+
+if __name__ == "__main__":
+    fetch_production_capacity("ES", datetime(2023, 1, 1))
