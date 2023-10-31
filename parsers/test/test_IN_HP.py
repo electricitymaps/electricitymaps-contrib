@@ -16,7 +16,7 @@ class Test_IN_HP(unittest.TestCase):
         self.session.mount("https://", self.adapter)
         self.adapter.register_uri(
             POST,
-            ANY,
+            IN_HP.DATA_URL,
             text=resources.files("parsers.test.mocks")
             .joinpath("IN_HP.html")
             .read_text(),
