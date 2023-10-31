@@ -80,7 +80,8 @@ parsers = [
     "tqdm",
     "openpyxl",
     "pydataxm",
-    "odfpy"
+    "odfpy",
+    "pycountry"
 ]
 
 
