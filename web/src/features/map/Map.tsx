@@ -35,7 +35,6 @@ const MAP_STYLE = {
   sources: {},
   layers: [],
   glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
-  // glyphs: 'fonts/Inter.var.woff2',
 };
 const isMobile = window.innerWidth < 768;
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
