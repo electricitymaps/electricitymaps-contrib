@@ -54,8 +54,8 @@ def get_opennem_capacity_data() -> dict:
     )
 
     capacity_df["datetime"] = capacity_df["datetime"].apply(
-        lambda x: pd.to_datetime(x, utc=True).replace(
-            month=1, day=1, hour=0, minute=0, second=0, microsecond=0
+        lambda x: pd.to_datetime(x).replace(
+            month=1, day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None
         )
     )
     return capacity_df
@@ -64,6 +64,7 @@ def get_opennem_capacity_data() -> dict:
 def filter_capacity_data_by_datetime(
     data: pd.DataFrame, target_datetime: datetime
 ) -> pd.DataFrame:
+    """Filter capacity data by datetime. For a given target_datetime, the capacity should only include plants created before then."""
     df = data.copy()
     max_datetime = df["datetime"].max()
     min_datetime = df["datetime"].min()
@@ -81,7 +82,6 @@ def filter_capacity_data_by_datetime(
 
 def fetch_production_capacity_for_all_zones(target_datetime: datetime):
     capacity_df = get_opennem_capacity_data()
-
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
     capacity_df["zone_key"] = capacity_df["zone_key"].map(REGION_MAPPING)
@@ -115,7 +115,7 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
 
 
 def get_solar_capacity_au_nt(target_datetime: datetime):
-
+    """Get solar capacity for AU-NT."""
     capacity_df = get_opennem_capacity_data()
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
@@ -128,11 +128,12 @@ def get_solar_capacity_au_nt(target_datetime: datetime):
         capacity_df.groupby(["zone_key", "mode"])[["value"]].sum().reset_index()
     )
 
-    capacity = {}
-    for idx, data in capacity_df.iterrows():
-        capacity[data["mode"]] = {
-            "datetime": target_datetime.strftime("%Y-%m-%d"),
-            "value": round(data["value"], 2),
-            "source": SOURCE,
-        }
-    return capacity
+    solar_capacity = capacity_df.get("value")
+    if solar_capacity is not None:
+        return round(solar_capacity.values[0], 0)
+    else:
+        raise ValueError(f"No capacity data for AU-NT in {target_datetime.date()}")
+
+
+if __name__ == "__main__":
+    print(get_solar_capacity_au_nt(datetime(2023, 1, 1)))
