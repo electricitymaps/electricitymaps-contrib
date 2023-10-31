@@ -12,10 +12,12 @@ import maplibregl from 'maplibre-gl';
 import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 import { Layer, Map, MapRef, Source } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
+import { StatesGeometries } from 'types';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 
+import stateNames from '../../../geo/usa_state_names.json';
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
@@ -56,7 +58,7 @@ export default function MapPage(): ReactElement {
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
-
+  const stateNames2 = stateNames as unknown as StatesGeometries;
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
   const styles = useMemo(
@@ -92,8 +94,9 @@ export default function MapPage(): ReactElement {
       } as mapboxgl.FillPaint,
       statesBorder: {
         'line-color': theme.stateBorderColor,
-        'line-width': 0.9,
+        'line-width': 0.7,
         'line-opacity': 0.7,
+        'line-dasharray': [5, 10],
       } as mapboxgl.LinePaint,
     }),
     [theme]
@@ -102,7 +105,6 @@ export default function MapPage(): ReactElement {
   const { isLoading, isSuccess, isError, data } = useGetState();
   const mapReference = useRef<MapRef>(null);
   const { worldGeometries, statesGeometries } = useGetGeometries();
-
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
     const map = mapReference.current?.getMap();
@@ -378,11 +380,11 @@ export default function MapPage(): ReactElement {
       <Source id="states" type="geojson" data={statesGeometries}>
         <Layer id="states-border" type="line" paint={styles.statesBorder} />
       </Source>
-      <Source id="states" type="geojson" data={statesGeometries}>
+      <Source id="states-labels" type="geojson" data={stateNames2}>
         <Layer
-          id="state-labels"
+          id="state-labels-1"
           type="symbol"
-          source="states"
+          source="state-labels"
           layout={{
             'text-field': ['get', 'stateName'],
             'symbol-placement': 'point',
@@ -400,7 +402,7 @@ export default function MapPage(): ReactElement {
         <Layer
           id="state-labels-2"
           type="symbol"
-          source="states"
+          source="state-labels"
           layout={{
             'text-field': ['get', 'stateId'],
             'symbol-placement': 'point',

@@ -1,5 +1,5 @@
-import { multiPolygon } from '@turf/helpers';
-import { merge } from 'topojson-client';
+import { multiLineString, multiPolygon } from '@turf/helpers';
+import { merge, mesh } from 'topojson-client';
 import {
   GeometryProperties,
   MapGeometries,
@@ -27,17 +27,18 @@ export interface Topo {
 }
 
 export interface StatesTopoObject {
-  type: 'MultiPolygon';
-  arcs: number[][][];
+  type: 'MultiLineString';
+  arcs: Arc[];
   properties: Omit<StateGeometryProperties, 'zoneId'>;
 }
 
+type Arc = Positions[];
+type Positions = number[];
+
 export interface StatesTopo {
   type: 'Topology';
-  arcs: number[][][];
-  objects: {
-    [key: string]: StatesTopoObject;
-  };
+  arcs: Arc[];
+  objects: any;
 }
 
 /**
@@ -89,8 +90,9 @@ const generateTopos = (
     if (!statesTopography.objects[k].arcs) {
       continue;
     }
-    const topoObject = merge(statesTopography, [statesTopography.objects[k]]);
-    const stateMp = multiPolygon(topoObject.coordinates, {
+    const topoObject = mesh(statesTopography, statesTopography.objects[k]);
+
+    const stateMp = multiLineString(topoObject.coordinates, {
       ...statesTopography.objects[k].properties,
     });
     statesGeometries.features.push(stateMp);

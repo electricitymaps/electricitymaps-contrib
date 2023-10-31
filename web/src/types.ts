@@ -5,6 +5,7 @@ import type {
   MultiPolygon,
   Polygon,
 } from '@turf/turf';
+import { LineString, MultiLineString } from 'geojson';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -175,8 +176,8 @@ export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   properties: GeometryProperties;
 }
 
-export interface StatesGeometry extends Feature<Polygon | MultiPolygon> {
-  geometry: MultiPolygon | Polygon;
+export interface StatesGeometry extends Feature<LineString | MultiLineString> {
+  geometry: LineString | MultiLineString;
   Id?: number;
   properties: StateGeometryProperties;
 }
