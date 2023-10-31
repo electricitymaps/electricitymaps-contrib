@@ -1,4 +1,3 @@
-
 from datetime import datetime
 
 import pandas as pd
@@ -34,25 +33,19 @@ REGION_MAPPING = {
 def filter_data_by_date(data: pd.DataFrame, target_datetime: datetime) -> pd.DataFrame:
     """Filter capacity data for all rows that have:
     - start<= target_datetime : the power plant was connected before the considered target_datetime
-    - end >= target_datetime : the power plant was not closed before the considered target_datetime"""
+    - end >= target_datetime : the power plant was not closed before the considered target_datetime
+    """
     df = data.copy()
-    max_datetime = df["start"].max()
 
-    if target_datetime >= max_datetime:
-        df = df.copy()
-        df = df.loc[df["end"].isna()]
-    else:
-        df = df[
-            (df["start"] <= target_datetime)
-            & ((df["end"] >= target_datetime) | (df["end"].isna()))
-        ]
+    df = df[
+        (df["start"] <= target_datetime)
+        & ((df["end"] >= target_datetime) | (df["end"].isna()))
+    ]
 
-    df["datetime"] = target_datetime
     return df
 
-def fetch_production_capacity_for_all_zones(
-    target_datetime: datetime
-) -> dict:
+
+def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
     df = pd.read_csv(CAPACITY_URL, sep=";")
     df = df[
         [
@@ -81,8 +74,8 @@ def fetch_production_capacity_for_all_zones(
         if x is not None
         else x
     )
-
     df = filter_data_by_date(df, target_datetime)
+    df["datetime"] = target_datetime
     df["mode"] = df["mode"].map(MODE_MAPPING)
     df["zone_key"] = df["zone_key"].map(REGION_MAPPING)
 
@@ -95,7 +88,7 @@ def fetch_production_capacity_for_all_zones(
             for idx, data in zone_capacity_df.iterrows():
                 mode_capacity = {}
                 mode_capacity["datetime"] = target_datetime.strftime("%Y-%m-%d")
-                mode_capacity["value"] = round(data["value"],0)
+                mode_capacity["value"] = round(data["value"], 0)
                 mode_capacity["source"] = "ons.org.br"
                 zone_capacity[data["mode"]] = mode_capacity
             capacity[zone] = zone_capacity
