@@ -4,7 +4,11 @@ import pandas as pd
 
 from electricitymap.contrib.config import ZoneKey
 
-"""Disclaimer: this parser does not include distributed capacity. Solar capacity is much lower than in reality because the majority is distributed."""
+"""Disclaimer: this parser does not include distributed capacity.
+Solar capacity is much lower than in reality because the majority is distributed.
+This capacity is not available in this dataset and should collected from the link below and added manually to the zone configuration.
+Distributed solar generation is available here (tipo de usina = Geracao Distribuida): https://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx"""
+
 CAPACITY_URL = "https://ons-dl-prod-opendata.s3.amazonaws.com/dataset/capacidade-geracao/CAPACIDADE_GERACAO.csv"
 MODE_MAPPING = {
     "HIDRÁULICA": "hydro",
