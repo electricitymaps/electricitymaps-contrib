@@ -133,7 +133,3 @@ def get_solar_capacity_au_nt(target_datetime: datetime):
         return round(solar_capacity.values[0], 0)
     else:
         raise ValueError(f"No capacity data for AU-NT in {target_datetime.date()}")
-
-
-if __name__ == "__main__":
-    print(get_solar_capacity_au_nt(datetime(2023, 1, 1)))
