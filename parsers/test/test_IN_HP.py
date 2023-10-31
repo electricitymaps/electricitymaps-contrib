@@ -3,7 +3,7 @@ import unittest
 from importlib import resources
 
 from requests import Session
-from requests_mock import ANY, POST, Adapter
+from requests_mock import POST, Adapter
 from testfixtures import LogCapture
 
 from parsers import IN_HP
