@@ -108,7 +108,7 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> d
         ENTSOE_DOMAIN_MAPPINGS[zone_key], Session(), target_datetime
     )
     soup = BeautifulSoup(xml_str, "html.parser")
-    # Each timeserie is dedicated to a different fuel type.
+    # Each time series is dedicated to a different fuel type.
     capacity_dict = {}
     for timeseries in soup.find_all("timeseries"):
         fuel_code = str(
