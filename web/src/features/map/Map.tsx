@@ -94,9 +94,9 @@ export default function MapPage(): ReactElement {
       } as mapboxgl.FillPaint,
       statesBorder: {
         'line-color': theme.stateBorderColor,
-        'line-width': 1,
+        'line-width': 1.4,
         'line-opacity': 0.9,
-        'line-dasharray': [4, 8],
+        'line-dasharray': [1, 1],
       } as mapboxgl.LinePaint,
     }),
     [theme]
