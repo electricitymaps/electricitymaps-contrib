@@ -93,7 +93,7 @@ def fetch_production_capacity(
         )
 
 
-def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> pd.DataFrame:
+def fetch_production_capacity_for_all_zones(target_datetime: datetime, session: Session) -> pd.DataFrame:
     eia_capacity = {}
     session = Session()
     for zone in US_ZONES:
