@@ -85,10 +85,9 @@ def map_variable_to_mode(row: pd.Series) -> pd.DataFrame:
     return row
 
 
-def get_data_from_url() -> pd.DataFrame:
+def get_data_from_url(session: Session) -> pd.DataFrame:
     base_url = "https://ember-climate.org"
     yearly_catalogue_url = base_url + "/data-catalogue/yearly-electricity-data/"
-    session = Session()
     r: Response = session.get(yearly_catalogue_url)
     soup = BeautifulSoup(r.text, "html.parser")
     csv_link = soup.find("a", {"download": "yearly_full_release_long_format.csv"})[
@@ -153,16 +152,20 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict:
     return all_capacity
 
 
-def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
-    df_capacity = get_data_from_url()
+def fetch_production_capacity_for_all_zones(
+    target_datetime: datetime, session: Session
+) -> dict:
+    df_capacity = get_data_from_url(session)
     df_capacity = format_ember_data(df_capacity, target_datetime.year)
     all_capacity = get_capacity_dict_from_df(df_capacity)
     logger.info(f"Fetched capacity data from Ember for {target_datetime.year}")
     return all_capacity
 
 
-def fetch_production_capacity(target_datetime: datetime, zone_key: ZoneKey) -> dict:
-    all_capacity = fetch_production_capacity_for_all_zones(target_datetime)
+def fetch_production_capacity(
+    target_datetime: datetime, zone_key: ZoneKey, session: Session
+) -> dict:
+    all_capacity = fetch_production_capacity_for_all_zones(target_datetime, session)
     if zone_key in all_capacity:
         zone_capacity = all_capacity[zone_key]
         logger.info(
