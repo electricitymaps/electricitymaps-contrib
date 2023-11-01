@@ -5,7 +5,11 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
-from parsers.ENTSOE import ENTSOE_DOMAIN_MAPPINGS, query_ENTSOE
+from parsers.ENTSOE import (
+    ENTSOE_DOMAIN_MAPPINGS,
+    ENTSOE_PARAMETER_BY_GROUP,
+    query_ENTSOE,
+)
 
 """
 Update capacity configurations for ENTOS-E zones for a chosen year.
@@ -103,10 +107,10 @@ def query_capacity(
     )
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> dict:
-    xml_str = query_capacity(
-        ENTSOE_DOMAIN_MAPPINGS[zone_key], Session(), target_datetime
-    )
+def fetch_production_capacity(
+    zone_key: ZoneKey, target_datetime: datetime, session: Session
+) -> dict:
+    xml_str = query_capacity(ENTSOE_DOMAIN_MAPPINGS[zone_key], session, target_datetime)
     soup = BeautifulSoup(xml_str, "html.parser")
     # Each time series is dedicated to a different fuel type.
     capacity_dict = {}
@@ -122,14 +126,13 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> d
         else:
             point = timeseries.find_all("point")
             value = float(point[0].find_all("quantity")[0].contents[0])
-            if ENTSOE_PARAMETER_TO_MODE[fuel_code] in capacity_dict:
-                capacity_dict[ENTSOE_PARAMETER_TO_MODE[fuel_code]]["value"] += value
-            else:
-                fuel_capacity_dict = {}
-                fuel_capacity_dict["value"] = value
-                fuel_capacity_dict["datetime"] = end_date.strftime("%Y-01-01")
-                fuel_capacity_dict["source"] = SOURCE
-                capacity_dict[ENTSOE_PARAMETER_TO_MODE[fuel_code]] = fuel_capacity_dict
+            if ENTSOE_PARAMETER_BY_GROUP[fuel_code] not in capacity_dict:
+                capacity_dict[ENTSOE_PARAMETER_BY_GROUP[fuel_code]] = {
+                    "value": 0,
+                    "datetime": end_date.strftime("%Y-01-01"),
+                    "source": SOURCE,
+                }
+            capacity_dict[ENTSOE_PARAMETER_BY_GROUP[fuel_code]]["value"] += value
     if capacity_dict:
         logger.info(
             f"Capacity data for {zone_key} on {target_datetime.date()}: \n{capacity_dict}"
@@ -141,11 +144,14 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> d
         )
 
 
-def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
+def fetch_production_capacity_for_all_zones(
+    target_datetime: datetime, session: Session = Session()
+) -> dict:
     capacity_dict = {}
+
     for zone in ENTSOE_ZONES:
         try:
-            zone_capacity = fetch_production_capacity(zone, target_datetime)
+            zone_capacity = fetch_production_capacity(zone, target_datetime, session)
             capacity_dict[zone] = zone_capacity
             logger.info(
                 f"Fetched capacity for {zone} on {target_datetime.date()}: {zone_capacity}"
@@ -159,4 +165,4 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
 
 
 if __name__ == "__main__":
-    fetch_production_capacity("FR", datetime(2023, 1, 1))
+    fetch_production_capacity("FR", datetime(2023, 1, 1), Session())
