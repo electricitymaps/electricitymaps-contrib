@@ -35,9 +35,8 @@ FUEL_MAPPING = {
 
 CAPACITY_URL = "https://api.opennem.org.au/facility/"
 
-def get_opennem_capacity_data() -> dict:
-
-    r: Response = Session().get(CAPACITY_URL)
+def get_opennem_capacity_data(session:Session) -> dict:
+    r: Response = session.get(CAPACITY_URL)
     data = r.json()
     capacity_df = pd.json_normalize(data)
 
@@ -82,8 +81,8 @@ def filter_capacity_data_by_datetime(
     return df
 
 
-def fetch_production_capacity_for_all_zones(target_datetime: datetime):
-    capacity_df = get_opennem_capacity_data()
+def fetch_production_capacity_for_all_zones(target_datetime: datetime, session: Session):
+    capacity_df = get_opennem_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
     capacity_df["zone_key"] = capacity_df["zone_key"].map(REGION_MAPPING)
@@ -107,8 +106,8 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime):
     return capacity
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
-    capacity = fetch_production_capacity_for_all_zones(target_datetime)[zone_key]
+def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime, session: Session):
+    capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[zone_key]
     if capacity:
         logger.info(f"Updated capacity for {zone_key} in {target_datetime}: \n{capacity}")
         return capacity
@@ -118,7 +117,8 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
 
 def get_solar_capacity_au_nt(target_datetime: datetime):
     """Get solar capacity for AU-NT."""
-    capacity_df = get_opennem_capacity_data()
+    session= Session()
+    capacity_df = get_opennem_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
     capacity_df = capacity_df.loc[capacity_df["zone_key"] == "NT1"]
@@ -138,5 +138,5 @@ def get_solar_capacity_au_nt(target_datetime: datetime):
 
 
 if __name__ == "__main__":
-    print(fetch_production_capacity("AU-VIC",datetime(2015, 1, 1)))
+    print(fetch_production_capacity("AU-VIC",datetime(2015, 1, 1), Session()))
     print(get_solar_capacity_au_nt(datetime(2021, 1, 1)))
