@@ -123,7 +123,7 @@ def fetch_production_capacity(
 
 
 def fetch_production_capacity_for_all_zones(
-    target_datetime: datetime, session:  Session | None = None
+    target_datetime: datetime, session: Session | None = None
 ) -> dict:
     capacity_dict = {}
     if session is None:
