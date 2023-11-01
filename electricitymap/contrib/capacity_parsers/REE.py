@@ -55,7 +55,7 @@ ZONE_KEY_TO_GEO_LIMIT = {
 def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
     geo_limit = ZONE_KEY_TO_GEO_LIMIT[zone_key]
     geo_ids = GEO_LIMIT_TO_GEO_IDS[geo_limit]
-    url = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada?"
+    url = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada"
     params = {
         "start_date": target_datetime.strftime("%Y-01-01T00:00"),
         "end_date": target_datetime.strftime("%Y-12-31T23:59"),
