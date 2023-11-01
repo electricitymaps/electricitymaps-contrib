@@ -69,6 +69,7 @@ def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict:
 def fetch_production_capacity(
     zone_key: ZoneKey,
     target_datetime: datetime,
+    session: Session,
 ) -> Union[Dict, None]:
     url_prefix = CAPACITY_URL.format(REGIONS[zone_key])
     start_date = target_datetime.strftime("%Y-%m-01")
@@ -76,7 +77,7 @@ def fetch_production_capacity(
         day=calendar.monthrange(target_datetime.year, target_datetime.month)[1]
     ).strftime("%Y-%m-%d")
     url = f"{url_prefix}&api_key={API_KEY}&start={start_date}&end={end_date}&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000"
-    r: Response = Session().get(url)
+    r: Response = session.get(url)
     json_data = r.json()
 
     if not json_data.get("response", {}).get("data", []) == []:
@@ -94,7 +95,8 @@ def fetch_production_capacity(
 
 def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> pd.DataFrame:
     eia_capacity = {}
+    session = Session()
     for zone in US_ZONES:
-        zone_capacity = fetch_production_capacity(zone, target_datetime)
+        zone_capacity = fetch_production_capacity(zone, target_datetime, session)
         eia_capacity[zone] = zone_capacity
     return eia_capacity
