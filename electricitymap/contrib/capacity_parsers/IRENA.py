@@ -38,7 +38,7 @@ SPECIFIC_MODE_MAPPING = {
 }  # After investigating the data, it seems like IRENA reports oil production as unknown so it will be reallocated as oil.
 
 
-def get_data_from_url(target_datetime: datetime) -> list:
+def get_data_from_url(target_datetime: datetime, session: Session) -> list:
     base_url = (
         "https://pxweb.irena.org:443/api/v1/en/IRENASTAT/Power Capacity and Generation/"
     )
@@ -68,7 +68,7 @@ def get_data_from_url(target_datetime: datetime) -> list:
         url = base_url + filename
 
         json_data = json.dumps(json_query)
-        r: Response = Session().post(url, data=json_data)
+        r: Response = session.post(url, data=json_data)
         if r.status_code == 200:
             data = r.json()
         else:
@@ -85,8 +85,8 @@ def reallocate_capacity_mode(zone_key: ZoneKey, mode: int) -> dict:
     return IRENA_JSON_TO_MODE_MAPPING[mode]
 
 
-def get_capacity_data_for_all_zones(target_datetime: datetime):
-    data = get_data_from_url(target_datetime)
+def get_capacity_data_for_all_zones(target_datetime: datetime, session: Session):
+    data = get_data_from_url(target_datetime, session)
     capacity_dict = {}
     for item in data:
         if pycountry.countries.get(alpha_3=item["key"][0]) is not None:
@@ -123,8 +123,10 @@ def get_capacity_data_for_all_zones(target_datetime: datetime):
     return capacity_dict
 
 
-def fetch_production_capacity(target_datetime: datetime, zone_key: ZoneKey) -> dict:
-    all_capacity = get_capacity_data_for_all_zones(target_datetime)
+def fetch_production_capacity(
+    target_datetime: datetime, zone_key: ZoneKey, session: Session
+) -> dict:
+    all_capacity = get_capacity_data_for_all_zones(target_datetime, session)
     zone_capacity = all_capacity[zone_key]
 
     if zone_capacity:
@@ -136,8 +138,10 @@ def fetch_production_capacity(target_datetime: datetime, zone_key: ZoneKey) -> d
         logger.warning(f"No capacity data for {zone_key} in {target_datetime.year}")
 
 
-def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
-    all_capacity = get_capacity_data_for_all_zones(target_datetime)
+def fetch_production_capacity_for_all_zones(
+    target_datetime: datetime, session: Session
+) -> dict:
+    all_capacity = get_capacity_data_for_all_zones(target_datetime, session)
 
     all_capacity = {k: v for k, v in all_capacity.items() if k in IRENA_ZONES}
     logger.info(f"Fetched capacity data from IRENA for {target_datetime.year}")
