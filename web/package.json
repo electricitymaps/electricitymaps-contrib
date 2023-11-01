@@ -91,7 +91,7 @@
     "react-router-dom": "6.16.0",
     "react-spinners": "^0.13.8",
     "react-spring-bottom-sheet": "3.5.0-alpha.0",
-    "recharts": "^2.7.3",
+    "recharts": "^2.9.1",
     "sprintf-js": "^1.1.2",
     "sunrise-sunset-js": "^2.2.1",
     "tailwind-merge": "^1.14.0",
