@@ -1,4 +1,5 @@
 from datetime import datetime
+from logging import getLogger
 
 import pandas as pd
 from requests import Response, Session
@@ -7,7 +8,7 @@ from electricitymap.contrib.config import ZoneKey
 from parsers.OPENNEM import SOURCE, ZONE_KEY_TO_REGION
 
 """Disclaimer: only works for real-time data. There is retired capacity included but we do not have the information on when the capacity was retired."""
-
+logger = getLogger(__name__)
 REGION_MAPPING = {
     ZONE_KEY_TO_REGION[key]: key for key in ZONE_KEY_TO_REGION
 }  # NT only has solar capacity so it will be excluded
@@ -32,10 +33,11 @@ FUEL_MAPPING = {
     "bioenergy_biomass": "biomass",
 }
 
+CAPACITY_URL = "https://api.opennem.org.au/facility/"
 
 def get_opennem_capacity_data() -> dict:
-    url = "https://api.opennem.org.au/facility/"
-    r: Response = Session().get(url)
+
+    r: Response = Session().get(CAPACITY_URL)
     data = r.json()
     capacity_df = pd.json_normalize(data)
 
@@ -108,10 +110,10 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime):
 def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
     capacity = fetch_production_capacity_for_all_zones(target_datetime)[zone_key]
     if capacity:
-        print(f"Updated capacity for {zone_key} in {target_datetime}: \n{capacity}")
+        logger.info(f"Updated capacity for {zone_key} in {target_datetime}: \n{capacity}")
         return capacity
     else:
-        raise ValueError(f"No capacity data for {zone_key} in {target_datetime}")
+        logger.error(f"No capacity data for {zone_key} in {target_datetime}")
 
 
 def get_solar_capacity_au_nt(target_datetime: datetime):
@@ -132,4 +134,9 @@ def get_solar_capacity_au_nt(target_datetime: datetime):
     if solar_capacity is not None:
         return round(solar_capacity.values[0], 0)
     else:
-        raise ValueError(f"No capacity data for AU-NT in {target_datetime.date()}")
+        logger.error(f"No capacity data for AU-NT in {target_datetime.date()}")
+
+
+if __name__ == "__main__":
+    print(fetch_production_capacity("AU-VIC",datetime(2015, 1, 1)))
+    print(get_solar_capacity_au_nt(datetime(2021, 1, 1)))
