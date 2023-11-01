@@ -28,7 +28,7 @@ export interface Topo {
 
 export interface StatesTopoObject {
   type: 'MultiLineString';
-  arcs: Arc[];
+  arcs: TopoJSON.ArcIndexes[];
   properties: Omit<StateGeometryProperties, 'zoneId'>;
 }
 
@@ -38,7 +38,9 @@ type Positions = number[];
 export interface StatesTopo {
   type: 'Topology';
   arcs: Arc[];
-  objects: any;
+  objects: {
+    [key: string]: StatesTopoObject;
+  };
 }
 
 /**
