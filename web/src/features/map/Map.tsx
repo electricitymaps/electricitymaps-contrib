@@ -36,7 +36,7 @@ const MAP_STYLE = {
   version: 8,
   sources: {},
   layers: [],
-  glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+  glyphs: 'fonts/{fontstack}/{range}.pbf',
 };
 const isMobile = window.innerWidth < 768;
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
@@ -388,14 +388,18 @@ export default function MapPage(): ReactElement {
           layout={{
             'text-field': ['get', 'stateName'],
             'symbol-placement': 'point',
-            'text-size': 15,
+            'text-size': 12,
             'text-letter-spacing': 0.12,
+            'text-transform': 'uppercase',
+
+            'text-font': ['Poppins SemiBold'],
           }}
           paint={{
             'text-color': 'white',
             'text-halo-color': '#111827',
             'text-halo-width': 0.5,
-            'text-halo-blur': 0.5,
+            'text-halo-blur': 0.25,
+            'text-opacity': 0.9,
           }}
           minzoom={4.5}
         />
@@ -406,14 +410,17 @@ export default function MapPage(): ReactElement {
           layout={{
             'text-field': ['get', 'stateId'],
             'symbol-placement': 'point',
-            'text-size': 15,
+            'text-size': 12,
             'text-letter-spacing': 0.12,
+            'text-transform': 'uppercase',
+            'text-font': ['Poppins SemiBold'],
           }}
           paint={{
             'text-color': 'white',
             'text-halo-color': '#111827',
             'text-halo-width': 0.5,
-            'text-halo-blur': 0.5,
+            'text-halo-blur': 0.25,
+            'text-opacity': 0.9,
           }}
           maxzoom={4.5}
           minzoom={3}
