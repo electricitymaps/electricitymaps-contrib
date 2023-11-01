@@ -60,7 +60,7 @@ def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict:
                 "nameplate-capacity-mw"
             ].sum()
         )
-        mode_dict["source"] = "EIA"
+        mode_dict["source"] = SOURCE
         mode_dict["datetime"] = target_datetime.strftime("%Y-%m-%d")
         capacity_dict[mode] = mode_dict
     return capacity_dict
