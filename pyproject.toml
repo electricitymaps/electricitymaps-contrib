@@ -82,12 +82,6 @@ parsers = [
     "odfpy"
 ]
 
-
-validators = [
-    "arrow",
-    "pandas"
-]
-
 scripts = [
     "xmltodict"
 ]
