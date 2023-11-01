@@ -14,7 +14,7 @@ logger = getLogger(__name__)
 
 CAPACITY_URL = "https://api.eia.gov/v2/electricity/operating-generator-capacity/data/?frequency=monthly&data[0]=nameplate-capacity-mw&facets[balancing_authority_code][]={}"
 API_KEY = get_token("EIA_KEY")
-
+SOURCE = "EIA.gov"
 US_ZONES = {key: value for key, value in REGIONS.items() if key.startswith("US-")}
 TECHNOLOGY_TO_MODE = {
     "All Other": "unknown",
