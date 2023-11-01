@@ -1,6 +1,6 @@
-from json import loads
+import json
+from importlib import resources
 
-from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 from snapshottest import TestCase
@@ -15,11 +15,14 @@ class TestHydroquebec(TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_production(self):
-        hydroquebec_production = resource_string(
-            "parsers.test.mocks.Hydroquebec", "production.json"
-        )
         self.adapter.register_uri(
-            GET, ANY, json=loads(hydroquebec_production.decode("utf-8"))
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.Hydroquebec")
+                .joinpath("production.json")
+                .read_text()
+            ),
         )
 
         production = fetch_production(session=self.session)
@@ -39,11 +42,14 @@ class TestHydroquebec(TestCase):
         )
 
     def test_consumption(self):
-        hydroquebec_consumption = resource_string(
-            "parsers.test.mocks.Hydroquebec", "consumption.json"
-        )
         self.adapter.register_uri(
-            GET, ANY, json=loads(hydroquebec_consumption.decode("utf-8"))
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.Hydroquebec")
+                .joinpath("consumption.json")
+                .read_text()
+            ),
         )
 
         consumption = fetch_consumption(session=self.session)
