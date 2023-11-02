@@ -52,7 +52,9 @@ ZONE_KEY_TO_GEO_LIMIT = {
 }
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime, session:Session):
+def fetch_production_capacity(
+    zone_key: ZoneKey, target_datetime: datetime, session: Session
+):
     geo_limit = ZONE_KEY_TO_GEO_LIMIT[zone_key]
     geo_ids = GEO_LIMIT_TO_GEO_IDS[geo_limit]
     url = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada"
