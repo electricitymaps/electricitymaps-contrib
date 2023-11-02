@@ -7,9 +7,9 @@ from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 from requests import Session
 
-from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
 SOURCE = "www.yukonenergy.ca"
@@ -87,24 +87,28 @@ def fetch_production(
     hydro_capacity = soup.find("div", class_="avail_hydro")
     thermal = soup.find("div", class_="load_thermal").div
 
+    production_mix = ProductionMix()
+    production_mix.add_value("coal", 0)
+    production_mix.add_value("geothermal", 0)
+    production_mix.add_value(
+        "hydro", _parse_mw(soup.find("div", class_="load_hydro").div.text)
+    )
+    production_mix.add_value("nuclear", 0)
+    production_mix.add_value("unknown", _parse_mw(thermal.text) if thermal else 0)
+
     production_breakdowns = ProductionBreakdownList(logger=logger)
     production_breakdowns.append(
         datetime=datetime.strptime(f"{date} {time}", "%A, %B %d, %Y %I:%M %p").replace(
             tzinfo=TIMEZONE
         ),
-        production=ProductionMix(
-            coal=0,
-            geothermal=0,
-            hydro=_parse_mw(soup.find("div", class_="load_hydro").div.text),
-            nuclear=0,
-            unknown=_parse_mw(thermal.text) if thermal else 0,
-        ),
+        production=production_mix,
         source=SOURCE,
         storage=StorageMix(
             hydro=_parse_mw(hydro_capacity.div.text) if hydro_capacity else None
         ),
         zoneKey=ZONE_KEY,
     )
+
     return production_breakdowns.to_list()
 
 
