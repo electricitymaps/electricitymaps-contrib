@@ -1,8 +1,8 @@
 import unittest
+from importlib import resources
 
-from pkg_resources import resource_string
 from requests import Session
-from requests_mock import Adapter
+from requests_mock import GET, Adapter
 
 from parsers import IN_KA
 
@@ -14,9 +14,12 @@ class Test_IN_KA(unittest.TestCase):
         self.session.mount("http://", self.adapter)
 
     def test_fetch_consumption(self):
-        response_text = resource_string("parsers.test.mocks", "IN_KA_Default.html")
         self.adapter.register_uri(
-            "GET", "http://kptclsldc.in/Default.aspx", content=response_text
+            GET,
+            "http://kptclsldc.in/Default.aspx",
+            text=resources.files("parsers.test.mocks")
+            .joinpath("IN_KA_Default.html")
+            .read_text(),
         )
 
         try:
@@ -31,13 +34,19 @@ class Test_IN_KA(unittest.TestCase):
             self.fail(f"IN_KA.fetch_consumption() raised Exception: {ex.message}")
 
     def test_fetch_production(self):
-        response_text = resource_string("parsers.test.mocks", "IN_KA_StateGen.html")
         self.adapter.register_uri(
-            "GET", "http://kptclsldc.in/StateGen.aspx", content=response_text
+            GET,
+            "http://kptclsldc.in/StateGen.aspx",
+            text=resources.files("parsers.test.mocks")
+            .joinpath("IN_KA_StateGen.html")
+            .read_text(),
         )
-        response_text = resource_string("parsers.test.mocks", "IN_KA_StateNCEP.html")
         self.adapter.register_uri(
-            "GET", "http://kptclsldc.in/StateNCEP.aspx", content=response_text
+            GET,
+            "http://kptclsldc.in/StateNCEP.aspx",
+            text=resources.files("parsers.test.mocks")
+            .joinpath("IN_KA_StateNCEP.html")
+            .read_text(),
         )
 
         try:
