@@ -74,17 +74,13 @@ EMBER_ZONES = [
 
 
 def map_variable_to_mode(data: pd.Series) -> str:
-    data = data.copy()
     zone = data["zone_key"]
     variable = data["variable"]
-    if zone in SPECIFIC_MODE_MAPPING:
-        if variable in SPECIFIC_MODE_MAPPING[zone]:
-            mode = SPECIFIC_MODE_MAPPING[zone][variable]
-        else:
-            mode = EMBER_VARIABLE_TO_MODE[variable]
+    if zone in SPECIFIC_MODE_MAPPING and variable in SPECIFIC_MODE_MAPPING[zone]:
+        return SPECIFIC_MODE_MAPPING[zone][variable]
     else:
-        mode = EMBER_VARIABLE_TO_MODE[variable]
-    return mode
+        return EMBER_VARIABLE_TO_MODE[variable]
+
 
 
 def get_data_from_url(session: Session) -> pd.DataFrame:
