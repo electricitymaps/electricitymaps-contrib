@@ -31,6 +31,7 @@ def fetch_production_capacity(
     soup = BeautifulSoup(r.text, "html.parser")
     all_capacity = []
 
+    # data is in three tables with different formats
     tables = soup.find_all("table")
     for table in tables:
         all_rows = table.find_all("tr")
@@ -84,4 +85,4 @@ def fetch_production_capacity(
 
 
 if __name__ == "__main__":
-    fetch_production_capacity("CA-QC", datetime.now())
+    fetch_production_capacity("CA-QC", datetime.now(), session=Session())
