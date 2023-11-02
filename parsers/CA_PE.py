@@ -68,21 +68,23 @@ def fetch_production(
         raise ParserException("CA_PE.py", "Unable to fetch historical data", ZONE_KEY)
 
     event = _get_event(session or Session())
+
+    production_mix = ProductionMix()
+    # Specify some sources that definitely aren't present on PEI as zero; this
+    # allows the analyzer to better estimate CO2eq.
+    production_mix.add_value("coal", 0)
+    production_mix.add_value("geothermal", 0)
+    production_mix.add_value("hydro", 0)
+    production_mix.add_value("nuclear", 0)
+    # These are oil-fueled ("heavy fuel oil" and "diesel") generators used as
+    # peakers and back-up.
+    production_mix.add_value("oil", event["fossil"])
+    production_mix.add_value("wind", event["wind"])
+
     production_breakdowns = ProductionBreakdownList(logger)
     production_breakdowns.append(
         datetime=event["datetime"],
-        production=ProductionMix(
-            # Specify some sources that definitely aren't present on PEI as
-            # zero; this allows the analyzer to better estimate CO2eq.
-            coal=0,
-            geothermal=0,
-            hydro=0,
-            nuclear=0,
-            # These are oil-fueled ("heavy fuel oil" and "diesel") generators
-            # used as peakers and back-up.
-            oil=event["fossil"],
-            wind=event["wind"],
-        ),
+        production=production_mix,
         source=SOURCE,
         zoneKey=ZONE_KEY,
     )
