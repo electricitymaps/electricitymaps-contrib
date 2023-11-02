@@ -113,10 +113,11 @@ export default function MapPage(): ReactElement {
 
     // An issue where the map has not loaded source yet causing map errors
     const isSourceLoaded =
-      map.getSource('zones-clickable') != undefined &&
+      map.getSource('zones-clickable') !== undefined &&
       map.isSourceLoaded('zones-clickable') &&
-      map.isSourceLoaded('states') &&
-      map.getSource('states') != undefined;
+      map.getSource('states') !== undefined &&
+      map.isSourceLoaded('states');
+
     if (!isSourceLoaded || isLoadingMap) {
       return;
     }
