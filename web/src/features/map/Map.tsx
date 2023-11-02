@@ -12,12 +12,10 @@ import maplibregl from 'maplibre-gl';
 import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 import { Layer, Map, MapRef, Source } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
-import { StatesGeometries } from 'types';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 
-import stateNames from '../../../geo/usa_state_names.json';
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';

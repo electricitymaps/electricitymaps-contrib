@@ -2463,12 +2463,12 @@
     {
       "type": "Feature",
       "properties": { "stateName": "Florida", "stateId": "FL" },
-      "geometry": { "type": "Point", "coordinates": [-82.4852, 28.6467] }
+      "geometry": { "type": "Point", "coordinates": [-81.702, 28.0467] }
     },
     {
       "type": "Feature",
       "properties": { "stateName": "Louisiana", "stateId": "LA" },
-      "geometry": { "type": "Point", "coordinates": [-92.002, 31.0701] }
+      "geometry": { "type": "Point", "coordinates": [-92.002, 30.5701] }
     }
   ]
 }
