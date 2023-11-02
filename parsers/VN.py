@@ -41,10 +41,10 @@ def fetch_consumption(
             return live_consumption
         else:
             return fetch_historical_consumption(
-                session, datetime.now().astimezone(tz) - timedelta(days=1), logger
+                datetime.now().astimezone(tz) - timedelta(days=1), session, logger
             )
     else:
-        return fetch_historical_consumption(session, target_datetime, logger)
+        return fetch_historical_consumption(target_datetime, session, logger)
 
 
 def fetch_price(
@@ -60,15 +60,15 @@ def fetch_price(
             return live_consumption
         else:
             return fetch_historical_price(
-                session, datetime.now().astimezone(tz) - timedelta(days=1), logger
+                datetime.now().astimezone(tz) - timedelta(days=1), session, logger
             )
     else:
-        return fetch_historical_price(session, target_datetime, logger)
+        return fetch_historical_price(target_datetime, session, logger)
 
 
 def fetch_historical_consumption(
+    target_datetime: datetime,
     session: Session = Session(),
-    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     data_list = fetch_historical_data(session=session, target_datetime=target_datetime)
@@ -85,8 +85,8 @@ def fetch_historical_consumption(
 
 
 def fetch_historical_price(
+    target_datetime: datetime,
     session: Session = Session(),
-    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     data_list = fetch_historical_data(session=session, target_datetime=target_datetime)
@@ -149,14 +149,18 @@ def fetch_historical_data(
         f"{HISTORICAL_DATA}?day={(target_datetime - timedelta(minutes=30)).strftime('%d/%m/%Y')}"
     )
     if not res.ok:
-        return ParserException
+        raise ParserException(
+            parser="VN.py", message=f"Request failed: {res.status_code}"
+        )
     return json.loads(res.text)["result"]["data"]["phuTai"]
 
 
 def fetch_live_data(data_type=str, session: Session = Session()):
     res = session.get(LIVE_DATA[data_type])
     if not res.ok:
-        return ParserException
+        raise ParserException(
+            parser="VN.py", message=f"Request failed: {res.status_code}"
+        )
     return json.loads(res.text)["result"]["data"]
 
 
