@@ -22,7 +22,8 @@ EMBER_VARIABLE_TO_MODE = {
     "Solar": "solar",
     "Wind": "wind",
 }
-
+EMBER_URL = "https://ember-climate.org"
+SOURCE = "Ember, Yearly electricity data"
 SPECIFIC_MODE_MAPPING = {
     "BD": {"Other Fossil": "oil"},
     "CO": {"Other Fossil": "oil"},
@@ -72,28 +73,28 @@ EMBER_ZONES = [
 ]
 
 
-def map_variable_to_mode(row: pd.Series) -> pd.DataFrame:
-    zone = row["zone_key"]
-    variable = row["mode"]
+def map_variable_to_mode(row: pd.Series) -> pd.Series:
+    updated_row = row.copy()
+    zone = updated_row["zone_key"]
+    variable = updated_row["mode"]
     if zone in SPECIFIC_MODE_MAPPING:
         if variable in SPECIFIC_MODE_MAPPING[zone]:
-            row["mode"] = SPECIFIC_MODE_MAPPING[zone][variable]
+            updated_row["mode"] = SPECIFIC_MODE_MAPPING[zone][variable]
         else:
-            row["mode"] = EMBER_VARIABLE_TO_MODE[variable]
+            updated_row["mode"] = EMBER_VARIABLE_TO_MODE[variable]
     else:
-        row["mode"] = EMBER_VARIABLE_TO_MODE[variable]
-    return row
+        updated_row["mode"] = EMBER_VARIABLE_TO_MODE[variable]
+    return updated_row
 
 
 def get_data_from_url(session: Session) -> pd.DataFrame:
-    base_url = "https://ember-climate.org"
-    yearly_catalogue_url = base_url + "/data-catalogue/yearly-electricity-data/"
+    yearly_catalogue_url = EMBER_URL + "/data-catalogue/yearly-electricity-data/"
     r: Response = session.get(yearly_catalogue_url)
     soup = BeautifulSoup(r.text, "html.parser")
     csv_link = soup.find("a", {"download": "yearly_full_release_long_format.csv"})[
         "href"
     ]
-    r_csv: Response = session.get(base_url + csv_link)
+    r_csv: Response = session.get(EMBER_URL + csv_link)
     df = pd.read_csv(io.StringIO(r_csv.text))
     return df
 
@@ -146,7 +147,7 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict:
             mode_capacity = {}
             mode_capacity["datetime"] = data["datetime"].strftime("%Y-%m-%d")
             mode_capacity["value"] = round(float(data["value"]), 0)
-            mode_capacity["source"] = "Ember, Yearly electricity data"
+            mode_capacity["source"] = SOURCE
             zone_capacity[data["mode"]] = mode_capacity
         all_capacity[zone] = zone_capacity
     return all_capacity
