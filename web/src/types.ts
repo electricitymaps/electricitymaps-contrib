@@ -5,7 +5,7 @@ import type {
   MultiPolygon,
   Polygon,
 } from '@turf/turf';
-import { LineString, MultiLineString } from 'geojson';
+import { LineString, MultiLineString, Point } from 'geojson';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -158,9 +158,9 @@ export interface GeometryProperties {
   zoneName: string;
 }
 export interface StateGeometryProperties {
-  center: [number, number];
-  stateName: string;
-  stateId: string;
+  center?: [number, number];
+  stateName?: string;
+  stateId?: string;
 }
 
 export interface MapGeometries extends FeatureCollection<Geometry> {
@@ -176,8 +176,8 @@ export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   properties: GeometryProperties;
 }
 
-export interface StatesGeometry extends Feature<LineString | MultiLineString> {
-  geometry: LineString | MultiLineString;
+export interface StatesGeometry extends Feature<LineString | MultiLineString | Point> {
+  geometry: LineString | MultiLineString | Point;
   Id?: number;
   properties: StateGeometryProperties;
 }

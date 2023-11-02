@@ -25,7 +25,7 @@ export const GEO_CONFIG = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 } as const;
 
-export const STATES_CONFIG = {
+const STATES_CONFIG = {
   STATES_PATH: path.resolve(
     fileURLToPath(new URL('usa_states.geojson', import.meta.url))
   ),

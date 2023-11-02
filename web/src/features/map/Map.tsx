@@ -58,7 +58,6 @@ export default function MapPage(): ReactElement {
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
-  const stateNames2 = stateNames as unknown as StatesGeometries;
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
   const styles = useMemo(
@@ -378,13 +377,11 @@ export default function MapPage(): ReactElement {
         <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
       </Source>
       <Source id="states" type="geojson" data={statesGeometries}>
-        <Layer id="states-border" type="line" paint={styles.statesBorder} />
-      </Source>
-      <Source id="states-labels" type="geojson" data={stateNames2}>
+        <Layer id="states-border" type="line" paint={styles.statesBorder} minzoom={2.5} />
         <Layer
-          id="state-labels-1"
+          id="state-labels-name"
           type="symbol"
-          source="state-labels"
+          source="states"
           layout={{
             'text-field': ['get', 'stateName'],
             'symbol-placement': 'point',
@@ -404,9 +401,9 @@ export default function MapPage(): ReactElement {
           minzoom={4.5}
         />
         <Layer
-          id="state-labels-2"
+          id="state-labels-id"
           type="symbol"
-          source="state-labels"
+          source="states"
           layout={{
             'text-field': ['get', 'stateId'],
             'symbol-placement': 'point',

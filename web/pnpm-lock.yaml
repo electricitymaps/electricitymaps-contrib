@@ -307,6 +307,9 @@ devDependencies:
   '@types/topojson-server':
     specifier: ^3.0.1
     version: 3.0.1
+  '@types/topojson-specification':
+    specifier: ^1.0.4
+    version: 1.0.4
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.62.0
     version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.50.0)(typescript@5.2.2)
@@ -7937,25 +7940,25 @@ packages:
     resolution: {integrity: sha512-E4/Z2Xg56kVLRzYWem/6uOKVcVNqqxEqlWM9qCG2tCV1BxuzvvXC02/ELoGJWgtKkQhfycBPlMFEuTFdA/YiTg==}
     dependencies:
       '@types/geojson': 7946.0.10
-      '@types/topojson-specification': 1.0.2
+      '@types/topojson-specification': 1.0.4
     dev: true
 
   /@types/topojson-server@3.0.1:
     resolution: {integrity: sha512-NxoC9O8lS/+a0M/FiyjIz7Wk6M03DKF5V1xp2vB9zmbMo66ZbaULg2rrosHAqgsU4BmHe4LE7A0JinPZuxGlBw==}
     dependencies:
       '@types/geojson': 7946.0.10
-      '@types/topojson-specification': 1.0.2
+      '@types/topojson-specification': 1.0.4
     dev: true
 
   /@types/topojson-simplify@3.0.1:
     resolution: {integrity: sha512-H7SS2X11Lo3iRT3e7R6jPTAazOoSLD0LKIGq1b+4m/76Md46JfeU3zVIhxfIX9FY7oiyEbXwGumjK1GUXwIIMA==}
     dependencies:
       '@types/geojson': 7946.0.10
-      '@types/topojson-specification': 1.0.2
+      '@types/topojson-specification': 1.0.4
     dev: true
 
-  /@types/topojson-specification@1.0.2:
-    resolution: {integrity: sha512-SGc1NdX9g3UGDp6S+p+uyG+Z8CehS51sUJ9bejA25Xgn2kkAguILk6J9nxXK+0M/mbTBN7ypMA7+4HVLNMJ8ag==}
+  /@types/topojson-specification@1.0.4:
+    resolution: {integrity: sha512-LG/a8kJi4X6MsFhZKiBAIC/a+yCFtjkHsDMwuQqSoB1az8D2bR2xRKU3aczizfcqdt2lVqnS+aJBFMrO+rO5Aw==}
     dependencies:
       '@types/geojson': 7946.0.10
     dev: true
@@ -7967,7 +7970,7 @@ packages:
       '@types/topojson-client': 3.1.1
       '@types/topojson-server': 3.0.1
       '@types/topojson-simplify': 3.0.1
-      '@types/topojson-specification': 1.0.2
+      '@types/topojson-specification': 1.0.4
     dev: true
 
   /@types/trusted-types@2.0.2:

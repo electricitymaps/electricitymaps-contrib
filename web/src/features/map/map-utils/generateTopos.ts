@@ -1,5 +1,7 @@
 import { multiLineString, multiPolygon } from '@turf/helpers';
+import { Feature, Point } from 'geojson';
 import { merge, mesh } from 'topojson-client';
+import { Objects, Topology } from 'topojson-specification';
 import {
   GeometryProperties,
   MapGeometries,
@@ -9,7 +11,7 @@ import {
 } from 'types';
 import { SpatialAggregate } from 'utils/constants';
 
-import statesTopo from '../../../../config/usa_states.json';
+import stateBordersTopo from '../../../../config/usa_states.json';
 import worldTopo from '../../../../config/world.json';
 // TODO: Investigate if we can move this step to buildtime geo scripts
 export interface TopoObject {
@@ -26,21 +28,27 @@ export interface Topo {
   };
 }
 
-export interface StatesTopoObject {
-  type: 'MultiLineString';
+type Arc = Positions[];
+type Positions = number[];
+export interface StateBordersTopo extends Topology {
+  type: 'Topology';
+  arcs: Arc[];
+  objects: Objects<StateGeometryProperties>;
+}
+
+export interface StateBordersTopoObject {
+  type: 'MultiLineString' | 'Point';
   arcs: TopoJSON.ArcIndexes[];
   properties: Omit<StateGeometryProperties, 'zoneId'>;
 }
 
-type Arc = Positions[];
-type Positions = number[];
-
-export interface StatesTopo {
-  type: 'Topology';
-  arcs: Arc[];
-  objects: {
-    [key: string]: StatesTopoObject;
-  };
+function isTopoObject(object: unknown): object is TopoObject {
+  return (
+    typeof object === 'object' &&
+    object !== null &&
+    'arcs' in object &&
+    'properties' in object
+  );
 }
 
 /**
@@ -54,7 +62,7 @@ const generateTopos = (
   const statesGeometries: StatesGeometries = { features: [], type: 'FeatureCollection' };
   // Casting to unknown first to allow using [number, number] for center property
   const worldTopography = worldTopo as unknown as Topo;
-  const statesTopography = statesTopo as unknown as StatesTopo;
+  const stateBordersTopography = stateBordersTopo as unknown as StateBordersTopo;
 
   for (const k of Object.keys(worldTopography.objects)) {
     if (!worldTopography.objects[k].arcs) {
@@ -88,16 +96,21 @@ const generateTopos = (
 
     worldGeometries.features.push(mp);
   }
-  for (const k of Object.keys(statesTopography.objects)) {
-    if (!statesTopography.objects[k].arcs) {
-      continue;
-    }
-    const topoObject = mesh(statesTopography, statesTopography.objects[k]);
+  for (const k of Object.keys(stateBordersTopography.objects)) {
+    const topoObject = stateBordersTopography.objects[k];
 
-    const stateMp = multiLineString(topoObject.coordinates, {
-      ...statesTopography.objects[k].properties,
-    });
-    statesGeometries.features.push(stateMp);
+    if (isTopoObject(topoObject)) {
+      const meshedObject = mesh(stateBordersTopography, topoObject);
+      const stateMp = multiLineString(meshedObject.coordinates, {});
+      statesGeometries.features.push(stateMp);
+    } else if (topoObject.type === 'Point' && topoObject.properties) {
+      const statePoint: Feature<Point, StateGeometryProperties> = {
+        type: 'Feature',
+        properties: topoObject.properties,
+        geometry: { type: 'Point', coordinates: topoObject.coordinates },
+      };
+      statesGeometries.features.push(statePoint);
+    }
   }
 
   return { worldGeometries, statesGeometries };
