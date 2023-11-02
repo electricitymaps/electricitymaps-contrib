@@ -101,5 +101,6 @@ def fetch_production_capacity_for_all_zones(
         session = Session()
     for zone in US_ZONES:
         zone_capacity = fetch_production_capacity(zone, target_datetime, session)
-        eia_capacity[zone] = zone_capacity
+        if zone_capacity:
+            eia_capacity[zone] = zone_capacity
     return eia_capacity
