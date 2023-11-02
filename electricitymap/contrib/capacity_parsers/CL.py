@@ -1,5 +1,6 @@
 from datetime import datetime
 from logging import getLogger
+from typing import Dict, Union
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -23,9 +24,11 @@ MODE_MAPPING = {
 }
 
 SOURCE = "coordinador.cl"
+
+
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
-) -> dict:
+) -> Union[Dict, None]:
     url = "https://www.coordinador.cl/reportes-y-estadisticas/#Estadisticas"
     r: Response = session.get(url)
     soup = BeautifulSoup(r.text, "html.parser")
