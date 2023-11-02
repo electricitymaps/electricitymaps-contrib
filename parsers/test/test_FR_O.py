@@ -1,8 +1,8 @@
+import json
 import unittest
 from datetime import datetime
-from json import loads
+from importlib import resources
 
-from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, Adapter
 
@@ -17,8 +17,15 @@ class TestFR_O(unittest.TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_fetch_exchange(self):
-        json_data = resource_string("parsers.test.mocks.FR_O", "FR_GP.json")
-        self.adapter.register_uri(ANY, ANY, json=loads(json_data.decode("utf-8")))
+        self.adapter.register_uri(
+            ANY,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.FR_O")
+                .joinpath("FR_GP.json")
+                .read_text()
+            ),
+        )
         data_list = FR_O.fetch_production("GP", self.session)
         self.assertIsNotNone(data_list)
         expected_data = [
@@ -61,8 +68,15 @@ class TestFR_O(unittest.TestCase):
                 )
 
     def test_fetch_price(self):
-        json_data = resource_string("parsers.test.mocks.FR_O", "FR_RE.json")
-        self.adapter.register_uri(ANY, ANY, json=loads(json_data.decode("utf-8")))
+        self.adapter.register_uri(
+            ANY,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.FR_O")
+                .joinpath("FR_RE.json")
+                .read_text()
+            ),
+        )
         data_list = FR_O.fetch_price(ZoneKey("RE"), self.session, datetime(2018, 1, 1))
         self.assertIsNotNone(data_list)
         expected_data = [
@@ -90,8 +104,15 @@ class TestFR_O(unittest.TestCase):
             self.assertEqual(actual["price"], expected_data[index]["price"])
 
     def test_fetch_production(self):
-        json_data = resource_string("parsers.test.mocks.FR_O", "FR_COR.json")
-        self.adapter.register_uri(ANY, ANY, json=loads(json_data.decode("utf-8")))
+        self.adapter.register_uri(
+            ANY,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.FR_O")
+                .joinpath("FR_COR.json")
+                .read_text()
+            ),
+        )
         data_list = FR_O.fetch_production(ZoneKey("FR-COR"), self.session)
         self.assertIsNotNone(data_list)
         expected_production_data = [

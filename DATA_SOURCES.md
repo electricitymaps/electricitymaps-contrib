@@ -95,9 +95,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Moldova: [MoldElectrica](http://www.moldelectrica.md/ro/activity/system_state)
 - Montenegro: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Namibia: [NamPower](http://www.nampower.com.na/Scada.aspx)
-- Netherlands:
-  - [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-  - [Energieopwek.nl](https://energieopwek.nl/)
+- Netherlands: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - New Zealand:
   - [Transpower](https://www.transpower.co.nz/power-system-live-data)
   - [Siesa](https://www.southlanddc.govt.nz/my-southland/siesa-2/what-sieasa-does/)
@@ -269,7 +267,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
 - Hungary:
   - Biomass: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246725019/PV+STATISZTIKA_HU_20230914_ig_v1.pdf)
+  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246841605/PV+STATISZTIKA_HU_20231001_ig_v1.pdf)
   - Other: [MAVIR](https://www.mavir.hu/web/mavir/energia-mix-eromuvi-beepitett-teljesitokepesseg-adatok)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
