@@ -1,9 +1,9 @@
+import json
 import os
 import unittest
 from datetime import datetime
-from json import loads
+from importlib import resources
 
-from pkg_resources import resource_string
 from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
@@ -23,10 +23,15 @@ class TestEIA(unittest.TestCase):
 
 class TestEIAProduction(TestEIA):
     def test_fetch_production_mix(self):
-        wind_avrn_data = resource_string(
-            "parsers.test.mocks.EIA", "US_NW_AVRN-wind.json"
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_AVRN-wind.json")
+                .read_text()
+            ),
         )
-        self.adapter.register_uri(GET, ANY, json=loads(wind_avrn_data.decode("utf-8")))
         data_list = EIA.fetch_production_mix("US-NW-PGE", self.session)
         expected = [
             {
@@ -63,33 +68,50 @@ class TestEIAProduction(TestEIA):
         self.check_production_matches(data_list, expected)
 
     def test_US_NW_AVRN_rerouting(self):
-        gas_avrn_data = resource_string("parsers.test.mocks.EIA", "US_NW_AVRN-gas.json")
-        wind_avrn_data = resource_string(
-            "parsers.test.mocks.EIA", "US_NW_AVRN-wind.json"
-        )
-        other_avrn_data = resource_string(
-            "parsers.test.mocks.EIA", "US_NW_AVRN-other.json"
-        )
-        gas_pacw_data = resource_string("parsers.test.mocks.EIA", "US_NW_PACW-gas.json")
-        wind_bpat_data = resource_string(
-            "parsers.test.mocks.EIA", "US_NW_BPAT-wind.json"
-        )
-        gas_avrn_url = EIA.PRODUCTION_MIX.format("AVRN", "NG")
-        wind_avrn_url = EIA.PRODUCTION_MIX.format("AVRN", "WND")
-        gas_pacw_url = EIA.PRODUCTION_MIX.format("PACW", "NG")
-        wind_bpat_url = EIA.PRODUCTION_MIX.format("BPAT", "WND")
-        self.adapter.register_uri(GET, ANY, json=loads(other_avrn_data.decode("utf-8")))
         self.adapter.register_uri(
-            GET, wind_avrn_url, json=loads(wind_avrn_data.decode("utf-8"))
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_AVRN-other.json")
+                .read_text()
+            ),
         )
         self.adapter.register_uri(
-            GET, gas_pacw_url, json=loads(gas_pacw_data.decode("utf-8"))
+            GET,
+            EIA.PRODUCTION_MIX.format("AVRN", "WND"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_AVRN-wind.json")
+                .read_text()
+            ),
         )
         self.adapter.register_uri(
-            GET, wind_bpat_url, json=loads(wind_bpat_data.decode("utf-8"))
+            GET,
+            EIA.PRODUCTION_MIX.format("PACW", "NG"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_PACW-gas.json")
+                .read_text()
+            ),
         )
         self.adapter.register_uri(
-            GET, gas_avrn_url, json=loads(gas_avrn_data.decode("utf-8"))
+            GET,
+            EIA.PRODUCTION_MIX.format("BPAT", "WND"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_BPAT-wind.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("AVRN", "NG"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_AVRN-gas.json")
+                .read_text()
+            ),
         )
 
         data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PACW"), self.session)
@@ -126,21 +148,32 @@ class TestEIAProduction(TestEIA):
         self.check_production_matches(data_list, expected)
 
     def test_US_CAR_SC_nuclear_split(self):
-        nuclear_sc_data = resource_string(
-            "parsers.test.mocks.EIA", "US_CAR_SC-nuclear.json"
-        )
-        nuclear_sceg_data = resource_string(
-            "parsers.test.mocks.EIA", "US_CAR_SCEG-nuclear.json"
-        )
-        other_data = resource_string("parsers.test.mocks.EIA", "US_NW_AVRN-other.json")
-        nuclear_sc_url = EIA.PRODUCTION_MIX.format("SC", "NUC")
-        nuclear_sceg_url = EIA.PRODUCTION_MIX.format("SCEG", "NUC")
-        self.adapter.register_uri(GET, ANY, json=loads(other_data.decode("utf-8")))
         self.adapter.register_uri(
-            GET, nuclear_sceg_url, json=loads(nuclear_sceg_data.decode("utf-8"))
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_AVRN-other.json")
+                .read_text()
+            ),
         )
         self.adapter.register_uri(
-            GET, nuclear_sc_url, json=loads(nuclear_sc_data.decode("utf-8"))
+            GET,
+            EIA.PRODUCTION_MIX.format("SC", "NUC"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_CAR_SC-nuclear.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SCEG", "NUC"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_CAR_SCEG-nuclear.json")
+                .read_text()
+            ),
         )
 
         data_list = EIA.fetch_production_mix(ZoneKey("US-CAR-SC"), self.session)
@@ -196,25 +229,43 @@ class TestEIAProduction(TestEIA):
         the hydro production events are properly handled and the storage
         is accounted for on a zone by zone basis.
         """
-        other_data = resource_string("parsers.test.mocks.EIA", "US_NW_AVRN-other.json")
-        self.adapter.register_uri(GET, ANY, json=loads(other_data.decode("utf-8")))
-        hydro_deaa = resource_string("parsers.test.mocks.EIA", "US_SW_DEAA-hydro.json")
-        hydro_deaa_url = EIA.PRODUCTION_MIX.format("DEAA", "WAT")
         self.adapter.register_uri(
-            GET, hydro_deaa_url, json=loads(hydro_deaa.decode("utf-8"))
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_AVRN-other.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("DEAA", "WAT"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SW_DEAA-hydro.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("HGMA", "WAT"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SW_HGMA-hydro.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SRP", "WAT"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SW_SRP-hydro.json")
+                .read_text()
+            ),
         )
 
-        hydro_hgma = resource_string("parsers.test.mocks.EIA", "US_SW_HGMA-hydro.json")
-        hydro_hgma_url = EIA.PRODUCTION_MIX.format("HGMA", "WAT")
-        self.adapter.register_uri(
-            GET, hydro_hgma_url, json=loads(hydro_hgma.decode("utf-8"))
-        )
-
-        hydro_srp = resource_string("parsers.test.mocks.EIA", "US_SW_SRP-hydro.json")
-        hydro_srp_url = EIA.PRODUCTION_MIX.format("SRP", "WAT")
-        self.adapter.register_uri(
-            GET, hydro_srp_url, json=loads(hydro_srp.decode("utf-8"))
-        )
         data = EIA.fetch_production_mix(ZoneKey("US-SW-SRP"), self.session)
         expected = [
             {
@@ -239,39 +290,44 @@ class TestEIAProduction(TestEIA):
             "2020-01-07T05:00:00+00:00"  # Last datapoint before decommissioning of NSB
         )
         # 1. Get data directly from EIA for both
-        FPL_exchange_data = resource_string(
-            "parsers.test.mocks.EIA", "US-FLA-FPC_US-FLA-FPL_exchange.json"
+        fpl_exchange_data = json.loads(
+            resources.files("parsers.test.mocks.EIA")
+            .joinpath("US-FLA-FPC_US-FLA-FPL_exchange.json")
+            .read_text()
         )
-        FPL_exchange_data_url = EIA.EXCHANGE.format(EIA.EXCHANGES[exchange_key])
-        # FPL_exchange_data_url = "https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=FPL&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24"
         self.adapter.register_uri(
-            GET, FPL_exchange_data_url, json=loads(FPL_exchange_data.decode("utf-8"))
+            GET,
+            # For example:
+            # https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=FPL&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24
+            EIA.EXCHANGE.format(EIA.EXCHANGES[exchange_key]),
+            json=fpl_exchange_data,
+        )
+        nsb_exchange_data = json.loads(
+            resources.files("parsers.test.mocks.EIA")
+            .joinpath("US-FLA-FPC_US-FLA-NSB_exchange.json")
+            .read_text()
+        )
+        self.adapter.register_uri(
+            GET,
+            # For example:
+            # https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=NSB&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24
+            EIA.EXCHANGE.format(EIA.EXCHANGES[remapped_exchange_key]),
+            json=nsb_exchange_data,
         )
 
-        NSB_exchange_data = resource_string(
-            "parsers.test.mocks.EIA", "US-FLA-FPC_US-FLA-NSB_exchange.json"
-        )
-        NSB_exchange_data_url = EIA.EXCHANGE.format(
-            EIA.EXCHANGES[remapped_exchange_key]
-        )
-        # NSB_exchange_data_url = "https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=NSB&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24"
-        self.adapter.register_uri(
-            GET, NSB_exchange_data_url, json=loads(NSB_exchange_data.decode("utf-8"))
-        )
-
-        # 2. Get data from the EIA parser fetch_exchange for US-FLA-FPC->US-FLA-FPL
+        # 2. Get data from the EIA parser fetch_exchange for
+        # US-FLA-FPC->US-FLA-FPL
         z_k_1, z_k_2 = exchange_key.split("->")
         data_list = EIA.fetch_exchange(ZoneKey(z_k_1), ZoneKey(z_k_2), self.session)
 
-        # Verify that the sum of the data directly fetched matches the data from the parser
-        # Read both json and sum the values
-        FPL_exchange_data_json = loads(FPL_exchange_data.decode("utf-8"))
-        NSB_exchange_data_json = loads(NSB_exchange_data.decode("utf-8"))
-
-        for idx in range(len(data_list)):
-            FPL_raw_value = FPL_exchange_data_json["response"]["data"][idx]["value"]
-            NSB_raw_value = NSB_exchange_data_json["response"]["data"][idx]["value"]
-            assert FPL_raw_value + NSB_raw_value == data_list[idx]["netFlow"]
+        # Verify that the sum of the data directly fetched matches the data
+        # from the parser.
+        for fpl, nsb, parser in zip(
+            fpl_exchange_data["response"]["data"],
+            nsb_exchange_data["response"]["data"],
+            data_list,
+        ):
+            assert fpl["value"] + nsb["value"] == parser["netFlow"]
 
     def check_production_matches(
         self,
@@ -292,10 +348,15 @@ class TestEIAProduction(TestEIA):
                 self.assertEqual(value, expected[i]["storage"][key])
 
     def test_fetch_production_mix_discards_null(self):
-        null_avrn_data = resource_string(
-            "parsers.test.mocks.EIA", "US-NW-PGE-with-nulls.json"
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US-NW-PGE-with-nulls.json")
+                .read_text()
+            ),
         )
-        self.adapter.register_uri(GET, ANY, json=loads(null_avrn_data.decode("utf-8")))
         data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PGE"), self.session)
         expected = [
             {
@@ -322,10 +383,15 @@ class TestEIAProduction(TestEIA):
 
 class TestEIAExchanges(TestEIA):
     def test_fetch_exchange(self):
-        data = resource_string(
-            "parsers.test.mocks.EIA", "US-NW-BPAT-US-NW-NWMT-exchange.json"
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US-NW-BPAT-US-NW-NWMT-exchange.json")
+                .read_text()
+            ),
         )
-        self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
         data_list = EIA.fetch_exchange(
             ZoneKey("US-NW-BPAT"), ZoneKey("US-NW-NWMT"), self.session
         )
@@ -359,8 +425,15 @@ class TestEIAExchanges(TestEIA):
 
 class TestEIAConsumption(TestEIA):
     def test_fetch_consumption(self):
-        data = resource_string("parsers.test.mocks.EIA", "US_NW_BPAT-consumption.json")
-        self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_BPAT-consumption.json")
+                .read_text()
+            ),
+        )
         data_list = EIA.fetch_consumption(ZoneKey("US-NW-BPAT"), self.session)
         expected = [
             {
@@ -381,8 +454,15 @@ class TestEIAConsumption(TestEIA):
             self.assertEqual(data["consumption"], expected[i]["consumption"])
 
     def test_fetch_forecasted_consumption(self):
-        data = resource_string("parsers.test.mocks.EIA", "US_NW_BPAT-consumption.json")
-        self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_BPAT-consumption.json")
+                .read_text()
+            ),
+        )
         data_list = EIA.fetch_consumption_forecast(ZoneKey("US-NW-BPAT"), self.session)
         expected = [
             {

@@ -44,7 +44,7 @@ The zone configurations hold information such as the installed capacity, which p
 
 ## Parser guidelines
 
-To get stated with editing the parsers use the following steps:
+To get started with editing the parsers use the following steps:
 
 1. Run `poetry install -E parsers` to install all needed dependencies.
 2. Use `poetry run test_parser ZONE_KEY` to test any parser changes.
