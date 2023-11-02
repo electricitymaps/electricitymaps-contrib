@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 from logging import getLogger
+from typing import Dict, Union
 
 import pycountry
 from requests import Response, Session
@@ -125,7 +126,7 @@ def get_capacity_data_for_all_zones(target_datetime: datetime, session: Session)
 
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
-) -> dict:
+) -> Union[Dict, None]:
     all_capacity = get_capacity_data_for_all_zones(target_datetime, session)
     zone_capacity = all_capacity[zone_key]
 
@@ -140,7 +141,7 @@ def fetch_production_capacity(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session
-) -> dict:
+) -> Union[Dict, None]:
     all_capacity = get_capacity_data_for_all_zones(target_datetime, session)
 
     all_capacity = {k: v for k, v in all_capacity.items() if k in IRENA_ZONES}
