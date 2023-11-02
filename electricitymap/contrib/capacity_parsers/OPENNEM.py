@@ -149,5 +149,5 @@ def get_solar_capacity_au_nt(target_datetime: datetime):
 
 
 if __name__ == "__main__":
-    print(fetch_production_capacity("AU-VIC",datetime(2015, 1, 1), Session()))
+    print(fetch_production_capacity("AU-VIC", datetime(2015, 1, 1), Session()))
     print(get_solar_capacity_au_nt(datetime(2021, 1, 1)))
