@@ -30,7 +30,12 @@ import { FeatureId } from './mapTypes';
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
 const NORTHERN_LATITUDE_BOUND = 85;
-const MAP_STYLE = { version: 8, sources: {}, layers: [] };
+const MAP_STYLE = {
+  version: 8,
+  sources: {},
+  layers: [],
+  glyphs: 'fonts/{fontstack}/{range}.pbf',
+};
 const isMobile = window.innerWidth < 768;
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
@@ -51,7 +56,6 @@ export default function MapPage(): ReactElement {
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
-
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
   const styles = useMemo(
@@ -64,11 +68,12 @@ export default function MapPage(): ReactElement {
           'white',
           theme.strokeColor,
         ],
-        // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
         'line-width': [
           'case',
           ['boolean', ['feature-state', 'selected'], false],
-          (theme.strokeWidth as number) * 10,
+          theme.strokeWidth * 10,
+          ['boolean', ['feature-state', 'hover'], false],
+          theme.strokeWidth * 10,
           theme.strokeWidth,
         ],
       } as mapboxgl.LinePaint,
@@ -84,14 +89,19 @@ export default function MapPage(): ReactElement {
         'fill-color': '#FFFFFF',
         'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.3, 0],
       } as mapboxgl.FillPaint,
+      statesBorder: {
+        'line-color': theme.stateBorderColor,
+        'line-width': 1.4,
+        'line-opacity': 0.9,
+        'line-dasharray': [1, 1],
+      } as mapboxgl.LinePaint,
     }),
     [theme]
   );
 
   const { isLoading, isSuccess, isError, data } = useGetState();
   const mapReference = useRef<MapRef>(null);
-  const geometries = useGetGeometries();
-
+  const { worldGeometries, statesGeometries } = useGetGeometries();
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
     const map = mapReference.current?.getMap();
@@ -102,11 +112,16 @@ export default function MapPage(): ReactElement {
     }
 
     // An issue where the map has not loaded source yet causing map errors
-    const isSourceLoaded = map.getSource('zones-clickable') != undefined;
+    const isSourceLoaded =
+      map.getSource('zones-clickable') !== undefined &&
+      map.isSourceLoaded('zones-clickable') &&
+      map.getSource('states') !== undefined &&
+      map.isSourceLoaded('states');
+
     if (!isSourceLoaded || isLoadingMap) {
       return;
     }
-    for (const feature of geometries.features) {
+    for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
       const zone = data.data?.zones[zoneId];
       const co2intensity =
@@ -137,7 +152,7 @@ export default function MapPage(): ReactElement {
     }
   }, [
     mapReference,
-    geometries,
+    worldGeometries,
     data,
     getCo2colorScale,
     selectedDatetime,
@@ -173,7 +188,7 @@ export default function MapPage(): ReactElement {
     const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
     setSelectedZoneId(zoneId);
     if (map && zoneId) {
-      const feature = geometries.features.find(
+      const feature = worldGeometries.features.find(
         (feature) => feature.properties.zoneId === zoneId
       );
       // if no feature matches, it means that the selected zone is not in current spatial resolution.
@@ -349,10 +364,63 @@ export default function MapPage(): ReactElement {
       mapStyle={MAP_STYLE as mapboxgl.Style}
     >
       <Layer id="ocean" type="background" paint={styles.ocean} />
-      <Source id="zones-clickable" promoteId={'zoneId'} type="geojson" data={geometries}>
+
+      <Source
+        id="zones-clickable"
+        promoteId={'zoneId'}
+        type="geojson"
+        data={worldGeometries}
+      >
         <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
         <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
         <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
+      </Source>
+      <Source id="states" type="geojson" data={statesGeometries}>
+        <Layer id="states-border" type="line" paint={styles.statesBorder} minzoom={2.5} />
+        <Layer
+          id="state-labels-name"
+          type="symbol"
+          source="states"
+          layout={{
+            'text-field': ['get', 'stateName'],
+            'symbol-placement': 'point',
+            'text-size': 12,
+            'text-letter-spacing': 0.12,
+            'text-transform': 'uppercase',
+
+            'text-font': ['Poppins SemiBold'],
+          }}
+          paint={{
+            'text-color': 'white',
+            'text-halo-color': '#111827',
+            'text-halo-width': 0.5,
+            'text-halo-blur': 0.25,
+            'text-opacity': 0.9,
+          }}
+          minzoom={4.5}
+        />
+        <Layer
+          id="state-labels-id"
+          type="symbol"
+          source="states"
+          layout={{
+            'text-field': ['get', 'stateId'],
+            'symbol-placement': 'point',
+            'text-size': 12,
+            'text-letter-spacing': 0.12,
+            'text-transform': 'uppercase',
+            'text-font': ['Poppins SemiBold'],
+          }}
+          paint={{
+            'text-color': 'white',
+            'text-halo-color': '#111827',
+            'text-halo-width': 0.5,
+            'text-halo-blur': 0.25,
+            'text-opacity': 0.9,
+          }}
+          maxzoom={4.5}
+          minzoom={3}
+        />
       </Source>
       <CustomLayer>
         <WindLayer />
