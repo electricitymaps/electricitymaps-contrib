@@ -12,13 +12,37 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Cache Cypress binary
+        id: cache-cypress
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Restore node_modules for web
+        id: cache-web
+        uses: actions/cache@v3
+        with:
+          path: web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache-web.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+        working-directory: ./web
+      - name: Install Cypress binary
+        if: steps.cache-cypress.outputs.cache-hit != 'true'
+        run: pnpm exec cypress install
+        working-directory: ./web
       - name: Cypress run component tests
         uses: cypress-io/github-action@v6
         env:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
-          install: true
+          install: false
           # to run component tests we need to use "component: true"
           component: true
       - name: Upload screenshots
@@ -38,12 +62,37 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Cache Cypress binary
+        id: cache-cypress
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Restore node_modules for web
+        id: cache-web
+        uses: actions/cache@v3
+        with:
+          path: web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache-web.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+        working-directory: ./web
+      - name: Install Cypress binary
+        if: steps.cache-cypress.outputs.cache-hit != 'true'
+        run: pnpm exec cypress install
+        working-directory: ./web
       - name: Cypress run e2e tests
         uses: cypress-io/github-action@v6
         env:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
+          install: false
           build: pnpm run build --mode testing
           start: pnpm run preview
           config: baseUrl=http://127.0.0.1:4173/
