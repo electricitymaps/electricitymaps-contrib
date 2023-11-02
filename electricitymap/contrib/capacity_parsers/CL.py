@@ -22,7 +22,7 @@ MODE_MAPPING = {
     "Otros*": "unknown",
 }
 
-
+SOURCE = "coordinador.cl"
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
 ) -> dict:
@@ -51,7 +51,7 @@ def fetch_production_capacity(
             mode_capacity = {}
             mode_capacity["datetime"] = target_datetime.strftime("%Y-%m-%d")
             mode_capacity["value"] = round(data["value"], 0)
-            mode_capacity["source"] = "coordinador.cl"
+            mode_capacity["source"] = SOURCE
             capacity[data["mode"]] = mode_capacity
         logger.info(
             f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n {capacity}"
