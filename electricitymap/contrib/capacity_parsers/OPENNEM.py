@@ -35,7 +35,8 @@ FUEL_MAPPING = {
 
 CAPACITY_URL = "https://api.opennem.org.au/facility/"
 
-def get_opennem_capacity_data(session:Session) -> dict:
+
+def get_opennem_capacity_data(session: Session) -> dict:
     r: Response = session.get(CAPACITY_URL)
     data = r.json()
     capacity_df = pd.json_normalize(data)
@@ -81,7 +82,11 @@ def filter_capacity_data_by_datetime(
     return df
 
 
-def fetch_production_capacity_for_all_zones(target_datetime: datetime, session: Session):
+def fetch_production_capacity_for_all_zones(
+    target_datetime: datetime, session: Session | None = None
+):
+    if session is None:
+        session = Session()
     capacity_df = get_opennem_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
@@ -106,10 +111,16 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime, session: 
     return capacity
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime, session: Session):
-    capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[zone_key]
+def fetch_production_capacity(
+    zone_key: ZoneKey, target_datetime: datetime, session: Session
+):
+    capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[
+        zone_key
+    ]
     if capacity:
-        logger.info(f"Updated capacity for {zone_key} in {target_datetime}: \n{capacity}")
+        logger.info(
+            f"Updated capacity for {zone_key} in {target_datetime}: \n{capacity}"
+        )
         return capacity
     else:
         logger.error(f"No capacity data for {zone_key} in {target_datetime}")
@@ -117,7 +128,7 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime, sess
 
 def get_solar_capacity_au_nt(target_datetime: datetime):
     """Get solar capacity for AU-NT."""
-    session= Session()
+    session = Session()
     capacity_df = get_opennem_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
