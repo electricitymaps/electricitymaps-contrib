@@ -1,10 +1,13 @@
 from datetime import datetime
+from logging import getLogger
+from typing import Dict, Union
 
 import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
+logger = getLogger(__name__)
 MODE_MAPPING = {
     "Nuclear": "nuclear",
     "Hydroelectric": "hydro",
@@ -15,9 +18,11 @@ MODE_MAPPING = {
 }
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
+def fetch_production_capacity(
+    zone_key: ZoneKey, target_datetime: datetime, session: Session
+) -> Union[Dict, None]:
     url = f"https://www.ieso.ca/-/media/Files/IESO/Document-Library/planning-forecasts/reliability-outlook/ReliabilityOutlookTables_{target_datetime.strftime('%Y%b')}.ashx"
-    r: Response = Session().get(url)
+    r: Response = session.get(url)
     if r.status_code == 200:
         df = pd.read_excel(r.url, sheet_name="Table 4.1", header=4, skipfooter=3)
         df = df.rename(
@@ -32,11 +37,11 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
                 "value": round(data["value"], 2),
                 "source": "ieso.ca",
             }
-        print(
+        logger.info(
             f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
         )
         return capacity
     else:
-        raise ValueError(
+        logger.error(
             f"Failed to fetch capacity data for IESO at {target_datetime.strftime('%Y-%m')}"
         )

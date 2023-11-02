@@ -1,4 +1,6 @@
 from datetime import datetime
+from logging import getLogger
+from typing import Dict, Union
 
 from bs4 import BeautifulSoup
 from requests import Response, Session
@@ -6,7 +8,7 @@ from requests import Response, Session
 from electricitymap.contrib.config import ZoneKey
 
 """Disclaimer: only valid for real-time data, historical capacity is not available"""
-
+logger = getLogger(__name__)
 MODE_MAPPING = {
     "Run-of-river": "hydro",
     "Reservoir": "hydro",
@@ -20,8 +22,10 @@ MODE_MAPPING = {
 }
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> dict:
-    r: Response = Session().get(
+def fetch_production_capacity(
+    zone_key: ZoneKey, target_datetime: datetime, session: Session
+) -> Union[Dict, None]:
+    r: Response = session.get(
         "https://www.hydroquebec.com/generation/generating-stations.html"
     )
     soup = BeautifulSoup(r.text, "html.parser")
@@ -71,14 +75,12 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> d
             }
 
     if capacity_dict:
-        print(
+        logger.info(
             f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n {capacity_dict}"
         )
         return dict(sorted(capacity_dict.items()))
     else:
-        raise ValueError(
-            f"CA_QC: No capacity data available for {target_datetime.date()}"
-        )
+        logger.error(f"CA_QC: No capacity data available for {target_datetime.date()}")
 
 
 if __name__ == "__main__":
