@@ -1,10 +1,12 @@
 from datetime import datetime
+from logging import getLogger
 
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
+logger = getLogger(__name__)
 MODE_MAPPING = {
     '"Wind Onshore"': "wind",
     '"Wind Offshore"': "wind",
@@ -20,9 +22,11 @@ MODE_MAPPING = {
 }
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> dict:
+def fetch_production_capacity(
+    zone_key: ZoneKey, target_datetime: datetime, session: Session
+) -> dict:
     url = f"https://www.bmreports.com/bmrs/?q=ajax/year/B1410/{target_datetime.year}/"
-    r: Response = Session().get(url)
+    r: Response = session.get(url)
 
     if r.status_code == 200:
         soup = BeautifulSoup(r.text, "lxml")
@@ -39,15 +43,13 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> d
                     "value": int(item.find("quantity").string),
                     "source": "bmreports.com",
                 }
-        print(
+        logger.info(
             f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
         )
         return capacity
     else:
-        raise ValueError(
-            f"GB: No capacity data available for year {target_datetime.year}"
-        )
+        logger.error(f"GB: No capacity data available for year {target_datetime.year}")
 
 
 if __name__ == "__main__":
-    fetch_production_capacity("GB", datetime(2023, 1, 1))
+    fetch_production_capacity("GB", datetime(2023, 1, 1), Session())
