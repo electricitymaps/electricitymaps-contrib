@@ -17,7 +17,9 @@ test_df = pd.DataFrame(
 class testEmber(unittest.TestCase):
     def test_map_variable_to_mode(self):
         test_df["mode"] = test_df.apply(map_variable_to_mode, axis=1)
-        self.assertEqual(test_df["mode"].tolist(), ["oil", "geothermal", "oil", "solar"])
+        self.assertEqual(
+            test_df["mode"].tolist(), ["oil", "geothermal", "oil", "solar"]
+        )
 
 
 if __name__ == "__main__":

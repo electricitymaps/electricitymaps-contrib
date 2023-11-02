@@ -82,7 +82,6 @@ def map_variable_to_mode(data: pd.Series) -> str:
         return EMBER_VARIABLE_TO_MODE[variable]
 
 
-
 def get_data_from_url(session: Session) -> pd.DataFrame:
     yearly_catalogue_url = EMBER_URL + "/data-catalogue/yearly-electricity-data/"
     r: Response = session.get(yearly_catalogue_url)
@@ -173,6 +172,10 @@ def fetch_production_capacity(
         logger.warning(f"No capacity data for {zone_key} in {target_datetime.year}")
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     session = Session()
-    print(fetch_production_capacity(zone_key="CO", target_datetime=datetime(2020,1,1), session=session))
+    print(
+        fetch_production_capacity(
+            zone_key="CO", target_datetime=datetime(2020, 1, 1), session=session
+        )
+    )
