@@ -37,6 +37,8 @@ REGION_MAPPING = {
 }
 
 SOURCE = "ons.org.br"
+
+
 def filter_data_by_date(data: pd.DataFrame, target_datetime: datetime) -> pd.DataFrame:
     """Filter capacity data for all rows that have:
     - start<= target_datetime : the power plant was connected before the considered target_datetime
@@ -52,7 +54,9 @@ def filter_data_by_date(data: pd.DataFrame, target_datetime: datetime) -> pd.Dat
     return df
 
 
-def fetch_production_capacity_for_all_zones(target_datetime: datetime,  session: Session | None = None) -> Union[Dict, None]:
+def fetch_production_capacity_for_all_zones(
+    target_datetime: datetime, session: Session | None = None
+) -> Union[Dict, None]:
     if session is None:
         session = Session()
 
@@ -98,9 +102,11 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime,  session:
             zone_capacity_df = df.loc[df["zone_key"] == zone]
             zone_capacity = {}
             for idx, data in zone_capacity_df.iterrows():
-                mode_capacity = {"datetime":target_datetime.strftime("%Y-%m-%d"),
-                                 "value": round(data["value"], 0),
-                                 "source" :SOURCE}
+                mode_capacity = {
+                    "datetime": target_datetime.strftime("%Y-%m-%d"),
+                    "value": round(data["value"], 0),
+                    "source": SOURCE,
+                }
 
                 zone_capacity[data["mode"]] = mode_capacity
             capacity[zone] = zone_capacity
@@ -109,8 +115,12 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime,  session:
         logger.error(f"No capacity data for ONS in {target_datetime}")
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime, session: Session) -> dict:
-    capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[zone_key]
+def fetch_production_capacity(
+    zone_key: ZoneKey, target_datetime: datetime, session: Session
+) -> dict:
+    capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[
+        zone_key
+    ]
     logger.info(f"Fetched capacity for {zone_key} in {target_datetime}: \n{capacity}")
     return capacity
 
