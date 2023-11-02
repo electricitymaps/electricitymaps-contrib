@@ -21,6 +21,8 @@ MODE_MAPPING = {
     '"Hydro Pumped Storage"': "hydro storage",
 }
 
+SOURCE = "bmreports.com"
+
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
@@ -41,7 +43,7 @@ def fetch_production_capacity(
                 capacity[mode] = {
                     "datetime": target_datetime.strftime("%Y-%m-%d"),
                     "value": int(item.find("quantity").string),
-                    "source": "bmreports.com",
+                    "source": SOURCE,
                 }
         logger.info(
             f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
