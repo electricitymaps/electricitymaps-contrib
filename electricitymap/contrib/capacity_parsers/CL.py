@@ -1,4 +1,5 @@
 from datetime import datetime
+from logging import getLogger
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -6,6 +7,9 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
+logger = getLogger(__name__)
+
+# Mapping conventional thermal as unknown as the production parser data is aggregated
 MODE_MAPPING = {
     "Hídrico": "hydro",
     "Carbón": "unknown",
@@ -19,9 +23,11 @@ MODE_MAPPING = {
 }
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> dict:
+def fetch_production_capacity(
+    zone_key: ZoneKey, target_datetime: datetime, session: Session
+) -> dict:
     url = "https://www.coordinador.cl/reportes-y-estadisticas/#Estadisticas"
-    r: Response = Session().get(url)
+    r: Response = session.get(url)
     soup = BeautifulSoup(r.text, "html.parser")
 
     links = soup.find_all("a", string="[por tecnología (desde 2000)]")
@@ -47,15 +53,15 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> d
             mode_capacity["value"] = round(data["value"], 0)
             mode_capacity["source"] = "coordinador.cl"
             capacity[data["mode"]] = mode_capacity
-        print(
+        logger.info(
             f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n {capacity}"
         )
         return capacity
     else:
-        raise ValueError(
+        logger.error(
             f"{zone_key}: No capacity data available for year {target_datetime.year}"
         )
 
 
 if __name__ == "__main__":
-    fetch_production_capacity("CL-SEN", datetime(2022, 1, 1))
+    fetch_production_capacity("CL-SEN", datetime(2022, 1, 1), Session())
