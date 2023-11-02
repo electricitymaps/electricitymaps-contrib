@@ -1,6 +1,9 @@
 from datetime import datetime
+from logging import getLogger
+from typing import Dict, Union
 
 import pandas as pd
+from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
@@ -8,7 +11,7 @@ from electricitymap.contrib.config import ZoneKey
 Solar capacity is much lower than in reality because the majority is distributed.
 This capacity is not available in this dataset and should collected from the link below and added manually to the zone configuration.
 Distributed solar generation is available here (tipo de usina = Geracao Distribuida): https://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx"""
-
+logger = getLogger(__name__)
 CAPACITY_URL = "https://ons-dl-prod-opendata.s3.amazonaws.com/dataset/capacidade-geracao/CAPACIDADE_GERACAO.csv"
 MODE_MAPPING = {
     "HIDRÁULICA": "hydro",
@@ -33,7 +36,7 @@ REGION_MAPPING = {
     "SUL": "BR-S",
 }
 
-
+SOURCE = "ons.org.br"
 def filter_data_by_date(data: pd.DataFrame, target_datetime: datetime) -> pd.DataFrame:
     """Filter capacity data for all rows that have:
     - start<= target_datetime : the power plant was connected before the considered target_datetime
@@ -49,8 +52,12 @@ def filter_data_by_date(data: pd.DataFrame, target_datetime: datetime) -> pd.Dat
     return df
 
 
-def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
-    df = pd.read_csv(CAPACITY_URL, sep=";")
+def fetch_production_capacity_for_all_zones(target_datetime: datetime,  session: Session | None = None) -> Union[dict, None]:
+    if session is None:
+        session = Session()
+
+    r: Response = session.get(CAPACITY_URL)
+    df = pd.read_csv(r.url, sep=";")
     df = df[
         [
             "nom_subsistema",
@@ -70,6 +77,7 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
         }
     )
 
+    # convert start and end columns to  datetime
     df["start"] = df["start"].apply(
         lambda x: pd.to_datetime(x, utc=False).replace(day=1, month=1)
     )
@@ -90,18 +98,22 @@ def fetch_production_capacity_for_all_zones(target_datetime: datetime) -> dict:
             zone_capacity_df = df.loc[df["zone_key"] == zone]
             zone_capacity = {}
             for idx, data in zone_capacity_df.iterrows():
-                mode_capacity = {}
-                mode_capacity["datetime"] = target_datetime.strftime("%Y-%m-%d")
-                mode_capacity["value"] = round(data["value"], 0)
-                mode_capacity["source"] = "ons.org.br"
+                mode_capacity = {"datetime":target_datetime.strftime("%Y-%m-%d"),
+                                 "value": round(data["value"], 0),
+                                 "source" :SOURCE}
+
                 zone_capacity[data["mode"]] = mode_capacity
             capacity[zone] = zone_capacity
         return capacity
     else:
-        raise ValueError(f"No capacity data for ONS in {target_datetime}")
+        logger.error(f"No capacity data for ONS in {target_datetime}")
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime) -> dict:
-    capacity = fetch_production_capacity_for_all_zones(target_datetime)[zone_key]
-    print(f"Updated capacity for {zone_key} in {target_datetime}: \n{capacity}")
+def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime, session: Session) -> dict:
+    capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[zone_key]
+    logger.info(f"Fetched capacity for {zone_key} in {target_datetime}: \n{capacity}")
     return capacity
+
+
+if __name__ == "__main__":
+    print(fetch_production_capacity("BR-N", datetime(2021, 1, 1), Session()))
