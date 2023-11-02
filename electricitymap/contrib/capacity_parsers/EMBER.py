@@ -73,18 +73,18 @@ EMBER_ZONES = [
 ]
 
 
-def map_variable_to_mode(row: pd.Series) -> pd.Series:
-    updated_row = row.copy()
-    zone = updated_row["zone_key"]
-    variable = updated_row["mode"]
+def map_variable_to_mode(data: pd.Series) -> str:
+    data = data.copy()
+    zone = data["zone_key"]
+    variable = data["variable"]
     if zone in SPECIFIC_MODE_MAPPING:
         if variable in SPECIFIC_MODE_MAPPING[zone]:
-            updated_row["mode"] = SPECIFIC_MODE_MAPPING[zone][variable]
+            mode = SPECIFIC_MODE_MAPPING[zone][variable]
         else:
-            updated_row["mode"] = EMBER_VARIABLE_TO_MODE[variable]
+            mode = EMBER_VARIABLE_TO_MODE[variable]
     else:
-        updated_row["mode"] = EMBER_VARIABLE_TO_MODE[variable]
-    return updated_row
+        mode = EMBER_VARIABLE_TO_MODE[variable]
+    return mode
 
 
 def get_data_from_url(session: Session) -> pd.DataFrame:
@@ -120,14 +120,14 @@ def format_ember_data(df: pd.DataFrame, year: int) -> pd.DataFrame:
         columns={
             "country_code_iso2": "zone_key",
             "Year": "datetime",
-            "Variable": "mode",
+            "Variable": "variable",
             "Value": "value",
         }
     )
     df_capacity["datetime"] = df_capacity["datetime"].apply(lambda x: datetime(x, 1, 1))
     df_capacity["value"] = df_capacity["value"] * 1000  # convert from GW to MW
 
-    df_capacity = df_capacity.apply(map_variable_to_mode, axis=1)
+    df_capacity["mode"] = df_capacity.apply(map_variable_to_mode, axis=1)
 
     df_capacity = (
         df_capacity.groupby(["zone_key", "datetime", "mode"])[["value"]]
@@ -175,3 +175,8 @@ def fetch_production_capacity(
         return zone_capacity
     else:
         logger.warning(f"No capacity data for {zone_key} in {target_datetime.year}")
+
+
+if __name__=="__main__":
+    session = Session()
+    print(fetch_production_capacity(zone_key="CO", target_datetime=datetime(2020,1,1), session=session))
