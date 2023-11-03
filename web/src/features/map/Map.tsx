@@ -388,7 +388,7 @@ export default function MapPage(): ReactElement {
             'text-letter-spacing': 0.12,
             'text-transform': 'uppercase',
 
-            'text-font': ['Poppins SemiBold'],
+            'text-font': ['poppins-semibold'],
           }}
           paint={{
             'text-color': 'white',
@@ -409,7 +409,7 @@ export default function MapPage(): ReactElement {
             'text-size': 12,
             'text-letter-spacing': 0.12,
             'text-transform': 'uppercase',
-            'text-font': ['Poppins SemiBold'],
+            'text-font': ['poppins-semibold'],
           }}
           paint={{
             'text-color': 'white',
