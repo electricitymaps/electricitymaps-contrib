@@ -114,8 +114,9 @@ session = session or Session()
 
 
 def fetch_production_capacity(
-    zone_key: ZoneKey, target_datetime: datetime, session: Session
+    zone_key: ZoneKey, target_datetime: datetime, session: Session | None = None
 ) -> dict:
+    session = session or Session()
     capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[
         zone_key
     ]
