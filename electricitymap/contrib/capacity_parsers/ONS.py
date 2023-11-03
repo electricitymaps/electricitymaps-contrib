@@ -81,7 +81,7 @@ def fetch_production_capacity_for_all_zones(
         }
     )
 
-    # convert start and end columns to  datetime
+    # convert start and end columns to datetime
     df["start"] = df["start"].apply(
         lambda x: pd.to_datetime(x, utc=False).replace(day=1, month=1)
     )
