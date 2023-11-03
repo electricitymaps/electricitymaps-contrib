@@ -57,9 +57,7 @@ def filter_data_by_date(data: pd.DataFrame, target_datetime: datetime) -> pd.Dat
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
 ) -> Union[Dict, None]:
-    if session is None:
-        session = Session()
-
+session = session or Session()
     r: Response = session.get(CAPACITY_URL)
     df = pd.read_csv(r.url, sep=";")
     df = df[
