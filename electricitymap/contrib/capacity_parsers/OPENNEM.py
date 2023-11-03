@@ -85,8 +85,7 @@ def filter_capacity_data_by_datetime(
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
 ):
-    if session is None:
-        session = Session()
+session = session or Session()
     capacity_df = get_opennem_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
