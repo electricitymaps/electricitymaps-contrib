@@ -41,7 +41,7 @@ SOURCE = "ons.org.br"
 
 def filter_data_by_date(data: pd.DataFrame, target_datetime: datetime) -> pd.DataFrame:
     """Filter capacity data for all rows that have:
-    - start<= target_datetime : the power plant was connected before the considered target_datetime
+    - start <= target_datetime : the power plant was connected before the considered target_datetime
     - end >= target_datetime : the power plant was not closed before the considered target_datetime
     """
     df = data.copy()
