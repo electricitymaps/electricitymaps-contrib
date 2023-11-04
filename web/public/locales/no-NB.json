@@ -18,7 +18,8 @@
   },
   "onboarding-modal": {
     "view1": {
-      "header": "Kartlegger klimaeffekten av el-energi"
+      "header": "Kartlegger klimaeffekten av el-energi",
+      "text": "Her kan du utforske klimaeffekten av elektrisitetsproduksjon globalt. <br/><br/>La oss ta deg rundt på en tur gjennom kartet ved hjelp av noen få enkle steg!"
     },
     "view2": {
       "header": "Hvor mye CO₂ blir sluppet ut for å produsere din elektrisitet, vist i sanntid",
@@ -31,6 +32,18 @@
     "view7": {
       "header": "Visning i sanntid av forholdene for vind- og solenergi",
       "text": "Vind- og solenergiproduksjon er væravhengig. Klikk på sol- og vind-knappene for å få oversikt over forholdene for solskinn og vind i verden akkurat nå."
+    },
+    "view4": {
+      "header": "Bytt mellom forskjellige visninger",
+      "text": "Bytt mellom elektrisitetsproduksjon og -forbruk. Eller bytt mellom inndeling i land eller markedssoner for å få innsikt i endringene i energimarkedet slik at du kan gjøre informerte valg for en bærekraftig fremtid."
+    },
+    "view5": {
+      "header": "Bytt mellom visning av utslipp og elektrisitet",
+      "text": "Bytt mellom to alternative visninger som viser en el-markedssone informasjon om enten elektrisitet eller utslipp. Verdiene som vises representerer totalen for den valgte perioden, og informasjonen er sammenlignbar med tallene for produksjon eller forbruk."
+    },
+    "view6": {
+      "header": "Utforsk historiske data",
+      "text": "Nede til venstre, kan du se både sanntids og historiske utlipps- og elektrisitetdata for verden. Du kan endre på de aggregerte dataene ved bruke bryterne for å endre på tidslinja slik at du kan se utvikling over tid."
     }
   },
   "country-panel": {
@@ -52,31 +65,59 @@
     "estimatedDisclaimer": "Sanntidsdataene er estimert basert på datakilden samt modellforutsetninger. Ingen garantier for at dataene er nøyaktig.",
     "helpUs": "Hjelp oss å finne årsaken til problemet ved å undersøke <a href=\"%s\" target=\"_blank\">loggene</a> eller ta kontakt med datatilbyder.",
     "noParserInfo": "Vi har ennå ingen datakilder om området.<br/>Vil du hjelpe med å løse det? Du kan bidra ved å <a href=\"%s\" target=\"_blank\">tilføye regionale data</a>.",
-    "now": "Nå"
+    "now": "Nå",
+    "disabledPriceReasons": {
+      "licensing": "Elektrisitetspriser er utilgjengelige for dette området på grunn av rettighetsbegrensninger"
+    },
+    "estimated": "anslag",
+    "aggregated": "aggregert",
+    "exchangesAreMissing": "Utveksling er tatt hensyn til i kalkulasjonene en vises for tiden ikke. Les mer om våre historiske aggregeringer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
+    "estimatedTooltip": "Sanntidsdata for denne el-markedssonen er estimert ved hjelp fra kilden basert på antagelser i modellen.",
+    "aggregatedTooltip": "Data for denne el-markedssonen er aggregert ut fra historiske verdier for hver time",
+    "aggregationDisabled": "Data er ikke tilgjengelig for det valgte tidspunktet på grunn av manglende detaljnivå på tidsserie. Velg en lengere tidsperiode.",
+    "by-source": {
+      "emissions": "Karbonutslipp etter kilde",
+      "electricity-production": "Elektrisitetsproduksjon etter kilde",
+      "electricity-consumption": "Elektrisitetsforbruk etter kilde",
+      "total-emissions": "Totale karbonutslipp etter kilde",
+      "total-electricity-production": "Total elektrisitetsproduksjon etter kilde",
+      "total-electricity-consumption": "Total elektrisitetsforbruk etter kilde"
+    }
   },
   "country-history": {
     "Getdata": "Skaff tilgang til live, historiske eller fremskrivingsdata med Electricity Maps API",
     "carbonintensity": {
-      "hourly": "CO₂-intensitet siste 24 timer"
+      "hourly": "CO₂-intensitet siste 24 timer",
+      "default": "Karbonintensitet i de siste %1$s"
     },
     "emissionsorigin": {
-      "hourly": "CO₂-utslippskilde siste 24 timer"
+      "hourly": "CO₂-utslippskilde siste 24 timer",
+      "default": "Utslippenes opprinnelse i de siste %1$s"
     },
     "emissionsproduction": {
-      "hourly": "CO₂-utslipp siste 24 timer"
+      "hourly": "CO₂-utslipp siste 24 timer",
+      "default": "Utslippenes opprinnelse i de siste %1$s"
     },
     "electricityorigin": {
-      "hourly": "Elektrisitetskilde siste 24 timer"
+      "hourly": "Elektrisitetskilde siste 24 timer",
+      "default": "Elektrisitetens opprinnelse i de siste %1$s"
     },
     "electricityproduction": {
-      "hourly": "Strømproduksjonen i de siste 24 timer"
+      "hourly": "Strømproduksjonen i de siste 24 timer",
+      "default": "Elektrisitetsproduksjon i de siste %1$s"
     },
     "electricityprices": {
-      "hourly": "Strømpris siste 24 timer"
+      "hourly": "Strømpris siste 24 timer",
+      "default": "Elektrisitetspriser i de siste %1$s"
     },
     "emissions": {
-      "hourly": "Utslipp siste 24 timer"
-    }
+      "hourly": "Utslipp siste 24 timer",
+      "default": "Utslipp i de siste %1$s"
+    },
+    "netExchange": {
+      "default": "Netto utveksling i de siste %1$s"
+    },
+    "not-enough-data": "Ikke tilstrekkelig data for å vise graf"
   },
   "footer": {
     "foundbugs": "Funnet feil eller har du forbedringsforslag? Tips oss",
@@ -115,7 +156,13 @@
     "cpinfo": "<b>forbruk</b> inkluderer import og eksport, <b>produksjon</b> tar ikke med import/eksport",
     "selectLanguage": "Bytt språk",
     "lowCarbDescription": "Inkluderer fornybar og kjernekraft",
-    "dataIsDelayed": "Data er forsinket"
+    "dataIsDelayed": "Data er forsinket",
+    "weatherDisabled": "Værdata ikke tilgjengelig nå",
+    "aggregateInfo": "Bytt mellom el-markedssone og aggregert visning av land",
+    "price": "Pris",
+    "netExchange": "Netto utveksling",
+    "importing": "Importerer",
+    "exporting": "Eksporterer"
   },
   "misc": {
     "maintitle": "Sanntids CO₂-utslipp fra strømforbruket",
@@ -180,7 +227,7 @@
     "dataDownload-question": "Kan jeg laste ned dataene?",
     "dataDownload-answer": "Du kan kjøpe tilgang til alle våre data i fra <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">vår database</a>.",
     "dataIntegration-question": "Kan jeg integrere dataene i min greie?",
-    "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+    "dataIntegration-answer": "Ja! Vi selger tilgang til <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">sanntids API</a>, som inneholder framskrivinger."
   },
   "aboutUs": {
     "groupName": "Om oss",
@@ -385,31 +432,31 @@
       "zoneName": "Belize"
     },
     "CA-AB": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Alberta"
     },
     "CA-BC": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Britisk Columbia"
     },
     "CA-MB": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Manitoba"
     },
     "CA-NB": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "New Brunswick"
     },
     "CA-NL": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Newfoundland og Labrador"
     },
     "CA-NL-LB": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Labrador"
     },
     "CA-NL-NF": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Newfoundland"
     },
     "CA-NS": {
@@ -417,35 +464,35 @@
       "zoneName": "Nova Scotia"
     },
     "CA-NT": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Nordvestterritoriene"
     },
     "CA-NU": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Nunavut"
     },
     "CA-ON": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Ontario"
     },
     "CA-PE": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Prince Edward Island"
     },
     "CA-QC": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Québec"
     },
     "CA-SK": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Saskatchewan"
     },
     "CA-YT": {
-      "countryName": "Kanada",
+      "countryName": "Canada",
       "zoneName": "Yukon"
     },
     "CC": {
-      "zoneName": "Cocos Islands"
+      "zoneName": "Kokosøyene"
     },
     "CD": {
       "zoneName": "Den demokratiske republikken Kongo"
@@ -503,10 +550,10 @@
       "zoneName": "Curaçao"
     },
     "CX": {
-      "zoneName": "Christmas Island"
+      "zoneName": "Christmasøya"
     },
     "CY": {
-      "zoneName": "Cyprus"
+      "zoneName": "Kypros"
     },
     "CZ": {
       "zoneName": "Tjekkia"
@@ -551,7 +598,7 @@
       "zoneName": "Egypt"
     },
     "EH": {
-      "zoneName": "Vestsahara"
+      "zoneName": "Vest-Sahara"
     },
     "ER": {
       "zoneName": "Eritrea"
@@ -705,7 +752,7 @@
       "zoneName": "Guyana"
     },
     "HK": {
-      "zoneName": "Hong Kong"
+      "zoneName": "Hong-Kong"
     },
     "HM": {
       "zoneName": "Heard- og McDonaldøyene"
@@ -860,7 +907,7 @@
     },
     "IN-WB": {
       "countryName": "India",
-      "zoneName": "West Bengal"
+      "zoneName": "Vest-Bengal"
     },
     "IO": {
       "zoneName": "Det britiske territoriet i Indiahavet"
@@ -882,27 +929,27 @@
       "zoneName": "Italia"
     },
     "IT-CNO": {
-      "countryName": "Italy",
+      "countryName": "Italia",
       "zoneName": "Sentralt Nord-Italia"
     },
     "IT-CSO": {
-      "countryName": "Italy",
+      "countryName": "Italia",
       "zoneName": "Sentrale Sør-Italia"
     },
     "IT-NO": {
-      "countryName": "Italy",
+      "countryName": "Italia",
       "zoneName": "Nord-Italia"
     },
     "IT-SAR": {
-      "countryName": "Italy",
+      "countryName": "Italia",
       "zoneName": "Sardinia"
     },
     "IT-SIC": {
-      "countryName": "Italy",
+      "countryName": "Italia",
       "zoneName": "Sicilia"
     },
     "IT-SO": {
-      "countryName": "Italy",
+      "countryName": "Italia",
       "zoneName": "Sør-Italia"
     },
     "JE": {
@@ -967,10 +1014,10 @@
       "zoneName": "Kiribati"
     },
     "KM": {
-      "zoneName": "Comoros"
+      "zoneName": "Komorene"
     },
     "KN": {
-      "zoneName": "Saint Kitts and Nevis"
+      "zoneName": "Saint Kitts og Nevis"
     },
     "KP": {
       "zoneName": "Nord-Korea"
@@ -982,7 +1029,7 @@
       "zoneName": "Kuwait"
     },
     "KY": {
-      "zoneName": "Cayman Islands"
+      "zoneName": "Cayman øyene"
     },
     "KZ": {
       "zoneName": "Kazakhstan"
@@ -1058,7 +1105,7 @@
       "zoneName": "Macao"
     },
     "MP": {
-      "zoneName": "Northern Mariana Islands"
+      "zoneName": "Nord-Marianene"
     },
     "MQ": {
       "zoneName": "Martinique"
@@ -1149,7 +1196,7 @@
       "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
-      "zoneName": "Holland"
+      "zoneName": "Nederland"
     },
     "NO-NO1": {
       "countryName": "Norge",
@@ -1265,33 +1312,33 @@
     },
     "RU-1": {
       "countryName": "Russia",
-      "zoneName": "Europe-Ural"
+      "zoneName": "Europa-Ural"
     },
     "RU-2": {
       "countryName": "Russia",
-      "zoneName": "Siber"
+      "zoneName": "Sibir"
     },
     "RU-AS": {
-      "countryName": "Russia",
+      "countryName": "Russland",
       "zoneName": "Øst"
     },
     "RU-EU": {
-      "countryName": "Russia",
+      "countryName": "Russland",
       "zoneName": "Arktis"
     },
     "RU-FE": {
-      "countryName": "Russia",
+      "countryName": "Russland",
       "zoneName": "Fjerne østen"
     },
     "RU-KGD": {
-      "countryName": "Russia",
+      "countryName": "Russland",
       "zoneName": "Kaliningrad"
     },
     "RW": {
       "zoneName": "Rwanda"
     },
     "SA": {
-      "zoneName": "Saudiarabia"
+      "zoneName": "Saudi-Arabia"
     },
     "SB": {
       "zoneName": "Solomonøyene"
@@ -1309,7 +1356,7 @@
       "zoneName": "Singapore"
     },
     "SH": {
-      "zoneName": "Sankt Helena, Ascension og Tristan da Cunha"
+      "zoneName": "St. Helena, Ascension og Tristan da Cunha"
     },
     "SI": {
       "zoneName": "Slovenia"
@@ -1333,13 +1380,13 @@
       "zoneName": "Somalia"
     },
     "SR": {
-      "zoneName": "Suriname"
+      "zoneName": "Surinam"
     },
     "SS": {
       "zoneName": "Sør-Sudan"
     },
     "ST": {
-      "zoneName": "Sao Tome og Principe"
+      "zoneName": "São Tomé og Príncipe"
     },
     "SV": {
       "zoneName": "El Salvador"
@@ -1376,13 +1423,13 @@
       "zoneName": "Tokelau"
     },
     "TL": {
-      "zoneName": "Timor-Leste"
+      "zoneName": "Øst-Timor"
     },
     "TM": {
       "zoneName": "Turkmenistan"
     },
     "TN": {
-      "zoneName": "Tunisia"
+      "zoneName": "Tunis"
     },
     "TO": {
       "zoneName": "Tonga"
@@ -1407,7 +1454,7 @@
     },
     "UA-CR": {
       "countryName": "Ukraina",
-      "zoneName": "Krim-halvøya"
+      "zoneName": "Krym-halvøya"
     },
     "UG": {
       "zoneName": "Uganda"
@@ -1449,7 +1496,7 @@
     },
     "US-CAL-BANC": {
       "countryName": "USA",
-      "zoneName": "Balancing Authority Of Northern California"
+      "zoneName": "Balancing Authority of Northern California"
     },
     "US-CAL-CISO": {
       "countryName": "USA",
@@ -1461,7 +1508,7 @@
     },
     "US-CAL-LDWP": {
       "countryName": "USA",
-      "zoneName": "Los Angeles Department Of Water And Power"
+      "zoneName": "Los Angeles Department of Water and Power"
     },
     "US-CAL-TIDC": {
       "countryName": "USA",
@@ -1746,5 +1793,42 @@
     "NO": {
       "zoneName": "Norge"
     }
+  },
+  "info-modal": {
+    "title": "info",
+    "intro-text": "Electricity Map viser sanntidsinnsikt på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av energitransisjonen.",
+    "open-source-text": "Tjenesten er <a href=\"%s\" target=\"_blank\">åpen kildekode</a> (<a href=\"%s\" target=\"_blank\">se datakilder</a>) og utviklet i samarbeid med frivillige.",
+    "feedback-button": "Send tilbakemelding",
+    "github-button": "Se på GitHub",
+    "twitter-button": "Del på X/Twitter",
+    "slack-button": "Bli med i Slack-kanalen",
+    "privacy-policy": "Personvern",
+    "legal-notice": "Juridisk"
+  },
+  "settings-modal": {
+    "title": "Innstillinger"
+  },
+  "time-controller": {
+    "title": "Vis historiske data"
+  },
+  "aria": {
+    "label": {
+      "selectLanguage": "Velg språk",
+      "colorBlindMode": "Fargeblind-modus",
+      "windLayer": "Vind-lag",
+      "solarLayer": "Sol-lag",
+      "changeTheme": "Endre utseende",
+      "hideSidePanel": "Skjul sidepanel",
+      "showSidePanel": "Vis sidepanel"
+    }
+  },
+  "aggregateButtons": {
+    "country": "Land",
+    "zone": "El-markedssone"
+  },
+  "themeOptions": {
+    "dark": "Nattmodus",
+    "light": "Dagmodus",
+    "system": "System"
   }
 }
