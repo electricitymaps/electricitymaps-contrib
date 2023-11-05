@@ -3,17 +3,15 @@ from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
 from requests import Response, Session
+
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
     TotalConsumptionList,
+    TotalProductionList,
 )
-from electricitymap.contrib.lib.models.events import (
-    EventSourceType,
-    ProductionMix,
-)
+from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
-
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -29,6 +27,12 @@ KINDS_AREA_MAPPING = {
     "wind": "windactual",
     "wind_forecast": "windforecast",
     "exchange": "interconnection",
+    "generation": "generationactual",
+}
+
+REGION_MAPPING = {
+    "IE": "ROI",
+    "GB-NIR": "NI",
 }
 
 EXCHANGE_MAPPING = {
@@ -66,7 +70,9 @@ def fetch_data(
         url=URL,
         params={
             "area": KINDS_AREA_MAPPING[kind],
-            "region": "ROI" if zone_key == "IE" else EXCHANGE_MAPPING[zone_key]["key"],
+            "region": EXCHANGE_MAPPING[zone_key]["key"]
+            if kind == "exchange"
+            else REGION_MAPPING[zone_key],
             **get_datetime_params(target_datetime),
         },
     )
@@ -294,3 +300,36 @@ def fetch_wind_forecasts(
             sourceType=EventSourceType.forecasted,
         )
     return wind_forecast.to_list()
+
+
+def fetch_generation(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """
+    Gets values and corresponding datetimes for the total generation.
+    """
+
+    session = session or Session()
+
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=IE_TZ)
+
+    generation_data = fetch_data(
+        target_datetime=target_datetime,
+        zone_key=zone_key,
+        kind="generation",
+        session=session,
+    )
+    total_generation = TotalProductionList(logger=logger)
+    for item in generation_data:
+        total_generation.append(
+            zoneKey=zone_key,
+            value=item["Value"],
+            datetime=parse_datetime(item["EffectiveTime"]),
+            source=SOURCE,
+            sourceType=EventSourceType.measured,
+        )
+    return total_generation.to_list()

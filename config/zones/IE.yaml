@@ -271,6 +271,7 @@ parsers:
   price: ENTSOE.fetch_price
   production: IE.fetch_production
   productionPerModeForecast: IE.fetch_wind_forecasts
+  generationForecast: IE.fetch_generation
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
