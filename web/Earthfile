@@ -1,5 +1,5 @@
-VERSION 0.7
-FROM node:18.13
+VERSION --use-visited-upfront-hash-collection 0.7
+FROM node:20
 WORKDIR /contrib/web
 
 src-files:
