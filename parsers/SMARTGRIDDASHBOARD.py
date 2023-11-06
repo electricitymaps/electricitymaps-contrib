@@ -71,7 +71,7 @@ def fetch_data(
         params={
             "area": KINDS_AREA_MAPPING[kind],
             "region": EXCHANGE_MAPPING[zone_key]["key"]
-            if kind == "exchange"
+            if kind == "interconnection"
             else REGION_MAPPING[zone_key],
             **get_datetime_params(target_datetime),
         },
@@ -80,7 +80,7 @@ def fetch_data(
         data = resp.json().get("Rows", [])
     except:
         raise ParserException(
-            parser="IE.py",
+            parser="SMARTGRIDDASHBOARD.py",
             message=f"{target_datetime}: {kind} data is not available for {zone_key}",
         )
     return data
@@ -167,7 +167,6 @@ def fetch_production(
         ]
 
         exchange = exchange_dt[0]["Value"] if len(exchange_dt) == 1 else 0
-        print(item["Value"], exchange, wind_prod)
         productionMix = ProductionMix()
         if all([item["Value"], exchange, wind_prod]):
             productionMix.add_value("wind", wind_prod)
@@ -202,7 +201,7 @@ def fetch_exchange(
 
     if exchangeKey == "GB-NIR->IE":
         raise ParserException(
-            parser="IE.py",
+            parser="SMARTGRIDDASHBOARD.py",
             message=f"the GB-NIR_IE interconnection is unsupported.",
         )
 

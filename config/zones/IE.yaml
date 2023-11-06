@@ -266,12 +266,12 @@ fallbackZoneMixes:
         unknown: 0.004263137731402132
         wind: 0.38492285644272295
 parsers:
-  consumption: IE.fetch_consumption
-  consumptionForecast: IE.fetch_consumption_forecast
+  consumption: SMARTGRIDDASHBOARD.fetch_consumption
+  consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast
   price: ENTSOE.fetch_price
-  production: IE.fetch_production
-  productionPerModeForecast: IE.fetch_wind_forecasts
-  generationForecast: IE.fetch_generation
+  production: SMARTGRIDDASHBOARD.fetch_production
+  productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
+  generationForecast: SMARTGRIDDASHBOARD.fetch_generation
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

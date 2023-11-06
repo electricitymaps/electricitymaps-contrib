@@ -228,12 +228,12 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.34781314616395964
 parsers:
-  consumption: IE.fetch_consumption
-  consumptionForecast: IE.fetch_consumption_forecast
+  consumption: SMARTGRIDDASHBOARD.fetch_consumption
+  consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast
   price: ENTSOE.fetch_price
-  production: IE.fetch_production
-  productionPerModeForecast: IE.fetch_wind_forecasts
-  generationForecast: IE.fetch_generation
+  production: SMARTGRIDDASHBOARD.fetch_production
+  productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
+  generationForecast: SMARTGRIDDASHBOARD.fetch_generation
 sources:
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
