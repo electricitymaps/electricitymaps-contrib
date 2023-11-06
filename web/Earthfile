@@ -18,6 +18,7 @@ prepare:
   RUN pnpm install --frozen-lockfile
   COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
+  COPY scripts/register-tsNodeESM.js ./scripts/register-tsNodeESM.js
   COPY --dir geo public src ./
 
 test:
@@ -35,7 +36,8 @@ build:
 
   # Local outputs for debugging
   SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json
-  SAVE ARTIFACT ./config/excludedAggregatedExchanges.json AS LOCAL ./config/excludedAggregatedExchanges.json
+  SAVE ARTIFACT ./config/usa_states.json AS LOCAL ./config/usa_states.json
+  SAVE ARTIFACT ./config/excluded_aggregated_exchanges.json AS LOCAL ./config/excluded_aggregated_exchanges.json
   # NOTE: We could consider dropping source maps from dist since it has already been uploaded to Sentry at this point
   SAVE ARTIFACT ./dist AS LOCAL ./dist
 

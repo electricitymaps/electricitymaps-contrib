@@ -11,9 +11,9 @@ capacity:
   hydro: 3178
   nuclear: 4394
   oil: 1051
-  solar: 927
+  solar: 988
   unknown: 828
-  wind: 6200
+  wind: 6414
 contributors:
   - corradio
   - nessie2013
