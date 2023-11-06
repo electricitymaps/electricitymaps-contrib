@@ -29,10 +29,11 @@ test:
   COPY web/geo/world.geojson ./web/geo/world.geojson
   RUN poetry run check
 
+# includes both test target and build target here to make sure both can work
+# we can split into two later if required
 test-all:
+  # BUILD +build
   BUILD ./config+test
+  BUILD ./web+build # test that web app can be built
   BUILD ./web+test
 
-build-all:
-  BUILD +build
-  BUILD ./web+build # test that web app can be built
