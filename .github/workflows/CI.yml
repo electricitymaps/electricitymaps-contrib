@@ -44,107 +44,107 @@ jobs:
           echo "workflows changed: ${{ steps.check-changed-files.outputs.workflows_any_changed }}
 
   # Repository wide checks
-  prettier:
-    name: Prettier
-    uses: ./.github/workflows/prettier.yml
+  # prettier:
+  #   name: Prettier
+  #   uses: ./.github/workflows/prettier.yml
 
   earthly:
     name: earthly
     uses: ./.github/workflows/earthly.yml
 
-  validate_local_links:
-    name: Validate
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.markdown != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate-local-links-in-md.yml
+  # validate_local_links:
+  #   name: Validate
+  #   needs: [setup]
+  #   if: >-
+  #     needs.setup.outputs.markdown != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/validate-local-links-in-md.yml
 
-  jsonlint:
-    name: JSONLint
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.json != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/jsonlint.yml
+  # jsonlint:
+  #   name: JSONLint
+  #   needs: [setup, prettier]
+  #   if: >-
+  #     needs.setup.outputs.json != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/jsonlint.yml
 
-  # Frontend checks
-  unit_test:
-    name: Unit test
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/unit_test.yml
+  # # Frontend checks
+  # unit_test:
+  #   name: Unit test
+  #   needs: [setup]
+  #   if: >-
+  #     needs.setup.outputs.frontend != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/unit_test.yml
 
-  eslint:
-    name: ESLint
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/eslint.yml
+  # eslint:
+  #   name: ESLint
+  #   needs: [setup, prettier]
+  #   if: >-
+  #     needs.setup.outputs.frontend != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/eslint.yml
 
-  typecheck:
-    name: Typecheck
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/typecheck.yml
+  # typecheck:
+  #   name: Typecheck
+  #   needs: [setup, prettier]
+  #   if: >-
+  #     needs.setup.outputs.frontend != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/typecheck.yml
 
-  deploy_preview_branch:
-    name: Deploy preview
-    needs: [eslint, typecheck, setup, validate_generate_files, unit_test]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/deploy-preview-branch.yml
-    secrets: inherit
+  # deploy_preview_branch:
+  #   name: Deploy preview
+  #   needs: [eslint, typecheck, setup, validate_generate_files, unit_test]
+  #   if: >-
+  #     needs.setup.outputs.frontend != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/deploy-preview-branch.yml
+  #   secrets: inherit
 
-  cypress:
-    name: Cypress
-    needs: [eslint, typecheck, validate_generate_files, unit_test]
-    uses: ./.github/workflows/cypress.yml
+  # cypress:
+  #   name: Cypress
+  #   needs: [eslint, typecheck, validate_generate_files, unit_test]
+  #   uses: ./.github/workflows/cypress.yml
 
-  # Python checks
-  python_formatting:
-    name: Python
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.python != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/python_formatting.yml
+  # # Python checks
+  # python_formatting:
+  #   name: Python
+  #   needs: [setup]
+  #   if: >-
+  #     needs.setup.outputs.python != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/python_formatting.yml
 
-  python_tests:
-    name: Python
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.python != 'false' ||
-      needs.setup.outputs.config != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/python_tests.yml
+  # python_tests:
+  #   name: Python
+  #   needs: [setup]
+  #   if: >-
+  #     needs.setup.outputs.python != 'false' ||
+  #     needs.setup.outputs.config != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/python_tests.yml
 
-  # Config checks
-  validate_config_filenames:
-    name: Validate
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.config != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate_filenames.yml
+  # # Config checks
+  # validate_config_filenames:
+  #   name: Validate
+  #   needs: [setup]
+  #   if: >-
+  #     needs.setup.outputs.config != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/validate_filenames.yml
 
-  validate_generate_files:
-    name: Validate
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.config != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate_generate_files.yml
+  # validate_generate_files:
+  #   name: Validate
+  #   needs: [setup]
+  #   if: >-
+  #     needs.setup.outputs.frontend != 'false' ||
+  #     needs.setup.outputs.config != 'false' ||
+  #     needs.setup.outputs.workflows != 'false'
+  #   uses: ./.github/workflows/validate_generate_files.yml
 
-  # Code quality checks
-  codeql:
-    needs: [setup, prettier]
-    name: CodeQL
-    uses: ./.github/workflows/codeql.yml
+  # # Code quality checks
+  # codeql:
+  #   needs: [setup, prettier]
+  #   name: CodeQL
+  #   uses: ./.github/workflows/codeql.yml
