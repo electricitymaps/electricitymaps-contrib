@@ -28,3 +28,11 @@ test:
   COPY web/src/utils/constants.ts ./web/src/utils/constants.ts # TODO: python tests should not depend on this js file
   COPY web/geo/world.geojson ./web/geo/world.geojson
   RUN poetry run check
+
+test-all:
+  BUILD ./config+test
+  BUILD ./web+test
+
+build-all:
+  BUILD +build
+  BUILD ./web+build # test that web app can be built
