@@ -48,6 +48,10 @@ jobs:
     name: Prettier
     uses: ./.github/workflows/prettier.yml
 
+  earthly:
+    name: earthly
+    uses: ./.github/workflows/earthly.yml
+
   validate_local_links:
     name: Validate
     needs: [setup]
