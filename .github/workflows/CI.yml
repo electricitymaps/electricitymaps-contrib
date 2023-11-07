@@ -42,9 +42,6 @@ jobs:
           echo "json changed: ${{ steps.check-changed-files.outputs.json_any_changed }}
           echo "python changed: ${{ steps.check-changed-files.outputs.python_any_changed }}
           echo "workflows changed: ${{ steps.check-changed-files.outputs.workflows_any_changed }}
-      - name: Test ownership
-        run: |
-            echo ${{ github.repository_owner }}
 
   # Repository wide checks
   prettier:
