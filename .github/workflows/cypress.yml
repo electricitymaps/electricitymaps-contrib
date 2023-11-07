@@ -16,6 +16,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
+      - name: Generate config files
+        run: pnpm create-generated-files
+        working-directory: ./web
       - name: Cache Cypress binary
         id: cache-cypress
         uses: actions/cache@v3
