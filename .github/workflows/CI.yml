@@ -93,8 +93,8 @@ jobs:
     name: Deploy preview
     needs: [eslint, typecheck, setup, validate_generate_files, unit_test]
     if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
+      (needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.workflows != 'false') && github.repository_owner == 'electricitymaps'
     uses: ./.github/workflows/deploy-preview-branch.yml
     secrets: inherit
 
