@@ -36,7 +36,12 @@ const MAP_STYLE = {
   layers: [],
   glyphs: 'fonts/{fontstack}/{range}.pbf',
 };
-const isMobile = window.innerWidth < 768;
+const IS_MOBILE = window.innerWidth < 768;
+
+type MapPageProps = {
+  onMapLoad?: (map: mapboxgl.Map) => void;
+};
+
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
@@ -102,16 +107,16 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const { isLoading, isSuccess, isError, data } = useGetState();
   const mapReference = useRef<MapRef>(null);
   const { worldGeometries, statesGeometries } = useGetGeometries();
+  //Callback for cypress testing
   useEffect(() => {
     if (!onMapLoad || !isSuccess) {
       return;
     }
-
-    //useEffect to sync cypress test to map ref
     if (mapReference.current) {
-      onMapLoad(mapReference.current.getMap()); // Trigger the callback when the map loads
+      onMapLoad(mapReference.current.getMap());
     }
   }, [onMapLoad, isSuccess]);
+
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
     const map = mapReference.current?.getMap();
@@ -211,7 +216,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
       setLeftPanelOpen(true);
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
-      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
+      map.flyTo({ center: IS_MOBILE ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
   }, [location.pathname, isLoadingMap]);
 
