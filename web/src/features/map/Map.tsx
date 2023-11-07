@@ -14,7 +14,11 @@ import { Layer, Map, MapRef, Source } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
-import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import {
+  productionConsumptionAtom,
+  selectedDatetimeIndexAtom,
+  spatialAggregateAtom,
+} from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import CustomLayer from './map-utils/CustomLayer';
@@ -25,7 +29,10 @@ import {
   mapMovingAtom,
   mousePositionAtom,
 } from './mapAtoms';
-import { FeatureId } from './mapTypes';
+
+type MapPageProps = {
+  onMapLoad?: (map: any) => void;
+};
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
@@ -53,9 +60,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const theme = useTheme();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
-  const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
+  const selectedZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
+  const [spatialAggregate] = useAtom(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
   const styles = useMemo(
@@ -99,11 +107,21 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     [theme]
   );
 
-  const { isLoading, isSuccess, isError, data } = useGetState();
+  const { isLoading, isError, data } = useGetState();
   const mapReference = useRef<MapRef>(null);
   const { worldGeometries, statesGeometries } = useGetGeometries();
+  const map = mapReference.current?.getMap();
+  map?.touchZoomRotate.disableRotation();
+  map?.touchPitch.disable();
+
+  const isSourceLoaded =
+    map &&
+    map.getSource(ZONE_SOURCE) !== undefined &&
+    map.isSourceLoaded(ZONE_SOURCE) &&
+    map.getSource('states') !== undefined &&
+    map.isSourceLoaded('states');
   useEffect(() => {
-    if (!onMapLoad || !isSuccess) {
+    if (!onMapLoad || !isSourceLoaded) {
       return;
     }
 
@@ -111,21 +129,12 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     if (mapReference.current) {
       onMapLoad(mapReference.current.getMap()); // Trigger the callback when the map loads
     }
-  }, [onMapLoad, isSuccess]);
+  }, [onMapLoad, isSourceLoaded]);
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
-    const map = mapReference.current?.getMap();
-    map?.touchZoomRotate.disableRotation();
-    map?.touchPitch.disable();
     if (!map || isLoading || isError) {
       return;
     }
-
-    // An issue where the map has not loaded source yet causing map errors
-    const isSourceLoaded =
-      map.getSource('zones-clickable') !== undefined &&
-      map.getSource('states') !== undefined &&
-      map.isSourceLoaded('states');
 
     if (!isSourceLoaded || isLoadingMap) {
       return;
@@ -137,20 +146,18 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         zone && zone[selectedDatetime.datetimeString]
           ? getCO2IntensityByMode(zone[selectedDatetime.datetimeString], mixMode)
           : undefined;
-
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
         : theme.clickableFill;
-
       const existingColor = map.getFeatureState({
-        source: 'zones-clickable',
+        source: ZONE_SOURCE,
         id: zoneId,
       })?.color;
 
       if (existingColor !== fillColor) {
         map.setFeatureState(
           {
-            source: 'zones-clickable',
+            source: ZONE_SOURCE,
             id: zoneId,
           },
           {
@@ -160,31 +167,17 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       }
     }
   }, [
-    mapReference,
-    worldGeometries,
     data,
     getCo2colorScale,
     selectedDatetime,
     mixMode,
     isLoadingMap,
+    spatialAggregate,
+    isSourceLoaded,
   ]);
 
   useEffect(() => {
-    // Run on first load to center the map on the user's location
-    const map = mapReference.current?.getMap();
-    if (!map || isError || !isFirstLoad) {
-      return;
-    }
-    if (data?.callerLocation && !selectedZoneId) {
-      map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
-      setIsFirstLoad(false);
-    }
-  }, [isSuccess]);
-
-  useEffect(() => {
     // Run when the selected zone changes
-    const map = mapReference.current?.getMap();
-
     // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
     if (map && location.pathname === '/map' && selectedZoneId) {
       map.setFeatureState(
@@ -194,11 +187,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
-    setSelectedZoneId(zoneId);
-    if (map && zoneId) {
+    // const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    // setSelectedZoneId(zoneId);
+    if (map && selectedZoneId) {
       const feature = worldGeometries.features.find(
-        (feature) => feature.properties.zoneId === zoneId
+        (feature) => feature.properties.zoneId === selectedZoneId
       );
       // if no feature matches, it means that the selected zone is not in current spatial resolution.
       // We cannot include geometries in dependencies, as we don't want to flyTo when user switches
@@ -208,7 +201,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       }
 
       const center = feature.properties.center;
-      map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
+      map.setFeatureState(
+        { source: ZONE_SOURCE, id: selectedZoneId },
+        { selected: true }
+      );
       setLeftPanelOpen(true);
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
       map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
@@ -216,7 +212,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   }, [location.pathname, isLoadingMap]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
-    const map = mapReference.current?.getMap();
     if (!map || !event.features) {
       return;
     }
@@ -248,7 +243,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging
   const onMouseMove = (event: mapboxgl.MapLayerMouseEvent) => {
-    const map = mapReference.current?.getMap();
     if (!map || !event.features) {
       return;
     }
@@ -292,7 +286,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   };
 
   const onMouseOut = () => {
-    const map = mapReference.current?.getMap();
     if (!map) {
       return;
     }
@@ -341,14 +334,18 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
   };
 
+  const initialViewState =
+    data && data.callerLocation
+      ? { latitude: data.callerLocation[1], longitude: data.callerLocation[0], zoom: 2.5 }
+      : {
+          latitude: 50.905,
+          longitude: 6.528,
+          zoom: 2.5,
+        };
   return (
     <Map
       ref={mapReference}
-      initialViewState={{
-        latitude: 50.905,
-        longitude: 6.528,
-        zoom: 2.5,
-      }}
+      initialViewState={initialViewState}
       interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
       cursor={hoveredZone ? 'pointer' : 'grab'}
       onClick={onClick}
@@ -374,12 +371,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     >
       <Layer id="ocean" type="background" paint={styles.ocean} />
 
-      <Source
-        id="zones-clickable"
-        promoteId={'zoneId'}
-        type="geojson"
-        data={worldGeometries}
-      >
+      <Source id={ZONE_SOURCE} promoteId={'zoneId'} type="geojson" data={worldGeometries}>
         <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
         <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
         <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
