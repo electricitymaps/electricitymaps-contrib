@@ -107,15 +107,15 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const { isLoading, isSuccess, isError, data } = useGetState();
   const mapReference = useRef<MapRef>(null);
   const { worldGeometries, statesGeometries } = useGetGeometries();
-  //Callback for cypress testing
-  useEffect(() => {
-    if (!onMapLoad || !isSuccess) {
-      return;
-    }
-    if (mapReference.current) {
-      onMapLoad(mapReference.current.getMap());
-    }
-  }, [onMapLoad, isSuccess]);
+  // //Callback for cypress testing
+  // useEffect(() => {
+  //   if (!onMapLoad || !isSuccess) {
+  //     return;
+  //   }
+  //   if (mapReference.current) {
+  //     onMapLoad(mapReference.current.getMap());
+  //   }
+  // }, [onMapLoad, isSuccess]);
 
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
@@ -322,6 +322,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   const onLoad = () => {
     setIsLoadingMap(false);
+    if (onMapLoad && mapReference.current) {
+      onMapLoad(mapReference.current.getMap());
+    }
   };
 
   const onZoomStart = () => {
