@@ -30,10 +30,6 @@ import {
   mousePositionAtom,
 } from './mapAtoms';
 
-type MapPageProps = {
-  onMapLoad?: (map: any) => void;
-};
-
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
 const NORTHERN_LATITUDE_BOUND = 85;
@@ -43,7 +39,12 @@ const MAP_STYLE = {
   layers: [],
   glyphs: 'fonts/{fontstack}/{range}.pbf',
 };
-const isMobile = window.innerWidth < 768;
+const IS_MOBILE = window.innerWidth < 768;
+
+type MapPageProps = {
+  onMapLoad?: (map: mapboxgl.Map) => void;
+};
+
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
@@ -207,7 +208,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       );
       setLeftPanelOpen(true);
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
-      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
+      map.flyTo({ center: IS_MOBILE ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
   }, [location.pathname, isLoadingMap]);
 
@@ -310,6 +311,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   const onLoad = () => {
     setIsLoadingMap(false);
+    if (onMapLoad && mapReference.current) {
+      onMapLoad(mapReference.current.getMap());
+    }
   };
 
   const onZoomStart = () => {
