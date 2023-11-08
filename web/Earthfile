@@ -29,7 +29,7 @@ test:
   ENV npm_package_version=1
   RUN pnpm run create-generated-files
   RUN pnpm run validate
-  # RUN pnpm run cy:test-all
+  RUN pnpm run cy:test-all
 
 build:
   FROM +prepare
