@@ -31,8 +31,11 @@ jobs:
         run: docker login --username "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_TOKEN"
       - name: Earthly version
         run: earthly --version
-      - name: Run test
-        run: earthly --ci --sat emaps-ci --org electricitymaps --secret ELECTRICITYMAP_PUBLIC_TOKEN="$ELECTRICITYMAP_PUBLIC_TOKEN" --secret SENTRY_AUTH_TOKEN="$SENTRY_AUTH_TOKEN" +test-all
+      - name: test docker
+        run: echo -n $DOCKERHUB_USERNAME | wc -m;
+      - name: test token
+        run: echo -n $EARTHLY_TOKEN | wc -m;
+        # run: earthly --ci --sat emaps-ci --org electricitymaps --secret ELECTRICITYMAP_PUBLIC_TOKEN="$ELECTRICITYMAP_PUBLIC_TOKEN" --secret SENTRY_AUTH_TOKEN="$SENTRY_AUTH_TOKEN" +test-all
         env:
           EARTHLY_TOKEN: ${{ secrets.EARTHLY_TOKEN }}
           ELECTRICITYMAP_PUBLIC_TOKEN: 'test'
