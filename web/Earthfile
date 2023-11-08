@@ -27,7 +27,7 @@ test:
   RUN pnpm run create-generated-files
   RUN pnpm run validate
   # TODO: Enable Cypress tests later
-  # COPY cypress.config.ts .
+  COPY cypress.config.ts .
   # COPY --dir cypress ./
   # RUN pnpm run cy:test-all
 
