@@ -23,10 +23,12 @@ prepare:
 
 test:
   FROM +prepare
+  COPY .gitignore .eslintrc.json .postcssrc.json .prettierrc.json tsconfig.json tsconfig.node.json vite.config.cts testSetup.ts .
   COPY cypress.config.ts .
-  COPY cypress ./cypress
-  RUN echo "testing tests"
-  # RUN pnpm run verify:ci
+  COPY --dir cypress ./
+  ENV npm_package_version=1
+  RUN pnpm run create-generated-files
+  RUN pnpm run validate
   # RUN pnpm run cy:test-all
 
 build:
