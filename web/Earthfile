@@ -23,11 +23,10 @@ prepare:
 
 test:
   FROM +prepare
-  COPY .gitignore .eslintrc.json .postcssrc.json .prettierrc.json tsconfig.json tsconfig.node.json vite.config.cts viteEnvironment.d.ts testSetup.ts .
+  COPY .gitignore .eslintrc.json .prettierrc.json viteEnvironment.d.ts testSetup.ts cypress.d.ts .
   RUN pnpm run create-generated-files
   RUN pnpm run validate
   # TODO: Enable Cypress tests later
-  COPY cypress.config.ts .
   # COPY --dir cypress ./
   # RUN pnpm run cy:test-all
 
