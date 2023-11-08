@@ -11,6 +11,7 @@ jobs:
     env:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      EARTHLY_TOKEN: ${{ secrets.EARTHLY_TOKEN }}
       FORCE_COLOR: 1
     steps:
       - uses: earthly/actions-setup@v1
@@ -31,7 +32,7 @@ jobs:
       - name: Earthly version
         run: earthly --version
       - name: Run test
-        run: earthly --ci --secret ELECTRICITYMAP_PUBLIC_TOKEN="$ELECTRICITYMAP_PUBLIC_TOKEN" --secret SENTRY_AUTH_TOKEN="$SENTRY_AUTH_TOKEN" +test-all
+        run: earthly --ci --sat emaps-ci --org electricitymaps --secret ELECTRICITYMAP_PUBLIC_TOKEN="$ELECTRICITYMAP_PUBLIC_TOKEN" --secret SENTRY_AUTH_TOKEN="$SENTRY_AUTH_TOKEN" +test-all
         env:
           ELECTRICITYMAP_PUBLIC_TOKEN: 'test'
           SENTRY_AUTH_TOKEN: ''
