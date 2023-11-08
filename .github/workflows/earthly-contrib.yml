@@ -1,6 +1,6 @@
 # Runs Earthly targets
 
-name: Earthly
+name: Earthly Contrib
 
 on:
   workflow_call:
@@ -9,9 +9,9 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
     env:
+      EARTHLY_TOKEN: ${{ secrets.EARTHLY_TOKEN }}
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-      EARTHLY_TOKEN: ${{ secrets.EARTHLY_TOKEN }}
       FORCE_COLOR: 1
     steps:
       - uses: earthly/actions-setup@v1
@@ -34,5 +34,6 @@ jobs:
       - name: Run test
         run: earthly --ci --sat emaps-ci --org electricitymaps --secret ELECTRICITYMAP_PUBLIC_TOKEN="$ELECTRICITYMAP_PUBLIC_TOKEN" --secret SENTRY_AUTH_TOKEN="$SENTRY_AUTH_TOKEN" +test-all
         env:
+          EARTHLY_TOKEN: ${{ secrets.EARTHLY_TOKEN }}
           ELECTRICITYMAP_PUBLIC_TOKEN: 'test'
           SENTRY_AUTH_TOKEN: ''

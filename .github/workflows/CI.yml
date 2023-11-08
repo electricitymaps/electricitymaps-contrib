@@ -50,7 +50,7 @@ jobs:
 
   earthly:
     name: earthly
-    uses: ./.github/workflows/earthly.yml
+    uses: ./.github/workflows/earthly-contrib.yml
 
   # validate_local_links:
   #   name: Validate
