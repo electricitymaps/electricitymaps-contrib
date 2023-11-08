@@ -23,7 +23,7 @@ prepare:
 
 test:
   FROM +prepare
-  COPY .gitignore .eslintrc.json .postcssrc.json .prettierrc.json tsconfig.json tsconfig.node.json vite.config.cts testSetup.ts .
+  COPY .gitignore .eslintrc.json .postcssrc.json .prettierrc.json tsconfig.json tsconfig.node.json vite.config.cts viteEnvironment.d.ts testSetup.ts .
   COPY cypress.config.ts .
   COPY --dir cypress ./
   ENV npm_package_version=1
