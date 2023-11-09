@@ -130,7 +130,7 @@
     "@turf/turf": "^6.5.0",
     "@types/css-mediaquery": "0.1.1",
     "@types/d3": "^7.4.0",
-    "@types/d3-array": "^3.0.5",
+    "@types/d3-array": "^3.2.1",
     "@types/d3-format": "^3.0.1",
     "@types/d3-interpolate": "^3.0.1",
     "@types/d3-scale": "^4.0.3",
