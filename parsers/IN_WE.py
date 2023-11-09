@@ -37,6 +37,7 @@ KIND_MAPPING = {
 
 TZ = "Asia/Kolkata"
 
+
 def get_date_range(dt: datetime):
     return pd.date_range(
         arrow.get(dt).floor("day").datetime,
