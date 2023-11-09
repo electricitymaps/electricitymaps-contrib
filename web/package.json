@@ -190,7 +190,7 @@
     "vite": "4.5.0",
     "vite-plugin-pwa": "0.16.5",
     "vite-tsconfig-paths": "3.5.2",
-    "vitest": "0.24.3",
+    "vitest": "0.34.6",
     "whatwg-fetch": "3.6.17",
     "workbox-build": "7.0.0",
     "workbox-window": "7.0.0"
