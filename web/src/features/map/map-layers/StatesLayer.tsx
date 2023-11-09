@@ -10,6 +10,7 @@ export default function StatesLayer({ mapStyles }: { mapStyles: MapStyle }) {
         type="line"
         paint={mapStyles.statesBorder}
         minzoom={2.5}
+        source="states"
       />
       <Layer
         id="state-labels-name"
