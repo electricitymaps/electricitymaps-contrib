@@ -36,7 +36,7 @@ const MAP_STYLE = {
   layers: [],
   glyphs: 'fonts/{fontstack}/{range}.pbf',
 };
-const IS_MOBILE = window.innerWidth < 768;
+const isMobile = window.innerWidth < 768;
 
 type MapPageProps = {
   onMapLoad?: (map: mapboxgl.Map) => void;
@@ -207,7 +207,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
       setLeftPanelOpen(true);
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
-      map.flyTo({ center: IS_MOBILE ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
+      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
   }, [location.pathname, isLoadingMap]);
 
