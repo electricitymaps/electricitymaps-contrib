@@ -167,8 +167,8 @@ dependencies:
 
 devDependencies:
   '@mdx-js/react':
-    specifier: ^2.1.5
-    version: 2.1.5(react@18.2.0)
+    specifier: ^2.3.0
+    version: 2.3.0(react@18.2.0)
   '@microsoft/eslint-formatter-sarif':
     specifier: ^3.0.0
     version: 3.0.0
@@ -3713,8 +3713,8 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: false
 
-  /@mdx-js/react@2.1.5(react@18.2.0):
-    resolution: {integrity: sha512-3Az1I6SAWA9R38rYjz5rXBrGKeZhq96CSSyQtqY+maPj8stBsoUH5pNcmIixuGkufYsh8F5+ka2CVPo2fycWZw==}
+  /@mdx-js/react@2.3.0(react@18.2.0):
+    resolution: {integrity: sha512-zQH//gdOmuu7nt2oJR29vFhDv88oGPmVw6BggmrHeMI+xgEkp1B2dX9/bMBSYtK0dyLX/aOmesKS09g222K1/g==}
     peerDependencies:
       react: '>=16'
     dependencies:
@@ -5411,7 +5411,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@jest/transform': 29.7.0
-      '@mdx-js/react': 2.1.5(react@18.2.0)
+      '@mdx-js/react': 2.3.0(react@18.2.0)
       '@storybook/blocks': 7.5.2(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/client-logger': 7.5.2
       '@storybook/components': 7.5.2(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
