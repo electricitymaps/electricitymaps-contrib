@@ -19,8 +19,8 @@ from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
-EXCHANGE_URL = f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise?host=https://www.wrldc.in"
-CONSUMPTION_URL = f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData_state_Wise?host=https://www.wrldc.in"
+EXCHANGE_URL = f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Data?host=https://www.wrldc.in"
+CONSUMPTION_URL = f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData?host=https://www.wrldc.in"
 
 EXCHANGES_MAPPING = {
     "WR-SR": "IN-SO->IN-WE",
@@ -53,7 +53,7 @@ def fetch_data(
     assert kind is not None
 
     r = session or Session()
-    payload = {"date": target_datetime.strftime("%Y-%m-%d")}
+    payload = {"date": target_datetime.strftime("%Y-%m-%d"), "Flag": 24}
 
     resp: Response = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
 
@@ -67,7 +67,7 @@ def fetch_data(
 
     datetime_col = KIND_MAPPING[kind]["datetime_column"]
     for item in data:
-        item[datetime_col] = datetime.strptime(item[datetime_col], "%Y-%d-%m %H:%M:%S")
+        item[datetime_col] = datetime.strptime(item[datetime_col], "%Y-%m-%d %H:%M:%S")
         dt = arrow.get(item[datetime_col])
         if dt.second >= 30:
             item[datetime_col] = dt.shift(minutes=1).floor("minute").datetime
@@ -87,10 +87,10 @@ def filter_raw_data(
     assert len(data) > 0
     assert kind != ""
 
-    dt_12_hour = arrow.get(target_datetime.strftime("%Y-%m-%d %I:%M")).datetime
+    dt_24_hour = arrow.get(target_datetime.strftime("%Y-%m-%d %H:%M")).datetime
     datetime_col = KIND_MAPPING[kind]["datetime_column"]
     filtered_data = pd.DataFrame(
-        [item for item in data if item[datetime_col].hour == dt_12_hour.hour]
+        [item for item in data if item[datetime_col].hour == dt_24_hour.hour]
     )
     return filtered_data
 
@@ -108,6 +108,8 @@ def format_exchanges_data(
     filtered_data = filter_raw_data(
         kind="exchange", data=data, target_datetime=target_datetime
     )
+    if filtered_data.empty:
+        return 0.0
 
     filtered_data["zone_key"] = filtered_data["Region_Name"].map(EXCHANGES_MAPPING)
     df_exchanges = filtered_data.loc[filtered_data["zone_key"] == sortedZoneKeys]
