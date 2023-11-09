@@ -21,6 +21,7 @@ import {
 } from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
+import StatesLayer from './map-layers/StatesLayer';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 import {
@@ -55,7 +56,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [spatialAggregate] = useAtom(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
-  const styles = useMemo(
+  const mapStyles = useMemo(
     () => ({
       ocean: { 'background-color': theme.oceanColor },
       zonesBorder: {
@@ -372,59 +372,14 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       style={{ minWidth: '100vw', height: '100vh' }}
       mapStyle={MAP_STYLE as mapboxgl.Style}
     >
-      <Layer id="ocean" type="background" paint={styles.ocean} />
-
+      <Layer id="ocean" type="background" paint={mapStyles.ocean} />
       <Source id={ZONE_SOURCE} promoteId={'zoneId'} type="geojson" data={worldGeometries}>
-        <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
-        <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
-        <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
+        <Layer id="zones-clickable-layer" type="fill" paint={mapStyles.zonesClickable} />
+        <Layer id="zones-hoverable-layer" type="fill" paint={mapStyles.zonesHover} />
+        <Layer id="zones-border" type="line" paint={mapStyles.zonesBorder} />
       </Source>
       <Source id="states" type="geojson" data={statesGeometries}>
-        <Layer id="states-border" type="line" paint={styles.statesBorder} minzoom={2.5} />
-        <Layer
-          id="state-labels-name"
-          type="symbol"
-          source="states"
-          layout={{
-            'text-field': ['get', 'stateName'],
-            'symbol-placement': 'point',
-            'text-size': 12,
-            'text-letter-spacing': 0.12,
-            'text-transform': 'uppercase',
-
-            'text-font': ['poppins-semibold'],
-          }}
-          paint={{
-            'text-color': 'white',
-            'text-halo-color': '#111827',
-            'text-halo-width': 0.5,
-            'text-halo-blur': 0.25,
-            'text-opacity': 0.9,
-          }}
-          minzoom={4.5}
-        />
-        <Layer
-          id="state-labels-id"
-          type="symbol"
-          source="states"
-          layout={{
-            'text-field': ['get', 'stateId'],
-            'symbol-placement': 'point',
-            'text-size': 12,
-            'text-letter-spacing': 0.12,
-            'text-transform': 'uppercase',
-            'text-font': ['poppins-semibold'],
-          }}
-          paint={{
-            'text-color': 'white',
-            'text-halo-color': '#111827',
-            'text-halo-width': 0.5,
-            'text-halo-blur': 0.25,
-            'text-opacity': 0.9,
-          }}
-          maxzoom={4.5}
-          minzoom={3}
-        />
+        <StatesLayer mapStyles={mapStyles} />
       </Source>
       <CustomLayer>
         <WindLayer />
