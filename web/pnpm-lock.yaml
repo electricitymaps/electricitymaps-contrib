@@ -251,8 +251,8 @@ devDependencies:
     specifier: ^7.4.0
     version: 7.4.0
   '@types/d3-array':
-    specifier: ^3.0.5
-    version: 3.0.5
+    specifier: ^3.2.1
+    version: 3.2.1
   '@types/d3-format':
     specifier: ^3.0.1
     version: 3.0.1
@@ -7815,8 +7815,8 @@ packages:
     resolution: {integrity: sha512-JQ+sPiPlRUHmlL4e3DBUNbxVEb6p7dis78/uSDbQpkeCKVoepChZMWGPIVA2JIH0ylfkA9S+TZUdShlgDpFKrw==}
     dev: true
 
-  /@types/d3-array@3.0.5:
-    resolution: {integrity: sha512-Qk7fpJ6qFp+26VeQ47WY0mkwXaiq8+76RJcncDEfMc2ocRzXLO67bLFRNI4OX1aGBoPzsM5Y2T+/m1pldOgD+A==}
+  /@types/d3-array@3.2.1:
+    resolution: {integrity: sha512-Y2Jn2idRrLzUfAKV2LyRImR+y4oa2AntrgID95SHJxuMUrkNXmanDSed71sRNZysveJVt1hLLemQZIady0FpEg==}
 
   /@types/d3-axis@3.0.1:
     resolution: {integrity: sha512-zji/iIbdd49g9WN0aIsGcwcTBUkgLsCSwB+uH+LPVDAiKWENMtI3cJEWt+7/YYwelMoZmbBfzA3qCdrZ2XFNnw==}
@@ -7840,7 +7840,7 @@ packages:
   /@types/d3-contour@3.0.1:
     resolution: {integrity: sha512-C3zfBrhHZvrpAAK3YXqLWVAGo87A4SvJ83Q/zVJ8rFWJdKejUnDYaWZPkA8K84kb2vDA/g90LTQAz7etXcgoQQ==}
     dependencies:
-      '@types/d3-array': 3.0.5
+      '@types/d3-array': 3.2.1
       '@types/geojson': 7946.0.10
     dev: true
 
@@ -7953,7 +7953,7 @@ packages:
   /@types/d3@7.4.0:
     resolution: {integrity: sha512-jIfNVK0ZlxcuRDKtRS/SypEyOQ6UHaFQBKv032X45VvxSJ6Yi5G9behy9h6tNTHTDGh5Vq+KbmBjUWLgY4meCA==}
     dependencies:
-      '@types/d3-array': 3.0.5
+      '@types/d3-array': 3.2.1
       '@types/d3-axis': 3.0.1
       '@types/d3-brush': 3.0.1
       '@types/d3-chord': 3.0.1
@@ -17928,7 +17928,7 @@ packages:
   /victory-vendor@36.6.11:
     resolution: {integrity: sha512-nT8kCiJp8dQh8g991J/R5w5eE2KnO8EAIP0xocWlh9l2okngMWglOPoMZzJvek8Q1KUc4XE/mJxTZnvOB1sTYg==}
     dependencies:
-      '@types/d3-array': 3.0.5
+      '@types/d3-array': 3.2.1
       '@types/d3-ease': 3.0.0
       '@types/d3-interpolate': 3.0.1
       '@types/d3-scale': 4.0.3
