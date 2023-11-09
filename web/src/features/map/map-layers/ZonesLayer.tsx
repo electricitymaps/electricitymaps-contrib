@@ -9,7 +9,7 @@ export default function ZonesLayer() {
   const { worldGeometries } = useGetGeometries();
   const theme = useTheme();
 
-  const mapStyles = useMemo(
+  const zoneLayerStyles = useMemo(
     () => ({
       zonesBorder: {
         'line-color': [
@@ -45,9 +45,13 @@ export default function ZonesLayer() {
 
   return (
     <Source id={ZONE_SOURCE} promoteId={'zoneId'} type="geojson" data={worldGeometries}>
-      <Layer id="zones-clickable-layer" type="fill" paint={mapStyles.zonesClickable} />
-      <Layer id="zones-hoverable-layer" type="fill" paint={mapStyles.zonesHover} />
-      <Layer id="zones-border" type="line" paint={mapStyles.zonesBorder} />
+      <Layer
+        id="zones-clickable-layer"
+        type="fill"
+        paint={zoneLayerStyles.zonesClickable}
+      />
+      <Layer id="zones-hoverable-layer" type="fill" paint={zoneLayerStyles.zonesHover} />
+      <Layer id="zones-border" type="line" paint={zoneLayerStyles.zonesBorder} />
     </Source>
   );
 }
