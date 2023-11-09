@@ -147,16 +147,12 @@ def format_consumption_data(
         data=data,
         target_datetime=target_datetime,
     )
+    if filtered_data.empty:
+        return 0.0
+    
+    df_consumption = filtered_data
 
-    if target_datetime.hour >= 12:
-        df_consumption = filtered_data.drop_duplicates(
-            subset=["StateName", "current_datetime"], keep="last"
-        )
-    else:
-        df_consumption = filtered_data.drop_duplicates(
-            subset=["StateName", "current_datetime"], keep="first"
-        )
-    df_consumption.loc[:, "target_datetime"] = target_datetime
+    df_consumption["target_datetime"] = target_datetime
     df_consumption = (
         df_consumption.groupby(["StateName", "target_datetime"])
         .mean(numeric_only=True)
