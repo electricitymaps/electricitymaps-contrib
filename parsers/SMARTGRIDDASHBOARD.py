@@ -71,7 +71,7 @@ def fetch_data(
         params={
             "area": KINDS_AREA_MAPPING[kind],
             "region": EXCHANGE_MAPPING[zone_key]["key"]
-            if kind == "interconnection"
+            if zone_key in EXCHANGE_MAPPING
             else REGION_MAPPING[zone_key],
             **get_datetime_params(target_datetime),
         },
