@@ -123,17 +123,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     map.isSourceLoaded('states');
 
   useEffect(() => {
-    if (!onMapLoad || !isSourceLoaded) {
-      return;
-    }
-
-    //useEffect to sync cypress test to map ref
-    if (mapReference.current) {
-      onMapLoad(mapReference.current.getMap()); // Trigger the callback when the map loads
-    }
-  }, [onMapLoad, isSourceLoaded]);
-
-  useEffect(() => {
     // This effect colors the zones based on the co2 intensity
     if (!map || isLoading || isError) {
       return;
