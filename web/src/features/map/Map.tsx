@@ -39,7 +39,7 @@ const MAP_STYLE = {
   layers: [],
   glyphs: 'fonts/{fontstack}/{range}.pbf',
 };
-const IS_MOBILE = window.innerWidth < 768;
+const isMobile = window.innerWidth < 768;
 
 type MapPageProps = {
   onMapLoad?: (map: mapboxgl.Map) => void;
@@ -131,6 +131,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       onMapLoad(mapReference.current.getMap()); // Trigger the callback when the map loads
     }
   }, [onMapLoad, isSourceLoaded]);
+
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
     if (!map || isLoading || isError) {
