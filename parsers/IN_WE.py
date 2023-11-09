@@ -20,7 +20,9 @@ from parsers.lib.exceptions import ParserException
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 EXCHANGE_URL = f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Data?host=https://www.wrldc.in"
-CONSUMPTION_URL = f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData?host=https://www.wrldc.in"
+CONSUMPTION_URL = (
+    f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData?host=https://www.wrldc.in"
+)
 
 EXCHANGES_MAPPING = {
     "WR-SR": "IN-SO->IN-WE",
@@ -149,7 +151,7 @@ def format_consumption_data(
     )
     if filtered_data.empty:
         return 0.0
-    
+
     df_consumption = filtered_data
 
     df_consumption["target_datetime"] = target_datetime
