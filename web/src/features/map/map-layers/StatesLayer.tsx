@@ -13,6 +13,23 @@ export default function StatesLayer() {
     'line-opacity': 0.9,
     'line-dasharray': [1, 1],
   } as mapboxgl.LinePaint;
+
+  const stateLabelLayour = {
+    'symbol-placement': 'point',
+    'text-size': 12,
+    'text-letter-spacing': 0.12,
+    'text-transform': 'uppercase',
+    'text-font': ['poppins-semibold'],
+  } as mapboxgl.SymbolLayout;
+
+  const stateLabelPaint = {
+    'text-color': 'white',
+    'text-halo-color': '#111827',
+    'text-halo-width': 0.5,
+    'text-halo-blur': 0.25,
+    'text-opacity': 0.9,
+  } as mapboxgl.SymbolPaint;
+
   return (
     <Source id="states" type="geojson" data={statesGeometries}>
       <Layer
@@ -28,19 +45,9 @@ export default function StatesLayer() {
         source="states"
         layout={{
           'text-field': ['get', 'stateName'],
-          'symbol-placement': 'point',
-          'text-size': 12,
-          'text-letter-spacing': 0.12,
-          'text-transform': 'uppercase',
-          'text-font': ['poppins-semibold'],
+          ...stateLabelLayour,
         }}
-        paint={{
-          'text-color': 'white',
-          'text-halo-color': '#111827',
-          'text-halo-width': 0.5,
-          'text-halo-blur': 0.25,
-          'text-opacity': 0.9,
-        }}
+        paint={stateLabelPaint}
         minzoom={4.5}
       />
       <Layer
@@ -49,19 +56,9 @@ export default function StatesLayer() {
         source="states"
         layout={{
           'text-field': ['get', 'stateId'],
-          'symbol-placement': 'point',
-          'text-size': 12,
-          'text-letter-spacing': 0.12,
-          'text-transform': 'uppercase',
-          'text-font': ['poppins-semibold'],
+          ...stateLabelLayour,
         }}
-        paint={{
-          'text-color': 'white',
-          'text-halo-color': '#111827',
-          'text-halo-width': 0.5,
-          'text-halo-blur': 0.25,
-          'text-opacity': 0.9,
-        }}
+        paint={stateLabelPaint}
         maxzoom={4.5}
         minzoom={3}
       />

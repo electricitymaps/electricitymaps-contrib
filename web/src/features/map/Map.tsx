@@ -22,6 +22,7 @@ import {
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import StatesLayer from './map-layers/StatesLayer';
+import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 import {
@@ -32,7 +33,7 @@ import {
 } from './mapAtoms';
 import { FeatureId } from './mapTypes';
 
-const ZONE_SOURCE = 'zones-clickable';
+export const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
 const NORTHERN_LATITUDE_BOUND = 85;
 const MAP_STYLE = {
@@ -69,41 +70,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [spatialAggregate] = useAtom(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
-  const mapStyles = useMemo(
-    () => ({
-      ocean: { 'background-color': theme.oceanColor },
-      zonesBorder: {
-        'line-color': [
-          'case',
-          ['boolean', ['feature-state', 'selected'], false],
-          'white',
-          theme.strokeColor,
-        ],
-        'line-width': [
-          'case',
-          ['boolean', ['feature-state', 'selected'], false],
-          theme.strokeWidth * 10,
-          ['boolean', ['feature-state', 'hover'], false],
-          theme.strokeWidth * 10,
-          theme.strokeWidth,
-        ],
-      } as mapboxgl.LinePaint,
-      zonesClickable: {
-        'fill-color': [
-          'coalesce',
-          ['feature-state', 'color'],
-          ['get', 'color'],
-          theme.clickableFill,
-        ],
-      } as mapboxgl.FillPaint,
-      zonesHover: {
-        'fill-color': '#FFFFFF',
-        'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.3, 0],
-      } as mapboxgl.FillPaint,
-    }),
-    [theme]
-  );
-
   const { isLoading, isSuccess, isError, data } = useGetState();
   const { worldGeometries } = useGetGeometries();
   const mapReference = useRef<MapRef>(null);
@@ -363,12 +329,12 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       style={{ minWidth: '100vw', height: '100vh' }}
       mapStyle={MAP_STYLE as mapboxgl.Style}
     >
-      <Layer id="ocean" type="background" paint={mapStyles.ocean} />
-      <Source id={ZONE_SOURCE} promoteId={'zoneId'} type="geojson" data={worldGeometries}>
-        <Layer id="zones-clickable-layer" type="fill" paint={mapStyles.zonesClickable} />
-        <Layer id="zones-hoverable-layer" type="fill" paint={mapStyles.zonesHover} />
-        <Layer id="zones-border" type="line" paint={mapStyles.zonesBorder} />
-      </Source>
+      <Layer
+        id="ocean"
+        type="background"
+        paint={{ 'background-color': theme.oceanColor }}
+      />
+      <ZonesLayer />
       <StatesLayer />
       <CustomLayer>
         <WindLayer />
