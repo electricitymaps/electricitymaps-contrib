@@ -29,6 +29,7 @@ import {
   mapMovingAtom,
   mousePositionAtom,
 } from './mapAtoms';
+import { FeatureId } from './mapTypes';
 
 const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
@@ -61,7 +62,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const theme = useTheme();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
-  const selectedZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+  const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
   const [spatialAggregate] = useAtom(spatialAggregateAtom);
@@ -189,11 +190,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    // const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
-    // setSelectedZoneId(zoneId);
-    if (map && selectedZoneId) {
+    const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    setSelectedZoneId(zoneId);
+    if (map && zoneId) {
       const feature = worldGeometries.features.find(
-        (feature) => feature.properties.zoneId === selectedZoneId
+        (feature) => feature.properties.zoneId === zoneId
       );
       // if no feature matches, it means that the selected zone is not in current spatial resolution.
       // We cannot include geometries in dependencies, as we don't want to flyTo when user switches
@@ -203,13 +204,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       }
 
       const center = feature.properties.center;
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: selectedZoneId },
-        { selected: true }
-      );
+      map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
       setLeftPanelOpen(true);
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
-      map.flyTo({ center: IS_MOBILE ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
+      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
   }, [location.pathname, isLoadingMap]);
 
