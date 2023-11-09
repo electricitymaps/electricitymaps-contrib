@@ -37,9 +37,14 @@ const MAP_STYLE = {
   glyphs: 'fonts/{fontstack}/{range}.pbf',
 };
 const isMobile = window.innerWidth < 768;
+
+type MapPageProps = {
+  onMapLoad?: (map: mapboxgl.Map) => void;
+};
+
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
-export default function MapPage(): ReactElement {
+export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const setIsMoving = useSetAtom(mapMovingAtom);
   const setMousePosition = useSetAtom(mousePositionAtom);
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
@@ -102,6 +107,7 @@ export default function MapPage(): ReactElement {
   const { isLoading, isSuccess, isError, data } = useGetState();
   const mapReference = useRef<MapRef>(null);
   const { worldGeometries, statesGeometries } = useGetGeometries();
+
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
     const map = mapReference.current?.getMap();
@@ -307,6 +313,9 @@ export default function MapPage(): ReactElement {
 
   const onLoad = () => {
     setIsLoadingMap(false);
+    if (onMapLoad && mapReference.current) {
+      onMapLoad(mapReference.current.getMap());
+    }
   };
 
   const onZoomStart = () => {
