@@ -115,13 +115,13 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const map = mapReference.current?.getMap();
   map?.touchZoomRotate.disableRotation();
   map?.touchPitch.disable();
-
   const isSourceLoaded =
     map &&
     map.getSource(ZONE_SOURCE) !== undefined &&
     map.isSourceLoaded(ZONE_SOURCE) &&
     map.getSource('states') !== undefined &&
     map.isSourceLoaded('states');
+
   useEffect(() => {
     if (!onMapLoad || !isSourceLoaded) {
       return;
