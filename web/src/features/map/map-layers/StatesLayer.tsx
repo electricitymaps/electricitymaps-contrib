@@ -1,10 +1,12 @@
-import { Layer } from 'react-map-gl';
+import { Layer, Source } from 'react-map-gl';
 
+import { useGetGeometries } from '../map-utils/getMapGrid';
 import { MapStyle } from '../mapTypes';
 
 export default function StatesLayer({ mapStyles }: { mapStyles: MapStyle }) {
+  const { statesGeometries } = useGetGeometries();
   return (
-    <>
+    <Source id="states" type="geojson" data={statesGeometries}>
       <Layer
         id="states-border"
         type="line"
@@ -56,6 +58,6 @@ export default function StatesLayer({ mapStyles }: { mapStyles: MapStyle }) {
         maxzoom={4.5}
         minzoom={3}
       />
-    </>
+    </Source>
   );
 }

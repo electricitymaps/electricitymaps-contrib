@@ -111,7 +111,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   const { isLoading, isError, data } = useGetState();
   const mapReference = useRef<MapRef>(null);
-  const { worldGeometries, statesGeometries } = useGetGeometries();
+  const { worldGeometries } = useGetGeometries();
   const map = mapReference.current?.getMap();
   map?.touchZoomRotate.disableRotation();
   map?.touchPitch.disable();
@@ -367,9 +367,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         <Layer id="zones-hoverable-layer" type="fill" paint={mapStyles.zonesHover} />
         <Layer id="zones-border" type="line" paint={mapStyles.zonesBorder} />
       </Source>
-      <Source id="states" type="geojson" data={statesGeometries}>
-        <StatesLayer mapStyles={mapStyles} />
-      </Source>
+      <StatesLayer mapStyles={mapStyles} />
       <CustomLayer>
         <WindLayer />
       </CustomLayer>
