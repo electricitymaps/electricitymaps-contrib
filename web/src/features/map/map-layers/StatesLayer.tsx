@@ -1,16 +1,24 @@
+import { useTheme } from 'hooks/theme';
 import { Layer, Source } from 'react-map-gl';
 
 import { useGetGeometries } from '../map-utils/getMapGrid';
-import { MapStyle } from '../mapTypes';
 
-export default function StatesLayer({ mapStyles }: { mapStyles: MapStyle }) {
+export default function StatesLayer() {
   const { statesGeometries } = useGetGeometries();
+  const theme = useTheme();
+
+  const statesBorderStyle = {
+    'line-color': theme.stateBorderColor,
+    'line-width': 1.4,
+    'line-opacity': 0.9,
+    'line-dasharray': [1, 1],
+  } as mapboxgl.LinePaint;
   return (
     <Source id="states" type="geojson" data={statesGeometries}>
       <Layer
         id="states-border"
         type="line"
-        paint={mapStyles.statesBorder}
+        paint={statesBorderStyle}
         minzoom={2.5}
         source="states"
       />

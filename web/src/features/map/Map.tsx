@@ -99,12 +99,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         'fill-color': '#FFFFFF',
         'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.3, 0],
       } as mapboxgl.FillPaint,
-      statesBorder: {
-        'line-color': theme.stateBorderColor,
-        'line-width': 1.4,
-        'line-opacity': 0.9,
-        'line-dasharray': [1, 1],
-      } as mapboxgl.LinePaint,
     }),
     [theme]
   );
@@ -367,7 +361,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         <Layer id="zones-hoverable-layer" type="fill" paint={mapStyles.zonesHover} />
         <Layer id="zones-border" type="line" paint={mapStyles.zonesBorder} />
       </Source>
-      <StatesLayer mapStyles={mapStyles} />
+      <StatesLayer />
       <CustomLayer>
         <WindLayer />
       </CustomLayer>
