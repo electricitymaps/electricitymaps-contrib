@@ -56,6 +56,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
@@ -103,24 +104,24 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     [theme]
   );
 
-  const { isLoading, isError, data } = useGetState();
-  const mapReference = useRef<MapRef>(null);
+  const { isLoading, isSuccess, isError, data } = useGetState();
   const { worldGeometries } = useGetGeometries();
+  const mapReference = useRef<MapRef>(null);
   const map = mapReference.current?.getMap();
-  map?.touchZoomRotate.disableRotation();
-  map?.touchPitch.disable();
-  const isSourceLoaded =
-    map &&
-    map.getSource(ZONE_SOURCE) !== undefined &&
-    map.isSourceLoaded(ZONE_SOURCE) &&
-    map.getSource('states') !== undefined &&
-    map.isSourceLoaded('states');
 
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
     if (!map || isLoading || isError) {
       return;
     }
+    map?.touchZoomRotate.disableRotation();
+    map?.touchPitch.disable();
+    const isSourceLoaded =
+      map &&
+      map.getSource(ZONE_SOURCE) !== undefined &&
+      map.isSourceLoaded(ZONE_SOURCE) &&
+      map.getSource('states') !== undefined &&
+      map.isSourceLoaded('states');
 
     if (!isSourceLoaded || isLoadingMap) {
       return;
@@ -159,8 +160,19 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     mixMode,
     isLoadingMap,
     spatialAggregate,
-    isSourceLoaded,
+    isSuccess,
   ]);
+
+  useEffect(() => {
+    // Run on first load to center the map on the user's location
+    if (!map || isError || !isFirstLoad) {
+      return;
+    }
+    if (data?.callerLocation && !selectedZoneId) {
+      map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
+      setIsFirstLoad(false);
+    }
+  }, [isSuccess]);
 
   useEffect(() => {
     // Run when the selected zone changes
@@ -320,18 +332,14 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
   };
 
-  const initialViewState =
-    data && data.callerLocation
-      ? { latitude: data.callerLocation[1], longitude: data.callerLocation[0], zoom: 2.5 }
-      : {
-          latitude: 50.905,
-          longitude: 6.528,
-          zoom: 2.5,
-        };
   return (
     <Map
       ref={mapReference}
-      initialViewState={initialViewState}
+      initialViewState={{
+        latitude: 50.905,
+        longitude: 6.528,
+        zoom: 2.5,
+      }}
       interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
       cursor={hoveredZone ? 'pointer' : 'grab'}
       onClick={onClick}

@@ -32,7 +32,6 @@ export default function StatesLayer() {
           'text-size': 12,
           'text-letter-spacing': 0.12,
           'text-transform': 'uppercase',
-
           'text-font': ['poppins-semibold'],
         }}
         paint={{
