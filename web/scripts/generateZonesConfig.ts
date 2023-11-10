@@ -74,11 +74,9 @@ const getConfig = (): CombinedZonesConfig => {
 
     (config as unknown as OptimizedZoneConfig).contributors = zoneContributorsArray;
 
-    if (config?.bounding_box) {
-      for (const point of config.bounding_box) {
-        point[0] = round(point[0], 4);
-        point[1] = round(point[1], 4);
-      }
+    for (const point of config.bounding_box ?? []) {
+      point[0] = round(point[0], 4);
+      point[1] = round(point[1], 4);
     }
 
     for (const key of Object.keys(config)) {
