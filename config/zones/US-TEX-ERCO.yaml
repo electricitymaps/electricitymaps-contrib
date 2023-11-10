@@ -264,9 +264,9 @@ fallbackZoneMixes:
         unknown: 0.0015180241712047652
         wind: 0.24425208187027933
 parsers:
-  consumption: EIA.fetch_consumption
+  consumption: US_ERCOT.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
-  production: EIA.fetch_production_mix
+  production: US_ERCOT.fetch_production
 sources:
   INCER ACV:
     link: >-
