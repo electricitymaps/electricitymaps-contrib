@@ -105,6 +105,13 @@ pnpm run fast android release
 If you need more information:
 https://capacitorjs.com/docs/getting-started
 
+## Working on native code
+
+For iOS, use `swift-format` to format the code:
+
+1. Install: `brew install swift-format`
+2. Format: `swift-format format -i -r ./ios`
+
 ## Troubleshooting
 
 <details>
