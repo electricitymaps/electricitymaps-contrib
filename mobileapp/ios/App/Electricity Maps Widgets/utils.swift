@@ -8,17 +8,17 @@
 import SwiftUI
 
 func getNextHourStart() -> Date {
-    let currentDate = Date()
-    
-    let calendar = Calendar.current
-    let components = calendar.dateComponents([.year, .month, .day, .hour], from: currentDate)
+  let currentDate = Date()
 
-    guard let currentHourStartDate = calendar.date(from: components),
-          let nextHourStartDate = calendar.date(byAdding: .hour, value: 1, to: currentHourStartDate)
-    else {
-        // If any errors occur, return the current date as a fallback
-        return currentDate
-    }
+  let calendar = Calendar.current
+  let components = calendar.dateComponents([.year, .month, .day, .hour], from: currentDate)
 
-    return nextHourStartDate
+  guard let currentHourStartDate = calendar.date(from: components),
+    let nextHourStartDate = calendar.date(byAdding: .hour, value: 1, to: currentHourStartDate)
+  else {
+    // If any errors occur, return the current date as a fallback
+    return currentDate
+  }
+
+  return nextHourStartDate
 }
