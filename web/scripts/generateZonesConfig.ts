@@ -45,16 +45,33 @@ const getConfig = (): CombinedZonesConfig => {
   for (const filepath of filesWithDirectory) {
     const config = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
 
+    const zoneContributors = new Set<string>();
+
+    for (const subZoneName of config.subZoneNames ?? []) {
+      const subZonePath = `${basePath}/${subZoneName}.yaml`;
+      const subZoneConfig = yaml.load(fs.readFileSync(subZonePath, 'utf8')) as ZoneConfig;
+      if (subZoneConfig.contributors) {
+        for (const contributor of subZoneConfig.contributors) {
+          contributors.add(contributor);
+          zoneContributors.add(contributor);
+        }
+      }
+    }
+
     if (config.contributors) {
       for (const contributor of config.contributors) {
-        contributors.add(contributor);
-        const index = config.contributors?.indexOf(contributor);
-        const contributorArray = [...contributors];
-        const globalIndex = contributorArray.indexOf(contributor);
-        config.contributors
-          ? ((config as unknown as OptimizedZoneConfig).contributors[index] = globalIndex)
-          : [];
+        if (typeof contributor == 'string') {
+          contributors.add(contributor);
+          zoneContributors.add(contributor);
+        }
       }
+      const zoneContirbutorsArray = [];
+      const contributorArray = [...contributors];
+      for (const contributor of zoneContributors) {
+        const index = contributorArray.indexOf(contributor);
+        zoneContirbutorsArray.push(index);
+      }
+      (config as unknown as OptimizedZoneConfig).contributors = zoneContirbutorsArray;
     }
 
     if (config?.bounding_box) {
