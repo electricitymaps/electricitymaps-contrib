@@ -40,7 +40,7 @@ const getConfig = (): CombinedZonesConfig => {
   ]);
 
   const contributors = new Set<string>();
-  const zones: Record<string, ZoneConfig> = {};
+  const zones: Record<string, OptimizedZoneConfig> = {};
 
   for (const filepath of filesWithDirectory) {
     const config = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
@@ -92,12 +92,13 @@ const getConfig = (): CombinedZonesConfig => {
       ?.length
       ? true
       : false;
-    zones[path.parse(filepath).name] = config;
+
+    zones[path.parse(filepath).name] = config as unknown as OptimizedZoneConfig;
   }
 
   const combinedZonesConfig = {
     contributors: [...contributors],
-    zones: zones as OptimizedZoneConfig,
+    zones: zones,
   };
 
   return combinedZonesConfig;
