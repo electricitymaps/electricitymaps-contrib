@@ -58,21 +58,21 @@ const getConfig = (): CombinedZonesConfig => {
       }
     }
 
-    if (config.contributors) {
-      for (const contributor of config.contributors) {
-        if (typeof contributor == 'string') {
-          contributors.add(contributor);
-          zoneContributors.add(contributor);
-        }
+    for (const contributor of config.contributors ?? []) {
+      if (typeof contributor == 'string') {
+        contributors.add(contributor);
+        zoneContributors.add(contributor);
       }
-      const zoneContirbutorsArray = [];
-      const contributorArray = [...contributors];
-      for (const contributor of zoneContributors) {
-        const index = contributorArray.indexOf(contributor);
-        zoneContirbutorsArray.push(index);
-      }
-      (config as unknown as OptimizedZoneConfig).contributors = zoneContirbutorsArray;
     }
+
+    const zoneContributorsArray = [];
+    const contributorArray = [...contributors];
+    for (const contributor of zoneContributors) {
+      const index = contributorArray.indexOf(contributor);
+      zoneContributorsArray.push(index);
+    }
+
+    (config as unknown as OptimizedZoneConfig).contributors = zoneContributorsArray;
 
     if (config?.bounding_box) {
       for (const point of config.bounding_box) {
