@@ -15,7 +15,43 @@
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
 		70CDAFD436C19DF53F6F732A /* Pods_Electricity_Maps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DBACBBDEFF7153DC7073FCB /* Pods_Electricity_Maps.framework */; };
+		F7BC622E2AFECEB90003B125 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC622D2AFECEB90003B125 /* colors.swift */; };
+		F7BC62302AFED06D0003B125 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC622F2AFED06D0003B125 /* utils.swift */; };
+		F7DF63F82AFE7E2F0012D585 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1E0F72AFE2610000D8BB0 /* WidgetKit.framework */; };
+		F7DF63F92AFE7E2F0012D585 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1E0F92AFE2610000D8BB0 /* SwiftUI.framework */; };
+		F7DF63FC2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */; };
+		F7DF63FE2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FD2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift */; };
+		F7DF64012AFE7E320012D585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7DF64002AFE7E320012D585 /* Assets.xcassets */; };
+		F7DF64032AFE7E320012D585 /* Electricity_Maps_Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */; };
+		F7DF64042AFE7E320012D585 /* Electricity_Maps_Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */; };
+		F7DF64072AFE7E320012D585 /* Electricity Maps WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F7DF63F72AFE7E2F0012D585 /* Electricity Maps WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F7DF640F2AFE7EA80012D585 /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF640D2AFE7EA80012D585 /* api.swift */; };
+		F7DF64122AFE7F0C0012D585 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF64102AFE7F0C0012D585 /* View.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F7DF64052AFE7E320012D585 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7DF63F62AFE7E2F0012D585;
+			remoteInfo = "Electricity Maps WidgetsExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F7A1E1062AFE2612000D8BB0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F7DF64072AFE7E320012D585 /* Electricity Maps WidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1DE171A91619E10782A12CC6 /* Pods-Electricity Maps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Electricity Maps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Electricity Maps/Pods-Electricity Maps.release.xcconfig"; sourceTree = "<group>"; };
@@ -30,6 +66,18 @@
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
 		7DBACBBDEFF7153DC7073FCB /* Pods_Electricity_Maps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Electricity_Maps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
+		F7A1E0F72AFE2610000D8BB0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F7A1E0F92AFE2610000D8BB0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F7BC622D2AFECEB90003B125 /* colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
+		F7BC622F2AFED06D0003B125 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		F7DF63F72AFE7E2F0012D585 /* Electricity Maps WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Electricity Maps WidgetsExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Electricity_Maps_WidgetsBundle.swift; sourceTree = "<group>"; };
+		F7DF63FD2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Electricity_Maps_Widgets.swift; sourceTree = "<group>"; };
+		F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Electricity_Maps_Widgets.intentdefinition; sourceTree = "<group>"; };
+		F7DF64002AFE7E320012D585 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F7DF64022AFE7E320012D585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7DF640D2AFE7EA80012D585 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
+		F7DF64102AFE7F0C0012D585 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F8E4050F78F1208047BE6397 /* Pods-Electricity Maps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Electricity Maps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Electricity Maps/Pods-Electricity Maps.debug.xcconfig"; sourceTree = "<group>"; };
 		FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -43,6 +91,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7DF63F42AFE7E2F0012D585 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7DF63F92AFE7E2F0012D585 /* SwiftUI.framework in Frameworks */,
+				F7DF63F82AFE7E2F0012D585 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -50,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				7DBACBBDEFF7153DC7073FCB /* Pods_Electricity_Maps.framework */,
+				F7A1E0F72AFE2610000D8BB0 /* WidgetKit.framework */,
+				F7A1E0F92AFE2610000D8BB0 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -58,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				504EC3061FED79650016851F /* App */,
+				F7DF63FA2AFE7E2F0012D585 /* Electricity Maps Widgets */,
 				504EC3051FED79650016851F /* Products */,
 				7F8756D8B27F46E3366F6CEA /* Pods */,
 				27E2DDA53C4D2A4D1A88CE4A /* Frameworks */,
@@ -68,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				504EC3041FED79650016851F /* Electricity Maps.app */,
+				F7DF63F72AFE7E2F0012D585 /* Electricity Maps WidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +159,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F7DF63FA2AFE7E2F0012D585 /* Electricity Maps Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */,
+				F7DF63FD2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift */,
+				F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */,
+				F7DF640D2AFE7EA80012D585 /* api.swift */,
+				F7DF64102AFE7F0C0012D585 /* View.swift */,
+				F7BC622F2AFED06D0003B125 /* utils.swift */,
+				F7BC622D2AFECEB90003B125 /* colors.swift */,
+				F7DF64002AFE7E320012D585 /* Assets.xcassets */,
+				F7DF64022AFE7E320012D585 /* Info.plist */,
+			);
+			path = "Electricity Maps Widgets";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -110,15 +187,34 @@
 				504EC3011FED79650016851F /* Frameworks */,
 				504EC3021FED79650016851F /* Resources */,
 				9592DBEFFC6D2A0C8D5DEB22 /* [CP] Embed Pods Frameworks */,
+				F7A1E1062AFE2612000D8BB0 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F7DF64062AFE7E320012D585 /* PBXTargetDependency */,
 			);
 			name = "Electricity Maps";
 			productName = App;
 			productReference = 504EC3041FED79650016851F /* Electricity Maps.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F7DF63F62AFE7E2F0012D585 /* Electricity Maps WidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7DF640A2AFE7E320012D585 /* Build configuration list for PBXNativeTarget "Electricity Maps WidgetsExtension" */;
+			buildPhases = (
+				F7DF63F32AFE7E2F0012D585 /* Sources */,
+				F7DF63F42AFE7E2F0012D585 /* Frameworks */,
+				F7DF63F52AFE7E2F0012D585 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Electricity Maps WidgetsExtension";
+			productName = "Electricity Maps WidgetsExtension";
+			productReference = F7DF63F72AFE7E2F0012D585 /* Electricity Maps WidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -126,13 +222,16 @@
 		504EC2FC1FED79650016851F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 0920;
 				TargetAttributes = {
 					504EC3031FED79650016851F = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
+					};
+					F7DF63F62AFE7E2F0012D585 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -150,6 +249,7 @@
 			projectRoot = "";
 			targets = (
 				504EC3031FED79650016851F /* Electricity Maps */,
+				F7DF63F62AFE7E2F0012D585 /* Electricity Maps WidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -165,6 +265,14 @@
 				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
 				504EC30D1FED79650016851F /* Main.storyboard in Resources */,
 				2FAD9763203C412B000D30F8 /* config.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7DF63F52AFE7E2F0012D585 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7DF64012AFE7E320012D585 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,10 +320,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
+				F7DF64042AFE7E320012D585 /* Electricity_Maps_Widgets.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7DF63F32AFE7E2F0012D585 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7DF63FE2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift in Sources */,
+				F7BC622E2AFECEB90003B125 /* colors.swift in Sources */,
+				F7DF63FC2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift in Sources */,
+				F7DF640F2AFE7EA80012D585 /* api.swift in Sources */,
+				F7DF64122AFE7F0C0012D585 /* View.swift in Sources */,
+				F7DF64032AFE7E320012D585 /* Electricity_Maps_Widgets.intentdefinition in Sources */,
+				F7BC62302AFED06D0003B125 /* utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F7DF64062AFE7E320012D585 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7DF63F62AFE7E2F0012D585 /* Electricity Maps WidgetsExtension */;
+			targetProxy = F7DF64052AFE7E320012D585 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		504EC30B1FED79650016851F /* Main.storyboard */ = {
@@ -349,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8E4050F78F1208047BE6397 /* Pods-Electricity Maps.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.146.1;
@@ -378,6 +510,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1DE171A91619E10782A12CC6 /* Pods-Electricity Maps.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.146.1;
@@ -402,6 +535,76 @@
 			};
 			name = Release;
 		};
+		F7DF64082AFE7E320012D585 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8E4050F78F1208047BE6397 /* Pods-Electricity Maps.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MP3LBAUPG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Electricity Maps Widgets/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Electricity Maps Widgets";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tmrow.electricitymap.Electricity-Maps-Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F7DF64092AFE7E320012D585 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MP3LBAUPG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Electricity Maps Widgets/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Electricity Maps Widgets";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tmrow.electricitymap.Electricity-Maps-Widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -419,6 +622,15 @@
 			buildConfigurations = (
 				504EC3171FED79650016851F /* Debug */,
 				504EC3181FED79650016851F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7DF640A2AFE7E320012D585 /* Build configuration list for PBXNativeTarget "Electricity Maps WidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7DF64082AFE7E320012D585 /* Debug */,
+				F7DF64092AFE7E320012D585 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
