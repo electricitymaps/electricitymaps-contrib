@@ -9,8 +9,8 @@ import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
 import mapboxgl from 'mapbox-gl';
 import maplibregl from 'maplibre-gl';
-import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
-import { Layer, Map, MapRef, Source } from 'react-map-gl';
+import { ReactElement, useEffect, useRef, useState } from 'react';
+import { Map, MapRef } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
@@ -21,6 +21,7 @@ import {
 } from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
+import BackgroundLayer from './map-layers/BackgroundLayer';
 import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
@@ -329,11 +330,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       style={{ minWidth: '100vw', height: '100vh' }}
       mapStyle={MAP_STYLE as mapboxgl.Style}
     >
-      <Layer
-        id="ocean"
-        type="background"
-        paint={{ 'background-color': theme.oceanColor }}
-      />
+      <BackgroundLayer />
       <ZonesLayer />
       <StatesLayer />
       <CustomLayer>
