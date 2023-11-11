@@ -9,4 +9,8 @@ contributors:
   - MuffinCompiler
   - VIKTORVAV99
 
+parsers:
+  price: VN.fetch_price
+  consumption: VN.fetch_consumption
+
 timezone: Asia/Ho_Chi_Minh
