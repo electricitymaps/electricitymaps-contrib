@@ -13,13 +13,13 @@ capacity:
   solar: 285
   wind: 1430
 contributors:
-  - brandongalbraith
   - corradio
   - systemcatch
   - brunolajoie
   - alixunderplatz
   - nessie2013
   - msaynevirta
+  - brandongalbraith
 disclaimer: The complete generation mix is unavailable. It is therefore estimated by Electricity Maps.
 emissionFactors:
   direct:
