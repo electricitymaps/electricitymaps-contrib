@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 
 # The arrow library is used to handle datetimes
 import arrow
-import pytz
+from zoneinfo import ZoneInfo
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
@@ -15,7 +15,7 @@ from electricitymap.contrib.lib.types import ZoneKey
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
 
-TIMEZONE = pytz.timezone("Europe/Madrid")
+TIMEZONE = ZoneInfo("Europe/Madrid")
 
 # Map each exchange to the ID used in the API
 EXCHANGE_ID_MAP = {

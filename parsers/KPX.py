@@ -10,7 +10,7 @@ from logging import Logger, getLogger
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-from pytz import timezone
+from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -23,7 +23,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-TIMEZONE = timezone("Asia/Seoul")
+TIMEZONE = ZoneInfo("Asia/Seoul")
 KR_CURRENCY = "KRW"
 KR_SOURCE = "new.kpx.or.kr"
 REAL_TIME_URL = "https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000"

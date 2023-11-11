@@ -7,7 +7,7 @@ from typing import Any
 
 import arrow
 import pandas as pd
-import pytz
+from zoneinfo import ZoneInfo
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
@@ -24,7 +24,7 @@ from parsers.lib.exceptions import ParserException
 
 HISTORICAL_LOAD_REPORTS = "https://www.bchydro.com/content/dam/BCHydro/customer-portal/documents/corporate/suppliers/transmission-system/balancing_authority_load_data/Historical%20Transmission%20Data/BalancingAuthorityLoad{0}.xls"
 EXCHANGES_URL = "https://www.bchydro.com/bctc/system_cms/actual_flow/latest_values.txt"
-TIMEZONE = pytz.timezone(ZONES_CONFIG.get(ZoneKey("CA-BC")).get("timezone"))
+TIMEZONE = ZoneInfo(ZONES_CONFIG.get(ZoneKey("CA-BC"), {}).get("timezone"))
 SOURCE = "bchydro.com"
 PUBLICATION_DELAY = timedelta(days=31)
 

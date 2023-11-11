@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 
-from pytz import timezone
+from zoneinfo import ZoneInfo
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
@@ -136,7 +136,7 @@ def get_datetime(date: str, hour: int) -> datetime:
     Returns a datetime object with the given date and hour
     """
     return datetime.strptime(date, "%m/%d/%Y").replace(
-        tzinfo=timezone("America/Tegucigalpa")
+        tzinfo=ZoneInfo("America/Tegucigalpa")
     ) + timedelta(hours=hour + 1)
 
 

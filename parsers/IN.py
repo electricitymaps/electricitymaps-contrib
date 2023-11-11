@@ -3,7 +3,7 @@
 """Parser for all of India"""
 
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
 
@@ -11,7 +11,6 @@ import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-from pytz import UTC
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -426,7 +425,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     if target_datetime is None:
-        target_datetime = get_start_of_day(dt=UTC.localize(datetime.now()))
+        target_datetime = get_start_of_day(dt=datetime.now(timezone.utc))
     else:
         target_datetime = get_start_of_day(dt=target_datetime)
         if target_datetime < START_DATE_RENEWABLE_DATA:

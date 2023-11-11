@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from unittest.mock import patch
 
 import freezegun
-import pytz
+from zoneinfo import ZoneInfo
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
@@ -346,12 +346,12 @@ class TestProductionBreakdown(unittest.TestCase):
         mix = ProductionMix(wind=10)
         breakdown = ProductionBreakdown(
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 1, 1, 5, tzinfo=pytz.timezone("Asia/Tokyo")),
+            datetime=datetime(2023, 1, 1, 5, tzinfo=ZoneInfo("Asia/Tokyo")),
             production=mix,
             source="trust.me",
         )
         assert breakdown.datetime == datetime(
-            2023, 1, 1, 5, tzinfo=pytz.timezone("Asia/Tokyo")
+            2023, 1, 1, 5, tzinfo=ZoneInfo("Asia/Tokyo")
         )
 
     def test_static_create_logs_error(self):

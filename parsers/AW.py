@@ -4,7 +4,7 @@ from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
 
-from pytz import timezone
+from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
@@ -19,7 +19,7 @@ FUEL_MAPPING = {
     "TotalSolar": "solar",
     "total_bio_gas": "biomass",
 }
-TIMEZONE = timezone("America/Aruba")
+TIMEZONE = ZoneInfo("America/Aruba")
 PRODUCTION_URL = (
     "https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json"
 )

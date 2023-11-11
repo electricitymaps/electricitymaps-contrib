@@ -11,13 +11,12 @@ https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide
 """
 
 import re
-from datetime import date, datetime, time, timedelta
+from datetime import date, datetime, time, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
 
 import arrow
 import pandas as pd
-import pytz
 from requests import Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
@@ -116,7 +115,7 @@ def query_additional_eso_data(
 ) -> list[dict]:
     begin = (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d")
     end = (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d")
-    if target_datetime > (datetime.now(tz=pytz.UTC) - timedelta(days=30)):
+    if target_datetime > (datetime.now(tz=timezone.utc) - timedelta(days=30)):
         report_id = ESO_DEMAND_DATA_UPDATE_ID
     else:
         index = _create_eso_historical_demand_index(session)
