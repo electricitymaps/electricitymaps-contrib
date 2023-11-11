@@ -66,9 +66,8 @@ def fetch_production(
     )
     # We're using Fossil data to get timestamp in correct time zone
     local_date_time = datetime.strptime(
-            top_data["total_bio_gas"]["timestamp"], "%Y-%m-%d %H:%M:%S.%f"
-        ).replace(tzinfo=TIMEZONE)
-
+        top_data["total_bio_gas"]["timestamp"], "%Y-%m-%d %H:%M:%S.%f"
+    ).replace(tzinfo=TIMEZONE)
 
     production_list = ProductionBreakdownList(logger)
     production_list.append(

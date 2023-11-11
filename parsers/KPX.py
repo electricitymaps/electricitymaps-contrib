@@ -80,8 +80,9 @@ def fetch_consumption(
 
     consumption_date_list = soup.find("p", {"class": "info_top"}).text.split(" ")[:2]
     consumption_date_list[0] = consumption_date_list[0].replace(".", "-").split("(")[0]
-    consumption_date = datetime.strptime(" ".join(consumption_date_list), "%Y-%m-%d %H:%M").replace(tzinfo=TIMEZONE)
-
+    consumption_date = datetime.strptime(
+        " ".join(consumption_date_list), "%Y-%m-%d %H:%M"
+    ).replace(tzinfo=TIMEZONE)
 
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
@@ -175,7 +176,9 @@ def parse_chart_prod_data(
         if item["regDate"] == "0":
             break
 
-        dt = datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M").replace(tzinfo=TIMEZONE)
+        dt = datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M").replace(
+            tzinfo=TIMEZONE
+        )
 
         production_mix = ProductionMix()
         storage_mix = StorageMix()
