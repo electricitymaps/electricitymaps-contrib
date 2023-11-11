@@ -148,7 +148,7 @@ def parse_consumption(
             timestamp = timestamp + timedelta(days=1)
         data_point = {
             "zoneKey": "AU-NT",
-            "datetime": AUSTRALIA_TZ.localize(timestamp),
+            "datetime": timestamp.replace(tzinfo=AUSTRALIA_TZ),
             "source": "ntesmo.com.au",
         }
         if price:

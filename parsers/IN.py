@@ -6,6 +6,7 @@
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import arrow
 import numpy as np
@@ -21,7 +22,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
-IN_TZ = "Asia/Kolkata"
+IN_TZ = ZoneInfo("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = arrow.get("2020-12-17", tzinfo=IN_TZ).datetime
 CONVERSION_GWH_MW = 0.024
 GENERATION_MAPPING = {
@@ -185,7 +186,7 @@ def fetch_live_production(
 
     data = {
         "zoneKey": zone_key,
-        "datetime": IN_TZ.localize(datetime.now()),
+        "datetime": datetime.now(tz=IN_TZ),
         "production": mapped_production,
         "storage": {},
         "source": "meritindia.in",
