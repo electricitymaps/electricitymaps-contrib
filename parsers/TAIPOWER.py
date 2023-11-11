@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -40,7 +40,7 @@ def fetch_production(
     dt = data[""]
     prodData = data["dataset"]
 
-    dt = TIMEZONE.localize(datetime.strptime(dt, "%Y-%m-%d %H:%M"))
+    dt = datetime.strptime(dt, "%Y-%m-%d %H:%M").replace(tzinfo=TIMEZONE)
 
     objData = pd.DataFrame(prodData)
 
