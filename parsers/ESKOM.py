@@ -2,9 +2,9 @@ import csv
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
+from zoneinfo import ZoneInfo
 
 from numpy import nan
-from zoneinfo import ZoneInfo
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
@@ -88,9 +88,7 @@ def fetch_production(
         if row[0] == "Date_Time_Hour_Beginning":
             continue
 
-        returned_datetime = datetime.fromisoformat(row[0]).replace(
-            tzinfo=TIMEZONE
-        )
+        returned_datetime = datetime.fromisoformat(row[0]).replace(tzinfo=TIMEZONE)
 
         returned_production = row[1:]  # First column is datetime
 

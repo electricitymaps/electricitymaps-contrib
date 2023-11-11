@@ -15,7 +15,6 @@ import re
 from datetime import datetime
 from logging import Logger, getLogger
 from sys import stderr
-
 from zoneinfo import ZoneInfo
 
 from requests import Session

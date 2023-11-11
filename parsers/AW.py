@@ -3,8 +3,8 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
-
 from zoneinfo import ZoneInfo
+
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList

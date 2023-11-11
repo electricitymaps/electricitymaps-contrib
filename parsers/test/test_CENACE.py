@@ -1,8 +1,8 @@
 from datetime import datetime
 from unittest import TestCase
+from zoneinfo import ZoneInfo
 
 import freezegun
-from zoneinfo import ZoneInfo
 from requests import Session
 from requests_mock import ANY, Adapter
 

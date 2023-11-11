@@ -3,8 +3,8 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
-
 from zoneinfo import ZoneInfo
+
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey

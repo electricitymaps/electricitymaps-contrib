@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from re import findall
+from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
-from zoneinfo import ZoneInfo
 from requests import Response, Session
 
 from .lib.exceptions import ParserException

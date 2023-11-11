@@ -3,10 +3,10 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from urllib.parse import urlencode
+from zoneinfo import ZoneInfo
 
 # The arrow library is used to handle datetimes
 import arrow
-from zoneinfo import ZoneInfo
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList

@@ -3,9 +3,9 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import arrow
-from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup, Tag
 from requests import Response, Session
 

@@ -8,7 +8,6 @@ from zoneinfo import ZoneInfo
 import arrow
 import pandas as pd
 
-
 # BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup
 from requests import Session

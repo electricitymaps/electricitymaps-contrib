@@ -6,11 +6,11 @@ import pprint
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey

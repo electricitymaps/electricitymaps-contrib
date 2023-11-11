@@ -6,7 +6,6 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import arrow
-
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException

@@ -3,8 +3,8 @@
 
 from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
-
 from zoneinfo import ZoneInfo
+
 from requests import Session
 
 from parsers.lib.config import refetch_frequency

@@ -2,8 +2,8 @@ from csv import reader
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
-
 from zoneinfo import ZoneInfo
+
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException

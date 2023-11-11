@@ -2,10 +2,10 @@ from datetime import datetime
 from logging import Logger, getLogger
 from pprint import pprint
 from typing import Any
+from zoneinfo import ZoneInfo
 
 # The arrow library is used to handle datetimes
 import arrow
-from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (

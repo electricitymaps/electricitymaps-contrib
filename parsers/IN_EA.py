@@ -2,8 +2,8 @@ from collections.abc import Callable
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
-
 from zoneinfo import ZoneInfo
+
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey

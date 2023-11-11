@@ -4,7 +4,6 @@ from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
 import pandas as pd
-
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList

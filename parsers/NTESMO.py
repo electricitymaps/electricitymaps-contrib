@@ -13,7 +13,6 @@ from zoneinfo import ZoneInfo
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-
 from requests import Session
 from requests.adapters import Retry
 

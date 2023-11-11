@@ -4,10 +4,10 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
-from zoneinfo import ZoneInfo
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG

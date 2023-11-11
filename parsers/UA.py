@@ -4,8 +4,8 @@ import http.client
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-
 from zoneinfo import ZoneInfo
+
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList

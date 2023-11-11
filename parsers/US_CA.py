@@ -6,7 +6,6 @@ from logging import Logger, getLogger
 import arrow
 import numpy as np
 import pandas
-
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
