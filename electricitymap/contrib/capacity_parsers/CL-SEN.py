@@ -1,5 +1,5 @@
 from datetime import datetime
-from logging import getLogger
+from logging import INFO, basicConfig, getLogger
 from typing import Dict, Union
 
 import pandas as pd
@@ -9,6 +9,7 @@ from requests import Response, Session
 from electricitymap.contrib.config import ZoneKey
 
 logger = getLogger(__name__)
+basicConfig(level=INFO)
 
 # Mapping conventional thermal as unknown as the production parser data is aggregated
 MODE_MAPPING = {
