@@ -167,13 +167,15 @@
   "misc": {
     "maintitle": "Sanntids CO₂-utslipp fra strømforbruket",
     "oops": "Ka farsken! Vi får ikke kontakt med serverne. Vi prøver igjen om noen sekund!",
-    "newversion": "En ny version er tilgjengelig! Trykk <a onClick=\"location.reload(true);\">her for å oppdatere</a>.",
+    "newversion": "En ny version er tilgjengelig!",
     "webgl-not-supported": "Kartet vises ikke riktig fordi nettleseren din mangler støtte for WebGL.",
     "retrynow": "Prøv igjen nå",
     "database-ad": "På utkikk etter historiske data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">undersøk vår database</a>",
     "api-ad": "Ønsker du ferske data til din tjeneste eller app? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Prøv APIet vårt.</a>",
     "legend": "Forklaring",
-    "faq": "Ofte stilte spørsmål"
+    "faq": "Ofte stilte spørsmål",
+    "dismiss": "avskjedige",
+    "reload": "last på nytt"
   },
   "theMap": {
     "groupName": "Kartet",
