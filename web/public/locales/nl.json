@@ -91,8 +91,8 @@
     "api-ad": "Interesse in live toegang in je app of op je toestel? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Bekijk de mogelijkheden van onze API!</a>",
     "legend": "Legenda",
     "faq": "Veelgestelde vragen",
-    "dismiss": "Afwijzen",
-    "reload": "Herladen"
+    "dismiss": "Negeer",
+    "reload": "Opnieuw laden"
   },
   "wind": "wind",
   "solar": "zon",

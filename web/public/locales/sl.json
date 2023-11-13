@@ -166,8 +166,8 @@
     "faq": "Pogosto postavljena vprašanja",
     "privacyPolicy": "Politika zasebnosti",
     "legalNotice": "Pravno obvestilo",
-    "dismiss": "Odpustiti",
-    "reload": "Ponovno naloži"
+    "dismiss": "Opusti",
+    "reload": "Znova naloži"
   },
   "wind": "veter",
   "windDataError": "Podatki o vetrni energiji trenutno niso na voljo",

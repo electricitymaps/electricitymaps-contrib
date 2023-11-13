@@ -177,7 +177,7 @@
     "legend": "Legende",
     "faq": "Häufig gestellte Fragen",
     "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt.",
-    "dismiss": "Zurückweisen",
+    "dismiss": "Schließen",
     "reload": "Neu laden"
   },
   "wind": "Windenergie",

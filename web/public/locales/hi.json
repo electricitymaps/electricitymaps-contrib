@@ -70,8 +70,8 @@
   },
   "misc": {
     "newversion": "एक नया संस्करण उपलब्ध है!",
-    "dismiss": "नकार देना",
-    "reload": "पुनः लोड करें"
+    "dismiss": "ख़ारिज करें",
+    "reload": "रीलोड करें"
   },
   "country-history": {},
   "zoneShortName": {}

@@ -116,7 +116,7 @@
     "api-ad": "Haluatko live-tietoja sovelluksessasi tai laitteessasi? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Kokeile meidän API:ta!</a>",
     "legend": "Selite",
     "faq": "Usein Kysytyt Kysymykset",
-    "dismiss": "Hylätä",
+    "dismiss": "Ohita",
     "reload": "Lataa uudelleen"
   },
   "wind": "tuuli",

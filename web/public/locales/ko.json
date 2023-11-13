@@ -112,8 +112,8 @@
     "api-ad": "당신의 앱이나 기기에 라이브 데이터가 필요한가요? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">저희 API를 체험해보세요!</a>",
     "legend": "범주",
     "faq": "자주 묻는 질문",
-    "dismiss": "해고하다",
-    "reload": "다시 장전하다"
+    "dismiss": "닫기",
+    "reload": "다시 로드"
   },
   "wind": "바람",
   "solar": "태양",

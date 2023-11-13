@@ -112,8 +112,8 @@
     "api-ad": "Ingin mendapatkan data langsung di aplikasi atau perangkat Anda? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Coba API kami!</a>",
     "legend": "Legenda",
     "faq": "Pertanyaan yang Sering Diajukan",
-    "dismiss": "Memberhentikan",
-    "reload": "Memuat ulang"
+    "dismiss": "Tutup",
+    "reload": "Muat Ulang"
   },
   "wind": "angin",
   "solar": "Tenaga matahari",

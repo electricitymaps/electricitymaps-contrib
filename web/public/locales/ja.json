@@ -119,8 +119,8 @@
     "api-ad": "あなたのアプリやデバイスにデータを取り込みたいですか? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">私たちのAPIをお試しください!</a>",
     "legend": "Legend",
     "faq": "よくある質問",
-    "dismiss": "却下する",
-    "realod": "リロード"
+    "dismiss": "閉じる",
+    "realod": "再読み込み"
   },
   "wind": "風力",
   "solar": "太陽光",
