@@ -174,7 +174,7 @@
     "api-ad": "Ønsker du ferske data til din tjeneste eller app? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Prøv APIet vårt.</a>",
     "legend": "Forklaring",
     "faq": "Ofte stilte spørsmål",
-    "dismiss": "Avskjedige",
+    "dismiss": "Avbryt",
     "reload": "Last på nytt"
   },
   "theMap": {
