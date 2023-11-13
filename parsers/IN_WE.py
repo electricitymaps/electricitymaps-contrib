@@ -5,11 +5,11 @@ import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
 from requests import Response, Session
-from zoneinfo import ZoneInfo
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
