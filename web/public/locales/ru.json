@@ -109,8 +109,8 @@
     "api-ad": "Хотите получать данные в реальном времени для своего приложения или устройства? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Посетите наш API!</a>",
     "legend": "Легенда",
     "faq": "Часто Задаваемые Вопросы",
-    "dismiss": "увольнять",
-    "reload": "перезагрузить"
+    "dismiss": "Увольнять",
+    "reload": "Перезагрузить"
   },
   "wind": "ВЭС",
   "solar": "СЭС",

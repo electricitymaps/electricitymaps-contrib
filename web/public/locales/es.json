@@ -165,8 +165,8 @@
     "faq": "Preguntas frecuentes",
     "privacyPolicy": "Política de privacidad",
     "legalNotice": "Aviso legal",
-    "dismiss": "despedir",
-    "reload": "recargar"
+    "dismiss": "Despedir",
+    "reload": "Recargar"
   },
   "wind": "energía eólica",
   "windDataError": "Los datos para la energía eólica actualmente no están disponibles",

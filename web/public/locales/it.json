@@ -191,8 +191,8 @@
     "faq": "Domande poste frequentemente",
     "privacyPolicy": "Politica Privacy",
     "legalNotice": "Nota Legale",
-    "dismiss": "congedare",
-    "reload": "ricaricare"
+    "dismiss": "Congedare",
+    "reload": "Ricaricare"
   },
   "wind": "Eolico",
   "windDataError": "Dati sull'eolico attualmente non disponibili",

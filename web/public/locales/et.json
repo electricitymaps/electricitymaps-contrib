@@ -121,8 +121,8 @@
     "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
     "legend": "Legend",
     "faq": "Korduma kippuvad küsimused",
-    "dismiss": "vabaks laskma",
-    "reload": "uuesti laadima"
+    "dismiss": "Vabaks laskma",
+    "reload": "Uuesti laadima"
   },
   "wind": "tuul",
   "solar": "päike",

@@ -108,8 +108,8 @@
     "api-ad": "Chcete mať živé dáta vo svojej aplikácii alebo na svojom zariadení? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vyskúšajte naše API!</a>]",
     "legend": "Legenda",
     "faq": "Často kladené otázky",
-    "dismiss": "prepustiť",
-    "reload": "znovu načítať"
+    "dismiss": "Prepustiť",
+    "reload": "Znovu načítať"
   },
   "wind": "veterná en.",
   "solar": "solárna en.",

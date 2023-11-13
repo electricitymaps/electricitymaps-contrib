@@ -133,8 +133,8 @@
     "legend": "Legenda",
     "faq": "Najczęściej Zadawane Pytania",
     "webgl-not-supported": "Nie można wyrenderować mapy, ponieważ wykorzystywana przeglądarka nie obsługuje WebGL.",
-    "dismiss": "odrzucać",
-    "reload": "przeładować"
+    "dismiss": "Odrzucać",
+    "reload": "Przeładować"
   },
   "theMap": {
     "groupName": "Mapa",

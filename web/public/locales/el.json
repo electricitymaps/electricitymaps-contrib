@@ -119,8 +119,8 @@
     "api-ad": "Θέλετε ζωντανά δεδομένα στην εφαρμογή ή στη συσκευή σας; <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Δοκιμάστε το API μας!</a>",
     "legend": "Yπόμνημα",
     "faq": "Συχνές Ερωτήσεις",
-    "dismiss": "απολύω",
-    "reload": "γεμίζω πάλι"
+    "dismiss": "Απολύω",
+    "reload": "Γεμίζω πάλι"
   },
   "wind": "αιολική",
   "solar": "ηλιακή",

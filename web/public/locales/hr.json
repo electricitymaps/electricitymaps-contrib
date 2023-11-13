@@ -112,8 +112,8 @@
     "api-ad": "Želiš podatke uživo za svoju aplikaciju ili uređaj? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Isprobaj naš API!</a>",
     "legend": "Legenda",
     "faq": "Često postavljana pitanja",
-    "dismiss": "odbaciti",
-    "reload": "ponovno učitati"
+    "dismiss": "Odbaciti",
+    "reload": "Ponovno učitati"
   },
   "wind": "vjetar",
   "solar": "solarna",
