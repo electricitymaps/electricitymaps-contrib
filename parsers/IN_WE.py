@@ -4,11 +4,12 @@
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Optional
+from typing import Any
 
 import arrow
 import pandas as pd
 from requests import Response, Session
+from zoneinfo import ZoneInfo
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
@@ -35,7 +36,7 @@ KIND_MAPPING = {
     "consumption": {"url": CONSUMPTION_URL, "datetime_column": "current_datetime"},
 }
 
-TZ = "Asia/Kolkata"
+TZ = ZoneInfo("Asia/Kolkata")
 
 
 def get_date_range(dt: datetime):
@@ -96,7 +97,7 @@ def filter_raw_data(
 
 def format_exchanges_data(
     data: dict, zone_key1: str, zone_key2: str, target_datetime: datetime
-) -> Optional[float]:
+) -> float | None:
     """format exchanges data:
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour"""
@@ -134,7 +135,7 @@ def format_exchanges_data(
 
 def format_consumption_data(
     data: dict, zone_key: str, target_datetime: datetime
-) -> Optional[float]:
+) -> float | None:
     """format consumption data:
     - filters out correct datetimes (source data is 12 hour format)
     - average all data points in the target_datetime hour"""
@@ -173,7 +174,7 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     if target_datetime is None:
-        target_datetime = arrow.now(TZ).datetime
+        target_datetime = datetime.now(TZ)
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     data = fetch_data(
@@ -208,7 +209,7 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     if target_datetime is None:
-        target_datetime = arrow.now(TZ).datetime
+        target_datetime = datetime.now(TZ)
     data = fetch_data(
         kind="consumption",
         session=session,
