@@ -84,12 +84,6 @@ parsers = [
     "pycountry"
 ]
 
-
-validators = [
-    "arrow",
-    "pandas"
-]
-
 scripts = [
     "xmltodict"
 ]
