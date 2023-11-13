@@ -1,3 +1,5 @@
+import { MapTheme } from 'types';
+
 const defaultCo2Scale = {
   steps: [0, 150, 600, 800, 1100, 1500],
   colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02', '#000'],
@@ -8,23 +10,11 @@ const colorblindCo2Scale = {
   colors: ['#FFFFB0', '#E3BF66', '#BB833C', '#8B4D2B', '#4E241F', '#000'],
 };
 
-interface ThemeColor {
-  co2Scale: {
-    steps: number[];
-    colors: string[];
-  };
-  oceanColor: string;
-  strokeWidth: number;
-  strokeColor: string;
-  clickableFill: string;
-  nonClickableFill: string;
-}
-
 interface Colors {
-  colorblindDark: ThemeColor;
-  dark: ThemeColor;
-  colorblindBright: ThemeColor;
-  bright: ThemeColor;
+  colorblindDark: MapTheme;
+  dark: MapTheme;
+  colorblindBright: MapTheme;
+  bright: MapTheme;
 }
 export const colors: Colors = {
   colorblindDark: {
@@ -33,6 +23,7 @@ export const colors: Colors = {
     strokeWidth: 0.15,
     strokeColor: '#6D6D6D',
     clickableFill: '#7A878D',
+    stateBorderColor: '#d1d5db',
     nonClickableFill: '#7A878D',
   },
   dark: {
@@ -40,6 +31,7 @@ export const colors: Colors = {
     oceanColor: '#343D4C',
     strokeWidth: 0.15,
     strokeColor: '#6D6D6D',
+    stateBorderColor: '#d1d5db',
     clickableFill: '#7A878D',
     nonClickableFill: '#7A878D',
   },
@@ -48,6 +40,7 @@ export const colors: Colors = {
     oceanColor: '#FAFAFA',
     strokeWidth: 0.15,
     strokeColor: '#FAFAFA',
+    stateBorderColor: '#d1d5db',
     clickableFill: '#D4D9DE',
     nonClickableFill: '#D4D9DE',
   },
@@ -56,6 +49,7 @@ export const colors: Colors = {
     oceanColor: '#FAFAFA',
     strokeWidth: 0.15,
     strokeColor: '#FAFAFA',
+    stateBorderColor: '#d1d5db',
     clickableFill: '#D4D9DE',
     nonClickableFill: '#D4D9DE',
   },
