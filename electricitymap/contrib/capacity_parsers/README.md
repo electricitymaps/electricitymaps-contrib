@@ -112,11 +112,11 @@ For some zones, we have developed capacity parsers which collect the data automa
 The update of capacity configurations can be done in the `contrib` repo using `poetry run capacity_parser`.
 
 The `capacity_parser` function has the following arguments:
-| Argument          | Description                                                                                                                                                                      |
+| Argument | Description |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| --zone            | A specific zone (e.g. DK-DK1)                                                                                                                                                    |
-| --source          | A group of zones. The capacity update will run for all the zones that have capacity from this data source. The groups of zones are: EIA, EMBER, ENTSOE, IRENA, ONS, OPENNEM, REE |
-| --target_datetime | Date for the capacity data (e.g. "2023-01-01")                                                                                                                                   |
+| --zone | A specific zone (e.g. DK-DK1) |
+| --source | A group of zones. The capacity update will run for all the zones that have capacity from this data source. The groups of zones are: EIA, EMBER, ENTSOE, IRENA, ONS, OPENNEM, REE |
+| --target_datetime | Date for the capacity data (e.g. "2023-01-01") |
 
 Here is a list of examples:
 
@@ -128,14 +128,11 @@ poetry run capacity_parser --zone DK-DK1 --target_datetime "2023-01-01"
 poetry run capacity_parser --source EIA --target_datetime "2023-06-01"
 ```
 
-
 The following zones can be updated with a parser are listed on our wiki page [Capacity update process](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Capacity-update-process)
-
 
 ### The zone capacity is updated manually <a name="manual_update"></a>
 
 [(back to top)](#top)
-
 
 For more information on manual capacity updates, please check our wiki page [Manual capacity updates](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Manual-capacity-updates).
 
