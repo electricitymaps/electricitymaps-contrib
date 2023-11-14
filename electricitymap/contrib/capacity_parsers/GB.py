@@ -31,7 +31,8 @@ def fetch_production_capacity(
     url = f"https://www.bmreports.com/bmrs/?q=ajax/year/B1410/{target_datetime.year}/"
     r: Response = session.get(url)
 
-    if r.status_code == 200:
+    if not r.ok:
+       raise
         soup = BeautifulSoup(r.text, "lxml")
         items = soup.find_all("item")
         capacity = {}
