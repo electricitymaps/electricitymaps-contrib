@@ -14,7 +14,7 @@ export default function StatesLayer() {
     'line-dasharray': [1, 1],
   } as mapboxgl.LinePaint;
 
-  const stateLabelLayour = {
+  const stateLabelLayout = {
     'symbol-placement': 'point',
     'text-size': 12,
     'text-letter-spacing': 0.12,
@@ -45,7 +45,7 @@ export default function StatesLayer() {
         source="states"
         layout={{
           'text-field': ['get', 'stateName'],
-          ...stateLabelLayour,
+          ...stateLabelLayout,
         }}
         paint={stateLabelPaint}
         minzoom={4.5}
@@ -56,7 +56,7 @@ export default function StatesLayer() {
         source="states"
         layout={{
           'text-field': ['get', 'stateId'],
-          ...stateLabelLayour,
+          ...stateLabelLayout,
         }}
         paint={stateLabelPaint}
         maxzoom={4.5}
