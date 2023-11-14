@@ -3,10 +3,10 @@
 import io
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
-import pytz
 
 # BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup
@@ -16,7 +16,7 @@ from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-UY_TZ = "America/Montevideo"
+UY_TZ = ZoneInfo("America/Montevideo")
 
 ADME_URL = "https://pronos.adme.com.uy/gpf.php?fecha_ini="
 PRODUCTION_MODE_MAPPING = {
@@ -132,7 +132,7 @@ def fetch_production(
                 production_dict[mode] = round(row.get("value"), 3)
         data_point = {
             "zoneKey": "UY",
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
+            "datetime": arrow.get(dt).datetime.replace(tzinfo=UY_TZ),
             "production": production_dict,
             "source": "pronos.adme.com.uy",
         }
@@ -166,7 +166,7 @@ def fetch_consumption(
     for dt in consumption:
         data_point = {
             "zoneKey": "UY",
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
+            "datetime": arrow.get(dt).datetime.replace(tzinfo=UY_TZ),
             "consumption": round(consumption[dt]["consumption"], 3),
             "source": "pronos.adme.com.uy",
         }
@@ -207,7 +207,7 @@ def fetch_exchange(
         data_point = {
             "netFlow": round(exchange[dt][sortedZoneKeys], 3),
             "sortedZoneKeys": sortedZoneKeys,
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
+            "datetime": arrow.get(dt).datetime.replace(tzinfo=UY_TZ),
             "source": "pronos.adme.com.uy",
         }
         all_data_points += [data_point]

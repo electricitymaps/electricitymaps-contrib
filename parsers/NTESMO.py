@@ -8,18 +8,18 @@ from collections.abc import Callable
 from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import TypedDict
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-from pytz import timezone
 from requests import Session
 from requests.adapters import Retry
 
 from parsers.lib.config import refetch_frequency, retry_policy
 from parsers.lib.exceptions import ParserException
 
-AUSTRALIA_TZ = timezone("Australia/Darwin")
+AUSTRALIA_TZ = ZoneInfo("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
@@ -148,7 +148,7 @@ def parse_consumption(
             timestamp = timestamp + timedelta(days=1)
         data_point = {
             "zoneKey": "AU-NT",
-            "datetime": AUSTRALIA_TZ.localize(timestamp),
+            "datetime": timestamp.replace(tzinfo=AUSTRALIA_TZ),
             "source": "ntesmo.com.au",
         }
         if price:
