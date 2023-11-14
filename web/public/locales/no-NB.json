@@ -14,11 +14,11 @@
   },
   "aggregateButtons": {
     "country": "land",
-    "zone": "prisområde"
+    "zone": "sone"
   },
   "aria": {
     "label": {
-      "changeTheme": "Endre utseende",
+      "changeTheme": "Endre visningstema",
       "colorBlindMode": "Fargeblind-tilpasset",
       "hideSidePanel": "Skjul sidepanel",
       "selectLanguage": "Velg språk",
@@ -27,8 +27,8 @@
       "windLayer": "Vind-lag"
     }
   },
-  "battery storage": "Batterilagring",
-  "biomass": "Biomasse",
+  "battery storage": "batterilagring",
+  "biomass": "biomasse",
   "coal": "kull",
   "country-history": {
     "carbonintensity": {
@@ -61,7 +61,7 @@
   "country-panel": {
     "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføy eller rediger kilde</a>",
     "aggregated": "aggregert",
-    "aggregatedTooltip": "Data for dette prisområdet er aggregert fra historiske verdier for hver time",
+    "aggregatedTooltip": "Data for denne sonen er aggregert fra historiske verdier for hver time",
     "aggregationDisabled": "Data er ikke tilgjengelig for det valgte tidsrom på grunn av manglende detaljnivå på tidsserie. Velg en lengre tidsperiode.",
     "by-source": {
       "electricity-consumption": "Elektrisitetsforbruk etter kilde",
@@ -81,7 +81,7 @@
     "electricityproduction": "Strømproduksjon",
     "emissions": "CO₂-utslipp",
     "estimated": "anslag",
-    "estimatedTooltip": "Sanntidsdata for denne prisområden er estimert ved hjelp fra kilden basert på antagelser i modellen.",
+    "estimatedTooltip": "Sanntidsdata for denne sonen er estimert fra kilden basert på antagelser i modellen.",
     "exchangesAreMissing": "Utveksling er tatt hensyn til i kalkulasjonene en vises for tiden ikke. Les mer om våre historiske aggregeringer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
     "helpfrom": "med hjelp fra",
     "helpUs": "Hjelp oss å finne årsaken til problemet ved å undersøke <a href=\"%s\" target=\"_blank\">loggene</a> eller ta kontakt med datatilbyder.",
@@ -119,11 +119,11 @@
   "gas": "Gass",
   "geothermal": "Jordvarme",
   "hydro": "Vannkraft",
-  "hydro storage": "Vannlagring",
+  "hydro storage": "Pumpekraftverk",
   "info-modal": {
     "feedback-button": "Send tilbakemelding",
     "github-button": "Se på GitHub",
-    "intro-text": "Electricity Map viser sanntidsinnsikt på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av energitransisjonen.",
+    "intro-text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
     "legal-notice": "Juridisk",
     "open-source-text": "Tjenesten er <a href=\"%s\" target=\"_blank\">åpen kildekode</a> (<a href=\"%s\" target=\"_blank\">se datakilder</a>) og utviklet i samarbeid med frivillige.",
     "privacy-policy": "Personvern",
@@ -143,7 +143,7 @@
     "windpotential": "Vindpotensial"
   },
   "mapAreas": {
-    "divideExistingArea-answer": "Gjerne, hvis det finnes egne datakilder for hvert område. Du kan <a href=\"#contribute\" class=\"entry-link\">hjelpe oss med å legge til ytterligere datakilder</a>",
+    "divideExistingArea-answer": "Gjerne. Hvis det finnes egne datakilder for hvert område. Du kan <a href=\"#contribute\" class=\"entry-link\">hjelpe oss med å legge til ytterligere datakilder</a>",
     "divideExistingArea-question": "Kan dere spalte opp mitt område i mindre enheter?",
     "groupName": "Områder på kartet",
     "noData-answer": "Enten fordi datakildene for området ikke er tilgjengelig, eller fordi vi ennå ikke har tilgang til å legge inn datakildene for området. Du kan <a href=\"#contribute\" class=\"entry-link\">hjelpe oss med å legge til datakilder</a>.",
@@ -212,11 +212,11 @@
     },
     "view4": {
       "header": "Bytt mellom forskjellige visninger",
-      "text": "Bytt mellom elektrisitetsproduksjon og -forbruk. Eller bytt mellom inndeling i land eller prisområder for å få innsikt i endringene i energimarkedet slik at du kan gjøre informerte valg for en bærekraftig fremtid."
+      "text": "Bytt mellom elektrisitetsproduksjon og -forbruk. Eller bytt mellom inndeling i land eller soner for å få innsikt i endringene i energimarkedet slik at du kan gjøre informerte valg for en bærekraftig fremtid."
     },
     "view5": {
       "header": "Bytt mellom visning av utslipp og elektrisitet",
-      "text": "Bytt mellom to alternative visninger som viser en prisområde informasjon om enten elektrisitet eller utslipp. Verdiene som vises representerer totalen for den valgte perioden, og informasjonen er sammenlignbar med tallene for produksjon eller forbruk."
+      "text": "Bytt mellom to alternative visninger som enten viser elektrisitet eller utslipp i sonen. Verdiene som vises representerer totalen for den valgte perioden, og informasjonen er sammenlignbar med tallene for produksjon eller forbruk."
     },
     "view6": {
       "header": "Utforsk historiske data",
@@ -255,13 +255,13 @@
   "themeOptions": {
     "dark": "Nattmodus",
     "light": "Dagmodus",
-    "system": "System"
+    "system": "Systeminnstillinger"
   },
   "time-controller": {
     "title": "Vis historiske data"
   },
   "tooltips": {
-    "aggregateInfo": "Bytt mellom prisområde og aggregert visning av land",
+    "aggregateInfo": "Bytt mellom sone og aggregert visning av land",
     "carbonintensity": "CO₂-intensitet",
     "carbonintensityexport": "CO₂-intensitet av eksport",
     "changeTheme": "Skru på nattmodus",
@@ -1445,19 +1445,19 @@
     },
     "SE-SE1": {
       "countryName": "Sverige",
-      "zoneName": "Norra Sverige (Luleå)"
+      "zoneName": "Norra Sverige"
     },
     "SE-SE2": {
       "countryName": "Sverige",
-      "zoneName": "Norra Mellansverige (Sundsvall)"
+      "zoneName": "Norra Mellansverige"
     },
     "SE-SE3": {
       "countryName": "Sverige",
-      "zoneName": "Södra Mellansverige (Stockholm)"
+      "zoneName": "Södra Mellansverige"
     },
     "SE-SE4": {
       "countryName": "Sverige",
-      "zoneName": "Södra Sverige (Malmö)"
+      "zoneName": "Södra Sverige"
     },
     "SG": {
       "zoneName": "Singapore"
@@ -1614,7 +1614,7 @@
     },
     "US-CAR-SCEG": {
       "countryName": "USA",
-      "zoneName": "South Carolina Electric & Gas Company"
+      "zoneName": "South Carolina Electric and Gas Company"
     },
     "US-CAR-YAD": {
       "countryName": "USA",
@@ -1698,7 +1698,7 @@
     },
     "US-MIDA-PJM": {
       "countryName": "USA",
-      "zoneName": "PJM Interconnection, Llc"
+      "zoneName": "PJM Interconnection, LLC"
     },
     "US-MIDW-AECI": {
       "countryName": "USA",
@@ -1738,11 +1738,11 @@
     },
     "US-NW-GRID": {
       "countryName": "USA",
-      "zoneName": "Gridforce Energy Management, Llc"
+      "zoneName": "Gridforce Energy Management, LLC"
     },
     "US-NW-GWA": {
       "countryName": "USA",
-      "zoneName": "Naturener Power Watch, Llc (Gwa)"
+      "zoneName": "Naturener Power Watch, LLC (Gwa)"
     },
     "US-NW-IPCO": {
       "countryName": "USA",
