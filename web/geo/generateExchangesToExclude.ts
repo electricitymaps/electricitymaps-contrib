@@ -8,7 +8,7 @@ const generateExchangesToIgnore = (
   OUT_PATH: string,
   zonesConfig: OptimizedZonesConfig
 ) => {
-  console.info(`Generating new excludedAggregatedExchanges.json...`);
+  console.info(`Generating new excluded_aggregated_exchanges.json...`);
   const countryKeysToExclude = new Set(
     Object.keys(zonesConfig).filter((key) => {
       if ((zonesConfig[key].subZoneNames ?? []).length > 0) {
@@ -51,7 +51,7 @@ const generateExchangesToIgnore = (
   };
   const existingExchanges = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(exchanges) === JSON.stringify(existingExchanges)) {
-    console.info(`No changes to excludedAggregatedExchanges.json`);
+    console.info(`No changes to excluded_aggregated_exchanges.json`);
     return;
   }
 

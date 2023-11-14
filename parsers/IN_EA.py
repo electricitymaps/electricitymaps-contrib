@@ -2,8 +2,8 @@ from collections.abc import Callable
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
-import pytz
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -15,7 +15,7 @@ IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 HOST = "https://app.erldc.in"
 INTERNATIONAL_EXCHANGES_URL = "{proxy}/api/pspreportpsp/Get/pspreport_psp_transnationalexchange/GetByTwoDate?host={host}&firstDate={target_date}&secondDate={target_date}"
 INTERREGIONAL_EXCHANGES_URL = "{proxy}/api/pspreportpsp/Get/pspreport_psp_interregionalexchanges/GetByTwoDate?host={host}&firstDate={target_date}&secondDate={target_date}"
-IN_EA_TZ = pytz.timezone("Asia/Kolkata")
+IN_EA_TZ = ZoneInfo("Asia/Kolkata")
 
 INTERREGIONAL_EXCHANGES = {
     ZoneKey("IN-EA->IN-NO"): "Import/Export between EAST REGION and NORTH REGION",

@@ -7,8 +7,8 @@ import time
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
-import pytz
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -46,7 +46,7 @@ def get_json_data(
     epoch_time = str(int(time.time()))
 
     target_datetime = target_datetime or datetime.now(tz=timezone.utc)
-    target_ne = target_datetime.astimezone(tz=pytz.timezone("America/New_York"))
+    target_ne = target_datetime.astimezone(tz=ZoneInfo("America/New_York"))
     target_ne_day = target_ne.strftime("%m/%d/%Y")
 
     postdata = {
