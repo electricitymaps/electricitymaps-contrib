@@ -15,18 +15,7 @@
 
 ## Context <a name="#context"></a>
 
-In an effort to increase the quality of the data published on our app or API, we have started a whole initiative to enable us to track outliers in the source data.
-
-Over the years, we have noticed that real-time data published by the different data sources can be completely outside the distribution of the historical time-series. These data points are outliers and need to be detected before any data processing.
-
-One way to perform outlier detection is to check that each incoming data point is not higher than the installed capacity for a given mode. The power output cannot be above the energy input as the efficiency of power plants is always below 100%. In other words, for a given zone and a given mode, the power production for that mode at any given time cannot exceed the installed capacity for that mode.
-
-> **Example**
-> In 2023, the wind capacity in **DK-DK1** was 5233 MW. The average wind production in the first 3 quarters of 2023 was 1455 MW.
-
-The goal here is to validate each incoming production parser event by comparing each mode production against the installed capacity available in the zone configuration. If a mode production is higher than the installed capacity, the data point will be flagged as an outlier and will be corrected by our data pipelines.
-
-To achieve this goal, we need robust and consistent capacity data. We also need to be able to capture the evolution of capacity data over time. As renewable capacity increases in most zones, this means that the power production will also increase.
+In an effort to increase the quality of the data published on our app or API, we have started a whole initiative to enable us to track outliers in the source data. You can find more information on this [wiki page](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Capacity-update-process).
 
 ## Capacity sources <a name="capacity_sources"></a>
 
