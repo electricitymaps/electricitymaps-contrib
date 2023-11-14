@@ -2,9 +2,9 @@ import csv
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
+from zoneinfo import ZoneInfo
 
 from numpy import nan
-from pytz import timezone
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
@@ -14,7 +14,7 @@ from parsers.lib.exceptions import ParserException
 
 pp = PrettyPrinter(indent=4)
 
-TIMEZONE = "Africa/Johannesburg"
+TIMEZONE = ZoneInfo("Africa/Johannesburg")
 SOURCE = "eskom.co.za"
 
 # Mapping columns to keys
@@ -64,8 +64,8 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     if target_datetime is not None:
-        local_target_datetime = target_datetime.astimezone(timezone(TIMEZONE))
-        local_one_week_ago = datetime.now(timezone(TIMEZONE)) - timedelta(days=7)
+        local_target_datetime = target_datetime.astimezone(TIMEZONE)
+        local_one_week_ago = datetime.now(TIMEZONE) - timedelta(days=7)
 
         if local_target_datetime < local_one_week_ago:
             raise NotImplementedError(
@@ -88,9 +88,7 @@ def fetch_production(
         if row[0] == "Date_Time_Hour_Beginning":
             continue
 
-        returned_datetime = datetime.fromisoformat(row[0]).replace(
-            tzinfo=timezone(TIMEZONE)
-        )
+        returned_datetime = datetime.fromisoformat(row[0]).replace(tzinfo=TIMEZONE)
 
         returned_production = row[1:]  # First column is datetime
 
