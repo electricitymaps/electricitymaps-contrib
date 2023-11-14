@@ -23,16 +23,20 @@ MODE_MAPPING = {
 }
 
 SOURCE = "bmreports.com"
+BMREPORTS_URL = "https://www.bmreports.com/bmrs/?q=ajax/year/B1410/{year}/"
 
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
 ) -> Union[Dict, None]:
-    url = f"https://www.bmreports.com/bmrs/?q=ajax/year/B1410/{target_datetime.year}/"
+    url = BMREPORTS_URL.format(year=target_datetime.year)
     r: Response = session.get(url)
 
     if not r.ok:
-       raise
+        raise ValueError(
+            f"GB: No capacity data available for year {target_datetime.year}"
+        )
+    else:
         soup = BeautifulSoup(r.text, "lxml")
         items = soup.find_all("item")
         capacity = {}
@@ -51,9 +55,7 @@ def fetch_production_capacity(
             f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
         )
         return capacity
-    else:
-        logger.error(f"GB: No capacity data available for year {target_datetime.year}")
 
 
 if __name__ == "__main__":
-    fetch_production_capacity("GB", datetime(2023, 1, 1), Session())
+    print(fetch_production_capacity("GB", datetime(2022, 1, 1), Session()))
