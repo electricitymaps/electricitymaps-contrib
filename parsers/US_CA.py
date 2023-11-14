@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 
 import arrow
 import numpy as np
 import pandas
-import pytz
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -55,7 +54,7 @@ STORAGE_MAPPING = {"batteries": "battery"}
 
 def get_target_url(target_datetime: datetime | None, kind: str) -> str:
     if target_datetime is None:
-        target_datetime = datetime.now(tz=pytz.UTC)
+        target_datetime = datetime.now(tz=timezone.utc)
         target_url = REAL_TIME_URL_MAPPING[kind]
     else:
         target_url = f"{CAISO_PROXY}/outlook/SP/History/{target_datetime.strftime('%Y%m%d')}/{HISTORICAL_URL_MAPPING[kind]}.csv?host=https://www.caiso.com"

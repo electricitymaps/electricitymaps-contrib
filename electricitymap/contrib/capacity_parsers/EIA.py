@@ -95,11 +95,12 @@ def fetch_production_capacity(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
-) -> pd.DataFrame:
+) -> Dict:
     eia_capacity = {}
     if session is None:
         session = Session()
     for zone in US_ZONES:
         zone_capacity = fetch_production_capacity(zone, target_datetime, session)
-        eia_capacity[zone] = zone_capacity
+        if zone_capacity:
+            eia_capacity[zone] = zone_capacity
     return eia_capacity
