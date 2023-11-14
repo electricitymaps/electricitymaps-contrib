@@ -49,6 +49,11 @@ def get_adme_url(target_datetime: datetime, session: Session) -> str:
 
     link = f"{ADME_URL}{date_format}&fecha_fin={next_day_format}&send=MOSTRAR"
     r = session.get(url=link)
+    if not r.ok:
+        raise ParserException(
+            parser="UY.py",
+            message="Impossible to fetch data url from ADME",
+        )
     soup = BeautifulSoup(r.content, "html.parser")
     href_tags = soup.find_all("a", href=True)
     data_url: str = ""
