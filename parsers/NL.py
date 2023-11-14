@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
 from copy import copy
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 
 import arrow
 import pandas as pd
-import pytz
 from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
@@ -14,7 +13,7 @@ from parsers import DK, ENTSOE
 from parsers.lib.config import refetch_frequency
 
 ZONE_CONFIG = ZONES_CONFIG["NL"]
-UTC = pytz.UTC
+UTC = timezone.utc
 
 
 @refetch_frequency(timedelta(days=1))

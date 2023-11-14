@@ -1,8 +1,8 @@
 from datetime import datetime
 from unittest import TestCase
+from zoneinfo import ZoneInfo
 
 import freezegun
-import pytz
 from requests import Session
 from requests_mock import ANY, Adapter
 
@@ -23,7 +23,7 @@ class TestFetchConsumption(TestCase):
 
         data = fetch_consumption(ZoneKey("MX-OC"), self.session)
         assert data[0]["zoneKey"] == "MX-OC"
-        assert data[0]["datetime"] == datetime.now(pytz.timezone("America/Mexico_City"))
+        assert data[0]["datetime"] == datetime.now(ZoneInfo("America/Mexico_City"))
         assert data[0]["consumption"] == 8519.0
 
     @freezegun.freeze_time("2021-01-01 00:00:00")
@@ -31,7 +31,7 @@ class TestFetchConsumption(TestCase):
 
         data = fetch_consumption(ZoneKey("MX-BC"), self.session)
         assert data[0]["zoneKey"] == "MX-BC"
-        assert data[0]["datetime"] == datetime.now(pytz.timezone("America/Tijuana"))
+        assert data[0]["datetime"] == datetime.now(ZoneInfo("America/Tijuana"))
         assert data[0]["consumption"] == 1587.0
 
     @freezegun.freeze_time("2021-01-01 00:00:00")

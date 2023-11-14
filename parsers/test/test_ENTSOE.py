@@ -1,11 +1,10 @@
 import logging
 import os
 import unittest
-from datetime import datetime
+from datetime import datetime, timezone
 from unittest import mock
 from unittest.mock import patch
 
-from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 
@@ -36,7 +35,7 @@ class TestFetchPrices(TestENTSOE):
             self.assertEqual(prices[0]["source"], "entsoe.eu")
             self.assertEqual(prices[0]["currency"], "EUR")
             self.assertEqual(
-                prices[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=utc)
+                prices[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=timezone.utc)
             )
 
     def test_fetch_prices_integrated_zone(self):
@@ -52,7 +51,7 @@ class TestFetchPrices(TestENTSOE):
             self.assertEqual(prices[0]["source"], "entsoe.eu")
             self.assertEqual(prices[0]["currency"], "EUR")
             self.assertEqual(
-                prices[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=utc)
+                prices[0]["datetime"], datetime(2023, 5, 6, 22, 0, tzinfo=timezone.utc)
             )
 
 
@@ -71,7 +70,8 @@ class TestFetchProduction(TestENTSOE):
             self.assertEqual(production[0]["zoneKey"], "FI")
             self.assertEqual(production[0]["source"], "entsoe.eu")
             self.assertEqual(
-                production[0]["datetime"], datetime(2023, 5, 8, 7, 0, tzinfo=utc)
+                production[0]["datetime"],
+                datetime(2023, 5, 8, 7, 0, tzinfo=timezone.utc),
             )
             self.assertEqual(production[0]["production"]["biomass"], 543 + 7)
             self.assertEqual(production[0]["production"]["coal"], 154 + 180)
@@ -84,7 +84,8 @@ class TestFetchProduction(TestENTSOE):
 
             self.assertEqual(production[1]["source"], "entsoe.eu")
             self.assertEqual(
-                production[1]["datetime"], datetime(2023, 5, 8, 8, 0, tzinfo=utc)
+                production[1]["datetime"],
+                datetime(2023, 5, 8, 8, 0, tzinfo=timezone.utc),
             )
             self.assertEqual(production[1]["production"]["biomass"], 558 + 7)
             self.assertEqual(production[1]["production"]["coal"], 155 + 158)
@@ -97,7 +98,8 @@ class TestFetchProduction(TestENTSOE):
 
             self.assertEqual(production[-1]["source"], "entsoe.eu")
             self.assertEqual(
-                production[-1]["datetime"], datetime(2023, 5, 10, 6, 0, tzinfo=utc)
+                production[-1]["datetime"],
+                datetime(2023, 5, 10, 6, 0, tzinfo=timezone.utc),
             )
             self.assertEqual(production[-1]["production"]["biomass"], 515 + 20)
             self.assertEqual(production[-1]["production"]["coal"], 111 + 124)
@@ -117,7 +119,8 @@ class TestFetchProduction(TestENTSOE):
             self.assertEqual(production[0]["zoneKey"], "NO-NO5")
             self.assertEqual(production[0]["source"], "entsoe.eu")
             self.assertEqual(
-                production[0]["datetime"], datetime(2023, 5, 9, 9, 0, tzinfo=utc)
+                production[0]["datetime"],
+                datetime(2023, 5, 9, 9, 0, tzinfo=timezone.utc),
             )
             self.assertEqual(production[0]["storage"]["hydro"], -61)
             self.assertEqual(production[0]["production"]["gas"], 0)
@@ -141,7 +144,8 @@ class TestFetchProduction(TestENTSOE):
                 self.assertEqual(production[0]["zoneKey"], "NO-NO5")
                 self.assertEqual(production[0]["source"], "entsoe.eu")
                 self.assertEqual(
-                    production[0]["datetime"], datetime(2023, 5, 9, 9, 0, tzinfo=utc)
+                    production[0]["datetime"],
+                    datetime(2023, 5, 9, 9, 0, tzinfo=timezone.utc),
                 )
                 # Small negative values have been set to 0.
                 self.assertEqual(production[0]["production"]["gas"], 0)
@@ -149,7 +153,8 @@ class TestFetchProduction(TestENTSOE):
 
                 # Large negative values have been set to None.
                 self.assertEqual(
-                    production[-1]["datetime"], datetime(2023, 5, 11, 7, 0, tzinfo=utc)
+                    production[-1]["datetime"],
+                    datetime(2023, 5, 11, 7, 0, tzinfo=timezone.utc),
                 )
                 self.assertEqual(production[-1]["production"]["gas"], None)
                 # A warning has been logged for this.
