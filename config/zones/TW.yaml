@@ -221,4 +221,5 @@ fallbackZoneMixes:
         wind: 0.007647678020171424
 parsers:
   production: TAIPOWER.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Taipei

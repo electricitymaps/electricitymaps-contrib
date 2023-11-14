@@ -10,6 +10,8 @@ contributors:
   - jarek
   - corradio
   - MariusKroon
+disclaimer: Western Australia's power grid is not connected to the (Australian) National
+  Electricity Market or the Northern Territory grid.
 emissionFactors:
   direct:
     battery discharge:
@@ -211,5 +213,5 @@ fallbackZoneMixes:
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
-disclaimer: Western Australia's power grid is not connected to the (Australian) National Electricity Market or the Northern Territory grid.
+  productionCapacity: OPENNEM.fetch_production_capacity
 timezone: Australia/Perth
