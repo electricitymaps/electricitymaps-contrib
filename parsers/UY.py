@@ -110,7 +110,7 @@ def fetch_production(
 ) -> list:
     """collects production data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = datetime.now().replace(tzinfo=UY_TZ)
+        target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
     data = fetch_data(
