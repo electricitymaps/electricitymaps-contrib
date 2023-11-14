@@ -1,7 +1,6 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 
-from pytz import utc
 from requests import Session
 
 from . import ENTSOE
@@ -16,7 +15,7 @@ If no target_datetime is provided, the wrapper will provide a target datetime th
 
 def modify_target_datetime(target_datetime: datetime | None) -> datetime:
     if target_datetime is None:
-        return datetime.now(tz=utc) - timedelta(hours=24)
+        return datetime.now(tz=timezone.utc) - timedelta(hours=24)
     else:
         return target_datetime
 

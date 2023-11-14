@@ -1,12 +1,11 @@
 # Archived reason: The SQL API is no longer available and a new DK parser was created.
 import json
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 
 import arrow  # the arrow library is used to handle datetimes
 import pandas as pd
-import pytz
 from requests import Session, exceptions
 
 from parsers.lib.config import refetch_frequency
@@ -121,7 +120,7 @@ def fetch_production(
         }
 
         data["datetime"] = dt.to_pydatetime()
-        data["datetime"] = data["datetime"].replace(tzinfo=pytz.utc)
+        data["datetime"] = data["datetime"].replace(tzinfo=timezone.utc)
         for f in ["solar", "wind"] + fuels:
             data["production"][f] = df.loc[dt, f]
         output.append(data)
@@ -234,7 +233,7 @@ def fetch_exchange(
         }
 
         data["datetime"] = dt.to_pydatetime()
-        data["datetime"] = data["datetime"].replace(tzinfo=pytz.utc)
+        data["datetime"] = data["datetime"].replace(tzinfo=timezone.utc)
         data["netFlow"] = df.loc[dt, "netFlow"]
         output.append(data)
     return output
