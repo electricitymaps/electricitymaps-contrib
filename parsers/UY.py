@@ -49,6 +49,11 @@ def get_adme_url(target_datetime: datetime, session: Session) -> str:
 
     link = f"{ADME_URL}{date_format}&fecha_fin={next_day_format}&send=MOSTRAR"
     r = session.get(url=link)
+    if not r.ok:
+        raise ParserException(
+            parser="UY.py",
+            message="Impossible to fetch data url from ADME",
+        )
     soup = BeautifulSoup(r.content, "html.parser")
     href_tags = soup.find_all("a", href=True)
     data_url: str = ""
@@ -56,11 +61,16 @@ def get_adme_url(target_datetime: datetime, session: Session) -> str:
         if tag.button is not None:
             if tag.button.string == "Archivo Scada Detalle 10minutal":
                 data_url = "https://pronos.adme.com.uy" + tag.get("href")
+
+    if not data_url:
+        raise ParserException(
+            parser="UY.py",
+            message="Impossible to fetch data url from ADME",
+        )
     return data_url
 
 
 def fetch_data(
-    zone_key: str,
     session: Session,
     target_datetime: datetime,
     sheet_name: str,
@@ -84,7 +94,7 @@ def fetch_data(
     else:
         raise ParserException(
             parser="UY.py",
-            message="no data available for target_dateitme",
+            message="no data available for target_datetime",
         )
 
 
@@ -105,11 +115,10 @@ def fetch_production(
 ) -> list:
     """collects production data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
+        target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
     data = fetch_data(
-        zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
         sheet_name="GPF",
@@ -149,11 +158,10 @@ def fetch_consumption(
 ) -> list:
     """collects consumption data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
+        target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
     data = fetch_data(
-        zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
         sheet_name="GPF",
@@ -184,11 +192,10 @@ def fetch_exchange(
 ) -> list:
     """collects exchanges data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
+        target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
     data = fetch_data(
-        zone_key=zone_key1,
         session=session,
         target_datetime=target_datetime,
         sheet_name="Intercambios.",
