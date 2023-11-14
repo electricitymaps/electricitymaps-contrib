@@ -41,28 +41,21 @@ const getConfig = (): CombinedZonesConfig => {
 
   const contributors = new Set<string>();
   const zones: Record<string, OptimizedZoneConfig> = {};
+  const hasSubZones = new Set<string>();
 
   for (const filepath of filesWithDirectory) {
     const config = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
 
     const zoneContributors = new Set<string>();
 
-    for (const subZoneName of config.subZoneNames ?? []) {
-      const subZonePath = `${basePath}/${subZoneName}.yaml`;
-      const subZoneConfig = yaml.load(fs.readFileSync(subZonePath, 'utf8')) as ZoneConfig;
-      if (subZoneConfig.contributors) {
-        for (const contributor of subZoneConfig.contributors) {
-          contributors.add(contributor);
-          zoneContributors.add(contributor);
-        }
-      }
+    for (const contributor of config.contributors ?? []) {
+      contributors.add(contributor);
+      zoneContributors.add(contributor);
     }
 
-    for (const contributor of config.contributors ?? []) {
-      if (typeof contributor == 'string') {
-        contributors.add(contributor);
-        zoneContributors.add(contributor);
-      }
+    // If the zone has subzones, add them to the set to be processed later
+    if (config.subZoneNames) {
+      hasSubZones.add(path.parse(filepath).name);
     }
 
     const zoneContributorsArray = [];
@@ -94,6 +87,17 @@ const getConfig = (): CombinedZonesConfig => {
       : false;
 
     zones[path.parse(filepath).name] = config as unknown as OptimizedZoneConfig;
+  }
+
+  // Upsert subzone contributors to parent zone
+  for (const parentZone of hasSubZones) {
+    const zoneContributors = new Set<number>(zones[parentZone].contributors);
+    for (const subZone of zones[parentZone].subZoneNames) {
+      for (const contributor of zones[subZone].contributors) {
+        zoneContributors.add(contributor);
+      }
+    }
+    zones[parentZone].contributors = [...zoneContributors];
   }
 
   const combinedZonesConfig = {
