@@ -52,7 +52,9 @@ ZONE_KEY_TO_GEO_LIMIT = {
 }
 
 
-def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
+def fetch_production_capacity(
+    zone_key: ZoneKey, target_datetime: datetime, session: Session
+):
     geo_limit = ZONE_KEY_TO_GEO_LIMIT[zone_key]
     geo_ids = GEO_LIMIT_TO_GEO_IDS[geo_limit]
     url = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada"
@@ -66,7 +68,7 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
         "tecno_select": "all",
     }
 
-    r: Response = Session().get(url, params=params)
+    r: Response = session.get(url, params=params)
     if r.status_code == 200:
         data = r.json()["included"]
         capacity = {}
@@ -94,15 +96,17 @@ def fetch_production_capacity(zone_key: ZoneKey, target_datetime: datetime):
 
 
 def fetch_production_capacity_for_all_zones(
-    target_datetime: datetime,
+    target_datetime: datetime, session: Session | None = None
 ) -> dict:
+    if session is None:
+        session = Session()
     ree_capacity = {}
     for zone in ZONE_KEY_TO_GEO_LIMIT:
-        zone_capacity = fetch_production_capacity(zone, target_datetime)
+        zone_capacity = fetch_production_capacity(zone, target_datetime, session)
         ree_capacity[zone] = zone_capacity
     logger.info(f"Fetched capacity for REE zones on {target_datetime.date()}")
     return ree_capacity
 
 
 if __name__ == "__main__":
-    fetch_production_capacity("ES", datetime(2023, 1, 1))
+    fetch_production_capacity("ES", datetime(2023, 1, 1), Session())
