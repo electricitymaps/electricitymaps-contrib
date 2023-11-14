@@ -3,8 +3,8 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
-from pytz import timezone
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -16,7 +16,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
 
 NDC_GENERATION = "https://disnews.energy.mn/test/convert.php"
-TZ = timezone("Asia/Ulaanbaatar")  # UTC+8
+TZ = ZoneInfo("Asia/Ulaanbaatar")  # UTC+8
 
 # Query fields to web API fields
 JSON_QUERY_TO_SRC = {

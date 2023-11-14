@@ -3,9 +3,9 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import arrow
-import pytz
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
@@ -13,7 +13,7 @@ from parsers.lib.exceptions import ParserException
 ## Vietnamese National Load Dispatch Center https://www.nldc.evn.vn/
 # Access via day, can also parse historical data
 
-tz = pytz.timezone("Asia/Ho_Chi_Minh")
+tz = ZoneInfo("Asia/Ho_Chi_Minh")
 base_url_from_type = {
     "consumption": "https://www.nldc.evn.vn/PhuTaiHandle.ashx?d=",  # + dd/mm/yyyy
     "price": "https://www.nldc.evn.vn/GiaBienHandle.ashx?d=",  # + dd/mm/yyyy
