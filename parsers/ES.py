@@ -282,7 +282,6 @@ def fetch_production(
     data = fetch_and_preprocess_data(zone_key, ses, logger, target_datetime)
     productionEventList = ProductionBreakdownList(logger)
     for event in data:
-
         storage = StorageMix()
         if "hid" in event:
             storage.add_value("hydro", -event["hid"])

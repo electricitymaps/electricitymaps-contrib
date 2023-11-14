@@ -20,7 +20,6 @@ class TestFetchConsumption(TestCase):
 
     @freezegun.freeze_time("2021-01-01 00:00:00")
     def test_fetch_consumption_MX_OC(self):
-
         data = fetch_consumption(ZoneKey("MX-OC"), self.session)
         assert data[0]["zoneKey"] == "MX-OC"
         assert data[0]["datetime"] == datetime.now(ZoneInfo("America/Mexico_City"))
@@ -28,7 +27,6 @@ class TestFetchConsumption(TestCase):
 
     @freezegun.freeze_time("2021-01-01 00:00:00")
     def test_fetch_consumption_MX_BC(self):
-
         data = fetch_consumption(ZoneKey("MX-BC"), self.session)
         assert data[0]["zoneKey"] == "MX-BC"
         assert data[0]["datetime"] == datetime.now(ZoneInfo("America/Tijuana"))
@@ -36,6 +34,5 @@ class TestFetchConsumption(TestCase):
 
     @freezegun.freeze_time("2021-01-01 00:00:00")
     def test_fetch_consumption_BCS(self):
-
         data = fetch_consumption(ZoneKey("MX-BCS"), self.session)
         assert len(data) == 0
