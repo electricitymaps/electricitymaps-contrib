@@ -5,7 +5,6 @@ WORKDIR /contrib
 src-files:
   COPY electricitymap ./electricitymap
   COPY parsers ./parsers
-  COPY validators ./validators
   COPY ./config+src-files/* ./config
   COPY scripts ./scripts
   COPY web/public/locales/en.json ./web/public/locales/en.json
@@ -18,7 +17,7 @@ prepare:
   RUN pip install poetry==1.6.1
   RUN apt-get update && apt-get install -y python3-opencv tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng libgl1
   RUN poetry config virtualenvs.create false
-  RUN poetry install --compile -E parsers -E validators
+  RUN poetry install --compile -E parsers
 
 build:
   FROM +prepare

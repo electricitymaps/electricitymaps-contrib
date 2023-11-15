@@ -3,9 +3,9 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import arrow
-import pytz
 from bs4 import BeautifulSoup, Tag
 from requests import Response, Session
 
@@ -16,7 +16,7 @@ from parsers.lib.exceptions import ParserException
 # Has table (also historical) of production, consumption and exchange.
 # This table gets updated batch-wise every few hours, so most of the time, the delay will be >2h.
 
-tz = pytz.timezone("Asia/Dhaka")
+tz = ZoneInfo("Asia/Dhaka")
 latest_url = "https://erp.pgcb.gov.bd/web/generations/view_generations"
 url_by_date = (
     "https://erp.pgcb.gov.bd/web/generations/view_generations?search="  # DD-MM-YYYY
