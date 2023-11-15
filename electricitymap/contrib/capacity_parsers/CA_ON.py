@@ -1,6 +1,5 @@
 from datetime import datetime
 from logging import INFO, basicConfig, getLogger
-from typing import Dict
 
 import pandas as pd
 from requests import Response, Session
@@ -52,7 +51,7 @@ def fetch_production_capacity(
     for idx, data in df.iterrows():
         capacity[data["mode"]] = {
             "datetime": target_datetime.strftime("%Y-%m-%d"),
-            "value": round(data["value"], 2),
+            "value": round(data["value"], 0),
             "source": "ieso.ca",
         }
     logger.info(
