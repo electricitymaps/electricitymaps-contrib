@@ -1,7 +1,6 @@
 import unittest
 from datetime import datetime
 from importlib import resources
-from zoneinfo import ZoneInfo
 
 import requests
 import requests_mock
@@ -29,7 +28,7 @@ class TestFetchProduction(unittest.TestCase):
         result = PA.fetch_production(session=self.session)
         self.assertEqual(
             result["datetime"],
-            datetime(2021, 12, 30, 9, 58, 37, tzinfo=ZoneInfo(PA.TIMEZONE)),
+            datetime(2021, 12, 30, 9, 58, 37, tzinfo=PA.TIMEZONE),
         )
 
     @freeze_time("2021-12-30 09:57:47", tz_offset=-5)
