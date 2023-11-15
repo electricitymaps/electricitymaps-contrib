@@ -1,15 +1,15 @@
-import re
 from datetime import datetime
-from logging import getLogger
+from logging import INFO, basicConfig, getLogger
 from typing import Dict
 
 import pandas as pd
-from bs4 import BeautifulSoup
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
 logger = getLogger(__name__)
+basicConfig(level=INFO)
+
 MODE_MAPPING = {
     "Nuclear": "nuclear",
     "Hydroelectric": "hydro",
@@ -18,8 +18,6 @@ MODE_MAPPING = {
     "Biofuel": "biomass",
     "Solar": "solar",
 }
-
-BASE_URL = "https://www.ieso.ca"
 
 
 """Disclaimer: only valid for real-time data, historical capacity is not available"""
@@ -64,4 +62,4 @@ def fetch_production_capacity(
 
 
 if __name__ == "__main__":
-    print(fetch_production_capacity("CA_ON", datetime(2023, 3, 1), Session()))
+    fetch_production_capacity("CA_ON", datetime(2023, 3, 1), Session())
