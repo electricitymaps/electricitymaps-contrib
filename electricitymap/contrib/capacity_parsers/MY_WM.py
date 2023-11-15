@@ -38,8 +38,9 @@ def fetch_production_capacity(
     if target_datetime is not None:
         raise ValueError("MY-WM capacity parser not enabled for past dates")
     target_datetime = datetime.now()
-    r: Response = session.post(GSO_URL, headers=GSO_REQUEST_HEADERS)
     capacity_datetime = get_capacity_datetime(session)
+
+    r: Response = session.post(GSO_URL, headers=GSO_REQUEST_HEADERS)
     if not r.ok:
         raise ValueError(
             f"Failed to fetch capacity data for GSO at {target_datetime.strftime('%Y-%m')}"
