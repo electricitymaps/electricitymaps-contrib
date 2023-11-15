@@ -40,7 +40,7 @@ def get_data_from_url(session: Session, target_datetime: datetime) -> pd.DataFra
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
-) -> Dict:
+) -> dict:
     df = get_data_from_url(session, target_datetime)
 
     df = df.rename(
