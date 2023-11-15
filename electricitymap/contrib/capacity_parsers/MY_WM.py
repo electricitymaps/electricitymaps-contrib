@@ -61,7 +61,7 @@ def fetch_production_capacity(
         capacity_dict = {}
         for idx, data in filtered_data.iterrows():
             capacity_dict[data["mode"]] = {
-                "value": round(float(data["value"]),0),
+                "value": round(float(data["value"]), 0),
                 "source": "gso.org.my",
                 "datetime": capacity_datetime.strftime("%Y-%m-%d"),
             }
