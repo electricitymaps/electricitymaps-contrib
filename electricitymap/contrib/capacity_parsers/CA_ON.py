@@ -62,4 +62,4 @@ def fetch_production_capacity(
 
 
 if __name__ == "__main__":
-    fetch_production_capacity("CA_ON", datetime(2023, 3, 1), Session())
+    fetch_production_capacity(ZoneKey("CA_ON"), datetime(2023, 3, 1), Session())
