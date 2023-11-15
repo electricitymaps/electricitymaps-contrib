@@ -1,6 +1,7 @@
+import re
 from datetime import datetime
 from logging import getLogger
-from typing import Dict, Union
+from typing import Dict
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -22,31 +23,28 @@ BASE_URL = "https://www.ieso.ca"
 
 
 """Disclaimer: only valid for real-time data, historical capacity is not available"""
+OUTLOOK_URL = "https://www.ieso.ca/-/media/Files/IESO/Document-Library/planning-forecasts/reliability-outlook/ReliabilityOutlookTables_{date}.ashx"
 
-def get_data_from_url(session: Session) -> tuple:
-    main_url = f"{BASE_URL}/en/Sector-Participants/Planning-and-Forecasting/Reliability-Outlook"
-    url_response: Response = session.get(main_url)
 
-    soup = BeautifulSoup(url_response.text, "html.parser")
-    file_name = soup.find_all("a", string="Reliability Outlook - Tables")[0].get("href")
-    file_url = f"{BASE_URL}{file_name}"
+def get_data_from_url(session: Session, target_datetime: datetime) -> pd.DataFrame:
+    file_url = OUTLOOK_URL.format(date=target_datetime.strftime("%Y%b"))
     file_response: Response = session.get(file_url)
-    file_date = file_name.split(".")[0][-7:]
-    target_datetime = datetime.strptime(file_date, "%Y%b")
-    if file_response.status_code == 200:
-        df = pd.read_excel(file_response.url, sheet_name="Table 4.1", header=4, skipfooter=3)
-        return df, target_datetime
+    if "Error-404" not in file_response.url and file_response.ok:
+        df = pd.read_excel(
+            file_response.url, sheet_name="Table 4.1", header=4, skipfooter=3
+        )
+        return df
     else:
         raise ValueError(
-            f"Failed to fetch capacity data for IESO from url: {file_url}"
+            f"Failed to fetch capacity data for IESO from url: {target_datetime.date()}"
         )
 
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
 ) -> Dict:
-    df, target_datetime = get_data_from_url(session)
-    logger.info(f"Latest capacity data available for IESO: {target_datetime.date()}")
+    df = get_data_from_url(session, target_datetime)
+
     df = df.rename(
         columns={"Fuel Type": "mode", "Total Installed Capacity\n(MW)": "value"}
     )
@@ -65,6 +63,5 @@ def fetch_production_capacity(
     return capacity
 
 
-
 if __name__ == "__main__":
-    fetch_production_capacity("CA_ON", datetime(2023, 1, 1), Session())
+    print(fetch_production_capacity("CA_ON", datetime(2023, 3, 1), Session()))
