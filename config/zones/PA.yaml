@@ -224,4 +224,5 @@ fallbackZoneMixes:
 parsers:
   consumption: PA.fetch_consumption
   production: PA.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Panama

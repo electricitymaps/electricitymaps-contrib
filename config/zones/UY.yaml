@@ -214,6 +214,7 @@ fallbackZoneMixes:
         unknown: 0.0013157338754623527
         wind: 0.2860454342790785
 parsers:
-  production: UY.fetch_production
   consumption: UY.fetch_consumption
+  production: UY.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Montevideo

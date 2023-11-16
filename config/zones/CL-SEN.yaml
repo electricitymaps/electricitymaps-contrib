@@ -20,6 +20,8 @@ contributors:
   - alixunderplatz
 delays:
   production: 24
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
+  coal and oil.
 emissionFactors:
   direct:
     battery discharge:
@@ -252,7 +254,7 @@ fallbackZoneMixes:
         wind: 0.08868521298423133
 parsers:
   production: CL.fetch_production
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+  productionCapacity: CL_SEN.fetch_production_capacity
 sources:
   Electricity Maps, CEN:
     link: https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
