@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 from logging import INFO, basicConfig, getLogger
+from typing import Any
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -34,7 +35,7 @@ def get_capacity_datetime(session: Session) -> datetime:
 
 def fetch_production_capacity(
     zone_key: ZoneKey, session: Session, target_datetime: datetime | None = None
-) -> dict:
+) -> dict[str, Any]:
     if target_datetime is not None:
         raise ValueError("MY-WM capacity parser not enabled for past dates")
     target_datetime = datetime.now()
