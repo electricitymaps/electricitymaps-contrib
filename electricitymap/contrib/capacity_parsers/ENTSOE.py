@@ -87,7 +87,7 @@ def query_capacity(
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
-) -> dict:
+) -> dict | None:
     xml_str = query_capacity(ENTSOE_DOMAIN_MAPPINGS[zone_key], session, target_datetime)
     soup = BeautifulSoup(xml_str, "html.parser")
     # Each time series is dedicated to a different fuel type.
