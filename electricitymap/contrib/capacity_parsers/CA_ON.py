@@ -1,5 +1,6 @@
 from datetime import datetime
 from logging import INFO, basicConfig, getLogger
+from typing import Any
 
 import pandas as pd
 from requests import Response, Session
@@ -39,7 +40,7 @@ def get_data_from_url(session: Session, target_datetime: datetime) -> pd.DataFra
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
-) -> dict:
+) -> dict[str, Any]:
     df = get_data_from_url(session, target_datetime)
 
     df = df.rename(
