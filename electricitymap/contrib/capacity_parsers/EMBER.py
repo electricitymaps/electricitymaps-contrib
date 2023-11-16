@@ -1,6 +1,7 @@
 import io
 from datetime import datetime
 from logging import getLogger
+from typing import Any
 
 import pandas as pd
 import pycountry
@@ -133,7 +134,7 @@ def format_ember_data(df: pd.DataFrame, year: int) -> pd.DataFrame:
     return df_capacity
 
 
-def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict:
+def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict[str, Any]:
     all_capacity = {}
     for zone in df_capacity.index.unique():
         df_zone = df_capacity.loc[zone]
@@ -150,7 +151,7 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict:
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session
-) -> dict:
+) -> dict[str, Any]:
     df_capacity = get_data_from_url(session)
     df_capacity = format_ember_data(df_capacity, target_datetime.year)
     all_capacity = get_capacity_dict_from_df(df_capacity)
@@ -160,7 +161,7 @@ def fetch_production_capacity_for_all_zones(
 
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
-) -> dict | None:
+) -> dict[str, Any] | None:
     all_capacity = fetch_production_capacity_for_all_zones(target_datetime, session)
     if zone_key in all_capacity:
         zone_capacity = all_capacity[zone_key]
