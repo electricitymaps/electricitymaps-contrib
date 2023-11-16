@@ -84,7 +84,7 @@ def filter_capacity_data_by_datetime(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
-):
+) -> dict:
     session = session or Session()
     capacity_df = get_opennem_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
@@ -112,7 +112,7 @@ def fetch_production_capacity_for_all_zones(
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session | None = None
-):
+) -> dict | None:
     session = session or Session()
     capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[
         zone_key
@@ -126,7 +126,7 @@ def fetch_production_capacity(
         logger.error(f"No capacity data for {zone_key} in {target_datetime}")
 
 
-def get_solar_capacity_au_nt(target_datetime: datetime):
+def get_solar_capacity_au_nt(target_datetime: datetime) -> float | None:
     """Get solar capacity for AU-NT."""
     session = Session()
     capacity_df = get_opennem_capacity_data(session)
