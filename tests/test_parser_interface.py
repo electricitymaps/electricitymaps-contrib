@@ -40,7 +40,7 @@ _RETURN_PARSER_TYPE = [
     list[dict] | dict,
     dict[str, Any],
     dict[str, Any] | list[dict[str, Any]],
-    dict[str, Any] | list[dict[str, Any]],
+    dict[str, Any] | None,
 ]
 EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "consumption": _RETURN_PARSER_TYPE,
@@ -151,7 +151,7 @@ class ParserInterfaceTestcase(unittest.TestCase):
                 )
                 self.assertTrue(
                     correct_annotations,
-                    f"expected annotation for {function_name} to be in {expected} not {annotations}",
+                    f"expected annotation for {function_name} to be in {expected} not {annotations['return']}",
                 )
 
     def test_unused_files(self):
