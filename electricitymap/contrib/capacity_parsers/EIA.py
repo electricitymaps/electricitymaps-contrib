@@ -1,7 +1,6 @@
 import calendar
 from datetime import datetime
 from logging import getLogger
-from typing import Dict, Union
 
 import pandas as pd
 from requests import Response, Session
@@ -70,7 +69,7 @@ def fetch_production_capacity(
     zone_key: ZoneKey,
     target_datetime: datetime,
     session: Session,
-) -> Union[Dict, None]:
+) -> dict | None:
     url_prefix = CAPACITY_URL.format(REGIONS[zone_key])
     start_date = target_datetime.strftime("%Y-%m-01")
     end_date = target_datetime.replace(
@@ -95,7 +94,7 @@ def fetch_production_capacity(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
-) -> Dict:
+) -> dict:
     eia_capacity = {}
     if session is None:
         session = Session()

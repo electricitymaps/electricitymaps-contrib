@@ -1,7 +1,6 @@
 import json
 from datetime import datetime
 from logging import getLogger
-from typing import Dict, Union
 
 import pycountry
 from requests import Response, Session
@@ -86,7 +85,9 @@ def reallocate_capacity_mode(zone_key: ZoneKey, mode: int) -> dict:
     return IRENA_JSON_TO_MODE_MAPPING[mode]
 
 
-def get_capacity_data_for_all_zones(target_datetime: datetime, session: Session):
+def get_capacity_data_for_all_zones(
+    target_datetime: datetime, session: Session
+) -> dict:
     data = get_data_from_url(target_datetime, session)
     capacity_dict = {}
     for item in data:
@@ -126,7 +127,7 @@ def get_capacity_data_for_all_zones(target_datetime: datetime, session: Session)
 
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
-) -> Union[Dict, None]:
+) -> dict | None:
     all_capacity = get_capacity_data_for_all_zones(target_datetime, session)
     zone_capacity = all_capacity[zone_key]
 
@@ -141,7 +142,7 @@ def fetch_production_capacity(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session
-) -> Union[Dict, None]:
+) -> dict | None:
     all_capacity = get_capacity_data_for_all_zones(target_datetime, session)
 
     all_capacity = {k: v for k, v in all_capacity.items() if k in IRENA_ZONES}
