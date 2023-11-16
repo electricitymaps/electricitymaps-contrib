@@ -11,6 +11,7 @@ from electricitymap.contrib.config.model import CONFIG_MODEL
 PARSER_FOLDERS = Path(__file__).parent.resolve() / "../parsers"
 PARSER_FILES_GLOB = f"{PARSER_FOLDERS.resolve()}/*.py"
 _PARSER_FUNCTION_ARGS = ["zone_key", "session", "target_datetime", "logger"]
+_CAPACITY_PARSER_FUNCTION_ARGS = ["zone_key", "target_datetime", "session"]
 _EXCHANGE_FUNCTION_ARGS = [
     "zone_key1",
     "zone_key2",
@@ -28,6 +29,7 @@ EXPECTED_MODE_FUNCTION_ARGS = {
     "production": _PARSER_FUNCTION_ARGS,
     "productionPerModeForecast": _PARSER_FUNCTION_ARGS,
     "productionPerUnit": _PARSER_FUNCTION_ARGS,
+    "productionCapacity": _CAPACITY_PARSER_FUNCTION_ARGS,
 }
 _RETURN_PARSER_TYPE = [
     dict,
@@ -37,6 +39,7 @@ _RETURN_PARSER_TYPE = [
     list | dict,
     list[dict] | dict,
     dict[str, Any],
+    dict[str, Any] | list[dict[str, Any]],
     dict[str, Any] | list[dict[str, Any]],
 ]
 EXPECTED_MODE_RETURN_ANNOTATIONS = {
@@ -49,6 +52,7 @@ EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "production": _RETURN_PARSER_TYPE,
     "productionPerModeForecast": _RETURN_PARSER_TYPE,
     "productionPerUnit": _RETURN_PARSER_TYPE,
+    "productionCapacity": _RETURN_PARSER_TYPE,
 }
 
 

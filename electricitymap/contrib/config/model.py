@@ -68,8 +68,14 @@ class ParsersBaseModel(StrictBaseModel):
             Optional[Callable]: parser function
         """
         function_str = getattr(self, type)
+        _parser_key_to_parser_folder = (
+            lambda parser_key: "electricitymap.contrib.capacity_parsers"
+            if parser_key == "productionCapacity"
+            else "parsers"
+        )
+
         if function_str:
-            return import_string(f"parsers.{function_str}")
+            return import_string(f"{_parser_key_to_parser_folder(type)}.{function_str}")
 
 
 class Parsers(ParsersBaseModel):
@@ -80,6 +86,7 @@ class Parsers(ParsersBaseModel):
     price: str | None
     production: str | None
     productionPerUnit: str | None
+    productionCapacity: str | None
 
 
 class Source(StrictBaseModel):
