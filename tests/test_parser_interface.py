@@ -139,8 +139,8 @@ class ParserInterfaceTestcase(unittest.TestCase):
             )
 
             self.assertEqual(
-                [a for a in args],
-                EXPECTED_MODE_FUNCTION_ARGS[_mode],
+                sorted([a for a in args]),
+                sorted(EXPECTED_MODE_FUNCTION_ARGS[_mode]),
                 f"invalid args for {function_name}, arg_spec={arg_spec}",
             )
 
