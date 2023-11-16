@@ -73,4 +73,4 @@ def fetch_production_capacity(
 
 
 if __name__ == "__main__":
-    fetch_production_capacity("MY-WM", Session())
+    fetch_production_capacity(ZoneKey("MY-WM"), Session())
