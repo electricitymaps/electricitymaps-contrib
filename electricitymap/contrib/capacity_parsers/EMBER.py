@@ -160,7 +160,7 @@ def fetch_production_capacity_for_all_zones(
 
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
-) -> dict:
+) -> dict | None:
     all_capacity = fetch_production_capacity_for_all_zones(target_datetime, session)
     if zone_key in all_capacity:
         zone_capacity = all_capacity[zone_key]

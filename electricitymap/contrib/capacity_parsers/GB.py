@@ -1,6 +1,5 @@
 from datetime import datetime
 from logging import getLogger
-from typing import Dict, Union
 
 from bs4 import BeautifulSoup
 from requests import Response, Session
@@ -28,7 +27,7 @@ BMREPORTS_URL = "https://www.bmreports.com/bmrs/?q=ajax/year/B1410/{year}/"
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
-) -> Union[Dict, None]:
+) -> dict | None:
     url = BMREPORTS_URL.format(year=target_datetime.year)
     r: Response = session.get(url)
 

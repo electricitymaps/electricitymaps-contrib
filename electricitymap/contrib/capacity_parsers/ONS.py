@@ -1,6 +1,5 @@
 from datetime import datetime
 from logging import getLogger
-from typing import Dict, Union
 
 import pandas as pd
 from requests import Response, Session
@@ -56,7 +55,7 @@ def filter_data_by_date(data: pd.DataFrame, target_datetime: datetime) -> pd.Dat
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
-) -> Union[Dict, None]:
+) -> dict | None:
     session = session or Session()
     r: Response = session.get(CAPACITY_URL)
     df = pd.read_csv(r.url, sep=";")
@@ -115,7 +114,7 @@ def fetch_production_capacity_for_all_zones(
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session | None = None
-) -> dict:
+) -> dict | None:
     session = session or Session()
     capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[
         zone_key
