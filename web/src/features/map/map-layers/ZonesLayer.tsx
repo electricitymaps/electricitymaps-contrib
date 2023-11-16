@@ -49,7 +49,7 @@ export default function ZonesLayer() {
         'fill-opacity': [
           'case',
           ['boolean', ['feature-state', 'selected'], false],
-          0.8,
+          0.7,
           0,
         ],
       } as mapboxgl.FillPaint,
