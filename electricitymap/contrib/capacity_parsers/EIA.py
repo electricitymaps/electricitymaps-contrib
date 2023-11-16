@@ -13,7 +13,6 @@ from parsers.lib.utils import get_token
 logger = getLogger(__name__)
 
 CAPACITY_URL = "https://api.eia.gov/v2/electricity/operating-generator-capacity/data/?frequency=monthly&data[0]=nameplate-capacity-mw&facets[balancing_authority_code][]={}"
-API_KEY = get_token("EIA_KEY")
 SOURCE = "EIA.gov"
 US_ZONES = {key: value for key, value in REGIONS.items() if key.startswith("US-")}
 TECHNOLOGY_TO_MODE = {
@@ -71,6 +70,7 @@ def fetch_production_capacity(
     target_datetime: datetime,
     session: Session,
 ) -> dict[str, Any] | None:
+    API_KEY = get_token("EIA_KEY")
     url_prefix = CAPACITY_URL.format(REGIONS[zone_key])
     start_date = target_datetime.strftime("%Y-%m-01")
     end_date = target_datetime.replace(
