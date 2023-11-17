@@ -26,5 +26,4 @@ def get_capacity_value_with_datetime(
         else:
             # valid datetime is the max datetime that is lower than the given datetime
             # In other words, it is the most recent value that is valid for the given dt
-            return max([(d,v) for d,v in capacity_tuples if d <= dt.isoformat()])[1]
-
+            return max([(d, v) for d, v in capacity_tuples if d <= dt.isoformat()])[1]
