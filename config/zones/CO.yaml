@@ -19,6 +19,7 @@ delays:
   production: 48
 parsers:
   consumption: CO.fetch_consumption
-  production: CO.fetch_production
   price: CO.fetch_price
+  production: CO.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Bogota
