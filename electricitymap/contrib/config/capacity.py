@@ -16,22 +16,15 @@ def get_capacity_data(capacity_config: dict, dt: datetime) -> dict[str, float]:
 def get_capacity_value_with_datetime(
     mode_capacity: list | dict, dt: datetime
 ) -> float | None:
-    capacity = None
     if isinstance(mode_capacity, dict):
-        capacity = mode_capacity["value"]
+        return mode_capacity["value"]
     elif isinstance(mode_capacity, list):
-        datetime_keys = sorted(
-            [datetime.fromisoformat(d["datetime"]) for d in mode_capacity]
-        )
+        capacity_tuples = [(d["datetime"], d["value"]) for d in mode_capacity]
 
-        if dt <= min(datetime_keys):
-            capacity_dt = min(datetime_keys)
+        if dt.isoformat() <= min(capacity_tuples)[0]:
+            return min(capacity_tuples)[1]
         else:
-            # valid datetime is the min of the 2 datetime_keys surrounding dt
-            capacity_dt = max([d for d in datetime_keys if d <= dt])
+            # valid datetime is the max datetime that is lower than the given datetime
+            # In other words, it is the most recent value that is valid for the given dt
+            return max([(d,v) for d,v in capacity_tuples if d <= dt.isoformat()])[1]
 
-        for item in mode_capacity:
-            if datetime.fromisoformat(item["datetime"]).date() == capacity_dt.date():
-                capacity = item["value"]
-
-    return capacity
