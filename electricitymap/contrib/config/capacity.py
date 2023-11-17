@@ -30,9 +30,8 @@ def get_capacity_value_with_datetime(
             # valid datetime is the min of the 2 datetime_keys surrounding dt
             capacity_dt = max([d for d in datetime_keys if d <= dt])
 
-        capacity = [
-            d["value"]
-            for d in mode_capacity
-            if d["datetime"] == capacity_dt.strftime("%Y-%m-%d")
-        ][0]
+        for item in mode_capacity:
+            if datetime.fromisoformat(item["datetime"]).date() == capacity_dt.date():
+                capacity = item["value"]
+
     return capacity

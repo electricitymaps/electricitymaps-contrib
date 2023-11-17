@@ -38,3 +38,17 @@ def test_get_capacity_data():
 
     with pytest.raises(ValueError):
         get_capacity_data(capacity_data_2, datetime(2023, 0, 1))
+
+
+def test_get_capacity_from_list():
+    mode_capacity = [
+        {"datetime": "2022-01-01", "value": 3, "source": "abc"},
+        {"datetime": "2023-01-01", "value": 4, "source": "abc"},
+    ]
+
+    capacity_dt = datetime(2022, 1, 1)
+    for item in mode_capacity:
+        if datetime.fromisoformat(item["datetime"]).date() == capacity_dt.date():
+            capacity = item["value"]
+
+    assert capacity == 3
