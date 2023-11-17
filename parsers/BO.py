@@ -5,11 +5,11 @@ import re
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import NamedTuple
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
-tz_bo = "America/La_Paz"
+tz_bo = ZoneInfo("America/La_Paz")
 
 SOURCE = "cndc.bo"
 
@@ -36,15 +36,15 @@ def fetch_data(
     logger: Logger = getLogger(__name__),
 ) -> list[HourlyProduction]:
     if target_datetime is not None:
-        dt = arrow.get(target_datetime, tz_bo)
+        dt = target_datetime
     else:
-        dt = arrow.now(tz=tz_bo)
-        print("current dt", dt)
+        dt = datetime.now(tz=tz_bo)
+        logger.info("current dt", dt)
 
     r = session or Session()
 
     # Define actual and previous day (for midnight data).
-    formatted_dt = dt.format("YYYY-MM-DD")
+    formatted_dt = dt.astimezone(tz=tz_bo).strftime("%Y-%m-%d")
 
     # initial path for url to request
     url_init = "https://www.cndc.bo/gene/dat/gene.php?fechag={0}"
@@ -73,7 +73,7 @@ def fetch_data(
 
         result.append(
             HourlyProduction(
-                datetime=timestamp.datetime,
+                datetime=timestamp,
                 forecast=forecast,
                 total=total,
                 thermo=thermo,
