@@ -241,7 +241,7 @@ def fetch_consumption_from_vidyutpravah(
     consumption_list = TotalConsumptionList(logger=logger)
     consumption_list.append(
         zoneKey=ZoneKey(zone_key),
-        datetime=arrow.now(tz=IN_TZ).datetime,
+        datetime=datetime.now(tz=IN_TZ),
         consumption=total_consumption,
         source="vidyupravah.in",
     )
@@ -284,7 +284,7 @@ def fetch_consumption_from_meritindia(
     consumption_list = TotalConsumptionList(logger=logger)
     consumption_list.append(
         zoneKey=ZoneKey(zone_key),
-        datetime=arrow.now(tz=IN_TZ).datetime,
+        datetime=datetime.now(tz=IN_TZ),
         consumption=total_consumption,
         source="meritindia.in",
     )

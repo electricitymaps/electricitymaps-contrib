@@ -115,7 +115,7 @@ def fetch_price(
         )
 
     if target_datetime is None:
-        target_datetime = arrow.now(TIMEZONE).datetime
+        target_datetime = datetime.now(TIMEZONE)
 
     logger.debug(f"Fetching price data from {PRICE_URL}")
 
