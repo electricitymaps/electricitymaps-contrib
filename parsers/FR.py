@@ -106,7 +106,7 @@ def reindex_data(df_to_reindex: pd.DataFrame) -> pd.DataFrame:
     )
 
     # Average data points corresponding to the same time with 30 min granularity
-    df_reindexed = df_to_reindex.groupby("datetime_30").mean().reset_index()
+    df_reindexed = df_to_reindex.groupby("datetime_30").mean(numeric_only=True).reset_index()
     df_reindexed = df_reindexed.rename(columns={"datetime_30": "date_heure"})
     return df_reindexed
 
