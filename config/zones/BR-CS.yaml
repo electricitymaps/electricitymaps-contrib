@@ -14,6 +14,8 @@ contributors:
   - corradio
   - systemcatch
   - nessie2013
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
+  coal and oil.
 emissionFactors:
   direct:
     battery discharge:
@@ -199,5 +201,5 @@ fallbackZoneMixes:
         wind: 0.030407074126448184
 parsers:
   production: ONS.fetch_production
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+  productionCapacity: ONS.fetch_production_capacity
 timezone: null

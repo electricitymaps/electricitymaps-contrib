@@ -261,6 +261,7 @@ parsers:
   consumptionForecast: EIA.fetch_consumption_forecast
   price: US_PJM.fetch_price
   production: US_PJM.fetch_production
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
