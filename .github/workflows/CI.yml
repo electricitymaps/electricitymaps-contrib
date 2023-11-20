@@ -52,6 +52,7 @@ jobs:
     name: earthly
     needs: [prettier]
     uses: ./.github/workflows/earthly-contrib.yml
+    secrets: inherit
 
   validate_local_links:
     name: Validate
