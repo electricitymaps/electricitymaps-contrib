@@ -1,4 +1,3 @@
-import freezegun
 from requests import Session
 from requests_mock import GET, Adapter
 
