@@ -24,7 +24,7 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
     <MapOptionSelector
       trigger={
         isMobile ? (
-          <div className="flex w-fit min-w-[232px] items-center justify-center gap-x-2 dark:border dark:border-gray-700 dark:bg-gray-800 ">
+          <div className="flex w-fit min-w-[232px] items-center justify-center gap-x-2 ">
             <HiLanguage size={21} />
             {__('tooltips.selectLanguage')}
           </div>
