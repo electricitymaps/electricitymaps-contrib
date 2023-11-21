@@ -11,7 +11,7 @@ from electricitymap.contrib.config import ZoneKey
 """The data is downloaded from the IRENA API. """
 logger = getLogger(__name__)
 IRENA_ZONES = ["IL", "IS", "LK", "NI", "GF", "PF"]
-
+SOURCE = "IRENA.org"
 IRENA_JSON_TO_MODE_MAPPING = {
     0: "solar",
     1: "solar",
@@ -105,6 +105,7 @@ def get_capacity_data_for_all_zones(
                 mode: {
                     "datetime": datetime_value,
                     "value": value,
+                    "source": SOURCE,
                 }
             }
             capacity_dict[zone] = zone_dict
@@ -120,6 +121,7 @@ def get_capacity_data_for_all_zones(
                         mode: {
                             "datetime": datetime_value,
                             "value": value,
+                            "source": SOURCE,
                         }
                     },
                 }
