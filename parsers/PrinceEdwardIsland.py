@@ -15,11 +15,11 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
-SOURCE = "princeedwardisland.ca"
+SOURCE = "PrinceEdwardIsland.ca"
 TIMEZONE = ZoneInfo("Canada/Atlantic")
 # The dashboard associated with this API can be found at
-# https://www.princeedwardisland.ca/en/feature/pei-wind-energy.
-URL = "https://wdf.princeedwardisland.ca/api/workflow"  # API
+# https://www.PrinceEdwardIsland.ca/en/feature/pei-wind-energy.
+URL = "https://wdf.PrinceEdwardIsland.ca/api/workflow"  # API
 ZONE_KEY = ZoneKey("CA-PE")
 
 
@@ -63,9 +63,13 @@ def fetch_production(
 ) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
     if zone_key != ZONE_KEY:
-        raise ParserException("CA_PE.py", "Cannot parse zone '{zone_key}'", zone_key)
+        raise ParserException(
+            "PrinceEdwardIsland.py", "Cannot parse zone '{zone_key}'", zone_key
+        )
     if target_datetime:
-        raise ParserException("CA_PE.py", "Unable to fetch historical data", ZONE_KEY)
+        raise ParserException(
+            "PrinceEdwardIsland.py", "Unable to fetch historical data", ZONE_KEY
+        )
 
     event = _get_event(session or Session())
 
@@ -95,12 +99,14 @@ def fetch_exchange(
 ) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
-        raise ParserException("CA_PE.py", "Unable to fetch historical data", ZONE_KEY)
+        raise ParserException(
+            "PrinceEdwardIsland.py", "Unable to fetch historical data", ZONE_KEY
+        )
 
     sorted_zone_keys = ZoneKey("->".join(sorted((zone_key1, zone_key2))))
     if sorted_zone_keys != ZoneKey("CA-NB->CA-PE"):
         raise ParserException(
-            "CA_PE.py",
+            "PrinceEdwardIsland.py",
             f"The exchange pair '{sorted_zone_keys}' is not implemented",
             sorted_zone_keys,
         )
