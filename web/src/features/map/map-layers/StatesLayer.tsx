@@ -34,6 +34,7 @@ export default function StatesLayer() {
     <Source id="states" type="geojson" data={statesGeometries}>
       <Layer
         id="states-border"
+        beforeId="zones-selectable-layer"
         type="line"
         paint={statesBorderStyle}
         minzoom={2.5}

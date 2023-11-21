@@ -21,7 +21,7 @@ export default function ZonesLayer() {
         'line-width': [
           'case',
           ['boolean', ['feature-state', 'selected'], false],
-          theme.strokeWidth * 10,
+          theme.strokeWidth * 12,
           ['boolean', ['feature-state', 'hover'], false],
           theme.strokeWidth * 10,
           theme.strokeWidth,
@@ -39,7 +39,22 @@ export default function ZonesLayer() {
         'fill-color': '#FFFFFF',
         'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.3, 0],
       } as mapboxgl.FillPaint,
+      zonesSelected: {
+        'fill-color': [
+          'coalesce',
+          ['feature-state', 'color'],
+          ['get', 'color'],
+          theme.clickableFill,
+        ],
+        'fill-opacity': [
+          'case',
+          ['boolean', ['feature-state', 'selected'], false],
+          0.7,
+          0,
+        ],
+      } as mapboxgl.FillPaint,
     }),
+
     [theme]
   );
 
@@ -51,6 +66,11 @@ export default function ZonesLayer() {
         paint={zoneLayerStyles.zonesClickable}
       />
       <Layer id="zones-hoverable-layer" type="fill" paint={zoneLayerStyles.zonesHover} />
+      <Layer
+        id="zones-selectable-layer"
+        type="fill"
+        paint={zoneLayerStyles.zonesSelected}
+      />
       <Layer id="zones-border" type="line" paint={zoneLayerStyles.zonesBorder} />
     </Source>
   );
