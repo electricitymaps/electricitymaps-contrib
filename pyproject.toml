@@ -37,6 +37,7 @@ openpyxl = {version="^3.1.2", optional=true}
 pydataxm = {version="^0.3.2", optional=true}
 ruamel-yaml = "^0.17.24"
 odfpy = {version = "^1.4.1", optional = true}
+pycountry = {version = "^22.3.5", optional = true}
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
@@ -79,13 +80,8 @@ parsers = [
     "tqdm",
     "openpyxl",
     "pydataxm",
-    "odfpy"
-]
-
-
-validators = [
-    "arrow",
-    "pandas"
+    "odfpy",
+    "pycountry"
 ]
 
 scripts = [

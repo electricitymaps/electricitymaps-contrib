@@ -127,4 +127,5 @@ fallbackZoneMixes:
         wind: 0.15728253495460173
 parsers:
   production: AW.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Aruba

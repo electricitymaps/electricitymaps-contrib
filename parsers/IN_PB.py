@@ -3,6 +3,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
 import requests
@@ -92,7 +93,7 @@ def fetch_consumption(
 
     data = {
         "zoneKey": zone_key,
-        "datetime": arrow.now("Asia/Kolkata").datetime,
+        "datetime": datetime.now(tz=ZoneInfo("Asia/Kolkata")),
         "consumption": consumption,
         "source": "punjasldc.org",
     }

@@ -180,7 +180,8 @@ fallbackZoneMixes:
 parsers:
   consumption: GT.fetch_consumption
   production: GT.fetch_production
-timezone: America/Guatemala
+  productionCapacity: EMBER.fetch_production_capacity
 sources:
   Guatemala AMM 2021-2022:
     link: https://www.amm.org.gt/portal
+timezone: America/Guatemala
