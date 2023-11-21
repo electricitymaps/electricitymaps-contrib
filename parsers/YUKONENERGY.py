@@ -27,7 +27,7 @@ def _parse_mw(text):
         return float(text[: text.index(" MW")])
     except ValueError:
         raise ParserException(
-            "CA_YT.py",
+            "YUKONENERGY.py",
             f"Unable to parse power value from '{text}'",
             ZONE_KEY,
         )
