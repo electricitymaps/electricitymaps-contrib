@@ -215,4 +215,5 @@ fallbackZoneMixes:
 parsers:
   price: NI.fetch_price
   production: NI.fetch_production
+  productionCapacity: IRENA.fetch_production_capacity
 timezone: America/Managua

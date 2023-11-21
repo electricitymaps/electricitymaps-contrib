@@ -27,7 +27,8 @@ delays:
   production: 30
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available. This zone includes all gas related electricity production
-  from the generation-only balancing authority Avangrid Renewables, LLC. Read more on the zone definition wiki page.
+  from the generation-only balancing authority Avangrid Renewables, LLC. Read more
+  on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -263,6 +264,7 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

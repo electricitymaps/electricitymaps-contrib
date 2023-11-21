@@ -13,7 +13,7 @@ Consumption Forecast
 """
 import itertools
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from random import shuffle
 from typing import Any
@@ -21,7 +21,6 @@ from typing import Any
 import arrow
 import numpy as np
 from bs4 import BeautifulSoup
-from pytz import utc
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -1142,13 +1141,13 @@ def fetch_production_per_units(
 
     # If no target_datetime is specified, or the target datetime is less
     # than 5 days ago we set the target_datetime to 5 days ago.
-    if target_datetime is None or target_datetime > datetime.now(tz=utc) - timedelta(
-        days=5
-    ):
+    if target_datetime is None or target_datetime > datetime.now(
+        tz=timezone.utc
+    ) - timedelta(days=5):
         logger.info(
             "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
         )
-        target_datetime = datetime.now(tz=utc) - timedelta(days=5)
+        target_datetime = datetime.now(tz=timezone.utc) - timedelta(days=5)
 
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []

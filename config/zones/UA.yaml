@@ -87,8 +87,11 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 239.8490653738602
     unknown:
-      _comment: estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable mix
-      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib issue number 1809
+      _comment: estimated yearly share of solar & wind in this mixed renewable category
+        based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
+        mix
+      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib
+        issue number 1809
       value: 28
 fallbackZoneMixes:
   powerOriginRatios:
@@ -134,10 +137,11 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
   production: UA.fetch_production
+  productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-timezone: Europe/Kiev
 sources:
-  Wikipedia page for Renewable energy in Ukraine:
-    link: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
   Electricity Maps contrib issue number 1809:
     link: https://github.com/electricitymaps/electricitymaps-contrib/issues/1809
+  Wikipedia page for Renewable energy in Ukraine:
+    link: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
+timezone: Europe/Kiev

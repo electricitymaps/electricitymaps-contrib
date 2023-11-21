@@ -15,8 +15,8 @@ import re
 from datetime import datetime
 from logging import Logger, getLogger
 from sys import stderr
+from zoneinfo import ZoneInfo
 
-from pytz import timezone
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
@@ -36,12 +36,12 @@ COUNTRY_CODE_MAPPING = {
 }
 
 TIME_ZONE_MAPPING = {
-    "AE": timezone("Asia/Dubai"),
-    "BH": timezone("Asia/Bahrain"),
-    "KW": timezone("Asia/Kuwait"),
-    "OM": timezone("Asia/Muscat"),
-    "QA": timezone("Asia/Qatar"),
-    "SA": timezone("Asia/Riyadh"),
+    "AE": ZoneInfo("Asia/Dubai"),
+    "BH": ZoneInfo("Asia/Bahrain"),
+    "KW": ZoneInfo("Asia/Kuwait"),
+    "OM": ZoneInfo("Asia/Muscat"),
+    "QA": ZoneInfo("Asia/Qatar"),
+    "SA": ZoneInfo("Asia/Riyadh"),
 }
 
 

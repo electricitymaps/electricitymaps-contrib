@@ -20,4 +20,5 @@ contributors:
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
+  productionCapacity: REE.fetch_production_capacity
 timezone: Europe/Madrid

@@ -1,7 +1,7 @@
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 import cv2
 import numpy as np
 import pytesseract
@@ -127,7 +127,9 @@ def fetch_production(
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    dt = arrow.now("Asia/Kolkata").floor("minute").datetime
+    dt = datetime.now(tz=ZoneInfo("Asia/Kolkata")).replace(
+        minute=0, second=0, microsecond=0
+    )
 
     data = {
         "zoneKey": "IN-MH",

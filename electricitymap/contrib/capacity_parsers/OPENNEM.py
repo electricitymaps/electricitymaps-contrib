@@ -1,5 +1,6 @@
 from datetime import datetime
 from logging import getLogger
+from typing import Any
 
 import pandas as pd
 from requests import Response, Session
@@ -36,7 +37,7 @@ FUEL_MAPPING = {
 CAPACITY_URL = "https://api.opennem.org.au/facility/"
 
 
-def get_opennem_capacity_data(session: Session) -> dict:
+def get_opennem_capacity_data(session: Session) -> dict[str, Any]:
     r: Response = session.get(CAPACITY_URL)
     data = r.json()
     capacity_df = pd.json_normalize(data)
@@ -84,7 +85,7 @@ def filter_capacity_data_by_datetime(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
-):
+) -> dict[str, Any]:
     session = session or Session()
     capacity_df = get_opennem_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
@@ -112,7 +113,7 @@ def fetch_production_capacity_for_all_zones(
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session | None = None
-):
+) -> dict[str, Any] | None:
     session = session or Session()
     capacity = fetch_production_capacity_for_all_zones(target_datetime, session)[
         zone_key
@@ -126,7 +127,7 @@ def fetch_production_capacity(
         logger.error(f"No capacity data for {zone_key} in {target_datetime}")
 
 
-def get_solar_capacity_au_nt(target_datetime: datetime):
+def get_solar_capacity_au_nt(target_datetime: datetime) -> float | None:
     """Get solar capacity for AU-NT."""
     session = Session()
     capacity_df = get_opennem_capacity_data(session)

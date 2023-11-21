@@ -227,4 +227,5 @@ parsers:
   consumption: KPX.fetch_consumption
   price: KPX.fetch_price
   production: KPX.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Seoul
