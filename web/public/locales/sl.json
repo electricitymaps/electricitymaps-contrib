@@ -294,43 +294,43 @@
       "zoneName": "Avstrija"
     },
     "AU-NSW": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Novi Južni Wales"
     },
     "AU-NT": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Severni teritoriji"
     },
     "AU-QLD": {
-      "countryName": "Australia",
+      "countryName": "Avstralija",
       "zoneName": "Queensland"
     },
     "AU-SA": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Južna Avstralija"
     },
     "AU-TAS": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Tasmanija"
     },
     "AU-TAS-CBI": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Cape Barren otok"
     },
     "AU-TAS-KI": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "King otok"
     },
     "AU-TAS-FI": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Flinders otok"
     },
     "AU-VIC": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Victoria"
     },
     "AU-WA": {
-      "countryName": "Australij",
+      "countryName": "Avstralija",
       "zoneName": "Zahodna Avstralija"
     },
     "AU-WA-RI": {
@@ -721,7 +721,7 @@
       "zoneName": "Gambija"
     },
     "GN": {
-      "zoneName": "Gvineja  "
+      "zoneName": "Gvineja"
     },
     "GP": {
       "zoneName": "Guadeloupe"
@@ -1152,7 +1152,7 @@
       "zoneName": "Severno-zahodna"
     },
     "MX-OC": {
-      "countryName": "Mexico",
+      "countryName": "Mehika",
       "zoneName": "Zahodna"
     },
     "MX-OR": {
@@ -1210,7 +1210,7 @@
       "zoneName": "Jugo-zahodna Norveška"
     },
     "NO-NO3": {
-      "countryName": "Norway",
+      "countryName": "Norveška",
       "zoneName": "Srednja Norveška"
     },
     "NO-NO4": {
@@ -1267,7 +1267,7 @@
       "zoneName": "Pakistan"
     },
     "PL": {
-      "zoneName": "Poland"
+      "zoneName": "Poljska"
     },
     "PM": {
       "zoneName": "Sveti Pierre in Miquelon"
@@ -1308,7 +1308,7 @@
       "zoneName": "Romunija"
     },
     "RS": {
-      "zoneName": "Serbija"
+      "zoneName": "Srbija"
     },
     "RU": {
       "zoneName": "Rusija"
@@ -1469,7 +1469,7 @@
       "zoneName": "Tanzanija"
     },
     "UA": {
-      "zoneName": "Ukrajiva"
+      "zoneName": "Ukrajina"
     },
     "UA-CR": {
       "countryName": "Ukrajina",
@@ -1766,7 +1766,7 @@
       "zoneName": "Vatikan"
     },
     "VC": {
-      "zoneName": "SVeti Vincent in Grenadini"
+      "zoneName": "Sveti Vincent in Grenadini"
     },
     "VE": {
       "zoneName": "Venezuela"
