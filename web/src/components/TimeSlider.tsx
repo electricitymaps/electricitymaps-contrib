@@ -58,7 +58,10 @@ export const getTrackBackground = (
   )`;
 };
 
-export const getThumbIcon = (selectedIndex?: number, sets?: NightTimeSet[]) => {
+export const getThumbIcon = (
+  selectedIndex?: number,
+  sets?: NightTimeSet[]
+): ThumbIconPath => {
   if (selectedIndex === undefined || !sets || sets.length === 0) {
     return 'slider-thumb.svg';
   }
