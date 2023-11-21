@@ -202,6 +202,6 @@ def fetch_consumption(
 
 if __name__ == "__main__":
     print("fetch_consumption() ->")
-    print(fetch_consumption())
+    print(fetch_consumption(ZoneKey("VN")))
     print("fetch_price() ->")
-    print(fetch_price())
+    print(fetch_price(ZoneKey("VN")))
