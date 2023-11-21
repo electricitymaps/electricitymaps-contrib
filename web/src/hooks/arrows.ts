@@ -12,7 +12,7 @@ import {
 } from 'utils/state/atoms';
 
 import exchangesConfigJSON from '../../config/exchanges.json'; // do something globally
-import exchangesToExclude from '../../config/excludedAggregatedExchanges.json'; // do something globally
+import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json'; // do something globally
 
 // TODO: set up proper typed method for retrieving config files.
 const exchangesConfig: Record<string, any> = exchangesConfigJSON;
