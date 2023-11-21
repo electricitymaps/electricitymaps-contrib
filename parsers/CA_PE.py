@@ -70,12 +70,7 @@ def fetch_production(
     event = _get_event(session or Session())
 
     production_mix = ProductionMix()
-    # Specify some sources that definitely aren't present on PEI as zero; this
-    # allows the analyzer to better estimate CO2eq.
-    production_mix.add_value("coal", 0)
-    production_mix.add_value("geothermal", 0)
-    production_mix.add_value("hydro", 0)
-    production_mix.add_value("nuclear", 0)
+
     # These are oil-fueled ("heavy fuel oil" and "diesel") generators used as
     # peakers and back-up.
     production_mix.add_value("oil", event["fossil"])
@@ -106,7 +101,7 @@ def fetch_exchange(
     if sorted_zone_keys != ZoneKey("CA-NB->CA-PE"):
         raise ParserException(
             "CA_PE.py",
-            "The exchange pair '{sorted_zone_keys}' is not implemented",
+            f"The exchange pair '{sorted_zone_keys}' is not implemented",
             sorted_zone_keys,
         )
 
@@ -147,4 +142,4 @@ if __name__ == "__main__":
     print(fetch_production())
 
     print('fetch_exchange("CA-PE", "CA-NB") ->')
-    print(fetch_exchange("CA-PE", "CA-NB"))
+    print(fetch_exchange(ZoneKey("CA-PE"), ZoneKey("CA-NB")))
