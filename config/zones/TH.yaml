@@ -27,103 +27,128 @@ emissionFactors:
       value: 386.645
   lifecycle:
     unknown:
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '1998-01-01'
         source: EPPO
         value: 636
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '1999-01-01'
         source: EPPO
         value: 646
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2000-01-01'
         source: EPPO
         value: 634
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2001-01-01'
         source: EPPO
         value: 604
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2002-01-01'
         source: EPPO
         value: 587
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2003-01-01'
         source: EPPO
         value: 573
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2004-01-01'
         source: EPPO
         value: 581
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2005-01-01'
         source: EPPO
         value: 571
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2006-01-01'
         source: EPPO
         value: 571
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2007-01-01'
         source: EPPO
         value: 571
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2008-01-01'
         source: EPPO
         value: 570
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2009-01-01'
         source: EPPO
         value: 560
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2010-01-01'
         source: EPPO
         value: 551
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2011-01-01'
         source: EPPO
         value: 530
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2012-01-01'
         source: EPPO
         value: 530
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2013-01-01'
         source: EPPO
         value: 532
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2014-01-01'
         source: EPPO
         value: 532
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2015-01-01'
         source: EPPO
         value: 507
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2016-01-01'
         source: EPPO
         value: 493
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2017-01-01'
         source: EPPO
         value: 471
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2018-01-01'
         source: EPPO
         value: 459
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2019-01-01'
         source: EPPO
         value: 445
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2020-01-01'
         source: EPPO
         value: 442
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2021-01-01'
         source: EPPO
         value: 433
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP, SPP, and VSPP
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
         datetime: '2022-01-01'
         source: EPPO
         value: 409
@@ -153,6 +178,7 @@ parsers:
   consumption: TH.fetch_consumption
   price: TH.fetch_price
   production: TH.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: TH.fetch_generation_forecast
 sources:
   EPPO:

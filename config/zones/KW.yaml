@@ -80,4 +80,5 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   consumption: KW.fetch_consumption
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Kuwait

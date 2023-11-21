@@ -3,17 +3,18 @@ bounding_box:
     - 20.23871491100003
   - - 93.14285119700017
     - 27.123544007000064
-contributors:
-  - systemcatch
-  - alixunderplatz
-  - MuffinCompiler
 capacity:
   coal: 1768
   gas: 11476
   hydro: 230
   oil: 7619
   solar: 229
+contributors:
+  - systemcatch
+  - alixunderplatz
+  - MuffinCompiler
 parsers:
-  production: BD.fetch_production
   consumption: BD.fetch_consumption
+  production: BD.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Dhaka

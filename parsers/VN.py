@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import json
-import zoneinfo
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 from requests import Session
 
@@ -17,7 +17,7 @@ from parsers.lib.exceptions import ParserException
 ## Vietnamese National Load Dispatch Center https://www.nldc.evn.vn/
 # Access via day, can also parse historical data
 
-tz = zoneinfo.ZoneInfo("Asia/Ho_Chi_Minh")
+tz = ZoneInfo("Asia/Ho_Chi_Minh")
 LIVE_DATA = {
     "consumption": "https://www.nldc.evn.vn/api/services/app/Pages/GetChartPhuTaiVM",
     "price": "https://www.nldc.evn.vn/api/services/app/Pages/GetChartGiaBienVM",
