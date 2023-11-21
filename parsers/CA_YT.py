@@ -12,10 +12,25 @@ from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
-SOURCE = "www.yukonenergy.ca"
+SOURCE = "yukonenergy.ca"
 TIMEZONE = ZoneInfo("America/Whitehorse")
 URL = "http://www.yukonenergy.ca/consumption/chart_current.php?chart=current&width=420"
 ZONE_KEY = ZoneKey("CA-YT")
+
+
+def _parse_mw(text):
+    """
+    Extract the power value from the source's HTML text content. The text
+    is formatted as, e.g., "37.69 MW - hydro".
+    """
+    try:
+        return float(text[: text.index(" MW")])
+    except ValueError:
+        raise ParserException(
+            "CA_YT.py",
+            f"Unable to parse power value from '{text}'",
+            ZONE_KEY,
+        )
 
 
 def fetch_production(
@@ -59,16 +74,6 @@ def fetch_production(
     There is also a small 0.81 MW wind farm, its current generation is not
     available.
     """
-
-    def _parse_mw(text):
-        """
-        Extract the power value from the source's HTML text content. The text
-        is formatted as, e.g., "37.69 MW - hydro".
-        """
-        try:
-            return float(text[: text.index(" MW")])
-        except ValueError:
-            return 0
 
     if zone_key != ZONE_KEY:
         raise ParserException("CA_YT.py", "Cannot parse zone '{zone_key}'", zone_key)
