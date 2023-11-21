@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 from logging import getLogger
-from typing import Dict, Union
+from typing import Any
 
 import pycountry
 from requests import Response, Session
@@ -11,7 +11,7 @@ from electricitymap.contrib.config import ZoneKey
 """The data is downloaded from the IRENA API. """
 logger = getLogger(__name__)
 IRENA_ZONES = ["IL", "IS", "LK", "NI", "GF", "PF"]
-
+SOURCE = "IRENA.org"
 IRENA_JSON_TO_MODE_MAPPING = {
     0: "solar",
     1: "solar",
@@ -86,7 +86,9 @@ def reallocate_capacity_mode(zone_key: ZoneKey, mode: int) -> dict:
     return IRENA_JSON_TO_MODE_MAPPING[mode]
 
 
-def get_capacity_data_for_all_zones(target_datetime: datetime, session: Session):
+def get_capacity_data_for_all_zones(
+    target_datetime: datetime, session: Session
+) -> dict:
     data = get_data_from_url(target_datetime, session)
     capacity_dict = {}
     for item in data:
@@ -103,6 +105,7 @@ def get_capacity_data_for_all_zones(target_datetime: datetime, session: Session)
                 mode: {
                     "datetime": datetime_value,
                     "value": value,
+                    "source": SOURCE,
                 }
             }
             capacity_dict[zone] = zone_dict
@@ -118,6 +121,7 @@ def get_capacity_data_for_all_zones(target_datetime: datetime, session: Session)
                         mode: {
                             "datetime": datetime_value,
                             "value": value,
+                            "source": SOURCE,
                         }
                     },
                 }
@@ -126,7 +130,7 @@ def get_capacity_data_for_all_zones(target_datetime: datetime, session: Session)
 
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
-) -> Union[Dict, None]:
+) -> dict[str, Any] | None:
     all_capacity = get_capacity_data_for_all_zones(target_datetime, session)
     zone_capacity = all_capacity[zone_key]
 
@@ -141,7 +145,7 @@ def fetch_production_capacity(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session
-) -> Union[Dict, None]:
+) -> dict[str, Any] | None:
     all_capacity = get_capacity_data_for_all_zones(target_datetime, session)
 
     all_capacity = {k: v for k, v in all_capacity.items() if k in IRENA_ZONES}
