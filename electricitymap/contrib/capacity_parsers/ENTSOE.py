@@ -1,5 +1,6 @@
 from datetime import datetime
 from logging import getLogger
+from typing import Any
 
 from bs4 import BeautifulSoup
 from requests import Session
@@ -87,7 +88,7 @@ def query_capacity(
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
-) -> dict:
+) -> dict[str, Any] | None:
     xml_str = query_capacity(ENTSOE_DOMAIN_MAPPINGS[zone_key], session, target_datetime)
     soup = BeautifulSoup(xml_str, "html.parser")
     # Each time series is dedicated to a different fuel type.
@@ -124,7 +125,7 @@ def fetch_production_capacity(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
-) -> dict:
+) -> dict[str, Any]:
     capacity_dict = {}
     if session is None:
         session = Session()

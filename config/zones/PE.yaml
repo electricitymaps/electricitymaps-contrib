@@ -211,4 +211,5 @@ fallbackZoneMixes:
         wind: 0.03385162751853654
 parsers:
   production: PE.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Lima

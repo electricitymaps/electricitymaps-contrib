@@ -1,10 +1,9 @@
 import json
 import os
 import unittest
-from datetime import datetime
+from datetime import datetime, timezone
 from importlib import resources
 
-from pytz import utc
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 
@@ -376,7 +375,7 @@ class TestEIAProduction(TestEIA):
             },
         ]
         self.assertEqual(
-            datetime(2022, 10, 31, 11, 0, tzinfo=utc), data_list[0]["datetime"]
+            datetime(2022, 10, 31, 11, 0, tzinfo=timezone.utc), data_list[0]["datetime"]
         )
         self.check_production_matches(data_list, expected)
 
@@ -398,19 +397,19 @@ class TestEIAExchanges(TestEIA):
         expected = [
             {
                 "source": "eia.gov",
-                "datetime": datetime(2022, 2, 28, 22, 0, tzinfo=utc),
+                "datetime": datetime(2022, 2, 28, 22, 0, tzinfo=timezone.utc),
                 "sortedZoneKeys": "US-NW-BPAT->US-NW-NWMT",
                 "netFlow": -12,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2022, 2, 28, 23, 0, tzinfo=utc),
+                "datetime": datetime(2022, 2, 28, 23, 0, tzinfo=timezone.utc),
                 "sortedZoneKeys": "US-NW-BPAT->US-NW-NWMT",
                 "netFlow": -11,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2022, 3, 1, 0, 0, tzinfo=utc),
+                "datetime": datetime(2022, 3, 1, 0, 0, tzinfo=timezone.utc),
                 "sortedZoneKeys": "US-NW-BPAT->US-NW-NWMT",
                 "netFlow": -2,
             },
@@ -438,12 +437,12 @@ class TestEIAConsumption(TestEIA):
         expected = [
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=timezone.utc),
                 "consumption": 4792,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=timezone.utc),
                 "consumption": 6215,
             },
         ]
@@ -467,12 +466,12 @@ class TestEIAConsumption(TestEIA):
         expected = [
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=utc),
+                "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=timezone.utc),
                 "consumption": 4792,
             },
             {
                 "source": "eia.gov",
-                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=utc),
+                "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=timezone.utc),
                 "consumption": 6215,
             },
         ]

@@ -1,7 +1,7 @@
 import calendar
 from datetime import datetime
 from logging import getLogger
-from typing import Dict, Union
+from typing import Any
 
 import pandas as pd
 from requests import Response, Session
@@ -13,7 +13,6 @@ from parsers.lib.utils import get_token
 logger = getLogger(__name__)
 
 CAPACITY_URL = "https://api.eia.gov/v2/electricity/operating-generator-capacity/data/?frequency=monthly&data[0]=nameplate-capacity-mw&facets[balancing_authority_code][]={}"
-API_KEY = get_token("EIA_KEY")
 SOURCE = "EIA.gov"
 US_ZONES = {key: value for key, value in REGIONS.items() if key.startswith("US-")}
 TECHNOLOGY_TO_MODE = {
@@ -47,7 +46,7 @@ TECHNOLOGY_TO_MODE = {
 }
 
 
-def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict:
+def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict[str, Any]:
     df = df.copy()
     df = df.loc[df["statusDescription"] == "Operating"]
     df["mode"] = df["technology"].map(TECHNOLOGY_TO_MODE)
@@ -70,7 +69,8 @@ def fetch_production_capacity(
     zone_key: ZoneKey,
     target_datetime: datetime,
     session: Session,
-) -> Union[Dict, None]:
+) -> dict[str, Any] | None:
+    API_KEY = get_token("EIA_KEY")
     url_prefix = CAPACITY_URL.format(REGIONS[zone_key])
     start_date = target_datetime.strftime("%Y-%m-01")
     end_date = target_datetime.replace(
@@ -95,11 +95,12 @@ def fetch_production_capacity(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
-) -> pd.DataFrame:
+) -> dict[str, Any]:
     eia_capacity = {}
     if session is None:
         session = Session()
     for zone in US_ZONES:
         zone_capacity = fetch_production_capacity(zone, target_datetime, session)
-        eia_capacity[zone] = zone_capacity
+        if zone_capacity:
+            eia_capacity[zone] = zone_capacity
     return eia_capacity

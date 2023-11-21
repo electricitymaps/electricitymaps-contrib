@@ -1,7 +1,7 @@
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import pytest
-from pytz import timezone
 from requests import Session
 from requests_mock import GET, Adapter
 
@@ -24,7 +24,7 @@ def test_exchanges(neighbour_zone_key: ZoneKey):
     session = Session()
     adapter = Adapter()
     session.mount("https://", adapter)
-    target_date = datetime(2023, 6, 25, 0, 0, tzinfo=timezone("Asia/Kolkata"))
+    target_date = datetime(2023, 6, 25, 0, 0, tzinfo=ZoneInfo("Asia/Kolkata"))
     sorted_zone_keys = ZoneKey("->".join(sorted([neighbour_zone_key, "IN-EA"])))
     url, _ = IN_EA.get_fetch_function(sorted_zone_keys)
     filename = (
@@ -46,11 +46,11 @@ def test_exchanges(neighbour_zone_key: ZoneKey):
         ZoneKey("IN-EA"),
         neighbour_zone_key,
         session,
-        datetime(2023, 6, 25, 0, 0, tzinfo=timezone("Asia/Kolkata")),
+        datetime(2023, 6, 25, 0, 0, tzinfo=ZoneInfo("Asia/Kolkata")),
     )
 
     assert exchanges[0]["datetime"] == datetime(
-        2023, 6, 25, 0, 0, tzinfo=timezone("Asia/Kolkata")
+        2023, 6, 25, 0, 0, tzinfo=ZoneInfo("Asia/Kolkata")
     )
     assert exchanges[0]["netFlow"] == NETFLOWS[sorted_zone_keys]
     assert exchanges[0]["sortedZoneKeys"] == sorted_zone_keys

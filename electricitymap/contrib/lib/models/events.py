@@ -1,3 +1,4 @@
+# pylint: disable=no-member
 import datetime as dt
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
