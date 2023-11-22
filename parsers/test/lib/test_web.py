@@ -24,7 +24,7 @@ class TestResponses(unittest.TestCase):
         try:
             response = web.get_response("ES", "https://www.google.es")
             self.assertIsNotNone(response)
-        except ParserException as ex:
+        except ParserException:
             self.fail("assert_zone_key() raised Exception unexpectedly!")
 
     @ignore_resource_warning
@@ -32,7 +32,7 @@ class TestResponses(unittest.TestCase):
         try:
             response_text = web.get_response_text("ES", "https://www.google.es")
             self.assertIsNotNone(response_text)
-        except ParserException as ex:
+        except ParserException:
             self.fail("assert_zone_key() raised Exception unexpectedly!")
 
     @ignore_resource_warning
@@ -40,7 +40,7 @@ class TestResponses(unittest.TestCase):
         try:
             response_soup = web.get_response_soup("ES", "https://www.google.es")
             self.assertIsNotNone(response_soup)
-        except ParserException as ex:
+        except ParserException:
             self.fail("assert_zone_key() raised Exception unexpectedly!")
 
 

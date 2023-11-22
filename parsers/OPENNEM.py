@@ -164,7 +164,7 @@ def generate_url(
             url = f"http://api.opennem.org.au/stats/power/network/fueltech/{network}/{region}?month={month}"
     else:
         # Contains flows and production combined
-        url = f"https://data.opennem.org.au/v3/clients/em/latest.json"
+        url = "https://data.opennem.org.au/v3/clients/em/latest.json"
 
     return url
 

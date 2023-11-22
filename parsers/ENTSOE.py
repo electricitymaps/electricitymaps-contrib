@@ -1163,7 +1163,7 @@ def fetch_production_per_units(
                     if not v:
                         continue
                     v["source"] = "entsoe.eu"
-                    if not v["unitName"] in ENTSOE_UNITS_TO_ZONE:
+                    if v["unitName"] not in ENTSOE_UNITS_TO_ZONE:
                         logger.warning(
                             f"Unknown unit {v['unitName']} with id {v['unitKey']}"
                         )

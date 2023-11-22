@@ -140,8 +140,7 @@ def validate_exchange(
     if exchange is None:
         logger.warning(
             "{}: expected exchange cannot be null".format(
-                datapoint["sortedZoneKeys"], exchange
-            ),
+                datapoint["sortedZoneKeys"], ),
             extra={"key": datapoint["sortedZoneKeys"]},
         )
         return

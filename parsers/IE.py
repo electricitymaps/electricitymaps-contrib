@@ -137,7 +137,7 @@ def fetch_exchange(
     if sortedZoneKeys == "GB-NIR->IE":
         raise ParserException(
             parser="IE.py",
-            message=f"the GB-NIR_IE interconnection is unsupported.",
+            message="the GB-NIR_IE interconnection is unsupported.",
         )
 
     exchange_data = fetch_data(

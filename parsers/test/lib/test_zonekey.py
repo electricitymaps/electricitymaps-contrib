@@ -8,7 +8,7 @@ class TestCountyCode(unittest.TestCase):
     def test_assert_zone_key(self):
         try:
             zonekey.assert_zone_key("ES", "ES", "ESIOS")
-        except ParserException as ex:
+        except ParserException:
             self.fail("assert_zone_key() raised ParserException unexpectedly!")
 
         try:

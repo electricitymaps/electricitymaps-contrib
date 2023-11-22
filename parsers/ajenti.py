@@ -81,7 +81,7 @@ def parse_payload(logger: Logger, payload) -> dict:
         "geothermal": 0,
         "unknown": 0,
     }
-    if not "technologies" in payload:
+    if "technologies" not in payload:
         raise KeyError(
             f"No 'technologies' in payload\n" f"serie : {json.dumps(payload)}"
         )

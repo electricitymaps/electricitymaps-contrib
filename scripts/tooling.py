@@ -20,7 +20,7 @@ def _run(cmd: str):
 
 
 def format():
-    _run(f"isort --profile=black .")
+    _run("isort --profile=black .")
     _run("black .")
 
 

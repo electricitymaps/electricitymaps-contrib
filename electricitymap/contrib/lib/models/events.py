@@ -114,7 +114,7 @@ class ProductionMix(Mix):
         and to check for negative values and set them to None.
         This method also keeps track of the modes that have been corrected.
         """
-        if not name in PRODUCTION_MODES:
+        if name not in PRODUCTION_MODES:
             raise AttributeError(f"Unknown production mode: {name}")
         if value is not None and value < 0:
             self._corrected_negative_values.add(name)
@@ -188,7 +188,7 @@ class StorageMix(Mix):
         """
         Overriding the setattr method to raise an error if the mode is unknown.
         """
-        if not name in STORAGE_MODES:
+        if name not in STORAGE_MODES:
             raise AttributeError(f"Unknown storage mode: {name}")
         return super().__setattr__(name, value)
 
