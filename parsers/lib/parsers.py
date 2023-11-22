@@ -27,11 +27,8 @@ PARSER_KEY_TO_DICT = {
     "productionCapacity": PRODUCTION_CAPACITY_PARSERS,
 }
 
-_parser_key_to_parser_folder = (
-    lambda parser_key: "electricitymap.contrib.capacity_parsers"
-    if parser_key == "productionCapacity"
-    else "parsers"
-)
+def _parser_key_to_parser_folder(parser_key: str) :
+    return "electricitymap.contrib.capacity_parsers" if parser_key == "productionCapacity" else "parsers"
 
 # Read all zones
 for zone_id, zone_config in ZONES_CONFIG.items():

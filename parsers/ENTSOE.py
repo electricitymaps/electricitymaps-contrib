@@ -769,8 +769,7 @@ def create_production_storage(
         return None, storage
     if 0 > quantity > -50:
         logger.info(
-            "Self consumption value %s for %s has been set to 0."
-            % (quantity, fuel_em_type),
+            f"Self consumption value {quantity} for {fuel_em_type} has been set to 0.",
             extra={"key": zoneKey, "fuel_type": fuel_em_type},
         )
         quantity = 0

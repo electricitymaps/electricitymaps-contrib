@@ -45,14 +45,13 @@ def validate_reasonable_time(item, k):
     data_time = arrow.get(item["datetime"])
     if data_time.year < 2000:
         raise ValidationError(
-            "Data from %s can't be before year 2000, it was " "%s" % (k, data_time)
+            f"Data from {k} can't be before year 2000, it was from: {data_time}"
         )
 
     arrow_now = arrow.utcnow()
     if data_time.astimezone(timezone.utc) > arrow_now:
         raise ValidationError(
-            "Data from %s can't be in the future, data was %s, now is "
-            "%s" % (k, data_time, arrow_now)
+            f"Data from {k} can't be in the future, data was {data_time}, now is {arrow_now}"
         )
 
 

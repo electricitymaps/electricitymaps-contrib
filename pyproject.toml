@@ -134,6 +134,7 @@ exclude = [
     "dist",
     "node_modules",
     "venv",
+    "parsers/archived",
 ]
 
 # Same as Black.

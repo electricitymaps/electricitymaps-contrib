@@ -275,12 +275,12 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
             mock_warning.assert_called_once()
-            assert breakdown.production.hydro == None
+            assert breakdown.production.hydro is None
             assert breakdown.production.wind == 10
 
             dict_form = breakdown.to_dict()
             assert dict_form["production"]["wind"] == 10
-            assert dict_form["production"]["hydro"] == None
+            assert dict_form["production"]["hydro"] is None
 
     def test_self_report_negative_value(self):
         mix = ProductionMix()
@@ -299,7 +299,7 @@ class TestProductionBreakdown(unittest.TestCase):
             )
             mock_warning.assert_called_once()
             assert breakdown.production.wind == 0
-            assert breakdown.production.biomass == None
+            assert breakdown.production.biomass is None
 
     def test_unknown_production_mode_raises(self):
         mix = ProductionMix()
@@ -390,7 +390,7 @@ class TestProductionBreakdown(unittest.TestCase):
         dict_form = breakdown.to_dict()
         assert dict_form["production"].keys() == {"wind", "solar"}
         assert dict_form["production"]["wind"] == 10
-        assert dict_form["production"]["solar"] == None
+        assert dict_form["production"]["solar"] is None
 
 
 class TestTotalProduction(unittest.TestCase):
@@ -451,7 +451,7 @@ class TestAddValue(unittest.TestCase):
     def test_production_with_negative_value_expect_none(self):
         mix = ProductionMix()
         mix.add_value("wind", -10)
-        assert mix.wind == None
+        assert mix.wind is None
         assert mix.corrected_negative_modes == {"wind"}
 
     def test_production_with_negative_value_and_correct_with_none(self):
@@ -487,7 +487,7 @@ class TestAddValue(unittest.TestCase):
     def test_storage_with_none(self):
         mix = StorageMix()
         mix.add_value("hydro", None)
-        assert mix.hydro == None
+        assert mix.hydro is None
         mix.add_value("hydro", -5)
         assert mix.hydro == -5
         mix.add_value("hydro", None)

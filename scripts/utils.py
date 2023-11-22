@@ -4,7 +4,6 @@ import json
 import pathlib
 import subprocess
 from os import PathLike, listdir, path
-from typing import Union
 
 import yaml
 
@@ -72,7 +71,7 @@ class YamlFilePatcher:
             del f.content[zone]
     """
 
-    def __init__(self, file_path: Union[PathLike, str]):
+    def __init__(self, file_path: PathLike | str):
         self.file_path = file_path
 
     def __enter__(self):

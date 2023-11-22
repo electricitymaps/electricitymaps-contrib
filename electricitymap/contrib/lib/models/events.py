@@ -1,10 +1,11 @@
 # pylint: disable=no-member
 import datetime as dt
 from abc import ABC, abstractmethod
+from collections.abc import Set
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
-from typing import AbstractSet, Any, Optional
+from typing import Any, Optional
 
 import pandas as pd
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
@@ -151,7 +152,7 @@ class ProductionMix(Mix):
         return len(self._corrected_negative_values) > 0
 
     @property
-    def corrected_negative_modes(self) -> AbstractSet[str]:
+    def corrected_negative_modes(self) -> Set[str]:
         return self._corrected_negative_values
 
     @classmethod

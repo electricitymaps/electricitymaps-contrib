@@ -142,7 +142,7 @@ def get_nuclear_production():
     for tr in tr_list:
         capacity = extractCapacity(tr)
         operation_percentage = extractOperationPercentage(tr)
-        if capacity == None or operation_percentage == None:
+        if capacity is None or operation_percentage is None:
             continue
         kw = capacity * operation_percentage
         total_kw = total_kw + kw

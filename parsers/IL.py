@@ -59,7 +59,7 @@ def fetch_all() -> list:
         """Flatten the list."""
         flat_list = []
         for element in _2d_list:
-            if type(element) is list:
+            if isinstance(element, list):
                 for item in element:
                     flat_list.append(item)
             else:

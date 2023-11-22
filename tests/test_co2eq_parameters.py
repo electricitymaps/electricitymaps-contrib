@@ -307,10 +307,10 @@ class BaseClasses:
 
             def check_range(mode, factor, zone):
                 value = factor["value"]
-                assert isinstance(value, (int, float))
+                assert isinstance(value, int | float)
                 low, high = self.ranges_by_mode[mode]
-                assert isinstance(low, (int, float))
-                assert isinstance(high, (int, float))
+                assert isinstance(low, int | float)
+                assert isinstance(high, int | float)
                 msg = (
                     f"emission factor {value} not in expected range "
                     f"[{low}, {high}] for {mode} in {zone}"
