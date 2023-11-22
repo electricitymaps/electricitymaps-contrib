@@ -37,7 +37,6 @@ export default function StatesLayer() {
         beforeId="zones-selectable-layer"
         type="line"
         paint={statesBorderStyle}
-        // minzoom={2.5}
         source="states"
       />
       <Layer
