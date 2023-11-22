@@ -34,6 +34,9 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           poetry install -E parsers --sync
-      - name: Linting
+      - name: Check formatting
         run: |
-          poetry run lint
+          poetry run ruff format . --check --output-format=github
+      - name: Check linting
+        run: |
+          poetry run ruff check . --output-format=github
