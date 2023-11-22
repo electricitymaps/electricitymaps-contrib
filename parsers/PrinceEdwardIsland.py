@@ -36,11 +36,11 @@ def _get_event(session: Session):
     ).json()["data"]
     # Collect the production modes and power values into a lookup table.
     modes = dict(
-        (
+        
             object_["data"]["header"].split(": ", maxsplit=1)
             for object_ in event
             if object_["type"] == "GaugeChart"
-        )
+        
     )
     # Extract the timestamp.
     timestamp = datetime.strptime(

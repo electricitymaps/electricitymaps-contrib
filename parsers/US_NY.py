@@ -118,9 +118,7 @@ def fetch_production(
         )
 
     ny_date = target_datetime.format("YYYYMMDD")
-    mix_url = "http://mis.nyiso.com/public/csv/rtfuelmix/{}rtfuelmix.csv".format(
-        ny_date
-    )
+    mix_url = f"http://mis.nyiso.com/public/csv/rtfuelmix/{ny_date}rtfuelmix.csv"
     try:
         raw_data = read_csv_data(mix_url)
     except HTTPError:

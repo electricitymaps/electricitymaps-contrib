@@ -71,9 +71,7 @@ def fetch_production(
         if "error" in j and "info" in j["error"]:
             error = j["error"]["__type"]
             text = j["error"]["info"]["orig"]
-            msg = '"{}" fetching production data for {}: {}'.format(
-                error, zone_key, text
-            )
+            msg = f'"{error}" fetching production data for {zone_key}: {text}'
         else:
             msg = "error while fetching production data for {}: {}".format(
                 zone_key, json.dumps(j)
@@ -200,9 +198,7 @@ def fetch_exchange(
         if "error" in j and "info" in j["error"]:
             error = j["error"]["__type"]
             text = j["error"]["info"]["orig"]
-            msg = '"{}" fetching exchange data for {}: {}'.format(
-                error, sorted_keys, text
-            )
+            msg = f'"{error}" fetching exchange data for {sorted_keys}: {text}'
         else:
             msg = "error while fetching exchange data for {}: {}".format(
                 sorted_keys, json.dumps(j)

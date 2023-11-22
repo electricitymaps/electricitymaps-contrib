@@ -189,9 +189,9 @@ def fetch_production(
         else:
             # unrecognized - log it, then add into unknown
             msg = (
-                'Singapore has unrecognized generation type "{}" '
-                "with production share {}%"
-            ).format(gen_type, gen_percent)
+                f'Singapore has unrecognized generation type "{gen_type}" '
+                f"with production share {gen_percent}%"
+            )
             logger.warning(msg)
             generation_by_type["unknown"] += gen_mw
 

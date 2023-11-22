@@ -99,7 +99,7 @@ def validate_production_diffs(
             ]
             logger.warning(
                 "some datapoints have a too high production value difference "
-                "for {}: {}".format(energy, to_display)
+                f"for {energy}: {to_display}"
             )
         ok_diff &= new_diffs
     # first datapoint is always OK

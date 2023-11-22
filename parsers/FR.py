@@ -132,7 +132,7 @@ def fetch_production(
     elif len(missing_fuels) > 0:
         mf_str = ", ".join(missing_fuels)
         logger.warning(
-            "Fuels [{}] are not present in the API " "response".format(mf_str)
+            f"Fuels [{mf_str}] are not present in the API " "response"
         )
 
     df_production = df_production.loc[:, ["date_heure"] + present_fuels]

@@ -116,7 +116,7 @@ def fetch_production(
 
     assert res.status_code == 200, (
         "Exception when fetching production for "
-        "{}: error when calling url={}".format(zone_key, GENERATION_BREAKDOWN_URL)
+        f"{zone_key}: error when calling url={GENERATION_BREAKDOWN_URL}"
     )
 
     sourceData = extract_data(res.text)
@@ -162,7 +162,7 @@ def fetch_production(
 
     assert res.status_code == 200, (
         "Exception when fetching renewable production for "
-        "{}: error when calling url={}".format(zone_key, RENEWABLES_BREAKDOWN_URL)
+        f"{zone_key}: error when calling url={RENEWABLES_BREAKDOWN_URL}"
     )
 
     sourceData = extract_data(res.text)

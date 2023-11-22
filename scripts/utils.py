@@ -4,7 +4,7 @@ import json
 import pathlib
 import subprocess
 from os import PathLike, listdir, path
-from typing import Dict, Union
+from typing import Union
 
 import yaml
 
@@ -61,7 +61,7 @@ class JsonFilePatcher:
         print(f"🧹 Patched {self.file_path.relative_to(ROOT_PATH)}")
 
 
-class YamlFilePatcher(object):
+class YamlFilePatcher:
     """
     A helping hand to patch YAML files.
 
@@ -76,7 +76,7 @@ class YamlFilePatcher(object):
         self.file_path = file_path
 
     def __enter__(self):
-        self.content: Dict = yaml.safe_load(open(self.file_path, encoding="utf-8"))
+        self.content: dict = yaml.safe_load(open(self.file_path, encoding="utf-8"))
 
         return self
 

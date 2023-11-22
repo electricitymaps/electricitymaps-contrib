@@ -146,7 +146,7 @@ def find_files_mentioning_zone(text):
             continue
         for file in files:
             if file.endswith(VALID_EXTENSIONS):
-                with open(os.path.join(root, file), "r") as f:
+                with open(os.path.join(root, file)) as f:
                     if re.search(text, f.read()):
                         # print the relative path
                         results.append(
