@@ -249,9 +249,7 @@ class Event(BaseModel, ABC):
             "sourceType", EventSourceType.measured
         ) != EventSourceType.forecasted and v.astimezone(timezone.utc) > datetime.now(
             timezone.utc
-        ) + timedelta(
-            days=1
-        ):
+        ) + timedelta(days=1):
             raise ValueError(
                 f"Date is in the future and this is not a forecasted point: {v}"
             )

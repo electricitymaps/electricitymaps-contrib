@@ -230,7 +230,9 @@ def get_exchange(session: Session, form_data):
 
 
 def get_exchange_fcst(session: Session, form_data):
-    return _get_exchange(session, form_data, ["対象日付", "対象時刻", "計画潮流(順方向)"])
+    return _get_exchange(
+        session, form_data, ["対象日付", "対象時刻", "計画潮流(順方向)"]
+    )
 
 
 if __name__ == "__main__":

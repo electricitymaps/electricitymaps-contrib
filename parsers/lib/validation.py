@@ -35,8 +35,9 @@ def check_expected_range(
     if not (low <= value <= high):
         key_str = f"for key `{key}`" if key else ""
         logger.warning(
-            "{} reported total of {:.2f}MW falls outside range "
-            "of {} {}".format(datapoint["zoneKey"], value, expected_range, key_str),
+            "{} reported total of {:.2f}MW falls outside range " "of {} {}".format(
+                datapoint["zoneKey"], value, expected_range, key_str
+            ),
             extra={"key": datapoint["zoneKey"]},
         )
         return
@@ -140,7 +141,8 @@ def validate_exchange(
     if exchange is None:
         logger.warning(
             "{}: expected exchange cannot be null".format(
-                datapoint["sortedZoneKeys"], ),
+                datapoint["sortedZoneKeys"],
+            ),
             extra={"key": datapoint["sortedZoneKeys"]},
         )
         return
@@ -249,8 +251,9 @@ def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any]
         )
         if total < floor:
             logger.warning(
-                "{} reported total of {}MW does not meet {}MW floor"
-                " value".format(datapoint["zoneKey"], total, floor),
+                "{} reported total of {}MW does not meet {}MW floor" " value".format(
+                    datapoint["zoneKey"], total, floor
+                ),
                 extra={"key": datapoint["zoneKey"]},
             )
             return

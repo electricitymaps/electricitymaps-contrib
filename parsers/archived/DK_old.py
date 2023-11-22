@@ -49,9 +49,7 @@ def fetch_production(
                      WHERE "PriceArea" = \'{1}\' AND \
                      "HourUTC" >= (timestamp\'{2}\'-INTERVAL \'24 hours\') AND \
                      "HourUTC" <= timestamp\'{2}\' \
-                     ORDER BY "HourUTC" ASC'.format(
-        ids["energy_bal"], zone, timestamp
-    )
+                     ORDER BY "HourUTC" ASC'.format(ids["energy_bal"], zone, timestamp)
 
     url = f"https://api.energidataservice.dk/datastore_search_sql?sql={sqlstr}"
     response = r.get(url)

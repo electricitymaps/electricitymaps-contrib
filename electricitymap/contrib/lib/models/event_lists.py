@@ -178,7 +178,9 @@ class ExchangeList(AggregatableEventList):
             numeric_only=True
         )
         for datetime, row in exchange_df.iterrows():
-            exchanges.append(zone_key, datetime.to_pydatetime(), sources, row["netFlow"], source_type)  # type: ignore
+            exchanges.append(
+                zone_key, datetime.to_pydatetime(), sources, row["netFlow"], source_type
+            )  # type: ignore
 
         return exchanges
 

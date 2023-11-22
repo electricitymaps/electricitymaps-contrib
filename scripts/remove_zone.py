@@ -153,7 +153,9 @@ def find_files_mentioning_zone(text):
                             os.path.relpath(os.path.join(root, file), ROOT_PATH)
                         )
     if not results:
-        print(f'🧹 Found no additional files mentioning "{text}" in contrib repository.')
+        print(
+            f'🧹 Found no additional files mentioning "{text}" in contrib repository.'
+        )
         return
 
     print(
