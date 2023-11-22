@@ -10,8 +10,8 @@ export default function StatesLayer() {
   const statesBorderStyle = {
     'line-color': theme.stateBorderColor,
     'line-width': 1.4,
-    'line-opacity': 0.9,
     'line-dasharray': [1, 1],
+    'line-opacity': ['interpolate', ['linear'], ['zoom'], 2.8, 0, 3, 0.9],
   } as mapboxgl.LinePaint;
 
   const stateLabelLayout = {
@@ -37,7 +37,6 @@ export default function StatesLayer() {
         beforeId="zones-selectable-layer"
         type="line"
         paint={statesBorderStyle}
-        minzoom={2.5}
         source="states"
       />
       <Layer
@@ -61,7 +60,7 @@ export default function StatesLayer() {
         }}
         paint={stateLabelPaint}
         maxzoom={4.5}
-        minzoom={3}
+        minzoom={2.9}
       />
     </Source>
   );

@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
@@ -108,9 +108,6 @@ def fetch_production(
         ),
         production=production_mix,
         source=SOURCE,
-        storage=StorageMix(
-            hydro=_parse_mw(hydro_capacity.div.text) if hydro_capacity else None
-        ),
         zoneKey=ZONE_KEY,
     )
 
