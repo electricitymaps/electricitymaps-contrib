@@ -36,7 +36,7 @@ jobs:
           poetry install -E parsers --sync
       - name: Check formatting
         run: |
-          poetry run ruff format . --check --output-format=github
+          poetry run ruff format . --check
       - name: Check linting
         run: |
           poetry run ruff check . --output-format=github
