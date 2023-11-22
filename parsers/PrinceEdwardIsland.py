@@ -98,12 +98,14 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
-    if target_datetime:
-        raise ParserException(
-            "PrinceEdwardIsland.py", "Unable to fetch historical data", ZONE_KEY
-        )
 
     sorted_zone_keys = ZoneKey("->".join(sorted((zone_key1, zone_key2))))
+
+    if target_datetime:
+        raise ParserException(
+            "PrinceEdwardIsland.py", "Unable to fetch historical data", sorted_zone_keys
+        )
+
     if sorted_zone_keys != ZoneKey("CA-NB->CA-PE"):
         raise ParserException(
             "PrinceEdwardIsland.py",
