@@ -8,8 +8,8 @@ import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
 import mapboxgl from 'mapbox-gl';
-import maplibregl from 'maplibre-gl';
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import maplibregl, { MapSourceDataEvent } from 'maplibre-gl';
+import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { Map, MapRef } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
@@ -68,6 +68,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
+  const [hasColoredZones, setHasColoredZones] = useState(false);
   const [spatialAggregate] = useAtom(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -76,20 +77,59 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const mapReference = useRef<MapRef>(null);
   const map = mapReference.current?.getMap();
 
+  const colorZones = useCallback(() => {
+    for (const feature of worldGeometries.features) {
+      const { zoneId } = feature.properties;
+      const zone = data?.data?.zones[zoneId];
+      if (zone && zone[selectedDatetime.datetimeString]) {
+        const co2intensity = getCO2IntensityByMode(
+          zone[selectedDatetime.datetimeString],
+          mixMode
+        );
+        const fillColor = co2intensity
+          ? getCo2colorScale(co2intensity)
+          : theme.clickableFill;
+
+        map?.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { color: fillColor });
+      }
+    }
+    if (onMapLoad && mapReference.current) {
+      onMapLoad(mapReference.current.getMap());
+    }
+    setIsLoadingMap(false);
+  }, []);
+
   useEffect(() => {
-    // This effect colors the zones based on the co2 intensity
-    if (!map || isLoading || isError) {
+    if (!map) {
       return;
     }
-    map?.touchZoomRotate.disableRotation();
-    map?.touchPitch.disable();
-    const isSourceLoaded =
-      map &&
-      map.getSource(ZONE_SOURCE) !== undefined &&
-      map.getSource('states') !== undefined &&
-      map.isSourceLoaded('states');
 
-    if (!isSourceLoaded || isLoadingMap) {
+    const handleSourceLoad = (event: MapSourceDataEvent) => {
+      if (event.sourceId === ZONE_SOURCE && event.isSourceLoaded && !hasColoredZones) {
+        colorZones();
+        setHasColoredZones(true);
+      }
+    };
+
+    map.on('sourcedata', handleSourceLoad);
+
+    return () => {
+      map.off('sourcedata', handleSourceLoad);
+    };
+  }, [
+    map,
+    hasColoredZones,
+    worldGeometries,
+    data,
+    selectedDatetime,
+    mixMode,
+    getCo2colorScale,
+    theme.clickableFill,
+    isLoadingMap,
+  ]);
+
+  useEffect(() => {
+    if (!map || isLoading || isError || !hasColoredZones) {
       return;
     }
     for (const feature of worldGeometries.features) {
@@ -119,14 +159,16 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         );
       }
     }
+    setIsLoadingMap(false);
   }, [
-    data,
+    hasColoredZones,
     getCo2colorScale,
     selectedDatetime,
     mixMode,
     isLoadingMap,
-    spatialAggregate,
     isSuccess,
+    spatialAggregate,
+    data,
   ]);
 
   useEffect(() => {
@@ -269,13 +311,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     // TODO: Handle the "no webgl" error gracefully
   };
 
-  const onLoad = () => {
-    setIsLoadingMap(false);
-    if (onMapLoad && mapReference.current) {
-      onMapLoad(mapReference.current.getMap());
-    }
-  };
-
   const onZoomStart = () => {
     setIsZooming(true);
     setIsMoving(true);
@@ -309,7 +344,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
       cursor={hoveredZone ? 'pointer' : 'grab'}
       onClick={onClick}
-      onLoad={onLoad}
       onError={onError}
       onMouseMove={onMouseMove}
       onMouseOut={onMouseOut}
