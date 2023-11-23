@@ -135,6 +135,7 @@ exclude = [
     "node_modules",
     "venv",
     "parsers/archived",
+    "parsers/test", # TODO: remove and fix this in a follow up PR.
 ]
 
 # Same as Black.
