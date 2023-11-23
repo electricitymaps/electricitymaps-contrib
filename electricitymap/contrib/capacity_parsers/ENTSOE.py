@@ -137,7 +137,7 @@ def fetch_production_capacity_for_all_zones(
             logger.info(
                 f"Fetched capacity for {zone} on {target_datetime.date()}: {zone_capacity}"
             )
-        except:
+        except Exception:
             logger.warning(
                 f"Failed to update capacity for {zone} on {target_datetime.date()}"
             )

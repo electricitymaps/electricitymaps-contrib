@@ -333,7 +333,7 @@ class TestProductionBreakdown(unittest.TestCase):
     def test_non_forecasted_points_in_future(self):
         mix = ProductionMix(wind=10)
         with self.assertRaises(ValueError):
-            breakdown = ProductionBreakdown(
+            _breakdown = ProductionBreakdown(
                 zoneKey=ZoneKey("DE"),
                 datetime=datetime(2023, 3, 1, tzinfo=timezone.utc),
                 production=mix,
@@ -376,7 +376,7 @@ class TestProductionBreakdown(unittest.TestCase):
         dict_form = breakdown.to_dict()
         assert dict_form["production"].keys() == {"wind", "solar"}
         assert dict_form["production"]["wind"] == 10
-        assert dict_form["production"]["solar"] == None
+        assert dict_form["production"]["solar"] is None
 
     def test_set_modes_all_present_add_mode(self):
         mix = ProductionMix(wind=10)

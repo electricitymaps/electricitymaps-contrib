@@ -31,7 +31,7 @@ def fetch_production(
     It tries to match the solar data with the nuclear data.
     If there is a difference of more than 30 minutes between solar and nuclear data, the method will fail.
     """
-    r = session or Session()
+    session = session or Session()
     if target_datetime is not None:
         raise NotImplementedError("This parser can only fetch live data")
 
@@ -136,7 +136,7 @@ def get_nuclear_production():
     html = urlopen(r).read()
     soup = BeautifulSoup(html, "html.parser")
     nuclear_datetime = extractTime(soup)
-    rows = soup.findAll("tr", {"class": "mihama_realtime"})
+    _rows = soup.findAll("tr", {"class": "mihama_realtime"}) # TODO: Should we just remove this?
     tr_list = soup.findAll("tr")
     total_kw = 0
     for tr in tr_list:

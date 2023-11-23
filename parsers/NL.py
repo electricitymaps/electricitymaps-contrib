@@ -122,7 +122,7 @@ def fetch_production(
     # Flatten production dictionaries (we ignore storage)
     for p in productions:
         # if for some reason theré's no unknown value
-        if "unknown" not in p["production"] or p["production"]["unknown"] == None:
+        if "unknown" not in p["production"] or p["production"]["unknown"] is None:
             p["production"]["unknown"] = 0
 
         Z = sum([x or 0 for x in p["production"].values()])

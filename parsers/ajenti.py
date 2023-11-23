@@ -119,8 +119,8 @@ def format_storage_techs(technologies_parsed):
         storage_techs = technologies_parsed["battery"] + technologies_parsed["flywheel"]
     else:
         storage_techs = 0
-    battery_production = storage_techs if storage_techs > 0 else 0
-    battery_storage = storage_techs if storage_techs < 0 else 0
+    _battery_production = storage_techs if storage_techs > 0 else 0 # TODO: Should this just be removed?
+    _battery_storage = storage_techs if storage_techs < 0 else 0
 
 
 def sum_storage_techs(technologies_parsed):

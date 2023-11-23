@@ -96,7 +96,7 @@ def parse_price(price_str) -> float:
     return float(price_str.replace("$", "").replace("/MWh", ""))
 
 
-def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
+def find_first_list_item_by_key_value(list: list, filter_key, filter_value, sought_key):
     """
     Parses a common pattern in Singapore JSON response format. Examples:
 
@@ -112,7 +112,7 @@ def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
 
     return [
         list_item[sought_key]
-        for list_item in l
+        for list_item in list
         if list_item[filter_key] == filter_value
     ][0]
 

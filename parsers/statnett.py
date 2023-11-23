@@ -136,8 +136,7 @@ def fetch_production(
                 list(
                     filter(
                         lambda x: x["titleTranslationId"]
-                        == "ProductionConsumption.%s%sDesc"
-                        % ("NotSpecified", zone_key),
+                        == f"ProductionConsumption.{'NotSpecified'}{zone_key}Desc",
                         obj["NotSpecifiedData"],
                     )
                 )[0]["value"].replace("\xa0", "")

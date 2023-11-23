@@ -291,12 +291,12 @@ def process_production_events(
     df = df.rename(columns={"wind_eso": "wind", "solar_eso": "solar"})
     df = df.groupby(df.columns, axis=1).sum()
     data_points = list()
-    for time in pd.unique(df.index):
-        time_df = df[df.index == time]
+    for time_t in pd.unique(df.index):
+        time_df = df[df.index == time_t]
 
         data_point = {
             "zoneKey": "GB",
-            "datetime": time.to_pydatetime(),
+            "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
             "production": dict(),
             "storage": dict(),
@@ -357,12 +357,12 @@ def parse_production(
 
     # loop through unique datetimes and create each data point
     data_points = list()
-    for time in pd.unique(df["datetime"]):
-        time_df = df[df["datetime"] == time]
+    for time_t in pd.unique(df["datetime"]):
+        time_df = df[df["datetime"] == time_t]
 
         data_point = {
             "zoneKey": "GB",
-            "datetime": time.to_pydatetime(),
+            "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
             "production": dict(),
             "storage": dict(),
