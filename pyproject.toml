@@ -52,6 +52,7 @@ test-parser = 'test_parser:test_parser'
 test_parser = 'test_parser:test_parser'
 check = 'scripts.tooling:check'
 format = 'scripts.tooling:format'
+pylint_check = 'scripts.tooling:pylint'
 lint = 'scripts.tooling:lint'
 test = 'scripts.tooling:test'
 
