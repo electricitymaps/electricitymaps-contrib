@@ -15,9 +15,7 @@ def has_value_for_key(datapoint: dict[str, Any], key: str, logger: Logger):
     value = datapoint["production"].get(key, None)
     if value is None or math.isnan(value):
         logger.warning(
-            "Required generation type {} is missing from {}".format(
-                key, datapoint["zoneKey"]
-            ),
+            f"Required generation type {key} is missing from {datapoint['zoneKey']}",
             extra={"key": datapoint["zoneKey"]},
         )
         return None
@@ -35,9 +33,7 @@ def check_expected_range(
     if not (low <= value <= high):
         key_str = f"for key `{key}`" if key else ""
         logger.warning(
-            "{} reported total of {:.2f}MW falls outside range " "of {} {}".format(
-                datapoint["zoneKey"], value, expected_range, key_str
-            ),
+            f"{datapoint['zoneKey']} reported total of {value:.2f}MW falls outside range of {expected_range} {key_str}",
             extra={"key": datapoint["zoneKey"]},
         )
         return
