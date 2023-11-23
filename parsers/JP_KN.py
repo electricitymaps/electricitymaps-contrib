@@ -136,7 +136,9 @@ def get_nuclear_production():
     html = urlopen(r).read()
     soup = BeautifulSoup(html, "html.parser")
     nuclear_datetime = extractTime(soup)
-    _rows = soup.findAll("tr", {"class": "mihama_realtime"}) # TODO: Should we just remove this?
+    _rows = soup.findAll(
+        "tr", {"class": "mihama_realtime"}
+    )  # TODO: Should we just remove this?
     tr_list = soup.findAll("tr")
     total_kw = 0
     for tr in tr_list:

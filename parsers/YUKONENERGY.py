@@ -89,7 +89,9 @@ def fetch_production(
     # The time is formatted as, e.g., "11:55 pm" or "2:25 am".
     time = soup.find("div", class_="current_time").text
     # Note: hydro capacity is not provided when thermal is in use.
-    _hydro_capacity = soup.find("div", class_="avail_hydro") # Should we just remove the capacity parsing?
+    _hydro_capacity = soup.find(
+        "div", class_="avail_hydro"
+    )  # Should we just remove the capacity parsing?
     thermal = soup.find("div", class_="load_thermal").div
 
     production_mix = ProductionMix()

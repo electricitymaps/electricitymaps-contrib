@@ -535,7 +535,7 @@ class TestListFeatures(unittest.TestCase):
             storage=StorageMix(hydro=1),
             source="trust.me",
         )
-        _test = production_list_1.dataframe # TODO: Can this be removed?
+        _test = production_list_1.dataframe  # TODO: Can this be removed?
 
 
 print(type(ZoneKey("AT")))
