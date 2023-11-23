@@ -15,22 +15,17 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
 
-NDC_GENERATION = "https://disnews.energy.mn/test/convert.php"
+NDC_GENERATION = "https://disnews.energy.mn/convertt.php"
 TZ = ZoneInfo("Asia/Ulaanbaatar")  # UTC+8
 
 # Query fields to web API fields
 JSON_QUERY_TO_SRC = {
     "time": "date",
     "consumptionMW": "syssum",
-    "thermal": "tpp",
     "solarMW": "sumnar",
     "windMW": "sums",
     "importMW": "energyimport",  # positive = import
     "temperatureC": "t",  # current temperature
-    "max_time": "systime",  # date when max_value was recorded
-    "max_value": "sysmax",
-    "min_time": "sysmintime",
-    "min_value": "sysmin",
 }
 
 
@@ -38,7 +33,7 @@ def parse_json(web_json: dict, logger: Logger, zone_key: ZoneKey) -> dict[str, A
     """
     Parse the fetched JSON data to our query format according to JSON_QUERY_TO_SRC.
     Example of expected JSON format present at URL:
-    {"date":"2023-06-27 18:00:00","syssum":"869.37","sumnar":42.34,"sums":119.79,"energyimport":"49.58","t":"17"}
+    {"date":"2023-06-27 18:00:00","syssum":"869.37","sumnar":42.34,"sums":119.79,"energyimport":"49.58"}
     """
 
     # Validate first if keys in fetched dict match expected keys
@@ -106,8 +101,7 @@ def fetch_production(
         query_data["consumptionMW"]
         - query_data["importMW"]
         - query_data["solarMW"]
-        - query_data["windMW"]
-        - query_data["thermal"],
+        - query_data["windMW"],
         13,
     )
 
@@ -115,7 +109,6 @@ def fetch_production(
     prod_mix.add_value("solar", query_data["solarMW"])
     prod_mix.add_value("wind", query_data["windMW"])
     prod_mix.add_value("unknown", query_data["leftoverMW"])
-    prod_mix.add_value("unknown", query_data["thermal"])  # Thermal is currently unknown
 
     prod_breakdown_list = ProductionBreakdownList(logger)
     prod_breakdown_list.append(
