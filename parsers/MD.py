@@ -9,8 +9,9 @@ from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
 import arrow
-from lib.exceptions import ParserException
 from requests import Session
+
+from parsers.lib.exceptions import ParserException
 
 TZ = ZoneInfo("Europe/Chisinau")
 

@@ -1180,12 +1180,12 @@ def fetch_production_per_units(
                         v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
                         if v["zoneKey"] == zone_key:
                             data.append(v)
-        except:
-            ParserException(
+        except Exception as e:
+            raise ParserException(
                 parser="ENTSOE.py",
                 message=f"Failed to fetch data for {k} in {zone_key}",
                 zone_key=zone_key,
-            )
+            ) from e
 
     return data
 
