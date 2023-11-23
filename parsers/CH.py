@@ -3,6 +3,7 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
@@ -91,7 +92,7 @@ def fetch_production(
     now = (
         arrow.get(target_datetime).to("Europe/Zurich").datetime
         if target_datetime
-        else arrow.now(tz="Europe/Zurich").datetime
+        else datetime.now(tz=ZoneInfo("Europe/Zurich"))
     )
     r = session or Session()
 

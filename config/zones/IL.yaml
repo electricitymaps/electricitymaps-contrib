@@ -235,4 +235,5 @@ parsers:
   consumption: IL.fetch_consumption
   price: IL.fetch_price
   production: IL.fetch_production
+  productionCapacity: IRENA.fetch_production_capacity
 timezone: Asia/Jerusalem

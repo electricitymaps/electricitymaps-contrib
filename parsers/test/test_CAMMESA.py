@@ -1,6 +1,6 @@
-from json import loads
+import json
+from importlib import resources
 
-from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 from snapshottest import TestCase
@@ -21,11 +21,14 @@ class TestCammesaweb(TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_exchanges_AR_CL_SEN(self):
-        cammesa_exchanges = resource_string(
-            "parsers.test.mocks.Cammesa", "exchanges.json"
-        )
         self.adapter.register_uri(
-            GET, ANY, json=loads(cammesa_exchanges.decode("utf-8"))
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.Cammesa")
+                .joinpath("exchanges.json")
+                .read_text()
+            ),
         )
 
         exchange = fetch_exchange(
@@ -46,12 +49,16 @@ class TestCammesaweb(TestCase):
         )
 
     def test_exchanges_AR_BAS_AR_COM(self):
-        cammesa_exchanges = resource_string(
-            "parsers.test.mocks.Cammesa", "exchanges.json"
-        )
         self.adapter.register_uri(
-            GET, ANY, json=loads(cammesa_exchanges.decode("utf-8"))
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.Cammesa")
+                .joinpath("exchanges.json")
+                .read_text()
+            ),
         )
+
         exchange = fetch_exchange(
             zone_key1=ZoneKey("AR-BAS"),
             zone_key2=ZoneKey("AR-COM"),
@@ -72,21 +79,23 @@ class TestCammesaweb(TestCase):
         )
 
     def test_fetch_production(self):
-        cammesa_conventional_production = resource_string(
-            "parsers.test.mocks.Cammesa", "conventional_production.json"
-        )
-        cammesa_renewable_production = resource_string(
-            "parsers.test.mocks.Cammesa", "renewable_production.json"
-        )
         self.adapter.register_uri(
             GET,
             CAMMESA_DEMANDA_ENDPOINT,
-            json=loads(cammesa_conventional_production.decode("utf-8")),
+            json=json.loads(
+                resources.files("parsers.test.mocks.Cammesa")
+                .joinpath("conventional_production.json")
+                .read_text()
+            ),
         )
         self.adapter.register_uri(
             GET,
             CAMMESA_RENEWABLES_ENDPOINT,
-            json=loads(cammesa_renewable_production.decode("utf-8")),
+            json=json.loads(
+                resources.files("parsers.test.mocks.Cammesa")
+                .joinpath("renewable_production.json")
+                .read_text()
+            ),
         )
         production = fetch_production(
             zone_key=ZoneKey("AR"),

@@ -16,14 +16,14 @@ import { getZoneFromPath } from 'utils/helpers';
 
 export function useNightTimes() {
   const { data } = useGetZone();
-  const geometries = useGetGeometries();
+  const { worldGeometries } = useGetGeometries();
   const zoneId = getZoneFromPath();
   const [nightTimes, setNightTimes] = useState<number[][] | undefined>(undefined);
 
   useEffect(() => {
     if (zoneId && data) {
       // get latitude and longitude of zone
-      const feature = geometries.features.find(
+      const feature = worldGeometries.features.find(
         (feature) => feature.properties.zoneId === zoneId
       );
       const coord = feature?.properties.center;

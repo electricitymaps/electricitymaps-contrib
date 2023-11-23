@@ -15,7 +15,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
 
-NDC_GENERATION = "https://disnews.energy.mn/convertt.php"
+NDC_GENERATION = "https://disnews.energy.mn/test/convert.php"
 TZ = ZoneInfo("Asia/Ulaanbaatar")  # UTC+8
 
 # Query fields to web API fields

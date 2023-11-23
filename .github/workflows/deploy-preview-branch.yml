@@ -21,10 +21,10 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Setup Node v18.x
-        uses: actions/setup-node@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version-file: './web/.node-version'
       - name: Restore node_modules for web
         id: cache-web
         uses: actions/cache@v3

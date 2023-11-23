@@ -243,6 +243,7 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: GB.fetch_price
   production: ELEXON.fetch_production
+  productionCapacity: GB.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 price_displayed: false
 sources:

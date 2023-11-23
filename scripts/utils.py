@@ -4,6 +4,9 @@ import json
 import pathlib
 import subprocess
 from os import PathLike, listdir, path
+from typing import Dict, Union
+
+import yaml
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
 LOCALES_FOLDER_PATH = ROOT_PATH / "web/public/locales/"
@@ -31,7 +34,7 @@ class JsonFilePatcher:
             del f.content[zone]
     """
 
-    def __init__(self, file_path: PathLike | str, indent=2):
+    def __init__(self, file_path: PathLike | str, indent: int | None = 2):
         self.file_path = file_path
         self.indent = indent
 
@@ -55,4 +58,32 @@ class JsonFilePatcher:
             # TODO: enable sort_keys=True
             f.write("\n")
 
+        print(f"🧹 Patched {self.file_path.relative_to(ROOT_PATH)}")
+
+
+class YamlFilePatcher(object):
+    """
+    A helping hand to patch YAML files.
+
+    Example:
+
+    with YamlFilePatcher(ROOT_PATH / "web/geo/world.yaml") as f:
+        if zone in f.content:
+            del f.content[zone]
+    """
+
+    def __init__(self, file_path: Union[PathLike, str]):
+        self.file_path = file_path
+
+    def __enter__(self):
+        self.content: Dict = yaml.safe_load(open(self.file_path, encoding="utf-8"))
+
+        return self
+
+    def __exit__(self, exc_type, exc_value, tb):
+        if exc_type is not None:
+            raise
+
+        with open(self.file_path, "w") as f:
+            f.write(yaml.dump(self.content, default_flow_style=False))
         print(f"🧹 Patched {self.file_path.relative_to(ROOT_PATH)}")
