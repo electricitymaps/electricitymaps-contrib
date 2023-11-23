@@ -54,7 +54,7 @@ def _fetch_exchange(
     exch_id = EXCHANGE_MAPPING[sorted_zone_keys]
 
     # This authorises subsequent calls
-    cookies = get_cookies(session)
+    _cookies = get_cookies(session)
 
     df = pd.DataFrame()
     for i in range(len(exch_id)):
