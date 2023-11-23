@@ -101,9 +101,9 @@ def capacity_update(
         else:
             update_zone_capacity_config(zone, zone_capacity)
 
-    if eval(update_aggregate):
-        zone_parent = ZONE_PARENT[zone]
-        update_aggregated_capacity_config(zone_parent)
+        if eval(update_aggregate):
+            zone_parent = ZONE_PARENT[zone]
+            update_aggregated_capacity_config(zone_parent)
 
     print(f"Running prettier...")
     run_shell_command(f"web/node_modules/.bin/prettier --write .", cwd=ROOT_PATH)
