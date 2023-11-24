@@ -174,8 +174,8 @@ describe('formatCo2', () => {
     expect(actual).toBe(expected);
   });
   it('handles values up to 1 trillion grams, rounding up', () => {
-    const actual = formatCo2(1_999_000_000_000_000);
-    const expected = '2 Gt';
+    const actual = formatCo2(999_900_000_000_000);
+    const expected = '1 Gt';
     expect(actual).toBe(expected);
   });
   it('handles values above 1 trillion', () => {
