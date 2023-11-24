@@ -1,10 +1,10 @@
 import unittest
 
 from scripts.update_capacity_configuration import (
-    get_aggregated_capacity_config_dict,
-    get_aggregated_capacity_config_list,
-    get_zone_capacity_config,
-    get_zone_capacity_list,
+    generate_aggregated_capacity_config_dict,
+    generate_aggregated_capacity_config_list,
+    generate_zone_capacity_config,
+    generate_zone_capacity_list,
 )
 
 
@@ -124,9 +124,9 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
             ],
         }
 
-        self.assertEqual(get_zone_capacity_config(capacity_config, data), expected)
+        self.assertEqual(generate_zone_capacity_config(capacity_config, data), expected)
 
-    def test_get_zone_capacity_list(self):
+    def test_generate_zone_capacity_list(self):
         capacity_config = {
             "biomass": [
                 {
@@ -200,15 +200,15 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
         }
 
         self.assertEqual(
-            get_zone_capacity_list("unknown", capacity_config, data),
+            generate_zone_capacity_list("unknown", capacity_config, data),
             expected["unknown"],
         )
         self.assertEqual(
-            get_zone_capacity_list("biomass", capacity_config, data),
+            generate_zone_capacity_list("biomass", capacity_config, data),
             expected["biomass"],
         )
 
-    def test_get_aggregated_capacity_config_dict(self):
+    def test_generate_aggregated_capacity_config_dict(self):
         capacity_config = [
             {"datetime": "2023-01-01", "source": "abc", "value": 3},
             {"datetime": "2023-01-01", "source": "abc", "value": 4},
@@ -225,15 +225,15 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
         }
 
         self.assertEqual(
-            get_aggregated_capacity_config_dict(capacity_config, "parent_zone"),
+            generate_aggregated_capacity_config_dict(capacity_config, "parent_zone"),
             expected,
         )
         self.assertEqual(
-            get_aggregated_capacity_config_dict(capacity_config_2, "parent_zone"),
+            generate_aggregated_capacity_config_dict(capacity_config_2, "parent_zone"),
             None,
         )
 
-    def test_get_aggregated_capacity_config_list(self):
+    def test_generate_aggregated_capacity_config_list(self):
         capacity_config = [
             [
                 {"datetime": "2022-01-01", "source": "abc", "value": 3},
@@ -252,18 +252,19 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
 
         expected = [
             {
-                "datetime": "2023-01-01",
-                "source": "abc",
-                "value": 12,
-            },
-            {
                 "datetime": "2022-01-01",
                 "source": "abc",
                 "value": 16,
             },
+            {
+                "datetime": "2023-01-01",
+                "source": "abc",
+                "value": 12,
+            },
         ]
-
-        self.assertEqual(
-            get_aggregated_capacity_config_list(capacity_config, "DK"),
-            expected,
+        updated_capacity = generate_aggregated_capacity_config_list(
+            capacity_config, "DK"
         )
+        assert len(expected) == len(updated_capacity)
+        assert expected[0] in updated_capacity
+        assert expected[1] in updated_capacity
