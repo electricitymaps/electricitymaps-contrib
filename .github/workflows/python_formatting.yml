@@ -40,4 +40,3 @@ jobs:
       - name: Check linting
         run: |
           poetry run ruff check . --output-format=github
-          poetry run pylint_check

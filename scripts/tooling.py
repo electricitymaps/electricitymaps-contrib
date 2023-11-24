@@ -24,16 +24,8 @@ def format():
     _run("ruff format .")
 
 
-def pylint():
-    for path in ["tests", "electricitymap", "*.py"]:
-        _run(
-            f"pylint -E {path} -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence"
-        )
-
-
 def lint():
     _run("ruff check .")
-    pylint()
 
 
 def test():
