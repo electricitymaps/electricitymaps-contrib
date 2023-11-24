@@ -96,23 +96,24 @@ Before opening a PR to update capacity data, you should check the following:
 
 For some zones, we have developed capacity parsers which collect the data automatically.
 
-The update of capacity configurations can be done in the `contrib` repo using `poetry run capacity_parser`.
+The update of capacity configurations can be done in the `contrib` repo using `poetry run update_capacity`.
 
-The `capacity_parser` function has the following arguments:
+The `update_capacity` function has the following arguments:
 | Argument | Description |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | --zone | A specific zone (e.g. DK-DK1) |
 | --source | A group of zones. The capacity update will run for all the zones that have capacity from this data source. The groups of zones are: EIA, EMBER, ENTSOE, IRENA, ONS, OPENNEM, REE |
 | --target_datetime | Date for the capacity data (e.g. "2023-01-01") |
+| --update_aggregate | Boolean to update the aggregate zone (for instance DK should be updated if we change the capacity for DK-DK1). This value is set to False by default|
 
 Here is a list of examples:
 
 ```{python}
-poetry run capacity_parser --zone DK-DK1 --target_datetime "2023-01-01"
+poetry run update_capacity --zone DK-DK1 --target_datetime "2023-01-01 --update_aggregate True"
 ```
 
 ```{python}
-poetry run capacity_parser --source EIA --target_datetime "2023-06-01"
+poetry run update_capacity --source EIA --target_datetime "2023-06-01"
 ```
 
 The following zones can be updated with a parser are listed on our wiki page [Capacity update process](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Capacity-update-process)
