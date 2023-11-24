@@ -71,15 +71,14 @@ updates:
           - '@sentry/*'
 
   # Ensure ruff is updated.
-  - package-ecosystem: "pip"
-    directory: "/"
+  - package-ecosystem: 'pip'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     allow:
-      - dependency-name: "ruff"
+      - dependency-name: 'ruff'
     reviewers:
-      - "VIKTORVAV99"
-
+      - 'VIKTORVAV99'
 # CURRENTLY DISABLED
 # We had so many PRs being opened and not enough time to test each individual update,
 # so for now we're disabling this and manually updating dependencies.
