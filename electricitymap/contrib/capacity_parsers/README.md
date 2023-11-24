@@ -116,7 +116,7 @@ For more information on manual capacity updates, please check our wiki page [Man
 If a new data source becomes available for a zone that does **not** have a capacity parser:
 
 - **Verify the data source.** Please refer to our wiki page [Verify data sources](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Verify-data-sources). The data should come from an authoritative data source, the criteria are listed on the wiki page.
-- **Update this document with the new data source**. For maintainability and transparency reasons, the data should be easily accessible. This will enable another contributor to update the capacity breakdown in the future. You can create a new subsection in [The zone capacity is updated manually](#manual_update)
+- **Update this document with the new data source**. For maintainability and transparency reasons, the data should be easily accessible. This will enable another contributor to update the capacity breakdown in the future. You can create a new subsection in the wiki page [Manual updates](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Manual-capacity-updates)
 - **Add the guidelines to collect the data**. This should also be done for maintainability and transparency reasons.
 
 If the capacity for the zone in question is collected using a capacity parser:
