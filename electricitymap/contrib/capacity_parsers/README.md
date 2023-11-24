@@ -74,7 +74,6 @@ capacity
 
 ### Opening a PR
 
-
 Before opening a PR to update capacity data, you should check the following:
 
 - **Do not update all capacities at once!** Smaller PRs will help us make sure that no error slips through the cracks. We recommend updated a few zones at once or by group of zones (EIA, ENTSOE, EMBER, IRENA etc.)
