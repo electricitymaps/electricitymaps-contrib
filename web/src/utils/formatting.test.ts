@@ -17,31 +17,31 @@ describe('formatEnergy', () => {
 
   it('handles default number kWh', () => {
     const actual = formatEnergy(0.002_234_567);
-    const expected = '2.2 kWh';
+    const expected = '2.23 kWh';
     expect(actual).toBe(expected);
   });
 
   it('handles MWh', () => {
     const actual = formatEnergy(1.234_567);
-    const expected = '1.2 MWh';
+    const expected = '1.23 MWh';
     expect(actual).toBe(expected);
   });
 
   it('handles GWh', () => {
     const actual = formatEnergy(1222.234_567);
-    const expected = '1.2 GWh';
+    const expected = '1.22 GWh';
     expect(actual).toBe(expected);
   });
 
   it('handles TWh', () => {
     const actual = formatEnergy(1_222_000.234_567);
-    const expected = '1.2 TWh';
+    const expected = '1.22 TWh';
     expect(actual).toBe(expected);
   });
 
   it('Converts PWh to TWh', () => {
     const actual = formatEnergy(1_222_000_000.234_567);
-    const expected = '1200 TWh';
+    const expected = '1220 TWh';
     expect(actual).toBe(expected);
   });
 
@@ -79,25 +79,25 @@ describe('formatPower', () => {
 
   it('handles default number kW', () => {
     const actual = formatPower(0.002_234_567);
-    const expected = '2.2 kW';
+    const expected = '2.23 kW';
     expect(actual).toBe(expected);
   });
 
   it('handles MW', () => {
     const actual = formatPower(1.234_567);
-    const expected = '1.2 MW';
+    const expected = '1.23 MW';
     expect(actual).toBe(expected);
   });
 
   it('handles GW', () => {
     const actual = formatPower(1222.234_567);
-    const expected = '1.2 GW';
+    const expected = '1.22 GW';
     expect(actual).toBe(expected);
   });
 
   it('handles TW', () => {
     const actual = formatPower(1_222_000.234_567);
-    const expected = '1.2 TW';
+    const expected = '1.22 TW';
     expect(actual).toBe(expected);
   });
 
@@ -170,12 +170,12 @@ describe('formatCo2', () => {
   });
   it('handles megatonnes close to 1Gt rounding down', () => {
     const actual = formatCo2(994_320_320_231_123);
-    const expected = '990 Mt';
+    const expected = '994 Mt';
     expect(actual).toBe(expected);
   });
   it('handles values up to 1 trillion grams, rounding up', () => {
-    const actual = formatCo2(999_000_000_000_000);
-    const expected = '1 Gt';
+    const actual = formatCo2(1_999_000_000_000_000);
+    const expected = '2 Gt';
     expect(actual).toBe(expected);
   });
   it('handles values above 1 trillion', () => {

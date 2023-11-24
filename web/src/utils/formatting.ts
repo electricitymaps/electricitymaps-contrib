@@ -3,7 +3,7 @@ import * as d3 from 'd3-format';
 import { TimeAverages } from './constants';
 import { EnergyUnits, PowerUnits } from './units';
 
-const DEFAULT_NUM_DIGITS = 2;
+const DEFAULT_NUM_DIGITS = 3;
 
 function addSpaceBetweenNumberAndUnit(inputString: string) {
   // Use a regular expression to add a space between the number and unit
@@ -61,7 +61,7 @@ export const formatCo2 = function (grams: number, valueToMatch?: number): string
     return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~r`)(grams / 1e6)}t`);
   }
   // tonnes or above with significant figures as a default
-  return addSpaceBetweenNumberAndUnit(`${d3.format(',.2~s')(grams / 1e6)}t`);
+  return addSpaceBetweenNumberAndUnit(`${d3.format(',.3~s')(grams / 1e6)}t`);
 };
 
 const scalePower = function (maxPower: number | undefined, isPower = false) {
