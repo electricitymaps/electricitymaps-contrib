@@ -2,16 +2,16 @@
 
 ## Table of contents
 
-- [Context](#context)
-- [Capacity source](#capacity_sources)
-- [Capacity update process](#capacity_update_process)
-  - [When should capacity data be updated?](#when_to_update)
-  - [Format of the capacity configuration](#format)
-  - [Opening a PR](#PR)
-  - [The zone capacity can be updated automatically](#automatic_update)
-  - [The zone capacity is updated manually](#manual_update)
-- [Technical requirements for adding a new data source](#technical_requirements)
-- [Building a new capacity parser](#building_a_parser)
+- [Context](context-)
+- [Capacity source](capacity_sources-)
+- [Capacity update process](capacity_update_process-)
+  - [When should capacity data be updated?](when_to_update-)
+  - [Format of the capacity configuration](format-)
+  - [Opening a PR](PR-)
+  - [The zone capacity can be updated automatically](automatic_update-)
+  - [The zone capacity is updated manually](manual_update-)
+- [Technical requirements for adding a new data source](technical_requirements-)
+- [Building a new capacity parser](building_a_parser-)
 
 ## Context <a name="#context"></a>
 
