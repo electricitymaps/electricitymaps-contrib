@@ -21,7 +21,7 @@ jobs:
           cache: 'poetry'
       - name: Install Dependencies
         run: |
-          poetry install -E parsers --sync
+          poetry install -E parsers
       - name: Linting
         run: |
           poetry run lint
