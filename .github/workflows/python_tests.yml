@@ -15,7 +15,6 @@ jobs:
         run: |
           pipx install poetry
       - name: Setup Python
-        id: setup-python
         uses: actions/setup-python@v4
         with:
           python-version-file: '.python-version'
@@ -25,7 +24,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
       - name: Install Poetry dependencies
-        if: steps.setup-python.outputs.cache-hit != 'true'
         run: |
           poetry install -E parsers --sync
       - name: Run tests
