@@ -44,30 +44,6 @@ def _get_ns_info(
     production_breakdowns = ProductionBreakdownList(logger)
     for mix in mixes:
         timestamp = _parse_timestamp(mix["datetime"])
-
-        # Ensure the provided percentages are within bounds, similarly to the
-        # logic in https://www.nspower.ca/site/renewables/assets/js/site.js. In
-        # practical terms, I've seen hydro production go higher than 70%, which
-        # is way more than reported capacity.
-        if (
-            15 < mix["Biomass"]
-            or 60 < mix["Hydro"]
-            or 50 < mix["Imports"]
-            # The validation JS reports an error when Solid Fuel (coal) is over
-            # 85%, but as far as I can tell, that can actually be a valid
-            # result, I've seen it a few times. Use 98% instead.
-            or 98 < mix["Solid Fuel"]
-            or 55 < mix["Wind"]
-            # Gas
-            or 50 < mix["HFO/Natural Gas"] + mix["CT's"] + mix["LM 6000's"]
-        ):
-            logger.warning(
-                f"discarding datapoint at {timestamp} because some mode's "
-                f"share of the mix is infeasible: {mix}",
-                extra={"key": ZONE_KEY},
-            )
-            continue
-
         if timestamp in loads:
             load = loads[timestamp]
         else:
@@ -83,8 +59,13 @@ def _get_ns_info(
 
         # In this source, imports are positive. In the expected result for
         # CA-NB->CA-NS, "net" represents a flow from NB to NS, i.e., an import
-        # to NS, so the value can be used directly. Note that this API only
-        # specifies imports; when NS is exporting energy, the API returns 0.
+        # to NS, so the value can be used directly.
+        #
+        # NOTE: this API only specifies imports; when NS is exporting energy,
+        # the API returns 0.
+        #
+        # TODO: the Newfoundland and Labrador / Novia Scotia interconnect is
+        # now live, so this exchange logic should be revisited.
         exchanges.append(
             datetime=timestamp,
             netFlow=load * mix["Imports"] / 100,
@@ -105,11 +86,11 @@ def _get_ns_info(
         # production ends up calculated as 900 MW which greatly exceeds known
         # capacity of 418 MW.
         if (
-            100 < production_mix.biomass
-            or 1300 < production_mix.coal
-            or 700 < production_mix.gas
-            or 500 < production_mix.hydro
-            or 700 < production_mix.wind
+            100 < (production_mix.biomass or 0)
+            or 1300 < (production_mix.coal or 0)
+            or 700 < (production_mix.gas or 0)
+            or 500 < (production_mix.hydro or 0)
+            or 700 < (production_mix.wind or 0)
         ):
             logger.warning(
                 f"discarding datapoint at {timestamp} because some mode's "
