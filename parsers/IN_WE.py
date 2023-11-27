@@ -59,11 +59,11 @@ def fetch_data(
 
     try:
         data = json.loads(resp.json().get("d", {}))
-    except json.decoder.JSONDecodeError:
+    except Exception as e:
         raise ParserException(
             parser="IN_WE.py",
             message=f"{target_datetime}: {kind} data is not available",
-        )
+        ) from e
 
     datetime_col = KIND_MAPPING[kind]["datetime_column"]
     for item in data:
