@@ -207,4 +207,5 @@ fallbackZoneMixes:
         wind: 0.03768562954230214
 parsers:
   production: SV.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/El_Salvador

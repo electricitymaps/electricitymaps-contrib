@@ -5,6 +5,7 @@ contributors:
 
 parsers:
   consumption: VN.fetch_consumption
+  price: VN.fetch_price
 
 bounding_box:
   - - 135.84

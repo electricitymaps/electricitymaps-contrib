@@ -132,4 +132,5 @@ fallbackZoneMixes:
 parsers:
   consumption: GSO.fetch_consumption
   production: GSO.fetch_production
+  productionCapacity: MY_WM.fetch_production_capacity
 timezone: null
