@@ -34,6 +34,15 @@ KIND_MAPPING = {
 }
 
 
+def is_expected_downtime() -> bool:
+    current_day = datetime.now().weekday()
+    expected_outage_days = [5, 6, 0] # Saturday, Sunday and Monday
+
+    if current_day in expected_outage_days:
+        return True
+
+    return False
+
 def get_date_range(dt: datetime):
     return pd.date_range(
         arrow.get(dt).floor("day").datetime,
@@ -60,10 +69,15 @@ def fetch_data(
     try:
         data = json.loads(resp.json().get("d", {}))
     except Exception as e:
-        raise ParserException(
-            parser="IN_WE.py",
-            message=f"{target_datetime}: {kind} data is not available",
-        ) from e
+        if is_expected_downtime():
+            raise ValueError(
+            "Parser cannot get latest data during the expected downtime (Saturday to Monday)."
+        )
+        else:
+            raise ParserException(
+                parser="IN_WE.py",
+                message=f"{target_datetime}: {kind} data is not available",
+            ) from e
 
     datetime_col = KIND_MAPPING[kind]["datetime_column"]
     for item in data:
