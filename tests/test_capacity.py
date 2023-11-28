@@ -2,7 +2,11 @@ from datetime import datetime
 
 import pytest
 
-from electricitymap.contrib.config.capacity import get_capacity_data
+from electricitymap.contrib.config.capacity import (
+    get_capacity_data,
+    get_capacity_sources,
+    get_capacity_value_with_datetime,
+)
 
 
 def test_get_capacity_data():
@@ -52,3 +56,44 @@ def test_get_capacity_from_list():
             capacity = item["value"]
 
     assert capacity == 3
+
+
+def test_get_capacity_sources_with_dt():
+    mode_capacity = [
+        {"datetime": "2022-01-01", "value": 3, "source": "abc"},
+        {"datetime": "2023-01-01", "value": 4, "source": "abc"},
+    ]
+
+    capacity_dt = datetime(2022, 1, 1)
+    assert (
+        get_capacity_value_with_datetime(mode_capacity, capacity_dt, key="source")
+        == "abc"
+    )
+
+
+def test_get_capacity_sources():
+    def _test_get_capacity_sources(capacity, dt):
+        capacity_sources = {}
+        for mode, capacity_value in capacity.items():
+            if not isinstance(capacity_value, (int, float)):
+                capacity_sources[mode] = get_capacity_value_with_datetime(
+                    capacity_value, dt, key="source"
+                )
+        return capacity_sources
+
+    capacity = {
+        "coal": [
+            {"datetime": "2022-01-01", "value": 5, "source": "abc"},
+            {"datetime": "2023-01-01", "value": 8, "source": "xyz"},
+        ],
+        "gas": {"datetime": "2022-01-01", "value": 6, "source": "def"},
+    }
+
+    assert _test_get_capacity_sources(capacity, datetime(2022, 1, 1)) == {
+        "coal": "abc",
+        "gas": "def",
+    }
+    assert _test_get_capacity_sources(capacity, datetime(2023, 1, 1)) == {
+        "coal": "xyz",
+        "gas": "def",
+    }
