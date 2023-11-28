@@ -120,7 +120,7 @@ def fetch_production_capacity(
         )
         if zone_key in ZONES_WITH_BATTERY_STORAGE:
             logger.info(
-                f"\n Warning: {zone_key} has battery storage, storing capacity data source can be found on the contrib wiki"
+                f"\n\n Warning: {zone_key} has battery storage, data source can be found on the contrib wiki \n\n"
             )
         return capacity_dict
     else:
