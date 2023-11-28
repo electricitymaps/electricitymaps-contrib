@@ -31,10 +31,10 @@ REQUEST_URL = "https://api.energy-charts.info/installed_power?country=de&time_st
 CONVERT_GW_TO_MW = 1000
 
 
-def convert_to_mw(value: float | None) -> float:
-    try:
+def convert_to_mw(value: float | int | None) -> float:
+    if isinstance(value, int|float):
         return float(value) * CONVERT_GW_TO_MW
-    except:
+    else:
         return None
 
 
