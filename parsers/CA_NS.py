@@ -19,6 +19,7 @@ def _get_ns_info(requests_obj, logger: Logger):
         # Use 98% instead.
         "coal": (0, 0.98),
         "gas": (0, 0.5),
+        "oil": (0, 0.5),
         "biomass": (0, 0.15),
         "hydro": (0, 0.60),
         "wind": (0, 0.55),
@@ -31,6 +32,7 @@ def _get_ns_info(requests_obj, logger: Logger):
     valid_absolute = {
         "coal": 1300,
         "gas": 700,
+        "oil": 300,
         "biomass": 100,
         "hydro": 600,
         "wind": 700,
