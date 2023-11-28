@@ -237,6 +237,7 @@ def fetch_production(
         )
     return production_breakdown_list.to_list()
 
+
 @refetch_frequency(timedelta(hours=72))
 def fetch_price(
     zone_key: ZoneKey,
