@@ -32,7 +32,7 @@ CONVERT_GW_TO_MW = 1000
 
 
 def convert_to_mw(value: float | int | None) -> float:
-    if isinstance(value, int|float):
+    if isinstance(value, int | float):
         return float(value) * CONVERT_GW_TO_MW
     else:
         return None
