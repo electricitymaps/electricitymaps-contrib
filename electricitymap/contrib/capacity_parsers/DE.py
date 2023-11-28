@@ -2,8 +2,6 @@ from datetime import datetime
 from logging import INFO, basicConfig, getLogger
 from typing import Any
 
-import pandas as pd
-from bs4 import BeautifulSoup
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
