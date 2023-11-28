@@ -47,7 +47,8 @@ def _get_ns_info(requests_obj, logger: Logger):
     for mix in mix_data:
         percent_mix = {
             "coal": mix["Solid Fuel"] / 100.0,
-            "gas": (mix["HFO/Natural Gas"] + mix["CT's"] + mix["LM 6000's"]) / 100.0,
+            "gas": (mix["HFO/Natural Gas"] + mix["LM 6000's"]) / 100.0,
+            "oil": mix["CT's"] / 100.0,
             "biomass": mix["Biomass"] / 100.0,
             "hydro": mix["Hydro"] / 100.0,
             "wind": mix["Wind"] / 100.0,
