@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import getLogger
 
 from requests import Response, Session
@@ -14,6 +14,7 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 
+from .lib.config import refetch_frequency
 from .lib.exceptions import ParserException
 
 DOMAIN_MAPPING = {
@@ -32,12 +33,12 @@ LIVE_DATASETS = {
     "MQ": "production-delectricite-par-filiere-en-temps-reel",
 }
 
-HISTORICAL_DATASETS = {
-    "FR-COR": "production-delectricite-par-filiere",
-    "RE": "courbe-de-charge-de-la-production-delectricite-par-filiere",
-    "GF": "courbe-de-charge-de-la-production-delectricite-par-filiere",
-    "MQ": "courbe-de-charge-de-la-production-delectricite-par-filiere",
-    "GP": "courbe-de-charge-de-la-production-delectricite-par-filiere",
+HISTORICAL_MAPPING = {
+    "FR-COR": "Corse",
+    "RE": "Réunion",
+    "GF": "Guyane",
+    "MQ": "Martinique",
+    "GP": "Guadeloupe",
 }
 
 API_PARAMETER_GROUPS = {
@@ -115,7 +116,9 @@ IGNORED_VALUES = ["jour", "total", "statut", "date", "heure", "liaisons", "tac"]
 
 
 def generate_url(zone_key, target_datetime):
-    return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{HISTORICAL_DATASETS[zone_key] if target_datetime else LIVE_DATASETS[zone_key]}/exports/json"
+    if target_datetime:
+        return "https://opendata.edf.fr/api/explore/v2.1/catalog/datasets/courbe-de-charge-de-la-production-delectricite-par-filiere/exports/json"
+    return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{LIVE_DATASETS[zone_key]}/exports/json"
 
 
 def generate_source(zone_key: ZoneKey):
@@ -130,35 +133,33 @@ def fetch_data(
 ) -> tuple[list, str]:
     ses = session or Session()
 
-    DATE_STRING_MAPPING = {
-        "FR-COR": "date_heure" if target_datetime else "date",
-        "RE": "date_heure" if target_datetime else "date",
-        "GF": "date",
-        "MQ": "date_heure" if target_datetime else "date",
-        "GP": "date",
-    }
-
-    if target_datetime and zone_key not in HISTORICAL_DATASETS.keys():
-        raise ParserException(
-            "FR_O.py",
-            f"Historical data not implemented for {zone_key} in this parser.",
-            zone_key,
-        )
-    elif target_datetime is None and zone_key not in LIVE_DATASETS.keys():
+    if target_datetime is None and zone_key not in LIVE_DATASETS.keys():
         raise ParserException(
             "FR_O.py",
             f"Live data not implemented for {zone_key} in this parser.",
             zone_key,
         )
 
-    URL_QUERIES: dict[str, str | None] = {
-        #   "refine": "statut:Validé" if target_datetime else None,
-        "timezone": "UTC",
-        "order_by": f"{DATE_STRING_MAPPING[zone_key]} desc",
-        "refine": f"{DATE_STRING_MAPPING[zone_key]}:{target_datetime.strftime('%Y')}"
+    target_date = target_datetime.strftime("%Y-%m-%d") if target_datetime else None
+    past_date = (
+        (target_datetime - timedelta(days=3)).strftime("%Y-%m-%d")
         if target_datetime
-        else None,
-    }
+        else None
+    )
+
+    URL_QUERIES: dict[str, str | None] = (
+        {
+            "timezone": "UTC",
+            "order_by": "date_heure",
+            "where": f"date_heure >= date'{past_date}' AND date_heure <= date'{target_date}'",
+            "refine": f"territoire:{HISTORICAL_MAPPING[zone_key]}",
+        }
+        if target_datetime
+        else {
+            "timezone": "UTC",
+            "order_by": "date",
+        }
+    )
 
     url = generate_url(zone_key, target_datetime)
     response: Response = ses.get(url, params=URL_QUERIES)
@@ -185,14 +186,15 @@ def fetch_data(
     if not isinstance(data, list):
         raise ParserException(
             "FR_O.py",
-            f"Unexpected data format for {zone_key} for {target_datetime.strftime('%Y')}"
+            f"Unexpected data format for {zone_key} for {target_datetime}"
             if target_datetime
             else f"Unexpected data format for {zone_key}.",
             zone_key,
         )
-    return data, DATE_STRING_MAPPING[zone_key]
+    return data, "date_heure" if target_datetime else "date"
 
 
+@refetch_frequency(timedelta(hours=72))
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -235,7 +237,7 @@ def fetch_production(
         )
     return production_breakdown_list.to_list()
 
-
+@refetch_frequency(timedelta(hours=72))
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
