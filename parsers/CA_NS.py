@@ -27,12 +27,12 @@ def _get_ns_info(requests_obj, logger: Logger):
 
     # Sanity checks: verify that reported production doesn't exceed listed capacity by a lot.
     # In particular, we've seen error cases where hydro production ends up calculated as 900 MW
-    # which greatly exceeds known capacity of 418 MW.
+    # which greatly exceeds known capacity of around 520 MW.
     valid_absolute = {
         "coal": 1300,
         "gas": 700,
         "biomass": 100,
-        "hydro": 500,
+        "hydro": 600,
         "wind": 700,
     }
 
