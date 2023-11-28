@@ -42,6 +42,17 @@ class TestExchange(unittest.TestCase):
         assert exchange.netFlow == -1
 
     def test_raises_if_invalid_exchange(self):
+
+        # This should raise a ValueError because the netFlow is None.
+        with self.assertRaises(ValueError):
+            Exchange(
+                zoneKey=ZoneKey("AT->DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                netFlow=None,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the timezone is missing.
         with self.assertRaises(ValueError):
             Exchange(
                 zoneKey=ZoneKey("AT->DE"),
@@ -110,6 +121,15 @@ class TestConsumption(unittest.TestCase):
         assert consumption.source == "trust.me"
 
     def test_raises_if_invalid_consumption(self):
+        # This should raise a ValueError because the consumption is None.
+        with self.assertRaises(ValueError):
+            TotalConsumption(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                consumption=None,
+                source="trust.me",
+            )
+
         with self.assertRaises(ValueError):
             TotalConsumption(
                 zoneKey=ZoneKey("ATT"),
@@ -161,6 +181,16 @@ class TestPrice(unittest.TestCase):
         assert price.currency == "EUR"
 
     def test_invalid_price_raises(self):
+        # This should raise a ValueError because the price is None.
+        with self.assertRaises(ValueError):
+            Price(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                price=None,
+                source="trust.me",
+                currency="EUR",
+            )
+
         with self.assertRaises(ValueError):
             Price(
                 zoneKey=ZoneKey("ATT"),
@@ -417,6 +447,43 @@ class TestTotalProduction(unittest.TestCase):
                 source="trust.me",
             )
             mock_error.assert_called_once()
+
+    def test_raises_if_invalid_generation(self):
+        # This should raise a ValueError because the generation is None.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=None,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the timezone is missing.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1),
+                value=1,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the zoneKey is not a ZoneKey.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("ATT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=1,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the value is negative.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=-1,
+                source="trust.me",
+            )
 
 
 class TestMixes(unittest.TestCase):
