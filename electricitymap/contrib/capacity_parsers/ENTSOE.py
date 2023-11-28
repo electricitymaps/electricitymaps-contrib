@@ -67,6 +67,8 @@ ENTSOE_ZONES = [
     "UA",
 ]
 
+ZONES_WITH_BATTERY_STORAGE = ["FR"]
+
 
 def query_capacity(
     in_domain: str, session: Session, target_datetime: datetime
@@ -116,6 +118,10 @@ def fetch_production_capacity(
         logger.info(
             f"Capacity data for {zone_key} on {target_datetime.date()}: \n{capacity_dict}"
         )
+        if zone_key in ZONES_WITH_BATTERY_STORAGE:
+            logger.info(
+                f"\n Warning: {zone_key} has battery storage, storing capacity data source can be found on the contrib wiki"
+            )
         return capacity_dict
     else:
         logger.warning(
@@ -134,9 +140,6 @@ def fetch_production_capacity_for_all_zones(
         try:
             zone_capacity = fetch_production_capacity(zone, target_datetime, session)
             capacity_dict[zone] = zone_capacity
-            logger.info(
-                f"Fetched capacity for {zone} on {target_datetime.date()}: {zone_capacity}"
-            )
         except:
             logger.warning(
                 f"Failed to update capacity for {zone} on {target_datetime.date()}"
