@@ -4,8 +4,6 @@ from pprint import pprint
 from typing import Any
 from zoneinfo import ZoneInfo
 
-# The arrow library is used to handle datetimes
-import arrow
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -37,7 +35,9 @@ def fetch_production(
     now = datetime.now(tz=TIMEZONE)
     for elem in data:
         values = elem["valeurs"]
-        timestamp = arrow.get(elem["date"], tzinfo=TIMEZONE).datetime
+        timestamp = datetime.strptime(elem["date"], "%Y-%m-%dT%H:%M:%S").replace(
+            tzinfo=TIMEZONE
+        )
         # The datasource returns future timestamps or recent with a 0.0 value, so we ignore them.
         if timestamp <= now and values.get("total", 0) > 0:
             production.append(
@@ -71,7 +71,9 @@ def fetch_consumption(
         if "demandeTotal" in elem["valeurs"]:
             consumption.append(
                 zoneKey=zone_key,
-                datetime=arrow.get(elem["date"], tzinfo=TIMEZONE).datetime,
+                datetime=datetime.strptime(elem["date"], "%Y-%m-%dT%H:%M:%S").replace(
+                    tzinfo=TIMEZONE
+                ),
                 consumption=elem["valeurs"]["demandeTotal"],
                 source=SOURCE,
             )
