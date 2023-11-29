@@ -10,10 +10,10 @@ describe('generateZonesConfig', () => {
     const indexOfContributor = result.contributors.indexOf(contributorName);
 
     // Person should be in the list of contributors
-    expect(result.contributors).toContain(contributorName);
+    expect(result.contributors).to.contain(contributorName);
     // Person should be in the list of contributors for the zone
-    expect(result.zones['DK-DK2'].contributors).toContain(indexOfContributor);
+    expect(result.zones['DK-DK2'].contributors).to.contain(indexOfContributor);
     // Person should be in the list of contributors for the aggregated country
-    expect(result.zones['DK'].contributors).toContain(indexOfContributor);
+    expect(result.zones['DK'].contributors).to.contain(indexOfContributor);
   });
 });
