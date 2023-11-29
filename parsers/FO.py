@@ -79,9 +79,7 @@ def fetch_production(
     }
     for key, value in obj.items():
         if key == "tiden":
-            data["datetime"] = datetime.strptime(value, "%Y-%m-%d %H:%M").replace(
-                tzinfo=FO
-            )
+            data["datetime"] = datetime.fromisoformat(value).replace(tzinfo=FO)
         elif "Sum" in key:
             continue
         elif "Test" in key:
