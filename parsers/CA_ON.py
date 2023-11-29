@@ -5,9 +5,6 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 
-# The arrow library is used to handle datetimes
-import arrow
-
 # pandas processes tabular data
 import pandas as pd
 from requests import Session
@@ -80,14 +77,18 @@ def _fetch_ieso_xml(
     logger: Logger,
     url_template,
 ):
-    dt = (
-        arrow.get(target_datetime)
-        .to(tz_obj)
-        .replace(hour=0, minute=0, second=0, microsecond=0)
-    )
+
+    try:
+        dt = (
+            datetime.strptime(target_datetime, "%Y%m%d %H:%M:%S")
+            .astimezone(tz_obj)
+            .replace(hour=0, minute=0, second=0, microsecond=0)
+        )
+    except TypeError:
+        dt = datetime.now(tz=tz_obj).replace(hour=0, minute=0, second=0, microsecond=0)
 
     r = session or Session()
-    url = url_template.format(YYYYMMDD=dt.format("YYYYMMDD"))
+    url = url_template.format(YYYYMMDD=dt.strftime("%Y%m%d"))
     response = r.get(url)
 
     if not response.ok:
@@ -107,7 +108,8 @@ def _fetch_ieso_xml(
 
 def _parse_ieso_hour(output, target_dt):
     hour = int(output.find(XML_NS_TEXT + "Hour").text)
-    return target_dt.shift(hours=hour).datetime
+    target_dt += timedelta(hours=hour)
+    return target_dt
 
 
 def fetch_production(
@@ -312,7 +314,7 @@ def fetch_exchange(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    now = arrow.utcnow()
+    now = datetime.utcnow()
 
     print("fetch_production() ->")
     print(fetch_production())
