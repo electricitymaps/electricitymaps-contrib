@@ -67,6 +67,8 @@ ENTSOE_ZONES = [
     "UA",
 ]
 
+# ENTSOE does not have battery storage capacity and the data needs to be collected from other sources for the following zones
+# TODO monitor this list and update if necessary
 ZONES_WITH_BATTERY_STORAGE = ["FR"]
 
 
