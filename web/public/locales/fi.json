@@ -110,12 +110,14 @@
   "misc": {
     "maintitle": "Sähkönkulutuksen reaaliaikiaset hiilidioksidipäästöt",
     "oops": "Meillä on vaikeuksia palvelimen saavuttamisessa. Yritämme uudelleen muutamassa sekunnissa.",
-    "newversion": "Uusi versio saatavilla! Päivitä <a onClick=\"location.reload(true);\">tästä</a>.",
+    "newversion": "Uusi versio saatavilla!",
     "retrynow": "Yritä uudelleen nyt",
     "database-ad": "Etsitkö historiallista tietoa? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Tutustu tietokantaamme!</a>",
     "api-ad": "Haluatko live-tietoja sovelluksessasi tai laitteessasi? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Kokeile meidän API:ta!</a>",
     "legend": "Selite",
-    "faq": "Usein Kysytyt Kysymykset"
+    "faq": "Usein Kysytyt Kysymykset",
+    "dismiss": "Ohita",
+    "reload": "Lataa uudelleen"
   },
   "wind": "tuuli",
   "solar": "aurinko",

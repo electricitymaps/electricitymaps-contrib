@@ -145,7 +145,9 @@
     "legend": "傳奇",
     "faq": "常見問題",
     "privacyPolicy": "隱私權政策",
-    "legalNotice": "法律聲明"
+    "legalNotice": "法律聲明",
+    "dismiss": "關閉",
+    "reload": "重新載入"
   },
   "wind": "風力",
   "windDataError": "目前尚無風力資料",

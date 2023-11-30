@@ -142,7 +142,7 @@ def fetch_production_capacity_for_all_zones(
         try:
             zone_capacity = fetch_production_capacity(zone, target_datetime, session)
             capacity_dict[zone] = zone_capacity
-        except:
+        except Exception:
             logger.warning(
                 f"Failed to update capacity for {zone} on {target_datetime.date()}"
             )
