@@ -40,27 +40,36 @@ const getConfig = (): CombinedZonesConfig => {
   ]);
 
   const contributors = new Set<string>();
+  const zones: Record<string, OptimizedZoneConfig> = {};
+  const hasSubZones = new Set<string>();
 
-  const zones = filesWithDirectory.reduce((zones, filepath) => {
+  for (const filepath of filesWithDirectory) {
     const config = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
 
-    if (config.contributors) {
-      for (const contributor of config.contributors) {
-        contributors.add(contributor);
-        const index = config.contributors?.indexOf(contributor);
-        const contributorArray = [...contributors];
-        const globalIndex = contributorArray.indexOf(contributor);
-        config.contributors
-          ? ((config as unknown as OptimizedZoneConfig).contributors[index] = globalIndex)
-          : [];
-      }
+    const zoneContributors = new Set<string>();
+
+    for (const contributor of config.contributors ?? []) {
+      contributors.add(contributor);
+      zoneContributors.add(contributor);
     }
 
-    if (config?.bounding_box) {
-      for (const point of config.bounding_box) {
-        point[0] = round(point[0], 4);
-        point[1] = round(point[1], 4);
-      }
+    // If the zone has subzones, add them to the set to be processed later
+    if (config.subZoneNames) {
+      hasSubZones.add(path.parse(filepath).name);
+    }
+
+    const zoneContributorsArray = [];
+    const contributorArray = [...contributors];
+    for (const contributor of zoneContributors) {
+      const index = contributorArray.indexOf(contributor);
+      zoneContributorsArray.push(index);
+    }
+
+    (config as unknown as OptimizedZoneConfig).contributors = zoneContributorsArray;
+
+    for (const point of config.bounding_box ?? []) {
+      point[0] = round(point[0], 4);
+      point[1] = round(point[1], 4);
     }
 
     for (const key of Object.keys(config)) {
@@ -76,14 +85,26 @@ const getConfig = (): CombinedZonesConfig => {
       ?.length
       ? true
       : false;
-    Object.assign(zones, { [path.parse(filepath).name]: config });
-    return zones;
-  }, {});
+
+    zones[path.parse(filepath).name] = config as unknown as OptimizedZoneConfig;
+  }
+
+  // Upsert subzone contributors to parent zone
+  for (const parentZone of hasSubZones) {
+    const zoneContributors = new Set<number>(zones[parentZone].contributors);
+    for (const subZone of zones[parentZone].subZoneNames) {
+      for (const contributor of zones[subZone].contributors) {
+        zoneContributors.add(contributor);
+      }
+    }
+    zones[parentZone].contributors = [...zoneContributors];
+  }
 
   const combinedZonesConfig = {
     contributors: [...contributors],
     zones: zones,
   };
+
   return combinedZonesConfig;
 };
 
