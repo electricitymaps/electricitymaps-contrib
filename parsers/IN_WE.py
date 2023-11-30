@@ -8,6 +8,8 @@ from typing import Any
 
 import arrow
 import pandas as pd
+from requests import Response, Session
+
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     TotalConsumptionList,
@@ -15,7 +17,6 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
-from requests import Response, Session
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 EXCHANGE_URL = f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise?host=https://www.wrldc.in"
