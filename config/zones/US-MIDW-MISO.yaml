@@ -191,6 +191,7 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_MISO.fetch_wind_forecast
 sources:
   INCER ACV:

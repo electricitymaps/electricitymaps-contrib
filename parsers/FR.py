@@ -106,7 +106,9 @@ def reindex_data(df_to_reindex: pd.DataFrame) -> pd.DataFrame:
     )
 
     # Average data points corresponding to the same time with 30 min granularity
-    df_reindexed = df_to_reindex.groupby("datetime_30").mean().reset_index()
+    df_reindexed = (
+        df_to_reindex.groupby("datetime_30").mean(numeric_only=True).reset_index()
+    )
     df_reindexed = df_reindexed.rename(columns={"datetime_30": "date_heure"})
     return df_reindexed
 
@@ -129,9 +131,7 @@ def fetch_production(
         return list()
     elif len(missing_fuels) > 0:
         mf_str = ", ".join(missing_fuels)
-        logger.warning(
-            "Fuels [{}] are not present in the API " "response".format(mf_str)
-        )
+        logger.warning(f"Fuels [{mf_str}] are not present in the API " "response")
 
     df_production = df_production.loc[:, ["date_heure"] + present_fuels]
     df_production[present_fuels] = df_production[present_fuels].astype(float)

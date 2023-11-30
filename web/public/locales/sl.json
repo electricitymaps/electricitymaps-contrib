@@ -45,7 +45,7 @@
   "country-panel": {
     "source": "Vir",
     "carbonintensity": "Intenzivnost ogljika",
-    "lowcarbon": "nozkoogljična",
+    "lowcarbon": "nizkoogljična",
     "renewable": "obnovljiva",
     "electricityproduction": "Proizvodnja električne energije",
     "electricityconsumption": "Poraba električne energije",

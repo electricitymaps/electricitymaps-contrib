@@ -94,9 +94,7 @@ def _fetch_ieso_xml(
         # Data is generally available for past 3 months. Requesting files older than this
         # returns an HTTP 404 error.
         logger.info(
-            "CA-ON: failed getting requested data for datetime {} from IESO server - URL {}".format(
-                dt, url
-            )
+            f"CA-ON: failed getting requested data for datetime {dt} from IESO server - URL {url}"
         )
         return dt, None
 

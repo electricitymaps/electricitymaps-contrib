@@ -3,6 +3,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
 from requests import Session
@@ -84,7 +85,11 @@ def renewables_production_mix(
 ) -> ProductionBreakdownList:
     """Retrieves production mix for renewables using CAMMESA's API"""
 
-    today = arrow.now(tz="America/Argentina/Buenos_Aires").format("DD-MM-YYYY")
+    today = (
+        datetime.now()
+        .astimezone(tz=ZoneInfo("America/Argentina/Buenos_Aires"))
+        .strftime("%d-%m-%Y")
+    )
     params = {"desde": today, "hasta": today}
     renewables_response = session.get(CAMMESA_RENEWABLES_ENDPOINT, params=params)
     assert renewables_response.status_code == 200, (

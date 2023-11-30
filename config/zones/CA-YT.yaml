@@ -153,5 +153,5 @@ fallbackZoneMixes:
         unknown: 0.07055666837734512
         wind: 0.0
 parsers:
-  production: CA_YT.fetch_production
+  production: YUKONENERGY.fetch_production
 timezone: America/Whitehorse

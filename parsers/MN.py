@@ -29,18 +29,18 @@ JSON_QUERY_TO_SRC = {
 }
 
 
-def parse_json(web_json: dict) -> dict[str, Any]:
+def parse_json(web_json: dict, logger: Logger, zone_key: ZoneKey) -> dict[str, Any]:
     """
     Parse the fetched JSON data to our query format according to JSON_QUERY_TO_SRC.
     Example of expected JSON format present at URL:
-    {"date":"2023-06-27 18:00:00","syssum":"869.37","sumnar":42.34,"sums":119.79,"energyimport":"49.58","t":"17"}
+    {"date":"2023-06-27 18:00:00","syssum":"869.37","sumnar":42.34,"sums":119.79,"energyimport":"49.58"}
     """
 
     # Validate first if keys in fetched dict match expected keys
     if set(JSON_QUERY_TO_SRC.values()) != set(web_json.keys()):
-        raise ParserException(
-            parser="MN.py",
-            message=f"Fetched keys from source {web_json.keys()} do not match expected keys {JSON_QUERY_TO_SRC.values()}.",
+        logger.error(
+            msg=f"Fetched keys from source {web_json.keys()} do not match expected keys {JSON_QUERY_TO_SRC.values()}.",
+            extra={"zone_key": zone_key, "parser": "MN.py"},
         )
 
     if None in web_json.values():
@@ -52,7 +52,7 @@ def parse_json(web_json: dict) -> dict[str, Any]:
     # Then we can safely parse them
     query_data = dict()
     for query_key, src_key in JSON_QUERY_TO_SRC.items():
-        if query_key == "time":
+        if "time" in query_key:
             # convert to datetime
             query_data[query_key] = datetime.fromisoformat(web_json[src_key]).replace(
                 tzinfo=TZ
@@ -64,7 +64,7 @@ def parse_json(web_json: dict) -> dict[str, Any]:
     return query_data
 
 
-def query(session: Session) -> dict[str, Any]:
+def query(session: Session, logger: Logger, zone_key: ZoneKey) -> dict[str, Any]:
     """
     Query the JSON endpoint and parse it.
     """
@@ -79,7 +79,7 @@ def query(session: Session) -> dict[str, Any]:
 
     # Read as JSON
     response_json = target_response.json()
-    query_result = parse_json(response_json)
+    query_result = parse_json(response_json, logger, zone_key)
 
     return query_result
 
@@ -93,11 +93,11 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates.")
 
-    query_data = query(session)
+    query_data = query(session, logger, zone_key)
 
-    # Calculated 'unknown' production from available data (consumption, import, solar, wind).
+    # Calculated 'unknown' production from available data (consumption, import, solar, wind, tpp).
     # 'unknown' consists of 92.8% coal, 5.8% oil and 1.4% hydro as per 2020; sources: IEA and IRENA statistics.
-    query_data["unknownMW"] = round(
+    query_data["leftoverMW"] = round(
         query_data["consumptionMW"]
         - query_data["importMW"]
         - query_data["solarMW"]
@@ -105,11 +105,10 @@ def fetch_production(
         13,
     )
 
-    prod_mix = ProductionMix(
-        solar=query_data["solarMW"],
-        wind=query_data["windMW"],
-        unknown=query_data["unknownMW"],
-    )
+    prod_mix = ProductionMix()
+    prod_mix.add_value("solar", query_data["solarMW"])
+    prod_mix.add_value("wind", query_data["windMW"])
+    prod_mix.add_value("unknown", query_data["leftoverMW"])
 
     prod_breakdown_list = ProductionBreakdownList(logger)
     prod_breakdown_list.append(
@@ -131,7 +130,7 @@ def fetch_consumption(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates.")
 
-    query_data = query(session)
+    query_data = query(session, logger, zone_key)
 
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(

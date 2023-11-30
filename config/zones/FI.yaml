@@ -13,7 +13,7 @@ capacity:
   oil: 1051
   solar: 988
   unknown: 828
-  wind: 6414
+  wind: 6464
 contributors:
   - corradio
   - nessie2013
@@ -254,6 +254,7 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
+  productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
 price_displayed: false
