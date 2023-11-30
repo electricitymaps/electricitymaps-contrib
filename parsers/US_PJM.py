@@ -71,7 +71,7 @@ def get_api_subscription_key(session: Session) -> str:
         return pjm_settings.json()["subscriptionKey"]
     raise ParserException(
         parser="US_PJM.py",
-        message=f"Could not get API key",
+        message="Could not get API key",
     )
 
 

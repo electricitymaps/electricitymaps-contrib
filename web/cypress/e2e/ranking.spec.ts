@@ -5,7 +5,6 @@ describe('Ranking Panel', () => {
     cy.interceptAPI('v7/details/hourly/DK-DK2');
     cy.visit('/?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
-    cy.get('[data-test-id=total-energy-modal] [data-test-id=close-modal-button]').click();
     cy.waitForAPISuccess(`v7/state/hourly`);
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
     // See more than X countries on the list by default

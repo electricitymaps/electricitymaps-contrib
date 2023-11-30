@@ -67,7 +67,7 @@ def extract_international_exchanges(
         datetime=datetime.strptime(zone_data["Date"], "%Y-%m-%d").replace(
             tzinfo=IN_EA_TZ
         ),
-        netFlow=zone_data["DayAverageMW"],
+        netFlow=float(zone_data["DayAverageMW"]),
         source="erldc.in",
     )
     return exchanges
