@@ -42,7 +42,6 @@ class TestExchange(unittest.TestCase):
         assert exchange.netFlow == -1
 
     def test_raises_if_invalid_exchange(self):
-
         # This should raise a ValueError because the netFlow is None.
         with self.assertRaises(ValueError):
             Exchange(
