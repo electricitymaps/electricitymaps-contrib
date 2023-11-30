@@ -186,8 +186,8 @@
     "newversion": "En ny version er tilgjengelig!",
     "retrynow": "Prøv igjen nå",
     "webgl-not-supported": "Kartet vises ikke riktig fordi nettleseren din mangler støtte for WebGL.",
-    "dismiss": "Forkast",
-    "reload": "Last inn på nytt"
+    "dismiss": "Avbryt",
+    "reload": "Last på nytt"
   },
   "mobile-main-menu": {
     "about": "Om kartet",
