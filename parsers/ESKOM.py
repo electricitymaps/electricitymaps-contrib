@@ -54,7 +54,7 @@ PRODUCTION_IDS = [0, 6, 8, 9, 10, 11, 16, 17, 18, 19]
 def get_url() -> str:
     """Returns the formatted URL"""
     date = datetime.now(timezone.utc)
-    return f"https://www.eskom.co.za/dataportal/wp-content/uploads/{date.strftime('%Y/%m')}/{date.strftime('%m')}/Station_Build_Up.csv"
+    return f"https://www.eskom.co.za/dataportal/wp-content/uploads/{date.strftime('%Y')}/{date.strftime('%m')}/Station_Build_Up.csv"
 
 
 def fetch_production(
