@@ -142,7 +142,7 @@ class ExchangeList(AggregatableEventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        netFlow: float,
+        netFlow: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Exchange.create(
@@ -255,7 +255,7 @@ class TotalProductionList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        value: float,
+        value: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalProduction.create(
@@ -273,7 +273,7 @@ class TotalConsumptionList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        consumption: float,
+        consumption: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalConsumption.create(
@@ -291,7 +291,7 @@ class PriceList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        price: float,
+        price: float | None,
         currency: str,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
