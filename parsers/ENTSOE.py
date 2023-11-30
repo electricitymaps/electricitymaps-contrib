@@ -765,8 +765,7 @@ def create_production_storage(
         return None, storage
     if 0 > quantity > -50:
         logger.info(
-            "Self consumption value %s for %s has been set to 0."
-            % (quantity, fuel_em_type),
+            f"Self consumption value {quantity} for {fuel_em_type} has been set to 0.",
             extra={"key": zoneKey, "fuel_type": fuel_em_type},
         )
         quantity = 0
@@ -1173,7 +1172,7 @@ def fetch_production_per_units(
                     if not v:
                         continue
                     v["source"] = "entsoe.eu"
-                    if not v["unitName"] in ENTSOE_UNITS_TO_ZONE:
+                    if v["unitName"] not in ENTSOE_UNITS_TO_ZONE:
                         logger.warning(
                             f"Unknown unit {v['unitName']} with id {v['unitKey']}"
                         )
@@ -1181,12 +1180,12 @@ def fetch_production_per_units(
                         v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
                         if v["zoneKey"] == zone_key:
                             data.append(v)
-        except:
-            ParserException(
+        except Exception as e:
+            raise ParserException(
                 parser="ENTSOE.py",
                 message=f"Failed to fetch data for {k} in {zone_key}",
                 zone_key=zone_key,
-            )
+            ) from e
 
     return data
 

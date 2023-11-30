@@ -11,7 +11,6 @@ from .lib import web
 
 
 def fetch_data(zone_key="IN-UP", session=None):
-
     time_now = arrow.now(tz="Asia/Kolkata")
 
     html_params = {

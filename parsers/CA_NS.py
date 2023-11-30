@@ -67,10 +67,8 @@ def _get_ns_info(requests_obj, logger: Logger):
                 # skip this datapoint in the loop
                 valid = False
                 logger.warning(
-                    "discarding datapoint at {dt} due to {fuel} percentage "
-                    "out of bounds: {value}".format(
-                        dt=data_date, fuel=gen_type, value=value
-                    ),
+                    f"discarding datapoint at {data_date} due to {gen_type} percentage "
+                    f"out of bounds: {value}",
                     extra={"key": zone_key},
                 )
         if not valid:
@@ -109,10 +107,8 @@ def _get_ns_info(requests_obj, logger: Logger):
             if absolute_bound and value > absolute_bound:
                 valid = False
                 logger.warning(
-                    "discarding datapoint at {dt} due to {fuel} "
-                    "too high: {value} MW".format(
-                        dt=data_date, fuel=gen_type, value=value
-                    ),
+                    f"discarding datapoint at {data_date} due to {gen_type} "
+                    f"too high: {value} MW",
                     extra={"key": zone_key},
                 )
         if not valid:

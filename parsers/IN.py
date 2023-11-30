@@ -225,11 +225,11 @@ def fetch_consumption_from_vidyutpravah(
                 .split()[0]
                 .replace(",", "")
             )
-        except:
+        except Exception as e:
             raise ParserException(
                 parser="IN.py",
                 message=f"{target_datetime}: consumption data is not available for {zone_key}",
-            )
+            ) from e
         total_consumption += state_consumption
 
     if total_consumption == 0:
@@ -457,7 +457,7 @@ def fetch_production(
                 zone_key=zone_key,
                 logger=logger,
             )
-        except:
+        except Exception:
             logger.warning(
                 f"{zone_key}: production not available for {_target_datetime}"
             )

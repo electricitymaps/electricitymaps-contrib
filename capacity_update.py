@@ -52,5 +52,5 @@ def capacity_update(
     else:
         update_zone(zone, parsed_target_datetime, session, update_aggregate)
 
-    print(f"Running prettier...")
-    run_shell_command(f"web/node_modules/.bin/prettier --write .", cwd=ROOT_PATH)
+    print("Running prettier...")
+    run_shell_command("web/node_modules/.bin/prettier --write .", cwd=ROOT_PATH)

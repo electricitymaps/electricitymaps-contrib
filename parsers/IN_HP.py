@@ -85,7 +85,7 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
     res = r.post(url, {"action": "intra_state_power_transaction"})
     assert res.status_code == 200, (
-        f"Exception when fetching production for "
+        "Exception when fetching production for "
         "{zone_key}: {res.status_code} error when calling url={url}"
     )
     soup = BeautifulSoup(res.text, "html.parser")
