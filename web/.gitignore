@@ -11,4 +11,5 @@ cypress/screenshots
 config
 public/client-version.json
 
+*.snap
 tsconfig.node.tsbuildinfo
