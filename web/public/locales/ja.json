@@ -112,13 +112,15 @@
   "misc": {
     "maintitle": "電力消費による二酸化炭素排出のライブ地図",
     "oops": "すみません!サーバーにの接続に問題がありました、数秒後にまた試します",
-    "newversion": "新しいバージョンが使える、リロードするには<a onClick=\"location.reload(true);\">こちら</a>にタップしてください",
+    "newversion": "新しいバージョンが使える!",
     "webgl-not-supported": "ブラウザがWebGLをサポートしていないため、マップを表示できません。",
     "retrynow": "今すぐリトライ",
     "database-ad": "過去のデータをお探しですか? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">データベースをチェックしてください!</a>",
     "api-ad": "あなたのアプリやデバイスにデータを取り込みたいですか? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">私たちのAPIをお試しください!</a>",
     "legend": "Legend",
-    "faq": "よくある質問"
+    "faq": "よくある質問",
+    "dismiss": "閉じる",
+    "realod": "再読み込み"
   },
   "wind": "風力",
   "solar": "太陽光",
