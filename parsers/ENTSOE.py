@@ -469,7 +469,7 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
 
 def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datetime"):
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
     if isinstance(target_datetime, datetime):
         return np.abs((x[datetime_key] - target_datetime).seconds)
 
@@ -490,7 +490,7 @@ def query_ENTSOE(
     env_var = "ENTSOE_REFETCH_TOKEN"
     url = ENTSOE_EU_PROXY_ENDPOINT
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
         env_var = "ENTSOE_TOKEN"
         url = ENTSOE_ENDPOINT
 
