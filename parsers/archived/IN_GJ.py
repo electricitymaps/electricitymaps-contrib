@@ -111,7 +111,7 @@ def fetch_data(
                         )
                         v2 = split_and_sum(v2)
                         values["unknown"] += v2
-                    except ValueError as e:
+                    except ValueError:
                         # handle float failures
                         logger.warning(
                             f"couldn't convert {v2} to float",
