@@ -59,7 +59,7 @@ def fetch_all() -> list:
         """Flatten the list."""
         flat_list = []
         for element in _2d_list:
-            if type(element) is list:
+            if isinstance(element, list):
                 for item in element:
                     flat_list.append(item)
             else:
@@ -113,7 +113,7 @@ def fetch_noga_iso_data(session: Session, logger: Logger):
     response: Response = session.get(URL)
     if not response.ok:
         logger.warning(
-            f"IL.py",
+            "IL.py",
             "Failed to fetch data from www.noga-iso.co.il with error: {response.status_code}",
         )
 
