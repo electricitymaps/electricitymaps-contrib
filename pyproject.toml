@@ -52,6 +52,7 @@ pytest = "^7.1.2"
 [tool.poetry.scripts]
 test-parser = 'test_parser:test_parser'
 test_parser = 'test_parser:test_parser'
+update_capacity = 'capacity_update:capacity_update'
 check = 'scripts.tooling:check'
 format = 'scripts.tooling:format'
 lint = 'scripts.tooling:lint'
