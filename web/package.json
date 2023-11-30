@@ -24,9 +24,8 @@
     "prepare": "cd .. && husky install web/.husky",
     "preview": "vite preview",
     "pretest": "pnpm run create-generated-files",
-    "test": "vitest",
-    "pretest:ci": "pnpm run create-generated-files",
-    "test:ci": "vitest run",
+    "test": "bun test --watch src geo scripts",
+    "test:ci": "bun test src geo scripts",
     "format": "prettier -uw --cache --ignore-path ../.prettierignore .",
     "typecheck": "tsc",
     "lint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
@@ -37,8 +36,7 @@
   "lint-staged": {
     "*": "prettier -uw --cache",
     "*.{ts,tsx}": [
-      "eslint --cache --fix",
-      "vitest related --run --coverage=false"
+      "eslint --cache --fix"
     ]
   },
   "browserslist": [
@@ -49,6 +47,7 @@
   "dependencies": {
     "@capacitor/app": "^4.1.1",
     "@capacitor/core": "^4.8.1",
+    "@happy-dom/global-registrator": "^12.10.3",
     "@mapbox/point-geometry": "^0.1.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-dialog": "^1.0.4",
@@ -66,6 +65,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@tanstack/react-query": "4.36.1",
     "@turf/helpers": "^6.5.0",
+    "bun": "^1.0.14",
     "country-flag-icons": "^1.5.7",
     "currency-symbol-map": "^5.1.0",
     "d3-array": "^3.2.4",
@@ -153,8 +153,8 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-react": "2.2.0",
-    "@vitest/coverage-istanbul": "0.28.5",
     "autoprefixer": "10.4.15",
+    "bun-types": "^1.0.14",
     "colors": "^1.4.0",
     "css-mediaquery": "0.1.2",
     "cypress": "12.17.4",
@@ -174,7 +174,6 @@
     "eslint-plugin-testing-library": "^5.11.0",
     "eslint-plugin-unicorn": "^48.0.1",
     "husky": "8.0.3",
-    "jsdom": "20.0.1",
     "lint-staged": "13.3.0",
     "msw": "0.47.4",
     "nodemon": "^2.0.20",
@@ -190,7 +189,6 @@
     "vite": "4.5.0",
     "vite-plugin-pwa": "0.16.5",
     "vite-tsconfig-paths": "3.5.2",
-    "vitest": "0.24.3",
     "whatwg-fetch": "3.6.17",
     "workbox-build": "7.0.0",
     "workbox-window": "7.0.0"

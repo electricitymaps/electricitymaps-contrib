@@ -9,7 +9,8 @@
     "moduleResolution": "Node",
     "skipLibCheck": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "types": ["bun-types"]
   },
   "ts-node": {
     "compilerOptions": {

@@ -59,22 +59,6 @@ export default defineConfig(({ mode }) => ({
     },
   },
   treeshake: 'smallest',
-  test: {
-    css: false,
-    include: ['{src,geo}/**/*.test.{ts,tsx}', 'scripts/*.test.{ts,tsx}'],
-    globals: true,
-    globalSetup: 'testSetup.ts',
-    environment: 'jsdom',
-    setupFiles: 'src/testing/setupTests.ts',
-    clearMocks: true,
-    coverage: {
-      provider: 'istanbul',
-      enabled: false,
-      100: true,
-      reporter: ['text', 'lcov'],
-      reportsDirectory: 'coverage',
-    },
-  },
   plugins: [
     replace({
       __SENTRY_TRACING__: false,
