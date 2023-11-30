@@ -119,7 +119,7 @@ describe('getProductionTooltipData', () => {
       Mode.CONSUMPTION
     );
 
-    expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchSnapshot(`
       {
         "capacity": 61370,
         "co2Intensity": 5.13,
@@ -145,7 +145,7 @@ describe('getProductionTooltipData', () => {
       Mode.CONSUMPTION
     );
 
-    expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchSnapshot(`
       {
         "capacity": 61370,
         "co2Intensity": 5.13,
@@ -171,7 +171,7 @@ describe('getProductionTooltipData', () => {
       Mode.CONSUMPTION
     );
 
-    expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchSnapshot(`
       {
         "capacity": 5053.47,
         "co2Intensity": 54.19088892903222,
@@ -224,7 +224,7 @@ describe('getProductionTooltipData', () => {
       Mode.CONSUMPTION
     );
 
-    expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchSnapshot(`
       {
         "capacity": 61370,
         "co2Intensity": 5.13,
@@ -259,7 +259,7 @@ describe('getExchangeTooltipData', () => {
   it('returns correct data for ES', () => {
     const actual = getExchangeTooltipData('ES', zoneDetailsData, false);
 
-    expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchSnapshot(`
       {
         "capacity": 2800,
         "co2Intensity": 123.56,
@@ -277,7 +277,7 @@ describe('getExchangeTooltipData', () => {
   it('returns correct data for non-existing exchange', () => {
     const actual = getExchangeTooltipData('XXX', zoneDetailsData, false);
 
-    expect(actual).toMatchInlineSnapshot(`
+    expect(actual).toMatchSnapshot(`
       {
         "capacity": undefined,
         "co2Intensity": undefined,
