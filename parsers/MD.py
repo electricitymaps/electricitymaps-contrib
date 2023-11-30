@@ -6,9 +6,12 @@ from collections import namedtuple
 from collections.abc import Callable
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
 from requests import Session
+
+TZ = ZoneInfo("Europe/Chisinau")
 
 # Supports the following formats:
 # - type=csv for zip-data with semicolon-separated-values
@@ -203,7 +206,7 @@ def fetch_price(
             "This parser is not yet able to parse past dates for price"
         )
 
-    dt = arrow.now("Europe/Chisinau").datetime
+    dt = datetime.now(tz=TZ)
     return template_price_response(zone_key, dt, 145.0)
 
 
@@ -229,7 +232,7 @@ def fetch_consumption(
 
         consumption = field_values[other_fields[0]["index"]]
 
-        dt = arrow.now("Europe/Chisinau").datetime
+        dt = datetime.now(tz=TZ)
 
         datapoint = template_consumption_response(zone_key, dt, consumption)
 
@@ -297,7 +300,7 @@ def fetch_production(
             field_values[other_fields[1]["index"]] - non_renewables_production
         )
 
-        dt = arrow.now("Europe/Chisinau").datetime
+        dt = datetime.now(tz=TZ)
 
         datapoint = template_production_response(zone_key, dt, production)
 
@@ -341,7 +344,7 @@ def fetch_exchange(
         else:
             raise NotImplementedError("This exchange pair is not implemented")
 
-        dt = arrow.now("Europe/Chisinau").datetime
+        dt = datetime.now(tz=TZ)
 
         datapoint = template_exchange_response(sorted_zone_keys, dt, netflow)
 

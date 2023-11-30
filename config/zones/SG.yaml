@@ -225,4 +225,5 @@ isRenewable:
 parsers:
   price: SG.fetch_price
   production: SG.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Singapore

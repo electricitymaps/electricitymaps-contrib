@@ -112,9 +112,8 @@ emissionFactors:
       value: 66.69147532
     coal:
       datetime: '2020-01-01'
-      source: >-
-        eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of
-        coal power generation."
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
       value: 1044.656633
     gas:
       datetime: '2021-01-01'
@@ -189,7 +188,7 @@ fallbackZoneMixes:
         biomass: 0.0004085834735399724
         coal: 0.4595989382647031
         gas: 0.19511628336042833
-        geothermal: 0.0000041811296453058496
+        geothermal: 4.1811296453058496e-06
         hydro: 0.04843361932022533
         hydro discharge: 0.0008660263060947292
         nuclear: 0.06726682624648725
@@ -204,7 +203,7 @@ fallbackZoneMixes:
         biomass: 0.000365860310727289
         coal: 0.422811983959897
         gas: 0.23425309194334648
-        geothermal: 0.000001506561333815198
+        geothermal: 1.506561333815198e-06
         hydro: 0.052322484598985
         hydro discharge: 0.0008046574912841105
         nuclear: 0.053279531355524296
@@ -219,9 +218,9 @@ fallbackZoneMixes:
         biomass: 0.00030698471496916764
         coal: 0.34589718718991525
         gas: 0.25727978357804604
-        geothermal: 0.0000010594040219867087
+        geothermal: 1.0594040219867087e-06
         hydro: 0.06332836728414894
-        hydro discharge: 0.0000022374843498577437
+        hydro discharge: 2.2374843498577437e-06
         nuclear: 0.05907984125236603
         oil: 0.0001798180652622761
         solar: 0.0019931114360418117
@@ -234,9 +233,9 @@ fallbackZoneMixes:
         biomass: 0.00033204688512929165
         coal: 0.3119454886359951
         gas: 0.2677567627248579
-        geothermal: 8.896328890686487e-7
+        geothermal: 8.896328890686487e-07
         hydro: 0.05165893325275714
-        hydro discharge: 0.000011583191657286278
+        hydro discharge: 1.1583191657286278e-05
         nuclear: 0.0620912380363748
         oil: 0.0001484674673832741
         solar: 0.0023319705039403244
@@ -249,9 +248,9 @@ fallbackZoneMixes:
         biomass: 0.0003230959316681301
         coal: 0.3559401411640917
         gas: 0.19980546847493288
-        geothermal: 0.0000011609436623585774
+        geothermal: 1.1609436623585774e-06
         hydro: 0.04247915147225188
-        hydro discharge: 6.463577817368144e-8
+        hydro discharge: 6.463577817368144e-08
         nuclear: 0.05769610564137265
         oil: 0.00051958955564343
         solar: 0.002218205602872569
@@ -261,15 +260,13 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_SPP.fetch_load_forecast
   production: US_SPP.fetch_production
+  productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_SPP.fetch_wind_solar_forecasts
 sources:
   INCER ACV:
-    link: >-
-      https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
-    link: >-
-      https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
-    link: >-
-      https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: US/Central

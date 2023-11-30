@@ -118,9 +118,8 @@ emissionFactors:
       value: 0.4539605655
     coal:
       datetime: '2020-01-01'
-      source: >-
-        eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of
-        coal power generation."
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
       value: 1081.455715
     gas:
       datetime: '2021-01-01'
@@ -192,14 +191,14 @@ fallbackZoneMixes:
       datetime: '2017-01-01'
       value:
         battery discharge: 0
-        biomass: 9.087756717966885e-7
+        biomass: 9.087756717966885e-07
         coal: 0.19548395546406835
         gas: 0.4454141302867643
-        geothermal: 2.707928287678456e-9
+        geothermal: 2.707928287678456e-09
         hydro: 0.001654314009867084
-        hydro discharge: 0.000001968436095473181
+        hydro discharge: 1.968436095473181e-06
         nuclear: 0.10417343585205613
-        oil: 0.000004180307351686353
+        oil: 4.180307351686353e-06
         solar: 0.02911846509193006
         unknown: 0.0023963729637807045
         wind: 0.22175227678435283
@@ -207,14 +206,14 @@ fallbackZoneMixes:
       datetime: '2018-01-01'
       value:
         battery discharge: 0
-        biomass: 0.0000023779565300735064
+        biomass: 2.3779565300735064e-06
         coal: 0.263239747531722
         gas: 0.4666873121121762
-        geothermal: 1.1762862823480964e-7
+        geothermal: 1.1762862823480964e-07
         hydro: 0.002695217674846879
-        hydro discharge: 0.0000029757245317293465
+        hydro discharge: 2.9757245317293465e-06
         nuclear: 0.10357679169172854
-        oil: 0.000008941264390933385
+        oil: 8.941264390933385e-06
         solar: 0.007688363243831027
         unknown: 0.0007511075829053287
         wind: 0.15534710284824138
@@ -222,14 +221,14 @@ fallbackZoneMixes:
       datetime: '2019-01-01'
       value:
         battery discharge: 0
-        biomass: 0.000004287256435594376
+        biomass: 4.287256435594376e-06
         coal: 0.20469795913244668
         gas: 0.4718020706914468
-        geothermal: 5.718985968836614e-7
+        geothermal: 5.718985968836614e-07
         hydro: 0.00248893228269732
-        hydro discharge: 9.158518455432301e-9
+        hydro discharge: 9.158518455432301e-09
         nuclear: 0.10807780597175065
-        oil: 0.0000067217002301580036
+        oil: 6.7217002301580036e-06
         solar: 0.01043756463148209
         unknown: 0.0020304453419618578
         wind: 0.20045369207798072
@@ -237,14 +236,14 @@ fallbackZoneMixes:
       datetime: '2020-01-01'
       value:
         battery discharge: 0
-        biomass: 0.0000033786221909597205
+        biomass: 3.3786221909597205e-06
         coal: 0.18147673657899296
         gas: 0.4516422654145757
-        geothermal: 4.3172830964448203e-7
+        geothermal: 4.3172830964448203e-07
         hydro: 0.001671563961287584
-        hydro discharge: 5.988489456358945e-8
+        hydro discharge: 5.988489456358945e-08
         nuclear: 0.109539433650337
-        oil: 0.0000048483115449904875
+        oil: 4.8483115449904875e-06
         solar: 0.021795940325638547
         unknown: 0.0043298325423662964
         wind: 0.2295355824236003
@@ -252,14 +251,14 @@ fallbackZoneMixes:
       datetime: '2021-01-01'
       value:
         battery discharge: 0
-        biomass: 0.000002699271923729837
+        biomass: 2.699271923729837e-06
         coal: 0.19252396325419224
         gas: 0.418260460555364
-        geothermal: 2.785496967056957e-7
+        geothermal: 2.785496967056957e-07
         hydro: 0.0013928784580988127
         hydro discharge: 1.7836149624404227e-10
         nuclear: 0.10324877356075696
-        oil: 0.000007002090139334862
+        oil: 7.002090139334862e-06
         solar: 0.03879396735206749
         unknown: 0.0015180241712047652
         wind: 0.24425208187027933
@@ -267,14 +266,12 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   INCER ACV:
-    link: >-
-      https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+    link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
-    link: >-
-      https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
-    link: >-
-      https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+    link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: US/Central
