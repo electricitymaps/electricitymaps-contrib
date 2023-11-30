@@ -8,7 +8,6 @@ from electricitymap.contrib.capacity_parsers.ONS import filter_data_by_date
 
 class TestONS(unittest.TestCase):
     def test_filter_data_by_date(self):
-
         datetime_tuple1 = (datetime(1980, 1, 1), datetime(2015, 1, 1))
         datetime_tuple2 = (datetime(2018, 10, 1), datetime(2023, 10, 1))
         datetime_tuple3 = (datetime(2023, 7, 1), None)

@@ -50,11 +50,11 @@ def fetch_data(
     )
     try:
         data = resp.json().get("Rows", {})
-    except:
+    except Exception as e:
         raise ParserException(
             parser="IE.py",
             message=f"{target_datetime}: {kind} data is not available for {zone_key}",
-        )
+        ) from e
     filtered_data = [item for item in data if item["Value"] is not None]
     return filtered_data
 
@@ -137,7 +137,7 @@ def fetch_exchange(
     if sortedZoneKeys == "GB-NIR->IE":
         raise ParserException(
             parser="IE.py",
-            message=f"the GB-NIR_IE interconnection is unsupported.",
+            message="the GB-NIR_IE interconnection is unsupported.",
         )
 
     exchange_data = fetch_data(

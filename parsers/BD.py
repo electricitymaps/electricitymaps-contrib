@@ -157,7 +157,7 @@ def query(
     if table is None:
         raise ParserException(
             parser="BD.py",
-            message=f"Could not find table in returned HTML.",
+            message="Could not find table in returned HTML.",
         )
 
     table_head = table.find("thead")
@@ -223,7 +223,7 @@ def fetch_production(
     if not len(production_data_list):
         raise ParserException(
             parser="BD.py",
-            message=f"No valid consumption data for requested day found.",
+            message="No valid consumption data for requested day found.",
         )
     return production_data_list
 
@@ -257,7 +257,7 @@ def fetch_consumption(
     if not len(result_list):
         raise ParserException(
             parser="BD.py",
-            message=f"No valid consumption data for requested day found.",
+            message="No valid consumption data for requested day found.",
         )
 
     return result_list
