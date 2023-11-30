@@ -46,6 +46,10 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
     >>> poetry run test_parser GE production --target_datetime="2022-04-10 15:00"
 
     """
+    if data_type == "productionCapacity":
+        raise ValueError(
+            "productionCapacity is not supported by this script. Please use `poetry run update_capacity` instead."
+        )
     parsed_target_datetime = None
     if target_datetime is not None:
         parsed_target_datetime = datetime.fromisoformat(target_datetime)
