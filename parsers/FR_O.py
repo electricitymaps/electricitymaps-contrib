@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 from logging import getLogger
-from typing import NamedTuple
 
 from requests import Response, Session
 
