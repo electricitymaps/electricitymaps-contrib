@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from logging import getLogger
+from typing import NamedTuple
 
 from requests import Response, Session
 
@@ -121,16 +122,11 @@ def generate_url(zone_key, target_datetime):
     return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{LIVE_DATASETS[zone_key]}/exports/json"
 
 
-def generate_source(zone_key: ZoneKey):
-    # Return the domain name of the source without the protocol
-    return DOMAIN_MAPPING[zone_key].split("//")[1]
-
-
 def fetch_data(
     zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
-) -> tuple[list, str]:
+) -> tuple[list, str, str]:
     ses = session or Session()
 
     if target_datetime is None and zone_key not in LIVE_DATASETS.keys():
@@ -191,7 +187,8 @@ def fetch_data(
             else f"Unexpected data format for {zone_key}.",
             zone_key,
         )
-    return data, "date_heure" if target_datetime else "date"
+    source = url.split("//")[1].split("/")[0]
+    return data, "date_heure" if target_datetime else "date", source
 
 
 @refetch_frequency(timedelta(hours=72))
@@ -201,7 +198,9 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger=getLogger(__name__),
 ):
-    production_objects, date_string = fetch_data(zone_key, session, target_datetime)
+    production_objects, date_string, source = fetch_data(
+        zone_key, session, target_datetime
+    )
 
     production_breakdown_list = ProductionBreakdownList(logger=logger)
     for production_object in production_objects:
@@ -230,7 +229,7 @@ def fetch_production(
             datetime=datetime.fromisoformat(production_object[date_string]),
             production=production,
             storage=storage,
-            source=generate_source(zone_key),
+            source=source,
             sourceType=EventSourceType.estimated
             if production_object.get("statut") == "Estimé"
             else EventSourceType.measured,
@@ -245,7 +244,7 @@ def fetch_price(
     target_datetime: datetime | None = None,
     logger=getLogger(__name__),
 ):
-    data_objects, date_string = fetch_data(zone_key, session, target_datetime)
+    data_objects, date_string, source = fetch_data(zone_key, session, target_datetime)
 
     price_list = PriceList(logger=logger)
     for data_object in data_objects:
@@ -259,7 +258,7 @@ def fetch_price(
                 zoneKey=zone_key,
                 currency="EUR",
                 datetime=datetime.fromisoformat(data_object[date_string]),
-                source=generate_source(zone_key),
+                source=source,
                 price=price,
             )
     return price_list.to_list()
