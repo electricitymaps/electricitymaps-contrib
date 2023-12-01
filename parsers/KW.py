@@ -10,8 +10,8 @@ Shares of Electricity production in 2017: 65.6% oil, 34.4% gas (source: IEA; htt
 import re
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
 
@@ -33,7 +33,7 @@ def fetch_consumption(
 
     datapoint = {
         "zoneKey": zone_key,
-        "datetime": arrow.now("Asia/Kuwait").datetime,
+        "datetime": datetime.now(tz=ZoneInfo("Asia/Kuwait")),
         "consumption": consumption,
         "source": "mew.gov.kw",
     }

@@ -114,13 +114,15 @@
   "misc": {
     "maintitle": "Reaalajas elektritarbimise CO₂ heitmed",
     "oops": "Ups! Meil on probleem serveriga ühendamisel. Proovime mõne sekundi pärast uuesti.",
-    "newversion": "Saadaval on uus versioon! Vajutage ümberlaadimiseks <a onClick=\"location.reload(true);\">siia</a>.",
+    "newversion": "Saadaval on uus versioon!",
     "webgl-not-supported": "Kaarti ei saa renderdada, kuna see brauser ei toeta WebGL-i.",
     "retrynow": "Proovi kohe uuesti",
     "database-ad": "Otsite ajaloo andmeid? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vaadake meie andmebaasi!</a>",
     "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
     "legend": "Legend",
-    "faq": "Korduma kippuvad küsimused"
+    "faq": "Korduma kippuvad küsimused",
+    "dismiss": "Sule",
+    "reload": "Laadi uuesti"
   },
   "wind": "tuul",
   "solar": "päike",

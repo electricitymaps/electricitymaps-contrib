@@ -192,7 +192,7 @@
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
     "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-    "newversion": "A new app version is available",
+    "newversion": "A new app version is available!",
     "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
     "retrynow": "Retry now",
     "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
@@ -1492,7 +1492,7 @@
       "zoneName": "South Sudan"
     },
     "ST": {
-      "zoneName": "Sao Tome and Principe"
+      "zoneName": "São Tomé and Príncipe"
     },
     "SV": {
       "zoneName": "El Salvador"
@@ -1505,7 +1505,7 @@
       "zoneName": "Syria"
     },
     "SZ": {
-      "zoneName": "Swaziland"
+      "zoneName": "Eswatini"
     },
     "TC": {
       "zoneName": "Turks and Caicos Islands"
@@ -1609,7 +1609,7 @@
     },
     "US-CAL-BANC": {
       "countryName": "USA",
-      "zoneName": "Balancing Authority Of Northern California"
+      "zoneName": "Balancing Authority of Northern California"
     },
     "US-CAL-CISO": {
       "countryName": "USA",
@@ -1621,7 +1621,7 @@
     },
     "US-CAL-LDWP": {
       "countryName": "USA",
-      "zoneName": "Los Angeles Department Of Water And Power"
+      "zoneName": "Los Angeles Department of Water and Power"
     },
     "US-CAL-TIDC": {
       "countryName": "USA",
@@ -1669,7 +1669,7 @@
     },
     "US-FLA-FPL": {
       "countryName": "USA",
-      "zoneName": "Florida Power & Light Company"
+      "zoneName": "Florida Power and Light Company"
     },
     "US-FLA-GVL": {
       "countryName": "USA",
@@ -1677,7 +1677,7 @@
     },
     "US-FLA-HST": {
       "countryName": "USA",
-      "zoneName": "City Of Homestead"
+      "zoneName": "City of Homestead"
     },
     "US-FLA-JEA": {
       "countryName": "USA",
@@ -1689,7 +1689,7 @@
     },
     "US-FLA-TAL": {
       "countryName": "USA",
-      "zoneName": "City Of Tallahassee"
+      "zoneName": "City of Tallahassee"
     },
     "US-FLA-TEC": {
       "countryName": "USA",
@@ -1697,7 +1697,7 @@
     },
     "US-MIDA-PJM": {
       "countryName": "USA",
-      "zoneName": "PJM Interconnection, Llc"
+      "zoneName": "PJM Interconnection, LLC"
     },
     "US-MIDW-AECI": {
       "countryName": "USA",
@@ -1705,7 +1705,7 @@
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",
-      "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
+      "zoneName": "Louisville Gas and Electric Company and Kentucky Utilities"
     },
     "US-MIDW-MISO": {
       "countryName": "USA",
@@ -1725,23 +1725,23 @@
     },
     "US-NW-CHPD": {
       "countryName": "USA",
-      "zoneName": "PUD No. 1 Of Chelan County"
+      "zoneName": "PUD No. 1 of Chelan County"
     },
     "US-NW-DOPD": {
       "countryName": "USA",
-      "zoneName": "PUD No. 1 Of Douglas County"
+      "zoneName": "PUD No. 1 of Douglas County"
     },
     "US-NW-GCPD": {
       "countryName": "USA",
-      "zoneName": "PUD No. 2 Of Grant County, Washington"
+      "zoneName": "PUD No. 2 of Grant County, Washington"
     },
     "US-NW-GRID": {
       "countryName": "USA",
-      "zoneName": "Gridforce Energy Management, Llc"
+      "zoneName": "Gridforce Energy Management, LLC"
     },
     "US-NW-GWA": {
       "countryName": "USA",
-      "zoneName": "Naturener Power Watch, Llc (Gwa)"
+      "zoneName": "Naturener Power Watch, LLC (Gwa)"
     },
     "US-NW-IPCO": {
       "countryName": "USA",
@@ -1769,7 +1769,7 @@
     },
     "US-NW-PSCO": {
       "countryName": "USA",
-      "zoneName": "Public Service Company Of Colorado"
+      "zoneName": "Public Service Company of Colorado"
     },
     "US-NW-PSEI": {
       "countryName": "USA",
@@ -1781,7 +1781,7 @@
     },
     "US-NW-TPWR": {
       "countryName": "USA",
-      "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
+      "zoneName": "City of Tacoma, Department of Public Utilities, Light Division"
     },
     "US-NW-WACM": {
       "countryName": "USA",
@@ -1793,7 +1793,7 @@
     },
     "US-NW-WWA": {
       "countryName": "USA",
-      "zoneName": "Naturener Wind Watch, Llc"
+      "zoneName": "Naturener Wind Watch, LLC"
     },
     "US-NY-NYIS": {
       "countryName": "USA",
@@ -1821,7 +1821,7 @@
     },
     "US-SW-PNM": {
       "countryName": "USA",
-      "zoneName": "Public Service Company Of New Mexico"
+      "zoneName": "Public Service Company of New Mexico"
     },
     "US-SW-SRP": {
       "countryName": "USA",
@@ -1841,7 +1841,7 @@
     },
     "US-TEX-ERCO": {
       "countryName": "USA",
-      "zoneName": "Electric Reliability Council Of Texas, Inc."
+      "zoneName": "Electric Reliability Council of Texas, Inc."
     },
     "UY": {
       "zoneName": "Uruguay"

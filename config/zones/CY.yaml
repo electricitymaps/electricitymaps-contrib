@@ -214,6 +214,7 @@ fallbackZoneMixes:
         wind: 0.04815504650414774
 parsers:
   production: CY.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

@@ -1,6 +1,7 @@
 import io
 from datetime import datetime
 from logging import getLogger
+from typing import Any
 
 import pandas as pd
 import pycountry
@@ -25,7 +26,9 @@ EMBER_VARIABLE_TO_MODE = {
 EMBER_URL = "https://ember-climate.org"
 SOURCE = "Ember, Yearly electricity data"
 SPECIFIC_MODE_MAPPING = {
+    "AR": {"Other Fossil": "unknown", "Gas": "unknown", "Coal": "unknown"},
     "BD": {"Other Fossil": "oil"},
+    "BO": {"Other Fossil": "unknown", "Gas": "unknown"},
     "CO": {"Other Fossil": "oil"},
     "CY": {"Other Fossil": "oil"},
     "KR": {"Other Fossil": "oil"},
@@ -35,6 +38,7 @@ SPECIFIC_MODE_MAPPING = {
     "SV": {"Other Fossil": "oil"},
     "TR": {"Other Fossil": "oil", "Other Renewables": "geothermal"},
     "TW": {"Other Fossil": "oil"},
+    "UY": {"Other Fossil": "unknown", "Gas": "unknown"},
     "ZA": {"Other Fossil": "oil"},
 }
 
@@ -123,6 +127,7 @@ def format_ember_data(df: pd.DataFrame, year: int) -> pd.DataFrame:
     df_capacity["value"] = df_capacity["value"] * 1000  # convert from GW to MW
 
     df_capacity["mode"] = df_capacity.apply(map_variable_to_mode, axis=1)
+    df_capacity = df_capacity.dropna(subset=["value"])
 
     df_capacity = (
         df_capacity.groupby(["zone_key", "datetime", "mode"])[["value"]]
@@ -133,7 +138,7 @@ def format_ember_data(df: pd.DataFrame, year: int) -> pd.DataFrame:
     return df_capacity
 
 
-def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict:
+def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict[str, Any]:
     all_capacity = {}
     for zone in df_capacity.index.unique():
         df_zone = df_capacity.loc[zone]
@@ -150,7 +155,7 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict:
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session
-) -> dict:
+) -> dict[str, Any]:
     df_capacity = get_data_from_url(session)
     df_capacity = format_ember_data(df_capacity, target_datetime.year)
     all_capacity = get_capacity_dict_from_df(df_capacity)
@@ -160,7 +165,7 @@ def fetch_production_capacity_for_all_zones(
 
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
-) -> dict:
+) -> dict[str, Any] | None:
     all_capacity = fetch_production_capacity_for_all_zones(target_datetime, session)
     if zone_key in all_capacity:
         zone_capacity = all_capacity[zone_key]

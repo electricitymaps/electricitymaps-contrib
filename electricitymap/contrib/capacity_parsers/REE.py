@@ -1,5 +1,6 @@
 from datetime import datetime
 from logging import getLogger
+from typing import Any
 
 from requests import Response, Session
 
@@ -54,7 +55,7 @@ ZONE_KEY_TO_GEO_LIMIT = {
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
-):
+) -> dict[str, Any] | None:
     geo_limit = ZONE_KEY_TO_GEO_LIMIT[zone_key]
     geo_ids = GEO_LIMIT_TO_GEO_IDS[geo_limit]
     url = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada"
@@ -97,7 +98,7 @@ def fetch_production_capacity(
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
-) -> dict:
+) -> dict[str, Any]:
     if session is None:
         session = Session()
     ree_capacity = {}

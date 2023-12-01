@@ -86,7 +86,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     const isSourceLoaded =
       map &&
       map.getSource(ZONE_SOURCE) !== undefined &&
-      map.isSourceLoaded(ZONE_SOURCE) &&
       map.getSource('states') !== undefined &&
       map.isSourceLoaded('states');
 
