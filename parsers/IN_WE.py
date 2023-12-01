@@ -58,7 +58,10 @@ def fetch_data(
     assert kind is not None
 
     r = session or Session()
-    payload = {"date": target_datetime.strftime("%Y-%m-%d"), "Flag": 24}
+    payload = {
+        "date": target_datetime.astimezone(tz=TZ).strftime("%Y-%m-%d"),
+        "Flag": 24,
+    }
 
     resp: Response = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
 
