@@ -1,10 +1,11 @@
 # pylint: disable=no-member
 import datetime as dt
 from abc import ABC, abstractmethod
+from collections.abc import Set
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
-from typing import AbstractSet, Any, Optional
+from typing import Any, Optional
 
 import pandas as pd
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
@@ -123,7 +124,7 @@ class ProductionMix(Mix):
         and to check for negative values and set them to None.
         This method also keeps track of the modes that have been corrected.
         """
-        if not name in PRODUCTION_MODES:
+        if name not in PRODUCTION_MODES:
             raise AttributeError(f"Unknown production mode: {name}")
         if value is not None and value < 0:
             self._corrected_negative_values.add(name)
@@ -160,7 +161,7 @@ class ProductionMix(Mix):
         return len(self._corrected_negative_values) > 0
 
     @property
-    def corrected_negative_modes(self) -> AbstractSet[str]:
+    def corrected_negative_modes(self) -> Set[str]:
         return self._corrected_negative_values
 
     @classmethod
@@ -197,7 +198,7 @@ class StorageMix(Mix):
         """
         Overriding the setattr method to raise an error if the mode is unknown.
         """
-        if not name in STORAGE_MODES:
+        if name not in STORAGE_MODES:
             raise AttributeError(f"Unknown storage mode: {name}")
         return super().__setattr__(name, value)
 
@@ -258,9 +259,7 @@ class Event(BaseModel, ABC):
             "sourceType", EventSourceType.measured
         ) != EventSourceType.forecasted and v.astimezone(timezone.utc) > datetime.now(
             timezone.utc
-        ) + timedelta(
-            days=1
-        ):
+        ) + timedelta(days=1):
             raise ValueError(
                 f"Date is in the future and this is not a forecasted point: {v}"
             )

@@ -192,7 +192,7 @@
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
     "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-    "newversion": "A new app version is available",
+    "newversion": "A new app version is available!",
     "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
     "retrynow": "Retry now",
     "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",

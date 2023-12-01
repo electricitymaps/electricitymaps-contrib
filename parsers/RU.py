@@ -126,10 +126,8 @@ def fetch_production_1st_synchronous_zone(
     r = session or Session()
 
     price_zone = zone_key_price_zone_mapper[zone_key]
-    base_url = "{}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={}".format(
-        HOST, price_zone
-    )
-    url = base_url + "&startDate={date}&endDate={date}".format(date=date)
+    base_url = f"{HOST}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={price_zone}"
+    url = base_url + f"&startDate={date}&endDate={date}"
 
     response = r.get(url, verify=False)
     json_content = json.loads(response.text)

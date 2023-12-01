@@ -58,7 +58,7 @@ def fetch_price(
                     continue
                 period = int(value.attrib["periode"])
                 datetime = start_date.shift(hours=+period).datetime
-                if not datetime in datas:
+                if datetime not in datas:
                     datas[datetime] = {
                         "zoneKey": zone_key,
                         "currency": "EUR",
