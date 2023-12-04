@@ -14,22 +14,22 @@ contributors:
 emissionFactors:
   lifecycle:
     unknown:
-      - datetime: 2019-01-01
+      - datetime: '2019-01-01'
         source: 'assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources'
         value: 56
   direct:
     unknown:
-      - datetime: 2019-01-01
+      - datetime: '2019-01-01'
         source: 'assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources'
         value: 28.6
 isLowCarbon:
   unknown:
-    - datetime: 2019-01-01
+    - datetime: '2019-01-01'
       source: 'assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources'
       value: 0.94
 isRenewable:
   unknown:
-    - datetime: 2019-01-01
+    - datetime: '2019-01-01'
       source: 'assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources'
       value: 0.94
 fallbackZoneMixes:
