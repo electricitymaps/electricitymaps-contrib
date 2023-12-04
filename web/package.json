@@ -79,7 +79,7 @@
     "i18next": "^23.7.7",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.2",
-    "jotai": "^2.5.0",
+    "jotai": "^2.6.0",
     "js-yaml": "^4.1.0",
     "mapbox-gl": "npm:empty-npm-package@1.0.0",
     "maplibre-gl": "^2.4.0",

@@ -102,8 +102,8 @@ dependencies:
     specifier: ^2.4.2
     version: 2.4.2
   jotai:
-    specifier: ^2.5.0
-    version: 2.5.0(@types/react@18.2.20)(react@18.2.0)
+    specifier: ^2.6.0
+    version: 2.6.0(@types/react@18.2.20)(react@18.2.0)
   js-yaml:
     specifier: ^4.1.0
     version: 4.1.0
@@ -13128,8 +13128,8 @@ packages:
       '@sideway/formula': 3.0.1
       '@sideway/pinpoint': 2.0.0
 
-  /jotai@2.5.0(@types/react@18.2.20)(react@18.2.0):
-    resolution: {integrity: sha512-iPJDFrhNw3KU4o4SSAESeZoW+nM1L/76VULXZWF23qmivBEcbAQjiF5n1W4Hn5dXAol4tmtEYe4HH7d9emEz0Q==}
+  /jotai@2.6.0(@types/react@18.2.20)(react@18.2.0):
+    resolution: {integrity: sha512-Vt6hsc04Km4j03l+Ax+Sc+FVft5cRJhqgxt6GTz6GM2eM3DyX3CdBdzcG0z2FrlZToL1/0OAkqDghIyARWnSuQ==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       '@types/react': '>=17.0.0'
