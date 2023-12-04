@@ -3,12 +3,14 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Literal, TypedDict
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Response, Session
 
 from .lib.exceptions import ParserException
 from .lib.validation import validate
+
+FO = ZoneInfo("Atlantic/Faroe")
 
 MAP_GENERATION = {
     "Vand": "hydro",
@@ -77,9 +79,7 @@ def fetch_production(
     }
     for key, value in obj.items():
         if key == "tiden":
-            data["datetime"] = arrow.get(
-                arrow.get(value).datetime, "Atlantic/Faroe"
-            ).datetime
+            data["datetime"] = datetime.fromisoformat(value).replace(tzinfo=FO)
         elif "Sum" in key:
             continue
         elif "Test" in key:
