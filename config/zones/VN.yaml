@@ -46,7 +46,6 @@ isRenewable:
       value: 0.5028
 fallbackZoneMixes:
   _source: EMBER 2022
-  datetime: '2022-01-01'
   powerOriginRatios:
     value:
       coal: 0.3876
@@ -61,5 +60,9 @@ subZoneNames:
   - VN-N
   - VN-C
   - VN-S
+
+sources:
+  EMBER 2022:
+    link: https://ember-climate.org/countries-and-regions/countries/viet-nam/
 
 timezone: Asia/Ho_Chi_Minh
