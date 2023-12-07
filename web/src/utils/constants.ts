@@ -1,8 +1,9 @@
 import { ElectricityModeType } from 'types';
 
+// The order here determines the order displayed
 export enum TimeAverages {
-  DAILY = 'daily',
   HOURLY = 'hourly',
+  DAILY = 'daily',
   MONTHLY = 'monthly',
   YEARLY = 'yearly',
 }
