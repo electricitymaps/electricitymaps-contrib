@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { TranslationFunction, useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -10,7 +10,7 @@ import {
 const getText = (
   timePeriod: TimeAverages,
   dataType: 'emissions' | 'production' | 'consumption',
-  __: (text: string) => string
+  __: TranslationFunction
 ) => {
   const translations = {
     hourly: {
