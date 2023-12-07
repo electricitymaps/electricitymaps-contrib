@@ -38,7 +38,11 @@
     "now": "Nu"
   },
   "time-controller": {
-    "title": "Vis historiske data"
+    "title": "Vis historiske data",
+    "daily": "daglig",
+    "hourly": "timevis",
+    "monthly": "månedlig",
+    "yearly": "årlig"
   },
   "country-history": {
     "carbonintensity": {

@@ -1854,7 +1854,11 @@
     "title": "Paramètres"
   },
   "time-controller": {
-    "title": "Afficher les données passées"
+    "title": "Afficher les données passées",
+    "daily": "quotidien",
+    "hourly": "horaire",
+    "monthly": "mensuel",
+    "yearly": "annuel"
   },
   "aggregateButtons": {
     "country": "pays",

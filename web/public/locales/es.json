@@ -74,7 +74,11 @@
     "now": "Ahora"
   },
   "time-controller": {
-    "title": "Mostrar datos del pasado"
+    "title": "Mostrar datos del pasado",
+    "daily": "diario",
+    "hourly": "cada hora",
+    "monthly": "mensual",
+    "yearly": "anual"
   },
   "left-panel": {
     "zone-list-header-title": "Impacto climático por zona",

@@ -81,7 +81,11 @@
     "search": "Land oder Region suchen"
   },
   "time-controller": {
-    "title": "Historische Daten anzeigen"
+    "title": "Historische Daten anzeigen",
+    "daily": "täglich",
+    "hourly": "stündlich",
+    "monthly": "monatlich",
+    "yearly": "jährlich"
   },
   "country-history": {
     "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",

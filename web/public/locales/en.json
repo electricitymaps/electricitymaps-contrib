@@ -91,7 +91,11 @@
     }
   },
   "time-controller": {
-    "title": "Display data from the past"
+    "title": "Display data from the past",
+    "daily": "daily",
+    "hourly": "hourly",
+    "monthly": "monthly",
+    "yearly": "yearly"
   },
   "left-panel": {
     "zone-list-header-title": "Climate Impact by Area",
