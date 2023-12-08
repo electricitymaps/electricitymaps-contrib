@@ -97,7 +97,7 @@ jobs:
       needs.setup.outputs.workflows != 'false') &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.ref_name != 'master'
-    uses: ./.github/workflows/deploy-preview-branch.yml
+    uses: ./.github/workflows/deploy_preview_branch.yml
     secrets: inherit
 
   cypress:
