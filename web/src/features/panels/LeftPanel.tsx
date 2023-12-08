@@ -27,7 +27,6 @@ function HandleLegacyRoutes() {
 
   const zoneId = searchParameters.get('countryCode');
   searchParameters.delete('countryCode');
-  console.log("random print that's not useful");
   return (
     <Navigate
       to={{
