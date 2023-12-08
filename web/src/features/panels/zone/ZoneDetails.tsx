@@ -113,6 +113,7 @@ function ZoneDetailsContent({
       </div>
     );
   }
+  console.log("silly log we don't need");
 
   if (isError) {
     return (

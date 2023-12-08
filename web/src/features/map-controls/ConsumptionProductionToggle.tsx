@@ -6,6 +6,7 @@ import { Mode } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
 export default function ConsumptionProductionToggle(): ReactElement {
+  return null;
   const options = [
     { value: Mode.PRODUCTION, translationKey: 'tooltips.production' },
     { value: Mode.CONSUMPTION, translationKey: 'tooltips.consumption' },

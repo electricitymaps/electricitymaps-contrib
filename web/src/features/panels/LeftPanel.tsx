@@ -88,6 +88,7 @@ function MobileHeader() {
     <div className="flex w-full items-center justify-between p-1 pt-[env(safe-area-inset-top)] shadow-md dark:bg-gray-900 sm:hidden">
       <Logo className="h-10 w-44 fill-black dark:fill-white" />
       <TimeDisplay className="mr-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300" />
+      <div></div>
     </div>
   );
 }
