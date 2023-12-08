@@ -44,7 +44,7 @@ export default function Attribution({
 
   return (
     <div className="text-sm">
-      <span>{__('country-panel.source')}:</span>
+      <span className="">{__('country-panel.source')}:</span>
       <a
         style={{ textDecoration: 'none' }}
         href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
