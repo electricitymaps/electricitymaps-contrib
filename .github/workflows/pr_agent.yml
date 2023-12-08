@@ -8,7 +8,7 @@ jobs:
       issues: write
       pull-requests: write
       contents: write
-    name: Run pr agent on every pull request, respond to user comments
+    name: PR analysis agent
     steps:
       - name: PR Agent action step
         id: pragent
