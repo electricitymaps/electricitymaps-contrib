@@ -5,7 +5,7 @@ def get_capacity_data(capacity_config: dict, dt: datetime) -> dict[str, float]:
     """Gets the capacity data for a given zone and datetime from ZONES_CONFIG."""
     capacity = {}
     for mode, capacity_value in capacity_config.items():
-        if isinstance(capacity_value, (int, float)):
+        if isinstance(capacity_value, int | float):
             # TODO: This part is used for the old capacity format. It shoud be removed once all capacity configs are updated
             capacity[mode] = capacity_value
         else:

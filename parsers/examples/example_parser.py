@@ -242,7 +242,7 @@ def fetch_exchange(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    url = f"https://api.someservice.com/v1/exchange/latest"
+    url = "https://api.someservice.com/v1/exchange/latest"
     params = {
         "from": zone_key1,
         "to": zone_key2,
@@ -313,7 +313,7 @@ def fetch_consumption(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    url = f"https://api.someservice.com/v1/consumption/latest"
+    url = "https://api.someservice.com/v1/consumption/latest"
     params = {
         "zone": zone_key,
     }
@@ -370,7 +370,7 @@ def fetch_total_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    url = f"https://api.someservice.com/v1/production/latest"
+    url = "https://api.someservice.com/v1/production/latest"
     params = {
         "zone": zone_key,
     }

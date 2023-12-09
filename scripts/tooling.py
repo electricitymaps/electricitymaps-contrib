@@ -20,20 +20,12 @@ def _run(cmd: str):
 
 
 def format():
-    _run(f"isort --profile=black .")
-    _run("black .")
+    _run("ruff check . --fix")
+    _run("ruff format .")
 
 
 def lint():
-    _run(
-        "flake8 electricitymap tests parsers --count --select=F401,E901,E999,F821,F822,F823 --show-source --statistics"
-    )
-    _run("black --check .")
-    _run("isort -c .")
-    for path in ["tests", "electricitymap", "*.py"]:
-        _run(
-            f"pylint -E {path} -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence"
-        )
+    _run("ruff check .")
 
 
 def test():
@@ -41,5 +33,6 @@ def test():
 
 
 def check():
+    _run("ruff format --check .")
     lint()
     test()

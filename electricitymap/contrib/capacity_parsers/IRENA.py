@@ -103,7 +103,7 @@ def get_capacity_data_for_all_zones(
         if zone not in capacity_dict:
             zone_dict = {
                 mode: {
-                    "datetime": datetime_value,
+                    "datetime": datetime_value.strftime("%Y-%m-%d"),
                     "value": value,
                     "source": SOURCE,
                 }
@@ -119,7 +119,7 @@ def get_capacity_data_for_all_zones(
                     **capacity_dict[zone],
                     **{
                         mode: {
-                            "datetime": datetime_value,
+                            "datetime": datetime_value.strftime("%Y-%m-%d"),
                             "value": value,
                             "source": SOURCE,
                         }
