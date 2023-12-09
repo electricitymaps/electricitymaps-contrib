@@ -22,9 +22,6 @@ jobs:
         uses: Codium-ai/pr-agent@main
         env:
           OPENAI_KEY: ${{ secrets.TONYS_OPENAI_KEY }}
-          OPENAI_ORG: ${{ secrets.OPENAI_ORG }} # optional
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PINECONE.API_KEY: ${{ secrets.PINECONE_API_KEY }}
-          PINECONE.ENVIRONMENT: ${{ secrets.PINECONE_ENVIRONMENT }}
           GITHUB_ACTION.AUTO_REVIEW: true
           GITHUB_ACTION.AUTO_IMPROVE: true
