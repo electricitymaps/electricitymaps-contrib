@@ -6,7 +6,9 @@
 # https://github.com/actions/labeler/blob/master/README.md
 
 name: Labeler
-on: [pull_request_target]
+on:
+  pull_request:
+  issue_comment:
 
 jobs:
   label:
