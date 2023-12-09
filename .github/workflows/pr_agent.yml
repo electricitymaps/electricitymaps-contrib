@@ -15,6 +15,7 @@ jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
     name: Run pr agent on every pull request
+    # Only run if the PR or comment from the same repo as the workflow
     if: >
       (
       github.event_name == 'pull_request' &&
