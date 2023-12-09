@@ -14,7 +14,6 @@ jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
     name: Run pr agent on every pull request
-    if: github.event.pull_request.head.repo.full_name == github.repository && github.ref_name != 'master'
     steps:
       - name: PR Agent action step
         id: pragent
