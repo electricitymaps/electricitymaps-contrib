@@ -1,5 +1,6 @@
 # This workflow enables developers to call PR-Agents `/[actions]` in PR's comments and upon PR creation.
 # Learn more at https://www.codium.ai/pr-agent/
+
 name: PR-Agent
 
 on:
@@ -14,7 +15,17 @@ jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
     name: Run pr agent on every pull request
-    if: github.event.pull_request.head.repo.full_name == github.repository && github.ref_name != 'master'
+    if: >
+      (
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.ref_name != 'master'
+      ) ||
+      (
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      github.repository == github.event.repository.full_name
+      )
     steps:
       - name: PR Agent action step
         id: pragent
@@ -22,3 +33,5 @@ jobs:
         env:
           OPENAI_KEY: ${{ secrets.TONYS_OPENAI_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTION.AUTO_REVIEW: true
+          GITHUB_ACTION.AUTO_IMPROVE: true
