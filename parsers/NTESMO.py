@@ -8,15 +8,16 @@ from collections.abc import Callable
 from datetime import date, datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import TypedDict
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-from parsers.lib.config import refetch_frequency, retry_policy
-from parsers.lib.exceptions import ParserException
 from requests import Session
 from requests.adapters import Retry
-from zoneinfo import ZoneInfo
+
+from parsers.lib.config import refetch_frequency, retry_policy
+from parsers.lib.exceptions import ParserException
 
 AUSTRALIA_TZ = ZoneInfo("Australia/Darwin")
 
