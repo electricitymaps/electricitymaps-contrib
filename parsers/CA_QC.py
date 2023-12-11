@@ -35,9 +35,8 @@ def fetch_production(
     now = datetime.now(tz=TIMEZONE)
     for elem in data:
         values = elem["valeurs"]
-        timestamp = datetime.strptime(elem["date"], "%Y-%m-%dT%H:%M:%S").replace(
-            tzinfo=TIMEZONE
-        )
+        if isinstance(elem["date"], str):
+            timestamp = datetime.fromisoformat(elem["date"]).replace(tzinfo=TIMEZONE)
         # The datasource returns future timestamps or recent with a 0.0 value, so we ignore them.
         if timestamp <= now and values.get("total", 0) > 0:
             production.append(
@@ -71,9 +70,7 @@ def fetch_consumption(
         if "demandeTotal" in elem["valeurs"]:
             consumption.append(
                 zoneKey=zone_key,
-                datetime=datetime.strptime(elem["date"], "%Y-%m-%dT%H:%M:%S").replace(
-                    tzinfo=TIMEZONE
-                ),
+                datetime=datetime.fromisoformat(elem["date"]).replace(tzinfo=TIMEZONE),
                 consumption=elem["valeurs"]["demandeTotal"],
                 source=SOURCE,
             )
