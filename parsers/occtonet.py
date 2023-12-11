@@ -54,7 +54,7 @@ def _fetch_exchange(
     exch_id = EXCHANGE_MAPPING[sorted_zone_keys]
 
     # This authorises subsequent calls
-    cookies = get_cookies(session)
+    _cookies = get_cookies(session)
 
     df = pd.DataFrame()
     for i in range(len(exch_id)):
@@ -230,7 +230,9 @@ def get_exchange(session: Session, form_data):
 
 
 def get_exchange_fcst(session: Session, form_data):
-    return _get_exchange(session, form_data, ["対象日付", "対象時刻", "計画潮流(順方向)"])
+    return _get_exchange(
+        session, form_data, ["対象日付", "対象時刻", "計画潮流(順方向)"]
+    )
 
 
 if __name__ == "__main__":

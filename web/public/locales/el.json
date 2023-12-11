@@ -112,13 +112,15 @@
   "misc": {
     "maintitle": "Ζωντανές εκπομπές CO₂ κατανάλωσης ηλεκτρικής ενέργειας",
     "oops": "Ωχ! Αντιμετωπίζουμε πρόβλημα με τη λήψη δεδομένων. Θα προσπαθήσουμε ξανά σε λίγα δευτερόλεπτα.",
-    "newversion": "Μια νέα έκδοση είναι διαθέσιμη! Πατήστε <a onClick=\"location.reload(true);\">εδώ</a> για επαναφόρτωση.",
+    "newversion": "Μια νέα έκδοση είναι διαθέσιμη!",
     "webgl-not-supported": "Ο χάρτης δεν μπορεί να παρουσιαστεί καθώς αυτό το πρόγραμμα περιήγησης δεν υποστηρίζει WebGL.",
     "retrynow": "Επαναδοκιμή τώρα",
     "database-ad": "Ψάχνετε για ιστορικά δεδομένα; <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Δείτε τη βάση δεδομένων μας!</a>",
     "api-ad": "Θέλετε ζωντανά δεδομένα στην εφαρμογή ή στη συσκευή σας; <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Δοκιμάστε το API μας!</a>",
     "legend": "Yπόμνημα",
-    "faq": "Συχνές Ερωτήσεις"
+    "faq": "Συχνές Ερωτήσεις",
+    "dismiss": "Κλείσιμο",
+    "reload": "Νέα φόρτωση"
   },
   "wind": "αιολική",
   "solar": "ηλιακή",

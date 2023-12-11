@@ -27,7 +27,6 @@ def refetch_frequency(frequency: timedelta):
 
 
 def retry_policy(retry_policy: Retry):
-
     assert isinstance(retry_policy, Retry)
 
     def wrap(f):

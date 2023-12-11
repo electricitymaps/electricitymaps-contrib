@@ -26,7 +26,9 @@ EMBER_VARIABLE_TO_MODE = {
 EMBER_URL = "https://ember-climate.org"
 SOURCE = "Ember, Yearly electricity data"
 SPECIFIC_MODE_MAPPING = {
+    "AR": {"Other Fossil": "unknown", "Gas": "unknown", "Coal": "unknown"},
     "BD": {"Other Fossil": "oil"},
+    "BO": {"Other Fossil": "unknown", "Gas": "unknown"},
     "CO": {"Other Fossil": "oil"},
     "CY": {"Other Fossil": "oil"},
     "KR": {"Other Fossil": "oil"},
@@ -36,6 +38,7 @@ SPECIFIC_MODE_MAPPING = {
     "SV": {"Other Fossil": "oil"},
     "TR": {"Other Fossil": "oil", "Other Renewables": "geothermal"},
     "TW": {"Other Fossil": "oil"},
+    "UY": {"Other Fossil": "unknown", "Gas": "unknown"},
     "ZA": {"Other Fossil": "oil"},
 }
 
@@ -124,6 +127,7 @@ def format_ember_data(df: pd.DataFrame, year: int) -> pd.DataFrame:
     df_capacity["value"] = df_capacity["value"] * 1000  # convert from GW to MW
 
     df_capacity["mode"] = df_capacity.apply(map_variable_to_mode, axis=1)
+    df_capacity = df_capacity.dropna(subset=["value"])
 
     df_capacity = (
         df_capacity.groupby(["zone_key", "datetime", "mode"])[["value"]]

@@ -469,7 +469,7 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
 
 def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datetime"):
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
     if isinstance(target_datetime, datetime):
         return np.abs((x[datetime_key] - target_datetime).seconds)
 
@@ -490,7 +490,7 @@ def query_ENTSOE(
     env_var = "ENTSOE_REFETCH_TOKEN"
     url = ENTSOE_EU_PROXY_ENDPOINT
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
         env_var = "ENTSOE_TOKEN"
         url = ENTSOE_ENDPOINT
 
@@ -765,8 +765,7 @@ def create_production_storage(
         return None, storage
     if 0 > quantity > -50:
         logger.info(
-            "Self consumption value %s for %s has been set to 0."
-            % (quantity, fuel_em_type),
+            f"Self consumption value {quantity} for {fuel_em_type} has been set to 0.",
             extra={"key": zoneKey, "fuel_type": fuel_em_type},
         )
         quantity = 0
@@ -1173,7 +1172,7 @@ def fetch_production_per_units(
                     if not v:
                         continue
                     v["source"] = "entsoe.eu"
-                    if not v["unitName"] in ENTSOE_UNITS_TO_ZONE:
+                    if v["unitName"] not in ENTSOE_UNITS_TO_ZONE:
                         logger.warning(
                             f"Unknown unit {v['unitName']} with id {v['unitKey']}"
                         )
@@ -1181,12 +1180,12 @@ def fetch_production_per_units(
                         v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
                         if v["zoneKey"] == zone_key:
                             data.append(v)
-        except:
-            ParserException(
+        except Exception as e:
+            raise ParserException(
                 parser="ENTSOE.py",
                 message=f"Failed to fetch data for {k} in {zone_key}",
                 zone_key=zone_key,
-            )
+            ) from e
 
     return data
 

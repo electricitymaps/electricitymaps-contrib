@@ -11,6 +11,8 @@ from zoneinfo import ZoneInfo
 import arrow
 from requests import Session
 
+from parsers.lib.exceptions import ParserException
+
 TZ = ZoneInfo("Europe/Chisinau")
 
 # Supports the following formats:
@@ -140,7 +142,7 @@ def get_archive_data(session: Session | None = None, dates=None) -> list:
 
     try:
         date1, date2 = sorted(dates)
-    except:
+    except Exception:
         date1 = date2 = dates
 
     archive_url = archive_base_url
@@ -164,10 +166,11 @@ def get_archive_data(session: Session | None = None, dates=None) -> list:
             )
             for entry in data
         ]
-    except:
-        raise Exception(
-            "Not able to parse received data. Check that the specifed URL returns correct data."
-        )
+    except Exception as e:
+        raise ParserException(
+            "MD.py",
+            "Not able to parse received data. Check that the specifed URL returns correct data.",
+        ) from e
 
 
 def get_data(session: Session | None = None) -> list:
@@ -175,15 +178,16 @@ def get_data(session: Session | None = None) -> list:
     s = session or Session()
 
     # In order for data_url to return data, cookies from display_url must be obtained then reused.
-    response = s.get(display_url, verify=False)
+    _response = s.get(display_url, verify=False)
     data_response = s.get(data_url, verify=False)
     raw_data = data_response.text
     try:
         data = [float(i) if i else None for i in raw_data.split(",")]
-    except:
-        raise Exception(
-            "Not able to parse received data. Check that the specifed URL returns correct data."
-        )
+    except Exception as e:
+        raise ParserException(
+            "MD.py",
+            "Not able to parse received data. Check that the specifed URL returns correct data.",
+        ) from e
 
     return data
 
@@ -359,7 +363,7 @@ if __name__ == "__main__":
             result = callable(*args, **kwargs)
             try:
                 print(f"[{result[0]}, ... ({len(result)} more elements)]")
-            except:
+            except Exception:
                 print(result)
         except Exception as e:
             print(repr(e))
