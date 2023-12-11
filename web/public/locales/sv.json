@@ -212,7 +212,7 @@
   "misc": {
     "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
     "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
-    "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
+    "newversion": "En ny version är tillgänglig!",
     "webgl-not-supported": "Kartan kan inte renderas då denna webbläsare inte stöder WebGL.",
     "retrynow": "Försök igen",
     "database-ad": "Letar du efter historisk data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",

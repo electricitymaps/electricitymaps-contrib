@@ -11,7 +11,6 @@ import argparse
 import os
 import re
 from glob import glob
-from shutil import move
 
 from utils import (
     LOCALE_FILE_PATHS,
@@ -107,7 +106,7 @@ def remove_geojson_entry(zone_key: ZoneKey):
         cwd=ROOT_PATH,
     )
     run_shell_command(
-        f"pnpm generate-world",
+        "pnpm generate-world",
         cwd=ROOT_PATH / "web",
     )
 
@@ -118,7 +117,7 @@ def move_parser_to_archived(zone_key: ZoneKey):
         run_shell_command(
             f"git mv {parser_path} {ROOT_PATH / 'parsers/archived'}", cwd=ROOT_PATH
         )
-        print(f"🧹 Moved parser to /archived folder")
+        print("🧹 Moved parser to /archived folder")
 
 
 def find_files_mentioning_zone(text):
@@ -147,14 +146,16 @@ def find_files_mentioning_zone(text):
             continue
         for file in files:
             if file.endswith(VALID_EXTENSIONS):
-                with open(os.path.join(root, file), "r") as f:
+                with open(os.path.join(root, file)) as f:
                     if re.search(text, f.read()):
                         # print the relative path
                         results.append(
                             os.path.relpath(os.path.join(root, file), ROOT_PATH)
                         )
     if not results:
-        print(f'🧹 Found no additional files mentioning "{text}" in contrib repository.')
+        print(
+            f'🧹 Found no additional files mentioning "{text}" in contrib repository.'
+        )
         return
 
     print(

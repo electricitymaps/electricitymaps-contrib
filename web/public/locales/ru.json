@@ -103,12 +103,14 @@
   "misc": {
     "maintitle": "Эмиссии CO₂ производства электроенергии в реальном времени",
     "oops": "Ой! У нас возникли проблемы с доступом к серверу. Подождите несколько секунд.",
-    "newversion": "Доступна новая версия! Нажмите <a onClick=\"location.reload(true);\">здесь</a> чтобы обновить сайт.",
+    "newversion": "Доступна новая версия!",
     "retrynow": "Повторить попытку",
     "database-ad": "Ищите исторические данные? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Посетите нашу базу данных!</a>",
     "api-ad": "Хотите получать данные в реальном времени для своего приложения или устройства? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Посетите наш API!</a>",
     "legend": "Легенда",
-    "faq": "Часто Задаваемые Вопросы"
+    "faq": "Часто Задаваемые Вопросы",
+    "dismiss": "Закрыть",
+    "reload": "Перезагрузить"
   },
   "wind": "ВЭС",
   "solar": "СЭС",

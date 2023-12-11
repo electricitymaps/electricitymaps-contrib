@@ -68,6 +68,11 @@
   "time-controller": {
     "title": "अतीत की जानकारी देखें"
   },
+  "misc": {
+    "newversion": "एक नया संस्करण उपलब्ध है!",
+    "dismiss": "ख़ारिज करें",
+    "reload": "रीलोड करें"
+  },
   "country-history": {},
   "zoneShortName": {}
 }

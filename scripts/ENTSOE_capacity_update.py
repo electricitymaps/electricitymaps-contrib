@@ -95,18 +95,14 @@ def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
     # TODO not sure whether selecting the date always works like that
     date = datetime.datetime.now().strftime("%Y%m%d")
     url = (
-        "https://web-api.tp.entsoe.eu/api?securityToken={token}"
-        "&documentType=A68&processType=A33&in_Domain={domain}"
-        "&periodStart={date}0000&periodEnd={date}0000".format(
-            token=token, domain=domain, date=date
-        )
+        f"https://web-api.tp.entsoe.eu/api?securityToken={token}"
+        f"&documentType=A68&processType=A33&in_Domain={domain}"
+        f"&periodStart={date}0000&periodEnd={date}0000"
     )
     response = requests.get(url)
     if response.status_code != 200:
         print(
-            "ERROR: Request to ENTSOE API failed with status {}".format(
-                response.status_code
-            ),
+            f"ERROR: Request to ENTSOE API failed with status {response.status_code}",
             file=sys.stderr,
         )
         exit(1)

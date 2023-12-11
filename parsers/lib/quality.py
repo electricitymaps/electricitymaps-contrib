@@ -45,14 +45,13 @@ def validate_reasonable_time(item, k):
     data_time = arrow.get(item["datetime"])
     if data_time.year < 2000:
         raise ValidationError(
-            "Data from %s can't be before year 2000, it was " "%s" % (k, data_time)
+            f"Data from {k} can't be before year 2000, it was from: {data_time}"
         )
 
     arrow_now = arrow.utcnow()
     if data_time.astimezone(timezone.utc) > arrow_now:
         raise ValidationError(
-            "Data from %s can't be in the future, data was %s, now is "
-            "%s" % (k, data_time, arrow_now)
+            f"Data from {k} can't be in the future, data was {data_time}, now is {arrow_now}"
         )
 
 
@@ -60,13 +59,12 @@ def validate_consumption(obj: dict, zone_key: ZoneKey) -> None:
     validate_datapoint_format(datapoint=obj, kind="consumption", zone_key=zone_key)
     if (obj.get("consumption") or 0) < 0:
         raise ValidationError(
-            "%s: consumption has negative value " "%s" % (zone_key, obj["consumption"])
+            f"{zone_key}: consumption has negative value {obj['consumption']}"
         )
     # Plausibility Check, no more than 500GW
     if abs(obj.get("consumption") or 0) > 500000:
         raise ValidationError(
-            "%s: consumption is not realistic (>500GW) "
-            "%s" % (zone_key, obj["consumption"])
+            f"{zone_key}: consumption is not realistic (>500GW) {obj['consumption']}"
         )
     validate_reasonable_time(obj, zone_key)
 
@@ -75,18 +73,15 @@ def validate_exchange(item, k) -> None:
     validate_datapoint_format(datapoint=item, kind="exchange", zone_key=k)
     if item.get("sortedZoneKeys", None) != k:
         raise ValidationError(
-            "Sorted country codes %s and %s don't "
-            "match" % (item.get("sortedZoneKeys", None), k)
+            f"Sorted country codes {item.get('sortedZoneKeys', None)} and {k} don't match"
         )
     if "datetime" not in item:
-        raise ValidationError("datetime was not returned for %s" % k)
+        raise ValidationError(f"datetime was not returned for {k}")
     if type(item["datetime"]) != datetime:
-        raise ValidationError(
-            "datetime {} is not valid for {}".format(item["datetime"], k)
-        )
+        raise ValidationError(f"datetime {item['datetime']} is not valid for {k}")
     validate_reasonable_time(item, k)
     if "netFlow" not in item:
-        raise ValidationError("netFlow was not returned for %s" % k)
+        raise ValidationError(f"netFlow was not returned for {k}")
     # Verify that the exchange flow is not greater than the interconnector
     # capacity and has physical sense (no exchange should exceed 100GW)
     # Use https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/example.py for expected format
@@ -94,8 +89,7 @@ def validate_exchange(item, k) -> None:
         zone_names: list[str] = item["sortedZoneKeys"]
         if abs(item.get("netFlow", 0)) > 100000:
             raise ValidationError(
-                "netFlow %s exceeds physical plausibility (>100GW) for %s"
-                % (item["netFlow"], k)
+                f"netFlow {item['netFlow']} exceeds physical plausibility (>100GW) for {k}"
             )
         if len(zone_names) == 2:
             if (zone_names in EXCHANGES_CONFIG) and (
@@ -109,8 +103,7 @@ def validate_exchange(item, k) -> None:
                     <= max(interconnector_capacities) * (1 + margin)
                 ):
                     raise ValidationError(
-                        "netFlow %s exceeds interconnector capacity for %s"
-                        % (item["netFlow"], k)
+                        f"netFlow {item['netFlow']} exceeds interconnector capacity for {k}"
                     )
 
 
@@ -121,7 +114,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
     if "countryCode" in obj:
         warn(
             "object has field `countryCode`. It should have "
-            "`zoneKey` instead. In {}".format(obj)
+            f"`zoneKey` instead. In {obj}"
         )
     if "zoneKey" not in obj and "countryCode" not in obj:
         raise ValidationError("zoneKey was not returned for %s" % zone_key)
@@ -131,8 +124,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
         )
     if (obj.get("zoneKey", None) or obj.get("countryCode", None)) != zone_key:
         raise ValidationError(
-            "Zone keys %s and %s don't match in %s"
-            % (obj.get("zoneKey", None), zone_key, obj)
+            f"Zone keys {obj.get('zoneKey', None)} and {zone_key} don't match in {obj}"
         )
 
     if (
@@ -187,16 +179,13 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
         # Plausibility Check, no more than 500GW
         if value > 500000:
             raise ValidationError(
-                "%s: production for %s is not realistic ("
-                ">500GW) "
-                "%s" % (zone_key, key, value)
+                f"{zone_key}: production for {key} is not realistic (>500GW) {value}"
             )
 
     for key in obj.get("production", {}).keys():
         if key not in emission_factors(zone_key).keys():
             raise ValidationError(
-                "Couldn't find emission factor for '%s' in '%s'. Maybe you misspelled one of the production keys?"
-                % (key, zone_key)
+                f"Couldn't find emission factor for '{key}' in '{zone_key}'. Maybe you misspelled one of the production keys?"
             )
 
     validate_reasonable_time(obj, zone_key)
