@@ -15,9 +15,7 @@ def has_value_for_key(datapoint: dict[str, Any], key: str, logger: Logger):
     value = datapoint["production"].get(key, None)
     if value is None or math.isnan(value):
         logger.warning(
-            "Required generation type {} is missing from {}".format(
-                key, datapoint["zoneKey"]
-            ),
+            f"Required generation type {key} is missing from {datapoint['zoneKey']}",
             extra={"key": datapoint["zoneKey"]},
         )
         return None
@@ -35,8 +33,7 @@ def check_expected_range(
     if not (low <= value <= high):
         key_str = f"for key `{key}`" if key else ""
         logger.warning(
-            "{} reported total of {:.2f}MW falls outside range "
-            "of {} {}".format(datapoint["zoneKey"], value, expected_range, key_str),
+            f"{datapoint['zoneKey']} reported total of {value:.2f}MW falls outside range of {expected_range} {key_str}",
             extra={"key": datapoint["zoneKey"]},
         )
         return
@@ -99,7 +96,7 @@ def validate_production_diffs(
             ]
             logger.warning(
                 "some datapoints have a too high production value difference "
-                "for {}: {}".format(energy, to_display)
+                f"for {energy}: {to_display}"
             )
         ok_diff &= new_diffs
     # first datapoint is always OK
@@ -140,7 +137,7 @@ def validate_exchange(
     if exchange is None:
         logger.warning(
             "{}: expected exchange cannot be null".format(
-                datapoint["sortedZoneKeys"], exchange
+                datapoint["sortedZoneKeys"],
             ),
             extra={"key": datapoint["sortedZoneKeys"]},
         )
@@ -250,8 +247,9 @@ def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any]
         )
         if total < floor:
             logger.warning(
-                "{} reported total of {}MW does not meet {}MW floor"
-                " value".format(datapoint["zoneKey"], total, floor),
+                "{} reported total of {}MW does not meet {}MW floor" " value".format(
+                    datapoint["zoneKey"], total, floor
+                ),
                 extra={"key": datapoint["zoneKey"]},
             )
             return

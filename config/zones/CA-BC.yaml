@@ -11,6 +11,27 @@ capacity:
   wind: 704
 contributors:
   - daveachuk
+emissionFactors:
+  lifecycle:
+    unknown:
+      - datetime: '2019-01-01'
+        source: 'assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources'
+        value: 56
+  direct:
+    unknown:
+      - datetime: '2019-01-01'
+        source: 'assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources'
+        value: 28.6
+isLowCarbon:
+  unknown:
+    - datetime: '2019-01-01'
+      source: 'assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources'
+      value: 0.94
+isRenewable:
+  unknown:
+    - datetime: '2019-01-01'
+      source: 'assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources'
+      value: 0.94
 fallbackZoneMixes:
   _source: List of Generating Stations in BC (Wikipedia)
   _url: https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia

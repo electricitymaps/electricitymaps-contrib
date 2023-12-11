@@ -145,7 +145,7 @@
   "misc": {
     "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
     "oops": "Epa! Estamos tendo problemas com o servidor. Tentaremos novamente em alguns segundos.",
-    "newversion": "Uma nova versão está disponível! Clique <a onClick=\"location.reload(true);\">aqui</a> para recarregar.",
+    "newversion": "Uma nova versão está disponível!",
     "webgl-not-supported": "O mapa não pode ser renderizado porque este navegador não oferece suporte a WebGL.",
     "retrynow": "Tentar novamente",
     "database-ad": "Procurando por dados históricos? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
@@ -153,7 +153,9 @@
     "legend": "Legenda",
     "faq": "Questões frequentes",
     "privacyPolicy": "Política de Privacidade",
-    "legalNotice": "Aviso Legal"
+    "legalNotice": "Aviso Legal",
+    "dismiss": "Descartar",
+    "reload": "Recarregar"
   },
   "wind": "eólica",
   "solar": "solar",

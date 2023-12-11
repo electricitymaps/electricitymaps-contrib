@@ -27,7 +27,7 @@ function Toast(props: Props) {
         className="radix-state-open:animate-toast-slide-in-right radix-swipe-end:animate-toast-swipe-out radix-state-closed:animate-toast-hide fixed left-1/2 top-16 z-50 w-1/4 self-center rounded-lg  bg-white shadow translate-x-radix-toast-swipe-move-x radix-swipe-cancel:translate-x-0 radix-swipe-cancel:duration-200 radix-swipe-cancel:ease-[ease] dark:bg-gray-900"
       >
         <div className="flex">
-          <div className="flex w-0 flex-1 items-start p-4">
+          <div className="flex w-0 flex-1 items-center p-4">
             <div className="radix w-full">
               <ToastPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
                 {title}

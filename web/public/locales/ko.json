@@ -106,12 +106,14 @@
   "misc": {
     "maintitle": "전력 소비로 인한 실시간 CO₂ 배출",
     "oops": "이런! 서버 접속에 문제가 있네요. 잠시 후 다시 시도해보겠습니다.",
-    "newversion": "새 버전이 출시되었습니다! 누르세요 <a onClick=\"location.reload(true);\">here</a> to reload.",
+    "newversion": "새 버전이 출시되었습니다!",
     "retrynow": "지금 다시 눌러보세요",
     "database-ad": "역사학적 데이터를 찾으시나요? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">데이터 베이스를 확인해보세요!</a>",
     "api-ad": "당신의 앱이나 기기에 라이브 데이터가 필요한가요? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">저희 API를 체험해보세요!</a>",
     "legend": "범주",
-    "faq": "자주 묻는 질문"
+    "faq": "자주 묻는 질문",
+    "dismiss": "닫기",
+    "reload": "다시 로드"
   },
   "wind": "바람",
   "solar": "태양",
