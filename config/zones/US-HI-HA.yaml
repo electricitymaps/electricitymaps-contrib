@@ -6,11 +6,11 @@ bounding_box:
 emissionFactors:
   direct:
     geothermal:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020
       value: 0.0
     oil:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020
       value: 785.7600688
   lifecycle:
@@ -23,11 +23,11 @@ emissionFactors:
       source: IPCC 2014
       value: 490.0
     geothermal:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
       value: 38.0
     oil:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
       value: 1029.7600688
 sources:

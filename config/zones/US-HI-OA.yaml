@@ -77,7 +77,7 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 685.9001691120977
     oil:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020
       value: 742.1719304
   lifecycle:
@@ -138,7 +138,7 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 923.678588772847
     oil:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
       value: 986.1719304
 fallbackZoneMixes:
