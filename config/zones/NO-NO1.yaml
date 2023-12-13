@@ -43,14 +43,6 @@ emissionFactors:
       datetime: '2021-01-01'
       source: EU-ETS 2021
       value: 0.0
-    coal:
-      datetime: '2022-01-01'
-      source: EU-ETS, ENTSO-E 2022
-      value: 1045.58
-    gas:
-      datetime: '2022-01-01'
-      source: EU-ETS, ENTSO-E 2022
-      value: 449.46
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -73,10 +65,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 6.741719360548369
-    oil:
-      datetime: '2022-01-01'
-      source: EU-ETS, ENTSO-E 2022
-      value: 925.95
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -105,14 +93,10 @@ emissionFactors:
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
-      - datetime: '2012-01-01'
-        source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-          generation."; IPCC 2014
-        value: 883.79433
-      - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
-          hotspots of coal power generation."
-        value: 1169.3743299999999
+      datetime: '2012-01-01'
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+        generation."; IPCC 2014
+      value: 883.79433
     gas:
       - datetime: '2014-01-01'
         source: IPCC 2014
