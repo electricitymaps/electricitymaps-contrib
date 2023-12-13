@@ -14,8 +14,8 @@ capacity:
   wind: 600
 contributors:
   - jarek
-  - corradio
   - lav-julien
+  - corradio
 emissionFactors:
   direct:
     battery discharge:
