@@ -14,7 +14,6 @@ capacity:
   wind: 600
 contributors:
   - jarek
-  - lav-julien
   - corradio
 emissionFactors:
   direct:
