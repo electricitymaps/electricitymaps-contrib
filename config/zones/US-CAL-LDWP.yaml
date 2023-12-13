@@ -52,17 +52,26 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 360.6966468753414
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 932.7095009
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 932.7095009
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 917.69
     gas:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 405.0754852
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 405.0754852
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 398.97
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -109,17 +118,26 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 420.1968418441202
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 138.0968906
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 138.0968906
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 992.7095009
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 992.7095009
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 977.69
     gas:
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 525.0754852
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 525.0754852
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 518.97
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -209,4 +227,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific

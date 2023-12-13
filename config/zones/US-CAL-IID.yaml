@@ -52,17 +52,26 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 493.0079136484788
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     gas:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 471.3724863
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 471.3724863
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 484.42
     geothermal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 56.8894463
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 56.8894463
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 88.15
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -109,21 +118,30 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 605.7101776743226
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 39.38869109
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 39.38869109
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
       datetime: '2014-01-01'
       source: IPCC 2014
       value: 820.0
     gas:
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 591.3724863
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 591.3724863
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 604.4200000000001
     geothermal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 94.8894463
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 94.8894463
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 126.15
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -273,4 +291,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
