@@ -15,7 +15,7 @@ capacity:
 contributors:
   - jarek
   - corradio
-  - 'lav-julien'
+  - lav-julien
 emissionFactors:
   direct:
     battery discharge:
