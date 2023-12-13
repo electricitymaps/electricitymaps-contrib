@@ -2,15 +2,15 @@
 
 import re
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 from PIL import Image, ImageOps
 from pytesseract import image_to_string
 from requests import Session
 
-TIMEZONE = "Asia/Singapore"
+TIMEZONE = ZoneInfo("Asia/Singapore")
 
 TICKER_URL = "https://www.emcsg.com/ChartServer/blue/ticker"
 
@@ -66,7 +66,7 @@ def get_solar(session: Session, logger: Logger) -> float | None:
     solar_mw = __detect_output_from_solar_image(solar_image, logger)
     solar_dt = __detect_datetime_from_solar_image(solar_image, logger)
 
-    singapore_dt = arrow.now("Asia/Singapore")
+    singapore_dt = datetime.now(tz=TIMEZONE)
     diff = singapore_dt - solar_dt
 
     # Need to be sure we don't get old data if image stops updating.
@@ -129,9 +129,9 @@ def sg_period_to_hour(period_str) -> float:
 def sg_data_to_datetime(data):
     data_date = data["Date"]
     data_time = sg_period_to_hour(data["Period"])
-    date_arrow = arrow.get(data_date, "DD MMM YYYY")
-    datetime_arrow = date_arrow.shift(hours=data_time)
-    data_datetime = arrow.get(datetime_arrow.datetime, TIMEZONE).datetime
+    data_datetime = datetime.strptime(data_date, "%d %b %Y").astimezone(
+        TIMEZONE
+    ) + timedelta(hours=data_time)
     return data_datetime
 
 
@@ -278,7 +278,7 @@ def __detect_datetime_from_solar_image(solar_image, logger: Logger):
         logger.warning(msg, extra={"key": "SG"})
         return None
 
-    solar_dt = arrow.get(time_string).replace(tzinfo="Asia/Singapore")
+    solar_dt = datetime.fromisoformat(time_string).replace(tzinfo=TIMEZONE)
     return solar_dt
 
 
