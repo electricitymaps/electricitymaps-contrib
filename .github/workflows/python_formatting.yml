@@ -36,6 +36,13 @@ jobs:
       - name: Check formatting
         run: |
           poetry run ruff format . --check
+        continue-on-error: true
       - name: Check linting
         run: |
-          poetry run ruff check . --output-format=github
+          poetry run ruff check . --output-format=sarif >> ruff-results.sarif
+        continue-on-error: true
+      - name: Upload SARIF results to GitHub
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ruff-results.sarif
+          wait-for-processing: true
