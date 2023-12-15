@@ -1,4 +1,4 @@
-import calendar
+from calendar import monthrange
 from datetime import datetime
 from logging import getLogger
 from typing import Any
@@ -63,7 +63,7 @@ def fetch_production_capacity(
     params = {
         "start_date": target_datetime.strftime("%Y-%m-01T00:00"),
         "end_date": target_datetime.strftime(
-            f"%Y-%m-{calendar.monthrange(target_datetime.year, target_datetime.month)[1]}T23:59"
+            f"%Y-%m-{monthrange(target_datetime.year, target_datetime.month)[1]}T23:59"
         ),
         "time_trunc": "month",
         "geo_trunc": "electric_system",
