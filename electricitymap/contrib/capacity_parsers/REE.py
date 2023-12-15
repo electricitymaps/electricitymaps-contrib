@@ -1,7 +1,7 @@
 from datetime import datetime
 from logging import getLogger
 from typing import Any
-
+import calendar
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -61,7 +61,7 @@ def fetch_production_capacity(
     url = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada"
     params = {
         "start_date": target_datetime.strftime("%Y-%m-01T00:00"),
-        "end_date": target_datetime.strftime("%Y-%m-31T23:59"),
+        "end_date": target_datetime.strftime(f"%Y-%m-{calendar.monthrange(target_datetime.year, target_datetime.month)[1]}T23:59"),
         "time_trunc": "month",
         "geo_trunc": "electric_system",
         "geo_limit": geo_limit,
