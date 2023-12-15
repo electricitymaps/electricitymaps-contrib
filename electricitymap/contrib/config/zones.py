@@ -56,7 +56,7 @@ def generate_zone_neighbours(
 
 
 def generate_all_neighbours(
-    exchanges_config: dict[str, Any]
+    exchanges_config: dict[str, Any],
 ) -> dict[ZoneKey, list[ZoneKey]]:
     """This object represents all neighbours regardless of granularity."""
     zone_neighbours = defaultdict(set)
