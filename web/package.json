@@ -28,10 +28,12 @@
     "pretest:ci": "pnpm run create-generated-files",
     "test:ci": "vitest run",
     "format": "prettier -uw --cache --ignore-path ../.prettierignore .",
+    "format:ci": "prettier --check --cache --loglevel silent --ignore-path ../.prettierignore .",
     "typecheck": "tsc",
     "lint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
-    "verify:ci": "VERIFY_NO_UPDATES=1 pnpm run create-generated-files",
-    "validate": "run-p typecheck lint format test:ci",
+    "lint:ci": "eslint --cache --quiet --ignore-path .gitignore --ext .ts,.tsx . ",
+    "validate-generated-files": "VERIFY_NO_UPDATES=1 pnpm run create-generated-files",
+    "validate": "run-p typecheck lint:ci format:ci test:ci validate-generated-files",
     "storybook": "storybook dev -p 6006"
   },
   "lint-staged": {
