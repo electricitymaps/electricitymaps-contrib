@@ -23,6 +23,7 @@ prepare:
 
 test:
   FROM +prepare
+  COPY ../+linting-files/* ../
   COPY .gitignore .eslintrc.json .prettierrc.json viteEnvironment.d.ts testSetup.ts .
   COPY --dir cypress ./
   RUN pnpm run create-generated-files

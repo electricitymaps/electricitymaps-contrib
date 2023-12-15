@@ -2,6 +2,10 @@ VERSION 0.7
 FROM python:3.10
 WORKDIR /contrib
 
+linting-files:
+  COPY .prettierignore .
+  SAVE ARTIFACT .
+
 src-files:
   COPY electricitymap ./electricitymap
   COPY parsers ./parsers
