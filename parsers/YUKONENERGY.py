@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
@@ -89,7 +89,9 @@ def fetch_production(
     # The time is formatted as, e.g., "11:55 pm" or "2:25 am".
     time = soup.find("div", class_="current_time").text
     # Note: hydro capacity is not provided when thermal is in use.
-    hydro_capacity = soup.find("div", class_="avail_hydro")
+    _hydro_capacity = soup.find(
+        "div", class_="avail_hydro"
+    )  # Should we just remove the capacity parsing?
     thermal = soup.find("div", class_="load_thermal").div
 
     production_mix = ProductionMix()
@@ -108,9 +110,6 @@ def fetch_production(
         ),
         production=production_mix,
         source=SOURCE,
-        storage=StorageMix(
-            hydro=_parse_mw(hydro_capacity.div.text) if hydro_capacity else None
-        ),
         zoneKey=ZONE_KEY,
     )
 

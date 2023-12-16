@@ -49,8 +49,8 @@ def validate_prod_timestamp(logger: Logger, energy_dt, request_dt):
     diff = energy_dt - request_dt
     if diff.total_seconds() > 7200:
         msg = (
-            "Hawaii data is too old to use, " "parsed data timestamp was {}."
-        ).format(energy_dt)
+            "Hawaii data is too old to use, " f"parsed data timestamp was {energy_dt}."
+        )
         logger.warning(msg, extra={"key": "US-HI-OA"})
         return False
 

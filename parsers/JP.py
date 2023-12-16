@@ -158,21 +158,15 @@ def fetch_consumption_df(
         raise NotImplementedError("This parser can only fetch live data")
     datestamp = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y%m%d")
     consumption_url = {
-        "JP-HKD": "http://denkiyoho.hepco.co.jp/area/data/juyo_01_{}.csv".format(
-            datestamp
-        ),
+        "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
         "JP-TH": "https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv".format(
             datestamp
         ),
         "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d-j.csv",
-        "JP-HR": "http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{}.csv".format(
-            datestamp
-        ),
+        "JP-HR": f"http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{datestamp}.csv",
         "JP-CB": "https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv",
         "JP-KN": "https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv",
-        "JP-CG": "https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{}.csv".format(
-            datestamp
-        ),
+        "JP-CG": f"https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{datestamp}.csv",
         "JP-SK": "http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv",
         "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
             datestamp
@@ -231,21 +225,15 @@ def fetch_consumption_forecast(
         )
 
     consumption_url = {
-        "JP-HKD": "http://denkiyoho.hepco.co.jp/area/data/juyo_01_{}.csv".format(
-            datestamp
-        ),
+        "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
         "JP-TH": "https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv".format(
             datestamp
         ),
         "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv",
-        "JP-HR": "http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{}.csv".format(
-            datestamp
-        ),
+        "JP-HR": f"http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{datestamp}.csv",
         "JP-CB": "https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv",
         "JP-KN": "https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv",
-        "JP-CG": "https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{}.csv".format(
-            datestamp
-        ),
+        "JP-CG": f"https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{datestamp}.csv",
         "JP-SK": "http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv",
         "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
             datestamp

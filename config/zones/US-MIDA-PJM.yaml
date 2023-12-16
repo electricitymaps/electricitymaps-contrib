@@ -46,17 +46,26 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 372.3153209954643
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 970.4739304
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 970.4739304
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 977.91
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 398.3043939
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 398.3043939
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 394.66
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -80,9 +89,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 372.3153209954643
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 751.5213327
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 751.5213327
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 970.02
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -107,18 +119,28 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 441.8625978766893
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 515.9462429
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 515.9462429
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 1049.3545804
+      - datetime: '2020-01-01'
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1049.3545804
+      - datetime: '2021-01-01'
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1056.79065
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 518.3043938999999
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 518.3043938999999
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 514.6600000000001
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -142,9 +164,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 441.8625978766893
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 995.5213327
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 995.5213327
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 1214.02
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -269,4 +294,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern

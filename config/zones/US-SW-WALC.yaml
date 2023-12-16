@@ -53,10 +53,17 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 331.91605662559556
-    gas:
+    coal:
       datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 517.3221021
+      source: eGrid 2021
+      value: 837.49
+    gas:
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 517.3221021
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 405.17
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -103,14 +110,21 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 387.9264386600192
     coal:
-      datetime: '2012-01-01'
-      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 817.120985
+      - datetime: '2012-01-01'
+        source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 817.120985
+      - datetime: '2021-01-01'
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 894.610985
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 637.3221021
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 637.3221021
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 525.1700000000001
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -254,4 +268,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Arizona

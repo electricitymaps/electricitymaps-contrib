@@ -84,14 +84,14 @@ class TestFR_O(unittest.TestCase):
                 "zoneKey": "RE",
                 "currency": "EUR",
                 "datetime": datetime.fromisoformat("2018-01-01T00:00:00+00:00"),
-                "source": "opendata-reunion.edf.fr",
+                "source": "opendata.edf.fr",
                 "price": 193.7,
             },
             {
                 "zoneKey": "RE",
                 "currency": "EUR",
                 "datetime": datetime.fromisoformat("2018-01-01T01:00:00+00:00"),
-                "source": "opendata-reunion.edf.fr",
+                "source": "opendata.edf.fr",
                 "price": 195.8,
             },
         ]

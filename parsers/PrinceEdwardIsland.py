@@ -36,11 +36,9 @@ def _get_event(session: Session):
     ).json()["data"]
     # Collect the production modes and power values into a lookup table.
     modes = dict(
-        (
-            object_["data"]["header"].split(": ", maxsplit=1)
-            for object_ in event
-            if object_["type"] == "GaugeChart"
-        )
+        object_["data"]["header"].split(": ", maxsplit=1)
+        for object_ in event
+        if object_["type"] == "GaugeChart"
     )
     # Extract the timestamp.
     timestamp = datetime.strptime(
@@ -98,12 +96,14 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
-    if target_datetime:
-        raise ParserException(
-            "PrinceEdwardIsland.py", "Unable to fetch historical data", ZONE_KEY
-        )
 
     sorted_zone_keys = ZoneKey("->".join(sorted((zone_key1, zone_key2))))
+
+    if target_datetime:
+        raise ParserException(
+            "PrinceEdwardIsland.py", "Unable to fetch historical data", sorted_zone_keys
+        )
+
     if sorted_zone_keys != ZoneKey("CA-NB->CA-PE"):
         raise ParserException(
             "PrinceEdwardIsland.py",

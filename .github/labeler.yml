@@ -1,45 +1,66 @@
 infrastructure:
-  - .github/**/*
-  - docker-compose.yml
-  - web/Dockerfile
+  - changed-files:
+      - any-glob-to-any-file:
+          ['.github/**/*', 'docker-compose.yml', 'parsers.dockerfile', '.dockerignore']
 
 dependencies:
-  - poetry.lock
-  - pyproject.toml
-  - mobileapp/package.json
-  - mobileapp/pnpm-lock.yaml
-  - mockserver/package.json
-  - mockserver/pnpm-lock.yaml
-  - web/package.json
-  - web/pnpm-lock.yaml
+  - changed-files:
+      - any-glob-to-any-file:
+          [
+            'poetry.lock',
+            'pyproject.toml',
+            'mobileapp/package.json',
+            'mobileapp/pnpm-lock.yaml',
+            'mockserver/package.json',
+            'mockserver/pnpm-lock.yaml',
+            'web/package.json',
+            'web/pnpm-lock.yaml',
+          ]
 
 frontend 🎨:
-  - any: ['web/**/*', '!web/public/locales/**/*']
+  - all:
+      - changed-files:
+          - any-glob-to-any-file: 'web/**/*'
+          - all-globs-to-all-files: '!web/public/locales/**/*'
 
 translations 🗣:
-  - web/public/locales/**/*
+  - changed-files:
+      - any-glob-to-any-file: 'web/public/locales/**/*'
 
 tests:
-  - tests/**/*
-  - parsers/test/**/*
+  - changed-files:
+      - any-glob-to-any-file: ['tests/**/*', 'parsers/test/**/*']
 
 javascript:
-  - .**/*.js
+  - changed-files:
+      - any-glob-to-any-file: '**/*.js'
 
 python:
-  - .**/*.py
+  - changed-files:
+      - any-glob-to-any-file: '**/*.py'
 
 parser:
-  - any: ['parsers/**/*', '!parsers/archive/**/*']
+  - all:
+      - changed-files:
+          - any-glob-to-any-file: 'parsers/**/*'
+          - all-globs-to-all-files: '!parsers/archive/**/*'
 
 archived parser:
-  - parsers/archive/**/*
+  - changed-files:
+      - any-glob-to-any-file: 'parsers/archive/**/*'
+
+capacity parser:
+  - changed-files:
+      - any-glob-to-any-file: 'electricitymap/contrib/capacity_parsers/**/*'
 
 mobile app 📱:
-  - mobileapp/**/*
+  - changed-files:
+      - any-glob-to-any-file: 'mobileapp/**/*'
 
 exchange config:
-  - config/exchanges/**/*.yaml
+  - changed-files:
+      - any-glob-to-any-file: 'config/exchanges/**/*.yaml'
 
 zone config:
-  - config/zones/**/*.yaml
+  - changed-files:
+      - any-glob-to-any-file: 'config/zones/**/*.yaml'
