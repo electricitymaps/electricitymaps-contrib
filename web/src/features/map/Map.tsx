@@ -59,6 +59,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
@@ -77,17 +78,32 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const map = mapReference.current?.getMap();
 
   useEffect(() => {
+    const setSourceLoadedForMap = () => {
+      setSourceLoaded(
+        Boolean(
+          map &&
+            map.getSource(ZONE_SOURCE) !== undefined &&
+            map.getSource('states') !== undefined &&
+            map.isSourceLoaded('states')
+        )
+      );
+    };
+    const onSourceData = () => {
+      setSourceLoadedForMap();
+    };
+    map?.on('sourcedata', onSourceData);
+    return () => {
+      map?.off('sourcedata', onSourceData);
+    };
+  }, [map]);
+
+  useEffect(() => {
     // This effect colors the zones based on the co2 intensity
     if (!map || isLoading || isError) {
       return;
     }
     map?.touchZoomRotate.disableRotation();
     map?.touchPitch.disable();
-    const isSourceLoaded =
-      map &&
-      map.getSource(ZONE_SOURCE) !== undefined &&
-      map.getSource('states') !== undefined &&
-      map.isSourceLoaded('states');
 
     if (!isSourceLoaded || isLoadingMap) {
       return;
@@ -120,11 +136,13 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       }
     }
   }, [
+    map,
     data,
     getCo2colorScale,
     selectedDatetime,
     mixMode,
     isLoadingMap,
+    isSourceLoaded,
     spatialAggregate,
     isSuccess,
   ]);
@@ -138,7 +156,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
       setIsFirstLoad(false);
     }
-  }, [isSuccess]);
+  }, [map, isSuccess]);
 
   useEffect(() => {
     // Run when the selected zone changes
@@ -170,7 +188,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
       map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
-  }, [location.pathname, isLoadingMap]);
+  }, [map, location.pathname, isLoadingMap]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     if (!map || !event.features) {
