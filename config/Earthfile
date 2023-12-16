@@ -6,3 +6,6 @@ WORKDIR /contrib/config
 src-files:
   COPY . .
   SAVE ARTIFACT .
+
+test:
+  RUN echo "tests should live here"

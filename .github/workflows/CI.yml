@@ -48,6 +48,12 @@ jobs:
     name: Prettier
     uses: ./.github/workflows/prettier.yml
 
+  earthly:
+    name: earthly
+    needs: [prettier]
+    uses: ./.github/workflows/earthly-contrib.yml
+    secrets: inherit
+
   validate_local_links:
     name: Validate
     needs: [setup]

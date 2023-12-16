@@ -26,6 +26,7 @@ delays:
   consumptionForecast: 30
   production: 30
 emissionFactors:
+  direct: {}
   lifecycle:
     coal:
       datetime: '2014-01-01'

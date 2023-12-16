@@ -5,7 +5,7 @@ https://edlenergy.com/project/pine-creek/
 https://territorygeneration.com.au/about-us/our-power-stations/
 """
 from collections.abc import Callable
-from datetime import datetime, time, timedelta
+from datetime import date, datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import TypedDict
 from zoneinfo import ZoneInfo
@@ -23,6 +23,8 @@ AUSTRALIA_TZ = ZoneInfo("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
+LATEST_URL = "https://ntesmo.com.au/data/daily-trading"
+DATA_DOC_PREFIX = "https://ntesmo.com.au/__data/assets/excel_doc/"
 # Data is being published after 5 days at the moment.
 DELAY = 24 * 5
 
@@ -69,8 +71,22 @@ retry_strategy = Retry(
     status_forcelist=[500, 502, 503, 504],
 )
 
+_DT_CLASS = "smp-tiles-article__title"
 
-def construct_year_index(year: int, session: Session) -> dict[int, dict[int, str]]:
+
+def construct_latest_index(session: Session) -> dict[date, str]:
+    """Browse all links from the latest daily reports page and index them."""
+    index = {}
+    latest_index_page = session.get(LATEST_URL)
+    soup = BeautifulSoup(latest_index_page.text, "html.parser")
+    for a in soup.find_all("a", href=True):
+        if a["href"].startswith(DATA_DOC_PREFIX):
+            dt = pd.to_datetime(a.find("div", {"class": _DT_CLASS}).text)
+            index[dt.date()] = a["href"]
+    return index
+
+
+def construct_year_index(year: int, session: Session) -> dict[date, str]:
     """Browse all links on a yearly historical daily data and index them."""
     index = {}
     # For the current we need to go to the default page.
@@ -79,14 +95,10 @@ def construct_year_index(year: int, session: Session) -> dict[int, dict[int, str
         url = INDEX_URL.format(year)
     year_index_page = session.get(url)
     soup = BeautifulSoup(year_index_page.text, "html.parser")
-    for month in range(1, 13):
-        index[month] = {}
     for a in soup.find_all("a", href=True):
-        if a["href"].startswith("https://ntesmo.com.au/__data/assets/excel_doc/"):
-            date = pd.to_datetime(
-                a.find("div", {"class": "smp-tiles-article__title"}).text
-            )
-            index[date.month][date.day] = a["href"]
+        if a["href"].startswith(DATA_DOC_PREFIX):
+            dt = pd.to_datetime(a.find("div", {"class": _DT_CLASS}).text)
+            index[dt.date()] = a["href"]
     return index
 
 
@@ -116,11 +128,15 @@ def get_data(
     assert target_datetime is not None, ParserException(
         "NTESMO.py", "Target datetime cannot be None."
     )
-    index = construct_year_index(target_datetime.year, session)
+    target_date = target_datetime.date()
+    latest_links = construct_latest_index(session)
+    link = latest_links.get(target_date, None)
+    if not link:
+        historical_links = construct_year_index(target_datetime.year, session)
+        link = historical_links.get(target_date, None)
+
     try:
-        data_file = get_historical_daily_data(
-            index[target_datetime.month][target_datetime.day], session
-        )
+        data_file = get_historical_daily_data(link, session)
     except KeyError:
         raise ParserException(
             "NTESMO.py",
