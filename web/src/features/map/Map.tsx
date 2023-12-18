@@ -9,7 +9,7 @@ import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
 import mapboxgl from 'mapbox-gl';
 import maplibregl from 'maplibre-gl';
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Map, MapRef } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
@@ -74,8 +74,12 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   // To keep the stable and prevent excessive rerendering.
   const { isLoading, isSuccess, isError, data } = useGetState();
   const { worldGeometries } = useGetGeometries();
-  const mapReference = useRef<MapRef>(null);
-  const map = mapReference.current?.getMap();
+  const [mapReference, setMapReference] = useState<MapRef | null>(null);
+  const map = mapReference?.getMap();
+
+  const onMapReferenceChange = useCallback((reference: MapRef) => {
+    setMapReference(reference);
+  }, []);
 
   useEffect(() => {
     const setSourceLoadedForMap = () => {
@@ -289,8 +293,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   const onLoad = () => {
     setIsLoadingMap(false);
-    if (onMapLoad && mapReference.current) {
-      onMapLoad(mapReference.current.getMap());
+    if (onMapLoad && mapReference) {
+      onMapLoad(mapReference.getMap());
     }
   };
 
@@ -318,7 +322,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   return (
     <Map
-      ref={mapReference}
+      ref={onMapReferenceChange}
       initialViewState={{
         latitude: 50.905,
         longitude: 6.528,
