@@ -1,7 +1,7 @@
 {
-    "data": {
-        "hasData": false,
-        "stateAggregation": "hourly",
-        "zoneStates": {}
-    }
+  "data": {
+    "hasData": false,
+    "stateAggregation": "hourly",
+    "zoneStates": {}
+  }
 }
