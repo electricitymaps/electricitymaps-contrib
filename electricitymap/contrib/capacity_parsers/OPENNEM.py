@@ -5,7 +5,7 @@ from typing import Any
 import pandas as pd
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.OPENNEM import SOURCE, ZONE_KEY_TO_REGION
 
 """Disclaimer: only works for real-time data. There is retired capacity included but we do not have the information on when the capacity was retired."""

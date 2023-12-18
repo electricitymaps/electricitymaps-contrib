@@ -5,7 +5,7 @@ from typing import Any
 from bs4 import BeautifulSoup
 from requests import Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_BY_GROUP,

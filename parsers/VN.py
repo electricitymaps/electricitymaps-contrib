@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 
 from requests import Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     PriceList,
     TotalConsumptionList,

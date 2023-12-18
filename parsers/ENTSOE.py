@@ -23,7 +23,7 @@ import numpy as np
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     PriceList,
     ProductionBreakdownList,
@@ -41,14 +41,9 @@ from .lib.validation import validate
 
 SOURCE = "entsoe.eu"
 
-ENDPOINT = "/api"
-ENTSOE_HOST = "https://web-api.tp.entsoe.eu"
 
-
-EU_PROXY = "https://eu-proxy-jfnx5klx2a-ew.a.run.app{endpoint}?host={host}"
-
-ENTSOE_ENDPOINT = ENTSOE_HOST + ENDPOINT
-ENTSOE_EU_PROXY_ENDPOINT = EU_PROXY.format(endpoint=ENDPOINT, host=ENTSOE_HOST)
+ENTSOE_ENDPOINT = "http://127.0.0.1:8000"
+ENTSOE_EU_PROXY_ENDPOINT = ENTSOE_ENDPOINT
 
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",

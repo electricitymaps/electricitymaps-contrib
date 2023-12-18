@@ -7,7 +7,7 @@ import arrow
 import pydataxm.pydataxm as pydataxm
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     PriceList,
     ProductionBreakdownList,

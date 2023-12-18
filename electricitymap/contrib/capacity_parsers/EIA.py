@@ -6,7 +6,7 @@ from typing import Any
 import pandas as pd
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.EIA import REGIONS
 from parsers.lib.utils import get_token
 

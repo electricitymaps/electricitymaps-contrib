@@ -6,7 +6,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 
 logger = getLogger(__name__)
 basicConfig(level=INFO)

@@ -4,7 +4,7 @@ from typing import Any
 
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 
 """Disclaimer: Capacity for the Spanish isles is only available per archipelago. This parser should not be used for the Canary Islands and the Balearic Islands as we do not get the capacity per island."""
 

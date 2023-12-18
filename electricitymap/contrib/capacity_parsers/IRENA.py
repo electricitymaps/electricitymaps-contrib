@@ -6,7 +6,7 @@ from typing import Any
 import pycountry
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 
 """The data is downloaded from the IRENA API. """
 logger = getLogger(__name__)

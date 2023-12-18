@@ -5,7 +5,7 @@ from typing import Any
 import pandas as pd
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.types import ZoneKey
 
 """Disclaimer: this parser does not include distributed capacity.
 Solar capacity is much lower than in reality because the majority is distributed.
