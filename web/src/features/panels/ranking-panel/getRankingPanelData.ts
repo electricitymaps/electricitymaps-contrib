@@ -34,17 +34,17 @@ export const getRankedState = (
     return [];
   }
   const gird = data.data.datetimes[datetimeIndex];
-  if (!gird) {
+
+  if (!gird || !gird.z) {
     return [];
   }
-  if (!gird.z) {
-    return [];
-  }
+
   const keys = Object.keys(gird.z) as Array<keyof GridState>;
 
   if (!keys) {
     return [];
   }
+
   const zones = keys
     .map((key) => {
       const zoneData = gird.z[key];
@@ -70,8 +70,8 @@ export const getRankedState = (
 
   const orderedZones =
     sortOrder === 'asc'
-      ? zones.sort((a, b) => a.ci! - b.ci!)
-      : zones.sort((a, b) => b.ci! - a.ci!);
+      ? zones.sort((a, b) => (a.ci ?? 0) - (b.ci ?? 0))
+      : zones.sort((a, b) => (b.ci ?? 0) - (a.ci ?? 0));
 
   return orderedZones;
 };
