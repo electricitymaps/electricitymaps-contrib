@@ -21,7 +21,7 @@ PRODUCTION_MAPPING = {
 LATEST_DATA_URL = "http://bornholm.powerlab.dk/visualizer/latestdata"
 
 SOURCE = "bornholm.powerlab.dk"
-TIMEZONE = ZoneInfo("Europe/Copenhagen")
+TIMEZONE = ZoneInfo("UTC")
 
 
 def fetch_production(
@@ -65,12 +65,12 @@ def fetch_exchange(
     response = session.get(LATEST_DATA_URL).json()
     exchange = ExchangeList(logger)
     sorted_zone_keys = sorted([zone_key1, zone_key2])
-    flow = 1 if zone_key1 == sorted_zone_keys[0] else -1
+    direction = 1 if zone_key1 == sorted_zone_keys[0] else -1
     exchange.append(
         zoneKey=ZoneKey("->".join(sorted_zone_keys)),
         datetime=datetime.fromtimestamp(response["latest"], tz=TIMEZONE),
         source=SOURCE,
-        netFlow=flow * response["sub"]["seacable"],
+        netFlow=direction * response["sub"]["seacable"],
     )
 
     return exchange.to_list()
