@@ -1,12 +1,13 @@
+import { useAtom } from 'jotai';
 import { TimeAverages } from 'utils/constants';
+import { formatCo2 } from 'utils/formatting';
+import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
+
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
 import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
-import { useAtom } from 'jotai';
-import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
-import { formatCo2 } from 'utils/formatting';
 
 interface NetExchangeChartProps {
   datetimes: Date[];

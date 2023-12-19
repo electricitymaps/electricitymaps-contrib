@@ -1,10 +1,10 @@
 import csv
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
-from typing import List, Optional
+from zoneinfo import ZoneInfo
 
-from pytz import timezone
+from numpy import nan
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
@@ -14,7 +14,7 @@ from parsers.lib.exceptions import ParserException
 
 pp = PrettyPrinter(indent=4)
 
-TIMEZONE = "Africa/Johannesburg"
+TIMEZONE = ZoneInfo("Africa/Johannesburg")
 SOURCE = "eskom.co.za"
 
 # Mapping columns to keys
@@ -53,19 +53,19 @@ PRODUCTION_IDS = [0, 6, 8, 9, 10, 11, 16, 17, 18, 19]
 
 def get_url() -> str:
     """Returns the formatted URL"""
-    date = datetime.utcnow()
+    date = datetime.now(timezone.utc)
     return f"https://www.eskom.co.za/dataportal/wp-content/uploads/{date.strftime('%Y')}/{date.strftime('%m')}/Station_Build_Up.csv"
 
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("ZA"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     if target_datetime is not None:
-        local_target_datetime = target_datetime.astimezone(timezone(TIMEZONE))
-        local_one_week_ago = datetime.now(timezone(TIMEZONE)) - timedelta(days=7)
+        local_target_datetime = target_datetime.astimezone(TIMEZONE)
+        local_one_week_ago = datetime.now(TIMEZONE) - timedelta(days=7)
 
         if local_target_datetime < local_one_week_ago:
             raise NotImplementedError(
@@ -88,33 +88,37 @@ def fetch_production(
         if row[0] == "Date_Time_Hour_Beginning":
             continue
 
-        returned_datetime = datetime.fromisoformat(row[0]).replace(
-            tzinfo=timezone(TIMEZONE)
-        )
+        returned_datetime = datetime.fromisoformat(row[0]).replace(tzinfo=TIMEZONE)
 
         returned_production = row[1:]  # First column is datetime
 
         production = ProductionMix()
         storage = StorageMix()
 
-        for index, prod_data_value in enumerate(returned_production):
-            prod_data_value = float(prod_data_value)
-            if index in PRODUCTION_IDS:
-                production.add_value(
-                    COLUMN_MAPPING[index],
-                    prod_data_value,
-                    correct_negative_with_zero=True,
-                )
-            elif index in STORAGE_IDS:
-                storage.add_value(COLUMN_MAPPING[index], prod_data_value * -1)
+        if all(value == "" for value in returned_production):
+            logger.warning(
+                f"Empty data for {returned_datetime} in {zone_key}. Skipping."
+            )
+            continue
+        else:
+            for index, prod_data_value in enumerate(returned_production):
+                prod_data_value = float(prod_data_value) if prod_data_value else nan
+                if index in PRODUCTION_IDS:
+                    production.add_value(
+                        COLUMN_MAPPING[index],
+                        prod_data_value,
+                        correct_negative_with_zero=True,
+                    )
+                elif index in STORAGE_IDS:
+                    storage.add_value(COLUMN_MAPPING[index], prod_data_value * -1)
 
-        return_list.append(
-            zoneKey=zone_key,
-            datetime=returned_datetime,
-            production=production,
-            storage=storage,
-            source=SOURCE,
-        )
+            return_list.append(
+                zoneKey=zone_key,
+                datetime=returned_datetime,
+                production=production,
+                storage=storage,
+                source=SOURCE,
+            )
 
     return return_list.to_list()
 

@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Prikaz utjecaja struje na klimu"
+      "header": "Prikaz utjecaja struje na klimu"
     },
     "view2": {
       "header": "Pogledaj koliko CO₂ se emitira za proizvodnju tvoje struje, u realnom vremenu",
@@ -23,7 +23,7 @@
       "header": "Saznaj otkud dolazi tvoja struja",
       "text": "Strelice na mapi označavaju razmijenu struje među raznim područjima. Klikni na područje za više informacija o porijeklu njegove struje."
     },
-    "view4": {
+    "view7": {
       "header": "Vremenski uvjeti u realnom vremenu",
       "text": "Proizvodnja struje solarnom energijom ili energijom vjetra ovisi o vremenskim prigodama. Klikni na ikonu sunca/vjetra za prikaz snage vjetra i sunca na mapi."
     }
@@ -106,12 +106,14 @@
   "misc": {
     "maintitle": "Emisije CO₂ upotrijebljene struje uživo",
     "oops": "Ups! Došlo je do problema kod kontaktiranja servera. Pokušat ćemo opet za nekoliko sekundi.",
-    "newversion": "Nova verzija je dostupna! Klikni <a onClick=\"location.reload(true);\">ovdje</a> za ponovno učitavanje.",
+    "newversion": "Nova verzija je dostupna!",
     "retrynow": "Pokušaj opet",
     "database-ad": "Tražiš povijesne podatke? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Pogledaj u našu bazu podataka!</a>",
     "api-ad": "Želiš podatke uživo za svoju aplikaciju ili uređaj? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Isprobaj naš API!</a>",
     "legend": "Legenda",
-    "faq": "Često postavljana pitanja"
+    "faq": "Često postavljana pitanja",
+    "dismiss": "Odbaci",
+    "reload": "Ponovno učitaj"
   },
   "wind": "vjetar",
   "solar": "solarna",

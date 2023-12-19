@@ -2,6 +2,7 @@ import * as Portal from '@radix-ui/react-portal';
 import type { ReactElement } from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { ZoneDetail } from 'types';
+
 import { getOffsetTooltipPosition } from '../../../components/tooltips/utilities';
 import { AreaGraphElement, InnerAreaGraphTooltipProps } from '../types';
 

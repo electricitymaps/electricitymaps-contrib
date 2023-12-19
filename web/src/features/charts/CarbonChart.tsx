@@ -1,10 +1,11 @@
 import { TimeAverages } from 'utils/constants';
+
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
-import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
+import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
 
 interface CarbonChartProps {
   datetimes: Date[];

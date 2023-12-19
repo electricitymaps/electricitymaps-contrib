@@ -209,4 +209,5 @@ fallbackZoneMixes:
 parsers:
   price: NZ.fetch_price
   production: NZ.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: Pacific/Auckland

@@ -4,7 +4,6 @@ import re
 from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from PIL import Image, ImageOps
@@ -56,7 +55,7 @@ There exists an interconnection to Malaysia, it is implemented in MY_WM.py.
 TYPE_MAPPINGS = {"CCGT/COGEN/TRIGEN": "gas", "GT": "gas", "ST": "unknown"}
 
 
-def get_solar(session: Session, logger: Logger) -> Optional[float]:
+def get_solar(session: Session, logger: Logger) -> float | None:
     """
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
@@ -97,7 +96,7 @@ def parse_price(price_str) -> float:
     return float(price_str.replace("$", "").replace("/MWh", ""))
 
 
-def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
+def find_first_list_item_by_key_value(list: list, filter_key, filter_value, sought_key):
     """
     Parses a common pattern in Singapore JSON response format. Examples:
 
@@ -113,7 +112,7 @@ def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
 
     return [
         list_item[sought_key]
-        for list_item in l
+        for list_item in list
         if list_item[filter_key] == filter_value
     ][0]
 
@@ -138,8 +137,8 @@ def sg_data_to_datetime(data):
 
 def fetch_production(
     zone_key: str = "SG",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of Singapore."""
@@ -190,9 +189,9 @@ def fetch_production(
         else:
             # unrecognized - log it, then add into unknown
             msg = (
-                'Singapore has unrecognized generation type "{}" '
-                "with production share {}%"
-            ).format(gen_type, gen_percent)
+                f'Singapore has unrecognized generation type "{gen_type}" '
+                f"with production share {gen_percent}%"
+            )
             logger.warning(msg)
             generation_by_type["unknown"] += gen_mw
 
@@ -212,8 +211,8 @@ def fetch_production(
 
 def fetch_price(
     zone_key: str = "SG",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -275,7 +274,7 @@ def __detect_datetime_from_solar_image(solar_image, logger: Logger):
         time_pattern = r"\d+-\d+-\d+\s+\d+:\d+"
         time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
     except AttributeError:
-        msg = "Unable to get values for SG solar from OCR text: {}".format(text)
+        msg = f"Unable to get values for SG solar from OCR text: {text}"
         logger.warning(msg, extra={"key": "SG"})
         return None
 
@@ -297,7 +296,7 @@ def __detect_output_from_solar_image(solar_image, logger: Logger):
         pattern = r"Est. PV Output: (.*)MWac"
         val = re.search(pattern, text, re.MULTILINE).group(1)
     except AttributeError:
-        msg = "Unable to get values for SG solar from OCR text: {}".format(text)
+        msg = f"Unable to get values for SG solar from OCR text: {text}"
         logger.warning(msg, extra={"key": "SG"})
         return None
 
@@ -310,7 +309,7 @@ def __detect_output_from_solar_image(solar_image, logger: Logger):
         if val == "O":
             solar_mw = 0.0
         else:
-            msg = "Singapore solar data is unreadable - got {}.".format(val)
+            msg = f"Singapore solar data is unreadable - got {val}."
             logger.warning(msg, extra={"key": "SG"})
             return None
 

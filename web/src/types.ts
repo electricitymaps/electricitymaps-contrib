@@ -5,6 +5,7 @@ import type {
   MultiPolygon,
   Polygon,
 } from '@turf/turf';
+import { LineString, MultiLineString, Point } from 'geojson';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -134,7 +135,7 @@ export interface ZoneDetail extends ZoneOverview {
   totalDischarge: number | null;
   totalExport: number | null;
   totalImport: number | null;
-  totalProduction: number;
+  totalProduction: number | null;
   totalStorage: number | null;
 }
 
@@ -151,20 +152,34 @@ export interface GeometryProperties {
   center: [number, number];
   color: string;
   countryKey: string;
-  countryName: string;
   isAggregatedView: boolean;
   isHighestGranularity: boolean;
   zoneId: string;
   zoneName: string;
 }
+export interface StateGeometryProperties {
+  center?: [number, number];
+  stateName?: string;
+  stateId?: string;
+}
 
 export interface MapGeometries extends FeatureCollection<Geometry> {
   features: Array<MapGeometry>;
+}
+
+export interface StatesGeometries extends FeatureCollection<Geometry> {
+  features: Array<StatesGeometry>;
 }
 export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   geometry: MultiPolygon | Polygon;
   Id?: number;
   properties: GeometryProperties;
+}
+
+export interface StatesGeometry extends Feature<LineString | MultiLineString | Point> {
+  geometry: LineString | MultiLineString | Point;
+  Id?: number;
+  properties: StateGeometryProperties;
 }
 
 export interface MapTheme {
@@ -175,6 +190,7 @@ export interface MapTheme {
   oceanColor: string;
   strokeWidth: number;
   strokeColor: string;
+  stateBorderColor: string;
   clickableFill: string;
   nonClickableFill: string;
 }

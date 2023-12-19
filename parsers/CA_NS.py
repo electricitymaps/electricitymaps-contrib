@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes
-from datetime import datetime
+# The datetime library is used to handle datetimes
+from datetime import datetime, timezone
 from logging import Logger, getLogger
-from typing import List, Optional
 
-import arrow
 from requests import Session
 
 
@@ -19,22 +17,24 @@ def _get_ns_info(requests_obj, logger: Logger):
         # The validation JS reports error when Solid Fuel (coal) is over 85%,
         # but as far as I can tell, that can actually be a valid result, I've seen it a few times.
         # Use 98% instead.
-        "coal": (0.25, 0.98),
+        "coal": (0, 0.98),
         "gas": (0, 0.5),
+        "oil": (0, 0.5),
         "biomass": (0, 0.15),
         "hydro": (0, 0.60),
         "wind": (0, 0.55),
-        "imports": (0, 0.20),
+        "imports": (0, 0.50),
     }
 
     # Sanity checks: verify that reported production doesn't exceed listed capacity by a lot.
     # In particular, we've seen error cases where hydro production ends up calculated as 900 MW
-    # which greatly exceeds known capacity of 418 MW.
+    # which greatly exceeds known capacity of around 520 MW.
     valid_absolute = {
         "coal": 1300,
         "gas": 700,
+        "oil": 300,
         "biomass": 100,
-        "hydro": 500,
+        "hydro": 600,
         "wind": 700,
     }
 
@@ -49,7 +49,8 @@ def _get_ns_info(requests_obj, logger: Logger):
     for mix in mix_data:
         percent_mix = {
             "coal": mix["Solid Fuel"] / 100.0,
-            "gas": (mix["HFO/Natural Gas"] + mix["CT's"] + mix["LM 6000's"]) / 100.0,
+            "gas": (mix["HFO/Natural Gas"] + mix["LM 6000's"]) / 100.0,
+            "oil": mix["CT's"] / 100.0,
             "biomass": mix["Biomass"] / 100.0,
             "hydro": mix["Hydro"] / 100.0,
             "wind": mix["Wind"] / 100.0,
@@ -59,7 +60,7 @@ def _get_ns_info(requests_obj, logger: Logger):
         # datetime is in format '/Date(1493924400000)/'
         # get the timestamp 1493924400 (cutting out last three zeros as well)
         data_timestamp = int(mix["datetime"][6:-5])
-        data_date = arrow.get(data_timestamp).datetime
+        data_date = datetime.fromtimestamp(data_timestamp, tz=timezone.utc)
 
         # validate
         valid = True
@@ -69,10 +70,8 @@ def _get_ns_info(requests_obj, logger: Logger):
                 # skip this datapoint in the loop
                 valid = False
                 logger.warning(
-                    "discarding datapoint at {dt} due to {fuel} percentage "
-                    "out of bounds: {value}".format(
-                        dt=data_date, fuel=gen_type, value=value
-                    ),
+                    f"discarding datapoint at {data_date} due to {gen_type} percentage "
+                    f"out of bounds: {value}",
                     extra={"key": zone_key},
                 )
         if not valid:
@@ -93,7 +92,7 @@ def _get_ns_info(requests_obj, logger: Logger):
             # in 2014 and 2015 (Statistics Canada table Table 127-0008 for Nova Scotia)
             load = 1244
             logger.warning(
-                "unable to find load for {}, assuming 1244 MW".format(data_date),
+                f"unable to find load for {data_date}, assuming 1244 MW",
                 extra={"key": zone_key},
             )
 
@@ -111,10 +110,8 @@ def _get_ns_info(requests_obj, logger: Logger):
             if absolute_bound and value > absolute_bound:
                 valid = False
                 logger.warning(
-                    "discarding datapoint at {dt} due to {fuel} "
-                    "too high: {value} MW".format(
-                        dt=data_date, fuel=gen_type, value=value
-                    ),
+                    f"discarding datapoint at {data_date} due to {gen_type} "
+                    f"too high: {value} MW",
                     extra={"key": zone_key},
                 )
         if not valid:
@@ -152,10 +149,10 @@ def _get_ns_info(requests_obj, logger: Logger):
 
 def fetch_production(
     zone_key: str = "CA-NS",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError(
@@ -172,10 +169,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """
     Requests the last known power exchange (in MW) between two regions.
 

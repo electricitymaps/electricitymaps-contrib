@@ -96,8 +96,7 @@ emissionFactors:
       value: 230
     coal:
       datetime: '2012-01-01'
-      source: >-
-        Oberschelp, Christopher, et al. "Global emission hotspots of coal power
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
         generation."; IPCC 2014
       value: 883.79433
     gas:
@@ -139,11 +138,11 @@ fallbackZoneMixes:
         biomass: 0.0005701072357981111
         coal: 0.002165112851332002
         gas: 0.022452001697789756
-        geothermal: 4.728653515692632e-7
+        geothermal: 4.728653515692632e-07
         hydro: 0.9277189601447766
         hydro discharge: 0.00023775508921412762
         nuclear: 0.008973489049404188
-        oil: 0.00003433438438622487
+        oil: 3.433438438622487e-05
         solar: 0.00019590502105932251
         unknown: 0.005032611863737245
         wind: 0.03261932027377785
@@ -154,11 +153,11 @@ fallbackZoneMixes:
         biomass: 0.0007190154795780213
         coal: 0.002923281533220355
         gas: 0.02179784528636955
-        geothermal: 0.0000010792830255474123
+        geothermal: 1.0792830255474123e-06
         hydro: 0.9364842831309864
-        hydro discharge: 0.000013324686142925996
+        hydro discharge: 1.3324686142925996e-05
         nuclear: 0.0064042298150217575
-        oil: 0.000048656618281149216
+        oil: 4.8656618281149216e-05
         solar: 0.0003449669707412487
         unknown: 0.0033091028431605873
         wind: 0.027954462104855967
@@ -169,7 +168,7 @@ fallbackZoneMixes:
         biomass: 0.001813106285954652
         coal: 0.002236293084317072
         gas: 0.020699841558710963
-        geothermal: 0.0000011911199980608128
+        geothermal: 1.1911199980608128e-06
         hydro: 0.9272692216261819
         hydro discharge: 0.00023949097046648988
         nuclear: 0.01027280915481699
@@ -184,11 +183,11 @@ fallbackZoneMixes:
         biomass: 0.0018208192595364492
         coal: 0.0039785798777743015
         gas: 0.023243533801313675
-        geothermal: 0.0000017553390655918502
+        geothermal: 1.7553390655918502e-06
         hydro: 0.907920761515171
-        hydro discharge: 0.00002644630824064375
+        hydro discharge: 2.644630824064375e-05
         nuclear: 0.012881925795411777
-        oil: 0.00008323870436293417
+        oil: 8.323870436293417e-05
         solar: 0.0006369188841378012
         unknown: 0.009284288153661363
         wind: 0.04012354264449874
@@ -199,9 +198,9 @@ fallbackZoneMixes:
         biomass: 0.0029311664363944013
         coal: 0.004413464759788742
         gas: 0.028870138064265694
-        geothermal: 0.0000023533953985687884
+        geothermal: 2.3533953985687884e-06
         hydro: 0.8725362574431129
-        hydro discharge: 0.00003959685663354122
+        hydro discharge: 3.959685663354122e-05
         nuclear: 0.022971900729781114
         oil: 0.0002607165089224284
         solar: 0.0012367747642819226
@@ -214,11 +213,11 @@ fallbackZoneMixes:
         biomass: 0.0013603547627011132
         coal: 0.0007372965949431318
         gas: 0.014643732236397583
-        geothermal: 6.121456937776431e-7
+        geothermal: 6.121456937776431e-07
         hydro: 0.8862172470078195
         hydro discharge: 0.015692073683381463
         nuclear: 0.0070984997825980865
-        oil: 0.000030379823601041436
+        oil: 3.0379823601041436e-05
         solar: 0.0003065322202101688
         unknown: 0.003920361558402508
         wind: 0.06999409283102219
@@ -229,7 +228,7 @@ fallbackZoneMixes:
         biomass: 0.003370000115291126
         coal: 0.00297301580330705
         gas: 0.007069411944029302
-        geothermal: 0.0000037720935553373134
+        geothermal: 3.7720935553373134e-06
         hydro: 0.8447082089673605
         hydro discharge: 0.04089857883901085
         nuclear: 0.010382064895908389
@@ -246,8 +245,7 @@ parsers:
 price_displayed: false
 sources:
   IPCC 2014:
-    link: >-
-      https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 subZoneNames:
   - NO-NO1
   - NO-NO2

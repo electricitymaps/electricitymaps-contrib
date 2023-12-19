@@ -1,11 +1,11 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from pprint import pprint
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
+from zoneinfo import ZoneInfo
 
 # The arrow library is used to handle datetimes
 import arrow
-from pytz import timezone
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -21,15 +21,15 @@ DATA_PATH = "data/documents-donnees/donnees-ouvertes/json"
 PRODUCTION_URL = f"{US_PROXY}/{DATA_PATH}/production.json{HOST_PARAM}"
 CONSUMPTION_URL = f"{US_PROXY}/{DATA_PATH}/demande.json{HOST_PARAM}"
 SOURCE = "hydroquebec.com"
-TIMEZONE = timezone("America/Montreal")
+TIMEZONE = ZoneInfo("America/Montreal")
 
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("CA-QC"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given region."""
 
     data = _fetch_quebec_production(session)
@@ -60,8 +60,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("CA-QC"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     data = _fetch_quebec_consumption(session)
@@ -79,8 +79,8 @@ def fetch_consumption(
 
 
 def _fetch_quebec_production(
-    session: Optional[Session] = None, logger: Logger = getLogger(__name__)
-) -> List[Dict[str, Union[str, Dict[str, float]]]]:
+    session: Session | None = None, logger: Logger = getLogger(__name__)
+) -> list[dict[str, str | dict[str, float]]]:
     s = session or Session()
     response = s.get(PRODUCTION_URL)
 
@@ -94,8 +94,8 @@ def _fetch_quebec_production(
 
 
 def _fetch_quebec_consumption(
-    session: Optional[Session] = None, logger: Logger = getLogger(__name__)
-) -> List[Dict[str, Any]]:
+    session: Session | None = None, logger: Logger = getLogger(__name__)
+) -> list[dict[str, Any]]:
     s = session or Session()
     response = s.get(CONSUMPTION_URL)
 

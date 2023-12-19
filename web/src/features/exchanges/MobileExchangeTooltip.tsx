@@ -1,8 +1,7 @@
-import type { ReactElement } from 'react';
-
 import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { ZoneName } from 'components/ZoneName';
 import { useAtom } from 'jotai';
+import type { ReactElement } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ExchangeArrowData } from 'types';
 import { TimeAverages } from 'utils/constants';

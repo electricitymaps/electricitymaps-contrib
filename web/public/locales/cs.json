@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Mapování dopadu spotřeby elektřiny na klima"
+      "header": "Mapování dopadu spotřeby elektřiny na klima"
     },
     "view2": {
       "header": "Sledujte, kolik CO₂ je vyprodukovaného vaší spotřebou elektřiny v reálném čase",
@@ -23,7 +23,7 @@
       "header": "Zjistěte, odkud pochází Vaše elektřina",
       "text": "Šipky na mapě znázorňují tok elektřiny mezi různými oblastmi. Klikněte na oblast, pro kterou chcete zobrazit více informací o původu její elektřiny."
     },
-    "view4": {
+    "view7": {
       "header": "Větrné a solární podmínky v reálném čase",
       "text": "Produkce větrné a solární energie je závislá na počasí. Stiskněte tlačítka Slunce a Vítr k zobrazení aktuální síly větru a slunečního záření na celém světě."
     }
@@ -109,12 +109,14 @@
   "misc": {
     "maintitle": "Emise CO₂ ze spotřeby elektřiny v reálném čase",
     "oops": "Ach jo! Máme problém v komunikaci se serverem. Zkusíme to znovu za pár vteřin.",
-    "newversion": "Nová verze je dostupná! <a onClick=\"location.reload(true);\">Klikněte zde</a> pro aktualizaci.",
+    "newversion": "Nová verze je dostupná!",
     "retrynow": "Zkusit znovu",
     "database-ad": "Hledáte historická data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Zkontrolujte naši databázi!</a>",
     "api-ad": "Chcete mít aktuální data ve své aplikaci nebo na svém zařízení? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vyzkoušejte naše API!</a>]",
     "legend": "Legenda",
-    "faq": "Často kladené otázky"
+    "faq": "Často kladené otázky",
+    "dismiss": "Zavřít",
+    "reload": "Znovu načíst"
   },
   "wind": "větrná",
   "solar": "solární",

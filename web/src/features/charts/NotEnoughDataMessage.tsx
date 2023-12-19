@@ -1,4 +1,5 @@
 import { useTranslation } from 'translation/translation';
+
 import { ChartTitle } from './ChartTitle';
 
 export function NotEnoughDataMessage({ title }: { title: string }) {

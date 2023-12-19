@@ -1,7 +1,8 @@
-import yaml from 'js-yaml';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import yaml from 'js-yaml';
 
 import { ZoneConfig } from './types';
 

@@ -1,7 +1,8 @@
 import { animated, useSpring } from '@react-spring/web';
 import { useTranslation } from 'translation/translation';
-import { useCo2ColorScale } from '../hooks/theme';
 import { CarbonUnits } from 'utils/units';
+
+import { useCo2ColorScale } from '../hooks/theme';
 
 /**
  * This function finds the optimal text color based on a custom formula

@@ -12,7 +12,6 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -71,8 +70,8 @@ def convert_timestamp(
 
 def fetch_production(
     zone_key: str = "US-PR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given region."""
@@ -117,19 +116,14 @@ def fetch_production(
 
     assert res.status_code == 200, (
         "Exception when fetching production for "
-        "{}: error when calling url={}".format(zone_key, GENERATION_BREAKDOWN_URL)
+        f"{zone_key}: error when calling url={GENERATION_BREAKDOWN_URL}"
     )
 
     sourceData = extract_data(res.text)
 
     logger.debug(f"Raw generation breakdown: {sourceData}", extra={"key": zone_key})
 
-    for (
-        item
-    ) in (
-        sourceData
-    ):  # Item has a label with fuel type + generation in MW, and a value with a percentage
-
+    for item in sourceData:  # Item has a label with fuel type + generation in MW, and a value with a percentage
         if item["label"] == "  MW":  # There's one empty item for some reason. Skip it.
             continue
 
@@ -164,7 +158,7 @@ def fetch_production(
 
     assert res.status_code == 200, (
         "Exception when fetching renewable production for "
-        "{}: error when calling url={}".format(zone_key, RENEWABLES_BREAKDOWN_URL)
+        f"{zone_key}: error when calling url={RENEWABLES_BREAKDOWN_URL}"
     )
 
     sourceData = extract_data(res.text)
@@ -179,11 +173,7 @@ def fetch_production(
         extra={"key": zone_key},
     )
 
-    for (
-        item
-    ) in (
-        sourceData
-    ):  # Somewhat different from above, the item's label has the generation type and the item's value has generation in MW
+    for item in sourceData:  # Somewhat different from above, the item's label has the generation type and the item's value has generation in MW
         if item["label"] == "  ":  # There's one empty item for some reason. Skip it.
             continue
 
@@ -252,10 +242,10 @@ def fetch_production(
         TIMESTAMP_URL
     )  # TODO do we know for sure the timestamp on this page gets updated *every time* the generation breakdown gets updated?
 
-    assert (
-        res.status_code == 200
-    ), "Exception when fetching timestamp for " "{}: error when calling url={}".format(
-        zone_key, TIMESTAMP_URL
+    assert res.status_code == 200, (
+        "Exception when fetching timestamp for " "{}: error when calling url={}".format(
+            zone_key, TIMESTAMP_URL
+        )
     )
 
     raw_timestamp_match = re.search(
@@ -274,7 +264,7 @@ def fetch_production(
 
     assert (
         data["production"]["oil"] > 0.0
-    ), "{} is missing required generation type: oil".format(zone_key)
+    ), f"{zone_key} is missing required generation type: oil"
 
     return data
 

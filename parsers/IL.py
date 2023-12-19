@@ -15,7 +15,7 @@ Shares of Electricity production in 2019:
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
 import arrow
 from bs4 import BeautifulSoup
@@ -35,7 +35,7 @@ IEC_PRODUCTION = (
     "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
 )
 IEC_PRICE = "https://www.iec.co.il/homeclients/pages/tariffs.aspx"
-TZ = "Asia/Jerusalem"
+TZ = ZoneInfo("Asia/Jerusalem")
 
 
 def fetch_all() -> list:
@@ -59,7 +59,7 @@ def fetch_all() -> list:
         """Flatten the list."""
         flat_list = []
         for element in _2d_list:
-            if type(element) is list:
+            if isinstance(element, list):
                 for item in element:
                     flat_list.append(item)
             else:
@@ -71,8 +71,8 @@ def fetch_all() -> list:
 
 def fetch_price(
     zone_key: str = "IL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch price from IEC table."""
@@ -113,7 +113,7 @@ def fetch_noga_iso_data(session: Session, logger: Logger):
     response: Response = session.get(URL)
     if not response.ok:
         logger.warning(
-            f"IL.py",
+            "IL.py",
             "Failed to fetch data from www.noga-iso.co.il with error: {response.status_code}",
         )
 
@@ -123,8 +123,8 @@ def fetch_noga_iso_data(session: Session, logger: Logger):
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("IL"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
@@ -143,7 +143,7 @@ def fetch_production(
 
     eventList.append(
         zoneKey=zone_key,
-        datetime=arrow.now(TZ).datetime,
+        datetime=datetime.now(tz=TZ),
         production=productionMix,
         source="noga-iso.co.il",
     )
@@ -153,8 +153,8 @@ def fetch_production(
 
 def fetch_total_production(
     zone_key: ZoneKey = ZoneKey("IL"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
@@ -168,7 +168,7 @@ def fetch_total_production(
 
     eventList.append(
         zoneKey=zone_key,
-        datetime=arrow.now(TZ).datetime,
+        datetime=datetime.now(tz=TZ),
         value=float(data.get("Production").replace(",", "")),
         source="noga-iso.co.il",
     )
@@ -176,8 +176,8 @@ def fetch_total_production(
 
 def fetch_consumption(
     zone_key: str = "IL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
@@ -189,7 +189,7 @@ def fetch_consumption(
     # all mapped to unknown as there is no available breakdown
     return {
         "zoneKey": zone_key,
-        "datetime": arrow.now(TZ).datetime,
+        "datetime": datetime.now(tz=TZ),
         "consumption": consumption[0],
         "source": IEC_URL,
     }

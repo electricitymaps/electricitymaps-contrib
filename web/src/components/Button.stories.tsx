@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { HiMagnifyingGlass } from 'react-icons/hi2';
+
 import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {

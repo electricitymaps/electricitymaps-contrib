@@ -19,51 +19,53 @@ This is a capacitor project that builds the mobile apps from the web directory
   export ANDROID_SDK_ROOT=~/Library/Android/sdk
   export ANDROID_HOME=~/Library/Android/sdk
   ```
+- Run `pnpm install` in the **mobileapp** directory
+- Navigate to the **web** directory and run `pnpm install`
+- Navigate back to the **mobileapp** directory and add Capacitor apps: `pnpm exec cap add android` and `pnpm exec cap add ios`
+- Run `pnpm prepare-mobile` to copy and sync assets to the capacitor apps
 
-## Development
+---
 
-If you have the web app installed and running and want to do production builds,the following commands will run everything you need.
-
-Navigate to mobileapp and run:
-
-`pnpm build-ios`
-`pnpm build-android`
-
-**Did the above not work?**
-
-<details>
-
-  <summary><b>Guide to manually run the same step</b></summary>
-
-1. First make sure you have installed and built the web app.
-
-   - Navigate to the **web** directory then:
-     - `pnpm install`
-     - `pnpm build`
-
-2. To enable hot reload you must runt the web app locally on port 5173: `pnpm dev`
-
-3. Navigate to the **mobileapp** directory and run `pnpm install`
-
-4. Add Android and iOS to Capacitor:
-
-   - `pnpm exec cap add android`
-   - `pnpm exec cap add ios`
-
-5. Copy Assets to app directories: `pnpm exec cap copy`
-
-6. Sync the web project to capacitor: `pnpm exec cap sync`
-
-</details>
+## Local development
 
 ### Run the app locally with hot reload
+
+1. Ensure the app is running on port 5173 in one terminal window:
+
+```bash
+cd ../web
+pnpm dev
+```
+
+2. In another terminal window, run one of these commands:
 
 ```bash
 pnpm dev-android
 pnpm dev-ios
 ```
 
-## Deployment
+### Run a production build locally
+
+1. Make a build of the web app with proper credentials:
+
+```bash
+
+SENTRY_AUTH_TOKEN="" VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN="" pnpm run build-web
+pnpm prepare-mobile
+```
+
+2. Then run one of these commands to open the build in XCode or Android Studio:
+
+```bash
+pnpm preview-android
+pnpm preview-ios
+```
+
+3. Select appropriate simulator or device and run the app (usually a "play" icon)
+
+---
+
+## Publishing new mobile app versions
 
 We use [fastlane](https://fastlane.tools/) to build and deploy the apps automatically.
 See [fastlane/README.md](./fastlane/README.md) for more information.
@@ -95,8 +97,8 @@ pnpm run fast ios beta
 Once beta builds have been tested and approved, you can publish them to the app stores.
 
 ```bash
-pnpm run fast ios publish
-pnpm run fast android publish
+pnpm run fast ios release
+pnpm run fast android release
 ```
 
 ---

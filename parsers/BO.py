@@ -4,25 +4,25 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, NamedTuple, Optional
+from typing import NamedTuple
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
-tz_bo = "America/La_Paz"
+tz_bo = ZoneInfo("America/La_Paz")
 
 SOURCE = "cndc.bo"
 
 
 class HourlyProduction(NamedTuple):
     datetime: datetime
-    forecast: Optional[float]
-    total: Optional[float]
-    thermo: Optional[float]
-    hydro: Optional[float]
-    wind: Optional[float]
-    solar: Optional[float]
-    bagasse: Optional[float]
+    forecast: float | None
+    total: float | None
+    thermo: float | None
+    hydro: float | None
+    wind: float | None
+    solar: float | None
+    bagasse: float | None
 
 
 def extract_xsrf_token(html):
@@ -31,20 +31,20 @@ def extract_xsrf_token(html):
 
 
 def fetch_data(
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[HourlyProduction]:
+) -> list[HourlyProduction]:
     if target_datetime is not None:
-        dt = arrow.get(target_datetime, tz_bo)
+        dt = target_datetime
     else:
-        dt = arrow.now(tz=tz_bo)
-        print("current dt", dt)
+        dt = datetime.now(tz=tz_bo)
+        logger.info("current dt", dt)
 
     r = session or Session()
 
     # Define actual and previous day (for midnight data).
-    formatted_dt = dt.format("YYYY-MM-DD")
+    formatted_dt = dt.astimezone(tz=tz_bo).strftime("%Y-%m-%d")
 
     # initial path for url to request
     url_init = "https://www.cndc.bo/gene/dat/gene.php?fechag={0}"
@@ -56,7 +56,7 @@ def fetch_data(
 
     hour_rows = json.loads(resp.text.replace("ï»¿", ""))["data"]
 
-    result: List[HourlyProduction] = []
+    result: list[HourlyProduction] = []
 
     for hour_row in hour_rows:
         [hour, forecast, total, thermo, hydro, wind, solar, bagasse] = hour_row
@@ -73,7 +73,7 @@ def fetch_data(
 
         result.append(
             HourlyProduction(
-                datetime=timestamp.datetime,
+                datetime=timestamp,
                 forecast=forecast,
                 total=total,
                 thermo=thermo,
@@ -89,8 +89,8 @@ def fetch_data(
 
 def fetch_production(
     zone_key: str = "BO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
@@ -127,8 +127,8 @@ def fetch_production(
 
 def fetch_generation_forecast(
     zone_key: str = "BO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     return [

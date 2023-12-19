@@ -4,9 +4,9 @@ import { useAtom } from 'jotai';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
+import { getZoneFromPath } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
-import { getZoneFromPath } from 'utils/helpers';
 import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 
 const getZone = async (

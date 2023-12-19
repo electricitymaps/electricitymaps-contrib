@@ -4,13 +4,11 @@ import urllib
 from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
 import pandas as pd
-import pytz
 from bs4 import BeautifulSoup
 from dateutil import tz
-from pytz import timezone
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
@@ -40,6 +38,7 @@ EXCHANGES = {
     "MX-NE->MX-OC": "IntercambioNES-OCC",
     "MX-NO->MX-OC": "IntercambioNTE-OCC",
     "MX-NW->MX-OC": "IntercambioNOR-OCC",
+    "MX-BC->US-CAL-CISO": "IntercambioUSA-BCA",
     "MX-NO->US-TEX-ERCO": "IntercambioUSA-NTE",
     "MX-NE->US-TEX-ERCO": "IntercambioUSA-NES",
     "BZ->MX-PN": "IntercambioPEN-BEL",
@@ -71,7 +70,7 @@ MAPPING = {
     "Turbo Gas": "gas",
 }
 SOURCE = "cenace.gob.mx"
-TIMEZONE = timezone("America/Tijuana")
+TIMEZONE = ZoneInfo("America/Tijuana")
 
 # cache where the data for whole months is stored as soon as it has been fetched once
 DATA_CACHE = {}
@@ -84,7 +83,7 @@ def parse_date(date, hour):
     return dt
 
 
-def fetch_csv_for_date(dt, session: Optional[Session] = None):
+def fetch_csv_for_date(dt, session: Session | None = None):
     """
     Fetches the whole month of the give datetime.
     returns the data as a DataFrame.
@@ -132,9 +131,7 @@ def fetch_csv_for_date(dt, session: Optional[Session] = None):
         or response.headers["Content-Type"] != "application/octet-stream"
     ):
         raise Exception(
-            "Error while fetching csv for date {}: No CSV was returned by the API. Probably the data for this date has not yet been published.".format(
-                datestr
-            )
+            f"Error while fetching csv for date {datestr}: No CSV was returned by the API. Probably the data for this date has not yet been published."
         )
 
     # skip non-csv data, the header starts with "Sistema"
@@ -159,14 +156,12 @@ def convert_production(series: pd.Series) -> ProductionMix:
 
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if zone_key != "MX":
-        raise ValueError(
-            "MX parser cannot fetch production for zone {}".format(zone_key)
-        )
+        raise ValueError(f"MX parser cannot fetch production for zone {zone_key}")
 
     if target_datetime is None:
         raise ValueError(
@@ -215,17 +210,15 @@ def fetch_MX_exchange(sorted_zone_keys: ZoneKey, s: Session) -> float:
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     if sorted_zone_keys not in EXCHANGES:
-        raise NotImplementedError(
-            "Exchange pair not supported: {}".format(sorted_zone_keys)
-        )
+        raise NotImplementedError(f"Exchange pair not supported: {sorted_zone_keys}")
 
     s = session or Session()
 
@@ -244,8 +237,8 @@ def fetch_exchange(
 @refetch_frequency(timedelta(hours=1))
 def fetch_consumption(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets the consumption data for a region using the live dashboard."""
@@ -268,7 +261,7 @@ def fetch_consumption(
         "td", attrs={"id": f"Demanda{REGION_MAPPING[zone_key]}", "class": "num"}
     )
     if demand_td is None:
-        raise ParserException("CENACE.py", f"Could not find demand cell", zone_key)
+        raise ParserException("CENACE.py", "Could not find demand cell", zone_key)
     demand = float(demand_td.text.replace(",", ""))
     timezone = ZONES_CONFIG[zone_key].get("timezone")
     if timezone is None:
@@ -276,7 +269,7 @@ def fetch_consumption(
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
         zoneKey=zone_key,
-        datetime=datetime.now(tz=pytz.timezone(timezone)),
+        datetime=datetime.now(tz=ZoneInfo(timezone)),
         consumption=demand,
         source="cenace.gob.mx",
     )

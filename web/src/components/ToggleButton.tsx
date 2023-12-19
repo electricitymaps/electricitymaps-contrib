@@ -11,6 +11,7 @@ import {
 } from '@radix-ui/react-tooltip';
 import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+
 import { useTranslation } from '../translation/translation';
 
 interface ToggleButtonProperties {

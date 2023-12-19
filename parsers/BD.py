@@ -2,10 +2,10 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
+from zoneinfo import ZoneInfo
 
 import arrow
-import pytz
 from bs4 import BeautifulSoup, Tag
 from requests import Response, Session
 
@@ -16,7 +16,7 @@ from parsers.lib.exceptions import ParserException
 # Has table (also historical) of production, consumption and exchange.
 # This table gets updated batch-wise every few hours, so most of the time, the delay will be >2h.
 
-tz = pytz.timezone("Asia/Dhaka")
+tz = ZoneInfo("Asia/Dhaka")
 latest_url = "https://erp.pgcb.gov.bd/web/generations/view_generations"
 url_by_date = (
     "https://erp.pgcb.gov.bd/web/generations/view_generations?search="  # DD-MM-YYYY
@@ -128,8 +128,8 @@ def verify_table(table_header: Tag):
 
 
 def query(
-    session: Session, target_datetime: Optional[datetime], logger: Logger
-) -> List[Dict[str, Any]]:
+    session: Session, target_datetime: datetime | None, logger: Logger
+) -> list[dict[str, Any]]:
     """
     Query the table and read it into list.
     """
@@ -157,7 +157,7 @@ def query(
     if table is None:
         raise ParserException(
             parser="BD.py",
-            message=f"Could not find table in returned HTML.",
+            message="Could not find table in returned HTML.",
         )
 
     table_head = table.find("thead")
@@ -184,9 +184,9 @@ def query(
 def fetch_production(
     zone_key: str = "BD",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
+) -> dict[str, Any] | list[dict[str, Any]]:
     row_data = query(session, target_datetime, logger)
 
     production_data_list = []
@@ -223,7 +223,7 @@ def fetch_production(
     if not len(production_data_list):
         raise ParserException(
             parser="BD.py",
-            message=f"No valid consumption data for requested day found.",
+            message="No valid consumption data for requested day found.",
         )
     return production_data_list
 
@@ -232,9 +232,9 @@ def fetch_production(
 def fetch_consumption(
     zone_key: str = "BD",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
+) -> dict[str, Any] | list[dict[str, Any]]:
     row_data = query(session, target_datetime, logger)
 
     result_list = []
@@ -257,7 +257,7 @@ def fetch_consumption(
     if not len(result_list):
         raise ParserException(
             parser="BD.py",
-            message=f"No valid consumption data for requested day found.",
+            message="No valid consumption data for requested day found.",
         )
 
     return result_list
@@ -268,9 +268,9 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     # Query table, contains import from india.
     row_data = query(session, target_datetime, logger)
 

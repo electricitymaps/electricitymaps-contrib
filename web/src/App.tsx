@@ -4,20 +4,20 @@ import { ToastProvider } from '@radix-ui/react-toast';
 import * as Sentry from '@sentry/react';
 import { useGetAppVersion } from 'api/getAppVersion';
 import useGetState from 'api/getState';
-import LoadingOverlay from 'components/LoadingOverlay';
-import Toast from 'components/Toast';
 import LegendContainer from 'components/legend/LegendContainer';
+import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
+import Toast from 'components/Toast';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import FeatureFlagsManager from 'features/feature-flags/FeatureFlagsManager';
 import Header from 'features/header/Header';
 import FAQModal from 'features/modals/FAQModal';
 import InfoModal from 'features/modals/InfoModal';
 import SettingsModal from 'features/modals/SettingsModal';
-import TotalEnergyIntroModal from 'features/modals/TotalEnergyIntroModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { useDarkMode } from 'hooks/theme';
-import { ReactElement, Suspense, lazy, useEffect, useLayoutEffect } from 'react';
+import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
+import { useTranslation } from 'translation/translation';
 import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
@@ -66,6 +66,7 @@ export default function App(): ReactElement {
       });
     }
   }, []);
+  const { __ } = useTranslation();
 
   return (
     <Suspense fallback={<div />}>
@@ -76,15 +77,14 @@ export default function App(): ReactElement {
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               {isSuccess && isNewVersionAvailable && (
                 <Toast
-                  title="A new app version is available"
+                  title={__('misc.newversion')}
                   toastAction={handleReload}
                   isCloseable={true}
-                  toastActionText="Reload"
+                  toastActionText={__('misc.reload')}
                 />
               )}
               <LoadingOverlay />
               <OnboardingModal />
-              <TotalEnergyIntroModal />
               <FAQModal />
               <InfoModal />
               <SettingsModal />

@@ -83,10 +83,12 @@ platform :ios do
     UI.success("-------------------------")
     UI.important("YOU ARE ALMOST THERE! Please follow the steps below to submit the new version for review:")
     UI.message("1. Open https://appstoreconnect.apple.com > My Apps > Electricity Maps ")
-    UI.message("2. Click on the blue plus icon in the sidebar and add version #{package[:version]} or use existing version.")
+    UI.message("2. In the sidebar, select '#{package[:version]} Prepare for Submission'")
     UI.message("3. Fill in 'what's new in this version' (look at changes in GH Releases).")
-    UI.success("4. Click 'Save' and then 'Submit for Review'.")
-    UI.success("5. Run the 'commit' lane after both releases are done.")
+    UI.success("4. Add build and select '#{package[:version]}'")
+    UI.success("5. Click 'Save' and then 'Add for Review'.")
+    UI.success("6. Click 'Submit for App Review'.")
+    UI.success("7. Run the 'commit' lane after both releases are done.")
   end
 end
 

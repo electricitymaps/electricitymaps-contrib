@@ -44,12 +44,12 @@ The zone configurations hold information such as the installed capacity, which p
 
 ## Parser guidelines
 
-To get stated with editing the parsers use the following steps:
+To get started with editing the parsers use the following steps:
 
 1. Run `poetry install -E parsers` to install all needed dependencies.
 2. Use `poetry run test_parser ZONE_KEY` to test any parser changes.
 
-Note: This requires you to have [Python 3.8][python homepage] and [Poetry][poetry homepage] installed, you can see their respective installation guides here:
+Note: This requires you to have [Python 3.10][python homepage] and [Poetry][poetry homepage] installed, you can see their respective installation guides here:
 
 - [Downloading Python][python install guide]
 - [poetry installation][poetry install guide]
@@ -72,7 +72,7 @@ Check the [wiki page][wiki python code formatting] for more details and tips.
 
 ## Front-end guidelines
 
-To get started with editing the fronted use the following steps:
+To get started with editing the frontend use the following steps:
 
 1. Use `cd web` to go into the web directory
 2. Then use `pnpm install` to get all dependencies installed.

@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 import { renderToString } from 'react-dom/server';
 import { getZoneName, useTranslation } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { Mode, TimeAverages, modeColor } from 'utils/constants';
+import { Mode, modeColor, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
@@ -14,10 +14,10 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 
-import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
 import { InnerAreaGraphTooltipProps, LayerKey } from '../types';
+import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 function calculateTooltipContentData(
   selectedLayerKey: LayerKey,

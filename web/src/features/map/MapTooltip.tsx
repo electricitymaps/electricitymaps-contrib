@@ -1,11 +1,10 @@
 import * as Portal from '@radix-ui/react-portal';
-import { useAtom } from 'jotai';
-
 import useGetState from 'api/getState';
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
-import { ZoneName } from 'components/ZoneName';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
+import { ZoneName } from 'components/ZoneName';
+import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { StateZoneData } from 'types';
 import { Mode } from 'utils/constants';
@@ -16,6 +15,7 @@ import {
   selectedDatetimeIndexAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
 function TooltipInner({

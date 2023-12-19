@@ -9,6 +9,7 @@ import {
   FaTwitter,
 } from 'react-icons/fa';
 import { useTranslation } from 'translation/translation';
+
 import { isFAQModalOpenAtom, isInfoModalOpenAtom } from './modalAtoms';
 
 const ICON_SIZE = 16;

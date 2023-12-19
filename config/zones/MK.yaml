@@ -195,5 +195,6 @@ parsers:
   generationForecast: MK_wrapper.fetch_generation_forecast
   price: MK_wrapper.fetch_price
   production: MK_wrapper.fetch_production
+  productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: MK_wrapper.fetch_wind_solar_forecasts
 timezone: Europe/Skopje

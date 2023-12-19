@@ -1,13 +1,12 @@
-import { useMemo } from 'react';
-
 import { CountryFlag } from 'components/Flag';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
+import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
-import { TimeAverages, modeColor } from 'utils/constants';
+import { modeColor, TimeAverages } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
 import { timeAverageAtom } from 'utils/state/atoms';
 
@@ -17,9 +16,9 @@ import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import {
   ExchangeDataType,
-  ProductionDataType,
   getDataBlockPositions,
   getElectricityProductionValue,
+  ProductionDataType,
 } from './utils';
 
 interface BarElectricityBreakdownChartProps {
@@ -106,9 +105,8 @@ function BarElectricityBreakdownChart({
       const tickValue = isHourly ? formatPower(maxPower, 1) : formatEnergy(maxPower, 1);
       return tickValue.toString().replace(/[\d.]+/, '0');
     }
-    return isHourly ? formatPower(t, 1) : formatEnergy(t, 1);
+    return isHourly ? formatPower(t, 2) : formatEnergy(t, 2);
   };
-
   return (
     <svg className="w-full overflow-visible" height={height}>
       <Axis formatTick={formatTick} height={height} scale={powerScale} />

@@ -1,9 +1,9 @@
 import logging
 import unittest
 from datetime import datetime, timezone
+from unittest.mock import patch
 
 import numpy as np
-from mock import patch
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
@@ -535,7 +535,7 @@ class TestListFeatures(unittest.TestCase):
             storage=StorageMix(hydro=1),
             source="trust.me",
         )
-        test = production_list_1.dataframe
+        _test = production_list_1.dataframe  # TODO: Can this be removed?
 
 
 print(type(ZoneKey("AT")))

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 """
 Parser that uses the ENTSOE API to return the following data types.
@@ -14,15 +13,14 @@ Consumption Forecast
 """
 import itertools
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from random import shuffle
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any
 
 import arrow
 import numpy as np
 from bs4 import BeautifulSoup
-from pytz import utc
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -104,7 +102,7 @@ ENTSOE_STORAGE_PARAMETERS = list(
 )
 # Define all ENTSOE zone_key <-> domain mapping
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
-ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
+ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "AL": "10YAL-KESH-----5",
     "AT": "10YAT-APG------L",
     "AZ": "10Y1001A1001B05V",
@@ -178,7 +176,7 @@ ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
 }
 
 # Generation per unit can only be obtained at EIC (Control Area) level
-ENTSOE_EIC_MAPPING: Dict[str, str] = {
+ENTSOE_EIC_MAPPING: dict[str, str] = {
     "DK-DK1": "10Y1001A1001A796",
     "DK-DK2": "10Y1001A1001A796",
     "FI": "10YFI-1--------U",
@@ -191,12 +189,12 @@ ENTSOE_EIC_MAPPING: Dict[str, str] = {
 }
 
 # Define zone_keys to an array of zone_keys for aggregated production data
-ZONE_KEY_AGGREGATES: Dict[str, List[str]] = {
+ZONE_KEY_AGGREGATES: dict[str, list[str]] = {
     "IT-SO": ["IT-CA", "IT-SO"],
 }
 
 # Some exchanges require specific domains
-ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
+ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: dict[str, list[str]] = {
     "AT->IT-NO": [ENTSOE_DOMAIN_MAPPINGS["AT"], ENTSOE_DOMAIN_MAPPINGS["IT"]],
     "BY->UA": [ENTSOE_DOMAIN_MAPPINGS["BY"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
     "DE->DK-DK1": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK1"]],
@@ -233,7 +231,7 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     "SK->UA": [ENTSOE_DOMAIN_MAPPINGS["SK"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
 }
 # Some zone_keys are part of bidding zone domains for price data
-ENTSOE_PRICE_DOMAIN_MAPPINGS: Dict[str, str] = {
+ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     **ENTSOE_DOMAIN_MAPPINGS,  # Note: This has to be first so the domains are overwritten.
     "AX": ENTSOE_DOMAIN_MAPPINGS["SE-SE3"],
     "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
@@ -242,7 +240,7 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: Dict[str, str] = {
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
 }
 
-ENTSOE_UNITS_TO_ZONE: Dict[str, str] = {
+ENTSOE_UNITS_TO_ZONE: dict[str, str] = {
     # DK-DK1
     "Anholt": "DK-DK1",
     "Esbjergvaerket 3": "DK-DK1",
@@ -339,7 +337,7 @@ ENTSOE_UNITS_TO_ZONE: Dict[str, str] = {
     "Karlshamn G3": "SE-SE4",
 }
 
-VALIDATIONS: Dict[str, Dict[str, Any]] = {
+VALIDATIONS: dict[str, dict[str, Any]] = {
     # This is a list of criteria to ensure validity of data,
     # used in validate_production()
     # Note that "required" means data is present in ENTSOE.
@@ -469,19 +467,17 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
 }
 
 
-def closest_in_time_key(
-    x, target_datetime: Optional[datetime], datetime_key="datetime"
-):
+def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datetime"):
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
     if isinstance(target_datetime, datetime):
         return np.abs((x[datetime_key] - target_datetime).seconds)
 
 
 def query_ENTSOE(
     session: Session,
-    params: Dict[str, str],
-    target_datetime: Optional[datetime] = None,
+    params: dict[str, str],
+    target_datetime: datetime | None = None,
     span: tuple = (-48, 24),
     function_name: str = "",
 ) -> str:
@@ -494,7 +490,7 @@ def query_ENTSOE(
     env_var = "ENTSOE_REFETCH_TOKEN"
     url = ENTSOE_EU_PROXY_ENDPOINT
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
         env_var = "ENTSOE_TOKEN"
         url = ENTSOE_ENDPOINT
 
@@ -535,12 +531,8 @@ def query_ENTSOE(
             error_text = soup.find_all("text")[0].prettify()
             if "No matching data found" in error_text:
                 exception_message = "No matching data found"
-            else:
-                exception_message = (
-                    f"{function_name} failed in ENTSOE.py. Reason: {error_text}"
-                )
-        else:
-            exception_message = f"{function_name} failed in ENTSOE.py. Reason: {last_response_if_all_fail.text}"
+        if exception_message is None:
+            exception_message = f"Status code: [{last_response_if_all_fail.status_code}]. Reason: {last_response_if_all_fail.reason}"
 
     raise ParserException(
         parser="ENTSOE.py",
@@ -551,8 +543,8 @@ def query_ENTSOE(
 
 
 def query_consumption(
-    domain: str, session: Session, target_datetime: Optional[datetime] = None
-) -> Union[str, None]:
+    domain: str, session: Session, target_datetime: datetime | None = None
+) -> str | None:
     params = {
         "documentType": "A65",
         "processType": "A16",
@@ -567,8 +559,8 @@ def query_consumption(
 
 
 def query_production(
-    in_domain: str, session: Session, target_datetime: Optional[datetime] = None
-) -> Union[str, None]:
+    in_domain: str, session: Session, target_datetime: datetime | None = None
+) -> str | None:
     params = {
         "documentType": "A75",
         "processType": "A16",  # Realised
@@ -587,8 +579,8 @@ def query_production_per_units(
     psr_type: str,
     domain: str,
     session: Session,
-    target_datetime: Optional[datetime] = None,
-) -> Union[str, None]:
+    target_datetime: datetime | None = None,
+) -> str | None:
     params = {
         "documentType": "A73",
         "processType": "A16",
@@ -609,8 +601,8 @@ def query_exchange(
     in_domain: str,
     out_domain: str,
     session: Session,
-    target_datetime: Optional[datetime] = None,
-) -> Union[str, None]:
+    target_datetime: datetime | None = None,
+) -> str | None:
     params = {
         "documentType": "A11",
         "in_Domain": in_domain,
@@ -628,8 +620,8 @@ def query_exchange_forecast(
     in_domain: str,
     out_domain: str,
     session: Session,
-    target_datetime: Optional[datetime] = None,
-) -> Union[str, None]:
+    target_datetime: datetime | None = None,
+) -> str | None:
     """Gets exchange forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
@@ -646,8 +638,8 @@ def query_exchange_forecast(
 
 
 def query_price(
-    domain: str, session: Session, target_datetime: Optional[datetime] = None
-) -> Union[str, None]:
+    domain: str, session: Session, target_datetime: datetime | None = None
+) -> str | None:
     params = {
         "documentType": "A44",
         "in_Domain": domain,
@@ -662,8 +654,8 @@ def query_price(
 
 
 def query_generation_forecast(
-    in_domain: str, session: Session, target_datetime: Optional[datetime] = None
-) -> Union[str, None]:
+    in_domain: str, session: Session, target_datetime: datetime | None = None
+) -> str | None:
     """Gets generation forecast for 48 hours ahead and previous 24 hours."""
 
     # Note: this does not give a breakdown of the production
@@ -681,8 +673,8 @@ def query_generation_forecast(
 
 
 def query_consumption_forecast(
-    in_domain: str, session: Session, target_datetime: Optional[datetime] = None
-) -> Union[str, None]:
+    in_domain: str, session: Session, target_datetime: datetime | None = None
+) -> str | None:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
@@ -699,8 +691,8 @@ def query_consumption_forecast(
 
 
 def query_wind_solar_production_forecast(
-    in_domain: str, session: Session, target_datetime: Optional[datetime] = None
-) -> Union[str, None]:
+    in_domain: str, session: Session, target_datetime: datetime | None = None
+) -> str | None:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
@@ -734,7 +726,7 @@ def parse_scalar(
     xml_text: str,
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
-) -> Union[Tuple[List[float], List[datetime]], None]:
+) -> tuple[list[float], list[datetime]] | None:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -762,7 +754,7 @@ def parse_scalar(
 
 def create_production_storage(
     fuel_code: str, quantity: float, logger: Logger, zoneKey: ZoneKey
-) -> Tuple[Optional[ProductionMix], Optional[StorageMix]]:
+) -> tuple[ProductionMix | None, StorageMix | None]:
     production = ProductionMix()
     storage = StorageMix()
     fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
@@ -773,8 +765,7 @@ def create_production_storage(
         return None, storage
     if 0 > quantity > -50:
         logger.info(
-            "Self consumption value %s for %s has been set to 0."
-            % (quantity, fuel_em_type),
+            f"Self consumption value {quantity} for {fuel_em_type} has been set to 0.",
             extra={"key": zoneKey, "fuel_type": fuel_em_type},
         )
         quantity = 0
@@ -878,7 +869,7 @@ def parse_self_consumption(xml_text: str):
     return res
 
 
-def parse_production_per_units(xml_text: str) -> Union[Any, None]:
+def parse_production_per_units(xml_text: str) -> Any | None:
     values = {}
 
     if not xml_text:
@@ -935,9 +926,9 @@ def parse_production_per_units(xml_text: str) -> Union[Any, None]:
 def parse_exchange(
     xml_text: str,
     is_import: bool,
-    quantities: Optional[List[float]] = None,
-    datetimes: Optional[List[datetime]] = None,
-) -> Union[Tuple[List[float], List[datetime]], None]:
+    quantities: list[float] | None = None,
+    datetimes: list[datetime] | None = None,
+) -> tuple[list[float], list[datetime]] | None:
     if not xml_text:
         return None
     quantities = quantities or []
@@ -1004,8 +995,8 @@ def parse_prices(
 
 
 def validate_production(
-    datapoint: Dict[str, Any], logger: Logger
-) -> Union[Dict[str, Any], bool, None]:
+    datapoint: dict[str, Any], logger: Logger
+) -> dict[str, Any] | bool | None:
     """
     Production data can sometimes be available but clearly wrong.
 
@@ -1035,8 +1026,8 @@ def validate_production(
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """Gets consumption for a specified zone."""
@@ -1044,7 +1035,14 @@ def fetch_consumption(
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = None
-    raw_consumption = query_consumption(domain, session, target_datetime)
+    try:
+        raw_consumption = query_consumption(domain, session, target_datetime)
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch consumption for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if raw_consumption is not None:
         parsed = parse_scalar(
             raw_consumption,
@@ -1103,8 +1101,8 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=2))
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -1113,12 +1111,19 @@ def fetch_production(
     """
     if not session:
         session = Session()
-    non_aggregated_data: List[ProductionBreakdownList] = []
+    non_aggregated_data: list[ProductionBreakdownList] = []
     for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
         domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
-        raw_production = query_production(
-            domain, session, target_datetime=target_datetime
-        )
+        try:
+            raw_production = query_production(
+                domain, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch production for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
         if raw_production is None:
             raise ParserException(
                 parser="ENTSOE.py",
@@ -1138,20 +1143,20 @@ def fetch_production(
 def fetch_production_per_units(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Returns all production units and production values."""
 
     # If no target_datetime is specified, or the target datetime is less
     # than 5 days ago we set the target_datetime to 5 days ago.
-    if target_datetime is None or target_datetime > datetime.now(tz=utc) - timedelta(
-        days=5
-    ):
+    if target_datetime is None or target_datetime > datetime.now(
+        tz=timezone.utc
+    ) - timedelta(days=5):
         logger.info(
             "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
         )
-        target_datetime = datetime.now(tz=utc) - timedelta(days=5)
+        target_datetime = datetime.now(tz=timezone.utc) - timedelta(days=5)
 
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
@@ -1167,7 +1172,7 @@ def fetch_production_per_units(
                     if not v:
                         continue
                     v["source"] = "entsoe.eu"
-                    if not v["unitName"] in ENTSOE_UNITS_TO_ZONE:
+                    if v["unitName"] not in ENTSOE_UNITS_TO_ZONE:
                         logger.warning(
                             f"Unknown unit {v['unitName']} with id {v['unitKey']}"
                         )
@@ -1175,12 +1180,12 @@ def fetch_production_per_units(
                         v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
                         if v["zoneKey"] == zone_key:
                             data.append(v)
-        except:
-            ParserException(
+        except Exception as e:
+            raise ParserException(
                 parser="ENTSOE.py",
                 message=f"Failed to fetch data for {k} in {zone_key}",
                 zone_key=zone_key,
-            )
+            ) from e
 
     return data
 
@@ -1189,8 +1194,8 @@ def fetch_production_per_units(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -1210,7 +1215,14 @@ def fetch_exchange(
     exchange_hashmap = {}
     # Grab exchange
     # Import
-    raw_exchange = query_exchange(domain1, domain2, session, target_datetime)
+    try:
+        raw_exchange = query_exchange(domain1, domain2, session, target_datetime)
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch exchange for {zone_key1} -> {zone_key2}",
+            zone_key=key,
+        ) from e
     if raw_exchange is not None:
         parsed = parse_exchange(
             raw_exchange,
@@ -1218,7 +1230,16 @@ def fetch_exchange(
         )
         if parsed:
             # Export
-            raw_exchange = query_exchange(domain2, domain1, session, target_datetime)
+            try:
+                raw_exchange = query_exchange(
+                    domain2, domain1, session, target_datetime
+                )
+            except Exception as e:
+                raise ParserException(
+                    parser="ENTSOE.py",
+                    message=f"Failed to fetch exchange for {zone_key1} -> {zone_key2}",
+                    zone_key=key,
+                ) from e
             if raw_exchange is not None:
                 parsed = parse_exchange(
                     xml_text=raw_exchange,
@@ -1262,8 +1283,8 @@ def fetch_exchange(
 def fetch_exchange_forecast(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets exchange forecast between two specified zones."""
@@ -1281,9 +1302,16 @@ def fetch_exchange_forecast(
     # Grab exchange
     # Import
     parsed = None
-    raw_exchange_forecast = query_exchange_forecast(
-        domain1, domain2, session, target_datetime=target_datetime
-    )
+    try:
+        raw_exchange_forecast = query_exchange_forecast(
+            domain1, domain2, session, target_datetime=target_datetime
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch exchange forecast for {zone_key1} -> {zone_key2}",
+            zone_key=key,
+        ) from e
     if raw_exchange_forecast is not None:
         parsed = parse_exchange(
             raw_exchange_forecast,
@@ -1291,9 +1319,16 @@ def fetch_exchange_forecast(
         )
     if parsed is not None:
         # Export
-        raw_exchange_forecast = query_exchange_forecast(
-            domain2, domain1, session, target_datetime=target_datetime
-        )
+        try:
+            raw_exchange_forecast = query_exchange_forecast(
+                domain2, domain1, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch exchange forecast for {zone_key1} -> {zone_key2}",
+                zone_key=key,
+            ) from e
         if raw_exchange_forecast is not None:
             parsed = parse_exchange(
                 xml_text=raw_exchange_forecast,
@@ -1333,8 +1368,8 @@ def fetch_exchange_forecast(
 @refetch_frequency(timedelta(days=2))
 def fetch_price(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets day-ahead price for specified zone."""
@@ -1342,8 +1377,14 @@ def fetch_price(
         session = Session()
 
     domain = ENTSOE_PRICE_DOMAIN_MAPPINGS[zone_key]
-
-    raw_price_data = query_price(domain, session, target_datetime=target_datetime)
+    try:
+        raw_price_data = query_price(domain, session, target_datetime=target_datetime)
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch price for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if raw_price_data is None:
         raise ParserException(
             parser="ENTSOE.py",
@@ -1356,8 +1397,8 @@ def fetch_price(
 @refetch_frequency(timedelta(days=2))
 def fetch_generation_forecast(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets generation forecast for specified zone."""
@@ -1366,7 +1407,16 @@ def fetch_generation_forecast(
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     parsed = None
     # Grab consumption
-    test = query_generation_forecast(domain, session, target_datetime=target_datetime)
+    try:
+        test = query_generation_forecast(
+            domain, session, target_datetime=target_datetime
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch generation forecast for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if test is not None:
         parsed = parse_scalar(
             test,
@@ -1397,8 +1447,8 @@ def fetch_generation_forecast(
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption_forecast(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
@@ -1407,9 +1457,16 @@ def fetch_consumption_forecast(
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = None
-    raw_consumption_forecast = query_consumption_forecast(
-        domain, session, target_datetime=target_datetime
-    )
+    try:
+        raw_consumption_forecast = query_consumption_forecast(
+            domain, session, target_datetime=target_datetime
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch consumption forecast for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if raw_consumption_forecast is not None:
         parsed = parse_scalar(
             raw_consumption_forecast,
@@ -1440,8 +1497,8 @@ def fetch_consumption_forecast(
 @refetch_frequency(timedelta(days=2))
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -1450,10 +1507,16 @@ def fetch_wind_solar_forecasts(
     if not session:
         session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-
-    raw_renewable_forecast = query_wind_solar_production_forecast(
-        domain, session, target_datetime=target_datetime
-    )
+    try:
+        raw_renewable_forecast = query_wind_solar_production_forecast(
+            domain, session, target_datetime=target_datetime
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch renewable forecast for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if raw_renewable_forecast is None:
         raise ParserException(
             parser="ENTSOE.py",

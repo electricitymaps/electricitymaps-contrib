@@ -2,7 +2,6 @@
 
 from copy import deepcopy
 from pathlib import Path
-from typing import Dict, List
 
 from electricitymap.contrib.config.co2eq_parameters import generate_co2eq_parameters
 from electricitymap.contrib.config.reading import (
@@ -101,25 +100,25 @@ CO2EQ_PARAMETERS_LIFECYCLE = {**co2eq_parameters_all, **co2eq_parameters_lifecyc
 CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE  # Global LCA is the default
 
 # Make a dict mapping each zone to its bounding box.
-ZONE_BOUNDING_BOXES: Dict[ZoneKey, BoundingBox] = zone_bounding_boxes(ZONES_CONFIG)
+ZONE_BOUNDING_BOXES: dict[ZoneKey, BoundingBox] = zone_bounding_boxes(ZONES_CONFIG)
 
 # Make a mapping from subzone to the parent zone (full zone).
-ZONE_PARENT: Dict[ZoneKey, ZoneKey] = zone_parents(ZONES_CONFIG)
+ZONE_PARENT: dict[ZoneKey, ZoneKey] = zone_parents(ZONES_CONFIG)
 
 # Zone neighbours are zones that are connected by exchanges.
-ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_zone_neighbours(
+ZONE_NEIGHBOURS: dict[ZoneKey, list[ZoneKey]] = generate_zone_neighbours(
     ZONES_CONFIG, EXCHANGES_CONFIG
 )
 
-ALL_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_all_neighbours(EXCHANGES_CONFIG)
+ALL_NEIGHBOURS: dict[ZoneKey, list[ZoneKey]] = generate_all_neighbours(EXCHANGES_CONFIG)
 
 
-def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
+def emission_factors(zone_key: ZoneKey) -> dict[str, float]:
     """Looks up the emission factors for a given zone."""
     override = CO2EQ_PARAMETERS["emissionFactors"]["zoneOverrides"].get(zone_key, {})
     defaults = CO2EQ_PARAMETERS["emissionFactors"]["defaults"]
 
-    def get_most_recent_value(emission_factors: Dict) -> Dict:
+    def get_most_recent_value(emission_factors: dict) -> dict:
         _emission_factors = deepcopy(emission_factors)
         keys_with_yearly = [
             k for (k, v) in _emission_factors.items() if isinstance(v, list)
@@ -135,4 +134,4 @@ def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
     override = get_most_recent_value(override)
 
     merged = {**defaults, **override}
-    return dict([(k, (v or {}).get("value")) for (k, v) in merged.items()])
+    return {k: (v or {}).get("value") for (k, v) in merged.items()}

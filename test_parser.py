@@ -5,9 +5,10 @@ Usage: poetry run test_parser FR production
 
 import pprint
 import time
+from collections.abc import Callable
 from datetime import datetime, timezone
 from logging import DEBUG, basicConfig, getLogger
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any
 
 import click
 
@@ -28,7 +29,7 @@ basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(messa
 @click.argument("zone")
 @click.argument("data-type", default="")
 @click.option("--target_datetime", default=None, show_default=True)
-def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
+def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
     """
     Parameters
     ----------
@@ -45,6 +46,10 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
     >>> poetry run test_parser GE production --target_datetime="2022-04-10 15:00"
 
     """
+    if data_type == "productionCapacity":
+        raise ValueError(
+            "productionCapacity is not supported by this script. Please use `poetry run update_capacity` instead."
+        )
     parsed_target_datetime = None
     if target_datetime is not None:
         parsed_target_datetime = datetime.fromisoformat(target_datetime)
@@ -53,9 +58,9 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
     if not data_type:
         data_type = "exchange" if "->" in zone else "production"
 
-    parser: Callable[
-        ..., Union[List[Dict[str, Any]], Dict[str, Any]]
-    ] = PARSER_KEY_TO_DICT[data_type][zone]
+    parser: Callable[..., list[dict[str, Any]] | dict[str, Any]] = PARSER_KEY_TO_DICT[
+        data_type
+    ][zone]
 
     if data_type in ["exchange", "exchangeForecast"]:
         args = zone.split("->")
@@ -69,14 +74,14 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
         raise ValueError(f"Error: parser returned nothing ({res})")
 
     elapsed_time = time.time() - start
-    if isinstance(res, (list, tuple)):
+    if isinstance(res, list | tuple):
         res_list = list(res)
     else:
         res_list = [res]
 
     try:
         dts = [e["datetime"] for e in res_list]
-    except:
+    except KeyError:
         raise ValueError(
             f"Parser output lacks `datetime` key for at least some of the output. Full output: \n\n{res}\n"
         )
@@ -93,7 +98,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: Optional[str]):
                 for e in res_list
             ]
         )
-        == False
+        is False
     ), "Datetimes must be timezone aware"
 
     last_dt = datetime.fromisoformat(f"{max(dts)}").astimezone(timezone.utc)

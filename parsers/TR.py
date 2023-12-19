@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
 import arrow
-import pytz
 from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
@@ -12,7 +11,7 @@ from parsers.lib.exceptions import ParserException
 from parsers.lib.session import get_session_with_legacy_adapter
 from parsers.lib.validation import validate
 
-TR_TZ = pytz.timezone("Europe/Istanbul")
+TR_TZ = ZoneInfo("Europe/Istanbul")
 
 EPIAS_MAIN_URL = "https://seffaflik.epias.com.tr/transparency/service"
 KINDS_MAPPING = {
@@ -75,8 +74,8 @@ def validate_production_data(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "TR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     # For real-time data, the last data point seems to but continously updated thoughout the hour and will be excluded as not final
@@ -114,8 +113,8 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "TR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
@@ -139,8 +138,8 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str = "TR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:

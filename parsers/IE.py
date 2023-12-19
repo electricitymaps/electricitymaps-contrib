@@ -1,14 +1,13 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
-import pytz
 from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-IE_TZ = pytz.timezone("Europe/Dublin")
+IE_TZ = ZoneInfo("Europe/Dublin")
 
 DEMAND_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=demandactual&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
 DEMAND_FORECAST_URL = "https://www.smartgriddashboard.com/DashboardService.svc/data?area=demandforecast&region={zone}&datefrom={dt}+00%3A00&dateto={dt}+23%3A59"
@@ -51,11 +50,11 @@ def fetch_data(
     )
     try:
         data = resp.json().get("Rows", {})
-    except:
+    except Exception as e:
         raise ParserException(
             parser="IE.py",
             message=f"{target_datetime}: {kind} data is not available for {zone_key}",
-        )
+        ) from e
     filtered_data = [item for item in data if item["Value"] is not None]
     return filtered_data
 
@@ -64,7 +63,7 @@ def fetch_data(
 def fetch_production(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets values for wind production and estimates unknwon production as demand - wind - exchange"""
@@ -106,7 +105,7 @@ def fetch_production(
         data_point = {
             "zoneKey": zone_key,
             "datetime": datetime.strptime(dt, "%d-%b-%Y %H:%M:%S").replace(
-                tzinfo=pytz.timezone("Europe/Dublin")
+                tzinfo=IE_TZ
             ),
             "production": {
                 "unknown": item["Value"] - exchange - wind_prod,
@@ -123,7 +122,7 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -138,7 +137,7 @@ def fetch_exchange(
     if sortedZoneKeys == "GB-NIR->IE":
         raise ParserException(
             parser="IE.py",
-            message=f"the GB-NIR_IE interconnection is unsupported.",
+            message="the GB-NIR_IE interconnection is unsupported.",
         )
 
     exchange_data = fetch_data(
@@ -161,7 +160,7 @@ def fetch_exchange(
             "sortedZoneKeys": sortedZoneKeys,
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
-            ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
+            ).replace(tzinfo=IE_TZ),
             "source": "eirgridgroup.com",
         }
         exchange += [data_point]
@@ -172,7 +171,7 @@ def fetch_exchange(
 def fetch_consumption(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """gets consumption values for ROI"""
@@ -195,7 +194,7 @@ def fetch_consumption(
             "consumption": item["Value"],
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
-            ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
+            ).replace(tzinfo=IE_TZ),
             "source": "eirgridgroup.com",
         }
         demand += [data_point]
@@ -206,7 +205,7 @@ def fetch_consumption(
 def fetch_consumption_forecast(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """gets forecasted consumption values for ROI"""
@@ -230,7 +229,7 @@ def fetch_consumption_forecast(
             "value": item["Value"],
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
-            ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
+            ).replace(tzinfo=IE_TZ),
             "source": "eirgridgroup.com",
         }
         demand_forecast += [data_point]
@@ -241,7 +240,7 @@ def fetch_consumption_forecast(
 def fetch_wind_forecasts(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -266,7 +265,7 @@ def fetch_wind_forecasts(
             "production": {"wind": item["Value"]},
             "datetime": datetime.strptime(
                 item["EffectiveTime"], "%d-%b-%Y %H:%M:%S"
-            ).replace(tzinfo=pytz.timezone("Europe/Dublin")),
+            ).replace(tzinfo=IE_TZ),
             "source": "eirgridgroup.com",
         }
         wind_forecast += [data_point]

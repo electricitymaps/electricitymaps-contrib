@@ -1,5 +1,5 @@
-VERSION 0.7
-FROM node:18.13
+VERSION --use-visited-upfront-hash-collection 0.7
+FROM node:20
 WORKDIR /contrib/web
 
 src-files:
@@ -18,24 +18,29 @@ prepare:
   RUN pnpm install --frozen-lockfile
   COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
+  COPY scripts/register-tsNodeESM.js ./scripts/register-tsNodeESM.js
   COPY --dir geo public src ./
 
 test:
   FROM +prepare
-  COPY cypress.config.ts .
-  COPY cypress ./cypress
-  RUN pnpm run verify:ci
-  RUN pnpm run cy:test-all
+  COPY ../+linting-files/* ../
+  COPY .gitignore .eslintrc.json .prettierrc.json viteEnvironment.d.ts testSetup.ts .
+  COPY --dir cypress ./
+  RUN pnpm run create-generated-files
+  RUN pnpm run validate
+  # TODO: Enable Cypress tests later
+  # RUN pnpm run cy:test-all
 
 build:
   FROM +prepare
   RUN pnpm run create-generated-files
   RUN pnpm version minor
-  RUN --secret SENTRY_AUTH_TOKEN=+secrets/SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=+secrets/ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
+  RUN --secret SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
 
   # Local outputs for debugging
   SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json
-  SAVE ARTIFACT ./config/excludedAggregatedExchanges.json AS LOCAL ./config/excludedAggregatedExchanges.json
+  SAVE ARTIFACT ./config/usa_states.json AS LOCAL ./config/usa_states.json
+  SAVE ARTIFACT ./config/excluded_aggregated_exchanges.json AS LOCAL ./config/excluded_aggregated_exchanges.json
   # NOTE: We could consider dropping source maps from dist since it has already been uploaded to Sentry at this point
   SAVE ARTIFACT ./dist AS LOCAL ./dist
 
@@ -44,4 +49,4 @@ deploy:
   COPY +build/dist ./dist
   RUN npm install -g wrangler
   # TODO: Point to master after build and deploy has been tested to staging
-  RUN --push --secret CLOUDFLARE_API_TOKEN=+secrets/CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID=+secrets/CLOUDFLARE_ACCOUNT_ID wrangler pages publish ./dist --project-name electricitymaps-app --branch master
+  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID wrangler pages publish ./dist --project-name electricitymaps-app --branch master

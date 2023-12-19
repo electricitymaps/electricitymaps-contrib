@@ -27,17 +27,30 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Mapping the climate impact of electricity"
+      "header": "Welcome to Electricity Maps",
+      "text": "Here you can explore the climate impact of electricity for many countries globally. <br/><br/>Let us guide you through our map in a few simple steps!"
     },
     "view2": {
-      "header": "See how much CO₂ is emitted to produce your electricity, in real-time.",
-      "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. The greener the color, the more climate-friendly the electricity."
+      "header": "See how much CO2 is emitted to produce your electricity, in real-time",
+      "text": "We color areas around the world by the carbon intensity of consumed electricity (includes all greenhouse gases). The greener the color, the more climate-friendly the electricity."
     },
     "view3": {
       "header": "Know where your electricity comes from",
       "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
     },
     "view4": {
+      "header": "Switch between different views",
+      "text": "Toggle between Electricity Production and Consumption, as well as Country or Zone views and discover real-time insights into global energy dynamics and make informed choices for a sustainable future."
+    },
+    "view5": {
+      "header": "Switch between electricity and emissions views",
+      "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen production or consumption mode."
+    },
+    "view6": {
+      "header": "Explore the past",
+      "text": "In the bottom left, you can view both real-time and past emission and electricity data all around the world. Change the aggregated data using the toggles or browse through the timeline to see the changes over time."
+    },
+    "view7": {
       "header": "Real-time wind and solar conditions",
       "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
     }
@@ -66,6 +79,7 @@
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
     "helpUs": "Help us identify the problem by taking a look at the <a href=\"%s\" target=\"_blank\">runtime logs</a> or contact the data provider.",
     "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
+    "aggregationDisabled": "Data is not available for the selected time period due to missing granular breakdown. Try a broader time period.",
     "now": "Now",
     "by-source": {
       "emissions": "Carbon emissions by source",
@@ -178,7 +192,7 @@
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
     "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-    "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
+    "newversion": "A new app version is available!",
     "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
     "retrynow": "Retry now",
     "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
@@ -186,7 +200,9 @@
     "legend": "Legend",
     "faq": "Frequently Asked Questions",
     "privacyPolicy": "Privacy Policy",
-    "legalNotice": "Legal Notice"
+    "legalNotice": "Legal Notice",
+    "dismiss": "Dismiss",
+    "reload": "Reload"
   },
   "wind": "wind",
   "windDataError": "Wind data is currently unavailable",
@@ -1190,6 +1206,10 @@
       "countryName": "Mexico",
       "zoneName": "Baja California"
     },
+    "MX-BCS": {
+      "countryName": "Mexico",
+      "zoneName": "Baja California Sur"
+    },
     "MX-CE": {
       "countryName": "Mexico",
       "zoneName": "Central"
@@ -1472,7 +1492,7 @@
       "zoneName": "South Sudan"
     },
     "ST": {
-      "zoneName": "Sao Tome and Principe"
+      "zoneName": "São Tomé and Príncipe"
     },
     "SV": {
       "zoneName": "El Salvador"
@@ -1485,7 +1505,7 @@
       "zoneName": "Syria"
     },
     "SZ": {
-      "zoneName": "Swaziland"
+      "zoneName": "Eswatini"
     },
     "TC": {
       "zoneName": "Turks and Caicos Islands"
@@ -1589,7 +1609,7 @@
     },
     "US-CAL-BANC": {
       "countryName": "USA",
-      "zoneName": "Balancing Authority Of Northern California"
+      "zoneName": "Balancing Authority of Northern California"
     },
     "US-CAL-CISO": {
       "countryName": "USA",
@@ -1601,7 +1621,7 @@
     },
     "US-CAL-LDWP": {
       "countryName": "USA",
-      "zoneName": "Los Angeles Department Of Water And Power"
+      "zoneName": "Los Angeles Department of Water and Power"
     },
     "US-CAL-TIDC": {
       "countryName": "USA",
@@ -1649,7 +1669,7 @@
     },
     "US-FLA-FPL": {
       "countryName": "USA",
-      "zoneName": "Florida Power & Light Company"
+      "zoneName": "Florida Power and Light Company"
     },
     "US-FLA-GVL": {
       "countryName": "USA",
@@ -1657,7 +1677,7 @@
     },
     "US-FLA-HST": {
       "countryName": "USA",
-      "zoneName": "City Of Homestead"
+      "zoneName": "City of Homestead"
     },
     "US-FLA-JEA": {
       "countryName": "USA",
@@ -1669,7 +1689,7 @@
     },
     "US-FLA-TAL": {
       "countryName": "USA",
-      "zoneName": "City Of Tallahassee"
+      "zoneName": "City of Tallahassee"
     },
     "US-FLA-TEC": {
       "countryName": "USA",
@@ -1677,7 +1697,7 @@
     },
     "US-MIDA-PJM": {
       "countryName": "USA",
-      "zoneName": "PJM Interconnection, Llc"
+      "zoneName": "PJM Interconnection, LLC"
     },
     "US-MIDW-AECI": {
       "countryName": "USA",
@@ -1685,7 +1705,7 @@
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",
-      "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
+      "zoneName": "Louisville Gas and Electric Company and Kentucky Utilities"
     },
     "US-MIDW-MISO": {
       "countryName": "USA",
@@ -1705,23 +1725,23 @@
     },
     "US-NW-CHPD": {
       "countryName": "USA",
-      "zoneName": "PUD No. 1 Of Chelan County"
+      "zoneName": "PUD No. 1 of Chelan County"
     },
     "US-NW-DOPD": {
       "countryName": "USA",
-      "zoneName": "PUD No. 1 Of Douglas County"
+      "zoneName": "PUD No. 1 of Douglas County"
     },
     "US-NW-GCPD": {
       "countryName": "USA",
-      "zoneName": "PUD No. 2 Of Grant County, Washington"
+      "zoneName": "PUD No. 2 of Grant County, Washington"
     },
     "US-NW-GRID": {
       "countryName": "USA",
-      "zoneName": "Gridforce Energy Management, Llc"
+      "zoneName": "Gridforce Energy Management, LLC"
     },
     "US-NW-GWA": {
       "countryName": "USA",
-      "zoneName": "Naturener Power Watch, Llc (Gwa)"
+      "zoneName": "Naturener Power Watch, LLC (Gwa)"
     },
     "US-NW-IPCO": {
       "countryName": "USA",
@@ -1749,7 +1769,7 @@
     },
     "US-NW-PSCO": {
       "countryName": "USA",
-      "zoneName": "Public Service Company Of Colorado"
+      "zoneName": "Public Service Company of Colorado"
     },
     "US-NW-PSEI": {
       "countryName": "USA",
@@ -1761,7 +1781,7 @@
     },
     "US-NW-TPWR": {
       "countryName": "USA",
-      "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
+      "zoneName": "City of Tacoma, Department of Public Utilities, Light Division"
     },
     "US-NW-WACM": {
       "countryName": "USA",
@@ -1773,7 +1793,7 @@
     },
     "US-NW-WWA": {
       "countryName": "USA",
-      "zoneName": "Naturener Wind Watch, Llc"
+      "zoneName": "Naturener Wind Watch, LLC"
     },
     "US-NY-NYIS": {
       "countryName": "USA",
@@ -1801,7 +1821,7 @@
     },
     "US-SW-PNM": {
       "countryName": "USA",
-      "zoneName": "Public Service Company Of New Mexico"
+      "zoneName": "Public Service Company of New Mexico"
     },
     "US-SW-SRP": {
       "countryName": "USA",
@@ -1821,7 +1841,7 @@
     },
     "US-TEX-ERCO": {
       "countryName": "USA",
-      "zoneName": "Electric Reliability Council Of Texas, Inc."
+      "zoneName": "Electric Reliability Council of Texas, Inc."
     },
     "UY": {
       "zoneName": "Uruguay"

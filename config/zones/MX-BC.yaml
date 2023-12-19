@@ -11,6 +11,17 @@ fallbackZoneMixes:
       gas: 0.923
       wind: 0.077
   source: "Electricity Maps & Dra. Gabriela Mu\xF1oz Mel\xE9ndez"
+emissionFactors:
+  direct:
+    unknown:
+      - datetime: '2017-01-01'
+        source: "Electricity Maps & Dra. Gabriela Mu\xF1oz Mel\xE9ndez"
+        value: 453
+  lifecycle:
+    unknown:
+      - datetime: '2017-01-01'
+        source: "Electricity Maps & Dra. Gabriela Mu\xF1oz Mel\xE9ndez"
+        value: 342
 parsers:
   consumption: CENACE.fetch_consumption
 timezone: America/Tijuana

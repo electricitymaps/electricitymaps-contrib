@@ -2,12 +2,13 @@ import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { modeOrder } from 'utils/constants';
+import { PowerUnits } from 'utils/units';
+
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import { getDataBlockPositions } from './utils';
-import { PowerUnits } from 'utils/units';
 
 interface EmptyBarBreakdownChartProps {
   height: number;

@@ -1,12 +1,12 @@
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
 import { useAtom } from 'jotai';
+import { HiExclamationTriangle } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
+import { ZoneDetails } from 'types';
 import { Mode } from 'utils/constants';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
-import { ZoneDetails } from 'types';
-import { HiExclamationTriangle } from 'react-icons/hi2';
 
 function LowCarbonTooltip() {
   const { __ } = useTranslation();

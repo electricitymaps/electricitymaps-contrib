@@ -8,12 +8,13 @@ import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
+
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
-import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 import BySource from './elements/BySource';
+import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
 const X_PADDING = 9;
 

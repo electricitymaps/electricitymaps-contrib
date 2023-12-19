@@ -1,20 +1,21 @@
+import * as fs from 'node:fs';
+
 import {
   area,
   Feature,
-  featureCollection,
   FeatureCollection,
+  featureCollection,
   featureEach,
-  MultiPolygon,
   getCoords,
   getType,
   length,
+  MultiPolygon,
   Polygon,
   polygon,
   polygonToLineString,
   Properties,
   truncate,
 } from '@turf/turf';
-import * as fs from 'node:fs';
 
 /* Transform the feature collection of polygons and multi-polygons into a feature collection of polygons only */
 /* all helper functions should rely on its output */
@@ -99,4 +100,4 @@ function log(message: string) {
 const round = (number: number, decimals = 2): number =>
   Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
 
-export { getPolygons, getHoles, isSliver, writeJSON, getJSON, log, round, fileExists };
+export { fileExists, getHoles, getJSON, getPolygons, isSliver, log, round, writeJSON };

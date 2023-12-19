@@ -1,13 +1,14 @@
+import { max, sum } from 'd3-array';
 import { useTranslation } from 'translation/translation';
 import { Mode, TimeAverages } from 'utils/constants';
+import { formatCo2 } from 'utils/formatting';
+
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
-import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
-import { formatCo2 } from 'utils/formatting';
-import { max, sum } from 'd3-array';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
+import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 
 interface BreakdownChartProps {
   displayByEmissions: boolean;

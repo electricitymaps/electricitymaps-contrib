@@ -1,5 +1,7 @@
 import { round } from 'utils/helpers';
+
 import { bilinearInterpolateVector, windIntensityColorScale } from './windy';
+
 describe('windIntensityColorScale', () => {
   it('should return an array of colors', () => {
     const result = windIntensityColorScale();

@@ -1,0 +1,2972 @@
+
+
+<script src="/jquery/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="/kpx_src/js/highcharts.js"></script>
+<script type="text/javascript" src="/kpx_src/js/exporting.js"></script>
+
+<link rel="stylesheet" href="/main/css/content.css" />
+<link rel="stylesheet" href="/css/common.css" />
+<link rel="stylesheet" href="/main/css/sub.css" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		drawChart2(null, null, null);
+	});
+	function lPad(str, num, chr){
+		str = str +"";
+		if(!str || !chr || str.length >= num){
+			return str;
+		}
+		var max = num - str.length;
+		for(var i =0; i < max; i++){
+			str = chr+str;
+		}
+		return str;
+	}
+
+	function drawChart2(par1, par2, par3){
+	var ictArr = [{"localCoal":"373.953","newRenewable":"3591.31","sunlight":"0.0","oil":"233.421","once":"20230901000000","gas":"13844.6","nuclearPower":"21038.2","coal":"22535.0","regDate":"2023-09-01 00:00","raisingWater":"516.098","waterPower":"903.194","seq":0},{"localCoal":"372.433","newRenewable":"3585.74","sunlight":"0.0","oil":"232.243","once":"20230901000500","gas":"13555.1","nuclearPower":"21011.6","coal":"22566.0","regDate":"2023-09-01 00:05","raisingWater":"589.946","waterPower":"896.427","seq":0},{"localCoal":"372.543","newRenewable":"3580.93","sunlight":"0.0","oil":"232.751","once":"20230901001000","gas":"13276.3","nuclearPower":"21025.6","coal":"22668.6","regDate":"2023-09-01 00:10","raisingWater":"340.346","waterPower":"916.608","seq":0},{"localCoal":"373.88","newRenewable":"3578.75","sunlight":"0.0","oil":"233.916","once":"20230901001500","gas":"13092.5","nuclearPower":"21037.4","coal":"22707.8","regDate":"2023-09-01 00:15","raisingWater":"339.555","waterPower":"913.775","seq":0},{"localCoal":"371.884","newRenewable":"3585.31","sunlight":"0.0","oil":"233.141","once":"20230901002000","gas":"12739.8","nuclearPower":"21036.2","coal":"22537.6","regDate":"2023-09-01 00:20","raisingWater":"316.703","waterPower":"916.159","seq":0},{"localCoal":"372.415","newRenewable":"3589.98","sunlight":"0.0","oil":"233.234","once":"20230901002500","gas":"12579.7","nuclearPower":"21020.4","coal":"22593.6","regDate":"2023-09-01 00:25","raisingWater":"329.967","waterPower":"916.721","seq":0},{"localCoal":"373.038","newRenewable":"3587.11","sunlight":"0.0","oil":"232.829","once":"20230901003000","gas":"12370.4","nuclearPower":"21037.5","coal":"22437.2","regDate":"2023-09-01 00:30","raisingWater":"305.277","waterPower":"916.446","seq":0},{"localCoal":"373.147","newRenewable":"3597.75","sunlight":"0.0","oil":"232.736","once":"20230901003500","gas":"12195.8","nuclearPower":"21039.3","coal":"22287.3","regDate":"2023-09-01 00:35","raisingWater":"303.092","waterPower":"915.268","seq":0},{"localCoal":"370.804","newRenewable":"3600.07","sunlight":"0.0","oil":"232.921","once":"20230901004000","gas":"12057.4","nuclearPower":"21029.8","coal":"22431.3","regDate":"2023-09-01 00:40","raisingWater":"335.48","waterPower":"917.746","seq":0},{"localCoal":"371.316","newRenewable":"3601.07","sunlight":"0.0","oil":"232.963","once":"20230901004500","gas":"11852.1","nuclearPower":"21031.1","coal":"22330.0","regDate":"2023-09-01 00:45","raisingWater":"312.628","waterPower":"914.957","seq":0},{"localCoal":"374.338","newRenewable":"3602.41","sunlight":"0.0","oil":"233.214","once":"20230901005000","gas":"11671.5","nuclearPower":"21039.4","coal":"22297.8","regDate":"2023-09-01 00:50","raisingWater":"313.871","waterPower":"915.434","seq":0},{"localCoal":"373.056","newRenewable":"3600.5","sunlight":"0.0","oil":"233.604","once":"20230901005500","gas":"11507.0","nuclearPower":"21037.6","coal":"22256.6","regDate":"2023-09-01 00:55","raisingWater":"199.764","waterPower":"915.273","seq":0},{"localCoal":"374.722","newRenewable":"3584.35","sunlight":"0.0","oil":"232.666","once":"20230901010000","gas":"11554.4","nuclearPower":"21029.6","coal":"22306.1","regDate":"2023-09-01 01:00","raisingWater":"1.40728","waterPower":"917.218","seq":0},{"localCoal":"373.807","newRenewable":"3583.21","sunlight":"0.0","oil":"233.454","once":"20230901010500","gas":"11538.1","nuclearPower":"21030.7","coal":"22222.6","regDate":"2023-09-01 01:05","raisingWater":"1.30742","waterPower":"915.729","seq":0},{"localCoal":"372.433","newRenewable":"3573.55","sunlight":"0.0","oil":"232.218","once":"20230901011000","gas":"11496.0","nuclearPower":"21035.8","coal":"22290.1","regDate":"2023-09-01 01:10","raisingWater":"1.40728","waterPower":"918.72","seq":0},{"localCoal":"373.385","newRenewable":"3578.28","sunlight":"0.0","oil":"232.794","once":"20230901011500","gas":"11290.9","nuclearPower":"21032.2","coal":"22139.8","regDate":"2023-09-01 01:15","raisingWater":"1.40728","waterPower":"916.142","seq":0},{"localCoal":"373.733","newRenewable":"3565.86","sunlight":"0.0","oil":"232.961","once":"20230901012000","gas":"11000.5","nuclearPower":"21022.5","coal":"22149.6","regDate":"2023-09-01 01:20","raisingWater":"1.40728","waterPower":"918.401","seq":0},{"localCoal":"374.008","newRenewable":"3558.27","sunlight":"0.0","oil":"233.034","once":"20230901012500","gas":"11000.1","nuclearPower":"21024.3","coal":"22210.4","regDate":"2023-09-01 01:25","raisingWater":"1.50762","waterPower":"923.6","seq":0},{"localCoal":"371.664","newRenewable":"3559.68","sunlight":"0.0","oil":"233.258","once":"20230901013000","gas":"10939.0","nuclearPower":"21017.8","coal":"22184.5","regDate":"2023-09-01 01:30","raisingWater":"1.30742","waterPower":"921.644","seq":0},{"localCoal":"374.173","newRenewable":"3552.51","sunlight":"0.0","oil":"233.464","once":"20230901013500","gas":"10969.8","nuclearPower":"21013.4","coal":"22217.3","regDate":"2023-09-01 01:35","raisingWater":"1.30742","waterPower":"921.963","seq":0},{"localCoal":"373.111","newRenewable":"3549.66","sunlight":"0.0","oil":"233.445","once":"20230901014000","gas":"10821.3","nuclearPower":"21024.7","coal":"22157.9","regDate":"2023-09-01 01:40","raisingWater":"0.999805","waterPower":"917.243","seq":0},{"localCoal":"370.95","newRenewable":"3543.52","sunlight":"0.0","oil":"232.55","once":"20230901014500","gas":"10769.7","nuclearPower":"21020.0","coal":"22241.1","regDate":"2023-09-01 01:45","raisingWater":"1.09966","waterPower":"925.234","seq":0},{"localCoal":"371.957","newRenewable":"3541.2","sunlight":"0.0","oil":"233.215","once":"20230901015000","gas":"10520.8","nuclearPower":"21024.1","coal":"22065.5","regDate":"2023-09-01 01:50","raisingWater":"0.899951","waterPower":"917.516","seq":0},{"localCoal":"371.609","newRenewable":"3547.21","sunlight":"0.0","oil":"232.677","once":"20230901015500","gas":"10555.8","nuclearPower":"21024.3","coal":"22208.7","regDate":"2023-09-01 01:55","raisingWater":"-342.369","waterPower":"929.261","seq":0},{"localCoal":"371.151","newRenewable":"3623.64","sunlight":"0.0","oil":"232.472","once":"20230901020000","gas":"10613.8","nuclearPower":"21028.0","coal":"22377.6","regDate":"2023-09-01 02:00","raisingWater":"-631.47","waterPower":"922.483","seq":0},{"localCoal":"372.03","newRenewable":"3635.64","sunlight":"0.0","oil":"233.074","once":"20230901020500","gas":"10728.1","nuclearPower":"21027.0","coal":"22418.8","regDate":"2023-09-01 02:05","raisingWater":"-641.114","waterPower":"918.194","seq":0},{"localCoal":"372.378","newRenewable":"3643.75","sunlight":"0.0","oil":"232.943","once":"20230901021000","gas":"10230.1","nuclearPower":"21019.2","coal":"22463.0","regDate":"2023-09-01 02:10","raisingWater":"-639.205","waterPower":"918.713","seq":0},{"localCoal":"371.335","newRenewable":"3644.67","sunlight":"0.0","oil":"233.13","once":"20230901021500","gas":"9954.98","nuclearPower":"21011.1","coal":"22601.9","regDate":"2023-09-01 02:15","raisingWater":"-637.734","waterPower":"920.206","seq":0},{"localCoal":"371.957","newRenewable":"3658.83","sunlight":"0.0","oil":"233.043","once":"20230901022000","gas":"10116.1","nuclearPower":"21022.5","coal":"22496.9","regDate":"2023-09-01 02:20","raisingWater":"-659.42","waterPower":"916.905","seq":0},{"localCoal":"370.822","newRenewable":"3667.92","sunlight":"0.0","oil":"232.87","once":"20230901022500","gas":"10383.8","nuclearPower":"21006.0","coal":"22390.9","regDate":"2023-09-01 02:25","raisingWater":"-845.45","waterPower":"920.219","seq":0},{"localCoal":"370.913","newRenewable":"3665.5","sunlight":"0.0","oil":"233.608","once":"20230901023000","gas":"10453.0","nuclearPower":"21009.2","coal":"22475.8","regDate":"2023-09-01 02:30","raisingWater":"-1165.58","waterPower":"925.53","seq":0},{"localCoal":"370.053","newRenewable":"3669.83","sunlight":"0.0","oil":"233.967","once":"20230901023500","gas":"10366.4","nuclearPower":"21013.3","coal":"22492.8","regDate":"2023-09-01 02:35","raisingWater":"-1185.96","waterPower":"918.127","seq":0},{"localCoal":"369.21","newRenewable":"3679.21","sunlight":"0.0","oil":"234.501","once":"20230901024000","gas":"10386.3","nuclearPower":"21000.6","coal":"22717.3","regDate":"2023-09-01 02:40","raisingWater":"-1523.29","waterPower":"928.378","seq":0},{"localCoal":"371.701","newRenewable":"3688.4","sunlight":"0.0","oil":"233.943","once":"20230901024500","gas":"10409.3","nuclearPower":"20993.0","coal":"22688.3","regDate":"2023-09-01 02:45","raisingWater":"-1548.74","waterPower":"922.15","seq":0},{"localCoal":"371.975","newRenewable":"3693.8","sunlight":"0.0","oil":"233.809","once":"20230901025000","gas":"10255.8","nuclearPower":"21010.4","coal":"22624.4","regDate":"2023-09-01 02:50","raisingWater":"-1550.86","waterPower":"916.227","seq":0},{"localCoal":"369.137","newRenewable":"3703.1","sunlight":"0.0","oil":"233.371","once":"20230901025500","gas":"10013.8","nuclearPower":"20991.4","coal":"22383.3","regDate":"2023-09-01 02:55","raisingWater":"-1227.1","waterPower":"905.551","seq":0},{"localCoal":"370.364","newRenewable":"3715.19","sunlight":"0.0","oil":"232.101","once":"20230901030000","gas":"9986.0","nuclearPower":"20983.0","coal":"22332.7","regDate":"2023-09-01 03:00","raisingWater":"-1221.35","waterPower":"920.526","seq":0},{"localCoal":"370.675","newRenewable":"3718.35","sunlight":"0.0","oil":"233.94","once":"20230901030500","gas":"9871.57","nuclearPower":"20974.4","coal":"22273.5","regDate":"2023-09-01 03:05","raisingWater":"-1223.54","waterPower":"914.427","seq":0},{"localCoal":"370.767","newRenewable":"3728.66","sunlight":"0.0","oil":"232.953","once":"20230901031000","gas":"9940.93","nuclearPower":"20959.5","coal":"22228.0","regDate":"2023-09-01 03:10","raisingWater":"-1225.07","waterPower":"919.945","seq":0},{"localCoal":"368.826","newRenewable":"3737.59","sunlight":"0.0","oil":"233.711","once":"20230901031500","gas":"10045.3","nuclearPower":"20986.7","coal":"22196.5","regDate":"2023-09-01 03:15","raisingWater":"-1223.0","waterPower":"919.4","seq":0},{"localCoal":"371.243","newRenewable":"3750.42","sunlight":"0.0","oil":"233.46","once":"20230901032000","gas":"9987.6","nuclearPower":"20981.8","coal":"22112.1","regDate":"2023-09-01 03:20","raisingWater":"-1226.11","waterPower":"912.955","seq":0},{"localCoal":"366.189","newRenewable":"3763.87","sunlight":"0.0","oil":"233.364","once":"20230901032500","gas":"10102.7","nuclearPower":"20965.3","coal":"22213.7","regDate":"2023-09-01 03:25","raisingWater":"-1556.91","waterPower":"919.885","seq":0},{"localCoal":"367.16","newRenewable":"3777.19","sunlight":"0.0","oil":"233.653","once":"20230901033000","gas":"10148.5","nuclearPower":"20962.8","coal":"22233.0","regDate":"2023-09-01 03:30","raisingWater":"-1576.82","waterPower":"915.215","seq":0},{"localCoal":"367.434","newRenewable":"3779.67","sunlight":"0.0","oil":"233.114","once":"20230901033500","gas":"10120.0","nuclearPower":"20969.8","coal":"22526.6","regDate":"2023-09-01 03:35","raisingWater":"-1583.7","waterPower":"921.237","seq":0},{"localCoal":"366.317","newRenewable":"3797.79","sunlight":"0.0","oil":"233.036","once":"20230901034000","gas":"10091.0","nuclearPower":"20966.6","coal":"22594.6","regDate":"2023-09-01 03:40","raisingWater":"-1973.77","waterPower":"914.431","seq":0},{"localCoal":"366.281","newRenewable":"3798.08","sunlight":"0.0","oil":"233.838","once":"20230901034500","gas":"10287.4","nuclearPower":"20960.3","coal":"22573.2","regDate":"2023-09-01 03:45","raisingWater":"-1974.83","waterPower":"918.869","seq":0},{"localCoal":"364.614","newRenewable":"3807.87","sunlight":"0.0","oil":"233.387","once":"20230901035000","gas":"10188.4","nuclearPower":"20947.6","coal":"22580.5","regDate":"2023-09-01 03:50","raisingWater":"-1973.13","waterPower":"916.919","seq":0},{"localCoal":"365.457","newRenewable":"3804.7","sunlight":"0.0","oil":"232.425","once":"20230901035500","gas":"10053.7","nuclearPower":"20985.6","coal":"22492.8","regDate":"2023-09-01 03:55","raisingWater":"-1973.54","waterPower":"914.063","seq":0},{"localCoal":"365.036","newRenewable":"3809.74","sunlight":"13.2724","oil":"233.123","once":"20230901040000","gas":"10154.9","nuclearPower":"20981.2","coal":"22448.2","regDate":"2023-09-01 04:00","raisingWater":"-1977.58","waterPower":"915.895","seq":0},{"localCoal":"365.475","newRenewable":"3806.17","sunlight":"14.3104","oil":"232.885","once":"20230901040500","gas":"10201.8","nuclearPower":"20955.6","coal":"22328.0","regDate":"2023-09-01 04:05","raisingWater":"-1974.98","waterPower":"916.49","seq":0},{"localCoal":"365.255","newRenewable":"3808.91","sunlight":"14.3104","oil":"233.855","once":"20230901041000","gas":"10053.5","nuclearPower":"20961.6","coal":"22525.7","regDate":"2023-09-01 04:10","raisingWater":"-1967.6","waterPower":"912.207","seq":0},{"localCoal":"364.871","newRenewable":"3813.08","sunlight":"13.9313","oil":"233.099","once":"20230901041500","gas":"10111.0","nuclearPower":"20962.4","coal":"22587.6","regDate":"2023-09-01 04:15","raisingWater":"-1964.76","waterPower":"913.066","seq":0},{"localCoal":"364.578","newRenewable":"3818.03","sunlight":"13.1479","oil":"233.72","once":"20230901042000","gas":"9998.75","nuclearPower":"20966.0","coal":"22340.0","regDate":"2023-09-01 04:20","raisingWater":"-1966.67","waterPower":"910.253","seq":0},{"localCoal":"363.9","newRenewable":"3822.17","sunlight":"14.2535","oil":"233.557","once":"20230901042500","gas":"10068.3","nuclearPower":"20960.3","coal":"22387.2","regDate":"2023-09-01 04:25","raisingWater":"-1965.06","waterPower":"913.646","seq":0},{"localCoal":"365.091","newRenewable":"3821.88","sunlight":"13.877","oil":"234.468","once":"20230901043000","gas":"10200.6","nuclearPower":"20957.3","coal":"22637.6","regDate":"2023-09-01 04:30","raisingWater":"-1968.35","waterPower":"916.09","seq":0},{"localCoal":"365.219","newRenewable":"3820.72","sunlight":"13.7207","oil":"233.952","once":"20230901043500","gas":"10318.3","nuclearPower":"20962.2","coal":"22616.8","regDate":"2023-09-01 04:35","raisingWater":"-1963.73","waterPower":"913.666","seq":0},{"localCoal":"359.341","newRenewable":"3816.82","sunlight":"14.1723","oil":"234.134","once":"20230901044000","gas":"10203.0","nuclearPower":"20965.5","coal":"22433.3","regDate":"2023-09-01 04:40","raisingWater":"-1968.08","waterPower":"908.195","seq":0},{"localCoal":"356.008","newRenewable":"3817.51","sunlight":"13.9179","oil":"233.51","once":"20230901044500","gas":"10172.8","nuclearPower":"20972.8","coal":"22425.9","regDate":"2023-09-01 04:45","raisingWater":"-1967.17","waterPower":"908.601","seq":0},{"localCoal":"351.54","newRenewable":"3819.66","sunlight":"13.2749","oil":"234.021","once":"20230901045000","gas":"10362.2","nuclearPower":"20981.3","coal":"22579.6","regDate":"2023-09-01 04:50","raisingWater":"-1961.68","waterPower":"911.604","seq":0},{"localCoal":"353.152","newRenewable":"3816.58","sunlight":"14.8167","oil":"233.764","once":"20230901045500","gas":"10387.5","nuclearPower":"20989.6","coal":"22501.1","regDate":"2023-09-01 04:55","raisingWater":"-1965.51","waterPower":"910.003","seq":0},{"localCoal":"352.584","newRenewable":"3819.89","sunlight":"14.3421","oil":"233.913","once":"20230901050000","gas":"10259.4","nuclearPower":"20961.4","coal":"22589.3","regDate":"2023-09-01 05:00","raisingWater":"-1958.83","waterPower":"915.017","seq":0},{"localCoal":"352.639","newRenewable":"3824.07","sunlight":"21.5336","oil":"234.046","once":"20230901050500","gas":"10446.5","nuclearPower":"20969.3","coal":"22641.3","regDate":"2023-09-01 05:05","raisingWater":"-1962.18","waterPower":"913.565","seq":0},{"localCoal":"351.961","newRenewable":"3826.77","sunlight":"20.6069","oil":"233.882","once":"20230901051000","gas":"10618.2","nuclearPower":"20981.5","coal":"22705.7","regDate":"2023-09-01 05:10","raisingWater":"-1963.77","waterPower":"904.875","seq":0},{"localCoal":"351.778","newRenewable":"3813.24","sunlight":"20.8437","oil":"234.061","once":"20230901051500","gas":"10340.2","nuclearPower":"21011.9","coal":"22411.2","regDate":"2023-09-01 05:15","raisingWater":"-1548.86","waterPower":"899.208","seq":0},{"localCoal":"352.364","newRenewable":"3813.21","sunlight":"20.6732","oil":"233.101","once":"20230901052000","gas":"10470.5","nuclearPower":"20990.1","coal":"22656.9","regDate":"2023-09-01 05:20","raisingWater":"-1545.28","waterPower":"905.958","seq":0},{"localCoal":"350.423","newRenewable":"3838.96","sunlight":"20.3991","oil":"234.32","once":"20230901052500","gas":"10626.6","nuclearPower":"20988.2","coal":"22458.1","regDate":"2023-09-01 05:25","raisingWater":"-1546.0","waterPower":"901.12","seq":0},{"localCoal":"350.313","newRenewable":"3833.91","sunlight":"20.8724","oil":"233.922","once":"20230901053000","gas":"10615.6","nuclearPower":"20987.1","coal":"22451.1","regDate":"2023-09-01 05:30","raisingWater":"-1545.11","waterPower":"901.758","seq":0},{"localCoal":"350.789","newRenewable":"3837.88","sunlight":"20.6112","oil":"233.233","once":"20230901053500","gas":"10810.3","nuclearPower":"20988.5","coal":"22502.4","regDate":"2023-09-01 05:35","raisingWater":"-1543.86","waterPower":"903.4","seq":0},{"localCoal":"348.794","newRenewable":"3840.72","sunlight":"20.4901","oil":"233.556","once":"20230901054000","gas":"10925.9","nuclearPower":"20956.3","coal":"22716.0","regDate":"2023-09-01 05:40","raisingWater":"-1542.06","waterPower":"909.948","seq":0},{"localCoal":"348.83","newRenewable":"3842.84","sunlight":"20.4734","oil":"234.543","once":"20230901054500","gas":"10947.6","nuclearPower":"20982.7","coal":"22612.5","regDate":"2023-09-01 05:45","raisingWater":"-1541.33","waterPower":"907.209","seq":0},{"localCoal":"347.585","newRenewable":"3838.8","sunlight":"20.7031","oil":"234.307","once":"20230901055000","gas":"11038.7","nuclearPower":"20986.6","coal":"22500.2","regDate":"2023-09-01 05:50","raisingWater":"-1542.14","waterPower":"901.711","seq":0},{"localCoal":"348.794","newRenewable":"3845.59","sunlight":"20.7771","oil":"233.171","once":"20230901055500","gas":"11238.6","nuclearPower":"21001.0","coal":"22355.4","regDate":"2023-09-01 05:55","raisingWater":"-1543.37","waterPower":"901.749","seq":0},{"localCoal":"348.281","newRenewable":"3838.42","sunlight":"20.4454","oil":"233.47","once":"20230901060000","gas":"11449.5","nuclearPower":"20984.7","coal":"22565.1","regDate":"2023-09-01 06:00","raisingWater":"-1539.31","waterPower":"927.439","seq":0},{"localCoal":"348.336","newRenewable":"3850.87","sunlight":"20.7108","oil":"233.067","once":"20230901060500","gas":"11830.9","nuclearPower":"20994.8","coal":"22678.6","regDate":"2023-09-01 06:05","raisingWater":"-1542.4","waterPower":"944.4","seq":0},{"localCoal":"347.75","newRenewable":"3849.52","sunlight":"21.1791","oil":"233.031","once":"20230901061000","gas":"11902.0","nuclearPower":"20995.9","coal":"22515.6","regDate":"2023-09-01 06:10","raisingWater":"-1215.03","waterPower":"930.89","seq":0},{"localCoal":"349.032","newRenewable":"3847.7","sunlight":"21.3822","oil":"232.192","once":"20230901061500","gas":"12087.2","nuclearPower":"21012.3","coal":"22527.5","regDate":"2023-09-01 06:15","raisingWater":"-1213.15","waterPower":"930.786","seq":0},{"localCoal":"348.61","newRenewable":"3851.76","sunlight":"22.2722","oil":"231.933","once":"20230901062000","gas":"12184.7","nuclearPower":"20995.9","coal":"22462.9","regDate":"2023-09-01 06:20","raisingWater":"-908.016","waterPower":"931.446","seq":0},{"localCoal":"349.435","newRenewable":"3850.6","sunlight":"24.3191","oil":"231.372","once":"20230901062500","gas":"12385.7","nuclearPower":"20989.3","coal":"22428.1","regDate":"2023-09-01 06:25","raisingWater":"-906.428","waterPower":"933.499","seq":0},{"localCoal":"349.581","newRenewable":"3863.03","sunlight":"28.7164","oil":"232.082","once":"20230901063000","gas":"12623.1","nuclearPower":"21005.2","coal":"22470.9","regDate":"2023-09-01 06:30","raisingWater":"-905.752","waterPower":"933.495","seq":0},{"localCoal":"350.716","newRenewable":"3864.4","sunlight":"40.576","oil":"231.623","once":"20230901063500","gas":"12924.5","nuclearPower":"20987.4","coal":"22554.5","regDate":"2023-09-01 06:35","raisingWater":"-907.837","waterPower":"930.044","seq":0},{"localCoal":"348.318","newRenewable":"3850.35","sunlight":"56.2159","oil":"231.889","once":"20230901064000","gas":"13079.4","nuclearPower":"21005.1","coal":"22473.3","regDate":"2023-09-01 06:40","raisingWater":"-907.772","waterPower":"932.116","seq":0},{"localCoal":"348.208","newRenewable":"3854.44","sunlight":"77.6794","oil":"232.754","once":"20230901064500","gas":"13161.6","nuclearPower":"21003.1","coal":"22721.7","regDate":"2023-09-01 06:45","raisingWater":"-903.596","waterPower":"946.032","seq":0},{"localCoal":"350.039","newRenewable":"3850.27","sunlight":"104.674","oil":"231.58","once":"20230901065000","gas":"13448.3","nuclearPower":"21008.3","coal":"22706.4","regDate":"2023-09-01 06:50","raisingWater":"-905.15","waterPower":"933.88","seq":0},{"localCoal":"346.871","newRenewable":"3846.07","sunlight":"137.396","oil":"232.687","once":"20230901065500","gas":"13883.5","nuclearPower":"21014.5","coal":"22764.2","regDate":"2023-09-01 06:55","raisingWater":"-904.614","waterPower":"929.089","seq":0},{"localCoal":"348.171","newRenewable":"3828.28","sunlight":"175.106","oil":"231.82","once":"20230901070000","gas":"14017.6","nuclearPower":"21014.7","coal":"22567.9","regDate":"2023-09-01 07:00","raisingWater":"-579.317","waterPower":"923.634","seq":0},{"localCoal":"349.508","newRenewable":"3816.92","sunlight":"221.164","oil":"232.139","once":"20230901070500","gas":"14329.0","nuclearPower":"21008.6","coal":"22761.5","regDate":"2023-09-01 07:05","raisingWater":"-376.478","waterPower":"943.322","seq":0},{"localCoal":"355.001","newRenewable":"3811.15","sunlight":"272.013","oil":"232.339","once":"20230901071000","gas":"14512.1","nuclearPower":"21006.3","coal":"22874.2","regDate":"2023-09-01 07:10","raisingWater":"-375.524","waterPower":"934.1","seq":0},{"localCoal":"352.639","newRenewable":"3804.44","sunlight":"325.857","oil":"232.299","once":"20230901071500","gas":"14674.6","nuclearPower":"21023.5","coal":"22915.7","regDate":"2023-09-01 07:15","raisingWater":"-376.271","waterPower":"933.921","seq":0},{"localCoal":"352.822","newRenewable":"3787.41","sunlight":"374.01","oil":"232.326","once":"20230901072000","gas":"14942.8","nuclearPower":"21008.3","coal":"22919.8","regDate":"2023-09-01 07:20","raisingWater":"-376.466","waterPower":"932.331","seq":0},{"localCoal":"353.793","newRenewable":"3776.64","sunlight":"425.773","oil":"232.488","once":"20230901072500","gas":"15193.3","nuclearPower":"21023.0","coal":"23042.0","regDate":"2023-09-01 07:25","raisingWater":"-375.875","waterPower":"936.885","seq":0},{"localCoal":"355.331","newRenewable":"3761.29","sunlight":"483.597","oil":"232.489","once":"20230901073000","gas":"15641.6","nuclearPower":"21008.9","coal":"23094.1","regDate":"2023-09-01 07:30","raisingWater":"-375.883","waterPower":"943.498","seq":0},{"localCoal":"353.994","newRenewable":"3746.04","sunlight":"543.612","oil":"232.946","once":"20230901073500","gas":"15513.2","nuclearPower":"21007.7","coal":"23141.6","regDate":"2023-09-01 07:35","raisingWater":"2.60625","waterPower":"929.45","seq":0},{"localCoal":"361.154","newRenewable":"3736.41","sunlight":"605.583","oil":"232.581","once":"20230901074000","gas":"15750.1","nuclearPower":"21025.0","coal":"23188.7","regDate":"2023-09-01 07:40","raisingWater":"1.40728","waterPower":"934.109","seq":0},{"localCoal":"363.699","newRenewable":"3721.42","sunlight":"662.125","oil":"233.097","once":"20230901074500","gas":"15960.1","nuclearPower":"21015.0","coal":"23015.3","regDate":"2023-09-01 07:45","raisingWater":"1.30742","waterPower":"933.739","seq":0},{"localCoal":"366.134","newRenewable":"3713.81","sunlight":"726.851","oil":"231.761","once":"20230901075000","gas":"16148.9","nuclearPower":"21015.6","coal":"23197.0","regDate":"2023-09-01 07:50","raisingWater":"0.999805","waterPower":"934.341","seq":0},{"localCoal":"365.786","newRenewable":"3698.33","sunlight":"793.448","oil":"232.995","once":"20230901075500","gas":"16333.2","nuclearPower":"21010.5","coal":"23169.7","regDate":"2023-09-01 07:55","raisingWater":"1.40728","waterPower":"935.443","seq":0},{"localCoal":"367.013","newRenewable":"3682.35","sunlight":"866.994","oil":"232.01","once":"20230901080000","gas":"16786.0","nuclearPower":"21003.3","coal":"23432.8","regDate":"2023-09-01 08:00","raisingWater":"0.79961","waterPower":"1029.96","seq":0},{"localCoal":"364.852","newRenewable":"3668.94","sunlight":"928.233","oil":"232.238","once":"20230901080500","gas":"17295.6","nuclearPower":"21015.9","coal":"23664.7","regDate":"2023-09-01 08:05","raisingWater":"1.40728","waterPower":"1041.29","seq":0},{"localCoal":"368.918","newRenewable":"3623.31","sunlight":"1031.01","oil":"232.348","once":"20230901081000","gas":"17573.2","nuclearPower":"21007.4","coal":"23725.5","regDate":"2023-09-01 08:10","raisingWater":"0.899707","waterPower":"1033.38","seq":0},{"localCoal":"369.284","newRenewable":"3602.88","sunlight":"1113.68","oil":"232.773","once":"20230901081500","gas":"17914.5","nuclearPower":"21012.6","coal":"23943.7","regDate":"2023-09-01 08:15","raisingWater":"0.899707","waterPower":"1038.94","seq":0},{"localCoal":"369.265","newRenewable":"3576.59","sunlight":"1203.87","oil":"232.331","once":"20230901082000","gas":"18084.6","nuclearPower":"21002.8","coal":"23847.5","regDate":"2023-09-01 08:20","raisingWater":"1.09966","waterPower":"1018.38","seq":0},{"localCoal":"371.005","newRenewable":"3542.12","sunlight":"1286.55","oil":"231.759","once":"20230901082500","gas":"18597.7","nuclearPower":"21012.7","coal":"23823.4","regDate":"2023-09-01 08:25","raisingWater":"1.40728","waterPower":"1033.72","seq":0},{"localCoal":"372.397","newRenewable":"3531.96","sunlight":"1360.22","oil":"232.242","once":"20230901083000","gas":"19118.7","nuclearPower":"21017.9","coal":"23872.8","regDate":"2023-09-01 08:30","raisingWater":"0.999805","waterPower":"1034.47","seq":0},{"localCoal":"370.968","newRenewable":"3519.0","sunlight":"1443.77","oil":"232.642","once":"20230901083500","gas":"19637.3","nuclearPower":"21018.9","coal":"24060.7","regDate":"2023-09-01 08:35","raisingWater":"1.09966","waterPower":"1038.85","seq":0},{"localCoal":"370.858","newRenewable":"3488.88","sunlight":"1541.51","oil":"232.688","once":"20230901084000","gas":"19788.6","nuclearPower":"21019.2","coal":"23952.3","regDate":"2023-09-01 08:40","raisingWater":"1.09966","waterPower":"1022.21","seq":0},{"localCoal":"370.108","newRenewable":"3456.22","sunlight":"1656.12","oil":"232.251","once":"20230901084500","gas":"19988.9","nuclearPower":"21028.6","coal":"24033.4","regDate":"2023-09-01 08:45","raisingWater":"1.20732","waterPower":"1024.22","seq":0},{"localCoal":"371.261","newRenewable":"3444.12","sunlight":"1745.01","oil":"232.501","once":"20230901085000","gas":"19883.6","nuclearPower":"21007.5","coal":"23943.7","regDate":"2023-09-01 08:50","raisingWater":"201.754","waterPower":"1014.86","seq":0},{"localCoal":"371.298","newRenewable":"3430.76","sunlight":"1822.87","oil":"233.106","once":"20230901085500","gas":"20176.3","nuclearPower":"21015.7","coal":"23968.5","regDate":"2023-09-01 08:55","raisingWater":"199.469","waterPower":"1021.87","seq":0},{"localCoal":"372.268","newRenewable":"3406.77","sunlight":"1919.27","oil":"232.718","once":"20230901090000","gas":"20135.7","nuclearPower":"21007.1","coal":"23926.5","regDate":"2023-09-01 09:00","raisingWater":"201.007","waterPower":"1005.86","seq":0},{"localCoal":"373.166","newRenewable":"3384.27","sunlight":"2007.82","oil":"232.66","once":"20230901090500","gas":"20480.5","nuclearPower":"21019.3","coal":"23921.3","regDate":"2023-09-01 09:05","raisingWater":"199.469","waterPower":"981.258","seq":0},{"localCoal":"373.935","newRenewable":"3345.61","sunlight":"2119.28","oil":"231.773","once":"20230901091000","gas":"20421.7","nuclearPower":"21021.6","coal":"23925.6","regDate":"2023-09-01 09:10","raisingWater":"409.921","waterPower":"983.337","seq":0},{"localCoal":"370.364","newRenewable":"3297.6","sunlight":"2262.66","oil":"232.527","once":"20230901091500","gas":"20299.3","nuclearPower":"21020.3","coal":"23940.2","regDate":"2023-09-01 09:15","raisingWater":"420.585","waterPower":"983.098","seq":0},{"localCoal":"369.87","newRenewable":"3259.45","sunlight":"2386.14","oil":"230.906","once":"20230901092000","gas":"20355.3","nuclearPower":"21010.1","coal":"23955.3","regDate":"2023-09-01 09:20","raisingWater":"417.664","waterPower":"988.446","seq":0},{"localCoal":"372.543","newRenewable":"3237.67","sunlight":"2489.65","oil":"231.732","once":"20230901092500","gas":"20354.7","nuclearPower":"21028.6","coal":"23880.3","regDate":"2023-09-01 09:25","raisingWater":"417.583","waterPower":"976.448","seq":0},{"localCoal":"370.419","newRenewable":"3209.98","sunlight":"2594.14","oil":"233.347","once":"20230901093000","gas":"20354.8","nuclearPower":"21005.1","coal":"23870.2","regDate":"2023-09-01 09:30","raisingWater":"418.582","waterPower":"989.42","seq":0},{"localCoal":"369.906","newRenewable":"3201.04","sunlight":"2712.31","oil":"233.094","once":"20230901093500","gas":"20239.9","nuclearPower":"21016.8","coal":"23856.3","regDate":"2023-09-01 09:35","raisingWater":"417.125","waterPower":"971.37","seq":0},{"localCoal":"371.994","newRenewable":"3187.1","sunlight":"2796.3","oil":"232.779","once":"20230901094000","gas":"20123.9","nuclearPower":"21005.5","coal":"23583.8","regDate":"2023-09-01 09:40","raisingWater":"411.681","waterPower":"959.183","seq":0},{"localCoal":"370.675","newRenewable":"3159.69","sunlight":"2944.3","oil":"233.21","once":"20230901094500","gas":"20147.9","nuclearPower":"21017.8","coal":"23594.5","regDate":"2023-09-01 09:45","raisingWater":"416.756","waterPower":"966.191","seq":0},{"localCoal":"368.972","newRenewable":"3150.65","sunlight":"3044.42","oil":"231.385","once":"20230901095000","gas":"20189.7","nuclearPower":"21007.4","coal":"23464.7","regDate":"2023-09-01 09:50","raisingWater":"411.234","waterPower":"956.031","seq":0},{"localCoal":"371.628","newRenewable":"3144.21","sunlight":"3127.01","oil":"233.416","once":"20230901095500","gas":"19957.2","nuclearPower":"21008.7","coal":"23397.0","regDate":"2023-09-01 09:55","raisingWater":"415.065","waterPower":"964.672","seq":0},{"localCoal":"369.687","newRenewable":"3122.56","sunlight":"3199.22","oil":"233.735","once":"20230901100000","gas":"19850.4","nuclearPower":"21008.8","coal":"23202.7","regDate":"2023-09-01 10:00","raisingWater":"412.934","waterPower":"882.371","seq":0},{"localCoal":"371.042","newRenewable":"3079.66","sunlight":"3355.96","oil":"231.985","once":"20230901100500","gas":"19683.6","nuclearPower":"21033.2","coal":"22944.2","regDate":"2023-09-01 10:05","raisingWater":"405.847","waterPower":"874.296","seq":0},{"localCoal":"371.06","newRenewable":"3043.96","sunlight":"3464.57","oil":"248.189","once":"20230901101000","gas":"20171.2","nuclearPower":"21011.0","coal":"22891.4","regDate":"2023-09-01 10:10","raisingWater":"214.761","waterPower":"886.226","seq":0},{"localCoal":"370.327","newRenewable":"2996.99","sunlight":"3556.77","oil":"256.945","once":"20230901101500","gas":"20375.8","nuclearPower":"21004.9","coal":"22912.9","regDate":"2023-09-01 10:15","raisingWater":"220.824","waterPower":"898.505","seq":0},{"localCoal":"370.071","newRenewable":"2874.35","sunlight":"3699.84","oil":"236.664","once":"20230901102000","gas":"20443.5","nuclearPower":"21020.2","coal":"22987.0","regDate":"2023-09-01 10:20","raisingWater":"219.816","waterPower":"895.03","seq":0},{"localCoal":"368.094","newRenewable":"2840.05","sunlight":"3814.88","oil":"233.152","once":"20230901102500","gas":"20277.2","nuclearPower":"21018.8","coal":"22812.0","regDate":"2023-09-01 10:25","raisingWater":"218.743","waterPower":"886.669","seq":0},{"localCoal":"369.943","newRenewable":"2847.5","sunlight":"3815.97","oil":"233.034","once":"20230901103000","gas":"20204.1","nuclearPower":"21031.6","coal":"22698.9","regDate":"2023-09-01 10:30","raisingWater":"216.93","waterPower":"877.879","seq":0},{"localCoal":"369.21","newRenewable":"2819.86","sunlight":"3926.41","oil":"233.707","once":"20230901103500","gas":"20269.6","nuclearPower":"21031.1","coal":"22539.8","regDate":"2023-09-01 10:35","raisingWater":"216.923","waterPower":"879.457","seq":0},{"localCoal":"369.742","newRenewable":"2800.78","sunlight":"3996.47","oil":"232.979","once":"20230901104000","gas":"20475.9","nuclearPower":"21024.9","coal":"22546.6","regDate":"2023-09-01 10:40","raisingWater":"1.30742","waterPower":"901.524","seq":0},{"localCoal":"370.163","newRenewable":"2780.3","sunlight":"4082.28","oil":"232.906","once":"20230901104500","gas":"20341.2","nuclearPower":"21024.9","coal":"22551.6","regDate":"2023-09-01 10:45","raisingWater":"0.999805","waterPower":"893.648","seq":0},{"localCoal":"370.144","newRenewable":"2753.13","sunlight":"4158.27","oil":"232.82","once":"20230901105000","gas":"20362.5","nuclearPower":"21026.6","coal":"22607.7","regDate":"2023-09-01 10:50","raisingWater":"0.899707","waterPower":"900.818","seq":0},{"localCoal":"368.936","newRenewable":"2718.5","sunlight":"4251.71","oil":"234.384","once":"20230901105500","gas":"20195.2","nuclearPower":"21035.4","coal":"22406.7","regDate":"2023-09-01 10:55","raisingWater":"1.20732","waterPower":"886.276","seq":0},{"localCoal":"369.778","newRenewable":"2717.62","sunlight":"4286.65","oil":"238.784","once":"20230901110000","gas":"20062.0","nuclearPower":"21042.2","coal":"22128.8","regDate":"2023-09-01 11:00","raisingWater":"1.09966","waterPower":"880.7","seq":0},{"localCoal":"370.749","newRenewable":"2691.23","sunlight":"4390.68","oil":"241.662","once":"20230901110500","gas":"19736.9","nuclearPower":"21033.5","coal":"22021.4","regDate":"2023-09-01 11:05","raisingWater":"0.999805","waterPower":"889.539","seq":0},{"localCoal":"365.036","newRenewable":"2683.08","sunlight":"4437.31","oil":"236.698","once":"20230901111000","gas":"19830.8","nuclearPower":"21017.8","coal":"21818.2","regDate":"2023-09-01 11:10","raisingWater":"1.20732","waterPower":"890.757","seq":0},{"localCoal":"363.662","newRenewable":"2679.68","sunlight":"4582.73","oil":"238.121","once":"20230901111500","gas":"19855.5","nuclearPower":"21021.2","coal":"21450.3","regDate":"2023-09-01 11:15","raisingWater":"1.20732","waterPower":"895.391","seq":0},{"localCoal":"364.376","newRenewable":"2662.41","sunlight":"4673.27","oil":"246.419","once":"20230901112000","gas":"19977.0","nuclearPower":"21019.7","coal":"21245.5","regDate":"2023-09-01 11:20","raisingWater":"1.30742","waterPower":"885.335","seq":0},{"localCoal":"362.435","newRenewable":"2625.36","sunlight":"4795.46","oil":"264.923","once":"20230901112500","gas":"19919.8","nuclearPower":"21029.4","coal":"20922.7","regDate":"2023-09-01 11:25","raisingWater":"1.10723","waterPower":"886.234","seq":0},{"localCoal":"361.758","newRenewable":"2636.38","sunlight":"4796.81","oil":"263.223","once":"20230901113000","gas":"19737.7","nuclearPower":"21026.6","coal":"20672.8","regDate":"2023-09-01 11:30","raisingWater":"1.20732","waterPower":"851.448","seq":0},{"localCoal":"360.934","newRenewable":"2622.48","sunlight":"4795.74","oil":"237.513","once":"20230901113500","gas":"19722.2","nuclearPower":"21028.6","coal":"20375.1","regDate":"2023-09-01 11:35","raisingWater":"-8.22047","waterPower":"852.701","seq":0},{"localCoal":"353.042","newRenewable":"2597.55","sunlight":"4820.04","oil":"233.146","once":"20230901114000","gas":"19869.8","nuclearPower":"21023.7","coal":"20241.5","regDate":"2023-09-01 11:40","raisingWater":"-327.974","waterPower":"853.62","seq":0},{"localCoal":"352.804","newRenewable":"2583.43","sunlight":"4928.32","oil":"233.358","once":"20230901114500","gas":"19668.3","nuclearPower":"21009.0","coal":"20145.3","regDate":"2023-09-01 11:45","raisingWater":"-335.906","waterPower":"849.806","seq":0},{"localCoal":"354.012","newRenewable":"2597.66","sunlight":"4916.27","oil":"233.415","once":"20230901115000","gas":"19413.6","nuclearPower":"21012.1","coal":"19950.4","regDate":"2023-09-01 11:50","raisingWater":"-360.997","waterPower":"847.451","seq":0},{"localCoal":"351.192","newRenewable":"2572.76","sunlight":"4994.97","oil":"231.824","once":"20230901115500","gas":"19505.0","nuclearPower":"21021.6","coal":"19768.1","regDate":"2023-09-01 11:55","raisingWater":"-703.403","waterPower":"849.896","seq":0},{"localCoal":"350.918","newRenewable":"2545.3","sunlight":"5089.53","oil":"233.887","once":"20230901120000","gas":"19412.6","nuclearPower":"21021.4","coal":"19582.1","regDate":"2023-09-01 12:00","raisingWater":"-908.985","waterPower":"850.273","seq":0},{"localCoal":"351.998","newRenewable":"2566.43","sunlight":"5090.95","oil":"233.524","once":"20230901120500","gas":"19312.8","nuclearPower":"21038.8","coal":"19715.8","regDate":"2023-09-01 12:05","raisingWater":"-1151.04","waterPower":"882.901","seq":0},{"localCoal":"351.705","newRenewable":"2622.9","sunlight":"5060.54","oil":"233.192","once":"20230901121000","gas":"19321.2","nuclearPower":"21014.0","coal":"19650.7","regDate":"2023-09-01 12:10","raisingWater":"-1246.87","waterPower":"890.994","seq":0},{"localCoal":"350.46","newRenewable":"2629.92","sunlight":"5116.24","oil":"233.507","once":"20230901121500","gas":"18932.9","nuclearPower":"21025.6","coal":"19812.9","regDate":"2023-09-01 12:15","raisingWater":"-1241.83","waterPower":"914.288","seq":0},{"localCoal":"349.782","newRenewable":"2645.37","sunlight":"5172.4","oil":"234.224","once":"20230901122000","gas":"19060.9","nuclearPower":"21023.5","coal":"19643.1","regDate":"2023-09-01 12:20","raisingWater":"-1269.8","waterPower":"856.88","seq":0},{"localCoal":"350.588","newRenewable":"2648.76","sunlight":"5206.12","oil":"233.693","once":"20230901122500","gas":"19329.0","nuclearPower":"21023.9","coal":"19565.9","regDate":"2023-09-01 12:25","raisingWater":"-1655.73","waterPower":"910.889","seq":0},{"localCoal":"349.288","newRenewable":"2645.0","sunlight":"5201.7","oil":"234.993","once":"20230901123000","gas":"19112.0","nuclearPower":"21028.8","coal":"19632.8","regDate":"2023-09-01 12:30","raisingWater":"-1651.46","waterPower":"903.05","seq":0},{"localCoal":"350.515","newRenewable":"2652.51","sunlight":"5224.77","oil":"235.598","once":"20230901123500","gas":"19157.2","nuclearPower":"21015.9","coal":"19607.1","regDate":"2023-09-01 12:35","raisingWater":"-1650.43","waterPower":"877.041","seq":0},{"localCoal":"349.563","newRenewable":"2665.38","sunlight":"5172.07","oil":"234.692","once":"20230901124000","gas":"19151.4","nuclearPower":"21016.1","coal":"19511.3","regDate":"2023-09-01 12:40","raisingWater":"-1653.71","waterPower":"893.316","seq":0},{"localCoal":"350.57","newRenewable":"2681.03","sunlight":"5192.14","oil":"235.0","once":"20230901124500","gas":"19121.6","nuclearPower":"21033.5","coal":"19598.8","regDate":"2023-09-01 12:45","raisingWater":"-1651.1","waterPower":"892.813","seq":0},{"localCoal":"348.94","newRenewable":"2705.32","sunlight":"5198.02","oil":"233.382","once":"20230901125000","gas":"19183.4","nuclearPower":"21009.2","coal":"19771.7","regDate":"2023-09-01 12:50","raisingWater":"-1645.61","waterPower":"917.62","seq":0},{"localCoal":"349.526","newRenewable":"2700.59","sunlight":"5293.94","oil":"233.265","once":"20230901125500","gas":"19144.7","nuclearPower":"21029.9","coal":"19733.9","regDate":"2023-09-01 12:55","raisingWater":"-1653.16","waterPower":"915.343","seq":0},{"localCoal":"350.844","newRenewable":"2749.34","sunlight":"5260.5","oil":"234.335","once":"20230901130000","gas":"19427.9","nuclearPower":"21017.5","coal":"19939.0","regDate":"2023-09-01 13:00","raisingWater":"-1322.76","waterPower":"917.044","seq":0},{"localCoal":"350.863","newRenewable":"2792.22","sunlight":"5248.5","oil":"233.905","once":"20230901130500","gas":"19480.7","nuclearPower":"21027.1","coal":"19980.9","regDate":"2023-09-01 13:05","raisingWater":"-703.152","waterPower":"958.656","seq":0},{"localCoal":"349.764","newRenewable":"2833.81","sunlight":"5207.77","oil":"235.648","once":"20230901131000","gas":"19681.1","nuclearPower":"21034.4","coal":"20122.8","regDate":"2023-09-01 13:10","raisingWater":"-702.718","waterPower":"961.688","seq":0},{"localCoal":"351.156","newRenewable":"2878.62","sunlight":"5244.68","oil":"235.95","once":"20230901131500","gas":"19765.7","nuclearPower":"21030.0","coal":"20225.3","regDate":"2023-09-01 13:15","raisingWater":"-702.062","waterPower":"959.744","seq":0},{"localCoal":"351.943","newRenewable":"2929.4","sunlight":"5218.25","oil":"235.403","once":"20230901132000","gas":"19973.1","nuclearPower":"21032.0","coal":"20300.7","regDate":"2023-09-01 13:20","raisingWater":"-697.601","waterPower":"959.823","seq":0},{"localCoal":"350.313","newRenewable":"2986.54","sunlight":"5188.62","oil":"235.427","once":"20230901132500","gas":"19929.4","nuclearPower":"21020.5","coal":"20339.1","regDate":"2023-09-01 13:25","raisingWater":"-374.381","waterPower":"961.871","seq":0},{"localCoal":"350.863","newRenewable":"3015.54","sunlight":"5146.38","oil":"234.867","once":"20230901133000","gas":"19680.9","nuclearPower":"21041.0","coal":"20312.6","regDate":"2023-09-01 13:30","raisingWater":"1.09966","waterPower":"942.44","seq":0},{"localCoal":"352.291","newRenewable":"3041.91","sunlight":"5073.97","oil":"233.635","once":"20230901133500","gas":"20271.7","nuclearPower":"21015.9","coal":"20215.3","regDate":"2023-09-01 13:35","raisingWater":"1.09966","waterPower":"957.865","seq":0},{"localCoal":"350.698","newRenewable":"3034.28","sunlight":"5098.27","oil":"233.194","once":"20230901134000","gas":"20468.5","nuclearPower":"21035.1","coal":"20158.6","regDate":"2023-09-01 13:40","raisingWater":"121.366","waterPower":"952.908","seq":0},{"localCoal":"351.156","newRenewable":"3056.77","sunlight":"5077.93","oil":"234.202","once":"20230901134500","gas":"20552.3","nuclearPower":"21023.9","coal":"20418.1","regDate":"2023-09-01 13:45","raisingWater":"136.321","waterPower":"932.684","seq":0},{"localCoal":"351.339","newRenewable":"3091.02","sunlight":"5000.35","oil":"232.768","once":"20230901135000","gas":"20490.2","nuclearPower":"21033.4","coal":"20423.8","regDate":"2023-09-01 13:50","raisingWater":"121.56","waterPower":"923.415","seq":0},{"localCoal":"351.522","newRenewable":"3142.22","sunlight":"4960.38","oil":"234.687","once":"20230901135500","gas":"20375.3","nuclearPower":"21025.2","coal":"20550.1","regDate":"2023-09-01 13:55","raisingWater":"122.748","waterPower":"920.65","seq":0},{"localCoal":"353.023","newRenewable":"3160.94","sunlight":"4978.05","oil":"234.614","once":"20230901140000","gas":"20493.4","nuclearPower":"21016.2","coal":"20723.3","regDate":"2023-09-01 14:00","raisingWater":"128.258","waterPower":"928.62","seq":0},{"localCoal":"350.716","newRenewable":"3166.22","sunlight":"5016.2","oil":"241.185","once":"20230901140500","gas":"20615.7","nuclearPower":"21016.3","coal":"20738.0","regDate":"2023-09-01 14:05","raisingWater":"125.284","waterPower":"922.024","seq":0},{"localCoal":"356.283","newRenewable":"3181.12","sunlight":"5001.76","oil":"244.85","once":"20230901141000","gas":"20710.3","nuclearPower":"21031.9","coal":"20805.8","regDate":"2023-09-01 14:10","raisingWater":"121.494","waterPower":"896.256","seq":0},{"localCoal":"359.286","newRenewable":"3211.39","sunlight":"4960.57","oil":"246.499","once":"20230901141500","gas":"20880.3","nuclearPower":"21026.2","coal":"20742.3","regDate":"2023-09-01 14:15","raisingWater":"120.729","waterPower":"883.763","seq":0},{"localCoal":"359.762","newRenewable":"3283.17","sunlight":"4782.86","oil":"248.066","once":"20230901142000","gas":"21116.1","nuclearPower":"21025.3","coal":"20677.6","regDate":"2023-09-01 14:20","raisingWater":"121.012","waterPower":"882.38","seq":0},{"localCoal":"362.38","newRenewable":"3292.72","sunlight":"4798.94","oil":"249.847","once":"20230901142500","gas":"21369.1","nuclearPower":"21029.2","coal":"20570.7","regDate":"2023-09-01 14:25","raisingWater":"123.551","waterPower":"905.954","seq":0},{"localCoal":"360.732","newRenewable":"3300.53","sunlight":"4817.08","oil":"250.851","once":"20230901143000","gas":"21266.1","nuclearPower":"21041.2","coal":"20485.2","regDate":"2023-09-01 14:30","raisingWater":"119.827","waterPower":"873.253","seq":0},{"localCoal":"362.087","newRenewable":"3354.74","sunlight":"4734.68","oil":"253.451","once":"20230901143500","gas":"21556.8","nuclearPower":"21039.9","coal":"20516.7","regDate":"2023-09-01 14:35","raisingWater":"122.252","waterPower":"891.695","seq":0},{"localCoal":"361.538","newRenewable":"3407.11","sunlight":"4632.75","oil":"253.318","once":"20230901144000","gas":"21799.6","nuclearPower":"21028.4","coal":"20271.7","regDate":"2023-09-01 14:40","raisingWater":"120.94","waterPower":"889.43","seq":0},{"localCoal":"360.403","newRenewable":"3435.56","sunlight":"4566.15","oil":"254.126","once":"20230901144500","gas":"21992.1","nuclearPower":"21042.5","coal":"20244.8","regDate":"2023-09-01 14:45","raisingWater":"122.814","waterPower":"894.862","seq":0},{"localCoal":"360.0","newRenewable":"3492.45","sunlight":"4508.12","oil":"255.556","once":"20230901145000","gas":"22130.5","nuclearPower":"21026.0","coal":"20321.5","regDate":"2023-09-01 14:50","raisingWater":"145.348","waterPower":"915.617","seq":0},{"localCoal":"363.699","newRenewable":"3517.08","sunlight":"4469.12","oil":"261.015","once":"20230901145500","gas":"22167.6","nuclearPower":"21021.1","coal":"20271.8","regDate":"2023-09-01 14:55","raisingWater":"123.9","waterPower":"933.358","seq":0},{"localCoal":"363.662","newRenewable":"3516.72","sunlight":"4437.5","oil":"261.216","once":"20230901150000","gas":"22052.2","nuclearPower":"21031.1","coal":"20303.9","regDate":"2023-09-01 15:00","raisingWater":"121.243","waterPower":"917.015","seq":0},{"localCoal":"362.509","newRenewable":"3565.92","sunlight":"4373.81","oil":"269.401","once":"20230901150500","gas":"22142.6","nuclearPower":"21035.0","coal":"20017.7","regDate":"2023-09-01 15:05","raisingWater":"120.939","waterPower":"950.536","seq":0},{"localCoal":"361.996","newRenewable":"3593.17","sunlight":"4237.49","oil":"269.344","once":"20230901151000","gas":"22385.7","nuclearPower":"21031.2","coal":"20038.6","regDate":"2023-09-01 15:10","raisingWater":"120.922","waterPower":"982.388","seq":0},{"localCoal":"364.578","newRenewable":"3665.74","sunlight":"4187.71","oil":"268.787","once":"20230901151500","gas":"22448.1","nuclearPower":"21030.0","coal":"20100.9","regDate":"2023-09-01 15:15","raisingWater":"126.721","waterPower":"962.61","seq":0},{"localCoal":"363.882","newRenewable":"3678.88","sunlight":"4062.48","oil":"268.415","once":"20230901152000","gas":"22632.0","nuclearPower":"21028.0","coal":"20310.4","regDate":"2023-09-01 15:20","raisingWater":"129.043","waterPower":"1014.95","seq":0},{"localCoal":"361.648","newRenewable":"3680.18","sunlight":"4019.99","oil":"267.968","once":"20230901152500","gas":"22615.5","nuclearPower":"21019.2","coal":"20738.5","regDate":"2023-09-01 15:25","raisingWater":"507.633","waterPower":"1008.96","seq":0},{"localCoal":"363.827","newRenewable":"3699.52","sunlight":"3960.18","oil":"269.185","once":"20230901153000","gas":"22289.6","nuclearPower":"21012.7","coal":"20610.8","regDate":"2023-09-01 15:30","raisingWater":"905.932","waterPower":"977.948","seq":0},{"localCoal":"363.223","newRenewable":"3696.9","sunlight":"3830.49","oil":"269.466","once":"20230901153500","gas":"22225.1","nuclearPower":"21020.5","coal":"20724.3","regDate":"2023-09-01 15:35","raisingWater":"913.298","waterPower":"1002.26","seq":0},{"localCoal":"363.571","newRenewable":"3708.89","sunlight":"3744.75","oil":"269.124","once":"20230901154000","gas":"22439.5","nuclearPower":"21024.6","coal":"20846.0","regDate":"2023-09-01 15:40","raisingWater":"920.338","waterPower":"999.981","seq":0},{"localCoal":"365.731","newRenewable":"3720.5","sunlight":"3666.75","oil":"269.245","once":"20230901154500","gas":"22699.2","nuclearPower":"21018.4","coal":"21073.1","regDate":"2023-09-01 15:45","raisingWater":"1075.33","waterPower":"1001.73","seq":0},{"localCoal":"366.244","newRenewable":"3722.35","sunlight":"3494.94","oil":"275.435","once":"20230901155000","gas":"22784.1","nuclearPower":"21037.2","coal":"21191.3","regDate":"2023-09-01 15:50","raisingWater":"1103.41","waterPower":"1005.31","seq":0},{"localCoal":"366.537","newRenewable":"3726.69","sunlight":"3369.7","oil":"272.401","once":"20230901155500","gas":"22930.8","nuclearPower":"21042.5","coal":"21320.6","regDate":"2023-09-01 15:55","raisingWater":"1146.95","waterPower":"1001.21","seq":0},{"localCoal":"365.86","newRenewable":"3730.55","sunlight":"3418.18","oil":"274.781","once":"20230901160000","gas":"22966.4","nuclearPower":"21025.0","coal":"21399.8","regDate":"2023-09-01 16:00","raisingWater":"1145.72","waterPower":"1003.42","seq":0},{"localCoal":"366.153","newRenewable":"3735.24","sunlight":"3374.82","oil":"274.326","once":"20230901160500","gas":"22687.9","nuclearPower":"21034.3","coal":"21768.3","regDate":"2023-09-01 16:05","raisingWater":"1101.39","waterPower":"970.734","seq":0},{"localCoal":"364.944","newRenewable":"3758.45","sunlight":"3224.49","oil":"275.474","once":"20230901161000","gas":"22920.9","nuclearPower":"21024.8","coal":"21947.9","regDate":"2023-09-01 16:10","raisingWater":"1147.8","waterPower":"963.291","seq":0},{"localCoal":"367.434","newRenewable":"3916.69","sunlight":"3033.74","oil":"277.562","once":"20230901161500","gas":"23003.0","nuclearPower":"21038.4","coal":"22071.3","regDate":"2023-09-01 16:15","raisingWater":"1344.36","waterPower":"969.377","seq":0},{"localCoal":"368.533","newRenewable":"4004.88","sunlight":"2869.86","oil":"296.039","once":"20230901162000","gas":"22967.8","nuclearPower":"21020.5","coal":"22258.3","regDate":"2023-09-01 16:20","raisingWater":"1341.93","waterPower":"966.654","seq":0},{"localCoal":"366.116","newRenewable":"3998.73","sunlight":"2795.02","oil":"311.159","once":"20230901162500","gas":"23153.9","nuclearPower":"21035.4","coal":"22424.4","regDate":"2023-09-01 16:25","raisingWater":"1200.94","waterPower":"966.915","seq":0},{"localCoal":"365.695","newRenewable":"4041.31","sunlight":"2676.43","oil":"330.133","once":"20230901163000","gas":"23084.9","nuclearPower":"21031.8","coal":"22706.5","regDate":"2023-09-01 16:30","raisingWater":"1158.44","waterPower":"1029.02","seq":0},{"localCoal":"367.855","newRenewable":"4020.09","sunlight":"2655.07","oil":"331.038","once":"20230901163500","gas":"23244.5","nuclearPower":"21040.6","coal":"22740.8","regDate":"2023-09-01 16:35","raisingWater":"1027.02","waterPower":"1051.41","seq":0},{"localCoal":"367.801","newRenewable":"4053.74","sunlight":"2569.48","oil":"332.266","once":"20230901164000","gas":"23321.6","nuclearPower":"21031.2","coal":"22922.6","regDate":"2023-09-01 16:40","raisingWater":"1054.35","waterPower":"1065.33","seq":0},{"localCoal":"365.805","newRenewable":"4066.04","sunlight":"2495.83","oil":"332.05","once":"20230901164500","gas":"23505.8","nuclearPower":"21004.5","coal":"22839.6","regDate":"2023-09-01 16:45","raisingWater":"1037.2","waterPower":"1059.62","seq":0},{"localCoal":"367.178","newRenewable":"4107.01","sunlight":"2360.98","oil":"331.45","once":"20230901165000","gas":"23533.2","nuclearPower":"21008.6","coal":"22930.3","regDate":"2023-09-01 16:50","raisingWater":"1039.95","waterPower":"1059.55","seq":0},{"localCoal":"365.017","newRenewable":"4100.21","sunlight":"2306.01","oil":"332.389","once":"20230901165500","gas":"23221.7","nuclearPower":"21009.4","coal":"22874.0","regDate":"2023-09-01 16:55","raisingWater":"1264.01","waterPower":"1043.44","seq":0},{"localCoal":"366.226","newRenewable":"4131.3","sunlight":"2208.98","oil":"332.291","once":"20230901170000","gas":"22950.6","nuclearPower":"21005.9","coal":"23141.5","regDate":"2023-09-01 17:00","raisingWater":"1295.98","waterPower":"1014.25","seq":0},{"localCoal":"367.416","newRenewable":"4138.24","sunlight":"2123.1","oil":"331.942","once":"20230901170500","gas":"22943.2","nuclearPower":"21001.4","coal":"23068.6","regDate":"2023-09-01 17:05","raisingWater":"1270.64","waterPower":"996.338","seq":0},{"localCoal":"364.724","newRenewable":"4210.38","sunlight":"1919.18","oil":"332.183","once":"20230901171000","gas":"23177.7","nuclearPower":"21007.7","coal":"23020.8","regDate":"2023-09-01 17:10","raisingWater":"1277.06","waterPower":"1000.92","seq":0},{"localCoal":"366.482","newRenewable":"4282.59","sunlight":"1760.64","oil":"331.491","once":"20230901171500","gas":"23153.8","nuclearPower":"20999.5","coal":"23189.8","regDate":"2023-09-01 17:15","raisingWater":"1306.59","waterPower":"1024.1","seq":0},{"localCoal":"366.702","newRenewable":"4334.85","sunlight":"1654.15","oil":"331.888","once":"20230901172000","gas":"23199.4","nuclearPower":"21006.1","coal":"23427.9","regDate":"2023-09-01 17:20","raisingWater":"1306.89","waterPower":"1023.72","seq":0},{"localCoal":"367.965","newRenewable":"4360.17","sunlight":"1514.45","oil":"331.534","once":"20230901172500","gas":"23328.3","nuclearPower":"21007.6","coal":"23460.5","regDate":"2023-09-01 17:25","raisingWater":"1291.63","waterPower":"999.186","seq":0},{"localCoal":"365.86","newRenewable":"4423.32","sunlight":"1405.17","oil":"332.576","once":"20230901173000","gas":"23286.7","nuclearPower":"21015.0","coal":"23558.5","regDate":"2023-09-01 17:30","raisingWater":"1293.88","waterPower":"998.604","seq":0},{"localCoal":"365.182","newRenewable":"4433.77","sunlight":"1321.33","oil":"330.707","once":"20230901173500","gas":"23244.8","nuclearPower":"20999.6","coal":"23516.5","regDate":"2023-09-01 17:35","raisingWater":"1278.85","waterPower":"998.337","seq":0},{"localCoal":"365.53","newRenewable":"4443.53","sunlight":"1236.3","oil":"332.131","once":"20230901174000","gas":"23097.5","nuclearPower":"21012.3","coal":"23554.0","regDate":"2023-09-01 17:40","raisingWater":"1276.55","waterPower":"945.125","seq":0},{"localCoal":"366.482","newRenewable":"4457.89","sunlight":"1141.55","oil":"331.701","once":"20230901174500","gas":"23214.9","nuclearPower":"20991.7","coal":"23842.6","regDate":"2023-09-01 17:45","raisingWater":"1306.85","waterPower":"955.911","seq":0},{"localCoal":"365.768","newRenewable":"4473.56","sunlight":"1044.35","oil":"331.603","once":"20230901175000","gas":"23382.2","nuclearPower":"21000.3","coal":"23680.4","regDate":"2023-09-01 17:50","raisingWater":"1275.85","waterPower":"947.537","seq":0},{"localCoal":"366.098","newRenewable":"4495.42","sunlight":"938.44","oil":"331.694","once":"20230901175500","gas":"23429.0","nuclearPower":"21005.8","coal":"23554.9","regDate":"2023-09-01 17:55","raisingWater":"1271.18","waterPower":"944.57","seq":0},{"localCoal":"366.409","newRenewable":"4520.28","sunlight":"827.543","oil":"331.766","once":"20230901180000","gas":"23412.3","nuclearPower":"21017.3","coal":"23703.7","regDate":"2023-09-01 18:00","raisingWater":"1285.29","waterPower":"854.475","seq":0},{"localCoal":"365.383","newRenewable":"4527.9","sunlight":"739.265","oil":"333.226","once":"20230901180500","gas":"23177.3","nuclearPower":"20996.7","coal":"23663.3","regDate":"2023-09-01 18:05","raisingWater":"1246.67","waterPower":"811.484","seq":0},{"localCoal":"365.988","newRenewable":"4533.51","sunlight":"653.718","oil":"331.27","once":"20230901181000","gas":"23102.9","nuclearPower":"21007.5","coal":"23623.2","regDate":"2023-09-01 18:10","raisingWater":"1280.88","waterPower":"838.787","seq":0},{"localCoal":"364.578","newRenewable":"4576.04","sunlight":"563.402","oil":"330.909","once":"20230901181500","gas":"23280.3","nuclearPower":"21001.0","coal":"23684.5","regDate":"2023-09-01 18:15","raisingWater":"1284.62","waterPower":"836.698","seq":0},{"localCoal":"366.006","newRenewable":"4647.37","sunlight":"454.824","oil":"332.62","once":"20230901182000","gas":"23383.5","nuclearPower":"20995.7","coal":"23636.9","regDate":"2023-09-01 18:20","raisingWater":"1288.83","waterPower":"836.092","seq":0},{"localCoal":"366.134","newRenewable":"4667.91","sunlight":"372.871","oil":"332.416","once":"20230901182500","gas":"23459.0","nuclearPower":"20989.4","coal":"23721.8","regDate":"2023-09-01 18:25","raisingWater":"1283.54","waterPower":"839.571","seq":0},{"localCoal":"366.574","newRenewable":"4684.53","sunlight":"313.835","oil":"333.451","once":"20230901183000","gas":"23570.9","nuclearPower":"21004.7","coal":"23648.4","regDate":"2023-09-01 18:30","raisingWater":"1281.06","waterPower":"834.371","seq":0},{"localCoal":"365.493","newRenewable":"4698.36","sunlight":"255.266","oil":"338.392","once":"20230901183500","gas":"23455.8","nuclearPower":"20983.3","coal":"23716.2","regDate":"2023-09-01 18:35","raisingWater":"1298.21","waterPower":"836.632","seq":0},{"localCoal":"366.684","newRenewable":"4711.61","sunlight":"195.595","oil":"341.546","once":"20230901184000","gas":"23512.7","nuclearPower":"20993.2","coal":"23663.2","regDate":"2023-09-01 18:40","raisingWater":"1297.7","waterPower":"830.666","seq":0},{"localCoal":"365.841","newRenewable":"4723.56","sunlight":"149.08","oil":"346.372","once":"20230901184500","gas":"23676.2","nuclearPower":"20968.8","coal":"23704.2","regDate":"2023-09-01 18:45","raisingWater":"1281.29","waterPower":"834.854","seq":0},{"localCoal":"363.864","newRenewable":"4734.47","sunlight":"105.487","oil":"345.49","once":"20230901185000","gas":"23759.8","nuclearPower":"20983.8","coal":"23615.2","regDate":"2023-09-01 18:50","raisingWater":"1280.55","waterPower":"834.088","seq":0},{"localCoal":"366.207","newRenewable":"4741.69","sunlight":"61.0313","oil":"346.197","once":"20230901185500","gas":"23722.8","nuclearPower":"20968.3","coal":"23724.4","regDate":"2023-09-01 18:55","raisingWater":"1307.52","waterPower":"844.691","seq":0},{"localCoal":"366.208","newRenewable":"4747.15","sunlight":"28.8268","oil":"346.234","once":"20230901190000","gas":"23885.8","nuclearPower":"20991.0","coal":"23684.3","regDate":"2023-09-01 19:00","raisingWater":"1281.68","waterPower":"835.146","seq":0},{"localCoal":"364.486","newRenewable":"4761.33","sunlight":"5.26572","oil":"346.323","once":"20230901190500","gas":"23663.5","nuclearPower":"20978.5","coal":"23599.5","regDate":"2023-09-01 19:05","raisingWater":"1281.82","waterPower":"835.415","seq":0},{"localCoal":"365.768","newRenewable":"4794.44","sunlight":"0.0","oil":"346.328","once":"20230901191000","gas":"23747.8","nuclearPower":"20983.1","coal":"23800.4","regDate":"2023-09-01 19:10","raisingWater":"1298.4","waterPower":"846.884","seq":0},{"localCoal":"363.809","newRenewable":"4827.14","sunlight":"0.0","oil":"346.323","once":"20230901191500","gas":"23921.9","nuclearPower":"20977.2","coal":"23805.2","regDate":"2023-09-01 19:15","raisingWater":"1294.88","waterPower":"837.595","seq":0},{"localCoal":"364.45","newRenewable":"4849.31","sunlight":"0.0","oil":"344.999","once":"20230901192000","gas":"23734.7","nuclearPower":"20983.9","coal":"23664.2","regDate":"2023-09-01 19:20","raisingWater":"1286.78","waterPower":"830.536","seq":0},{"localCoal":"367.251","newRenewable":"4865.52","sunlight":"0.0","oil":"344.973","once":"20230901192500","gas":"23580.2","nuclearPower":"20973.7","coal":"23719.3","regDate":"2023-09-01 19:25","raisingWater":"1291.91","waterPower":"822.088","seq":0},{"localCoal":"364.523","newRenewable":"4857.07","sunlight":"0.0","oil":"346.636","once":"20230901193000","gas":"23400.1","nuclearPower":"20985.0","coal":"23719.3","regDate":"2023-09-01 19:30","raisingWater":"1274.64","waterPower":"789.092","seq":0},{"localCoal":"366.445","newRenewable":"4843.59","sunlight":"0.0","oil":"346.614","once":"20230901193500","gas":"23361.1","nuclearPower":"20994.1","coal":"23760.3","regDate":"2023-09-01 19:35","raisingWater":"1291.81","waterPower":"789.31","seq":0},{"localCoal":"365.786","newRenewable":"4844.53","sunlight":"0.0","oil":"346.234","once":"20230901194000","gas":"23265.8","nuclearPower":"20998.4","coal":"23804.1","regDate":"2023-09-01 19:40","raisingWater":"1287.52","waterPower":"787.382","seq":0},{"localCoal":"365.091","newRenewable":"4833.72","sunlight":"0.0","oil":"344.79","once":"20230901194500","gas":"23017.2","nuclearPower":"20995.2","coal":"23639.2","regDate":"2023-09-01 19:45","raisingWater":"1275.81","waterPower":"782.884","seq":0},{"localCoal":"366.299","newRenewable":"4815.18","sunlight":"0.0","oil":"346.369","once":"20230901195000","gas":"22711.5","nuclearPower":"20997.4","coal":"23633.0","regDate":"2023-09-01 19:50","raisingWater":"1251.39","waterPower":"774.939","seq":0},{"localCoal":"366.372","newRenewable":"4815.27","sunlight":"0.0","oil":"346.435","once":"20230901195500","gas":"22464.1","nuclearPower":"20995.5","coal":"23537.5","regDate":"2023-09-01 19:55","raisingWater":"1263.1","waterPower":"778.613","seq":0},{"localCoal":"365.274","newRenewable":"4787.85","sunlight":"0.0","oil":"345.956","once":"20230901200000","gas":"22343.4","nuclearPower":"21008.8","coal":"23539.0","regDate":"2023-09-01 20:00","raisingWater":"1261.56","waterPower":"753.673","seq":0},{"localCoal":"367.031","newRenewable":"4757.17","sunlight":"0.0","oil":"345.877","once":"20230901200500","gas":"22163.1","nuclearPower":"21008.9","coal":"23368.5","regDate":"2023-09-01 20:05","raisingWater":"1246.36","waterPower":"688.229","seq":0},{"localCoal":"364.523","newRenewable":"4704.33","sunlight":"0.0","oil":"337.453","once":"20230901201000","gas":"22228.9","nuclearPower":"20994.2","coal":"23424.1","regDate":"2023-09-01 20:10","raisingWater":"1310.47","waterPower":"695.648","seq":0},{"localCoal":"365.383","newRenewable":"4694.21","sunlight":"0.0","oil":"331.938","once":"20230901201500","gas":"22062.2","nuclearPower":"20991.9","coal":"23350.9","regDate":"2023-09-01 20:15","raisingWater":"1280.17","waterPower":"689.704","seq":0},{"localCoal":"366.867","newRenewable":"4683.1","sunlight":"0.0","oil":"322.073","once":"20230901202000","gas":"21668.2","nuclearPower":"20992.7","coal":"23498.2","regDate":"2023-09-01 20:20","raisingWater":"1271.47","waterPower":"689.265","seq":0},{"localCoal":"365.475","newRenewable":"4663.02","sunlight":"0.0","oil":"313.086","once":"20230901202500","gas":"21589.5","nuclearPower":"21006.3","coal":"23312.5","regDate":"2023-09-01 20:25","raisingWater":"1279.87","waterPower":"689.471","seq":0},{"localCoal":"367.288","newRenewable":"4644.38","sunlight":"0.0","oil":"309.16","once":"20230901203000","gas":"21194.2","nuclearPower":"21008.5","coal":"23205.4","regDate":"2023-09-01 20:30","raisingWater":"1257.48","waterPower":"688.682","seq":0},{"localCoal":"370.84","newRenewable":"4631.19","sunlight":"0.0","oil":"307.448","once":"20230901203500","gas":"21045.2","nuclearPower":"20996.8","coal":"23344.2","regDate":"2023-09-01 20:35","raisingWater":"1294.29","waterPower":"693.281","seq":0},{"localCoal":"371.371","newRenewable":"4611.86","sunlight":"0.0","oil":"305.505","once":"20230901204000","gas":"20979.4","nuclearPower":"21003.6","coal":"23308.7","regDate":"2023-09-01 20:40","raisingWater":"1278.44","waterPower":"689.066","seq":0},{"localCoal":"370.016","newRenewable":"4592.39","sunlight":"0.0","oil":"304.776","once":"20230901204500","gas":"20634.5","nuclearPower":"20992.1","coal":"23303.8","regDate":"2023-09-01 20:45","raisingWater":"1280.56","waterPower":"690.19","seq":0},{"localCoal":"373.092","newRenewable":"4562.1","sunlight":"0.0","oil":"305.783","once":"20230901205000","gas":"20176.3","nuclearPower":"20981.6","coal":"23225.0","regDate":"2023-09-01 20:50","raisingWater":"1269.15","waterPower":"688.88","seq":0},{"localCoal":"372.58","newRenewable":"4538.52","sunlight":"0.0","oil":"305.385","once":"20230901205500","gas":"20296.1","nuclearPower":"20982.5","coal":"23406.0","regDate":"2023-09-01 20:55","raisingWater":"1293.62","waterPower":"691.368","seq":0},{"localCoal":"370.95","newRenewable":"4501.14","sunlight":"0.0","oil":"306.015","once":"20230901210000","gas":"20034.2","nuclearPower":"21012.8","coal":"23359.3","regDate":"2023-09-01 21:00","raisingWater":"1152.1","waterPower":"689.224","seq":0},{"localCoal":"373.092","newRenewable":"4476.68","sunlight":"0.0","oil":"304.472","once":"20230901210500","gas":"20144.6","nuclearPower":"20991.8","coal":"23300.2","regDate":"2023-09-01 21:05","raisingWater":"929.355","waterPower":"688.457","seq":0},{"localCoal":"371.811","newRenewable":"4430.08","sunlight":"0.0","oil":"304.064","once":"20230901211000","gas":"20034.4","nuclearPower":"21005.4","coal":"23353.9","regDate":"2023-09-01 21:10","raisingWater":"940.006","waterPower":"689.515","seq":0},{"localCoal":"372.598","newRenewable":"4340.73","sunlight":"0.0","oil":"304.905","once":"20230901211500","gas":"19838.2","nuclearPower":"21005.8","coal":"23437.6","regDate":"2023-09-01 21:15","raisingWater":"932.272","waterPower":"689.44","seq":0},{"localCoal":"372.873","newRenewable":"4294.17","sunlight":"0.0","oil":"303.648","once":"20230901212000","gas":"19526.7","nuclearPower":"21005.9","coal":"23165.2","regDate":"2023-09-01 21:20","raisingWater":"927.656","waterPower":"688.734","seq":0},{"localCoal":"374.026","newRenewable":"4252.9","sunlight":"0.0","oil":"305.12","once":"20230901212500","gas":"19350.6","nuclearPower":"21013.3","coal":"23187.4","regDate":"2023-09-01 21:25","raisingWater":"912.148","waterPower":"688.647","seq":0},{"localCoal":"373.916","newRenewable":"4221.58","sunlight":"0.0","oil":"305.641","once":"20230901213000","gas":"19256.3","nuclearPower":"20984.5","coal":"23131.0","regDate":"2023-09-01 21:30","raisingWater":"931.385","waterPower":"689.332","seq":0},{"localCoal":"375.18","newRenewable":"4205.84","sunlight":"0.0","oil":"305.329","once":"20230901213500","gas":"19025.8","nuclearPower":"21003.7","coal":"23178.5","regDate":"2023-09-01 21:35","raisingWater":"823.368","waterPower":"689.052","seq":0},{"localCoal":"373.916","newRenewable":"4162.06","sunlight":"0.0","oil":"305.148","once":"20230901214000","gas":"18836.5","nuclearPower":"21013.5","coal":"23163.1","regDate":"2023-09-01 21:40","raisingWater":"644.575","waterPower":"689.584","seq":0},{"localCoal":"372.122","newRenewable":"4129.88","sunlight":"0.0","oil":"303.072","once":"20230901214500","gas":"18769.6","nuclearPower":"20990.4","coal":"23142.2","regDate":"2023-09-01 21:45","raisingWater":"643.789","waterPower":"690.643","seq":0},{"localCoal":"373.385","newRenewable":"4098.81","sunlight":"0.0","oil":"304.466","once":"20230901215000","gas":"18448.1","nuclearPower":"21014.8","coal":"23116.1","regDate":"2023-09-01 21:50","raisingWater":"648.847","waterPower":"689.612","seq":0},{"localCoal":"371.957","newRenewable":"4072.03","sunlight":"0.0","oil":"304.172","once":"20230901215500","gas":"18438.6","nuclearPower":"21021.0","coal":"23098.5","regDate":"2023-09-01 21:55","raisingWater":"648.185","waterPower":"689.492","seq":0},{"localCoal":"372.818","newRenewable":"4047.08","sunlight":"0.0","oil":"306.343","once":"20230901220000","gas":"18335.7","nuclearPower":"20998.1","coal":"23161.2","regDate":"2023-09-01 22:00","raisingWater":"650.269","waterPower":"686.214","seq":0},{"localCoal":"371.078","newRenewable":"4018.27","sunlight":"0.0","oil":"305.183","once":"20230901220500","gas":"18449.6","nuclearPower":"20993.3","coal":"23080.8","regDate":"2023-09-01 22:05","raisingWater":"656.417","waterPower":"686.773","seq":0},{"localCoal":"372.745","newRenewable":"3979.79","sunlight":"0.0","oil":"304.958","once":"20230901221000","gas":"18351.9","nuclearPower":"21024.5","coal":"23273.5","regDate":"2023-09-01 22:10","raisingWater":"669.735","waterPower":"663.805","seq":0},{"localCoal":"374.154","newRenewable":"3963.38","sunlight":"0.0","oil":"305.379","once":"20230901221500","gas":"18242.5","nuclearPower":"21025.4","coal":"23314.8","regDate":"2023-09-01 22:15","raisingWater":"635.765","waterPower":"662.178","seq":0},{"localCoal":"370.913","newRenewable":"3934.55","sunlight":"0.0","oil":"305.107","once":"20230901222000","gas":"18128.7","nuclearPower":"21017.5","coal":"23518.4","regDate":"2023-09-01 22:20","raisingWater":"668.872","waterPower":"665.263","seq":0},{"localCoal":"370.657","newRenewable":"3904.66","sunlight":"0.0","oil":"306.52","once":"20230901222500","gas":"17945.8","nuclearPower":"20998.8","coal":"23452.5","regDate":"2023-09-01 22:25","raisingWater":"638.573","waterPower":"661.232","seq":0},{"localCoal":"373.147","newRenewable":"3887.86","sunlight":"0.0","oil":"305.455","once":"20230901223000","gas":"17659.7","nuclearPower":"21017.3","coal":"23365.8","regDate":"2023-09-01 22:30","raisingWater":"650.65","waterPower":"650.865","seq":0},{"localCoal":"373.477","newRenewable":"3879.18","sunlight":"0.0","oil":"305.077","once":"20230901223500","gas":"17514.7","nuclearPower":"21019.3","coal":"23299.6","regDate":"2023-09-01 22:35","raisingWater":"638.921","waterPower":"649.58","seq":0},{"localCoal":"372.653","newRenewable":"3864.85","sunlight":"0.0","oil":"305.566","once":"20230901224000","gas":"17397.9","nuclearPower":"21026.4","coal":"23387.7","regDate":"2023-09-01 22:40","raisingWater":"646.358","waterPower":"652.48","seq":0},{"localCoal":"371.335","newRenewable":"3860.11","sunlight":"0.0","oil":"305.415","once":"20230901224500","gas":"17108.9","nuclearPower":"21016.0","coal":"23386.4","regDate":"2023-09-01 22:45","raisingWater":"656.59","waterPower":"651.954","seq":0},{"localCoal":"372.983","newRenewable":"3858.19","sunlight":"0.0","oil":"304.212","once":"20230901225000","gas":"16936.5","nuclearPower":"21018.3","coal":"23414.1","regDate":"2023-09-01 22:50","raisingWater":"636.344","waterPower":"651.208","seq":0},{"localCoal":"371.536","newRenewable":"3854.5","sunlight":"0.0","oil":"305.759","once":"20230901225500","gas":"16769.4","nuclearPower":"21023.1","coal":"23281.9","regDate":"2023-09-01 22:55","raisingWater":"635.101","waterPower":"648.488","seq":0},{"localCoal":"371.994","newRenewable":"3852.83","sunlight":"0.0","oil":"304.292","once":"20230901230000","gas":"16684.1","nuclearPower":"21023.6","coal":"23292.9","regDate":"2023-09-01 23:00","raisingWater":"641.672","waterPower":"651.528","seq":0},{"localCoal":"370.95","newRenewable":"3850.78","sunlight":"0.0","oil":"304.974","once":"20230901230500","gas":"16717.7","nuclearPower":"21012.8","coal":"23168.5","regDate":"2023-09-01 23:05","raisingWater":"632.988","waterPower":"649.613","seq":0},{"localCoal":"370.62","newRenewable":"3835.13","sunlight":"0.0","oil":"304.305","once":"20230901231000","gas":"16600.0","nuclearPower":"21028.5","coal":"23265.4","regDate":"2023-09-01 23:10","raisingWater":"445.401","waterPower":"651.319","seq":0},{"localCoal":"369.815","newRenewable":"3820.16","sunlight":"0.0","oil":"304.412","once":"20230901231500","gas":"16460.8","nuclearPower":"21022.0","coal":"23198.3","regDate":"2023-09-01 23:15","raisingWater":"448.64","waterPower":"651.741","seq":0},{"localCoal":"371.371","newRenewable":"3812.62","sunlight":"0.0","oil":"305.195","once":"20230901232000","gas":"16313.8","nuclearPower":"21017.5","coal":"23193.0","regDate":"2023-09-01 23:20","raisingWater":"449.037","waterPower":"653.166","seq":0},{"localCoal":"371.28","newRenewable":"3810.68","sunlight":"0.0","oil":"305.771","once":"20230901232500","gas":"15918.8","nuclearPower":"21017.2","coal":"23090.7","regDate":"2023-09-01 23:25","raisingWater":"442.143","waterPower":"652.409","seq":0},{"localCoal":"370.804","newRenewable":"3812.09","sunlight":"0.0","oil":"304.393","once":"20230901233000","gas":"15557.2","nuclearPower":"21029.4","coal":"22913.1","regDate":"2023-09-01 23:30","raisingWater":"440.388","waterPower":"652.589","seq":0},{"localCoal":"370.913","newRenewable":"3803.64","sunlight":"0.0","oil":"305.209","once":"20230901233500","gas":"15435.1","nuclearPower":"21018.6","coal":"22900.3","regDate":"2023-09-01 23:35","raisingWater":"439.749","waterPower":"654.279","seq":0},{"localCoal":"370.511","newRenewable":"3789.01","sunlight":"0.0","oil":"305.323","once":"20230901234000","gas":"15103.3","nuclearPower":"21024.4","coal":"22898.2","regDate":"2023-09-01 23:40","raisingWater":"442.203","waterPower":"652.968","seq":0},{"localCoal":"368.972","newRenewable":"3787.08","sunlight":"0.0","oil":"304.956","once":"20230901234500","gas":"14911.3","nuclearPower":"21015.4","coal":"22932.9","regDate":"2023-09-01 23:45","raisingWater":"453.978","waterPower":"630.929","seq":0},{"localCoal":"371.316","newRenewable":"3783.48","sunlight":"0.0","oil":"304.444","once":"20230901235000","gas":"14573.8","nuclearPower":"21023.7","coal":"22824.8","regDate":"2023-09-01 23:50","raisingWater":"445.314","waterPower":"619.958","seq":0},{"localCoal":"371.28","newRenewable":"3787.59","sunlight":"0.0","oil":"305.52","once":"20230901235500","gas":"14224.4","nuclearPower":"21027.5","coal":"22525.5","regDate":"2023-09-01 23:55","raisingWater":"437.866","waterPower":"637.67","seq":0}];
+	var onceArr = new Array();
+  	var raisingWaterArr = new Array();
+  	var waterPowerArr = new Array();
+  	var gasArr = new Array();
+  	var oilArr = new Array();
+  	var newRenewableArr = new Array();
+  	var localCoalArr = new Array();
+  	var coalArr = new Array();
+  	var nuclearPowerArr = new Array();
+  	var sunligthArr = new Array();
+  	var etcArr = new Array();
+  	for (var k in ictArr){
+  		var xobj = ictArr[k];
+  		onceArr.push(Number(xobj.once.replace(/ /gi,"")));
+  		raisingWaterArr.push(Number(xobj.raisingWater.replace(/ /gi,"")));
+  		waterPowerArr.push(Number(xobj.waterPower.replace(/ /gi,"")));
+  		oilArr.push(Number(xobj.oil.replace(/ /gi,"")));
+  		localCoalArr.push(Number(xobj.localCoal.replace(/ /gi,"")));
+  		//etcArr.push(Number(xobj.raisingWater.replace(/ /gi,""))+Number(xobj.waterPower.replace(/ /gi,""))+Number(xobj.oil.replace(/ /gi,"")));
+  		gasArr.push(Number(xobj.gas.replace(/ /gi,"")));
+  		newRenewableArr.push(Number(xobj.newRenewable.replace(/ /gi,"")));
+  		localCoalArr.push(Number(xobj.localCoal.replace(/ /gi,"")));
+  		coalArr.push(Number(xobj.coal.replace(/ /gi,"")));
+  		nuclearPowerArr.push(Number(xobj.nuclearPower.replace(/ /gi,"")));
+  		sunligthArr.push(Number(xobj.sunlight.replace(/ /gi,"")));
+  	}
+	
+	var x1 = raisingWaterArr;
+	var xx2 = gasArr;
+	var xx3 = newRenewableArr;
+	var xx4 = oilArr;
+	var xx5 = coalArr; 
+	var xx6 = nuclearPowerArr;
+	var xx7 = onceArr;
+	var xx8 = sunligthArr;
+	var xx9 = waterPowerArr;
+	var xx10 = localCoalArr; 
+	
+	var x1_1 = new Array();
+	var x1_2 = new Array();
+	
+	for (var x in x1){
+		var y = x1[x];
+		if(y <= 0){
+			if(y == 0) y = null;
+			x1_1.push(y);
+			x1_2.push(0);
+		}else{
+			if(y == 0) y = null;
+			x1_1.push(0);
+			x1_2.push(y);
+		}
+	}
+	
+	var x2 = new Array();
+	var x3 = new Array();
+	var x4 = new Array();
+	var x5 = new Array();
+	var x6 = new Array();
+	var x7 = new Array();
+	var x8 = new Array();
+	var x9 = new Array();
+	var x10 = new Array();
+	
+	
+	for (var z in xx2){
+		
+		var y2 = xx2[z];
+		var y3 = xx3[z];
+		var y4 = xx4[z];
+		var y5 = xx5[z];
+		var y6 = xx6[z];
+		var y7 = xx7[z];
+		var y8 = xx8[z];
+		var y9 = xx9[z];
+		var y10 = xx10[z];
+	
+		if(y2 == 0) y2 = null;
+		if(y3 == 0) y3 = null;
+		if(y4 == 0) y4 = null;
+		if(y5 == 0) y5 = null;
+		if(y6 == 0) y6 = null;
+		if(y7 == 0) y7 = null;
+		if(y8 == 0) y8 = null;
+		if(y9 == 0) y9 = null;
+		if(y10 == 0) y10 = null;
+
+		x2.push(y2);
+		x3.push(y3);
+		x4.push(y4);
+		x5.push(y5);
+		x6.push(y6);
+		x7.push(y7);
+		x8.push(y8);
+		x9.push(y9);
+		x10.push(y10);
+	}
+	
+	var todayTime = '';
+	var zz = '';
+	var dateType = {
+		'xDateFormat' : '시간:'+'%H:%M'
+	}
+	
+	Highcharts.setOptions({
+	    lang: {
+	thousandsSep: ','
+	    }
+	})
+	
+	var option = {
+			
+			title : {
+				text: ''
+			},
+			subtitle : {
+				//text: '날짜' 
+			},
+			xAxis : {
+				type: 'datetime',
+				labels:{
+					formatter: function(){
+						var ret = Highcharts.dateFormat('%H', this.value);
+						var cnt = 0;
+						if(this.value == 86400000){
+							ret = 24;
+						}  
+						return ret;
+					}
+				},
+				
+				tickInterval : 3600000*3, 
+				title: {
+					text:'시간',
+					style: {
+						fontSize : '12px', 
+						fontWeight : 'bold',
+						color : 'blue'
+					}
+				},
+				gridLineWidth: 1
+				
+			},
+			yAxis: {
+				title: {
+					text:'',
+					style: {
+						fontSize : '13px', 
+						color : 'blue'
+					}
+				},
+				labels:{
+					format:'{value:,.0f}'
+				}
+				//,min:0
+				,minPadding:0
+				,startOnTick:true
+				,minRange:0.5
+			},
+			colors: [
+				'red','green'
+			],
+			
+			tooltip: {
+				formatter:function(){
+					var hr ='';
+					var min = '';
+					var seriesName = '';
+					var week = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)',];
+					
+					var currentPoint = this;
+					var currentSeries = currentPoint.series;
+					var chart = currentSeries.chart;
+					var stackName = this.series.userOptions.stack;
+					var stackSeriesVal1 = '';
+					var stackSeriesVal2 = '';
+					var stackSeriesVal3 = '';
+					var stackSeriesVal4 = '';
+					var stackSeriesVal5 = '';
+					var stackSeriesVal6 = '';
+					var stackSeriesVal8 = '';
+					var stackSeriesVal9 = '';
+					var stackSeriesVal10 = '';
+					
+					chart.series.forEach(function(series){
+						series.points.forEach(function(point){
+							if(currentSeries.userOptions.stack === series.userOptions.stack && currentPoint.key === point.category){
+								seriesName = x7[point.index].toString();
+								seriesNameDash = seriesName.substr(0,4)+'-'+seriesName.substr(4,2)+'-'+seriesName.substr(6,2);
+								hr = seriesName.substr(8,2);
+								min = seriesName.substr(10,2);
+								hr = lPad(hr,2,'0');
+								min = lPad(min,2,'0');
+								var dayOfWeek = week[new Date(seriesNameDash).getDay()];
+								seriesName = seriesName.substr(0,4)+'.'+seriesName.substr(4,2)+'.'+seriesName.substr(6,2)+dayOfWeek;
+								stackSeriesVal1 = x1[point.index];
+								stackSeriesVal2 = x2[point.index];
+								stackSeriesVal3 = x3[point.index];
+								stackSeriesVal4 = x4[point.index];
+								stackSeriesVal5 = x5[point.index];
+								stackSeriesVal6 = x6[point.index];
+								stackSeriesVal8 = x8[point.index];
+								stackSeriesVal9 = x9[point.index];
+								stackSeriesVal10 = x10[point.index];
+							}
+						})
+					});
+					
+					var totStackSeriesVal = stackSeriesVal1+stackSeriesVal2+stackSeriesVal3+stackSeriesVal4+stackSeriesVal5+stackSeriesVal6+stackSeriesVal8+stackSeriesVal9+stackSeriesVal10;
+					
+					if(totStackSeriesVal == 0){
+						return false;
+					}
+					
+					var s =  seriesName+' '+hr+':'+min
+					+'<br>양<span style="visibility:hidden">가</span>수 : '+ commaToString(stackSeriesVal1.toFixed(0)) + 'MW'
+					+'<br>수<span style="visibility:hidden">가</span>력 : '+ commaToString(stackSeriesVal9.toFixed(0)) + 'MW'
+					+'<br>가<span style="visibility:hidden">가</span>스 : '+ commaToString(stackSeriesVal2.toFixed(0)) + 'MW'
+					+'<br>태양광 : '+ commaToString((stackSeriesVal8+0).toFixed(0)) + 'MW'
+					+'<br>신재생 : '+ commaToString(stackSeriesVal3.toFixed(0)) + 'MW'
+					+'<br>유<span style="visibility:hidden">가</span>류 : '+ commaToString(stackSeriesVal4.toFixed(0)) + 'MW'
+					+'<br>국내탄 : '+ commaToString(stackSeriesVal10.toFixed(0)) + 'MW'
+					+'<br>유연탄 : '+ commaToString(stackSeriesVal5.toFixed(0)) + 'MW'
+					+'<br>원자력 : '+ commaToString(stackSeriesVal6.toFixed(0)) + 'MW'
+					+'<br>합<span style="visibility:hidden">가</span>계 : '+ commaToString(totStackSeriesVal.toFixed(0)) + 'MW'
+					;
+					
+					return s;
+				}						
+			},
+			chart: {
+				defaultSeriesType: 'area'
+				//,backgroundColor : 'rgba(255,139,0,0.85)'
+			},
+			plotOptions: {
+				area: {
+					stacking : 'normal'
+					,pointInterval: 300000
+					,softThreshold:false
+					,connectNulls : true
+					,lineWidth : 0
+				}
+			},
+			legend: {
+				/* align: 'left',
+				verticalAlign: 'top',
+				margin:25,
+				enabled:false */
+			},
+			series : null
+			
+	}
+	
+	$('#chart2').highcharts($.extend(true, option,{
+		
+		series: [{
+			"name": "양수발전",
+			"data": x1_2, 
+			"color" : 'rgba(0,155,209,0.85)' //양수:0,155,209,0.85, 수력:172,231,252,0.85, 유류:196,0,20,0.85
+		},{
+			"name": "양수펌핑",
+			"data": x1_1, 
+			"color" : 'rgba(215,215,215,0.85)',
+			'zIndex' : 1
+		},{
+			"name": "수력",
+			"data": x9, 
+			"color" : 'rgba(88,250,250,0.85)',
+			'zIndex' : 1
+		},{
+			"name": "가스",
+			"data": x2,
+			"color" : 'rgba(255,246,0,0.85)'
+		},{
+			"name": "태양광",
+			"data": x8,
+			"color" : 'rgba(196,0,20,0.85)'
+		},{
+			"name": "신재생",
+			"data": x3,
+			"color" : 'rgba(120,194,82,0.85)'
+		},{
+			"name": "유류",
+			"data": x4,
+			// "color" : 'rgba(196,0,20,0.85)'
+			 "color" : 'rgba(215,215,215,0.85)'
+		},{
+			"name": "국내탄",
+			"data": x10,
+			"color" : 'rgba(57,57,57,0.85)' //국내탄:57,57,57,0.85, 유연탄:163,115,81,0.85
+		},{
+			"name": "유연탄",
+			"data": x5,
+			"color" : 'rgba(163,115,81,0.85)' //국내탄:57,57,57,0.85, 유연탄:163,115,81,0.85
+		},{
+			"name": "원자력",
+			"data": x6,
+			"color" : 'rgba(255,139,0,0.85)'
+		}]
+	}));
+}
+
+function fncSearch(){
+	var fm = document.srhForm;
+	$('#view_edate').val($('#view_sdate').val());
+	fm.submit();
+}
+function commaToString(par){
+	return par.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+}
+</script>
+<link rel="stylesheet" href="/css/board.css" />
+
+
+ <form id="srhForm" name="srhForm" action="/powerSource.es?mid=a10606030000&amp;device=chart" method="post">
+	<input type="hidden" name="mid" value="a10606030000" />
+	<input type="hidden" name="device" value="chart" />
+	<div class="search_box">
+		<div class="box01">
+			<input type="date" class="form_textbox calendar" id="view_sdate" name="view_sdate" value="2023-09-01" size="10" maxlength="10" title="날짜를 선택하세요." placeholder="2021-01-01"/>
+			<input type="hidden" class="form_textbox calendar" id="view_edate" name="view_edate" value="2023-09-01" size="10" maxlength="10" title="날짜를 선택하세요." placeholder="2021-01-01"/>
+			<input type="button" value="검색" onclick="fncSearch(); return false;">
+		</div>
+	</div>
+	
+<div>
+<input type="hidden" name="_csrf" value="1b46d0b3-b065-48b5-88be-a072a716eb30" />
+</div></form>
+<div class="conTableGroup">
+	<span class="grape_top">MW</span>
+	<div id="chart2" class="grape2" style="height:85%;"> 
+		그래프 영역 <br />640 이상사이즈 100%*306 <br />640 이하사이즈 100%*153
+	</div>
+</div>
+<div class="IR">
+	<table class="conTable tdCenter">
+		<caption>발전원별실시간 전력수급현황 차트 정보를 제공합니다.</caption>
+		<thead>
+			<tr>
+				<th>일시</th>
+				<th>기타</th>
+				<th>가스</th>
+				<th>신재생</th>
+				<th>석탄</th>
+				<th>원자력</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 00분</td>
+					<td>1,653</td>
+					<td>13,845</td>
+					<td>3,591</td>
+					<td>22,909</td>
+					<td>21,038</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 05분</td>
+					<td>1,719</td>
+					<td>13,555</td>
+					<td>3,586</td>
+					<td>22,938</td>
+					<td>21,012</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 10분</td>
+					<td>1,490</td>
+					<td>13,276</td>
+					<td>3,581</td>
+					<td>23,041</td>
+					<td>21,026</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 15분</td>
+					<td>1,487</td>
+					<td>13,092</td>
+					<td>3,579</td>
+					<td>23,082</td>
+					<td>21,037</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 20분</td>
+					<td>1,466</td>
+					<td>12,740</td>
+					<td>3,585</td>
+					<td>22,909</td>
+					<td>21,036</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 25분</td>
+					<td>1,480</td>
+					<td>12,580</td>
+					<td>3,590</td>
+					<td>22,966</td>
+					<td>21,020</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 30분</td>
+					<td>1,455</td>
+					<td>12,370</td>
+					<td>3,587</td>
+					<td>22,810</td>
+					<td>21,038</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 35분</td>
+					<td>1,451</td>
+					<td>12,196</td>
+					<td>3,598</td>
+					<td>22,660</td>
+					<td>21,039</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 40분</td>
+					<td>1,486</td>
+					<td>12,057</td>
+					<td>3,600</td>
+					<td>22,802</td>
+					<td>21,030</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 45분</td>
+					<td>1,461</td>
+					<td>11,852</td>
+					<td>3,601</td>
+					<td>22,701</td>
+					<td>21,031</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 50분</td>
+					<td>1,463</td>
+					<td>11,672</td>
+					<td>3,602</td>
+					<td>22,672</td>
+					<td>21,039</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 00시 55분</td>
+					<td>1,349</td>
+					<td>11,507</td>
+					<td>3,600</td>
+					<td>22,630</td>
+					<td>21,038</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 00분</td>
+					<td>1,151</td>
+					<td>11,554</td>
+					<td>3,584</td>
+					<td>22,681</td>
+					<td>21,030</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 05분</td>
+					<td>1,150</td>
+					<td>11,538</td>
+					<td>3,583</td>
+					<td>22,596</td>
+					<td>21,031</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 10분</td>
+					<td>1,152</td>
+					<td>11,496</td>
+					<td>3,574</td>
+					<td>22,663</td>
+					<td>21,036</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 15분</td>
+					<td>1,150</td>
+					<td>11,291</td>
+					<td>3,578</td>
+					<td>22,513</td>
+					<td>21,032</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 20분</td>
+					<td>1,153</td>
+					<td>11,000</td>
+					<td>3,566</td>
+					<td>22,523</td>
+					<td>21,022</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 25분</td>
+					<td>1,158</td>
+					<td>11,000</td>
+					<td>3,558</td>
+					<td>22,584</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 30분</td>
+					<td>1,156</td>
+					<td>10,939</td>
+					<td>3,560</td>
+					<td>22,556</td>
+					<td>21,018</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 35분</td>
+					<td>1,157</td>
+					<td>10,970</td>
+					<td>3,553</td>
+					<td>22,591</td>
+					<td>21,013</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 40분</td>
+					<td>1,152</td>
+					<td>10,821</td>
+					<td>3,550</td>
+					<td>22,531</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 45분</td>
+					<td>1,159</td>
+					<td>10,770</td>
+					<td>3,544</td>
+					<td>22,612</td>
+					<td>21,020</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 50분</td>
+					<td>1,152</td>
+					<td>10,521</td>
+					<td>3,541</td>
+					<td>22,437</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 01시 55분</td>
+					<td>820</td>
+					<td>10,556</td>
+					<td>3,547</td>
+					<td>22,580</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 00분</td>
+					<td>523</td>
+					<td>10,614</td>
+					<td>3,624</td>
+					<td>22,749</td>
+					<td>21,028</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 05분</td>
+					<td>510</td>
+					<td>10,728</td>
+					<td>3,636</td>
+					<td>22,791</td>
+					<td>21,027</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 10분</td>
+					<td>512</td>
+					<td>10,230</td>
+					<td>3,644</td>
+					<td>22,835</td>
+					<td>21,019</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 15분</td>
+					<td>516</td>
+					<td>9,955</td>
+					<td>3,645</td>
+					<td>22,973</td>
+					<td>21,011</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 20분</td>
+					<td>491</td>
+					<td>10,116</td>
+					<td>3,659</td>
+					<td>22,869</td>
+					<td>21,022</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 25분</td>
+					<td>308</td>
+					<td>10,384</td>
+					<td>3,668</td>
+					<td>22,762</td>
+					<td>21,006</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 30분</td>
+					<td>-6</td>
+					<td>10,453</td>
+					<td>3,666</td>
+					<td>22,847</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 35분</td>
+					<td>-34</td>
+					<td>10,366</td>
+					<td>3,670</td>
+					<td>22,863</td>
+					<td>21,013</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 40분</td>
+					<td>-360</td>
+					<td>10,386</td>
+					<td>3,679</td>
+					<td>23,087</td>
+					<td>21,001</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 45분</td>
+					<td>-393</td>
+					<td>10,409</td>
+					<td>3,688</td>
+					<td>23,060</td>
+					<td>20,993</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 50분</td>
+					<td>-401</td>
+					<td>10,256</td>
+					<td>3,694</td>
+					<td>22,996</td>
+					<td>21,010</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 02시 55분</td>
+					<td>-88</td>
+					<td>10,014</td>
+					<td>3,703</td>
+					<td>22,752</td>
+					<td>20,991</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 00분</td>
+					<td>-69</td>
+					<td>9,986</td>
+					<td>3,715</td>
+					<td>22,703</td>
+					<td>20,983</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 05분</td>
+					<td>-75</td>
+					<td>9,872</td>
+					<td>3,718</td>
+					<td>22,644</td>
+					<td>20,974</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 10분</td>
+					<td>-72</td>
+					<td>9,941</td>
+					<td>3,729</td>
+					<td>22,599</td>
+					<td>20,960</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 15분</td>
+					<td>-70</td>
+					<td>10,045</td>
+					<td>3,738</td>
+					<td>22,565</td>
+					<td>20,987</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 20분</td>
+					<td>-80</td>
+					<td>9,988</td>
+					<td>3,750</td>
+					<td>22,483</td>
+					<td>20,982</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 25분</td>
+					<td>-404</td>
+					<td>10,103</td>
+					<td>3,764</td>
+					<td>22,580</td>
+					<td>20,965</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 30분</td>
+					<td>-428</td>
+					<td>10,148</td>
+					<td>3,777</td>
+					<td>22,600</td>
+					<td>20,963</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 35분</td>
+					<td>-429</td>
+					<td>10,120</td>
+					<td>3,780</td>
+					<td>22,894</td>
+					<td>20,970</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 40분</td>
+					<td>-826</td>
+					<td>10,091</td>
+					<td>3,798</td>
+					<td>22,961</td>
+					<td>20,967</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 45분</td>
+					<td>-822</td>
+					<td>10,287</td>
+					<td>3,798</td>
+					<td>22,939</td>
+					<td>20,960</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 50분</td>
+					<td>-823</td>
+					<td>10,188</td>
+					<td>3,808</td>
+					<td>22,945</td>
+					<td>20,948</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 03시 55분</td>
+					<td>-827</td>
+					<td>10,054</td>
+					<td>3,805</td>
+					<td>22,858</td>
+					<td>20,986</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 00분</td>
+					<td>-829</td>
+					<td>10,155</td>
+					<td>3,810</td>
+					<td>22,813</td>
+					<td>20,981</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 05분</td>
+					<td>-826</td>
+					<td>10,202</td>
+					<td>3,806</td>
+					<td>22,693</td>
+					<td>20,956</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 10분</td>
+					<td>-822</td>
+					<td>10,054</td>
+					<td>3,809</td>
+					<td>22,891</td>
+					<td>20,962</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 15분</td>
+					<td>-819</td>
+					<td>10,111</td>
+					<td>3,813</td>
+					<td>22,952</td>
+					<td>20,962</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 20분</td>
+					<td>-823</td>
+					<td>9,999</td>
+					<td>3,818</td>
+					<td>22,705</td>
+					<td>20,966</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 25분</td>
+					<td>-818</td>
+					<td>10,068</td>
+					<td>3,822</td>
+					<td>22,751</td>
+					<td>20,960</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 30분</td>
+					<td>-818</td>
+					<td>10,201</td>
+					<td>3,822</td>
+					<td>23,003</td>
+					<td>20,957</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 35분</td>
+					<td>-816</td>
+					<td>10,318</td>
+					<td>3,821</td>
+					<td>22,982</td>
+					<td>20,962</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 40분</td>
+					<td>-826</td>
+					<td>10,203</td>
+					<td>3,817</td>
+					<td>22,793</td>
+					<td>20,966</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 45분</td>
+					<td>-825</td>
+					<td>10,173</td>
+					<td>3,818</td>
+					<td>22,782</td>
+					<td>20,973</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 50분</td>
+					<td>-816</td>
+					<td>10,362</td>
+					<td>3,820</td>
+					<td>22,931</td>
+					<td>20,981</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 04시 55분</td>
+					<td>-822</td>
+					<td>10,388</td>
+					<td>3,817</td>
+					<td>22,854</td>
+					<td>20,990</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 00분</td>
+					<td>-810</td>
+					<td>10,259</td>
+					<td>3,820</td>
+					<td>22,942</td>
+					<td>20,961</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 05분</td>
+					<td>-815</td>
+					<td>10,446</td>
+					<td>3,824</td>
+					<td>22,994</td>
+					<td>20,969</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 10분</td>
+					<td>-825</td>
+					<td>10,618</td>
+					<td>3,827</td>
+					<td>23,058</td>
+					<td>20,982</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 15분</td>
+					<td>-416</td>
+					<td>10,340</td>
+					<td>3,813</td>
+					<td>22,763</td>
+					<td>21,012</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 20분</td>
+					<td>-406</td>
+					<td>10,470</td>
+					<td>3,813</td>
+					<td>23,009</td>
+					<td>20,990</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 25분</td>
+					<td>-411</td>
+					<td>10,627</td>
+					<td>3,839</td>
+					<td>22,809</td>
+					<td>20,988</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 30분</td>
+					<td>-409</td>
+					<td>10,616</td>
+					<td>3,834</td>
+					<td>22,801</td>
+					<td>20,987</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 35분</td>
+					<td>-407</td>
+					<td>10,810</td>
+					<td>3,838</td>
+					<td>22,853</td>
+					<td>20,988</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 40분</td>
+					<td>-399</td>
+					<td>10,926</td>
+					<td>3,841</td>
+					<td>23,065</td>
+					<td>20,956</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 45분</td>
+					<td>-400</td>
+					<td>10,948</td>
+					<td>3,843</td>
+					<td>22,961</td>
+					<td>20,983</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 50분</td>
+					<td>-406</td>
+					<td>11,039</td>
+					<td>3,839</td>
+					<td>22,848</td>
+					<td>20,987</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 05시 55분</td>
+					<td>-408</td>
+					<td>11,239</td>
+					<td>3,846</td>
+					<td>22,704</td>
+					<td>21,001</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 00분</td>
+					<td>-378</td>
+					<td>11,450</td>
+					<td>3,838</td>
+					<td>22,913</td>
+					<td>20,985</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 05분</td>
+					<td>-365</td>
+					<td>11,831</td>
+					<td>3,851</td>
+					<td>23,027</td>
+					<td>20,995</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 10분</td>
+					<td>-51</td>
+					<td>11,902</td>
+					<td>3,850</td>
+					<td>22,863</td>
+					<td>20,996</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 15분</td>
+					<td>-50</td>
+					<td>12,087</td>
+					<td>3,848</td>
+					<td>22,877</td>
+					<td>21,012</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 20분</td>
+					<td>255</td>
+					<td>12,185</td>
+					<td>3,852</td>
+					<td>22,812</td>
+					<td>20,996</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 25분</td>
+					<td>258</td>
+					<td>12,386</td>
+					<td>3,851</td>
+					<td>22,778</td>
+					<td>20,989</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 30분</td>
+					<td>260</td>
+					<td>12,623</td>
+					<td>3,863</td>
+					<td>22,820</td>
+					<td>21,005</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 35분</td>
+					<td>254</td>
+					<td>12,924</td>
+					<td>3,864</td>
+					<td>22,905</td>
+					<td>20,987</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 40분</td>
+					<td>256</td>
+					<td>13,079</td>
+					<td>3,850</td>
+					<td>22,822</td>
+					<td>21,005</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 45분</td>
+					<td>275</td>
+					<td>13,162</td>
+					<td>3,854</td>
+					<td>23,070</td>
+					<td>21,003</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 50분</td>
+					<td>260</td>
+					<td>13,448</td>
+					<td>3,850</td>
+					<td>23,056</td>
+					<td>21,008</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 06시 55분</td>
+					<td>257</td>
+					<td>13,884</td>
+					<td>3,846</td>
+					<td>23,111</td>
+					<td>21,014</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 00분</td>
+					<td>576</td>
+					<td>14,018</td>
+					<td>3,828</td>
+					<td>22,916</td>
+					<td>21,015</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 05분</td>
+					<td>799</td>
+					<td>14,329</td>
+					<td>3,817</td>
+					<td>23,111</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 10분</td>
+					<td>791</td>
+					<td>14,512</td>
+					<td>3,811</td>
+					<td>23,229</td>
+					<td>21,006</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 15분</td>
+					<td>790</td>
+					<td>14,675</td>
+					<td>3,804</td>
+					<td>23,268</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 20분</td>
+					<td>788</td>
+					<td>14,943</td>
+					<td>3,787</td>
+					<td>23,273</td>
+					<td>21,008</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 25분</td>
+					<td>793</td>
+					<td>15,193</td>
+					<td>3,777</td>
+					<td>23,396</td>
+					<td>21,023</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 30분</td>
+					<td>800</td>
+					<td>15,642</td>
+					<td>3,761</td>
+					<td>23,449</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 35분</td>
+					<td>1,165</td>
+					<td>15,513</td>
+					<td>3,746</td>
+					<td>23,496</td>
+					<td>21,008</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 40분</td>
+					<td>1,168</td>
+					<td>15,750</td>
+					<td>3,736</td>
+					<td>23,550</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 45분</td>
+					<td>1,168</td>
+					<td>15,960</td>
+					<td>3,721</td>
+					<td>23,379</td>
+					<td>21,015</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 50분</td>
+					<td>1,167</td>
+					<td>16,149</td>
+					<td>3,714</td>
+					<td>23,563</td>
+					<td>21,016</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 07시 55분</td>
+					<td>1,170</td>
+					<td>16,333</td>
+					<td>3,698</td>
+					<td>23,535</td>
+					<td>21,010</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 00분</td>
+					<td>1,263</td>
+					<td>16,786</td>
+					<td>3,682</td>
+					<td>23,800</td>
+					<td>21,003</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 05분</td>
+					<td>1,275</td>
+					<td>17,296</td>
+					<td>3,669</td>
+					<td>24,030</td>
+					<td>21,016</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 10분</td>
+					<td>1,267</td>
+					<td>17,573</td>
+					<td>3,623</td>
+					<td>24,094</td>
+					<td>21,007</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 15분</td>
+					<td>1,273</td>
+					<td>17,914</td>
+					<td>3,603</td>
+					<td>24,313</td>
+					<td>21,013</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 20분</td>
+					<td>1,252</td>
+					<td>18,085</td>
+					<td>3,577</td>
+					<td>24,217</td>
+					<td>21,003</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 25분</td>
+					<td>1,267</td>
+					<td>18,598</td>
+					<td>3,542</td>
+					<td>24,194</td>
+					<td>21,013</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 30분</td>
+					<td>1,268</td>
+					<td>19,119</td>
+					<td>3,532</td>
+					<td>24,245</td>
+					<td>21,018</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 35분</td>
+					<td>1,273</td>
+					<td>19,637</td>
+					<td>3,519</td>
+					<td>24,432</td>
+					<td>21,019</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 40분</td>
+					<td>1,256</td>
+					<td>19,789</td>
+					<td>3,489</td>
+					<td>24,323</td>
+					<td>21,019</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 45분</td>
+					<td>1,258</td>
+					<td>19,989</td>
+					<td>3,456</td>
+					<td>24,404</td>
+					<td>21,029</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 50분</td>
+					<td>1,449</td>
+					<td>19,884</td>
+					<td>3,444</td>
+					<td>24,315</td>
+					<td>21,008</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 08시 55분</td>
+					<td>1,454</td>
+					<td>20,176</td>
+					<td>3,431</td>
+					<td>24,340</td>
+					<td>21,016</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 00분</td>
+					<td>1,440</td>
+					<td>20,136</td>
+					<td>3,407</td>
+					<td>24,299</td>
+					<td>21,007</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 05분</td>
+					<td>1,413</td>
+					<td>20,480</td>
+					<td>3,384</td>
+					<td>24,294</td>
+					<td>21,019</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 10분</td>
+					<td>1,625</td>
+					<td>20,422</td>
+					<td>3,346</td>
+					<td>24,300</td>
+					<td>21,022</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 15분</td>
+					<td>1,636</td>
+					<td>20,299</td>
+					<td>3,298</td>
+					<td>24,311</td>
+					<td>21,020</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 20분</td>
+					<td>1,637</td>
+					<td>20,355</td>
+					<td>3,259</td>
+					<td>24,325</td>
+					<td>21,010</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 25분</td>
+					<td>1,626</td>
+					<td>20,355</td>
+					<td>3,238</td>
+					<td>24,253</td>
+					<td>21,029</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 30분</td>
+					<td>1,641</td>
+					<td>20,355</td>
+					<td>3,210</td>
+					<td>24,241</td>
+					<td>21,005</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 35분</td>
+					<td>1,622</td>
+					<td>20,240</td>
+					<td>3,201</td>
+					<td>24,226</td>
+					<td>21,017</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 40분</td>
+					<td>1,604</td>
+					<td>20,124</td>
+					<td>3,187</td>
+					<td>23,956</td>
+					<td>21,006</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 45분</td>
+					<td>1,616</td>
+					<td>20,148</td>
+					<td>3,160</td>
+					<td>23,965</td>
+					<td>21,018</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 50분</td>
+					<td>1,599</td>
+					<td>20,190</td>
+					<td>3,151</td>
+					<td>23,834</td>
+					<td>21,007</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 09시 55분</td>
+					<td>1,613</td>
+					<td>19,957</td>
+					<td>3,144</td>
+					<td>23,769</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 00분</td>
+					<td>1,529</td>
+					<td>19,850</td>
+					<td>3,123</td>
+					<td>23,572</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 05분</td>
+					<td>1,512</td>
+					<td>19,684</td>
+					<td>3,080</td>
+					<td>23,315</td>
+					<td>21,033</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 10분</td>
+					<td>1,349</td>
+					<td>20,171</td>
+					<td>3,044</td>
+					<td>23,262</td>
+					<td>21,011</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 15분</td>
+					<td>1,376</td>
+					<td>20,376</td>
+					<td>2,997</td>
+					<td>23,283</td>
+					<td>21,005</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 20분</td>
+					<td>1,352</td>
+					<td>20,444</td>
+					<td>2,874</td>
+					<td>23,357</td>
+					<td>21,020</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 25분</td>
+					<td>1,339</td>
+					<td>20,277</td>
+					<td>2,840</td>
+					<td>23,180</td>
+					<td>21,019</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 30분</td>
+					<td>1,328</td>
+					<td>20,204</td>
+					<td>2,848</td>
+					<td>23,069</td>
+					<td>21,032</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 35분</td>
+					<td>1,330</td>
+					<td>20,270</td>
+					<td>2,820</td>
+					<td>22,909</td>
+					<td>21,031</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 40분</td>
+					<td>1,136</td>
+					<td>20,476</td>
+					<td>2,801</td>
+					<td>22,916</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 45분</td>
+					<td>1,128</td>
+					<td>20,341</td>
+					<td>2,780</td>
+					<td>22,922</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 50분</td>
+					<td>1,135</td>
+					<td>20,362</td>
+					<td>2,753</td>
+					<td>22,978</td>
+					<td>21,027</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 10시 55분</td>
+					<td>1,122</td>
+					<td>20,195</td>
+					<td>2,718</td>
+					<td>22,776</td>
+					<td>21,035</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 00분</td>
+					<td>1,121</td>
+					<td>20,062</td>
+					<td>2,718</td>
+					<td>22,499</td>
+					<td>21,042</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 05분</td>
+					<td>1,132</td>
+					<td>19,737</td>
+					<td>2,691</td>
+					<td>22,392</td>
+					<td>21,034</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 10분</td>
+					<td>1,129</td>
+					<td>19,831</td>
+					<td>2,683</td>
+					<td>22,183</td>
+					<td>21,018</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 15분</td>
+					<td>1,135</td>
+					<td>19,856</td>
+					<td>2,680</td>
+					<td>21,814</td>
+					<td>21,021</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 20분</td>
+					<td>1,133</td>
+					<td>19,977</td>
+					<td>2,662</td>
+					<td>21,610</td>
+					<td>21,020</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 25분</td>
+					<td>1,152</td>
+					<td>19,920</td>
+					<td>2,625</td>
+					<td>21,285</td>
+					<td>21,029</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 30분</td>
+					<td>1,116</td>
+					<td>19,738</td>
+					<td>2,636</td>
+					<td>21,035</td>
+					<td>21,027</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 35분</td>
+					<td>1,082</td>
+					<td>19,722</td>
+					<td>2,622</td>
+					<td>20,736</td>
+					<td>21,029</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 40분</td>
+					<td>759</td>
+					<td>19,870</td>
+					<td>2,598</td>
+					<td>20,595</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 45분</td>
+					<td>747</td>
+					<td>19,668</td>
+					<td>2,583</td>
+					<td>20,498</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 50분</td>
+					<td>720</td>
+					<td>19,414</td>
+					<td>2,598</td>
+					<td>20,304</td>
+					<td>21,012</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 11시 55분</td>
+					<td>378</td>
+					<td>19,505</td>
+					<td>2,573</td>
+					<td>20,119</td>
+					<td>21,022</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 00분</td>
+					<td>175</td>
+					<td>19,413</td>
+					<td>2,545</td>
+					<td>19,933</td>
+					<td>21,021</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 05분</td>
+					<td>-35</td>
+					<td>19,313</td>
+					<td>2,566</td>
+					<td>20,068</td>
+					<td>21,039</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 10분</td>
+					<td>-123</td>
+					<td>19,321</td>
+					<td>2,623</td>
+					<td>20,002</td>
+					<td>21,014</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 15분</td>
+					<td>-94</td>
+					<td>18,933</td>
+					<td>2,630</td>
+					<td>20,163</td>
+					<td>21,026</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 20분</td>
+					<td>-179</td>
+					<td>19,061</td>
+					<td>2,645</td>
+					<td>19,993</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 25분</td>
+					<td>-511</td>
+					<td>19,329</td>
+					<td>2,649</td>
+					<td>19,916</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 30분</td>
+					<td>-513</td>
+					<td>19,112</td>
+					<td>2,645</td>
+					<td>19,982</td>
+					<td>21,029</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 35분</td>
+					<td>-538</td>
+					<td>19,157</td>
+					<td>2,653</td>
+					<td>19,958</td>
+					<td>21,016</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 40분</td>
+					<td>-526</td>
+					<td>19,151</td>
+					<td>2,665</td>
+					<td>19,861</td>
+					<td>21,016</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 45분</td>
+					<td>-523</td>
+					<td>19,122</td>
+					<td>2,681</td>
+					<td>19,949</td>
+					<td>21,034</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 50분</td>
+					<td>-495</td>
+					<td>19,183</td>
+					<td>2,705</td>
+					<td>20,121</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 12시 55분</td>
+					<td>-505</td>
+					<td>19,145</td>
+					<td>2,701</td>
+					<td>20,083</td>
+					<td>21,030</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 00분</td>
+					<td>-171</td>
+					<td>19,428</td>
+					<td>2,749</td>
+					<td>20,290</td>
+					<td>21,018</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 05분</td>
+					<td>489</td>
+					<td>19,481</td>
+					<td>2,792</td>
+					<td>20,332</td>
+					<td>21,027</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 10분</td>
+					<td>495</td>
+					<td>19,681</td>
+					<td>2,834</td>
+					<td>20,473</td>
+					<td>21,034</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 15분</td>
+					<td>494</td>
+					<td>19,766</td>
+					<td>2,879</td>
+					<td>20,576</td>
+					<td>21,030</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 20분</td>
+					<td>498</td>
+					<td>19,973</td>
+					<td>2,929</td>
+					<td>20,653</td>
+					<td>21,032</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 25분</td>
+					<td>823</td>
+					<td>19,929</td>
+					<td>2,987</td>
+					<td>20,689</td>
+					<td>21,020</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 30분</td>
+					<td>1,178</td>
+					<td>19,681</td>
+					<td>3,016</td>
+					<td>20,663</td>
+					<td>21,041</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 35분</td>
+					<td>1,193</td>
+					<td>20,272</td>
+					<td>3,042</td>
+					<td>20,568</td>
+					<td>21,016</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 40분</td>
+					<td>1,307</td>
+					<td>20,468</td>
+					<td>3,034</td>
+					<td>20,509</td>
+					<td>21,035</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 45분</td>
+					<td>1,303</td>
+					<td>20,552</td>
+					<td>3,057</td>
+					<td>20,769</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 50분</td>
+					<td>1,278</td>
+					<td>20,490</td>
+					<td>3,091</td>
+					<td>20,775</td>
+					<td>21,033</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 13시 55분</td>
+					<td>1,278</td>
+					<td>20,375</td>
+					<td>3,142</td>
+					<td>20,902</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 00분</td>
+					<td>1,291</td>
+					<td>20,493</td>
+					<td>3,161</td>
+					<td>21,076</td>
+					<td>21,016</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 05분</td>
+					<td>1,288</td>
+					<td>20,616</td>
+					<td>3,166</td>
+					<td>21,089</td>
+					<td>21,016</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 10분</td>
+					<td>1,263</td>
+					<td>20,710</td>
+					<td>3,181</td>
+					<td>21,162</td>
+					<td>21,032</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 15분</td>
+					<td>1,251</td>
+					<td>20,880</td>
+					<td>3,211</td>
+					<td>21,102</td>
+					<td>21,026</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 20분</td>
+					<td>1,251</td>
+					<td>21,116</td>
+					<td>3,283</td>
+					<td>21,037</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 25분</td>
+					<td>1,279</td>
+					<td>21,369</td>
+					<td>3,293</td>
+					<td>20,933</td>
+					<td>21,029</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 30분</td>
+					<td>1,244</td>
+					<td>21,266</td>
+					<td>3,301</td>
+					<td>20,846</td>
+					<td>21,041</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 35분</td>
+					<td>1,267</td>
+					<td>21,557</td>
+					<td>3,355</td>
+					<td>20,879</td>
+					<td>21,040</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 40분</td>
+					<td>1,264</td>
+					<td>21,800</td>
+					<td>3,407</td>
+					<td>20,633</td>
+					<td>21,028</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 45분</td>
+					<td>1,272</td>
+					<td>21,992</td>
+					<td>3,436</td>
+					<td>20,605</td>
+					<td>21,042</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 50분</td>
+					<td>1,317</td>
+					<td>22,130</td>
+					<td>3,492</td>
+					<td>20,682</td>
+					<td>21,026</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 14시 55분</td>
+					<td>1,318</td>
+					<td>22,168</td>
+					<td>3,517</td>
+					<td>20,635</td>
+					<td>21,021</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 00분</td>
+					<td>1,299</td>
+					<td>22,052</td>
+					<td>3,517</td>
+					<td>20,668</td>
+					<td>21,031</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 05분</td>
+					<td>1,341</td>
+					<td>22,143</td>
+					<td>3,566</td>
+					<td>20,380</td>
+					<td>21,035</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 10분</td>
+					<td>1,373</td>
+					<td>22,386</td>
+					<td>3,593</td>
+					<td>20,401</td>
+					<td>21,031</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 15분</td>
+					<td>1,358</td>
+					<td>22,448</td>
+					<td>3,666</td>
+					<td>20,465</td>
+					<td>21,030</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 20분</td>
+					<td>1,412</td>
+					<td>22,632</td>
+					<td>3,679</td>
+					<td>20,674</td>
+					<td>21,028</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 25분</td>
+					<td>1,785</td>
+					<td>22,616</td>
+					<td>3,680</td>
+					<td>21,100</td>
+					<td>21,019</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 30분</td>
+					<td>2,153</td>
+					<td>22,290</td>
+					<td>3,700</td>
+					<td>20,975</td>
+					<td>21,013</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 35분</td>
+					<td>2,185</td>
+					<td>22,225</td>
+					<td>3,697</td>
+					<td>21,088</td>
+					<td>21,020</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 40분</td>
+					<td>2,189</td>
+					<td>22,440</td>
+					<td>3,709</td>
+					<td>21,210</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 45분</td>
+					<td>2,346</td>
+					<td>22,699</td>
+					<td>3,720</td>
+					<td>21,439</td>
+					<td>21,018</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 50분</td>
+					<td>2,384</td>
+					<td>22,784</td>
+					<td>3,722</td>
+					<td>21,558</td>
+					<td>21,037</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 15시 55분</td>
+					<td>2,421</td>
+					<td>22,931</td>
+					<td>3,727</td>
+					<td>21,687</td>
+					<td>21,042</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 00분</td>
+					<td>2,424</td>
+					<td>22,966</td>
+					<td>3,731</td>
+					<td>21,766</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 05분</td>
+					<td>2,346</td>
+					<td>22,688</td>
+					<td>3,735</td>
+					<td>22,134</td>
+					<td>21,034</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 10분</td>
+					<td>2,387</td>
+					<td>22,921</td>
+					<td>3,758</td>
+					<td>22,313</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 15분</td>
+					<td>2,591</td>
+					<td>23,003</td>
+					<td>3,917</td>
+					<td>22,439</td>
+					<td>21,038</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 20분</td>
+					<td>2,605</td>
+					<td>22,968</td>
+					<td>4,005</td>
+					<td>22,627</td>
+					<td>21,020</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 25분</td>
+					<td>2,479</td>
+					<td>23,154</td>
+					<td>3,999</td>
+					<td>22,791</td>
+					<td>21,035</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 30분</td>
+					<td>2,518</td>
+					<td>23,085</td>
+					<td>4,041</td>
+					<td>23,072</td>
+					<td>21,032</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 35분</td>
+					<td>2,409</td>
+					<td>23,244</td>
+					<td>4,020</td>
+					<td>23,109</td>
+					<td>21,041</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 40분</td>
+					<td>2,452</td>
+					<td>23,322</td>
+					<td>4,054</td>
+					<td>23,290</td>
+					<td>21,031</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 45분</td>
+					<td>2,429</td>
+					<td>23,506</td>
+					<td>4,066</td>
+					<td>23,205</td>
+					<td>21,004</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 50분</td>
+					<td>2,431</td>
+					<td>23,533</td>
+					<td>4,107</td>
+					<td>23,297</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 16시 55분</td>
+					<td>2,640</td>
+					<td>23,222</td>
+					<td>4,100</td>
+					<td>23,239</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 00분</td>
+					<td>2,643</td>
+					<td>22,951</td>
+					<td>4,131</td>
+					<td>23,508</td>
+					<td>21,006</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 05분</td>
+					<td>2,599</td>
+					<td>22,943</td>
+					<td>4,138</td>
+					<td>23,436</td>
+					<td>21,001</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 10분</td>
+					<td>2,610</td>
+					<td>23,178</td>
+					<td>4,210</td>
+					<td>23,386</td>
+					<td>21,008</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 15분</td>
+					<td>2,662</td>
+					<td>23,154</td>
+					<td>4,283</td>
+					<td>23,556</td>
+					<td>21,000</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 20분</td>
+					<td>2,662</td>
+					<td>23,199</td>
+					<td>4,335</td>
+					<td>23,795</td>
+					<td>21,006</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 25분</td>
+					<td>2,622</td>
+					<td>23,328</td>
+					<td>4,360</td>
+					<td>23,828</td>
+					<td>21,008</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 30분</td>
+					<td>2,625</td>
+					<td>23,287</td>
+					<td>4,423</td>
+					<td>23,924</td>
+					<td>21,015</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 35분</td>
+					<td>2,608</td>
+					<td>23,245</td>
+					<td>4,434</td>
+					<td>23,882</td>
+					<td>21,000</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 40분</td>
+					<td>2,554</td>
+					<td>23,098</td>
+					<td>4,444</td>
+					<td>23,920</td>
+					<td>21,012</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 45분</td>
+					<td>2,594</td>
+					<td>23,215</td>
+					<td>4,458</td>
+					<td>24,209</td>
+					<td>20,992</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 50분</td>
+					<td>2,555</td>
+					<td>23,382</td>
+					<td>4,474</td>
+					<td>24,046</td>
+					<td>21,000</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 17시 55분</td>
+					<td>2,547</td>
+					<td>23,429</td>
+					<td>4,495</td>
+					<td>23,921</td>
+					<td>21,006</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 00분</td>
+					<td>2,472</td>
+					<td>23,412</td>
+					<td>4,520</td>
+					<td>24,070</td>
+					<td>21,017</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 05분</td>
+					<td>2,391</td>
+					<td>23,177</td>
+					<td>4,528</td>
+					<td>24,029</td>
+					<td>20,997</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 10분</td>
+					<td>2,451</td>
+					<td>23,103</td>
+					<td>4,534</td>
+					<td>23,989</td>
+					<td>21,008</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 15분</td>
+					<td>2,452</td>
+					<td>23,280</td>
+					<td>4,576</td>
+					<td>24,049</td>
+					<td>21,001</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 20분</td>
+					<td>2,458</td>
+					<td>23,384</td>
+					<td>4,647</td>
+					<td>24,003</td>
+					<td>20,996</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 25분</td>
+					<td>2,456</td>
+					<td>23,459</td>
+					<td>4,668</td>
+					<td>24,088</td>
+					<td>20,989</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 30분</td>
+					<td>2,449</td>
+					<td>23,571</td>
+					<td>4,685</td>
+					<td>24,015</td>
+					<td>21,005</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 35분</td>
+					<td>2,473</td>
+					<td>23,456</td>
+					<td>4,698</td>
+					<td>24,082</td>
+					<td>20,983</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 40분</td>
+					<td>2,470</td>
+					<td>23,513</td>
+					<td>4,712</td>
+					<td>24,030</td>
+					<td>20,993</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 45분</td>
+					<td>2,463</td>
+					<td>23,676</td>
+					<td>4,724</td>
+					<td>24,070</td>
+					<td>20,969</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 50분</td>
+					<td>2,460</td>
+					<td>23,760</td>
+					<td>4,734</td>
+					<td>23,979</td>
+					<td>20,984</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 18시 55분</td>
+					<td>2,498</td>
+					<td>23,723</td>
+					<td>4,742</td>
+					<td>24,091</td>
+					<td>20,968</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 00분</td>
+					<td>2,463</td>
+					<td>23,886</td>
+					<td>4,747</td>
+					<td>24,051</td>
+					<td>20,991</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 05분</td>
+					<td>2,464</td>
+					<td>23,664</td>
+					<td>4,761</td>
+					<td>23,964</td>
+					<td>20,978</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 10분</td>
+					<td>2,492</td>
+					<td>23,748</td>
+					<td>4,794</td>
+					<td>24,166</td>
+					<td>20,983</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 15분</td>
+					<td>2,479</td>
+					<td>23,922</td>
+					<td>4,827</td>
+					<td>24,169</td>
+					<td>20,977</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 20분</td>
+					<td>2,462</td>
+					<td>23,735</td>
+					<td>4,849</td>
+					<td>24,029</td>
+					<td>20,984</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 25분</td>
+					<td>2,459</td>
+					<td>23,580</td>
+					<td>4,866</td>
+					<td>24,087</td>
+					<td>20,974</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 30분</td>
+					<td>2,410</td>
+					<td>23,400</td>
+					<td>4,857</td>
+					<td>24,084</td>
+					<td>20,985</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 35분</td>
+					<td>2,428</td>
+					<td>23,361</td>
+					<td>4,844</td>
+					<td>24,127</td>
+					<td>20,994</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 40분</td>
+					<td>2,421</td>
+					<td>23,266</td>
+					<td>4,845</td>
+					<td>24,170</td>
+					<td>20,998</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 45분</td>
+					<td>2,403</td>
+					<td>23,017</td>
+					<td>4,834</td>
+					<td>24,004</td>
+					<td>20,995</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 50분</td>
+					<td>2,373</td>
+					<td>22,712</td>
+					<td>4,815</td>
+					<td>23,999</td>
+					<td>20,997</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 19시 55분</td>
+					<td>2,388</td>
+					<td>22,464</td>
+					<td>4,815</td>
+					<td>23,904</td>
+					<td>20,996</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 00분</td>
+					<td>2,361</td>
+					<td>22,343</td>
+					<td>4,788</td>
+					<td>23,904</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 05분</td>
+					<td>2,280</td>
+					<td>22,163</td>
+					<td>4,757</td>
+					<td>23,736</td>
+					<td>21,009</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 10분</td>
+					<td>2,344</td>
+					<td>22,229</td>
+					<td>4,704</td>
+					<td>23,789</td>
+					<td>20,994</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 15분</td>
+					<td>2,302</td>
+					<td>22,062</td>
+					<td>4,694</td>
+					<td>23,716</td>
+					<td>20,992</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 20분</td>
+					<td>2,283</td>
+					<td>21,668</td>
+					<td>4,683</td>
+					<td>23,865</td>
+					<td>20,993</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 25분</td>
+					<td>2,282</td>
+					<td>21,590</td>
+					<td>4,663</td>
+					<td>23,678</td>
+					<td>21,006</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 30분</td>
+					<td>2,255</td>
+					<td>21,194</td>
+					<td>4,644</td>
+					<td>23,573</td>
+					<td>21,008</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 35분</td>
+					<td>2,295</td>
+					<td>21,045</td>
+					<td>4,631</td>
+					<td>23,715</td>
+					<td>20,997</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 40분</td>
+					<td>2,273</td>
+					<td>20,979</td>
+					<td>4,612</td>
+					<td>23,680</td>
+					<td>21,004</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 45분</td>
+					<td>2,276</td>
+					<td>20,634</td>
+					<td>4,592</td>
+					<td>23,674</td>
+					<td>20,992</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 50분</td>
+					<td>2,264</td>
+					<td>20,176</td>
+					<td>4,562</td>
+					<td>23,598</td>
+					<td>20,982</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 20시 55분</td>
+					<td>2,290</td>
+					<td>20,296</td>
+					<td>4,539</td>
+					<td>23,779</td>
+					<td>20,982</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 00분</td>
+					<td>2,147</td>
+					<td>20,034</td>
+					<td>4,501</td>
+					<td>23,730</td>
+					<td>21,013</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 05분</td>
+					<td>1,922</td>
+					<td>20,145</td>
+					<td>4,477</td>
+					<td>23,673</td>
+					<td>20,992</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 10분</td>
+					<td>1,934</td>
+					<td>20,034</td>
+					<td>4,430</td>
+					<td>23,726</td>
+					<td>21,005</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 15분</td>
+					<td>1,927</td>
+					<td>19,838</td>
+					<td>4,341</td>
+					<td>23,810</td>
+					<td>21,006</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 20분</td>
+					<td>1,920</td>
+					<td>19,527</td>
+					<td>4,294</td>
+					<td>23,538</td>
+					<td>21,006</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 25분</td>
+					<td>1,906</td>
+					<td>19,351</td>
+					<td>4,253</td>
+					<td>23,561</td>
+					<td>21,013</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 30분</td>
+					<td>1,926</td>
+					<td>19,256</td>
+					<td>4,222</td>
+					<td>23,505</td>
+					<td>20,984</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 35분</td>
+					<td>1,818</td>
+					<td>19,026</td>
+					<td>4,206</td>
+					<td>23,554</td>
+					<td>21,004</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 40분</td>
+					<td>1,639</td>
+					<td>18,836</td>
+					<td>4,162</td>
+					<td>23,537</td>
+					<td>21,014</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 45분</td>
+					<td>1,638</td>
+					<td>18,770</td>
+					<td>4,130</td>
+					<td>23,514</td>
+					<td>20,990</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 50분</td>
+					<td>1,643</td>
+					<td>18,448</td>
+					<td>4,099</td>
+					<td>23,489</td>
+					<td>21,015</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 21시 55분</td>
+					<td>1,642</td>
+					<td>18,439</td>
+					<td>4,072</td>
+					<td>23,470</td>
+					<td>21,021</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 00분</td>
+					<td>1,643</td>
+					<td>18,336</td>
+					<td>4,047</td>
+					<td>23,534</td>
+					<td>20,998</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 05분</td>
+					<td>1,648</td>
+					<td>18,450</td>
+					<td>4,018</td>
+					<td>23,452</td>
+					<td>20,993</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 10분</td>
+					<td>1,638</td>
+					<td>18,352</td>
+					<td>3,980</td>
+					<td>23,646</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 15분</td>
+					<td>1,603</td>
+					<td>18,242</td>
+					<td>3,963</td>
+					<td>23,689</td>
+					<td>21,025</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 20분</td>
+					<td>1,639</td>
+					<td>18,129</td>
+					<td>3,935</td>
+					<td>23,889</td>
+					<td>21,018</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 25분</td>
+					<td>1,606</td>
+					<td>17,946</td>
+					<td>3,905</td>
+					<td>23,823</td>
+					<td>20,999</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 30분</td>
+					<td>1,607</td>
+					<td>17,660</td>
+					<td>3,888</td>
+					<td>23,739</td>
+					<td>21,017</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 35분</td>
+					<td>1,594</td>
+					<td>17,515</td>
+					<td>3,879</td>
+					<td>23,673</td>
+					<td>21,019</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 40분</td>
+					<td>1,604</td>
+					<td>17,398</td>
+					<td>3,865</td>
+					<td>23,760</td>
+					<td>21,026</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 45분</td>
+					<td>1,614</td>
+					<td>17,109</td>
+					<td>3,860</td>
+					<td>23,758</td>
+					<td>21,016</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 50분</td>
+					<td>1,592</td>
+					<td>16,936</td>
+					<td>3,858</td>
+					<td>23,787</td>
+					<td>21,018</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 22시 55분</td>
+					<td>1,589</td>
+					<td>16,769</td>
+					<td>3,854</td>
+					<td>23,653</td>
+					<td>21,023</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 00분</td>
+					<td>1,597</td>
+					<td>16,684</td>
+					<td>3,853</td>
+					<td>23,665</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 05분</td>
+					<td>1,588</td>
+					<td>16,718</td>
+					<td>3,851</td>
+					<td>23,539</td>
+					<td>21,013</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 10분</td>
+					<td>1,401</td>
+					<td>16,600</td>
+					<td>3,835</td>
+					<td>23,636</td>
+					<td>21,028</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 15분</td>
+					<td>1,405</td>
+					<td>16,461</td>
+					<td>3,820</td>
+					<td>23,568</td>
+					<td>21,022</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 20분</td>
+					<td>1,407</td>
+					<td>16,314</td>
+					<td>3,813</td>
+					<td>23,564</td>
+					<td>21,018</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 25분</td>
+					<td>1,400</td>
+					<td>15,919</td>
+					<td>3,811</td>
+					<td>23,462</td>
+					<td>21,017</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 30분</td>
+					<td>1,397</td>
+					<td>15,557</td>
+					<td>3,812</td>
+					<td>23,284</td>
+					<td>21,029</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 35분</td>
+					<td>1,399</td>
+					<td>15,435</td>
+					<td>3,804</td>
+					<td>23,271</td>
+					<td>21,019</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 40분</td>
+					<td>1,400</td>
+					<td>15,103</td>
+					<td>3,789</td>
+					<td>23,269</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 45분</td>
+					<td>1,390</td>
+					<td>14,911</td>
+					<td>3,787</td>
+					<td>23,302</td>
+					<td>21,015</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 50분</td>
+					<td>1,370</td>
+					<td>14,574</td>
+					<td>3,783</td>
+					<td>23,196</td>
+					<td>21,024</td>
+				</tr>
+			
+				<tr>
+					<td>2023년 09월 01일 23시 55분</td>
+					<td>1,381</td>
+					<td>14,224</td>
+					<td>3,788</td>
+					<td>22,897</td>
+					<td>21,028</td>
+				</tr>
+			
+		</tbody>
+	</table>
+</div>

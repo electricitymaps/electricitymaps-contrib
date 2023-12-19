@@ -218,4 +218,5 @@ fallbackZoneMixes:
         wind: 0.11879820724119527
 parsers:
   production: CR.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Costa_Rica

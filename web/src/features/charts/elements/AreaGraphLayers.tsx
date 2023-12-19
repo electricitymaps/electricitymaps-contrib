@@ -2,10 +2,11 @@
 /* eslint-disable react/jsx-handler-names */
 import { area, curveStepAfter } from 'd3-shape';
 import React from 'react';
+import { ElectricityModeType } from 'types';
+import { modeColor } from 'utils/constants';
+
 import { detectHoveredDatapointIndex, getNextDatetime, noop } from '../graphUtils';
 import { AreaGraphElement } from '../types';
-import { modeColor } from 'utils/constants';
-import { ElectricityModeType } from 'types';
 
 interface AreaGraphLayersProps {
   layers: any[];

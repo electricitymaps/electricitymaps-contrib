@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
+from collections.abc import Sequence
 from datetime import datetime
 from logging import Logger
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any
 
 import pandas as pd
 
@@ -23,7 +24,7 @@ class EventList(ABC):
     """A wrapper around Events lists."""
 
     logger: Logger
-    events: List[Event]
+    events: list[Event]
 
     def __init__(self, logger: Logger):
         self.events = []
@@ -38,7 +39,7 @@ class EventList(ABC):
         # TODO Handle one day the creation of mixed batches.
         pass
 
-    def to_list(self) -> List[Dict[str, Any]]:
+    def to_list(self) -> list[dict[str, Any]]:
         return sorted(
             [event.to_dict() for event in self.events], key=lambda x: x["datetime"]
         )
@@ -80,7 +81,7 @@ class AggregatableEventList(EventList, ABC):
     def get_zone_source_type(
         cls,
         events: pd.DataFrame,
-    ) -> Tuple[ZoneKey, str, EventSourceType]:
+    ) -> tuple[ZoneKey, str, EventSourceType]:
         """
         Given a concatenated dataframe of events, return the unique zone, the aggregated sources and the unique source type.
         Raises an error if there are multiple zones or source types.
@@ -134,14 +135,14 @@ class AggregatableEventList(EventList, ABC):
 
 
 class ExchangeList(AggregatableEventList):
-    events: List[Exchange]
+    events: list[Exchange]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        netFlow: float,
+        netFlow: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Exchange.create(
@@ -152,7 +153,7 @@ class ExchangeList(AggregatableEventList):
 
     @staticmethod
     def merge_exchanges(
-        ungrouped_exchanges: List["ExchangeList"], logger: Logger
+        ungrouped_exchanges: list["ExchangeList"], logger: Logger
     ) -> "ExchangeList":
         """
         Given multiple parser outputs, sum the netflows of corresponding datetimes
@@ -176,22 +177,24 @@ class ExchangeList(AggregatableEventList):
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True
         )
-        for datetime, row in exchange_df.iterrows():
-            exchanges.append(zone_key, datetime.to_pydatetime(), sources, row["netFlow"], source_type)  # type: ignore
+        for dt, row in exchange_df.iterrows():
+            exchanges.append(
+                zone_key, dt.to_pydatetime(), sources, row["netFlow"], source_type
+            )  # type: ignore
 
         return exchanges
 
 
 class ProductionBreakdownList(AggregatableEventList):
-    events: List[ProductionBreakdown]
+    events: list[ProductionBreakdown]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        production: Optional[ProductionMix] = None,
-        storage: Optional[StorageMix] = None,
+        production: ProductionMix | None = None,
+        storage: StorageMix | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = ProductionBreakdown.create(
@@ -202,7 +205,7 @@ class ProductionBreakdownList(AggregatableEventList):
 
     @staticmethod
     def merge_production_breakdowns(
-        ungrouped_production_breakdowns: List["ProductionBreakdownList"],
+        ungrouped_production_breakdowns: list["ProductionBreakdownList"],
         logger: Logger,
         matching_timestamps_only: bool = False,
     ) -> "ProductionBreakdownList":
@@ -245,14 +248,14 @@ class ProductionBreakdownList(AggregatableEventList):
 
 
 class TotalProductionList(EventList):
-    events: List[TotalProduction]
+    events: list[TotalProduction]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        value: float,
+        value: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalProduction.create(
@@ -263,14 +266,14 @@ class TotalProductionList(EventList):
 
 
 class TotalConsumptionList(EventList):
-    events: List[TotalConsumption]
+    events: list[TotalConsumption]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        consumption: float,
+        consumption: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalConsumption.create(
@@ -281,14 +284,14 @@ class TotalConsumptionList(EventList):
 
 
 class PriceList(EventList):
-    events: List[Price]
+    events: list[Price]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        price: float,
+        price: float | None,
         currency: str,
         sourceType: EventSourceType = EventSourceType.measured,
     ):

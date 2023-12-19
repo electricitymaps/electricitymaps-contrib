@@ -1,5 +1,6 @@
 import { useTranslation as useTranslationHook } from 'react-i18next';
 import { vsprintf } from 'sprintf-js';
+
 import i18next from './i18n';
 
 // Todo: We should get rid of vsprintf and use i18next interpolation instead
