@@ -56,7 +56,7 @@ export const getRankedState = (
       return {
         zoneId: key,
         color: fillColor,
-        co2intensity,
+        ci: co2intensity,
         countryName: getCountryName(key),
         zoneName: getZoneName(key),
         ranking: undefined,
@@ -64,14 +64,14 @@ export const getRankedState = (
     })
     .filter(
       (zone) =>
-        zone.co2intensity !== undefined &&
+        zone.ci !== undefined &&
         filterZonesBySpatialAggregation(zone.zoneId, spatialAggregation)
     );
 
   const orderedZones =
     sortOrder === 'asc'
-      ? zones.sort((a, b) => a.co2intensity! - b.co2intensity!)
-      : zones.sort((a, b) => b.co2intensity! - a.co2intensity!);
+      ? zones.sort((a, b) => a.ci! - b.ci!)
+      : zones.sort((a, b) => b.ci! - a.ci!);
 
   return orderedZones;
 };

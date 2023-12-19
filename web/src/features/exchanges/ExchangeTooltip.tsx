@@ -15,10 +15,10 @@ interface ExchangeTooltipProperties {
 export default function ExchangeTooltip(
   properties: ExchangeTooltipProperties
 ): ReactElement {
-  const { key, netFlow, co2intensity } = properties.exchangeData;
+  const { key, f, ci } = properties.exchangeData;
   const { __ } = useTranslation();
-  const isExporting = netFlow > 0;
-  const roundedNetFlow = Math.abs(Math.round(netFlow));
+  const isExporting = f > 0;
+  const roundedNetFlow = Math.abs(Math.round(f));
   const zoneFrom = key.split('->')[isExporting ? 0 : 1];
   const zoneTo = key.split('->')[isExporting ? 1 : 0];
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -38,9 +38,9 @@ export default function ExchangeTooltip(
       </div>
       {__('tooltips.carbonintensityexport')}:
       <div className="pt-1">
-        {co2intensity > 0 && (
+        {ci > 0 && (
           <div className="inline-flex items-center gap-x-1">
-            <CarbonIntensityDisplay withSquare co2Intensity={co2intensity} />
+            <CarbonIntensityDisplay withSquare co2Intensity={ci} />
           </div>
         )}
       </div>
