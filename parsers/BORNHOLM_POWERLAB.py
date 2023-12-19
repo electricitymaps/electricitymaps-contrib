@@ -3,8 +3,7 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import List, Optional
-
-from pytz import timezone
+from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -22,7 +21,7 @@ PRODUCTION_MAPPING = {
 LATEST_DATA_URL = "http://bornholm.powerlab.dk/visualizer/latestdata"
 
 SOURCE = "bornholm.powerlab.dk"
-TIMEZONE = timezone("Europe/Copenhagen")
+TIMEZONE = ZoneInfo("Europe/Copenhagen")
 
 
 def fetch_production(
