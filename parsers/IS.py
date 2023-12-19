@@ -1,49 +1,50 @@
-#!python3
 from datetime import datetime
 from logging import Logger, getLogger
 
-# The arrow library is used to handle datetimes
-import arrow
-
 from requests import Session
+from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 
-from parsers.lib.validation import validate
+from zoneinfo import ZoneInfo
+
+SOURCE = "amper.landsnet.is"
+SOURCE_URL = "https://amper.landsnet.is/generation/api/Values"
 
 
 def fetch_production(
-    zone_key: str = "IS",
+    zone_key: ZoneKey = ZoneKey("IS"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     r = session or Session()
-    if target_datetime is None:
-        url = "https://amper.landsnet.is/generation/api/Values"
-    else:
-        # WHEN HISTORICAL DATA IS NOT AVAILABLE
+    if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    res = r.get(url)
-    assert res.status_code == 200, (
-        "Exception when fetching production for "
-        f"{zone_key}: error when calling url={url}"
-    )
+    res = r.get(SOURCE_URL)
+    if not res.ok:
+        raise ParserException(
+            parser="amper_landsnet.py",
+            message=f"Failed to fetch {SOURCE}: {res.status_code}, err: {res.text}",
+            zone_key=zone_key,
+        )
 
     obj = res.json()
-    data = {
-        "zoneKey": zone_key,
-        "production": {},
-        "storage": {},
-        "source": "amper.landsnet.is",
-    }
-
-    for resource in ["hydro", "geothermal", "oil"]:
-        data["production"][resource] = obj[resource]
-
-    data["datetime"] = arrow.get(obj["timestamp"]).datetime
-    validated_data = validate(datapoint=data, fake_zeros=True, logger=logger)
-    return validated_data
+    mix = ProductionMix(
+        geothermal=obj["geothermal"],
+        hydro=obj["hydro"],
+        oil=obj["oil"],
+    )
+    breakdowns = ProductionBreakdownList(logger=logger)
+    breakdowns.append(
+        zoneKey=zone_key,
+        datetime=datetime.fromtimestamp(obj["timestamp"], tz=ZoneInfo("Atlantic/Reykjavik")),
+        production=mix,
+        source=SOURCE,
+    )
+    return breakdowns.to_list()
 
 
 if __name__ == "__main__":
