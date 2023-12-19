@@ -33,15 +33,21 @@ export const getRankedState = (
   if (!data) {
     return [];
   }
-  const zonesData = data.data;
-  const keys = Object.keys(zonesData.zones) as Array<keyof GridState>;
+  const gird = data.data.datetimes[datetimeIndex];
+  if (!gird) {
+    return [];
+  }
+  if (!gird.z) {
+    return [];
+  }
+  const keys = Object.keys(gird.z) as Array<keyof GridState>;
 
   if (!keys) {
     return [];
   }
   const zones = keys
     .map((key) => {
-      const zoneData = zonesData.zones[key][datetimeIndex];
+      const zoneData = gird.z[key];
 
       const co2intensity = zoneData
         ? getCO2IntensityByMode(zoneData, electricityMode)

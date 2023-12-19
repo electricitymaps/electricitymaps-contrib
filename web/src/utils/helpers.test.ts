@@ -14,7 +14,7 @@ describe('getCO2IntensityByMode', () => {
   describe('consumption', () => {
     it('returns 100 when the mode is consumption', () => {
       const actual = getCO2IntensityByMode(
-        { co2intensity: 100, co2intensityProduction: 200 },
+        { c: { ci: 100 }, p: { ci: 200 } },
         'consumption'
       );
       expect(actual).toBe(100);
@@ -25,7 +25,7 @@ describe('getCO2IntensityByMode', () => {
   describe('production', () => {
     it('returns 200 when the mode is production', () => {
       const actual = getCO2IntensityByMode(
-        { co2intensity: 100, co2intensityProduction: 200 },
+        { c: { ci: 100 }, p: { ci: 200 } },
         'production'
       );
       expect(actual).toBe(200);

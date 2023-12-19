@@ -3,6 +3,7 @@ import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
+  StateZoneData,
   ZoneDetail,
 } from 'types';
 
@@ -16,12 +17,10 @@ export function getZoneFromPath() {
 }
 
 export function getCO2IntensityByMode(
-  zoneData: { co2intensity: number; co2intensityProduction: number },
+  zoneData: StateZoneData,
   electricityMixMode: string
 ) {
-  return electricityMixMode === 'consumption'
-    ? zoneData.co2intensity
-    : zoneData.co2intensityProduction;
+  return electricityMixMode === 'consumption' ? zoneData?.c?.ci : zoneData?.p?.ci;
 }
 
 /**

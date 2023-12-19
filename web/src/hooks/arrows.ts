@@ -59,12 +59,12 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
     return [];
   }
 
-  const exchanges = data?.data.exchanges;
+  const exchanges = data.data.datetimes[selectedDatetime.datetimeString].e;
 
   const currentExchanges: ExchangeArrowData[] = Object.entries(exchangesToUse)
-    .filter(([key]) => exchanges[key][selectedDatetime.datetimeString] !== undefined)
+    .filter(([key]) => exchanges[key] !== undefined)
     .map(([key, value]) => ({
-      ...value[selectedDatetime.datetimeString],
+      ...value,
       ...exchangesConfig[key],
       key: key,
     }));
