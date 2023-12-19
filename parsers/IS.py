@@ -5,13 +5,9 @@ from logging import Logger, getLogger
 # The arrow library is used to handle datetimes
 import arrow
 
-# The request library is used to fetch content through HTTP
 from requests import Session
 
 from parsers.lib.validation import validate
-
-# please try to write PEP8 compliant code (use a linter). One of PEP8's
-# requirement is to limit your line length to 79 characters.
 
 
 def fetch_production(
@@ -42,11 +38,9 @@ def fetch_production(
         "source": "amper.landsnet.is",
     }
 
-    # Parse the individual generation resources
     for resource in ["hydro", "geothermal", "oil"]:
         data["production"][resource] = obj[resource]
 
-    # Parse the datetime and return a python datetime object
     data["datetime"] = arrow.get(obj["timestamp"]).datetime
     validated_data = validate(datapoint=data, fake_zeros=True, logger=logger)
     return validated_data
