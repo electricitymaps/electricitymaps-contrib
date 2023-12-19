@@ -49,8 +49,8 @@ export interface StateExchangeData {
 }
 
 export interface ExchangeOverview {
-  netFlow: number;
-  co2intensity: number;
+  f: number;
+  ci: number;
 }
 
 export interface ExchangeArrowData extends ExchangeOverview {

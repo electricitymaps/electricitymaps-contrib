@@ -32,11 +32,10 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
     }
     const grid = data as GridState;
 
-    if (!grid.data.datetimes[selectedDatetime.datetimeString]) {
+    const exchanges = grid?.data?.datetimes?.[selectedDatetime?.datetimeString]?.e;
+    if (!exchanges) {
       return [];
     }
-
-    const exchanges = grid.data.datetimes[selectedDatetime.datetimeString].e;
 
     const zoneViewExchanges = Object.keys(exchanges)
       .filter((key) => !exchangesToExclude.exchangesToExcludeZoneView.includes(key))
