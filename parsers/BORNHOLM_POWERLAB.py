@@ -2,8 +2,8 @@
 # The arrow library is used to handle datetimes
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Optional
 from zoneinfo import ZoneInfo
+
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -26,10 +26,10 @@ TIMEZONE = ZoneInfo("UTC")
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("DK-BHM"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -53,10 +53,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: ZoneKey = ZoneKey("DK-BHM"),
     zone_key2: ZoneKey = ZoneKey("SE-SE4"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
