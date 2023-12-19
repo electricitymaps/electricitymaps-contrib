@@ -37,14 +37,21 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
       return [];
     }
 
+    const exchangesToExcludeZoneViewSet = new Set(
+      exchangesToExclude.exchangesToExcludeZoneView
+    );
+    const exchangesToExcludeCountryViewSet = new Set(
+      exchangesToExclude.exchangesToExcludeCountryView
+    );
+
     const zoneViewExchanges = Object.keys(exchanges)
-      .filter((key) => !exchangesToExclude.exchangesToExcludeZoneView.includes(key))
+      .filter((key) => !exchangesToExcludeZoneViewSet.has(key))
       .reduce((current, key) => {
         return Object.assign(current, { [key]: exchanges[key] });
       }, {});
 
     const countryViewExchanges = Object.keys(exchanges)
-      .filter((key) => !exchangesToExclude.exchangesToExcludeCountryView.includes(key))
+      .filter((key) => !exchangesToExcludeCountryViewSet.has(key))
       .reduce((current, key) => {
         return Object.assign(current, { [key]: exchanges[key] });
       }, {});
