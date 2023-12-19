@@ -72,7 +72,7 @@ export default function MapTooltip() {
 
   const { x, y } = mousePosition;
   const zoneData =
-    data?.data.datetimes[selectedDatetime.datetimeString].z[hoveredZone.zoneId] ??
+    data?.data?.datetimes[selectedDatetime.datetimeString]?.z[hoveredZone.zoneId] ??
     undefined;
 
   const screenWidth = window.innerWidth;
