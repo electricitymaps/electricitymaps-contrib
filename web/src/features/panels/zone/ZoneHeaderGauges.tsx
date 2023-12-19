@@ -85,19 +85,16 @@ export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
   } = selectedData || {};
 
   const intensity = getCarbonIntensity(
-    isConsumption,
-    co2intensity,
-    co2intensityProduction
+    { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
+    isConsumption
   );
   const renewable = getRenewableRatio(
-    isConsumption,
-    renewableRatio,
-    renewableRatioProduction
+    { c: { rr: renewableRatio }, p: { rr: renewableRatioProduction } },
+    isConsumption
   );
   const fossilFuelPercentage = getFossilFuelRatio(
-    isConsumption,
-    fossilFuelRatio,
-    fossilFuelRatioProduction
+    { c: { fr: fossilFuelRatio }, p: { fr: fossilFuelRatioProduction } },
+    isConsumption
   );
   const outageData = data?.zoneMessage;
 
