@@ -40,8 +40,8 @@ def fetch_production(
     breakdowns = ProductionBreakdownList(logger=logger)
     breakdowns.append(
         zoneKey=zone_key,
-        datetime=datetime.fromtimestamp(
-            obj["timestamp"], tz=ZoneInfo("Atlantic/Reykjavik")
+        datetime=datetime.fromisoformat(obj["timestamp"]).replace(
+            tzinfo=ZoneInfo("Atlantic/Reykjavik")
         ),
         production=mix,
         source=SOURCE,
