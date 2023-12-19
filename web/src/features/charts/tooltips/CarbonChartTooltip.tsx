@@ -21,10 +21,10 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     return null;
   }
   const { co2intensity, co2intensityProduction, stateDatetime } = zoneDetail;
+
   const intensity = getCarbonIntensity(
-    isConsumption,
-    co2intensity,
-    co2intensityProduction
+    { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
+    isConsumption
   );
   return (
     <div

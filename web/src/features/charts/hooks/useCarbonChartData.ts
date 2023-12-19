@@ -20,8 +20,8 @@ export function useCarbonChartData() {
       const datetime = new Date(datetimeString);
       const carbonIntensity = getCO2IntensityByMode(
         {
-          co2intensity: value.co2intensity || 0,
-          co2intensityProduction: value.co2intensityProduction || 0,
+          c: { ci: value.co2intensity ?? 0 },
+          p: { ci: value.co2intensityProduction ?? 0 },
         },
         mixMode
       );
