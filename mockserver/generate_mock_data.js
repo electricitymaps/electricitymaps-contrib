@@ -13,7 +13,7 @@ const fetchAndStoreData = async (url, savePath) => {
 };
 
 const CORE_URL = 'http://localhost:8001/v8';
-const timeAggregates = ['hourly', 'daily', 'monthly', 'yearly'];
+const timeAggregates = ['last_hour', 'hourly', 'daily', 'monthly', 'yearly'];
 const detailsZones = ['DE', 'DK-DK2'];
 
 const generateMockData = async () => {
@@ -23,12 +23,15 @@ const generateMockData = async () => {
         `${CORE_URL}/state/${agg}`,
         `./public/v8/state/${agg}.json`
       );
-      detailsZones.forEach(async (zoneId) => {
-        await fetchAndStoreData(
-          `${CORE_URL}/details/${agg}/${zoneId}`,
-          `./public/v8/details/${agg}/${zoneId}.json`
-        );
-      });
+
+      if (agg !== 'last_hour') {
+        detailsZones.forEach(async (zoneId) => {
+          await fetchAndStoreData(
+            `${CORE_URL}/details/${agg}/${zoneId}`,
+            `./public/v8/details/${agg}/${zoneId}.json`
+          );
+        });
+      }
     } catch (error) {
       console.error(error);
     }

@@ -2,7 +2,7 @@
 import useGetState from 'api/getState';
 import { useAtom } from 'jotai';
 import { useMemo } from 'react';
-import { ExchangeArrowData, ExchangeResponse } from 'types';
+import { ExchangeArrowData, GridState, StateExchangeData } from 'types';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   productionConsumptionAtom,
@@ -26,12 +26,17 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
   const isConsumption = mode === 'consumption';
   const isHourly = timeAverage === TimeAverages.HOURLY;
 
-  const exchangesToUse: { [key: string]: ExchangeResponse } = useMemo(() => {
-    const exchanges = data?.data.exchanges;
+  const exchangesToUse: { [key: string]: StateExchangeData } = useMemo(() => {
+    if (!data) {
+      return {};
+    }
+    const grid = data as GridState;
 
-    if (!exchanges) {
+    if (!grid.data.datetimes[selectedDatetime.datetimeString]) {
       return [];
     }
+
+    const exchanges = grid.data.datetimes[selectedDatetime.datetimeString].e;
 
     const zoneViewExchanges = Object.keys(exchanges)
       .filter((key) => !exchangesToExclude.exchangesToExcludeZoneView.includes(key))
