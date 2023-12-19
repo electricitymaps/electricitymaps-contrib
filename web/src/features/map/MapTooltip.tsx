@@ -27,33 +27,14 @@ function TooltipInner({
   zoneId: string;
   zoneData: StateZoneData;
 }) {
-  const {
-    co2intensity,
-    co2intensityProduction,
-    fossilFuelRatio,
-    fossilFuelRatioProduction,
-    renewableRatio,
-    renewableRatioProduction,
-  } = zoneData;
   const { __ } = useTranslation();
 
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
-  const intensity = getCarbonIntensity(
-    isConsumption,
-    co2intensity,
-    co2intensityProduction
-  );
-  const fossilFuelPercentage = getFossilFuelRatio(
-    isConsumption,
-    fossilFuelRatio,
-    fossilFuelRatioProduction
-  );
-  const renewable = getRenewableRatio(
-    isConsumption,
-    renewableRatio,
-    renewableRatioProduction
-  );
+  const intensity = getCarbonIntensity(zoneData, isConsumption);
+  const fossilFuelPercentage = getFossilFuelRatio(zoneData, isConsumption);
+  const renewable = getRenewableRatio(zoneData, isConsumption);
+
   return (
     <div className="w-full text-center">
       <div className="pl-2">

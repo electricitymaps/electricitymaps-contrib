@@ -31,14 +31,14 @@ export interface GridState {
 
 export interface StateZoneData {
   p: {
-    ci?: number;
-    fr?: number;
-    rr?: number;
+    ci?: number | null;
+    fr?: number | null;
+    rr?: number | null;
   };
   c: {
-    ci?: number;
-    fr?: number;
-    rr?: number;
+    ci?: number | null;
+    fr?: number | null;
+    rr?: number | null;
   };
   e?: boolean;
 }

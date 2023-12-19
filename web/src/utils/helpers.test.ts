@@ -56,27 +56,27 @@ describe('getFossilFuelRatio', () => {
   // Tests for consumption
   describe('consumption', () => {
     it('returns 1 when fossil fuel ratio is 0', () => {
-      const actual = getFossilFuelRatio(true, 0, 0);
+      const actual = getFossilFuelRatio({ c: { fr: 0 }, p: { fr: 1 } }, true);
       expect(actual).toBe(1);
     });
 
     it('returns 0 when fossil fuel ratio is 1', () => {
-      const actual = getFossilFuelRatio(true, 1, 1);
+      const actual = getFossilFuelRatio({ c: { fr: 1 }, p: { fr: 0 } }, true);
       expect(actual).toBe(0);
     });
 
     it('returns NaN when fossil fuel ratio is null', () => {
-      const actual = getFossilFuelRatio(true, null, null);
+      const actual = getFossilFuelRatio({ c: { fr: null }, p: { fr: null } }, true);
       expect(actual).toBeNaN();
     });
 
     it('returns NaN when fossil fuel ratio is undefined', () => {
-      const actual = getFossilFuelRatio(true, undefined, undefined);
+      const actual = getFossilFuelRatio({ c: {}, p: {} }, true);
       expect(actual).toBeNaN();
     });
 
     it('returns 1 - fossil fuel ratio when fossil fuel ratio is between 0 and 1', () => {
-      const actual = getFossilFuelRatio(true, 0.3, 0.5);
+      const actual = getFossilFuelRatio({ c: { fr: 0.3 }, p: { fr: 0.7 } }, true);
       expect(actual).toBe(0.7);
     });
   });
@@ -84,27 +84,27 @@ describe('getFossilFuelRatio', () => {
   // Tests for production
   describe('production', () => {
     it('returns 1 when fossil fuel ratio is 0', () => {
-      const actual = getFossilFuelRatio(false, 0, 0);
+      const actual = getFossilFuelRatio({ c: { fr: 1 }, p: { fr: 0 } }, false);
       expect(actual).toBe(1);
     });
 
     it('returns 0 when fossil fuel ratio is 1', () => {
-      const actual = getFossilFuelRatio(false, 1, 1);
+      const actual = getFossilFuelRatio({ c: { fr: 0 }, p: { fr: 1 } }, false);
       expect(actual).toBe(0);
     });
 
     it('returns NaN when fossil fuel ratio is null', () => {
-      const actual = getFossilFuelRatio(false, null, null);
+      const actual = getFossilFuelRatio({ c: { fr: null }, p: { fr: null } }, false);
       expect(actual).toBeNaN();
     });
 
     it('returns NaN when fossil fuel ratio is undefined', () => {
-      const actual = getFossilFuelRatio(false, undefined, undefined);
+      const actual = getFossilFuelRatio({ c: {}, p: {} }, false);
       expect(actual).toBeNaN();
     });
 
     it('returns 1 - fossil fuel ratio when fossil fuel ratio is between 0 and 1', () => {
-      const actual = getFossilFuelRatio(false, 0.5, 0.3);
+      const actual = getFossilFuelRatio({ c: { fr: 0.7 }, p: { fr: 0.3 } }, false);
       expect(actual).toBe(0.7);
     });
   });
@@ -114,17 +114,17 @@ describe('getCarbonIntensity', () => {
   // Tests for consumption
   describe('consumption', () => {
     it('returns carbon intensity when carbon intensity is not null', () => {
-      const actual = getCarbonIntensity(true, 100, 200);
+      const actual = getCarbonIntensity({ c: { ci: 100 }, p: { ci: 200 } }, true);
       expect(actual).toBe(100);
     });
 
     it('returns NaN when carbon intensity is null', () => {
-      const actual = getCarbonIntensity(true, null, null);
+      const actual = getCarbonIntensity({ c: { fr: null }, p: { fr: null } }, true);
       expect(actual).toBeNaN();
     });
 
     it('returns NaN when carbon intensity is undefined', () => {
-      const actual = getCarbonIntensity(true, undefined, undefined);
+      const actual = getCarbonIntensity({ c: {}, p: {} }, true);
       expect(actual).toBeNaN();
     });
   });
@@ -132,17 +132,17 @@ describe('getCarbonIntensity', () => {
   // Tests for production
   describe('production', () => {
     it('returns carbon intensity when carbon intensity is not null', () => {
-      const actual = getCarbonIntensity(false, 100, 200);
+      const actual = getCarbonIntensity({ c: { ci: 100 }, p: { ci: 200 } }, false);
       expect(actual).toBe(200);
     });
 
     it('returns NaN when carbon intensity is null', () => {
-      const actual = getCarbonIntensity(false, null, null);
+      const actual = getCarbonIntensity({ c: { fr: null }, p: { fr: null } }, false);
       expect(actual).toBeNaN();
     });
 
     it('returns NaN when carbon intensity is undefined', () => {
-      const actual = getCarbonIntensity(false, undefined, undefined);
+      const actual = getCarbonIntensity({ c: {}, p: {} }, false);
       expect(actual).toBeNaN();
     });
   });
@@ -152,17 +152,17 @@ describe('getRenewableRatio', () => {
   // Tests for consumption
   describe('consumption', () => {
     it('returns renewable ratio when renewable ratio is not null', () => {
-      const actual = getRenewableRatio(true, 0.5, 0.3);
+      const actual = getRenewableRatio({ c: { rr: 0.5 }, p: { rr: 0.3 } }, true);
       expect(actual).toBe(0.5);
     });
 
     it('returns NaN when renewable ratio is null', () => {
-      const actual = getRenewableRatio(true, null, null);
+      const actual = getRenewableRatio({ c: { rr: null }, p: { rr: null } }, true);
       expect(actual).toBeNaN();
     });
 
     it('returns NaN when renewable ratio is undefined', () => {
-      const actual = getRenewableRatio(true, undefined, undefined);
+      const actual = getRenewableRatio({ c: {}, p: {} }, true);
       expect(actual).toBeNaN();
     });
   });
@@ -170,17 +170,17 @@ describe('getRenewableRatio', () => {
   // Tests for production
   describe('production', () => {
     it('returns renewable ratio when renewable ratio is not null', () => {
-      const actual = getRenewableRatio(false, 0.5, 0.3);
+      const actual = getRenewableRatio({ c: { rr: 0.5 }, p: { rr: 0.3 } }, false);
       expect(actual).toBe(0.3);
     });
 
     it('returns NaN when renewable ratio is null', () => {
-      const actual = getRenewableRatio(false, null, null);
+      const actual = getRenewableRatio({ c: { rr: null }, p: { rr: null } }, false);
       expect(actual).toBeNaN();
     });
 
     it('returns NaN when renewable ratio is undefined', () => {
-      const actual = getRenewableRatio(false, undefined, undefined);
+      const actual = getRenewableRatio({ c: {}, p: {} }, false);
       expect(actual).toBeNaN();
     });
   });
