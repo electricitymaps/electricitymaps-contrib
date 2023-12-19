@@ -44,17 +44,17 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
       exchangesToExclude.exchangesToExcludeCountryView
     );
 
-    const zoneViewExchanges = Object.keys(exchanges)
-      .filter((key) => !exchangesToExcludeZoneViewSet.has(key))
-      .reduce((current, key) => {
-        return Object.assign(current, { [key]: exchanges[key] });
-      }, {});
+    let zoneViewExchanges = {};
+    let countryViewExchanges = {};
 
-    const countryViewExchanges = Object.keys(exchanges)
-      .filter((key) => !exchangesToExcludeCountryViewSet.has(key))
-      .reduce((current, key) => {
-        return Object.assign(current, { [key]: exchanges[key] });
-      }, {});
+    for (const key of Object.keys(exchanges)) {
+      if (!exchangesToExcludeZoneViewSet.has(key)) {
+        zoneViewExchanges = { ...zoneViewExchanges, [key]: exchanges[key] };
+      }
+      if (!exchangesToExcludeCountryViewSet.has(key)) {
+        countryViewExchanges = { ...countryViewExchanges, [key]: exchanges[key] };
+      }
+    }
 
     return viewMode === SpatialAggregate.COUNTRY
       ? countryViewExchanges
