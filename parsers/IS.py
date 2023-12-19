@@ -1,13 +1,13 @@
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 from requests import Session
+
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
-
-from zoneinfo import ZoneInfo
 
 SOURCE = "amper.landsnet.is"
 SOURCE_URL = "https://amper.landsnet.is/generation/api/Values"
@@ -40,7 +40,9 @@ def fetch_production(
     breakdowns = ProductionBreakdownList(logger=logger)
     breakdowns.append(
         zoneKey=zone_key,
-        datetime=datetime.fromtimestamp(obj["timestamp"], tz=ZoneInfo("Atlantic/Reykjavik")),
+        datetime=datetime.fromtimestamp(
+            obj["timestamp"], tz=ZoneInfo("Atlantic/Reykjavik")
+        ),
         production=mix,
         source=SOURCE,
     )
