@@ -12,7 +12,7 @@ from parsers.ERP_PGCB import (
 )
 
 
-class TestCammesaweb(TestCase):
+class TestERP_PGCB(TestCase):
     def setUp(self) -> None:
         self.session = Session()
         self.adapter = Adapter()
@@ -22,7 +22,7 @@ class TestCammesaweb(TestCase):
         self.adapter.register_uri(
             GET,
             ANY,
-            text=resources.files("parsers.test.mocks.ERP_PCGB")
+            text=resources.files("parsers.test.mocks.ERP_PGCB")
                 .joinpath("latest.html")
                 .read_text()
         )
@@ -47,7 +47,7 @@ class TestCammesaweb(TestCase):
             GET,
             ANY,
             text=
-                resources.files("parsers.test.mocks.ERP_PCGB")
+                resources.files("parsers.test.mocks.ERP_PGCB")
                 .joinpath("latest.html")
                 .read_text(),
         )
@@ -75,7 +75,7 @@ class TestCammesaweb(TestCase):
             GET,
             ANY,
             text=
-                resources.files("parsers.test.mocks.ERP_PCGB")
+                resources.files("parsers.test.mocks.ERP_PGCB")
                 .joinpath("latest.html")
                 .read_text(),
         )

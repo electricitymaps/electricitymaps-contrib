@@ -7,7 +7,7 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots['TestCammesaweb::test_exchanges 1'] = [
+snapshots['TestERP_PGCB::test_exchanges 1'] = [
     {
         'datetime': '2023-12-19T21:00:00+06:00',
         'netFlow': -94.0,
@@ -316,7 +316,7 @@ snapshots['TestCammesaweb::test_exchanges 1'] = [
     }
 ]
 
-snapshots['TestCammesaweb::test_fetch_consumption 1'] = [
+snapshots['TestERP_PGCB::test_fetch_consumption 1'] = [
     {
         'consumption': 9373.0,
         'datetime': '2023-12-19T21:00:00+06:00',
@@ -574,7 +574,7 @@ snapshots['TestCammesaweb::test_fetch_consumption 1'] = [
     }
 ]
 
-snapshots['TestCammesaweb::test_fetch_production 1'] = [
+snapshots['TestERP_PGCB::test_fetch_production 1'] = [
     {
         'datetime': '2023-12-19T21:00:00+06:00',
         'production': {
