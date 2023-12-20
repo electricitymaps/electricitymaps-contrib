@@ -1,4 +1,3 @@
-import json
 from importlib import resources
 
 from requests import Session
@@ -6,7 +5,7 @@ from requests_mock import ANY, GET, Adapter
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.BD import (
+from parsers.ERP_PGCB import (
     fetch_exchange,
     fetch_production,
     fetch_consumption
