@@ -129,8 +129,8 @@ def sg_period_to_hour(period_str) -> float:
 def sg_data_to_datetime(data):
     data_date = data["Date"]
     data_time = sg_period_to_hour(data["Period"])
-    data_datetime = datetime.strptime(data_date, "%d %b %Y").astimezone(
-        TIMEZONE
+    data_datetime = datetime.strptime(data_date, "%d %b %Y").replace(
+        tzinfo=TIMEZONE
     ) + timedelta(hours=data_time)
     return data_datetime
 
