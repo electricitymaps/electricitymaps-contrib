@@ -14,7 +14,7 @@ contributors:
   - alixunderplatz
   - MuffinCompiler
 parsers:
-  consumption: BD.fetch_consumption
-  production: BD.fetch_production
+  consumption: ERP_PGCB.fetch_consumption
+  production: ERP_PGCB.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Dhaka
