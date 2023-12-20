@@ -12,7 +12,7 @@ const fetchAndStoreData = async (url, savePath) => {
   return axios.get(url).then((res) => writeJSON(savePath, res.data));
 };
 
-const CORE_URL = 'http://localhost:8001/v6';
+const CORE_URL = 'http://localhost:8001/v8';
 const timeAggregates = ['hourly', 'daily', 'monthly', 'yearly'];
 const detailsZones = ['DE', 'DK-DK2'];
 
@@ -21,12 +21,12 @@ const generateMockData = async () => {
     try {
       await fetchAndStoreData(
         `${CORE_URL}/state/${agg}`,
-        `./public/v6/state/${agg}.json`
+        `./public/v8/state/${agg}.json`
       );
       detailsZones.forEach(async (zoneId) => {
         await fetchAndStoreData(
           `${CORE_URL}/details/${agg}/${zoneId}`,
-          `./public/v7/details/${agg}/${zoneId}.json`
+          `./public/v8/details/${agg}/${zoneId}.json`
         );
       });
     } catch (error) {
