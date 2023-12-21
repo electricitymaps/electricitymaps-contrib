@@ -28,7 +28,7 @@ def extract_xsrf_token(html):
     return re.search(r'var ttoken = "([a-f0-9]+)";', html).group(1)
 
 
-def get_timestamp(query_date: datetime, hour: int) -> datetime:
+def get_datetime(query_date: datetime, hour: int) -> datetime:
     return datetime(
         year=query_date.year,
         month=query_date.month,
@@ -70,7 +70,7 @@ def parse_generation_forecast(
         [hour, forecast, total, thermo, hydro, wind, solar, bagasse] = hour_row
 
         # "hour" is one-indexed
-        timestamp = get_timestamp(query_date=date, hour=hour - 1)
+        timestamp = get_datetime(query_date=date, hour=hour - 1)
 
         result.append(
             zoneKey=zone_key,
@@ -92,7 +92,7 @@ def parser_production_breakdown(
         [hour, forecast, total, thermo, hydro, wind, solar, bagasse] = hour_row
 
         # "hour" is one-indexed
-        timestamp = get_timestamp(query_date=date, hour=hour - 1)
+        timestamp = get_datetime(query_date=date, hour=hour - 1)
         modes_extracted = [hydro, solar, wind, bagasse]
 
         if total is None or None in modes_extracted:
