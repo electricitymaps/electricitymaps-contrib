@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1252">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>CNDC</title>
+<link rel="SHORTCUT ICON" href="../home/images/cndc.ico" type="image/x-icon" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link href="./ass/css/jquery-ui.1.12.1.min.css" rel="stylesheet">
+
+<link href="./ass/css/font-awesome.min.css" rel="stylesheet">
+<link href="./ass/css/Menu_Graficador.css" rel="stylesheet">
+<link href="./ass/css/index.css" rel="stylesheet">
+
+		<!-- scripts -->
+
+		<!--[if lt IE 9 ]>
+		<script src="./ass/js/html5shiv.min.js"></script>
+		<script src="./ass/js/respond.min.js"></script>
+		<![endif]-->
+
+		<!--script src="/assets/js/	"></script-->
+
+
+<script type="text/javascript">var ttoken = "0ac6323ef3e86abb2e113425f4cb1ef84d9d33a7ee36d8c175a5fbee99c3071be3c6f9428eefbd4c30ddb89eb1206a67f3d94e05c04e6f2df81cbccf8247c0be82298501436918580d81d8129b2ed01494e74b11ccd04e6e666b43bf27d28d8290996da60324ac2a3accd8bbc7477bbf743c57c7928eea35b40b61e1a0f8962d";</script><script type="text/javascript">
+window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer",{
+
+		backgroundColor: "#FEF9E7",
+		zoomEnabled: true,
+		zoomType: "xy",
+		exportEnabled: true,
+		title:{
+			text:"GENERACION HORARIA ( MW )",
+			fontSize: 18
+		},
+		subtitles: [{
+    	text: "Subtitle",
+    	fontColor: "red",
+		fontSize: 16
+    	}],
+		legend: {
+                verticalAlign: "bottom",
+                horizontalAlign: "center",
+				fontSize: 16
+            },
+		axisX: {
+		//gridThickness: 0,
+		includeZero: true,
+		labelFontSize: 10,
+
+		//tickThickness: 0,
+		lineThickness: 1,
+		interval: 1,
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+		}
+	},
+	axisY:{
+		//title: "Generación",
+		//titleFontColor: "red",
+		//titleFontSize: 20,
+		suffix:  "",
+
+		//interval : 200,
+		includeZero: true,
+		labelFontSize: 10,
+      labelFormatter: function(e) {
+		if (e.value < 0)
+			return "";
+		else
+			return e.value + " MW"
+      },
+      tickLength: 1,
+	  lineThickness: 1,
+	  crosshair: {
+			enabled: true
+		}
+	},
+		data: [{
+			type: "line",
+			name: "Prevista",
+			showInLegend: true,
+			lineDashType: "shortDot",
+			color: "#999999",
+			backgroundColor: "#999999",
+			lineThickness: 3,
+			markerSize: 3,
+			toolTipContent: "{y} MW",
+			yValueFormatString: "#,##0.##",
+			dataPoints : [],
+		},
+		{
+			type: "line",
+			name: "Real",
+			showInLegend: true,
+			color: "#333333",
+			backgroundColor: "#333333",
+			lineThickness: 5,
+			markerSize: 6,
+			toolTipContent: "{y} MW",
+			yValueFormatString: "#,##0.##",
+			dataPoints : [],
+		},
+		{
+			type: "spline",
+			name: "Termo",
+			showInLegend: true,
+			color: "red",
+			backgroundColor: "red",
+			lineThickness: 3,
+			markerSize: 4,
+			toolTipContent: "{y} MW",
+			yValueFormatString: "#,##0.##",
+			dataPoints : [],
+		},
+		{
+			type: "spline",
+			name: "Hidro",
+			showInLegend: true,
+			color: "blue",
+			backgroundColor: "blue",
+			lineThickness: 3,
+			markerSize: 4,
+			toolTipContent: "{y} MW",
+			yValueFormatString: "#,##0.##",
+			dataPoints : [],
+		},
+		{
+			type: "spline",
+			name: "Eolica",
+			showInLegend: true,
+			color: "green",
+			backgroundColor: "green",
+			lineThickness: 4,
+			markerSize: 5,
+			toolTipContent: "{y} MW",
+			yValueFormatString: "#,##0.##",
+			dataPoints : [],
+		},
+		{
+
+			type: "spline",
+			name: "Solar",
+			showInLegend: true,
+			color: "orange",
+			backgroundColor: "orange",
+			lineThickness: 4,
+			markerSize: 5,
+			toolTipContent: "{y} MW",
+			yValueFormatString: "#,##0.##",
+			dataPoints : [],
+		},
+		{
+
+			type: "spline",
+			name: "Bagazo",
+			showInLegend: true,
+			color: "#01FFFA",
+			backgroundColor: "#01FFFA",
+			lineThickness: 4,
+			markerSize: 5,
+			toolTipContent: "{y} MW",
+			yValueFormatString: "#,##0.##",
+			dataPoints : [],
+		}
+		]
+	});
+
+////////////////////////////////////////////////////////
+
+$(function() {
+	$("#fechaGe").datepicker("option", $.datepicker.regional['es']);
+	$("#fechaGe").datepicker({
+	dateFormat: 'yy-mm-dd',
+	changeMonth: false,
+	changeYear: false,
+	showButtonPanel: false,
+    showAnim: 'fadeIn',
+	selectWeek: true,
+	numberOfMonths: 1,
+	width:300,
+	height:250,
+	minDate: '2020-01-01',
+	showOn: "button",
+	buttonImage: "ass/css//images/datepicker.jpg",
+	buttonImageOnly: true
+	});
+
+
+
+});
+
+$("#date-selector").change( function() {
+	var valFecha = $( "#fechaGe" ).val();
+	if(new Date(valFecha).getTime() != null){
+		updateChart(valFecha);
+  }
+});
+
+
+////////////////////////////////////////////////////////
+var VALOR = -50;
+
+function setChart(data)
+{
+		chart.options.data[0].dataPoints = [];
+		chart.options.data[1].dataPoints = [];
+		chart.options.data[2].dataPoints = [];
+		chart.options.data[3].dataPoints = [];
+		chart.options.data[4].dataPoints = [];
+		chart.options.data[5].dataPoints = [];
+		chart.options.data[6].dataPoints = [];
+		$.each((data), function(key, value){
+			chart.options.data[0].dataPoints.push({label: value[0], y: value[1], x: value[0]});
+			chart.options.data[1].dataPoints.push({label: value[0], y: value[2], x: value[0]});
+			chart.options.data[2].dataPoints.push({label: value[0], y: value[3], x: value[0]});
+			chart.options.data[3].dataPoints.push({label: value[0], y: value[4], x: value[0]});
+			chart.options.data[4].dataPoints.push({label: value[0], y: value[5], x: value[0]});
+			chart.options.data[5].dataPoints.push({label: value[0], y: value[6], x: value[0]});
+			chart.options.data[6].dataPoints.push({label: value[0], y: value[7], x: value[0]});
+			/*
+			if (parseInt(value[6]) === 1)
+				chart.options.data[5].dataPoints.push({label: value[0], y: VALOR, x: value[0], color: "#33cc33"});
+			else if (parseInt(value[6]) === 2)
+				chart.options.data[5].dataPoints.push({label: value[0], y: VALOR, x: value[0], color: "orange"});
+			else if (parseInt(value[6]) === 3)
+				chart.options.data[5].dataPoints.push({label: value[0], y: VALOR, x: value[0], color: "red"});
+			*/
+				});
+		chart.render();
+
+		chart.subtitles[0].set("text", dateFormat($( "#fechaGe" ).val(), 'dddd, d "de" mmmm "de" yyyy', true) );
+
+	}
+
+showNow();
+
+function showNow()
+{
+	updateChart($("#fechaGe").datepicker({dateFormat: "yy-mm-dd"}).datepicker("setDate", $.now()).val());
+}
+
+function updateChart(fecha) {
+		$.ajaxSetup({beforeSend: function (xhr) { xhr.setRequestHeader("X-Csrf-Token", ttoken); }});
+		$.getJSON("./dat/gene.php",{ "fechag" : fecha }, function(data, status, xhr) {
+			if (data.data.length === 0)
+			{
+				//location.reload(true);
+			}
+			else
+			{
+				ttoken = data.ttoken;
+				setChart(data.data);
+			}
+			return false;
+		});
+	}
+
+	setInterval(function(){showNow()}, 15*60*1000);
+}
+</script>
+
+
+<script>
+$(document).ready(function()
+{
+   $('#OverlayMenu1-overlay').overlay({hideTransition:true});
+   $('.OverlayMenu1').drilldownmenu({backText: 'Back'});
+   $('#OverlayMenu1').on('click', function(e)
+   {
+      $.overlay.show($('#OverlayMenu1-overlay'));
+      return false;
+   });
+});
+</script>
+
+
+</head>
+<body>
+<div id="FlexGrid1">
+<div class="header" style="background-color: rgb(0, 33, 139);">
+<div id="wb_Text1">
+<span style="background-color: rgb(0, 33, 139); color: rgb(255, 255, 255); font-family: Arial; font-size: 20px;">Comité Nacional de Despacho de Carga</span>
+</div>
+</div>
+
+
+<div class="nav">
+</div>
+<div class="main">
+</div>
+<div class="sidebar">
+<div id="wb_OverlayMenu1" style="width: 50px; height: 50px; z-index: 1;">
+<a href="#" id="OverlayMenu1">
+<span class="line"></span>
+<span class="line">
+</span><span class="line"></span>
+</a>
+</div>
+</div>
+<div class="footer">
+</div>
+</div>
+<div id="OverlayMenu1-overlay">
+<div class="OverlayMenu1">
+<ul class="drilldown-menu" role="menu">
+<li><a role="menuitem" href="#" class="OverlayMenu1-effect"><i class="fa fa-home overlay-icon"></i>Inicio</a></li>
+<li>
+<a role="menuitem" href="#" class="OverlayMenu1-effect"><i class="fa fa-line-chart overlay-icon"></i>Graficos</a>
+<ul class="drilldown-submenu" role="menu">
+<li>
+<a role="menuitem" href="#" class="OverlayMenu1-effect"><i class="fa fa-line-chart overlay-icon"></i>Generación</a>
+<ul class="drilldown-submenu" role="menu">
+<li><a role="menuitem" href="index.php" class="OverlayMenu1-effect">Generación&nbsp;horaria</a><br>
+</li>
+</ul>
+        <br>
+</li>
+<li>
+<a role="menuitem" href="#" class="OverlayMenu1-effect">HTML</a>
+<ul class="drilldown-submenu" role="menu">
+<li><a role="menuitem" href="#" class="OverlayMenu1-effect">Test</a><br>
+</li>
+</ul>
+        <br>
+</li>
+</ul>
+</li>
+   </ul>
+</div>
+<a class="close-button" id="OverlayMenu1-close" href="#" role="button" aria-hidden="true"><span></span></a>
+</div>
+
+<div class="" style="padding: 5px 5px 5px 5px;">
+<div id="update-nav" style="width:100%;height:50px;">
+<div id="range-selector" style="width:65%;float: left;">
+</div>
+  <div id="date-selector" class="" style="width:35%;float: right;" >
+      <strong>Fecha :</strong> <input type="text" id="fechaGe" size="8" class="ui-widget">
+  </div>
+</div>
+
+<div id="chartContainer" style="height: 550px; max-width: 900px; margin: 0px auto;"></div>
+</div>
+
+
+
+</body></html>
+
+<style type="text/css">
+<!--
+body {
+	background-color: #eff0e3;
+}
+-->
+</style>

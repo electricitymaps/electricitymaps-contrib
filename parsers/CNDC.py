@@ -11,6 +11,8 @@ from requests import Session
 
 tz_bo = ZoneInfo("America/La_Paz")
 
+INDEX_URL = "https://www.cndc.bo/gene/index.php"
+DATA_URL = "https://www.cndc.bo/gene/dat/gene.php?fechag={0}"
 SOURCE = "cndc.bo"
 
 
@@ -46,13 +48,10 @@ def fetch_data(
     # Define actual and previous day (for midnight data).
     formatted_dt = dt.astimezone(tz=tz_bo).strftime("%Y-%m-%d")
 
-    # initial path for url to request
-    url_init = "https://www.cndc.bo/gene/dat/gene.php?fechag={0}"
-
     # XSRF token for the initial request
-    xsrf_token = extract_xsrf_token(r.get("https://www.cndc.bo/gene/index.php").text)
+    xsrf_token = extract_xsrf_token(r.get(INDEX_URL).text)
 
-    resp = r.get(url_init.format(formatted_dt), headers={"x-csrf-token": xsrf_token})
+    resp = r.get(DATA_URL.format(formatted_dt), headers={"x-csrf-token": xsrf_token})
 
     hour_rows = json.loads(resp.text.replace("ï»¿", ""))["data"]
 
