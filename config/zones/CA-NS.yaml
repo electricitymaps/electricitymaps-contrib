@@ -10,11 +10,12 @@ capacity:
   coal: 1252
   gas: 500
   hydro: 418
-  oil: 222
-  wind: 568
+  oil: 300
+  wind: 600
 contributors:
   - jarek
   - corradio
+  - lav-julien
 emissionFactors:
   direct:
     battery discharge:

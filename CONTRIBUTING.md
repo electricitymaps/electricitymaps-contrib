@@ -72,7 +72,7 @@ Check the [wiki page][wiki python code formatting] for more details and tips.
 
 ## Front-end guidelines
 
-To get started with editing the fronted use the following steps:
+To get started with editing the frontend use the following steps:
 
 1. Use `cd web` to go into the web directory
 2. Then use `pnpm install` to get all dependencies installed.

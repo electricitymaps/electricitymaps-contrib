@@ -115,12 +115,14 @@
   "misc": {
     "maintitle": "生活用电二氧化碳排放量",
     "oops": "哎呀！ 我们无法连线到服务器。 我们会在几秒钟后再试一次。",
-    "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">这里</a>重新载入。",
+    "newversion": "有新版本可用!",
     "webgl-not-supported": "由于该浏览器不支持WebGL，无法渲染地图。",
     "database-ad": "寻找历史数据？<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">看看我们的数据库！</a>",
     "api-ad": "想要在您的应用程序或设备上获得实时数据？ <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">试试我们的API!</a>",
     "legend": "图例",
-    "faq": "常见问题"
+    "faq": "常见问题",
+    "dismiss": "取消",
+    "reload": "重新加载"
   },
   "wind": "风力",
   "solar": "太阳能",

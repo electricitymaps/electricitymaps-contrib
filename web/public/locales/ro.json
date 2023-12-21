@@ -116,13 +116,15 @@
   "misc": {
     "maintitle": "Emisii de CO₂ a electricității consumate în timp real",
     "oops": "Ups! Nu ne putem conecta la server. Vom încerca din nou în câteva secunde.",
-    "newversion": "O nouă versiune e disponibilă! Apăsați <a onClick=\"location.reload(true);\">here</a> pentru a reîncărca.",
+    "newversion": "O nouă versiune e disponibilă!",
     "webgl-not-supported": "Harta nu poate fi afișată pentru că acest browser nu este compatibil cu WebGL.",
     "retrynow": "Reîncercați acum",
     "database-ad": "Căutați date din trecut? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Verificați în baza noastră de date!</a>",
     "api-ad": "Doriți date în timp real în aplicația sau dispozitivul dumneavoastră? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Încercați API-ul nostru!</a>",
     "legend": "Legendă",
-    "faq": "Întrebări frecvente"
+    "faq": "Întrebări frecvente",
+    "dismiss": "închidere",
+    "reload": "Reîncărcați"
   },
   "wind": "vânt",
   "windDataError": "Date despre energie eoliană sunt momentan indisponibile",

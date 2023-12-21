@@ -54,17 +54,26 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 565.7753046389483
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 1072.534134
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 1072.534134
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 1060.56
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 442.9124649
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 442.9124649
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 445.8
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -111,18 +120,28 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 648.4341212169911
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 53.68073353
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 53.68073353
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 1165.692392
+      - datetime: '2020-01-01'
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1165.692392
+      - datetime: '2021-01-01'
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1153.7182579999999
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 562.9124649
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 562.9124649
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 565.8
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -272,4 +291,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern

@@ -61,7 +61,7 @@ export default defineConfig(({ mode }) => ({
   treeshake: 'smallest',
   test: {
     css: false,
-    include: ['src/**/*.test.{ts,tsx}', 'geo/**/*.test.{ts,tsx}'],
+    include: ['{src,geo}/**/*.test.{ts,tsx}', 'scripts/*.test.{ts,tsx}'],
     globals: true,
     globalSetup: 'testSetup.ts',
     environment: 'jsdom',

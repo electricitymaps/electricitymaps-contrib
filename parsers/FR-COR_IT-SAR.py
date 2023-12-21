@@ -1,5 +1,5 @@
 from collections.abc import Callable
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Literal
 
@@ -31,7 +31,7 @@ def fetch_data(
     type: Literal["exchange", "exchange_forecast"],
 ) -> list[dict]:
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
 
     # IT-SACOAC to IT-SAR
     AC_dataList = EXCHANGE_FUNCTION_MAP[type](

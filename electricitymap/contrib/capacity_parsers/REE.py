@@ -19,7 +19,7 @@ MODE_MAPPING = {
     "Eólica": "wind",
     "Solar fotovoltaica": "solar",
     "Solar térmica": "solar",
-    "Otras renovables": "unknown",
+    "Otras renovables": "biomass",  # Cross-checked against ENTSOE installed capacity + production data
     "Cogeneración": "gas",
     "Residuos no renovables": "unknown",
     "Residuos renovables": "biomass",
