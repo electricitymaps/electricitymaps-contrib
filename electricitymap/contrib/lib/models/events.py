@@ -41,9 +41,7 @@ class Mix(BaseModel, ABC):
         existing_value: float | None = getattr(self, mode)
         if existing_value is not None:
             value = 0 if value is None else value
-            self.__setattr__(
-                mode, existing_value + value
-            )
+            self.__setattr__(mode, existing_value + value)
         else:
             self.__setattr__(mode, value)
 
@@ -57,7 +55,6 @@ class Mix(BaseModel, ABC):
         """
         # 6 decimal places gives us a precision of 1 W.
         return super().__setattr__(name, _none_safe_round(value))
-
 
 
 class ProductionMix(Mix):
