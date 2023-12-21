@@ -5,10 +5,13 @@ from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import arrow
 from bs4 import BeautifulSoup, Tag
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -16,12 +19,12 @@ from parsers.lib.exceptions import ParserException
 # Has table (also historical) of production, consumption and exchange.
 # This table gets updated batch-wise every few hours, so most of the time, the delay will be >2h.
 
-tz = ZoneInfo("Asia/Dhaka")
-latest_url = "https://erp.pgcb.gov.bd/web/generations/view_generations"
-url_by_date = (
+TIMEZONE = ZoneInfo("Asia/Dhaka")
+LATEST_URL = "https://erp.pgcb.gov.bd/web/generations/view_generations"
+HISTORICAL_URL = (
     "https://erp.pgcb.gov.bd/web/generations/view_generations?search="  # DD-MM-YYYY
 )
-
+SOURCE = "erp.pgcb.gov.bd"
 TABLE_HEADERS = [
     "Date",
     "Time",
@@ -55,7 +58,7 @@ def table_entry_to_float(entry: str):
         )
 
 
-def parse_table_body(table_body: Tag):
+def parse_table_body(table_body: Tag) -> list[dict]:
     """
     Parse the table body returned by the URL.
     Returns a list of rows represented by dicts.
@@ -68,47 +71,42 @@ def parse_table_body(table_body: Tag):
         row_items = row.find_all("td")
         row_items = [item.text.strip() for item in row_items]
 
-        row_dict = dict()
-
         # date and time in [0]; [1] are DD-MM-YYYY; HH:mm[:ss]
-        parsed_day = arrow.get(row_items[0], "DD-MM-YYYY", tzinfo=tz).datetime
+        parsed_day = datetime.strptime(row_items[0], "%d-%m-%Y").date()
         try:
-            parsed_time = arrow.get(row_items[1], "HH:mm:ss", tzinfo=tz).time()
-        except arrow.parser.ParserMatchError:
+            assert isinstance(row_items[1], str)
+            if row_items[1][0:2] == "24":
+                # The endpoint is reporting 24:00:00 as 00:00:00 of the next day, so we need to fix that.
+                row_items[1] = row_items[1].replace("24", "00", 1)
+                parsed_day += timedelta(days=1)
+            # newer data points are in HH:mm:ss format
+            parsed_time = datetime.strptime(row_items[1], "%H:%M:%S").time()
+        except ValueError:
             # very old data points are sometimes in HH:mm format
-            parsed_time = arrow.get(row_items[1], "HH:mm", tzinfo=tz).time()
+            parsed_time = datetime.strptime(row_items[1], "%H:%M").time()
 
-        row_dict["time"] = datetime.combine(parsed_day, parsed_time, tzinfo=tz)
-
-        # [2] is total generation in MW
-        row_dict["total_generation"] = table_entry_to_float(row_items[2])
-        # [3] is total demand in MW
-        row_dict["total_demand"] = table_entry_to_float(row_items[3])
-        # [4] is loadshed, not interesting for us
-        row_dict["loadshed"] = table_entry_to_float(row_items[4])
-        # [5] is generation from gas
-        row_dict["gas"] = table_entry_to_float(row_items[5])
-        # [6] is generation from liquid fuel (oil)
-        row_dict["oil"] = table_entry_to_float(row_items[6])
-        # [7] is generation from coal
-        row_dict["coal"] = table_entry_to_float(row_items[7])
-        # [8] is generation from hydro
-        row_dict["hydro"] = table_entry_to_float(row_items[8])
-        # [9] is generation from solar
-        row_dict["solar"] = table_entry_to_float(row_items[9])
-        # [10] is generation from wind
-        row_dict["wind"] = table_entry_to_float(row_items[10])
-        # [11], [12] is import from Bheramara PP (IN-EA) and Tripura (IN-NE)
-        row_dict["bd_import_bheramara"] = table_entry_to_float(row_items[11])
-        row_dict["bd_import_tripura"] = table_entry_to_float(row_items[12])
-        row_dict["remarks"] = row_items[13]
-
-        row_data.append(row_dict)
+        row_data.append(
+            {
+                "time": datetime.combine(parsed_day, parsed_time, tzinfo=TIMEZONE),
+                "total_generation": table_entry_to_float(row_items[2]),  # MW
+                "total_demand": table_entry_to_float(row_items[3]),  # MW
+                "loadshed": table_entry_to_float(row_items[4]),
+                "gas": table_entry_to_float(row_items[5]),
+                "oil": table_entry_to_float(row_items[6]),
+                "coal": table_entry_to_float(row_items[7]),
+                "hydro": table_entry_to_float(row_items[8]),
+                "solar": table_entry_to_float(row_items[9]),
+                "wind": table_entry_to_float(row_items[10]),
+                "bd_import_bheramara": table_entry_to_float(row_items[11]),
+                "bd_import_tripura": table_entry_to_float(row_items[12]),
+                "remarks": row_items[13],
+            }
+        )
 
     return row_data
 
 
-def verify_table(table_header: Tag):
+def verify_table_header(table_header: Tag):
     """
     Validate the table headers, that it looks like expected.
     Don't parse if the table has changed.
@@ -135,12 +133,12 @@ def query(
     """
     # build URL to call
     if target_datetime is None:
-        target_url = latest_url
+        target_url = LATEST_URL
     else:
         # Convert timezone of target_datetime, and build URL from day
-        target_datetime_bd = arrow.get(target_datetime).to(tz)
-        target_dt_str = target_datetime_bd.format("DD-MM-YYYY")
-        target_url = url_by_date + target_dt_str
+        target_datetime_bd = target_datetime.astimezone(TIMEZONE)
+        target_dt_str = target_datetime_bd.strftime("%d-%m-%Y")
+        target_url = HISTORICAL_URL + target_dt_str
 
     target_response: Response = session.get(target_url)
 
@@ -166,7 +164,7 @@ def query(
             parser="BD.py",
             message=("Could not find table header in returned HTML."),
         )
-    verify_table(table_head)
+    verify_table_header(table_head)
 
     # Table valid as we expect, parse the rows.
     table_body = table.find("tbody")
@@ -230,14 +228,14 @@ def fetch_production(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "BD",
+    zone_key: ZoneKey = ZoneKey("BD"),
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict[str, Any] | list[dict[str, Any]]:
+) -> list[dict[str, Any]]:
     row_data = query(session, target_datetime, logger)
 
-    result_list = []
+    result_list = TotalConsumptionList(logger)
 
     for row in row_data:
         # get the demand from the table
@@ -246,12 +244,10 @@ def fetch_consumption(
             continue  # no data in table
 
         result_list.append(
-            {
-                "datetime": row["time"],
-                "consumption": consumption,
-                "zoneKey": zone_key,
-                "source": "erp.pgcb.gov.bd",
-            }
+            zoneKey=zone_key,
+            datetime=row["time"],
+            consumption=consumption,
+            source=SOURCE,
         )
 
     if not len(result_list):
@@ -260,7 +256,7 @@ def fetch_consumption(
             message="No valid consumption data for requested day found.",
         )
 
-    return result_list
+    return result_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
