@@ -37,5 +37,5 @@ test:
 # includes both test target and build target here to make sure both can work
 # we can split into two later if required
 test-all:
-  BUILD ./web+test
+  BUILD ./web+prepare
 
