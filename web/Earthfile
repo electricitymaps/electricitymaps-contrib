@@ -3,7 +3,7 @@ FROM node:20
 WORKDIR /contrib/web
 
 src-files:
-  COPY ../contrib+src-files/* /contrib
+  COPY ../+src-files/* /contrib
   COPY package.json .
   COPY pnpm-lock.yaml .
 
