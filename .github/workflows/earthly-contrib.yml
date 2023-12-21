@@ -32,7 +32,7 @@ jobs:
       - name: Earthly version
         run: earthly --version
       - name: Run test
-        run: earthly --auto-skip --sat emaps-contrib-ci --org electricitymaps --ci --secret ELECTRICITYMAP_PUBLIC_TOKEN="$ELECTRICITYMAP_PUBLIC_TOKEN" --secret SENTRY_AUTH_TOKEN="$SENTRY_AUTH_TOKEN" +test-all
+        run: earthly --sat emaps-contrib-ci --org electricitymaps --ci --secret ELECTRICITYMAP_PUBLIC_TOKEN="$ELECTRICITYMAP_PUBLIC_TOKEN" --secret SENTRY_AUTH_TOKEN="$SENTRY_AUTH_TOKEN" +test-all
         env:
           ELECTRICITYMAP_PUBLIC_TOKEN: 'test'
           SENTRY_AUTH_TOKEN: ''
