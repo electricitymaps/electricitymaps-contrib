@@ -54,7 +54,7 @@ class Mix(BaseModel, ABC):
         Overriding the setattr method to raise an error if the mode is unknown.
         """
         # 6 decimal places gives us a precision of 1 W.
-        return super().__setattr__(name, _none_safe_round(value))
+        super().__setattr__(name, _none_safe_round(value))
 
 
 class ProductionMix(Mix):
