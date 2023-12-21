@@ -165,7 +165,7 @@ fallbackZoneMixes:
         unknown: 0.6396800719053272
         wind: 0.045488099087533505
 parsers:
-  generationForecast: BO.fetch_generation_forecast
-  production: BO.fetch_production
+  generationForecast: CNDC.fetch_generation_forecast
+  production: CNDC.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/La_Paz
