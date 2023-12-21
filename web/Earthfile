@@ -3,23 +3,14 @@ FROM node:20
 WORKDIR /contrib/web
 
 src-files:
-  COPY ../config+src-files/* ../config
+  COPY ../contrib+src-files/* /contrib
   COPY package.json .
   COPY pnpm-lock.yaml .
 
-api-files:
-  COPY geo/world.geojson ./geo/world.geojson
-  COPY public/locales/en.json ./public/locales/en.json
-  SAVE ARTIFACT .
 
 prepare:
   FROM +src-files
-  RUN npm install -g pnpm
-  RUN pnpm install --frozen-lockfile
-  COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
-  COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
-  COPY scripts/register-tsNodeESM.js ./scripts/register-tsNodeESM.js
-  COPY --dir geo public src ./
+  RUN echo "testing"
 
 test:
   FROM +prepare
