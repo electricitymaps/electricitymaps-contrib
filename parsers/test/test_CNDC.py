@@ -53,7 +53,7 @@ class TestCNDC(TestCase):
             [
                 {
                     "datetime": element["datetime"].isoformat(),
-                    "value": element["value"],
+                    "generation": element["generation"],
                     "zoneKey": element["zoneKey"],
                     "source": element["source"],
                 }
