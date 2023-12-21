@@ -41,15 +41,20 @@ class Mix(BaseModel, ABC):
         existing_value: float | None = getattr(self, mode)
         if existing_value is not None:
             value = 0 if value is None else value
-            self.__setattr__(
-                mode, _none_safe_round(existing_value + value)
-            )  # 6 decimal places gives us a precision of 1 W.
+            self.__setattr__(mode, existing_value + value)
         else:
-            self.__setattr__(mode, _none_safe_round(value))
+            self.__setattr__(mode, value)
 
     @classmethod
     def merge(cls, mixes: list["Mix"]) -> "Mix":
         raise NotImplementedError()
+
+    def __setattr__(self, name: str, value: float | None) -> None:
+        """
+        Overriding the setattr method to raise an error if the mode is unknown.
+        """
+        # 6 decimal places gives us a precision of 1 W.
+        super().__setattr__(name, _none_safe_round(value))
 
 
 class ProductionMix(Mix):

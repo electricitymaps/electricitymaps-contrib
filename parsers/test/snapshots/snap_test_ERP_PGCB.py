@@ -141,7 +141,7 @@ snapshots['TestERP_PGCB::test_exchanges 1'] = [
         'source': 'erp.pgcb.gov.bd'
     },
     {
-        'datetime': '2023-12-18T00:00:00+06:00',
+        'datetime': '2023-12-19T00:00:00+06:00',
         'netFlow': -92.0,
         'sortedZoneKeys': 'BD->IN-NE',
         'source': 'erp.pgcb.gov.bd'
@@ -291,7 +291,7 @@ snapshots['TestERP_PGCB::test_exchanges 1'] = [
         'source': 'erp.pgcb.gov.bd'
     },
     {
-        'datetime': '2023-12-17T00:00:00+06:00',
+        'datetime': '2023-12-18T00:00:00+06:00',
         'netFlow': -82.0,
         'sortedZoneKeys': 'BD->IN-NE',
         'source': 'erp.pgcb.gov.bd'
@@ -318,248 +318,8 @@ snapshots['TestERP_PGCB::test_exchanges 1'] = [
 
 snapshots['TestERP_PGCB::test_fetch_consumption 1'] = [
     {
-        'consumption': 9373.0,
-        'datetime': '2023-12-19T21:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 9758.0,
-        'datetime': '2023-12-19T20:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 9936.0,
-        'datetime': '2023-12-19T19:30:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 10016.0,
-        'datetime': '2023-12-19T19:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 10180.0,
-        'datetime': '2023-12-19T18:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8769.0,
-        'datetime': '2023-12-19T17:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8346.0,
-        'datetime': '2023-12-19T16:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8498.0,
-        'datetime': '2023-12-19T15:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8812.0,
-        'datetime': '2023-12-19T14:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 9165.0,
-        'datetime': '2023-12-19T13:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8790.0,
-        'datetime': '2023-12-19T12:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8459.0,
-        'datetime': '2023-12-19T11:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8272.0,
-        'datetime': '2023-12-19T10:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8347.0,
-        'datetime': '2023-12-19T09:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8013.0,
-        'datetime': '2023-12-19T08:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 7267.0,
-        'datetime': '2023-12-19T07:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6765.0,
-        'datetime': '2023-12-19T06:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6353.0,
-        'datetime': '2023-12-19T05:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6367.0,
-        'datetime': '2023-12-19T04:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6624.0,
-        'datetime': '2023-12-19T03:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6887.0,
-        'datetime': '2023-12-19T02:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 7267.0,
-        'datetime': '2023-12-19T01:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 7755.0,
-        'datetime': '2023-12-18T00:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8232.0,
-        'datetime': '2023-12-18T23:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8825.0,
-        'datetime': '2023-12-18T22:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 9346.0,
-        'datetime': '2023-12-18T21:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 9616.0,
-        'datetime': '2023-12-18T20:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 9639.0,
-        'datetime': '2023-12-18T19:30:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 9874.0,
-        'datetime': '2023-12-18T19:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 10111.0,
-        'datetime': '2023-12-18T18:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8570.0,
-        'datetime': '2023-12-18T17:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8318.0,
-        'datetime': '2023-12-18T16:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8432.0,
-        'datetime': '2023-12-18T15:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8895.0,
-        'datetime': '2023-12-18T14:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 9200.0,
-        'datetime': '2023-12-18T13:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8756.0,
-        'datetime': '2023-12-18T12:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8550.0,
-        'datetime': '2023-12-18T11:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8059.0,
-        'datetime': '2023-12-18T10:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8176.0,
-        'datetime': '2023-12-18T09:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8756.0,
-        'datetime': '2023-12-18T08:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 7092.0,
-        'datetime': '2023-12-18T07:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6509.0,
-        'datetime': '2023-12-18T06:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6274.0,
-        'datetime': '2023-12-18T05:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6339.0,
-        'datetime': '2023-12-18T04:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6490.0,
-        'datetime': '2023-12-18T03:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 6752.0,
-        'datetime': '2023-12-18T02:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 7159.0,
-        'datetime': '2023-12-18T01:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 7683.0,
-        'datetime': '2023-12-17T00:00:00+06:00',
-        'source': 'erp.pgcb.gov.bd'
-    },
-    {
-        'consumption': 8190.0,
-        'datetime': '2023-12-17T23:00:00+06:00',
+        'consumption': 9116.0,
+        'datetime': '2023-12-17T21:00:00+06:00',
         'source': 'erp.pgcb.gov.bd'
     },
     {
@@ -568,8 +328,248 @@ snapshots['TestERP_PGCB::test_fetch_consumption 1'] = [
         'source': 'erp.pgcb.gov.bd'
     },
     {
-        'consumption': 9116.0,
-        'datetime': '2023-12-17T21:00:00+06:00',
+        'consumption': 8190.0,
+        'datetime': '2023-12-17T23:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 7683.0,
+        'datetime': '2023-12-18T00:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 7159.0,
+        'datetime': '2023-12-18T01:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6752.0,
+        'datetime': '2023-12-18T02:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6490.0,
+        'datetime': '2023-12-18T03:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6339.0,
+        'datetime': '2023-12-18T04:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6274.0,
+        'datetime': '2023-12-18T05:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6509.0,
+        'datetime': '2023-12-18T06:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 7092.0,
+        'datetime': '2023-12-18T07:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8756.0,
+        'datetime': '2023-12-18T08:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8176.0,
+        'datetime': '2023-12-18T09:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8059.0,
+        'datetime': '2023-12-18T10:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8550.0,
+        'datetime': '2023-12-18T11:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8756.0,
+        'datetime': '2023-12-18T12:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 9200.0,
+        'datetime': '2023-12-18T13:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8895.0,
+        'datetime': '2023-12-18T14:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8432.0,
+        'datetime': '2023-12-18T15:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8318.0,
+        'datetime': '2023-12-18T16:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8570.0,
+        'datetime': '2023-12-18T17:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 10111.0,
+        'datetime': '2023-12-18T18:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 9874.0,
+        'datetime': '2023-12-18T19:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 9639.0,
+        'datetime': '2023-12-18T19:30:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 9616.0,
+        'datetime': '2023-12-18T20:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 9346.0,
+        'datetime': '2023-12-18T21:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8825.0,
+        'datetime': '2023-12-18T22:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8232.0,
+        'datetime': '2023-12-18T23:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 7755.0,
+        'datetime': '2023-12-19T00:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 7267.0,
+        'datetime': '2023-12-19T01:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6887.0,
+        'datetime': '2023-12-19T02:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6624.0,
+        'datetime': '2023-12-19T03:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6367.0,
+        'datetime': '2023-12-19T04:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6353.0,
+        'datetime': '2023-12-19T05:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 6765.0,
+        'datetime': '2023-12-19T06:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 7267.0,
+        'datetime': '2023-12-19T07:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8013.0,
+        'datetime': '2023-12-19T08:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8347.0,
+        'datetime': '2023-12-19T09:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8272.0,
+        'datetime': '2023-12-19T10:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8459.0,
+        'datetime': '2023-12-19T11:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8790.0,
+        'datetime': '2023-12-19T12:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 9165.0,
+        'datetime': '2023-12-19T13:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8812.0,
+        'datetime': '2023-12-19T14:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8498.0,
+        'datetime': '2023-12-19T15:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8346.0,
+        'datetime': '2023-12-19T16:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 8769.0,
+        'datetime': '2023-12-19T17:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 10180.0,
+        'datetime': '2023-12-19T18:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 10016.0,
+        'datetime': '2023-12-19T19:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 9936.0,
+        'datetime': '2023-12-19T19:30:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 9758.0,
+        'datetime': '2023-12-19T20:00:00+06:00',
+        'source': 'erp.pgcb.gov.bd'
+    },
+    {
+        'consumption': 9373.0,
+        'datetime': '2023-12-19T21:00:00+06:00',
         'source': 'erp.pgcb.gov.bd'
     }
 ]
@@ -884,7 +884,7 @@ snapshots['TestERP_PGCB::test_fetch_production 1'] = [
         'zoneKey': 'BD'
     },
     {
-        'datetime': '2023-12-18T00:00:00+06:00',
+        'datetime': '2023-12-19T00:00:00+06:00',
         'production': {
             'coal': 2432.0,
             'gas': 4307.0,
@@ -1234,7 +1234,7 @@ snapshots['TestERP_PGCB::test_fetch_production 1'] = [
         'zoneKey': 'BD'
     },
     {
-        'datetime': '2023-12-17T00:00:00+06:00',
+        'datetime': '2023-12-18T00:00:00+06:00',
         'production': {
             'coal': 2139.0,
             'gas': 4640.0,
