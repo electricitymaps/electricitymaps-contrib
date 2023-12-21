@@ -1,5 +1,6 @@
 VERSION 0.7
 FROM python:3.10
+PROJECT electricitymaps/electricitymaps
 WORKDIR /contrib
 
 linting-files:
