@@ -109,12 +109,14 @@
   "misc": {
     "maintitle": "Emise CO₂ ze spotřeby elektřiny v reálném čase",
     "oops": "Ach jo! Máme problém v komunikaci se serverem. Zkusíme to znovu za pár vteřin.",
-    "newversion": "Nová verze je dostupná! <a onClick=\"location.reload(true);\">Klikněte zde</a> pro aktualizaci.",
+    "newversion": "Nová verze je dostupná!",
     "retrynow": "Zkusit znovu",
     "database-ad": "Hledáte historická data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Zkontrolujte naši databázi!</a>",
     "api-ad": "Chcete mít aktuální data ve své aplikaci nebo na svém zařízení? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vyzkoušejte naše API!</a>]",
     "legend": "Legenda",
-    "faq": "Často kladené otázky"
+    "faq": "Často kladené otázky",
+    "dismiss": "Zavřít",
+    "reload": "Znovu načíst"
   },
   "wind": "větrná",
   "solar": "solární",
