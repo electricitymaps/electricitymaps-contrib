@@ -10,9 +10,9 @@ from requests_mock import ANY, GET, Adapter
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ENTSOE
+from snapshottest import TestCase
 
-
-class TestENTSOE(unittest.TestCase):
+class TestENTSOE(TestCase):
     def setUp(self) -> None:
         super().setUp()
         os.environ["ENTSOE_TOKEN"] = "token"
@@ -159,6 +159,44 @@ class TestFetchProduction(TestENTSOE):
                 self.assertEqual(production[-1]["production"]["gas"], None)
                 # A warning has been logged for this.
                 mock_warning.assert_called()
+
+
+class TestFetchExchange(TestENTSOE):
+    def test_fetch_exchange(self):
+        imports = None
+        exports = None
+        # Read import data from mockfile
+        with open("parsers/test/mocks/ENTSOE/DK-DK1_GB_imports.xml", "rb") as import_file:
+            imports = import_file.read()
+        # Read export data from mockfile
+        with open("parsers/test/mocks/ENTSOE/DK-DK1_GB_exports.xml", "rb") as export_file:
+            exports = export_file.read()
+        self.adapter.register_uri(
+                GET,
+                "https://web-api.tp.entsoe.eu/api?documentType=A11&in_Domain=10YDK-1--------W&out_Domain=10YGB----------A",
+                content=imports,
+            )
+        self.adapter.register_uri(
+                GET,
+                "https://web-api.tp.entsoe.eu/api?documentType=A11&in_Domain=10YGB----------A&out_Domain=10YDK-1--------W",
+                content=exports,
+            )
+        exchange = ENTSOE.fetch_exchange(
+            zone_key1=ZoneKey("DK-DK1"),
+            zone_key2=ZoneKey("GB"),
+            session=self.session        )
+
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                }
+                for element in exchange
+            ]
+        )
 
 
 class TestENTSOE_Refetch(unittest.TestCase):
