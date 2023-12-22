@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
@@ -35,6 +34,16 @@ PRODUCTION_MAPPING = {
     "coal": ["blackCoal", "asphaltiteCoal", "lignite", "importCoal"],
     "hydro": ["river", "dammedHydro"],
 }
+
+
+def _str_to_datetime(date_string: str) -> datetime:
+    """
+    Converts string received into datetime format.
+    String received is almost in isoformat, just missing : in the timezone
+    """
+    return datetime.fromisoformat(date_string[:-2] + ":" + date_string[-2:]).replace(
+        tzinfo=TR_TZ
+    )
 
 
 def fetch_data(target_datetime: datetime, kind: str) -> dict:
@@ -94,7 +103,7 @@ def fetch_production(
             production[mode] = round(value, 4)
         data_point = {
             "zoneKey": zone_key,
-            "datetime": arrow.get(item.get("date")).datetime.replace(tzinfo=TR_TZ),
+            "datetime": _str_to_datetime(item.get("date")),
             "production": production,
             "source": "epias.com.tr",
         }
@@ -126,7 +135,7 @@ def fetch_consumption(
     for item in data:
         data_point = {
             "zoneKey": zone_key,
-            "datetime": arrow.get(item.get("date")).datetime.replace(tzinfo=TR_TZ),
+            "datetime": _str_to_datetime(item.get("date")),
             "consumption": item.get("consumption"),
             "source": "epias.com.tr",
         }
@@ -150,7 +159,7 @@ def fetch_price(
     for item in data:
         data_point = {
             "zoneKey": zone_key,
-            "datetime": arrow.get(item.get("date")).datetime.replace(tzinfo=TR_TZ),
+            "datetime": _str_to_datetime(item.get("date")),
             "price": item.get("price"),
             "source": "epias.com.tr",
             "currency": "TRY",
