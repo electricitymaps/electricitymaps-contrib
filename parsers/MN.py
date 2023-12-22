@@ -11,9 +11,11 @@ from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
+    ExchangeList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.RU import fetch_exchange as ru_fetch_exchange
 
 NDC_GENERATION = "https://disnews.energy.mn/convertt.php"
 TZ = ZoneInfo("Asia/Ulaanbaatar")  # UTC+8
@@ -142,6 +144,38 @@ def fetch_consumption(
 
     return consumption_list.to_list()
 
+
+def fetch_exchange(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session = Session(),
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates.")
+
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+
+    if sorted_zone_keys != "CN->MN":
+        raise NotImplementedError("This parser is only able to fetch CN->MN exchange data.")
+
+    query_data = query(session, logger, ZoneKey("MN"))
+
+    russia_data = ru_fetch_exchange("MN", "RU-2", session, logger=logger)
+    
+    exchange_list = ExchangeList(logger)
+
+    for data in russia_data:
+        if data["datetime"] == query_data["time"] and data["sortedZoneKeys"] == "MN->RU-2":
+            exchange_list.append(
+                datetime=query_data["time"],
+                zoneKey=sorted_zone_keys,
+                netFlow=query_data["importMW"]+ data["netFlow"],
+                source="https://ndc.energy.mn/",
+            )
+
+    return exchange_list.to_list()
 
 if __name__ == "__main__":
     print("fetch_production() ->")
