@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 
 # BeautifulSoup is used to parse HTML to get information
@@ -141,7 +140,7 @@ def fetch_production(
                 production_dict[mode] = round(row.get("value"), 3)
         data_point = {
             "zoneKey": "UY",
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=UY_TZ),
+            "datetime": dt.to_pydatetime().replace(tzinfo=UY_TZ),
             "production": production_dict,
             "source": "pronos.adme.com.uy",
         }
@@ -174,7 +173,7 @@ def fetch_consumption(
     for dt in consumption:
         data_point = {
             "zoneKey": "UY",
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=UY_TZ),
+            "datetime": dt.to_pydatetime().replace(tzinfo=UY_TZ),
             "consumption": round(consumption[dt]["consumption"], 3),
             "source": "pronos.adme.com.uy",
         }
@@ -214,7 +213,7 @@ def fetch_exchange(
         data_point = {
             "netFlow": round(exchange[dt][sortedZoneKeys], 3),
             "sortedZoneKeys": sortedZoneKeys,
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=UY_TZ),
+            "datetime": dt.to_pydatetime().replace(tzinfo=UY_TZ),
             "source": "pronos.adme.com.uy",
         }
         all_data_points += [data_point]
