@@ -171,11 +171,12 @@ def fetch_exchange(
     for data in russia_data:
         if (
             data["datetime"] == query_data["time"]
-            and data["sortedZoneKeys"] == "MN->RU-2"
+            and data["sortedZoneKeys"] == "MN->RU-2" and "netFlow" in data.keys()
         ):
             exchange_list.append(
                 datetime=query_data["time"],
                 zoneKey=sorted_zone_keys,
+                # We calculate the flow with the total imports and the MN->RU-2 exchange, as Mongolia has only two connections
                 netFlow=query_data["importMW"] + data["netFlow"],
                 source="https://ndc.energy.mn/",
             )
