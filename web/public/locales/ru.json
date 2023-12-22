@@ -37,10 +37,10 @@
   },
   "time-controller": {
     "title": "Показать исторические данные",
-    "daily": "ежедневно",
-    "hourly": "почасовой",
-    "monthly": "ежемесячно",
-    "yearly": "ежегодно"
+    "daily": "по дням",
+    "hourly": "по часам",
+    "monthly": "по месяцам",
+    "yearly": "по годам"
   },
   "left-panel": {
     "zone-list-header-title": "Влияние зон на климат",
