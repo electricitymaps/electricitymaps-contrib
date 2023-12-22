@@ -171,7 +171,8 @@ def fetch_exchange(
     for data in russia_data:
         if (
             data["datetime"] == query_data["time"]
-            and data["sortedZoneKeys"] == "MN->RU-2" and "netFlow" in data.keys()
+            and data["sortedZoneKeys"] == "MN->RU-2"
+            and "netFlow" in data.keys()
         ):
             exchange_list.append(
                 datetime=query_data["time"],
