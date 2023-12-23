@@ -10,15 +10,15 @@ app.use(cors());
 
 const DEFAULT_ZONE_KEY = 'DE';
 
-app.get('/v7/details/:aggregate/:zoneId', (req, res, next) => {
+app.get('/v8/details/:aggregate/:zoneId', (req, res, next) => {
   const { aggregate, zoneId } = req.params;
 
   // if file exists return it, otherwise redirect to DEFAULT file
-  if (fs.existsSync(`./public/v7/details/${aggregate}/${zoneId}.json`)) {
+  if (fs.existsSync(`./public/v8/details/${aggregate}/${zoneId}.json`)) {
     // file structure of project will return the correct file
     next();
   } else {
-    res.redirect(`/v7/details/${aggregate}/${DEFAULT_ZONE_KEY}`);
+    res.redirect(`/v8/details/${aggregate}/${DEFAULT_ZONE_KEY}`);
   }
 });
 
