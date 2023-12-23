@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
 from copy import copy
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 
 import arrow
 import pandas as pd
-import pytz
 from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
@@ -14,7 +13,7 @@ from parsers import DK, ENTSOE
 from parsers.lib.config import refetch_frequency
 
 ZONE_CONFIG = ZONES_CONFIG["NL"]
-UTC = pytz.UTC
+UTC = timezone.utc
 
 
 @refetch_frequency(timedelta(days=1))
@@ -123,7 +122,7 @@ def fetch_production(
     # Flatten production dictionaries (we ignore storage)
     for p in productions:
         # if for some reason theré's no unknown value
-        if not "unknown" in p["production"] or p["production"]["unknown"] == None:
+        if "unknown" not in p["production"] or p["production"]["unknown"] is None:
             p["production"]["unknown"] = 0
 
         Z = sum([x or 0 for x in p["production"].values()])

@@ -6,11 +6,11 @@ import pprint
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-from pytz import timezone
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -23,7 +23,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-TIMEZONE = timezone("Asia/Seoul")
+TIMEZONE = ZoneInfo("Asia/Seoul")
 KR_CURRENCY = "KRW"
 KR_SOURCE = "new.kpx.or.kr"
 REAL_TIME_URL = "https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000"
@@ -80,9 +80,9 @@ def fetch_consumption(
 
     consumption_date_list = soup.find("p", {"class": "info_top"}).text.split(" ")[:2]
     consumption_date_list[0] = consumption_date_list[0].replace(".", "-").split("(")[0]
-    consumption_date = TIMEZONE.localize(
-        datetime.strptime(" ".join(consumption_date_list), "%Y-%m-%d %H:%M")
-    )
+    consumption_date = datetime.strptime(
+        " ".join(consumption_date_list), "%Y-%m-%d %H:%M"
+    ).replace(tzinfo=TIMEZONE)
 
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
@@ -115,7 +115,7 @@ def fetch_price(
         )
 
     if target_datetime is None:
-        target_datetime = arrow.now(TIMEZONE).datetime
+        target_datetime = datetime.now(TIMEZONE)
 
     logger.debug(f"Fetching price data from {PRICE_URL}")
 
@@ -176,7 +176,9 @@ def parse_chart_prod_data(
         if item["regDate"] == "0":
             break
 
-        dt = TIMEZONE.localize(datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M"))
+        dt = datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M").replace(
+            tzinfo=TIMEZONE
+        )
 
         production_mix = ProductionMix()
         storage_mix = StorageMix()

@@ -15,7 +15,12 @@ function ExchangeLayer({ map }: { map?: MapboxMap }) {
   const arrows = useExchangeArrowsData();
 
   return (
-    <div id="exchange-layer" className="h-full w-full" ref={ref}>
+    <div
+      data-test-id="exchange-layer"
+      id="exchange-layer"
+      className="h-full w-full"
+      ref={ref}
+    >
       {/* Don't render arrows when moving map - see https://github.com/electricitymaps/electricitymaps-contrib/issues/1590. */}
       {!isMapMoving &&
         map &&

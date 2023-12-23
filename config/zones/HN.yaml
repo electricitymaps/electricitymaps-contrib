@@ -85,4 +85,5 @@ fallbackZoneMixes:
         wind: 0.006018144944581141
 parsers:
   production: HN.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Tegucigalpa

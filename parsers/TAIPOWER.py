@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import pandas as pd
-from pytz import timezone
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
@@ -12,7 +12,7 @@ from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 SOURCE = "taipower.com.tw"
-TIMEZONE = timezone("Asia/Taipei")
+TIMEZONE = ZoneInfo("Asia/Taipei")
 PRODUCTION_URL = (
     "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary_eng.json"
 )
@@ -40,7 +40,7 @@ def fetch_production(
     dt = data[""]
     prodData = data["dataset"]
 
-    dt = TIMEZONE.localize(datetime.strptime(dt, "%Y-%m-%d %H:%M"))
+    dt = datetime.strptime(dt, "%Y-%m-%d %H:%M").replace(tzinfo=TIMEZONE)
 
     objData = pd.DataFrame(prodData)
 

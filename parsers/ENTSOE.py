@@ -13,7 +13,7 @@ Consumption Forecast
 """
 import itertools
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from random import shuffle
 from typing import Any
@@ -21,7 +21,6 @@ from typing import Any
 import arrow
 import numpy as np
 from bs4 import BeautifulSoup
-from pytz import utc
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -470,7 +469,7 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
 
 def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datetime"):
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
     if isinstance(target_datetime, datetime):
         return np.abs((x[datetime_key] - target_datetime).seconds)
 
@@ -491,7 +490,7 @@ def query_ENTSOE(
     env_var = "ENTSOE_REFETCH_TOKEN"
     url = ENTSOE_EU_PROXY_ENDPOINT
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
         env_var = "ENTSOE_TOKEN"
         url = ENTSOE_ENDPOINT
 
@@ -532,12 +531,8 @@ def query_ENTSOE(
             error_text = soup.find_all("text")[0].prettify()
             if "No matching data found" in error_text:
                 exception_message = "No matching data found"
-            else:
-                exception_message = (
-                    f"{function_name} failed in ENTSOE.py. Reason: {error_text}"
-                )
-        else:
-            exception_message = f"{function_name} failed in ENTSOE.py. Reason: {last_response_if_all_fail.text}"
+        if exception_message is None:
+            exception_message = f"Status code: [{last_response_if_all_fail.status_code}]. Reason: {last_response_if_all_fail.reason}"
 
     raise ParserException(
         parser="ENTSOE.py",
@@ -770,8 +765,7 @@ def create_production_storage(
         return None, storage
     if 0 > quantity > -50:
         logger.info(
-            "Self consumption value %s for %s has been set to 0."
-            % (quantity, fuel_em_type),
+            f"Self consumption value {quantity} for {fuel_em_type} has been set to 0.",
             extra={"key": zoneKey, "fuel_type": fuel_em_type},
         )
         quantity = 0
@@ -1041,7 +1035,14 @@ def fetch_consumption(
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = None
-    raw_consumption = query_consumption(domain, session, target_datetime)
+    try:
+        raw_consumption = query_consumption(domain, session, target_datetime)
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch consumption for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if raw_consumption is not None:
         parsed = parse_scalar(
             raw_consumption,
@@ -1113,9 +1114,16 @@ def fetch_production(
     non_aggregated_data: list[ProductionBreakdownList] = []
     for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
         domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
-        raw_production = query_production(
-            domain, session, target_datetime=target_datetime
-        )
+        try:
+            raw_production = query_production(
+                domain, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch production for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
         if raw_production is None:
             raise ParserException(
                 parser="ENTSOE.py",
@@ -1142,13 +1150,13 @@ def fetch_production_per_units(
 
     # If no target_datetime is specified, or the target datetime is less
     # than 5 days ago we set the target_datetime to 5 days ago.
-    if target_datetime is None or target_datetime > datetime.now(tz=utc) - timedelta(
-        days=5
-    ):
+    if target_datetime is None or target_datetime > datetime.now(
+        tz=timezone.utc
+    ) - timedelta(days=5):
         logger.info(
             "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
         )
-        target_datetime = datetime.now(tz=utc) - timedelta(days=5)
+        target_datetime = datetime.now(tz=timezone.utc) - timedelta(days=5)
 
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
@@ -1164,7 +1172,7 @@ def fetch_production_per_units(
                     if not v:
                         continue
                     v["source"] = "entsoe.eu"
-                    if not v["unitName"] in ENTSOE_UNITS_TO_ZONE:
+                    if v["unitName"] not in ENTSOE_UNITS_TO_ZONE:
                         logger.warning(
                             f"Unknown unit {v['unitName']} with id {v['unitKey']}"
                         )
@@ -1172,12 +1180,12 @@ def fetch_production_per_units(
                         v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
                         if v["zoneKey"] == zone_key:
                             data.append(v)
-        except:
-            ParserException(
+        except Exception as e:
+            raise ParserException(
                 parser="ENTSOE.py",
                 message=f"Failed to fetch data for {k} in {zone_key}",
                 zone_key=zone_key,
-            )
+            ) from e
 
     return data
 
@@ -1207,7 +1215,14 @@ def fetch_exchange(
     exchange_hashmap = {}
     # Grab exchange
     # Import
-    raw_exchange = query_exchange(domain1, domain2, session, target_datetime)
+    try:
+        raw_exchange = query_exchange(domain1, domain2, session, target_datetime)
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch exchange for {zone_key1} -> {zone_key2}",
+            zone_key=key,
+        ) from e
     if raw_exchange is not None:
         parsed = parse_exchange(
             raw_exchange,
@@ -1215,7 +1230,16 @@ def fetch_exchange(
         )
         if parsed:
             # Export
-            raw_exchange = query_exchange(domain2, domain1, session, target_datetime)
+            try:
+                raw_exchange = query_exchange(
+                    domain2, domain1, session, target_datetime
+                )
+            except Exception as e:
+                raise ParserException(
+                    parser="ENTSOE.py",
+                    message=f"Failed to fetch exchange for {zone_key1} -> {zone_key2}",
+                    zone_key=key,
+                ) from e
             if raw_exchange is not None:
                 parsed = parse_exchange(
                     xml_text=raw_exchange,
@@ -1278,9 +1302,16 @@ def fetch_exchange_forecast(
     # Grab exchange
     # Import
     parsed = None
-    raw_exchange_forecast = query_exchange_forecast(
-        domain1, domain2, session, target_datetime=target_datetime
-    )
+    try:
+        raw_exchange_forecast = query_exchange_forecast(
+            domain1, domain2, session, target_datetime=target_datetime
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch exchange forecast for {zone_key1} -> {zone_key2}",
+            zone_key=key,
+        ) from e
     if raw_exchange_forecast is not None:
         parsed = parse_exchange(
             raw_exchange_forecast,
@@ -1288,9 +1319,16 @@ def fetch_exchange_forecast(
         )
     if parsed is not None:
         # Export
-        raw_exchange_forecast = query_exchange_forecast(
-            domain2, domain1, session, target_datetime=target_datetime
-        )
+        try:
+            raw_exchange_forecast = query_exchange_forecast(
+                domain2, domain1, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch exchange forecast for {zone_key1} -> {zone_key2}",
+                zone_key=key,
+            ) from e
         if raw_exchange_forecast is not None:
             parsed = parse_exchange(
                 xml_text=raw_exchange_forecast,
@@ -1339,8 +1377,14 @@ def fetch_price(
         session = Session()
 
     domain = ENTSOE_PRICE_DOMAIN_MAPPINGS[zone_key]
-
-    raw_price_data = query_price(domain, session, target_datetime=target_datetime)
+    try:
+        raw_price_data = query_price(domain, session, target_datetime=target_datetime)
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch price for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if raw_price_data is None:
         raise ParserException(
             parser="ENTSOE.py",
@@ -1363,7 +1407,16 @@ def fetch_generation_forecast(
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     parsed = None
     # Grab consumption
-    test = query_generation_forecast(domain, session, target_datetime=target_datetime)
+    try:
+        test = query_generation_forecast(
+            domain, session, target_datetime=target_datetime
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch generation forecast for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if test is not None:
         parsed = parse_scalar(
             test,
@@ -1404,9 +1457,16 @@ def fetch_consumption_forecast(
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = None
-    raw_consumption_forecast = query_consumption_forecast(
-        domain, session, target_datetime=target_datetime
-    )
+    try:
+        raw_consumption_forecast = query_consumption_forecast(
+            domain, session, target_datetime=target_datetime
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch consumption forecast for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if raw_consumption_forecast is not None:
         parsed = parse_scalar(
             raw_consumption_forecast,
@@ -1447,10 +1507,16 @@ def fetch_wind_solar_forecasts(
     if not session:
         session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-
-    raw_renewable_forecast = query_wind_solar_production_forecast(
-        domain, session, target_datetime=target_datetime
-    )
+    try:
+        raw_renewable_forecast = query_wind_solar_production_forecast(
+            domain, session, target_datetime=target_datetime
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch renewable forecast for {zone_key}",
+            zone_key=zone_key,
+        ) from e
     if raw_renewable_forecast is None:
         raise ParserException(
             parser="ENTSOE.py",

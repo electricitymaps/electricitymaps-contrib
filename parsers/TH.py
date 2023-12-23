@@ -2,8 +2,8 @@ import json
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import pytz
 from bs4 import BeautifulSoup
 from requests import Session
 
@@ -15,7 +15,7 @@ EGAT_URL = "www.egat.co.th"
 MEA_BASEPRICE_URL = "https://www.mea.or.th/en/profile/109/111"
 MEA_FT_URL = "https://www.mea.or.th/content/detail/2985/2987/474"
 MEA_URL = "www.mea.or.th"
-TZ = "Asia/Bangkok"
+TZ = ZoneInfo("Asia/Bangkok")
 
 
 def _as_localtime(dt: datetime) -> datetime:
@@ -24,10 +24,9 @@ def _as_localtime(dt: datetime) -> datetime:
     Otherwise, it interprets the datetime as the representation of local time
     since the API server supposes the local timezone instead of UTC.
     """
-    tzinfo = pytz.timezone(TZ)
     if dt is None:
-        return datetime.now(tz=tzinfo)
-    return dt.astimezone(tzinfo)
+        return datetime.now(tz=TZ)
+    return dt.astimezone(TZ)
 
 
 def _seconds_to_time(target_datetime: datetime, seconds_in_day: int) -> datetime:

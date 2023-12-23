@@ -5,8 +5,8 @@
 from datetime import datetime
 from enum import Enum
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 from bs4 import BeautifulSoup
 from requests import Session
 
@@ -15,7 +15,7 @@ from requests import Session
 # page to load the data.
 DATA_URL = "https://hpsldc.com/wp-admin/admin-ajax.php"
 ZONE_KEY = "IN-HP"
-TZ = "Asia/Kolkata"
+TZ = ZoneInfo("Asia/Kolkata")
 
 
 class GenType(Enum):
@@ -85,13 +85,13 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
     res = r.post(url, {"action": "intra_state_power_transaction"})
     assert res.status_code == 200, (
-        f"Exception when fetching production for "
+        "Exception when fetching production for "
         "{zone_key}: {res.status_code} error when calling url={url}"
     )
     soup = BeautifulSoup(res.text, "html.parser")
     return {
         "zoneKey": ZONE_KEY,
-        "datetime": arrow.now(TZ).datetime,
+        "datetime": datetime.now(tz=TZ),
         "production": combine_gen(
             get_state_gen(soup, logger), get_isgs_gen(soup, logger)
         ),

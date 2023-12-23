@@ -180,8 +180,11 @@
       }
     },
     {
-      "files": ["src/**/*.stories.ts?(x)"],
+      // Make rules a bit more relaxed for tests and stories
+      "files": ["src/**/*.{cy,stories,test}.ts?(x)"],
       "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-magic-numbers": ["off"],
         "import/no-extraneous-dependencies": "off"
       }
     },
@@ -189,7 +192,6 @@
       "files": ["src/**/*.test.ts?(x)"],
       "extends": ["plugin:testing-library/react"],
       "rules": {
-        "@typescript-eslint/no-magic-numbers": ["off"],
         "import/default": "off",
         "testing-library/no-await-sync-events": [
           "error",

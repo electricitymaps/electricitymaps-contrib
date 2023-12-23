@@ -14,7 +14,6 @@ import Header from 'features/header/Header';
 import FAQModal from 'features/modals/FAQModal';
 import InfoModal from 'features/modals/InfoModal';
 import SettingsModal from 'features/modals/SettingsModal';
-import TotalEnergyIntroModal from 'features/modals/TotalEnergyIntroModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
@@ -86,7 +85,6 @@ export default function App(): ReactElement {
               )}
               <LoadingOverlay />
               <OnboardingModal />
-              <TotalEnergyIntroModal />
               <FAQModal />
               <InfoModal />
               <SettingsModal />

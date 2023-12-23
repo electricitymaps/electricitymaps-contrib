@@ -41,7 +41,7 @@ def create_aggregated_config(zoneKey: str, timezone: str):
                     capacities: dict = subzone["capacity"]
                     for key, capacity in capacities.items():
                         mapped_key = (
-                            key if not key in NAME_MAPPING else NAME_MAPPING[key]
+                            key if key not in NAME_MAPPING else NAME_MAPPING[key]
                         )
                         if capacity is not None:
                             current_capacity = zone.capacity.__getattribute__(

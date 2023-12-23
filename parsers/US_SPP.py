@@ -3,14 +3,13 @@
 """Parser for the Southwest Power Pool area of the United States."""
 
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
 
 import arrow
 import pandas as pd
 from dateutil import parser
-from pytz import utc
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
@@ -193,7 +192,7 @@ def fetch_production(
 
     data = []
     for item in processed_data:
-        dt = item[0].replace(tzinfo=utc)
+        dt = item[0].replace(tzinfo=timezone.utc)
         datapoint = {
             "zoneKey": zone_key,
             "datetime": dt,
@@ -236,7 +235,7 @@ def fetch_load_forecast(
     for index in range(len(raw_data)):
         forecast = raw_data.loc[index].to_dict()
 
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=utc)
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=timezone.utc)
         load = _NaN_safe_get(forecast, "STLF")
         if load is None:
             load = _NaN_safe_get(forecast, "MTLF")
@@ -297,7 +296,7 @@ def fetch_wind_solar_forecasts(
     for index in range(len(raw_data)):
         forecast = raw_data.loc[index].to_dict()
 
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=utc)
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=timezone.utc)
 
         # Get short term forecast if available, else medium term
         solar = _NaN_safe_get(forecast, "Solar Forecast MW")
@@ -410,14 +409,14 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    now = datetime.now(tz=utc)
+    now = datetime.now(tz=timezone.utc)
     if (
         target_datetime is None
         or target_datetime > arrow.get(now).floor("day").datetime
     ):
         target_datetime = now
         exchanges = fetch_live_exchange(zone_key1, zone_key2, session, target_datetime)
-    elif target_datetime < datetime(2014, 3, 1, tzinfo=utc):
+    elif target_datetime < datetime(2014, 3, 1, tzinfo=timezone.utc):
         raise NotImplementedError(
             "Exchange data is not available from this sourc before 03/2014"
         )

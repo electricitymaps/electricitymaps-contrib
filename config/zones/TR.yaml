@@ -233,6 +233,7 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: TR.fetch_price
   production: TR.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 sources:
   INCER ACV:

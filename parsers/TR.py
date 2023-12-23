@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
-import pytz
 from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
@@ -11,7 +11,7 @@ from parsers.lib.exceptions import ParserException
 from parsers.lib.session import get_session_with_legacy_adapter
 from parsers.lib.validation import validate
 
-TR_TZ = pytz.timezone("Europe/Istanbul")
+TR_TZ = ZoneInfo("Europe/Istanbul")
 
 EPIAS_MAIN_URL = "https://seffaflik.epias.com.tr/transparency/service"
 KINDS_MAPPING = {

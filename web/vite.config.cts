@@ -15,9 +15,10 @@ const manualChunkMap = {
   'country-flag-icons': 'flags',
   recharts: 'recharts',
   'world.json': 'world',
+  'usa_states.json': 'config',
   'zones.json': 'config',
   'exchanges.json': 'config',
-  'excludedAggregatedExchanges.json': 'config',
+  'excluded_aggregated_exchanges.json': 'config',
 };
 
 const sentryPluginOptions: SentryVitePluginOptions = {
@@ -60,7 +61,7 @@ export default defineConfig(({ mode }) => ({
   treeshake: 'smallest',
   test: {
     css: false,
-    include: ['src/**/*.test.{ts,tsx}', 'geo/**/*.test.{ts,tsx}'],
+    include: ['{src,geo}/**/*.test.{ts,tsx}', 'scripts/*.test.{ts,tsx}'],
     globals: true,
     globalSetup: 'testSetup.ts',
     environment: 'jsdom',

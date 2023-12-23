@@ -307,10 +307,10 @@ class BaseClasses:
 
             def check_range(mode, factor, zone):
                 value = factor["value"]
-                assert isinstance(value, (int, float))
+                assert isinstance(value, int | float)
                 low, high = self.ranges_by_mode[mode]
-                assert isinstance(low, (int, float))
-                assert isinstance(high, (int, float))
+                assert isinstance(low, int | float)
+                assert isinstance(high, int | float)
                 msg = (
                     f"emission factor {value} not in expected range "
                     f"[{low}, {high}] for {mode} in {zone}"
@@ -394,9 +394,12 @@ class CO2eqParametersDirect(BaseClasses.CO2eqParametersDirectAndLifecycleBase):
         # Fossil fuels: usually above 500 gCO2eq/kWh.
         "coal": (500, 1600),
         "gas": (200, 700),
-        "oil": (300, 1300),
+        "oil": (300, 1400),
         # Low-carbon: direct emissions are usually zero, with some possible exceptions.
-        "geothermal": (0, 100),
+        "geothermal": (
+            0,
+            199,
+        ),  # 80% of geothermal plants emit less than 200 gCO2eq/kWhs
         "hydro": (0, 0),
         "nuclear": (0, 0),
         "solar": (0, 0),
@@ -425,7 +428,7 @@ class CO2eqParametersLifecycle(BaseClasses.CO2eqParametersDirectAndLifecycleBase
         "gas": (400, 900),
         # Low-carbon: generally below 50 gCO2eq/kWh with some exceptions.
         # For lifecycle emissions, this should not be zero.
-        "geothermal": (30, 140),
+        "geothermal": (30, 199),
         "hydro": (10, 25),
         "nuclear": (4, 12),
         "biomass": (0.4, 1300),

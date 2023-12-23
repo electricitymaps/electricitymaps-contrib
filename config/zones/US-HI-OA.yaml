@@ -47,13 +47,19 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 685.9001691120977
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 1088.282256
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 1088.282256
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 1095.15
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -77,9 +83,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 685.9001691120977
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 742.1719304
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 742.1719304
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 746.36
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -104,13 +113,19 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 923.678588772847
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 980.1789569
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 980.1789569
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 1148.282256
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 1148.282256
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 1155.15
     gas:
       datetime: '2014-01-01'
       source: IPCC 2014
@@ -138,9 +153,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 923.678588772847
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 986.1719304
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 986.1719304
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 990.36
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -253,4 +271,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: Pacific/Honolulu
