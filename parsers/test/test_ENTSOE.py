@@ -166,10 +166,10 @@ class TestFetchExchange(TestENTSOE):
         imports = None
         exports = None
         # Read import data from mockfile
-        with open("parsers/test/mocks/ENTSOE/DK-DK1_GB_imports.xml", "rb") as import_file:
+        with open("parsers/test/mocks/ENTSOE/DK-DK1_GB_exchange_imports.xml", "rb") as import_file:
             imports = import_file.read()
         # Read export data from mockfile
-        with open("parsers/test/mocks/ENTSOE/DK-DK1_GB_exports.xml", "rb") as export_file:
+        with open("parsers/test/mocks/ENTSOE/DK-DK1_GB_exchange_exports.xml", "rb") as export_file:
             exports = export_file.read()
         self.adapter.register_uri(
                 GET,
@@ -184,7 +184,8 @@ class TestFetchExchange(TestENTSOE):
         exchange = ENTSOE.fetch_exchange(
             zone_key1=ZoneKey("DK-DK1"),
             zone_key2=ZoneKey("GB"),
-            session=self.session        )
+            session=self.session
+        )
 
         self.assertMatchSnapshot(
             [
@@ -195,6 +196,44 @@ class TestFetchExchange(TestENTSOE):
                     "sortedZoneKeys": element["sortedZoneKeys"],
                 }
                 for element in exchange
+            ]
+        )
+
+class TestFetchExchangeForecast(TestENTSOE):
+    def test_fetch_exchange_forecast(self):
+        imports = None
+        exports = None
+        # Read import data from mockfile
+        with open("parsers/test/mocks/ENTSOE/DK-DK2_SE-SE4_exchange_forecast_imports.xml", "rb") as import_file:
+            imports = import_file.read()
+        # Read export data from mockfile
+        with open("parsers/test/mocks/ENTSOE/DK-DK2_SE-SE4_exchange_forecast_exports.xml", "rb") as export_file:
+            exports = export_file.read()
+        self.adapter.register_uri(
+                GET,
+                "https://web-api.tp.entsoe.eu/api?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
+                content=imports,
+            )
+        self.adapter.register_uri(
+                GET,
+                "https://web-api.tp.entsoe.eu/api?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
+                content=exports,
+            )
+        exchange_forecast = ENTSOE.fetch_exchange_forecast(
+            zone_key1=ZoneKey("DK-DK2"),
+            zone_key2=ZoneKey("SE-SE4"),
+            session=self.session
+        )
+
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                }
+                for element in exchange_forecast
             ]
         )
 
