@@ -78,11 +78,11 @@ def fetch_data(
     )
     try:
         data = resp.json().get("Rows", [])
-    except:
+    except Exception as e:
         raise ParserException(
             parser="SMARTGRIDDASHBOARD.py",
             message=f"{target_datetime}: {kind} data is not available for {zone_key}",
-        )
+        ) from e
     return data
 
 
@@ -202,7 +202,7 @@ def fetch_exchange(
     if exchangeKey == "GB-NIR->IE":
         raise ParserException(
             parser="SMARTGRIDDASHBOARD.py",
-            message=f"the GB-NIR_IE interconnection is unsupported.",
+            message="the GB-NIR_IE interconnection is unsupported.",
         )
 
     exchange_data = fetch_data(
