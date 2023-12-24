@@ -41,9 +41,14 @@ def _str_to_datetime(date_string: str) -> datetime:
     Converts string received into datetime format.
     String received is almost in isoformat, just missing : in the timezone
     """
-    return datetime.fromisoformat(date_string[:-2] + ":" + date_string[-2:]).replace(
-        tzinfo=TR_TZ
-    )
+    try:
+        return datetime.fromisoformat(date_string[:-2] + ":" + date_string[-2:])
+    except ValueError:
+        raise ParserException(
+            parser="TR.py",
+            message="Datetime string cannot be parsed: expected "
+            f"format has changed and is now {date_string}",
+        )
 
 
 def fetch_data(target_datetime: datetime, kind: str) -> dict:
