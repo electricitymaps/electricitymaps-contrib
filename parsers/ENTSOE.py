@@ -1235,6 +1235,7 @@ def get_raw_exchange(
             zone_key1=zone_key1,
             zone_key2=zone_key2,
             logger=logger,
+            is_forecast=forecast,
         )
         if imports:
             # Export
@@ -1255,6 +1256,7 @@ def get_raw_exchange(
                     zone_key1=zone_key1,
                     zone_key2=zone_key2,
                     logger=logger,
+                    is_forecast=forecast,
                 )
                 if imports and exports:
                     exchanges = ExchangeList.merge_exchanges([imports, exports], logger)
