@@ -332,7 +332,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
   - Solar & wind: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Lithuania:
+  - Solar & Wind: [Litgrid](https://www.litgrid.eu/index.php/power-system/power-system-information/generation-capacity/546)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Luxembourg:
   - Hydro Storage: [Société Electrique de L'Our](http://www.seo.lu/fr/Activites-principales/PSW-Vianden/Installations/Donnees-techniques)
   - Other: [Institut luxembourgeois de régulation](https://data.public.lu/fr/datasets/la-production-denergie-electrique-au-luxembourg-1/)
