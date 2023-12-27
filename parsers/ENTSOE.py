@@ -1193,15 +1193,14 @@ def fetch_production_per_units(
 
     return data
 
-
-@refetch_frequency(timedelta(days=2))
-def fetch_exchange(
+def get_raw_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+    forecast: bool = False,
+) -> ExchangeList:
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -1211,6 +1210,9 @@ def fetch_exchange(
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = "->".join(sorted_zone_keys)
     exchanges = ExchangeList(logger)
+
+    query_function = query_exchange_forecast if forecast else query_exchange
+
     if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
         domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
     else:
@@ -1219,7 +1221,7 @@ def fetch_exchange(
     # Grab exchange
     # Import
     try:
-        raw_exchange = query_exchange(domain1, domain2, session, target_datetime)
+        raw_exchange = query_function(domain1, domain2, session, target_datetime)
     except Exception as e:
         raise ParserException(
             parser="ENTSOE.py",
@@ -1237,7 +1239,7 @@ def fetch_exchange(
         if imports:
             # Export
             try:
-                raw_exchange = query_exchange(
+                raw_exchange = query_function(
                     domain2, domain1, session, target_datetime
                 )
             except Exception as e:
@@ -1256,12 +1258,33 @@ def fetch_exchange(
                 )
                 if imports and exports:
                     exchanges = ExchangeList.merge_exchanges([imports, exports], logger)
-        return exchanges.to_list()
+        return exchanges
     else:
         raise ParserException(
             parser="entsoe.eu",
             message=f"No exchange data found for {zone_key1} -> {zone_key2}",
         )
+
+@refetch_frequency(timedelta(days=2))
+def fetch_exchange(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """
+    Gets exchange status between two specified zones.
+    Removes any datapoints that are in the future.
+    """
+    exchanges = get_raw_exchange(
+        zone_key1,
+        zone_key2,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )
+    return exchanges.to_list()
 
 
 @refetch_frequency(timedelta(days=2))
@@ -1272,62 +1295,19 @@ def fetch_exchange_forecast(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """Gets exchange forecast between two specified zones."""
-    if not session:
-        session = Session()
-    exchanges = ExchangeList(logger)
-    sorted_zone_keys = sorted([zone_key1, zone_key2])
-    key = "->".join(sorted_zone_keys)
-    if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
-        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
-    else:
-        domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
-        domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
-    # Grab exchange
-    # Import
-    try:
-        raw_exchange_forecast = query_exchange_forecast(
-            domain1, domain2, session, target_datetime=target_datetime
-        )
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to fetch exchange forecast for {zone_key1} -> {zone_key2}",
-            zone_key=key,
-        ) from e
-    if raw_exchange_forecast is not None:
-        imports = parse_exchange(
-            raw_exchange_forecast,
-            is_import=True,
-            zone_key1=zone_key1,
-            zone_key2=zone_key2,
-            logger=logger,
-            is_forecast=True,
-        )
-        if imports:
-            # Export
-            try:
-                raw_exchange_forecast = query_exchange_forecast(
-                    domain2, domain1, session, target_datetime=target_datetime
-                )
-            except Exception as e:
-                raise ParserException(
-                    parser="ENTSOE.py",
-                    message=f"Failed to fetch exchange forecast for {zone_key1} -> {zone_key2}",
-                    zone_key=key,
-                ) from e
-            if raw_exchange_forecast is not None:
-                exports = parse_exchange(
-                    xml_text=raw_exchange_forecast,
-                    is_import=False,
-                    zone_key1=zone_key1,
-                    zone_key2=zone_key2,
-                    logger=logger,
-                    is_forecast=True,
-                )
-                if imports and exports:
-                    exchanges = ExchangeList.merge_exchanges([imports, exports], logger)
-        return exchanges.to_list()
+    """
+    Gets exchange forecast between two specified zones.
+    Removes any datapoints that are in the future.
+    """
+    exchanges = get_raw_exchange(
+        zone_key1,
+        zone_key2,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+        forecast=True,
+    )
+    return exchanges.to_list()
 
 
 @refetch_frequency(timedelta(days=2))
