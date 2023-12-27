@@ -186,7 +186,7 @@ class TestFetchExchange(TestENTSOE):
             zone_key2=ZoneKey("GB"),
             session=self.session
         )
-
+        exchange.sort(key=lambda x: x["datetime"])
         self.assertMatchSnapshot(
             [
                 {
@@ -224,7 +224,7 @@ class TestFetchExchangeForecast(TestENTSOE):
             zone_key2=ZoneKey("SE-SE4"),
             session=self.session
         )
-
+        exchange_forecast.sort(key=lambda x: x["datetime"])
         self.assertMatchSnapshot(
             [
                 {
