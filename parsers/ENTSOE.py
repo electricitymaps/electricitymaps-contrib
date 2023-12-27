@@ -1193,6 +1193,7 @@ def fetch_production_per_units(
 
     return data
 
+
 def get_raw_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1266,6 +1267,7 @@ def get_raw_exchange(
             parser="entsoe.eu",
             message=f"No exchange data found for {zone_key1} -> {zone_key2}",
         )
+
 
 @refetch_frequency(timedelta(days=2))
 def fetch_exchange(
