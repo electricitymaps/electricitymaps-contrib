@@ -927,13 +927,12 @@ def parse_production_per_units(xml_text: str) -> Any | None:
 def parse_exchange(
     xml_text: str,
     is_import: bool,
-    zone_key1: ZoneKey,
-    zone_key2: ZoneKey,
+    sorted_zone_keys: ZoneKey,
     logger: Logger,
     is_forecast: bool = False,
 ) -> ExchangeList:
     exchange_list = ExchangeList(logger)
-    sortedZoneKeys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
@@ -957,7 +956,7 @@ def parse_exchange(
             datetime = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
             exchange_list.append(
-                zoneKey=sortedZoneKeys,
+                zoneKey=sorted_zone_keys,
                 datetime=datetime,
                 source=SOURCE,
                 netFlow=quantity,
@@ -1208,14 +1207,13 @@ def get_raw_exchange(
     """
     if not session:
         session = Session()
-    sorted_zone_keys = sorted([zone_key1, zone_key2])
-    key = "->".join(sorted_zone_keys)
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     exchanges = ExchangeList(logger)
 
     query_function = query_exchange_forecast if forecast else query_exchange
 
-    if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
-        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
+    if sorted_zone_keys in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
+        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[sorted_zone_keys]
     else:
         domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
         domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
@@ -1227,14 +1225,13 @@ def get_raw_exchange(
         raise ParserException(
             parser="ENTSOE.py",
             message=f"Failed to query import for {zone_key1} -> {zone_key2}",
-            zone_key=key,
+            zone_key=sorted_zone_keys,
         ) from e
     if raw_exchange is not None:
         imports = parse_exchange(
             raw_exchange,
             is_import=True,
-            zone_key1=zone_key1,
-            zone_key2=zone_key2,
+            sorted_zone_keys=sorted_zone_keys,
             logger=logger,
             is_forecast=forecast,
         )
@@ -1248,14 +1245,13 @@ def get_raw_exchange(
                 raise ParserException(
                     parser="ENTSOE.py",
                     message=f"Failed to query export for {zone_key1} -> {zone_key2}",
-                    zone_key=key,
+                    zone_key=sorted_zone_keys,
                 ) from e
             if raw_exchange is not None:
                 exports = parse_exchange(
                     xml_text=raw_exchange,
                     is_import=False,
-                    zone_key1=zone_key1,
-                    zone_key2=zone_key2,
+                    sorted_zone_keys=sorted_zone_keys,
                     logger=logger,
                     is_forecast=forecast,
                 )
