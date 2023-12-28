@@ -1226,54 +1226,49 @@ def get_raw_exchange(
         exchanges_to_fetch.append(
             [ENTSOE_DOMAIN_MAPPINGS[zone_key1], ENTSOE_DOMAIN_MAPPINGS[zone_key2]]
         )
-    # Grab all exchanges
-    for domain_pair in exchanges_to_fetch:
-        domain1, domain2 = domain_pair
-        # Import
+
+    def _fetch_and_parse_exchange(
+        domain_pair: list[str],
+        is_import: bool,
+    ) -> ExchangeList:
+        """
+        Internal function to fetch and parse exchange data
+        only used to avoid code duplication in the parent function.
+        """
+        domain1, domain2 = domain_pair if is_import else domain_pair[::-1]
         try:
             raw_exchange = query_function(domain1, domain2, session, target_datetime)
         except Exception as e:
             raise ParserException(
                 parser="ENTSOE.py",
-                message=f"Failed to query import for {zone_key1} -> {zone_key2}",
+                message=f"Failed to query {'import' if is_import else 'export'} for {domain1} -> {domain2}",
                 zone_key=sorted_zone_keys,
             ) from e
         if raw_exchange is not None:
-            imports = parse_exchange(
+            return parse_exchange(
                 raw_exchange,
-                is_import=True,
+                is_import=is_import,
                 sorted_zone_keys=sorted_zone_keys,
                 logger=logger,
                 is_forecast=forecast,
             )
-            if imports:
-                raw_exchange_lists.append(imports)
-                # Export
-                try:
-                    raw_exchange = query_function(
-                        domain2, domain1, session, target_datetime
-                    )
-                except Exception as e:
-                    raise ParserException(
-                        parser="ENTSOE.py",
-                        message=f"Failed to query export for {zone_key1} -> {zone_key2}",
-                        zone_key=sorted_zone_keys,
-                    ) from e
-                if raw_exchange is not None:
-                    exports = parse_exchange(
-                        xml_text=raw_exchange,
-                        is_import=False,
-                        sorted_zone_keys=sorted_zone_keys,
-                        logger=logger,
-                        is_forecast=forecast,
-                    )
-                    if exports:
-                        raw_exchange_lists.append(exports)
         else:
             raise ParserException(
-                parser="entsoe.eu",
-                message=f"No exchange data found for {zone_key1} -> {zone_key2}",
+                parser="ENTSOE.py",
+                message=f"No exchange data found for {domain1} -> {domain2}",
+                zone_key=sorted_zone_keys,
             )
+
+    # Grab all exchanges
+    for domain_pair in exchanges_to_fetch:
+        # First we try to get the import data
+        raw_exchange_lists.append(
+            _fetch_and_parse_exchange(domain_pair, is_import=True)
+        )
+        # Then we try to get the export data
+        raw_exchange_lists.append(
+            _fetch_and_parse_exchange(domain_pair, is_import=False)
+        )
 
     return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
 
