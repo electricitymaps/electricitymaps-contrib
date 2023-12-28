@@ -1278,7 +1278,6 @@ def get_raw_exchange(
     return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
 
 
-
 @refetch_frequency(timedelta(days=2))
 def fetch_exchange(
     zone_key1: ZoneKey,
