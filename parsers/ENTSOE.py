@@ -1244,20 +1244,19 @@ def get_raw_exchange(
                 message=f"Failed to query {'import' if is_import else 'export'} for {domain1} -> {domain2}",
                 zone_key=sorted_zone_keys,
             ) from e
-        if raw_exchange is not None:
-            return parse_exchange(
-                raw_exchange,
-                is_import=is_import,
-                sorted_zone_keys=sorted_zone_keys,
-                logger=logger,
-                is_forecast=forecast,
-            )
-        else:
+        if raw_exchange is None:
             raise ParserException(
                 parser="ENTSOE.py",
                 message=f"No exchange data found for {domain1} -> {domain2}",
                 zone_key=sorted_zone_keys,
             )
+        return parse_exchange(
+            raw_exchange,
+            is_import=is_import,
+            sorted_zone_keys=sorted_zone_keys,
+            logger=logger,
+            is_forecast=forecast,
+        )
 
     # Grab all exchanges
     for domain_pair in exchanges_to_fetch:
