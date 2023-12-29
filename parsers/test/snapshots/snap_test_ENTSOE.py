@@ -318,6 +318,338 @@ snapshots['TestFetchExchange::test_fetch_exchange 1'] = [
     }
 ]
 
+snapshots['TestFetchExchange::test_fetch_exchange_with_aggregated_exchanges 1'] = [
+    {
+        'datetime': '2023-12-27T10:00:00+00:00',
+        'netFlow': 37.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T11:00:00+00:00',
+        'netFlow': 38.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T12:00:00+00:00',
+        'netFlow': 35.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T13:00:00+00:00',
+        'netFlow': 41.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T14:00:00+00:00',
+        'netFlow': 36.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T15:00:00+00:00',
+        'netFlow': 17.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T16:00:00+00:00',
+        'netFlow': 15.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T17:00:00+00:00',
+        'netFlow': 17.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T18:00:00+00:00',
+        'netFlow': 20.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T19:00:00+00:00',
+        'netFlow': 21.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T20:00:00+00:00',
+        'netFlow': 21.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T21:00:00+00:00',
+        'netFlow': 21.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T22:00:00+00:00',
+        'netFlow': 22.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-27T23:00:00+00:00',
+        'netFlow': 33.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T00:00:00+00:00',
+        'netFlow': 70.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T01:00:00+00:00',
+        'netFlow': 81.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T02:00:00+00:00',
+        'netFlow': 85.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T03:00:00+00:00',
+        'netFlow': 85.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T04:00:00+00:00',
+        'netFlow': 83.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T05:00:00+00:00',
+        'netFlow': 65.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T06:00:00+00:00',
+        'netFlow': 82.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T07:00:00+00:00',
+        'netFlow': 45.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T08:00:00+00:00',
+        'netFlow': 19.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T09:00:00+00:00',
+        'netFlow': 19.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T10:00:00+00:00',
+        'netFlow': 19.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T11:00:00+00:00',
+        'netFlow': 21.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T12:00:00+00:00',
+        'netFlow': 22.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T13:00:00+00:00',
+        'netFlow': 27.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T14:00:00+00:00',
+        'netFlow': 24.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T15:00:00+00:00',
+        'netFlow': 20.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T16:00:00+00:00',
+        'netFlow': 60.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T17:00:00+00:00',
+        'netFlow': 70.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T18:00:00+00:00',
+        'netFlow': 73.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T19:00:00+00:00',
+        'netFlow': 51.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T20:00:00+00:00',
+        'netFlow': 23.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T21:00:00+00:00',
+        'netFlow': 14.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T22:00:00+00:00',
+        'netFlow': 30.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-28T23:00:00+00:00',
+        'netFlow': 70.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-29T00:00:00+00:00',
+        'netFlow': 83.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-29T01:00:00+00:00',
+        'netFlow': 75.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-29T02:00:00+00:00',
+        'netFlow': 88.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-29T03:00:00+00:00',
+        'netFlow': 86.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-29T04:00:00+00:00',
+        'netFlow': 87.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-29T05:00:00+00:00',
+        'netFlow': 83.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-29T06:00:00+00:00',
+        'netFlow': 37.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-29T07:00:00+00:00',
+        'netFlow': 21.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    },
+    {
+        'datetime': '2023-12-29T08:00:00+00:00',
+        'netFlow': 22.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'measured'
+    }
+]
+
 snapshots['TestFetchExchangeForecast::test_fetch_exchange_forecast 1'] = [
     {
         'datetime': '2023-12-20T23:00:00+00:00',
@@ -988,6 +1320,513 @@ snapshots['TestFetchExchangeForecast::test_fetch_exchange_forecast 1'] = [
         'datetime': '2023-12-24T22:00:00+00:00',
         'netFlow': 0.0,
         'sortedZoneKeys': 'DK-DK2->SE-SE4',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    }
+]
+
+snapshots['TestFetchExchangeForecast::test_fetch_exchange_forecast_with_aggregated_exchanges 1'] = [
+    {
+        'datetime': '2023-12-26T23:00:00+00:00',
+        'netFlow': -141.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T00:00:00+00:00',
+        'netFlow': -135.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T01:00:00+00:00',
+        'netFlow': -122.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T02:00:00+00:00',
+        'netFlow': -115.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T03:00:00+00:00',
+        'netFlow': -113.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T04:00:00+00:00',
+        'netFlow': -117.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T05:00:00+00:00',
+        'netFlow': -127.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T06:00:00+00:00',
+        'netFlow': -139.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T07:00:00+00:00',
+        'netFlow': -141.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T08:00:00+00:00',
+        'netFlow': -122.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T09:00:00+00:00',
+        'netFlow': -98.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T10:00:00+00:00',
+        'netFlow': -81.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T11:00:00+00:00',
+        'netFlow': -73.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T12:00:00+00:00',
+        'netFlow': -73.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T13:00:00+00:00',
+        'netFlow': -86.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T14:00:00+00:00',
+        'netFlow': -110.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T15:00:00+00:00',
+        'netFlow': -137.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T16:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T17:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T18:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T19:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T20:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T21:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T22:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-27T23:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T00:00:00+00:00',
+        'netFlow': -137.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T01:00:00+00:00',
+        'netFlow': -129.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T02:00:00+00:00',
+        'netFlow': -122.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T03:00:00+00:00',
+        'netFlow': -119.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T04:00:00+00:00',
+        'netFlow': -123.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T05:00:00+00:00',
+        'netFlow': -134.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T06:00:00+00:00',
+        'netFlow': 0.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T07:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T08:00:00+00:00',
+        'netFlow': -136.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T09:00:00+00:00',
+        'netFlow': -116.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T10:00:00+00:00',
+        'netFlow': -101.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T11:00:00+00:00',
+        'netFlow': -95.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T12:00:00+00:00',
+        'netFlow': -93.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T13:00:00+00:00',
+        'netFlow': -106.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T14:00:00+00:00',
+        'netFlow': -125.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T15:00:00+00:00',
+        'netFlow': -142.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T16:00:00+00:00',
+        'netFlow': 4.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T17:00:00+00:00',
+        'netFlow': 4.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T18:00:00+00:00',
+        'netFlow': 4.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T19:00:00+00:00',
+        'netFlow': 4.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T20:00:00+00:00',
+        'netFlow': -86.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T21:00:00+00:00',
+        'netFlow': -100.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T22:00:00+00:00',
+        'netFlow': -146.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-28T23:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T00:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T01:00:00+00:00',
+        'netFlow': -56.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T02:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T03:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T04:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T05:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T06:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T07:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T08:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T09:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T10:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T11:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T12:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T13:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T14:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T15:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T16:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T17:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T18:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T19:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T20:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T21:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
+        'source': 'entsoe.eu',
+        'sourceType': 'forecasted'
+    },
+    {
+        'datetime': '2023-12-29T22:00:00+00:00',
+        'netFlow': -57.0,
+        'sortedZoneKeys': 'FR-COR->IT-SAR',
         'source': 'entsoe.eu',
         'sourceType': 'forecasted'
     }
