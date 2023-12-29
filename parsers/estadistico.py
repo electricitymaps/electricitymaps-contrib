@@ -6,8 +6,10 @@ from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
 from operator import itemgetter
+from zoneinfo import ZoneInfo
+from datetime import datetime
+from electricitymap.contrib.lib.types import ZoneKey
 
-import arrow
 from bs4 import BeautifulSoup
 from requests import Session
 
@@ -21,6 +23,8 @@ from requests import Session
 # Thanks to jarek for figuring out how to make the correct POST request to the data url.
 
 DAILY_OPERATION_URL = "https://estadistico.ut.com.sv/OperacionDiaria.aspx"
+TIMEZONE = ZoneInfo("America/El_Salvador")
+SOURCE = "ut.com.sv"
 
 generation_map = {
     0: "biomass",
@@ -34,16 +38,14 @@ generation_map = {
 }
 
 
-def get_data(session: Session | None = None):
+def get_data(session: Session):
     """
     Makes a get request to data url.
     Parses the response then makes a post request to the same url using
     parsed parameters from the get request.
     Returns a requests response object.
     """
-
-    s = session or Session()
-    pagereq = s.get(DAILY_OPERATION_URL)
+    pagereq = session.get(DAILY_OPERATION_URL)
 
     soup = BeautifulSoup(pagereq.content, "html.parser")
 
@@ -67,7 +69,7 @@ def get_data(session: Session | None = None):
         "DXCss": DXCss,
     }
 
-    datareq = s.post(DAILY_OPERATION_URL, data=postdata)
+    datareq = session.post(DAILY_OPERATION_URL, data=postdata)
 
     return datareq
 
@@ -124,7 +126,6 @@ def data_processer(data) -> list:
     for val in data:
         newval = {"datetime": val[2], val[0]: val[3]}
         converted.append(newval)
-
     # Join dicts on 'datetime' key.
     d = defaultdict(dict)
     for elem in converted:
@@ -132,22 +133,18 @@ def data_processer(data) -> list:
 
     joined_data = sorted(d.values(), key=itemgetter("datetime"))
 
-    def get_datetime(hour):
-        at = arrow.now("UTC-6").floor("hour")
-        dt = (at.replace(hour=int(hour), minute=0, second=0)).datetime
-        return dt
-
     mapped_data = []
     for point in joined_data:
         point = {generation_map[num]: val for num, val in point.items()}
-        point["datetime"] = get_datetime(point["datetime"])
+        hour = int(point["datetime"])
+        point["datetime"] = datetime.now(tz=TIMEZONE).replace(hour=hour, minute=0, second=0, microsecond=0)
         mapped_data.append(point)
 
     return mapped_data
 
 
 def fetch_production(
-    zone_key: str = "SV",
+    zone_key: ZoneKey = ZoneKey("SV"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -155,8 +152,9 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    req = get_data(session=None)
+    if session is None:
+        session = Session()
+    req = get_data(session)
     parsed = data_parser(req)
     data = data_processer(parsed)
     production_mix_by_hour = []
@@ -179,7 +177,7 @@ def fetch_production(
             "storage": {
                 "hydro": None,
             },
-            "source": "ut.com.sv",
+            "source": SOURCE,
         }
         production_mix_by_hour.append(production_mix)
 
