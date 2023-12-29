@@ -1282,7 +1282,6 @@ def fetch_exchange(
 ) -> list:
     """
     Gets exchange status between two specified zones.
-    Removes any datapoints that are in the future.
     """
     exchanges = get_raw_exchange(
         zone_key1,
@@ -1304,7 +1303,6 @@ def fetch_exchange_forecast(
 ) -> list:
     """
     Gets exchange forecast between two specified zones.
-    Removes any datapoints that are in the future.
     """
     exchanges = get_raw_exchange(
         zone_key1,
