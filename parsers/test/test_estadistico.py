@@ -4,7 +4,7 @@ from requests_mock import GET, Adapter, POST
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.SV import fetch_production, DAILY_OPERATION_URL
+from parsers.estadistico import fetch_production, DAILY_OPERATION_URL
 
 
 class TestEstadistico(TestCase):
