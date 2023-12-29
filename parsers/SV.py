@@ -20,7 +20,7 @@ from requests import Session
 
 # Thanks to jarek for figuring out how to make the correct POST request to the data url.
 
-url = "https://estadistico.ut.com.sv/OperacionDiaria.aspx"
+DAILY_OPERATION_URL = "https://estadistico.ut.com.sv/OperacionDiaria.aspx"
 
 generation_map = {
     0: "biomass",
@@ -43,7 +43,7 @@ def get_data(session: Session | None = None):
     """
 
     s = session or Session()
-    pagereq = s.get(url)
+    pagereq = s.get(DAILY_OPERATION_URL)
 
     soup = BeautifulSoup(pagereq.content, "html.parser")
 
@@ -67,7 +67,7 @@ def get_data(session: Session | None = None):
         "DXCss": DXCss,
     }
 
-    datareq = s.post(url, data=postdata)
+    datareq = s.post(DAILY_OPERATION_URL, data=postdata)
 
     return datareq
 
