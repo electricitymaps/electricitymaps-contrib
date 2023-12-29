@@ -206,6 +206,6 @@ fallbackZoneMixes:
         unknown: 0.057362415139040494
         wind: 0.03768562954230214
 parsers:
-  production: estadistico.fetch_production
+  production: ESTADISTICO_UT.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/El_Salvador

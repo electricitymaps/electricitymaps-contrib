@@ -4,10 +4,10 @@ from requests_mock import GET, Adapter, POST
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.estadistico import fetch_production, DAILY_OPERATION_URL
+from parsers.ESTADISTICO_UT import fetch_production, DAILY_OPERATION_URL
 
 
-class TestEstadistico(TestCase):
+class TestESTADISTICO_UT(TestCase):
     def setUp(self) -> None:
         self.session = Session()
         self.adapter = Adapter()
@@ -16,14 +16,14 @@ class TestEstadistico(TestCase):
         self.adapter.register_uri(
             GET,
             DAILY_OPERATION_URL,
-            text=resources.files("parsers.test.mocks.estadistico")
+            text=resources.files("parsers.test.mocks.ESTADISTICO_UT")
                 .joinpath("production.html")
                 .read_text(),
         )
         self.adapter.register_uri(
             POST,
             DAILY_OPERATION_URL,
-            text=resources.files("parsers.test.mocks.estadistico")
+            text=resources.files("parsers.test.mocks.ESTADISTICO_UT")
                 .joinpath("data.html")
                 .read_text(),
         )
