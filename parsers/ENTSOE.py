@@ -1276,9 +1276,11 @@ def fetch_price(
         )
     return parse_prices(raw_price_data, zone_key, logger).to_list()
 
+
 # ------------------- #
 #  Generation
 # ------------------- #
+
 
 @refetch_frequency(timedelta(days=2))
 def fetch_generation_forecast(
@@ -1330,9 +1332,11 @@ def fetch_generation_forecast(
 
     return generation_list.to_list()
 
+
 # ------------------- #
 #  Consumption
 # ------------------- #
+
 
 def get_raw_consumption_list(
     zone_key: ZoneKey,
@@ -1408,6 +1412,7 @@ def fetch_consumption_forecast(
         logger=logger,
         forecasted=True,
     ).to_list()
+
 
 @refetch_frequency(timedelta(days=2))
 def fetch_wind_solar_forecasts(
