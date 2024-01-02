@@ -129,7 +129,7 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.0
 parsers:
-  production: IS.fetch_production
+  production: amper_landsnet.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
 sources:
   IPCC 2014:
