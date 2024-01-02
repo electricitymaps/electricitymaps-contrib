@@ -146,15 +146,6 @@ dependencies:
   sunrise-sunset-js:
     specifier: ^2.2.1
     version: 2.2.1
-  tailwind-merge:
-    specifier: ^1.14.0
-    version: 1.14.0
-  tailwindcss:
-    specifier: 3.4.0
-    version: 3.4.0(ts-node@10.9.1)
-  tailwindcss-radix:
-    specifier: ^2.8.0
-    version: 2.8.0
   tiny-invariant:
     specifier: ^1.3.1
     version: 1.3.1
@@ -412,6 +403,15 @@ devDependencies:
   storybook:
     specifier: ^7.6.1
     version: 7.6.1
+  tailwind-merge:
+    specifier: ^1.14.0
+    version: 1.14.0
+  tailwindcss:
+    specifier: 3.4.0
+    version: 3.4.0(ts-node@10.9.1)
+  tailwindcss-radix:
+    specifier: ^2.8.0
+    version: 2.8.0
   ts-node:
     specifier: ^10.9.1
     version: 10.9.1(@types/node@20.10.3)(typescript@5.3.2)
@@ -17275,11 +17275,11 @@ packages:
 
   /tailwind-merge@1.14.0:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
-    dev: false
+    dev: true
 
   /tailwindcss-radix@2.8.0:
     resolution: {integrity: sha512-1k1UfoIYgVyBl13FKwwoKavjnJ5VEaUClCTAsgz3VLquN4ay/lyaMPzkbqD71sACDs2fRGImytAUlMb4TzOt1A==}
-    dev: false
+    dev: true
 
   /tailwindcss@3.4.0(ts-node@10.9.1):
     resolution: {integrity: sha512-VigzymniH77knD1dryXbyxR+ePHihHociZbXnLZHUyzf2MMs2ZVqlUrZ3FvpXP8pno9JzmILt1sZPD19M3IxtA==}
