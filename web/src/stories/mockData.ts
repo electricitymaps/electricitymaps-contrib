@@ -87,7 +87,7 @@ export const zoneDetailMock = {
   },
   renewableRatio: 0.6874,
   renewableRatioProduction: 0.7044,
-  source: 'entsoe.eu',
+  source: ['entsoe.eu'],
   stateDatetime: '2023-09-05T18:00:00Z',
   storage: {
     battery: null,
