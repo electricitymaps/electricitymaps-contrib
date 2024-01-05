@@ -41,14 +41,7 @@ from .lib.validation import validate
 
 SOURCE = "entsoe.eu"
 
-ENDPOINT = "/api"
-ENTSOE_HOST = "https://web-api.tp.entsoe.eu"
-
-
-EU_PROXY = "https://eu-proxy-jfnx5klx2a-ew.a.run.app{endpoint}?host={host}"
-
-ENTSOE_ENDPOINT = ENTSOE_HOST + ENDPOINT
-ENTSOE_EU_PROXY_ENDPOINT = EU_PROXY.format(endpoint=ENDPOINT, host=ENTSOE_HOST)
+ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
@@ -487,12 +480,8 @@ def query_ENTSOE(
     Raises an exception if no API token is found.
     Returns a request object.
     """
-    env_var = "ENTSOE_REFETCH_TOKEN"
-    url = ENTSOE_EU_PROXY_ENDPOINT
     if target_datetime is None:
         target_datetime = datetime.now(timezone.utc)
-        env_var = "ENTSOE_TOKEN"
-        url = ENTSOE_ENDPOINT
 
     if not isinstance(target_datetime, datetime):
         raise ParserException(
@@ -508,31 +497,25 @@ def query_ENTSOE(
         "%Y%m%d%H00"  # YYYYMMDDHH00
     )
 
-    # Due to rate limiting, we need to spread our requests across different tokens
-    tokens = get_token(env_var).split(",")
-    # Shuffle the tokens so that we don't always use the same one first.
-    shuffle(tokens)
-    last_response_if_all_fail = None
-    # Try each token until we get a valid response
-    for token in tokens:
-        params["securityToken"] = token
-        response: Response = session.get(url, params=params)
-        if response.ok:
-            return response.text
-        else:
-            last_response_if_all_fail = response
-    # If we get here, all tokens failed to fetch valid data
-    # and we will check the last response for a error message.
+    token = get_token("ENTSOE_TOKEN")
+    params["securityToken"] = token
+    response: Response = session.get(ENTSOE_URL, params=params)
+    if response.ok:
+        return response.text
+
+    # If we get here, the request failed to fetch valid data
+    # and we will check the response for an error message
     exception_message = None
-    if last_response_if_all_fail is not None:
-        soup = BeautifulSoup(last_response_if_all_fail.text, "html.parser")
-        text = soup.find_all("text")
-        if len(text):
-            error_text = soup.find_all("text")[0].prettify()
-            if "No matching data found" in error_text:
-                exception_message = "No matching data found"
-        if exception_message is None:
-            exception_message = f"Status code: [{last_response_if_all_fail.status_code}]. Reason: {last_response_if_all_fail.reason}"
+    soup = BeautifulSoup(response.text, "html.parser")
+    text = soup.find_all("text")
+    if len(text):
+        error_text = soup.find_all("text")[0].prettify()
+        if "No matching data found" in error_text:
+            exception_message = "No matching data found"
+    if exception_message is None:
+        exception_message = (
+            f"Status code: [{response.status_code}]. Reason: {response.reason}"
+        )
 
     raise ParserException(
         parser="ENTSOE.py",
