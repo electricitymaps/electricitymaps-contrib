@@ -23,13 +23,15 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
   });
 
   // Show the reload button after some time
+  // Show the reload button after some time
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       if (showButton === false && isVisible) {
         setShowButton(true);
       }
     }, TIME_BEFORE_SHOWING_RELOAD_BUTTON);
     return () => {
+      clearTimeout(timeoutId);
       setShowButton(false);
     };
   }, [isVisible]);
