@@ -15,7 +15,6 @@ import itertools
 import re
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from random import shuffle
 from typing import Any
 
 import arrow
