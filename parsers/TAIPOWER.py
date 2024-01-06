@@ -52,16 +52,15 @@ def fetch_production(
         "output",
         "percentage",
         "additional_2",
+        "additional_3",
     ]
     assert len(objData.iloc[0]) == len(columns), "number of input columns changed"
     objData.columns = columns
-
     objData["fueltype"] = objData.fueltype.str.split("<b>").str[1]
     objData["fueltype"] = objData.fueltype.str.split("</b>").str[0]
     objData.loc[:, ["capacity", "output"]] = objData[["capacity", "output"]].apply(
         pd.to_numeric, errors="coerce"
     )
-
     if objData["fueltype"].str.contains("OTHERRENEWABLEENERGY").any():
         if objData["name"].str.contains("Geothermal").any():
             objData.loc[
@@ -78,7 +77,7 @@ def fetch_production(
     ), "output data is entirely NaN - input column order may have changed"
 
     objData.drop(
-        columns=["additional_1", "name", "additional_2", "percentage"],
+        columns=["additional_1", "name", "additional_2", "percentage", "additional_3"],
         axis=1,
         inplace=True,
     )
