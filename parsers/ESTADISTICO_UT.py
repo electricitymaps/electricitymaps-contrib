@@ -137,6 +137,7 @@ def data_processer(data) -> list:
     for point in joined_data:
         point = {generation_map[num]: val for num, val in point.items()}
         hour = int(point["datetime"])
+        # The returned hour is only for the current day, there's no overlap with the previous day.
         point["datetime"] = datetime.now(tz=TIMEZONE).replace(hour=hour, minute=0, second=0, microsecond=0)
         mapped_data.append(point)
 
