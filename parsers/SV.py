@@ -6,8 +6,8 @@ from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
 from operator import itemgetter
+from zoneinfo import ZoneInfo
 
-import arrow
 from bs4 import BeautifulSoup
 from requests import Session
 
@@ -32,6 +32,8 @@ generation_map = {
     6: "solar",
     "datetime": "datetime",
 }
+
+TIMEZONE = ZoneInfo("America/El_Salvador")
 
 
 def get_data(session: Session | None = None):
@@ -133,9 +135,9 @@ def data_processer(data) -> list:
     joined_data = sorted(d.values(), key=itemgetter("datetime"))
 
     def get_datetime(hour):
-        at = arrow.now("UTC-6").floor("hour")
-        dt = (at.replace(hour=int(hour), minute=0, second=0)).datetime
-        return dt
+        return datetime.now(TIMEZONE).replace(
+            hour=int(hour), minute=0, second=0, microsecond=0
+        )
 
     mapped_data = []
     for point in joined_data:
