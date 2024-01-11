@@ -202,7 +202,8 @@
     "privacyPolicy": "Privacy Policy",
     "legalNotice": "Legal Notice",
     "dismiss": "Dismiss",
-    "reload": "Reload"
+    "reload": "Reload",
+    "slow-loading-text": "Still loading, if this continues try reloading..."
   },
   "wind": "wind",
   "windDataError": "Wind data is currently unavailable",

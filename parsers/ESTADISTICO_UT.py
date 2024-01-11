@@ -37,6 +37,8 @@ generation_map = {
     "datetime": "datetime",
 }
 
+TIMEZONE = ZoneInfo("America/El_Salvador")
+
 
 def get_data(session: Session):
     """

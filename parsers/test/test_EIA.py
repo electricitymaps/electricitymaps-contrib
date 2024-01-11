@@ -285,9 +285,9 @@ class TestEIAProduction(TestEIA):
     def test_exchange_transfer(self):
         exchange_key = "US-FLA-FPC->US-FLA-FPL"
         remapped_exchange_key = "US-FLA-FPC->US-FLA-NSB"
-        target_datetime = (
-            "2020-01-07T05:00:00+00:00"  # Last datapoint before decommissioning of NSB
-        )
+        # target_datetime = (
+        #     "2020-01-07T05:00:00+00:00"  # Last datapoint before decommissioning of NSB
+        # )
         # 1. Get data directly from EIA for both
         fpl_exchange_data = json.loads(
             resources.files("parsers.test.mocks.EIA")

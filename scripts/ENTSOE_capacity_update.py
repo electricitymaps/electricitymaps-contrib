@@ -148,7 +148,7 @@ def main():
             sys.exit(1)
         data = parse_from_csv(data_file)
     else:
-        token = args.api_token or get_token("ENTSOE_TOKEN").split(",")[0]
+        token = args.api_token or get_token("ENTSOE_TOKEN")
         if token is None:
             print(
                 "ERROR: If no CSV file is given, the option --api-token must be provided",

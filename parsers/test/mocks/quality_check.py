@@ -5,9 +5,9 @@ Test datapoints for quality.py
 Each one is designed to test some part of the validation functions.
 """
 
-import datetime
+from datetime import datetime, timedelta, timezone
 
-dt = datetime.datetime.utcnow()
+dt = datetime.now(timezone.utc)
 
 prod = {
     "biomass": 15.0,
@@ -71,7 +71,7 @@ e3 = {
     "source": "mysource.com",
 }
 
-future = datetime.datetime.utcnow() + datetime.timedelta(minutes=55)
+future = datetime.now(timezone.utc) + timedelta(minutes=55)
 
 e4 = {
     "sortedZoneKeys": "DK->NO",
