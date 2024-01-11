@@ -2,7 +2,6 @@ import logging
 import os
 import unittest
 from datetime import datetime, timezone
-from unittest import mock
 from unittest.mock import patch
 
 from requests import Session
