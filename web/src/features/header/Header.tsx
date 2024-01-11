@@ -70,6 +70,13 @@ export default function Header(): JSX.Element {
             FAQ
           </MenuLink>
           <MenuLink
+            href="https://www.electricitymaps.com/methodology/?utm_source=app.electricitymaps.com&utm_medium=referral"
+            id="methodology"
+            isExternal
+          >
+            Methodology
+          </MenuLink>
+          <MenuLink
             href="https://www.electricitymaps.com/jobs/?utm_source=app.electricitymaps.com&utm_medium=referral"
             id="jobs"
             isExternal
