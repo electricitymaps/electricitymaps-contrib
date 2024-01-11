@@ -17,7 +17,8 @@ class ConsumptionTestCase(unittest.TestCase):
 
     def test_positive_consumption(self):
         self.assertFalse(
-            validate_consumption(c1, ZoneKey("FR")), msg="Positive consumption is fine!"  # noqa: F405
+            validate_consumption(c1, ZoneKey("FR")),  # noqa: F405
+            msg="Positive consumption is fine!",
         )
 
     def test_negative_consumption(self):
@@ -26,7 +27,8 @@ class ConsumptionTestCase(unittest.TestCase):
 
     def test_None_consumption(self):
         self.assertFalse(
-            validate_consumption(c3, ZoneKey("FR")), msg="Consumption can be undefined!"  # noqa: F405
+            validate_consumption(c3, ZoneKey("FR")),  # noqa: F405
+            msg="Consumption can be undefined!",
         )
 
 
@@ -94,7 +96,10 @@ class ProductionTestCase(unittest.TestCase):
             validate_production(p8, ZoneKey("FR"))  # noqa: F405
 
     def test_good_datapoint(self):
-        self.assertFalse(validate_production(p9, ZoneKey("FR")), msg="This datapoint is good!")  # noqa: F405
+        self.assertFalse(
+            validate_production(p9, ZoneKey("FR")),  # noqa: F405
+            msg="This datapoint is good!",
+        )
 
 
 if __name__ == "__main__":
