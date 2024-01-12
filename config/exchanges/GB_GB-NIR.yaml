@@ -5,5 +5,5 @@ lonlat:
   - -5.428149
   - 54.87826
 parsers:
-  exchange: SMARTGRIDDASHBOARD.fetch_exchange
+  exchange: IEfetch_exchange
 rotation: -110
