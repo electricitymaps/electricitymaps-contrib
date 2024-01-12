@@ -198,6 +198,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Solar: [ELIA](https://www.elia.be/en/grid-data/power-generation/solar-pv-power-generation-data)
   - Hydro: [ELIA](https://www.elia.be/-/media/project/elia/shared/documents/elia-group/publications-pdfs/20200414_elia_annual-report-sustainability_en.pdf)
   - Wind: [ELIA](https://www.elia.be/en/grid-data/power-generation/wind-power-generation)
+  - Battery: [ELIA](https://www.elia.be/en/publications/reports)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Bolivia: [CNDC](http://www.cndc.bo/agentes/generacion.php)
 - Bosnia and Herzegovina: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
