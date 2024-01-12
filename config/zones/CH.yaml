@@ -12,7 +12,7 @@ capacity:
   hydro storage: 4605
   nuclear: 3014.6
   oil: 0.4
-  solar: 3673.3
+  solar: 4736.7
   wind: 88.4
 contributors:
   - corradio
@@ -81,22 +81,22 @@ emissionFactors:
     unknown:
       - datetime: '2017-01-01'
         source: SFOE, Electricity Maps
-        value: 271
+        value: 159
       - datetime: '2018-01-01'
         source: SFOE, Electricity Maps
-        value: 335
+        value: 205
       - datetime: '2019-01-01'
         source: SFOE, Electricity Maps
-        value: 279
+        value: 172
       - datetime: '2020-01-01'
         source: SFOE, Electricity Maps
-        value: 244
+        value: 141
       - datetime: '2021-01-01'
         source: SFOE, Electricity Maps
-        value: 209
+        value: 109
       - datetime: '2022-01-01'
         source: SFOE, Electricity Maps
-        value: 195
+        value: 87
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -171,22 +171,22 @@ emissionFactors:
     unknown:
       - datetime: '2017-01-01'
         source: SFOE, Electricity Maps
-        value: 384
+        value: 251
       - datetime: '2018-01-01'
         source: SFOE, Electricity Maps
-        value: 464
+        value: 311
       - datetime: '2019-01-01'
         source: SFOE, Electricity Maps
-        value: 391
+        value: 264
       - datetime: '2020-01-01'
         source: SFOE, Electricity Maps
-        value: 349
+        value: 227
       - datetime: '2021-01-01'
         source: SFOE, Electricity Maps
-        value: 306
+        value: 188
       - datetime: '2022-01-01'
         source: SFOE, Electricity Maps
-        value: 292
+        value: 165
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
@@ -318,22 +318,22 @@ isLowCarbon:
   unknown:
     - datetime: '2017-01-01'
       source: SFOE, Electricity Maps
-      value: 0.53
+      value: 0.72
     - datetime: '2018-01-01'
       source: SFOE, Electricity Maps
-      value: 0.42
+      value: 0.64
     - datetime: '2019-01-01'
       source: SFOE, Electricity Maps
-      value: 0.51
+      value: 0.7
     - datetime: '2020-01-01'
       source: SFOE, Electricity Maps
-      value: 0.57
+      value: 0.75
     - datetime: '2021-01-01'
       source: SFOE, Electricity Maps
-      value: 0.64
+      value: 0.81
     - datetime: '2022-01-01'
       source: SFOE, Electricity Maps
-      value: 0.66
+      value: 0.85
 isRenewable:
   hydro discharge:
     _comment: Average share of electricity coming from renewable sources in 2021
@@ -342,22 +342,22 @@ isRenewable:
   unknown:
     - datetime: '2017-01-01'
       source: SFOE, Electricity Maps
-      value: 0.53
+      value: 0.72
     - datetime: '2018-01-01'
       source: SFOE, Electricity Maps
-      value: 0.42
+      value: 0.64
     - datetime: '2019-01-01'
       source: SFOE, Electricity Maps
-      value: 0.51
+      value: 0.7
     - datetime: '2020-01-01'
       source: SFOE, Electricity Maps
-      value: 0.57
+      value: 0.75
     - datetime: '2021-01-01'
       source: SFOE, Electricity Maps
-      value: 0.64
+      value: 0.81
     - datetime: '2022-01-01'
       source: SFOE, Electricity Maps
-      value: 0.66
+      value: 0.85
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
