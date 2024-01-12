@@ -42,7 +42,7 @@ export default function AreaGraphTooltip({
       <div
         style={{
           left: tooltipWithDataPositon.x,
-          top: tooltipWithDataPositon.y,
+          top: tooltipWithDataPositon.y <= 0 ? 20 : tooltipWithDataPositon.y,
         }}
         className="relative flex flex-col items-center gap-y-1 p-2 pt-14 sm:block sm:p-0"
       >

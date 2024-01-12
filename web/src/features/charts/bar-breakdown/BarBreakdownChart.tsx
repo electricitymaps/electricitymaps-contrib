@@ -1,7 +1,7 @@
 import * as Portal from '@radix-ui/react-portal';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useAtom } from 'jotai';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
@@ -37,6 +37,13 @@ function BarBreakdownChart() {
     x: number;
     y: number;
   } | null>(null);
+
+  const [headerHeight, setHeaderHeight] = useState<number>(0);
+
+  useEffect(() => {
+    const height = document.querySelectorAll('header')[0].offsetHeight;
+    setHeaderHeight(height + 5);
+  }, [window.innerWidth, window.innerHeight]);
 
   if (isLoading) {
     return null;
@@ -89,7 +96,7 @@ function BarBreakdownChart() {
             className="absolute mt-14 flex h-full w-full flex-col items-center gap-y-1 bg-black/20 sm:mt-auto sm:items-start"
             style={{
               left: tooltipData?.x,
-              top: tooltipData?.y,
+              top: tooltipData?.y <= headerHeight ? headerHeight : tooltipData?.y,
             }}
           >
             <BreakdownChartTooltip
