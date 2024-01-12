@@ -20,6 +20,8 @@ contributors:
   - alixunderplatz
 delays:
   production: 24
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
+  coal and oil.
 emissionFactors:
   direct:
     battery discharge:
@@ -69,19 +71,22 @@ emissionFactors:
     unknown:
       - datetime: '2017-01-01'
         source: Electricity Maps, CEN
-        value: 298.9863864
+        value: 610.4720811
       - datetime: '2018-01-01'
         source: Electricity Maps, CEN
-        value: 367.2459401
+        value: 613.650213
       - datetime: '2019-01-01'
         source: Electricity Maps, CEN
-        value: 364.8016099
+        value: 606.6959655
       - datetime: '2020-01-01'
         source: Electricity Maps, CEN
-        value: 349.6068089
+        value: 602.5343343
       - datetime: '2021-01-01'
         source: Electricity Maps, CEN
-        value: 351.9679562
+        value: 597.8259335
+      - datetime: '2022-01-01'
+        source: Electricity Maps, CEN
+        value: 556.6130553
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -130,19 +135,22 @@ emissionFactors:
     unknown:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average.
-        value: 345.5180312
+        value: 697.4098196
       - datetime: '2018-01-01'
         source: Electricity Maps, CEN
-        value: 424.6700811
+        value: 699.7160413
       - datetime: '2019-01-01'
         source: Electricity Maps, CEN
-        value: 424.370115
+        value: 693.0054289
       - datetime: '2020-01-01'
         source: Electricity Maps, CEN
-        value: 408.9363915
+        value: 689.9009504
       - datetime: '2021-01-01'
         source: Electricity Maps, CEN
-        value: 415.2803301
+        value: 687.0474273
+      - datetime: '2022-01-01'
+        source: Electricity Maps, CEN
+        value: 652.4268241
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -252,8 +260,8 @@ fallbackZoneMixes:
         wind: 0.08868521298423133
 parsers:
   production: CL.fetch_production
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+  productionCapacity: CL_SEN.fetch_production_capacity
 sources:
   Electricity Maps, CEN:
-    link: https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+    link: https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=163148677 (average thermoelectric emission factors)
 timezone: America/Santiago

@@ -9,14 +9,21 @@ import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
 import mapboxgl from 'mapbox-gl';
 import maplibregl from 'maplibre-gl';
-import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
-import { Layer, Map, MapRef, Source } from 'react-map-gl';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
+import { Map, MapRef } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
-import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import {
+  productionConsumptionAtom,
+  selectedDatetimeIndexAtom,
+  spatialAggregateAtom,
+} from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
+import BackgroundLayer from './map-layers/BackgroundLayer';
+import StatesLayer from './map-layers/StatesLayer';
+import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 import {
@@ -27,7 +34,7 @@ import {
 } from './mapAtoms';
 import { FeatureId } from './mapTypes';
 
-const ZONE_SOURCE = 'zones-clickable';
+export const ZONE_SOURCE = 'zones-clickable';
 const SOUTHERN_LATITUDE_BOUND = -78;
 const NORTHERN_LATITUDE_BOUND = 85;
 const MAP_STYLE = {
@@ -52,6 +59,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
@@ -61,67 +69,45 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const [isDragging, setIsDragging] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
+  const [spatialAggregate] = useAtom(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
-  const styles = useMemo(
-    () => ({
-      ocean: { 'background-color': theme.oceanColor },
-      zonesBorder: {
-        'line-color': [
-          'case',
-          ['boolean', ['feature-state', 'selected'], false],
-          'white',
-          theme.strokeColor,
-        ],
-        'line-width': [
-          'case',
-          ['boolean', ['feature-state', 'selected'], false],
-          theme.strokeWidth * 10,
-          ['boolean', ['feature-state', 'hover'], false],
-          theme.strokeWidth * 10,
-          theme.strokeWidth,
-        ],
-      } as mapboxgl.LinePaint,
-      zonesClickable: {
-        'fill-color': [
-          'coalesce',
-          ['feature-state', 'color'],
-          ['get', 'color'],
-          theme.clickableFill,
-        ],
-      } as mapboxgl.FillPaint,
-      zonesHover: {
-        'fill-color': '#FFFFFF',
-        'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.3, 0],
-      } as mapboxgl.FillPaint,
-      statesBorder: {
-        'line-color': theme.stateBorderColor,
-        'line-width': 1.4,
-        'line-opacity': 0.9,
-        'line-dasharray': [1, 1],
-      } as mapboxgl.LinePaint,
-    }),
-    [theme]
-  );
-
   const { isLoading, isSuccess, isError, data } = useGetState();
-  const mapReference = useRef<MapRef>(null);
-  const { worldGeometries, statesGeometries } = useGetGeometries();
+  const { worldGeometries } = useGetGeometries();
+  const [mapReference, setMapReference] = useState<MapRef | null>(null);
+  const map = mapReference?.getMap();
+
+  const onMapReferenceChange = useCallback((reference: MapRef) => {
+    setMapReference(reference);
+  }, []);
+
+  useEffect(() => {
+    const setSourceLoadedForMap = () => {
+      setSourceLoaded(
+        Boolean(
+          map &&
+            map.getSource(ZONE_SOURCE) !== undefined &&
+            map.getSource('states') !== undefined &&
+            map.isSourceLoaded('states')
+        )
+      );
+    };
+    const onSourceData = () => {
+      setSourceLoadedForMap();
+    };
+    map?.on('sourcedata', onSourceData);
+    return () => {
+      map?.off('sourcedata', onSourceData);
+    };
+  }, [map]);
 
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
-    const map = mapReference.current?.getMap();
-    map?.touchZoomRotate.disableRotation();
-    map?.touchPitch.disable();
     if (!map || isLoading || isError) {
       return;
     }
-
-    // An issue where the map has not loaded source yet causing map errors
-    const isSourceLoaded =
-      map.getSource('zones-clickable') !== undefined &&
-      map.getSource('states') !== undefined &&
-      map.isSourceLoaded('states');
+    map?.touchZoomRotate.disableRotation();
+    map?.touchPitch.disable();
 
     if (!isSourceLoaded || isLoadingMap) {
       return;
@@ -133,20 +119,18 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         zone && zone[selectedDatetime.datetimeString]
           ? getCO2IntensityByMode(zone[selectedDatetime.datetimeString], mixMode)
           : undefined;
-
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
         : theme.clickableFill;
-
       const existingColor = map.getFeatureState({
-        source: 'zones-clickable',
+        source: ZONE_SOURCE,
         id: zoneId,
       })?.color;
 
       if (existingColor !== fillColor) {
         map.setFeatureState(
           {
-            source: 'zones-clickable',
+            source: ZONE_SOURCE,
             id: zoneId,
           },
           {
@@ -156,18 +140,19 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       }
     }
   }, [
-    mapReference,
-    worldGeometries,
+    map,
     data,
     getCo2colorScale,
     selectedDatetime,
     mixMode,
     isLoadingMap,
+    isSourceLoaded,
+    spatialAggregate,
+    isSuccess,
   ]);
 
   useEffect(() => {
     // Run on first load to center the map on the user's location
-    const map = mapReference.current?.getMap();
     if (!map || isError || !isFirstLoad) {
       return;
     }
@@ -175,12 +160,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
       setIsFirstLoad(false);
     }
-  }, [isSuccess]);
+  }, [map, isSuccess]);
 
   useEffect(() => {
     // Run when the selected zone changes
-    const map = mapReference.current?.getMap();
-
     // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
     if (map && location.pathname === '/map' && selectedZoneId) {
       map.setFeatureState(
@@ -209,10 +192,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
       map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
-  }, [location.pathname, isLoadingMap]);
+  }, [map, location.pathname, isLoadingMap]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
-    const map = mapReference.current?.getMap();
     if (!map || !event.features) {
       return;
     }
@@ -244,7 +226,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging
   const onMouseMove = (event: mapboxgl.MapLayerMouseEvent) => {
-    const map = mapReference.current?.getMap();
     if (!map || !event.features) {
       return;
     }
@@ -288,7 +269,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   };
 
   const onMouseOut = () => {
-    const map = mapReference.current?.getMap();
     if (!map) {
       return;
     }
@@ -313,8 +293,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   const onLoad = () => {
     setIsLoadingMap(false);
-    if (onMapLoad && mapReference.current) {
-      onMapLoad(mapReference.current.getMap());
+    if (onMapLoad && mapReference) {
+      onMapLoad(mapReference.getMap());
     }
   };
 
@@ -342,7 +322,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   return (
     <Map
-      ref={mapReference}
+      ref={onMapReferenceChange}
       initialViewState={{
         latitude: 50.905,
         longitude: 6.528,
@@ -371,65 +351,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       style={{ minWidth: '100vw', height: '100vh' }}
       mapStyle={MAP_STYLE as mapboxgl.Style}
     >
-      <Layer id="ocean" type="background" paint={styles.ocean} />
-
-      <Source
-        id="zones-clickable"
-        promoteId={'zoneId'}
-        type="geojson"
-        data={worldGeometries}
-      >
-        <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
-        <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
-        <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
-      </Source>
-      <Source id="states" type="geojson" data={statesGeometries}>
-        <Layer id="states-border" type="line" paint={styles.statesBorder} minzoom={2.5} />
-        <Layer
-          id="state-labels-name"
-          type="symbol"
-          source="states"
-          layout={{
-            'text-field': ['get', 'stateName'],
-            'symbol-placement': 'point',
-            'text-size': 12,
-            'text-letter-spacing': 0.12,
-            'text-transform': 'uppercase',
-
-            'text-font': ['poppins-semibold'],
-          }}
-          paint={{
-            'text-color': 'white',
-            'text-halo-color': '#111827',
-            'text-halo-width': 0.5,
-            'text-halo-blur': 0.25,
-            'text-opacity': 0.9,
-          }}
-          minzoom={4.5}
-        />
-        <Layer
-          id="state-labels-id"
-          type="symbol"
-          source="states"
-          layout={{
-            'text-field': ['get', 'stateId'],
-            'symbol-placement': 'point',
-            'text-size': 12,
-            'text-letter-spacing': 0.12,
-            'text-transform': 'uppercase',
-            'text-font': ['poppins-semibold'],
-          }}
-          paint={{
-            'text-color': 'white',
-            'text-halo-color': '#111827',
-            'text-halo-width': 0.5,
-            'text-halo-blur': 0.25,
-            'text-opacity': 0.9,
-          }}
-          maxzoom={4.5}
-          minzoom={3}
-        />
-      </Source>
+      <BackgroundLayer />
+      <ZonesLayer />
+      <StatesLayer />
       <CustomLayer>
         <WindLayer />
       </CustomLayer>

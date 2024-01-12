@@ -106,12 +106,14 @@
   "misc": {
     "maintitle": "Emisi CO₂ langsung dari pemakaian energi listrik",
     "oops": "Oops! Kami mengalami masalah menghubungkan ke dalam server. Kami akan coba beberapa detik lagi.",
-    "newversion": "Versi baru tersedia! Klik <a onClick=\"location.reload(true);\">di sini</a> untuk memuat ulang.",
+    "newversion": "Versi baru tersedia!",
     "retrynow": "Ulangi sekarang",
     "database-ad": "Mencari data historikal? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Periksa di database Kami!</a>",
     "api-ad": "Ingin mendapatkan data langsung di aplikasi atau perangkat Anda? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Coba API kami!</a>",
     "legend": "Legenda",
-    "faq": "Pertanyaan yang Sering Diajukan"
+    "faq": "Pertanyaan yang Sering Diajukan",
+    "dismiss": "Tutup",
+    "reload": "Muat Ulang"
   },
   "wind": "angin",
   "solar": "Tenaga matahari",

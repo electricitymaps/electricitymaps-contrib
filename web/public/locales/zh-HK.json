@@ -40,7 +40,9 @@
   "misc": {
     "maintitle": "生活用電二氧化碳排放量",
     "oops": "哎呀！ 我們無法連線到服務器。 我們會在幾秒鐘後再試一次。",
-    "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">這裏</a>重新載入。"
+    "newversion": "有新版本可用!",
+    "dismiss": "移除",
+    "reload": "重新載入"
   },
   "solar": "太陽能",
   "hydro": "水力",

@@ -6,7 +6,7 @@ bounding_box:
 capacity:
   battery storage: 150
   biomass: 82
-  coal: 514
+  coal: 0
   gas: 1008
   hydro: 6
   oil: 394
@@ -19,6 +19,7 @@ contributors:
   - alixunderplatz
   - nessie2013
   - msaynevirta
+  - brandongalbraith
 disclaimer: The complete generation mix is unavailable. It is therefore estimated by Electricity Maps.
 emissionFactors:
   direct:

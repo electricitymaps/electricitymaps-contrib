@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 # snapshottest: v1 - https://goo.gl/zC4yUc
-from __future__ import unicode_literals
 
 from snapshottest import Snapshot
 
@@ -8,7 +6,7 @@ snapshots = Snapshot()
 
 snapshots["test_production 1"] = [
     {
-        "datetime": "2023-09-11T00:00:00+01:52",
+        "datetime": "2023-09-11T00:00:00+02:00",
         "production": {
             "coal": 14487.159,
             "gas": 0.0,
@@ -25,7 +23,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T01:00:00+01:52",
+        "datetime": "2023-09-11T01:00:00+02:00",
         "production": {
             "coal": 14231.943,
             "gas": 0.0,
@@ -42,7 +40,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T02:00:00+01:52",
+        "datetime": "2023-09-11T02:00:00+02:00",
         "production": {
             "coal": 14354.055,
             "gas": 0.0,
@@ -59,7 +57,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T03:00:00+01:52",
+        "datetime": "2023-09-11T03:00:00+02:00",
         "production": {
             "coal": 14436.056,
             "gas": 0.0,
@@ -76,7 +74,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T04:00:00+01:52",
+        "datetime": "2023-09-11T04:00:00+02:00",
         "production": {
             "coal": 15399.591,
             "gas": 0.0,
@@ -93,7 +91,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T05:00:00+01:52",
+        "datetime": "2023-09-11T05:00:00+02:00",
         "production": {
             "coal": 17525.653,
             "gas": 0.0,
@@ -110,7 +108,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T06:00:00+01:52",
+        "datetime": "2023-09-11T06:00:00+02:00",
         "production": {
             "coal": 17923.763,
             "gas": 0.0,
@@ -127,7 +125,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T07:00:00+01:52",
+        "datetime": "2023-09-11T07:00:00+02:00",
         "production": {
             "coal": 18112.266,
             "gas": 0.0,
@@ -144,7 +142,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T08:00:00+01:52",
+        "datetime": "2023-09-11T08:00:00+02:00",
         "production": {
             "coal": 18188.291,
             "gas": 0.0,
@@ -161,7 +159,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T09:00:00+01:52",
+        "datetime": "2023-09-11T09:00:00+02:00",
         "production": {
             "coal": 18128.402,
             "gas": 0.0,
@@ -178,7 +176,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T10:00:00+01:52",
+        "datetime": "2023-09-11T10:00:00+02:00",
         "production": {
             "coal": 17748.255,
             "gas": 0.0,
@@ -195,7 +193,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T11:00:00+01:52",
+        "datetime": "2023-09-11T11:00:00+02:00",
         "production": {
             "coal": 17492.406,
             "gas": 0.0,
@@ -212,7 +210,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T12:00:00+01:52",
+        "datetime": "2023-09-11T12:00:00+02:00",
         "production": {
             "coal": 17337.569,
             "gas": 0.0,
@@ -229,7 +227,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T13:00:00+01:52",
+        "datetime": "2023-09-11T13:00:00+02:00",
         "production": {
             "coal": 17367.756,
             "gas": 0.0,
@@ -246,7 +244,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T14:00:00+01:52",
+        "datetime": "2023-09-11T14:00:00+02:00",
         "production": {
             "coal": 16786.084,
             "gas": 0.0,
@@ -263,7 +261,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T15:00:00+01:52",
+        "datetime": "2023-09-11T15:00:00+02:00",
         "production": {
             "coal": 16304.325,
             "gas": 0.0,
@@ -280,7 +278,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T16:00:00+01:52",
+        "datetime": "2023-09-11T16:00:00+02:00",
         "production": {
             "coal": 16336.383,
             "gas": 0.0,
@@ -297,7 +295,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T17:00:00+01:52",
+        "datetime": "2023-09-11T17:00:00+02:00",
         "production": {
             "coal": 16499.066,
             "gas": 135.31,
@@ -314,7 +312,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T18:00:00+01:52",
+        "datetime": "2023-09-11T18:00:00+02:00",
         "production": {
             "coal": 16904.072,
             "gas": 327.517,
@@ -331,7 +329,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T19:00:00+01:52",
+        "datetime": "2023-09-11T19:00:00+02:00",
         "production": {
             "coal": 16994.121,
             "gas": 328.345,
@@ -348,7 +346,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T20:00:00+01:52",
+        "datetime": "2023-09-11T20:00:00+02:00",
         "production": {
             "coal": 17140.437,
             "gas": 95.007,
@@ -365,7 +363,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T21:00:00+01:52",
+        "datetime": "2023-09-11T21:00:00+02:00",
         "production": {
             "coal": 16475.758,
             "gas": 0.0,
@@ -382,7 +380,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T22:00:00+01:52",
+        "datetime": "2023-09-11T22:00:00+02:00",
         "production": {
             "coal": 15568.751,
             "gas": 0.0,
@@ -399,7 +397,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-11T23:00:00+01:52",
+        "datetime": "2023-09-11T23:00:00+02:00",
         "production": {
             "coal": 15110.876,
             "gas": 0.0,
@@ -416,7 +414,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T00:00:00+01:52",
+        "datetime": "2023-09-12T00:00:00+02:00",
         "production": {
             "coal": 14860.657,
             "gas": 0.0,
@@ -433,7 +431,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T01:00:00+01:52",
+        "datetime": "2023-09-12T01:00:00+02:00",
         "production": {
             "coal": 14673.783,
             "gas": 0.0,
@@ -450,7 +448,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T02:00:00+01:52",
+        "datetime": "2023-09-12T02:00:00+02:00",
         "production": {
             "coal": 15097.239,
             "gas": 0.0,
@@ -467,7 +465,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T03:00:00+01:52",
+        "datetime": "2023-09-12T03:00:00+02:00",
         "production": {
             "coal": 15131.653,
             "gas": 0.0,
@@ -484,7 +482,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T04:00:00+01:52",
+        "datetime": "2023-09-12T04:00:00+02:00",
         "production": {
             "coal": 16554.638,
             "gas": 0.0,
@@ -501,7 +499,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T05:00:00+01:52",
+        "datetime": "2023-09-12T05:00:00+02:00",
         "production": {
             "coal": 17710.869,
             "gas": 0.0,
@@ -518,7 +516,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T06:00:00+01:52",
+        "datetime": "2023-09-12T06:00:00+02:00",
         "production": {
             "coal": 17687.172,
             "gas": 0.0,
@@ -535,7 +533,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T07:00:00+01:52",
+        "datetime": "2023-09-12T07:00:00+02:00",
         "production": {
             "coal": 17811.809,
             "gas": 0.0,
@@ -552,7 +550,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T08:00:00+01:52",
+        "datetime": "2023-09-12T08:00:00+02:00",
         "production": {
             "coal": 17838.704,
             "gas": 0.0,
@@ -569,7 +567,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T09:00:00+01:52",
+        "datetime": "2023-09-12T09:00:00+02:00",
         "production": {
             "coal": 17864.873,
             "gas": 0.0,
@@ -586,7 +584,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T10:00:00+01:52",
+        "datetime": "2023-09-12T10:00:00+02:00",
         "production": {
             "coal": 17882.139,
             "gas": 0.0,
@@ -603,7 +601,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T11:00:00+01:52",
+        "datetime": "2023-09-12T11:00:00+02:00",
         "production": {
             "coal": 17675.814,
             "gas": 0.0,
@@ -620,7 +618,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T12:00:00+01:52",
+        "datetime": "2023-09-12T12:00:00+02:00",
         "production": {
             "coal": 17565.959,
             "gas": 0.0,
@@ -637,7 +635,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T13:00:00+01:52",
+        "datetime": "2023-09-12T13:00:00+02:00",
         "production": {
             "coal": 17459.714,
             "gas": 0.0,
@@ -654,7 +652,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T14:00:00+01:52",
+        "datetime": "2023-09-12T14:00:00+02:00",
         "production": {
             "coal": 17616.844,
             "gas": 0.0,
@@ -671,7 +669,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T15:00:00+01:52",
+        "datetime": "2023-09-12T15:00:00+02:00",
         "production": {
             "coal": 17668.651,
             "gas": 0.0,
@@ -688,7 +686,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T16:00:00+01:52",
+        "datetime": "2023-09-12T16:00:00+02:00",
         "production": {
             "coal": 17737.191,
             "gas": 0.0,
@@ -705,7 +703,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T17:00:00+01:52",
+        "datetime": "2023-09-12T17:00:00+02:00",
         "production": {
             "coal": 18014.672,
             "gas": 0.0,
@@ -722,7 +720,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T18:00:00+01:52",
+        "datetime": "2023-09-12T18:00:00+02:00",
         "production": {
             "coal": 18249.954,
             "gas": 0.0,
@@ -739,7 +737,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T19:00:00+01:52",
+        "datetime": "2023-09-12T19:00:00+02:00",
         "production": {
             "coal": 18301.757,
             "gas": 0.0,
@@ -756,7 +754,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T20:00:00+01:52",
+        "datetime": "2023-09-12T20:00:00+02:00",
         "production": {
             "coal": 17914.454,
             "gas": 0.0,
@@ -773,7 +771,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T21:00:00+01:52",
+        "datetime": "2023-09-12T21:00:00+02:00",
         "production": {
             "coal": 16085.443,
             "gas": 0.0,
@@ -790,7 +788,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T22:00:00+01:52",
+        "datetime": "2023-09-12T22:00:00+02:00",
         "production": {
             "coal": 15555.347,
             "gas": 0.0,
@@ -807,7 +805,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-12T23:00:00+01:52",
+        "datetime": "2023-09-12T23:00:00+02:00",
         "production": {
             "coal": 15172.027,
             "gas": 0.0,
@@ -824,7 +822,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T00:00:00+01:52",
+        "datetime": "2023-09-13T00:00:00+02:00",
         "production": {
             "coal": 15176.669,
             "gas": 0.0,
@@ -841,7 +839,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T01:00:00+01:52",
+        "datetime": "2023-09-13T01:00:00+02:00",
         "production": {
             "coal": 15309.956,
             "gas": 0.0,
@@ -858,7 +856,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T02:00:00+01:52",
+        "datetime": "2023-09-13T02:00:00+02:00",
         "production": {
             "coal": 15437.735,
             "gas": 0.0,
@@ -875,7 +873,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T03:00:00+01:52",
+        "datetime": "2023-09-13T03:00:00+02:00",
         "production": {
             "coal": 15875.269,
             "gas": 0.0,
@@ -892,7 +890,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T04:00:00+01:52",
+        "datetime": "2023-09-13T04:00:00+02:00",
         "production": {
             "coal": 17470.17,
             "gas": 0.0,
@@ -909,7 +907,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T05:00:00+01:52",
+        "datetime": "2023-09-13T05:00:00+02:00",
         "production": {
             "coal": 18460.216,
             "gas": 0.0,
@@ -926,7 +924,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T06:00:00+01:52",
+        "datetime": "2023-09-13T06:00:00+02:00",
         "production": {
             "coal": 18340.358,
             "gas": 0.0,
@@ -943,7 +941,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T07:00:00+01:52",
+        "datetime": "2023-09-13T07:00:00+02:00",
         "production": {
             "coal": 18178.856,
             "gas": 0.0,
@@ -960,7 +958,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T08:00:00+01:52",
+        "datetime": "2023-09-13T08:00:00+02:00",
         "production": {
             "coal": 18348.253,
             "gas": 0.0,
@@ -977,7 +975,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T09:00:00+01:52",
+        "datetime": "2023-09-13T09:00:00+02:00",
         "production": {
             "coal": 18101.21,
             "gas": 0.0,
@@ -994,7 +992,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T10:00:00+01:52",
+        "datetime": "2023-09-13T10:00:00+02:00",
         "production": {
             "coal": 17775.894,
             "gas": 0.0,
@@ -1011,7 +1009,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T11:00:00+01:52",
+        "datetime": "2023-09-13T11:00:00+02:00",
         "production": {
             "coal": 16760.894,
             "gas": 0.0,
@@ -1028,7 +1026,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T12:00:00+01:52",
+        "datetime": "2023-09-13T12:00:00+02:00",
         "production": {
             "coal": 16888.327,
             "gas": 0.0,
@@ -1045,7 +1043,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T13:00:00+01:52",
+        "datetime": "2023-09-13T13:00:00+02:00",
         "production": {
             "coal": 16397.378,
             "gas": 0.0,
@@ -1062,7 +1060,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T14:00:00+01:52",
+        "datetime": "2023-09-13T14:00:00+02:00",
         "production": {
             "coal": 16487.899,
             "gas": 0.0,
@@ -1079,7 +1077,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T15:00:00+01:52",
+        "datetime": "2023-09-13T15:00:00+02:00",
         "production": {
             "coal": 17244.343,
             "gas": 0.0,
@@ -1096,7 +1094,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T16:00:00+01:52",
+        "datetime": "2023-09-13T16:00:00+02:00",
         "production": {
             "coal": 17855.056,
             "gas": 0.0,
@@ -1113,7 +1111,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T17:00:00+01:52",
+        "datetime": "2023-09-13T17:00:00+02:00",
         "production": {
             "coal": 17838.575,
             "gas": 0.0,
@@ -1130,7 +1128,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T18:00:00+01:52",
+        "datetime": "2023-09-13T18:00:00+02:00",
         "production": {
             "coal": 17982.06,
             "gas": 0.0,
@@ -1147,7 +1145,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T19:00:00+01:52",
+        "datetime": "2023-09-13T19:00:00+02:00",
         "production": {
             "coal": 18134.697,
             "gas": 0.0,
@@ -1164,7 +1162,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T20:00:00+01:52",
+        "datetime": "2023-09-13T20:00:00+02:00",
         "production": {
             "coal": 18002.872,
             "gas": 0.0,
@@ -1181,7 +1179,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T21:00:00+01:52",
+        "datetime": "2023-09-13T21:00:00+02:00",
         "production": {
             "coal": 17601.118,
             "gas": 0.0,
@@ -1198,7 +1196,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T22:00:00+01:52",
+        "datetime": "2023-09-13T22:00:00+02:00",
         "production": {
             "coal": 16850.659,
             "gas": 0.0,
@@ -1215,7 +1213,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-13T23:00:00+01:52",
+        "datetime": "2023-09-13T23:00:00+02:00",
         "production": {
             "coal": 15743.68,
             "gas": 0.0,
@@ -1232,7 +1230,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T00:00:00+01:52",
+        "datetime": "2023-09-14T00:00:00+02:00",
         "production": {
             "coal": 15305.423,
             "gas": 0.0,
@@ -1249,7 +1247,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T01:00:00+01:52",
+        "datetime": "2023-09-14T01:00:00+02:00",
         "production": {
             "coal": 14799.503,
             "gas": 0.0,
@@ -1266,7 +1264,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T02:00:00+01:52",
+        "datetime": "2023-09-14T02:00:00+02:00",
         "production": {
             "coal": 14717.302,
             "gas": 0.0,
@@ -1283,7 +1281,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T03:00:00+01:52",
+        "datetime": "2023-09-14T03:00:00+02:00",
         "production": {
             "coal": 15175.184,
             "gas": 0.0,
@@ -1300,7 +1298,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T04:00:00+01:52",
+        "datetime": "2023-09-14T04:00:00+02:00",
         "production": {
             "coal": 16455.666,
             "gas": 0.0,
@@ -1317,7 +1315,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T05:00:00+01:52",
+        "datetime": "2023-09-14T05:00:00+02:00",
         "production": {
             "coal": 18363.392,
             "gas": 0.0,
@@ -1334,7 +1332,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T06:00:00+01:52",
+        "datetime": "2023-09-14T06:00:00+02:00",
         "production": {
             "coal": 18541.7,
             "gas": 0.0,
@@ -1351,7 +1349,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T07:00:00+01:52",
+        "datetime": "2023-09-14T07:00:00+02:00",
         "production": {
             "coal": 18524.118,
             "gas": 0.0,
@@ -1368,7 +1366,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T08:00:00+01:52",
+        "datetime": "2023-09-14T08:00:00+02:00",
         "production": {
             "coal": 18601.263,
             "gas": 0.0,
@@ -1385,7 +1383,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T09:00:00+01:52",
+        "datetime": "2023-09-14T09:00:00+02:00",
         "production": {
             "coal": 18589.592,
             "gas": 0.0,
@@ -1402,7 +1400,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T10:00:00+01:52",
+        "datetime": "2023-09-14T10:00:00+02:00",
         "production": {
             "coal": 17969.672,
             "gas": 0.0,
@@ -1419,7 +1417,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T11:00:00+01:52",
+        "datetime": "2023-09-14T11:00:00+02:00",
         "production": {
             "coal": 17167.775,
             "gas": 0.0,
@@ -1436,7 +1434,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T12:00:00+01:52",
+        "datetime": "2023-09-14T12:00:00+02:00",
         "production": {
             "coal": 17174.739,
             "gas": 0.0,
@@ -1453,7 +1451,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T13:00:00+01:52",
+        "datetime": "2023-09-14T13:00:00+02:00",
         "production": {
             "coal": 16933.638,
             "gas": 0.0,
@@ -1470,7 +1468,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T14:00:00+01:52",
+        "datetime": "2023-09-14T14:00:00+02:00",
         "production": {
             "coal": 17033.444,
             "gas": 0.0,
@@ -1487,7 +1485,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T15:00:00+01:52",
+        "datetime": "2023-09-14T15:00:00+02:00",
         "production": {
             "coal": 17707.67,
             "gas": 0.0,
@@ -1504,7 +1502,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T16:00:00+01:52",
+        "datetime": "2023-09-14T16:00:00+02:00",
         "production": {
             "coal": 18335.622,
             "gas": 0.0,
@@ -1521,7 +1519,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T17:00:00+01:52",
+        "datetime": "2023-09-14T17:00:00+02:00",
         "production": {
             "coal": 18505.351,
             "gas": 0.0,
@@ -1538,7 +1536,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T18:00:00+01:52",
+        "datetime": "2023-09-14T18:00:00+02:00",
         "production": {
             "coal": 18506.525,
             "gas": 0.0,
@@ -1555,7 +1553,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T19:00:00+01:52",
+        "datetime": "2023-09-14T19:00:00+02:00",
         "production": {
             "coal": 18482.875,
             "gas": 0.0,
@@ -1572,7 +1570,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T20:00:00+01:52",
+        "datetime": "2023-09-14T20:00:00+02:00",
         "production": {
             "coal": 18418.464,
             "gas": 0.0,
@@ -1589,7 +1587,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T21:00:00+01:52",
+        "datetime": "2023-09-14T21:00:00+02:00",
         "production": {
             "coal": 18089.856,
             "gas": 0.0,
@@ -1606,7 +1604,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T22:00:00+01:52",
+        "datetime": "2023-09-14T22:00:00+02:00",
         "production": {
             "coal": 17487.196,
             "gas": 0.0,
@@ -1623,7 +1621,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-14T23:00:00+01:52",
+        "datetime": "2023-09-14T23:00:00+02:00",
         "production": {
             "coal": 16436.021,
             "gas": 0.0,
@@ -1640,7 +1638,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T00:00:00+01:52",
+        "datetime": "2023-09-15T00:00:00+02:00",
         "production": {
             "coal": 16161.578,
             "gas": 0.0,
@@ -1657,7 +1655,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T01:00:00+01:52",
+        "datetime": "2023-09-15T01:00:00+02:00",
         "production": {
             "coal": 15331.948,
             "gas": 0.0,
@@ -1674,7 +1672,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T02:00:00+01:52",
+        "datetime": "2023-09-15T02:00:00+02:00",
         "production": {
             "coal": 15202.563,
             "gas": 0.0,
@@ -1691,7 +1689,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T03:00:00+01:52",
+        "datetime": "2023-09-15T03:00:00+02:00",
         "production": {
             "coal": 15449.089,
             "gas": 0.0,
@@ -1708,7 +1706,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T04:00:00+01:52",
+        "datetime": "2023-09-15T04:00:00+02:00",
         "production": {
             "coal": 16558.105,
             "gas": 0.0,
@@ -1725,7 +1723,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T05:00:00+01:52",
+        "datetime": "2023-09-15T05:00:00+02:00",
         "production": {
             "coal": 18493.692,
             "gas": 0.0,
@@ -1742,7 +1740,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T06:00:00+01:52",
+        "datetime": "2023-09-15T06:00:00+02:00",
         "production": {
             "coal": 19208.302,
             "gas": 0.0,
@@ -1759,7 +1757,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T07:00:00+01:52",
+        "datetime": "2023-09-15T07:00:00+02:00",
         "production": {
             "coal": 18859.361,
             "gas": 0.0,
@@ -1776,7 +1774,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T08:00:00+01:52",
+        "datetime": "2023-09-15T08:00:00+02:00",
         "production": {
             "coal": 19189.161,
             "gas": 0.0,
@@ -1793,7 +1791,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T09:00:00+01:52",
+        "datetime": "2023-09-15T09:00:00+02:00",
         "production": {
             "coal": 18092.421,
             "gas": 0.0,
@@ -1810,7 +1808,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T10:00:00+01:52",
+        "datetime": "2023-09-15T10:00:00+02:00",
         "production": {
             "coal": 17567.777,
             "gas": 0.0,
@@ -1827,7 +1825,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T11:00:00+01:52",
+        "datetime": "2023-09-15T11:00:00+02:00",
         "production": {
             "coal": 17200.022,
             "gas": 0.0,
@@ -1844,7 +1842,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T12:00:00+01:52",
+        "datetime": "2023-09-15T12:00:00+02:00",
         "production": {
             "coal": 17266.279,
             "gas": 0.0,
@@ -1861,7 +1859,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T13:00:00+01:52",
+        "datetime": "2023-09-15T13:00:00+02:00",
         "production": {
             "coal": 16634.255,
             "gas": 0.0,
@@ -1878,7 +1876,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T14:00:00+01:52",
+        "datetime": "2023-09-15T14:00:00+02:00",
         "production": {
             "coal": 17157.189,
             "gas": 0.0,
@@ -1895,7 +1893,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T15:00:00+01:52",
+        "datetime": "2023-09-15T15:00:00+02:00",
         "production": {
             "coal": 17042.097,
             "gas": 0.0,
@@ -1912,7 +1910,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T16:00:00+01:52",
+        "datetime": "2023-09-15T16:00:00+02:00",
         "production": {
             "coal": 18037.438,
             "gas": 0.0,
@@ -1929,7 +1927,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T17:00:00+01:52",
+        "datetime": "2023-09-15T17:00:00+02:00",
         "production": {
             "coal": 18476.201,
             "gas": 0.0,
@@ -1946,7 +1944,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T18:00:00+01:52",
+        "datetime": "2023-09-15T18:00:00+02:00",
         "production": {
             "coal": 18699.786,
             "gas": 0.0,
@@ -1963,7 +1961,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T19:00:00+01:52",
+        "datetime": "2023-09-15T19:00:00+02:00",
         "production": {
             "coal": 18745.702,
             "gas": 0.0,
@@ -1980,7 +1978,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T20:00:00+01:52",
+        "datetime": "2023-09-15T20:00:00+02:00",
         "production": {
             "coal": 18941.121,
             "gas": 0.0,
@@ -1997,7 +1995,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T21:00:00+01:52",
+        "datetime": "2023-09-15T21:00:00+02:00",
         "production": {
             "coal": 18704.597,
             "gas": 0.0,
@@ -2014,7 +2012,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T22:00:00+01:52",
+        "datetime": "2023-09-15T22:00:00+02:00",
         "production": {
             "coal": 18024.109,
             "gas": 0.0,
@@ -2031,7 +2029,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-15T23:00:00+01:52",
+        "datetime": "2023-09-15T23:00:00+02:00",
         "production": {
             "coal": 16735.131,
             "gas": 0.0,
@@ -2048,7 +2046,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T00:00:00+01:52",
+        "datetime": "2023-09-16T00:00:00+02:00",
         "production": {
             "coal": 16126.908,
             "gas": 0.0,
@@ -2065,7 +2063,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T01:00:00+01:52",
+        "datetime": "2023-09-16T01:00:00+02:00",
         "production": {
             "coal": 15676.344,
             "gas": 0.0,
@@ -2082,7 +2080,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T02:00:00+01:52",
+        "datetime": "2023-09-16T02:00:00+02:00",
         "production": {
             "coal": 15965.595,
             "gas": 0.0,
@@ -2099,7 +2097,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T03:00:00+01:52",
+        "datetime": "2023-09-16T03:00:00+02:00",
         "production": {
             "coal": 15841.17,
             "gas": 0.0,
@@ -2116,7 +2114,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T04:00:00+01:52",
+        "datetime": "2023-09-16T04:00:00+02:00",
         "production": {
             "coal": 16519.489,
             "gas": 0.0,
@@ -2133,7 +2131,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T05:00:00+01:52",
+        "datetime": "2023-09-16T05:00:00+02:00",
         "production": {
             "coal": 16883.615,
             "gas": 0.0,
@@ -2150,7 +2148,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T06:00:00+01:52",
+        "datetime": "2023-09-16T06:00:00+02:00",
         "production": {
             "coal": 18174.918,
             "gas": 0.0,
@@ -2167,7 +2165,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T07:00:00+01:52",
+        "datetime": "2023-09-16T07:00:00+02:00",
         "production": {
             "coal": 18929.041,
             "gas": 0.0,
@@ -2184,7 +2182,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T08:00:00+01:52",
+        "datetime": "2023-09-16T08:00:00+02:00",
         "production": {
             "coal": 19332.959,
             "gas": 0.0,
@@ -2201,7 +2199,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T09:00:00+01:52",
+        "datetime": "2023-09-16T09:00:00+02:00",
         "production": {
             "coal": 18468.08,
             "gas": 0.0,
@@ -2218,7 +2216,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T10:00:00+01:52",
+        "datetime": "2023-09-16T10:00:00+02:00",
         "production": {
             "coal": 18338.591,
             "gas": 0.0,
@@ -2235,7 +2233,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T11:00:00+01:52",
+        "datetime": "2023-09-16T11:00:00+02:00",
         "production": {
             "coal": 18134.099,
             "gas": 0.0,
@@ -2252,7 +2250,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T12:00:00+01:52",
+        "datetime": "2023-09-16T12:00:00+02:00",
         "production": {
             "coal": 17961.997,
             "gas": 0.0,
@@ -2269,7 +2267,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T13:00:00+01:52",
+        "datetime": "2023-09-16T13:00:00+02:00",
         "production": {
             "coal": 17694.423,
             "gas": 0.0,
@@ -2286,7 +2284,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T14:00:00+01:52",
+        "datetime": "2023-09-16T14:00:00+02:00",
         "production": {
             "coal": 17442.099,
             "gas": 0.0,
@@ -2303,7 +2301,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T15:00:00+01:52",
+        "datetime": "2023-09-16T15:00:00+02:00",
         "production": {
             "coal": 17387.199,
             "gas": 0.0,
@@ -2320,7 +2318,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T16:00:00+01:52",
+        "datetime": "2023-09-16T16:00:00+02:00",
         "production": {
             "coal": 17826.078,
             "gas": 0.0,
@@ -2337,7 +2335,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T17:00:00+01:52",
+        "datetime": "2023-09-16T17:00:00+02:00",
         "production": {
             "coal": 18734.611,
             "gas": 0.0,
@@ -2354,7 +2352,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T18:00:00+01:52",
+        "datetime": "2023-09-16T18:00:00+02:00",
         "production": {
             "coal": 19057.29,
             "gas": 0.0,
@@ -2371,7 +2369,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T19:00:00+01:52",
+        "datetime": "2023-09-16T19:00:00+02:00",
         "production": {
             "coal": 18894.618,
             "gas": 0.0,
@@ -2388,7 +2386,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T20:00:00+01:52",
+        "datetime": "2023-09-16T20:00:00+02:00",
         "production": {
             "coal": 18819.52,
             "gas": 0.0,
@@ -2405,7 +2403,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T21:00:00+01:52",
+        "datetime": "2023-09-16T21:00:00+02:00",
         "production": {
             "coal": 18535.428,
             "gas": 0.0,
@@ -2422,7 +2420,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T22:00:00+01:52",
+        "datetime": "2023-09-16T22:00:00+02:00",
         "production": {
             "coal": 18150.259,
             "gas": 0.0,
@@ -2439,7 +2437,7 @@ snapshots["test_production 1"] = [
         "zoneKey": "ZA",
     },
     {
-        "datetime": "2023-09-16T23:00:00+01:52",
+        "datetime": "2023-09-16T23:00:00+02:00",
         "production": {
             "coal": 17406.885,
             "gas": 0.0,

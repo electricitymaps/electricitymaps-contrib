@@ -4,7 +4,6 @@ import datetime
 from collections import defaultdict
 
 import arrow
-import pytz
 import requests
 
 from parsers.lib.config import refetch_frequency
@@ -74,7 +73,7 @@ def fetch_production(
         to_return.append(
             {
                 "production": dict(prod),
-                "datetime": dt.replace(minute=0).replace(tzinfo=pytz.utc),
+                "datetime": dt.replace(minute=0).replace(tzinfo=datetime.timezone.utc),
                 "zoneKey": "SE",
                 "storage": {},
                 "source": "svk.se",

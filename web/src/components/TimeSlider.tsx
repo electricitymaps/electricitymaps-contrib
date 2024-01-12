@@ -8,6 +8,10 @@ import { getZoneFromPath } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
+type ThumbIconPath =
+  | 'slider-thumb.svg'
+  | 'slider-thumb-day.svg'
+  | 'slider-thumb-night.svg';
 
 export interface TimeSliderProps {
   onChange: (datetimeIndex: number) => void;
@@ -54,8 +58,11 @@ export const getTrackBackground = (
   )`;
 };
 
-export const getThumbIcon = (selectedIndex?: number, sets?: NightTimeSet[]) => {
-  if (!selectedIndex || !sets || sets.length === 0) {
+export const getThumbIcon = (
+  selectedIndex?: number,
+  sets?: NightTimeSet[]
+): ThumbIconPath => {
+  if (selectedIndex === undefined || !sets || sets.length === 0) {
     return 'slider-thumb.svg';
   }
   const isValueAtNight = sets.some(
@@ -66,7 +73,7 @@ export const getThumbIcon = (selectedIndex?: number, sets?: NightTimeSet[]) => {
 
 export type TimeSliderBasicProps = TimeSliderProps & {
   trackBackground: string;
-  thumbIcon: string;
+  thumbIcon: ThumbIconPath;
 };
 export function TimeSliderBasic({
   onChange,
@@ -82,8 +89,8 @@ export function TimeSliderBasic({
       step={1}
       value={selectedIndex && selectedIndex > 0 ? [selectedIndex] : [0]}
       onValueChange={(value) => onChange(value[0])}
-      aria-label="value"
-      className="relative mb-2 flex h-5 w-full touch-none items-center"
+      aria-label="choose time"
+      className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
     >
       <SliderPrimitive.Track
         className="relative h-2.5 w-full grow rounded-sm"
@@ -93,10 +100,11 @@ export function TimeSliderBasic({
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
         data-test-id="time-slider-input"
-        className={`block h-6 w-6 rounded-full bg-white
-          bg-center bg-no-repeat shadow-3xl focus:outline-none
-          focus-visible:ring focus-visible:ring-brand-green/10
-          focus-visible:ring-opacity-75 dark:bg-gray-400 dark:focus-visible:ring-white/70`}
+        className={`block h-6 w-6 rounded-full bg-white bg-center
+          bg-no-repeat shadow-3xl transition-shadow hover:ring
+          hover:ring-brand-green/10 hover:ring-opacity-75 focus:outline-none focus-visible:ring
+          focus-visible:ring-brand-green/10 focus-visible:ring-opacity-75
+          dark:bg-gray-400 hover:dark:ring-white/70 dark:focus-visible:ring-white/70`}
         style={{ backgroundImage: `url(/images/${thumbIcon})` }}
       ></SliderPrimitive.Thumb>
     </SliderPrimitive.Root>

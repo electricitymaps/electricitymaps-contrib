@@ -4,9 +4,12 @@ import json
 import pathlib
 import subprocess
 from os import PathLike, listdir, path
-from typing import Dict, Union
+from typing import Any
 
 import yaml
+
+from electricitymap.contrib.config import CONFIG_DIR
+from electricitymap.contrib.lib.types import ZoneKey
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
 LOCALES_FOLDER_PATH = ROOT_PATH / "web/public/locales/"
@@ -61,7 +64,7 @@ class JsonFilePatcher:
         print(f"🧹 Patched {self.file_path.relative_to(ROOT_PATH)}")
 
 
-class YamlFilePatcher(object):
+class YamlFilePatcher:
     """
     A helping hand to patch YAML files.
 
@@ -72,11 +75,11 @@ class YamlFilePatcher(object):
             del f.content[zone]
     """
 
-    def __init__(self, file_path: Union[PathLike, str]):
+    def __init__(self, file_path: PathLike | str):
         self.file_path = file_path
 
     def __enter__(self):
-        self.content: Dict = yaml.safe_load(open(self.file_path, encoding="utf-8"))
+        self.content: dict = yaml.safe_load(open(self.file_path, encoding="utf-8"))
 
         return self
 
@@ -87,3 +90,11 @@ class YamlFilePatcher(object):
         with open(self.file_path, "w") as f:
             f.write(yaml.dump(self.content, default_flow_style=False))
         print(f"🧹 Patched {self.file_path.relative_to(ROOT_PATH)}")
+
+
+def write_zone_config(zone_key: ZoneKey, zone_config: dict[str, Any]) -> None:
+    with open(
+        CONFIG_DIR.joinpath(f"zones/{zone_key}.yaml"), "w", encoding="utf-8"
+    ) as f:
+        f.write(yaml.dump(zone_config, default_flow_style=False))
+    print(f"Updated {zone_key}.yaml with new capacity data")

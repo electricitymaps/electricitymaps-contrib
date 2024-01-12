@@ -51,4 +51,5 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   production: NG.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: Africa/Lagos

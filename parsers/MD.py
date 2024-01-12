@@ -6,9 +6,14 @@ from collections import namedtuple
 from collections.abc import Callable
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
 from requests import Session
+
+from parsers.lib.exceptions import ParserException
+
+TZ = ZoneInfo("Europe/Chisinau")
 
 # Supports the following formats:
 # - type=csv for zip-data with semicolon-separated-values
@@ -137,7 +142,7 @@ def get_archive_data(session: Session | None = None, dates=None) -> list:
 
     try:
         date1, date2 = sorted(dates)
-    except:
+    except Exception:
         date1 = date2 = dates
 
     archive_url = archive_base_url
@@ -161,10 +166,11 @@ def get_archive_data(session: Session | None = None, dates=None) -> list:
             )
             for entry in data
         ]
-    except:
-        raise Exception(
-            "Not able to parse received data. Check that the specifed URL returns correct data."
-        )
+    except Exception as e:
+        raise ParserException(
+            "MD.py",
+            "Not able to parse received data. Check that the specifed URL returns correct data.",
+        ) from e
 
 
 def get_data(session: Session | None = None) -> list:
@@ -172,15 +178,16 @@ def get_data(session: Session | None = None) -> list:
     s = session or Session()
 
     # In order for data_url to return data, cookies from display_url must be obtained then reused.
-    response = s.get(display_url, verify=False)
+    _response = s.get(display_url, verify=False)
     data_response = s.get(data_url, verify=False)
     raw_data = data_response.text
     try:
         data = [float(i) if i else None for i in raw_data.split(",")]
-    except:
-        raise Exception(
-            "Not able to parse received data. Check that the specifed URL returns correct data."
-        )
+    except Exception as e:
+        raise ParserException(
+            "MD.py",
+            "Not able to parse received data. Check that the specifed URL returns correct data.",
+        ) from e
 
     return data
 
@@ -203,7 +210,7 @@ def fetch_price(
             "This parser is not yet able to parse past dates for price"
         )
 
-    dt = arrow.now("Europe/Chisinau").datetime
+    dt = datetime.now(tz=TZ)
     return template_price_response(zone_key, dt, 145.0)
 
 
@@ -229,7 +236,7 @@ def fetch_consumption(
 
         consumption = field_values[other_fields[0]["index"]]
 
-        dt = arrow.now("Europe/Chisinau").datetime
+        dt = datetime.now(tz=TZ)
 
         datapoint = template_consumption_response(zone_key, dt, consumption)
 
@@ -297,7 +304,7 @@ def fetch_production(
             field_values[other_fields[1]["index"]] - non_renewables_production
         )
 
-        dt = arrow.now("Europe/Chisinau").datetime
+        dt = datetime.now(tz=TZ)
 
         datapoint = template_production_response(zone_key, dt, production)
 
@@ -341,7 +348,7 @@ def fetch_exchange(
         else:
             raise NotImplementedError("This exchange pair is not implemented")
 
-        dt = arrow.now("Europe/Chisinau").datetime
+        dt = datetime.now(tz=TZ)
 
         datapoint = template_exchange_response(sorted_zone_keys, dt, netflow)
 
@@ -356,7 +363,7 @@ if __name__ == "__main__":
             result = callable(*args, **kwargs)
             try:
                 print(f"[{result[0]}, ... ({len(result)} more elements)]")
-            except:
+            except Exception:
                 print(result)
         except Exception as e:
             print(repr(e))

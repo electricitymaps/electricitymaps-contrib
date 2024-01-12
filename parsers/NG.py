@@ -66,7 +66,7 @@ def fetch_production(
         _, source, power, _ = (tag.text for tag in row.find_all("td"))
         try:
             technology = NORMALISE[PATTERN.search(source).group(1).casefold()]
-        except (AttributeError, KeyError) as error:
+        except (AttributeError, KeyError):
             logger.warning(f"Unexpected source '{source.strip()}' encountered")
             continue
         production_mix[technology] += float(power)

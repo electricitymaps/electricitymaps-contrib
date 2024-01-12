@@ -11,13 +11,12 @@ https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide
 """
 
 import re
-from datetime import date, datetime, time, timedelta
+from datetime import date, datetime, time, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
 
 import arrow
 import pandas as pd
-import pytz
 from requests import Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
@@ -116,7 +115,7 @@ def query_additional_eso_data(
 ) -> list[dict]:
     begin = (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d")
     end = (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d")
-    if target_datetime > (datetime.now(tz=pytz.UTC) - timedelta(days=30)):
+    if target_datetime > (datetime.now(tz=timezone.utc) - timedelta(days=30)):
         report_id = ESO_DEMAND_DATA_UPDATE_ID
     else:
         index = _create_eso_historical_demand_index(session)
@@ -292,12 +291,12 @@ def process_production_events(
     df = df.rename(columns={"wind_eso": "wind", "solar_eso": "solar"})
     df = df.groupby(df.columns, axis=1).sum()
     data_points = list()
-    for time in pd.unique(df.index):
-        time_df = df[df.index == time]
+    for time_t in pd.unique(df.index):
+        time_df = df[df.index == time_t]
 
         data_point = {
             "zoneKey": "GB",
-            "datetime": time.to_pydatetime(),
+            "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
             "production": dict(),
             "storage": dict(),
@@ -358,12 +357,12 @@ def parse_production(
 
     # loop through unique datetimes and create each data point
     data_points = list()
-    for time in pd.unique(df["datetime"]):
-        time_df = df[df["datetime"] == time]
+    for time_t in pd.unique(df["datetime"]):
+        time_df = df[df["datetime"] == time_t]
 
         data_point = {
             "zoneKey": "GB",
-            "datetime": time.to_pydatetime(),
+            "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
             "production": dict(),
             "storage": dict(),

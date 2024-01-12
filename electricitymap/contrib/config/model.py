@@ -58,6 +58,14 @@ class Capacity(StrictBaseModel):
     wind: NonNegativeInt | None
 
 
+def _get_parser_folder(parser_key: str) -> str:
+    return (
+        "electricitymap.contrib.capacity_parsers"
+        if parser_key == "productionCapacity"
+        else "parsers"
+    )
+
+
 class ParsersBaseModel(StrictBaseModel):
     def get_function(self, type: str) -> Callable | None:
         """Lazy load parser functions.
@@ -68,8 +76,10 @@ class ParsersBaseModel(StrictBaseModel):
             Optional[Callable]: parser function
         """
         function_str = getattr(self, type)
+
         if function_str:
-            return import_string(f"parsers.{function_str}")
+            parser_folder = _get_parser_folder(type)
+            return import_string(f"{parser_folder}.{function_str}")
 
 
 class Parsers(ParsersBaseModel):
@@ -80,6 +90,7 @@ class Parsers(ParsersBaseModel):
     price: str | None
     production: str | None
     productionPerUnit: str | None
+    productionCapacity: str | None
 
 
 class Source(StrictBaseModel):

@@ -4,8 +4,8 @@ import http.client
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-from pytz import timezone
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
@@ -36,7 +36,7 @@ IGNORED_VALUES = ["hour", "consumption", "consumption_diff"]
 
 SOURCE = "ua.energy"
 
-TZ = timezone("Europe/Kiev")
+TZ = ZoneInfo("Europe/Kiev")
 
 
 def fetch_production(
