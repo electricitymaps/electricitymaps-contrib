@@ -177,12 +177,12 @@ class TestFetchExchange(TestENTSOE):
             exports = export_file.read()
         self.adapter.register_uri(
             GET,
-            "https://web-api.tp.entsoe.eu/api?documentType=A11&in_Domain=10YDK-1--------W&out_Domain=10YGB----------A",
+            "?documentType=A11&in_Domain=10YDK-1--------W&out_Domain=10YGB----------A",
             content=imports,
         )
         self.adapter.register_uri(
             GET,
-            "https://web-api.tp.entsoe.eu/api?documentType=A11&in_Domain=10YGB----------A&out_Domain=10YDK-1--------W",
+            "?documentType=A11&in_Domain=10YGB----------A&out_Domain=10YDK-1--------W",
             content=exports,
         )
         exchange = ENTSOE.fetch_exchange(
@@ -220,12 +220,12 @@ class TestFetchExchangeForecast(TestENTSOE):
             exports = export_file.read()
         self.adapter.register_uri(
             GET,
-            "https://web-api.tp.entsoe.eu/api?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
+            "?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
             content=imports,
         )
         self.adapter.register_uri(
             GET,
-            "https://web-api.tp.entsoe.eu/api?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
+            "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
             content=exports,
         )
         exchange_forecast = ENTSOE.fetch_exchange_forecast(
