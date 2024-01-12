@@ -196,6 +196,7 @@ class TestFetchExchange(TestENTSOE):
                     "netFlow": element["netFlow"],
                     "source": element["source"],
                     "sortedZoneKeys": element["sortedZoneKeys"],
+                    "sourceType": element["sourceType"].value,
                 }
                 for element in exchange
             ]
@@ -241,6 +242,7 @@ class TestFetchExchangeForecast(TestENTSOE):
                     "netFlow": element["netFlow"],
                     "source": element["source"],
                     "sortedZoneKeys": element["sortedZoneKeys"],
+                    "sourceType": element["sourceType"].value,
                 }
                 for element in exchange_forecast
             ]
