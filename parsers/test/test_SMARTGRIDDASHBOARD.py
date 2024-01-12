@@ -6,7 +6,7 @@ from requests import Session
 from requests_mock import GET, Adapter
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.SMARTGRIDDASHBOARD import (
+from IE import (
     URL,
     fetch_consumption,
     fetch_exchange,
