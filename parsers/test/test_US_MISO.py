@@ -22,7 +22,7 @@ class TestUSMISO(unittest.TestCase):
         with open(filename) as f:
             fake_data = json.load(f)
 
-        with LogCapture() as log:
+        with LogCapture():
             with patch("parsers.US_MISO.get_json_data") as gjd:
                 gjd.return_value = fake_data
                 data = US_MISO.fetch_production(logger=logging.getLogger("test"))
