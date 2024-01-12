@@ -9,6 +9,7 @@ from operator import itemgetter
 from zoneinfo import ZoneInfo
 from datetime import datetime
 from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList, ProductionMix
 
 from bs4 import BeautifulSoup
 from requests import Session
@@ -115,8 +116,22 @@ def data_parser(datareq) -> list:
 
     return clean_data
 
+def parse_mix(data: dict) -> ProductionMix:
+    return ProductionMix(
+        biomass=data.get("biomass", 0.0),
+        coal=data.get("coal", 0.0),
+        gas=data.get("gas", 0.0),
+        hydro=data.get("hydro", 0.0),
+        nuclear=data.get("nuclear", 0.0),
+        oil=data.get("oil", 0.0),
+        solar=data.get("solar", 0.0),
+        wind=data.get("wind", 0.0),
+        geothermal=data.get("geothermal", 0.0),
+        unknown=data.get("unknown", 0.0),
+    )
 
-def data_processer(data) -> list:
+
+def data_processer(data, logger: Logger) -> ProductionBreakdownList:
     """
     Takes data in the form of a list of lists.
     Converts each list to a dictionary.
@@ -135,8 +150,9 @@ def data_processer(data) -> list:
 
     joined_data = sorted(d.values(), key=itemgetter("datetime"))
 
-    mapped_data = []
+    mapped_data = ProductionBreakdownList(logger)
     for point in joined_data:
+        breakpoint()
         point = {generation_map[num]: val for num, val in point.items()}
         hour = int(point["datetime"])
         # The returned hour is only for the current day, there's no overlap with the previous day.
@@ -159,7 +175,7 @@ def fetch_production(
         session = Session()
     req = get_data(session)
     parsed = data_parser(req)
-    data = data_processer(parsed)
+    data = data_processer(parsed, logger)
     production_mix_by_hour = []
     for hour in data:
         production_mix = {
