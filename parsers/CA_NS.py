@@ -2,7 +2,9 @@
 from datetime import datetime, timezone
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
+from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -13,6 +15,12 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
 
+# The table shown on the "Daily Report" page
+# (https://www.nspower.ca/oasis/system-reports-messages/daily-report) is inside
+# an iframe which refers to the following URL.
+EXCHANGE_URL = (
+    "https://resourcesprd-nspower.aws.silvertech.net/oasis/current_report.shtml"
+)
 LOAD_URL = "https://www.nspower.ca/library/CurrentLoad/CurrentLoad.json"
 MIX_URL = "https://www.nspower.ca/library/CurrentLoad/CurrentMix.json"
 PARSER = "CA_NS.py"
@@ -29,18 +37,28 @@ def _parse_timestamp(timestamp: str) -> datetime:
     return datetime.fromtimestamp(int(timestamp[6:-5]), tz=timezone.utc)
 
 
-def _get_ns_info(
-    session: Session, logger: Logger
-) -> tuple[ExchangeList, ProductionBreakdownList]:
+def fetch_production(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the last known production mix (in MW) of a given country."""
+    if target_datetime:
+        raise ParserException(PARSER, "Unable to fetch historical data", zone_key)
+
+    if zone_key != ZONE_KEY:
+        raise ParserException(PARSER, f"Cannot parse zone '{zone_key}'", zone_key)
+
     # Request data from the source. Skip the first element of each JSON array
     # because the reported base load is always 0 MW.
-    loads = {  # Lookup table mapping timestamps to base loads (in MW)
+    session = session or Session()
+    loads = {  # A lookup table mapping timestamps to base loads (in MW)
         _parse_timestamp(load["datetime"]): load["Base Load"]
         for load in session.get(LOAD_URL).json()[1:]
     }
     mixes = session.get(MIX_URL).json()[1:]  # Electricity mix breakdowns in %
 
-    exchanges = ExchangeList(logger)
     production_breakdowns = ProductionBreakdownList(logger)
     for mix in mixes:
         timestamp = _parse_timestamp(mix["datetime"])
@@ -56,22 +74,6 @@ def _get_ns_info(
                 f"unable to find load for {timestamp}; assuming 1244 MW",
                 extra={"key": ZONE_KEY},
             )
-
-        # In this source, imports are positive. In the expected result for
-        # CA-NB->CA-NS, "net" represents a flow from NB to NS, i.e., an import
-        # to NS, so the value can be used directly.
-        #
-        # NOTE: this API only specifies imports; when NS is exporting energy,
-        # the API returns 0.
-        #
-        # TODO: the Newfoundland and Labrador / Novia Scotia interconnect is
-        # now live, so this exchange logic should be revisited.
-        exchanges.append(
-            datetime=timestamp,
-            netFlow=load * mix["Imports"] / 100,
-            source=SOURCE,
-            zoneKey=ZoneKey("CA-NB->CA-NS"),
-        )
 
         production_mix = ProductionMix()
         production_mix.add_value("biomass", load * mix["Biomass"] / 100)
@@ -105,23 +107,6 @@ def _get_ns_info(
             zoneKey=ZONE_KEY,
         )
 
-    return exchanges, production_breakdowns
-
-
-def fetch_production(
-    zone_key: ZoneKey = ZONE_KEY,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list[dict[str, Any]]:
-    """Requests the last known production mix (in MW) of a given country."""
-    if target_datetime:
-        raise ParserException(PARSER, "Unable to fetch historical data", zone_key)
-
-    if zone_key != ZONE_KEY:
-        raise ParserException(PARSER, f"Cannot parse zone '{zone_key}'", zone_key)
-
-    _, production_breakdowns = _get_ns_info(session or Session(), logger)
     return production_breakdowns.to_list()
 
 
@@ -134,22 +119,37 @@ def fetch_exchange(
 ) -> list[dict[str, Any]]:
     """
     Requests the last known power exchange (in MW) between two regions.
-
-    Note: As of early 2017, Nova Scotia only has an exchange with New Brunswick
-    (CA-NB). (An exchange with Newfoundland, "Maritime Link", is scheduled to
-    open in "late 2017").
-
-    The API for Nova Scotia only specifies imports. When NS is exporting
-    energy, the API returns 0.
     """
     if target_datetime:
         raise ParserException(PARSER, "Unable to fetch historical data", ZONE_KEY)
 
-    sorted_zone_keys = "->".join(sorted((zone_key1, zone_key2)))
-    if sorted_zone_keys != "CA-NB->CA-NS":
+    sorted_zone_keys = ZoneKey("->".join(sorted((zone_key1, zone_key2))))
+    if sorted_zone_keys not in (ZoneKey("CA-NB->CA-NS"), ZoneKey("CA-NL-NF->CA-NS")):
         raise ParserException(PARSER, "Unimplemented exchange pair", sorted_zone_keys)
 
-    exchanges, _ = _get_ns_info(session or Session(), logger)
+    session = session or Session()
+    soup = BeautifulSoup(session.get(EXCHANGE_URL).text, "html.parser")
+
+    # Extract the timestamp from the table header.
+    timestamp = datetime.strptime(
+        soup.find(string="Current System Conditions").find_next("td").em.i.string,
+        "%d-%b-%y %H:%M:%S",
+    ).replace(tzinfo=ZoneInfo("America/Halifax"))
+
+    # Choose the appropriate exchange figure for the requested zone pair.
+    exchange = (
+        -float(soup.find(string="NS Export ").find_next("td").string)
+        if sorted_zone_keys == ZoneKey("CA-NB->CA-NS")
+        else float(soup.find(string="Maritime Link Import ").find_next("td").string)
+    )
+
+    exchanges = ExchangeList(logger)
+    exchanges.append(
+        datetime=timestamp,
+        netFlow=exchange,
+        source=SOURCE,
+        zoneKey=sorted_zone_keys,
+    )
     return exchanges.to_list()
 
 
@@ -161,3 +161,5 @@ if __name__ == "__main__":
     pprint(fetch_production())
     print('fetch_exchange("CA-NS", "CA-NB") ->')
     pprint(fetch_exchange("CA-NS", "CA-NB"))
+    print('fetch_exchange("CA-NL", "CA-NS") ->')
+    pprint(fetch_exchange("CA-NL-NF", "CA-NS"))
