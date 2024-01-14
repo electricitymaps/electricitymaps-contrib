@@ -301,7 +301,7 @@ def fetch_wind_forecasts(
     return wind_forecast.to_list()
 
 
-def fetch_generation(
+def fetch_total_generation(
     zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -309,6 +309,7 @@ def fetch_generation(
 ) -> list:
     """
     Gets values and corresponding datetimes for the total generation.
+    This is the sum of all generation reported as a single value.
     """
 
     session = session or Session()

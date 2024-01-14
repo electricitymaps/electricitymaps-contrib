@@ -1,19 +1,19 @@
 import json
 from importlib import resources
 
-from IE import (
-    URL,
-    fetch_consumption,
-    fetch_consumption_forecast,
-    fetch_exchange,
-    fetch_generation,
-    fetch_wind_forecasts,
-)
 from requests import Session
 from requests_mock import GET, Adapter
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.SMARTGRIDDASHBOARD import (
+    URL,
+    fetch_consumption,
+    fetch_consumption_forecast,
+    fetch_exchange,
+    fetch_total_generation,
+    fetch_wind_forecasts,
+)
 
 
 class TestSmartGridDashboard(TestCase):
@@ -118,7 +118,7 @@ class TestSmartGridDashboard(TestCase):
             ),
         )
 
-        generation = fetch_generation(
+        generation = fetch_total_generation(
             zone_key=ZoneKey("GB-NIR"),
             session=self.session,
         )
