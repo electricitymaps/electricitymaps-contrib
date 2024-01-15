@@ -56,7 +56,7 @@ export default function ZoneHeaderTitle({
                   </h2>
                   {showCountryPill && (
                     <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">
-                      <p className="w-full truncate">{countryName || zoneId}</p>
+                      <p className="w-full truncate">{countryName ?? zoneId}</p>
                     </div>
                   )}
                 </div>
