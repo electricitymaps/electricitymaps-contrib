@@ -8,11 +8,11 @@ export default function Badge({ children, type = 'default', className }: BadgePr
   // set background and text color classes depending on type
   const bgColorClasses = {
     default: 'bg-[#E5E5E5] dark:bg-[#374151]',
-    warning: 'bg-yellow-400 dark:bg-yellow-500',
+    warning: 'bg-[#B45309]/20 dark:bg-[#F59E0B]/20',
   }[type];
   const textColorClasses = {
     default: 'text-black dark:text-white',
-    warning: 'text-yellow-900/95 dark:text-gray-900/95',
+    warning: 'text-[#B45309] dark:text-[#F59E0B]',
   }[type];
 
   return (

@@ -1,7 +1,7 @@
 import Badge from 'components/Badge';
 import { he } from 'date-fns/locale';
 import React, { useState } from 'react';
-import { HiChevronDown,HiChevronUp } from 'react-icons/hi2';
+import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 
 type CardProps = {
   cardType?: 'default' | 'warning';
@@ -15,7 +15,7 @@ export function EstimationCard({ cardType = 'default', estimationType }: CardPro
   };
   const bgColorClasses = {
     default: 'bg-[#F5F5F5] dark:bg-[#1F2937]',
-    warning: 'bg-[#B45309] dark:bg-[#F59E0B]',
+    warning: 'bg-[#B45309]/20 dark:bg-[#F59E0B]/20',
   }[cardType];
   const textColorTitle = 'text-[#B45309] dark:text-[#F59E0B]';
   const textColorBody = 'text-[#525252] dark:text-[#A3A3A3]';
@@ -44,33 +44,26 @@ export function EstimationCard({ cardType = 'default', estimationType }: CardPro
       } ${bgColorClasses} border ${borderColor} mb-4 gap-2 transition-all`}
     >
       <div className="flex flex-col">
-        <div className="flex flex-row justify-between pb-2">
-          <div className="flex flex-row gap-2">
-            <div className={`flex items-center justify-center`}>
-              <div className=" h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"></div>
-            </div>
-            <h2
-              className={`truncate text-sm font-semibold ${textColorTitle} self-center`}
-            >
-              {title}
-            </h2>
-          </div>
-          <div className="flex flex-row gap-2 ">
-            <Badge type="default">{pillText}</Badge>
-            <div className="flex self-center">
-              <button
-                className={
-                  'cursor-pointer rounded text-base hover:bg-zinc-100 dark:text-white dark:hover:bg-[#374151] '
-                }
-                onClick={handleToggleCollapse}
+        <button onClick={handleToggleCollapse}>
+          <div className="flex flex-row justify-between pb-2">
+            <div className="flex flex-row gap-2">
+              <div className={`flex items-center justify-center`}>
+                <div className=" h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"></div>
+              </div>
+              <h2
+                className={`truncate text-sm font-semibold ${textColorTitle} self-center`}
               >
-                <div className="text-lg">
-                  {isCollapsed ? <HiChevronUp /> : <HiChevronDown />}
-                </div>
-              </button>
+                {title}
+              </h2>
+            </div>
+            <div className="flex flex-row gap-2 ">
+              <Badge type={cardType}>{pillText}</Badge>
+              <div className="text-lg">
+                {isCollapsed ? <HiChevronUp /> : <HiChevronDown />}
+              </div>
             </div>
           </div>
-        </div>
+        </button>
         {!isCollapsed && (
           <div className="gap-2">
             <div className={`text-sm font-normal ${textColorBody}`}>{bodyText}</div>
