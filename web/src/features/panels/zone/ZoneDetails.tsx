@@ -15,6 +15,7 @@ import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
+import EstimationCard from './EstimationCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
@@ -61,6 +62,9 @@ export default function ZoneDetails(): JSX.Element {
   const isEstimated = estimationMethod !== undefined;
   const isAggregated = timeAverage !== TimeAverages.HOURLY;
 
+  const cardType = isAggregated ? 'warning' : 'default';
+  const estimationType = isAggregated ? 'data_outage' : 'ts_avg';
+
   return (
     <>
       <ZoneHeaderTitle
@@ -69,6 +73,12 @@ export default function ZoneDetails(): JSX.Element {
         isEstimated={isEstimated}
       />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
+        {isEstimated && (
+          <EstimationCard
+            cardType={cardType}
+            estimationType={estimationType}
+          ></EstimationCard>
+        )}
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
