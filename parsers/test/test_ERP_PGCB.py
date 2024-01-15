@@ -5,11 +5,7 @@ from requests_mock import ANY, GET, Adapter
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.ERP_PGCB import (
-    fetch_exchange,
-    fetch_production,
-    fetch_consumption
-)
+from parsers.ERP_PGCB import fetch_consumption, fetch_exchange, fetch_production
 
 
 class TestERP_PGCB(TestCase):
@@ -23,13 +19,11 @@ class TestERP_PGCB(TestCase):
             GET,
             ANY,
             text=resources.files("parsers.test.mocks.ERP_PGCB")
-                .joinpath("latest.html")
-                .read_text()
+            .joinpath("latest.html")
+            .read_text(),
         )
 
-        consumption = fetch_consumption(
-            zone_key=ZoneKey("BD"), session=self.session
-        )
+        consumption = fetch_consumption(zone_key=ZoneKey("BD"), session=self.session)
 
         self.assertMatchSnapshot(
             [
@@ -46,10 +40,9 @@ class TestERP_PGCB(TestCase):
         self.adapter.register_uri(
             GET,
             ANY,
-            text=
-                resources.files("parsers.test.mocks.ERP_PGCB")
-                .joinpath("latest.html")
-                .read_text(),
+            text=resources.files("parsers.test.mocks.ERP_PGCB")
+            .joinpath("latest.html")
+            .read_text(),
         )
 
         exchange = fetch_exchange(
@@ -74,10 +67,9 @@ class TestERP_PGCB(TestCase):
         self.adapter.register_uri(
             GET,
             ANY,
-            text=
-                resources.files("parsers.test.mocks.ERP_PGCB")
-                .joinpath("latest.html")
-                .read_text(),
+            text=resources.files("parsers.test.mocks.ERP_PGCB")
+            .joinpath("latest.html")
+            .read_text(),
         )
         production = fetch_production(
             zone_key=ZoneKey("BD"),

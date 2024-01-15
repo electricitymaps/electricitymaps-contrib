@@ -68,10 +68,9 @@
     "Getdata": "Obtenha dados históricos, marginais e de previsão da API",
     "carbonintensity": {
       "hourly": "Intensidade da emissão de carbono nas últimas 24 horas",
-      "default": "Intensidade de carbono nas últimas %1$s",
       "daily": "Intensidade de carbono no último mês",
       "monthly": "Intensidade de carbono no último ano",
-      "yearly": "Intensidade de carbono nos últimos 5 anos"
+      "default": "Intensidade de carbono nas últimas %1$s"
     },
     "emissionsorigin": {
       "hourly": "Origem da emissão de carbono nas últimas 24 horas",
