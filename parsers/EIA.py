@@ -713,18 +713,20 @@ def filter_valid_production_events(
     for event in production_events.events:
         capacity = get_capacity_data(capacity_config, event.datetime)
         valid = True
-        for mode, capacity_value in capacity.items():
-            if capacity_value > 0:
-                if "storage" in mode:
-                    value = event.storage.__getattribute__(mode.split("_")[1])
-                else:
-                    value = event.production.__getattribute__(mode)
-                if value is None:
-                    valid = False
-                    logger.warning(
-                        f"Discarded production event for {zone_key} at {event.datetime} due to missing {mode} value."
-                    )
-                    break
+        required_modes = [
+            mode for mode, capacity_value in capacity.items() if capacity_value > 0
+        ]
+        for mode in required_modes:
+            if "storage" in mode:
+                value = event.storage.__getattribute__(mode.split("_")[1])
+            else:
+                value = event.production.__getattribute__(mode)
+            if value is None:
+                valid = False
+                logger.warning(
+                    f"Discarded production event for {zone_key} at {event.datetime} due to missing {mode} value."
+                )
+                break
         if valid:
             events.append(
                 zoneKey=event.zoneKey,
