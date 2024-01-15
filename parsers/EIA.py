@@ -16,6 +16,8 @@ import arrow
 from dateutil import parser, tz
 from requests import Session
 
+from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.config.capacity import get_capacity_data
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
@@ -468,6 +470,7 @@ def fetch_production_mix(
     logger: Logger = getLogger(__name__),
 ):
     all_production_breakdowns: list[ProductionBreakdownList] = []
+    # TODO: We could be smarter in the future and only fetch the expected production types.
     for production_mode, code in TYPES.items():
         negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
             production_mode, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
@@ -578,9 +581,11 @@ def fetch_production_mix(
             if production_mix.datetime in latest_timeframe:
                 correct_mix.append(production_mix)
         production_list.events = correct_mix
-    return ProductionBreakdownList.merge_production_breakdowns(
+    events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
-    ).to_list()
+    )
+    filtered_events = filter_valid_production_events(zone_key, events, logger)
+    return filtered_events.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
@@ -694,6 +699,41 @@ def _get_utc_datetime_from_datapoint(dt: datetime):
     dt_beginning_hour = _conform_timestamp_convention(dt)
     dt_utc = arrow.get(dt_beginning_hour).to("utc")
     return dt_utc.datetime
+
+
+def filter_valid_production_events(
+    zone_key: ZoneKey, production_events: ProductionBreakdownList, logger: Logger
+) -> ProductionBreakdownList:
+    """Returns a new production breakdown list with only valid events.
+    Valid events are determined by looking at the capacity data for the zone. If a mode has capacity we expect it to be present.
+    This is a temporary fix for the EIA only until the outlier detection is fully implemented.
+    """
+    capacity_config = ZONES_CONFIG.get(zone_key, {}).get("capacity", {})
+    events = ProductionBreakdownList(logger)
+    for event in production_events.events:
+        capacity = get_capacity_data(capacity_config, event.datetime)
+        valid = True
+        for mode, capacity_value in capacity.items():
+            if capacity_value > 0:
+                if "storage" in mode:
+                    value = event.storage.__getattribute__(mode.split("_")[1])
+                else:
+                    value = event.production.__getattribute__(mode)
+                if value is None:
+                    valid = False
+                    logger.warning(
+                        f"Discarded production event for {zone_key} at {event.datetime} due to missing {mode} value."
+                    )
+                    break
+        if valid:
+            events.append(
+                zoneKey=event.zoneKey,
+                datetime=event.datetime,
+                production=event.production,
+                storage=event.storage,
+                source=event.source,
+            )
+    return events
 
 
 if __name__ == "__main__":
