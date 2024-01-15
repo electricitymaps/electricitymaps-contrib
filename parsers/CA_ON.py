@@ -1,56 +1,47 @@
 #!/usr/bin/env python3
-
-
-import xml.etree.ElementTree as ET
-from datetime import datetime, timedelta, timezone
+import datetime
 from logging import Logger, getLogger
+from typing import Any
+from xml.etree import ElementTree
 
-# The arrow library is used to handle datetimes
-import arrow
-
-# pandas processes tabular data
-import pandas as pd
 from requests import Session
 
-"""
-Some notes about timestamps:
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 
-IESO website says:
-"The IESO uses the "Hour Ending" naming convention for the hours in a day. For example, Hour 1 is from 12 am. to 1 am.,
-Hour 2 is from 1 am. to 2 am. Hours 1-24 are the hours from midnight one day through midnight the next day."
+# Some notes about timestamps:
+#
+# The IESO website says:
+#
+#   The IESO uses the "Hour Ending" naming convention for the hours in a day.
+#   For example, Hour 1 is from 12 am. to 1 am., Hour 2 is from 1 am. to 2 am.
+#   Hours 1-24 are the hours from midnight one day through midnight the next
+#   day.
+#
+# Observations:
+#
+# - At 13:53, HOEP report will have data with "Hour" column from 1 to 13.
+#   Output and Capability report will have data with "Hour" column from 1 to
+#   13. Intertie Flow report will have data with "Hour" column from 1 to 13
+#   *and* Interval column from 1 to 12 for all of these hours, including the
+#   13th hour.
+# - At 14:18, HOEP report will go up to 14, Output report will go up to 14, but
+#   update for Intertie report is not yet updated.
+# - At 14:31, Intertie report is updated with Hour 14 which has Intervals 1 to
+#   12.
+#
+# In the script, the Intertie report is shifted 1 hour and 5 minutes back, so
+# that it lines up with the production and price data availability.
 
-Observations:
-- At 13:53, HOEP report will have data with "Hour" column from 1 to 13.
-  Output and Capability report will have data with "Hour" column from 1 to 13.
-  Intertie Flow report will have data with "Hour" column from 1 to 13 *and* Interval column
-  from 1 to 12 for all of these hours, including the 13th hour.
-- At 14:18, HOEP report will go up to 14, Output report will go up to 14,
-  but update for Intertie report is not yet updated.
-- At 14:31, Intertie report is updated with Hour 14 which has Intervals 1 to 12.
-
-In the script, the Intertie report is shifted 1 hour and 5 minutes back, so that it lines up with
-the production and price data availability.
-"""
-
-# IESO says "Eastern Standard Time is used year round."
-# This would mean daylight savings is not used (that is called "Eastern Daylight Time"),
-# and we need to use UTC-5 rather than 'Canada/Eastern'
-tz_obj = timezone(timedelta(hours=-5), name="UTC-5")
-
-# fuel types used by IESO
-MAP_GENERATION = {
-    "BIOFUEL": "biomass",
-    "GAS": "gas",
-    "HYDRO": "hydro",
-    "NUCLEAR": "nuclear",
-    "SOLAR": "solar",
-    "WIND": "wind",
-}
-
-# exchanges and sub-exchanges used by IESO
-MAP_EXCHANGE = {
-    "MANITOBA": "CA-MB->CA-ON",
+# Map IESO's exchange names to ours.
+EXCHANGES = {
     "MANITOBA SK": "CA-MB->CA-ON",
+    "MANITOBA": "CA-MB->CA-ON",
     "MICHIGAN": "CA-ON->US-MIDW-MISO",
     "MINNESOTA": "CA-ON->US-MIDW-MISO",
     "NEW-YORK": "CA-ON->US-NY-NYIS",
@@ -64,331 +55,265 @@ MAP_EXCHANGE = {
     "PQ.Q4C": "CA-ON->CA-QC",
     "PQ.X2Y": "CA-ON->CA-QC",
 }
-
-PRODUCTION_URL = "http://reports.ieso.ca/public/GenOutputCapability/PUB_GenOutputCapability_{YYYYMMDD}.xml"
+EXCHANGE_URL = "http://reports.ieso.ca/public/IntertieScheduleFlow/PUB_IntertieScheduleFlow_{YYYYMMDD}.xml"
+# Map IESO's production modes to ours.
+MODES = {
+    "BIOFUEL": "biomass",
+    "GAS": "gas",
+    "HYDRO": "hydro",
+    "NUCLEAR": "nuclear",
+    "SOLAR": "solar",
+    "WIND": "wind",
+}
+NAMESPACE = "{http://www.theIMO.com/schema}"
 PRICE_URL = (
     "http://reports.ieso.ca/public/DispUnconsHOEP/PUB_DispUnconsHOEP_{YYYYMMDD}.xml"
 )
-EXCHANGES_URL = "http://reports.ieso.ca/public/IntertieScheduleFlow/PUB_IntertieScheduleFlow_{YYYYMMDD}.xml"
+PRODUCTION_URL = "http://reports.ieso.ca/public/GenOutputCapability/PUB_GenOutputCapability_{YYYYMMDD}.xml"
+SOURCE = "ieso.ca"
+# IESO says "Eastern Standard Time is used year round." This means daylight
+# savings is not used (that is called "Eastern Daylight Time"), and we need to
+# use UTC-5 rather than 'Canada/Eastern'.
+TIMEZONE = datetime.timezone(datetime.timedelta(hours=-5), name="UTC-5")
+ZONE_KEY = ZoneKey("CA-ON")
 
-XML_NS_TEXT = "{http://www.theIMO.com/schema}"
 
-
-def _fetch_ieso_xml(
-    target_datetime: datetime | None,
-    session: Session | None,
+def _fetch_xml(
     logger: Logger,
-    url_template,
-):
-    dt = (
-        arrow.get(target_datetime)
-        .to(tz_obj)
-        .replace(hour=0, minute=0, second=0, microsecond=0)
+    session: Session | None,
+    target_datetime: datetime.datetime | None,
+    template: str,
+) -> tuple[datetime.date, ElementTree.Element | None]:
+    date = (
+        (target_datetime or datetime.datetime.now(TIMEZONE)).astimezone(TIMEZONE).date()
     )
 
-    r = session or Session()
-    url = url_template.format(YYYYMMDD=dt.format("YYYYMMDD"))
-    response = r.get(url)
+    session = session or Session()
+    url = template.format(YYYYMMDD=date.strftime("%Y%m%d"))
+    response = session.get(url)
 
     if not response.ok:
-        # Data is generally available for past 3 months. Requesting files older than this
-        # returns an HTTP 404 error.
-        logger.info(
-            f"CA-ON: failed getting requested data for datetime {dt} from IESO server - URL {url}"
-        )
-        return dt, None
+        # Historical data is generally available for 3 months; requesting
+        # anything older returns an HTTP 404 error.
+        logger.info(f"GET request to {url} failed")
+        return date, None
 
-    xml = ET.fromstring(response.text)
-
-    return dt, xml
+    return date, ElementTree.fromstring(response.text)
 
 
-def _parse_ieso_hour(output, target_dt):
-    hour = int(output.find(XML_NS_TEXT + "Hour").text)
-    return target_dt.shift(hours=hour).datetime
+def _parse_hour(element):
+    # Decrement the reported hour to convert from the hour-ending ([1, 24])
+    # convention used by the source to our hour-starting ([0, 23]) convention.
+    return int(element.findtext(NAMESPACE + "Hour")) - 1
 
 
 def fetch_production(
-    zone_key: str = "CA-ON",
+    zone_key: str = ZONE_KEY,
     session: Session | None = None,
-    target_datetime: datetime | None = None,
+    target_datetime: datetime.datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given region."""
 
-    dt, xml = _fetch_ieso_xml(target_datetime, session, logger, PRODUCTION_URL)
+    if zone_key != ZONE_KEY:
+        raise NotImplementedError(f"unimplemented zone '{zone_key}'")
 
-    if not xml:
+    date, xml = _fetch_xml(logger, session, target_datetime, PRODUCTION_URL)
+
+    if xml is None:
         return []
 
-    generators = (
-        xml.find(XML_NS_TEXT + "IMODocBody")
-        .find(XML_NS_TEXT + "Generators")
-        .findall(XML_NS_TEXT + "Generator")
-    )
+    # Collect the source data into a dictionary keying ProductionMix objects by
+    # the time of day at which they occurred.
+    mixes = {}
+    for generator in xml.iter(NAMESPACE + "Generator"):
+        mode = MODES[generator.findtext(NAMESPACE + "FuelType")]
+        for output in generator.iter(NAMESPACE + "Output"):
+            generation = output.findtext(NAMESPACE + "EnergyMW")
+            mixes.setdefault(
+                datetime.time(hour=_parse_hour(output)), ProductionMix()
+            ).add_value(
+                mode,
+                # Sometimes the XML data has no EnergyMW tag for a given plant
+                # at a given hour. The report XSL formats this as "N/A"; we
+                # return 0.
+                # TODO: Is XSL supposed to be XML? I've never seen an N/A in
+                # the response, and if one appeared we'd have to test for
+                # generation == "N/A", not generation is None. If the EnergyMW
+                # element is just absent, then the generation is None test
+                # makes sense.
+                # TODO: Should we set this to None instead of 0?
+                0 if generation is None else float(generation),
+            )
 
-    def production_or_zero(output):
-        # Sometimes the XML data has no "EnergyMW" tag for a given plant at a given hour.
-        # The report XSL formats this as "N/A" - we return 0
-        tag = output.find(XML_NS_TEXT + "EnergyMW")
-        if tag is not None:
-            return tag.text
-        else:
-            return 0
-
-    # flat iterable of per-generator-plant productions per time from the XML data
-    all_productions = (
-        {
-            "name": generator.find(XML_NS_TEXT + "GeneratorName").text,
-            "fuel": MAP_GENERATION[generator.find(XML_NS_TEXT + "FuelType").text],
-            "dt": _parse_ieso_hour(output, dt),
-            "production": float(production_or_zero(output)),
-        }
-        for generator in generators
-        for output in generator.find(XML_NS_TEXT + "Outputs").findall(
-            XML_NS_TEXT + "Output"
+    production_breakdowns = ProductionBreakdownList(logger)
+    for time, mix in mixes.items():
+        production_breakdowns.append(
+            datetime=datetime.datetime.combine(date, time, tzinfo=TIMEZONE),
+            production=mix,
+            source=SOURCE,
+            zoneKey=ZONE_KEY,
         )
-    )
 
-    df = pd.DataFrame(all_productions)
-
-    # group individual plants using the same fuel together for each time period
-    by_fuel = df.groupby(["dt", "fuel"]).sum().unstack()
-    # to debug, you can `print(by_fuel)` here, which gives a very pretty table
-
-    by_fuel_dict = by_fuel["production"].to_dict("index")
-
-    data = [
-        {
-            "datetime": time.to_pydatetime(),
-            "zoneKey": zone_key,
-            "production": productions,
-            "storage": {},
-            "source": "ieso.ca",
-        }
-        for time, productions in by_fuel_dict.items()
-    ]
-
-    # being constructed from a dict, data is not guaranteed to be in chronological order.
-    # sort it for clean-ness and easier debugging.
-    data = sorted(data, key=lambda dp: dp["datetime"])
-
-    return data
+    return production_breakdowns.to_list()
 
 
 def fetch_price(
-    zone_key: str = "CA-ON",
+    zone_key: str = ZoneKey("CA-ON"),
     session: Session | None = None,
-    target_datetime: datetime | None = None,
+    target_datetime: datetime.datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     """Requests the last known power price per MWh of a given region."""
 
-    # "HOEP" below is "Hourly Ontario Energy Price".
-    # There also exists a 5-minute price, but its archives only go back roughly 4 days
-    # (see http://www.ieso.ca/power-data "5 Minute Market Clearing Price").
+    if zone_key != ZONE_KEY:
+        raise NotImplementedError(f"unimplemented zone '{zone_key}'")
 
-    dt, xml = _fetch_ieso_xml(target_datetime, session, logger, PRICE_URL)
+    date, xml = _fetch_xml(logger, session, target_datetime, PRICE_URL)
 
     if not xml:
         return []
 
-    prices = (
-        xml.find(XML_NS_TEXT + "IMODocBody")
-        .find(XML_NS_TEXT + "HOEPs")
-        .findall(XML_NS_TEXT + "HOEP")
-    )
+    # "HOEP" stands for "Hourly Ontario Energy Price". There also exists a
+    # 5-minute price, but its archives only go back roughly 4 days (see "5
+    # Minute Market Clearing Price" at http://www.ieso.ca/power-data ).
+    prices = PriceList(logger)
+    for hoep in xml.iter(NAMESPACE + "HOEP"):
+        prices.append(
+            currency="CAD",
+            datetime=datetime.datetime.combine(
+                date, datetime.time(hour=_parse_hour(hoep)), tzinfo=TIMEZONE
+            ),
+            price=float(hoep.findtext(NAMESPACE + "Price")),
+            source=SOURCE,
+            zoneKey=zone_key,
+        )
 
-    data = [
-        {
-            "datetime": _parse_ieso_hour(price, dt),
-            "price": float(price.find(XML_NS_TEXT + "Price").text),
-            "currency": "CAD",
-            "source": "ieso.ca",
-            "zoneKey": zone_key,
-        }
-        for price in prices
-    ]
-
-    return data
+    return prices.to_list()
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
-    target_datetime: datetime | None = None,
+    target_datetime: datetime.datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
 
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = "->".join(sorted((zone_key1, zone_key2)))
 
-    if sorted_zone_keys not in MAP_EXCHANGE.values():
-        raise NotImplementedError("This exchange pair is not implemented")
+    if sorted_zone_keys not in EXCHANGES.values():
+        raise NotImplementedError(f"unimplemented exchange '{sorted_zone_keys}'")
 
-    dt, xml = _fetch_ieso_xml(target_datetime, session, logger, EXCHANGES_URL)
+    date, xml = _fetch_xml(logger, session, target_datetime, EXCHANGE_URL)
 
     if not xml:
         return []
 
-    intertie_zones = xml.find(XML_NS_TEXT + "IMODocBody").findall(
-        XML_NS_TEXT + "IntertieZone"
-    )
-
-    def flow_dt(flow):
-        # The IESO day starts with Hour 1, Interval 1.
-        # At 11:37, we might have data for up to Hour 11, Interval 12.
-        # This means it is necessary to subtract 1 from the values
-        # (otherwise we would have data for 12:00 already at 11:37).
-        hour = int(flow.find(XML_NS_TEXT + "Hour").text) - 1
-        minute = (int(flow.find(XML_NS_TEXT + "Interval").text) - 1) * 5
-
-        return dt.replace(hour=hour, minute=minute).datetime
-
-    # flat iterable of per-intertie values per time from the XML data
-    all_exchanges = (
-        {
-            "name": intertie.find(XML_NS_TEXT + "IntertieZoneName").text,
-            "dt": flow_dt(flow),
-            "flow": float(flow.find(XML_NS_TEXT + "Flow").text),
-        }
-        for intertie in intertie_zones
-        for flow in intertie.find(XML_NS_TEXT + "Actuals").findall(
-            XML_NS_TEXT + "Actual"
-        )
-    )
-
-    df = pd.DataFrame(all_exchanges)
-
-    # verify that there haven't been new exchanges or sub-exchanges added
-    all_exchange_names = set(df["name"].unique())
-    known_exchange_names = set(MAP_EXCHANGE.keys())
-    unknown_exchange_names = all_exchange_names - known_exchange_names
-    if unknown_exchange_names:
-        logger.warning(
-            "CA-ON: unrecognized intertie name(s) {}, please implement!".format(
-                unknown_exchange_names
+    # Collect the source data into a dictionary keying exchange flows by the
+    # time of day at which they occurred for the exchange of interest.
+    flows = {}
+    for intertie in xml.iter(NAMESPACE + "IntertieZone"):
+        zone_name = intertie.findtext(NAMESPACE + "IntertieZoneName")
+        if zone_name not in EXCHANGES:
+            logger.warning(f"unrecognized intertie '{zone_name}', please implement!")
+            continue
+        if EXCHANGES[zone_name] != sorted_zone_keys:
+            # Ignore exchanges that we aren't interested in.
+            continue
+        for actual in intertie.iter(NAMESPACE + "Actual"):
+            # The IESO day starts with Hour 1, Interval 1. At 11:37, we might
+            # have data for up to Hour 11, Interval 12. This means it is
+            # necessary to subtract 1 from the values (otherwise we would have
+            # data for 12:00 already at 11:37).
+            time = datetime.time(
+                hour=_parse_hour(actual),
+                minute=5 * (int(actual.findtext(NAMESPACE + "Interval")) - 1),
             )
+            # In the source data, flows out of Ontario (i.e., exports) are
+            # positive. For us, positive flow follows the direction of the
+            # arrow in sorted_zone_keys, so change the sign of the flow if
+            # necessary.
+            flow = float(actual.findtext(NAMESPACE + "Flow"))
+            if not sorted_zone_keys.startswith("CA-ON->"):
+                flow *= -1
+            flows[time] = flows.get(time, 0) + flow
+
+    exchanges = ExchangeList(logger)
+    for time, flow in flows.items():
+        exchanges.append(
+            datetime=datetime.datetime.combine(date, time, tzinfo=TIMEZONE),
+            netFlow=flow,
+            source=SOURCE,
+            zoneKey=sorted_zone_keys,
         )
 
-    # filter to only the sought exchanges
-    sought_exchanges = [
-        ieso_name
-        for ieso_name, em_name in MAP_EXCHANGE.items()
-        if sorted_zone_keys == em_name
-    ]
-    df = df[df["name"].isin(sought_exchanges)]
-
-    # in the XML, flow into Ontario is always negative.
-    # in EM, for 'CA-MB->CA-ON', flow into Ontario is positive.
-    if not sorted_zone_keys.startswith("CA-ON->"):
-        df["flow"] *= -1
-
-    # group flows for sub-interchanges together and sum them
-    grouped = df.groupby(["dt"]).sum()
-
-    grouped_dict = grouped["flow"].to_dict()
-
-    data = [
-        {
-            "datetime": flow_dt.to_pydatetime(),
-            "sortedZoneKeys": sorted_zone_keys,
-            "netFlow": flow,
-            "source": "ieso.ca",
-        }
-        for flow_dt, flow in grouped_dict.items()
-    ]
-
-    # being constructed from a dict, data is not guaranteed to be in chronological order.
-    # sort it for clean-ness and easier debugging.
-    data = sorted(data, key=lambda dp: dp["datetime"])
-
-    return data
+    return exchanges.to_list()
 
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    now = arrow.utcnow()
+    now = datetime.datetime.now(datetime.timezone.utc)
+    two_months_ago = now - datetime.timedelta(days=60)
+    two_years_ago = now - datetime.timedelta(days=2 * 365)
 
     print("fetch_production() ->")
-    print(fetch_production())
+    print(fetch_production(), end="\n\n")
 
-    print("we expect correct results when time in UTC and Ontario differs")
-    print(
-        "data should be for {}".format(
-            now.replace(hour=2).to(tz_obj).format("YYYY-MM-DD")
-        )
-    )
-    print('fetch_production("CA-ON", target_datetime=now.replace(hour=2)) ->')
-    print(fetch_production("CA-ON", target_datetime=now.replace(hour=2)))
+    print("data should be for " + now.astimezone(TIMEZONE).strftime("%Y-%m-%d"))
+    print('fetch_production("CA-ON", target_datetime=now) ->')
+    print(fetch_production("CA-ON", target_datetime=now), end="\n\n")
 
-    print("we expect results for 2 months ago")
-    print("fetch_production(target_datetime=now.shift(months=-2).datetime)) ->")
-    print(fetch_production(target_datetime=now.shift(months=-2).datetime))
+    print("we expect results for ~2 months ago")
+    print("fetch_production(target_datetime=two_months_ago) ->")
+    print(fetch_production(target_datetime=two_months_ago), end="\n\n")
 
-    print("there are likely no results for 2 years ago")
-    print("fetch_production(target_datetime=now.shift(years=-2).datetime)) ->")
-    print(fetch_production(target_datetime=now.shift(years=-2).datetime))
+    print("there are likely no results for ~2 years ago")
+    print("fetch_production(target_datetime=two_years_ago) ->")
+    print(fetch_production(target_datetime=two_years_ago), end="\n\n")
 
     print("fetch_price() ->")
-    print(fetch_price())
+    print(fetch_price(), end="\n\n")
 
-    print("we expect correct results when time in UTC and Ontario differs")
-    print(
-        "data should be for {}".format(
-            now.replace(hour=2).to(tz_obj).format("YYYY-MM-DD")
-        )
-    )
-    print("fetch_price(target_datetime=now.replace(hour=2)) ->")
-    print(fetch_price(target_datetime=now.replace(hour=2)))
+    print("data should be for " + now.astimezone(TIMEZONE).strftime("%Y-%m-%d"))
+    print("fetch_price(target_datetime=now) ->")
+    print(fetch_price(target_datetime=now), end="\n\n")
 
-    print("we expect results for 2 months ago")
-    print("fetch_price(target_datetime=now.shift(months=-2).datetime)) ->")
-    print(fetch_price(target_datetime=now.shift(months=-2).datetime))
+    print("we expect results for ~2 months ago")
+    print("fetch_price(target_datetime=two_months_ago) ->")
+    print(fetch_price(target_datetime=two_months_ago), end="\n\n")
 
-    print("there are likely no results for 2 years ago")
-    print("fetch_price(target_datetime=now.shift(years=-2).datetime)) ->")
-    print(fetch_price(target_datetime=now.shift(years=-2).datetime))
+    print("there are likely no results for ~2 years ago")
+    print("fetch_price(target_datetime=two_years_ago) ->")
+    print(fetch_price(target_datetime=two_years_ago), end="\n\n")
 
-    print('fetch_exchange("CA-ON", "US-NY") ->')
-    print(fetch_exchange("CA-ON", "US-NY"))
+    print('fetch_exchange("CA-ON", "US-NY-NYIS") ->')
+    print(fetch_exchange("CA-ON", "US-NY-NYIS"), end="\n\n")
 
-    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now.datetime)) ->')
-    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now.datetime))
+    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now) ->')
+    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now), end="\n\n")
 
-    print(
-        "test Ontario-to-Manitoba, this must be opposite sign from reported IESO values"
-    )
-    print('fetch_exchange("CA-ON", "CA-MB", target_datetime=now.datetime)) ->')
-    print(fetch_exchange("CA-ON", "CA-MB", target_datetime=now.datetime))
+    print("Ontario-to-Manitoba must be opposite sign from reported IESO values")
+    print('fetch_exchange("CA-ON", "CA-MB", target_datetime=now) ->')
+    print(fetch_exchange("CA-ON", "CA-MB", target_datetime=now), end="\n\n")
 
-    print("we expect correct results when time in UTC and Ontario differs")
-    print(
-        "data should be for {}".format(
-            now.replace(hour=2).to(tz_obj).format("YYYY-MM-DD")
-        )
-    )
-    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now.replace(hour=2)) ->')
-    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now.replace(hour=2)))
+    print("data should be for " + now.astimezone(TIMEZONE).strftime("%Y-%m-%d"))
+    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now) ->')
+    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now), end="\n\n")
 
-    print("we expect results for 2 months ago")
-    print(
-        'fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(months=-2).datetime)) ->'
-    )
-    print(
-        fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(months=-2).datetime)
-    )
+    print("we expect results for ~2 months ago")
+    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=two_months_ago) ->')
+    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=two_months_ago), end="\n\n")
 
-    print("there are likely no results for 2 years ago")
-    print(
-        'fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(years=-2).datetime)) ->'
-    )
-    print(
-        fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(years=-2).datetime)
-    )
+    print("there are likely no results for ~2 years ago")
+    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=two_years_ago) ->')
+    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=two_years_ago), end="\n\n")
 
     print("requesting an exchange with Nova Scotia should raise exception")
     print('fetch_exchange("CA-ON", "CA-NS")) ->')
-    print(fetch_exchange("CA-ON", "CA-NS"))
+    try:
+        fetch_exchange("CA-ON", "CA-NS")
+    except NotImplementedError:
+        print("Success")
