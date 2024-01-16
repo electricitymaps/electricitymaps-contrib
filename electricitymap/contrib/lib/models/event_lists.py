@@ -3,11 +3,11 @@ from collections.abc import Sequence
 from datetime import datetime
 from logging import Logger
 from typing import Any
-from electricitymap.contrib.config import ZONES_CONFIG
-from electricitymap.contrib.config.capacity import get_capacity_data
 
 import pandas as pd
 
+from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.config.capacity import get_capacity_data
 from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
@@ -247,8 +247,11 @@ class ProductionBreakdownList(AggregatableEventList):
             prod = ProductionBreakdown.aggregate(row)
             production_breakdowns.events.append(prod)
         return production_breakdowns
+
     @staticmethod
-    def filter_expected_modes(breakdowns: "ProductionBreakdownList", strict_storage: bool = False) -> "ProductionBreakdownList":
+    def filter_expected_modes(
+        breakdowns: "ProductionBreakdownList", strict_storage: bool = False
+    ) -> "ProductionBreakdownList":
         """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
         This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
         TODO: Remove this method once the outlier detection is able to handle it.
@@ -262,10 +265,15 @@ class ProductionBreakdownList(AggregatableEventList):
                 mode for mode, capacity_value in capacity.items() if capacity_value > 0
             ]
             if not strict_storage:
-                required_modes = [mode for mode in required_modes if "storage" not in mode]
+                required_modes = [
+                    mode for mode in required_modes if "storage" not in mode
+                ]
             for mode in required_modes:
                 value = event.get_value(mode)
-                if value is None and mode not in event.production.corrected_negative_modes:
+                if (
+                    value is None
+                    and mode not in event.production.corrected_negative_modes
+                ):
                     valid = False
                     events.logger.warning(
                         f"Discarded production event for {event.zoneKey} at {event.datetime} due to missing {mode} value."
