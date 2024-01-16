@@ -42,7 +42,7 @@ function BarBreakdownChart() {
 
   useEffect(() => {
     const height = document.querySelectorAll('header')[0].offsetHeight;
-    setHeaderHeight(height + 5);
+    setHeaderHeight(height * 1.1);
   }, [window.innerWidth, window.innerHeight]);
 
   if (isLoading) {

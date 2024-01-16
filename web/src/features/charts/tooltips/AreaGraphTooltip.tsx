@@ -14,6 +14,7 @@ interface AreaGraphTooltipProperties {
   position?: { x: number; y: number } | undefined;
   tooltipSize?: 'small' | 'large';
   isBiggerThanMobile: boolean;
+  headerHeight?: number;
 }
 
 export default function AreaGraphTooltip({
@@ -23,6 +24,7 @@ export default function AreaGraphTooltip({
   position,
   tooltipSize,
   isBiggerThanMobile,
+  headerHeight,
 }: AreaGraphTooltipProperties): ReactElement | null {
   if (selectedLayerKey === undefined || zoneDetail === undefined) {
     // We need to always render children here, otherwise we will get an error like this:
@@ -42,7 +44,10 @@ export default function AreaGraphTooltip({
       <div
         style={{
           left: tooltipWithDataPositon.x,
-          top: tooltipWithDataPositon.y <= 0 ? 20 : tooltipWithDataPositon.y,
+          top:
+            tooltipWithDataPositon.y <= (headerHeight || 0)
+              ? headerHeight
+              : tooltipWithDataPositon.y,
         }}
         className="relative flex flex-col items-center gap-y-1 p-2 pt-14 sm:block sm:p-0"
       >

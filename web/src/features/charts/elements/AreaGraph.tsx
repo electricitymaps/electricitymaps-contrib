@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
 import TimeAxis from 'features/time/TimeAxis'; // TODO: Move to a shared folder
 import { useAtom } from 'jotai';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ZoneDetail } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
@@ -211,6 +211,13 @@ function AreaGraph({
     [setGraphIndex, setSelectedLayerIndex]
   );
 
+  const [headerHeight, setHeaderHeight] = useState<number>(0);
+
+  useEffect(() => {
+    const height = document.querySelectorAll('header')[0].offsetHeight;
+    setHeaderHeight(height * 1.1);
+  }, [window.innerWidth, window.innerHeight]);
+
   // Don't render the graph at all if no layers are present
   if (isEmpty(layers)) {
     console.error('No layers present in AreaGraph');
@@ -293,6 +300,7 @@ function AreaGraph({
           }
           tooltipSize={tooltipSize}
           isBiggerThanMobile={isBiggerThanMobile}
+          headerHeight={headerHeight}
         >
           {(props) => tooltip(props)}
         </AreaGraphTooltip>
