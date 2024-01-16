@@ -5,7 +5,6 @@ from pydantic import (
     BaseModel,
     Field,
     NonNegativeFloat,
-    NonNegativeInt,
     PositiveInt,
     confloat,
     root_validator,
