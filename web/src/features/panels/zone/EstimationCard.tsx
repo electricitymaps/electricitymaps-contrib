@@ -1,6 +1,5 @@
 import Badge from 'components/Badge';
-import { he } from 'date-fns/locale';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 
 type CardProps = {
@@ -8,19 +7,22 @@ type CardProps = {
   estimationType: 'ts_avg' | 'data_outage';
 };
 
-export function EstimationCard({ cardType = 'default', estimationType }: CardProps) {
+export default function EstimationCard({
+  cardType = 'default',
+  estimationType,
+}: CardProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const handleToggleCollapse = () => {
     setIsCollapsed((previous) => !previous);
   };
   const bgColorClasses = {
-    default: 'bg-[#F5F5F5] dark:bg-[#1F2937]',
-    warning: 'bg-[#B45309]/20 dark:bg-[#F59E0B]/20',
+    default: 'bg-neutral-100 dark:bg-gray-800',
+    warning: 'bg-amber-700/20 dark:bg-amber-500/20',
   }[cardType];
-  const textColorTitle = 'text-[#B45309] dark:text-[#F59E0B]';
-  const textColorBody = 'text-[#525252] dark:text-[#A3A3A3]';
-  const textColorLink = 'text-[#000000] dark:text-[#FFFFFF]';
-  const borderColor = 'border-[#E5E5E5] dark:border-[#374151]';
+  const textColorTitle = 'text-amber-700 dark:text-amber-500';
+  const textColorBody = 'text-neutral-600 dark:text-neutral-400';
+  const textColorLink = 'text-black dark:text-white';
+  const borderColor = 'border-neutral-200 dark:border-gray-700';
 
   const title = {
     ts_avg: 'Data is estimated',
@@ -84,5 +86,3 @@ export function EstimationCard({ cardType = 'default', estimationType }: CardPro
     </div>
   );
 }
-
-export default EstimationCard;
