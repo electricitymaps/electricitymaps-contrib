@@ -4,18 +4,54 @@ bounding_box:
   - - -103.53947
     - 49.5011000000001
 capacity:
-  battery storage: 0
-  biomass: 0
-  coal: 1814.7
-  gas: 259.6
-  geothermal: 0
-  hydro: 716.4
-  hydro storage: 0
-  nuclear: 0
-  oil: 72.7
-  solar: 97
-  unknown: 0
-  wind: 1217.4
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1814.7
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 258.0
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 649.7
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 68.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 177.0
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 452.9
 comment: Northwestern Energy (Nwmt)
 contributors:
   - systemcatch

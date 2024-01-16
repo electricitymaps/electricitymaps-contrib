@@ -4,18 +4,54 @@ bounding_box:
   - - -95.95176
     - 48.07463
 capacity:
-  battery storage: 8.2
-  biomass: 3.2
-  coal: 4372.3
-  gas: 1792
-  geothermal: 0
-  hydro: 1550
-  hydro storage: 208.5
-  nuclear: 0
-  oil: 158.8
-  solar: 248.9
-  unknown: 11.5
-  wind: 1236.9
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 10.3
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 3.2
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 5625.1
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2026.8
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 698.6
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 208.5
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 21.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 243.9
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 10.6
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1236.9
 comment: Western Area Power Administration - Rocky Mountain Region
 contributors:
   - systemcatch

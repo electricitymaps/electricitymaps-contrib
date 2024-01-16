@@ -83,11 +83,10 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Intensità di carbonio nell'ultimo %1$s",
       "hourly": "Intensità di carbonio nelle ultime 24 ore",
       "daily": "Intensità di carbonio nell'ultimo mese",
       "monthly": "Intensità di carbonio nell'ultimo anno",
-      "yearly": "Intensità di carbonio negli ultimi 5 anni"
+      "default": "Intensità di carbonio nell'ultimo %1$s"
     },
     "emissions": {
       "default": "Emissioni nell'ultimo %1$s",
@@ -111,25 +110,22 @@
       "yearly": "Emissioni prodotte negli ultimi 5 anni"
     },
     "electricityorigin": {
-      "default": "Origine dell'elettricità nell' ultimo %1$s",
       "hourly": "Origine dell'elettricità nelle ultime 24 ore",
       "daily": "Origine dell'elettricità nell'ultimo mese",
       "monthly": "Origine dell'elettricità nell'ultimo anno",
-      "yearly": "Origine dell'elettricità negli ultimi 5 anni"
+      "default": "Origine dell'elettricità nell' ultimo %1$s"
     },
     "electricityproduction": {
-      "default": "Produzione elettrica nell' ultimo %1$s",
       "hourly": "Produzione elettrica nelle ultime 24 ore",
       "daily": "Produzione elettrica nell'ultimo mese",
       "monthly": "Produzione elettrica nell'ultimo anno",
-      "yearly": "Produzione elettrica negli ultimi 5 anni"
+      "default": "Produzione elettrica nell' ultimo %1$s"
     },
     "electricityprices": {
-      "default": "Prezzi dell'elettricità nell' ultimo %1$s",
       "hourly": "Prezzi dell'elettricità nelle ultime 24 ore",
       "daily": "Prezzi dell'elettricità nell'ultimo mese",
       "monthly": "Prezzi dell'elettricità nell'ultimo anno",
-      "yearly": "Prezzi dell'elettricità negli ultimi 5 anni"
+      "default": "Prezzi dell'elettricità nell' ultimo %1$s"
     },
     "Getdata": "Ottieni dati orari storici, in tempo reale e previsioni con le API di Electricity Maps"
   },

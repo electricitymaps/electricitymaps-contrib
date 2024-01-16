@@ -4,18 +4,54 @@ bounding_box:
   - - -110.070620884
     - 36.710648233
 capacity:
-  battery storage: 50
-  biomass: 0
-  coal: 1765.8
-  gas: 1584.7
-  geothermal: 0
-  hydro: 0
-  hydro storage: 0
-  nuclear: 0
-  oil: 0
-  solar: 461.5
-  unknown: 0
-  wind: 379.8
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 50.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1765.8
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1530.7
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 474.0
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 379.8
 comment: Tucson Electric Power Company
 contributors:
   - systemcatch
