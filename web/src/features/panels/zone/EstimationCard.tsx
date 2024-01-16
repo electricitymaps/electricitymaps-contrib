@@ -24,20 +24,21 @@ export default function EstimationCard({
   const textColorLink = 'text-black dark:text-white';
   const borderColor = 'border-neutral-200 dark:border-gray-700';
 
-  const title = {
-    ts_avg: 'Data is estimated',
-    data_outage: 'Data is estimated',
-  }[estimationType];
-  const pillText = {
-    ts_avg: 'Delayed',
-    data_outage: 'Unavailable',
-  }[estimationType];
-  const bodyText = {
-    ts_avg:
-      'The data for this hour has not yet been reported. The displayed values are estimates and will be replaced with measured data once available.',
-    data_outage:
-      'The data provider (EIA) for this zone is currently down. The displayed values are estimates and will be replaced by measured data once available again. We expect to resolve this issues shortly!',
-  }[estimationType];
+  const estimationTypes = {
+    ts_avg: {
+      title: 'Data is estimated',
+      pillText: 'Delayed',
+      bodyText:
+        'The data for this hour has not yet been reported. The displayed values are estimates and will be replaced with measured data once available.',
+    },
+    data_outage: {
+      title: 'Data is estimated',
+      pillText: 'Unavailable',
+      bodyText:
+        'The data provider (EIA) for this zone is currently down. The displayed values are estimates and will be replaced by measured data once available again. We expect to resolve this issues shortly!',
+    },
+  };
+  const { title, pillText, bodyText } = estimationTypes[estimationType];
 
   return (
     <div
@@ -71,7 +72,6 @@ export default function EstimationCard({
             <div className={`text-sm font-normal ${textColorBody}`}>{bodyText}</div>
             <div className="">
               <a
-                style={{ textDecoration: 'none' }}
                 href="https://www.electricitymaps.com/methodology"
                 target="_blank"
                 rel="noreferrer"
