@@ -582,7 +582,7 @@ class TestProductionBreakdownList(unittest.TestCase):
             source="trust.me",
         )
         output = ProductionBreakdownList.filter_expected_modes(production_list_1)
-        assert len(output.events) == 1
+        assert len(output) == 1
         assert output.events[0].production.corrected_negative_modes == {"solar"}
 
     def test_not_strict_mode(self):
@@ -602,7 +602,29 @@ class TestProductionBreakdownList(unittest.TestCase):
             ),
             source="trust.me",
         )
-        assert len(production_list.events) == 1
+        output = ProductionBreakdownList.filter_expected_modes(production_list)
+        assert len(output) == 1
+
+    def test_filter_by_passed_modes(self):
+        production_list = ProductionBreakdownList(logging.Logger("test"))
+        production_list.append(
+            zoneKey=ZoneKey("US-NW-PGE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(
+                wind=10,
+                coal=None,
+                solar=10,
+                gas=10,
+                unknown=10,
+                hydro=10,
+                oil=10,
+            ),
+            source="trust.me",
+        )
+        output = ProductionBreakdownList.filter_expected_modes(
+            production_list, by_passed_modes=["biomass"]
+        )
+        assert len(output) == 1
 
 
 class TestTotalProductionList(unittest.TestCase):

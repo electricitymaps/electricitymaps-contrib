@@ -582,7 +582,9 @@ def fetch_production_mix(
     events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
     )
-    filtered_events = ProductionBreakdownList.filter_expected_modes(events)
+    filtered_events = ProductionBreakdownList.filter_expected_modes(
+        events, by_passed_modes=["biomass"]
+    )
     return filtered_events.to_list()
 
 
