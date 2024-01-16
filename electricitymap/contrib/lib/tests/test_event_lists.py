@@ -553,6 +553,16 @@ class TestProductionBreakdownList(unittest.TestCase):
         assert len(output.events) == 1
         assert output.events[0].production.corrected_negative_modes == {"solar"}
 
+    def test_not_strict_mode(self):
+        production_list = ProductionBreakdownList(logging.Logger("test"))
+        production_list.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, coal=None, solar=10, biomass=10, gas=10, unknown=10, hydro=10, oil=10),
+            source="trust.me",
+        )
+        assert len(production_list.events) == 1
+
 class TestTotalProductionList(unittest.TestCase):
     def test_total_production_list(self):
         total_production = TotalProductionList(logging.Logger("test"))

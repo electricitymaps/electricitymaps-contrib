@@ -248,7 +248,7 @@ class ProductionBreakdownList(AggregatableEventList):
             production_breakdowns.events.append(prod)
         return production_breakdowns
     @staticmethod
-    def filter_expected_modes(breakdowns: "ProductionBreakdownList") -> "ProductionBreakdownList":
+    def filter_expected_modes(breakdowns: "ProductionBreakdownList", strict_storage: bool = False) -> "ProductionBreakdownList":
         """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
         This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
         TODO: Remove this method once the outlier detection is able to handle it.
@@ -261,6 +261,8 @@ class ProductionBreakdownList(AggregatableEventList):
             required_modes = [
                 mode for mode, capacity_value in capacity.items() if capacity_value > 0
             ]
+            if not strict_storage:
+                required_modes = [mode for mode in required_modes if "storage" not in mode]
             for mode in required_modes:
                 value = event.get_value(mode)
                 if value is None and mode not in event.production.corrected_negative_modes:
