@@ -501,7 +501,57 @@ class TestProductionBreakdownList(unittest.TestCase):
             "solar",
             "biomass",
         }
+    def test_filter_expected_modes(self):
+        production_list_1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, coal=None, solar=10, biomass=10, gas=10, unknown=10, hydro=10, oil=10),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
+            production=ProductionMix(wind=12, coal=12, solar=12, gas=12, unknown=12, hydro=12),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 4, tzinfo=timezone.utc),
+            production=ProductionMix(wind=12, coal=12, solar=12, gas=12, unknown=12, hydro=12),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        output = ProductionBreakdownList.filter_expected_modes(production_list_1)
+        assert len(output.events) == 1
+        assert output.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
 
+    def test_filter_expected_modes_none(self):
+        production_list_1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, coal=None, solar=None, biomass=10, gas=10, unknown=10, hydro=10, oil=10),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        output = ProductionBreakdownList.filter_expected_modes(production_list_1)
+        assert len(output.events) == 0
+
+    def test_filter_corrected_negatives(self):
+        production_list_1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list_1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, coal=None, solar=-10, biomass=10, gas=10, unknown=10, hydro=10, oil=10),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        output = ProductionBreakdownList.filter_expected_modes(production_list_1)
+        assert len(output.events) == 1
+        assert output.events[0].production.corrected_negative_modes == {"solar"}
 
 class TestTotalProductionList(unittest.TestCase):
     def test_total_production_list(self):

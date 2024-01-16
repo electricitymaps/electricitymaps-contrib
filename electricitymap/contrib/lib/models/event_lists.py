@@ -249,7 +249,7 @@ class ProductionBreakdownList(AggregatableEventList):
         return production_breakdowns
     @staticmethod
     def filter_expected_modes(breakdowns: "ProductionBreakdownList") -> "ProductionBreakdownList":
-        """A temporary method to filter out malformed production breakdowns which are missing expected modes.
+        """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
         This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
         TODO: Remove this method once the outlier detection is able to handle it.
         """
@@ -263,10 +263,10 @@ class ProductionBreakdownList(AggregatableEventList):
             ]
             for mode in required_modes:
                 value = event.get_value(mode)
-                if value is None:
+                if value is None and mode not in event.production.corrected_negative_modes:
                     valid = False
                     events.logger.warning(
-                        f"Discarded production event for {event.zone_key} at {event.datetime} due to missing {mode} value."
+                        f"Discarded production event for {event.zoneKey} at {event.datetime} due to missing {mode} value."
                     )
                     break
             if valid:
