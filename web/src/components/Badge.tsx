@@ -2,26 +2,28 @@ import { FiAlertTriangle } from 'react-icons/fi';
 
 type BadgeProps = {
   children: string;
-  type?: 'default' | 'warning';
-  className?: string;
+  type: 'outage' | 'aggregated' | 'estimated';
 };
 
-export default function Badge({ children, type = 'default', className }: BadgeProps) {
+export default function Badge({ children, type }: BadgeProps) {
   // set background and text color classes depending on type
-  const bgColorClasses = {
-    default: 'bg-neutral-200 dark:bg-gray-700',
-    warning: 'bg-amber-700/20 dark:bg-amber-500/20',
-  }[type];
-  const textColorClasses = {
-    default: 'text-black dark:text-white',
-    warning: 'text-amber-700 dark:text-amber-500',
-  }[type];
+  const bgColorClasses =
+    type == 'estimated'
+      ? 'bg-neutral-200 dark:bg-gray-700'
+      : 'bg-amber-700/20 dark:bg-amber-500/20';
+  const textColorClasses =
+    type == 'estimated'
+      ? 'text-black dark:text-white'
+      : 'text-amber-700 dark:text-amber-500';
 
   return (
     <span
-      className={`flex flex-row gap-1 rounded-full px-2 py-1 text-[10px] font-semibold ${bgColorClasses} ${textColorClasses} ${className}`}
+      className={`flex flex-row gap-1 rounded-full px-2 py-1 text-[10px] font-semibold ${bgColorClasses} ${textColorClasses}`}
     >
-      {type == 'warning' && <FiAlertTriangle className="text-[14px]" />}
+      {type == 'outage' && <FiAlertTriangle className="text-[14px]" />}
+      {type == 'aggregated' && (
+        <div className=" h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]" />
+      )}
       {children}
     </span>
   );

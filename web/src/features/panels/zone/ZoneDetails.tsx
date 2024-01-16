@@ -3,6 +3,7 @@ import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import { EstimationProps } from 'types';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -61,9 +62,17 @@ export default function ZoneDetails(): JSX.Element {
   const { estimationMethod } = selectedData || {};
   const isEstimated = estimationMethod !== undefined;
   const isAggregated = timeAverage !== TimeAverages.HOURLY;
+  const zoneMessage = data?.zoneMessage;
+  const isOutage = zoneMessage !== undefined && zoneMessage?.issue != 'None';
+  const outageMessage = zoneMessage?.issue;
 
-  const cardType = isAggregated ? 'warning' : 'default';
-  const estimationType = isAggregated ? 'data_outage' : 'ts_avg';
+  const estimationProps: EstimationProps = {
+    estimationMethod,
+    isEstimated,
+    isAggregated,
+    isOutage,
+    outageMessage,
+  };
 
   return (
     <>
@@ -73,11 +82,8 @@ export default function ZoneDetails(): JSX.Element {
         isEstimated={isEstimated}
       />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
-        {isEstimated && (
-          <EstimationCard
-            cardType={cardType}
-            estimationType={estimationType}
-          ></EstimationCard>
+        {(isEstimated || isAggregated || isOutage) && (
+          <EstimationCard estimationData={estimationProps}></EstimationCard>
         )}
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
