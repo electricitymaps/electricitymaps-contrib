@@ -142,7 +142,7 @@ class ExchangeList(AggregatableEventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        netFlow: float,
+        netFlow: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Exchange.create(
@@ -177,8 +177,10 @@ class ExchangeList(AggregatableEventList):
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True
         )
-        for datetime, row in exchange_df.iterrows():
-            exchanges.append(zone_key, datetime.to_pydatetime(), sources, row["netFlow"], source_type)  # type: ignore
+        for dt, row in exchange_df.iterrows():
+            exchanges.append(
+                zone_key, dt.to_pydatetime(), sources, row["netFlow"], source_type
+            )  # type: ignore
 
         return exchanges
 
@@ -253,7 +255,7 @@ class TotalProductionList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        value: float,
+        value: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalProduction.create(
@@ -271,7 +273,7 @@ class TotalConsumptionList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        consumption: float,
+        consumption: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalConsumption.create(
@@ -289,7 +291,7 @@ class PriceList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        price: float,
+        price: float | None,
         currency: str,
         sourceType: EventSourceType = EventSourceType.measured,
     ):

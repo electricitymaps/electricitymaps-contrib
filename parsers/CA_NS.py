@@ -78,20 +78,21 @@ def fetch_production(
         production_mix = ProductionMix()
         production_mix.add_value("biomass", load * mix["Biomass"] / 100)
         production_mix.add_value("coal", load * mix["Solid Fuel"] / 100)
-        production_mix.add_value("gas", load * mix["CT's"] / 100)
         production_mix.add_value("gas", load * mix["HFO/Natural Gas"] / 100)
         production_mix.add_value("gas", load * mix["LM 6000's"] / 100)
         production_mix.add_value("hydro", load * mix["Hydro"] / 100)
+        production_mix.add_value("oil", load * mix["CT's"] / 100)
         production_mix.add_value("wind", load * mix["Wind"] / 100)
         # Sanity checks: verify that reported production doesn't exceed listed
         # capacity by a lot. In particular, we've seen error cases where hydro
         # production ends up calculated as 900 MW which greatly exceeds known
-        # capacity of 418 MW.
+        # capacity of around 520 MW.
         if (
             100 < (production_mix.biomass or 0)
             or 1300 < (production_mix.coal or 0)
             or 700 < (production_mix.gas or 0)
-            or 500 < (production_mix.hydro or 0)
+            or 600 < (production_mix.hydro or 0)
+            or 300 < (production_mix.oil or 0)
             or 700 < (production_mix.wind or 0)
         ):
             logger.warning(
@@ -161,5 +162,5 @@ if __name__ == "__main__":
     pprint(fetch_production())
     print('fetch_exchange("CA-NS", "CA-NB") ->')
     pprint(fetch_exchange("CA-NS", "CA-NB"))
-    print('fetch_exchange("CA-NL", "CA-NS") ->')
+    print('fetch_exchange("CA-NL-NF", "CA-NS") ->')
     pprint(fetch_exchange("CA-NL-NF", "CA-NS"))

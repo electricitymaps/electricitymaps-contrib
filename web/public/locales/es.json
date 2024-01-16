@@ -83,11 +83,10 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Intensidad de carbono en los últimos %1$s",
       "hourly": "Intensidad de carbono en las últimas 24 horas",
       "daily": "Intensidad de carbono en el último mes",
       "monthly": "Intensidad de carbono en el último año",
-      "yearly": "Intensidad de carbono en los últimos 5 años"
+      "default": "Intensidad de carbono en los últimos %1$s"
     },
     "Getdata": "Obtener datos históricos por horas y en tiempo real + pronóstico con la API de Electricity Maps",
     "not-enough-data": "No hay datos suficientes disponibles para mostrar el gráfico",
@@ -156,7 +155,7 @@
   "misc": {
     "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
     "oops": "¡Ups! Estamos teniendo problemas con el servidor. Lo intentaremos de nuevo en unos segundos.",
-    "newversion": "¡Hay disponible una nueva versión! Pulsa <a onClick=\"location.reload(true);\">aquí</a> para recargar.",
+    "newversion": "¡Hay disponible una nueva versión!",
     "webgl-not-supported": "No se puede mostrar el mapa porque este navegador no es compatible con WebGL.",
     "retrynow": "Vuelve a intentarlo",
     "database-ad": "¿Buscas datos históricos? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
@@ -164,7 +163,9 @@
     "legend": "Leyenda",
     "faq": "Preguntas frecuentes",
     "privacyPolicy": "Política de privacidad",
-    "legalNotice": "Aviso legal"
+    "legalNotice": "Aviso legal",
+    "dismiss": "Descartar",
+    "reload": "Recargar"
   },
   "wind": "energía eólica",
   "windDataError": "Los datos para la energía eólica actualmente no están disponibles",

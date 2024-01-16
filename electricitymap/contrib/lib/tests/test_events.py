@@ -2,9 +2,9 @@ import logging
 import unittest
 from datetime import datetime, timezone
 from unittest.mock import patch
+from zoneinfo import ZoneInfo
 
 import freezegun
-import pytz
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
@@ -42,6 +42,16 @@ class TestExchange(unittest.TestCase):
         assert exchange.netFlow == -1
 
     def test_raises_if_invalid_exchange(self):
+        # This should raise a ValueError because the netFlow is None.
+        with self.assertRaises(ValueError):
+            Exchange(
+                zoneKey=ZoneKey("AT->DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                netFlow=None,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the timezone is missing.
         with self.assertRaises(ValueError):
             Exchange(
                 zoneKey=ZoneKey("AT->DE"),
@@ -110,6 +120,15 @@ class TestConsumption(unittest.TestCase):
         assert consumption.source == "trust.me"
 
     def test_raises_if_invalid_consumption(self):
+        # This should raise a ValueError because the consumption is None.
+        with self.assertRaises(ValueError):
+            TotalConsumption(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                consumption=None,
+                source="trust.me",
+            )
+
         with self.assertRaises(ValueError):
             TotalConsumption(
                 zoneKey=ZoneKey("ATT"),
@@ -161,6 +180,16 @@ class TestPrice(unittest.TestCase):
         assert price.currency == "EUR"
 
     def test_invalid_price_raises(self):
+        # This should raise a ValueError because the price is None.
+        with self.assertRaises(ValueError):
+            Price(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                price=None,
+                source="trust.me",
+                currency="EUR",
+            )
+
         with self.assertRaises(ValueError):
             Price(
                 zoneKey=ZoneKey("ATT"),
@@ -275,12 +304,12 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
             mock_warning.assert_called_once()
-            assert breakdown.production.hydro == None
+            assert breakdown.production.hydro is None
             assert breakdown.production.wind == 10
 
             dict_form = breakdown.to_dict()
             assert dict_form["production"]["wind"] == 10
-            assert dict_form["production"]["hydro"] == None
+            assert dict_form["production"]["hydro"] is None
 
     def test_self_report_negative_value(self):
         mix = ProductionMix()
@@ -299,7 +328,7 @@ class TestProductionBreakdown(unittest.TestCase):
             )
             mock_warning.assert_called_once()
             assert breakdown.production.wind == 0
-            assert breakdown.production.biomass == None
+            assert breakdown.production.biomass is None
 
     def test_unknown_production_mode_raises(self):
         mix = ProductionMix()
@@ -333,7 +362,7 @@ class TestProductionBreakdown(unittest.TestCase):
     def test_non_forecasted_points_in_future(self):
         mix = ProductionMix(wind=10)
         with self.assertRaises(ValueError):
-            breakdown = ProductionBreakdown(
+            _breakdown = ProductionBreakdown(
                 zoneKey=ZoneKey("DE"),
                 datetime=datetime(2023, 3, 1, tzinfo=timezone.utc),
                 production=mix,
@@ -346,12 +375,12 @@ class TestProductionBreakdown(unittest.TestCase):
         mix = ProductionMix(wind=10)
         breakdown = ProductionBreakdown(
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 1, 1, 5, tzinfo=pytz.timezone("Asia/Tokyo")),
+            datetime=datetime(2023, 1, 1, 5, tzinfo=ZoneInfo("Asia/Tokyo")),
             production=mix,
             source="trust.me",
         )
         assert breakdown.datetime == datetime(
-            2023, 1, 1, 5, tzinfo=pytz.timezone("Asia/Tokyo")
+            2023, 1, 1, 5, tzinfo=ZoneInfo("Asia/Tokyo")
         )
 
     def test_static_create_logs_error(self):
@@ -376,7 +405,7 @@ class TestProductionBreakdown(unittest.TestCase):
         dict_form = breakdown.to_dict()
         assert dict_form["production"].keys() == {"wind", "solar"}
         assert dict_form["production"]["wind"] == 10
-        assert dict_form["production"]["solar"] == None
+        assert dict_form["production"]["solar"] is None
 
     def test_set_modes_all_present_add_mode(self):
         mix = ProductionMix(wind=10)
@@ -390,7 +419,7 @@ class TestProductionBreakdown(unittest.TestCase):
         dict_form = breakdown.to_dict()
         assert dict_form["production"].keys() == {"wind", "solar"}
         assert dict_form["production"]["wind"] == 10
-        assert dict_form["production"]["solar"] == None
+        assert dict_form["production"]["solar"] is None
 
 
 class TestTotalProduction(unittest.TestCase):
@@ -417,6 +446,43 @@ class TestTotalProduction(unittest.TestCase):
                 source="trust.me",
             )
             mock_error.assert_called_once()
+
+    def test_raises_if_invalid_generation(self):
+        # This should raise a ValueError because the generation is None.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=None,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the timezone is missing.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1),
+                value=1,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the zoneKey is not a ZoneKey.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("ATT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=1,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the value is negative.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=-1,
+                source="trust.me",
+            )
 
 
 class TestMixes(unittest.TestCase):
@@ -451,7 +517,7 @@ class TestAddValue(unittest.TestCase):
     def test_production_with_negative_value_expect_none(self):
         mix = ProductionMix()
         mix.add_value("wind", -10)
-        assert mix.wind == None
+        assert mix.wind is None
         assert mix.corrected_negative_modes == {"wind"}
 
     def test_production_with_negative_value_and_correct_with_none(self):
@@ -487,7 +553,7 @@ class TestAddValue(unittest.TestCase):
     def test_storage_with_none(self):
         mix = StorageMix()
         mix.add_value("hydro", None)
-        assert mix.hydro == None
+        assert mix.hydro is None
         mix.add_value("hydro", -5)
         assert mix.hydro == -5
         mix.add_value("hydro", None)

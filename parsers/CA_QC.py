@@ -2,10 +2,8 @@ from datetime import datetime
 from logging import Logger, getLogger
 from pprint import pprint
 from typing import Any
+from zoneinfo import ZoneInfo
 
-# The arrow library is used to handle datetimes
-import arrow
-from pytz import timezone
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -21,7 +19,7 @@ DATA_PATH = "data/documents-donnees/donnees-ouvertes/json"
 PRODUCTION_URL = f"{US_PROXY}/{DATA_PATH}/production.json{HOST_PARAM}"
 CONSUMPTION_URL = f"{US_PROXY}/{DATA_PATH}/demande.json{HOST_PARAM}"
 SOURCE = "hydroquebec.com"
-TIMEZONE = timezone("America/Montreal")
+TIMEZONE = ZoneInfo("America/Montreal")
 
 
 def fetch_production(
@@ -37,7 +35,8 @@ def fetch_production(
     now = datetime.now(tz=TIMEZONE)
     for elem in data:
         values = elem["valeurs"]
-        timestamp = arrow.get(elem["date"], tzinfo=TIMEZONE).datetime
+        if isinstance(elem["date"], str):
+            timestamp = datetime.fromisoformat(elem["date"]).replace(tzinfo=TIMEZONE)
         # The datasource returns future timestamps or recent with a 0.0 value, so we ignore them.
         if timestamp <= now and values.get("total", 0) > 0:
             production.append(
@@ -71,7 +70,7 @@ def fetch_consumption(
         if "demandeTotal" in elem["valeurs"]:
             consumption.append(
                 zoneKey=zone_key,
-                datetime=arrow.get(elem["date"], tzinfo=TIMEZONE).datetime,
+                datetime=datetime.fromisoformat(elem["date"]).replace(tzinfo=TIMEZONE),
                 consumption=elem["valeurs"]["demandeTotal"],
                 source=SOURCE,
             )

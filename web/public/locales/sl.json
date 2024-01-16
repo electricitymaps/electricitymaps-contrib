@@ -45,7 +45,7 @@
   "country-panel": {
     "source": "Vir",
     "carbonintensity": "Intenzivnost ogljika",
-    "lowcarbon": "nozkoogljična",
+    "lowcarbon": "nizkoogljična",
     "renewable": "obnovljiva",
     "electricityproduction": "Proizvodnja električne energije",
     "electricityconsumption": "Poraba električne energije",
@@ -83,11 +83,10 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Intenzivnost ogljika v zadnjih%1$s",
       "hourly": "Intenzivnost ogljika v zadnjih 24 urah",
       "daily": "Intenzivnost ogljika v zadnjem mesecu",
       "monthly": "Intenzivnost ogljika v zadnjem letu",
-      "yearly": "Intenzivnost ogljika v zadnjih 5 letih"
+      "default": "Intenzivnost ogljika v zadnjih%1$s"
     },
     "emissions": {
       "default": "Emisije v zadnji(h) %1$s"
@@ -157,7 +156,7 @@
   "misc": {
     "maintitle": "Trenutne 24/7 emisije CO₂ porabe električne energije",
     "oops": "Ups! Imamo težave pri doseganju strežnika. Poskusili bomo znova čez nekaj sekund.",
-    "newversion": "Na voljo je nova različica! Pritisnite <a onClick=\"location.reload(true);\">tukaj</a> za ponovno nalaganje.",
+    "newversion": "Na voljo je nova različica!",
     "webgl-not-supported": "Zemljevida ni mogoče upodobiti, ker ta brskalnik ne podpira WebGL.",
     "retrynow": "Poskusi ponovno",
     "database-ad": "Iščete zgodovinske podatke? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preverite našo bazo podatkov!</a>",
@@ -165,7 +164,9 @@
     "legend": "Legenda",
     "faq": "Pogosto postavljena vprašanja",
     "privacyPolicy": "Politika zasebnosti",
-    "legalNotice": "Pravno obvestilo"
+    "legalNotice": "Pravno obvestilo",
+    "dismiss": "Opusti",
+    "reload": "Znova naloži"
   },
   "wind": "veter",
   "windDataError": "Podatki o vetrni energiji trenutno niso na voljo",
@@ -294,43 +295,43 @@
       "zoneName": "Avstrija"
     },
     "AU-NSW": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Novi Južni Wales"
     },
     "AU-NT": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Severni teritoriji"
     },
     "AU-QLD": {
-      "countryName": "Australia",
+      "countryName": "Avstralija",
       "zoneName": "Queensland"
     },
     "AU-SA": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Južna Avstralija"
     },
     "AU-TAS": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Tasmanija"
     },
     "AU-TAS-CBI": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Cape Barren otok"
     },
     "AU-TAS-KI": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "King otok"
     },
     "AU-TAS-FI": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Flinders otok"
     },
     "AU-VIC": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Victoria"
     },
     "AU-WA": {
-      "countryName": "Australij",
+      "countryName": "Avstralija",
       "zoneName": "Zahodna Avstralija"
     },
     "AU-WA-RI": {
@@ -721,7 +722,7 @@
       "zoneName": "Gambija"
     },
     "GN": {
-      "zoneName": "Gvineja  "
+      "zoneName": "Gvineja"
     },
     "GP": {
       "zoneName": "Guadeloupe"
@@ -1152,7 +1153,7 @@
       "zoneName": "Severno-zahodna"
     },
     "MX-OC": {
-      "countryName": "Mexico",
+      "countryName": "Mehika",
       "zoneName": "Zahodna"
     },
     "MX-OR": {
@@ -1210,7 +1211,7 @@
       "zoneName": "Jugo-zahodna Norveška"
     },
     "NO-NO3": {
-      "countryName": "Norway",
+      "countryName": "Norveška",
       "zoneName": "Srednja Norveška"
     },
     "NO-NO4": {
@@ -1267,7 +1268,7 @@
       "zoneName": "Pakistan"
     },
     "PL": {
-      "zoneName": "Poland"
+      "zoneName": "Poljska"
     },
     "PM": {
       "zoneName": "Sveti Pierre in Miquelon"
@@ -1308,7 +1309,7 @@
       "zoneName": "Romunija"
     },
     "RS": {
-      "zoneName": "Serbija"
+      "zoneName": "Srbija"
     },
     "RU": {
       "zoneName": "Rusija"
@@ -1469,7 +1470,7 @@
       "zoneName": "Tanzanija"
     },
     "UA": {
-      "zoneName": "Ukrajiva"
+      "zoneName": "Ukrajina"
     },
     "UA-CR": {
       "countryName": "Ukrajina",
@@ -1766,7 +1767,7 @@
       "zoneName": "Vatikan"
     },
     "VC": {
-      "zoneName": "SVeti Vincent in Grenadini"
+      "zoneName": "Sveti Vincent in Grenadini"
     },
     "VE": {
       "zoneName": "Venezuela"

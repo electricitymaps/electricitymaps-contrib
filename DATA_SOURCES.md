@@ -95,9 +95,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Moldova: [MoldElectrica](http://www.moldelectrica.md/ro/activity/system_state)
 - Montenegro: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Namibia: [NamPower](http://www.nampower.com.na/Scada.aspx)
-- Netherlands:
-  - [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-  - [Energieopwek.nl](https://energieopwek.nl/)
+- Netherlands: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - New Zealand:
   - [Transpower](https://www.transpower.co.nz/power-system-live-data)
   - [Siesa](https://www.southlanddc.govt.nz/my-southland/siesa-2/what-sieasa-does/)
@@ -269,7 +267,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
 - Hungary:
   - Biomass: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246725019/PV+STATISZTIKA_HU_20230914_ig_v1.pdf)
+  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246841605/PV+STATISZTIKA_HU_20231001_ig_v1.pdf)
   - Other: [MAVIR](https://www.mavir.hu/web/mavir/energia-mix-eromuvi-beepitett-teljesitokepesseg-adatok)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
@@ -334,7 +332,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
   - Solar & wind: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Lithuania:
+  - Solar & Wind: [Litgrid](https://www.litgrid.eu/index.php/power-system/power-system-information/generation-capacity/546)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Luxembourg:
   - Hydro Storage: [Société Electrique de L'Our](http://www.seo.lu/fr/Activites-principales/PSW-Vianden/Installations/Donnees-techniques)
   - Other: [Institut luxembourgeois de régulation](https://data.public.lu/fr/datasets/la-production-denergie-electrique-au-luxembourg-1/)
@@ -369,6 +369,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Northern Ireland
   - Thermal capacity, battery storage: [Connections Register, April 2022](https://www.soni.ltd.uk/media/documents/20220414-Connections-Register-14-April-2022.pdf)
   - Renewables, smaller scale generation: [All-Island Generation Capacity Statement 2022-2031](https://www.soni.ltd.uk/media/documents/EirGrid_SONI_2022_Generation_Capacity_Statement_2022-2031.pdf)
+  - Coal Retirement: [BBC](https://web.archive.org/web/20231004055500/https://www.bbc.com/news/uk-northern-ireland-66957611)
 - Oman: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Panama:
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)

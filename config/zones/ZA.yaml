@@ -217,4 +217,5 @@ isRenewable:
     value: 1
 parsers:
   production: ESKOM.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: Africa/Johannesburg

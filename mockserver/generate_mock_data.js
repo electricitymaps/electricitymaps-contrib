@@ -1,6 +1,9 @@
 const axios = require('axios');
 const fs = require('fs');
 
+// API Version
+const API_VERSION = 'v7';
+
 const writeJSON = (fileName, obj, encoding = 'utf8') =>
   fs.writeFileSync(fileName, JSON.stringify(obj), encoding);
 
@@ -12,8 +15,8 @@ const fetchAndStoreData = async (url, savePath) => {
   return axios.get(url).then((res) => writeJSON(savePath, res.data));
 };
 
-const CORE_URL = 'http://localhost:8001/v6';
-const timeAggregates = ['hourly', 'daily', 'monthly', 'yearly'];
+const CORE_URL = `http://localhost:8001/${API_VERSION}`;
+const timeAggregates = ['last_hour', 'hourly', 'daily', 'monthly', 'yearly'];
 const detailsZones = ['DE', 'DK-DK2'];
 
 const generateMockData = async () => {
@@ -21,14 +24,16 @@ const generateMockData = async () => {
     try {
       await fetchAndStoreData(
         `${CORE_URL}/state/${agg}`,
-        `./public/v6/state/${agg}.json`
+        `./public/${API_VERSION}/state/${agg}.json`
       );
-      detailsZones.forEach(async (zoneId) => {
-        await fetchAndStoreData(
-          `${CORE_URL}/details/${agg}/${zoneId}`,
-          `./public/v7/details/${agg}/${zoneId}.json`
-        );
-      });
+      if (agg !== 'last_hour') {
+        detailsZones.forEach(async (zoneId) => {
+          await fetchAndStoreData(
+            `${CORE_URL}/details/${agg}/${zoneId}`,
+            `./public/${API_VERSION}/details/${agg}/${zoneId}.json`
+          );
+        });
+      }
     } catch (error) {
       console.error(error);
     }

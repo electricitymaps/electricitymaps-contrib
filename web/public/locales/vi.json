@@ -106,12 +106,14 @@
   "misc": {
     "maintitle": "Live CO₂ emissions of electricity consumption",
     "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-    "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
+    "newversion": "Một phiên bản mới có sẵn!",
     "retrynow": "Retry now",
     "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
     "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
     "legend": "Legend",
-    "faq": "Các câu hỏi thường gặp"
+    "faq": "Các câu hỏi thường gặp",
+    "dismiss": "Bỏ",
+    "reload": "Tải lại"
   },
   "wind": "wind",
   "solar": "solar",

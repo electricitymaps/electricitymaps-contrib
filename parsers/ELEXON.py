@@ -11,13 +11,12 @@ https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide
 """
 
 import re
-from datetime import date, datetime, time, timedelta
+from datetime import date, datetime, time, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
 
 import arrow
 import pandas as pd
-import pytz
 from requests import Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
@@ -37,8 +36,8 @@ ESO_DEMAND_DATA_UPDATE_ID = "177f6fa4-ae49-4182-81ea-0c6b35f26ca6"
 
 REPORT_META = {
     "B1620": {"expected_fields": 13, "skiprows": 5},
-    "FUELINST": {"expected_fields": 22, "skiprows": 1},
-    "INTERFUELHH": {"expected_fields": 11, "skiprows": 0},
+    "FUELINST": {"expected_fields": 23, "skiprows": 1},
+    "INTERFUELHH": {"expected_fields": 12, "skiprows": 0},
 }
 
 # 'hydro' key is for hydro production
@@ -76,6 +75,7 @@ FUEL_INST_MAPPING = {
     "INTELEC": "exchange",
     "INTIFA2": "exchange",
     "INTNSL": "exchange",
+    "INTVKL": "exchange",
 }
 
 ESO_FUEL_MAPPING = {
@@ -91,6 +91,7 @@ EXCHANGES = {
     "GB->IE": [6],
     "BE->GB": [7],
     "GB->NO-NO2": [10],  # North Sea Link
+    "DK-DK1->GB": [11],  # Viking Link
 }
 
 
@@ -114,7 +115,7 @@ def query_additional_eso_data(
 ) -> list[dict]:
     begin = (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d")
     end = (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d")
-    if target_datetime > (datetime.now(tz=pytz.UTC) - timedelta(days=30)):
+    if target_datetime > (datetime.now(tz=timezone.utc) - timedelta(days=30)):
         report_id = ESO_DEMAND_DATA_UPDATE_ID
     else:
         index = _create_eso_historical_demand_index(session)
@@ -290,12 +291,12 @@ def process_production_events(
     df = df.rename(columns={"wind_eso": "wind", "solar_eso": "solar"})
     df = df.groupby(df.columns, axis=1).sum()
     data_points = list()
-    for time in pd.unique(df.index):
-        time_df = df[df.index == time]
+    for time_t in pd.unique(df.index):
+        time_df = df[df.index == time_t]
 
         data_point = {
             "zoneKey": "GB",
-            "datetime": time.to_pydatetime(),
+            "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
             "production": dict(),
             "storage": dict(),
@@ -356,12 +357,12 @@ def parse_production(
 
     # loop through unique datetimes and create each data point
     data_points = list()
-    for time in pd.unique(df["datetime"]):
-        time_df = df[df["datetime"] == time]
+    for time_t in pd.unique(df["datetime"]):
+        time_df = df[df["datetime"] == time_t]
 
         data_point = {
             "zoneKey": "GB",
-            "datetime": time.to_pydatetime(),
+            "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
             "production": dict(),
             "storage": dict(),
@@ -544,3 +545,6 @@ if __name__ == "__main__":
 
     print("fetch_exchange(GB, NL) ->")
     print(fetch_exchange("GB", "NL"))
+
+    print("fetch_exchange(GB, DK-DK1) ->")
+    print(fetch_exchange("DK-DK1", "GB"))

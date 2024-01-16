@@ -1,13 +1,13 @@
 import unittest
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
-from pytz import timezone
 from requests import Session
 from requests_mock import ANY, Adapter
 
 from parsers import NTESMO
 
-australia = timezone("Australia/Darwin")
+australia = ZoneInfo("Australia/Darwin")
 
 
 class TestNTESMO(unittest.TestCase):
@@ -83,11 +83,15 @@ class TestNTESMO(unittest.TestCase):
 
         self.assertEqual(
             data_list[0]["datetime"],
-            australia.localize(datetime(year=2022, month=12, day=1, hour=4, minute=30)),
+            datetime(year=2022, month=12, day=1, hour=4, minute=30).replace(
+                tzinfo=australia
+            ),
         )
         self.assertEqual(
             data_list[-1]["datetime"],
-            australia.localize(datetime(year=2022, month=12, day=2, hour=4, minute=00)),
+            datetime(year=2022, month=12, day=2, hour=4, minute=00).replace(
+                tzinfo=australia
+            ),
         )
 
     def test_fetch_consumption(self):
@@ -109,9 +113,13 @@ class TestNTESMO(unittest.TestCase):
         # Check that the dates corresponds to two days:
         self.assertEqual(
             data_list[0]["datetime"],
-            australia.localize(datetime(year=2022, month=12, day=1, hour=4, minute=30)),
+            datetime(year=2022, month=12, day=1, hour=4, minute=30).replace(
+                tzinfo=australia
+            ),
         )
         self.assertEqual(
             data_list[-1]["datetime"],
-            australia.localize(datetime(year=2022, month=12, day=2, hour=4, minute=00)),
+            datetime(year=2022, month=12, day=2, hour=4, minute=00).replace(
+                tzinfo=australia
+            ),
         )

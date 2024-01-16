@@ -1,12 +1,11 @@
 # Archived reason: The SQL API is no longer available and a new DK parser was created.
 import json
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 
 import arrow  # the arrow library is used to handle datetimes
 import pandas as pd
-import pytz
 from requests import Session, exceptions
 
 from parsers.lib.config import refetch_frequency
@@ -50,9 +49,7 @@ def fetch_production(
                      WHERE "PriceArea" = \'{1}\' AND \
                      "HourUTC" >= (timestamp\'{2}\'-INTERVAL \'24 hours\') AND \
                      "HourUTC" <= timestamp\'{2}\' \
-                     ORDER BY "HourUTC" ASC'.format(
-        ids["energy_bal"], zone, timestamp
-    )
+                     ORDER BY "HourUTC" ASC'.format(ids["energy_bal"], zone, timestamp)
 
     url = f"https://api.energidataservice.dk/datastore_search_sql?sql={sqlstr}"
     response = r.get(url)
@@ -72,9 +69,7 @@ def fetch_production(
         if "error" in j and "info" in j["error"]:
             error = j["error"]["__type"]
             text = j["error"]["info"]["orig"]
-            msg = '"{}" fetching production data for {}: {}'.format(
-                error, zone_key, text
-            )
+            msg = f'"{error}" fetching production data for {zone_key}: {text}'
         else:
             msg = "error while fetching production data for {}: {}".format(
                 zone_key, json.dumps(j)
@@ -121,7 +116,7 @@ def fetch_production(
         }
 
         data["datetime"] = dt.to_pydatetime()
-        data["datetime"] = data["datetime"].replace(tzinfo=pytz.utc)
+        data["datetime"] = data["datetime"].replace(tzinfo=timezone.utc)
         for f in ["solar", "wind"] + fuels:
             data["production"][f] = df.loc[dt, f]
         output.append(data)
@@ -201,9 +196,7 @@ def fetch_exchange(
         if "error" in j and "info" in j["error"]:
             error = j["error"]["__type"]
             text = j["error"]["info"]["orig"]
-            msg = '"{}" fetching exchange data for {}: {}'.format(
-                error, sorted_keys, text
-            )
+            msg = f'"{error}" fetching exchange data for {sorted_keys}: {text}'
         else:
             msg = "error while fetching exchange data for {}: {}".format(
                 sorted_keys, json.dumps(j)
@@ -234,7 +227,7 @@ def fetch_exchange(
         }
 
         data["datetime"] = dt.to_pydatetime()
-        data["datetime"] = data["datetime"].replace(tzinfo=pytz.utc)
+        data["datetime"] = data["datetime"].replace(tzinfo=timezone.utc)
         data["netFlow"] = df.loc[dt, "netFlow"]
         output.append(data)
     return output

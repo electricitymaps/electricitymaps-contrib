@@ -1,15 +1,15 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from re import findall
+from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
-from pytz import timezone
 from requests import Response, Session
 
 from .lib.exceptions import ParserException
 
 IFRAME_URL = "https://grafik.kraftnat.ax/grafer/tot_inm_24h_15.php"
-TIME_ZONE = "Europe/Mariehamn"
+TIME_ZONE = ZoneInfo("Europe/Mariehamn")
 SOURCE = "kraftnat.ax"
 
 
@@ -74,7 +74,7 @@ def formated_data(
     """Format data to Electricity Map standards."""
     data_list = fetch_data(session, logger)
     data_list.reverse()
-    date_time = datetime.now(timezone(TIME_ZONE))
+    date_time = datetime.now(TIME_ZONE)
     date = date_time.replace(
         hour=int(data_list[0]["time"].split(":")[0]),
         minute=int(data_list[0]["time"].split(":")[1]),

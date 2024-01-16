@@ -1,6 +1,6 @@
-from json import loads
+import json
+from importlib import resources
 
-from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, GET, Adapter
 from snapshottest import TestCase
@@ -16,9 +16,15 @@ class TestCEB(TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_production(self):
-        data = resource_string("parsers.test.mocks.CEB", "response.text")
-
-        self.adapter.register_uri(GET, ANY, json=loads(data.decode("utf-8")))
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.CEB")
+                .joinpath("response.text")
+                .read_text()
+            ),
+        )
 
         production = fetch_production(zone_key=ZoneKey("LK"), session=self.session)
 

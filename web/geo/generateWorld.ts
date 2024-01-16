@@ -25,28 +25,46 @@ export const GEO_CONFIG = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 } as const;
 
+const STATES_CONFIG = {
+  STATES_PATH: path.resolve(
+    fileURLToPath(new URL('usa_states.geojson', import.meta.url))
+  ),
+  OUT_PATH: path.resolve(
+    fileURLToPath(new URL('../config/usa_states.json', import.meta.url))
+  ),
+  ERROR_PATH: path.resolve(fileURLToPath(new URL('.', import.meta.url))),
+  verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
+} as const;
+
 const EXCHANGE_OUT_PATH = path.resolve(
-  fileURLToPath(new URL('../config/excludedAggregatedExchanges.json', import.meta.url))
+  fileURLToPath(new URL('../config/excluded_aggregated_exchanges.json', import.meta.url))
 );
 
-const fc: WorldFeatureCollection = getJSON(GEO_CONFIG.WORLD_PATH);
-const config = getConfig();
-const aggregates = generateAggregates(fc, config.zones);
+const worldFC: WorldFeatureCollection = getJSON(GEO_CONFIG.WORLD_PATH);
+const statesFC: WorldFeatureCollection = getJSON(STATES_CONFIG.STATES_PATH);
 
-fc.features = aggregates;
+const config = getConfig();
+const aggregates = generateAggregates(worldFC, config.zones);
+
+worldFC.features = aggregates;
 
 // Rounds coordinates to 4 decimals
-coordEach(fc, (coord) => {
+coordEach(worldFC, (coord) => {
   coord[0] = round(coord[0], 4);
   coord[1] = round(coord[1], 4);
 });
 
-const { skipped } = generateTopojson(fc, GEO_CONFIG);
+const { skipped } = generateTopojson(worldFC, GEO_CONFIG);
+const { skipped: statesSkipped } = generateTopojson(statesFC, STATES_CONFIG);
 
 generateExchangesToIgnore(EXCHANGE_OUT_PATH, config.zones);
 
 if (skipped === true) {
   console.info('No changes to world.json');
 } else {
-  validateGeometry(fc, GEO_CONFIG);
+  validateGeometry(worldFC, GEO_CONFIG);
+}
+
+if (statesSkipped === true) {
+  console.info('No changes to usa_states.json');
 }

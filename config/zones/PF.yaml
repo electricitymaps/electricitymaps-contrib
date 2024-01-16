@@ -47,4 +47,5 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   production: PF.fetch_production
+  productionCapacity: IRENA.fetch_production_capacity
 timezone: Pacific/Tahiti

@@ -54,6 +54,7 @@ export async function getHeaders(route: string): Promise<Headers> {
     'electricitymap-token': token,
     'x-request-timestamp': timestamp,
     'x-signature': signature,
+    'Cache-Control': 'public,maxage=60',
   });
 }
 

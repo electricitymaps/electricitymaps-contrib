@@ -1,8 +1,7 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
-
-from pytz import timezone
+from zoneinfo import ZoneInfo
 
 # The request library is used to fetch content through HTTP
 from requests import Response, Session
@@ -36,7 +35,7 @@ def fetch_production(
           provided, we should default it to now. If past data is not available,
           raise a ParserException. Beware that the provided target_datetime is
           UTC. To convert to local timezone, you can use
-          `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
+          `target_datetime = target_datetime.astimezone(tz=ZoneInfo('America/New_York'))`.
         logger: an instance of a `logging.Logger` that will be passed by the
           backend. Information logged will be publicly available so that correct
           execution of the logger can be checked. All Exceptions will automatically
@@ -70,7 +69,7 @@ def fetch_production(
         # WHEN HISTORICAL DATA IS AVAILABLE
         # convert target datetime to local datetime
         url_date = target_datetime.astimezone(
-            timezone("America/Argentina/Buenos_Aires")
+            ZoneInfo("America/Argentina/Buenos_Aires")
         ).strftime("%Y-%m-%d")
         url = f"https://api.someservice.com/v1/productionmix/{url_date}"
     else:
@@ -152,7 +151,7 @@ def fetch_price(
       provided, we should default it to now. If past data is not available,
       raise a ParserException. Beware that the provided target_datetime is
       UTC. To convert to local timezone, you can use
-      `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
+      `target_datetime = target_datetime.astimezone(tz=ZoneInfo('America/New_York'))`.
     logger: an instance of a `logging.Logger` that will be passed by the
       backend. Information logged will be publicly available so that correct
       execution of the logger can be checked. All Exceptions will automatically
@@ -223,7 +222,7 @@ def fetch_exchange(
       provided, we should default it to now. If past data is not available,
       raise a ParserException. Beware that the provided target_datetime is
       UTC. To convert to local timezone, you can use
-      `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
+      `target_datetime = target_datetime.astimezone(tz=ZoneInfo('America/New_York'))`.
     logger: an instance of a `logging.Logger` that will be passed by the
       backend. Information logged will be publicly available so that correct
       execution of the logger can be checked. All Exceptions will automatically
@@ -243,7 +242,7 @@ def fetch_exchange(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    url = f"https://api.someservice.com/v1/exchange/latest"
+    url = "https://api.someservice.com/v1/exchange/latest"
     params = {
         "from": zone_key1,
         "to": zone_key2,
@@ -269,7 +268,7 @@ def fetch_exchange(
             # Here we assume that the net flow returned by the api is the flow from
             # country1 to country2. A positive flow indicates an export from country1
             # to country2. A negative flow indicates an import.
-            value=item["exchange"],
+            netFlow=item["exchange"],
             source="someservice.com",
         )
 
@@ -294,7 +293,7 @@ def fetch_consumption(
       provided, we should default it to now. If past data is not available,
       raise a ParserException. Beware that the provided target_datetime is
       UTC. To convert to local timezone, you can use
-      `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
+      `target_datetime = target_datetime.astimezone(tz=ZoneInfo('America/New_York'))`.
     logger: an instance of a `logging.Logger` that will be passed by the
       backend. Information logged will be publicly available so that correct
       execution of the logger can be checked. All Exceptions will automatically
@@ -314,7 +313,7 @@ def fetch_consumption(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    url = f"https://api.someservice.com/v1/consumption/latest"
+    url = "https://api.someservice.com/v1/consumption/latest"
     params = {
         "zone": zone_key,
     }
@@ -359,7 +358,7 @@ def fetch_total_production(
         provided, we should default it to now. If past data is not available,
         raise a ParserException. Beware that the provided target_datetime is
         UTC. To convert to local timezone, you can use
-        `target_datetime = target_datetime.astimezone(tz=timezone('America/New_York'))`.
+        `target_datetime = target_datetime.astimezone(tz=ZoneInfo('America/New_York'))`.
     logger: an instance of a `logging.Logger` that will be passed by the
       backend. Information logged will be publicly available so that correct
       execution of the logger can be checked. All Exceptions will automatically
@@ -371,7 +370,7 @@ def fetch_total_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    url = f"https://api.someservice.com/v1/production/latest"
+    url = "https://api.someservice.com/v1/production/latest"
     params = {
         "zone": zone_key,
     }
