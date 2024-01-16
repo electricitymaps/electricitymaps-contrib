@@ -15,7 +15,7 @@ capacity:
   coal:
     datetime: '2023-10-01'
     source: EIA.gov
-    value: 14394.5
+    value: 14329.7
   gas:
     datetime: '2023-10-01'
     source: EIA.gov
@@ -39,7 +39,7 @@ capacity:
   oil:
     datetime: '2023-10-01'
     source: EIA.gov
-    value: 721.7
+    value: 786.5
   solar:
     datetime: '2023-10-01'
     source: EIA.gov

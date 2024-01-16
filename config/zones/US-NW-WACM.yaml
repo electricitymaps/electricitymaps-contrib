@@ -19,7 +19,7 @@ capacity:
   gas:
     datetime: '2023-10-01'
     source: EIA.gov
-    value: 2023.8
+    value: 2026.8
   geothermal:
     datetime: '2023-10-01'
     source: EIA.gov
@@ -47,7 +47,7 @@ capacity:
   unknown:
     datetime: '2023-10-01'
     source: EIA.gov
-    value: 13.6
+    value: 10.6
   wind:
     datetime: '2023-10-01'
     source: EIA.gov
