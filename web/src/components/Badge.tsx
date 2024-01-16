@@ -1,3 +1,5 @@
+import { FiAlertTriangle } from 'react-icons/fi';
+
 type BadgeProps = {
   children: string;
   type?: 'default' | 'warning';
@@ -17,8 +19,9 @@ export default function Badge({ children, type = 'default', className }: BadgePr
 
   return (
     <span
-      className={`rounded-full px-2 py-1 text-[10px] font-semibold ${bgColorClasses} ${textColorClasses} ${className}`}
+      className={`flex flex-row gap-1 rounded-full px-2 py-1 text-[10px] font-semibold ${bgColorClasses} ${textColorClasses} ${className}`}
     >
+      {type == 'warning' && <FiAlertTriangle className="text-[14px]" />}
       {children}
     </span>
   );
