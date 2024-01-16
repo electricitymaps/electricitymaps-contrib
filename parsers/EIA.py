@@ -583,7 +583,7 @@ def fetch_production_mix(
         all_production_breakdowns, logger
     )
     filtered_events = ProductionBreakdownList.filter_expected_modes(
-        events, by_passed_modes=["biomass"]
+        events, by_passed_modes=["biomass", "geothermal"]
     )
     return filtered_events.to_list()
 

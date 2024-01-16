@@ -96,10 +96,73 @@ class TestEIAProduction(TestEIA):
         )
         self.adapter.register_uri(
             GET,
+            EIA.PRODUCTION_MIX.format("PACW", "WAT"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("PACW", "SUN"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("PACW", "WND"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
             EIA.PRODUCTION_MIX.format("BPAT", "WND"),
             json=json.loads(
                 resources.files("parsers.test.mocks.EIA")
                 .joinpath("US_NW_BPAT-wind.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("BPAT", "NG"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("BPAT", "WAT"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("BPAT", "NUC"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("BPAT", "SUN"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
                 .read_text()
             ),
         )
@@ -118,13 +181,13 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-NW-PACW",
                 "source": "eia.gov",
-                "production": {"gas": 330},
+                "production": {"gas": 330, "hydro": 300, "solar": 300, "wind": 300},
                 "storage": {},
             },
             {
                 "zoneKey": "US-NW-PACW",
                 "source": "eia.gov",
-                "production": {"gas": 450},
+                "production": {"gas": 450, "hydro": 400, "solar": 400, "wind": 400},
                 "storage": {},
             },
         ]
@@ -134,13 +197,25 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-NW-BPAT",
                 "source": "eia.gov",
-                "production": {"wind": 21},
+                "production": {
+                    "wind": 21,
+                    "gas": 300,
+                    "hydro": 300,
+                    "nuclear": 300,
+                    "solar": 300,
+                },
                 "storage": {},
             },
             {
                 "zoneKey": "US-NW-BPAT",
                 "source": "eia.gov",
-                "production": {"wind": 42},
+                "production": {
+                    "wind": 42,
+                    "gas": 400,
+                    "hydro": 400,
+                    "nuclear": 400,
+                    "solar": 400,
+                },
                 "storage": {},
             },
         ]
@@ -153,6 +228,51 @@ class TestEIAProduction(TestEIA):
             json=json.loads(
                 resources.files("parsers.test.mocks.EIA")
                 .joinpath("US_NW_AVRN-other.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SC", "COL"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SC", "NG"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SC", "WAT"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SC", "OIL"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SC", "SUN"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
                 .read_text()
             ),
         )
@@ -174,19 +294,78 @@ class TestEIAProduction(TestEIA):
                 .read_text()
             ),
         )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SCEG", "COL"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SCEG", "NG"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SCEG", "WAT"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SCEG", "OIL"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SCEG", "SUN"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
 
         data_list = EIA.fetch_production_mix(ZoneKey("US-CAR-SC"), self.session)
         expected = [
             {
                 "zoneKey": "US-CAR-SC",
                 "source": "eia.gov",
-                "production": {"nuclear": 330.666634},
+                "production": {
+                    "nuclear": 330.666634,
+                    "coal": 300,
+                    "gas": 300,
+                    "oil": 300,
+                    "solar": 300,
+                    "hydro": 300,
+                },
                 "storage": {},
             },
             {
                 "zoneKey": "US-CAR-SC",
                 "source": "eia.gov",
-                "production": {"nuclear": 330.3333},
+                "production": {
+                    "nuclear": 330.3333,
+                    "coal": 400,
+                    "gas": 400,
+                    "oil": 400,
+                    "solar": 400,
+                    "hydro": 400,
+                },
                 "storage": {},
             },
         ]
@@ -196,13 +375,27 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-CAR-SCEG",
                 "source": "eia.gov",
-                "production": {"nuclear": 661.333366},
+                "production": {
+                    "nuclear": 661.333366,
+                    "coal": 300,
+                    "gas": 300,
+                    "oil": 300,
+                    "solar": 300,
+                    "hydro": 300,
+                },
                 "storage": {},
             },
             {
                 "zoneKey": "US-CAR-SCEG",
                 "source": "eia.gov",
-                "production": {"nuclear": 660.6667},
+                "production": {
+                    "nuclear": 660.6667,
+                    "coal": 400,
+                    "gas": 400,
+                    "oil": 400,
+                    "solar": 400,
+                    "hydro": 400,
+                },
                 "storage": {},
             },
         ]
