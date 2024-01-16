@@ -735,6 +735,28 @@ class TestEIAConsumption(TestEIA):
 
     def test_texas_loses_one_mode(self):
         """A temporary test to make sure that if texas loses one of its modes we discard the datapoint."""
+        # All modes are loaded with some data
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        # Nuclear is missing data
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("ERCO", "NUC"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_NW_AVRN-other.json")
+                .read_text()
+            ),
+        )
+        data = EIA.fetch_production_mix(ZoneKey("US-TEX-ERCO"), self.session)
+        self.assertEqual(len(data), 0)
 
 
 if __name__ == "__main__":
