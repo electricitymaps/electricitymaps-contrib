@@ -19,7 +19,7 @@ capacity:
   gas:
     datetime: '2023-10-01'
     source: EIA.gov
-    value: 0.0
+    value:  35.6
   geothermal:
     datetime: '2023-10-01'
     source: EIA.gov
@@ -39,7 +39,7 @@ capacity:
   oil:
     datetime: '2023-10-01'
     source: EIA.gov
-    value: 35.6
+    value: 0.0
   solar:
     datetime: '2023-10-01'
     source: EIA.gov
