@@ -370,6 +370,17 @@ PRODUCTION_MIX = (
 )
 EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourly"
 
+FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
+    "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
+    "US-NW-PGE": ["biomass", "geothermal"],
+    "US-NW-PACE": ["biomass", "geothermal"],
+    "US-MIDW-MISO": ["biomass", "geothermal"],
+    "US-TEN-TVA": ["biomass", "geothermal"],
+    "US-SE-SOCO": ["biomass", "geothermal"],
+    "US-SE-SEPA": ["biomass", "geothermal"],
+    "US-FLA-FPL": ["biomass", "geothermal"],
+}
+
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
@@ -468,6 +479,7 @@ def fetch_production_mix(
     logger: Logger = getLogger(__name__),
 ):
     all_production_breakdowns: list[ProductionBreakdownList] = []
+    # TODO: We could be smarter in the future and only fetch the expected production types.
     for production_mode, code in TYPES.items():
         negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
             production_mode, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
@@ -578,9 +590,14 @@ def fetch_production_mix(
             if production_mix.datetime in latest_timeframe:
                 correct_mix.append(production_mix)
         production_list.events = correct_mix
-    return ProductionBreakdownList.merge_production_breakdowns(
+    events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
-    ).to_list()
+    )
+    if zone_key in FILTER_INCOMPLETE_DATA_BYPASSED_MODES:
+        events = ProductionBreakdownList.filter_expected_modes(
+            events, by_passed_modes=FILTER_INCOMPLETE_DATA_BYPASSED_MODES[zone_key]
+        )
+    return events.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
