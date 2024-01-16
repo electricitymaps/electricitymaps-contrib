@@ -477,6 +477,20 @@ class ProductionBreakdown(AggregatableEvent):
                 return None
         return v
 
+    def get_value(self, mode: str) -> float | None:
+        """Returns the value of the provided mode this can be production or storage.
+        To retrieve the value of a storage mode, the mode should be prefixed with storage_.
+        Ex: retrive hydro production: get_value("hydro")
+        Ex: retrive hydro storage: get_value("storage_hydro")
+        """
+        if "storage" in mode:
+            if self.storage is None:
+                return None
+            return getattr(self.storage, mode.split("_")[1])
+        if self.production is None:
+            return None
+        return getattr(self.production, mode)
+
     @staticmethod
     def create(
         logger: Logger,

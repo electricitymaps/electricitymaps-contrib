@@ -8,6 +8,7 @@ from requests import Session
 from requests_mock import ANY, GET, Adapter
 
 from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import EIA
 
@@ -420,7 +421,6 @@ class TestEIAExchanges(TestEIA):
             self.assertEqual(data["datetime"], expected[i]["datetime"])
             self.assertEqual(data["sortedZoneKeys"], expected[i]["sortedZoneKeys"])
             self.assertEqual(data["netFlow"], expected[i]["netFlow"])
-
 
 class TestEIAConsumption(TestEIA):
     def test_fetch_consumption(self):

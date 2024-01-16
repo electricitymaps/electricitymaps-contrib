@@ -3,6 +3,8 @@ from collections.abc import Sequence
 from datetime import datetime
 from logging import Logger
 from typing import Any
+from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.config.capacity import get_capacity_data
 
 import pandas as pd
 
@@ -245,6 +247,37 @@ class ProductionBreakdownList(AggregatableEventList):
             prod = ProductionBreakdown.aggregate(row)
             production_breakdowns.events.append(prod)
         return production_breakdowns
+    @staticmethod
+    def filter_expected_modes(breakdowns: "ProductionBreakdownList") -> "ProductionBreakdownList":
+        """A temporary method to filter out malformed production breakdowns which are missing expected modes.
+        This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
+        TODO: Remove this method once the outlier detection is able to handle it.
+        """
+        events = ProductionBreakdownList(breakdowns.logger)
+        for event in breakdowns.events:
+            capacity_config = ZONES_CONFIG.get(event.zoneKey, {}).get("capacity", {})
+            capacity = get_capacity_data(capacity_config, event.datetime)
+            valid = True
+            required_modes = [
+                mode for mode, capacity_value in capacity.items() if capacity_value > 0
+            ]
+            for mode in required_modes:
+                value = event.get_value(mode)
+                if value is None:
+                    valid = False
+                    events.logger.warning(
+                        f"Discarded production event for {event.zone_key} at {event.datetime} due to missing {mode} value."
+                    )
+                    break
+            if valid:
+                events.append(
+                    zoneKey=event.zoneKey,
+                    datetime=event.datetime,
+                    production=event.production,
+                    storage=event.storage,
+                    source=event.source,
+                )
+        return events
 
 
 class TotalProductionList(EventList):
