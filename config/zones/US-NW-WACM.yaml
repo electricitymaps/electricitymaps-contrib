@@ -15,7 +15,7 @@ capacity:
   coal:
     datetime: '2023-10-01'
     source: EIA.gov
-    value: 5625.099999999999
+    value: 5625.1
   gas:
     datetime: '2023-10-01'
     source: EIA.gov

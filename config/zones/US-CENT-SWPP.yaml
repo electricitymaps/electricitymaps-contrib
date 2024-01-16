@@ -31,7 +31,7 @@ capacity:
   hydro storage:
     datetime: '2023-10-01'
     source: EIA.gov
-    value: 259.20000000000005
+    value: 259.2
   nuclear:
     datetime: '2023-10-01'
     source: EIA.gov

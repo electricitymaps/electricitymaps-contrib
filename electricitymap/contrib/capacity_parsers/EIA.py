@@ -56,10 +56,13 @@ def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict[str, An
     capacity_dict = {}
     for mode in CAPACITY_MODES:
         mode_dict = {}
-        mode_dict["value"] = float(
-            df_aggregated.loc[df_aggregated["mode"] == mode][
-                "nameplate-capacity-mw"
-            ].sum()
+        mode_dict["value"] = round(
+            float(
+                df_aggregated.loc[df_aggregated["mode"] == mode][
+                    "nameplate-capacity-mw"
+                ].sum()
+            ),
+            1,
         )
         mode_dict["source"] = SOURCE
         mode_dict["datetime"] = target_datetime.strftime("%Y-%m-%d")
