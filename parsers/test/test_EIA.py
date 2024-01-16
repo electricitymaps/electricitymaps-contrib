@@ -239,6 +239,51 @@ class TestEIAProduction(TestEIA):
         )
         self.adapter.register_uri(
             GET,
+            EIA.PRODUCTION_MIX.format("SRP", "COL"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SRP", "NG"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SRP", "NUC"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SRP", "SUN"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
+            EIA.PRODUCTION_MIX.format("SRP", "WND"),
+            json=json.loads(
+                resources.files("parsers.test.mocks.EIA")
+                .joinpath("US_SMTH-coal.json")
+                .read_text()
+            ),
+        )
+        self.adapter.register_uri(
+            GET,
             EIA.PRODUCTION_MIX.format("DEAA", "WAT"),
             json=json.loads(
                 resources.files("parsers.test.mocks.EIA")
@@ -270,13 +315,27 @@ class TestEIAProduction(TestEIA):
             {
                 "zoneKey": "US-SW-SRP",
                 "source": "eia.gov",
-                "production": {"hydro": 7.0},  # 4 from HGMA, 3 from DEAA
+                "production": {
+                    "hydro": 7.0,
+                    "coal": 300,
+                    "gas": 300,
+                    "nuclear": 300,
+                    "solar": 300,
+                    "wind": 300,
+                },  # hydro 4 from HGMA, 3 from DEAA
                 "storage": {"hydro": 5.0},  # 5 from SRP
             },
             {
                 "zoneKey": "US-SW-SRP",
                 "source": "eia.gov",
-                "production": {"hydro": 800.0},  # 400 from SRP, 400 from HGMA
+                "production": {
+                    "hydro": 800.0,
+                    "coal": 400,
+                    "gas": 400,
+                    "nuclear": 400,
+                    "solar": 400,
+                    "wind": 400,
+                },  # hydro 400 from SRP, 400 from HGMA
                 "storage": {"hydro": 900.0},  # 900 from DEAA
             },
         ]
@@ -336,7 +395,6 @@ class TestEIAProduction(TestEIA):
         self.assertIsNotNone(actual)
         self.assertEqual(len(expected), len(actual))
         for i, data in enumerate(actual):
-            print(data)
             self.assertEqual(data["zoneKey"], expected[i]["zoneKey"])
             self.assertEqual(data["source"], expected[i]["source"])
             self.assertIsNotNone(data["datetime"])
@@ -421,6 +479,7 @@ class TestEIAExchanges(TestEIA):
             self.assertEqual(data["sortedZoneKeys"], expected[i]["sortedZoneKeys"])
             self.assertEqual(data["netFlow"], expected[i]["netFlow"])
 
+
 class TestEIAConsumption(TestEIA):
     def test_fetch_consumption(self):
         self.adapter.register_uri(
@@ -480,6 +539,9 @@ class TestEIAConsumption(TestEIA):
             self.assertEqual(data["datetime"], expected[i]["datetime"])
             self.assertEqual(data["consumption"], expected[i]["consumption"])
             self.assertEqual(data["sourceType"], EventSourceType.forecasted)
+
+    def test_texas_loses_one_mode(self):
+        """A temporary test to make sure that if texas loses one of its modes we discard the datapoint."""
 
 
 if __name__ == "__main__":
