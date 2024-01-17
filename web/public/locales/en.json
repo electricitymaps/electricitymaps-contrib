@@ -90,6 +90,47 @@
       "total-electricity-consumption": "Total electricity consumption by source"
     }
   },
+  "estimation-card": {
+    "link": "Read about our estimation models",
+    "estimated_time_slicer_average": {
+      "title": "Data is estimated",
+      "pill": "Delayed",
+      "body": "The data for this hour has not yet been reported. The displayed values are estimates and will be replaced with measured data once available."
+    },
+    "estimated_mode_breakdown": {
+      "title": "Data is partially estimated",
+      "pill": "Incomplete",
+      "body": "Electricity generation data for this zone is incomplete; missing values have been calculated using an estimation model."
+    },
+    "estimated_reconstruct_breakdown": {
+      "title": "Data is always estimated",
+      "pill": "Imprecise",
+      "body": "The published data for this zone only provides the total production. Renewable sources are estimated using live weather data, while the fossil sources are deducted based on historical data for each production source."
+    },
+    "estimated_construct_breakdown": {
+      "title": "Data is always estimated",
+      "pill": "Not realtime",
+      "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
+    },
+    "estimated_construct_zero_breakdown": {
+      "title": "Data is always estimated",
+      "pill": "Not realtime",
+      "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
+    },
+    "data-outage": {
+      "title": "Data is estimated",
+      "pill": "Unavailable"
+    },
+    "aggregated_estimated": {
+      "title": "Data is aggregated",
+      "pill": "Incl. estimated",
+      "body": "The data consists of summarised values of hourly recordings throughout the day. Some hourly data is estimated."
+    },
+    "aggregated": {
+      "title": "Data is aggregated",
+      "body": "The data consists of summarised values of hourly recordings throughout the day."
+    }
+  },
   "time-controller": {
     "title": "Display data from the past"
   },
