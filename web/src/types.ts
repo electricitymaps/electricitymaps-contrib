@@ -195,7 +195,7 @@ export interface MapTheme {
   nonClickableFill: string;
 }
 
-export type EstimationProps = {
+export type EstimationProperties = {
   isEstimated: boolean;
   estimationMethod?: string;
   isAggregated: boolean;

@@ -1,10 +1,10 @@
 import Badge from 'components/Badge';
 import { useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
-import { EstimationProps } from 'types';
+import { EstimationProperties } from 'types';
 
 // TODO: This function is temporary until we have the text in the json files
-function GetTitle(estimationData: EstimationProps) {
+function GetTitle(estimationData: EstimationProperties) {
   if (estimationData.isOutage) {
     return 'Data is estimated';
   }
@@ -15,7 +15,7 @@ function GetTitle(estimationData: EstimationProps) {
 }
 
 // TODO: This function is temporary until we have the text in the json files
-function GetPillText(estimationData: EstimationProps) {
+function GetPillText(estimationData: EstimationProperties) {
   if (estimationData.isOutage) {
     return 'Unavailable';
   } else if (estimationData.isAggregated) {
@@ -25,7 +25,7 @@ function GetPillText(estimationData: EstimationProps) {
 }
 
 // TODO: This function is temporary until we have the text in the json files
-function GetBodyText(estimationData: EstimationProps) {
+function GetBodyText(estimationData: EstimationProperties) {
   if (estimationData.isOutage) {
     return 'The data provider (EIA) for this zone is currently down. The displayed values are estimates and will be replaced by measured data once available again. We expect to resolve this issues shortly!';
   } else if (estimationData.isAggregated) {
@@ -40,7 +40,7 @@ function GetBodyText(estimationData: EstimationProps) {
 export default function EstimationCard({
   estimationData,
 }: {
-  estimationData: EstimationProps;
+  estimationData: EstimationProperties;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const handleToggleCollapse = () => {

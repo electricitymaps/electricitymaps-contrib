@@ -3,7 +3,7 @@ import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { EstimationProps } from 'types';
+import { EstimationProperties } from 'types';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -63,13 +63,13 @@ export default function ZoneDetails(): JSX.Element {
   const isEstimated = estimationMethod !== undefined;
   const isAggregated = timeAverage !== TimeAverages.HOURLY;
   const zoneMessage = data?.zoneMessage;
-  const isOutage =
+  const isOutage = // not sure if this logic is correct
     zoneMessage !== undefined &&
     zoneMessage?.message !== undefined &&
     zoneMessage?.issue !== undefined;
   const outageMessage = zoneMessage?.issue;
 
-  const estimationProps: EstimationProps = {
+  const estimationProps: EstimationProperties = {
     estimationMethod,
     isEstimated,
     isAggregated,
