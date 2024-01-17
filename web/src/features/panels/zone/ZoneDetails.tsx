@@ -63,7 +63,10 @@ export default function ZoneDetails(): JSX.Element {
   const isEstimated = estimationMethod !== undefined;
   const isAggregated = timeAverage !== TimeAverages.HOURLY;
   const zoneMessage = data?.zoneMessage;
-  const isOutage = zoneMessage !== undefined && zoneMessage?.issue != 'None';
+  const isOutage =
+    zoneMessage !== undefined &&
+    zoneMessage?.message !== undefined &&
+    zoneMessage?.issue !== undefined;
   const outageMessage = zoneMessage?.issue;
 
   const estimationProps: EstimationProps = {
