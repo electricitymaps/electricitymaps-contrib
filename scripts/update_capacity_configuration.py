@@ -128,15 +128,51 @@ def generate_zone_capacity_config(
     return updated_capacity_config
 
 
+def update_capacity_dict_if_value_already_exists(
+    mode: str, capacity_config: dict[str, Any], data: [str, Any]
+) -> list[dict[str, Any]]:
+    """Update the capacity config for a zone if the capacity config is a list and the value already exists. This function ensures that we don't add the same value to the config over and over and that we can backfill and get the oldest value for which the capacity is valid.s"""
+
+    if data[mode]["datetime"] > capacity_config[mode]["datetime"]:
+        # if the associated datetime is more recent than the existing one, we don't add it
+        return capacity_config[mode]
+    else:
+        # if the associated datetime is older than the existing one, we replace the datetime of the item
+        data[mode]
+
+
 def generate_zone_capacity_dict(
     mode: str, capacity_config: dict[str, Any], data: [str, Any]
 ) -> dict[str, Any]:
     """Generate the updated capacity config for a zone if the capacity config is a dict"""
     existing_capacity = capacity_config[mode]
     if existing_capacity["datetime"] != data[mode]["datetime"]:
-        return [existing_capacity] + [data[mode]]
+        if existing_capacity["value"] == data[mode]["value"]:
+            return update_capacity_dict_if_value_already_exists(
+                mode, capacity_config, data
+            )
+        else:
+            return [existing_capacity] + [data[mode]]
     else:
         return data[mode]
+
+
+def update_capacity_list_if_value_already_exists(
+    mode: str, capacity_config: dict[str, Any], data: [str, Any]
+) -> list[dict[str, Any]]:
+    """Update the capacity config for a zone if the capacity config is a list and the value already exists. This function ensures that we don't add the same value to the config over and over and that we can backfill and get the oldest value for which the capacity is valid.s"""
+    existing_value_datetime = [
+        item for item in capacity_config[mode] if item["value"] == data[mode]["value"]
+    ][0]["datetime"]
+    if data[mode]["datetime"] > existing_value_datetime:
+        # if the associated datetime is more recent than the existing one, we don't add it
+        return capacity_config[mode]
+    else:
+        # if the associated datetime is older than the existing one, we replace the datetime of the item
+        return [
+            data[mode] if item["value"] == data[mode]["value"] else item
+            for item in capacity_config[mode]
+        ]
 
 
 def generate_zone_capacity_list(
@@ -144,7 +180,12 @@ def generate_zone_capacity_list(
 ) -> list[dict[str, Any]]:
     """Generate the updated capacity config for a zone if the capacity config is a list"""
     if data[mode]["datetime"] not in [d["datetime"] for d in capacity_config[mode]]:
-        return capacity_config[mode] + [data[mode]]
+        if data[mode]["value"] in [d["value"] for d in capacity_config[mode]]:
+            return update_capacity_list_if_value_already_exists(
+                mode, capacity_config, data
+            )
+        else:
+            return capacity_config[mode] + [data[mode]]
     else:
         # replace the capacity data point with the same datetime by the most recent update (from data)
         return [
