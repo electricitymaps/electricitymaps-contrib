@@ -51,23 +51,23 @@ export default function EstimationCard({
     : 'bg-neutral-100 dark:bg-gray-800';
   const textColorTitle = estimationData.isOutage
     ? 'text-amber-700 dark:text-amber-500'
-    : (estimationData.isAggregated
+    : estimationData.isAggregated
     ? 'text-black dark:text-white'
-    : 'text-amber-700 dark:text-amber-500');
+    : 'text-amber-700 dark:text-amber-500';
   const textColorBody = 'text-neutral-600 dark:text-neutral-400';
   const textColorLink = 'text-black dark:text-white';
   const borderColor = 'border-neutral-200 dark:border-gray-700';
   const icon = estimationData.isOutage
     ? "bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
-    : (estimationData.isAggregated
+    : estimationData.isAggregated
     ? "bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
-    : "bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]");
+    : "bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]";
 
   const pillType = estimationData.isOutage
     ? 'outage'
-    : (estimationData.isAggregated
+    : estimationData.isAggregated
     ? 'aggregated'
-    : 'estimated');
+    : 'estimated';
 
   return (
     <div
