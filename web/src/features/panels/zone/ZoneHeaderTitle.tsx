@@ -14,11 +14,7 @@ interface ZoneHeaderTitleProps {
   isAggregated?: boolean;
 }
 
-export default function ZoneHeaderTitle({
-  zoneId,
-  isAggregated,
-  isEstimated,
-}: ZoneHeaderTitleProps) {
+export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const { __ } = useTranslation();
   const title = getZoneName(zoneId);
   const isSubZone = zoneId.includes('-');

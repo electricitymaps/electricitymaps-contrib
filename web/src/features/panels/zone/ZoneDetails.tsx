@@ -79,11 +79,7 @@ export default function ZoneDetails(): JSX.Element {
 
   return (
     <>
-      <ZoneHeaderTitle
-        zoneId={zoneId}
-        isAggregated={isAggregated}
-        isEstimated={isEstimated}
-      />
+      <ZoneHeaderTitle zoneId={zoneId} />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
         {(isEstimated || isAggregated || isOutage) && (
           <EstimationCard estimationData={estimationProps}></EstimationCard>

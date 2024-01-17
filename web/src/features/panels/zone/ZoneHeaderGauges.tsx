@@ -1,7 +1,6 @@
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
 import { useAtom } from 'jotai';
-import { HiExclamationTriangle } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 import { ZoneDetails } from 'types';
 import { Mode } from 'utils/constants';
