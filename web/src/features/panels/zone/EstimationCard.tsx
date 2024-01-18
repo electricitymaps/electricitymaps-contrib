@@ -63,19 +63,17 @@ function BaseCard({
   estimationMethod,
   outageMessage,
   icon,
+  iconPill,
   showMethodologyLink,
-  showPill,
-  cardType,
-  bgColorClasses,
+  pillType,
   textColorTitle,
 }: {
   estimationMethod: string | undefined;
   outageMessage: ZoneDetails['zoneMessage'];
   icon: string;
+  iconPill: string | undefined;
   showMethodologyLink: boolean;
-  showPill: boolean;
-  cardType: string;
-  bgColorClasses: string;
+  pillType: string | undefined;
   textColorTitle: string;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -84,9 +82,11 @@ function BaseCard({
   };
   return (
     <div
-      className={`w-full rounded-lg px-3 py-2.5 ${
-        isCollapsed ? 'h-[46px]' : 'h-fit'
-      } ${bgColorClasses} mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
+      className={`w-full rounded-lg px-3 py-2.5 ${isCollapsed ? 'h-[46px]' : 'h-fit'} ${
+        estimationMethod == 'outage'
+          ? 'bg-amber-700/20 dark:bg-amber-500/20'
+          : 'bg-neutral-100 dark:bg-gray-800'
+      } mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
     >
       <div className="flex flex-col">
         <button onClick={handleToggleCollapse}>
@@ -102,7 +102,13 @@ function BaseCard({
               </h2>
             </div>
             <div className="flex flex-row gap-2 ">
-              {showPill && <Badge type={cardType}>{GetPillText(estimationMethod)}</Badge>}
+              {pillType != undefined && (
+                <Badge
+                  type={pillType}
+                  icon={iconPill}
+                  pillText={GetPillText(estimationMethod)}
+                ></Badge>
+              )}
               <div className="text-lg">
                 {isCollapsed ? <HiChevronUp /> : <HiChevronDown />}
               </div>
@@ -112,8 +118,10 @@ function BaseCard({
         {!isCollapsed && (
           <div className="gap-2">
             <div className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}>
-              {cardType != 'outage' && GetBodyText(estimationMethod)}
-              {cardType == 'outage' && <OutageMessage outageData={outageMessage} />}
+              {estimationMethod != 'outage' && GetBodyText(estimationMethod)}
+              {estimationMethod == 'outage' && (
+                <OutageMessage outageData={outageMessage} />
+              )}
             </div>
             {showMethodologyLink && (
               <div className="">
@@ -140,10 +148,9 @@ function OutageCard({ outageMessage }: { outageMessage: ZoneDetails['zoneMessage
       estimationMethod={'outage'}
       outageMessage={outageMessage}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
+      iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
       showMethodologyLink={true}
-      showPill={true}
-      cardType="outage"
-      bgColorClasses="bg-amber-700/20 dark:bg-amber-500/20"
+      pillType="warning"
       textColorTitle="text-amber-700 dark:text-amber-500"
     />
   );
@@ -155,10 +162,9 @@ function AggregatedCard() {
       estimationMethod={'aggregated'}
       outageMessage={undefined}
       icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
+      iconPill={undefined}
       showMethodologyLink={false}
-      showPill={false}
-      cardType="aggregated"
-      bgColorClasses="bg-neutral-100 dark:bg-gray-800"
+      pillType={undefined}
       textColorTitle="text-black dark:text-white"
     />
   );
@@ -170,10 +176,9 @@ function AggregatedEstimatedCard() {
       estimationMethod={'aggregated_estimated'}
       outageMessage={undefined}
       icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
+      iconPill="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
       showMethodologyLink={false}
-      showPill={true}
-      cardType="aggregate_estimated"
-      bgColorClasses="bg-neutral-100 dark:bg-gray-800"
+      pillType="warning"
       textColorTitle="text-black dark:text-white"
     />
   );
@@ -185,10 +190,9 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
       estimationMethod={estimationMethod}
       outageMessage={undefined}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
+      iconPill={undefined}
       showMethodologyLink={true}
-      showPill={true}
-      cardType="estimated"
-      bgColorClasses="bg-neutral-100 dark:bg-gray-800"
+      pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
     />
   );
