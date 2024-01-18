@@ -10,7 +10,6 @@ from logging import Logger, getLogger
 from typing import TypedDict
 from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Session
@@ -224,9 +223,11 @@ def parse_production_mix(
 def fetch_consumption(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
     return parse_consumption(consumption, target_datetime, logger)
 
@@ -236,9 +237,11 @@ def fetch_consumption(
 def fetch_price(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
     return parse_consumption(consumption, target_datetime, logger, price=True)
 
@@ -248,9 +251,11 @@ def fetch_price(
 def fetch_production_mix(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
     production_mix = get_data(session, target_datetime, extract_production_data, logger)
     return parse_production_mix(production_mix, logger)
 
