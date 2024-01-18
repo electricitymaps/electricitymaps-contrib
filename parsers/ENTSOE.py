@@ -27,6 +27,8 @@ from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
     ProductionBreakdownList,
+    TotalConsumptionList,
+    TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
@@ -709,13 +711,13 @@ def parse_scalar(
     xml_text: str,
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
-) -> tuple[list[float], list[datetime]] | None:
+) -> list[tuple[float, datetime]] | None:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
-    values = []
-    datetimes = []
+    values: list[float] = []
+    datetimes: list[datetime] = []
     for timeseries in soup.find_all("timeseries"):
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
         datetime_start = arrow.get(timeseries.find_all("start")[0].contents[0])
@@ -728,11 +730,11 @@ def parse_scalar(
         for entry in timeseries.find_all("point"):
             position = int(entry.find_all("position")[0].contents[0])
             value = float(entry.find_all("quantity")[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
+            dt = datetime_from_position(datetime_start, position, resolution)
             values.append(value)
-            datetimes.append(datetime)
+            datetimes.append(dt)
 
-    return values, datetimes
+    return list(zip(values, datetimes, strict=True))
 
 
 def create_production_storage(
@@ -806,50 +808,6 @@ def parse_production(
     return ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
     )
-
-
-def parse_self_consumption(xml_text: str):
-    """
-    Parses the XML text and returns a dict of datetimes to the total self-consumption
-    value from all sources.
-    Self-consumption is the electricity used by a generation source.
-    This is defined as any consumption source (i.e. outBiddingZone_Domain.mRID)
-    that is not storage, e.g. consumption for B04 (Fossil Gas) is counted as
-    self-consumption, but consumption for B10 (Hydro Pumped Storage) is not.
-
-    In most cases, total self-consumption is reported by ENTSOE as 0,
-    therefore the returned dict only includes datetimes where the value > 0.
-    """
-
-    if not xml_text:
-        return None
-    soup = BeautifulSoup(xml_text, "html.parser")
-    res = {}
-    for timeseries in soup.find_all("timeseries"):
-        is_consumption = (
-            len(timeseries.find_all("outBiddingZone_Domain.mRID".lower())) > 0
-        )
-        if not is_consumption:
-            continue
-        psr_type = str(
-            timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
-        )
-        if psr_type in ENTSOE_STORAGE_PARAMETERS:
-            continue
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start: arrow.Arrow = arrow.get(
-            timeseries.find_all("start")[0].contents[0]
-        )
-
-        for entry in timeseries.find_all("point"):
-            quantity = float(entry.find_all("quantity")[0].contents[0])
-            if quantity == 0:
-                continue
-            position = int(entry.find_all("position")[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
-            res[datetime] = res[datetime] + quantity if datetime in res else quantity
-
-    return res
 
 
 def parse_production_per_units(xml_text: str) -> Any | None:
@@ -1006,81 +964,6 @@ def validate_production(
         return validate(datapoint, logger=logger, required=["hydro"])
 
     return True
-
-
-@refetch_frequency(timedelta(days=2))
-def fetch_consumption(
-    zone_key: str,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-):
-    """Gets consumption for a specified zone."""
-    session = session or Session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Grab consumption
-    parsed = None
-    try:
-        raw_consumption = query_consumption(domain, session, target_datetime)
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to fetch consumption for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_consumption is not None:
-        parsed = parse_scalar(
-            raw_consumption,
-            only_outBiddingZone_Domain=True,
-        )
-    if parsed is not None:
-        quantities, datetimes = parsed
-        # Add power plant self-consumption data.
-        # This is reported as part of the production data by ENTSOE.
-        # self_consumption is a dict of datetimes to the total self-consumption value from all sources.
-        # Only datetimes where the value > 0 are included.
-        self_consumption = None
-        raw_production = query_production(domain, session, target_datetime)
-        if raw_production is not None:
-            self_consumption = parse_self_consumption(
-                raw_production,
-            )
-        if self_consumption is not None:
-            for dt, value in self_consumption.items():
-                try:
-                    i = datetimes.index(dt)
-                except ValueError:
-                    logger.warning(
-                        f"No corresponding consumption value found for self-consumption at {dt}"
-                    )
-                    continue
-                quantities[i] += value
-            # if a target_datetime was requested, we return everything
-            if target_datetime:
-                return [
-                    {
-                        "zoneKey": zone_key,
-                        "datetime": dt,
-                        "consumption": quantity,
-                        "source": "entsoe.eu",
-                    }
-                    for dt, quantity in zip(datetimes, quantities)
-                ]
-            # else we keep the last stored value
-            # Note, this may not include self-consumption data as sometimes consumption
-            # data is available for a given TZ a few minutes before production data is.
-            dt, quantity = datetimes[-1], quantities[-1]
-            if dt not in self_consumption:
-                logger.warning(
-                    f"Self-consumption data not yet available for {zone_key} at {dt}"
-                )
-            data = {
-                "zoneKey": zone_key,
-                "datetime": dt,
-                "consumption": quantity,
-                "source": "entsoe.eu",
-            }
-            return data
 
 
 @refetch_frequency(timedelta(days=2))
@@ -1326,9 +1209,14 @@ def fetch_price(
     return parse_prices(raw_price_data, zone_key, logger).to_list()
 
 
+# ------------------- #
+#  Generation
+# ------------------- #
+
+
 @refetch_frequency(timedelta(days=2))
 def fetch_generation_forecast(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -1336,94 +1224,126 @@ def fetch_generation_forecast(
     """Gets generation forecast for specified zone."""
     if not session:
         session = Session()
+    generation_list = TotalProductionList(logger)
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    parsed = None
-    # Grab consumption
+    # Grab generation forecast
     try:
-        test = query_generation_forecast(
+        raw_generation_forecast = query_generation_forecast(
             domain, session, target_datetime=target_datetime
         )
     except Exception as e:
         raise ParserException(
             parser="ENTSOE.py",
-            message=f"Failed to fetch generation forecast for {zone_key}",
+            message=f"Failed to query generation forecast for {zone_key}",
             zone_key=zone_key,
         ) from e
-    if test is not None:
-        parsed = parse_scalar(
-            test,
-            only_inBiddingZone_Domain=True,
+    if raw_generation_forecast is None:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No generation forecast data returned for {zone_key}",
+            zone_key=zone_key,
         )
-    if parsed is not None:
-        data = []
-        values, datetimes = parsed
-        for i in range(len(values)):
-            data.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": datetimes[i],
-                    "value": values[i],
-                    "source": "entsoe.eu",
-                }
-            )
-
-        return data
-    else:
+    parsed = parse_scalar(
+        raw_generation_forecast,
+        only_inBiddingZone_Domain=True,
+    )
+    if parsed is None:
         raise ParserException(
             parser="ENTSOE.py",
             message=f"No generation forecast data found for {zone_key}",
             zone_key=zone_key,
         )
+    for value, dt in parsed:
+        generation_list.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            source=SOURCE,
+            value=value,
+            sourceType=EventSourceType.forecasted,
+        )
+
+    return generation_list.to_list()
+
+
+# ------------------- #
+#  Consumption
+# ------------------- #
+
+
+def get_raw_consumption_list(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+    forecasted: bool = False,
+):
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
+    query_function = query_consumption_forecast if forecasted else query_consumption
+    consumption_list = TotalConsumptionList(logger)
+    try:
+        raw_data = query_function(domain, session, target_datetime=target_datetime)
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to query {'consumption forecast' if forecasted else 'consumption'} for {zone_key}",
+            zone_key=zone_key,
+        ) from e
+    if raw_data is None:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No {'consumption forcast' if forecasted else 'consumption'} data returned for {zone_key}",
+            zone_key=zone_key,
+        )
+    parsed = parse_scalar(raw_data, only_outBiddingZone_Domain=True)
+    if parsed is None:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No {'consumption forecast' if forecasted else 'consumption'} data found for {zone_key}",
+            zone_key=zone_key,
+        )
+    for value, dt in parsed:
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            source=SOURCE,
+            consumption=value,
+            sourceType=EventSourceType.forecasted
+            if forecasted
+            else EventSourceType.measured,
+        )
+    return consumption_list
+
+
+@refetch_frequency(timedelta(days=2))
+def fetch_consumption(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+):
+    """Gets consumption for a specified zone."""
+    session = session or Session()
+    return get_raw_consumption_list(
+        zone_key, session, target_datetime=target_datetime, logger=logger
+    ).to_list()
 
 
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption_forecast(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
-    if not session:
-        session = Session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Grab consumption
-    parsed = None
-    try:
-        raw_consumption_forecast = query_consumption_forecast(
-            domain, session, target_datetime=target_datetime
-        )
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to fetch consumption forecast for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_consumption_forecast is not None:
-        parsed = parse_scalar(
-            raw_consumption_forecast,
-            only_outBiddingZone_Domain=True,
-        )
-    if parsed is not None:
-        data = []
-        values, datetimes = parsed
-        for i in range(len(values)):
-            data.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": datetimes[i],
-                    "value": values[i],
-                    "source": "entsoe.eu",
-                }
-            )
-
-        return data
-    else:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No consumption forecast found for {zone_key}",
-            zone_key=zone_key,
-        )
+    session = session or Session()
+    return get_raw_consumption_list(
+        zone_key,
+        session,
+        target_datetime=target_datetime,
+        logger=logger,
+        forecasted=True,
+    ).to_list()
 
 
 @refetch_frequency(timedelta(days=2))

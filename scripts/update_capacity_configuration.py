@@ -66,7 +66,8 @@ def update_source(source: str, target_datetime: datetime, session: Session) -> N
         if not source_capacity[zone]:
             print(f"No capacity data for {zone} in {target_datetime.date()}")
             continue
-        update_zone_capacity_config(zone, source_capacity[zone])
+        if zone in ZONES_CONFIG:
+            update_zone_capacity_config(zone, source_capacity[zone])
 
 
 def sort_config_keys(config: dict[str, Any]) -> dict[str, Any]:
