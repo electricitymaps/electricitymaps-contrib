@@ -2,6 +2,7 @@ import logging
 import os
 import unittest
 from datetime import datetime, timezone
+from pathlib import Path
 from unittest.mock import patch
 
 from requests import Session
@@ -19,6 +20,85 @@ class TestENTSOE(TestCase):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
+
+
+class TestFetchConsumption(TestENTSOE):
+    def test_fetch_consumption(self):
+        data = Path("parsers/test/mocks/ENTSOE/DK-DK1_consumption.xml")
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            content=data.read_bytes(),
+        )
+
+        consumption = ENTSOE.fetch_consumption(ZoneKey("DK-DK1"), self.session)
+
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "consumption": element["consumption"],
+                    "source": element["source"],
+                    "zoneKey": element["zoneKey"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in consumption
+            ]
+        )
+
+
+class TestFetchConsumptionForecast(TestENTSOE):
+    def test_fetch_consumption_forecast(self):
+        data = Path("parsers/test/mocks/ENTSOE/DK-DK2_consumption_forecast.xml")
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            content=data.read_bytes(),
+        )
+
+        consumption_forecast = ENTSOE.fetch_consumption_forecast(
+            ZoneKey("DK-DK2"), self.session
+        )
+
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "consumption": element["consumption"],
+                    "source": element["source"],
+                    "zoneKey": element["zoneKey"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in consumption_forecast
+            ]
+        )
+
+
+class TestFetchGenerationForecast(TestENTSOE):
+    def test_fetch_generation_forecast(self):
+        data = Path("parsers/test/mocks/ENTSOE/SE-SE3_generation_forecast.xml")
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            content=data.read_bytes(),
+        )
+
+        generation_forecast = ENTSOE.fetch_generation_forecast(
+            ZoneKey("SE-SE3"), self.session
+        )
+
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "generation": element["generation"],
+                    "source": element["source"],
+                    "zoneKey": element["zoneKey"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in generation_forecast
+            ]
+        )
 
 
 class TestFetchPrices(TestENTSOE):
