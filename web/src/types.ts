@@ -194,11 +194,3 @@ export interface MapTheme {
   clickableFill: string;
   nonClickableFill: string;
 }
-
-export type EstimationProperties = {
-  isEstimated: boolean;
-  estimationMethod?: string;
-  isAggregated: boolean;
-  isOutage: boolean;
-  outageMessage?: string;
-};

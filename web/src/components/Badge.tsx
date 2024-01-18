@@ -2,7 +2,7 @@ import { FiAlertTriangle } from 'react-icons/fi';
 
 type BadgeProps = {
   children: string;
-  type: 'outage' | 'aggregated' | 'estimated';
+  type: string;
 };
 
 export default function Badge({ children, type }: BadgeProps) {
@@ -21,7 +21,7 @@ export default function Badge({ children, type }: BadgeProps) {
       className={`flex flex-row gap-1 rounded-full px-2 py-1 text-[10px] font-semibold ${bgColorClasses} ${textColorClasses}`}
     >
       {type == 'outage' && <FiAlertTriangle className="text-[14px]" />}
-      {type == 'aggregated' && (
+      {type == 'aggregated_estimated' && (
         <div className=" h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]" />
       )}
       {children}

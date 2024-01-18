@@ -3,7 +3,6 @@ import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { EstimationProperties } from 'types';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -60,29 +59,19 @@ export default function ZoneDetails(): JSX.Element {
 
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
   const { estimationMethod } = selectedData || {};
-  const isEstimated = estimationMethod !== undefined;
-  const isAggregated = timeAverage !== TimeAverages.HOURLY;
   const zoneMessage = data?.zoneMessage;
-  const isOutage = // not sure if this logic is correct
-    zoneMessage !== undefined &&
-    zoneMessage?.message !== undefined &&
-    zoneMessage?.issue !== undefined;
-  const outageMessage = zoneMessage?.issue;
-
-  const estimationProps: EstimationProperties = {
-    estimationMethod,
-    isEstimated,
-    isAggregated,
-    isOutage,
-    outageMessage,
-  };
+  const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
 
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
-        {(isEstimated || isAggregated || isOutage) && (
-          <EstimationCard estimationData={estimationProps}></EstimationCard>
+        {cardType != 'none' && (
+          <EstimationCard
+            cardType={cardType}
+            estimationMethod={estimationMethod}
+            outageMessage={zoneMessage}
+          ></EstimationCard>
         )}
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
@@ -108,6 +97,34 @@ export default function ZoneDetails(): JSX.Element {
       </div>
     </>
   );
+}
+
+function getCardType({
+  estimationMethod,
+  zoneMessage,
+  timeAverage,
+}: {
+  estimationMethod: string | undefined;
+  zoneMessage: { message: string; issue: string } | undefined;
+  timeAverage: TimeAverages;
+}): 'estimated' | 'aggregated_estimated' | 'aggregated' | 'outage' | 'none' {
+  if (
+    zoneMessage !== undefined &&
+    zoneMessage?.message !== undefined &&
+    zoneMessage?.issue !== undefined
+  ) {
+    return 'outage';
+  }
+  if (timeAverage !== TimeAverages.HOURLY) {
+    if (estimationMethod !== undefined) {
+      return 'aggregated_estimated';
+    }
+    return 'aggregated';
+  }
+  if (estimationMethod !== undefined) {
+    return 'estimated';
+  }
+  return 'none';
 }
 
 function ZoneDetailsContent({
