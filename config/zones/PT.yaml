@@ -12,7 +12,7 @@ capacity:
   hydro storage: 3585
   nuclear: 0
   oil: 0
-  solar: 2141
+  solar: 2611
   unknown: 28
   wind: 5374
 contributors:
@@ -54,7 +54,7 @@ emissionFactors:
         value: 1057.262766
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
-        value: 1045.58
+        value: 1075.5
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -126,7 +126,7 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
           hotspots of coal power generation."
-        value: 1088.293761
+        value: 1118.213761
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014

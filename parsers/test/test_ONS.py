@@ -21,7 +21,7 @@ class ProductionTestcase(unittest.TestCase):
         with open("parsers/test/mocks/ONS/BR.json") as f:
             self.fake_data = json.load(f)
 
-        with patch("parsers.ONS.get_data", return_value=self.fake_data) as gd:
+        with patch("parsers.ONS.get_data", return_value=self.fake_data):
             self.data = ONS.fetch_production(ZoneKey("BR-CS"))
 
     def test_is_not_none(self):
@@ -59,7 +59,7 @@ class ProductionTestcase(unittest.TestCase):
         with open("parsers/test/mocks/ONS/BR_negative_solar.json") as f:
             fake_data = json.load(f)
 
-            with patch("parsers.ONS.get_data", return_value=fake_data) as gd:
+            with patch("parsers.ONS.get_data", return_value=fake_data):
                 data = ONS.fetch_production(ZoneKey("BR-CS"))
                 self.assertEqual(data[0]["production"]["solar"], 0)
 
@@ -74,7 +74,7 @@ class ExchangeTestcase(unittest.TestCase):
         with open("parsers/test/mocks/ONS/BR.json") as f:
             self.fake_data = json.load(f)
 
-        with patch("parsers.ONS.get_data", return_value=self.fake_data) as gd:
+        with patch("parsers.ONS.get_data", return_value=self.fake_data):
             self.data = ONS.fetch_exchange("BR-S", "UY")[0]
 
     def test_is_not_none(self):
@@ -109,7 +109,7 @@ class RegionTestcase(unittest.TestCase):
         with open("parsers/test/mocks/ONS/BR.json") as f:
             self.fake_data = json.load(f)
 
-        with patch("parsers.ONS.get_data", return_value=self.fake_data) as gd:
+        with patch("parsers.ONS.get_data", return_value=self.fake_data):
             self.data = ONS.fetch_exchange("BR-N", "BR-NE")[0]
 
     def test_is_not_none(self):

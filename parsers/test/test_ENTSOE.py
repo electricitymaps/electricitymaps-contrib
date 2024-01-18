@@ -1,9 +1,8 @@
 import logging
 import os
-from pathlib import Path
 import unittest
 from datetime import datetime, timezone
-from unittest import mock
+from pathlib import Path
 from unittest.mock import patch
 
 from requests import Session
@@ -21,6 +20,7 @@ class TestENTSOE(TestCase):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
+
 
 class TestFetchConsumption(TestENTSOE):
     def test_fetch_consumption(self):
@@ -56,7 +56,9 @@ class TestFetchConsumptionForecast(TestENTSOE):
             content=data.read_bytes(),
         )
 
-        consumption_forecast = ENTSOE.fetch_consumption_forecast(ZoneKey("DK-DK2"), self.session)
+        consumption_forecast = ENTSOE.fetch_consumption_forecast(
+            ZoneKey("DK-DK2"), self.session
+        )
 
         self.assertMatchSnapshot(
             [
@@ -81,7 +83,9 @@ class TestFetchGenerationForecast(TestENTSOE):
             content=data.read_bytes(),
         )
 
-        generation_forecast = ENTSOE.fetch_generation_forecast(ZoneKey("SE-SE3"), self.session)
+        generation_forecast = ENTSOE.fetch_generation_forecast(
+            ZoneKey("SE-SE3"), self.session
+        )
 
         self.assertMatchSnapshot(
             [
@@ -95,6 +99,7 @@ class TestFetchGenerationForecast(TestENTSOE):
                 for element in generation_forecast
             ]
         )
+
 
 class TestFetchPrices(TestENTSOE):
     def test_fetch_prices(self):
@@ -236,40 +241,93 @@ class TestFetchProduction(TestENTSOE):
                 mock_warning.assert_called()
 
 
+class TestFetchExchange(TestENTSOE):
+    def test_fetch_exchange(self):
+        imports = None
+        exports = None
+        # Read import data from mockfile
+        with open(
+            "parsers/test/mocks/ENTSOE/DK-DK1_GB_exchange_imports.xml", "rb"
+        ) as import_file:
+            imports = import_file.read()
+        # Read export data from mockfile
+        with open(
+            "parsers/test/mocks/ENTSOE/DK-DK1_GB_exchange_exports.xml", "rb"
+        ) as export_file:
+            exports = export_file.read()
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A11&in_Domain=10YDK-1--------W&out_Domain=10YGB----------A",
+            content=imports,
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A11&in_Domain=10YGB----------A&out_Domain=10YDK-1--------W",
+            content=exports,
+        )
+        exchange = ENTSOE.fetch_exchange(
+            zone_key1=ZoneKey("DK-DK1"), zone_key2=ZoneKey("GB"), session=self.session
+        )
+        exchange.sort(key=lambda x: x["datetime"])
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                }
+                for element in exchange
+            ]
+        )
+
+
+class TestFetchExchangeForecast(TestENTSOE):
+    def test_fetch_exchange_forecast(self):
+        imports = None
+        exports = None
+        # Read import data from mockfile
+        with open(
+            "parsers/test/mocks/ENTSOE/DK-DK2_SE-SE4_exchange_forecast_imports.xml",
+            "rb",
+        ) as import_file:
+            imports = import_file.read()
+        # Read export data from mockfile
+        with open(
+            "parsers/test/mocks/ENTSOE/DK-DK2_SE-SE4_exchange_forecast_exports.xml",
+            "rb",
+        ) as export_file:
+            exports = export_file.read()
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
+            content=imports,
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
+            content=exports,
+        )
+        exchange_forecast = ENTSOE.fetch_exchange_forecast(
+            zone_key1=ZoneKey("DK-DK2"),
+            zone_key2=ZoneKey("SE-SE4"),
+            session=self.session,
+        )
+        exchange_forecast.sort(key=lambda x: x["datetime"])
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                }
+                for element in exchange_forecast
+            ]
+        )
+
+
 class TestENTSOE_Refetch(unittest.TestCase):
-    def test_refetch_token(self) -> None:
-        token = mock.Mock(return_value="token")
-        with mock.patch("parsers.ENTSOE.get_token", token) as patched_get_token:
-            self.session = Session()
-            self.adapter = Adapter()
-            self.session.mount("https://", self.adapter)
-            with open("parsers/test/mocks/ENTSOE/FR_prices.xml", "rb") as price_fr_data:
-                self.adapter.register_uri(
-                    GET,
-                    ANY,
-                    content=price_fr_data.read(),
-                )
-                _ = ENTSOE.fetch_price(ZoneKey("DE"), self.session)
-                patched_get_token.assert_called_once_with("ENTSOE_TOKEN")
-                patched_get_token.reset_mock()
-                _ = ENTSOE.fetch_price(
-                    ZoneKey("DE"), self.session, datetime(2021, 1, 1)
-                )
-                patched_get_token.assert_called_once_with("ENTSOE_REFETCH_TOKEN")
-
-    def test_refetch_uses_proxy(self):
-        os.environ["ENTSOE_REFETCH_TOKEN"] = "proxy"
-        self.session = Session()
-        self.adapter = Adapter()
-        self.session.mount("https://", self.adapter)
-        with open("parsers/test/mocks/ENTSOE/FR_prices.xml", "rb") as price_fr_data:
-            self.adapter.register_uri(
-                GET,
-                ENTSOE.ENTSOE_EU_PROXY_ENDPOINT,
-                content=price_fr_data.read(),
-            )
-            _ = ENTSOE.fetch_price(ZoneKey("DE"), self.session, datetime(2021, 1, 1))
-
     def test_fetch_uses_normal_url(self):
         os.environ["ENTSOE_TOKEN"] = "proxy"
         self.session = Session()
@@ -278,7 +336,7 @@ class TestENTSOE_Refetch(unittest.TestCase):
         with open("parsers/test/mocks/ENTSOE/FR_prices.xml", "rb") as price_fr_data:
             self.adapter.register_uri(
                 GET,
-                ENTSOE.ENTSOE_ENDPOINT,
+                ENTSOE.ENTSOE_URL,
                 content=price_fr_data.read(),
             )
             _ = ENTSOE.fetch_price(ZoneKey("DE"), self.session)
