@@ -12,6 +12,8 @@ from snapshottest import TestCase
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ENTSOE
 
+base_path_to_mock = Path("parsers/test/mocks/ENTSOE")
+
 
 class TestENTSOE(TestCase):
     def setUp(self) -> None:
@@ -24,7 +26,7 @@ class TestENTSOE(TestCase):
 
 class TestFetchConsumption(TestENTSOE):
     def test_fetch_consumption(self):
-        data = Path("parsers/test/mocks/ENTSOE/DK-DK1_consumption.xml")
+        data = Path(base_path_to_mock, "DK-DK1_consumption.xml")
         self.adapter.register_uri(
             GET,
             ANY,
@@ -49,7 +51,7 @@ class TestFetchConsumption(TestENTSOE):
 
 class TestFetchConsumptionForecast(TestENTSOE):
     def test_fetch_consumption_forecast(self):
-        data = Path("parsers/test/mocks/ENTSOE/DK-DK2_consumption_forecast.xml")
+        data = Path(base_path_to_mock, "DK-DK2_consumption_forecast.xml")
         self.adapter.register_uri(
             GET,
             ANY,
@@ -76,7 +78,7 @@ class TestFetchConsumptionForecast(TestENTSOE):
 
 class TestFetchGenerationForecast(TestENTSOE):
     def test_fetch_generation_forecast(self):
-        data = Path("parsers/test/mocks/ENTSOE/SE-SE3_generation_forecast.xml")
+        data = Path(base_path_to_mock, "SE-SE3_generation_forecast.xml")
         self.adapter.register_uri(
             GET,
             ANY,
@@ -243,27 +245,18 @@ class TestFetchProduction(TestENTSOE):
 
 class TestFetchExchange(TestENTSOE):
     def test_fetch_exchange(self):
-        imports = None
-        exports = None
-        # Read import data from mockfile
-        with open(
-            "parsers/test/mocks/ENTSOE/DK-DK1_GB_exchange_imports.xml", "rb"
-        ) as import_file:
-            imports = import_file.read()
-        # Read export data from mockfile
-        with open(
-            "parsers/test/mocks/ENTSOE/DK-DK1_GB_exchange_exports.xml", "rb"
-        ) as export_file:
-            exports = export_file.read()
+        imports = Path(base_path_to_mock, "DK-DK1_GB_exchange_imports.xml")
+        exports = Path(base_path_to_mock, "DK-DK1_GB_exchange_exports.xml")
+
         self.adapter.register_uri(
             GET,
             "?documentType=A11&in_Domain=10YDK-1--------W&out_Domain=10YGB----------A",
-            content=imports,
+            content=imports.read_bytes(),
         )
         self.adapter.register_uri(
             GET,
             "?documentType=A11&in_Domain=10YGB----------A&out_Domain=10YDK-1--------W",
-            content=exports,
+            content=exports.read_bytes(),
         )
         exchange = ENTSOE.fetch_exchange(
             zone_key1=ZoneKey("DK-DK1"), zone_key2=ZoneKey("GB"), session=self.session
@@ -276,6 +269,53 @@ class TestFetchExchange(TestENTSOE):
                     "netFlow": element["netFlow"],
                     "source": element["source"],
                     "sortedZoneKeys": element["sortedZoneKeys"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in exchange
+            ]
+        )
+
+    def test_fetch_exchange_with_aggregated_exchanges(self):
+        imports_AC = Path(base_path_to_mock, "FR-COR_IT-SAR_AC_exchange_imports.xml")
+        exports_AC = Path(base_path_to_mock, "FR-COR_IT-SAR_AC_exchange_exports.xml")
+        imports_DC = Path(base_path_to_mock, "FR-COR_IT-SAR_DC_exchange_imports.xml")
+        exports_DC = Path(base_path_to_mock, "FR-COR_IT-SAR_DC_exchange_exports.xml")
+
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A11&in_Domain=10Y1001A1001A885&out_Domain=10Y1001A1001A74G",
+            content=imports_AC.read_bytes(),
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A11&in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A885",
+            content=exports_AC.read_bytes(),
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A11&in_Domain=10Y1001A1001A893&out_Domain=10Y1001A1001A74G",
+            content=imports_DC.read_bytes(),
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A11&in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A893",
+            content=exports_DC.read_bytes(),
+        )
+
+        exchange = ENTSOE.fetch_exchange(
+            zone_key1=ZoneKey("FR-COR"),
+            zone_key2=ZoneKey("IT-SAR"),
+            session=self.session,
+        )
+
+        self.assert_match_snapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                    "sourceType": element["sourceType"].value,
                 }
                 for element in exchange
             ]
@@ -284,29 +324,18 @@ class TestFetchExchange(TestENTSOE):
 
 class TestFetchExchangeForecast(TestENTSOE):
     def test_fetch_exchange_forecast(self):
-        imports = None
-        exports = None
-        # Read import data from mockfile
-        with open(
-            "parsers/test/mocks/ENTSOE/DK-DK2_SE-SE4_exchange_forecast_imports.xml",
-            "rb",
-        ) as import_file:
-            imports = import_file.read()
-        # Read export data from mockfile
-        with open(
-            "parsers/test/mocks/ENTSOE/DK-DK2_SE-SE4_exchange_forecast_exports.xml",
-            "rb",
-        ) as export_file:
-            exports = export_file.read()
+        imports = Path(base_path_to_mock, "DK-DK2_SE-SE4_exchange_forecast_imports.xml")
+        exports = Path(base_path_to_mock, "DK-DK2_SE-SE4_exchange_forecast_exports.xml")
+
         self.adapter.register_uri(
             GET,
             "?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
-            content=imports,
+            content=imports.read_bytes(),
         )
         self.adapter.register_uri(
             GET,
             "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
-            content=exports,
+            content=exports.read_bytes(),
         )
         exchange_forecast = ENTSOE.fetch_exchange_forecast(
             zone_key1=ZoneKey("DK-DK2"),
@@ -321,6 +350,61 @@ class TestFetchExchangeForecast(TestENTSOE):
                     "netFlow": element["netFlow"],
                     "source": element["source"],
                     "sortedZoneKeys": element["sortedZoneKeys"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in exchange_forecast
+            ]
+        )
+
+    def test_fetch_exchange_forecast_with_aggregated_exchanges(self):
+        imports_AC = Path(
+            base_path_to_mock, "FR-COR_IT-SAR_AC_exchange_forecast_imports.xml"
+        )
+        exports_AC = Path(
+            base_path_to_mock, "FR-COR_IT-SAR_AC_exchange_forecast_exports.xml"
+        )
+        imports_DC = Path(
+            base_path_to_mock, "FR-COR_IT-SAR_DC_exchange_forecast_imports.xml"
+        )
+        exports_DC = Path(
+            base_path_to_mock, "FR-COR_IT-SAR_DC_exchange_forecast_exports.xml"
+        )
+
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10Y1001A1001A885&out_Domain=10Y1001A1001A74G",
+            content=imports_AC.read_bytes(),
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A885",
+            content=exports_AC.read_bytes(),
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10Y1001A1001A893&out_Domain=10Y1001A1001A74G",
+            content=imports_DC.read_bytes(),
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A893",
+            content=exports_DC.read_bytes(),
+        )
+
+        exchange_forecast = ENTSOE.fetch_exchange_forecast(
+            zone_key1=ZoneKey("FR-COR"),
+            zone_key2=ZoneKey("IT-SAR"),
+            session=self.session,
+        )
+
+        self.assert_match_snapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                    "sourceType": element["sourceType"].value,
                 }
                 for element in exchange_forecast
             ]
