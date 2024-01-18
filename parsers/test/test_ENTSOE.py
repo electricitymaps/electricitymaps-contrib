@@ -26,7 +26,7 @@ class TestENTSOE(TestCase):
 
 class TestFetchConsumption(TestENTSOE):
     def test_fetch_consumption(self):
-        data = Path("parsers/test/mocks/ENTSOE/DK-DK1_consumption.xml")
+        data = Path(base_path_to_mock, "DK-DK1_consumption.xml")
         self.adapter.register_uri(
             GET,
             ANY,
@@ -51,7 +51,7 @@ class TestFetchConsumption(TestENTSOE):
 
 class TestFetchConsumptionForecast(TestENTSOE):
     def test_fetch_consumption_forecast(self):
-        data = Path("parsers/test/mocks/ENTSOE/DK-DK2_consumption_forecast.xml")
+        data = Path(base_path_to_mock, "DK-DK2_consumption_forecast.xml")
         self.adapter.register_uri(
             GET,
             ANY,
@@ -78,7 +78,7 @@ class TestFetchConsumptionForecast(TestENTSOE):
 
 class TestFetchGenerationForecast(TestENTSOE):
     def test_fetch_generation_forecast(self):
-        data = Path("parsers/test/mocks/ENTSOE/SE-SE3_generation_forecast.xml")
+        data = Path(base_path_to_mock, "SE-SE3_generation_forecast.xml")
         self.adapter.register_uri(
             GET,
             ANY,
