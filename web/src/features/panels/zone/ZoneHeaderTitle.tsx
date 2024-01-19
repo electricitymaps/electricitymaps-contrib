@@ -22,10 +22,10 @@ export default function ZoneHeaderTitle({
 }: ZoneHeaderTitleProps) {
   const { __ } = useTranslation();
   const title = getZoneName(zoneId);
-  const isSubZone = zoneId.includes('-');
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
+  const showCountryPill = zoneId.includes('-') && !title.includes(countryName);
 
   return (
     <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
@@ -54,9 +54,9 @@ export default function ZoneHeaderTitle({
                   <h2 className="truncate text-lg font-medium" data-test-id="zone-name">
                     {title}
                   </h2>
-                  {isSubZone && (
+                  {showCountryPill && (
                     <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">
-                      <p className="w-full truncate">{countryName || zoneId}</p>
+                      <p className="w-full truncate">{countryName ?? zoneId}</p>
                     </div>
                   )}
                 </div>
