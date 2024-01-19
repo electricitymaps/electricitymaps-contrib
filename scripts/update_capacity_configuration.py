@@ -131,7 +131,8 @@ def generate_zone_capacity_config(
 def update_capacity_dict_if_value_already_exists(
     mode: str, capacity_config: dict[str, Any], data: [str, Any]
 ) -> list[dict[str, Any]]:
-    """Update the capacity config for a zone if the capacity config is a list and the value already exists. This function ensures that we don't add the same value to the config over and over and that we can backfill and get the oldest value for which the capacity is valid.s"""
+    """Updates the capacity config for a zone if the capacity config is a list and the value already exists.
+    This function ensures that we don't add the same value to the config over and over and that we can backfill and get the oldest value for which the capacity is valid."""
 
     if data[mode]["datetime"] > capacity_config[mode]["datetime"]:
         # if the associated datetime is more recent than the existing one, we don't add it
