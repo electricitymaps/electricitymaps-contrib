@@ -4,7 +4,6 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import List, Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -76,8 +75,8 @@ XML_NS_TEXT = "{http://www.theIMO.com/schema}"
 
 
 def _fetch_ieso_xml(
-    target_datetime: Optional[datetime],
-    session: Optional[Session],
+    target_datetime: datetime | None,
+    session: Session | None,
     logger: Logger,
     url_template,
 ):
@@ -95,9 +94,7 @@ def _fetch_ieso_xml(
         # Data is generally available for past 3 months. Requesting files older than this
         # returns an HTTP 404 error.
         logger.info(
-            "CA-ON: failed getting requested data for datetime {} from IESO server - URL {}".format(
-                dt, url
-            )
+            f"CA-ON: failed getting requested data for datetime {dt} from IESO server - URL {url}"
         )
         return dt, None
 
@@ -113,8 +110,8 @@ def _parse_ieso_hour(output, target_dt):
 
 def fetch_production(
     zone_key: str = "CA-ON",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given region."""
@@ -181,10 +178,10 @@ def fetch_production(
 
 def fetch_price(
     zone_key: str = "CA-ON",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known power price per MWh of a given region."""
 
     # "HOEP" below is "Hourly Ontario Energy Price".
@@ -219,8 +216,8 @@ def fetch_price(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two regions."""

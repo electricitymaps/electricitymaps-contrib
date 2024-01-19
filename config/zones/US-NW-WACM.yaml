@@ -4,18 +4,54 @@ bounding_box:
   - - -95.95176
     - 48.07463
 capacity:
-  battery storage: 8.2
-  biomass: 3.2
-  coal: 4372.3
-  gas: 1792
-  geothermal: 0
-  hydro: 704.3
-  hydro storage: 208.5
-  nuclear: 0
-  oil: 158.8
-  solar: 219.2
-  unknown: 11.5
-  wind: 1236.9
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 10.3
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 3.2
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 5625.1
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2026.8
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 698.6
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 208.5
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 21.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 243.9
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 10.6
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1236.9
 comment: Western Area Power Administration - Rocky Mountain Region
 contributors:
   - systemcatch
@@ -25,6 +61,8 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
@@ -50,13 +88,19 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 745.1015602237039
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 1107.615308
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 1107.615308
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 1076.43
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 451.7150314
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 451.7150314
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 521.13
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -80,9 +124,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 745.1015602237039
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 953.0188558
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 953.0188558
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 938.88
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -107,14 +154,21 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 766.9391259296401
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 1125.725068
+      - datetime: '2020-01-01'
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1125.725068
+      - datetime: '2021-01-01'
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1094.5397600000001
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 571.7150314
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 571.7150314
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 641.13
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -138,9 +192,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 766.9391259296401
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 1197.0188558
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 1197.0188558
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 1182.88
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -256,6 +313,7 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
@@ -263,4 +321,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Mountain

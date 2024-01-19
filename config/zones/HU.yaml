@@ -4,20 +4,22 @@ bounding_box:
   - - 22.710531447
     - 48.6238540716
 capacity:
-  biomass: 262
-  coal: 1049
-  gas: 4035
-  geothermal: 3
-  hydro: 61
+  battery storage: 21.839
+  biomass: 213
+  coal: 926.34
+  gas: 3198.447
+  geothermal: 2.7
+  hydro: 61.188
   hydro storage: 0
-  nuclear: 1916
-  oil: 425
-  solar: 4076.174
-  unknown: 70
-  wind: 323
+  nuclear: 2026.6
+  oil: 424.8
+  solar: 5406.9
+  unknown: 120
+  wind: 323.275
 contributors:
   - corradio
   - nessie2013
+  - RolandSzep
 emissionFactors:
   direct:
     battery discharge:
@@ -47,13 +49,19 @@ emissionFactors:
       source: BEIS 2021
       value: 0.0
     coal:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 1144.916957
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 1144.916957
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 1211.37
     gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 455.1593805
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 455.1593805
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 459.76
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -77,9 +85,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 262.3991679242528
     oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 880.903938
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 880.903938
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 837.58
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -108,14 +119,21 @@ emissionFactors:
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
-        hotspots of coal power generation."
-      value: 1157.920756
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
+        value: 1157.920756
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
+        value: 1224.373799
     gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 575.1593805
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 575.1593805
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 579.76
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -147,9 +165,12 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1124.903938
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 1124.903938
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 1081.58
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -272,9 +293,12 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
+  productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 sources:
   EU-ETS, ENTSO-E 2021:
+    link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

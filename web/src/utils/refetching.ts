@@ -1,5 +1,6 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { ONE_MINUTE, QUERY_KEYS } from 'api/helpers';
+
 import { TimeAverages } from './constants';
 
 /**
@@ -13,8 +14,6 @@ export function refetchDataOnHourChange(queryClient: QueryClient) {
   let startHour = new Date().getUTCHours();
   setInterval(() => {
     const currentHour = new Date().getUTCHours();
-    // log the current second
-    console.info(`${new Date().getSeconds()}`);
     if (startHour !== currentHour) {
       console.info(`Refetching data for new hour: ${currentHour}`);
 

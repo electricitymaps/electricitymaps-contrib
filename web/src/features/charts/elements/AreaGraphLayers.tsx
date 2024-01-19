@@ -2,6 +2,9 @@
 /* eslint-disable react/jsx-handler-names */
 import { area, curveStepAfter } from 'd3-shape';
 import React from 'react';
+import { ElectricityModeType } from 'types';
+import { modeColor } from 'utils/constants';
+
 import { detectHoveredDatapointIndex, getNextDatetime, noop } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
@@ -66,7 +69,7 @@ function AreaGraphLayers({
   return (
     <g>
       {layers.map((layer, ind) => {
-        const isGradient = typeof layer.fill === 'function';
+        const isGradient = modeColor[layer.key as ElectricityModeType] ? false : true;
         const gradientId = `areagraph-gradient-${layer.key}`;
         // A datapoint valid until the next one
         // However, for the last point (or for missing points),
@@ -103,7 +106,7 @@ function AreaGraphLayers({
               className={layers.length > 1 ? 'sm:hover:opacity-75' : ''}
               style={{ cursor: 'pointer' }}
               stroke={layer.stroke}
-              fill={isGradient ? `url(#${gradientId})` : layer.fill}
+              fill={isGradient ? `url(#${gradientId})` : layer.fill(layer.key)}
               d={layerArea(datapoints) || undefined}
               /* Support only click events in mobile mode, otherwise react to mouse hovers */
               onClick={isMobile ? (event_) => handleLayerMouseMove(event_, ind) : noop}

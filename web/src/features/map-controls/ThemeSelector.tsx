@@ -39,6 +39,7 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
           <MapButton
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
             tooltipText={__('tooltips.changeTheme')}
+            ariaLabel={__('aria.label.changeTheme')}
           />
         )
       }

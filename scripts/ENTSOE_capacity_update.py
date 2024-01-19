@@ -37,7 +37,7 @@ ZONES_CONFIG = read_zones_config(config_dir=CONFIG_DIR)
 
 def update_zone(zone_key: ZoneKey, data: dict) -> None:
     if zone_key not in ZONES_CONFIG:
-        raise ValueError("Zone {} does not exist in the zones config".format(zone_key))
+        raise ValueError(f"Zone {zone_key} does not exist in the zones config")
 
     _new_zone_config = deepcopy(ZONES_CONFIG[zone_key])
     _new_zone_config["capacity"].update(data)
@@ -95,18 +95,14 @@ def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
     # TODO not sure whether selecting the date always works like that
     date = datetime.datetime.now().strftime("%Y%m%d")
     url = (
-        "https://web-api.tp.entsoe.eu/api?securityToken={token}"
-        "&documentType=A68&processType=A33&in_Domain={domain}"
-        "&periodStart={date}0000&periodEnd={date}0000".format(
-            token=token, domain=domain, date=date
-        )
+        f"https://web-api.tp.entsoe.eu/api?securityToken={token}"
+        f"&documentType=A68&processType=A33&in_Domain={domain}"
+        f"&periodStart={date}0000&periodEnd={date}0000"
     )
     response = requests.get(url)
     if response.status_code != 200:
         print(
-            "ERROR: Request to ENTSOE API failed with status {}".format(
-                response.status_code
-            ),
+            f"ERROR: Request to ENTSOE API failed with status {response.status_code}",
             file=sys.stderr,
         )
         exit(1)
@@ -148,13 +144,11 @@ def main():
 
     if data_file is not None:
         if not os.path.exists(data_file):
-            print(
-                "ERROR: Data file {} does not exist.".format(data_file), file=sys.stderr
-            )
+            print(f"ERROR: Data file {data_file} does not exist.", file=sys.stderr)
             sys.exit(1)
         data = parse_from_csv(data_file)
     else:
-        token = args.api_token or get_token("ENTSOE_TOKEN").split(",")[0]
+        token = args.api_token or get_token("ENTSOE_TOKEN")
         if token is None:
             print(
                 "ERROR: If no CSV file is given, the option --api-token must be provided",
@@ -166,7 +160,7 @@ def main():
 
     aggregated_data = aggregate_data(data)
 
-    print("Aggregated capacities: {}".format(json.dumps(aggregated_data)))
+    print(f"Aggregated capacities: {json.dumps(aggregated_data)}")
     print(f"Updating zone {zone_key}")
 
     update_zone(zone_key, aggregated_data)

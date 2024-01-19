@@ -4,18 +4,54 @@ bounding_box:
   - - -83.591841
     - 31.123546
 capacity:
-  battery storage: 0
-  biomass: 0
-  coal: 0
-  gas: 961.8
-  geothermal: 0
-  hydro: 0
-  hydro storage: 0
-  nuclear: 0
-  oil: 0
-  solar: 62
-  unknown: 0
-  wind: 0
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 961.8
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 62.0
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
 comment: City Of Tallahassee
 contributors:
   - systemcatch
@@ -25,6 +61,8 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
@@ -50,9 +88,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 355.877712517318
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 359.8683566
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 359.8683566
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 364.27
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -103,9 +144,12 @@ emissionFactors:
       source: IPCC 2014
       value: 820.0
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 479.8683566
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 479.8683566
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 484.27
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -243,9 +287,12 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern

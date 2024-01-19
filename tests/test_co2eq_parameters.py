@@ -5,7 +5,7 @@ import json
 import numbers
 import re
 import unittest
-from typing import Any, Dict, Set, Tuple, Union
+from typing import Any
 
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS,
@@ -14,7 +14,7 @@ from electricitymap.contrib.config import (
 )
 
 
-def get_possible_modes() -> Set[str]:
+def get_possible_modes() -> set[str]:
     """Get the set of possible modes."""
     modes = set()
     with open("web/src/utils/constants.ts", encoding="utf-8") as file_:
@@ -49,7 +49,7 @@ def parse_json_file(path: str):
 class CO2eqParametersAll(unittest.TestCase):
     """A test case for CO2eq parameters."""
 
-    modes: Set[str] = get_possible_modes()
+    modes: set[str] = get_possible_modes()
     parameters = CO2EQ_PARAMETERS
 
     @staticmethod
@@ -234,7 +234,6 @@ class CO2eqParametersAll(unittest.TestCase):
         contribution_name = "isLowCarbon"
 
         def callback(mode, contribution, zone):
-
             if isinstance(contribution, list):
                 for c in contribution:
                     self.check_contribution_object(c, zone, mode, contribution_name)
@@ -256,8 +255,8 @@ class BaseClasses:
 
         # `parameters` and `ranges_by_mode` are expected to be overridden by the test
         # case; they are defined here to for typing purposes.
-        parameters: Dict[str, Any] = {}
-        ranges_by_mode: Dict[str, Tuple[numbers.Number, numbers.Number]] = {}
+        parameters: dict[str, Any] = {}
+        ranges_by_mode: dict[str, tuple[numbers.Number, numbers.Number]] = {}
 
         @classmethod
         def check_emission_factors(cls, callback):
@@ -308,10 +307,10 @@ class BaseClasses:
 
             def check_range(mode, factor, zone):
                 value = factor["value"]
-                assert isinstance(value, (int, float))
+                assert isinstance(value, int | float)
                 low, high = self.ranges_by_mode[mode]
-                assert isinstance(low, (int, float))
-                assert isinstance(high, (int, float))
+                assert isinstance(low, int | float)
+                assert isinstance(high, int | float)
                 msg = (
                     f"emission factor {value} not in expected range "
                     f"[{low}, {high}] for {mode} in {zone}"
@@ -391,13 +390,16 @@ class CO2eqParametersDirect(BaseClasses.CO2eqParametersDirectAndLifecycleBase):
     parameters = CO2EQ_PARAMETERS_DIRECT
 
     # Expected min and max values for emission factors, by mode.
-    ranges_by_mode: Dict[str, Tuple[Union[int, float], Union[int, float]]] = {
+    ranges_by_mode: dict[str, tuple[int | float, int | float]] = {
         # Fossil fuels: usually above 500 gCO2eq/kWh.
         "coal": (500, 1600),
         "gas": (200, 700),
-        "oil": (300, 1300),
+        "oil": (300, 1400),
         # Low-carbon: direct emissions are usually zero, with some possible exceptions.
-        "geothermal": (0, 100),
+        "geothermal": (
+            0,
+            199,
+        ),  # 80% of geothermal plants emit less than 200 gCO2eq/kWhs
         "hydro": (0, 0),
         "nuclear": (0, 0),
         "solar": (0, 0),
@@ -419,14 +421,14 @@ class CO2eqParametersLifecycle(BaseClasses.CO2eqParametersDirectAndLifecycleBase
     parameters = CO2EQ_PARAMETERS_LIFECYCLE
 
     # Expected min and max values for emission factors, by mode.
-    ranges_by_mode: Dict[str, Tuple[Union[int, float], Union[int, float]]] = {
+    ranges_by_mode: dict[str, tuple[int | float, int | float]] = {
         # Fossil fuels: generally above 500 gCO2eq/kWh with some exceptions.
         "oil": (600, 1600),
         "coal": (500, 1600),
         "gas": (400, 900),
         # Low-carbon: generally below 50 gCO2eq/kWh with some exceptions.
         # For lifecycle emissions, this should not be zero.
-        "geothermal": (30, 140),
+        "geothermal": (30, 199),
         "hydro": (10, 25),
         "nuclear": (4, 12),
         "biomass": (0.4, 1300),

@@ -15,6 +15,7 @@ contributors:
   - systemcatch
   - corradio
   - nessie2013
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas.
 emissionFactors:
   direct:
     battery discharge:
@@ -160,5 +161,6 @@ fallbackZoneMixes:
         unknown: 0.03856859325418157
         wind: 0.0772943608308855
 parsers:
-  production: AR.fetch_production
+  production: CAMMESA.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Argentina/Buenos_Aires

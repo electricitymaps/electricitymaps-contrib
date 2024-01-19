@@ -4,16 +4,18 @@ bounding_box:
   - - -59.32226030077226
     - -7.500493258457112
 capacity:
-  hydro: 58356
+  hydro: 40384
   nuclear: 1990
-  solar: 2955
-  unknown: 22681
+  solar: 14133
+  unknown: 22800
   wind: 28
 contributors:
   - alexanmtz
   - corradio
   - systemcatch
   - nessie2013
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
+  coal and oil.
 emissionFactors:
   direct:
     battery discharge:
@@ -198,5 +200,6 @@ fallbackZoneMixes:
         unknown: 0.21701500847417726
         wind: 0.030407074126448184
 parsers:
-  production: BR.fetch_production
+  production: ONS.fetch_production
+  productionCapacity: ONS.fetch_production_capacity
 timezone: null

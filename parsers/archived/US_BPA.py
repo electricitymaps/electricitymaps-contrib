@@ -61,7 +61,7 @@ def data_processor(df, logger) -> list:
 
     for k in unknown_keys:
         logger.warning(
-            "New data {} seen in US-BPA data source".format(k), extra={"key": "US-BPA"}
+            f"New data {k} seen in US-BPA data source", extra={"key": "US-BPA"}
         )
 
     keys_to_remove = unknown_keys | {"Load"}

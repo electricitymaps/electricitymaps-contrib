@@ -1,7 +1,8 @@
+import { windColor } from 'features/weather-layers/wind-layer/scales';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'translation/translation';
+
 import HorizontalColorbar from './ColorBar';
-import { windColor } from 'features/weather-layers/wind-layer/scales';
 
 function LegendItem({
   label,

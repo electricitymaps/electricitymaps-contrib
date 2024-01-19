@@ -28,21 +28,30 @@ emissionFactors:
       source: BEIS 2021
       value: 0.0
     coal:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 1057.262766
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 1057.262766
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 1075.5
     gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 419.8221756
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 419.8221756
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 412.38
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 240.34920223886382
     oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 880.903938
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 880.903938
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 925.95
   lifecycle:
     battery discharge:
       - datetime: '2021-01-01'
@@ -53,13 +62,19 @@ emissionFactors:
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1117.262766
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 1117.262766
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 1135.5
     gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 539.8221756
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 539.8221756
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 532.38
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -73,9 +88,12 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1124.903938
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 1124.903938
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 1169.95
     wind:
       datetime: '2014-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
@@ -104,10 +122,13 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
+  productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 price_displayed: false
 sources:
   EU-ETS, ENTSO-E 2021:
+    link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

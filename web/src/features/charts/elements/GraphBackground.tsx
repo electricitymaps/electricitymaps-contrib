@@ -2,6 +2,7 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable react/display-name */
 import React from 'react';
+
 import { detectHoveredDatapointIndex, noop } from '../graphUtils';
 
 const GraphBackground = React.memo(

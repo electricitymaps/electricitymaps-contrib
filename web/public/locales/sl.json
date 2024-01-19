@@ -27,7 +27,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Kartiranje vpliva električne energije na podnebje"
+      "header": "Kartiranje vpliva električne energije na podnebje"
     },
     "view2": {
       "header": "Sprotno si oglejte, koliko CO₂ se izpusti za proizvodnjo vaše električne energije.",
@@ -37,7 +37,7 @@
       "header": "Vedite, od kod prihaja vaša elektrika",
       "text": "Puščice na zemljevidu označujejo pretok električne energije med različnimi območji. Kliknite na območje, da vidite več informacij o izvoru električne energije."
     },
-    "view4": {
+    "view7": {
       "header": "Vetrne in sončne razmere v realnem času",
       "text": "Proizvodnja vetrne in sončne energije je odvisna od vremena. Pritisnite gumba za sonce in veter, da prikažete moč vetra in sonca po vsem svetu v realnem času."
     }
@@ -45,12 +45,18 @@
   "country-panel": {
     "source": "Vir",
     "carbonintensity": "Intenzivnost ogljika",
-    "lowcarbon": "nozkoogljična",
+    "lowcarbon": "nizkoogljična",
     "renewable": "obnovljiva",
     "electricityproduction": "Proizvodnja električne energije",
     "electricityconsumption": "Poraba električne energije",
-    "bysource": "po viru",
-    "averagebysource": "povprečje glede na vir",
+    "by-source": {
+      "emissions": "Izpusti ogljika po virih",
+      "electricity-production": "Proizvodnja električne energije po virih",
+      "electricity-consumption": "Poraba električne energije po virih",
+      "total-emissions": "Skupni izpusti ogljika po virih",
+      "total-electricity-production": "Skupna proizvodnja električne energije po virih",
+      "total-electricity-consumption": "Skupna poraba električne energije po virih"
+    },
     "emissions": "ogljične emisije",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj ali uredi vir</a>",
     "helpfrom": "s pomočjo od",
@@ -77,11 +83,10 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Intenzivnost ogljika v zadnjih%1$s",
       "hourly": "Intenzivnost ogljika v zadnjih 24 urah",
       "daily": "Intenzivnost ogljika v zadnjem mesecu",
       "monthly": "Intenzivnost ogljika v zadnjem letu",
-      "yearly": "Intenzivnost ogljika v zadnjih 5 letih"
+      "default": "Intenzivnost ogljika v zadnjih%1$s"
     },
     "emissions": {
       "default": "Emisije v zadnji(h) %1$s"
@@ -151,7 +156,7 @@
   "misc": {
     "maintitle": "Trenutne 24/7 emisije CO₂ porabe električne energije",
     "oops": "Ups! Imamo težave pri doseganju strežnika. Poskusili bomo znova čez nekaj sekund.",
-    "newversion": "Na voljo je nova različica! Pritisnite <a onClick=\"location.reload(true);\">tukaj</a> za ponovno nalaganje.",
+    "newversion": "Na voljo je nova različica!",
     "webgl-not-supported": "Zemljevida ni mogoče upodobiti, ker ta brskalnik ne podpira WebGL.",
     "retrynow": "Poskusi ponovno",
     "database-ad": "Iščete zgodovinske podatke? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preverite našo bazo podatkov!</a>",
@@ -159,7 +164,9 @@
     "legend": "Legenda",
     "faq": "Pogosto postavljena vprašanja",
     "privacyPolicy": "Politika zasebnosti",
-    "legalNotice": "Pravno obvestilo"
+    "legalNotice": "Pravno obvestilo",
+    "dismiss": "Opusti",
+    "reload": "Znova naloži"
   },
   "wind": "veter",
   "windDataError": "Podatki o vetrni energiji trenutno niso na voljo",
@@ -183,7 +190,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> emisij iz električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, se izvozi v <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> emisij električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>%2$s</b>, so uvožene iz<img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq na minuto",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Kaj pomenijo barve na zemljevidu?",
@@ -289,43 +295,43 @@
       "zoneName": "Avstrija"
     },
     "AU-NSW": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Novi Južni Wales"
     },
     "AU-NT": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Severni teritoriji"
     },
     "AU-QLD": {
-      "countryName": "Australia",
+      "countryName": "Avstralija",
       "zoneName": "Queensland"
     },
     "AU-SA": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Južna Avstralija"
     },
     "AU-TAS": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Tasmanija"
     },
     "AU-TAS-CBI": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Cape Barren otok"
     },
     "AU-TAS-KI": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "King otok"
     },
     "AU-TAS-FI": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Flinders otok"
     },
     "AU-VIC": {
-      "countryName": "Australija",
+      "countryName": "Avstralija",
       "zoneName": "Victoria"
     },
     "AU-WA": {
-      "countryName": "Australij",
+      "countryName": "Avstralija",
       "zoneName": "Zahodna Avstralija"
     },
     "AU-WA-RI": {
@@ -691,10 +697,6 @@
       "countryName": "Velika Britanija",
       "zoneName": "Šetlandski otoki"
     },
-    "GB-ZET": {
-      "countryName": "Velika Britanija",
-      "zoneName": "Šetlandski otoki"
-    },
     "GD": {
       "zoneName": "Grenada"
     },
@@ -720,7 +722,7 @@
       "zoneName": "Gambija"
     },
     "GN": {
-      "zoneName": "Gvineja  "
+      "zoneName": "Gvineja"
     },
     "GP": {
       "zoneName": "Guadeloupe"
@@ -1151,7 +1153,7 @@
       "zoneName": "Severno-zahodna"
     },
     "MX-OC": {
-      "countryName": "Mexico",
+      "countryName": "Mehika",
       "zoneName": "Zahodna"
     },
     "MX-OR": {
@@ -1209,7 +1211,7 @@
       "zoneName": "Jugo-zahodna Norveška"
     },
     "NO-NO3": {
-      "countryName": "Norway",
+      "countryName": "Norveška",
       "zoneName": "Srednja Norveška"
     },
     "NO-NO4": {
@@ -1266,7 +1268,7 @@
       "zoneName": "Pakistan"
     },
     "PL": {
-      "zoneName": "Poland"
+      "zoneName": "Poljska"
     },
     "PM": {
       "zoneName": "Sveti Pierre in Miquelon"
@@ -1307,7 +1309,7 @@
       "zoneName": "Romunija"
     },
     "RS": {
-      "zoneName": "Serbija"
+      "zoneName": "Srbija"
     },
     "RU": {
       "zoneName": "Rusija"
@@ -1468,7 +1470,7 @@
       "zoneName": "Tanzanija"
     },
     "UA": {
-      "zoneName": "Ukrajiva"
+      "zoneName": "Ukrajina"
     },
     "UA-CR": {
       "countryName": "Ukrajina",
@@ -1631,10 +1633,6 @@
       "countryName": "ZDA",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "ZDA",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "ZDA",
       "zoneName": "Bonneville Power Administration"
@@ -1727,10 +1725,6 @@
       "countryName": "ZDA",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "ZDA",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "ZDA",
       "zoneName": "El Paso Electric Company"
@@ -1738,10 +1732,6 @@
     "US-SW-GRIF": {
       "countryName": "ZDA",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "ZDA",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "ZDA",
@@ -1777,7 +1767,7 @@
       "zoneName": "Vatikan"
     },
     "VC": {
-      "zoneName": "SVeti Vincent in Grenadini"
+      "zoneName": "Sveti Vincent in Grenadini"
     },
     "VE": {
       "zoneName": "Venezuela"

@@ -20,6 +20,8 @@ contributors:
   - alixunderplatz
 delays:
   production: 24
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
+  coal and oil.
 emissionFactors:
   direct:
     battery discharge:
@@ -68,20 +70,23 @@ emissionFactors:
         value: 202.17925507417564
     unknown:
       - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 298.9863864
+        source: Electricity Maps, CEN
+        value: 610.4720811
       - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 367.2459401
+        source: Electricity Maps, CEN
+        value: 613.650213
       - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 364.8016099
+        source: Electricity Maps, CEN
+        value: 606.6959655
       - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 349.6068089
+        source: Electricity Maps, CEN
+        value: 602.5343343
       - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 351.9679562
+        source: Electricity Maps, CEN
+        value: 597.8259335
+      - datetime: '2022-01-01'
+        source: Electricity Maps, CEN
+        value: 556.6130553
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -129,20 +134,23 @@ emissionFactors:
         value: 250.68772646613445
     unknown:
       - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 345.5180312
+        source: Electricity Maps, 2017 average.
+        value: 697.4098196
       - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 424.6700811
+        source: Electricity Maps, CEN
+        value: 699.7160413
       - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 424.370115
+        source: Electricity Maps, CEN
+        value: 693.0054289
       - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 408.9363915
+        source: Electricity Maps, CEN
+        value: 689.9009504
       - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 415.2803301
+        source: Electricity Maps, CEN
+        value: 687.0474273
+      - datetime: '2022-01-01'
+        source: Electricity Maps, CEN
+        value: 652.4268241
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -252,4 +260,8 @@ fallbackZoneMixes:
         wind: 0.08868521298423133
 parsers:
   production: CL.fetch_production
+  productionCapacity: CL_SEN.fetch_production_capacity
+sources:
+  Electricity Maps, CEN:
+    link: https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=163148677 (average thermoelectric emission factors)
 timezone: America/Santiago

@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Χαρτογράφηση των κλιματικών επιπτώσεων της ηλεκτρικής ενέργειας"
+      "header": "Χαρτογράφηση των κλιματικών επιπτώσεων της ηλεκτρικής ενέργειας"
     },
     "view2": {
       "header": "Δείτε πόσο CO₂ εκπέμπεται για να παραχθεί η ηλεκτρική σας ενέργεια, σε πραγματικό χρόνο.",
@@ -23,7 +23,7 @@
       "header": "Μάθετε από πού προέρχεται ο ηλεκτρισμός σας",
       "text": "Τα βέλη στο χάρτη υποδεικνύουν ροές ηλεκτρικής ενέργειας μεταξύ διαφορετικών περιοχών. Κάντε κλικ σε μια περιοχή για να δείτε περισσότερες πληροφορίες σχετικά με την προέλευση της ηλεκτρικής ενέργειας."
     },
-    "view4": {
+    "view7": {
       "header": "Συνθήκες ανέμου και ηλιοφάνειας σε πραγματικό χρόνο",
       "text": "Η παραγωγή αιολικής και ηλιακής ενέργειας εξαρτάται από τον καιρό. Πατήστε τα κουμπιά ηλίου και ανέμου για να παρουσιάσετε την ισχύ του ανέμου και ηλιοφάνειας σε όλο τον κόσμο."
     }
@@ -112,13 +112,15 @@
   "misc": {
     "maintitle": "Ζωντανές εκπομπές CO₂ κατανάλωσης ηλεκτρικής ενέργειας",
     "oops": "Ωχ! Αντιμετωπίζουμε πρόβλημα με τη λήψη δεδομένων. Θα προσπαθήσουμε ξανά σε λίγα δευτερόλεπτα.",
-    "newversion": "Μια νέα έκδοση είναι διαθέσιμη! Πατήστε <a onClick=\"location.reload(true);\">εδώ</a> για επαναφόρτωση.",
+    "newversion": "Μια νέα έκδοση είναι διαθέσιμη!",
     "webgl-not-supported": "Ο χάρτης δεν μπορεί να παρουσιαστεί καθώς αυτό το πρόγραμμα περιήγησης δεν υποστηρίζει WebGL.",
     "retrynow": "Επαναδοκιμή τώρα",
     "database-ad": "Ψάχνετε για ιστορικά δεδομένα; <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Δείτε τη βάση δεδομένων μας!</a>",
     "api-ad": "Θέλετε ζωντανά δεδομένα στην εφαρμογή ή στη συσκευή σας; <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Δοκιμάστε το API μας!</a>",
     "legend": "Yπόμνημα",
-    "faq": "Συχνές Ερωτήσεις"
+    "faq": "Συχνές Ερωτήσεις",
+    "dismiss": "Κλείσιμο",
+    "reload": "Νέα φόρτωση"
   },
   "wind": "αιολική",
   "solar": "ηλιακή",
@@ -140,7 +142,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εξάγεται στο/στη(ν) %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εισάγεται από %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εισάγεται από %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq ανά λεπτό",
   "theMap": {
     "groupName": "Ο χάρτης",
     "mapColors-question": "What do the colors on the map mean?",
@@ -1518,10 +1519,6 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Bonneville Power Administration"
@@ -1614,10 +1611,6 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "El Paso Electric Company"
@@ -1625,10 +1618,6 @@
     "US-SW-GRIF": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",

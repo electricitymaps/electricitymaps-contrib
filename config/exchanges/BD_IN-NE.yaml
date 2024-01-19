@@ -2,5 +2,5 @@ lonlat:
   - 91.245998
   - 23.485682
 parsers:
-  exchange: BD.fetch_exchange
+  exchange: ERP_PGCB.fetch_exchange
 rotation: 90

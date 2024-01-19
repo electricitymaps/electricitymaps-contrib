@@ -5,5 +5,5 @@ lonlat:
   - -116.027
   - 32.607
 parsers:
-  exchange: US_CA.fetch_exchange
+  exchange: CENACE.fetch_exchange
 rotation: -10

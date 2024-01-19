@@ -161,4 +161,5 @@ fallbackZoneMixes:
         wind: 0.05530607768163253
 parsers:
   production: DO.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Santo_Domingo

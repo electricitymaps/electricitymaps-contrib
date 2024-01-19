@@ -1,3 +1,8 @@
+bounding_box:
+  - - -7.488389900229108
+    - 60.89207339559458
+  - - -6.168657472558352
+    - 62.1530567252827
 capacity:
   hydro: 3.3
   oil: 13.6
@@ -12,32 +17,48 @@ emissionFactors:
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
-      value: 0.0
+      value: 0
     coal:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 845.5332093
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 1057.262766
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 1075.5
     gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 336.9719859
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 481.60707
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 412.38
     oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 1193.417464
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 880.903938
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 925.95
   lifecycle:
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
-      value: 230.0
+      value: 230
     coal:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 914.3278173
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
+        value: 1168.890109
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 1144.294608
     gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 456.9719859
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 539.8221756
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 532.38
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -47,9 +68,12 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1437.417464
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 1124.903938
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 1169.95
     wind:
       datetime: '2014-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
@@ -59,6 +83,8 @@ parsers:
   production: FO.fetch_production
 sources:
   EU-ETS, ENTSO-E 2021:
+    link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

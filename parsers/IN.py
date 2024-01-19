@@ -3,15 +3,15 @@
 """Parser for all of India"""
 
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
+from zoneinfo import ZoneInfo
 
 import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-from pytz import UTC
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -22,7 +22,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
-IN_TZ = "Asia/Kolkata"
+IN_TZ = ZoneInfo("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = arrow.get("2020-12-17", tzinfo=IN_TZ).datetime
 CONVERSION_GWH_MW = 0.024
 GENERATION_MAPPING = {
@@ -135,7 +135,7 @@ STATES_MAPPING = {
 }
 
 
-def get_data(session: Optional[Session]) -> Dict[str, Any]:
+def get_data(session: Session | None) -> dict[str, Any]:
     """
     Requests html then extracts generation data.
     Returns a dictionary.
@@ -162,10 +162,10 @@ def get_data(session: Optional[Session]) -> Dict[str, Any]:
 
 def fetch_live_production(
     zone_key: str = "IN",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
@@ -179,14 +179,14 @@ def fetch_live_production(
         if k not in GENERATION_MAPPING.keys():
             processed_data.pop(k)
             logger.warning(
-                "Key '{}' in IN is not mapped to type.".format(k), extra={"key": "IN"}
+                f"Key '{k}' in IN is not mapped to type.", extra={"key": "IN"}
             )
 
     mapped_production = {GENERATION_MAPPING[k]: v for k, v in processed_data.items()}
 
     data = {
         "zoneKey": zone_key,
-        "datetime": IN_TZ.localize(datetime.now()),
+        "datetime": datetime.now(tz=IN_TZ),
         "production": mapped_production,
         "storage": {},
         "source": "meritindia.in",
@@ -198,11 +198,12 @@ def fetch_live_production(
 def fetch_consumption_from_vidyutpravah(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> TotalConsumptionList:
     """Fetches live consumption from government dashboard. Consumption is available per state and is then aggregated at regional level.
-    Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep"""
+    Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep
+    """
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -224,11 +225,11 @@ def fetch_consumption_from_vidyutpravah(
                 .split()[0]
                 .replace(",", "")
             )
-        except:
+        except Exception as e:
             raise ParserException(
                 parser="IN.py",
                 message=f"{target_datetime}: consumption data is not available for {zone_key}",
-            )
+            ) from e
         total_consumption += state_consumption
 
     if total_consumption == 0:
@@ -240,7 +241,7 @@ def fetch_consumption_from_vidyutpravah(
     consumption_list = TotalConsumptionList(logger=logger)
     consumption_list.append(
         zoneKey=ZoneKey(zone_key),
-        datetime=arrow.now(tz=IN_TZ).datetime,
+        datetime=datetime.now(tz=IN_TZ),
         consumption=total_consumption,
         source="vidyupravah.in",
     )
@@ -251,25 +252,39 @@ def fetch_consumption_from_vidyutpravah(
 def fetch_consumption_from_meritindia(
     zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> TotalConsumptionList:
     """Fetches the live consumption from the Merit Order Despatch of Electricity.
     This source seems to be a bit more stable right now than vidyutpravah.in"""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    import concurrent.futures
+
     total_consumption = 0
-    for state in STATES_MAPPING[zone_key]:
+    futures = []
+
+    def fetch_state_consumption(session, state):
         resp: Response = session.post(
             DEMAND_URL_MERITINDIA.format(proxy=INDIA_PROXY),
             data={"StateCode": STATE_CODES[state]},
         )
         data = resp.json()[0]
-        total_consumption += float(str(data["Demand"]).replace(",", ""))
+        return float(str(data["Demand"]).replace(",", ""))
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        for state in STATES_MAPPING[zone_key]:
+            future = executor.submit(fetch_state_consumption, session, state)
+            futures.append(future)
+
+        for future in concurrent.futures.as_completed(futures):
+            total_consumption += future.result()
+
     consumption_list = TotalConsumptionList(logger=logger)
     consumption_list.append(
         zoneKey=ZoneKey(zone_key),
-        datetime=arrow.now(tz=IN_TZ).datetime,
+        datetime=datetime.now(tz=IN_TZ),
         consumption=total_consumption,
         source="meritindia.in",
     )
@@ -281,7 +296,7 @@ def fetch_npp_production(
     target_datetime: datetime,
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Gets production for conventional thermal, nuclear and hydro from NPP daily reports
     This data most likely doesn't inlcude distributed generation"""
     npp_url = "https://npp.gov.in/public-reports/cea/daily/dgr/{date:%d-%m-%Y}/dgr2-{date:%Y-%m-%d}.xls".format(
@@ -324,9 +339,9 @@ def fetch_npp_production(
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     return fetch_consumption_from_meritindia(
         zone_key=zone_key,
         session=session,
@@ -335,7 +350,7 @@ def fetch_consumption(
     ).to_list()
 
 
-def format_ren_production_data(url: str, zone_key: str) -> Dict[str, Any]:
+def format_ren_production_data(url: str, zone_key: str) -> dict[str, Any]:
     """Formats daily renewable production data for each zone"""
     df_ren = pd.read_excel(url, engine="openpyxl", header=5, skipfooter=2)
     df_ren = df_ren.dropna(axis=0, how="all")
@@ -368,7 +383,7 @@ def fetch_cea_production(
     target_datetime: datetime,
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Gets production data for wind, solar and other renewables
     Other renewables includes a share of hydro, biomass and others and will categorized as unknown
     DISCLAIMER: this data is only available since 2020/12/17"""
@@ -407,11 +422,11 @@ def fetch_cea_production(
 def fetch_production(
     zone_key: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     if target_datetime is None:
-        target_datetime = get_start_of_day(dt=UTC.localize(datetime.now()))
+        target_datetime = get_start_of_day(dt=datetime.now(timezone.utc))
     else:
         target_datetime = get_start_of_day(dt=target_datetime)
         if target_datetime < START_DATE_RENEWABLE_DATA:
@@ -442,7 +457,7 @@ def fetch_production(
                 zone_key=zone_key,
                 logger=logger,
             )
-        except:
+        except Exception:
             logger.warning(
                 f"{zone_key}: production not available for {_target_datetime}"
             )
@@ -451,12 +466,12 @@ def fetch_production(
 
 def daily_to_hourly_production_data(
     target_datetime: datetime, production: dict, zone_key: str, logger: Logger
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """convert daily power production average to hourly values"""
     all_hourly_production = ProductionBreakdownList(logger)
     production_mix = ProductionMix()
     for mode, value in production.items():
-        production_mix.set_value(mode, value)
+        production_mix.add_value(mode, value)
     for hour in list(range(0, 24)):
         all_hourly_production.append(
             zoneKey=ZoneKey(zone_key),
@@ -474,6 +489,5 @@ def get_start_of_day(dt: datetime) -> datetime:
 
 
 if __name__ == "__main__":
-
     # print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
     print(fetch_consumption(zone_key=ZoneKey("IN-NO")))

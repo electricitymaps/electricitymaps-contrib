@@ -11,6 +11,7 @@ import {
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
+
 import Windy from './windy';
 
 type WindyType = ReturnType<typeof Windy>;
@@ -77,6 +78,7 @@ export default function WindLayer({ map }: { map?: MapboxMap }) {
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       id="wind"
+      data-test-id="wind-layer"
       width={width}
       height={height}
       ref={ref}

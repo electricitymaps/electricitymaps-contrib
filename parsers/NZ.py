@@ -4,7 +4,6 @@
 import json
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup
@@ -14,10 +13,10 @@ from requests import Session
 
 timezone = "Pacific/Auckland"
 
-NZ_PRICE_REGIONS = set([i for i in range(1, 14)])
+NZ_PRICE_REGIONS = {i for i in range(1, 14)}
 
 
-def fetch(session: Optional[Session] = None):
+def fetch(session: Session | None = None):
     r = session or Session()
     url = "https://www.transpower.co.nz/system-operator/live-system-and-market-data/consolidated-live-data"
     response = r.get(url)
@@ -31,8 +30,8 @@ def fetch(session: Optional[Session] = None):
 
 def fetch_price(
     zone_key: str = "NZ",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -74,8 +73,8 @@ def fetch_price(
 
 def fetch_production(
     zone_key: str = "NZ",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -96,7 +95,7 @@ def fetch_production(
         "datetime": datetime,
         "production": {
             "coal": productions.get("Coal", {"generation": None})["generation"],
-            "oil": productions.get("Liquid", {"generation": None})["generation"],
+            "oil": productions.get("Diesel/Oil", {"generation": None})["generation"],
             "gas": productions.get("Gas", {"generation": None})["generation"],
             "geothermal": productions.get("Geothermal", {"generation": None})[
                 "generation"
@@ -109,7 +108,7 @@ def fetch_production(
         },
         "capacity": {
             "coal": productions.get("Coal", {"capacity": None})["capacity"],
-            "oil": productions.get("Liquid", {"capacity": None})["capacity"],
+            "oil": productions.get("Diesel/Oil", {"capacity": None})["capacity"],
             "gas": productions.get("Gas", {"capacity": None})["capacity"],
             "geothermal": productions.get("Geothermal", {"capacity": None})["capacity"],
             "wind": productions.get("Wind", {"capacity": None})["capacity"],

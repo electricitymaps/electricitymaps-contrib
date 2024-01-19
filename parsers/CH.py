@@ -3,7 +3,7 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
@@ -79,8 +79,8 @@ def fetch_swiss_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "CH",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -92,7 +92,7 @@ def fetch_production(
     now = (
         arrow.get(target_datetime).to("Europe/Zurich").datetime
         if target_datetime
-        else arrow.now(tz="Europe/Zurich").datetime
+        else datetime.now(tz=ZoneInfo("Europe/Zurich"))
     )
     r = session or Session()
 

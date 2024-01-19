@@ -4,17 +4,21 @@ bounding_box:
   - - 126.537423944
     - 18.5052273625
 capacity:
-  battery storage: 34
-  biomass: 501
-  coal: 11684
-  gas: 3453
-  geothermal: 1932
-  hydro: 3045
+  battery storage: 156
+  biomass: 579
+  coal: 12473
+  gas: 3732
+  geothermal: 1952
+  hydro: 3034
   hydro storage: 736
   nuclear: 0
-  oil: 4503
-  solar: 1385
-  wind: 443
+  oil: 3834
+  solar: 1531
+  wind: 427
 contributors:
   - xomanuel
+subZoneNames:
+  - PH-LU
+  - PH-MI
+  - PH-VI
 timezone: Asia/Manila

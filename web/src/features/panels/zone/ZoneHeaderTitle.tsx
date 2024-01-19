@@ -6,6 +6,7 @@ import { HiArrowLeft } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 import { getCountryName, getZoneName, useTranslation } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
+
 import { getDisclaimer } from './util';
 
 interface ZoneHeaderTitleProps {
@@ -21,13 +22,13 @@ export default function ZoneHeaderTitle({
 }: ZoneHeaderTitleProps) {
   const { __ } = useTranslation();
   const title = getZoneName(zoneId);
-  const isSubZone = zoneId.includes('-');
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
+  const showCountryPill = zoneId.includes('-') && !title.includes(countryName);
 
   return (
-    <div className="flex w-full grow flex-row overflow-hidden pl-2 pb-2">
+    <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
       <Link
         className="text-3xl self-center py-4 pr-4"
         to={returnToMapLink}
@@ -53,21 +54,21 @@ export default function ZoneHeaderTitle({
                   <h2 className="truncate text-lg font-medium" data-test-id="zone-name">
                     {title}
                   </h2>
-                  {isSubZone && (
-                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 py-0.5 px-2  text-sm dark:bg-gray-900">
-                      <p className="w-full truncate">{countryName || zoneId}</p>
+                  {showCountryPill && (
+                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">
+                      <p className="w-full truncate">{countryName ?? zoneId}</p>
                     </div>
                   )}
                 </div>
               </TooltipWrapper>
+              {disclaimer && (
+                <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
+                  <div className="ml-2 mr-4 h-6 w-6 shrink-0 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
+                    <p>i</p>
+                  </div>
+                </TooltipWrapper>
+              )}
             </div>
-            {disclaimer && (
-              <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
-                <div className="mr-1 h-6 w-6 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900 sm:mr-0">
-                  <p>i</p>
-                </div>
-              </TooltipWrapper>
-            )}
           </div>
         </div>
         <div className="flex h-auto flex-wrap items-center gap-1 text-center">

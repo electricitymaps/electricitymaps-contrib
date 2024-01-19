@@ -33,7 +33,7 @@ export default function MobileTooltipWrapper(
         <Tooltip.Portal>
           <Tooltip.Content
             className={twMerge(
-              'relative h-auto max-w-[164px] rounded border bg-zinc-50 p-4 text-center text-sm shadow-md dark:border-0 dark:bg-gray-900',
+              'relative h-auto max-w-[164px] rounded border bg-zinc-50 p-4 text-center text-sm shadow-md dark:border-0 dark:bg-gray-800',
               tooltipClassName
             )}
             sideOffset={sideOffset ?? 3}

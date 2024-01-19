@@ -4,13 +4,20 @@ import {
   GenerationType,
   ZoneDetail,
 } from 'types';
+import { Mode } from 'utils/constants';
 import { getProductionCo2Intensity } from 'utils/helpers';
-import { getElectricityProductionValue, getTotalElectricity } from './graphUtils';
+
+import {
+  getElectricityProductionValue,
+  getTotalElectricityAvailable,
+  getTotalEmissionsAvailable,
+} from './graphUtils';
 
 export function getProductionTooltipData(
   selectedLayerKey: ElectricityModeType,
   zoneDetail: ZoneDetail,
-  displayByEmissions: boolean
+  displayByEmissions: boolean,
+  mixMode: Mode
 ) {
   const co2Intensity = getProductionCo2Intensity(selectedLayerKey, zoneDetail);
   const isStorage = selectedLayerKey.includes('storage');
@@ -21,8 +28,8 @@ export function getProductionTooltipData(
 
   const storageKey = generationType as ElectricityStorageKeyType;
 
-  const totalElectricity = getTotalElectricity(zoneDetail, displayByEmissions);
-  const totalEmissions = getTotalElectricity(zoneDetail, true);
+  const totalElectricity = getTotalElectricityAvailable(zoneDetail, mixMode);
+  const totalEmissions = getTotalEmissionsAvailable(zoneDetail, mixMode);
 
   const {
     capacity,
@@ -90,13 +97,17 @@ export function getExchangeTooltipData(
 
   const isExport = exchange < 0;
 
-  const usage = Math.abs(displayByEmissions ? exchange * 1000 * co2Intensity : exchange);
-  const totalElectricity = getTotalElectricity(zoneDetail, displayByEmissions);
+  const usage = Math.abs(displayByEmissions ? exchange * co2Intensity * 1000 : exchange);
+  const totalElectricity = getTotalElectricityAvailable(zoneDetail, Mode.CONSUMPTION);
   const totalCapacity = exchangeCapacityRange
     ? Math.abs(exchangeCapacityRange[isExport ? 0 : 1])
     : undefined;
-  const emissions = Math.abs(exchange * 1000 * co2Intensity);
-  const totalEmissions = getTotalElectricity(zoneDetail, true);
+  const emissions = Math.abs(exchange * co2Intensity * 1000);
+  const totalEmissions = getTotalEmissionsAvailable(
+    zoneDetail,
+
+    Mode.CONSUMPTION
+  );
 
   return {
     co2Intensity,

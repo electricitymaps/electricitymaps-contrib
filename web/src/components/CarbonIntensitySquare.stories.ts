@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import CarbonIntensitySquare from './CarbonIntensitySquare';
 
 const meta: Meta<typeof CarbonIntensitySquare> = {

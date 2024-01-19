@@ -1,8 +1,6 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Optional
 
-from pytz import utc
 from requests import Session
 
 from . import ENTSOE
@@ -15,9 +13,9 @@ If no target_datetime is provided, the wrapper will provide a target datetime th
 """
 
 
-def modify_target_datetime(target_datetime: Optional[datetime]) -> datetime:
+def modify_target_datetime(target_datetime: datetime | None) -> datetime:
     if target_datetime is None:
-        return datetime.now(tz=utc) - timedelta(hours=24)
+        return datetime.now(tz=timezone.utc) - timedelta(hours=24)
     else:
         return target_datetime
 
@@ -26,7 +24,7 @@ def modify_target_datetime(target_datetime: Optional[datetime]) -> datetime:
 def fetch_consumption(
     zone_key: str = "MK",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     target_datetime = modify_target_datetime(target_datetime)
@@ -42,7 +40,7 @@ def fetch_consumption(
 def fetch_consumption_forecast(
     zone_key: str = "MK",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     target_datetime = modify_target_datetime(target_datetime)
@@ -58,7 +56,7 @@ def fetch_consumption_forecast(
 def fetch_generation_forecast(
     zone_key: str = "MK",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     target_datetime = modify_target_datetime(target_datetime)
@@ -74,7 +72,7 @@ def fetch_generation_forecast(
 def fetch_price(
     zone_key: str = "MK",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     target_datetime = modify_target_datetime(target_datetime)
@@ -90,7 +88,7 @@ def fetch_price(
 def fetch_production(
     zone_key: str = "MK",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     target_datetime = modify_target_datetime(target_datetime)
@@ -106,7 +104,7 @@ def fetch_production(
 def fetch_wind_solar_forecasts(
     zone_key: str = "MK",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     target_datetime = modify_target_datetime(target_datetime)

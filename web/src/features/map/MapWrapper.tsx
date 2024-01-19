@@ -1,10 +1,11 @@
 import MapControls from 'features/map-controls/MapControls';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+
 import Map from './Map';
+import { loadingMapAtom } from './mapAtoms';
 import MapFallback, { isOldIOSVersion } from './MapFallback';
 import MapTooltip from './MapTooltip';
-import { loadingMapAtom } from './mapAtoms';
 
 export default function MapWrapper() {
   const shouldShowFallback = isOldIOSVersion();

@@ -2,10 +2,11 @@ import { scaleLinear } from 'd3-scale';
 import { useAtom } from 'jotai';
 import { useMemo } from 'react';
 import { MapTheme } from 'types';
-import { colors } from './colors';
-import { colorblindModeAtom, themeAtom } from 'utils/state/atoms';
-import { ThemeOptions } from 'utils/constants';
 import { useMediaQuery } from 'utils';
+import { ThemeOptions } from 'utils/constants';
+import { colorblindModeAtom, themeAtom } from 'utils/state/atoms';
+
+import { colors } from './colors';
 
 /**
  * This hook listens for changes to the selected theme or system appearance preferences

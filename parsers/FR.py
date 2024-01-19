@@ -4,7 +4,6 @@ import json
 import math
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import pandas as pd
@@ -60,8 +59,8 @@ def get_dataset_from_datetime(target_datetime: datetime) -> str:
 
 
 def get_data(
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
 ) -> pd.DataFrame:
     """Returns a DataFrame with the data from the API."""
     if target_datetime:
@@ -107,7 +106,9 @@ def reindex_data(df_to_reindex: pd.DataFrame) -> pd.DataFrame:
     )
 
     # Average data points corresponding to the same time with 30 min granularity
-    df_reindexed = df_to_reindex.groupby("datetime_30").mean().reset_index()
+    df_reindexed = (
+        df_to_reindex.groupby("datetime_30").mean(numeric_only=True).reset_index()
+    )
     df_reindexed = df_reindexed.rename(columns={"datetime_30": "date_heure"})
     return df_reindexed
 
@@ -115,8 +116,8 @@ def reindex_data(df_to_reindex: pd.DataFrame) -> pd.DataFrame:
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "FR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     df_production = get_data(session, target_datetime)
@@ -130,9 +131,7 @@ def fetch_production(
         return list()
     elif len(missing_fuels) > 0:
         mf_str = ", ".join(missing_fuels)
-        logger.warning(
-            "Fuels [{}] are not present in the API " "response".format(mf_str)
-        )
+        logger.warning(f"Fuels [{mf_str}] are not present in the API " "response")
 
     df_production = df_production.loc[:, ["date_heure"] + present_fuels]
     df_production[present_fuels] = df_production[present_fuels].astype(float)
@@ -150,7 +149,7 @@ def fetch_production(
 
             if -50 < row[1][key] < 0:
                 # set small negative values to 0
-                logger.warning("Setting small value of %s (%s) to 0." % (key, value))
+                logger.warning(f"Setting small value of {key} ({value}) to 0.")
                 production[value] = 0
             else:
                 production[value] = row[1][key]
@@ -208,8 +207,8 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "FR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     df_consumption = get_data(session, target_datetime)

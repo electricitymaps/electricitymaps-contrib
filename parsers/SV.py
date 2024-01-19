@@ -6,9 +6,8 @@ from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
 from operator import itemgetter
-from typing import Optional
+from zoneinfo import ZoneInfo
 
-import arrow
 from bs4 import BeautifulSoup
 from requests import Session
 
@@ -34,8 +33,10 @@ generation_map = {
     "datetime": "datetime",
 }
 
+TIMEZONE = ZoneInfo("America/El_Salvador")
 
-def get_data(session: Optional[Session] = None):
+
+def get_data(session: Session | None = None):
     """
     Makes a get request to data url.
     Parses the response then makes a post request to the same url using
@@ -134,9 +135,9 @@ def data_processer(data) -> list:
     joined_data = sorted(d.values(), key=itemgetter("datetime"))
 
     def get_datetime(hour):
-        at = arrow.now("UTC-6").floor("hour")
-        dt = (at.replace(hour=int(hour), minute=0, second=0)).datetime
-        return dt
+        return datetime.now(TIMEZONE).replace(
+            hour=int(hour), minute=0, second=0, microsecond=0
+        )
 
     mapped_data = []
     for point in joined_data:
@@ -149,8 +150,8 @@ def data_processer(data) -> list:
 
 def fetch_production(
     zone_key: str = "SV",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""

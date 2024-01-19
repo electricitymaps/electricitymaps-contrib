@@ -1,21 +1,57 @@
 bounding_box:
-  - - -107.926457081158
-    - 30.3593306971005
-  - - -89.4563897448683
-    - 49.5000212518403
+  - - -106.61286112861123
+    - 30.377232015991254
+  - - -91.57992079920794
+    - 49.49903392974258
 capacity:
-  battery storage: 27.9
-  biomass: 344.2
-  coal: 22064.3
-  gas: 36117.8
-  geothermal: 0
-  hydro: 3104.1
-  hydro storage: 259.2
-  nuclear: 2068.7
-  oil: 2447.3
-  solar: 428.8
-  unknown: 62
-  wind: 30945.7
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 26.9
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 327.4
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 21338.3
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 34966.3
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 3068.6
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 259.2
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2068.7
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2053.6
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 588.6
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 62.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 31745.7
 comment: Southwest Power Pool
 contributors:
   - systemcatch
@@ -46,17 +82,26 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 454.76337244396854
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 1014.625275
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 1014.625275
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 1001.89
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 459.1389525
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 459.1389525
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 459.68
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -80,9 +125,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 454.76337244396854
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 975.0111176
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 975.0111176
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 1315.85
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -107,18 +155,28 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 495.53661158608855
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 66.69147532
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 66.69147532
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 1044.656633
+      - datetime: '2020-01-01'
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1044.656633
+      - datetime: '2021-01-01'
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1031.921358
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 579.1389525
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 579.1389525
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 579.6800000000001
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -142,9 +200,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 495.53661158608855
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 1219.0111176
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 1219.0111176
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 1559.85
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -154,13 +215,13 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2015 average
       datetime: '2015-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.00035980749970720624
         coal: 0.37406030993480177
         gas: 0.22706130341042047
-        geothermal: 0.0
+        geothermal: 0
         hydro: 0.04289187145125501
-        hydro discharge: 0.0
+        hydro discharge: 0
         nuclear: 0.05895103173687554
         oil: 0.0007180557036410336
         solar: 0.002031208058277777
@@ -169,13 +230,13 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2016 average
       datetime: '2016-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.00035980754737542555
         coal: 0.3740603594912699
         gas: 0.22706133349208363
-        geothermal: 0.0
+        geothermal: 0
         hydro: 0.04289187713368002
-        hydro discharge: 0.0
+        hydro discharge: 0
         nuclear: 0.05895103954685924
         oil: 0.0007180557987708926
         solar: 0.0020310758606134354
@@ -184,7 +245,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2017 average
       datetime: '2017-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.0004085834735399724
         coal: 0.4595989382647031
         gas: 0.19511628336042833
@@ -199,7 +260,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.000365860310727289
         coal: 0.422811983959897
         gas: 0.23425309194334648
@@ -214,7 +275,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.00030698471496916764
         coal: 0.34589718718991525
         gas: 0.25727978357804604
@@ -229,7 +290,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.00033204688512929165
         coal: 0.3119454886359951
         gas: 0.2677567627248579
@@ -244,7 +305,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.0003230959316681301
         coal: 0.3559401411640917
         gas: 0.19980546847493288
@@ -260,6 +321,7 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_SPP.fetch_load_forecast
   production: US_SPP.fetch_production
+  productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_SPP.fetch_wind_solar_forecasts
 sources:
   INCER ACV:
@@ -268,4 +330,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Central

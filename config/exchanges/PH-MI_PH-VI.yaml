@@ -1,0 +1,7 @@
+lonlat:
+  - 125.341644
+  - 9.877123
+parsers:
+  exchange: IEMOP.fetch_exchange
+
+rotation: -30

@@ -129,8 +129,7 @@ emissionFactors:
         value: 604.8374514356746
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
-      source: Based on average renewable generation October 2019-September 2020 (12%
-        hydro, 57% solar, 31% wind)
+      source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation October 2019-September 2020
       value: 31.94
 fallbackZoneMixes:
   powerOriginRatios:
