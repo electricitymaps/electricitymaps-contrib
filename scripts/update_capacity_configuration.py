@@ -138,7 +138,7 @@ def update_capacity_dict_if_value_already_exists(
         # if the associated datetime is more recent than the existing one, we don't add it
         return capacity_config[mode]
         # if the associated datetime is older than the existing one, we replace the datetime of the item
-        return new_capacity[mode]
+    return new_capacity[mode]
 
 
 def generate_zone_capacity_dict(
