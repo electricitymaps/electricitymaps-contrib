@@ -75,7 +75,7 @@ def remove_translations(zone_key: ZoneKey):
 
 
 def remove_mockserver_data(zone_key: ZoneKey):
-    for API_version in ["v6", "v7"]:
+    for API_version in ["v7", "v8"]:
         for state_level in ["daily", "hourly", "monthly", "yearly"]:
             try:
                 with JsonFilePatcher(

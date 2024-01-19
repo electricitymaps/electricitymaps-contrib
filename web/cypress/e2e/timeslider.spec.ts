@@ -21,7 +21,9 @@ interface Data {
 }
 
 const getco2intensity = (index: number, data: Data) => {
-  return `${Math.round(Object.values(data.data.zoneStates)[index].co2intensity)}`;
+  return `${Math.round(
+    Object.values(data.data.zoneStates).at(index)?.co2intensity ?? Number.NaN
+  )}`;
 };
 
 // const getFormattedDate = (index: number, data: Data, format: string) => {
@@ -97,7 +99,7 @@ describe('TimeController', () => {
     cy.waitForAPISuccess(`v7/details/monthly/DK-DK2`);
     cy.get('[data-test-id=co2-square-value').should(
       'contain.text',
-      getco2intensity(11, monthlyData)
+      getco2intensity(12, monthlyData)
     );
     // cy.get('[data-test-id=date-display').should(
     //   'have.text',
@@ -119,7 +121,7 @@ describe('TimeController', () => {
     cy.waitForAPISuccess(`v7/details/yearly/DK-DK2`);
     cy.get('[data-test-id=co2-square-value').should(
       'contain.text',
-      getco2intensity(4, yearlyData)
+      getco2intensity(-1, yearlyData)
     );
     // cy.get('[data-test-id=date-display').should(
     //   'have.text',
