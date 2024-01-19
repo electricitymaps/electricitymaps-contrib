@@ -100,7 +100,7 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "過去 %1$s 碳強度",
+      "default": "過去 %1$s 碳強度"
     },
     "emissions": {
       "default": "過去 %1$s 碳排放量"
