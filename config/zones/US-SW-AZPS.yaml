@@ -4,18 +4,54 @@ bounding_box:
   - - -108.777145881
     - 36.784585904
 capacity:
-  battery storage: 200
-  biomass: 33.4
-  coal: 1749.8
-  gas: 2714.6
-  geothermal: 0
-  hydro: 0
-  hydro storage: 0
-  nuclear: 0
-  oil: 123.8
-  solar: 772
-  unknown: 0
-  wind: 557.5
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 260.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 30.4
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2062.1
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2605.1
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 123.8
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 831.7
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 412.5
 comment: Arizona Public Service Company
 contributors:
   - systemcatch

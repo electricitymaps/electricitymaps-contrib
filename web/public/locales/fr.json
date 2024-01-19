@@ -85,10 +85,9 @@
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "carbonintensity": {
       "hourly": "Intensité carbone des 24 dernières heures",
-      "default": "Intensité en carbone dans les derniers %1$s",
       "daily": "Intensité en carbone du dernier mois",
       "monthly": "Intensité carbone au cours de la dernière année",
-      "yearly": "Intensité carbone au cours des 5 dernières années"
+      "default": "Intensité en carbone dans les derniers %1$s"
     },
     "emissionsorigin": {
       "hourly": "Origine des émissions des 24 dernières heures",
