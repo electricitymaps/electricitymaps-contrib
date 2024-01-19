@@ -369,7 +369,7 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
         assert expected[0] in updated_capacity
         assert expected[1] in updated_capacity
 
-    def update_capacity_dict_if_value_already_exists(self):
+    def test_update_capacity_dict_if_value_already_exists(self):
         capacity_config = {
             "biomass": {"datetime": "2022-01-01", "source": "abc", "value": 3}
         }
@@ -380,11 +380,12 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
             update_capacity_dict_if_value_already_exists(
                 "biomass", capacity_config, data
             ),
-            capacity_config,
+            capacity_config["biomass"],
         )
+
         self.assertEqual(
             update_capacity_dict_if_value_already_exists(
                 "biomass", data, capacity_config
             ),
-            data,
+            capacity_config["biomass"],
         )
