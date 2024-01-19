@@ -10,9 +10,14 @@ import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 interface EmissionChartProps {
   datetimes: Date[];
   timeAverage: TimeAverages;
+  hasEstimationPill: boolean;
 }
 
-function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
+function EmissionChart({
+  timeAverage,
+  datetimes,
+  hasEstimationPill,
+}: EmissionChartProps) {
   const { data, isLoading, isError } = useEmissionChartData();
 
   if (isLoading || isError || !data) {
@@ -26,7 +31,10 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
 
   return (
     <>
-      <ChartTitle translationKey="country-history.emissions" />
+      <ChartTitle
+        translationKey="country-history.emissions"
+        hasPill={hasEstimationPill}
+      />
       <AreaGraph
         testId="history-emissions-graph"
         data={chartData}

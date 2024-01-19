@@ -10,9 +10,10 @@ import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
 interface CarbonChartProps {
   datetimes: Date[];
   timeAverage: TimeAverages;
+  hasEstimationPill: boolean;
 }
 
-function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
+function CarbonChart({ datetimes, timeAverage, hasEstimationPill }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
 
   if (isLoading || isError || !data) {
@@ -28,7 +29,10 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   }
   return (
     <>
-      <ChartTitle translationKey="country-history.carbonintensity" />
+      <ChartTitle
+        translationKey="country-history.carbonintensity"
+        hasPill={hasEstimationPill}
+      />
       <AreaGraph
         testId="details-carbon-graph"
         data={chartData}

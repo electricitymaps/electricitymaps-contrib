@@ -18,7 +18,11 @@ import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
 const X_PADDING = 9;
 
-function BarBreakdownChart() {
+function BarBreakdownChart({
+  hasEstimationPill = false,
+}: {
+  hasEstimationPill: boolean;
+}) {
   const {
     currentZoneDetail,
     zoneDetails,
@@ -82,7 +86,7 @@ function BarBreakdownChart() {
 
   return (
     <div className="text-sm" ref={ref}>
-      <BySource />
+      <BySource hasEstimationPill={hasEstimationPill} />
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div

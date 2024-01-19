@@ -61,6 +61,10 @@ export default function ZoneDetails(): JSX.Element {
   const { estimationMethod } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
+  const hasEstimationPill =
+    cardType === 'estimated' ||
+    cardType === 'aggregated_estimated' ||
+    cardType === 'outage';
 
   return (
     <>
@@ -83,13 +87,14 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart />
+          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
           <Divider />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
               timeAverage={timeAverage}
               displayByEmissions={displayByEmissions}
+              hasEstimationPill={hasEstimationPill}
             />
           )}
           <Attribution data={data} zoneId={zoneId} />

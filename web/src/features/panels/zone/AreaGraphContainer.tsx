@@ -11,22 +11,33 @@ export default function AreaGraphContainer({
   datetimes,
   timeAverage,
   displayByEmissions,
+  hasEstimationPill,
 }: {
   datetimes: Date[];
   timeAverage: TimeAverages;
   displayByEmissions: boolean;
+  hasEstimationPill: boolean;
 }) {
   return (
     <div>
       {displayByEmissions ? (
-        <EmissionChart datetimes={datetimes} timeAverage={timeAverage} />
+        <EmissionChart
+          datetimes={datetimes}
+          timeAverage={timeAverage}
+          hasEstimationPill={hasEstimationPill}
+        />
       ) : (
-        <CarbonChart datetimes={datetimes} timeAverage={timeAverage} />
+        <CarbonChart
+          datetimes={datetimes}
+          timeAverage={timeAverage}
+          hasEstimationPill={hasEstimationPill}
+        />
       )}
       <BreakdownChart
         displayByEmissions={displayByEmissions}
         datetimes={datetimes}
         timeAverage={timeAverage}
+        hasEstimationPill={hasEstimationPill}
       />
       <NetExchangeChart datetimes={datetimes} timeAverage={timeAverage} />
       <PriceChart datetimes={datetimes} timeAverage={timeAverage} />

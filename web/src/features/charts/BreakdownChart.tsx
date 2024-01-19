@@ -14,12 +14,14 @@ interface BreakdownChartProps {
   displayByEmissions: boolean;
   datetimes: Date[];
   timeAverage: TimeAverages;
+  hasEstimationPill: boolean;
 }
 
 function BreakdownChart({
   displayByEmissions,
   datetimes,
   timeAverage,
+  hasEstimationPill,
 }: BreakdownChartProps) {
   const { data, mixMode } = useBreakdownChartData();
   const { __ } = useTranslation();
@@ -53,7 +55,10 @@ function BreakdownChart({
 
   return (
     <>
-      <ChartTitle translationKey={`country-history.${titleDisplayMode}${titleMixMode}`} />
+      <ChartTitle
+        translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
+        hasPill={hasEstimationPill}
+      />
       <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
           <div className="absolute top-0 h-full w-full">
