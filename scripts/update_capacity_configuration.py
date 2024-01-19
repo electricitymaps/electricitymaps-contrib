@@ -156,7 +156,7 @@ def generate_zone_capacity_dict(
 
 
 def update_capacity_list_if_value_already_exists(
-    mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
+    mode: str, capacity_config: list[dict[str, Any]], new_capacity: dict[str, Any]
 ) -> list[dict[str, Any]]:
     """Updates the capacity config for a zone if the capacity config is a list and the value already exists.
     This function ensures that we don't add the same value to the config over and over and that we can backfill and get the oldest value for which the capacity is valid.
@@ -176,17 +176,17 @@ def update_capacity_list_if_value_already_exists(
             for item in capacity_config[mode]
         ]
 
+
 def update_capacity_list_if_datetime_already_exists(
-    mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
+    mode: str, capacity_config: list[dict[str, Any]], new_capacity: dict[str, Any]
 ) -> list[dict[str, Any]]:
-    """Updates the capacity config for a zone if the capacity config is a list and the datetime already exists and the value is different.
-    """
+    """Updates the capacity config for a zone if the capacity config is a list and the datetime already exists and the value is different."""
     return [
-            new_capacity[mode]
-            if item["datetime"] == new_capacity[mode]["datetime"]
-            else item
-            for item in capacity_config[mode]
-        ]
+        new_capacity[mode]
+        if item["datetime"] == new_capacity[mode]["datetime"]
+        else item
+        for item in capacity_config[mode]
+    ]
 
 
 def generate_zone_capacity_list(
@@ -197,13 +197,14 @@ def generate_zone_capacity_list(
         return update_capacity_list_if_value_already_exists(
             mode, capacity_config, new_capacity
         )
-    elif new_capacity[mode]["datetime"] in [d["datetime"] for d in capacity_config[mode]]:
+    elif new_capacity[mode]["datetime"] in [
+        d["datetime"] for d in capacity_config[mode]
+    ]:
         return update_capacity_list_if_datetime_already_exists(
             mode, capacity_config, new_capacity
         )
     else:
         return capacity_config[mode] + [new_capacity[mode]]
-
 
 
 def check_capacity_config_type(capacity_config: list, config_type: type) -> None:
