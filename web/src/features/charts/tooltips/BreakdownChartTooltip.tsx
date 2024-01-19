@@ -41,6 +41,7 @@ function calculateTooltipContentData(
 export default function BreakdownChartTooltip({
   zoneDetail,
   selectedLayerKey,
+  hasEstimationPill,
 }: InnerAreaGraphTooltipProps) {
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -84,6 +85,7 @@ export default function BreakdownChartTooltip({
       selectedLayerKey={selectedLayerKey}
       originTranslateKey={getOriginTranslateKey()}
       timeAverage={timeAverage}
+      hasEstimationPill={hasEstimationPill}
     ></BreakdownChartTooltipContent>
   );
 }
@@ -105,6 +107,7 @@ interface BreakdownChartTooltipContentProperties {
   co2IntensitySource?: string;
   storage?: Maybe<number>;
   production?: Maybe<number>;
+  hasEstimationPill?: boolean;
 }
 
 export function BreakdownChartTooltipContent({
@@ -122,6 +125,7 @@ export function BreakdownChartTooltipContent({
   originTranslateKey,
   isExchange,
   selectedLayerKey,
+  hasEstimationPill,
 }: BreakdownChartTooltipContentProperties) {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
@@ -159,6 +163,7 @@ export function BreakdownChartTooltipContent({
         datetime={datetime}
         timeAverage={timeAverage}
         title={title}
+        hasEstimationPill={hasEstimationPill}
       />
       <div
         className="inline-flex flex-wrap items-center gap-x-1"

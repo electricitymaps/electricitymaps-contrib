@@ -99,6 +99,7 @@ function BarBreakdownChart({
             <BreakdownChartTooltip
               selectedLayerKey={tooltipData?.selectedLayerKey}
               zoneDetail={currentZoneDetail}
+              hasEstimationPill={hasEstimationPill}
             />
             <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
               <HiXMark size="24" />
