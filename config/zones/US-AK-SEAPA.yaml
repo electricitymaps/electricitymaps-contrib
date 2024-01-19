@@ -4,5 +4,5 @@ bounding_box:
   - - -131.02552047299423
     - 57.32198154784774
 parsers:
-  production: US_AK_SAP.fetch_production
+  production: SEAPA.fetch_production
 timezone: America/Anchorage

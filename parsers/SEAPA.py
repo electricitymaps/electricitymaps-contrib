@@ -9,7 +9,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
-PARSER_NAME = "US_AK_SAP.py"
+PARSER_NAME = "SEAPA.py"
 
 SOURCE = "seapahydro.org"
 DATA_URL = "https://seapahydro.org/api/scada/index"
@@ -21,10 +21,12 @@ def get_value(data: dict, key: str) -> float:
 
 def fetch_production(
     zone_key: ZoneKey,
-    session: Session = Session(),
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
+    session = session or Session()
+
     if target_datetime is not None:
         raise ParserException(
             PARSER_NAME, "This parser is not yet able to parse past dates", zone_key
@@ -41,7 +43,7 @@ def fetch_production(
         "ktn_diesel": get_value(data, "ktn_diesel_mw"),  # backup Ketchikan diesel
     }
 
-    production_mix = ProductionMix(gas=data["ktn_diesel"])
+    production_mix = ProductionMix(oil=data["ktn_diesel"])
     production_mix.add_value("hydro", data["seapa_total"], True)
     production_mix.add_value("hydro", data["ktn_hydro"], True)
 
@@ -53,12 +55,10 @@ def fetch_production(
         source=SOURCE,
     )
 
-    session.close()
-
     return production_list.to_list()
 
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Maps backend, but handy for testing."""
 
-    print(fetch_production(ZoneKey("US-AK-SAP")))
+    print(fetch_production(ZoneKey("US-AK-SEAPA")))
