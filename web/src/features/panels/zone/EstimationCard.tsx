@@ -39,7 +39,9 @@ function BaseCard({
   pillType: string | undefined;
   textColorTitle: string;
 }) {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(
+    estimationMethod == 'outage' ? false : true
+  );
   const handleToggleCollapse = () => {
     setIsCollapsed((previous) => !previous);
   };
@@ -114,7 +116,7 @@ function OutageCard({ outageMessage }: { outageMessage: ZoneDetails['zoneMessage
       outageMessage={outageMessage}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
       iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
-      showMethodologyLink={true}
+      showMethodologyLink={false}
       pillType="warning"
       textColorTitle="text-amber-700 dark:text-amber-500"
     />
@@ -165,15 +167,13 @@ function OutageMessage({
     <span className="inline overflow-hidden">
       {truncateString(outageData.message, 300)}{' '}
       {outageData?.issue && outageData.issue != 'None' && (
-        <span className="inline-flex">
-          - see{' '}
+        <span className="mt-1 inline-flex">
+          See{' '}
           <a
-            className="inline-flex"
+            className="inline-flex text-sm font-semibold text-black underline dark:text-white"
             href={`https://github.com/electricitymaps/electricitymaps-contrib/issues/${outageData.issue}`}
           >
-            <span className="pl-1 text-blue-600 underline">
-              issue #{outageData.issue}
-            </span>
+            <span className="pl-1 underline">issue #{outageData.issue}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
