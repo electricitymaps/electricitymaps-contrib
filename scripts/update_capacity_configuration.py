@@ -137,7 +137,6 @@ def update_capacity_dict_if_value_already_exists(
     if new_capacity[mode]["datetime"] > capacity_config[mode]["datetime"]:
         # if the associated datetime is more recent than the existing one, we don't add it
         return capacity_config[mode]
-    else:
         # if the associated datetime is older than the existing one, we replace the datetime of the item
         return new_capacity[mode]
 
