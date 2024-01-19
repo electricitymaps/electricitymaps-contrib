@@ -3,9 +3,10 @@ bounding_box:
     - 24.059871521000062
   - - 52.11654707100007
     - 26.660101630000042
-capacity:
-  biomass: 38
-  solar: 5
+capacity: # https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+  biomass: 19
+  gas: 10576
+  solar: 5.1
 contributors:
   - q--
   - nessie2013
