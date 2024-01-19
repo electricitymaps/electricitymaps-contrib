@@ -117,14 +117,9 @@
       "pill": "Not realtime",
       "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
     },
-    "data-outage": {
-      "title": "Data is estimated",
+    "outage": {
+      "title": "Ongoing issues",
       "pill": "Unavailable"
-    },
-    "aggregated_estimated": {
-      "title": "Data is aggregated",
-      "pill": "Incl. estimated",
-      "body": "The data consists of summarised values of hourly recordings throughout the day. Some hourly data is estimated."
     },
     "aggregated": {
       "title": "Data is aggregated",

@@ -1,43 +1,8 @@
 import Badge from 'components/Badge';
 import { useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
+import { useTranslation } from 'translation/translation';
 import { ZoneDetails } from 'types';
-
-// TODO: This function is temporary until we have the text in the json files
-function GetTitle(estimationMethod: string | undefined) {
-  if (estimationMethod == 'outage') {
-    return 'Data is estimated';
-  }
-  if (estimationMethod == 'aggregated' || estimationMethod == 'aggregated_estimated') {
-    return 'Data is aggregated';
-  }
-  return 'Data is estimated';
-}
-
-// TODO: This function is temporary until we have the text in the json files
-function GetPillText(estimationMethod: string | undefined) {
-  if (estimationMethod == 'outage') {
-    return 'Unavailable';
-  }
-  if (estimationMethod == 'aggregated' || estimationMethod == 'aggregated_estimated') {
-    return 'Incl. estimates';
-  }
-  return 'Delayed';
-}
-
-// TODO: This function is temporary until we have the text in the json files
-function GetBodyText(estimationMethod: string | undefined) {
-  if (estimationMethod == 'outage') {
-    return 'The data provider (EIA) for this zone is currently down. The displayed values are estimates and will be replaced by measured data once available again. We expect to resolve this issues shortly!';
-  }
-  if (estimationMethod == 'aggregated') {
-    return 'The data consists of summarised values of hourly recordings throughout the day.';
-  }
-  if (estimationMethod == 'aggregated_estimated') {
-    return 'The data consists of summarised values of hourly recordings throughout the day. Some hourly data is estimated.';
-  }
-  return 'The data for this hour has not yet been reported. The displayed values are estimates and will be replaced with measured data once available.';
-}
 
 export default function EstimationCard({
   cardType,
@@ -50,8 +15,6 @@ export default function EstimationCard({
 }) {
   if (cardType == 'outage') {
     return <OutageCard outageMessage={outageMessage} />;
-  } else if (cardType == 'aggregated_estimated') {
-    return <AggregatedEstimatedCard />;
   } else if (cardType == 'aggregated') {
     return <AggregatedCard />;
   } else if (cardType == 'estimated') {
@@ -80,6 +43,7 @@ function BaseCard({
   const handleToggleCollapse = () => {
     setIsCollapsed((previous) => !previous);
   };
+  const { __ } = useTranslation();
   return (
     <div
       className={`w-full rounded-lg px-3 py-2.5 ${isCollapsed ? 'h-[46px]' : 'h-fit'} ${
@@ -98,7 +62,7 @@ function BaseCard({
               <h2
                 className={`truncate text-sm font-semibold ${textColorTitle} self-center`}
               >
-                {GetTitle(estimationMethod)}
+                {__(`estimation-card.${estimationMethod?.toLowerCase()}.title`)}
               </h2>
             </div>
             <div className="flex flex-row gap-2 ">
@@ -106,11 +70,11 @@ function BaseCard({
                 <Badge
                   type={pillType}
                   icon={iconPill}
-                  pillText={GetPillText(estimationMethod)}
+                  pillText={__(`estimation-card.${estimationMethod?.toLowerCase()}.pill`)}
                 ></Badge>
               )}
               <div className="text-lg">
-                {isCollapsed ? <HiChevronUp /> : <HiChevronDown />}
+                {isCollapsed ? <HiChevronDown /> : <HiChevronUp />}
               </div>
             </div>
           </div>
@@ -118,7 +82,8 @@ function BaseCard({
         {!isCollapsed && (
           <div className="gap-2">
             <div className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}>
-              {estimationMethod != 'outage' && GetBodyText(estimationMethod)}
+              {estimationMethod != 'outage' &&
+                __(`estimation-card.${estimationMethod?.toLowerCase()}.body`)}
               {estimationMethod == 'outage' && (
                 <OutageMessage outageData={outageMessage} />
               )}
@@ -131,7 +96,7 @@ function BaseCard({
                   rel="noreferrer"
                   className={`text-sm font-semibold text-black underline dark:text-white`}
                 >
-                  <span className="underline">Read about our estimation models</span>
+                  <span className="underline">{__(`estimation-card.link`)}</span>
                 </a>
               </div>
             )}
@@ -165,20 +130,6 @@ function AggregatedCard() {
       iconPill={undefined}
       showMethodologyLink={false}
       pillType={undefined}
-      textColorTitle="text-black dark:text-white"
-    />
-  );
-}
-
-function AggregatedEstimatedCard() {
-  return (
-    <BaseCard
-      estimationMethod={'aggregated_estimated'}
-      outageMessage={undefined}
-      icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
-      iconPill="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
-      showMethodologyLink={false}
-      pillType="warning"
       textColorTitle="text-black dark:text-white"
     />
   );
