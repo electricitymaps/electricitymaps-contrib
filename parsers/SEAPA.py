@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import Any
 
 from requests import Session
 
@@ -21,10 +21,10 @@ def get_value(data: dict, key: str) -> float:
 
 def fetch_production(
     zone_key: ZoneKey,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict[str, Any]]:
     session = session or Session()
 
     if target_datetime is not None:
