@@ -177,7 +177,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     setSelectedZoneId(zoneId);
     if (map && !isLoadingMap && zoneId) {
       const feature = worldGeometries.features.find(
-        (feature) => feature.properties.zoneId === zoneId
+        (feature) => feature?.properties?.zoneId === zoneId
       );
       // if no feature matches, it means that the selected zone is not in current spatial resolution.
       // We cannot include geometries in dependencies, as we don't want to flyTo when user switches
