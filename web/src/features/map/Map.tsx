@@ -175,7 +175,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     // Center the map on the selected zone
     const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
     setSelectedZoneId(zoneId);
-    if (map && zoneId) {
+    if (map && !isLoadingMap && zoneId) {
       const feature = worldGeometries.features.find(
         (feature) => feature.properties.zoneId === zoneId
       );
