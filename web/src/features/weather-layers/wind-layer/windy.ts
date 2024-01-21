@@ -1,7 +1,6 @@
 /* eslint-disable unicorn/no-abusive-eslint-disable */
 /* eslint-disable */
 // @ts-nocheck
-// TODO: Rewrite completely
 // This file was taken from https://github.com/esri/wind-js, and modified
 
 /*  Global class for simulating the movement of particle through a 1km wind grid
@@ -17,10 +16,11 @@
 */
 
 import { Capacitor } from '@capacitor/core';
+import { MapboxMap } from 'react-map-gl';
+
 import { windColor } from './scales';
 
 const VELOCITY_SCALE = 1 / 50_000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
-const INTENSITY_SCALE_STEP = 10; // step size of particle intensity color scale
 const MAX_WIND_INTENSITY = 30; // wind velocity at which particle intensity is maximum (m/s)
 const MAX_PARTICLE_AGE = 100; // max number of frames a particle is drawn before regeneration
 const PARTICLE_LINE_WIDTH = 2; // line width of a drawn particle
@@ -57,8 +57,8 @@ const createWindBuilder = (
   return {
     header: uComp?.header,
     //recipe: recipeFor("wind-" + uComp.header.surface1Value),
-    data: function (i: string | number) {
-      return [uData[i], vData[i]];
+    data: function (index: string | number) {
+      return [uData[index], vData[index]];
     },
     interpolate: bilinearInterpolateVector,
   };
@@ -98,7 +98,7 @@ const buildGrid = (
   data: any,
   callback: {
     (grid: any): void;
-    (arg0: { date: Date; interpolate: (λ: any, φ: any) => number[] | null }): void;
+    (argument0: { date: Date; interpolate: (λ: any, φ: any) => number[] | null }): void;
   }
 ) => {
   const builder = createBuilder(data);
@@ -118,8 +118,8 @@ const buildGrid = (
   const grid: any[] = [];
   let p = 0;
   const isContinuous = Math.floor(ni * Δλ) >= 360;
-  for (var j = 0; j < nj; j++) {
-    var row = [];
+  for (let index = 0; index < nj; index++) {
+    const row = [];
     for (let index = 0; index < ni; index++, p++) {
       row[index] = builder.data(p);
     }
@@ -127,16 +127,16 @@ const buildGrid = (
       // For wrapped grids, duplicate first column as last column to simplify interpolation logic
       row.push(row[0]);
     }
-    grid[j] = row;
+    grid[index] = row;
   }
 
   function interpolate(λ: number, φ: number) {
-    const i = floorModulus(λ - λ0, 360) / Δλ; // calculate longitude index in wrapped range [0, 360)
-    const j = (φ0 - φ) / Δφ; // calculate latitude index in direction +90 to -90
+    const index = floorModulus(λ - λ0, 360) / Δλ; // calculate longitude index in wrapped range [0, 360)
+    const index_ = (φ0 - φ) / Δφ; // calculate latitude index in direction +90 to -90
 
-    const fi = Math.floor(i),
+    const fi = Math.floor(index),
       ci = fi + 1;
-    const fj = Math.floor(j),
+    const fj = Math.floor(index_),
       cj = fj + 1;
 
     let row;
@@ -148,7 +148,7 @@ const buildGrid = (
         const g11 = row[ci];
         if (isValue(g01) && isValue(g11)) {
           // All four points found, so interpolate the value.
-          return builder.interpolate(i - fi, j - fj, g00, g10, g01, g11);
+          return builder.interpolate(index - fi, index_ - fj, g00, g10, g01, g11);
         }
       }
     }
@@ -169,20 +169,20 @@ const buildBounds = (bounds: any[], width: any, height: number) => {
   return { x: x, y: y, yMax: yMax, width: width, height: height };
 };
 
-const project = (params: any, lat: any, lon: any) => {
+const project = (map: MapboxMap, lat: number, lon: number) => {
   // both in radians, use deg2rad if necessary
-  const projected = params.map.project([lon, lat]);
+  const projected = map.project([lon, lat]);
   return [projected.x, projected.y];
 };
 
-const distortion = (params: any, λ: number, φ: number, x: number, y: number) => {
+const distortion = (map: MapboxMap, λ: number, φ: number, x: number, y: number) => {
   const τ = 2 * Math.PI;
   const H = Math.pow(10, -5.2);
   const hλ = λ < 0 ? H : -H;
   const hφ = φ < 0 ? H : -H;
 
-  const pλ = project(params, φ, λ + hλ);
-  const pφ = project(params, φ + hφ, λ);
+  const pλ = project(map, φ, λ + hλ);
+  const pφ = project(map, φ + hφ, λ);
 
   // Meridian scale factor (see Snyder, equation 4-3), where R = 1. This handles issue where length of 1º λ
   // changes depending on φ. Without this, there is a pinching effect at the poles.
@@ -195,7 +195,7 @@ const distortion = (params: any, λ: number, φ: number, x: number, y: number) =
  * vector is modified in place and returned by this function.
  */
 const distort = (
-  params: any,
+  map: MapboxMap,
   λ: number,
   φ: number,
   x: number,
@@ -205,7 +205,7 @@ const distort = (
 ) => {
   const u = wind[0] * scale;
   const v = wind[1] * scale;
-  const d = distortion(params, λ, φ, x, y);
+  const d = distortion(map, λ, φ, x, y);
 
   // Scale distortion vectors by u and v, then add.
   wind[0] = d[0] * u + d[2] * v;
@@ -222,79 +222,108 @@ export function windIntensityColorScale() {
   return [...windColor.range()];
 }
 
-var Windy = function (params: any) {
+const createField = function (
+  columns: any[],
+  bounds: { width: number; x: number; height: number; y: number },
+  callback: (
+    argument0: any,
+    argument1: {
+      (x: any, y: any): any;
+      // Frees the massive "columns" array for GC. Without this, the array is leaked (in Chrome) each time a new
+      // field is interpolated because the field closure's context is leaked, for reasons that defy explanation.
+      release(): void;
+      randomize(o: any): any;
+    }
+  ) => void
+) {
   /**
-   * @returns {Boolean} true if agent is probably a mobile device. Don't really care if this is accurate.
+   * @returns {Array} wind vector [u, v, magnitude] at the point (x, y), or [NaN, NaN, null] if wind
+   *          is undefined at that point.
    */
-  const isMobile = function (): boolean {
-    return /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
+  function field(x: number, y: number): Array<any> {
+    const column = columns[Math.round(x)];
+    return (column && column[Math.round(y)]) || NULL_WIND_VECTOR;
+  }
+
+  // Frees the massive "columns" array for GC. Without this, the array is leaked (in Chrome) each time a new
+  // field is interpolated because the field closure's context is leaked, for reasons that defy explanation.
+  field.release = function () {
+    columns = [];
+  };
+
+  field.randomize = function (o: { x: number; y: number }) {
+    // UNDONE: this method is terrible
+    let x, y;
+    let safetyNet = 0;
+    do {
+      x = Math.round(Math.floor(Math.random() * bounds.width) + bounds.x);
+      y = Math.round(Math.floor(Math.random() * bounds.height) + bounds.y);
+    } while (field(x, y)[2] === null && safetyNet++ < 30);
+    o.x = x;
+    o.y = y;
+    return o;
+  };
+
+  callback(bounds, field);
+};
+
+function deg2rad(deg: number) {
+  return (deg / 180) * Math.PI;
+}
+
+interface Particle {
+  age: number;
+  x?: number;
+  y?: number;
+  xt?: number;
+  yt?: number;
+}
+
+export class Windy {
+  canvas: HTMLCanvasElement;
+  data: any;
+  map: MapboxMap;
+
+  isMobile: boolean;
+  isIphone: boolean;
+
+  started: boolean;
+  paused: boolean;
+
+  animationRequest: any;
+  field: any;
+
+  constructor(canvas: HTMLCanvasElement, data: any, map: MapboxMap) {
+    this.canvas = canvas;
+    this.data = data;
+    this.map = map;
+
+    // true if agent is probably a mobile device. Don't really care if this is accurate.
+    this.isMobile = /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
       navigator.userAgent
     );
-  };
-  const isIphone =
-    Capacitor.getPlatform() === 'ios' || /iPad|iPhone|iPod/.test(navigator.userAgent);
+    this.isIphone =
+      Capacitor.getPlatform() === 'ios' || /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-  var createField = function (
-    columns: any[],
-    bounds: { width: number; x: number; height: number; y: number },
-    callback: (
-      arg0: any,
-      arg1: {
-        (x: any, y: any): any;
-        // Frees the massive "columns" array for GC. Without this, the array is leaked (in Chrome) each time a new
-        // field is interpolated because the field closure's context is leaked, for reasons that defy explanation.
-        release(): void;
-        randomize(o: any): any;
-      }
-    ) => void
-  ) {
-    /**
-     * @returns {Array} wind vector [u, v, magnitude] at the point (x, y), or [NaN, NaN, null] if wind
-     *          is undefined at that point.
-     */
-    function field(x: number, y: number): Array<any> {
-      var column = columns[Math.round(x)];
-      return (column && column[Math.round(y)]) || NULL_WIND_VECTOR;
-    }
+    this.started = false;
+    this.paused = false;
 
-    // Frees the massive "columns" array for GC. Without this, the array is leaked (in Chrome) each time a new
-    // field is interpolated because the field closure's context is leaked, for reasons that defy explanation.
-    field.release = function () {
-      columns = [];
-    };
+    this.animationRequest = undefined;
+    this.field = undefined;
+  }
 
-    field.randomize = function (o: { x: number; y: number }) {
-      // UNDONE: this method is terrible
-      var x, y;
-      var safetyNet = 0;
-      do {
-        x = Math.round(Math.floor(Math.random() * bounds.width) + bounds.x);
-        y = Math.round(Math.floor(Math.random() * bounds.height) + bounds.y);
-      } while (field(x, y)[2] === null && safetyNet++ < 30);
-      o.x = x;
-      o.y = y;
-      return o;
-    };
+  invert(x: any, y: any) {
+    const object = this.map.unproject([x, y]);
 
-    callback(bounds, field);
-  };
+    return [object.lng, object.lat];
+  }
 
-  var deg2rad = function (deg: number) {
-    return (deg / 180) * Math.PI;
-  };
+  zoomScaling() {
+    return 1 / Math.sqrt(this.map.transform.scale);
+  }
 
-  var invert = function (x: any, y: any, windy: any) {
-    const obj = params.map.unproject([x, y]);
-
-    return [obj.lng, obj.lat];
-  };
-
-  const zoomScaling = function () {
-    return 1 / Math.sqrt(params.map.transform.scale);
-  };
-
-  var interpolateField = function (
-    grid: { interpolate: (arg0: any, arg1: any) => any },
+  interpolateField(
+    grid: { interpolate: (argument0: any, argument1: any) => any },
     bounds: { x: any; y: any; yMax: any; width: any; height: any },
     extent: {
       south: number;
@@ -304,35 +333,35 @@ var Windy = function (params: any) {
       width: any;
       height: any;
     },
-    callback: (bounds: any, field: any) => void
+    callback: (bounds: number[][], field: any) => void
   ) {
-    const velocityScale = bounds.height * VELOCITY_SCALE * zoomScaling();
+    const velocityScale = bounds.height * VELOCITY_SCALE * this.zoomScaling();
 
-    var columns: never[] = [];
-    var x = bounds.x;
+    const columns: never[] = [];
+    let x = bounds.x;
 
-    function interpolateColumn(x: number) {
-      var column = [];
-      for (var y = bounds.y; y <= bounds.yMax; y += 2) {
-        var coord = invert(x, y, extent);
+    const interpolateColumn = (x: number) => {
+      const column = [];
+      for (let y = bounds.y; y <= bounds.yMax; y += 2) {
+        const coord = this.invert(x, y, extent);
 
         if (coord) {
-          var λ = coord[0],
+          const λ = coord[0],
             φ = coord[1];
           if (isFinite(λ)) {
-            var wind = grid.interpolate(λ, φ);
+            let wind = grid.interpolate(λ, φ);
             if (wind) {
-              wind = distort(params, λ, φ, x, y, velocityScale, wind);
+              wind = distort(this.map, λ, φ, x, y, velocityScale, wind);
               column[y + 1] = column[y] = wind;
             }
           }
         }
       }
       columns[x + 1] = columns[x] = column;
-    }
+    };
 
     (function batchInterpolate() {
-      var start = Date.now();
+      const start = Date.now();
       while (x < bounds.width) {
         interpolateColumn(x);
         x += 2;
@@ -344,34 +373,36 @@ var Windy = function (params: any) {
       }
       createField(columns, bounds, callback);
     })();
-  };
+  }
 
-  var animate = function (
+  animate(
     bounds: { width: number; x: any; y: any; height: any },
     field: {
-      (arg0: any, arg1: any): null[];
-      (arg0: any, arg1: any): null[];
+      (argument0: any, argument1: any): null[];
+      (argument0: any, argument1: any): null[];
       randomize: any;
     }
   ) {
-    var colorStyles = windIntensityColorScale();
-    var buckets = colorStyles.map(function () {
+    const colorStyles = windIntensityColorScale();
+    const buckets: any[][] = colorStyles.map(function () {
       return [];
     });
 
-    let particleCount = Math.round(bounds.width * PARTICLE_MULTIPLIER * zoomScaling());
-    if (isMobile()) {
+    let particleCount = Math.round(
+      bounds.width * PARTICLE_MULTIPLIER * this.zoomScaling()
+    );
+    if (this.isMobile) {
       particleCount *= PARTICLE_REDUCTION;
     }
 
-    var particles: any[] = [];
-    for (var i = 0; i < particleCount; i++) {
+    const particles: Particle[] = [];
+    for (let index = 0; index < particleCount; index++) {
       particles.push(
         field.randomize({ age: Math.floor(Math.random() * MAX_PARTICLE_AGE) + 0 })
       );
     }
 
-    function evolve() {
+    const computeNextState = () => {
       for (const bucket of buckets) {
         bucket.length = 0;
       }
@@ -379,92 +410,86 @@ var Windy = function (params: any) {
         if (particle.age > MAX_PARTICLE_AGE) {
           field.randomize(particle).age = 0;
         }
-        var x = particle.x;
-        var y = particle.y;
-        var v = field(x, y); // vector at current position
-        var m = v[2];
+        const x = particle.x;
+        const y = particle.y;
+        const v = field(x, y); // vector at current position
+        const m = v[2];
         if (m === null) {
           particle.age = MAX_PARTICLE_AGE; // particle has escaped the grid, never to return...
         } else {
-          var xt = x + v[0];
-          var yt = y + v[1];
-          if (field(xt, yt)[2] !== null) {
+          const xt = x + v[0];
+          const yt = y + v[1];
+          if (field(xt, yt)[2] === null) {
+            // Particle isn't visible, but it still moves through the field.
+            particle.x = xt;
+            particle.y = yt;
+          } else {
             // Path from (x,y) to (xt,yt) is visible, so add this particle to the appropriate draw bucket.
             particle.xt = xt;
             particle.yt = yt;
             buckets[indexFor(m, MAX_WIND_INTENSITY, colorStyles.length)].push(particle);
-          } else {
-            // Particle isn't visible, but it still moves through the field.
-            particle.x = xt;
-            particle.y = yt;
           }
         }
         particle.age += 1;
       }
-    }
+    };
 
-    var g = params.canvas.getContext('2d');
-    g.lineWidth = PARTICLE_LINE_WIDTH;
-    g.fillStyle = '#000';
+    const renderContext = this.canvas.getContext('2d')!;
+    renderContext.lineWidth = PARTICLE_LINE_WIDTH;
+    renderContext.fillStyle = '#000';
 
-    var lastFrameTime = Date.now();
-    function draw() {
-      var deltaMs = Date.now() - lastFrameTime;
+    let lastFrameTime = Date.now();
+    const draw = () => {
+      const deltaMs = Date.now() - lastFrameTime;
       // 16 ms ~ 60 fps
       // if we take any longer than that, then scale the opacity
       // inversely with the time
-      var b = deltaMs < 16 ? 1 : 16 / deltaMs;
+      const b = deltaMs < 16 ? 1 : 16 / deltaMs;
 
       // Fade existing particle trails.
-      g.globalCompositeOperation = isIphone ? 'destination-out' : 'destination-in';
+      renderContext.globalCompositeOperation = this.isIphone
+        ? 'destination-out'
+        : 'destination-in';
       // This is the parameter concerning the fade property/bug
-      g.globalAlpha = Math.pow(0.9, b);
-      g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+      renderContext.globalAlpha = Math.pow(0.9, b);
+      renderContext.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
       // Prepare for drawing a new particle
-      g.globalCompositeOperation = 'source-over';
-      g.globalAlpha = 1;
+      renderContext.globalCompositeOperation = 'source-over';
+      renderContext.globalAlpha = 1;
 
       // Draw new particle trails.
 
       for (const bucket of buckets) {
         if (bucket.length > 0) {
-          g.beginPath();
-          g.strokeStyle = colorStyles[buckets.indexOf(bucket)];
-          g.lineWidth = 1 + 0.25 * buckets.indexOf(bucket);
+          renderContext.beginPath();
+          renderContext.strokeStyle = colorStyles[buckets.indexOf(bucket)];
+          renderContext.lineWidth = 1 + 0.25 * buckets.indexOf(bucket);
           for (const particle of bucket) {
-            g.moveTo(particle.x, particle.y);
-            g.lineTo(particle.xt, particle.yt);
+            renderContext.moveTo(particle.x, particle.y);
+            renderContext.lineTo(particle.xt, particle.yt);
             particle.x = particle.xt;
             particle.y = particle.yt;
           }
-          g.stroke();
+          renderContext.stroke();
         }
       }
-    }
+    };
 
-    function frame() {
+    console.log('yo', buckets);
+
+    const frame = () => {
       lastFrameTime = Date.now();
-      if (!windy.paused) {
-        evolve();
+      if (!this.paused) {
+        computeNextState();
         draw();
       }
-      windy.animationRequest = requestAnimationFrame(frame);
-    }
+      this.animationRequest = requestAnimationFrame(frame);
+    };
     frame();
-  };
+  }
 
-  var windy: {
-    paused: boolean;
-    animationRequest?: any;
-    started: boolean;
-    field?: any;
-    params?: any;
-    start: (bounds: any, width: any, height: any, extent: any) => void;
-    stop: () => void;
-  };
-
-  var start = function (bounds: any, width: any, height: any, extent: any[][]) {
-    var mapBounds = {
+  start(bounds: number[][], width: any, height: any, extent: any[][]) {
+    const mapBounds = {
       south: deg2rad(extent[0][1]),
       north: deg2rad(extent[1][1]),
       east: deg2rad(extent[1][0]),
@@ -474,67 +499,31 @@ var Windy = function (params: any) {
     };
 
     stop();
-    windy.started = true;
-    windy.paused = false;
+    this.started = true;
+    this.paused = false;
 
-    // build grid
-    buildGrid(params.data, function (grid: any) {
-      // interpolateField
-      interpolateField(
+    buildGrid(this.data, (grid: any) => {
+      this.interpolateField(
         grid,
         buildBounds(bounds, width, height),
         mapBounds,
-        function (bounds: any, field: any) {
+        (bounds: number[][], field: any) => {
           // animate the canvas with random points
-          windy.field = field;
-          animate(bounds, field);
+          this.field = field;
+          this.animate(bounds, field);
         }
       );
     });
-  };
+  }
 
-  var stop = function () {
-    if (windy.field) windy.field.release();
-    if (windy.animationRequest) cancelAnimationFrame(windy.animationRequest);
-    windy.started = false;
-    windy.paused = true;
-  };
-
-  windy = {
-    params: params,
-    start: start,
-    stop: stop,
-    started: false,
-    paused: true,
-  };
-
-  return windy;
-};
-
-// shim layer with setTimeout fallback
-window.requestAnimationFrame = (function () {
-  return (
-    window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function (callback) {
-      window.setTimeout(callback, 1000 / 20);
+  stop() {
+    if (this.field) {
+      this.field.release();
     }
-  );
-})();
-window.cancelAnimationFrame = (function () {
-  return (
-    window.cancelAnimationFrame ||
-    window.webkitCancelAnimationFrame ||
-    window.mozCancelAnimationFrame ||
-    window.oCancelAnimationFrame ||
-    window.msCancelAnimationFrame ||
-    function (callback) {
-      window.clearTimeout(callback);
+    if (this.animationRequest) {
+      cancelAnimationFrame(this.animationRequest);
     }
-  );
-})();
-
-export default Windy;
+    this.started = false;
+    this.paused = true;
+  }
+}
