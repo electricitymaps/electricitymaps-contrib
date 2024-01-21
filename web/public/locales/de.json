@@ -87,11 +87,10 @@
     "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
     "not-enough-data": "Für die Diagrammanzeige sind nicht genügend Daten verfügbar",
     "carbonintensity": {
-      "default": "Spezifische CO₂-Emissionen in den letzten %1$s",
       "hourly": "Spezifische CO₂-Emissionen in den letzten 24 Stunden",
       "daily": "Spezifische CO₂-Emissionen im letzten Monat",
       "monthly": "Spezifische CO₂-Emissionen im letzten Jahr",
-      "yearly": "Spezifische CO₂-Emissionen in den letzten 5 Jahren"
+      "default": "Spezifische CO₂-Emissionen in den letzten %1$s"
     },
     "emissionsorigin": {
       "default": "Ursprung der Emissionen in den letzten %1$s",
@@ -750,6 +749,30 @@
     "IM": {
       "zoneName": "Isle of Man"
     },
+    "IN": {
+      "zoneName": "Indisches Festland"
+    },
+    "IN-EA": {
+      "countryName": "Indien",
+      "zoneName": "Ostindien"
+    },
+    "IN-NE": {
+      "countryName": "Indien",
+      "zoneName": "Nordostindien"
+    },
+    "IN-NO": {
+      "countryName": "Indien",
+      "zoneName": "Nordindien"
+    },
+    "IN-SO": {
+      "countryName": "Indien",
+      "zoneName": "Südindien"
+    },
+    "IN-WE": {
+      "countryName": "Indien",
+      "zoneName": "Westindien"
+    },
+
     "IN-AN": {
       "countryName": "Indien",
       "zoneName": "Andamanen und Nicobaren"

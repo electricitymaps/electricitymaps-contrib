@@ -83,11 +83,10 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Intensidad de carbono en los últimos %1$s",
       "hourly": "Intensidad de carbono en las últimas 24 horas",
       "daily": "Intensidad de carbono en el último mes",
       "monthly": "Intensidad de carbono en el último año",
-      "yearly": "Intensidad de carbono en los últimos 5 años"
+      "default": "Intensidad de carbono en los últimos %1$s"
     },
     "Getdata": "Obtener datos históricos por horas y en tiempo real + pronóstico con la API de Electricity Maps",
     "not-enough-data": "No hay datos suficientes disponibles para mostrar el gráfico",

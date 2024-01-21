@@ -1,5 +1,5 @@
 """
-Usage: poetry run capacity_update --zone FR --target_datetime "2022-01-01"
+Usage: poetry run update_capacity --zone FR --target_datetime "2022-01-01"
 """
 
 from datetime import datetime
