@@ -59,7 +59,7 @@ export default function Header(): JSX.Element {
   return (
     <header
       className={twMerge(
-        'z-30 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] md:pr-8 dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)]',
+        'z-30 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-8',
         !isMobileApp && 'sm:block md:flex'
       )}
     >

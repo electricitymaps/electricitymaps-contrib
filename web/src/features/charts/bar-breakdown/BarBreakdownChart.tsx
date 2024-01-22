@@ -96,7 +96,7 @@ function BarBreakdownChart() {
               selectedLayerKey={tooltipData?.selectedLayerKey}
               zoneDetail={currentZoneDetail}
             />
-            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
+            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden">
               <HiXMark size="24" />
             </button>
           </div>
