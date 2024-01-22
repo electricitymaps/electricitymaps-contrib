@@ -128,7 +128,7 @@
     },
     "aggregated": {
       "title": "Data is aggregated",
-      "body": "The data consists of summarised values of hourly recordings throughout the day."
+      "body": "The data consists of summarised values of hourly recordings throughout the day. Data might be partially estimated."
     }
   },
   "time-controller": {
