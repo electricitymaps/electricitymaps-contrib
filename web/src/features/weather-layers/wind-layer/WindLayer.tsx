@@ -10,6 +10,7 @@ import {
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
+
 import { Windy } from './windy';
 
 let windySingleton: Windy | null = null;
