@@ -1,7 +1,7 @@
 import * as Portal from '@radix-ui/react-portal';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useAtom } from 'jotai';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
