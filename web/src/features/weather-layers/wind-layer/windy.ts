@@ -15,7 +15,7 @@
 import { GfsForecastResponse } from 'api/getWeatherData';
 import { MapboxMap } from 'react-map-gl';
 
-import { buildBounds, distort,WindVector } from './calc';
+import { buildBounds, distort, WindVector } from './calc';
 import Field from './Field';
 import Grid from './Grid';
 import { windIntensityColorScale } from './scales';
