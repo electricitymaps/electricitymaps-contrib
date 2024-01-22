@@ -122,6 +122,11 @@
       "pill": "Not realtime",
       "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
     },
+    "threshold_filtered": {
+      "title": "Estimation drift",
+      "pill": "Hidden",
+      "body": "The estimations for this zone has begun to drift too far from the actual values. The data is therefore not shown on the map."
+    },
     "outage": {
       "title": "Ongoing issues",
       "pill": "Unavailable"
