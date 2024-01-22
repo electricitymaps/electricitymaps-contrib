@@ -11,6 +11,7 @@ import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
+import { getHeaderHeight } from '../bar-breakdown/utils';
 import { getTimeScale, isEmpty } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
@@ -211,12 +212,7 @@ function AreaGraph({
     [setGraphIndex, setSelectedLayerIndex]
   );
 
-  const [headerHeight, setHeaderHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const height = document.querySelectorAll('header')[0].offsetHeight;
-    setHeaderHeight(height * 1.1);
-  }, [window.innerWidth, window.innerHeight]);
+  const headerHeight = getHeaderHeight();
 
   // Don't render the graph at all if no layers are present
   if (isEmpty(layers)) {

@@ -14,7 +14,7 @@ interface AreaGraphTooltipProperties {
   position?: { x: number; y: number } | undefined;
   tooltipSize?: 'small' | 'large';
   isBiggerThanMobile: boolean;
-  headerHeight?: number;
+  headerHeight: number;
 }
 
 export default function AreaGraphTooltip({
@@ -45,7 +45,7 @@ export default function AreaGraphTooltip({
         style={{
           left: tooltipWithDataPositon.x,
           top:
-            tooltipWithDataPositon.y <= (headerHeight || 0)
+            tooltipWithDataPositon.y <= headerHeight
               ? headerHeight
               : tooltipWithDataPositon.y,
         }}

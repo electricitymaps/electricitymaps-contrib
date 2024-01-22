@@ -15,6 +15,7 @@ import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
+import { getHeaderHeight } from './utils';
 
 const X_PADDING = 9;
 
@@ -38,12 +39,7 @@ function BarBreakdownChart() {
     y: number;
   } | null>(null);
 
-  const [headerHeight, setHeaderHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const height = document.querySelectorAll('header')[0].offsetHeight;
-    setHeaderHeight(height * 1.1);
-  }, [window.innerWidth, window.innerHeight]);
+  const headerHeight = getHeaderHeight();
 
   if (isLoading) {
     return null;
