@@ -12,11 +12,14 @@
     interpolation and animation process.
 */
 
-import { Capacitor } from '@capacitor/core';
-import { ForecastEntry, GfsForecastResponse } from 'api/getWeatherData';
+import { GfsForecastResponse } from 'api/getWeatherData';
 import { MapboxMap } from 'react-map-gl';
 
-import { windColor } from './scales';
+import { buildBounds, distort,WindVector } from './calc';
+import Field from './Field';
+import Grid from './Grid';
+import { windIntensityColorScale } from './scales';
+import { isIphone, isMobile } from './util';
 
 const VELOCITY_SCALE = 1 / 50_000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
 const MAX_WIND_INTENSITY = 30; // wind velocity at which particle intensity is maximum (m/s)
@@ -24,230 +27,18 @@ const MAX_PARTICLE_AGE = 100; // max number of frames a particle is drawn before
 const PARTICLE_LINE_WIDTH = 2; // line width of a drawn particle
 const PARTICLE_MULTIPLIER = 8; // particle count scalar (completely arbitrary--this values looks nice)
 const PARTICLE_REDUCTION = 0.75; // reduce particle count to this much of normal for mobile devices
-const NULL_WIND_VECTOR = [Number.NaN, Number.NaN, null]; // singleton for no wind in the form: [u, v, magnitude]
 
-export type WindVector = [number, number, number | null];
+export const NULL_WIND_VECTOR = [Number.NaN, Number.NaN, Number.NaN]; // singleton for no wind in the form: [u, v, magnitude]
 
-// interpolation for vectors like wind (u,v,m)
-export const bilinearInterpolateVector = (
-  x: number,
-  y: number,
-  g00: number[],
-  g10: number[],
-  g01: number[],
-  g11: number[]
-): WindVector => {
-  const rx = 1 - x;
-  const ry = 1 - y;
-  const a = rx * ry,
-    b = x * ry,
-    c = rx * y,
-    d = x * y;
-  const u = g00[0] * a + g10[0] * b + g01[0] * c + g11[0] * d;
-  const v = g00[1] * a + g10[1] * b + g01[1] * c + g11[1] * d;
-  return [u, v, Math.hypot(u, v)];
-};
-/**
- * @returns {Boolean} true if the specified value is not null and not undefined.
- */
-const isValue = (x: any): boolean => {
-  return x !== null && x !== undefined;
-};
-
-/**
- * @returns {Number} returns remainder of floored division, i.e., floor(a / n). Useful for consistent modulo
- * of negative numbers. See http://en.wikipedia.org/wiki/Modulo_operation.
- */
-const floorModulus = (a: number, n: number): number => {
-  return a - n * Math.floor(a / n);
-};
-
-class Grid {
-  date: Date;
-
-  lo1: number;
-  la1: number;
-  dx: number;
-  dy: number;
-  nx: number;
-  ny: number;
-
-  gridData: number[][][];
-
-  constructor(data: GfsForecastResponse) {
-    let uComp: ForecastEntry | null = null,
-      vComp: ForecastEntry | null = null;
-
-    // Look for recognized parameters in headers
-    for (const record of data) {
-      const { parameterCategory, parameterNumber } = record.header;
-      if (parameterCategory === 2 && parameterNumber === 2) {
-        uComp = record;
-      } else if (parameterCategory === 2 && parameterNumber === 3) {
-        vComp = record;
-      }
-    }
-
-    // Force assert header - we can't draw wind without it
-    const header = (uComp?.header || vComp?.header)!;
-
-    (this.lo1 = header.lo1), (this.la1 = header.la1); // the grid's origin (e.g., 0.0E, 90.0N)
-    (this.dx = header.dx), (this.dy = header.dy); // distance between grid points (e.g., 2.5 deg lon, 2.5 deg lat)
-    (this.nx = header.nx), (this.ny = header.ny); // number of grid points W-E and N-S (e.g., 144 x 73)
-
-    const date = new Date(header.refTime);
-    date.setHours(date.getHours() + header.forecastTime);
-    this.date = date;
-
-    this.gridData = this.#buildGrid(uComp?.data ?? [], vComp?.data ?? []);
-  }
-
-  #buildGrid(uData: number[], vData: number[]) {
-    // Scan mode 0 assumed. Longitude increases from lo1, and latitude decreases from la1.
-    // http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table3-4.shtml
-    const grid: number[][][] = [];
-    let p = 0;
-    const isContinuous = Math.floor(this.nx * this.dx) >= 360;
-    for (let index = 0; index < this.ny; index++) {
-      const row: number[][] = [];
-      for (let index = 0; index < this.nx; index++, p++) {
-        row[index] = [uData[p], vData[p]];
-      }
-      if (isContinuous) {
-        // For wrapped grids, duplicate first column as last column to simplify interpolation logic
-        row.push(row[0]);
-      }
-      grid[index] = row;
-    }
-    return grid;
-  }
-
-  interpolate(lo: number, la: number) {
-    const loInd = floorModulus(lo - this.lo1, 360) / this.dx; // calculate longitude index in wrapped range [0, 360)
-    const laInd = (this.la1 - la) / this.dy; // calculate latitude index in direction +90 to -90
-
-    const fi = Math.floor(loInd),
-      ci = fi + 1;
-    const fj = Math.floor(laInd),
-      cj = fj + 1;
-
-    let row;
-    if ((row = this.gridData[fj])) {
-      const g00 = row[fi];
-      const g10 = row[ci];
-      if (isValue(g00) && isValue(g10) && (row = this.gridData[cj])) {
-        const g01 = row[fi];
-        const g11 = row[ci];
-        if (isValue(g01) && isValue(g11)) {
-          // All four points found, so interpolate the value.
-          return bilinearInterpolateVector(loInd - fi, laInd - fj, g00, g10, g01, g11);
-        }
-      }
-    }
-    return null;
-  }
+export interface Bounds {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
+  yMax: number;
 }
 
-const buildBounds = (bounds: number[][], width: number, height: number) => {
-  const upperLeft = bounds[0];
-  const lowerRight = bounds[1];
-  const x = Math.round(upperLeft[0]);
-  const y = Math.max(Math.floor(upperLeft[1]), 0);
-  const yMax = Math.min(Math.ceil(lowerRight[1]), height - 1);
-  return { x: x, y: y, yMax: yMax, width: width, height: height };
-};
-
-const project = (map: MapboxMap, lat: number, lon: number) => {
-  // both in radians, use deg2rad if necessary
-  const projected = map.project([lon, lat]);
-  return [projected.x, projected.y];
-};
-
-const distortion = (map: MapboxMap, λ: number, φ: number, x: number, y: number) => {
-  const τ = 2 * Math.PI;
-  const H = Math.pow(10, -5.2);
-  const hλ = λ < 0 ? H : -H;
-  const hφ = φ < 0 ? H : -H;
-
-  const pλ = project(map, φ, λ + hλ);
-  const pφ = project(map, φ + hφ, λ);
-
-  // Meridian scale factor (see Snyder, equation 4-3), where R = 1. This handles issue where length of 1º λ
-  // changes depending on φ. Without this, there is a pinching effect at the poles.
-  const k = Math.cos((φ / 360) * τ);
-  return [(pλ[0] - x) / hλ / k, (pλ[1] - y) / hλ / k, (pφ[0] - x) / hφ, (pφ[1] - y) / hφ];
-};
-
-/**
- * Calculate distortion of the wind vector caused by the shape of the projection at point (x, y). The wind
- * vector is modified in place and returned by this function.
- */
-const distort = (
-  map: MapboxMap,
-  λ: number,
-  φ: number,
-  x: number,
-  y: number,
-  scale: number,
-  wind: WindVector
-) => {
-  const u = wind[0] * scale;
-  const v = wind[1] * scale;
-  const d = distortion(map, λ, φ, x, y);
-
-  // Scale distortion vectors by u and v, then add.
-  wind[0] = d[0] * u + d[2] * v;
-  wind[1] = d[1] * u + d[3] * v;
-  return wind;
-};
-
-const indexFor = (m: number, maxWind: number, resultLength: number) => {
-  // map wind speed to a style
-  return Math.floor((Math.min(m, maxWind) / maxWind) * (resultLength - 1));
-};
-
-export function windIntensityColorScale() {
-  return [...windColor.range()];
-}
-
-class Field {
-  columns: WindVector[][];
-  bounds: Bounds;
-
-  constructor(columns: WindVector[][], bounds: Bounds) {
-    this.columns = columns;
-    this.bounds = bounds;
-  }
-
-  /**
-   * @returns {Array} wind vector [u, v, magnitude] at the point (x, y), or [NaN, NaN, null] if wind
-   *          is undefined at that point.
-   */
-  getWind(x: number, y: number): WindVector {
-    const column = this.columns[Math.round(x)];
-    return (column && column[Math.round(y)]) || NULL_WIND_VECTOR;
-  }
-
-  // Frees the massive "columns" array for GC. Without this, the array is leaked (in Chrome)
-  release() {
-    this.columns = [];
-  }
-
-  randomizeParticlePosition(o: Particle) {
-    // UNDONE: this method is terrible
-    let x, y;
-    let safetyNet = 0;
-    do {
-      x = Math.round(Math.floor(Math.random() * this.bounds.width) + this.bounds.x);
-      y = Math.round(Math.floor(Math.random() * this.bounds.height) + this.bounds.y);
-    } while (this.getWind(x, y)[2] === null && safetyNet++ < 30);
-    o.x = x;
-    o.y = y;
-    return o;
-  }
-}
-
-class Particle {
+export class Particle {
   age: number;
   x = 0;
   y = 0;
@@ -259,21 +50,13 @@ class Particle {
   }
 }
 
-interface Bounds {
-  width: number;
-  x: number;
-  y: number;
-  height: number;
-  yMax: number;
-}
-
+/**
+ * Oversees animation of particles
+ */
 export class Windy {
   canvas: HTMLCanvasElement;
   data: GfsForecastResponse;
   map: MapboxMap;
-
-  isMobile: boolean;
-  isIphone: boolean;
 
   started: boolean;
   paused: boolean;
@@ -285,13 +68,6 @@ export class Windy {
     this.canvas = canvas;
     this.data = data;
     this.map = map;
-
-    // true if agent is probably a mobile device. Don't really care if this is accurate.
-    this.isMobile = /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
-      navigator.userAgent
-    );
-    this.isIphone =
-      Capacitor.getPlatform() === 'ios' || /iPad|iPhone|iPod/.test(navigator.userAgent);
 
     this.started = false;
     this.paused = false;
@@ -364,7 +140,7 @@ export class Windy {
     let particleCount = Math.round(
       bounds.width * PARTICLE_MULTIPLIER * this.zoomScaling()
     );
-    if (this.isMobile) {
+    if (isMobile()) {
       particleCount *= PARTICLE_REDUCTION;
     }
 
@@ -389,12 +165,12 @@ export class Windy {
         const y = particle.y;
         const v = field.getWind(x, y); // vector at current position
         const m = v[2];
-        if (m === null) {
+        if (Number.isNaN(m)) {
           particle.age = MAX_PARTICLE_AGE; // particle has escaped the grid, never to return...
         } else {
           const xt = x + v[0];
           const yt = y + v[1];
-          if (field.getWind(xt, yt)[2] === null) {
+          if (Number.isNaN(field.getWind(xt, yt)[2])) {
             // Particle isn't visible, but it still moves through the field.
             particle.x = xt;
             particle.y = yt;
@@ -402,7 +178,12 @@ export class Windy {
             // Path from (x,y) to (xt,yt) is visible, so add this particle to the appropriate draw bucket.
             particle.xt = xt;
             particle.yt = yt;
-            buckets[indexFor(m, MAX_WIND_INTENSITY, colorStyles.length)].push(particle);
+            // Map wind speed to a bucket
+            const scaledIndex = Math.floor(
+              (Math.min(m, MAX_WIND_INTENSITY) / MAX_WIND_INTENSITY) *
+                (colorStyles.length - 1)
+            );
+            buckets[scaledIndex].push(particle);
           }
         }
         particle.age += 1;
@@ -422,7 +203,7 @@ export class Windy {
       const b = deltaMs < 16 ? 1 : 16 / deltaMs;
 
       // Fade existing particle trails.
-      renderContext.globalCompositeOperation = this.isIphone
+      renderContext.globalCompositeOperation = isIphone()
         ? 'destination-out'
         : 'destination-in';
       // This is the parameter concerning the fade property/bug
