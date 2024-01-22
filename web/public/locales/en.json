@@ -94,8 +94,8 @@
     "link": "Read about our estimation models",
     "estimated_time_slicer_average": {
       "title": "Data is currently estimated",
-      "pill": "Data outage",
-      "body": "The data provider is currently not reporting data for this zone. The displayed values are estimated based on historical measurements and will be replaced with consolidated data once available. Please be aware that estimated values might not always be accurate since they do not account for specific real-time weather events."
+      "pill": "Unavailable",
+      "body": "The data provider is currently not reporting data for this hour. The displayed values are estimated based on historical measurements and will be replaced with consolidated data once available. Please be aware that estimated values might not always be accurate since they do not account for specific real-time weather events."
     },
     "estimated_mode_breakdown": {
       "title": "Data is partially estimated",
