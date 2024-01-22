@@ -15,6 +15,7 @@ import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
+import EstimationCard from './EstimationCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
@@ -58,17 +59,20 @@ export default function ZoneDetails(): JSX.Element {
 
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
   const { estimationMethod } = selectedData || {};
-  const isEstimated = estimationMethod !== undefined;
-  const isAggregated = timeAverage !== TimeAverages.HOURLY;
+  const zoneMessage = data?.zoneMessage;
+  const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
 
   return (
     <>
-      <ZoneHeaderTitle
-        zoneId={zoneId}
-        isAggregated={isAggregated}
-        isEstimated={isEstimated}
-      />
+      <ZoneHeaderTitle zoneId={zoneId} />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
+        {cardType != 'none' && (
+          <EstimationCard
+            cardType={cardType}
+            estimationMethod={estimationMethod}
+            outageMessage={zoneMessage}
+          ></EstimationCard>
+        )}
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
@@ -93,6 +97,31 @@ export default function ZoneDetails(): JSX.Element {
       </div>
     </>
   );
+}
+
+function getCardType({
+  estimationMethod,
+  zoneMessage,
+  timeAverage,
+}: {
+  estimationMethod: string | undefined;
+  zoneMessage: { message: string; issue: string } | undefined;
+  timeAverage: TimeAverages;
+}): 'estimated' | 'aggregated' | 'outage' | 'none' {
+  if (
+    zoneMessage !== undefined &&
+    zoneMessage?.message !== undefined &&
+    zoneMessage?.issue !== undefined
+  ) {
+    return 'outage';
+  }
+  if (timeAverage !== TimeAverages.HOURLY) {
+    return 'aggregated';
+  }
+  if (estimationMethod !== undefined) {
+    return 'estimated';
+  }
+  return 'none';
 }
 
 function ZoneDetailsContent({
