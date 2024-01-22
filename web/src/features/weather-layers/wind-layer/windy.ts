@@ -1,6 +1,3 @@
-/* eslint-disable unicorn/no-abusive-eslint-disable */
-/* eslint-disable */
-// @ts-nocheck
 // This file was taken from https://github.com/esri/wind-js, and modified
 
 /*  Global class for simulating the movement of particle through a 1km wind grid
@@ -16,6 +13,7 @@
 */
 
 import { Capacitor } from '@capacitor/core';
+import { ForecastEntry, GfsForecastResponse } from 'api/getWeatherData';
 import { MapboxMap } from 'react-map-gl';
 
 import { windColor } from './scales';
@@ -28,6 +26,8 @@ const PARTICLE_MULTIPLIER = 8; // particle count scalar (completely arbitrary--t
 const PARTICLE_REDUCTION = 0.75; // reduce particle count to this much of normal for mobile devices
 const NULL_WIND_VECTOR = [Number.NaN, Number.NaN, null]; // singleton for no wind in the form: [u, v, magnitude]
 
+export type WindVector = [number, number, number | null];
+
 // interpolation for vectors like wind (u,v,m)
 export const bilinearInterpolateVector = (
   x: number,
@@ -36,7 +36,7 @@ export const bilinearInterpolateVector = (
   g10: number[],
   g01: number[],
   g11: number[]
-) => {
+): WindVector => {
   const rx = 1 - x;
   const ry = 1 - y;
   const a = rx * ry,
@@ -47,42 +47,10 @@ export const bilinearInterpolateVector = (
   const v = g00[1] * a + g10[1] * b + g01[1] * c + g11[1] * d;
   return [u, v, Math.hypot(u, v)];
 };
-
-const createWindBuilder = (
-  uComp: { data: any; header: any } | null,
-  vComp: { data: any } | null
-) => {
-  const uData = uComp?.data,
-    vData = vComp?.data;
-  return {
-    header: uComp?.header,
-    //recipe: recipeFor("wind-" + uComp.header.surface1Value),
-    data: function (index: string | number) {
-      return [uData[index], vData[index]];
-    },
-    interpolate: bilinearInterpolateVector,
-  };
-};
-
-const createBuilder = (data: any[]) => {
-  let uComp = null,
-    vComp = null;
-  for (const record of data) {
-    const { parameterCategory, parameterNumber } = record.header;
-    if (parameterCategory === 2 && parameterNumber === 2) {
-      uComp = record;
-    } else if (parameterCategory === 2 && parameterNumber === 3) {
-      vComp = record;
-    }
-  }
-
-  return createWindBuilder(uComp, vComp);
-};
-
 /**
  * @returns {Boolean} true if the specified value is not null and not undefined.
  */
-const isValue = (x: null | undefined): boolean => {
+const isValue = (x: any): boolean => {
   return x !== null && x !== undefined;
 };
 
@@ -94,78 +62,98 @@ const floorModulus = (a: number, n: number): number => {
   return a - n * Math.floor(a / n);
 };
 
-const buildGrid = (
-  data: any,
-  callback: {
-    (grid: any): void;
-    (argument0: { date: Date; interpolate: (λ: any, φ: any) => number[] | null }): void;
-  }
-) => {
-  const builder = createBuilder(data);
+class Grid {
+  date: Date;
 
-  const header = builder.header;
-  const λ0 = header.lo1,
-    φ0 = header.la1; // the grid's origin (e.g., 0.0E, 90.0N)
-  const Δλ = header.dx,
-    Δφ = header.dy; // distance between grid points (e.g., 2.5 deg lon, 2.5 deg lat)
-  const ni = header.nx,
-    nj = header.ny; // number of grid points W-E and N-S (e.g., 144 x 73)
-  const date = new Date(header.refTime);
-  date.setHours(date.getHours() + header.forecastTime);
+  lo1: number;
+  la1: number;
+  dx: number;
+  dy: number;
+  nx: number;
+  ny: number;
 
-  // Scan mode 0 assumed. Longitude increases from λ0, and latitude decreases from φ0.
-  // http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table3-4.shtml
-  const grid: any[] = [];
-  let p = 0;
-  const isContinuous = Math.floor(ni * Δλ) >= 360;
-  for (let index = 0; index < nj; index++) {
-    const row = [];
-    for (let index = 0; index < ni; index++, p++) {
-      row[index] = builder.data(p);
+  gridData: number[][][];
+
+  constructor(data: GfsForecastResponse) {
+    let uComp: ForecastEntry | null = null,
+      vComp: ForecastEntry | null = null;
+
+    // Look for recognized parameters in headers
+    for (const record of data) {
+      const { parameterCategory, parameterNumber } = record.header;
+      if (parameterCategory === 2 && parameterNumber === 2) {
+        uComp = record;
+      } else if (parameterCategory === 2 && parameterNumber === 3) {
+        vComp = record;
+      }
     }
-    if (isContinuous) {
-      // For wrapped grids, duplicate first column as last column to simplify interpolation logic
-      row.push(row[0]);
-    }
-    grid[index] = row;
+
+    // Force assert header - we can't draw wind without it
+    const header = (uComp?.header || vComp?.header)!;
+
+    (this.lo1 = header.lo1), (this.la1 = header.la1); // the grid's origin (e.g., 0.0E, 90.0N)
+    (this.dx = header.dx), (this.dy = header.dy); // distance between grid points (e.g., 2.5 deg lon, 2.5 deg lat)
+    (this.nx = header.nx), (this.ny = header.ny); // number of grid points W-E and N-S (e.g., 144 x 73)
+
+    const date = new Date(header.refTime);
+    date.setHours(date.getHours() + header.forecastTime);
+    this.date = date;
+
+    this.gridData = this.#buildGrid(uComp?.data ?? [], vComp?.data ?? []);
   }
 
-  function interpolate(λ: number, φ: number) {
-    const index = floorModulus(λ - λ0, 360) / Δλ; // calculate longitude index in wrapped range [0, 360)
-    const index_ = (φ0 - φ) / Δφ; // calculate latitude index in direction +90 to -90
+  #buildGrid(uData: number[], vData: number[]) {
+    // Scan mode 0 assumed. Longitude increases from lo1, and latitude decreases from la1.
+    // http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table3-4.shtml
+    const grid: number[][][] = [];
+    let p = 0;
+    const isContinuous = Math.floor(this.nx * this.dx) >= 360;
+    for (let index = 0; index < this.ny; index++) {
+      const row: number[][] = [];
+      for (let index = 0; index < this.nx; index++, p++) {
+        row[index] = [uData[p], vData[p]];
+      }
+      if (isContinuous) {
+        // For wrapped grids, duplicate first column as last column to simplify interpolation logic
+        row.push(row[0]);
+      }
+      grid[index] = row;
+    }
+    return grid;
+  }
 
-    const fi = Math.floor(index),
+  interpolate(lo: number, la: number) {
+    const loInd = floorModulus(lo - this.lo1, 360) / this.dx; // calculate longitude index in wrapped range [0, 360)
+    const laInd = (this.la1 - la) / this.dy; // calculate latitude index in direction +90 to -90
+
+    const fi = Math.floor(loInd),
       ci = fi + 1;
-    const fj = Math.floor(index_),
+    const fj = Math.floor(laInd),
       cj = fj + 1;
 
     let row;
-    if ((row = grid[fj])) {
+    if ((row = this.gridData[fj])) {
       const g00 = row[fi];
       const g10 = row[ci];
-      if (isValue(g00) && isValue(g10) && (row = grid[cj])) {
+      if (isValue(g00) && isValue(g10) && (row = this.gridData[cj])) {
         const g01 = row[fi];
         const g11 = row[ci];
         if (isValue(g01) && isValue(g11)) {
           // All four points found, so interpolate the value.
-          return builder.interpolate(index - fi, index_ - fj, g00, g10, g01, g11);
+          return bilinearInterpolateVector(loInd - fi, laInd - fj, g00, g10, g01, g11);
         }
       }
     }
     return null;
   }
-  callback({
-    date: date,
-    interpolate: interpolate,
-  });
-};
+}
 
-const buildBounds = (bounds: any[], width: any, height: number) => {
+const buildBounds = (bounds: number[][], width: number, height: number) => {
   const upperLeft = bounds[0];
   const lowerRight = bounds[1];
-  const x = Math.round(upperLeft[0]); //Math.max(Math.floor(upperLeft[0], 0), 0);
-  const y = Math.max(Math.floor(upperLeft[1], 0), 0);
-  const yMax = Math.min(Math.ceil(lowerRight[1], height), height - 1);
+  const x = Math.round(upperLeft[0]);
+  const y = Math.max(Math.floor(upperLeft[1]), 0);
+  const yMax = Math.min(Math.ceil(lowerRight[1]), height - 1);
   return { x: x, y: y, yMax: yMax, width: width, height: height };
 };
 
@@ -201,7 +189,7 @@ const distort = (
   x: number,
   y: number,
   scale: number,
-  wind: [number, number]
+  wind: WindVector
 ) => {
   const u = wind[0] * scale;
   const v = wind[1] * scale;
@@ -222,66 +210,66 @@ export function windIntensityColorScale() {
   return [...windColor.range()];
 }
 
-const createField = function (
-  columns: any[],
-  bounds: { width: number; x: number; height: number; y: number },
-  callback: (
-    argument0: any,
-    argument1: {
-      (x: any, y: any): any;
-      // Frees the massive "columns" array for GC. Without this, the array is leaked (in Chrome) each time a new
-      // field is interpolated because the field closure's context is leaked, for reasons that defy explanation.
-      release(): void;
-      randomize(o: any): any;
-    }
-  ) => void
-) {
+class Field {
+  columns: WindVector[][];
+  bounds: Bounds;
+
+  constructor(columns: WindVector[][], bounds: Bounds) {
+    this.columns = columns;
+    this.bounds = bounds;
+  }
+
   /**
    * @returns {Array} wind vector [u, v, magnitude] at the point (x, y), or [NaN, NaN, null] if wind
    *          is undefined at that point.
    */
-  function field(x: number, y: number): Array<any> {
-    const column = columns[Math.round(x)];
+  getWind(x: number, y: number): WindVector {
+    const column = this.columns[Math.round(x)];
     return (column && column[Math.round(y)]) || NULL_WIND_VECTOR;
   }
 
-  // Frees the massive "columns" array for GC. Without this, the array is leaked (in Chrome) each time a new
-  // field is interpolated because the field closure's context is leaked, for reasons that defy explanation.
-  field.release = function () {
-    columns = [];
-  };
+  // Frees the massive "columns" array for GC. Without this, the array is leaked (in Chrome)
+  release() {
+    this.columns = [];
+  }
 
-  field.randomize = function (o: { x: number; y: number }) {
+  randomizeParticlePosition(o: Particle) {
     // UNDONE: this method is terrible
     let x, y;
     let safetyNet = 0;
     do {
-      x = Math.round(Math.floor(Math.random() * bounds.width) + bounds.x);
-      y = Math.round(Math.floor(Math.random() * bounds.height) + bounds.y);
-    } while (field(x, y)[2] === null && safetyNet++ < 30);
+      x = Math.round(Math.floor(Math.random() * this.bounds.width) + this.bounds.x);
+      y = Math.round(Math.floor(Math.random() * this.bounds.height) + this.bounds.y);
+    } while (this.getWind(x, y)[2] === null && safetyNet++ < 30);
     o.x = x;
     o.y = y;
     return o;
-  };
-
-  callback(bounds, field);
-};
-
-function deg2rad(deg: number) {
-  return (deg / 180) * Math.PI;
+  }
 }
 
-interface Particle {
+class Particle {
   age: number;
-  x?: number;
-  y?: number;
-  xt?: number;
-  yt?: number;
+  x = 0;
+  y = 0;
+  xt = 0;
+  yt = 0;
+
+  constructor(age: number) {
+    this.age = age;
+  }
+}
+
+interface Bounds {
+  width: number;
+  x: number;
+  y: number;
+  height: number;
+  yMax: number;
 }
 
 export class Windy {
   canvas: HTMLCanvasElement;
-  data: any;
+  data: GfsForecastResponse;
   map: MapboxMap;
 
   isMobile: boolean;
@@ -290,10 +278,10 @@ export class Windy {
   started: boolean;
   paused: boolean;
 
-  animationRequest: any;
-  field: any;
+  animationRequest: number | undefined;
+  field: Field | undefined;
 
-  constructor(canvas: HTMLCanvasElement, data: any, map: MapboxMap) {
+  constructor(canvas: HTMLCanvasElement, data: GfsForecastResponse, map: MapboxMap) {
     this.canvas = canvas;
     this.data = data;
     this.map = map;
@@ -312,43 +300,35 @@ export class Windy {
     this.field = undefined;
   }
 
-  invert(x: any, y: any) {
+  invert(x: number, y: number) {
     const object = this.map.unproject([x, y]);
 
     return [object.lng, object.lat];
   }
 
   zoomScaling() {
-    return 1 / Math.sqrt(this.map.transform.scale);
+    return 1 / this.map.getZoom();
   }
 
   interpolateField(
-    grid: { interpolate: (argument0: any, argument1: any) => any },
-    bounds: { x: any; y: any; yMax: any; width: any; height: any },
-    extent: {
-      south: number;
-      north: number;
-      east: number;
-      west: number;
-      width: any;
-      height: any;
-    },
-    callback: (bounds: number[][], field: any) => void
+    grid: Grid,
+    bounds: Bounds,
+    setFieldAndAnimate: (bounds: Bounds, field: Field) => void
   ) {
     const velocityScale = bounds.height * VELOCITY_SCALE * this.zoomScaling();
 
-    const columns: never[] = [];
+    const columns: WindVector[][] = [];
     let x = bounds.x;
 
     const interpolateColumn = (x: number) => {
-      const column = [];
+      const column: WindVector[] = [];
       for (let y = bounds.y; y <= bounds.yMax; y += 2) {
-        const coord = this.invert(x, y, extent);
+        const coord = this.invert(x, y);
 
         if (coord) {
           const λ = coord[0],
             φ = coord[1];
-          if (isFinite(λ)) {
+          if (Number.isFinite(λ)) {
             let wind = grid.interpolate(λ, φ);
             if (wind) {
               wind = distort(this.map, λ, φ, x, y, velocityScale, wind);
@@ -366,25 +346,18 @@ export class Windy {
         interpolateColumn(x);
         x += 2;
         if (Date.now() - start > 1000) {
-          //MAX_TASK_TIME) {
           setTimeout(batchInterpolate, 25);
           return;
         }
       }
-      createField(columns, bounds, callback);
+      const field = new Field(columns, bounds);
+      setFieldAndAnimate(bounds, field);
     })();
   }
 
-  animate(
-    bounds: { width: number; x: any; y: any; height: any },
-    field: {
-      (argument0: any, argument1: any): null[];
-      (argument0: any, argument1: any): null[];
-      randomize: any;
-    }
-  ) {
+  animate(bounds: Bounds, field: Field) {
     const colorStyles = windIntensityColorScale();
-    const buckets: any[][] = colorStyles.map(function () {
+    const buckets: Particle[][] = colorStyles.map(function () {
       return [];
     });
 
@@ -398,7 +371,9 @@ export class Windy {
     const particles: Particle[] = [];
     for (let index = 0; index < particleCount; index++) {
       particles.push(
-        field.randomize({ age: Math.floor(Math.random() * MAX_PARTICLE_AGE) + 0 })
+        field.randomizeParticlePosition(
+          new Particle(Math.floor(Math.random() * MAX_PARTICLE_AGE))
+        )
       );
     }
 
@@ -408,18 +383,18 @@ export class Windy {
       }
       for (const particle of particles) {
         if (particle.age > MAX_PARTICLE_AGE) {
-          field.randomize(particle).age = 0;
+          field.randomizeParticlePosition(particle).age = 0;
         }
         const x = particle.x;
         const y = particle.y;
-        const v = field(x, y); // vector at current position
+        const v = field.getWind(x, y); // vector at current position
         const m = v[2];
         if (m === null) {
           particle.age = MAX_PARTICLE_AGE; // particle has escaped the grid, never to return...
         } else {
           const xt = x + v[0];
           const yt = y + v[1];
-          if (field(xt, yt)[2] === null) {
+          if (field.getWind(xt, yt)[2] === null) {
             // Particle isn't visible, but it still moves through the field.
             particle.x = xt;
             particle.y = yt;
@@ -458,7 +433,6 @@ export class Windy {
       renderContext.globalAlpha = 1;
 
       // Draw new particle trails.
-
       for (const bucket of buckets) {
         if (bucket.length > 0) {
           renderContext.beginPath();
@@ -475,53 +449,41 @@ export class Windy {
       }
     };
 
-    console.log('yo', buckets);
-
     const frame = () => {
       lastFrameTime = Date.now();
       if (!this.paused) {
         computeNextState();
         draw();
       }
-      this.animationRequest = requestAnimationFrame(frame);
+      this.animationRequest = window.requestAnimationFrame(frame);
     };
     frame();
   }
 
-  start(bounds: number[][], width: any, height: any, extent: any[][]) {
-    const mapBounds = {
-      south: deg2rad(extent[0][1]),
-      north: deg2rad(extent[1][1]),
-      east: deg2rad(extent[1][0]),
-      west: deg2rad(extent[0][0]),
-      width: width,
-      height: height,
-    };
-
+  start(viewportBounds: number[][], width: number, height: number) {
     stop();
     this.started = true;
     this.paused = false;
 
-    buildGrid(this.data, (grid: any) => {
-      this.interpolateField(
-        grid,
-        buildBounds(bounds, width, height),
-        mapBounds,
-        (bounds: number[][], field: any) => {
-          // animate the canvas with random points
-          this.field = field;
-          this.animate(bounds, field);
-        }
-      );
-    });
+    const grid = new Grid(this.data);
+    this.interpolateField(
+      grid,
+      buildBounds(viewportBounds, width, height),
+      (bounds: Bounds, field: Field) => {
+        // animate the canvas with random points
+        this.field = field;
+        this.animate(bounds, field);
+      }
+    );
   }
 
   stop() {
-    if (this.field) {
-      this.field.release();
-    }
-    if (this.animationRequest) {
-      cancelAnimationFrame(this.animationRequest);
+    // Shouldn't be needed anymore, left here in case memory issues somehow occur
+    // if (this.field) {
+    //   this.field.release();
+    // }
+    if (this.animationRequest !== undefined) {
+      window.cancelAnimationFrame(this.animationRequest);
     }
     this.started = false;
     this.paused = true;

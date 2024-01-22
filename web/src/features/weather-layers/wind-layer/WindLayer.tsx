@@ -1,4 +1,4 @@
-import { useGetWind } from 'api/getWeatherData';
+import { GfsForecastResponse, useGetWind } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
@@ -14,7 +14,11 @@ import { useReferenceWidthHeightObserver } from 'utils/viewport';
 import { Windy } from './windy';
 
 let windySingleton: Windy | null = null;
-const createWindy = async (canvas: HTMLCanvasElement, data: any, map: MapboxMap) => {
+const createWindy = async (
+  canvas: HTMLCanvasElement,
+  data: GfsForecastResponse,
+  map: MapboxMap
+) => {
   if (!windySingleton) {
     windySingleton = new Windy(canvas, data, map);
   }
@@ -53,8 +57,8 @@ export default function WindLayer({ map }: { map?: MapboxMap }) {
   useEffect(() => {
     if (map && !windy && isVisible && node && isWindLayerEnabled && windData) {
       createWindy(node as HTMLCanvasElement, windData, map).then((w) => {
-        const { bounds, width, height, extent } = viewport;
-        w.start(bounds, width, height, extent);
+        const { bounds, width, height } = viewport;
+        w.start(bounds, width, height);
         setWindy(w);
       });
       setIsLoadingWindLayer(false);
