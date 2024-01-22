@@ -3,7 +3,7 @@ import { Capacitor } from '@capacitor/core';
 /**
  * @returns {Boolean} true if the specified value is not null and not undefined.
  */
-export function isValue(x: any) {
+export function isValue(x: unknown) {
   return x !== null && x !== undefined;
 }
 

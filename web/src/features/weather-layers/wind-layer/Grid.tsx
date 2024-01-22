@@ -7,14 +7,12 @@ import { floorModulus, isValue } from './util';
  * Builds the grid of wind vectors
  */
 export default class Grid {
-  date: Date;
-
-  lo1: number;
-  la1: number;
-  dx: number;
-  dy: number;
-  nx: number;
-  ny: number;
+  lo1 = 0;
+  la1 = 90;
+  dx = 1;
+  dy = 1;
+  nx = 360;
+  ny = 181;
 
   gridData: number[][][];
 
@@ -33,15 +31,13 @@ export default class Grid {
     }
 
     // Force assert header - we can't draw wind without it
-    const header = (uComp?.header || vComp?.header)!;
+    const header = uComp?.header || vComp?.header;
 
-    (this.lo1 = header.lo1), (this.la1 = header.la1); // the grid's origin (e.g., 0.0E, 90.0N)
-    (this.dx = header.dx), (this.dy = header.dy); // distance between grid points (e.g., 2.5 deg lon, 2.5 deg lat)
-    (this.nx = header.nx), (this.ny = header.ny); // number of grid points W-E and N-S (e.g., 144 x 73)
-
-    const date = new Date(header.refTime);
-    date.setHours(date.getHours() + header.forecastTime);
-    this.date = date;
+    if (header) {
+      (this.lo1 = header.lo1), (this.la1 = header.la1); // the grid's origin (e.g., 0.0E, 90.0N)
+      (this.dx = header.dx), (this.dy = header.dy); // distance between grid points (e.g., 2.5 deg lon, 2.5 deg lat)
+      (this.nx = header.nx), (this.ny = header.ny); // number of grid points W-E and N-S (e.g., 144 x 73)
+    }
 
     this.gridData = this.#buildGrid(uComp?.data ?? [], vComp?.data ?? []);
   }

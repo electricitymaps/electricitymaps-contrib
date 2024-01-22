@@ -190,7 +190,12 @@ export class Windy {
       }
     };
 
-    const renderContext = this.canvas.getContext('2d')!;
+    const renderContext = this.canvas.getContext('2d');
+    if (!renderContext) {
+      console.error('Could not get canvas render context');
+      return;
+    }
+
     renderContext.lineWidth = PARTICLE_LINE_WIDTH;
     renderContext.fillStyle = '#000';
 
