@@ -757,6 +757,30 @@
     "IM": {
       "zoneName": "Isle of Man"
     },
+    "IN": {
+      "zoneName": "Indisches Festland"
+    },
+    "IN-EA": {
+      "countryName": "Indien",
+      "zoneName": "Ostindien"
+    },
+    "IN-NE": {
+      "countryName": "Indien",
+      "zoneName": "Nordostindien"
+    },
+    "IN-NO": {
+      "countryName": "Indien",
+      "zoneName": "Nordindien"
+    },
+    "IN-SO": {
+      "countryName": "Indien",
+      "zoneName": "Südindien"
+    },
+    "IN-WE": {
+      "countryName": "Indien",
+      "zoneName": "Westindien"
+    },
+
     "IN-AN": {
       "countryName": "Indien",
       "zoneName": "Andamanen und Nicobaren"
