@@ -15,6 +15,7 @@ capacity:
   oil: 455
   solar: 8595
   wind: 5315
+  battery storage: 50
 contributors:
   - corradio
   - nessie2013
