@@ -22,6 +22,18 @@ export default function EstimationCard({
   }
 }
 
+function getEstimationTranslation(
+  field: 'title' | 'pill' | 'body',
+  estimationMethod: string | undefined
+) {
+  const { __ } = useTranslation();
+  const exactTranslation = __(
+    `estimation-card.${estimationMethod?.toLowerCase()}.${field}`
+  );
+  const genericTranslation = __(`estimation-card.estimated_generic_method.${field}`);
+  return exactTranslation.length > 0 ? exactTranslation : genericTranslation;
+}
+
 function BaseCard({
   estimationMethod,
   outageMessage,
@@ -46,6 +58,11 @@ function BaseCard({
     setIsCollapsed((previous) => !previous);
   };
   const { __ } = useTranslation();
+
+  const title = getEstimationTranslation('title', estimationMethod);
+  const pillText = getEstimationTranslation('pill', estimationMethod);
+  const bodyText = getEstimationTranslation('body', estimationMethod);
+
   return (
     <div
       className={`w-full rounded-lg px-3 py-2.5 ${isCollapsed ? 'h-[46px]' : 'h-fit'} ${
@@ -64,16 +81,12 @@ function BaseCard({
               <h2
                 className={`truncate text-sm font-semibold ${textColorTitle} self-center`}
               >
-                {__(`estimation-card.${estimationMethod?.toLowerCase()}.title`)}
+                {title}
               </h2>
             </div>
             <div className="flex flex-row gap-2 ">
               {pillType != undefined && (
-                <Badge
-                  type={pillType}
-                  icon={iconPill}
-                  pillText={__(`estimation-card.${estimationMethod?.toLowerCase()}.pill`)}
-                ></Badge>
+                <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
               )}
               <div className="text-lg">
                 {isCollapsed ? <HiChevronDown /> : <HiChevronUp />}
@@ -84,8 +97,7 @@ function BaseCard({
         {!isCollapsed && (
           <div className="gap-2">
             <div className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}>
-              {estimationMethod != 'outage' &&
-                __(`estimation-card.${estimationMethod?.toLowerCase()}.body`)}
+              {estimationMethod != 'outage' && bodyText}
               {estimationMethod == 'outage' && (
                 <OutageMessage outageData={outageMessage} />
               )}

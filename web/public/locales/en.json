@@ -93,9 +93,9 @@
   "estimation-card": {
     "link": "Read about our estimation models",
     "estimated_time_slicer_average": {
-      "title": "Data is estimated",
-      "pill": "Delayed",
-      "body": "The data for this hour has not yet been reported. The displayed values are estimates and will be replaced with measured data once available."
+      "title": "Data is currently estimated",
+      "pill": "Data outage",
+      "body": "The data provider is currently not reporting data for this zone. The displayed values are estimated based on historical measurements and will be replaced with consolidated data once available. Please be aware that estimated values might not always be accurate since they do not account for specific real-time weather events."
     },
     "estimated_mode_breakdown": {
       "title": "Data is partially estimated",
@@ -106,6 +106,11 @@
       "title": "Data is always estimated",
       "pill": "Imprecise",
       "body": "The published data for this zone only provides the total production. Renewable sources are estimated using live weather data, while the fossil sources are deducted based on historical data for each production source."
+    },
+    "estimated_generic_method": {
+      "title": "Data is estimated",
+      "pill": "Imprecise",
+      "body": "The published data for this zone is unavailable or incomplete. The data shown on the map is estimated using our best effort, but might differ from the actual values."
     },
     "estimated_construct_breakdown": {
       "title": "Data is always estimated",
@@ -123,7 +128,7 @@
     },
     "aggregated": {
       "title": "Data is aggregated",
-      "body": "The data consists of summarised values of hourly recordings throughout the day."
+      "body": "The data consists of summarised values of hourly recordings throughout the day. Data might be partially estimated."
     }
   },
   "time-controller": {
