@@ -90,6 +90,47 @@
       "total-electricity-consumption": "Total electricity consumption by source"
     }
   },
+  "estimation-card": {
+    "link": "Read about our estimation models",
+    "estimated_time_slicer_average": {
+      "title": "Data is currently estimated",
+      "pill": "Unavailable",
+      "body": "The data provider is currently not reporting data for this hour. The displayed values are estimated based on historical measurements and will be replaced with consolidated data once available. Please be aware that estimated values might not always be accurate since they do not account for specific real-time weather events."
+    },
+    "estimated_mode_breakdown": {
+      "title": "Data is partially estimated",
+      "pill": "Incomplete",
+      "body": "Electricity generation data for this zone is incomplete; missing values have been calculated using an estimation model."
+    },
+    "estimated_reconstruct_breakdown": {
+      "title": "Data is always estimated",
+      "pill": "Imprecise",
+      "body": "The published data for this zone only provides the total production. Renewable sources are estimated using live weather data, while the fossil sources are deducted based on historical data for each production source."
+    },
+    "estimated_generic_method": {
+      "title": "Data is estimated",
+      "pill": "Imprecise",
+      "body": "The published data for this zone is unavailable or incomplete. The data shown on the map is estimated using our best effort, but might differ from the actual values."
+    },
+    "estimated_construct_breakdown": {
+      "title": "Data is always estimated",
+      "pill": "Not realtime",
+      "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
+    },
+    "estimated_construct_zero_breakdown": {
+      "title": "Data is always estimated",
+      "pill": "Not realtime",
+      "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
+    },
+    "outage": {
+      "title": "Ongoing issues",
+      "pill": "Unavailable"
+    },
+    "aggregated": {
+      "title": "Data is aggregated",
+      "body": "The data consists of summarised values of hourly recordings throughout the day. Data might be partially estimated."
+    }
+  },
   "time-controller": {
     "title": "Display data from the past"
   },
@@ -280,6 +321,8 @@
     "groupName": "Our data",
     "dataOrigins-question": "How do you get your data?",
     "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
+    "regionalEmissionFactors-question": "Why are the emission factors changing for different areas?",
+    "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">details on the Wiki</a>.",
     "dataDownload-question": "Can I download your data?",
     "dataDownload-answer": "We publish data for the past years for free at our <a href=\"https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Data Portal</a>. For more recent and real-time data you can use <a href=\"https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral\">our API</a>, which is free for non-commercial use and available for purchase for commercial use.",
     "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
