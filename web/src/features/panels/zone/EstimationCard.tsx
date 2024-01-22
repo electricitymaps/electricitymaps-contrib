@@ -65,7 +65,7 @@ function BaseCard({
 
   return (
     <div
-      className={`w-full rounded-lg px-3 py-2.5 ${isCollapsed ? 'h-[46px]' : 'h-fit'} ${
+      className={`w-full rounded-lg px-3 py-2.5 ${
         estimationMethod == 'outage'
           ? 'bg-amber-700/20 dark:bg-amber-500/20'
           : 'bg-neutral-100 dark:bg-gray-800'
@@ -73,18 +73,18 @@ function BaseCard({
     >
       <div className="flex flex-col">
         <button onClick={handleToggleCollapse}>
-          <div className="flex flex-row justify-between pb-1.5">
-            <div className="flex flex-row gap-2">
+          <div className="flex flex-row items-center justify-between">
+            <div className="flex w-2/3 flex-initial flex-row gap-2">
               <div className={`flex items-center justify-center`}>
                 <div className={`h-[16px] w-[16px] bg-center ${icon}`} />
               </div>
               <h2
-                className={`truncate text-sm font-semibold ${textColorTitle} self-center`}
+                className={`text-left text-sm font-semibold ${textColorTitle} self-center`}
               >
                 {title}
               </h2>
             </div>
-            <div className="flex flex-row gap-2 ">
+            <div className="flex h-fit flex-row gap-2 text-nowrap">
               {pillType != undefined && (
                 <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
               )}
@@ -95,7 +95,7 @@ function BaseCard({
           </div>
         </button>
         {!isCollapsed && (
-          <div className="gap-2">
+          <div className="gap-2 pt-1.5">
             <div className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}>
               {estimationMethod != 'outage' && bodyText}
               {estimationMethod == 'outage' && (
