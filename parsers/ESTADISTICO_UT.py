@@ -38,8 +38,6 @@ MODE_MAPPING = {
     "Interconexión": "exchange",
 }
 
-TIMEZONE = ZoneInfo("America/El_Salvador")
-
 
 def get_data(session: Session) -> Response:
     """
