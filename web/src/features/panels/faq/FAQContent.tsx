@@ -22,6 +22,7 @@ const orderings = [
     entryOrder: [
       'carbonIntensity',
       'methodology',
+      'regionalEmissionFactors',
       'renewableLowCarbonDifference',
       'importsAndExports',
       'guaranteesOfOrigin',

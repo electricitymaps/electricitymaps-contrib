@@ -142,7 +142,7 @@
         "ignore": [".*[pP]rops"]
       }
     ],
-    "unicorn/no-nested-ternary": ["error"],
+    "unicorn/no-nested-ternary": "error",
     "unicorn/no-useless-undefined": "off",
     "unicorn/no-null": "off",
     "simple-import-sort/imports": "error",
