@@ -1,10 +1,11 @@
 from importlib import resources
+
 from requests import Session
-from requests_mock import GET, Adapter, POST
+from requests_mock import GET, POST, Adapter
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.ESTADISTICO_UT import fetch_production, DAILY_OPERATION_URL
+from parsers.ESTADISTICO_UT import DAILY_OPERATION_URL, fetch_production
 
 
 class TestESTADISTICO_UT(TestCase):
@@ -17,15 +18,15 @@ class TestESTADISTICO_UT(TestCase):
             GET,
             DAILY_OPERATION_URL,
             text=resources.files("parsers.test.mocks.ESTADISTICO_UT")
-                .joinpath("production.html")
-                .read_text(),
+            .joinpath("production.html")
+            .read_text(),
         )
         self.adapter.register_uri(
             POST,
             DAILY_OPERATION_URL,
             text=resources.files("parsers.test.mocks.ESTADISTICO_UT")
-                .joinpath("data.html")
-                .read_text(),
+            .joinpath("data.html")
+            .read_text(),
         )
 
     def test_fetch_production(self):
