@@ -34,7 +34,7 @@ MODE_MAPPING = {
     "Geotérmico": "geothermal",
     "Hidroeléctrico": "hydro",
     "Solar": "solar",
-    "Térmico": "unknown",
+    "Térmico": "oil",
     "Interconexión": "exchange",
 }
 
