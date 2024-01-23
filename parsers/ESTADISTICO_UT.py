@@ -109,12 +109,6 @@ def data_parser(response: Response) -> list[dict]:
     data = json.loads(double_json)
     jsresult = data["result"]
     clean_json = json.loads(jsresult[1:-1])
-    startpoints = [m.end(0) for m in re.finditer('"Data":{', jsresult)]
-    endpoints = [m.start(0) for m in re.finditer('"KeyIds"', jsresult)]
-
-    sliced = jsresult[startpoints[1] : endpoints[2]]
-    sliced = "".join(sliced.split())
-    sliced = sliced[1:-4]
     datapoints = []
     for item in clean_json["PaneContent"]:
         generation_data = item["ItemData"]["DataStorageDTO"]
