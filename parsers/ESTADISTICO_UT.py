@@ -16,7 +16,6 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.types import ZoneKey
 
 # This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
-# El Salvador does have wind generation but there is no data available.
 # The 'Termico' category only consists of generation from oil/diesel according to historical data.
 # See: https://www.iea.org/statistics/?country=ELSALVADOR&year=2016&category=Key%20indicators&indicator=ElecGenByFuel
 # A new Liquid Natural Gas power plant may come online in 2020/2021.
