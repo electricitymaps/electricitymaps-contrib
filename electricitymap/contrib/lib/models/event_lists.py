@@ -21,6 +21,9 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 
+CAPACITY_STRICT_THRESHOLD = 0
+CAPACITY_LOOSE_THRESHOLD = 0.02
+
 
 class EventList(ABC):
     """A wrapper around Events lists."""
@@ -252,20 +255,31 @@ class ProductionBreakdownList(AggregatableEventList):
     def filter_expected_modes(
         breakdowns: "ProductionBreakdownList",
         strict_storage: bool = False,
+        strict_capacity: bool = False,
         by_passed_modes: list[str] = [],
     ) -> "ProductionBreakdownList":
         """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
         This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
         TODO: Remove this method once the outlier detection is able to handle it.
         """
+
+        def select_capacity(capacity_value: float, total_capacity: float) -> bool:
+            if strict_capacity:
+                return capacity_value > CAPACITY_STRICT_THRESHOLD
+            return capacity_value / total_capacity > CAPACITY_LOOSE_THRESHOLD
+
         events = ProductionBreakdownList(breakdowns.logger)
         for event in breakdowns.events:
             capacity_config = ZONES_CONFIG.get(event.zoneKey, {}).get("capacity", {})
             capacity = get_capacity_data(capacity_config, event.datetime)
+            total_capacity = sum(capacity.values())
             valid = True
             required_modes = [
-                mode for mode, capacity_value in capacity.items() if capacity_value > 0
+                mode
+                for mode, capacity_value in capacity.items()
+                if select_capacity(capacity_value, total_capacity)
             ]
+            required_modes = list(set(required_modes))
             if not strict_storage:
                 required_modes = [
                     mode for mode in required_modes if "storage" not in mode
