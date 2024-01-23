@@ -2,17 +2,18 @@
 
 import json
 import re
-from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from operator import itemgetter
 from zoneinfo import ZoneInfo
-from datetime import datetime
-from electricitymap.contrib.lib.types import ZoneKey
-from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList, ProductionMix
 
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Response, Session
+
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    ProductionMix,
+)
+from electricitymap.contrib.lib.types import ZoneKey
 
 # This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
 # El Salvador does have wind generation but there is no data available.
@@ -27,21 +28,20 @@ DAILY_OPERATION_URL = "https://estadistico.ut.com.sv/OperacionDiaria.aspx"
 TIMEZONE = ZoneInfo("America/El_Salvador")
 SOURCE = "ut.com.sv"
 
-generation_map = {
-    0: "biomass",
-    1: "wind",
-    2: "geothermal",
-    3: "hydro",
-    4: "interconnection",
-    5: "thermal",
-    6: "solar",
-    "datetime": "datetime",
+MODE_MAPPING = {
+    "Biomasa": "biomass",
+    "Eólico": "wind",
+    "Geotérmico": "geothermal",
+    "Hidroeléctrico": "hydro",
+    "Solar": "solar",
+    "Térmico": "unknown",
+    "Interconexión": "exchange",
 }
 
 TIMEZONE = ZoneInfo("America/El_Salvador")
 
 
-def get_data(session: Session):
+def get_data(session: Session) -> Response:
     """
     Makes a get request to data url.
     Parses the response then makes a post request to the same url using
@@ -77,89 +77,105 @@ def get_data(session: Session):
     return datareq
 
 
-def data_parser(datareq) -> list:
+def data_parser(response: Response) -> list[dict]:
     """
-    Accepts a requests response.text object.
     Slices the object down to a smaller size then converts to usable json.
     Loads the data as json then finds the 'result' key.
     Uses regex to find the start
     and endpoints of the actual data.
     Splits the data into datapoints then cleans them up for processing.
     """
-
-    double_json = datareq.text[len("0|/*DX*/(") : -1]
+    double_json = response.text[len("0|/*DX*/(") : -1]
     double_json = double_json.replace("'", '"')
+    double_json = double_json.replace("\\n", "")
+    double_json = double_json.replace("\\t", "")
+    # Replacing js date objects with isoformat strings.
+    JS_DATE_REGEX = re.compile(
+        r"new Date\((?P<year>\d*),(?P<month>\d*),(?P<day>\d*),(?P<hour>\d*),(?P<minute>\d*),(?P<second>\d*),(?P<ms>\d*)\)"
+    )
+    matches = JS_DATE_REGEX.findall(double_json)
+    if matches:
+        for _match in matches:
+            year, month, day, hour, minute, second, ms = _match
+            dt = datetime(
+                year=int(year),
+                month=int(month) + 1,
+                day=int(day),
+                hour=int(hour),
+                tzinfo=TIMEZONE,
+            )
+            double_json = double_json.replace(
+                f"new Date({year},{month},{day},{hour},{minute},{second},{ms})",
+                f'\\"{dt.isoformat()}\\"',
+            )
     data = json.loads(double_json)
     jsresult = data["result"]
-
+    clean_json = json.loads(jsresult[1:-1])
     startpoints = [m.end(0) for m in re.finditer('"Data":{', jsresult)]
     endpoints = [m.start(0) for m in re.finditer('"KeyIds"', jsresult)]
 
     sliced = jsresult[startpoints[1] : endpoints[2]]
     sliced = "".join(sliced.split())
     sliced = sliced[1:-4]
+    datapoints = []
+    for item in clean_json["PaneContent"]:
+        generation_data = item["ItemData"]["DataStorageDTO"]
+        mapping = generation_data["EncodeMaps"]
+        if "DataItem3" not in mapping or len(mapping["DataItem3"]) != 1:
+            continue
+        day = mapping["DataItem3"][0]
+        hours = mapping["DataItem1"]
+        modes = mapping["DataItem2"]
+        slices = generation_data[
+            "Slices"
+        ]  # Slices are the different reprensentations of the data (hourly totals, hourly breakdowns, daily totals, daily breakdowns)
+        hourly_mode_breakdown = list(
+            filter(
+                lambda x: x["KeyIds"] == ["DataItem2", "DataItem3", "DataItem1"], slices
+            )
+        )[0]  # We take the hourly breakdown per mode
+        for keys, value in hourly_mode_breakdown["Data"].items():
+            key_ids = [int(key) for key in keys[1:-1].split(",")]
+            mode = modes[key_ids[0]]
+            hour = hours[key_ids[2]]
+            datapoint = {
+                "mode": mode,
+                "datetime": datetime.fromisoformat(day).replace(
+                    hour=int(hour), tzinfo=TIMEZONE
+                ),
+                "value": value["0"],
+            }
+            datapoints.append(datapoint)
 
-    chopped = sliced.split(',"')
-
-    diced = []
-    for item in chopped:
-        item = item.replace("}", "")
-        np = item.split('":')
-        diced.append(np[0::2])
-
-    clean_data = []
-    for item in diced:
-        j = json.loads(item[0])
-        k = float(item[1])
-        j.append(k)
-        clean_data.append(j)
-
-    return clean_data
-
-def parse_mix(data: dict) -> ProductionMix:
-    return ProductionMix(
-        biomass=data.get("biomass", 0.0),
-        coal=data.get("coal", 0.0),
-        gas=data.get("gas", 0.0),
-        hydro=data.get("hydro", 0.0),
-        nuclear=data.get("nuclear", 0.0),
-        oil=data.get("oil", 0.0),
-        solar=data.get("solar", 0.0),
-        wind=data.get("wind", 0.0),
-        geothermal=data.get("geothermal", 0.0),
-        unknown=data.get("unknown", 0.0),
-    )
+    return datapoints
 
 
-def data_processer(data, logger: Logger) -> ProductionBreakdownList:
+def data_processer(
+    zone_key: ZoneKey, data: list[dict], logger: Logger
+) -> ProductionBreakdownList:
     """
     Takes data in the form of a list of lists.
     Converts each list to a dictionary.
     Joins dictionaries based on shared datetime key.
     Maps generation to type.
     """
+    per_mode_production: dict[str, ProductionBreakdownList] = {}
+    filtered_data = filter(
+        lambda x: x["mode"] != "Interconexión", data
+    )  # TODO: handle interconnection
+    for point in filtered_data:
+        mode = point["mode"]
+        if mode not in per_mode_production:
+            per_mode_production[mode] = ProductionBreakdownList(logger)
+        mix = ProductionMix()
+        mix.add_value(MODE_MAPPING[mode], point["value"])
+        per_mode_production[mode].append(
+            zoneKey=zone_key, datetime=point["datetime"], source=SOURCE, production=mix
+        )
 
-    converted = []
-    for val in data:
-        newval = {"datetime": val[2], val[0]: val[3]}
-        converted.append(newval)
-    # Join dicts on 'datetime' key.
-    d = defaultdict(dict)
-    for elem in converted:
-        d[elem["datetime"]].update(elem)
-
-    joined_data = sorted(d.values(), key=itemgetter("datetime"))
-
-    mapped_data = ProductionBreakdownList(logger)
-    for point in joined_data:
-        breakpoint()
-        point = {generation_map[num]: val for num, val in point.items()}
-        hour = int(point["datetime"])
-        # The returned hour is only for the current day, there's no overlap with the previous day.
-        point["datetime"] = datetime.now(tz=TIMEZONE).replace(hour=hour, minute=0, second=0, microsecond=0)
-        mapped_data.append(point)
-
-    return mapped_data
+    return ProductionBreakdownList.merge_production_breakdowns(
+        [mode_generation for mode_generation in per_mode_production.values()], logger
+    )
 
 
 def fetch_production(
@@ -175,32 +191,8 @@ def fetch_production(
         session = Session()
     req = get_data(session)
     parsed = data_parser(req)
-    data = data_processer(parsed, logger)
-    production_mix_by_hour = []
-    for hour in data:
-        production_mix = {
-            "zoneKey": zone_key,
-            "datetime": hour["datetime"],
-            "production": {
-                "biomass": hour.get("biomass", 0.0),
-                "coal": 0.0,
-                "gas": 0.0,
-                "hydro": hour.get("hydro", 0.0),
-                "nuclear": 0.0,
-                "oil": hour.get("thermal", 0.0),
-                "solar": hour.get("solar", 0.0),
-                "wind": hour.get("wind", 0.0),
-                "geothermal": hour.get("geothermal", 0.0),
-                "unknown": 0.0,
-            },
-            "storage": {
-                "hydro": None,
-            },
-            "source": SOURCE,
-        }
-        production_mix_by_hour.append(production_mix)
-
-    return production_mix_by_hour
+    production_breakdown = data_processer(zone_key, parsed, logger)
+    return production_breakdown.to_list()
 
 
 if __name__ == "__main__":
