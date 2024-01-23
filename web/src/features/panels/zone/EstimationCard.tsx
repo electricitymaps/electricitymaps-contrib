@@ -84,7 +84,7 @@ function BaseCard({
                 {title}
               </h2>
             </div>
-            <div className="flex h-fit flex-row gap-2 text-nowrap">
+            <div className="text-nowrap flex h-fit flex-row gap-2">
               {pillType != undefined && (
                 <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
               )}
