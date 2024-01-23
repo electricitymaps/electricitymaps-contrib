@@ -372,13 +372,13 @@ EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourl
 
 FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
-    "US-NW-PGE": ["biomass", "geothermal"],
-    "US-NW-PACE": ["biomass", "geothermal"],
-    "US-MIDW-MISO": ["biomass", "geothermal"],
-    "US-TEN-TVA": ["biomass", "geothermal"],
-    "US-SE-SOCO": ["biomass", "geothermal"],
-    "US-SE-SEPA": ["biomass", "geothermal"],
-    "US-FLA-FPL": ["biomass", "geothermal"],
+    "US-NW-PGE": ["biomass", "geothermal", "oil"],
+    "US-NW-PACE": ["biomass", "geothermal", "oil"],
+    "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
+    "US-TEN-TVA": ["biomass", "geothermal", "oil"],
+    "US-SE-SOCO": ["biomass", "geothermal", "oil"],
+    "US-SE-SEPA": ["biomass", "geothermal", "oil"],
+    "US-FLA-FPL": ["biomass", "geothermal", "oil"],
 }
 
 
