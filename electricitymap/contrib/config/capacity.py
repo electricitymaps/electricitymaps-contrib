@@ -16,6 +16,11 @@ for zone_id, zone_config in ZONES_CONFIG.items():
         CAPACITY_PARSER_SOURCE_TO_ZONES[source] = []
     CAPACITY_PARSER_SOURCE_TO_ZONES[source].append(zone_id)
 
+ZONE_TO_CAPACITY_PARSER_SOURCE = {}
+for source, zones in CAPACITY_PARSER_SOURCE_TO_ZONES.items():
+    for zone in zones:
+        ZONE_TO_CAPACITY_PARSER_SOURCE[zone] = source
+
 
 def get_capacity_data(capacity_config: dict, dt: datetime) -> dict[str, float]:
     """Gets the capacity data for a given zone and datetime from ZONES_CONFIG."""
