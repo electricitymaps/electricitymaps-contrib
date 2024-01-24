@@ -63,8 +63,8 @@ export default function ZoneDetails(): JSX.Element {
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
   const hasEstimationPill =
     cardType === 'estimated' ||
-    cardType === 'aggregated_estimated' ||
     cardType === 'outage';
+
 
   return (
     <>
@@ -112,7 +112,7 @@ function getCardType({
   estimationMethod: string | undefined;
   zoneMessage: { message: string; issue: string } | undefined;
   timeAverage: TimeAverages;
-}): 'estimated' | 'aggregated_estimated' | 'aggregated' | 'outage' | 'none' {
+}): 'estimated' | 'aggregated' | 'outage' | 'none' {
   if (
     zoneMessage !== undefined &&
     zoneMessage?.message !== undefined &&
@@ -121,9 +121,6 @@ function getCardType({
     return 'outage';
   }
   if (timeAverage !== TimeAverages.HOURLY) {
-    if (estimationMethod !== undefined) {
-      return 'aggregated_estimated';
-    }
     return 'aggregated';
   }
   if (estimationMethod !== undefined) {
