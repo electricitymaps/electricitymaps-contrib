@@ -385,12 +385,12 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Puerto Rico: [EIA](https://www.eia.gov/electricity/data/eia860M/)
 - Qatar: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Romania:
-  - Latest: [ANRE](https://www.anre.ro/ro/energie-electrica/rapoarte/puterea-instalata-in-capacitatiile-de-productie-energie-electrica)
+  - Latest: [Transelectrica](https://www.transelectrica.ro/documents/10179/45096/7productie23.xls/235f8702-9890-4109-9403-36c7fa59ce16)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Russia: [Minenergo](https://minenergo.gov.ru/node/532)
 - Serbia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
 - Singapore
-  - Solar: [Energy Market Authority Statistics](https://www.ema.gov.sg/statistic.aspx?sta_sid=20170711hc85chOLVvWp)
+  - Solar: [Energy Market Authority](https://www.ema.gov.sg/consumer-information/solar/solar-irradiance-map)
   - Other: [Energy Market Authority](https://www.ema.gov.sg/statistic.aspx?sta_sid=20140730XofavKNX5Ti7)
 - Slovakia:
   - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=SK)

@@ -1,4 +1,3 @@
-import Badge from 'components/Badge';
 import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
@@ -15,11 +14,7 @@ interface ZoneHeaderTitleProps {
   isAggregated?: boolean;
 }
 
-export default function ZoneHeaderTitle({
-  zoneId,
-  isAggregated,
-  isEstimated,
-}: ZoneHeaderTitleProps) {
+export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const { __ } = useTranslation();
   const title = getZoneName(zoneId);
   const returnToMapLink = createToWithState('/map');
@@ -71,17 +66,7 @@ export default function ZoneHeaderTitle({
             </div>
           </div>
         </div>
-        <div className="flex h-auto flex-wrap items-center gap-1 text-center">
-          {isEstimated && (
-            <Badge type="warning" key={'badge-est'}>
-              {__('country-panel.estimated')}
-            </Badge>
-          )}
-          {isAggregated && (
-            <Badge key={'badge-agg'}>{__('country-panel.aggregated')}</Badge>
-          )}
-          <TimeDisplay className="whitespace-nowrap text-sm" />
-        </div>
+        <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
     </div>
   );
