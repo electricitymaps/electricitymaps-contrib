@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 import { renderToString } from 'react-dom/server';
 import { getZoneName, useTranslation } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeColor, TimeAverages } from 'utils/constants';
+import { Mode, modeColor,TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
@@ -41,7 +41,6 @@ function calculateTooltipContentData(
 export default function BreakdownChartTooltip({
   zoneDetail,
   selectedLayerKey,
-  hasEstimationPill,
 }: InnerAreaGraphTooltipProps) {
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -60,6 +59,9 @@ export default function BreakdownChartTooltip({
     displayByEmissions,
     mixMode
   );
+
+  const { estimationMethod, stateDatetime } = zoneDetail;
+  const hasEstimationPill = estimationMethod != undefined;
 
   const getOriginTranslateKey = () => {
     if (isExchange) {
@@ -80,7 +82,7 @@ export default function BreakdownChartTooltip({
   return (
     <BreakdownChartTooltipContent
       {...contentData}
-      datetime={new Date(zoneDetail.stateDatetime)}
+      datetime={new Date(stateDatetime)}
       isExchange={isExchange}
       selectedLayerKey={selectedLayerKey}
       originTranslateKey={getOriginTranslateKey()}
