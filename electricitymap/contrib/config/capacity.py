@@ -13,6 +13,23 @@ def get_capacity_data(capacity_config: dict, dt: datetime) -> dict[str, float]:
     return capacity
 
 
+def get_capacity_data_with_source(
+    capacity_config: dict, dt: datetime
+) -> dict[str, dict[str, float | str | None]]:
+    """Gets the capacity data for a given zone and datetime from ZONES_CONFIG."""
+    capacity = {}
+    for mode, capacity_value in capacity_config.items():
+        if isinstance(capacity_value, int | float):
+            # TODO: This part is used for the old capacity format. It shoud be removed once all capacity configs are updated
+            capacity[mode] = {"value": capacity_value, "source": None}
+        else:
+            capacity[mode] = {
+                "value": get_capacity_value_with_datetime(capacity_value, dt),
+                "source": capacity_value["source"],
+            }
+    return capacity
+
+
 def get_capacity_value_with_datetime(
     mode_capacity: list | dict, dt: datetime
 ) -> float | None:
