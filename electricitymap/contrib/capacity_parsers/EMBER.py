@@ -8,8 +8,8 @@ import pycountry
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
-from electricitymap.contrib.capacity_parsers import CAPACITY_PARSER_SOURCE_TO_ZONES
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
 
 """ Collects capacity data from the yearly electricity data from Ember. The data and documentation can be found here: https://ember-climate.org/data-catalogue/yearly-electricity-data/"""
 logger = getLogger(__name__)

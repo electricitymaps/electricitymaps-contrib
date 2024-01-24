@@ -5,8 +5,8 @@ from typing import Any
 from bs4 import BeautifulSoup
 from requests import Session
 
-from electricitymap.contrib.capacity_parsers import CAPACITY_PARSER_SOURCE_TO_ZONES
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
 from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_BY_GROUP,
