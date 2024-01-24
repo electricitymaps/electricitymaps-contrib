@@ -8,6 +8,7 @@ import pycountry
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
+from electricitymap.contrib.capacity_parsers import CAPACITY_PARSER_SOURCE_TO_ZONES
 from electricitymap.contrib.config import ZoneKey
 
 """ Collects capacity data from the yearly electricity data from Ember. The data and documentation can be found here: https://ember-climate.org/data-catalogue/yearly-electricity-data/"""
@@ -42,39 +43,7 @@ SPECIFIC_MODE_MAPPING = {
     "ZA": {"Other Fossil": "oil"},
 }
 
-EMBER_ZONES = [
-    "AR",
-    "AW",
-    "BA",
-    "BD",
-    "BO",
-    "BY",
-    "CO",
-    "CR",
-    "CY",
-    "DO",
-    "GE",
-    "GT",
-    "HN",
-    "KR",
-    "KW",
-    "MD",
-    "MN",
-    "MT",
-    "MX",
-    "NG",
-    "NZ",
-    "PA",
-    "PE",
-    "RU",
-    "SG",
-    "SV",
-    "TH",
-    "TR",
-    "TW",
-    "UY",
-    "ZA",
-]
+EMBER_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["EMBER"]
 
 
 def map_variable_to_mode(data: pd.Series) -> str:

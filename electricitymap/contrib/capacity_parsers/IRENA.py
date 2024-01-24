@@ -6,11 +6,12 @@ from typing import Any
 import pycountry
 from requests import Response, Session
 
+from electricitymap.contrib.capacity_parsers import CAPACITY_PARSER_SOURCE_TO_ZONES
 from electricitymap.contrib.config import ZoneKey
 
 """The data is downloaded from the IRENA API. """
 logger = getLogger(__name__)
-IRENA_ZONES = ["IL", "IS", "LK", "NI", "GF", "PF"]
+IRENA_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["IRENA"]
 SOURCE = "IRENA.org"
 IRENA_JSON_TO_MODE_MAPPING = {
     0: "solar",

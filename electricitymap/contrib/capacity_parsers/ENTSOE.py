@@ -5,6 +5,7 @@ from typing import Any
 from bs4 import BeautifulSoup
 from requests import Session
 
+from electricitymap.contrib.capacity_parsers import CAPACITY_PARSER_SOURCE_TO_ZONES
 from electricitymap.contrib.config import ZoneKey
 from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
@@ -28,44 +29,7 @@ ENTSOE_ENDPOINT = ENTSOE_HOST + ENDPOINT
 ENTSOE_EU_PROXY_ENDPOINT = EU_PROXY.format(endpoint=ENDPOINT, host=ENTSOE_HOST)
 
 
-ENTSOE_ZONES = [
-    "AL",
-    "AT",
-    "BA",
-    "BE",
-    "BG",
-    "CZ",
-    "DE",
-    "DK-DK1",
-    "DK-DK2",
-    "EE",
-    "ES",
-    "FI",
-    "FR",
-    "GR",
-    "HR",
-    "HU",
-    "IE",
-    "LT",
-    "LU",
-    "LV",
-    "ME",
-    "MK",
-    "NL",
-    "NO-NO1",
-    "NO-NO2",
-    "NO-NO3",
-    "NO-NO4",
-    "NO-NO5",
-    "PL",
-    "PT",
-    "RO",
-    "SI",
-    "SK",
-    "RS",
-    "XK",
-    "UA",
-]
+ENTSOE_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["ENTSOE"]
 
 # ENTSOE does not have battery storage capacity and the data needs to be collected from other sources for the following zones
 # TODO monitor this list and update if necessary
