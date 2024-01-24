@@ -51,7 +51,6 @@ function BaseCard({
   pillType: string | undefined;
   textColorTitle: string;
 }) {
-
   const [isCollapsed, setIsCollapsed] = useState(
     estimationMethod == 'outage' ? false : true
   );
