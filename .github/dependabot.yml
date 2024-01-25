@@ -74,9 +74,17 @@ updates:
   - package-ecosystem: 'pip'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'monthly'
     allow:
       - dependency-name: 'ruff'
+    reviewers:
+      - 'VIKTORVAV99'
+
+  # Maintain the devcontainer dependencies.
+  - package-ecosystem: 'devcontainers'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
     reviewers:
       - 'VIKTORVAV99'
 # CURRENTLY DISABLED
