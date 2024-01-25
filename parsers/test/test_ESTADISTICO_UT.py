@@ -43,6 +43,7 @@ class TestESTADISTICO_UT(TestCase):
                     "storage": element["storage"],
                     "source": element["source"],
                     "zoneKey": element["zoneKey"],
+                    "sourceType": element["sourceType"].value,
                 }
                 for element in production
             ]
