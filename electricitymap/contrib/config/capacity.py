@@ -19,7 +19,6 @@ for zone_id, zone_config in ZONES_CONFIG.items():
 ZONE_TO_CAPACITY_PARSER_SOURCE = {
     zone: source for source, zones in ZONES_CONFIG.items() for zone in zones
 }
-    for zone in zones:
 
 
 def get_capacity_data(capacity_config: dict, dt: datetime) -> dict[str, float]:
