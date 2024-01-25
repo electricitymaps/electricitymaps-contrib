@@ -21,7 +21,6 @@ ZONE_TO_CAPACITY_PARSER_SOURCE = {
 }
 for source, zones in CAPACITY_PARSER_SOURCE_TO_ZONES.items():
     for zone in zones:
-        ZONE_TO_CAPACITY_PARSER_SOURCE[zone] = source
 
 
 def get_capacity_data(capacity_config: dict, dt: datetime) -> dict[str, float]:
