@@ -12,7 +12,7 @@ export default function Badge({ pillText, type, icon }: BadgeProps) {
 
   return (
     <span
-      className={`ml-2 flex h-[22px] flex-row gap-1 rounded-full px-2 py-1 text-[10px] font-semibold ${classes}`}
+      className={`ml-2 flex h-[22px] flex-row gap-1 whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-semibold ${classes}`}
     >
       {icon != undefined && <div className={`${icon}`} />}
       {pillText}

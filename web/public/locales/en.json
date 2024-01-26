@@ -90,6 +90,10 @@
       "total-electricity-consumption": "Total electricity consumption by source"
     }
   },
+  "estimation-badge": {
+    "partially-estimated": "Partially estimated",
+    "fully-estimated": "Estimated"
+  },
   "estimation-card": {
     "link": "Read about our estimation models",
     "estimated_time_slicer_average": {

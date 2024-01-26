@@ -1,27 +1,27 @@
 import { max, sum } from 'd3-array';
+import { Area } from 'recharts';
 import { useTranslation } from 'translation/translation';
 import { Mode, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { noop } from './graphUtils';
+import { getBadgeText, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
+import { AreaGraphElement } from './types';
 
 interface BreakdownChartProps {
   displayByEmissions: boolean;
   datetimes: Date[];
   timeAverage: TimeAverages;
-  hasEstimationPill: boolean;
 }
 
 function BreakdownChart({
   displayByEmissions,
   datetimes,
   timeAverage,
-  hasEstimationPill,
 }: BreakdownChartProps) {
   const { data, mixMode } = useBreakdownChartData();
   const { __ } = useTranslation();
@@ -45,6 +45,8 @@ function BreakdownChart({
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
+  const badgeText = getBadgeText(chartData);
+
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
@@ -57,7 +59,7 @@ function BreakdownChart({
     <>
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
-        hasPill={hasEstimationPill}
+        badgeText={badgeText}
       />
       <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
