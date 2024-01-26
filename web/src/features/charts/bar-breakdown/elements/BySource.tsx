@@ -51,7 +51,7 @@ export default function BySource({
       {text}
       {hasEstimationPill && (
         <Badge
-          pillText="Estimated"
+          pillText={__('estimation-badge.fully-estimated')}
           type="warning"
           icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
         />
