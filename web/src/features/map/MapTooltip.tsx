@@ -1,5 +1,6 @@
 import * as Portal from '@radix-ui/react-portal';
 import useGetState from 'api/getState';
+import Badge from 'components/Badge';
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
@@ -30,6 +31,7 @@ function TooltipInner({
   const {
     co2intensity,
     co2intensityProduction,
+    estimationMethod,
     fossilFuelRatio,
     fossilFuelRatioProduction,
     renewableRatio,
@@ -54,24 +56,48 @@ function TooltipInner({
     renewableRatio,
     renewableRatioProduction
   );
+  const isEstimated = estimationMethod != undefined;
   return (
     <div className="w-full text-center">
-      <div className="pl-2">
-        <ZoneName zone={zoneId} textStyle="text-base font-medium" />
-        <div className="flex self-start text-xs">{date}</div>{' '}
-      </div>
-      <div className="flex w-full flex-grow py-1 sm:pr-2">
-        <div className="flex w-full flex-grow flex-row justify-around">
-          <CarbonIntensitySquare intensity={intensity} />
-          <div className="pl-2 pr-6">
-            <CircularGauge
-              name={__('country-panel.lowcarbon')}
-              ratio={fossilFuelPercentage}
-            />
+      <div className="p-3">
+        <div className="pl-2">
+          <ZoneName zone={zoneId} textStyle="text-base font-medium" />
+          <div className="flex self-start text-xs">{date}</div>{' '}
+        </div>
+        <div className="flex w-full flex-grow py-1 sm:pr-2">
+          <div className="flex w-full flex-grow flex-row justify-around">
+            <CarbonIntensitySquare intensity={intensity} />
+            <div className="pl-2 pr-6">
+              <CircularGauge
+                name={__('country-panel.lowcarbon')}
+                ratio={fossilFuelPercentage}
+              />
+            </div>
+            <CircularGauge name={__('country-panel.renewable')} ratio={renewable} />
           </div>
-          <CircularGauge name={__('country-panel.renewable')} ratio={renewable} />
         </div>
       </div>
+      {isEstimated && (
+        <div className="bg-neutral-100 dark:bg-gray-800">
+          <div className="flex w-full flex-row items-center justify-between px-3 py-2">
+            <div className="flex w-2/3 flex-initial flex-row gap-2">
+              <div className={`flex items-center justify-center`}>
+                <div
+                  className={`h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]`}
+                />
+              </div>
+              <h2
+                className={`self-center text-left text-sm font-semibold text-amber-700 dark:text-amber-500`}
+              >
+                {'title'}
+              </h2>
+            </div>
+            <div className="flex h-fit flex-row gap-2 text-nowrap">
+              <Badge type={'default'} icon={undefined} pillText={'pillText'}></Badge>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -108,8 +134,8 @@ export default function MapTooltip() {
   if (zoneData) {
     return (
       <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
-        <div
-          className="pointer-events-none relative w-[300px] rounded border bg-zinc-50 p-3  text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800 "
+        <div // the light mode needs to be revised
+          className="pointer-events-none relative w-[300px] rounded-2xl border bg-zinc-50  text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-900 "
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>

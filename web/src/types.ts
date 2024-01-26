@@ -30,6 +30,7 @@ interface StateZoneDataForTimePeriod {
 export interface StateZoneData {
   co2intensity: number; //TODO https://linear.app/electricitymaps/issue/ELE-1495/update-app-backend-variable-naming-to-use-camel-case-update-the
   co2intensityProduction: number;
+  estimationMethod: string;
   fossilFuelRatio: number;
   fossilFuelRatioProduction: number;
   renewableRatio: number;
