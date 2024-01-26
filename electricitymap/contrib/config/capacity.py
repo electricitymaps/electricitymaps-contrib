@@ -18,7 +18,9 @@ for zone_id, zone_config in ZONES_CONFIG.items():
     CAPACITY_PARSER_SOURCE_TO_ZONES[source].append(zone_id)
 
 ZONE_TO_CAPACITY_PARSER_SOURCE = {
-    zone: source for source, zones in CAPACITY_PARSER_SOURCE_TO_ZONES.items() for zone in zones
+    zone: source
+    for source, zones in CAPACITY_PARSER_SOURCE_TO_ZONES.items()
+    for zone in zones
 }
 
 
