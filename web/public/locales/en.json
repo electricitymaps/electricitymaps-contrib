@@ -126,6 +126,11 @@
       "pill": "Not realtime",
       "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
     },
+    "threshold_filtered": {
+      "title": "Missing data",
+      "pill": "Data outage",
+      "body": "The data provider for this zone has been missing data for a prolonged period. We are monitoring the issue and the zone will update as soon as data becomes available again."
+    },
     "outage": {
       "title": "Ongoing issues",
       "pill": "Unavailable"
