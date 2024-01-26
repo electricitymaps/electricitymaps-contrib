@@ -1,5 +1,4 @@
 import { max, sum } from 'd3-array';
-import { Area } from 'recharts';
 import { useTranslation } from 'translation/translation';
 import { Mode, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
@@ -10,7 +9,6 @@ import { getBadgeText, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
-import { AreaGraphElement } from './types';
 
 interface BreakdownChartProps {
   displayByEmissions: boolean;
