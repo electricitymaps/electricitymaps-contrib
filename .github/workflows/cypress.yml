@@ -24,13 +24,13 @@ jobs:
         working-directory: ./web
       - name: Cache Cypress binary
         id: cache-cypress
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -74,13 +74,13 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Cache Cypress binary
         id: cache-cypress
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}

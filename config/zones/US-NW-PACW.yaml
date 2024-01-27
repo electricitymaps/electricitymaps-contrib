@@ -4,18 +4,54 @@ bounding_box:
   - - -115.96327
     - 47.5893300000001
 capacity:
-  battery storage: 0
-  biomass: 156.2
-  coal: 0
-  gas: 1245.1
-  geothermal: 3.7
-  hydro: 1132.8
-  hydro storage: 0
-  nuclear: 0
-  oil: 0
-  solar: 407.4
-  unknown: 0
-  wind: 694.3
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 115.5
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 626.0
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1033.8
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 408.4
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 489.9
 comment: Pacificorp - West
 contributors:
   - systemcatch

@@ -5,6 +5,7 @@ from scripts.update_capacity_configuration import (
     generate_aggregated_capacity_config_list,
     generate_zone_capacity_config,
     generate_zone_capacity_list,
+    update_capacity_dict_if_value_already_exists,
 )
 
 
@@ -152,6 +153,42 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
                     "value": 4,
                 },
             ],
+            "wind": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2022-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
+            "solar": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2022-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
+            "hydro": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2023-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
         }
 
         data = {
@@ -164,6 +201,21 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
                 "datetime": "2023-01-01",
                 "source": "abc",
                 "value": 5,
+            },
+            "wind": {
+                "datetime": "2023-01-01",
+                "source": "abc",
+                "value": 4,
+            },
+            "solar": {
+                "datetime": "2020-01-01",
+                "source": "abc",
+                "value": 3,
+            },
+            "hydro": {
+                "datetime": "2023-01-01",
+                "source": "abc",
+                "value": 3,
             },
         }
 
@@ -197,6 +249,42 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
                     "value": 5,
                 },
             ],
+            "wind": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2022-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
+            "solar": [
+                {
+                    "datetime": "2020-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2022-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
+            "hydro": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2023-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
         }
 
         self.assertEqual(
@@ -206,6 +294,18 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
         self.assertEqual(
             generate_zone_capacity_list("biomass", capacity_config, data),
             expected["biomass"],
+        )
+        self.assertEqual(
+            generate_zone_capacity_list("wind", capacity_config, data),
+            expected["wind"],
+        )
+        self.assertEqual(
+            generate_zone_capacity_list("solar", capacity_config, data),
+            expected["solar"],
+        )
+        self.assertEqual(
+            generate_zone_capacity_list("hydro", capacity_config, data),
+            expected["hydro"],
         )
 
     def test_generate_aggregated_capacity_config_dict(self):
@@ -268,3 +368,24 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
         assert len(expected) == len(updated_capacity)
         assert expected[0] in updated_capacity
         assert expected[1] in updated_capacity
+
+    def test_update_capacity_dict_if_value_already_exists(self):
+        capacity_config = {
+            "biomass": {"datetime": "2022-01-01", "source": "abc", "value": 3}
+        }
+
+        data = {"biomass": {"datetime": "2023-01-01", "source": "abc", "value": 3}}
+
+        self.assertEqual(
+            update_capacity_dict_if_value_already_exists(
+                "biomass", capacity_config, data
+            ),
+            capacity_config["biomass"],
+        )
+
+        self.assertEqual(
+            update_capacity_dict_if_value_already_exists(
+                "biomass", data, capacity_config
+            ),
+            capacity_config["biomass"],
+        )
