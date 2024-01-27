@@ -419,7 +419,7 @@ devDependencies:
     specifier: 5.3.2
     version: 5.3.2
   vite:
-    specifier: ^4.5.2
+    specifier: 4.5.2
     version: 4.5.2(@types/node@20.11.7)(less@4.2.0)
   vite-plugin-pwa:
     specifier: 0.17.2
@@ -10367,7 +10367,6 @@ packages:
   /flow-parser@0.227.0:
     resolution: {integrity: sha512-nOygtGKcX/siZK/lFzpfdHEfOkfGcTW7rNroR1Zsz6T/JxSahPALXVt5qVHq/fgvMJuv096BTKbgxN3PzVBaDA==}
     engines: {node: '>=0.4.0'}
-    dev: true
 
   /focus-trap@6.9.4:
     resolution: {integrity: sha512-v2NTsZe2FF59Y+sDykKY+XjqZ0cPfhq/hikWVL88BqLivnNiEffAsac6rP6H45ff9wG9LL5ToiDqrLEP9GX9mw==}
@@ -11745,7 +11744,7 @@ packages:
       '@babel/register': 7.23.7(@babel/core@7.23.9)
       babel-core: 7.0.0-bridge.0(@babel/core@7.23.9)
       chalk: 4.1.2
-      flow-parser: 0.206.0
+      flow-parser: 0.227.0
       graceful-fs: 4.2.11
       micromatch: 4.0.5
       neo-async: 2.6.2
