@@ -33,12 +33,12 @@ it('can change theme', () => {
   cy.contains('Light')
     .click()
     .should(() => {
-      expect(localStorage.getItem('theme')).to.eq('"light"');
+      expect(localStorage.getItem('theme')).toEqual('"light"');
     });
   cy.get('[data-test-id=theme-selector-open-button]').click();
   cy.contains('Dark')
     .click()
     .should(() => {
-      expect(localStorage.getItem('theme')).to.eq('"dark"');
+      expect(localStorage.getItem('theme')).toEqual('"dark"');
     });
 });
