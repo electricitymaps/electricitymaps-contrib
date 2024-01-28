@@ -44,6 +44,8 @@ SOURCE = "entsoe.eu"
 
 ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 
+DEFAULT_LOOKBACK_HOURS = 72
+
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
     "B02": "Fossil Brown coal/Lignite",
@@ -471,8 +473,8 @@ def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datet
 def query_ENTSOE(
     session: Session,
     params: dict[str, str],
+    span: tuple,
     target_datetime: datetime | None = None,
-    span: tuple = (-48, 24),
     function_name: str = "",
 ) -> str:
     """
@@ -537,6 +539,7 @@ def query_consumption(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-DEFAULT_LOOKBACK_HOURS, 0),
         function_name=query_consumption.__name__,
     )
 
@@ -553,7 +556,7 @@ def query_production(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-48, 0),
+        span=(-DEFAULT_LOOKBACK_HOURS, 0),
         function_name=query_production.__name__,
     )
 
@@ -574,7 +577,7 @@ def query_production_per_units(
     return query_ENTSOE(
         session,
         params,
-        target_datetime,
+        target_datetime=target_datetime,
         span=(-24, 0),
         function_name=query_production_per_units.__name__,
     )
@@ -595,6 +598,7 @@ def query_exchange(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-DEFAULT_LOOKBACK_HOURS, 0),
         function_name=query_exchange.__name__,
     )
 
@@ -616,6 +620,7 @@ def query_exchange_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-24, 48),
         function_name=query_exchange_forecast.__name__,
     )
 
@@ -623,6 +628,8 @@ def query_exchange_forecast(
 def query_price(
     domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
+    """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
+
     params = {
         "documentType": "A44",
         "in_Domain": domain,
@@ -632,6 +639,7 @@ def query_price(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-DEFAULT_LOOKBACK_HOURS, 24),
         function_name=query_price.__name__,
     )
 
@@ -651,6 +659,7 @@ def query_generation_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-24, 48),
         function_name=query_generation_forecast.__name__,
     )
 
@@ -669,6 +678,7 @@ def query_consumption_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-24, 48),
         function_name=query_consumption_forecast.__name__,
     )
 
@@ -687,6 +697,7 @@ def query_wind_solar_production_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-24, 48),
         function_name=query_wind_solar_production_forecast.__name__,
     )
 
@@ -970,7 +981,7 @@ def validate_production(
     return True
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS))
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1141,7 +1152,7 @@ def get_raw_exchange(
     return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS))
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1162,7 +1173,7 @@ def fetch_exchange(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange_forecast(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1184,7 +1195,7 @@ def fetch_exchange_forecast(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS))
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1218,7 +1229,7 @@ def fetch_price(
 # ------------------- #
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_generation_forecast(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1318,7 +1329,7 @@ def get_raw_consumption_list(
     return consumption_list
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS))
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1332,7 +1343,7 @@ def fetch_consumption(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1350,7 +1361,7 @@ def fetch_consumption_forecast(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey,
     session: Session | None = None,
