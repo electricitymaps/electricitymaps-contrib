@@ -248,16 +248,12 @@ parsers:
 sources:
   EU-ETS, CERA 2018 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2018_gr.pdf#page=128
-    comment: Total CO2 from ETS, Total Energy from TSOC report
   EU-ETS, CERA 2019 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2019_gr.pdf#page=143
-    comment: Total CO2 from ETS, Total Energy from TSOC report
   EU-ETS, CERA 2020 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2020_gr.pdf#page=164
-    comment: Total CO2 from ETS, Total Energy from TSOC report
   EU-ETS, TSOC 2021 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/TSOC_Annual_Report_2021.pdf#page=34
-    comment: Total CO2 from ETS, Total Energy from TSOC report
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
