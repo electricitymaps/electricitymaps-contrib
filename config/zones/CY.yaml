@@ -145,16 +145,16 @@ emissionFactors:
       value: 5.13
     oil:
       - datetime: '2018-01-01'
-        source: EU-ETS, CERA 2018 Report
+        source: EU-ETS, CERA 2018 Report; IPCC 2014
         value: 974.57
       - datetime: '2019-01-01'
-        source: EU-ETS, CERA 2019 Report
+        source: EU-ETS, CERA 2019 Report; IPCC 2014
         value: 954.54
       - datetime: '2020-01-01'
-        source: EU-ETS, CERA 2020 Report
+        source: EU-ETS, CERA 2020 Report; IPCC 2014
         value: 951.44
       - datetime: '2021-01-01'
-        source: EU-ETS, TSOC 2021 Report
+        source: EU-ETS, TSOC 2021 Report; IPCC 2014
         value: 953.61
     solar:
       datetime: '2021-01-01'
