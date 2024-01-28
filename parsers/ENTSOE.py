@@ -44,7 +44,9 @@ SOURCE = "entsoe.eu"
 
 ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 
-DEFAULT_LOOKBACK_HOURS = 72
+DEFAULT_LOOKBACK_HOURS_REALTIME = 72
+DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
+DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
 
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
@@ -539,7 +541,7 @@ def query_consumption(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-DEFAULT_LOOKBACK_HOURS, 0),
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_consumption.__name__,
     )
 
@@ -556,7 +558,7 @@ def query_production(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-DEFAULT_LOOKBACK_HOURS, 0),
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_production.__name__,
     )
 
@@ -598,7 +600,7 @@ def query_exchange(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-DEFAULT_LOOKBACK_HOURS, 0),
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_exchange.__name__,
     )
 
@@ -620,7 +622,7 @@ def query_exchange_forecast(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-24, 48),
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_exchange_forecast.__name__,
     )
 
@@ -639,7 +641,7 @@ def query_price(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-DEFAULT_LOOKBACK_HOURS, 24),
+        span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, 24),
         function_name=query_price.__name__,
     )
 
@@ -659,7 +661,7 @@ def query_generation_forecast(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-24, 48),
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_generation_forecast.__name__,
     )
 
@@ -678,7 +680,7 @@ def query_consumption_forecast(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-24, 48),
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_consumption_forecast.__name__,
     )
 
@@ -697,7 +699,7 @@ def query_wind_solar_production_forecast(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-24, 48),
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_wind_solar_production_forecast.__name__,
     )
 
@@ -981,7 +983,7 @@ def validate_production(
     return True
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1152,7 +1154,7 @@ def get_raw_exchange(
     return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1195,7 +1197,7 @@ def fetch_exchange_forecast(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1329,7 +1331,7 @@ def get_raw_consumption_list(
     return consumption_list
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session | None = None,
