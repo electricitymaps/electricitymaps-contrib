@@ -100,7 +100,7 @@ def _fetch_xml(
     return date_, ElementTree.fromstring(response.text)
 
 
-def _parse_hour(element):
+def _parse_hour(element: ElementTree.Element) -> int:
     # Decrement the reported hour to convert from the hour-ending ([1, 24])
     # convention used by the source to our hour-starting ([0, 23]) convention.
     return int(element.findtext(NAMESPACE + "Hour")) - 1
@@ -124,7 +124,7 @@ def fetch_production(
 
     # Collect the source data into a dictionary keying ProductionMix objects by
     # the time of day at which they occurred.
-    mixes = defaultdict(ProductionMix)
+    mixes: defaultdict[time, ProductionMix] = defaultdict(ProductionMix)
     for generator in xml.iter(NAMESPACE + "Generator"):
         try:
             mode = MODES[generator.findtext(NAMESPACE + "FuelType")]
@@ -216,7 +216,7 @@ def fetch_exchange(
 
     # Collect the source data into a dictionary keying exchange flows by the
     # time of day at which they occurred for the exchange of interest.
-    flows = defaultdict(float)
+    flows: defaultdict[time, float] = defaultdict(float)
     for intertie in xml.iter(NAMESPACE + "IntertieZone"):
         zone_name = intertie.findtext(NAMESPACE + "IntertieZoneName")
         if zone_name not in EXCHANGES:
@@ -269,7 +269,7 @@ if __name__ == "__main__":
 
     print("data should be for " + now.astimezone(TIMEZONE).strftime("%Y-%m-%d"))
     print('fetch_production("CA-ON", target_datetime=now) ->')
-    print(fetch_production("CA-ON", target_datetime=now), end="\n\n")
+    print(fetch_production(ZoneKey("CA-ON"), target_datetime=now), end="\n\n")
 
     print("we expect results for ~2 months ago")
     print("fetch_production(target_datetime=two_months_ago) ->")
@@ -295,30 +295,49 @@ if __name__ == "__main__":
     print(fetch_price(target_datetime=two_years_ago), end="\n\n")
 
     print('fetch_exchange("CA-ON", "US-NY-NYIS") ->')
-    print(fetch_exchange("CA-ON", "US-NY-NYIS"), end="\n\n")
+    print(fetch_exchange(ZoneKey("CA-ON"), ZoneKey("US-NY-NYIS")), end="\n\n")
 
     print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now) ->')
-    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now), end="\n\n")
+    print(
+        fetch_exchange(ZoneKey("CA-ON"), ZoneKey("CA-QC"), target_datetime=now),
+        end="\n\n",
+    )
 
     print("Ontario-to-Manitoba must be opposite sign from reported IESO values")
     print('fetch_exchange("CA-ON", "CA-MB", target_datetime=now) ->')
-    print(fetch_exchange("CA-ON", "CA-MB", target_datetime=now), end="\n\n")
+    print(
+        fetch_exchange(ZoneKey("CA-ON"), ZoneKey("CA-MB"), target_datetime=now),
+        end="\n\n",
+    )
 
     print("data should be for " + now.astimezone(TIMEZONE).strftime("%Y-%m-%d"))
     print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now) ->')
-    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now), end="\n\n")
+    print(
+        fetch_exchange(ZoneKey("CA-ON"), ZoneKey("CA-QC"), target_datetime=now),
+        end="\n\n",
+    )
 
     print("we expect results for ~2 months ago")
     print('fetch_exchange("CA-ON", "CA-QC", target_datetime=two_months_ago) ->')
-    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=two_months_ago), end="\n\n")
+    print(
+        fetch_exchange(
+            ZoneKey("CA-ON"), ZoneKey("CA-QC"), target_datetime=two_months_ago
+        ),
+        end="\n\n",
+    )
 
     print("there are likely no results for ~2 years ago")
     print('fetch_exchange("CA-ON", "CA-QC", target_datetime=two_years_ago) ->')
-    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=two_years_ago), end="\n\n")
+    print(
+        fetch_exchange(
+            ZoneKey("CA-ON"), ZoneKey("CA-QC"), target_datetime=two_years_ago
+        ),
+        end="\n\n",
+    )
 
     print("requesting an exchange with Nova Scotia should raise exception")
     print('fetch_exchange("CA-ON", "CA-NS")) ->')
     try:
-        fetch_exchange("CA-ON", "CA-NS")
+        fetch_exchange(ZoneKey("CA-ON"), ZoneKey("CA-NS"))
     except NotImplementedError:
         print("Task failed successfully")
