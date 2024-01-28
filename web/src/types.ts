@@ -68,6 +68,7 @@ export interface ZoneOverview {
   fossilFuelRatio: number;
   renewableRatio: number;
   estimationMethod?: string;
+  estimatedPercentage?: number;
 }
 
 export type GenerationType =
@@ -91,6 +92,9 @@ export type Exchange = { [key: string]: number };
 
 export interface ZoneDetail extends ZoneOverview {
   _isFinestGranularity: boolean;
+  estimatedPercentage?: number;
+  measuredPercentage?: number;
+  completenessPercentage?: number;
   // Capacity is only available on hourly details
   capacity?: { [key in ElectricityModeType]: number | null };
   dischargeCo2Intensities: { [key in ElectricityStorageKeyType]: number };

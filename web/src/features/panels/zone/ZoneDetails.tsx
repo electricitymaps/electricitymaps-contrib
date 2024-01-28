@@ -72,6 +72,7 @@ export default function ZoneDetails(): JSX.Element {
             cardType={cardType}
             estimationMethod={estimationMethod}
             outageMessage={zoneMessage}
+            estimatedPercentage={selectedData?.estimatedPercentage}
           ></EstimationCard>
         )}
         <ZoneHeaderGauges data={data} />
