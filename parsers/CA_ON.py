@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import datetime
+from datetime import date, datetime, time, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
 from xml.etree import ElementTree
@@ -74,31 +74,29 @@ SOURCE = "ieso.ca"
 # IESO says "Eastern Standard Time is used year round." This means daylight
 # savings is not used (that is called "Eastern Daylight Time"), and we need to
 # use UTC-5 rather than 'Canada/Eastern'.
-TIMEZONE = datetime.timezone(datetime.timedelta(hours=-5), name="UTC-5")
+TIMEZONE = timezone(timedelta(hours=-5), name="UTC-5")
 ZONE_KEY = ZoneKey("CA-ON")
 
 
 def _fetch_xml(
     logger: Logger,
     session: Session | None,
-    target_datetime: datetime.datetime | None,
+    target_datetime: datetime | None,
     template: str,
-) -> tuple[datetime.date, ElementTree.Element | None]:
-    date = (
-        (target_datetime or datetime.datetime.now(TIMEZONE)).astimezone(TIMEZONE).date()
-    )
+) -> tuple[date, ElementTree.Element | None]:
+    date_ = (target_datetime or datetime.now(TIMEZONE)).astimezone(TIMEZONE).date()
 
     session = session or Session()
-    url = template.format(YYYYMMDD=date.strftime("%Y%m%d"))
+    url = template.format(YYYYMMDD=date_.strftime("%Y%m%d"))
     response = session.get(url)
 
     if not response.ok:
         # Historical data is generally available for 3 months; requesting
         # anything older returns an HTTP 404 error.
         logger.info(f"GET request to {url} failed")
-        return date, None
+        return date_, None
 
-    return date, ElementTree.fromstring(response.text)
+    return date_, ElementTree.fromstring(response.text)
 
 
 def _parse_hour(element):
@@ -110,7 +108,7 @@ def _parse_hour(element):
 def fetch_production(
     zone_key: str = ZONE_KEY,
     session: Session | None = None,
-    target_datetime: datetime.datetime | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given region."""
@@ -118,7 +116,7 @@ def fetch_production(
     if zone_key != ZONE_KEY:
         raise NotImplementedError(f"unimplemented zone '{zone_key}'")
 
-    date, xml = _fetch_xml(logger, session, target_datetime, PRODUCTION_URL)
+    date_, xml = _fetch_xml(logger, session, target_datetime, PRODUCTION_URL)
 
     if xml is None:
         return []
@@ -130,9 +128,7 @@ def fetch_production(
         mode = MODES[generator.findtext(NAMESPACE + "FuelType")]
         for output in generator.iter(NAMESPACE + "Output"):
             generation = output.findtext(NAMESPACE + "EnergyMW")
-            mixes.setdefault(
-                datetime.time(hour=_parse_hour(output)), ProductionMix()
-            ).add_value(
+            mixes.setdefault(time(hour=_parse_hour(output)), ProductionMix()).add_value(
                 mode,
                 # Sometimes the XML data has no EnergyMW tag for a given plant
                 # at a given hour. The report XSL formats this as "N/A"; we
@@ -147,9 +143,9 @@ def fetch_production(
             )
 
     production_breakdowns = ProductionBreakdownList(logger)
-    for time, mix in mixes.items():
+    for time_, mix in mixes.items():
         production_breakdowns.append(
-            datetime=datetime.datetime.combine(date, time, tzinfo=TIMEZONE),
+            datetime=datetime.combine(date_, time_, tzinfo=TIMEZONE),
             production=mix,
             source=SOURCE,
             zoneKey=ZONE_KEY,
@@ -161,7 +157,7 @@ def fetch_production(
 def fetch_price(
     zone_key: str = ZoneKey("CA-ON"),
     session: Session | None = None,
-    target_datetime: datetime.datetime | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known power price per MWh of a given region."""
@@ -169,7 +165,7 @@ def fetch_price(
     if zone_key != ZONE_KEY:
         raise NotImplementedError(f"unimplemented zone '{zone_key}'")
 
-    date, xml = _fetch_xml(logger, session, target_datetime, PRICE_URL)
+    date_, xml = _fetch_xml(logger, session, target_datetime, PRICE_URL)
 
     if not xml:
         return []
@@ -181,8 +177,8 @@ def fetch_price(
     for hoep in xml.iter(NAMESPACE + "HOEP"):
         prices.append(
             currency="CAD",
-            datetime=datetime.datetime.combine(
-                date, datetime.time(hour=_parse_hour(hoep)), tzinfo=TIMEZONE
+            datetime=datetime.combine(
+                date_, time(hour=_parse_hour(hoep)), tzinfo=TIMEZONE
             ),
             price=float(hoep.findtext(NAMESPACE + "Price")),
             source=SOURCE,
@@ -196,7 +192,7 @@ def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
-    target_datetime: datetime.datetime | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
@@ -206,7 +202,7 @@ def fetch_exchange(
     if sorted_zone_keys not in EXCHANGES.values():
         raise NotImplementedError(f"unimplemented exchange '{sorted_zone_keys}'")
 
-    date, xml = _fetch_xml(logger, session, target_datetime, EXCHANGE_URL)
+    date_, xml = _fetch_xml(logger, session, target_datetime, EXCHANGE_URL)
 
     if not xml:
         return []
@@ -227,7 +223,7 @@ def fetch_exchange(
             # have data for up to Hour 11, Interval 12. This means it is
             # necessary to subtract 1 from the values (otherwise we would have
             # data for 12:00 already at 11:37).
-            time = datetime.time(
+            time_ = time(
                 hour=_parse_hour(actual),
                 minute=5 * (int(actual.findtext(NAMESPACE + "Interval")) - 1),
             )
@@ -238,12 +234,12 @@ def fetch_exchange(
             flow = float(actual.findtext(NAMESPACE + "Flow"))
             if not sorted_zone_keys.startswith("CA-ON->"):
                 flow *= -1
-            flows[time] = flows.get(time, 0) + flow
+            flows[time_] = flows.get(time_, 0) + flow
 
     exchanges = ExchangeList(logger)
-    for time, flow in flows.items():
+    for time_, flow in flows.items():
         exchanges.append(
-            datetime=datetime.datetime.combine(date, time, tzinfo=TIMEZONE),
+            datetime=datetime.combine(date_, time_, tzinfo=TIMEZONE),
             netFlow=flow,
             source=SOURCE,
             zoneKey=sorted_zone_keys,
@@ -255,9 +251,9 @@ def fetch_exchange(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    now = datetime.datetime.now(datetime.timezone.utc)
-    two_months_ago = now - datetime.timedelta(days=60)
-    two_years_ago = now - datetime.timedelta(days=2 * 365)
+    now = datetime.now(timezone.utc)
+    two_months_ago = now - timedelta(days=60)
+    two_years_ago = now - timedelta(days=2 * 365)
 
     print("fetch_production() ->")
     print(fetch_production(), end="\n\n")
@@ -316,4 +312,4 @@ if __name__ == "__main__":
     try:
         fetch_exchange("CA-ON", "CA-NS")
     except NotImplementedError:
-        print("Success")
+        print("Task failed successfully")
