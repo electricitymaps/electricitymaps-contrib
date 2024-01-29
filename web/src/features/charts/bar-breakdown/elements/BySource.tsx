@@ -32,11 +32,13 @@ const getText = (
 export default function BySource({
   className,
   hasEstimationPill = false,
+  estimatedPercentage,
 }: {
   className?: string;
   hasEstimationPill?: boolean;
+  estimatedPercentage?: number;
 }) {
-  const { __ } = useTranslation();
+  const { __, i18n } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
@@ -51,7 +53,13 @@ export default function BySource({
       {text}
       {hasEstimationPill && (
         <Badge
-          pillText={__('estimation-badge.fully-estimated')}
+          pillText={
+            timeAverage == TimeAverages.HOURLY
+              ? __('estimation-badge.fully-estimated')
+              : i18n.t('estimation-badge.aggregated-estimated', {
+                  percentage: estimatedPercentage,
+                })
+          }
           type="warning"
           icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
         />

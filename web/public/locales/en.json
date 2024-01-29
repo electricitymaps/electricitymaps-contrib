@@ -91,6 +91,7 @@
     }
   },
   "estimation-badge": {
+    "aggregated-estimated": "{{percentage}}% estimated",
     "partially-estimated": "Partially estimated",
     "fully-estimated": "Estimated"
   },
