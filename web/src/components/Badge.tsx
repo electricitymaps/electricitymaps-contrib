@@ -2,7 +2,6 @@ type BadgeProps = {
   pillText: string;
   type?: string;
   icon?: string;
-  estimatedPercentage?: number;
 };
 
 export default function Badge({ pillText, type, icon, estimatedPercentage }: BadgeProps) {
@@ -16,9 +15,7 @@ export default function Badge({ pillText, type, icon, estimatedPercentage }: Bad
       className={`ml-2 flex h-[22px] flex-row gap-1 whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-semibold ${classes}`}
     >
       {icon != undefined && <div className={`${icon}`} />}
-      {Number.isFinite(estimatedPercentage)
-        ? `${estimatedPercentage}% ${pillText}`
-        : pillText}
+      {pillText}
     </span>
   );
 }

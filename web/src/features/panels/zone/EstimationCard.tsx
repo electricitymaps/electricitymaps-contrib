@@ -30,11 +30,15 @@ export default function EstimationCard({
 
 function getEstimationTranslation(
   field: 'title' | 'pill' | 'body',
-  estimationMethod: string | undefined
+  estimationMethod?: string,
+  estimatedPercentage?: number
 ) {
-  const { __ } = useTranslation();
-  const exactTranslation = __(
-    `estimation-card.${estimationMethod?.toLowerCase()}.${field}`
+  const { __, i18n } = useTranslation();
+  const exactTranslation = i18n.t(
+    `estimation-card.${estimationMethod?.toLowerCase()}.${field}`,
+    {
+      percentage: estimatedPercentage,
+    }
   );
   const genericTranslation = __(`estimation-card.estimated_generic_method.${field}`);
   return exactTranslation.length > 0 ? exactTranslation : genericTranslation;
@@ -68,8 +72,16 @@ function BaseCard({
   const { __ } = useTranslation();
 
   const title = getEstimationTranslation('title', estimationMethod);
-  const pillText = getEstimationTranslation('pill', estimationMethod);
-  const bodyText = getEstimationTranslation('body', estimationMethod);
+  const pillText = getEstimationTranslation(
+    'pill',
+    estimationMethod,
+    estimatedPercentage
+  );
+  const bodyText = getEstimationTranslation(
+    'body',
+    estimationMethod,
+    estimatedPercentage
+  );
   const showBadge =
     estimationMethod == 'aggregated'
       ? (estimatedPercentage ?? 0) > 0
@@ -98,12 +110,7 @@ function BaseCard({
             </div>
             <div className="flex h-fit flex-row gap-2 text-nowrap">
               {showBadge && (
-                <Badge
-                  type={pillType}
-                  icon={iconPill}
-                  pillText={pillText}
-                  estimatedPercentage={estimatedPercentage}
-                ></Badge>
+                <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
               )}
               <div className="text-lg">
                 {isCollapsed ? <HiChevronDown /> : <HiChevronUp />}
