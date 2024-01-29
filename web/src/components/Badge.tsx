@@ -4,7 +4,7 @@ type BadgeProps = {
   icon?: string;
 };
 
-export default function Badge({ pillText, type, icon, estimatedPercentage }: BadgeProps) {
+export default function Badge({ pillText, type, icon }: BadgeProps) {
   const classes =
     type == 'warning'
       ? 'bg-amber-700/10 dark:bg-amber-500/10 text-amber-700 dark:text-amber-500'
