@@ -83,6 +83,10 @@
   "time-controller": {
     "title": "Historische Daten anzeigen"
   },
+  "estimation-badge": {
+    "partially-estimated": "Teilweise geschätzt",
+    "fully-estimated": "Geschätzt"
+  },
   "estimation-card": {
     "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
     "estimated_time_slicer_average": {
