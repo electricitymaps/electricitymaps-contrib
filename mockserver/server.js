@@ -4,7 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 const url = require('url');
 
-const HOST = '127.0.0.1'
+const HOST = '127.0.0.1';
 const PORT = process.argv[2] || 8001;
 
 app.use(cors());
