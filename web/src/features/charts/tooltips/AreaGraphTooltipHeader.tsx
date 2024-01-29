@@ -22,7 +22,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
     estimatedPercentage,
   } = props;
   const { __, i18n } = useTranslation();
-  console.log('AreaGraphToolTipHeaderProps', props);
+
   return (
     <>
       <div className="mb-2 flex justify-between">

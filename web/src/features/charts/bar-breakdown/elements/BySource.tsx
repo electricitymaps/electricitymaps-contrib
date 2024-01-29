@@ -54,7 +54,7 @@ export default function BySource({
       {hasEstimationPill && estimatedPercentage !== 0 && (
         <Badge
           pillText={
-            timeAverage == TimeAverages.HOURLY
+            (estimatedPercentage ?? 0) > 0
               ? __('estimation-badge.fully-estimated')
               : i18n.t('estimation-card.aggregated.pill', {
                   percentage: estimatedPercentage,
