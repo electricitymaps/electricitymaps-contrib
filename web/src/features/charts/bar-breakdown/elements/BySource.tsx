@@ -56,7 +56,7 @@ export default function BySource({
           pillText={
             timeAverage == TimeAverages.HOURLY
               ? __('estimation-badge.fully-estimated')
-              : i18n.t('estimation-badge.aggregated-estimated', {
+              : i18n.t('estimation-card.aggregated.pill', {
                   percentage: estimatedPercentage,
                 })
           }

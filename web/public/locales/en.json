@@ -91,7 +91,6 @@
     }
   },
   "estimation-badge": {
-    "aggregated-estimated": "{{percentage}}% estimated",
     "partially-estimated": "Partially estimated",
     "fully-estimated": "Estimated"
   },
@@ -139,7 +138,7 @@
     "aggregated": {
       "title": "Data is aggregated",
       "pill": " {{percentage}}% estimated",
-      "body": "The data consists of an aggregation of hourly values. {{percentage}}% of the production values are estimated. "
+      "body": "The data consists of an aggregation of hourly values. {{percentage}}% of the production values are estimated."
     }
   },
   "time-controller": {

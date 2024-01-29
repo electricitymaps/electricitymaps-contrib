@@ -85,6 +85,11 @@
       "title": "Les données sont momentanément estimées",
       "pill": "Indisponible",
       "body": "Le fournisseur de données ne publie momentanément aucune donnée pour cette zone. Les valeurs affichées sont estimées en fonction des données historiques et seront remplacées par les données consolidées dès qu'elles seront disponibles. Veuillez noter que les valeurs estimées peuvent être inexactes car elles ne tiennent pas compte d'événements météorologiques spécifiques en temps réel."
+    },
+    "aggregated": {
+      "title": "Les données sont agrégées",
+      "pill": " {{percentage}}% estimées",
+      "body": "Les données consistent en une agrégation de données horaires. {{percentage}}% des données horaires sont estimées."
     }
   },
   "left-panel": {
