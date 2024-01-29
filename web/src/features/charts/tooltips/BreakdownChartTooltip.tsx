@@ -60,8 +60,9 @@ export default function BreakdownChartTooltip({
     mixMode
   );
 
-  const { estimationMethod, stateDatetime } = zoneDetail;
-  const hasEstimationPill = estimationMethod != undefined;
+  const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
+  const hasEstimationPill =
+    estimationMethod != undefined || (estimatedPercentage ?? 0) > 0;
 
   const getOriginTranslateKey = () => {
     if (isExchange) {
@@ -88,6 +89,7 @@ export default function BreakdownChartTooltip({
       originTranslateKey={getOriginTranslateKey()}
       timeAverage={timeAverage}
       hasEstimationPill={hasEstimationPill}
+      estimatedPercentage={estimatedPercentage}
     ></BreakdownChartTooltipContent>
   );
 }
@@ -110,6 +112,7 @@ interface BreakdownChartTooltipContentProperties {
   storage?: Maybe<number>;
   production?: Maybe<number>;
   hasEstimationPill?: boolean;
+  estimatedPercentage?: number;
 }
 
 export function BreakdownChartTooltipContent({
@@ -128,6 +131,7 @@ export function BreakdownChartTooltipContent({
   isExchange,
   selectedLayerKey,
   hasEstimationPill,
+  estimatedPercentage,
 }: BreakdownChartTooltipContentProperties) {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
@@ -166,6 +170,7 @@ export function BreakdownChartTooltipContent({
         timeAverage={timeAverage}
         title={title}
         hasEstimationPill={isExchange ? false : hasEstimationPill}
+        estimatedPercentage={estimatedPercentage}
       />
       <div
         className="inline-flex flex-wrap items-center gap-x-1"
