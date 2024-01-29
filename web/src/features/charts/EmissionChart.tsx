@@ -3,7 +3,7 @@ import { formatCo2 } from 'utils/formatting';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { noop } from './graphUtils';
+import { getBadgeText, noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
 import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 
@@ -24,9 +24,11 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
   const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
 
+  const badgeText = getBadgeText(chartData);
+
   return (
     <>
-      <ChartTitle translationKey="country-history.emissions" />
+      <ChartTitle translationKey="country-history.emissions" badgeText={badgeText} />
       <AreaGraph
         testId="history-emissions-graph"
         data={chartData}
