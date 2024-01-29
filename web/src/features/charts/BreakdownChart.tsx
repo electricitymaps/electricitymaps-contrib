@@ -5,7 +5,7 @@ import { formatCo2 } from 'utils/formatting';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { noop } from './graphUtils';
+import { getBadgeText, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
@@ -43,6 +43,8 @@ function BreakdownChart({
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
+  const badgeText = getBadgeText(chartData);
+
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
@@ -53,7 +55,10 @@ function BreakdownChart({
 
   return (
     <>
-      <ChartTitle translationKey={`country-history.${titleDisplayMode}${titleMixMode}`} />
+      <ChartTitle
+        translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
+        badgeText={badgeText}
+      />
       <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
           <div className="absolute top-0 h-full w-full">
