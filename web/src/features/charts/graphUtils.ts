@@ -161,7 +161,9 @@ export function getElectricityProductionValue({
 }
 
 export function getBadgeText(chartData: AreaGraphElement[]) {
-  const hasEstimation = chartData.some((day) => day.meta.estimationMethod);
+  const hasEstimation = chartData.some(
+    (day) => day.meta.estimationMethod || (day.meta.estimatedPercentage ?? 0) > 0
+  );
   const allEstimated = chartData.every((day) => day.meta.estimationMethod);
 
   const { __ } = useTranslation();
