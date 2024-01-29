@@ -51,10 +51,10 @@ export default function BySource({
       className={`relative flex flex-row justify-between pb-2 pt-4 text-md font-bold ${className}`}
     >
       {text}
-      {hasEstimationPill && estimatedPercentage !== 0 && (
+      {hasEstimationPill && Boolean(estimatedPercentage) && (
         <Badge
           pillText={
-            (estimatedPercentage ?? 0) > 0
+            estimatedPercentage
               ? __('estimation-badge.fully-estimated')
               : i18n.t('estimation-card.aggregated.pill', {
                   percentage: estimatedPercentage,

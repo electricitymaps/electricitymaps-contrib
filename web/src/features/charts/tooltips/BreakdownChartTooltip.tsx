@@ -61,8 +61,7 @@ export default function BreakdownChartTooltip({
   );
 
   const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
-  const hasEstimationPill =
-    estimationMethod != undefined || (estimatedPercentage ?? 0) > 0;
+  const hasEstimationPill = estimationMethod != undefined || Boolean(estimatedPercentage);
 
   const getOriginTranslateKey = () => {
     if (isExchange) {

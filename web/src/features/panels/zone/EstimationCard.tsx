@@ -84,7 +84,7 @@ function BaseCard({
   );
   const showBadge =
     estimationMethod == 'aggregated'
-      ? (estimatedPercentage ?? 0) > 0
+      ? Boolean(estimatedPercentage)
       : pillType != undefined;
 
   return (

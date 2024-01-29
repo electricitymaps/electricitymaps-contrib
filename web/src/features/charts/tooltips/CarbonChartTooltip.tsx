@@ -32,8 +32,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     co2intensity,
     co2intensityProduction
   );
-  const hasEstimationPill =
-    estimationMethod != undefined || (estimatedPercentage ?? 0) > 0;
+  const hasEstimationPill = estimationMethod != undefined || Boolean(estimatedPercentage);
   return (
     <div
       data-test-id="carbon-chart-tooltip"

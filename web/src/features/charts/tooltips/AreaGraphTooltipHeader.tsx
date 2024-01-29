@@ -41,7 +41,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
           {hasEstimationPill && estimatedPercentage !== 0 && (
             <Badge
               pillText={
-                (estimatedPercentage ?? 0) > 0
+                estimatedPercentage
                   ? i18n.t('estimation-card.aggregated.pill', {
                       percentage: estimatedPercentage,
                     })
