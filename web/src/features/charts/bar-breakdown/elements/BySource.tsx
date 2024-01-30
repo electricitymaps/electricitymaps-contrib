@@ -51,7 +51,7 @@ export default function BySource({
       className={`relative flex flex-row justify-between pb-2 pt-4 text-md font-bold ${className}`}
     >
       {text}
-      {hasEstimationPill && Boolean(estimatedPercentage) && (
+      {hasEstimationPill && (estimatedPercentage ?? 0) > 0 && (
         <Badge
           pillText={
             estimatedPercentage
