@@ -322,7 +322,3 @@ def fetch_total_generation(
             sourceType=EventSourceType.measured,
         )
     return total_generation.to_list()
-
-
-if __name__ == "__main__":
-    data = fetch_production(zone_key="IE", target_datetime=datetime(2023, 12, 1))
