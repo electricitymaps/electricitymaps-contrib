@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -151,9 +150,7 @@ def fetch_production(
 
     for item in total_generation:
         dt = item["EffectiveTime"]
-        wind_event_dt = [
-            event for event in wind_data if event["EffectiveTime"] == dt
-        ]
+        wind_event_dt = [event for event in wind_data if event["EffectiveTime"] == dt]
 
         wind_prod = float(wind_event_dt[0]["Value"]) if len(wind_event_dt) == 1 else 0
 
@@ -327,6 +324,6 @@ def fetch_total_generation(
         )
     return total_generation.to_list()
 
-if __name__ == "__main__":
 
-    data = fetch_production(zone_key="IE", target_datetime=datetime(2023,10,1))
+if __name__ == "__main__":
+    data = fetch_production(zone_key="IE", target_datetime=datetime(2023, 12, 1))
