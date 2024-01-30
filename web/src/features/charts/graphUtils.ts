@@ -162,7 +162,11 @@ export function getElectricityProductionValue({
 
 export function getBadgeText(chartData: AreaGraphElement[]) {
   const { __ } = useTranslation();
-  if (chartData.every((day) => day.meta.estimationMethod)) {
+  if (
+    chartData.every(
+      (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
+    )
+  ) {
     return __('estimation-badge.fully-estimated');
   } else if (
     chartData.some(
