@@ -63,14 +63,6 @@ def get_production_values(soup, zone_key, logger):
         elif cell_text == "GAS Total":
             gas_value = float(cell.find_next_sibling().text)
 
-    try:
-        gas_value, hydro_value
-    except NameError:
-        logger.warning(
-            "One or more production values could not be read " "from webpage.",
-            extra={"key": zone_key},
-        )
-
     production = {"gas": gas_value, "hydro": hydro_value}
 
     return production

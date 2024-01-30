@@ -59,7 +59,7 @@ def fetch_data(
         and SE1_dataList[-1]["datetime"] == SE2_dataList[-1]["datetime"]
     ):
         logger.info("Clean match! Merging data with zip")
-        for SE1, SE2 in zip(SE1_dataList, SE2_dataList):
+        for SE1, SE2 in zip(SE1_dataList, SE2_dataList, strict=True):
             returnList.append(
                 {
                     "datetime": SE1["datetime"],

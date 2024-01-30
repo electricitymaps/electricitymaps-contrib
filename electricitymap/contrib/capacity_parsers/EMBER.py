@@ -112,7 +112,7 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict[str, Any]:
     for zone in df_capacity.index.unique():
         df_zone = df_capacity.loc[zone]
         zone_capacity = {}
-        for i, data in df_zone.iterrows():
+        for _i, data in df_zone.iterrows():
             mode_capacity = {}
             mode_capacity["datetime"] = data["datetime"].strftime("%Y-%m-%d")
             mode_capacity["value"] = round(float(data["value"]), 0)

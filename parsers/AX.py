@@ -48,6 +48,7 @@ def fetch_data(session: Session, logger: Logger):
         raw_data[3].split(","),
         raw_data[4].split(","),
         raw_data[5].split(","),
+        strict=True,
     ):
         data_list.append(
             {

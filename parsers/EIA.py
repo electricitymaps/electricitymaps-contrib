@@ -672,10 +672,10 @@ def _fetch(
     if target_datetime:
         try:
             target_datetime = arrow.get(target_datetime).datetime
-        except arrow.parser.ParserError:
+        except arrow.parser.ParserError as e:
             raise ValueError(
                 f"target_datetime must be a valid datetime - received {target_datetime}"
-            )
+            ) from e
         utc = tz.gettz("UTC")
         eia_ts_format = "%Y-%m-%dT%H"
         end = target_datetime.astimezone(utc) + timedelta(hours=1)

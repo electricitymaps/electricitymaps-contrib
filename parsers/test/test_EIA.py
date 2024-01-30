@@ -402,7 +402,7 @@ class TestEIAProduction(TestEIA):
         self.check_production_matches(data_list, expected)
 
     def test_check_transfer_mixes(self):
-        for supplied_zone, production in EIA.PRODUCTION_ZONES_TRANSFERS.items():
+        for production in EIA.PRODUCTION_ZONES_TRANSFERS.values():
             all_production = production.get("all", {})
             for type, supplying_zones in production.items():
                 if type == "all":
@@ -577,6 +577,7 @@ class TestEIAProduction(TestEIA):
             fpl_exchange_data["response"]["data"],
             nsb_exchange_data["response"]["data"],
             data_list,
+            strict=True,
         ):
             assert fpl["value"] + nsb["value"] == parser["netFlow"]
 
