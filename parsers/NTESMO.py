@@ -24,8 +24,8 @@ INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-d
 DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
 LATEST_URL = "https://ntesmo.com.au/data/daily-trading"
 DATA_DOC_PREFIX = "https://ntesmo.com.au/__data/assets/excel_doc/"
-# Data is being published after 5 days at the moment.
-DELAY = 24 * 5
+# Data is being published after 2 days at the moment.
+DELAY = 24 * 2
 
 
 class Generator(TypedDict):

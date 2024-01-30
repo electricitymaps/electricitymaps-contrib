@@ -2,7 +2,7 @@ import { TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { noop } from './graphUtils';
+import { getBadgeText, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
@@ -23,12 +23,17 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
+  const badgeText = getBadgeText(chartData);
+
   if (!hasEnoughDataToDisplay) {
     return <NotEnoughDataMessage title="country-history.carbonintensity" />;
   }
   return (
     <>
-      <ChartTitle translationKey="country-history.carbonintensity" />
+      <ChartTitle
+        translationKey="country-history.carbonintensity"
+        badgeText={badgeText}
+      />
       <AreaGraph
         testId="details-carbon-graph"
         data={chartData}
