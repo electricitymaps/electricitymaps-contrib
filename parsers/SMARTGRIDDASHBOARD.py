@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
+import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -132,51 +133,43 @@ def fetch_production(
     if target_datetime is None:
         target_datetime = datetime.now(tz=IE_TZ)
 
-    demand_data = fetch_data(
+    total_generation = fetch_data(
         target_datetime=target_datetime,
         zone_key=zone_key,
-        kind="demand",
+        kind="generation",
         session=session,
     )
+
     wind_data = fetch_data(
         target_datetime=target_datetime, zone_key=zone_key, kind="wind", session=session
     )
-    exchange_data = fetch_data(
-        target_datetime=target_datetime,
-        zone_key=zone_key,
-        kind="exchange",
-        session=session,
-    )
-    assert len(demand_data) > 0
+
+    assert len(total_generation) > 0
     assert len(wind_data) > 0
-    assert len(exchange_data) > 0
 
     production = ProductionBreakdownList(logger=logger)
-    for item in demand_data:
+
+    for item in total_generation:
         dt = item["EffectiveTime"]
-        wind_dt = [
-            wind_event for wind_event in wind_data if wind_event["EffectiveTime"] == dt
+        wind_event_dt = [
+            event for event in wind_data if event["EffectiveTime"] == dt
         ]
 
-        wind_prod = wind_dt[0]["Value"] if len(wind_dt) == 1 else 0
+        wind_prod = float(wind_event_dt[0]["Value"]) if len(wind_event_dt) == 1 else 0
 
-        exchange_dt = [
-            exchange_event
-            for exchange_event in exchange_data
-            if exchange_event["EffectiveTime"] == dt
-        ]
-
-        exchange = exchange_dt[0]["Value"] if len(exchange_dt) == 1 else 0
         productionMix = ProductionMix()
-        if all([item["Value"], exchange, wind_prod]):
+        if all([item["Value"], wind_prod]):
             productionMix.add_value("wind", wind_prod)
-            productionMix.add_value("unknown", item["Value"] - exchange - wind_prod)
+            productionMix.add_value("unknown", float(item["Value"]) - wind_prod)
+        else:
+            breakpoint()
         production.append(
             zoneKey=zone_key,
             production=productionMix,
             datetime=parse_datetime(dt),
             source=SOURCE,
         )
+
     return production.to_list()
 
 
@@ -333,3 +326,7 @@ def fetch_total_generation(
             sourceType=EventSourceType.measured,
         )
     return total_generation.to_list()
+
+if __name__ == "__main__":
+
+    data = fetch_production(zone_key="IE", target_datetime=datetime(2023,10,1))
