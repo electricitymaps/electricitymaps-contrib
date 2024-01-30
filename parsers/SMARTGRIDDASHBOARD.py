@@ -152,7 +152,7 @@ def fetch_production(
         dt = item["EffectiveTime"]
         wind_event_dt = [event for event in wind_data if event["EffectiveTime"] == dt]
 
-        wind_prod = float(wind_event_dt[0]["Value"]) if len(wind_event_dt) == 1 else 0
+        wind_prod = float(wind_event_dt[0]["Value"]) if wind_event_dt[0]["Value"] else 0
 
         productionMix = ProductionMix()
         if all([item["Value"], wind_prod]):
