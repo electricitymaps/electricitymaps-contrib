@@ -90,6 +90,26 @@
       "total-electricity-consumption": "Total electricity consumption by source"
     }
   },
+  "estimation-feedback": {
+    "state-1": {
+      "title": "Quick research question!",
+      "subtitle": "What are your thoughts on this statement:",
+      "text": "The estimates description was easy to understand:",
+      "agree": "Strongly agree",
+      "disagree": "Strongly disagree"
+    },
+    "state-2": {
+      "title": "Optional question!",
+      "subtitle": "Because you answered 3 or less.",
+      "text": "Any thoughts on how we might improve it?",
+      "input-text": "Let us know in a few words...",
+      "button-text": "Submit"
+    },
+    "state-3": {
+      "title": "Thank you!",
+      "subtitle": "Your response helps us understand and improve the quality of our communication and methodology."
+    }
+  },
   "estimation-badge": {
     "partially-estimated": "Partially estimated",
     "fully-estimated": "Estimated"

@@ -16,6 +16,7 @@ import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
 import EstimationCard from './EstimationCard';
+import FeedbackCard from './FeedbackCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
@@ -74,6 +75,7 @@ export default function ZoneDetails(): JSX.Element {
             outageMessage={zoneMessage}
           ></EstimationCard>
         )}
+        <FeedbackCard />
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
