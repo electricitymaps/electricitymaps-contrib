@@ -372,7 +372,12 @@ EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourl
 
 FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
-    "US-NW-PGE": ["biomass", "geothermal", "oil", "solar"], # Solar is not reported by PGE.
+    "US-NW-PGE": [
+        "biomass",
+        "geothermal",
+        "oil",
+        "solar",
+    ],  # Solar is not reported by PGE.
     "US-NW-PACE": ["biomass", "geothermal", "oil"],
     "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
     "US-TEN-TVA": ["biomass", "geothermal", "oil"],
