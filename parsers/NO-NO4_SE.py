@@ -28,13 +28,13 @@ def fetch_data(
     session: Session | None,
     target_datetime: datetime | None,
     logger: Logger,
-    type: Literal["exchange", "exchange_forecast"],
+    exchange_type: Literal["exchange", "exchange_forecast"],
 ) -> list[dict]:
     if target_datetime is None:
         target_datetime = datetime.now(timezone.utc)
 
     # NO-NO4 to SE-SE1
-    SE1_dataList = EXCHANGE_FUNCTION_MAP[type](
+    SE1_dataList = EXCHANGE_FUNCTION_MAP[exchange_type](
         zone_key1="NO-NO4",
         zone_key2="SE-SE1",
         session=session,
@@ -42,7 +42,7 @@ def fetch_data(
         logger=logger,
     )
     # NO-NO4 to SE-SE2
-    SE2_dataList = EXCHANGE_FUNCTION_MAP[type](
+    SE2_dataList = EXCHANGE_FUNCTION_MAP[exchange_type](
         zone_key1="NO-NO4",
         zone_key2="SE-SE2",
         session=session,
@@ -107,7 +107,7 @@ def fetch_exchange(
         session=session,
         target_datetime=target_datetime,
         logger=logger,
-        type="exchange",
+        exchange_type="exchange",
     )
 
 
@@ -125,5 +125,5 @@ def fetch_exchange_forecast(
         session=session,
         target_datetime=target_datetime,
         logger=logger,
-        type="exchange_forecast",
+        exchange_type="exchange_forecast",
     )

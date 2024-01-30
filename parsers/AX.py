@@ -70,7 +70,7 @@ def formated_data(
     zone_key2: str | None,
     session: Session,
     logger: Logger,
-    type: str,
+    data_type: str,
 ):
     """Format data to Electricity Map standards."""
     data_list = fetch_data(session, logger)
@@ -87,7 +87,7 @@ def formated_data(
     return_list = []
     for data in data_list:
         corrected_date = date - timedelta(minutes=15 * data_list.index(data))
-        if type == "production":
+        if data_type == "production":
             return_list.append(
                 {
                     "zoneKey": zone_key,
@@ -99,7 +99,7 @@ def formated_data(
                     "source": SOURCE,
                 }
             )
-        elif type == "consumption":
+        elif data_type == "consumption":
             return_list.append(
                 {
                     "zoneKey": zone_key,
@@ -108,7 +108,7 @@ def formated_data(
                     "source": SOURCE,
                 }
             )
-        elif type == "exchange":
+        elif data_type == "exchange":
             if zone_key1 == "AX" and zone_key2 == "SE-SE3":
                 return_list.append(
                     {
@@ -160,7 +160,7 @@ def fetch_production(
         zone_key2=None,
         session=session,
         logger=logger,
-        type="production",
+        data_type="production",
     )
 
 
@@ -183,7 +183,7 @@ def fetch_consumption(
         zone_key2=None,
         session=session,
         logger=logger,
-        type="consumption",
+        data_type="consumption",
     )
 
 
@@ -207,5 +207,5 @@ def fetch_exchange(
         zone_key2=zone_key2,
         session=session,
         logger=logger,
-        type="exchange",
+        data_type="exchange",
     )

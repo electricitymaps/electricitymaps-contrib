@@ -404,14 +404,14 @@ class TestEIAProduction(TestEIA):
     def test_check_transfer_mixes(self):
         for production in EIA.PRODUCTION_ZONES_TRANSFERS.values():
             all_production = production.get("all", {})
-            for type, supplying_zones in production.items():
-                if type == "all":
+            for production_type, supplying_zones in production.items():
+                if production_type == "all":
                     continue
                 for zone in supplying_zones:
                     if zone in all_production:
                         raise Exception(
                             f"{zone} is both in the all production export\
-                            and exporting its {type} production. \
+                            and exporting its {production_type} production. \
                             This is not possible please fix this ambiguity."
                         )
 

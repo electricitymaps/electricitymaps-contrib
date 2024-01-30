@@ -84,9 +84,9 @@ ENTSOE_PARAMETER_GROUPS = {
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
-    ENTSOE_key: type
+    ENTSOE_key: data_type
     for key in ["production", "storage"]
-    for type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
+    for data_type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
     for ENTSOE_key in groups
 }
 
