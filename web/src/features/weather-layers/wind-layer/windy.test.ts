@@ -5,9 +5,9 @@ import { bilinearInterpolateVector, windIntensityColorScale } from './windy';
 describe('windIntensityColorScale', () => {
   it('should return an array of colors', () => {
     const result = windIntensityColorScale();
-    expect(Array.isArray(result)).toBe(true);
-    expect(result.length).toBeGreaterThan(0);
-    expect(typeof result[0]).toBe('string');
+    expect(Array.isArray(result)).to.be.true;
+    expect(result.length).to.be.greaterThan(0);
+    expect(typeof result[0]).to.eq('string');
   });
 });
 
@@ -28,7 +28,7 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).toEqual([4, 5, round(Math.sqrt(41), 13)]);
+    expect(result).to.deep.eq([4, 5, round(Math.sqrt(41), 13)]);
   });
 
   it('should interpolate a vector at the top left corner of the square', () => {
@@ -47,7 +47,7 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).toEqual([1, 2, round(Math.sqrt(5), 13)]);
+    expect(result).to.deep.eq([1, 2, round(Math.sqrt(5), 13)]);
   });
 
   it('should interpolate a vector at the top right corner of the square', () => {
@@ -66,7 +66,7 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).toEqual([3, 4, 5]);
+    expect(result).to.deep.eq([3, 4, 5]);
   });
 
   it('should interpolate a vector at the bottom left corner of the square', () => {
@@ -85,7 +85,7 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).toEqual([5, 6, round(Math.sqrt(61), 13)]);
+    expect(result).to.deep.eq([5, 6, round(Math.sqrt(61), 13)]);
   });
 
   it('should interpolate a vector at the bottom right corner of the square', () => {
@@ -104,6 +104,6 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).toEqual([7, 8, round(Math.sqrt(113), 13)]);
+    expect(result).to.deep.eq([7, 8, round(Math.sqrt(113), 13)]);
   });
 });

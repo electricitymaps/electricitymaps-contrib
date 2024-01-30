@@ -16,10 +16,10 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.types import ZoneKey
 
 # This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
-# The 'Termico' category only consists of generation from oil/diesel according to historical data.
-# See: https://www.iea.org/statistics/?country=ELSALVADOR&year=2016&category=Key%20indicators&indicator=ElecGenByFuel
-# A new Liquid Natural Gas power plant may come online in 2020/2021.
-# See: https://gastechinsights.com/article/what-energa-del-pacficos-lng-to-power-project-means-for-el-salvador
+# The 'Termico' category historicallyl only consisted of generation from oil/diesel, but this changed in 2022
+# when a new Liquid Natural Gas power plant came online
+# See: https://ourworldindata.org/grapher/electricity-prod-source-stacked?country=~SLV
+# A better data source that distinguishes between oil and gas can be found in #1733 and #5233
 
 # Thanks to jarek for figuring out how to make the correct POST request to the data url.
 
@@ -33,7 +33,7 @@ MODE_MAPPING = {
     "Geotérmico": "geothermal",
     "Hidroeléctrico": "hydro",
     "Solar": "solar",
-    "Térmico": "oil",
+    "Térmico": "unknown",
     "Interconexión": "exchange",
 }
 
