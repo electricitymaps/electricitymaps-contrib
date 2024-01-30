@@ -158,8 +158,7 @@ def fetch_production(
         if all([item["Value"], wind_prod]):
             productionMix.add_value("wind", wind_prod)
             productionMix.add_value("unknown", float(item["Value"]) - wind_prod)
-        else:
-            breakpoint()
+
         production.append(
             zoneKey=zone_key,
             production=productionMix,
