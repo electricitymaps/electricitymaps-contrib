@@ -75,6 +75,18 @@
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"%s\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
   },
+  "estimation-badge": {
+    "partially-estimated": "Partiellement estimées",
+    "fully-estimated": "Estimées"
+  },
+  "estimation-card": {
+    "link": "En savoir plus sur nos modèles d'estimation",
+    "estimated_time_slicer_average": {
+      "title": "Les données sont momentanément estimées",
+      "pill": "Indisponible",
+      "body": "Le fournisseur de données ne publie momentanément aucune donnée pour cette zone. Les valeurs affichées sont estimées en fonction des données historiques et seront remplacées par les données consolidées dès qu'elles seront disponibles. Veuillez noter que les valeurs estimées peuvent être inexactes car elles ne tiennent pas compte d'événements météorologiques spécifiques en temps réel."
+    }
+  },
   "left-panel": {
     "zone-list-header-title": "Impact sur le climat par zone",
     "zone-list-header-subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",

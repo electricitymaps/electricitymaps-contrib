@@ -71,6 +71,12 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 122.47919108267666
+    unknown:
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
+      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
+      datetime: '2022-01-01'
+      source: assumes 51% gas, 49% oil
+      value: 387.6470588235294
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -128,6 +134,12 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 185.88457877410704
+    unknown:
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
+      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
+      datetime: '2022-01-01'
+      source: assumes 51% gas, 49% oil
+      value: 568.4313725490196
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -206,6 +218,6 @@ fallbackZoneMixes:
         unknown: 0.057362415139040494
         wind: 0.03768562954230214
 parsers:
-  production: SV.fetch_production
+  production: ESTADISTICO_UT.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/El_Salvador
