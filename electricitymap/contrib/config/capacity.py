@@ -2,12 +2,13 @@ from datetime import datetime
 from pathlib import Path
 
 from electricitymap.contrib.config.reading import read_zones_config
+from electricitymap.contrib.lib.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
 ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 # Get productionCapacity source to zones mapping
-CAPACITY_PARSER_SOURCE_TO_ZONES = {}
+CAPACITY_PARSER_SOURCE_TO_ZONES: dict[str, list[ZoneKey]] = {}
 for zone_id, zone_config in ZONES_CONFIG.items():
     if zone_config.get("parsers", {}).get("productionCapacity") is None:
         continue
@@ -17,7 +18,9 @@ for zone_id, zone_config in ZONES_CONFIG.items():
     CAPACITY_PARSER_SOURCE_TO_ZONES[source].append(zone_id)
 
 ZONE_TO_CAPACITY_PARSER_SOURCE = {
-    zone: source for source, zones in ZONES_CONFIG.items() for zone in zones
+    zone: source
+    for source, zones in CAPACITY_PARSER_SOURCE_TO_ZONES.items()
+    for zone in zones
 }
 
 
