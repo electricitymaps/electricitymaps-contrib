@@ -151,7 +151,7 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-react": "4.2.1",
-    "@vitest/coverage-istanbul": "0.28.5",
+    "@vitest/coverage-istanbul": "0.34.6",
     "autoprefixer": "10.4.15",
     "colors": "^1.4.0",
     "css-mediaquery": "0.1.2",
