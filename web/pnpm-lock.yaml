@@ -138,8 +138,8 @@ dependencies:
     specifier: 3.5.0-alpha.0
     version: 3.5.0-alpha.0(@react-three/fiber@8.15.15)(@types/react@18.2.20)(konva@9.3.2)(react-dom@18.2.0)(react-konva@18.2.10)(react-native@0.73.2)(react-zdog@1.2.2)(react@18.2.0)(three@0.160.1)(zdog@1.1.3)
   recharts:
-    specifier: ^2.10.4
-    version: 2.10.4(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^2.11.0
+    version: 2.11.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   sprintf-js:
     specifier: ^1.1.3
     version: 1.1.3
@@ -14211,8 +14211,8 @@ packages:
       decimal.js-light: 2.5.1
     dev: false
 
-  /recharts@2.10.4(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-/Q7/wdf8bW91lN3NEeCjL9RWfaiXQViJFgdnas4Eix/I8B9HAI3tHHK/CW/zDfgRMh4fzW1zlfjoz1IAapLO1Q==}
+  /recharts@2.11.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-5s+u1m5Hwxb2nh0LABkE3TS/lFqFHyWl7FnPbQhHobbQQia4ih1t3o3+ikPYr31Ns+kYe4FASIthKeKi/YYvMg==}
     engines: {node: '>=14'}
     peerDependencies:
       prop-types: ^15.6.0
