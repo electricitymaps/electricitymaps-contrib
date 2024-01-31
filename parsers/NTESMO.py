@@ -136,11 +136,11 @@ def get_data(
 
     try:
         data_file = get_historical_daily_data(link, session)
-    except KeyError:
+    except KeyError as e:
         raise ParserException(
             "NTESMO.py",
             f"Cannot find file on the index page for date {target_datetime}",
-        )
+        ) from e
     return extraction_func(data_file)
 
 
