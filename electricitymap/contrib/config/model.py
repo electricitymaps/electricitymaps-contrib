@@ -5,7 +5,6 @@ from pydantic import (
     BaseModel,
     Field,
     NonNegativeFloat,
-    NonNegativeInt,
     PositiveInt,
     confloat,
     root_validator,
@@ -42,20 +41,32 @@ class StrictBaseModelWithAlias(BaseModel):
         allow_population_by_field_name = True
 
 
+class ModeCapacity(StrictBaseModelWithAlias):
+    source: str | None = Field(None, alias="_source")
+    comment: str | None = Field(None, alias="_comment")
+    url: str | list[str] | None = Field(None, alias="_url")
+    datetime: date | datetime | None
+    value: NonNegativeFloat
+
+
 class Capacity(StrictBaseModel):
     # TODO: if zone.json used underscores for keys we didn't need the Field()
-    battery_storage: NonNegativeInt | None = Field(None, alias="battery storage")
-    biomass: NonNegativeInt | None
-    coal: NonNegativeInt | None
-    gas: NonNegativeInt | None
-    geothermal: NonNegativeInt | None
-    hydro_storage: NonNegativeInt | None = Field(None, alias="hydro storage")
-    hydro: NonNegativeInt | None
-    nuclear: NonNegativeInt | None
-    oil: NonNegativeInt | None
-    solar: NonNegativeInt | None
-    unknown: NonNegativeInt | None
-    wind: NonNegativeInt | None
+    battery_storage: (
+        ModeCapacity | list[ModeCapacity] | NonNegativeFloat
+    ) | None = Field(None, alias="battery storage")
+    biomass: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
+    coal: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
+    gas: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
+    geothermal: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
+    hydro_storage: (
+        ModeCapacity | list[ModeCapacity] | NonNegativeFloat
+    ) | None = Field(None, alias="hydro storage")
+    hydro: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
+    nuclear: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
+    oil: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
+    solar: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
+    unknown: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
+    wind: (ModeCapacity | list[ModeCapacity] | NonNegativeFloat) | None
 
 
 def _get_parser_folder(parser_key: str) -> str:
@@ -67,7 +78,7 @@ def _get_parser_folder(parser_key: str) -> str:
 
 
 class ParsersBaseModel(StrictBaseModel):
-    def get_function(self, type: str) -> Callable | None:
+    def get_function(self, data_type: str) -> Callable | None:
         """Lazy load parser functions.
 
         This requires the consumer to have install all parser dependencies.
@@ -75,10 +86,10 @@ class ParsersBaseModel(StrictBaseModel):
         Returns:
             Optional[Callable]: parser function
         """
-        function_str = getattr(self, type)
+        function_str = getattr(self, data_type)
 
         if function_str:
-            parser_folder = _get_parser_folder(type)
+            parser_folder = _get_parser_folder(data_type)
             return import_string(f"{parser_folder}.{function_str}")
 
 

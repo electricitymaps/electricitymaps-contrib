@@ -75,6 +75,18 @@
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"%s\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
   },
+  "estimation-badge": {
+    "partially-estimated": "Partiellement estimées",
+    "fully-estimated": "Estimées"
+  },
+  "estimation-card": {
+    "link": "En savoir plus sur nos modèles d'estimation",
+    "estimated_time_slicer_average": {
+      "title": "Les données sont momentanément estimées",
+      "pill": "Indisponible",
+      "body": "Le fournisseur de données ne publie momentanément aucune donnée pour cette zone. Les valeurs affichées sont estimées en fonction des données historiques et seront remplacées par les données consolidées dès qu'elles seront disponibles. Veuillez noter que les valeurs estimées peuvent être inexactes car elles ne tiennent pas compte d'événements météorologiques spécifiques en temps réel."
+    }
+  },
   "left-panel": {
     "zone-list-header-title": "Impact sur le climat par zone",
     "zone-list-header-subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
@@ -85,10 +97,9 @@
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "carbonintensity": {
       "hourly": "Intensité carbone des 24 dernières heures",
-      "default": "Intensité en carbone dans les derniers %1$s",
       "daily": "Intensité en carbone du dernier mois",
       "monthly": "Intensité carbone au cours de la dernière année",
-      "yearly": "Intensité carbone au cours des 5 dernières années"
+      "default": "Intensité en carbone dans les derniers %1$s"
     },
     "emissionsorigin": {
       "hourly": "Origine des émissions des 24 dernières heures",

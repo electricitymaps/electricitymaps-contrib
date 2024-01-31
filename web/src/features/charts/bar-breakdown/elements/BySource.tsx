@@ -1,3 +1,4 @@
+import Badge from 'components/Badge';
 import { useAtom } from 'jotai';
 import { TranslationFunction, useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
@@ -28,7 +29,13 @@ const getText = (
   return translations[period][dataType];
 };
 
-export default function BySource({ className }: { className?: string }) {
+export default function BySource({
+  className,
+  hasEstimationPill = false,
+}: {
+  className?: string;
+  hasEstimationPill?: boolean;
+}) {
   const { __ } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
@@ -38,6 +45,17 @@ export default function BySource({ className }: { className?: string }) {
   const text = getText(timeAverage, dataType, __);
 
   return (
-    <div className={`relative pb-2 pt-4 text-md font-bold ${className}`}>{text}</div>
+    <div
+      className={`relative flex flex-row justify-between pb-2 pt-4 text-md font-bold ${className}`}
+    >
+      {text}
+      {hasEstimationPill && (
+        <Badge
+          pillText={__('estimation-badge.fully-estimated')}
+          type="warning"
+          icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
+        />
+      )}
+    </div>
   );
 }

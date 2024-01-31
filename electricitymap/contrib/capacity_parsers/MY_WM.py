@@ -61,7 +61,7 @@ def fetch_production_capacity(
         filtered_data = data.groupby(["mode"])[["value"]].sum().reset_index()
 
         capacity_dict = {}
-        for idx, data in filtered_data.iterrows():
+        for _idx, data in filtered_data.iterrows():
             capacity_dict[data["mode"]] = {
                 "value": round(float(data["value"]), 0),
                 "source": "gso.org.my",

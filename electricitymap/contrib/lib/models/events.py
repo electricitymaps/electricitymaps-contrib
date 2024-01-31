@@ -41,15 +41,20 @@ class Mix(BaseModel, ABC):
         existing_value: float | None = getattr(self, mode)
         if existing_value is not None:
             value = 0 if value is None else value
-            self.__setattr__(
-                mode, _none_safe_round(existing_value + value)
-            )  # 6 decimal places gives us a precision of 1 W.
+            self.__setattr__(mode, existing_value + value)
         else:
-            self.__setattr__(mode, _none_safe_round(value))
+            self.__setattr__(mode, value)
 
     @classmethod
     def merge(cls, mixes: list["Mix"]) -> "Mix":
         raise NotImplementedError()
+
+    def __setattr__(self, name: str, value: float | None) -> None:
+        """
+        Overriding the setattr method to raise an error if the mode is unknown.
+        """
+        # 6 decimal places gives us a precision of 1 W.
+        super().__setattr__(name, _none_safe_round(value))
 
 
 class ProductionMix(Mix):
@@ -86,7 +91,7 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def dict(
+    def dict(  # noqa: A003
         self,
         *,
         include: set | dict | None = None,
@@ -471,6 +476,21 @@ class ProductionBreakdown(AggregatableEvent):
             if all(value is None for value in v.dict().values()):
                 return None
         return v
+
+    def get_value(self, mode: str) -> float | None:
+        """Returns the value of the provided mode this can be production or storage.
+        To retrieve the value of a storage mode, the mode should be suffixed with storage.
+        Ex: retrive hydro production: get_value("hydro")
+        Ex: retrive hydro storage: get_value("hydro storage")
+        """
+        if "storage" in mode:
+            if self.storage is None:
+                return None
+            # This naming is the same as the capacity naming in the config.
+            return getattr(self.storage, mode.split(" ")[0])
+        if self.production is None:
+            return None
+        return getattr(self.production, mode)
 
     @staticmethod
     def create(

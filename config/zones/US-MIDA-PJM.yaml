@@ -4,18 +4,54 @@ bounding_box:
   - - -73.39368
     - 43.00836
 capacity:
-  battery storage: 286.9
-  biomass: 2317
-  coal: 45841.2
-  gas: 102352.7
-  geothermal: 0
-  hydro: 3338.7
-  hydro storage: 5046.1
-  nuclear: 34466.6
-  oil: 5608.2
-  solar: 7590.7
-  unknown: 127.2
-  wind: 10777.2
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 316.1
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2140.3
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 41332.1
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 103431.3
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 3290.3
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 5046.1
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 34466.6
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 4990.7
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 8720.7
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 11.2
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 11168.6
 comment: Pjm Interconnection, Llc
 contributors:
   - systemcatch
@@ -46,17 +82,26 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 372.3153209954643
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 970.4739304
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 970.4739304
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 977.91
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 398.3043939
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 398.3043939
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 394.66
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -80,9 +125,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 372.3153209954643
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 751.5213327
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 751.5213327
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 970.02
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -107,18 +155,28 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 441.8625978766893
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 515.9462429
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 515.9462429
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 1049.3545804
+      - datetime: '2020-01-01'
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1049.3545804
+      - datetime: '2021-01-01'
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1056.79065
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 518.3043938999999
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 518.3043938999999
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 514.6600000000001
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -142,9 +200,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 441.8625978766893
     oil:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 995.5213327
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 995.5213327
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 1214.02
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -269,4 +330,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern

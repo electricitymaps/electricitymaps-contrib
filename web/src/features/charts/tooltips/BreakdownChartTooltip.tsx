@@ -60,6 +60,9 @@ export default function BreakdownChartTooltip({
     mixMode
   );
 
+  const { estimationMethod, stateDatetime } = zoneDetail;
+  const hasEstimationPill = estimationMethod != undefined;
+
   const getOriginTranslateKey = () => {
     if (isExchange) {
       if (contentData.isExport) {
@@ -79,11 +82,12 @@ export default function BreakdownChartTooltip({
   return (
     <BreakdownChartTooltipContent
       {...contentData}
-      datetime={new Date(zoneDetail.stateDatetime)}
+      datetime={new Date(stateDatetime)}
       isExchange={isExchange}
       selectedLayerKey={selectedLayerKey}
       originTranslateKey={getOriginTranslateKey()}
       timeAverage={timeAverage}
+      hasEstimationPill={hasEstimationPill}
     ></BreakdownChartTooltipContent>
   );
 }
@@ -105,6 +109,7 @@ interface BreakdownChartTooltipContentProperties {
   co2IntensitySource?: string;
   storage?: Maybe<number>;
   production?: Maybe<number>;
+  hasEstimationPill?: boolean;
 }
 
 export function BreakdownChartTooltipContent({
@@ -122,6 +127,7 @@ export function BreakdownChartTooltipContent({
   originTranslateKey,
   isExchange,
   selectedLayerKey,
+  hasEstimationPill,
 }: BreakdownChartTooltipContentProperties) {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
@@ -149,7 +155,7 @@ export function BreakdownChartTooltipContent({
     ? getZoneName(selectedLayerKey)
     : __(selectedLayerKey).charAt(0).toUpperCase() + __(selectedLayerKey).slice(1);
   return (
-    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]">
+    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl sm:w-[410px] dark:border dark:border-gray-700 dark:bg-gray-800">
       <AreaGraphToolTipHeader
         squareColor={
           isExchange
@@ -159,6 +165,7 @@ export function BreakdownChartTooltipContent({
         datetime={datetime}
         timeAverage={timeAverage}
         title={title}
+        hasEstimationPill={isExchange ? false : hasEstimationPill}
       />
       <div
         className="inline-flex flex-wrap items-center gap-x-1"

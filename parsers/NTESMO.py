@@ -5,12 +5,11 @@ https://edlenergy.com/project/pine-creek/
 https://territorygeneration.com.au/about-us/our-power-stations/
 """
 from collections.abc import Callable
-from datetime import datetime, time, timedelta
+from datetime import date, datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import TypedDict
 from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Session
@@ -23,8 +22,10 @@ AUSTRALIA_TZ = ZoneInfo("Australia/Darwin")
 
 INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
 DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
-# Data is being published after 5 days at the moment.
-DELAY = 24 * 5
+LATEST_URL = "https://ntesmo.com.au/data/daily-trading"
+DATA_DOC_PREFIX = "https://ntesmo.com.au/__data/assets/excel_doc/"
+# Data is being published after 2 days at the moment.
+DELAY = 24 * 2
 
 
 class Generator(TypedDict):
@@ -69,8 +70,22 @@ retry_strategy = Retry(
     status_forcelist=[500, 502, 503, 504],
 )
 
+_DT_CLASS = "smp-tiles-article__title"
 
-def construct_year_index(year: int, session: Session) -> dict[int, dict[int, str]]:
+
+def construct_latest_index(session: Session) -> dict[date, str]:
+    """Browse all links from the latest daily reports page and index them."""
+    index = {}
+    latest_index_page = session.get(LATEST_URL)
+    soup = BeautifulSoup(latest_index_page.text, "html.parser")
+    for a in soup.find_all("a", href=True):
+        if a["href"].startswith(DATA_DOC_PREFIX):
+            dt = pd.to_datetime(a.find("div", {"class": _DT_CLASS}).text)
+            index[dt.date()] = a["href"]
+    return index
+
+
+def construct_year_index(year: int, session: Session) -> dict[date, str]:
     """Browse all links on a yearly historical daily data and index them."""
     index = {}
     # For the current we need to go to the default page.
@@ -79,14 +94,10 @@ def construct_year_index(year: int, session: Session) -> dict[int, dict[int, str
         url = INDEX_URL.format(year)
     year_index_page = session.get(url)
     soup = BeautifulSoup(year_index_page.text, "html.parser")
-    for month in range(1, 13):
-        index[month] = {}
     for a in soup.find_all("a", href=True):
-        if a["href"].startswith("https://ntesmo.com.au/__data/assets/excel_doc/"):
-            date = pd.to_datetime(
-                a.find("div", {"class": "smp-tiles-article__title"}).text
-            )
-            index[date.month][date.day] = a["href"]
+        if a["href"].startswith(DATA_DOC_PREFIX):
+            dt = pd.to_datetime(a.find("div", {"class": _DT_CLASS}).text)
+            index[dt.date()] = a["href"]
     return index
 
 
@@ -116,16 +127,20 @@ def get_data(
     assert target_datetime is not None, ParserException(
         "NTESMO.py", "Target datetime cannot be None."
     )
-    index = construct_year_index(target_datetime.year, session)
+    target_date = target_datetime.date()
+    latest_links = construct_latest_index(session)
+    link = latest_links.get(target_date, None)
+    if not link:
+        historical_links = construct_year_index(target_datetime.year, session)
+        link = historical_links.get(target_date, None)
+
     try:
-        data_file = get_historical_daily_data(
-            index[target_datetime.month][target_datetime.day], session
-        )
-    except KeyError:
+        data_file = get_historical_daily_data(link, session)
+    except KeyError as e:
         raise ParserException(
             "NTESMO.py",
             f"Cannot find file on the index page for date {target_datetime}",
-        )
+        ) from e
     return extraction_func(data_file)
 
 
@@ -208,9 +223,11 @@ def parse_production_mix(
 def fetch_consumption(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
     return parse_consumption(consumption, target_datetime, logger)
 
@@ -220,9 +237,11 @@ def fetch_consumption(
 def fetch_price(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
     return parse_consumption(consumption, target_datetime, logger, price=True)
 
@@ -232,9 +251,11 @@ def fetch_price(
 def fetch_production_mix(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
     production_mix = get_data(session, target_datetime, extract_production_data, logger)
     return parse_production_mix(production_mix, logger)
 

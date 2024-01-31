@@ -4,18 +4,54 @@ bounding_box:
   - - -88.5987499999999
     - 41.779649115
 capacity:
-  battery storage: 0
-  biomass: 4
-  coal: 2481.7
-  gas: 3056.5
-  geothermal: 0
-  hydro: 30
-  hydro storage: 31
-  nuclear: 0
-  oil: 152.3
-  solar: 2.5
-  unknown: 0
-  wind: 941.4
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 4.0
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2481.7
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 3044.6
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 30.0
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 31.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 44.3
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 4.0
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 941.4
 comment: Associated Electric Cooperative, Inc.
 contributors:
   - systemcatch
@@ -52,13 +88,19 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 617.5607015534879
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 950.6306844
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 950.6306844
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 933.86
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 400.7407839
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 400.7407839
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 408.74
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -81,6 +123,10 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 617.5607015534879
+    oil:
+      datetime: '2021-01-01'
+      source: eGrid 2021
+      value: 664.14
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -105,14 +151,21 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 670.3401023258247
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 988.4513953999999
+      - datetime: '2020-01-01'
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 988.4513953999999
+      - datetime: '2021-01-01'
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 971.680711
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 520.7407839
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 520.7407839
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 528.74
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -136,9 +189,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 670.3401023258247
     oil:
-      datetime: '2014-01-01'
-      source: IPCC 2014; EIA 2020/BEIS 2021
-      value: 650.0
+      - datetime: '2014-01-01'
+        source: IPCC 2014; EIA 2020/BEIS 2021
+        value: 650.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 908.14
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -262,4 +318,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Central

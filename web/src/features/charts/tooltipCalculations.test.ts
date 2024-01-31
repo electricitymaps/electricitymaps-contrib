@@ -1,5 +1,6 @@
 import { ZoneDetail } from 'types';
 import { Mode } from 'utils/constants';
+import { expect } from 'vitest';
 
 import { getExchangeTooltipData, getProductionTooltipData } from './tooltipCalculations';
 
@@ -196,8 +197,8 @@ describe('getProductionTooltipData', () => {
       false,
       Mode.PRODUCTION
     );
-    expect(actual.usage).toEqual(0);
-    expect(actual.emissions).toEqual(0);
+    expect(actual.usage).to.eq(0);
+    expect(actual.emissions).to.eq(0);
   });
 
   it('returns nan usage for null production', () => {
@@ -207,7 +208,7 @@ describe('getProductionTooltipData', () => {
       false,
       Mode.PRODUCTION
     );
-    expect(actual.usage).toEqual(Number.NaN);
+    expect(actual.usage).to.be.NaN;
   });
 
   it('handles data with all production modes missing', () => {
@@ -251,7 +252,7 @@ describe('getProductionTooltipData', () => {
       Mode.PRODUCTION
     );
 
-    expect(actual.usage).toEqual(41_161);
+    expect(actual.usage).to.eq(41_161);
   });
 });
 

@@ -17,15 +17,17 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
   }
 
   const totalEmissions = getTotalEmissionsAvailable(zoneDetail, mixMode);
-  const { stateDatetime } = zoneDetail;
+  const { stateDatetime, estimationMethod } = zoneDetail;
+  const hasEstimationPill = estimationMethod != undefined;
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[350px]">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[410px] dark:border dark:border-gray-700 dark:bg-gray-800">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
         squareColor="#a5292a"
         title={__('country-panel.emissions')}
+        hasEstimationPill={hasEstimationPill}
       />
       <p className="flex justify-center text-base">
         <b className="mr-1">{formatCo2(totalEmissions)}</b> {__('ofCO2eq')}

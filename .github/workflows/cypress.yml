@@ -24,13 +24,13 @@ jobs:
         working-directory: ./web
       - name: Cache Cypress binary
         id: cache-cypress
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -52,7 +52,7 @@ jobs:
           # to run component tests we need to use "component: true"
           component: true
       - name: Upload screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: component-screenshots
@@ -74,13 +74,13 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Cache Cypress binary
         id: cache-cypress
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -103,7 +103,7 @@ jobs:
           start: pnpm run preview
           config: baseUrl=http://127.0.0.1:4173/
       - name: Upload screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: e2e-screenshots

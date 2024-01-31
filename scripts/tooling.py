@@ -19,7 +19,7 @@ def _run(cmd: str):
         sys.exit(r)
 
 
-def format():
+def format():  # noqa: A001
     _run("ruff check . --fix")
     _run("ruff format .")
 

@@ -119,7 +119,7 @@ def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
     except Exception as e:
         raise ValueError(
             f"Data for zone {zone_key} could not be retrieved from ENTSOE", e
-        )
+        ) from e
 
     return result
 
@@ -148,7 +148,7 @@ def main():
             sys.exit(1)
         data = parse_from_csv(data_file)
     else:
-        token = args.api_token or get_token("ENTSOE_TOKEN").split(",")[0]
+        token = args.api_token or get_token("ENTSOE_TOKEN")
         if token is None:
             print(
                 "ERROR: If no CSV file is given, the option --api-token must be provided",

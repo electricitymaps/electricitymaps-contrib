@@ -9,7 +9,7 @@ import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
 import mapboxgl from 'mapbox-gl';
 import maplibregl from 'maplibre-gl';
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Map, MapRef } from 'react-map-gl';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
@@ -59,6 +59,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
@@ -73,8 +74,32 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   // To keep the stable and prevent excessive rerendering.
   const { isLoading, isSuccess, isError, data } = useGetState();
   const { worldGeometries } = useGetGeometries();
-  const mapReference = useRef<MapRef>(null);
-  const map = mapReference.current?.getMap();
+  const [mapReference, setMapReference] = useState<MapRef | null>(null);
+  const map = mapReference?.getMap();
+
+  const onMapReferenceChange = useCallback((reference: MapRef) => {
+    setMapReference(reference);
+  }, []);
+
+  useEffect(() => {
+    const setSourceLoadedForMap = () => {
+      setSourceLoaded(
+        Boolean(
+          map &&
+            map.getSource(ZONE_SOURCE) !== undefined &&
+            map.getSource('states') !== undefined &&
+            map.isSourceLoaded('states')
+        )
+      );
+    };
+    const onSourceData = () => {
+      setSourceLoadedForMap();
+    };
+    map?.on('sourcedata', onSourceData);
+    return () => {
+      map?.off('sourcedata', onSourceData);
+    };
+  }, [map]);
 
   useEffect(() => {
     // This effect colors the zones based on the co2 intensity
@@ -83,11 +108,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     map?.touchZoomRotate.disableRotation();
     map?.touchPitch.disable();
-    const isSourceLoaded =
-      map &&
-      map.getSource(ZONE_SOURCE) !== undefined &&
-      map.getSource('states') !== undefined &&
-      map.isSourceLoaded('states');
 
     if (!isSourceLoaded || isLoadingMap) {
       return;
@@ -120,11 +140,13 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       }
     }
   }, [
+    map,
     data,
     getCo2colorScale,
     selectedDatetime,
     mixMode,
     isLoadingMap,
+    isSourceLoaded,
     spatialAggregate,
     isSuccess,
   ]);
@@ -138,7 +160,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
       setIsFirstLoad(false);
     }
-  }, [isSuccess]);
+  }, [map, isSuccess]);
 
   useEffect(() => {
     // Run when the selected zone changes
@@ -151,26 +173,24 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
-    setSelectedZoneId(zoneId);
-    if (map && zoneId) {
+    const pathZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    setSelectedZoneId(pathZoneId);
+    if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(
-        (feature) => feature.properties.zoneId === zoneId
+        (feature) => feature?.properties?.zoneId === pathZoneId
       );
       // if no feature matches, it means that the selected zone is not in current spatial resolution.
       // We cannot include geometries in dependencies, as we don't want to flyTo when user switches
       // between spatial resolutions. Therefore we find an approximate feature based on the zoneId.
-      if (!feature) {
-        return;
+      if (feature) {
+        const center = feature.properties.center;
+        map.setFeatureState({ source: ZONE_SOURCE, id: pathZoneId }, { selected: true });
+        setLeftPanelOpen(true);
+        const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
+        map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
       }
-
-      const center = feature.properties.center;
-      map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
-      setLeftPanelOpen(true);
-      const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
-      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
-  }, [location.pathname, isLoadingMap]);
+  }, [map, location.pathname, isLoadingMap]);
 
   const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
     if (!map || !event.features) {
@@ -271,8 +291,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   const onLoad = () => {
     setIsLoadingMap(false);
-    if (onMapLoad && mapReference.current) {
-      onMapLoad(mapReference.current.getMap());
+    if (onMapLoad && mapReference) {
+      onMapLoad(mapReference.getMap());
     }
   };
 
@@ -300,7 +320,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   return (
     <Map
-      ref={mapReference}
+      ref={onMapReferenceChange}
       initialViewState={{
         latitude: 50.905,
         longitude: 6.528,
