@@ -51,28 +51,7 @@
     "search": "エリアを検索"
   },
   "country-history": {
-    "Getdata": "過去と予想のデータを取得する",
-    "carbonintensity": {
-      "hourly": "最近の24時間の炭素強度"
-    },
-    "emissionsorigin": {
-      "hourly": "過去24時間の排出源"
-    },
-    "emissionsproduction": {
-      "hourly": "過去24時間に生成された排出ガス"
-    },
-    "electricityorigin": {
-      "hourly": "最近の24時間の電力源"
-    },
-    "electricityproduction": {
-      "hourly": "最近の24時間の発電"
-    },
-    "electricityprices": {
-      "hourly": "最近の24時間の電力価格"
-    },
-    "emissions": {
-      "hourly": "過去24時間の排出"
-    }
+    "Getdata": "過去と予想のデータを取得する"
   },
   "footer": {
     "foundbugs": "バグの発見? ご報告ください",

@@ -89,34 +89,7 @@
     "zone-list-header-subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
     "search": "Buscar zonas"
   },
-  "country-history": {
-    "carbonintensity": {
-      "hourly": "Intensidad de carbono en las últimas 24 horas",
-      "daily": "Intensidad de carbono en el último mes",
-      "monthly": "Intensidad de carbono en el último año",
-      "default": "Intensidad de carbono en los últimos %1$s"
-    },
-    "Getdata": "Obtener datos históricos por horas y en tiempo real + pronóstico con la API de Electricity Maps",
-    "not-enough-data": "No hay datos suficientes disponibles para mostrar el gráfico",
-    "emissionsorigin": {
-      "hourly": "Origen de las emisiones en las últimas 24 horas"
-    },
-    "emissionsproduction": {
-      "hourly": "Emisiones producidas en las últimas 24 horas"
-    },
-    "electricityorigin": {
-      "hourly": "Origen de la electricidad en las últimas 24 horas"
-    },
-    "electricityproduction": {
-      "hourly": "Producción de electricidad en las últimas 24 horas"
-    },
-    "electricityprices": {
-      "hourly": "Precios de la electricidad en las últimas 24 horas"
-    },
-    "emissions": {
-      "hourly": "Emisiones en las últimas 24 horas"
-    }
-  },
+
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
     "faq-text": "¿Alguna duda? Consulta nuestras",

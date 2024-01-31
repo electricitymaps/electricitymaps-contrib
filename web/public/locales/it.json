@@ -82,51 +82,6 @@
     "search": "Cerca un'area..."
   },
   "country-history": {
-    "carbonintensity": {
-      "hourly": "Intensità di carbonio nelle ultime 24 ore",
-      "daily": "Intensità di carbonio nell'ultimo mese",
-      "monthly": "Intensità di carbonio nell'ultimo anno",
-      "default": "Intensità di carbonio nell'ultimo %1$s"
-    },
-    "emissions": {
-      "default": "Emissioni nell'ultimo %1$s",
-      "hourly": "Emissioni nelle ultime 24 ore",
-      "daily": "Emissioni nell'ultimo mese",
-      "monthly": "Emissioni nell'ultimo anno",
-      "yearly": "Emissioni negli ultimi 5 anni"
-    },
-    "emissionsorigin": {
-      "default": "Origine delle emissioni nell' ultimo %1$s",
-      "hourly": "Origine delle emissioni nelle ultime 24 ore",
-      "daily": "Origine delle emissioni nell'ultimo mese",
-      "monthly": "Origine delle emissioni nell'ultimo anno",
-      "yearly": "Origine delle emissioni negli ultimi 5 anni"
-    },
-    "emissionsproduction": {
-      "default": "Emissioni prodotte nell' ultimo %1$s",
-      "hourly": "Emissioni prodotte nelle ultime 24 ore",
-      "daily": "Emissioni prodotte nell'ultimo mese",
-      "monthly": "Emissioni prodotte nell'ultimo anno",
-      "yearly": "Emissioni prodotte negli ultimi 5 anni"
-    },
-    "electricityorigin": {
-      "hourly": "Origine dell'elettricità nelle ultime 24 ore",
-      "daily": "Origine dell'elettricità nell'ultimo mese",
-      "monthly": "Origine dell'elettricità nell'ultimo anno",
-      "default": "Origine dell'elettricità nell' ultimo %1$s"
-    },
-    "electricityproduction": {
-      "hourly": "Produzione elettrica nelle ultime 24 ore",
-      "daily": "Produzione elettrica nell'ultimo mese",
-      "monthly": "Produzione elettrica nell'ultimo anno",
-      "default": "Produzione elettrica nell' ultimo %1$s"
-    },
-    "electricityprices": {
-      "hourly": "Prezzi dell'elettricità nelle ultime 24 ore",
-      "daily": "Prezzi dell'elettricità nell'ultimo mese",
-      "monthly": "Prezzi dell'elettricità nell'ultimo anno",
-      "default": "Prezzi dell'elettricità nell' ultimo %1$s"
-    },
     "Getdata": "Ottieni dati orari storici, in tempo reale e previsioni con le API di Electricity Maps"
   },
   "footer": {

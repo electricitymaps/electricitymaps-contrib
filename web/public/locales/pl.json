@@ -58,34 +58,7 @@
     "title": "Wyświetl dane historyczne"
   },
   "country-history": {
-    "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API Electricity Maps",
-    "carbonintensity": {
-      "hourly": "Emisja CO₂ w ciągu ostatnich 24 godzin",
-      "daily": "Emisja CO₂ w ciągu ostatnich 30 dni",
-      "monthly": "Emisja CO₂ w ciągu ostatnich 12 miesięcy",
-      "yearly": "Emisja CO₂ w ciągu ostatnich 5 lat"
-    },
-    "emissionsorigin": {
-      "hourly": "Źródła emisji CO₂ w ciągu ostatnich 24 godzin",
-      "daily": "Źródła emisji CO₂ w ciągu ostatnich 30 dni",
-      "monthly": "Źródła emisji CO₂ w ciągu ostatnich 12 miesięcy",
-      "yearly": "Źródła emisji CO₂ w ciągu ostatnich 5 lat"
-    },
-    "emissionsproduction": {
-      "hourly": "Emisja wyprodukowana w ciągu ostatnich 24 godzin"
-    },
-    "electricityorigin": {
-      "hourly": "Źródła energii elektrycznej w ciągu ostatnich 24 godzin"
-    },
-    "electricityproduction": {
-      "hourly": "Energia elektryczna wyprodukowana w ciągu ostatnich 24 godzin"
-    },
-    "electricityprices": {
-      "hourly": "Ceny energii elektrycznej w ciągu ostatnich 24 godzin"
-    },
-    "emissions": {
-      "hourly": "Emisja w ciągu ostatnich 24 godzin"
-    }
+    "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API Electricity Maps"
   },
   "footer": {
     "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",

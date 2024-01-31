@@ -85,54 +85,6 @@
     "search": "Sök efter region"
   },
   "country-history": {
-    "carbonintensity": {
-      "hourly": "Kolintensitet de senaste 24 timmarna",
-      "daily": "Kolintensitet den senaste månaden",
-      "monthly": "Kolintensitet det senaste året",
-      "default": "Kolintensitet under de senaste %1$s"
-    },
-    "emissions": {
-      "hourly": "Utsläpp de senaste 24 timmarna",
-      "daily": "Utsläpp den senaste månaden",
-      "monthly": "Utsläpp det senaste året",
-      "default": "Utsläpp de senaste %1$s"
-    },
-    "emissionsorigin": {
-      "hourly": "Källa för utsläpp de senaste 24 timmarna",
-      "daily": "Källa för utsläpp den senaste månaden",
-      "monthly": "Källa för utsläpp det senaste året",
-      "default": "Källa för utsläpp de senaste %1$s"
-    },
-    "emissionsproduction": {
-      "hourly": "Utsläpp producerad de senaste 24 timmarna",
-      "daily": "Utsläpp producerad den senaste månaden",
-      "monthly": "Utsläpp producerad det senaste året",
-      "default": "Utsläpp producerad de senaste %1$s"
-    },
-    "electricityorigin": {
-      "hourly": "Källa för el de senaste 24 timmarna",
-      "daily": "Källa för el den senaste månaden",
-      "monthly": "Källa för el det senaste året",
-      "default": "Källa för el de senaste %1$s"
-    },
-    "electricityproduction": {
-      "hourly": "El producerad de senaste 24 timmarna",
-      "daily": "El producerad den senaste månaden",
-      "monthly": "El producerad det senaste året",
-      "default": "El producerad de senaste %1$s"
-    },
-    "electricityprices": {
-      "hourly": "Elpriser de senaste 24 timmarna",
-      "daily": "Elpriser den senaste månaden",
-      "monthly": "Elpriser det senaste året",
-      "default": "Elpriser de senaste %1$s"
-    },
-    "netExchange": {
-      "hourly": "Nettoöverföring de senaste 24 timmarna",
-      "daily": "Nettoöverföring den senaste månaden",
-      "monthly": "Nettoöverföring det senaste året",
-      "default": "Nettoöverföring de senaste %1$s"
-    },
     "Getdata": "Hämta timvis historisk data, aktuell data och prognosdata med Electricity Maps API",
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
   },

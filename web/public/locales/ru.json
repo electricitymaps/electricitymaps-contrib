@@ -48,25 +48,7 @@
     "search": "Найти зону"
   },
   "country-history": {
-    "Getdata": "Доступ к историческим данным и прогнозам через Electricity Maps API",
-    "carbonintensity": {
-      "hourly": "Интенсивность выбросов CO₂ за последние 24 часа"
-    },
-    "emissionsorigin": {
-      "hourly": "Источники выбросов за последние 24 часа"
-    },
-    "emissionsproduction": {
-      "hourly": "Объем выбросов за последние 24 часа"
-    },
-    "electricityorigin": {
-      "hourly": "Источники электричества за последние 24 часа"
-    },
-    "electricityproduction": {
-      "hourly": "Объем производства электричества за последние 24 часа"
-    },
-    "electricityprices": {
-      "hourly": "Цена электричества за последние 24 часа"
-    }
+    "Getdata": "Доступ к историческим данным и прогнозам через Electricity Maps API"
   },
   "footer": {
     "foundbugs": "Вы обнаружили ошибку или у Вас есть идея? Сообщите нам о них",

@@ -101,37 +101,7 @@
   },
   "country-history": {
     "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
-    "not-enough-data": "Für die Diagrammanzeige sind nicht genügend Daten verfügbar",
-    "carbonintensity": {
-      "hourly": "Spezifische CO₂-Emissionen in den letzten 24 Stunden",
-      "daily": "Spezifische CO₂-Emissionen im letzten Monat",
-      "monthly": "Spezifische CO₂-Emissionen im letzten Jahr",
-      "default": "Spezifische CO₂-Emissionen in den letzten %1$s"
-    },
-    "emissionsorigin": {
-      "default": "Ursprung der Emissionen in den letzten %1$s",
-      "hourly": "Ursprung der Emissionen in den letzten 24 Stunden"
-    },
-    "emissionsproduction": {
-      "default": "Erzeugte Emissionen in den letzten %1$s",
-      "hourly": "Erzeugte Emissionen in den letzten 24 Stunden"
-    },
-    "electricityorigin": {
-      "default": "Ursprung der Elektrizität in den letzten %1$s",
-      "hourly": "Ursprung der Elektrizität in den letzten 24 Stunden"
-    },
-    "electricityproduction": {
-      "default": "Erzeugte Elektrizität in den letzten %1$s",
-      "hourly": "Erzeugte Elektrizität in den letzten 24 Stunden"
-    },
-    "electricityprices": {
-      "default": "Strompreis in den letzten %1$s",
-      "hourly": "Strompreis in den letzten 24 Stunden"
-    },
-    "emissions": {
-      "default": "Emissionen in den letzten %1$s",
-      "hourly": "Emissionen in den letzten 24 Stunden"
-    }
+    "not-enough-data": "Für die Diagrammanzeige sind nicht genügend Daten verfügbar"
   },
   "footer": {
     "foundbugs": "Hast du Bugs gefunden? Hast du Ideen zur Verbesserung der Karte?",
