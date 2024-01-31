@@ -373,7 +373,6 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         "required": [
             "coal",
             "gas",
-            "nuclear",
             "wind",
             "biomass",
             "hydro",
