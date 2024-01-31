@@ -56,16 +56,16 @@ def get_capacity_data_with_source(
 
 def get_capacity_value_with_datetime(
     mode_capacity: list | dict, dt: datetime
-) -> tuple(float, str) | float | None:
+) -> tuple[float, str] | float | None:
     if isinstance(mode_capacity, dict):
-        return mode_capacity["value"]
+        return (mode_capacity["value"], mode_capacity.get("source", "unknown source"))
     elif isinstance(mode_capacity, list):
-        capacity_tuples = [(d["datetime"], d["value"], d["source"]) for d in mode_capacity]
+        capacity_tuples = [(d["datetime"], d["value"], d.get("source", "unknown source")) for d in mode_capacity]
 
         if dt.isoformat() <= min(capacity_tuples)[0]:
             return (min(capacity_tuples)[1], min(capacity_tuples)[2])
         else:
             # valid datetime is the max datetime that is lower than the given datetime
             # In other words, it is the most recent value that is valid for the given dt
-            max_tuple = max([(d, v) for d, v in capacity_tuples if d <= dt.isoformat()])
+            max_tuple = max([(d, v, s) for d, v,s in capacity_tuples if d <= dt.isoformat()])
             return (max_tuple[1], max_tuple[2])
