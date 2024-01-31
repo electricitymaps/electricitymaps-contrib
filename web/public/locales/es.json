@@ -76,7 +76,7 @@
   "time-controller": {
     "title": "Mostrar datos del pasado",
     "daily": "diario",
-    "hourly": "cada hora",
+    "hourly": "horario",
     "monthly": "mensual",
     "yearly": "anual"
   },
