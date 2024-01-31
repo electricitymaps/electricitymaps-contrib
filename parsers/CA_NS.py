@@ -132,17 +132,25 @@ def fetch_exchange(
     soup = BeautifulSoup(session.get(EXCHANGE_URL).text, "html.parser")
 
     # Extract the timestamp from the table header.
-    timestamp = datetime.strptime(
-        soup.find(string="Current System Conditions").find_next("td").em.i.string,
-        "%d-%b-%y %H:%M:%S",
-    ).replace(tzinfo=ZoneInfo("America/Halifax"))
+    try:
+        timestamp = datetime.strptime(
+            soup.find(string="Current System Conditions").find_next("td").em.i.string,
+            "%d-%b-%y %H:%M:%S",
+        ).replace(tzinfo=ZoneInfo("America/Halifax"))
+    except (AttributeError, TypeError, ValueError):
+        logger.error("unable to extract timestamp (error: {error})")
+        return []
 
     # Choose the appropriate exchange figure for the requested zone pair.
-    exchange = (
-        -float(soup.find(string="NS Export ").find_next("td").string)
-        if sorted_zone_keys == ZoneKey("CA-NB->CA-NS")
-        else float(soup.find(string="Maritime Link Import ").find_next("td").string)
-    )
+    try:
+        exchange = (
+            -float(soup.find(string="NS Export ").find_next("td").string)
+            if sorted_zone_keys == ZoneKey("CA-NB->CA-NS")
+            else float(soup.find(string="Maritime Link Import ").find_next("td").string)
+        )
+    except (AttributeError, TypeError):
+        logger.warning("unable to extract exchange data (error: {error})")
+        exchange = None
 
     exchanges = ExchangeList(logger)
     exchanges.append(
@@ -161,6 +169,6 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     pprint(fetch_production())
     print('fetch_exchange("CA-NS", "CA-NB") ->')
-    pprint(fetch_exchange("CA-NS", "CA-NB"))
+    pprint(fetch_exchange(ZoneKey("CA-NS"), ZoneKey("CA-NB")))
     print('fetch_exchange("CA-NL-NF", "CA-NS") ->')
-    pprint(fetch_exchange("CA-NL-NF", "CA-NS"))
+    pprint(fetch_exchange(ZoneKey("CA-NL-NF"), ZoneKey("CA-NS")))
