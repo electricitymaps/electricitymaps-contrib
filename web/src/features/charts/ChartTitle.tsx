@@ -18,7 +18,6 @@ export function ChartTitle({
 }: Props) {
   const { __ } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
-  console.log('timeAverage', timeAverage);
   /*
   Use local for timeAverage if exists, otherwise use local default if exists. If no translation exists, use english
   */
