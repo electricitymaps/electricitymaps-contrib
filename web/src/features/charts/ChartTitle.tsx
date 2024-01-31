@@ -2,7 +2,6 @@
 import { useAtom } from 'jotai';
 import { HiOutlineArrowDownTray } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
-import { formatTimeRange } from 'utils/formatting';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type Props = {
@@ -11,28 +10,15 @@ type Props = {
 };
 
 export function ChartTitle({ translationKey, hasLink = true }: Props) {
-  const { __, i18n } = useTranslation();
+  const { __ } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
-
-  const localExists = i18n.exists(`${translationKey}.${timeAverage}`, {
-    fallbackLng: i18n.language,
-  });
-  const localDefaultExists = i18n.exists(`${translationKey}.default`, {
-    fallbackLng: i18n.language,
-  });
+  console.log('timeAverage', timeAverage);
   /*
   Use local for timeAverage if exists, otherwise use local default if exists. If no translation exists, use english
   */
   return (
     <>
-      <h3 className="pt-4 text-md font-bold">
-        {localExists
-          ? __(`${translationKey}.${timeAverage}`)
-          : __(
-              `${translationKey}.default`,
-              formatTimeRange(localDefaultExists ? i18n.language : 'en', timeAverage)
-            )}
-      </h3>
+      <h3 className="pt-4 text-md font-bold">{__(`${translationKey}.${timeAverage}`)}</h3>
       {hasLink && (
         <div className="flex flex-row items-center pb-2 text-center text-[0.7rem]">
           <HiOutlineArrowDownTray className="min-w-[12px]" size={12} />
