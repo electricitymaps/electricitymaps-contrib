@@ -56,10 +56,9 @@ def update_source(source: str, target_datetime: datetime, session: Session) -> N
     """Generate capacity config and update the zone config yaml for all zones included in source"""
     if source not in CAPACITY_PARSER_SOURCE_TO_ZONES:
         raise ValueError(f"No capacity parser developed for {source}")
-    parser = getattr(
-        importlib.import_module(f"electricitymap.contrib.capacity_parsers.{source}"),
-        "fetch_production_capacity_for_all_zones",
-    )
+    parser = importlib.import_module(
+        f"electricitymap.contrib.capacity_parsers.{source}"
+    ).fetch_production_capacity_for_all_zones
     source_capacity = parser(target_datetime=target_datetime, session=session)
 
     for zone in source_capacity:

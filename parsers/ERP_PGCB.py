@@ -51,11 +51,11 @@ def table_entry_to_float(entry: str):
         return None
     try:
         return float(entry)
-    except ValueError:
+    except ValueError as e:
         raise ParserException(
             parser="BD.py",
             message=(f'Failed to parse entry: "{entry}" to float in table.'),
-        )
+        ) from e
 
 
 def parse_table_body(table_body: Tag) -> list[dict]:
@@ -140,7 +140,8 @@ def query(
         target_dt_str = target_datetime_bd.strftime("%d-%m-%Y")
         target_url = HISTORICAL_URL + target_dt_str
 
-    target_response: Response = session.get(target_url)
+    target_response: Response = session.get(target_url, verify=False)
+    # SSL verification is disabled because the server's certificate is expired.
 
     if not target_response.ok:
         raise ParserException(

@@ -75,6 +75,10 @@
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"%s\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
   },
+  "estimation-badge": {
+    "partially-estimated": "Partiellement estimées",
+    "fully-estimated": "Estimées"
+  },
   "estimation-card": {
     "link": "En savoir plus sur nos modèles d'estimation",
     "estimated_time_slicer_average": {

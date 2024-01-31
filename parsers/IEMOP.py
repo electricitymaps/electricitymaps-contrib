@@ -501,11 +501,11 @@ def get_all_market_reports_items(
             message=f"No reports available to fetch {kind} data",
         )
     datetime_to_items = {}
-    for id, items in id_to_items.items():
+    for report_id, items in id_to_items.items():
         market_reports_item = MarketReportsItem(
             datetime.strptime(items["date"], "%d %B %Y %H:%M"),
             items["filename"],
-            KIND_TO_URL[kind] + f"?md_file={id}",
+            KIND_TO_URL[kind] + f"?md_file={report_id}",
         )
         datetime_to_items[market_reports_item.datetime] = market_reports_item
     logger.info(

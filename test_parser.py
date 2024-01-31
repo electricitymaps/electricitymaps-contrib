@@ -81,10 +81,10 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
 
     try:
         dts = [e["datetime"] for e in res_list]
-    except KeyError:
+    except KeyError as error:
         raise ValueError(
             f"Parser output lacks `datetime` key for at least some of the output. Full output: \n\n{res}\n"
-        )
+        ) from error
 
     assert all(
         [type(e["datetime"]) is datetime for e in res_list]
