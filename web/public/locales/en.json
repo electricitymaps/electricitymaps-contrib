@@ -166,10 +166,10 @@
       "yearly": "Yearly carbon emissions"
     },
     "emissionsorigin": {
-      "hourly": "Hourly origin of emissions",
-      "daily": "Daily origin of emissions",
-      "monthly": "Monthly origin of emissions",
-      "yearly": "Yearly origin of emissions"
+      "hourly": "Hourly carbon emission origin",
+      "daily": "Daily carbon emission origin",
+      "monthly": "Monthly carbon emission origin",
+      "yearly": "Yearly carbon emission origin"
     },
     "emissionsproduction": {
       "hourly": "Hourly production emissions",
