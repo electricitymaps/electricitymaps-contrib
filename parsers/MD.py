@@ -358,9 +358,9 @@ def fetch_exchange(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    def try_print(callable: Callable, *args, **kwargs):
+    def try_print(function: Callable, *args, **kwargs):
         try:
-            result = callable(*args, **kwargs)
+            result = function(*args, **kwargs)
             try:
                 print(f"[{result[0]}, ... ({len(result)} more elements)]")
             except Exception:

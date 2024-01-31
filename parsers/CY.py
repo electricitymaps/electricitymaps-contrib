@@ -61,7 +61,7 @@ class CyprusParser:
                 "storage": {},
                 "source": "tsoc.org.cy",
             }
-            for col, val in zip(columns, values):
+            for col, val in zip(columns, values, strict=True):
                 if col == "Timestamp":
                     datum["datetime"] = (
                         arrow.get(val).replace(tzinfo="Asia/Nicosia").datetime

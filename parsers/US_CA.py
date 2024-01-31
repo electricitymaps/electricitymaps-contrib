@@ -96,7 +96,7 @@ def fetch_production(
     df.columns = [col.lower() for col in df.columns]
 
     all_data_points = ProductionBreakdownList(logger)
-    for index, row in df.iterrows():
+    for _index, row in df.iterrows():
         production_mix = ProductionMix()
         storage_mix = StorageMix()
         row_datetime = target_datetime.replace(

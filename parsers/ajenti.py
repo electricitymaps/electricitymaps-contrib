@@ -150,8 +150,8 @@ def fetch_production(
             ZONE_PARAMS[zone_key]["tz"],
             ZONE_PARAMS[zone_key]["source"],
         )
-    except KeyError:
-        raise KeyError("The zone " + zone_key + " isn't implemented")
+    except KeyError as e:
+        raise KeyError("The zone " + zone_key + " isn't implemented") from e
 
     payload = SignalR("https://data.ajenti.com.au/live/signalr").get_value(
         hub, dashboard
