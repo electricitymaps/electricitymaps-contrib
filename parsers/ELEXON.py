@@ -17,16 +17,24 @@ from logging import Logger, getLogger
 
 import arrow
 import pandas as pd
-from requests import Session
+from requests import Response, Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 from parsers.lib.utils import get_token
 from parsers.lib.validation import validate
 
 ELEXON_ENDPOINT = "https://api.bmreports.com/BMRS/{}/v1"
-
+ELEXON_URLS = {"production":"https://data.elexon.co.uk/bmrs/api/v1/datasets/AGPT/stream",
+               "exchange": "https://data.elexon.co.uk/bmrs/api/v1/generation/outturn/interconnectors"}
+ELEXON_SOURCE = "elexon.co.uk"
 ESO_NATIONAL_GRID_ENDPOINT = (
     "https://api.nationalgrideso.com/api/3/action/datastore_search_sql"
 )
@@ -94,6 +102,68 @@ EXCHANGES = {
     "DK-DK1->GB": [11],  # Viking Link
 }
 
+ZONEKEY_TO_INTERCONNECTOR = {'BE->GB': ['Belgium (Nemolink)'],
+ 'DK-DK1->GB': ['Denmark (Viking link)'],
+ 'FR->GB':['Eleclink (INTELEC)', 'France(IFA)', 'IFA2 (INTIFA2)'],
+ 'GB->GB-NIR': ['Northern Ireland(Moyle)'],
+ 'GB->IE': ['Ireland(East-West)'],
+ 'GB->NL': ['Netherlands(BritNed)'],
+ 'GB->NO-NO2': ['North Sea Link (INTNSL)']}
+
+def query_elexon(url:str, session:Session, params: dict) -> list:
+    r: Response = session.get(url, params=params)
+    if not r.ok:
+        raise ParserException(
+            parser="ELEXON",
+            message=f"Error fetching data: {r.status_code} {r.reason}",
+        )
+    return r.json()
+
+def parse_datetime(settlementDate: str, settlementPeriod: int) -> datetime:
+    parsed_datetime = datetime.strptime(settlementDate, "%Y-%m-%d")
+    parsed_datetime += timedelta(hours=(settlementPeriod - 1)/2)
+    return parsed_datetime.astimezone(timezone.utc)
+
+def query_production(session: Session, target_datetime: datetime, logger:Logger) -> list:
+    production_params = {"publishDateTimeFrom": (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d"), "publishDateTimeTo": target_datetime.strftime("%Y-%m-%d")}
+    production_data = query_elexon(ELEXON_URLS["production"], session, production_params)
+    all_production_breakdowns : list[ProductionBreakdownList] = []
+    for event in production_data:
+        production_breakdown= ProductionBreakdownList(logger=logger)
+        event_datetime = parse_datetime(event.get("settlementDate"), event.get("settlementPeriod"))
+        production_mix = ProductionMix()
+        storage_mix = StorageMix()
+        production_mode = RESOURCE_TYPE_TO_FUEL[event.get("psrType")]
+
+        if production_mode == "hydro storage":
+            storage_mix.add_value("hydro", event.get("quantity"))
+            production_breakdown.append(zoneKey=ZoneKey("GB"), storage=storage_mix, source=ELEXON_SOURCE, datetime=event_datetime)
+        else:
+            production_mix.add_value(production_mode, event.get("quantity"))
+            production_breakdown.append(zoneKey=ZoneKey("GB"), production=production_mix, source=ELEXON_SOURCE, datetime=event_datetime)
+
+        all_production_breakdowns.append(production_breakdown)
+    events = ProductionBreakdownList.merge_production_breakdowns(
+        all_production_breakdowns, logger
+    )
+
+    return events.to_list()
+
+def query_exchange(zone_key:ZoneKey, session: Session, target_datetime: datetime, logger:Logger) -> list:
+    all_exchanges: list[ExchangeList] = []
+    for interconnector in ZONEKEY_TO_INTERCONNECTOR[zone_key]:
+        exchange_params =  {"settlementDateFrom": (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d"), "settlementDateTo": target_datetime.strftime("%Y-%m-%d"), "interconnectorName":interconnector, "format":"json"}
+        exchange_data = query_elexon(ELEXON_URLS["exchange"], session, exchange_params).get("data")
+        if not exchange_data:
+            raise ParserException(parser="ELEXON.py", message=f"No exchange data found for {target_datetime.date()}")
+        for event in exchange_data:
+            exchange_list = ExchangeList(logger)
+            event_datetime = parse_datetime(event.get("settlementDate"), event.get("settlementPeriod"))
+
+            exchange_list.append(zoneKey=zone_key, netFlow=event.get("generation"), source=ELEXON_SOURCE, datetime=event_datetime)
+            all_exchanges.append(exchange_list)
+    events = ExchangeList.merge_exchanges(all_exchanges, logger)
+    return events.to_list()
 
 def _create_eso_historical_demand_index(session: Session) -> dict[int, str]:
     """Get the ids of all historical_demand_data reports"""
@@ -129,53 +199,55 @@ def query_additional_eso_data(
 
 def query_ELEXON(report, session: Session, params):
     params["APIKey"] = get_token("ELEXON_TOKEN")
+    breakpoint()
     return session.get(ELEXON_ENDPOINT.format(report), params=params)
 
 
-def query_exchange(session: Session, target_datetime=None):
-    if target_datetime is None:
-        target_datetime = date.today()
+# def query_exchange(session: Session, target_datetime=None):
+#     if target_datetime is None:
+#         target_datetime = date.today()
 
-    from_date = (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d")
-    to_date = target_datetime.strftime("%Y-%m-%d")
+#     from_date = (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d")
+#     to_date = target_datetime.strftime("%Y-%m-%d")
 
-    params = {"FromDate": from_date, "ToDate": to_date, "ServiceType": "csv"}
-    response = query_ELEXON("INTERFUELHH", session, params)
-    return response.text
+#     params = {"FromDate": from_date, "ToDate": to_date, "ServiceType": "csv"}
+#     response = query_ELEXON("INTERFUELHH", session, params)
+#     return response.text
 
 
-def query_production(
-    session: Session, target_datetime: datetime | None = None, report: str = "B1620"
-):
-    if target_datetime is None:
-        target_datetime = datetime.now()
+# def query_production(
+#     session: Session, target_datetime: datetime | None = None, report: str = "B1620"
+# ):
+#     if target_datetime is None:
+#         target_datetime = datetime.now()
 
-    # we can only fetch one date at a time.
-    # if target_datetime is first 30 minutes of the day fetch the day before.
-    # otherwise fetch the day of target_datetime.
-    if target_datetime.time() <= time(0, 30):
-        settlement_date = target_datetime.date() - timedelta(1)
-    else:
-        settlement_date = target_datetime.date()
+#     # we can only fetch one date at a time.
+#     # if target_datetime is first 30 minutes of the day fetch the day before.
+#     # otherwise fetch the day of target_datetime.
+#     if target_datetime.time() <= time(0, 30):
+#         settlement_date = target_datetime.date() - timedelta(1)
+#     else:
+#         settlement_date = target_datetime.date()
 
-    params = {
-        "SettlementDate": settlement_date.strftime("%Y-%m-%d"),
-        "Period": "*",
-        "ServiceType": "csv",
-    }
-    if report == "FUELINST":
-        params = {
-            "FromDateTime": (target_datetime - timedelta(days=1))
-            .date()
-            .strftime("%Y-%m-%d %H:%M:%S"),
-            "ToDateTime": (target_datetime + timedelta(days=1))
-            .date()
-            .strftime("%Y-%m-%d %H:%M:%S"),
-            "Period": "*",
-            "ServiceType": "csv",
-        }
-    response = query_ELEXON(report, session, params)
-    return response.text
+#     params = {
+#         "SettlementDate": settlement_date.strftime("%Y-%m-%d"),
+#         "Period": "*",
+#         "format": "json",
+#     }
+#     if report == "FUELINST":
+#         params = {
+#             "FromDateTime": (target_datetime - timedelta(days=1))
+#             .date()
+#             .strftime("%Y-%m-%d %H:%M:%S"),
+#             "ToDateTime": (target_datetime + timedelta(days=1))
+#             .date()
+#             .strftime("%Y-%m-%d %H:%M:%S"),
+#             "Period": "*",
+#             "ServiceType": "csv",
+#         }
+#     response = query_ELEXON(report, session, params)
+#     breakpoint()
+#     return response.text
 
 
 def parse_exchange(
@@ -332,6 +404,7 @@ def parse_production(
 
     # check field count in report is as expected
     field_count = len(df.columns)
+    breakpoint()
     if field_count != report["expected_fields"]:
         raise ValueError(
             "Expected {} fields in B1620 report, got {}".format(
@@ -354,12 +427,12 @@ def parse_production(
     # map from report fuel names to electricitymap fuel names
     fuel_column = "Power System Resource  Type"
     df[fuel_column] = df[fuel_column].apply(lambda x: RESOURCE_TYPE_TO_FUEL[x])
-
+    breakpoint()
     # loop through unique datetimes and create each data point
-    data_points = list()
+    all_production_breakdowns = ProductionBreakdownList(logger=logger)
     for time_t in pd.unique(df["datetime"]):
         time_df = df[df["datetime"] == time_t]
-
+        data_point = ProductionMix()
         data_point = {
             "zoneKey": "GB",
             "datetime": time_t.to_pydatetime(),
@@ -367,7 +440,7 @@ def parse_production(
             "production": dict(),
             "storage": dict(),
         }
-
+        breakpoint()
         for row in time_df.iterrows():
             fields = row[1].to_dict()
             fuel = fields[fuel_column]
@@ -388,9 +461,11 @@ def parse_production(
                 else:
                     data_point["production"][fuel] = quantity
 
-        data_points.append(data_point)
+        all_production_breakdowns.append(zoneKey=ZoneKey("GB"), production=data_point)
 
-    return data_points
+
+
+    return all_production_breakdowns.to_list()
 
 
 def datetime_from_date_sp(date, sp):
@@ -468,8 +543,8 @@ def fetch_exchange(
     session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
-    except arrow.parser.ParserError as e:
-        raise ValueError(f"Invalid target_datetime: {target_datetime}") from e
+    except arrow.parser.ParserError:
+        raise ValueError(f"Invalid target_datetime: {target_datetime}")
     response = query_exchange(session, target_datetime)
     data = parse_exchange(zone_key1, zone_key2, response, target_datetime, logger)
     return data
@@ -486,33 +561,30 @@ def fetch_production(
     session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
-    except arrow.parser.ParserError as e:
-        raise ValueError(f"Invalid target_datetime: {target_datetime}") from e
+    except arrow.parser.ParserError:
+        raise ValueError(f"Invalid target_datetime: {target_datetime}")
     # TODO currently resorting to FUELINST as B1620 reports 0 production in most production
     # modes at the moment. (16/12/2022) FUELINST will be decomissioned in 2023, so we should
     # switch back to B1620 at some point.
-    response = query_production(session, target_datetime, "FUELINST")
-    fuel_inst_data = parse_production_FUELINST(response, target_datetime, logger)
-    raw_additional_data = query_additional_eso_data(target_datetime, session)
-    additional_data = parse_additional_eso_production(raw_additional_data)
-    data = process_production_events(fuel_inst_data, additional_data)
-    # We are fetching from FUELINST directly.
-    if False:
-        # At times B1620 has had poor quality data for wind so fetch from FUELINST
-        # But that source is unavailable prior to cutout date
-        HISTORICAL_WIND_CUTOUT = "2016-03-01"
-        FETCH_WIND_FROM_FUELINST = True
-        if target_datetime < arrow.get(HISTORICAL_WIND_CUTOUT).datetime:
-            FETCH_WIND_FROM_FUELINST = False
-        if FETCH_WIND_FROM_FUELINST:
-            wind = _fetch_wind(target_datetime, logger=logger)
-            for entry in data:
-                datetime = entry["datetime"]
-                wind_row = wind[wind["datetime"] == datetime]
-                if len(wind_row):
-                    entry["production"]["wind"] = wind_row.iloc[0]["Wind"]
-                else:
-                    entry["production"]["wind"] = None
+    response = query_production(session, target_datetime, "B1620")
+    breakpoint()
+    data= parse_production(response, target_datetime, logger)
+
+    # At times B1620 has had poor quality data for wind so fetch from FUELINST
+    # But that source is unavailable prior to cutout date
+    HISTORICAL_WIND_CUTOUT = "2016-03-01"
+    FETCH_WIND_FROM_FUELINST = True
+    if target_datetime < arrow.get(HISTORICAL_WIND_CUTOUT).datetime:
+        FETCH_WIND_FROM_FUELINST = False
+    if FETCH_WIND_FROM_FUELINST:
+        wind = _fetch_wind(target_datetime, logger=logger)
+        for entry in data:
+            datetime = entry["datetime"]
+            wind_row = wind[wind["datetime"] == datetime]
+            if len(wind_row):
+                entry["production"]["wind"] = wind_row.iloc[0]["Wind"]
+            else:
+                entry["production"]["wind"] = None
 
     required = ["coal", "gas", "nuclear", "wind"]
     expected_range = {
@@ -532,19 +604,6 @@ def fetch_production(
 
 
 if __name__ == "__main__":
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print("fetch_production() ->")
-    print(fetch_production())
-
-    print("fetch_exchange(FR, GB) ->")
-    print(fetch_exchange("FR", "GB"))
-
-    print("fetch_exchange(GB, IE) ->")
-    print(fetch_exchange("GB", "IE"))
-
-    print("fetch_exchange(GB, NL) ->")
-    print(fetch_exchange("GB", "NL"))
-
-    print("fetch_exchange(GB, DK-DK1) ->")
-    print(fetch_exchange("DK-DK1", "GB"))
+    data = query_exchange("FR->GB",Session(), datetime(2024, 1, 30),logger=getLogger(__name__))
+    print(data[-1])
