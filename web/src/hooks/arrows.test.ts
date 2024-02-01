@@ -63,12 +63,12 @@ describe('filterExchanges', () => {
 
   it('should throw an error if exchanges is not an object', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-ignore This is deliberately passing a non-object to test the function.
     expect(() => filterExchanges(null, mockExchangesToExcludeZoneView)).toThrow(
       TypeError
     );
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-ignore This is deliberately passing a non-object to test the function.
     expect(() => filterExchanges(undefined, mockExchangesToExcludeZoneView)).toThrow(
       TypeError
     );
@@ -76,10 +76,10 @@ describe('filterExchanges', () => {
 
   it('should throw an error if exclusions is not an array', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-ignore This is deliberately passing a non-array to test the function.
     expect(() => filterExchanges(mockExchangesResponses, null)).toThrow(TypeError);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-ignore This is deliberately passing a non-array to test the function.
     expect(() => filterExchanges(mockExchangesResponses, undefined)).toThrow(TypeError);
   });
 });
