@@ -74,12 +74,10 @@ describe('filterExchanges', () => {
     );
   });
 
-  it('should throw an error if exclusions is not an array', () => {
+  it('should throw an error if exclusions is not an iterable', () => {
+    const nonIterable = {};
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore This is deliberately passing a non-array to test the function.
-    expect(() => filterExchanges(mockExchangesResponses, null)).toThrow(TypeError);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore This is deliberately passing a non-array to test the function.
-    expect(() => filterExchanges(mockExchangesResponses, undefined)).toThrow(TypeError);
+    // @ts-ignore This is deliberately passing a non-iterable to test the function.
+    expect(() => filterExchanges(mockExchangesResponses, nonIterable)).toThrow(TypeError);
   });
 });

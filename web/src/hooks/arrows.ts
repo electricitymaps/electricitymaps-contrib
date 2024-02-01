@@ -22,8 +22,9 @@ export function filterExchanges(
   exchanges: Record<string, ExchangeResponse>,
   exclusionArray: string[]
 ): Record<string, ExchangeResponse> {
+  const exclusionSet = new Set(exclusionArray);
   const result: Record<string, ExchangeResponse> = {};
-  const keys = Object.keys(exchanges).filter((key) => !exclusionArray.includes(key));
+  const keys = Object.keys(exchanges).filter((key) => !exclusionSet.has(key));
   for (const key of keys) {
     result[key] = exchanges[key];
   }
