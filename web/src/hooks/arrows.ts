@@ -16,6 +16,19 @@ import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json'
 
 // TODO: set up proper typed method for retrieving config files.
 const exchangesConfig: Record<string, any> = exchangesConfigJSON;
+const { exchangesToExcludeZoneView, exchangesToExcludeCountryView } = exchangesToExclude;
+
+function filterExchanges(
+  exchanges: Record<string, ExchangeResponse>,
+  exclusionArray: string[]
+): Record<string, ExchangeResponse> {
+  const result: Record<string, ExchangeResponse> = {};
+  const keys = Object.keys(exchanges).filter((key) => !exclusionArray.includes(key));
+  for (const key of keys) {
+    result[key] = exchanges[key];
+  }
+  return result;
+}
 
 export function useExchangeArrowsData(): ExchangeArrowData[] {
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -30,20 +43,14 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
     const exchanges = data?.data.exchanges;
 
     if (!exchanges) {
-      return [];
+      return {};
     }
 
-    const zoneViewExchanges = Object.keys(exchanges)
-      .filter((key) => !exchangesToExclude.exchangesToExcludeZoneView.includes(key))
-      .reduce((current, key) => {
-        return Object.assign(current, { [key]: exchanges[key] });
-      }, {});
-
-    const countryViewExchanges = Object.keys(exchanges)
-      .filter((key) => !exchangesToExclude.exchangesToExcludeCountryView.includes(key))
-      .reduce((current, key) => {
-        return Object.assign(current, { [key]: exchanges[key] });
-      }, {});
+    const zoneViewExchanges = filterExchanges(exchanges, exchangesToExcludeZoneView);
+    const countryViewExchanges = filterExchanges(
+      exchanges,
+      exchangesToExcludeCountryView
+    );
 
     return viewMode === SpatialAggregate.COUNTRY
       ? countryViewExchanges
