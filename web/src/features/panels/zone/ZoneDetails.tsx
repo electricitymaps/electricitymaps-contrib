@@ -75,7 +75,6 @@ export default function ZoneDetails(): JSX.Element {
             outageMessage={zoneMessage}
           ></EstimationCard>
         )}
-        <FeedbackCard />
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (

@@ -1,8 +1,10 @@
 import Badge from 'components/Badge';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 import { ZoneDetails } from 'types';
+
+import FeedbackCard from './FeedbackCard';
 
 export default function EstimationCard({
   cardType,
@@ -13,12 +15,23 @@ export default function EstimationCard({
   estimationMethod: string | undefined;
   outageMessage: ZoneDetails['zoneMessage'];
 }) {
+  const [hasBeenCollapsedAndOpened, setHasBeenCollapsedAndOpened] = useState(false);
+  const hasNotBeenSeenBefore = localStorage.getItem('hasNotBeenSeenBefore');
+
   if (cardType == 'outage') {
     return <OutageCard outageMessage={outageMessage} />;
   } else if (cardType == 'aggregated') {
     return <AggregatedCard />;
   } else if (cardType == 'estimated') {
-    return <EstimatedCard estimationMethod={estimationMethod} />;
+    return (
+      <div>
+        <EstimatedCard
+          estimationMethod={estimationMethod}
+          setShowFeedbackCard={setHasBeenCollapsedAndOpened}
+        />
+        {hasBeenCollapsedAndOpened && hasNotBeenSeenBefore == '1' && <FeedbackCard />}
+      </div>
+    );
   }
 }
 
@@ -42,6 +55,7 @@ function BaseCard({
   showMethodologyLink,
   pillType,
   textColorTitle,
+  setHasBeenCollapsedAndOpened,
 }: {
   estimationMethod: string | undefined;
   outageMessage: ZoneDetails['zoneMessage'];
@@ -50,12 +64,29 @@ function BaseCard({
   showMethodologyLink: boolean;
   pillType: string | undefined;
   textColorTitle: string;
+  setHasBeenCollapsedAndOpened?: any;
 }) {
+  const [collapsedNumber, setCollapsedNumber] = useState(0);
+
   const [isCollapsed, setIsCollapsed] = useState(
     estimationMethod == 'outage' ? false : true
   );
-  const handleToggleCollapse = () => {
+
+  useEffect(() => {
+    const hasNotBeenSeenBefore = localStorage.getItem('hasNotBeenSeenBefore');
+    if (collapsedNumber > 1 && setHasBeenCollapsedAndOpened != undefined) {
+      setHasBeenCollapsedAndOpened(true);
+      if (Number(hasNotBeenSeenBefore) < 1) {
+        localStorage.setItem('hasNotBeenSeenBefore', '1');
+      } else if (Number(hasNotBeenSeenBefore) == 1) {
+        localStorage.setItem('hasNotBeenSeenBefore', '2');
+      }
+    }
     setIsCollapsed((previous) => !previous);
+  }, [collapsedNumber]);
+
+  const handleToggleCollapse = () => {
+    setCollapsedNumber((previous) => previous + 1);
   };
   const { __ } = useTranslation();
 
@@ -149,7 +180,13 @@ function AggregatedCard() {
   );
 }
 
-function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefined }) {
+function EstimatedCard({
+  estimationMethod,
+  setShowFeedbackCard,
+}: {
+  estimationMethod: string | undefined;
+  setShowFeedbackCard: any;
+}) {
   return (
     <BaseCard
       estimationMethod={estimationMethod}
@@ -159,6 +196,7 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
       showMethodologyLink={true}
       pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
+      setHasBeenCollapsedAndOpened={setShowFeedbackCard}
     />
   );
 }
