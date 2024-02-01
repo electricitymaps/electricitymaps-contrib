@@ -18,7 +18,7 @@ import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json'
 const exchangesConfig: Record<string, any> = exchangesConfigJSON;
 const { exchangesToExcludeZoneView, exchangesToExcludeCountryView } = exchangesToExclude;
 
-function filterExchanges(
+export function filterExchanges(
   exchanges: Record<string, ExchangeResponse>,
   exclusionArray: string[]
 ): Record<string, ExchangeResponse> {
