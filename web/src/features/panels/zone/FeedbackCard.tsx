@@ -1,6 +1,6 @@
+import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
-import { id } from 'date-fns/locale';
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { useTranslation } from 'translation/translation';
 
@@ -12,9 +12,8 @@ export default function FeedbackCard() {
     setIsClosed(true);
   };
 
-  const title = getQuestionTranslation('1', 'title');
-  const subtitle = getQuestionTranslation('1', 'subtitle');
-  const question = getQuestionTranslation('1', 'text');
+  const title = getQuestionTranslation('title', state);
+  const subtitle = getQuestionTranslation('subtitle', state);
 
   if (isClosed) {
     return null; // Don't render the component if closed
@@ -39,7 +38,6 @@ export default function FeedbackCard() {
       </div>
       <div className="pb-2 pr-2.5">
         <div className="pb-1 text-xs font-medium text-neutral-400">{subtitle}</div>
-        <div className="text-sm">{question}</div>
         <FeedbackActions state={state} setState={setState} />
       </div>
     </div>
@@ -53,9 +51,9 @@ function InputField({
   inputText: string;
   handleInputChange: any;
 }) {
-  const inputPlaceholder = getQuestionTranslation('2', 'input-text');
-  const optional = getQuestionTranslation('2', 'optional');
-  const text = getQuestionTranslation('2', 'text');
+  const inputPlaceholder = getQuestionTranslation('placeholder');
+  const optional = getQuestionTranslation('optional');
+  const text = getQuestionTranslation('input-question');
 
   return (
     <div>
@@ -69,20 +67,14 @@ function InputField({
         value={inputText}
         onChange={handleInputChange}
         placeholder={inputPlaceholder}
-        className="my-2 h-11 w-full items-center rounded border border-neutral-200 bg-transparent p-3 pl-2 text-base focus:outline-none dark:border-gray-700"
+        className="my-2 h-11 w-full items-center rounded border border-neutral-200 bg-transparent p-3 pl-2 text-base focus:outline-brand-green dark:border-gray-700"
       />
     </div>
   );
 }
 
-function SubmitButton({
-  isDisabled,
-  handleSave,
-}: {
-  isDisabled: boolean;
-  handleSave: any;
-}) {
-  const buttonText = getQuestionTranslation('2', 'button-text');
+function SubmitButton({ handleSave }: { handleSave: any }) {
+  const buttonText = getQuestionTranslation('submit');
 
   return (
     <Pill
@@ -90,14 +82,14 @@ function SubmitButton({
       text={buttonText}
       isButton={true}
       onClick={handleSave}
-      isDisabled={isDisabled}
     />
   );
 }
 
 function FeedbackActions({ state, setState }: { state: string; setState: any }) {
   const [inputText, setInputText] = useState('');
-  const isDisabled = !inputText.trim();
+
+  const question = getQuestionTranslation('rate-question');
 
   const handleInputChange = (event: { target: { value: SetStateAction<string> } }) => {
     setInputText(event.target.value);
@@ -105,42 +97,49 @@ function FeedbackActions({ state, setState }: { state: string; setState: any }) 
 
   const handleSave = () => {
     setState('3');
-    console.log('Input text:', inputText);
   };
 
-  if (state == '1') {
-    return <ActionPills setState={setState} />;
+  if (state === '3') {
+    return null;
   }
-  if (state == '2') {
-    return (
-      <div className="flex flex-col">
-        <ActionPills setState={setState} />
-        <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-gray-700" />
+
+  return (
+    <div className="flex flex-col">
+      <div className="text-sm">{question}</div>
+      <ActionPills setState={setState} />
+      {state === '2' && (
         <div>
-          <InputField inputText={inputText} handleInputChange={handleInputChange} />
-          <SubmitButton isDisabled={isDisabled} handleSave={handleSave} />
+          <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-gray-700" />
+          <div>
+            <InputField inputText={inputText} handleInputChange={handleInputChange} />
+            <SubmitButton handleSave={handleSave} />
+          </div>
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 }
 
 function ActionPills({ setState }: { setState: any }) {
-  const agreeText = getQuestionTranslation('1', 'agree');
+  const agreeText = getQuestionTranslation('agree');
   const [pillContent] = useState([1, 2, 3, 4, 5]);
-  const disagreeText = getQuestionTranslation('1', 'agree');
+  const disagreeText = getQuestionTranslation('disagree');
+  const [CurrentPillNumber, setPillNumber] = useState('');
+
+  useEffect(() => {}, [CurrentPillNumber]);
 
   const handlePillClick = (identifier: string) => {
-    if (identifier === '1' || identifier === '2') {
-      setState('3');
-    } else {
-      setState('2');
-    }
+    setPillNumber(identifier);
+    setState('2');
   };
 
   return (
     <div className="flex flex-col pt-2">
-      <PillContent pillContent={pillContent} handlePillClick={handlePillClick} />
+      <PillContent
+        pillContent={pillContent}
+        handlePillClick={handlePillClick}
+        CurrentPillNumber={CurrentPillNumber}
+      />
       <div className="flex flex-row items-center justify-between pt-1">
         <div className="text-xs font-medium text-neutral-400">{agreeText}</div>
         <div className="text-xs font-medium text-neutral-400">{disagreeText}</div>
@@ -152,28 +151,56 @@ function ActionPills({ setState }: { setState: any }) {
 function PillContent({
   pillContent,
   handlePillClick,
+  CurrentPillNumber,
 }: {
   pillContent: number[];
   handlePillClick: (identifier: string) => void;
+  CurrentPillNumber: string;
 }) {
   return (
-    <div className="flex flex-row">
+    <ToggleGroupPrimitive.Root
+      className={
+        'flex-start mb-2 flex flex-row items-center gap-x-2 md:gap-x-1.5 lg:gap-x-2'
+      }
+      type="multiple"
+      aria-label="Font settings"
+    >
       {pillContent.map((content) => (
-        <Pill
+        <ToggleGroupPrimitive.Item
           key={content}
-          classes={`dark:hover:bg-gray-700 dark:text-white text-black hover:bg-neutral-200 border border-neutral-200 dark:border-gray-700 w-[60px] h-9 mr-2`}
-          clickedClasses="bg-black dark:bg-white dark:text-gray-900 text-zinc-50"
-          text={String(content)}
-          isButton={true}
-          identifier={String(content)}
-          onClick={handlePillClick}
-        />
+          value={String(content)}
+          aria-label={String(content)}
+          onClick={() => handlePillClick(String(content))}
+          className={`
+          mr-2 inline-flex h-9 w-[60px] select-none items-center justify-center rounded-full border border-neutral-200 text-black  dark:border-gray-700 dark:text-white
+            ${
+              CurrentPillNumber == String(content)
+                ? 'bg-black dark:bg-white'
+                : 'hover:bg-neutral-200 dark:hover:bg-gray-700'
+            }`}
+        >
+          <div
+            className={`text-xs font-semibold ${
+              CurrentPillNumber == String(content)
+                ? ' text-zinc-50 dark:text-gray-900'
+                : ''
+            }`}
+          >
+            {content}
+          </div>
+        </ToggleGroupPrimitive.Item>
       ))}
-    </div>
+    </ToggleGroupPrimitive.Root>
   );
 }
 
-function getQuestionTranslation(state: string, field: string) {
+function getQuestionTranslation(field: string, state?: string) {
   const { __ } = useTranslation();
-  return __(`estimation-feedback.state-${state}.${field}`);
+  if (state !== undefined) {
+    if (state == '2') {
+      return __(`estimation-feedback.${field}.state-1`);
+    }
+    return __(`estimation-feedback.${field}.state-${state}`);
+  }
+  return __(`estimation-feedback.${field}`);
 }

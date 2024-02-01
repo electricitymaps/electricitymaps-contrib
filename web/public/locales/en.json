@@ -91,24 +91,22 @@
     }
   },
   "estimation-feedback": {
-    "state-1": {
-      "title": "Help us improve!",
-      "subtitle": "Please rate the following statement.",
-      "text": "The description above was easy to understand:",
-      "agree": "Strongly agree",
-      "disagree": "Strongly disagree"
+    "title": {
+      "state-1": "Help us improve!",
+      "state-3": "Thank you!"
     },
-    "state-2": {
-      "subtitle": "Because you answered 3 or less.",
-      "optional": "Optional:",
-      "text": "Anything we can do to improve it?",
-      "input-text": "Let us know in a few words...",
-      "button-text": "Submit"
+    "subtitle": {
+      "state-1": "Please rate the following statement.",
+      "state-3": "Your response helps us understand and improve the quality of our communication and methodology."
     },
-    "state-3": {
-      "title": "Thank you!",
-      "subtitle": "Your response helps us understand and improve the quality of our communication and methodology."
-    }
+    "rate-question": "The description above was easy to understand:",
+    "optional": "Optional:",
+    "input-question": "Anything we can do to improve it?",
+    "text": "The description above was easy to understand:",
+    "agree": "Strongly agree",
+    "disagree": "Strongly disagree",
+    "placeholder": "Let us know in a few words...",
+    "submit": "Submit"
   },
   "estimation-badge": {
     "partially-estimated": "Partially estimated",
