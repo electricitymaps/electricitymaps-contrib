@@ -67,7 +67,7 @@ export default function ZoneDetails(): JSX.Element {
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
-        {cardType != 'none' && (
+        {cardType != 'none' && zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
           <EstimationCard
             cardType={cardType}
             estimationMethod={estimationMethod}
