@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import gzip
+import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -13,9 +15,9 @@ from parsers.lib.exceptions import ParserException
 
 SOURCE = "taipower.com.tw"
 TIMEZONE = ZoneInfo("Asia/Taipei")
-PRODUCTION_URL = (
-    "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary_eng.json"
-)
+# We have an agreement with the TSO to white list our IP address.
+EMAPS_PROXY = "https://eu-proxy-emaps-ip-jfnx5klx2a-ew.a.run.app"
+PRODUCTION_URL = f"{EMAPS_PROXY}/d006/loadGraph/loadGraph/data/genary_eng.json?host=http://www.taipower.com.tw"
 
 
 @refetch_frequency(timedelta(days=1))
@@ -28,14 +30,14 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    response = session.get(PRODUCTION_URL)
+    response = session.get(PRODUCTION_URL, headers={"Accept-Encoding": "gzip"})
     if not response.status_code == 200:
         raise ParserException(
             "TW",
             f"Query failed with status code {response.status_code} and {response.content}",
         )
-
-    data = response.json()
+    decompressed_response = gzip.decompress(response.content)
+    data = json.loads(decompressed_response)
 
     dt = data[""]
     prodData = data["dataset"]
