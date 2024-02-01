@@ -32,7 +32,7 @@ def get_capacity_data(capacity_config: dict, dt: datetime) -> dict[str, float]:
             # TODO: This part is used for the old capacity format. It shoud be removed once all capacity configs are updated
             capacity[mode] = capacity_value
         else:
-            capacity[mode] = get_capacity_value_with_datetime(capacity_value, dt)[0]
+            capacity[mode] = get_capacity_from_dict_or_list(capacity_value, dt)[0]
     return capacity
 
 
@@ -47,14 +47,14 @@ def get_capacity_data_with_source(
             capacity[mode] = {"value": capacity_value, "source": None}
         else:
             capacity[mode] = {
-                "value": get_capacity_value_with_datetime(capacity_value, dt)[0],
-                "source": get_capacity_value_with_datetime(capacity_value, dt)[1],
+                "value": get_capacity_from_dict_or_list(capacity_value, dt)[0],
+                "source": get_capacity_from_dict_or_list(capacity_value, dt)[1],
             }
 
     return capacity
 
 
-def get_capacity_value_with_datetime(
+def get_capacity_from_dict_or_list(
     mode_capacity: list | dict, dt: datetime
 ) -> tuple[float, str] | float | None:
     if isinstance(mode_capacity, dict):
