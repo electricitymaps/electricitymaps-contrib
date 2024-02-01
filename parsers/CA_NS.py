@@ -71,7 +71,8 @@ def fetch_production(
             # Nova Scotia).
             load = 1244
             logger.warning(
-                f"unable to find load for {timestamp}; assuming 1244 MW",
+                "unable to find load for %s; assuming 1244 MW",
+                timestamp,
                 extra={"key": ZONE_KEY},
             )
 
@@ -96,8 +97,10 @@ def fetch_production(
             or 700 < (production_mix.wind or 0)
         ):
             logger.warning(
-                f"discarding datapoint at {timestamp} because some mode's "
-                f"production is infeasible: {production_mix}",
+                "discarding datapoint at %s because some mode's production is "
+                "infeasible: %s",
+                timestamp,
+                production_mix,
                 extra={"key": ZONE_KEY},
             )
             continue
@@ -137,9 +140,10 @@ def fetch_exchange(
             soup.find(string="Current System Conditions").find_next("td").em.i.string,
             "%d-%b-%y %H:%M:%S",
         ).replace(tzinfo=ZoneInfo("America/Halifax"))
-    except (AttributeError, TypeError, ValueError):
-        logger.error("unable to extract timestamp (error: {error})")
-        return []
+    except (AttributeError, TypeError, ValueError) as error:
+        raise ParserException(
+            PARSER, "unable to extract timestamp", sorted_zone_keys
+        ) from error
 
     # Choose the appropriate exchange figure for the requested zone pair.
     try:
@@ -148,9 +152,10 @@ def fetch_exchange(
             if sorted_zone_keys == ZoneKey("CA-NB->CA-NS")
             else float(soup.find(string="Maritime Link Import ").find_next("td").string)
         )
-    except (AttributeError, TypeError):
-        logger.warning("unable to extract exchange data (error: {error})")
-        exchange = None
+    except (AttributeError, TypeError) as error:
+        raise ParserException(
+            PARSER, "unable to extract exchange data", sorted_zone_keys
+        ) from error
 
     exchanges = ExchangeList(logger)
     exchanges.append(
