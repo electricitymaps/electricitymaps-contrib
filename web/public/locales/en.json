@@ -92,16 +92,16 @@
   },
   "estimation-feedback": {
     "state-1": {
-      "title": "Quick research question!",
-      "subtitle": "What are your thoughts on this statement:",
-      "text": "The estimates description was easy to understand:",
+      "title": "Help us improve!",
+      "subtitle": "Please rate the following statement.",
+      "text": "The description above was easy to understand:",
       "agree": "Strongly agree",
       "disagree": "Strongly disagree"
     },
     "state-2": {
-      "title": "Optional question!",
       "subtitle": "Because you answered 3 or less.",
-      "text": "Any thoughts on how we might improve it?",
+      "optional": "Optional:",
+      "text": "Anything we can do to improve it?",
       "input-text": "Let us know in a few words...",
       "button-text": "Submit"
     },

@@ -1,15 +1,17 @@
+import { useState } from 'react';
+
 export default function Pill({
   classes,
+  clickedClasses = '',
   text,
-  textColor,
   isButton = false,
   isDisabled = false,
   onClick,
   identifier = '',
 }: {
   classes: string;
+  clickedClasses?: string;
   text: string;
-  textColor: string;
   isButton?: boolean;
   isDisabled?: boolean;
   onClick?: (identifier: string) => void;
@@ -17,20 +19,23 @@ export default function Pill({
 }): JSX.Element {
   const Element = isButton ? 'button' : 'div';
 
+  const [clicked, setClickedClasses] = useState('');
+
   const handleClick = () => {
     if (onClick) {
       onClick(identifier);
+      setClickedClasses(clickedClasses);
     }
   };
 
   return (
     <Element
-      className={`flex flex-row items-center justify-center rounded-full ${classes}`}
+      className={`flex flex-row items-center justify-center rounded-full ${classes} ${clicked}`}
       role={isButton ? 'button' : undefined}
       onClick={handleClick}
       disabled={isDisabled}
     >
-      <span className={`text-xs font-semibold ${textColor}`}>{text}</span>
+      <div className={`text-xs font-semibold`}>{text}</div>
     </Element>
   );
 }
