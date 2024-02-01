@@ -10,7 +10,9 @@ from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 SOURCE = "amper.landsnet.is"
-SOURCE_URL = "https://amper.landsnet.is/generation/api/Values"
+# We have an agreement with the TSO to white list our IP address.
+EMAPS_PROXY = "https://eu-proxy-emaps-ip-jfnx5klx2a-ew.a.run.app"
+SOURCE_URL = f"{EMAPS_PROXY}/generation/api/Values?host=https://amper.landsnet.is"
 
 
 def fetch_production(
