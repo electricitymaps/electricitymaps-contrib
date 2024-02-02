@@ -90,7 +90,7 @@ function BreakdownChart({
       {isBreakdownGraphOverlayEnabled && (
         <div
           className="prose my-1 rounded bg-gray-200 p-2 text-sm leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
-          dangerouslySetInnerHTML={{ thtml: t('country-panel.exchangesAreMissing') }}
+          dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
     </>
