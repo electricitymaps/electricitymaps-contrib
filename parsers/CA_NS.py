@@ -106,7 +106,7 @@ def _get_ns_info(requests_obj, logger: Logger):
 
         load = corresponding_load[0]["Base Load"]
         electricity_mix = {
-            gen_type: round(percent_value * load, 3)
+            gen_type: percent_value * load
             for gen_type, percent_value in percent_mix.items()
         }
 
