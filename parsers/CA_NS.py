@@ -101,17 +101,10 @@ def _get_ns_info(requests_obj, logger: Logger):
             if load_period["datetime"] == mix["datetime"]
         ]
 
-        if corresponding_load:
-            load = corresponding_load[0]["Base Load"]
-        else:
-            # if not found, assume 1244 MW, based on average yearly electricity available for use
-            # in 2014 and 2015 (Statistics Canada table Table 127-0008 for Nova Scotia)
-            load = 1244
-            logger.warning(
-                f"unable to find load for {data_date}, assuming 1244 MW",
-                extra={"key": zone_key},
-            )
+        if not corresponding_load:
+            continue
 
+        load = corresponding_load[0]["Base Load"]
         electricity_mix = {
             gen_type: round(percent_value * load, 3)
             for gen_type, percent_value in percent_mix.items()
