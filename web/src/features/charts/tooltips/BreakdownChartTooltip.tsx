@@ -4,7 +4,8 @@ import { MetricRatio } from 'components/MetricRatio';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
 import { renderToString } from 'react-dom/server';
-import { getZoneName, useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
+import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
 import { Mode, modeColor, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
@@ -129,31 +130,31 @@ export function BreakdownChartTooltipContent({
   selectedLayerKey,
   hasEstimationPill,
 }: BreakdownChartTooltipContentProperties) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   // Dynamically generate the translated headline HTML based on the exchange or generation type
   const percentageUsage = displayByEmissions
     ? getRatioPercent(emissions, totalEmissions)
     : getRatioPercent(usage, totalElectricity);
   const headline = isExchange
-    ? __(
-        originTranslateKey,
-        percentageUsage.toString(),
-        getZoneName(zoneKey),
-        getZoneName(selectedLayerKey),
-        renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />),
-        renderToString(<CountryFlag className="shadow-3xl" zoneId={selectedLayerKey} />)
-      ) // Eg: "7 % of electricity in Denmark is imported from Germany"
-    : __(
-        originTranslateKey,
-        percentageUsage.toString(),
-        getZoneName(zoneKey),
-        __(selectedLayerKey),
-        renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />)
-      ); // Eg: "20 % of electricity in Denmark comes from biomass"
+    ? t(originTranslateKey, {
+        percentageUsage: percentageUsage.toString(),
+        zoneName: getZoneName(zoneKey),
+        selectedZoneName: getZoneName(selectedLayerKey),
+        zoneFlag: renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />),
+        selectedZoneFlag: renderToString(
+          <CountryFlag className="shadow-3xl" zoneId={selectedLayerKey} />
+        ),
+      }) // Eg: "7 % of electricity in Denmark is imported from Germany"
+    : t(originTranslateKey, {
+        percentageUsage: percentageUsage.toString(),
+        zoneName: getZoneName(zoneKey),
+        selectedZoneName: t(selectedLayerKey),
+        zoneFlag: renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />),
+      }); // Eg: "20 % of electricity in Denmark comes from biomass"
   const title = isExchange
     ? getZoneName(selectedLayerKey)
-    : __(selectedLayerKey).charAt(0).toUpperCase() + __(selectedLayerKey).slice(1);
+    : t(selectedLayerKey).charAt(0).toUpperCase() + t(selectedLayerKey).slice(1);
   return (
     <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl sm:w-[410px] dark:border dark:border-gray-700 dark:bg-gray-800">
       <AreaGraphToolTipHeader
@@ -177,7 +178,7 @@ export function BreakdownChartTooltipContent({
           value={emissions}
           total={totalEmissions}
           format={formatCo2}
-          label={__('ofCO2eq')}
+          label={t('ofCO2eq')}
           useTotalUnit
         />
       )}
@@ -193,23 +194,23 @@ export function BreakdownChartTooltipContent({
           {timeAverage === TimeAverages.HOURLY && (
             <>
               <br />
-              {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
-              {__('tooltips.ofinstalled')}
+              {t('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
+              {t('tooltips.ofinstalled')}
               <br />
               <MetricRatio value={usage} total={(capacity ??= 0)} format={formatPower} />
               <br />
             </>
           )}
           <br />
-          {__('tooltips.representing')}{' '}
+          {t('tooltips.representing')}{' '}
           <b>{getRatioPercent(emissions, totalEmissions)} %</b>{' '}
-          {__('tooltips.ofemissions')}
+          {t('tooltips.ofemissions')}
           <br />
           <MetricRatio
             value={emissions}
             total={totalEmissions}
             format={formatCo2}
-            label={__('ofCO2eq')}
+            label={t('ofCO2eq')}
             useTotalUnit
           />
         </>
@@ -218,7 +219,7 @@ export function BreakdownChartTooltipContent({
         <>
           <br />
           <br />
-          {__('tooltips.withcarbonintensity')}
+          {t('tooltips.withcarbonintensity')}
           <br />
           <div className="flex-wrap">
             <div className="inline-flex items-center gap-x-1">
