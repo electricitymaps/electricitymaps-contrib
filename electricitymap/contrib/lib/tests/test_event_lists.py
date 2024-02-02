@@ -502,6 +502,201 @@ class TestProductionBreakdownList(unittest.TestCase):
             "biomass",
         }
 
+    def test_update_production_list_with_production(self):
+        production_list1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, coal=10),
+            source="trust.me",
+        )
+        production_list1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            production=ProductionMix(wind=11, coal=11),
+            source="trust.me",
+        )
+        production_list2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=20, coal=20),
+            source="trust.me",
+        )
+        updated_list = ProductionBreakdownList.update_production_breakdowns(
+            production_list1, production_list2, logging.Logger("test")
+        )
+        assert len(updated_list.events) == 2
+        assert updated_list.events[0].datetime == datetime(
+            2023, 1, 1, tzinfo=timezone.utc
+        )
+        assert updated_list.events[0].production.wind == 20
+        assert updated_list.events[0].production.coal == 20
+        assert updated_list.events[0].source == "trust.me"
+        assert updated_list.events[1].datetime == datetime(
+            2023, 1, 2, tzinfo=timezone.utc
+        )
+        assert updated_list.events[1].production.wind == 11
+        assert updated_list.events[1].production.coal == 11
+        assert updated_list.events[1].source == "trust.me"
+
+    def test_update_production_list_with_storage(self):
+        production_list1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        production_list1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            storage=StorageMix(hydro=2),
+            source="trust.me",
+        )
+        production_list2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            storage=StorageMix(hydro=2),
+            source="trust.me",
+        )
+        updated_list = ProductionBreakdownList.update_production_breakdowns(
+            production_list1, production_list2, logging.Logger("test")
+        )
+        assert len(updated_list.events) == 2
+        assert updated_list.events[0].datetime == datetime(
+            2023, 1, 1, tzinfo=timezone.utc
+        )
+        assert updated_list.events[0].storage.hydro == 2
+        assert updated_list.events[0].source == "trust.me"
+        assert updated_list.events[1].datetime == datetime(
+            2023, 1, 2, tzinfo=timezone.utc
+        )
+        assert updated_list.events[1].storage.hydro == 2
+        assert updated_list.events[1].source == "trust.me"
+
+    def test_update_production_list_with_none_in_production(self):
+        production_list1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, coal=10),
+            source="trust.me",
+        )
+        production_list2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=None, coal=20),
+            source="trust.me",
+        )
+        updated_list = ProductionBreakdownList.update_production_breakdowns(
+            production_list1, production_list2, logging.Logger("test")
+        )
+        assert len(updated_list.events) == 1
+        assert updated_list.events[0].datetime == datetime(
+            2023, 1, 1, tzinfo=timezone.utc
+        )
+        assert updated_list.events[0].production.wind == 10
+        assert updated_list.events[0].production.coal == 20
+        assert updated_list.events[0].source == "trust.me"
+
+    def test_update_production_list_with_none_in_storage(self):
+        production_list1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            storage=StorageMix(hydro=1),
+            source="trust.me",
+        )
+        production_list2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            storage=StorageMix(hydro=None),
+            source="trust.me",
+        )
+        updated_list = ProductionBreakdownList.update_production_breakdowns(
+            production_list1, production_list2, logging.Logger("test")
+        )
+        assert len(updated_list.events) == 1
+        assert updated_list.events[0].datetime == datetime(
+            2023, 1, 1, tzinfo=timezone.utc
+        )
+        assert updated_list.events[0].storage.hydro == 1
+        assert updated_list.events[0].source == "trust.me"
+
+    def test_update_production_with_different_zoneKey(self):
+        production_list1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, coal=10),
+            source="trust.me",
+        )
+        production_list2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list2.append(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=20, coal=20),
+            source="trust.me",
+        )
+        self.assertRaises(
+            ValueError,
+            ProductionBreakdownList.update_production_breakdowns,
+            production_list1,
+            production_list2,
+            logging.Logger("test"),
+        )
+
+    def test_update_production_with_different_source(self):
+        production_list1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, coal=10),
+            source="trust.me",
+        )
+        production_list2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=20, coal=20),
+            source="dont.trust.me",
+        )
+        self.assertRaises(
+            ValueError,
+            ProductionBreakdownList.update_production_breakdowns,
+            production_list1,
+            production_list2,
+            logging.Logger("test"),
+        )
+
+    def test_update_production_with_different_sourceType(self):
+        production_list1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list1.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=10, coal=10),
+            source="trust.me",
+        )
+        production_list2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list2.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind=20, coal=20),
+            source="trust.me",
+            sourceType=EventSourceType.forecasted,
+        )
+        self.assertRaises(
+            ValueError,
+            ProductionBreakdownList.update_production_breakdowns,
+            production_list1,
+            production_list2,
+            logging.Logger("test"),
+        )
+
     def test_filter_expected_modes(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))
         production_list_1.append(
