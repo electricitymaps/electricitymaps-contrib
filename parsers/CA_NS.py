@@ -14,7 +14,9 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 
-SOURCE ="nspower.ca"
+SOURCE = "nspower.ca"
+
+
 def _get_ns_info(requests_obj, logger: Logger):
     zone_key = ZoneKey("CA-NS")
 
@@ -53,10 +55,10 @@ def _get_ns_info(requests_obj, logger: Logger):
     load_data = requests_obj.get(load_url).json()
 
     # filter load_data that has a value of 0 MW
-    filtered_load_data = [load_elem for load_elem in load_data if load_elem["Base Load"] > 0]
+    filtered_load_data = [
+        load_elem for load_elem in load_data if load_elem["Base Load"] > 0
+    ]
 
-    production = []
-    imports = []
     all_production_breakdowns = ProductionBreakdownList(logger)
     all_exchanges = ExchangeList(logger)
     for mix in mix_data:
@@ -99,7 +101,6 @@ def _get_ns_info(requests_obj, logger: Logger):
             if load_period["datetime"] == mix["datetime"]
         ]
 
-
         if corresponding_load:
             load = corresponding_load[0]["Base Load"]
         else:
@@ -112,7 +113,7 @@ def _get_ns_info(requests_obj, logger: Logger):
             )
 
         electricity_mix = {
-            gen_type: round(percent_value * load,3)
+            gen_type: round(percent_value * load, 3)
             for gen_type, percent_value in percent_mix.items()
         }
 
@@ -138,11 +139,12 @@ def _get_ns_info(requests_obj, logger: Logger):
             if mode in PRODUCTION_MODES:
                 productionMix.add_value(mode, electricity_mix[mode])
             else:
-                all_exchanges.append(zoneKey=ZoneKey( "CA-NB->CA-NS"),
-            netFlow=electricity_mix["imports"],
-            datetime=data_date,
-            source=SOURCE,
-        )
+                all_exchanges.append(
+                    zoneKey=ZoneKey("CA-NB->CA-NS"),
+                    netFlow=electricity_mix["imports"],
+                    datetime=data_date,
+                    source=SOURCE,
+                )
         all_production_breakdowns.append(
             zoneKey=zone_key,
             datetime=data_date,
