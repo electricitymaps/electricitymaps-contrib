@@ -6,9 +6,17 @@ from logging import Logger, getLogger
 
 from requests import Session
 
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 
+SOURCE ="nspower.ca"
 def _get_ns_info(requests_obj, logger: Logger):
-    zone_key = "CA-NS"
+    zone_key = ZoneKey("CA-NS")
 
     # This is based on validation logic in https://www.nspower.ca/site/renewables/assets/js/site.js
     # In practical terms, I've seen hydro production go way too high (>70%) which is way more
@@ -44,8 +52,13 @@ def _get_ns_info(requests_obj, logger: Logger):
     load_url = "https://www.nspower.ca/library/CurrentLoad/CurrentLoad.json"
     load_data = requests_obj.get(load_url).json()
 
+    # filter load_data that has a value of 0 MW
+    filtered_load_data = [load_elem for load_elem in load_data if load_elem["Base Load"] > 0]
+
     production = []
     imports = []
+    all_production_breakdowns = ProductionBreakdownList(logger)
+    all_exchanges = ExchangeList(logger)
     for mix in mix_data:
         percent_mix = {
             "coal": mix["Solid Fuel"] / 100.0,
@@ -82,9 +95,11 @@ def _get_ns_info(requests_obj, logger: Logger):
         # and have to be multiplied by load to find the actual MW value.
         corresponding_load = [
             load_period
-            for load_period in load_data
+            for load_period in filtered_load_data
             if load_period["datetime"] == mix["datetime"]
         ]
+
+
         if corresponding_load:
             load = corresponding_load[0]["Base Load"]
         else:
@@ -97,7 +112,7 @@ def _get_ns_info(requests_obj, logger: Logger):
             )
 
         electricity_mix = {
-            gen_type: percent_value * load
+            gen_type: round(percent_value * load,3)
             for gen_type, percent_value in percent_mix.items()
         }
 
@@ -118,33 +133,23 @@ def _get_ns_info(requests_obj, logger: Logger):
             # continue the outer loop, not the inner
             continue
 
-        production.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": data_date,
-                "production": {
-                    key: value
-                    for key, value in electricity_mix.items()
-                    if key != "imports"
-                },
-                "source": "nspower.ca",
-            }
+        productionMix = ProductionMix()
+        for mode in electricity_mix:
+            if mode in PRODUCTION_MODES:
+                productionMix.add_value(mode, electricity_mix[mode])
+            else:
+                all_exchanges.append(zoneKey=ZoneKey( "CA-NB->CA-NS"),
+            netFlow=electricity_mix["imports"],
+            datetime=data_date,
+            source=SOURCE,
         )
-
-        # In this source, imports are positive. In the expected result for CA-NB->CA-NS,
-        # "net" represents a flow from NB to NS, that is, an import to NS.
-        # So the value can be used directly.
-        # Note that this API only specifies imports. When NS is exporting energy, the API returns 0.
-        imports.append(
-            {
-                "datetime": data_date,
-                "netFlow": electricity_mix["imports"],
-                "sortedZoneKeys": "CA-NB->CA-NS",
-                "source": "nspower.ca",
-            }
+        all_production_breakdowns.append(
+            zoneKey=zone_key,
+            datetime=data_date,
+            production=productionMix,
+            source=SOURCE,
         )
-
-    return production, imports
+    return all_production_breakdowns.to_list(), all_exchanges.to_list()
 
 
 def fetch_production(
