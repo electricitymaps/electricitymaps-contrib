@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
@@ -6,7 +7,6 @@ import { getBadgeText, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
-import { useTranslation } from 'react-i18next';
 
 interface CarbonChartProps {
   datetimes: Date[];

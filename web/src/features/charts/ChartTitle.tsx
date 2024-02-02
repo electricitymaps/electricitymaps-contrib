@@ -35,10 +35,12 @@ export function ChartTitle({
         <h3 className="text-md font-bold">
           {localExists
             ? t(`${translationKey}.${timeAverage}`)
-            : t(
-                `${translationKey}.default`,
-                formatTimeRange(localDefaultExists ? i18n.language : 'en', timeAverage)
-              )}
+            : t(`${translationKey}.default`, {
+                timeRange: formatTimeRange(
+                  localDefaultExists ? i18n.language : 'en',
+                  timeAverage
+                ),
+              })}
         </h3>
         {badgeText != undefined && (
           <Badge
