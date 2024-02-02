@@ -17,7 +17,6 @@ import SettingsModal from 'features/modals/SettingsModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import i18n from 'translation/i18n';
 import trackEvent from 'utils/analytics';
 
