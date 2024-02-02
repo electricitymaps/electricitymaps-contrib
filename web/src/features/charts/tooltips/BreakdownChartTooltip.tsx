@@ -149,7 +149,7 @@ export function BreakdownChartTooltipContent({
     : t(originTranslateKey, {
         percentageUsage: percentageUsage.toString(),
         zoneName: getZoneName(zoneKey),
-        selectedZoneName: t(selectedLayerKey),
+        selectedLayerKey: t(selectedLayerKey),
         zoneFlag: renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />),
       }); // Eg: "20 % of electricity in Denmark comes from biomass"
   const title = isExchange

@@ -42,10 +42,10 @@ export default function InfoText() {
         ).{' '}
         <span
           dangerouslySetInnerHTML={{
-            __html: t(
-              'panel-initial-text.contribute',
-              'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Getting-started'
-            ),
+            __html: t('panel-initial-text.contribute', {
+              gettingStartedLink:
+                'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Getting-started',
+            }),
           }}
         />
         .

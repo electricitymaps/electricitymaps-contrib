@@ -61,10 +61,9 @@ export default function Attribution({
         <span
           className="text-sm text-sky-600 no-underline hover:underline dark:invert"
           dangerouslySetInnerHTML={{
-            __html: t(
-              'country-panel.addeditsource',
-              'https://github.com/electricitymaps/electricitymaps-contrib#data-sources/tree/master/parsers'
-            ),
+            __html: t('country-panel.addeditsource', {
+              link: 'https://github.com/electricitymaps/electricitymaps-contrib#data-sources/tree/master/parsers',
+            }),
           }}
         />
         )
