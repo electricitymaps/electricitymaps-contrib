@@ -4,7 +4,7 @@ import { bisectLeft } from 'd3-array';
 // // https://observablehq.com/@d3/d3-selection-2-0
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
-import { useTranslation } from 'translation/translation';
+import { TFunction } from 'i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
 
@@ -160,16 +160,14 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
-export function getBadgeText(chartData: AreaGraphElement[]) {
+export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
   const hasEstimation = chartData.some((day) => day.meta.estimationMethod);
   const allEstimated = chartData.every((day) => day.meta.estimationMethod);
 
-  const { __ } = useTranslation();
-
   if (allEstimated) {
-    return __('estimation-badge.fully-estimated');
+    return t('estimation-badge.fully-estimated');
   } else if (hasEstimation) {
-    return __('estimation-badge.partially-estimated');
+    return t('estimation-badge.partially-estimated');
   }
   return undefined;
 }
