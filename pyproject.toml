@@ -34,7 +34,7 @@ pydataxm = { version = "^0.3.2", optional = true }
 ruamel-yaml = "^0.17.24"
 odfpy = { version = "^1.4.1", optional = true }
 pycountry = { version = "^22.3.5", optional = true }
-ruff = "^0.1.15"
+ruff = "^0.2.0"
 tzdata = "^2023.4"
 
 [tool.poetry.dev-dependencies]
