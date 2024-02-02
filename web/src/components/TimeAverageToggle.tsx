@@ -1,6 +1,6 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
+import { useTranslation } from 'react-i18next';
 import { HiOutlineClock } from 'react-icons/hi2';
-import { useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
 import { formatTimeRange } from 'utils/formatting';
 

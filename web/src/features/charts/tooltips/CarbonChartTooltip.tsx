@@ -2,7 +2,7 @@
 import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { Mode } from 'utils/constants';
 import { getCarbonIntensity } from 'utils/helpers';
 import { productionConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
@@ -12,7 +12,7 @@ import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
   const co2ColorScale = useCo2ColorScale();
@@ -37,7 +37,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
         squareColor={co2ColorScale(intensity)}
-        title={__('tooltips.carbonintensity')}
+        title={t('tooltips.carbonintensity')}
         hasEstimationPill={hasEstimationPill}
       />
       <CarbonIntensityDisplay

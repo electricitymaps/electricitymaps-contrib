@@ -3,7 +3,7 @@ import useGetState from 'api/getState';
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 
 import { Button } from './Button';
 
@@ -14,7 +14,7 @@ const TIME_BEFORE_SHOWING_RELOAD_BUTTON = 8000;
 // TODO: Consider loading svg directly or via img tag instead of the background-image
 // approach used here.
 function FadingOverlay({ isVisible }: { isVisible: boolean }) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
 
   const [showButton, setShowButton] = useState(false);
   const transitions = useTransition(isVisible, {
@@ -48,13 +48,13 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
             <div className="h-40 w-40 bg-[url('/images/loading-icon.svg')] bg-[length:100px] bg-center bg-no-repeat dark:bg-gray-900 dark:bg-[url('/images/loading-icon-darkmode.svg')]" />
             {showButton && (
               <>
-                <p>{__('misc.slow-loading-text')}</p>
+                <p>{t('misc.slow-loading-text')}</p>
                 <Button
                   className="w-20 min-w-min dark:bg-gray-800/80"
                   aria-label="Reload page"
                   onClick={() => window.location.reload()}
                 >
-                  {__('misc.reload')}
+                  {t('misc.reload')}
                 </Button>
               </>
             )}

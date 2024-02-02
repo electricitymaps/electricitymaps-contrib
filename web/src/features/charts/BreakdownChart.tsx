@@ -1,5 +1,5 @@
 import { max, sum } from 'd3-array';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { Mode, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
@@ -22,7 +22,7 @@ function BreakdownChart({
   timeAverage,
 }: BreakdownChartProps) {
   const { data, mixMode } = useBreakdownChartData();
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
 
   if (!data) {
     return null;
@@ -90,7 +90,7 @@ function BreakdownChart({
       {isBreakdownGraphOverlayEnabled && (
         <div
           className="prose my-1 rounded bg-gray-200 p-2 text-sm leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
-          dangerouslySetInnerHTML={{ __html: __('country-panel.exchangesAreMissing') }}
+          dangerouslySetInnerHTML={{ thtml: t('country-panel.exchangesAreMissing') }}
         />
       )}
     </>

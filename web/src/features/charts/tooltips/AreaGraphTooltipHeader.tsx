@@ -1,5 +1,5 @@
 import Badge from 'components/Badge';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 
@@ -13,7 +13,7 @@ interface AreaGraphToolTipHeaderProps {
 
 export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProps) {
   const { squareColor, datetime, timeAverage, title, hasEstimationPill = false } = props;
-  const { __, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
         <div className="inline-flex items-center gap-x-2">
           {hasEstimationPill && (
             <Badge
-              pillText={__('estimation-badge.fully-estimated')}
+              pillText={t('estimation-badge.fully-estimated')}
               type="warning"
               icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
             />

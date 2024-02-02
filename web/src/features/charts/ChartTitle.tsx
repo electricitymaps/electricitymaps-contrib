@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-no-target-blank */
 import Badge from 'components/Badge';
 import { useAtom } from 'jotai';
+import { useTranslation } from 'react-i18next';
 import { HiOutlineArrowDownTray } from 'react-icons/hi2';
-import { useTranslation } from 'translation/translation';
 import { formatTimeRange } from 'utils/formatting';
 import { timeAverageAtom } from 'utils/state/atoms';
 
@@ -17,7 +17,7 @@ export function ChartTitle({
   hasLink = true,
   badgeText = undefined,
 }: Props) {
-  const { __, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
 
   const localExists = i18n.exists(`${translationKey}.${timeAverage}`, {
@@ -34,8 +34,8 @@ export function ChartTitle({
       <div className="flex flex-row justify-between pb-0.5 pt-4">
         <h3 className="text-md font-bold">
           {localExists
-            ? __(`${translationKey}.${timeAverage}`)
-            : __(
+            ? t(`${translationKey}.${timeAverage}`)
+            : t(
                 `${translationKey}.default`,
                 formatTimeRange(localDefaultExists ? i18n.language : 'en', timeAverage)
               )}
@@ -57,7 +57,7 @@ export function ChartTitle({
             rel="noreferrer"
             className="pl-0.5 text-left text-[#4178ac] no-underline hover:underline dark:invert"
           >
-            {__('country-history.Getdata')}
+            {t('country-history.Getdata')}
           </a>
         </div>
       )}

@@ -1,7 +1,6 @@
 import { Arrow, Content, Root, Trigger } from '@radix-ui/react-dropdown-menu';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { useTranslation } from 'translation/translation';
 
 interface MapOptionSelectorProps {
   trigger: React.ReactNode;
@@ -15,7 +14,6 @@ export default function MapOptionSelector({
   children,
   isMobile,
 }: MapOptionSelectorProps) {
-  const { __ } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const toggleTooltip = () => {
     setIsOpen(!isOpen);
