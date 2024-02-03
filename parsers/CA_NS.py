@@ -62,19 +62,12 @@ def fetch_production(
     production_breakdowns = ProductionBreakdownList(logger)
     for mix in mixes:
         timestamp = _parse_timestamp(mix["datetime"])
-        if timestamp in loads:
-            load = loads[timestamp]
-        else:
-            # If a base load corresponding with this timestamp is not found,
-            # assume 1244 MW based on the average yearly electricity available
-            # for use in 2014 and 2015 (Statistics Canada table 127-0008 for
-            # Nova Scotia).
-            load = 1244
+        if timestamp not in loads:
             logger.warning(
-                "unable to find load for %s; assuming 1244 MW",
-                timestamp,
-                extra={"key": ZONE_KEY},
+                "unable to find base load for %s", timestamp, extra={"key": ZONE_KEY}
             )
+            continue
+        load = loads[timestamp]
 
         production_mix = ProductionMix()
         production_mix.add_value("biomass", load * mix["Biomass"] / 100)
