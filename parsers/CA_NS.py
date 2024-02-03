@@ -68,6 +68,9 @@ def fetch_production(
             )
             continue
         load = loads[timestamp]
+        if load <= 0:
+            logger.warning("invalid base load of %s MW", load, extra={"key": ZONE_KEY})
+            continue
 
         production_mix = ProductionMix()
         production_mix.add_value("biomass", load * mix["Biomass"] / 100)
