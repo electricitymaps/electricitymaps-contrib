@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/react';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
+import { lazy } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
@@ -14,8 +15,9 @@ import {
 import { useTranslation } from 'translation/translation';
 
 import { leftPanelOpenAtom } from './panelAtoms';
-import RankingPanel from './ranking-panel/RankingPanel';
-import ZoneDetails from './zone/ZoneDetails';
+
+const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
+const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
