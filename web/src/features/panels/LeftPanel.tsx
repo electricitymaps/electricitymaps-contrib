@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/react';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
-import { lazy } from 'react';
+import { lazy,Suspense } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
@@ -122,12 +122,21 @@ export default function LeftPanel() {
           path="/zone/:zoneId"
           element={
             <ValidZoneIdGuardWrapper>
-              <ZoneDetails />
+              <Suspense fallback={null}>
+                <ZoneDetails />
+              </Suspense>
             </ValidZoneIdGuardWrapper>
           }
         />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route path="*" element={<RankingPanel />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={null}>
+              <RankingPanel />
+            </Suspense>
+          }
+        />
       </SentryRoutes>
     </OuterPanel>
   );
