@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/react';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
-import { lazy,Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
