@@ -475,7 +475,7 @@ def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datet
 def query_ENTSOE(
     session: Session,
     params: dict[str, str],
-    span: tuple | None =None,
+    span: tuple | None = None,
     target_datetime: datetime | None = None,
     function_name: str = "",
 ) -> str:
