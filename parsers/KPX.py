@@ -6,11 +6,11 @@ import pprint
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
-from pytz import timezone
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -23,7 +23,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-TIMEZONE = timezone("Asia/Seoul")
+TIMEZONE = ZoneInfo("Asia/Seoul")
 KR_CURRENCY = "KRW"
 KR_SOURCE = "new.kpx.or.kr"
 REAL_TIME_URL = "https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000"
@@ -53,13 +53,13 @@ pp = pprint.PrettyPrinter(indent=4)
 # Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
 
 
-@refetch_frequency(timedelta(minutes=5))
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     if target_datetime:
         raise ParserException(
             "KPX.py",
@@ -80,9 +80,9 @@ def fetch_consumption(
 
     consumption_date_list = soup.find("p", {"class": "info_top"}).text.split(" ")[:2]
     consumption_date_list[0] = consumption_date_list[0].replace(".", "-").split("(")[0]
-    consumption_date = TIMEZONE.localize(
-        datetime.strptime(" ".join(consumption_date_list), "%Y-%m-%d %H:%M")
-    )
+    consumption_date = datetime.strptime(
+        " ".join(consumption_date_list), "%Y-%m-%d %H:%M"
+    ).replace(tzinfo=TIMEZONE)
 
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
@@ -98,10 +98,11 @@ def fetch_consumption(
 @refetch_frequency(timedelta(hours=167))
 def fetch_price(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     first_available_date = (
         arrow.now(TIMEZONE).shift(days=-6).floor("day").shift(hours=1)
     )
@@ -114,7 +115,7 @@ def fetch_price(
         )
 
     if target_datetime is None:
-        target_datetime = arrow.now(TIMEZONE).datetime
+        target_datetime = datetime.now(TIMEZONE)
 
     logger.debug(f"Fetching price data from {PRICE_URL}")
 
@@ -175,7 +176,9 @@ def parse_chart_prod_data(
         if item["regDate"] == "0":
             break
 
-        dt = TIMEZONE.localize(datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M"))
+        dt = datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M").replace(
+            tzinfo=TIMEZONE
+        )
 
         production_mix = ProductionMix()
         storage_mix = StorageMix()
@@ -206,19 +209,21 @@ def parse_chart_prod_data(
 
 def get_real_time_prod_data(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
+    session = session or Session()
     res = session.get(REAL_TIME_URL, verify=False)
     return parse_chart_prod_data(res.text, zone_key, logger)
 
 
 def get_historical_prod_data(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
+    session = session or Session()
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
 
     # CSRF token is needed to access the production data
@@ -244,13 +249,14 @@ def get_historical_prod_data(
     return parse_chart_prod_data(res.text, zone_key, logger)
 
 
-@refetch_frequency(timedelta(hours=20))
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     first_available_date = arrow.get(2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE)
     if target_datetime is not None and target_datetime < first_available_date:
         raise ParserException(

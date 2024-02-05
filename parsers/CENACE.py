@@ -177,7 +177,7 @@ def fetch_production(
         DATA_CACHE[cache_key] = df
 
     production = ProductionBreakdownList(logger)
-    for idx, series in df.iterrows():
+    for _idx, series in df.iterrows():
         production.append(
             zoneKey=zone_key,
             datetime=series["instante"].to_pydatetime(),
@@ -261,7 +261,7 @@ def fetch_consumption(
         "td", attrs={"id": f"Demanda{REGION_MAPPING[zone_key]}", "class": "num"}
     )
     if demand_td is None:
-        raise ParserException("CENACE.py", f"Could not find demand cell", zone_key)
+        raise ParserException("CENACE.py", "Could not find demand cell", zone_key)
     demand = float(demand_td.text.replace(",", ""))
     timezone = ZONES_CONFIG[zone_key].get("timezone")
     if timezone is None:

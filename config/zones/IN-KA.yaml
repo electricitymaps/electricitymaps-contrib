@@ -83,10 +83,8 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 459.2042079468457
     unknown:
-      _comment: 'Source: Souther Regional Load Dispatch Center Allocation Limits'
-      _url:
-        - http://srldc.org/2018-19srallocation.aspx
-      source: calculated 20% nuclear, 80% thermal (coal)
+      _comment: calculated 20% nuclear, 80% thermal (coal)
+      source: Souther Regional Load Dispatch Center Allocation Limits 2018-2019; SRLDC 2018-2019 derived calculation for Karnataka
       value: 658.4
 fallbackZoneMixes:
   powerOriginRatios:
@@ -169,3 +167,8 @@ parsers:
   consumption: IN_KA.fetch_consumption
   production: IN_KA.fetch_production
 timezone: Asia/Kolkata
+sources:
+  Souther Regional Load Dispatch Center Allocation Limits 2018-2019:
+    link: http://srldc.org/2018-19srallocation.aspx
+  SRLDC 2018-2019 derived calculation for Karnataka:
+    link: https://github.com/electricitymaps/electricitymaps-contrib/issues/1867

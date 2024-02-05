@@ -4,18 +4,54 @@ bounding_box:
   - - -117.104019502
     - 37.963081
 capacity:
-  battery storage: 23.5
-  biomass: 34.1
-  coal: 1640
-  gas: 5028.3
-  geothermal: 0
-  hydro: 324.6
-  hydro storage: 1626
-  nuclear: 0
-  oil: 0
-  solar: 994.8
-  unknown: 31.9
-  wind: 440.5
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 23.5
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 34.1
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1640.0
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 4854.6
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 270.0
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1084.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 999.1
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 31.9
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 440.5
 comment: Los Angeles Department Of Water And Power
 contributors:
   - systemcatch
@@ -52,17 +88,26 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 360.6966468753414
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 932.7095009
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 932.7095009
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 917.69
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 405.0754852
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 405.0754852
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 398.97
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -109,17 +154,26 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 420.1968418441202
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 138.0968906
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 138.0968906
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 992.7095009
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 992.7095009
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 977.69
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 525.0754852
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 525.0754852
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 518.97
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -201,6 +255,7 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
@@ -208,4 +263,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific

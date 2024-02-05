@@ -86,60 +86,52 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Kolintensitet under de senaste %1$s",
       "hourly": "Kolintensitet de senaste 24 timmarna",
       "daily": "Kolintensitet den senaste månaden",
       "monthly": "Kolintensitet det senaste året",
-      "yearly": "Kolintensitet de senaste 5 åren"
+      "default": "Kolintensitet under de senaste %1$s"
     },
     "emissions": {
-      "default": "Utsläpp de senaste %1$s",
       "hourly": "Utsläpp de senaste 24 timmarna",
       "daily": "Utsläpp den senaste månaden",
       "monthly": "Utsläpp det senaste året",
-      "yearly": "Utsläpp de senaste 5 åren"
+      "default": "Utsläpp de senaste %1$s"
     },
     "emissionsorigin": {
-      "default": "Källa för utsläpp de senaste %1$s",
       "hourly": "Källa för utsläpp de senaste 24 timmarna",
       "daily": "Källa för utsläpp den senaste månaden",
       "monthly": "Källa för utsläpp det senaste året",
-      "yearly": "Källa för utsläpp de senaste 5 åren"
+      "default": "Källa för utsläpp de senaste %1$s"
     },
     "emissionsproduction": {
-      "default": "Utsläpp producerad de senaste %1$s",
       "hourly": "Utsläpp producerad de senaste 24 timmarna",
       "daily": "Utsläpp producerad den senaste månaden",
       "monthly": "Utsläpp producerad det senaste året",
-      "yearly": "Utsläpp producerad de senaste 5 åren"
+      "default": "Utsläpp producerad de senaste %1$s"
     },
     "electricityorigin": {
-      "default": "Källa för el de senaste %1$s",
       "hourly": "Källa för el de senaste 24 timmarna",
       "daily": "Källa för el den senaste månaden",
       "monthly": "Källa för el det senaste året",
-      "yearly": "Källa för el de senaste 5 åren"
+      "default": "Källa för el de senaste %1$s"
     },
     "electricityproduction": {
-      "default": "El producerad de senaste %1$s",
       "hourly": "El producerad de senaste 24 timmarna",
       "daily": "El producerad den senaste månaden",
       "monthly": "El producerad det senaste året",
-      "yearly": "El producerad de senaste 5 åren"
+      "default": "El producerad de senaste %1$s"
     },
     "electricityprices": {
-      "default": "Elpriser de senaste %1$s",
       "hourly": "Elpriser de senaste 24 timmarna",
       "daily": "Elpriser den senaste månaden",
       "monthly": "Elpriser det senaste året",
-      "yearly": "Elpriser de senaste 5 åren"
+      "default": "Elpriser de senaste %1$s"
     },
     "netExchange": {
-      "default": "Nettoöverföring de senaste %1$s",
       "hourly": "Nettoöverföring de senaste 24 timmarna",
       "daily": "Nettoöverföring den senaste månaden",
       "monthly": "Nettoöverföring det senaste året",
-      "yearly": "Nettoöverföring de senaste 5 åren"
+      "default": "Nettoöverföring de senaste %1$s"
     },
     "Getdata": "Hämta timvis historisk data, aktuell data och prognosdata med Electricity Maps API",
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
@@ -212,7 +204,7 @@
   "misc": {
     "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
     "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
-    "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
+    "newversion": "En ny version är tillgänglig!",
     "webgl-not-supported": "Kartan kan inte renderas då denna webbläsare inte stöder WebGL.",
     "retrynow": "Försök igen",
     "database-ad": "Letar du efter historisk data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",

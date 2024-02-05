@@ -1,6 +1,6 @@
 {
   "panel-initial-text": {
-    "thisproject": "Dieses App ist",
+    "thisproject": "Diese App ist",
     "opensource": "Open Source",
     "see": "siehe",
     "datasources": "Datenquellen",
@@ -83,15 +83,26 @@
   "time-controller": {
     "title": "Historische Daten anzeigen"
   },
+  "estimation-badge": {
+    "partially-estimated": "Teilweise geschätzt",
+    "fully-estimated": "Geschätzt"
+  },
+  "estimation-card": {
+    "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
+    "estimated_time_slicer_average": {
+      "title": "Die Daten werden derzeit geschätzt",
+      "pill": "Nicht verfügbar",
+      "body": "Unsere Datenquellen stellen aktuell keine Werte für diese Zone zur Verfügung. Die angezeigten Werte sind Schätzungen, die auf historischen Messungen basieren und durch verifizierte Daten ersetzt werden, sobald diese verfügbar sind. Bitte beachten Sie, dass geschätzte Werte nicht immer genau sind, da sie aktuelle Wetterereignisse nicht berücksichtigen."
+    }
+  },
   "country-history": {
     "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
     "not-enough-data": "Für die Diagrammanzeige sind nicht genügend Daten verfügbar",
     "carbonintensity": {
-      "default": "Spezifische CO₂-Emissionen in den letzten %1$s",
       "hourly": "Spezifische CO₂-Emissionen in den letzten 24 Stunden",
       "daily": "Spezifische CO₂-Emissionen im letzten Monat",
       "monthly": "Spezifische CO₂-Emissionen im letzten Jahr",
-      "yearly": "Spezifische CO₂-Emissionen in den letzten 5 Jahren"
+      "default": "Spezifische CO₂-Emissionen in den letzten %1$s"
     },
     "emissionsorigin": {
       "default": "Ursprung der Emissionen in den letzten %1$s",
@@ -170,13 +181,15 @@
   "misc": {
     "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
     "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden noch einmal.",
-    "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a>, um sie zu laden.",
+    "newversion": "Eine neuere Version ist verfügbar!",
     "retrynow": "Erneut versuchen",
     "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
     "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
     "legend": "Legende",
     "faq": "Häufig gestellte Fragen",
-    "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt."
+    "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt.",
+    "dismiss": "Schließen",
+    "reload": "Neu laden"
   },
   "wind": "Windenergie",
   "solar": "Solarenergie",
@@ -748,6 +761,30 @@
     "IM": {
       "zoneName": "Isle of Man"
     },
+    "IN": {
+      "zoneName": "Indisches Festland"
+    },
+    "IN-EA": {
+      "countryName": "Indien",
+      "zoneName": "Ostindien"
+    },
+    "IN-NE": {
+      "countryName": "Indien",
+      "zoneName": "Nordostindien"
+    },
+    "IN-NO": {
+      "countryName": "Indien",
+      "zoneName": "Nordindien"
+    },
+    "IN-SO": {
+      "countryName": "Indien",
+      "zoneName": "Südindien"
+    },
+    "IN-WE": {
+      "countryName": "Indien",
+      "zoneName": "Westindien"
+    },
+
     "IN-AN": {
       "countryName": "Indien",
       "zoneName": "Andamanen und Nicobaren"

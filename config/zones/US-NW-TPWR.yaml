@@ -4,18 +4,54 @@ bounding_box:
   - - -120.56592
     - 48.28046
 capacity:
-  battery storage: 0
-  biomass: 64
-  coal: 0
-  gas: 0
-  geothermal: 0
-  hydro: 716.6
-  hydro storage: 0
-  nuclear: 0
-  oil: 0
-  solar: 0
-  unknown: 0
-  wind: 0
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 64.0
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 716.6
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
 comment: City Of Tacoma, Department Of Public Utilities, Light Division
 contributors:
   - systemcatch
@@ -52,9 +88,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 36.76361635161157
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -101,9 +140,12 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 64.29134040496706
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 25.02597585
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 25.02597585
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
       datetime: '2012-01-01'
       source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
@@ -190,9 +232,12 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific

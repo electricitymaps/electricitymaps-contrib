@@ -10,9 +10,10 @@ To get the very exact data, we would need to have a parser running constanty to 
 """
 
 import json
+from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 from signalr import Connection
 
@@ -80,7 +81,7 @@ def parse_payload(logger: Logger, payload) -> dict:
         "geothermal": 0,
         "unknown": 0,
     }
-    if not "technologies" in payload:
+    if "technologies" not in payload:
         raise KeyError(
             f"No 'technologies' in payload\n" f"serie : {json.dumps(payload)}"
         )
@@ -118,8 +119,10 @@ def format_storage_techs(technologies_parsed):
         storage_techs = technologies_parsed["battery"] + technologies_parsed["flywheel"]
     else:
         storage_techs = 0
-    battery_production = storage_techs if storage_techs > 0 else 0
-    battery_storage = storage_techs if storage_techs < 0 else 0
+    _battery_production = (
+        storage_techs if storage_techs > 0 else 0
+    )  # TODO: Should this just be removed?
+    _battery_storage = storage_techs if storage_techs < 0 else 0
 
 
 def sum_storage_techs(technologies_parsed):
@@ -147,8 +150,8 @@ def fetch_production(
             ZONE_PARAMS[zone_key]["tz"],
             ZONE_PARAMS[zone_key]["source"],
         )
-    except KeyError:
-        raise KeyError("The zone " + zone_key + " isn't implemented")
+    except KeyError as e:
+        raise KeyError("The zone " + zone_key + " isn't implemented") from e
 
     payload = SignalR("https://data.ajenti.com.au/live/signalr").get_value(
         hub, dashboard
@@ -158,7 +161,7 @@ def fetch_production(
 
     return {
         "zoneKey": zone_key,
-        "datetime": arrow.now(tz=tz).datetime,
+        "datetime": datetime.now(tz=ZoneInfo(tz)),
         "production": {
             "biomass": technologies_parsed["biomass"],
             "coal": technologies_parsed["coal"],

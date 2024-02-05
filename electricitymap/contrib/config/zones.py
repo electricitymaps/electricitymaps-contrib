@@ -56,11 +56,11 @@ def generate_zone_neighbours(
 
 
 def generate_all_neighbours(
-    exchanges_config: dict[str, Any]
+    exchanges_config: dict[str, Any],
 ) -> dict[ZoneKey, list[ZoneKey]]:
     """This object represents all neighbours regardless of granularity."""
     zone_neighbours = defaultdict(set)
-    for k, v in exchanges_config.items():
+    for k in exchanges_config.keys():
         zone_1, zone_2 = k.split("->")
         pairs = [(zone_1, zone_2), (zone_2, zone_1)]
         for zone_name_1, zone_name_2 in pairs:

@@ -1,15 +1,15 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from re import findall
+from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
-from pytz import timezone
 from requests import Response, Session
 
 from .lib.exceptions import ParserException
 
 IFRAME_URL = "https://grafik.kraftnat.ax/grafer/tot_inm_24h_15.php"
-TIME_ZONE = "Europe/Mariehamn"
+TIME_ZONE = ZoneInfo("Europe/Mariehamn")
 SOURCE = "kraftnat.ax"
 
 
@@ -48,6 +48,7 @@ def fetch_data(session: Session, logger: Logger):
         raw_data[3].split(","),
         raw_data[4].split(","),
         raw_data[5].split(","),
+        strict=True,
     ):
         data_list.append(
             {
@@ -69,12 +70,12 @@ def formated_data(
     zone_key2: str | None,
     session: Session,
     logger: Logger,
-    type: str,
+    data_type: str,
 ):
     """Format data to Electricity Map standards."""
     data_list = fetch_data(session, logger)
     data_list.reverse()
-    date_time = datetime.now(timezone(TIME_ZONE))
+    date_time = datetime.now(TIME_ZONE)
     date = date_time.replace(
         hour=int(data_list[0]["time"].split(":")[0]),
         minute=int(data_list[0]["time"].split(":")[1]),
@@ -86,7 +87,7 @@ def formated_data(
     return_list = []
     for data in data_list:
         corrected_date = date - timedelta(minutes=15 * data_list.index(data))
-        if type == "production":
+        if data_type == "production":
             return_list.append(
                 {
                     "zoneKey": zone_key,
@@ -98,7 +99,7 @@ def formated_data(
                     "source": SOURCE,
                 }
             )
-        elif type == "consumption":
+        elif data_type == "consumption":
             return_list.append(
                 {
                     "zoneKey": zone_key,
@@ -107,7 +108,7 @@ def formated_data(
                     "source": SOURCE,
                 }
             )
-        elif type == "exchange":
+        elif data_type == "exchange":
             if zone_key1 == "AX" and zone_key2 == "SE-SE3":
                 return_list.append(
                     {
@@ -159,7 +160,7 @@ def fetch_production(
         zone_key2=None,
         session=session,
         logger=logger,
-        type="production",
+        data_type="production",
     )
 
 
@@ -182,7 +183,7 @@ def fetch_consumption(
         zone_key2=None,
         session=session,
         logger=logger,
-        type="consumption",
+        data_type="consumption",
     )
 
 
@@ -206,5 +207,5 @@ def fetch_exchange(
         zone_key2=zone_key2,
         session=session,
         logger=logger,
-        type="exchange",
+        data_type="exchange",
     )

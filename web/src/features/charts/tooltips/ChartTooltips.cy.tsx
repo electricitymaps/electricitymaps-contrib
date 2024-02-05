@@ -25,7 +25,7 @@ it('Breakdown chart tooltip', () => {
 it('Emmisions chart tooltip', () => {
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
   cy.contains('Carbon emissions');
-  cy.contains(`1.4 kt of CO₂eq`);
+  cy.contains(`1.42 kt of CO₂eq`);
   cy.contains('5');
 });
 
@@ -52,6 +52,6 @@ it('Emmisions chart tooltip mobile', () => {
   cy.viewport(500, 500);
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
   cy.contains('Carbon emissions');
-  cy.contains(`1.4 kt of CO₂eq`);
+  cy.contains(`1.42 kt of CO₂eq`);
   cy.contains('5');
 });

@@ -501,11 +501,11 @@ def get_all_market_reports_items(
             message=f"No reports available to fetch {kind} data",
         )
     datetime_to_items = {}
-    for id, items in id_to_items.items():
+    for report_id, items in id_to_items.items():
         market_reports_item = MarketReportsItem(
             datetime.strptime(items["date"], "%d %B %Y %H:%M"),
             items["filename"],
-            KIND_TO_URL[kind] + f"?md_file={id}",
+            KIND_TO_URL[kind] + f"?md_file={report_id}",
         )
         datetime_to_items[market_reports_item.datetime] = market_reports_item
     logger.info(
@@ -717,10 +717,11 @@ def convert_column_to_datetime(df: pd.DataFrame, datetime_column: str) -> pd.Dat
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("PH-LU"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    session = session or Session()
     _validate_resource_name_to_mode_mapping()
     reports_items = get_all_market_reports_items(
         session, zone_key, "production", logger
@@ -761,10 +762,11 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
+    session = session or Session()
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     all_exchange_items = get_all_market_reports_items(

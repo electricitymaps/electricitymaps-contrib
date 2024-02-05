@@ -71,7 +71,7 @@ def get_api_subscription_key(session: Session) -> str:
         return pjm_settings.json()["subscriptionKey"]
     raise ParserException(
         parser="US_PJM.py",
-        message=f"Could not get API key",
+        message="Could not get API key",
     )
 
 
@@ -259,7 +259,7 @@ def get_exchange_data(interface, session: Session) -> list:
     time_array = re.search(time_pattern, str(exchange_script)).group(1)
     time_vals = demjson.decode(time_array)
 
-    flows = zip(actual_load, time_vals)
+    flows = zip(actual_load, time_vals, strict=True)
 
     arr_date = arrow.now("America/New_York").floor("day")
 
@@ -284,7 +284,7 @@ def combine_NY_exchanges(session: Session) -> list:
     linden = get_exchange_data("linden", session)
     hudson = get_exchange_data("hudson", session)
 
-    combined_flows = zip(nyiso, neptune, linden, hudson)
+    combined_flows = zip(nyiso, neptune, linden, hudson, strict=True)
 
     flows = []
     for datapoint in combined_flows:

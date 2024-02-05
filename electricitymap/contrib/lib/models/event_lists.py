@@ -6,6 +6,8 @@ from typing import Any
 
 import pandas as pd
 
+from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.config.capacity import get_capacity_data
 from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
@@ -18,6 +20,9 @@ from electricitymap.contrib.lib.models.events import (
     TotalProduction,
 )
 from electricitymap.contrib.lib.types import ZoneKey
+
+CAPACITY_STRICT_THRESHOLD = 0
+CAPACITY_LOOSE_THRESHOLD = 0.02
 
 
 class EventList(ABC):
@@ -142,7 +147,7 @@ class ExchangeList(AggregatableEventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        netFlow: float,
+        netFlow: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Exchange.create(
@@ -177,8 +182,10 @@ class ExchangeList(AggregatableEventList):
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True
         )
-        for datetime, row in exchange_df.iterrows():
-            exchanges.append(zone_key, datetime.to_pydatetime(), sources, row["netFlow"], source_type)  # type: ignore
+        for dt, row in exchange_df.iterrows():
+            exchanges.append(
+                zone_key, dt.to_pydatetime(), sources, row["netFlow"], source_type
+            )  # type: ignore
 
         return exchanges
 
@@ -244,6 +251,66 @@ class ProductionBreakdownList(AggregatableEventList):
             production_breakdowns.events.append(prod)
         return production_breakdowns
 
+    @staticmethod
+    def filter_expected_modes(
+        breakdowns: "ProductionBreakdownList",
+        strict_storage: bool = False,
+        strict_capacity: bool = False,
+        by_passed_modes: list[str] | None = None,
+    ) -> "ProductionBreakdownList":
+        """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
+        This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
+        TODO: Remove this method once the outlier detection is able to handle it.
+        """
+
+        if by_passed_modes is None:
+            by_passed_modes = []
+
+        def select_capacity(capacity_value: float, total_capacity: float) -> bool:
+            if strict_capacity:
+                return capacity_value > CAPACITY_STRICT_THRESHOLD
+            return capacity_value / total_capacity > CAPACITY_LOOSE_THRESHOLD
+
+        events = ProductionBreakdownList(breakdowns.logger)
+        for event in breakdowns.events:
+            capacity_config = ZONES_CONFIG.get(event.zoneKey, {}).get("capacity", {})
+            capacity = get_capacity_data(capacity_config, event.datetime)
+            total_capacity = sum(capacity.values())
+            valid = True
+            required_modes = [
+                mode
+                for mode, capacity_value in capacity.items()
+                if select_capacity(capacity_value, total_capacity)
+            ]
+            required_modes = list(set(required_modes))
+            if not strict_storage:
+                required_modes = [
+                    mode for mode in required_modes if "storage" not in mode
+                ]
+            required_modes = [
+                mode for mode in required_modes if mode not in by_passed_modes
+            ]
+            for mode in required_modes:
+                value = event.get_value(mode)
+                if (
+                    value is None
+                    and mode not in event.production.corrected_negative_modes
+                ):
+                    valid = False
+                    events.logger.warning(
+                        f"Discarded production event for {event.zoneKey} at {event.datetime} due to missing {mode} value."
+                    )
+                    break
+            if valid:
+                events.append(
+                    zoneKey=event.zoneKey,
+                    datetime=event.datetime,
+                    production=event.production,
+                    storage=event.storage,
+                    source=event.source,
+                )
+        return events
+
 
 class TotalProductionList(EventList):
     events: list[TotalProduction]
@@ -253,7 +320,7 @@ class TotalProductionList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        value: float,
+        value: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalProduction.create(
@@ -271,7 +338,7 @@ class TotalConsumptionList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        consumption: float,
+        consumption: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalConsumption.create(
@@ -289,7 +356,7 @@ class PriceList(EventList):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        price: float,
+        price: float | None,
         currency: str,
         sourceType: EventSourceType = EventSourceType.measured,
     ):

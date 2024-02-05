@@ -42,13 +42,19 @@ emissionFactors:
       source: BEIS 2021
       value: 0.0
     coal:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 1057.262766
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 1057.262766
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 1075.5
     gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 419.8221756
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 419.8221756
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 412.38
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
@@ -66,9 +72,18 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 752.432349872631
     oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 880.903938
+      - datetime: '2018-01-01'
+        source: EU-ETS, CERA 2018 Report
+        value: 730.57
+      - datetime: '2019-01-01'
+        source: EU-ETS, CERA 2019 Report
+        value: 710.54
+      - datetime: '2020-01-01'
+        source: EU-ETS, CERA 2020 Report
+        value: 707.44
+      - datetime: '2021-01-01'
+        source: EU-ETS, TSOC 2021 Report
+        value: 709.61
   lifecycle:
     battery discharge:
       - datetime: '2017-01-01'
@@ -91,13 +106,19 @@ emissionFactors:
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1117.262766
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 1117.262766
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 1135.5
     gas:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 539.8221756
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 539.8221756
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 532.38
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -123,9 +144,18 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
-      datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1124.903938
+      - datetime: '2018-01-01'
+        source: EU-ETS, CERA 2018 Report; IPCC 2014
+        value: 974.57
+      - datetime: '2019-01-01'
+        source: EU-ETS, CERA 2019 Report; IPCC 2014
+        value: 954.54
+      - datetime: '2020-01-01'
+        source: EU-ETS, CERA 2020 Report; IPCC 2014
+        value: 951.44
+      - datetime: '2021-01-01'
+        source: EU-ETS, TSOC 2021 Report; IPCC 2014
+        value: 953.61
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -214,8 +244,19 @@ fallbackZoneMixes:
         wind: 0.04815504650414774
 parsers:
   production: CY.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 sources:
+  EU-ETS, CERA 2018 Report:
+    link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2018_gr.pdf#page=128
+  EU-ETS, CERA 2019 Report:
+    link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2019_gr.pdf#page=143
+  EU-ETS, CERA 2020 Report:
+    link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2020_gr.pdf#page=164
+  EU-ETS, TSOC 2021 Report:
+    link: https://tsoc.org.cy/files/reports/annual-reports/TSOC_Annual_Report_2021.pdf#page=34
   EU-ETS, ENTSO-E 2021:
+    link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

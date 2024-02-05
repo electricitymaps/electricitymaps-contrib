@@ -102,12 +102,14 @@
   "misc": {
     "maintitle": "CO₂ emisie elektrickej spotreby v aktuálnom čase",
     "oops": "Achjaj! Máme problém v komunikácii so serverom. Skúsime to opäť o pár sekúnd.",
-    "newversion": "Nová verzia je dostupná! Klikni <a onClick=\"location.reload(true);\">tu</a> pre znovunačítanie.",
+    "newversion": "Nová verzia je dostupná!",
     "retrynow": "Zopakuj teraz",
     "database-ad": "Hladáte historické dáta? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Skontrolujte našu databázu!</a>",
     "api-ad": "Chcete mať živé dáta vo svojej aplikácii alebo na svojom zariadení? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vyskúšajte naše API!</a>]",
     "legend": "Legenda",
-    "faq": "Často kladené otázky"
+    "faq": "Často kladené otázky",
+    "dismiss": "Zrušiť",
+    "reload": "Znova načítať"
   },
   "wind": "veterná en.",
   "solar": "solárna en.",

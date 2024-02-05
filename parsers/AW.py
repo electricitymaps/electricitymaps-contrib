@@ -3,8 +3,8 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
-from pytz import timezone
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
@@ -19,7 +19,7 @@ FUEL_MAPPING = {
     "TotalSolar": "solar",
     "total_bio_gas": "biomass",
 }
-TIMEZONE = timezone("America/Aruba")
+TIMEZONE = ZoneInfo("America/Aruba")
 PRODUCTION_URL = (
     "https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json"
 )
@@ -65,11 +65,9 @@ def fetch_production(
         "unknown", reported_total - sources_total, correct_negative_with_zero=True
     )
     # We're using Fossil data to get timestamp in correct time zone
-    local_date_time = TIMEZONE.localize(
-        datetime.strptime(
-            top_data["total_bio_gas"]["timestamp"], "%Y-%m-%d %H:%M:%S.%f"
-        )
-    )
+    local_date_time = datetime.strptime(
+        top_data["total_bio_gas"]["timestamp"], "%Y-%m-%d %H:%M:%S.%f"
+    ).replace(tzinfo=TIMEZONE)
 
     production_list = ProductionBreakdownList(logger)
     production_list.append(

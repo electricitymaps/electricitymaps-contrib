@@ -4,18 +4,54 @@ bounding_box:
   - - -102.051328941
     - 49.1340949710001
 capacity:
-  battery storage: 0
-  biomass: 0
-  coal: 0
-  gas: 0
-  geothermal: 0
-  hydro: 969.1
-  hydro storage: 0
-  nuclear: 0
-  oil: 0
-  solar: 0
-  unknown: 0
-  wind: 77.6
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 950.2
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 77.6
 comment: Western Area Power Administration Ugp West
 contributors:
   - systemcatch
@@ -227,6 +263,7 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

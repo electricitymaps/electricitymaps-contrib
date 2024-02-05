@@ -1,7 +1,7 @@
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 import cv2
 import numpy as np
 import pytesseract
@@ -127,7 +127,9 @@ def fetch_production(
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    dt = arrow.now("Asia/Kolkata").floor("minute").datetime
+    dt = datetime.now(tz=ZoneInfo("Asia/Kolkata")).replace(
+        minute=0, second=0, microsecond=0
+    )
 
     data = {
         "zoneKey": "IN-MH",
@@ -179,15 +181,15 @@ def fetch_production(
     # fraction of central state production that is exchanged with Maharashtra
     share = round(values["CS EXCH"] / values["CS GEN. TTL."], 2)
 
-    for type, plants in generation_map.items():
+    for production_type, plants in generation_map.items():
         for plant in plants["add"]:
             fac = (
                 share if plant in CS else 1
             )  # add only a fraction of central state plant consumption
-            data["production"][type] += fac * values[plant]
+            data["production"][production_type] += fac * values[plant]
         for plant in plants["subtract"]:
             fac = share if plant in CS else 1
-            data["production"][type] -= fac * values[plant]
+            data["production"][production_type] -= fac * values[plant]
 
     # Sum over all production types is expected to equal the total demand
     demand_diff = sum(data["production"].values()) - values["DEMAND"]

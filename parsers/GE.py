@@ -22,7 +22,7 @@ URL = urllib.parse.urlsplit("https://gse.com.ge/apps/gsebackend/rest")
 URL_STRING = URL.geturl()
 
 
-@config.refetch_frequency(timedelta(hours=1))
+@config.refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "GE",
     session: Session | None = None,

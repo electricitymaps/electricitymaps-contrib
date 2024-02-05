@@ -3,7 +3,7 @@ import { useTranslation } from 'translation/translation';
 import { formatCo2 } from 'utils/formatting';
 import { productionConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
 
-import { getTotalEmissions } from '../graphUtils';
+import { getTotalEmissionsAvailable } from '../graphUtils';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
@@ -16,16 +16,18 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
     return null;
   }
 
-  const totalEmissions = getTotalEmissions(zoneDetail, mixMode);
-  const { stateDatetime } = zoneDetail;
+  const totalEmissions = getTotalEmissionsAvailable(zoneDetail, mixMode);
+  const { stateDatetime, estimationMethod } = zoneDetail;
+  const hasEstimationPill = estimationMethod != undefined;
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[350px]">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[410px] dark:border dark:border-gray-700 dark:bg-gray-800">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
         squareColor="#a5292a"
         title={__('country-panel.emissions')}
+        hasEstimationPill={hasEstimationPill}
       />
       <p className="flex justify-center text-base">
         <b className="mr-1">{formatCo2(totalEmissions)}</b> {__('ofCO2eq')}

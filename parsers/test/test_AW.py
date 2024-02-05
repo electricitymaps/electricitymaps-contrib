@@ -1,6 +1,6 @@
-from json import loads
+import json
+from importlib import resources
 
-from pkg_resources import resource_string
 from requests import Session
 from requests_mock import GET, Adapter
 from snapshottest import TestCase
@@ -16,11 +16,14 @@ class TestWebaruba(TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_fetch_production(self):
-        production = resource_string("parsers.test.mocks.AW", "production.json")
         self.adapter.register_uri(
             GET,
             PRODUCTION_URL,
-            json=loads(production.decode("utf-8")),
+            json=json.loads(
+                resources.files("parsers.test.mocks.AW")
+                .joinpath("production.json")
+                .read_text()
+            ),
         )
         production = fetch_production(
             zone_key=ZoneKey("AW"),

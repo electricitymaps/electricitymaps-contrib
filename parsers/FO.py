@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from logging import Logger, getLogger
 from typing import Literal, TypedDict
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Response, Session
-
-from parsers.lib.config import refetch_frequency
 
 from .lib.exceptions import ParserException
 from .lib.validation import validate
+
+FO = ZoneInfo("Atlantic/Faroe")
 
 MAP_GENERATION = {
     "Vand": "hydro",
@@ -46,7 +46,6 @@ def map_generation_type(raw_generation_type):
     return MAP_GENERATION.get(raw_generation_type, None)
 
 
-@refetch_frequency(timedelta(minutes=5))
 def fetch_production(
     zone_key: VALID_ZONE_KEYS = "FO",
     session: Session | None = None,
@@ -80,9 +79,7 @@ def fetch_production(
     }
     for key, value in obj.items():
         if key == "tiden":
-            data["datetime"] = arrow.get(
-                arrow.get(value).datetime, "Atlantic/Faroe"
-            ).datetime
+            data["datetime"] = datetime.fromisoformat(value).replace(tzinfo=FO)
         elif "Sum" in key:
             continue
         elif "Test" in key:

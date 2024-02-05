@@ -4,8 +4,11 @@ import { bisectLeft } from 'd3-array';
 // // https://observablehq.com/@d3/d3-selection-2-0
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
+import { useTranslation } from 'translation/translation';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
+
+import { AreaGraphElement } from './types';
 
 export const detectHoveredDatapointIndex = (
   event_: any,
@@ -74,34 +77,34 @@ export const getGenerationTypeKey = (name: string): GenerationType | undefined =
   return undefined;
 };
 
-export function getTotalElectricity(zoneData: ZoneDetail, mixMode: Mode) {
-  const isConsumption = mixMode === Mode.CONSUMPTION;
-  if (isConsumption) {
-    if (zoneData.totalConsumption === null) {
-      return Number.NaN;
-    }
-    return zoneData.totalConsumption;
-  }
+/** Returns the total electricity that is available in the zone (e.g. production + discharge + imports) */
+export function getTotalElectricityAvailable(zoneData: ZoneDetail, mixMode: Mode) {
+  const includeImports = mixMode === Mode.CONSUMPTION;
+  const totalDischarge = zoneData.totalDischarge ?? 0;
+  const totalImport = zoneData.totalImport ?? 0;
+
   if (zoneData.totalProduction === null) {
     return Number.NaN;
   }
-  // Electricity: Handle discharge case if available, else default to production
-  return zoneData.totalProduction + (zoneData.totalDischarge ?? 0);
+
+  return zoneData.totalProduction + totalDischarge + (includeImports ? totalImport : 0);
 }
 
-export function getTotalEmissions(zoneData: ZoneDetail, mixMode: Mode) {
-  const isConsumption = mixMode === Mode.CONSUMPTION;
-  if (isConsumption) {
-    if (zoneData.totalCo2Consumption === null) {
-      return Number.NaN;
-    }
-    return zoneData.totalCo2Consumption;
-  }
+/** Returns the total emissions that is available in the zone (e.g. production + discharge + imports) */
+export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) {
+  const includeImports = mixMode === Mode.CONSUMPTION;
+  const totalCo2Discharge = zoneData.totalCo2Discharge ?? 0;
+  const totalCo2Import = zoneData.totalCo2Import ?? 0;
+
   if (zoneData.totalCo2Production === null) {
     return Number.NaN;
   }
-  // Emissions: Handle discharge case if available, else default to production
-  return zoneData.totalCo2Production + (zoneData.totalCo2Discharge ?? 0);
+
+  return (
+    zoneData.totalCo2Production +
+    totalCo2Discharge +
+    (includeImports ? totalCo2Import : 0)
+  );
 }
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
@@ -155,4 +158,18 @@ export function getElectricityProductionValue({
   }
   // Do not negate value if it is zero
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
+}
+
+export function getBadgeText(chartData: AreaGraphElement[]) {
+  const hasEstimation = chartData.some((day) => day.meta.estimationMethod);
+  const allEstimated = chartData.every((day) => day.meta.estimationMethod);
+
+  const { __ } = useTranslation();
+
+  if (allEstimated) {
+    return __('estimation-badge.fully-estimated');
+  } else if (hasEstimation) {
+    return __('estimation-badge.partially-estimated');
+  }
+  return undefined;
 }

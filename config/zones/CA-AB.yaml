@@ -78,7 +78,7 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 483.05444890890203
     unknown:
-      source: 'Battle River dual fuel power plant: 50% coal and 50% natural gas'
+      source: 'assumes 50% coal and 50% natural gas from Battle River dual fuel power plant'
       value: 655
 fallbackZoneMixes:
   powerOriginRatios:

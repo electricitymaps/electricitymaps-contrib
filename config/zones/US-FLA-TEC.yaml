@@ -4,18 +4,54 @@ bounding_box:
   - - -81.1327000919999
     - 28.9295718550001
 capacity:
-  battery storage: 0
-  biomass: 71.6
-  coal: 233.4
-  gas: 6331.3
-  geothermal: 0
-  hydro: 0
-  hydro storage: 0
-  nuclear: 0
-  oil: 133.4
-  solar: 898.7
-  unknown: 335.3
-  wind: 0
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 12.6
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 69.1
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 486.0
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 6220.0
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1029.4
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 325.3
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
 comment: Tampa Electric Company
 contributors:
   - brandongalbraith
@@ -53,13 +89,23 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 510.62387145096113
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
-    gas:
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
+    coal:
       datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 432.8237021
+      source: eGrid 2021
+      value: 863.2
+    gas:
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 432.8237021
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 360.34
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -106,18 +152,28 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 593.9242899009478
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 1248.927719
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 1248.927719
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
-      datetime: '2012-01-01'
-      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 866.085401
+      - datetime: '2012-01-01'
+        source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 866.085401
+      - datetime: '2021-01-01'
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 969.2854010000001
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 552.8237021
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 552.8237021
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 480.34
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -259,6 +315,7 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
@@ -266,4 +323,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
