@@ -18,7 +18,7 @@ import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
-const LegendContainer = lazy(async () => import('components/legend/LegendContainer'));
+const LegendContainer = lazy(() => import('components/legend/LegendContainer'));
 const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
