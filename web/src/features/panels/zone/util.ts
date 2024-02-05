@@ -77,3 +77,15 @@ export function getDisclaimer(zoneId: string) {
   const zoneConfig = config.zones[zoneId];
   return zoneConfig?.disclaimer;
 }
+
+export function showEstimationFeedbackCard(
+  collapsedNumber: number,
+  showFeedbackCard: boolean,
+  feedbackCardStatus: string | null
+) {
+  if ((feedbackCardStatus != 'seenBefore' && collapsedNumber > 1) || showFeedbackCard) {
+    localStorage.setItem('feedbackCardStatus', 'seenBefore');
+    return true;
+  }
+  return false;
+}

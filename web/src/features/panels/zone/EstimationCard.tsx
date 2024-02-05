@@ -1,10 +1,12 @@
 import Badge from 'components/Badge';
-import { useEffect, useState } from 'react';
+import { isNull } from 'cypress/types/lodash';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 import { ZoneDetails } from 'types';
 
 import FeedbackCard from './FeedbackCard';
+import { showEstimationFeedbackCard } from './util';
 
 export default function EstimationCard({
   cardType,
@@ -15,8 +17,18 @@ export default function EstimationCard({
   estimationMethod: string | undefined;
   outageMessage: ZoneDetails['zoneMessage'];
 }) {
-  const [hasBeenCollapsedAndOpened, setHasBeenCollapsedAndOpened] = useState(false);
-  const hasNotBeenSeenBefore = localStorage.getItem('hasNotBeenSeenBefore');
+  const [showFeedbackCard, setShowFeedbackCard] = useState(false);
+  const [collapsedNumber, setCollapsedNumber] = useState(0);
+
+  useEffect(() => {
+    setShowFeedbackCard(
+      showEstimationFeedbackCard(
+        collapsedNumber,
+        showFeedbackCard,
+        localStorage.getItem('feedbackCardStatus')
+      )
+    );
+  }, [collapsedNumber]);
 
   if (cardType == 'outage') {
     return <OutageCard outageMessage={outageMessage} />;
@@ -27,9 +39,9 @@ export default function EstimationCard({
       <div>
         <EstimatedCard
           estimationMethod={estimationMethod}
-          setShowFeedbackCard={setHasBeenCollapsedAndOpened}
+          setCollapsedNumber={setCollapsedNumber}
         />
-        {hasBeenCollapsedAndOpened && hasNotBeenSeenBefore == '1' && <FeedbackCard />}
+        {showFeedbackCard && <FeedbackCard />}
       </div>
     );
   }
@@ -55,7 +67,7 @@ function BaseCard({
   showMethodologyLink,
   pillType,
   textColorTitle,
-  setHasBeenCollapsedAndOpened,
+  setCollapsedNumber,
 }: {
   estimationMethod: string | undefined;
   outageMessage: ZoneDetails['zoneMessage'];
@@ -64,29 +76,15 @@ function BaseCard({
   showMethodologyLink: boolean;
   pillType: string | undefined;
   textColorTitle: string;
-  setHasBeenCollapsedAndOpened?: any;
+  setCollapsedNumber?: Dispatch<SetStateAction<number>>;
 }) {
-  const [collapsedNumber, setCollapsedNumber] = useState(0);
-
   const [isCollapsed, setIsCollapsed] = useState(
     estimationMethod == 'outage' ? false : true
   );
 
-  useEffect(() => {
-    const hasNotBeenSeenBefore = localStorage.getItem('hasNotBeenSeenBefore');
-    if (collapsedNumber > 1 && setHasBeenCollapsedAndOpened != undefined) {
-      setHasBeenCollapsedAndOpened(true);
-      if (Number(hasNotBeenSeenBefore) < 1) {
-        localStorage.setItem('hasNotBeenSeenBefore', '1');
-      } else if (Number(hasNotBeenSeenBefore) == 1) {
-        localStorage.setItem('hasNotBeenSeenBefore', '2');
-      }
-    }
-    setIsCollapsed((previous) => !previous);
-  }, [collapsedNumber]);
-
   const handleToggleCollapse = () => {
-    setCollapsedNumber((previous) => previous + 1);
+    if (setCollapsedNumber) {setCollapsedNumber((previous) => previous + 1);}
+    setIsCollapsed((previous) => !previous);
   };
   const { __ } = useTranslation();
 
@@ -182,10 +180,10 @@ function AggregatedCard() {
 
 function EstimatedCard({
   estimationMethod,
-  setShowFeedbackCard,
+  setCollapsedNumber,
 }: {
   estimationMethod: string | undefined;
-  setShowFeedbackCard: any;
+  setCollapsedNumber?: any;
 }) {
   return (
     <BaseCard
@@ -196,7 +194,7 @@ function EstimatedCard({
       showMethodologyLink={true}
       pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
-      setHasBeenCollapsedAndOpened={setShowFeedbackCard}
+      setCollapsedNumber={setCollapsedNumber}
     />
   );
 }
