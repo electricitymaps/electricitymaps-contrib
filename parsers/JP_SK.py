@@ -1,11 +1,26 @@
+import re
+from datetime import datetime
+from io import BytesIO
+from logging import Logger, getLogger
+from typing import Optional
+from urllib.request import Request, urlopen
+
+# The arrow library is used to handle datetimes
+import arrow
+import pytz
 from bs4 import BeautifulSoup
 from PIL import Image
 from pytesseract import image_to_string
+
 # The request library is used to fetch content through HTTP
 from requests import Session
+
 from .JP import fetch_production as JP_fetch_production
+
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
+
+
 def fetch_production(
     zone_key: str = "JP-SK",
     session: Optional[Session] = None,
@@ -42,8 +57,11 @@ def fetch_production(
     ).total_seconds() / 3600 <= 1:
         latest_data_point_JP_SK["production"]["nuclear"] = nuclear_power_MW
     return latest_data_point_JP_SK
+
+
 NUCLEAR_REPORT_URL = "https://www.yonden.co.jp/energy/atom/ikata/ikt722.html"
 IMAGE_CORE_URL = "https://www.yonden.co.jp/energy/atom/ikata/"
+
 
 def get_nuclear_power_image_url(session: Session) -> str:
     """This method fetches the image url from the nuclear power plant website"""
@@ -58,6 +76,8 @@ def get_nuclear_power_image_url(session: Session) -> str:
         raise Exception("No image found")
     img_url = IMAGE_CORE_URL + filtered_img_tags[0]["src"]
     return img_url
+
+
 def get_nuclear_power_value_and_timestamp_from_image_url(
     img_url: str, session: Session
 ) -> (float, datetime):
@@ -78,7 +98,10 @@ def get_nuclear_power_value_and_timestamp_from_image_url(
         tzinfo=pytz.timezone("Asia/Tokyo")
     )
     return nuclear_power, datetime_nuclear
+
+
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
+
     print("fetch_production() ->")
     print(fetch_production())
