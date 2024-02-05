@@ -72,7 +72,9 @@ export default function App(): ReactElement {
     <Suspense fallback={<div />}>
       <main className="fixed flex h-screen w-screen flex-col">
         <ToastProvider duration={20_000}>
-          <Header />
+          <Suspense>
+            <Header />
+          </Suspense>
           <div className="relative flex flex-auto items-stretch">
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               {isSuccess && isNewVersionAvailable && (
@@ -83,16 +85,26 @@ export default function App(): ReactElement {
                   toastActionText={__('misc.reload')}
                 />
               )}
-              <LoadingOverlay />
-              <OnboardingModal />
-              <FAQModal />
-              <InfoModal />
-              <SettingsModal />
-              <LeftPanel />
-              <MapWrapper />
-              <TimeControllerWrapper />
-              <FeatureFlagsManager />
-              <LegendContainer />
+              <Suspense>
+                <LoadingOverlay />
+              </Suspense>
+              <Suspense>
+                <OnboardingModal />
+              </Suspense>
+              <Suspense>
+                <FAQModal />
+                <InfoModal />
+                <SettingsModal />
+              </Suspense>
+              <Suspense>
+                <LeftPanel />
+                <MapWrapper />
+                <TimeControllerWrapper />
+                <FeatureFlagsManager />
+              </Suspense>
+              <Suspense>
+                <LegendContainer />
+              </Suspense>
             </Sentry.ErrorBoundary>
           </div>
         </ToastProvider>
