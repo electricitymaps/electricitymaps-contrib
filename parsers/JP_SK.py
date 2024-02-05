@@ -32,7 +32,8 @@ def fetch_production(
     This method adds nuclear production on top of the solar data returned by the JP parser.
     It tries to match the solar + unknown data with the nuclear data.
     """
-    r = session or Session()
+    # r = session or Session()
+    r=Session()
     if target_datetime is not None:
         raise NotImplementedError("This parser can only fetch live data")
     # fetch data from TSO - unknown + solar
@@ -65,6 +66,7 @@ IMAGE_CORE_URL = "https://www.yonden.co.jp/energy/atom/ikata/"
 
 def get_nuclear_power_image_url(session: Session) -> str:
     """This method fetches the image url from the nuclear power plant website"""
+    session = Session()
     response_main_page = session.get(NUCLEAR_REPORT_URL)
     soup = BeautifulSoup(response_main_page.content, "html.parser")
     images_links = soup.find_all("img", src=True)
@@ -80,6 +82,7 @@ def get_nuclear_power_image_url(session: Session) -> str:
 def get_nuclear_power_value_and_timestamp_from_image_url(
     img_url: str, session: Session
 ) -> (float, datetime):
+    session = Session()
     response_image = session.get(img_url)
     image = Image.open(BytesIO(response_image.content))
     width, height = image.size
