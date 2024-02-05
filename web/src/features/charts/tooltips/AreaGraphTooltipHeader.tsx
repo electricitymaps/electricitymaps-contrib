@@ -42,7 +42,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
             <Badge
               pillText={
                 estimatedPercentage
-                  ? i18n.t('estimation-card.aggregated.pill', {
+                  ? i18n.t('estimation-card.aggregated_estimated.pill', {
                       percentage: estimatedPercentage,
                     })
                   : __('estimation-badge.fully-estimated')

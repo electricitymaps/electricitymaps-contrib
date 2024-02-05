@@ -96,6 +96,10 @@
     },
     "aggregated": {
       "title": "Aggregierte Daten",
+      "body": "Die angezeigten Daten sind eine Zusammenlegung stündlich gemessener Werte."
+    },
+    "aggregated_estimated": {
+      "title": "Aggregierte Daten",
       "pill": " {{percentage}}% geschätzt",
       "body": "Die angezeigten Daten sind eine Zusammenlegung stündlich gemessener Werte, wovon {{percentage}}% der Werte geschätzt sind."
     }

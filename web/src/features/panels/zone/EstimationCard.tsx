@@ -34,11 +34,12 @@ function getEstimationTranslation(
   estimatedPercentage?: number
 ) {
   const { __, i18n } = useTranslation();
-  const exactTranslation = Number.isFinite(estimatedPercentage)
-    ? i18n.t(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`, {
-        percentage: estimatedPercentage,
-      })
-    : __(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`);
+  const exactTranslation =
+    (estimatedPercentage ?? 0) > 0 && estimationMethod === 'aggregated'
+      ? i18n.t(`estimation-card.aggregated_estimated.${field}`, {
+          percentage: estimatedPercentage,
+        })
+      : __(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`);
 
   const genericTranslation = __(`estimation-card.estimated_generic_method.${field}`);
   return exactTranslation.length > 0 ? exactTranslation : genericTranslation;

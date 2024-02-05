@@ -80,8 +80,12 @@
   "estimation-card": {
     "aggregated": {
       "title": "Datos agregados",
+      "body": "Los datos mostrados son el resultado de la agregación de valores horarios."
+    },
+    "aggregated-estimated": {
+      "title": "Datos agregados",
       "pill": " {{percentage}}% estimado",
-      "body": "Los datos mostrados son el resultado de la agregación de valores horarios. Un {{percentage}}% de los valores de generación son estimados. "
+      "body": "Los datos mostrados son el resultado de la agregación de valores horarios. Un {{percentage}}% de los valores de generación son estimados."
     }
   },
   "time-controller": {

@@ -55,7 +55,7 @@ export default function BySource({
         <Badge
           pillText={
             estimatedPercentage
-              ? i18n.t('estimation-card.aggregated.pill', {
+              ? i18n.t('estimation-card.aggregated_estimated.pill', {
                   percentage: estimatedPercentage,
                 })
               : __('estimation-badge.fully-estimated')

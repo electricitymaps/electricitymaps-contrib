@@ -88,6 +88,10 @@
     },
     "aggregated": {
       "title": "Les données sont agrégées",
+      "body": "Les données consistent en une agrégation de données horaires."
+    },
+    "aggregated_estimated": {
+      "title": "Les données sont agrégées",
       "pill": " {{percentage}}% estimées",
       "body": "Les données consistent en une agrégation de données horaires. {{percentage}}% des données horaires sont estimées."
     }

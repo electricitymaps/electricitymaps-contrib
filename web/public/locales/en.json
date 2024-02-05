@@ -137,6 +137,10 @@
     },
     "aggregated": {
       "title": "Data is aggregated",
+      "body": "The data consists of an aggregation of hourly values."
+    },
+    "aggregated_estimated": {
+      "title": "Data is aggregated",
       "pill": " {{percentage}}% estimated",
       "body": "The data consists of an aggregation of hourly values. {{percentage}}% of the production values are estimated."
     }
