@@ -205,7 +205,7 @@ def fetch_exchange(
         )
         data = {
             "sortedZoneKeys": sorted_zone_keys,
-            "datetime": date.datetime,
+            "datetime": date,
             "netFlow": float(csv["Imports"][i]),
             "source": "caiso.com",
         }
