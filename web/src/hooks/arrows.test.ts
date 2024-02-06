@@ -1,3 +1,5 @@
+import { deepEqual } from 'node:assert';
+
 import { describe, expect, it } from 'vitest';
 
 import { filterExchanges } from './arrows';
@@ -41,43 +43,76 @@ const expectedAfterCountryViewFilter = {
 };
 
 describe('filterExchanges', () => {
-  it('should return an empty object if no exchanges are passed', () => {
-    expect(filterExchanges({}, mockExchangesToExcludeZoneView)).toEqual({});
-  });
-
-  it('should return all exchanges if no exclusions are passed', () => {
-    expect(filterExchanges(mockExchangesResponses, [])).toEqual(mockExchangesResponses);
-  });
-
-  it('should filter out zone view exchanges', () => {
+  it('should return empty objects if no exchanges are passed', () => {
     expect(
-      filterExchanges(mockExchangesResponses, mockExchangesToExcludeZoneView)
-    ).toEqual(expectedAfterZoneViewFilter);
+      filterExchanges(
+        {},
+        mockExchangesToExcludeZoneView,
+        mockExchangesToExcludeCountryView
+      )
+    ).toEqual([{}, {}]);
   });
 
-  it('should filter out country view exchanges', () => {
-    expect(
-      filterExchanges(mockExchangesResponses, mockExchangesToExcludeCountryView)
-    ).toEqual(expectedAfterCountryViewFilter);
+  describe('should return all zones for a type if no filter was passed', () => {
+    it('no zone filter', () => {
+      expect(
+        filterExchanges(mockExchangesResponses, [], mockExchangesToExcludeCountryView)
+      ).toEqual([expectedAfterZoneViewFilter, {}]);
+    });
+
+    it('no country filter', () => {
+      expect(
+        filterExchanges(mockExchangesResponses, mockExchangesToExcludeZoneView, [])
+      ).toEqual([{}, expectedAfterCountryViewFilter]);
+    });
   });
 
   it('should throw an error if exchanges is not an object', () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore This is deliberately passing a non-object to test the function.
-    expect(() => filterExchanges(null, mockExchangesToExcludeZoneView)).toThrow(
-      TypeError
-    );
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore This is deliberately passing a non-object to test the function.
-    expect(() => filterExchanges(undefined, mockExchangesToExcludeZoneView)).toThrow(
-      TypeError
-    );
+    expect(() =>
+      filterExchanges(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore This is deliberately passing a non-object to test the function.
+        null,
+        mockExchangesToExcludeZoneView,
+        mockExchangesToExcludeCountryView
+      )
+    ).toThrow(TypeError);
+
+    expect(() =>
+      filterExchanges(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore This is deliberately passing a non-object to test the function.
+        undefined,
+        mockExchangesToExcludeZoneView,
+        mockExchangesToExcludeCountryView
+      )
+    ).toThrow(TypeError);
   });
 
-  it('should throw an error if exclusions is not an iterable', () => {
+  describe('should throw an error if exclusions is not an iterable', () => {
     const nonIterable = {};
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore This is deliberately passing a non-iterable to test the function.
-    expect(() => filterExchanges(mockExchangesResponses, nonIterable)).toThrow(TypeError);
+    it('no iterable zone filter', () => {
+      expect(() =>
+        filterExchanges(
+          mockExchangesResponses,
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore This is deliberately passing a non-iterable to test the function.
+          nonIterable,
+          mockExchangesToExcludeCountryView
+        )
+      ).toThrow(TypeError);
+    });
+
+    it('no iterable country filter', () => {
+      expect(() =>
+        filterExchanges(
+          mockExchangesResponses,
+          mockExchangesToExcludeZoneView,
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore This is deliberately passing a non-iterable to test the function.
+          nonIterable
+        )
+      ).toThrow(TypeError);
+    });
   });
 });

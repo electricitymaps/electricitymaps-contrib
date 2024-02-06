@@ -20,15 +20,25 @@ const { exchangesToExcludeZoneView, exchangesToExcludeCountryView } = exchangesT
 
 export function filterExchanges(
   exchanges: Record<string, ExchangeResponse>,
-  exclusionArray: string[]
-): Record<string, ExchangeResponse> {
-  const exclusionSet = new Set(exclusionArray);
-  const result: Record<string, ExchangeResponse> = {};
-  const keys = Object.keys(exchanges).filter((key) => !exclusionSet.has(key));
-  for (const key of keys) {
-    result[key] = exchanges[key];
+  exclusionArrayZones: string[],
+  exclusionArrayCountries: string[]
+) {
+  const exclusionSetZones = new Set(exclusionArrayZones);
+  const exclusionSetCountries = new Set(exclusionArrayCountries);
+  const resultZones: Record<string, ExchangeResponse> = {};
+  const resultCountries: Record<string, ExchangeResponse> = {};
+  // Loop through the exchanges and assign them to the correct result object
+  for (const key of Object.keys(exchanges)) {
+    if (exclusionSetZones.has(key)) {
+      resultCountries[key] = exchanges[key];
+      continue;
+    }
+    if (exclusionSetCountries.has(key)) {
+      resultZones[key] = exchanges[key];
+    }
   }
-  return result;
+
+  return [resultZones, resultCountries];
 }
 
 export function useExchangeArrowsData(): ExchangeArrowData[] {
@@ -47,9 +57,9 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
       return {};
     }
 
-    const zoneViewExchanges = filterExchanges(exchanges, exchangesToExcludeZoneView);
-    const countryViewExchanges = filterExchanges(
+    const [zoneViewExchanges, countryViewExchanges] = filterExchanges(
       exchanges,
+      exchangesToExcludeZoneView,
       exchangesToExcludeCountryView
     );
 
