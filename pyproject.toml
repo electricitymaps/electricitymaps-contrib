@@ -34,7 +34,8 @@ pydataxm = { version = "^0.3.2", optional = true }
 ruamel-yaml = "^0.17.24"
 odfpy = { version = "^1.4.1", optional = true }
 pycountry = { version = "^22.3.5", optional = true }
-ruff = "^0.1.8"
+ruff = "^0.1.15"
+tzdata = "^2023.4"
 
 [tool.poetry.dev-dependencies]
 mock = "^2.0.0"
@@ -129,8 +130,11 @@ target-version = "py310"
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
 # Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
 # McCabe complexity (`C901`) by default.
-select = ["E4", "E7", "E9", "E999", "F", "UP", "I", "DTZ003", "DTZ004"]
-ignore = []
+select = ["E4", "E7", "E9", "E999", "F", "UP", "I", "DTZ003", "DTZ004", "B", "A"]
+ignore = [
+    "B008", # This flags every parser we have, let's ignore it for now
+    "B017"  # TODO: Fix this
+    ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]

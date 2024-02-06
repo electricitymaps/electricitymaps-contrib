@@ -14,14 +14,14 @@ describe('calculateNightTimes', () => {
     const latitude = -38.253;
     const longitude = 146.575;
     const result = calculateNightTimes(datetimes, latitude, longitude);
-    expect(result).toEqual([[7, 21]]);
+    expect(result).to.deep.eq([[7, 21]]);
   });
   it('should handle multiple nights during the period', () => {
     const datetimes = createDatetimes(new Date('2023-06-01T12:00:00'));
     const latitude = -38.253;
     const longitude = 146.575;
     const result = calculateNightTimes(datetimes, latitude, longitude);
-    expect(result).toEqual([
+    expect(result).to.deep.eq([
       [0, 11],
       [21, 24],
     ]);

@@ -211,11 +211,11 @@ fallbackZoneMixes:
         unknown: 0.000786094652001343
         wind: 0.038732684412767976
 parsers:
-  consumption: MK_wrapper.fetch_consumption
-  consumptionForecast: MK_wrapper.fetch_consumption_forecast
-  generationForecast: MK_wrapper.fetch_generation_forecast
-  price: MK_wrapper.fetch_price
-  production: MK_wrapper.fetch_production
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
-  productionPerModeForecast: MK_wrapper.fetch_wind_solar_forecasts
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 timezone: Europe/Skopje

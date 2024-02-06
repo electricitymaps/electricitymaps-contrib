@@ -51,7 +51,7 @@ def fetch_production_capacity(
     if target_datetime.year in df["datetime"].unique():
         df = df.loc[df["datetime"] == target_datetime.year]
         capacity = {}
-        for idx, data in df.iterrows():
+        for _idx, data in df.iterrows():
             mode_capacity = {}
             mode_capacity["datetime"] = target_datetime.strftime("%Y-%m-%d")
             mode_capacity["value"] = round(data["value"], 0)

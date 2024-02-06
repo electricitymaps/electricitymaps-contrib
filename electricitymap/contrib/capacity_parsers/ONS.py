@@ -99,7 +99,7 @@ def fetch_production_capacity_for_all_zones(
         for zone in df["zone_key"].unique():
             zone_capacity_df = df.loc[df["zone_key"] == zone]
             zone_capacity = {}
-            for idx, data in zone_capacity_df.iterrows():
+            for _idx, data in zone_capacity_df.iterrows():
                 mode_capacity = {
                     "datetime": target_datetime.strftime("%Y-%m-%d"),
                     "value": round(data["value"], 0),

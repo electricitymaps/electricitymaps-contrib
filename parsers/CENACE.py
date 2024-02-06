@@ -177,7 +177,7 @@ def fetch_production(
         DATA_CACHE[cache_key] = df
 
     production = ProductionBreakdownList(logger)
-    for idx, series in df.iterrows():
+    for _idx, series in df.iterrows():
         production.append(
             zoneKey=zone_key,
             datetime=series["instante"].to_pydatetime(),
