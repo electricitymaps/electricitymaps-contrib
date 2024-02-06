@@ -5,33 +5,54 @@ bounding_box:
     - -33.486452325214685
 capacity:
   battery storage:
-    datetime: '2024-01-01'
-    source: opennem.org.au
-    value: 707.0
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 707.0
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 500.0
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 120.0
   biomass:
-    datetime: '2024-01-01'
+    datetime: '2020-01-01'
     source: opennem.org.au
     value: 50.0
   coal:
-    datetime: '2024-01-01'
+    datetime: '2020-01-01'
     source: opennem.org.au
     value: 4850.0
   gas:
-    datetime: '2024-01-01'
+    datetime: '2020-01-01'
     source: opennem.org.au
     value: 2427.0
   hydro:
-    datetime: '2024-01-01'
+    datetime: '2020-01-01'
     source: opennem.org.au
     value: 2040.0
   solar:
-    datetime: '2024-01-01'
-    source: opennem.org.au
-    value: 5611.58
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 5611.58
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 5485.58
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 5268.58
   wind:
-    datetime: '2024-01-01'
-    source: opennem.org.au
-    value: 3014.77
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 3014.77
+    - datetime: '2022-01-01'
+      source: opennem.org.au
+      value: 2905.77
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 2744.77
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 2564.17
 contributors:
   - jarek
   - corradio
