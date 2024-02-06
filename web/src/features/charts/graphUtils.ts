@@ -162,19 +162,20 @@ export function getElectricityProductionValue({
 
 export function getBadgeText(chartData: AreaGraphElement[]) {
   const { __ } = useTranslation();
-  if (
-    chartData.every(
-      (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
-    )
-  ) {
+
+  const allEstimated = chartData.every(
+    (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
+  );
+
+  if (allEstimated) {
     return __('estimation-badge.fully-estimated');
-  } else if (
-    chartData.some(
-      (day) => day.meta.estimationMethod || (day.meta.estimatedPercentage ?? 0) > 0
-    )
-  ) {
+  }
+
+  const hasEstimation = chartData.some(
+    (day) => day.meta.estimationMethod || Boolean(day.meta.estimatedPercentage)
+  );
+
+  if (hasEstimation) {
     return __('estimation-badge.partially-estimated');
-  } else {
-    return undefined;
   }
 }

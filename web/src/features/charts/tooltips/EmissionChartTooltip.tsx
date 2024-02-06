@@ -18,7 +18,7 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
 
   const totalEmissions = getTotalEmissionsAvailable(zoneDetail, mixMode);
   const { stateDatetime, estimationMethod, estimatedPercentage } = zoneDetail;
-  const hasEstimationPill = estimationMethod != undefined || Boolean(estimatedPercentage);
+  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
 
   return (
     <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[410px] dark:border dark:border-gray-700 dark:bg-gray-800">
