@@ -37,7 +37,7 @@ SPECIFIC_MODE_MAPPING = {
     "KW": {"Other Fossil": "oil"},
     "MN": {"Other Fossil": "coal"},
     "SG": {"Other Fossil": "coal"},
-    "SV": { "Other Renewables": "geothermal"},
+    "SV": {"Other Renewables": "geothermal"},
     "TR": {"Other Fossil": "oil", "Other Renewables": "geothermal"},
     "TW": {"Other Fossil": "oil"},
     "UY": {"Other Fossil": "unknown", "Gas": "unknown"},
