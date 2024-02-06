@@ -1,5 +1,3 @@
-import { deepEqual } from 'node:assert';
-
 import { describe, expect, it } from 'vitest';
 
 import { filterExchanges } from './arrows';
@@ -43,6 +41,16 @@ const expectedAfterCountryViewFilter = {
 };
 
 describe('filterExchanges', () => {
+  it('should return the correct exchanges for a zone filter', () => {
+    expect(
+      filterExchanges(
+        mockExchangesResponses,
+        mockExchangesToExcludeZoneView,
+        mockExchangesToExcludeCountryView
+      )
+    ).toEqual([expectedAfterZoneViewFilter, expectedAfterCountryViewFilter]);
+  });
+
   it('should return empty objects if no exchanges are passed', () => {
     expect(
       filterExchanges(
