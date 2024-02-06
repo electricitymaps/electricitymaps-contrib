@@ -4,15 +4,50 @@ bounding_box:
   - - 129.46
     - 38.61
 capacity:
-  biomass: 1446
-  coal: 37338
-  gas: 41828
-  hydro: 1806
-  hydro storage: 4700
-  nuclear: 24431
-  oil: 960
-  solar: 18709
-  wind: 1727
+  biomass:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 3072.0
+  coal:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 43687.0
+  gas:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 42514.0
+  geothermal:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 0.0
+  hydro:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 1812.0
+  hydro storage:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 4700.0
+  nuclear:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 24650.0
+  oil:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 2053.0
+  solar:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 24078.0
+  unknown:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 1243.0
+  wind:
+    datetime: '2022-01-01'
+    source: IRENA.org
+    value: 1908.0
 contributors:
   - systemcatch
   - alixunderplatz
