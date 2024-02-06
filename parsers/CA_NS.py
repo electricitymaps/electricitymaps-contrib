@@ -64,12 +64,15 @@ def fetch_production(
         timestamp = _parse_timestamp(mix["datetime"])
         if timestamp not in loads:
             logger.warning(
-                "unable to find base load for %s", timestamp, extra={"key": ZONE_KEY}
+                f"unable to find base load for {timestamp}",
+                extra={"zone_key": ZONE_KEY},
             )
             continue
         load = loads[timestamp]
         if load <= 0:
-            logger.warning("invalid base load of %s MW", load, extra={"key": ZONE_KEY})
+            logger.warning(
+                f"invalid base load of {load} MW", extra={"zone_key": ZONE_KEY}
+            )
             continue
 
         production_mix = ProductionMix()
