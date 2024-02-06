@@ -1,4 +1,3 @@
-
 import datetime
 import re
 
@@ -21,10 +20,14 @@ class TestJapanShikokuNuclear(TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_find_nuclear_image_url(self):
-        report_byte_content = open("./parsers/test/mocks/JP-SK/jp-sk-nuclear-html-page.html", "rb")
-        self.adapter.register_uri(GET, NUCLEAR_REPORT_URL, content=report_byte_content.read())
+        report_byte_content = open(
+            "./parsers/test/mocks/JP-SK/jp-sk-nuclear-html-page.html", "rb"
+        )
+        self.adapter.register_uri(
+            GET, NUCLEAR_REPORT_URL, content=report_byte_content.read()
+        )
         image_url = get_nuclear_power_image_url(self.session)
-        pattern=r"(?P<filename>ikt721-1\.gif\?[0-9]{12})"
+        pattern = r"(?P<filename>ikt721-1\.gif\?[0-9]{12})"
         pattern_matches = re.findall(pattern, image_url)
 
         assert len(pattern_matches) == 1
@@ -37,7 +40,10 @@ class TestJapanShikokuNuclear(TestCase):
             ANY,
             content=nuclear_prod_image,
         )
-        nuclear_production, nuclear_timestamp = get_nuclear_power_value_and_timestamp_from_image_url(
+        (
+            nuclear_production,
+            nuclear_timestamp,
+        ) = get_nuclear_power_value_and_timestamp_from_image_url(
             "https://test-url/ikt721-1.gif?202402062021", self.session
         )
 
