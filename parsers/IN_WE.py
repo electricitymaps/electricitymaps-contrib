@@ -73,7 +73,7 @@ def fetch_data(
         if is_expected_downtime():
             raise ValueError(
                 "IN_WE Parser cannot get latest data during the expected downtime (Saturday to Monday)."
-            )
+            ) from e
         else:
             raise ParserException(
                 parser="IN_WE.py",

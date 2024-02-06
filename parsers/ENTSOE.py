@@ -17,7 +17,6 @@ from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
 
-import arrow
 import numpy as np
 from bs4 import BeautifulSoup
 from requests import Response, Session
@@ -44,6 +43,10 @@ from .lib.validation import validate
 SOURCE = "entsoe.eu"
 
 ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
+
+DEFAULT_LOOKBACK_HOURS_REALTIME = 72
+DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
+DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
 
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
@@ -85,9 +88,9 @@ ENTSOE_PARAMETER_GROUPS = {
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
-    ENTSOE_key: type
+    ENTSOE_key: data_type
     for key in ["production", "storage"]
-    for type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
+    for data_type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
     for ENTSOE_key in groups
 }
 
@@ -232,6 +235,7 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
     "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
+    "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
 }
 
@@ -369,7 +373,6 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         "required": [
             "coal",
             "gas",
-            "nuclear",
             "wind",
             "biomass",
             "hydro",
@@ -472,8 +475,8 @@ def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datet
 def query_ENTSOE(
     session: Session,
     params: dict[str, str],
+    span: tuple,
     target_datetime: datetime | None = None,
-    span: tuple = (-48, 24),
     function_name: str = "",
 ) -> str:
     """
@@ -491,7 +494,6 @@ def query_ENTSOE(
             message="target_datetime has to be a datetime in query_entsoe",
         )
 
-    # make sure we have an arrow object
     params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
         "%Y%m%d%H00"  # YYYYMMDDHH00
     )
@@ -539,6 +541,7 @@ def query_consumption(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_consumption.__name__,
     )
 
@@ -555,7 +558,7 @@ def query_production(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-48, 0),
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_production.__name__,
     )
 
@@ -576,7 +579,7 @@ def query_production_per_units(
     return query_ENTSOE(
         session,
         params,
-        target_datetime,
+        target_datetime=target_datetime,
         span=(-24, 0),
         function_name=query_production_per_units.__name__,
     )
@@ -597,6 +600,7 @@ def query_exchange(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_exchange.__name__,
     )
 
@@ -618,6 +622,7 @@ def query_exchange_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_exchange_forecast.__name__,
     )
 
@@ -625,6 +630,8 @@ def query_exchange_forecast(
 def query_price(
     domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
+    """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
+
     params = {
         "documentType": "A44",
         "in_Domain": domain,
@@ -634,6 +641,7 @@ def query_price(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, 24),
         function_name=query_price.__name__,
     )
 
@@ -653,6 +661,7 @@ def query_generation_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_generation_forecast.__name__,
     )
 
@@ -671,6 +680,7 @@ def query_consumption_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_consumption_forecast.__name__,
     )
 
@@ -689,13 +699,18 @@ def query_wind_solar_production_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_wind_solar_production_forecast.__name__,
     )
 
 
-def datetime_from_position(
-    start: arrow.Arrow, position: int, resolution: str
-) -> datetime:
+# TODO: Remove this when we run on Python 3.11 or above
+def zulu_to_utc(datetime_string: str) -> str:
+    """Converts a zulu time string to a UTC time string."""
+    return datetime_string.replace("Z", "+00:00")
+
+
+def datetime_from_position(start: datetime, position: int, resolution: str) -> datetime:
     """Finds time granularity of data."""
 
     m = re.search(r"PT(\d+)([M])", resolution)
@@ -703,7 +718,7 @@ def datetime_from_position(
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == "M":
-            return start.shift(minutes=(position - 1) * digits).datetime
+            return start + timedelta(minutes=(position - 1) * digits)
     raise NotImplementedError("Could not recognise resolution %s" % resolution)
 
 
@@ -720,7 +735,9 @@ def parse_scalar(
     datetimes: list[datetime] = []
     for timeseries in soup.find_all("timeseries"):
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start = arrow.get(timeseries.find_all("start")[0].contents[0])
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
+        )
         if only_inBiddingZone_Domain:
             if not len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())):
                 continue
@@ -776,8 +793,8 @@ def parse_production(
     for timeseries in soup.find_all("timeseries"):
         production_breakdowns = ProductionBreakdownList(logger)
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start: arrow.Arrow = arrow.get(
-            timeseries.find_all("start")[0].contents[0]
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
         )
         fuel_code = str(
             timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
@@ -792,13 +809,13 @@ def parse_production(
             is_production = (
                 len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
             )
-            datetime = datetime_from_position(datetime_start, position, resolution)
+            dt = datetime_from_position(datetime_start, position, resolution)
             production, storage = create_production_storage(
                 fuel_code, quantity if is_production else -quantity, logger, zoneKey
             )
             production_breakdowns.append(
                 zoneKey=zoneKey,
-                datetime=datetime,
+                datetime=dt,
                 source=SOURCE,
                 sourceType=source_type,
                 production=production,
@@ -819,8 +836,8 @@ def parse_production_per_units(xml_text: str) -> Any | None:
     # Get all points
     for timeseries in soup.find_all("timeseries"):
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start: arrow.Arrow = arrow.get(
-            timeseries.find_all("start")[0].contents[0]
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
         )
         is_production = (
             len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
@@ -845,8 +862,8 @@ def parse_production_per_units(xml_text: str) -> Any | None:
         for entry in timeseries.find_all("point"):
             quantity = float(entry.find_all("quantity")[0].contents[0])
             position = int(entry.find_all("position")[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
-            key = (unit_key, datetime)
+            dt = datetime_from_position(datetime_start, position, resolution)
+            key = (unit_key, dt)
             if key in values:
                 if is_production:
                     values[key]["production"] += quantity
@@ -854,7 +871,7 @@ def parse_production_per_units(xml_text: str) -> Any | None:
                     values[key]["production"] -= quantity
             else:
                 values[key] = {
-                    "datetime": datetime,
+                    "datetime": dt,
                     "production": quantity,
                     "productionType": ENTSOE_PARAMETER_BY_GROUP[psr_type],
                     "unitKey": unit_key,
@@ -877,8 +894,8 @@ def parse_exchange(
     # Get all points
     for timeseries in soup.find_all("timeseries"):
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start: arrow.Arrow = arrow.get(
-            timeseries.find_all("start")[0].contents[0]
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
         )
         # Only use contract_marketagreement.type == A01 (Total to avoid double counting some columns)
         if (
@@ -893,11 +910,11 @@ def parse_exchange(
             if is_import:
                 quantity *= -1
             position = int(entry.find_all("position")[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
+            dt = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
             exchange_list.append(
                 zoneKey=sorted_zone_keys,
-                datetime=datetime,
+                datetime=dt,
                 source=SOURCE,
                 netFlow=quantity,
                 sourceType=EventSourceType.forecasted
@@ -920,8 +937,8 @@ def parse_prices(
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find_all("currency_unit.name")[0].contents[0])
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start: arrow.Arrow = arrow.get(
-            timeseries.find_all("start")[0].contents[0]
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
         )
         for entry in timeseries.find_all("point"):
             position = int(entry.find_all("position")[0].contents[0])
@@ -966,7 +983,7 @@ def validate_production(
     return True
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1137,7 +1154,7 @@ def get_raw_exchange(
     return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1158,7 +1175,7 @@ def fetch_exchange(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange_forecast(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1180,7 +1197,7 @@ def fetch_exchange_forecast(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1214,7 +1231,7 @@ def fetch_price(
 # ------------------- #
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_generation_forecast(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1314,7 +1331,7 @@ def get_raw_consumption_list(
     return consumption_list
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1328,7 +1345,7 @@ def fetch_consumption(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1346,7 +1363,7 @@ def fetch_consumption_forecast(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey,
     session: Session | None = None,

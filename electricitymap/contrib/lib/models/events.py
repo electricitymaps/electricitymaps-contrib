@@ -91,7 +91,7 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def dict(
+    def dict(  # noqa: A003
         self,
         *,
         include: set | dict | None = None,

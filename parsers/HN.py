@@ -37,7 +37,7 @@ EXCHANGE_DIRECTION_MAP = {
 
 
 def get_data(
-    session: Session, type: str = "production"
+    session: Session, data_type: str = "production"
 ) -> tuple[list[Any], dict[str, str]]:
     """
     Gets the data from otr.ods.org.hn and returns it as a list with
@@ -45,7 +45,7 @@ def get_data(
     """
     CSV_data = []
     PLANT_TO_TYPE_MAP = {}
-    if type == "production":
+    if data_type == "production":
         for index in range(1, 11):
             if index == 7:  # Skip exchanges
                 continue
@@ -66,7 +66,7 @@ def get_data(
                 PLANT_TO_TYPE_MAP[row[1]] = INDEX_TO_TYPE_MAP[index]
                 CSV_data.append(row)
         return CSV_data, PLANT_TO_TYPE_MAP
-    elif type == "exchange":
+    elif data_type == "exchange":
         params = {
             "request": "CSV_N_",
             "p8_indx": 7,
@@ -75,7 +75,7 @@ def get_data(
         CSV_data = list(reader(response.text.splitlines()))
         return CSV_data, EXCHANGE_MAP
     else:
-        raise ParserException("HN.py", f"Invalid data type: {type}")
+        raise ParserException("HN.py", f"Invalid data type: {data_type}")
 
 
 def format_values(
@@ -83,19 +83,21 @@ def format_values(
     mapping: dict,
     value: str,
     kind: str,
-    id: str,
+    plant_name: str,
     index: int,
 ):
     if kind == "production":
-        if mapping[id] in values_by_hour[index].keys():
-            values_by_hour[index][mapping[id]] += (
+        if mapping[plant_name] in values_by_hour[index].keys():
+            values_by_hour[index][mapping[plant_name]] += (
                 float(value) if float(value) > 0 else 0
             )
         else:
-            values_by_hour[index][mapping[id]] = float(value) if float(value) > 0 else 0
+            values_by_hour[index][mapping[plant_name]] = (
+                float(value) if float(value) > 0 else 0
+            )
     elif kind == "exchange":
-        values_by_hour[index][mapping[id]] = (
-            float(value) * EXCHANGE_DIRECTION_MAP[mapping[id]]
+        values_by_hour[index][mapping[plant_name]] = (
+            float(value) * EXCHANGE_DIRECTION_MAP[mapping[plant_name]]
         )
     else:
         raise ParserException("HN.py", f"Invalid data type: {kind}")
@@ -124,7 +126,7 @@ def get_values(CSV_data: list, mapping: dict, kind: str = "production"):
                     mapping=mapping,
                     value=value,
                     kind=kind,
-                    id=row[1],
+                    plant_name=row[1],
                     index=index,
                 )
             index += 1

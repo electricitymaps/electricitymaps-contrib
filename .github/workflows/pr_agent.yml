@@ -32,5 +32,6 @@ jobs:
         env:
           OPENAI_KEY: ${{ secrets.TONYS_OPENAI_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTION.AUTO_REVIEW: true
-          GITHUB_ACTION.AUTO_IMPROVE: true
+          github_action_config.auto_review: 'false'
+          github_action_config.auto_describe: 'false'
+          github_action_config.auto_improve: 'false'

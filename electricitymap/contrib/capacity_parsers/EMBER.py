@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
 
 """ Collects capacity data from the yearly electricity data from Ember. The data and documentation can be found here: https://ember-climate.org/data-catalogue/yearly-electricity-data/"""
 logger = getLogger(__name__)
@@ -42,39 +43,7 @@ SPECIFIC_MODE_MAPPING = {
     "ZA": {"Other Fossil": "oil"},
 }
 
-EMBER_ZONES = [
-    "AR",
-    "AW",
-    "BA",
-    "BD",
-    "BO",
-    "BY",
-    "CO",
-    "CR",
-    "CY",
-    "DO",
-    "GE",
-    "GT",
-    "HN",
-    "KR",
-    "KW",
-    "MD",
-    "MN",
-    "MT",
-    "MX",
-    "NG",
-    "NZ",
-    "PA",
-    "PE",
-    "RU",
-    "SG",
-    "SV",
-    "TH",
-    "TR",
-    "TW",
-    "UY",
-    "ZA",
-]
+EMBER_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["EMBER"]
 
 
 def map_variable_to_mode(data: pd.Series) -> str:
@@ -143,7 +112,7 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict[str, Any]:
     for zone in df_capacity.index.unique():
         df_zone = df_capacity.loc[zone]
         zone_capacity = {}
-        for i, data in df_zone.iterrows():
+        for _i, data in df_zone.iterrows():
             mode_capacity = {}
             mode_capacity["datetime"] = data["datetime"].strftime("%Y-%m-%d")
             mode_capacity["value"] = round(float(data["value"]), 0)
