@@ -1,19 +1,12 @@
-from json import loads
 
-import pytest
-import requests_mock
+import datetime
+import re
+
 from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, GET, Adapter
-from unittest.mock import patch, MagicMock
 from snapshottest import TestCase
-from requests import Session
-from requests_mock import GET, POST, Adapter
-import datetime
-import re
-from PIL import Image
-from io import BytesIO
-from electricitymap.contrib.lib.types import ZoneKey
+
 from parsers.JP_SK import (
     NUCLEAR_REPORT_URL,
     get_nuclear_power_image_url,
