@@ -4,16 +4,30 @@ bounding_box:
   - - 141.50010704970066
     - -25.499911390797962
 capacity:
-  battery storage: 155
-  biomass: 20
-  coal: 0
-  gas: 2946
-  hydro: 0
-  hydro storage: 0
-  nuclear: 0
-  oil: 734
-  solar: 2065
-  wind: 2141
+  battery storage:
+    datetime: '2024-01-01'
+    source: opennem.org.au
+    value: 716.27
+  biomass:
+    datetime: '2024-01-01'
+    source: opennem.org.au
+    value: 10.0
+  gas:
+    datetime: '2024-01-01'
+    source: opennem.org.au
+    value: 3228.0
+  oil:
+    datetime: '2024-01-01'
+    source: opennem.org.au
+    value: 456.6
+  solar:
+    datetime: '2024-01-01'
+    source: opennem.org.au
+    value: 2930.51
+  wind:
+    datetime: '2024-01-01'
+    source: opennem.org.au
+    value: 2763.4
 contributors:
   - brandongalbraith
   - jarek
