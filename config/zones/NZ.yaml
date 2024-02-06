@@ -16,6 +16,10 @@ capacity:
     datetime: '2022-01-01'
     source: Ember, Yearly electricity data
     value: 1920.0
+  geothermal:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1040.0
   hydro:
     datetime: '2022-01-01'
     source: Ember, Yearly electricity data
@@ -25,9 +29,9 @@ capacity:
     source: Ember, Yearly electricity data
     value: 260.0
   unknown:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 1190.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 150.0
   wind:
     datetime: '2022-01-01'
     source: Ember, Yearly electricity data
