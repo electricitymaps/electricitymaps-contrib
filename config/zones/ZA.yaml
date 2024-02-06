@@ -5,49 +5,55 @@ bounding_box:
     - -21.626451924999927
 capacity:
   biomass:
-    datetime: '2022-01-01'
+    datetime: '2021-01-01'
     source: IRENA.org
     value: 265.0
   coal:
-    datetime: '2022-01-01'
+    datetime: '2021-01-01'
     source: IRENA.org
     value: 44013.0
   gas:
-    datetime: '2022-01-01'
+    datetime: '2021-01-01'
     source: IRENA.org
     value: 0.0
   geothermal:
-    datetime: '2022-01-01'
+    datetime: '2021-01-01'
     source: IRENA.org
     value: 0.0
   hydro:
-    datetime: '2022-01-01'
+    datetime: '2021-01-01'
     source: IRENA.org
     value: 751.0
   hydro storage:
-    datetime: '2022-01-01'
+    datetime: '2021-01-01'
     source: IRENA.org
     value: 2732.0
   nuclear:
-    datetime: '2022-01-01'
+    datetime: '2021-01-01'
     source: IRENA.org
     value: 1940.0
   oil:
-    datetime: '2022-01-01'
+    datetime: '2021-01-01'
     source: IRENA.org
     value: 2440.0
   solar:
-    datetime: '2022-01-01'
-    source: IRENA.org
-    value: 6368.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 6368.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 6358.0
   unknown:
-    datetime: '2022-01-01'
+    datetime: '2021-01-01'
     source: IRENA.org
     value: 0.0
   wind:
-    datetime: '2022-01-01'
-    source: IRENA.org
-    value: 3102.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 3102.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 2956.0
 contributors:
   - IV1T3
 emissionFactors:
