@@ -475,7 +475,7 @@ def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datet
 def query_ENTSOE(
     session: Session,
     params: dict[str, str],
-    span: tuple | None =None,
+    span: tuple,
     target_datetime: datetime | None = None,
     function_name: str = "",
 ) -> str:
@@ -493,13 +493,13 @@ def query_ENTSOE(
             parser="ENTSOE.py",
             message="target_datetime has to be a datetime in query_entsoe",
         )
-    if span is not None:
-        params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
-            "%Y%m%d%H00"  # YYYYMMDDHH00
-        )
-        params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
-            "%Y%m%d%H00"  # YYYYMMDDHH00
-        )
+
+    params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
+        "%Y%m%d%H00"  # YYYYMMDDHH00
+    )
+    params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
+        "%Y%m%d%H00"  # YYYYMMDDHH00
+    )
 
     token = get_token("ENTSOE_TOKEN")
     params["securityToken"] = token
