@@ -31,12 +31,14 @@ SPECIFIC_MODE_MAPPING = {
     "BD": {"Other Fossil": "oil"},
     "BO": {"Other Fossil": "unknown", "Gas": "unknown"},
     "CO": {"Other Fossil": "oil"},
+    "CR": {"Other Fossil": "oil", "Other Renewables": "geothermal"},
     "CY": {"Other Fossil": "oil"},
     "KR": {"Other Fossil": "oil"},
     "KW": {"Other Fossil": "oil"},
     "MN": {"Other Fossil": "coal"},
+    "NZ": {"Other Renewables": "geothermal"},
     "SG": {"Other Fossil": "coal"},
-    "SV": {"Other Fossil": "oil"},
+    "SV": {"Other Renewables": "geothermal"},
     "TR": {"Other Fossil": "oil", "Other Renewables": "geothermal"},
     "TW": {"Other Fossil": "oil"},
     "UY": {"Other Fossil": "unknown", "Gas": "unknown"},
@@ -112,7 +114,7 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict[str, Any]:
     for zone in df_capacity.index.unique():
         df_zone = df_capacity.loc[zone]
         zone_capacity = {}
-        for i, data in df_zone.iterrows():
+        for _i, data in df_zone.iterrows():
             mode_capacity = {}
             mode_capacity["datetime"] = data["datetime"].strftime("%Y-%m-%d")
             mode_capacity["value"] = round(float(data["value"]), 0)

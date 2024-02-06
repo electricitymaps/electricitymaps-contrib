@@ -114,7 +114,8 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
     if "countryCode" in obj:
         warn(
             "object has field `countryCode`. It should have "
-            f"`zoneKey` instead. In {obj}"
+            f"`zoneKey` instead. In {obj}",
+            stacklevel=1,
         )
     if "zoneKey" not in obj and "countryCode" not in obj:
         raise ValidationError("zoneKey was not returned for %s" % zone_key)
