@@ -47,7 +47,8 @@ def query_capacity(
     return query_ENTSOE(
         session,
         params,
-        target_datetime=target_datetime, span=(0, 72),
+        target_datetime=target_datetime,
+        span=(0, 72),
         function_name=query_capacity.__name__,
     )
 
