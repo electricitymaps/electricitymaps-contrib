@@ -88,7 +88,7 @@ def get_data(
     params["apikey"] = get_token("RESEAUX_ENERGIES_TOKEN")
     # make request and create dataframe with response
     response = r.get(API_ENDPOINT, params=params)
-    if response.status_code != 200:
+    if not response.ok:
         raise ValueError(
             f"Failed to fetch data from {API_ENDPOINT}. Status code: {response.status_code}"
         )
