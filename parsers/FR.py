@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import math
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -47,12 +46,6 @@ DATASET_CONSOLIDATED = "eco2mix-national-cons-def"  # API called is Données éC
 DELTA_15 = timedelta(minutes=15)
 TZ = ZoneInfo("Europe/Paris")
 SOURCE = "opendata.reseaux-energies.fr"
-
-
-def is_not_nan_and_truthy(v) -> bool:
-    if isinstance(v, float) and math.isnan(v):
-        return False
-    return bool(v)
 
 
 def get_dataset_from_datetime(target_datetime: datetime) -> str:
