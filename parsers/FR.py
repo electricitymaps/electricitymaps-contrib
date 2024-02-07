@@ -11,11 +11,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import (
-    EventSourceType,
-    ProductionMix,
-    StorageMix,
-)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
@@ -185,7 +181,6 @@ def fetch_consumption(
             consumption=row.consommation,
             datetime=row.Index.to_pydatetime(),
             source=SOURCE,
-            sourceType=EventSourceType.measured,
         )
 
     return consumption_list.to_list()
