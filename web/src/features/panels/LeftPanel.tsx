@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/react';
+import LoadingSpinner from 'components/LoadingSpinner';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
@@ -122,7 +123,7 @@ export default function LeftPanel() {
           path="/zone/:zoneId"
           element={
             <ValidZoneIdGuardWrapper>
-              <Suspense fallback={null}>
+              <Suspense fallback={<LoadingSpinner />}>
                 <ZoneDetails />
               </Suspense>
             </ValidZoneIdGuardWrapper>
@@ -132,7 +133,7 @@ export default function LeftPanel() {
         <Route
           path="*"
           element={
-            <Suspense fallback={null}>
+            <Suspense fallback={<LoadingSpinner />}>
               <RankingPanel />
             </Suspense>
           }

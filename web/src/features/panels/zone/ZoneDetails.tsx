@@ -1,4 +1,5 @@
 import useGetZone from 'api/getZone';
+import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -137,11 +138,7 @@ function ZoneDetailsContent({
   zoneDataStatus: ZoneDataStatus;
 }): JSX.Element {
   if (isLoading) {
-    return (
-      <div className={`flex h-full w-full items-center justify-center`}>
-        <div className="z-50 h-[50px] w-[50px] bg-[url('/images/loading-icon.svg')] bg-[length:60px] bg-center bg-no-repeat dark:bg-[url('/images/loading-icon-darkmode.svg')]"></div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {
