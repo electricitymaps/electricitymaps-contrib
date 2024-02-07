@@ -4,7 +4,7 @@ import { useTranslation } from 'translation/translation';
 import { Button } from './Button';
 
 interface Properties {
-  showReloadButton: boolean;
+  showReloadButton?: boolean;
 }
 
 export default function LoadingSpinner({
