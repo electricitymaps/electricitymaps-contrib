@@ -58,10 +58,11 @@ export default function ZoneDetails(): JSX.Element {
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
 
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
-  const { estimationMethod } = selectedData || {};
+  const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
-  const hasEstimationPill = ['estimated', 'outage', 'aggregated'].includes(cardType);
+  const hasEstimationPill =
+    ['estimated', 'outage'].includes(cardType) || Boolean(estimatedPercentage);
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
