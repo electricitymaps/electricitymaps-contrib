@@ -2,9 +2,8 @@ import re
 from datetime import datetime
 from io import BytesIO
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-# The arrow library is used to handle datetimes
-import pytz
 from bs4 import BeautifulSoup
 from PIL import Image
 from pytesseract import image_to_string
@@ -16,6 +15,8 @@ from .JP import fetch_production as JP_fetch_production
 
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
+
+JP_TZ = ZoneInfo("Asia/Tokyo")
 
 
 def fetch_production(
@@ -90,9 +91,7 @@ def get_nuclear_power_value_and_timestamp_from_image_url(
     # extract timestamp from image_url and convert it to datetime
     timestamp_pattern = r"\d{12}"
     timestamp = re.findall(timestamp_pattern, img_url)[0]
-    datetime_nuclear = datetime.strptime(timestamp, "%Y%m%d%H%M").replace(
-        tzinfo=pytz.timezone("Asia/Tokyo")
-    )
+    datetime_nuclear = datetime.strptime(timestamp, "%Y%m%d%H%M").replace(tzinfo=JP_TZ)
     return nuclear_power, datetime_nuclear
 
 
