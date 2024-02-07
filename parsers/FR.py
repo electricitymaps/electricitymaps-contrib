@@ -51,7 +51,7 @@ SOURCE = "opendata.reseaux-energies.fr"
 def get_dataset_from_datetime(target_datetime: datetime) -> str:
     """Returns the dataset to query based on the target_datetime. The real-time API returns no values for target datetimes older than 9 months and we need to query the consolidated dataset."""
     if target_datetime < datetime(2022, 5, 31, tzinfo=TZ):
-        # API called is Données éCO2mix régionales consolidées et définitives for datetimes before mai 2022
+        # API called is Données éCO2mix régionales consolidées et définitives for datetimes before May 2022
         dataset = DATASET_CONSOLIDATED
     else:
         dataset = DATASET_REAL_TIME
