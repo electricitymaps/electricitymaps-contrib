@@ -4,10 +4,9 @@
 
 import logging
 import unittest
-from datetime import datetime
+from datetime import datetime, timezone
 from unittest.mock import patch
 
-from arrow import get
 from pandas import read_pickle
 from testfixtures import LogCapture
 
@@ -39,7 +38,7 @@ class TestUSSPP(unittest.TestCase):
             self.assertEqual(round(datapoint["production"]["unknown"], 2), 33.1)
 
         with self.subTest():
-            expected_dt = get(datetime(2018, 7, 27, 11, 45), "UTC").datetime
+            expected_dt = datetime(2018, 7, 27, 11, 45, tzinfo=timezone.utc)
             self.assertEqual(datapoint["datetime"], expected_dt)
 
         with self.subTest():

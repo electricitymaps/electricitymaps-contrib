@@ -51,11 +51,11 @@ def table_entry_to_float(entry: str):
         return None
     try:
         return float(entry)
-    except ValueError:
+    except ValueError as e:
         raise ParserException(
             parser="BD.py",
             message=(f'Failed to parse entry: "{entry}" to float in table.'),
-        )
+        ) from e
 
 
 def parse_table_body(table_body: Tag) -> list[dict]:
