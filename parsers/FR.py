@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import json
 import math
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
@@ -32,12 +31,12 @@ MAP_GENERATION = {
     "eolien": "wind",
     "solaire": "solar",
     "bioenergies": "biomass",
-    "hydraulique_fil_eau_eclusee":"hydro",
-    "hydraulique_lacs":"hydro",
+    "hydraulique_fil_eau_eclusee": "hydro",
+    "hydraulique_lacs": "hydro",
     "hydraulique_step_turbinage": "hydro_storage",
     "pompage": "hydro_storage",
-    'stockage_batterie':"battery_storage",
-      'destockage_batterie':"battery_storage",
+    "stockage_batterie": "battery_storage",
+    "destockage_batterie": "battery_storage",
 }
 
 STORAGE_MODES = ["hydro_storage", "battery_storage"]
@@ -45,10 +44,11 @@ DATASET_REAL_TIME = "eco2mix-national-tr"
 DATASET_CONSOLIDATED = "eco2mix-national-cons-def"  # API called is Données éCO2mix nationales consolidées et définitives for datetimes older than 9 months
 
 
-
 DELTA_15 = timedelta(minutes=15)
 TZ = ZoneInfo("Europe/Paris")
 SOURCE = "opendata.reseaux-energies.fr"
+
+
 def is_not_nan_and_truthy(v) -> bool:
     if isinstance(v, float) and math.isnan(v):
         return False
@@ -57,7 +57,7 @@ def is_not_nan_and_truthy(v) -> bool:
 
 def get_dataset_from_datetime(target_datetime: datetime) -> str:
     """Returns the dataset to query based on the target_datetime. The real-time API returns no values for target datetimes older than 9 months and we need to query the consolidated dataset."""
-    if target_datetime < datetime(2022,5,31, tzinfo=TZ):
+    if target_datetime < datetime(2022, 5, 31, tzinfo=TZ):
         # API called is Données éCO2mix régionales consolidées et définitives for datetimes before mai 2022
         dataset = DATASET_CONSOLIDATED
     else:
@@ -71,9 +71,7 @@ def get_data(
 ) -> pd.DataFrame:
     """Returns a DataFrame with the data from the API."""
     if target_datetime:
-        target_datetime_localised= target_datetime.replace(
-            tzinfo=TZ
-        )
+        target_datetime_localised = target_datetime.replace(tzinfo=TZ)
     else:
         target_datetime_localised = datetime.now(tz=TZ)
 
@@ -82,7 +80,9 @@ def get_data(
 
     # setup request
     r = session or Session()
-    formatted_from =( target_datetime_localised - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M")
+    formatted_from = (target_datetime_localised - timedelta(days=1)).strftime(
+        "%Y-%m-%dT%H:%M"
+    )
     formatted_to = target_datetime_localised.strftime("%Y-%m-%dT%H:%M")
 
     params = {
@@ -96,7 +96,9 @@ def get_data(
     # make request and create dataframe with response
     response = r.get(API_ENDPOINT, params=params)
     if response.status_code != 200:
-        raise ValueError(f"Failed to fetch data from {API_ENDPOINT}. Status code: {response.status_code}")
+        raise ValueError(
+            f"Failed to fetch data from {API_ENDPOINT}. Status code: {response.status_code}"
+        )
     data = response.json()
     data = [d["fields"] for d in data["records"]]
     df = pd.DataFrame(data)
@@ -107,7 +109,9 @@ def reindex_data(df_to_reindex: pd.DataFrame) -> pd.DataFrame:
     """Reindex data to get averaged half-hourly values instead of quart-hourly values. This is done to ensure consistency between the historical set (1/2 hourly granularity) and the real-time set (1/4 hourly granularity)"""
     df_to_reindex = df_to_reindex.copy()
     # Round dates to the lower bound with 30 minutes granularity
-    df_to_reindex["datetime"] =pd.to_datetime(df_to_reindex["date_heure"]).dt.tz_convert(TZ)
+    df_to_reindex["datetime"] = pd.to_datetime(
+        df_to_reindex["date_heure"]
+    ).dt.tz_convert(TZ)
     df_to_reindex["datetime_30"] = df_to_reindex["datetime"].apply(
         lambda x: x if x.minute in [0, 30] else x - DELTA_15
     )
@@ -146,7 +150,9 @@ def fetch_production(
     df_production_reindexed = reindex_data(df_production)
     df_production_reindexed = df_production_reindexed.dropna(how="any", axis=0)
     df_production_reindexed = df_production_reindexed.rename(columns=MAP_GENERATION)
-    df_production_reindexed = df_production_reindexed.groupby(df_production_reindexed.columns, axis=1).sum()
+    df_production_reindexed = df_production_reindexed.groupby(
+        df_production_reindexed.columns, axis=1
+    ).sum()
 
     datapoints = ProductionBreakdownList(logger)
     for idx, row in df_production_reindexed.iterrows():
@@ -157,7 +163,13 @@ def fetch_production(
                 storageMix.add_value(mode.split("_")[0], -1 * row[mode])
             else:
                 productionMix.add_value(mode, row[mode])
-        datapoints.append(zoneKey=zone_key, production=productionMix, storage=storageMix, datetime=idx.to_pydatetime(), source=SOURCE)
+        datapoints.append(
+            zoneKey=zone_key,
+            production=productionMix,
+            storage=storageMix,
+            datetime=idx.to_pydatetime(),
+            source=SOURCE,
+        )
     return datapoints.to_list()
 
 
