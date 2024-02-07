@@ -7,6 +7,7 @@ import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.EIA import REGIONS
 from parsers.lib.utils import get_token
@@ -15,7 +16,7 @@ logger = getLogger(__name__)
 
 CAPACITY_URL = "https://api.eia.gov/v2/electricity/operating-generator-capacity/data/?frequency=monthly&data[0]=nameplate-capacity-mw&facets[balancing_authority_code][]={}"
 SOURCE = "EIA.gov"
-US_ZONES = {key: value for key, value in REGIONS.items() if key.startswith("US-")}
+US_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["EIA"]
 TECHNOLOGY_TO_MODE = {
     "All Other": "unknown",
     "Batteries": "battery storage",

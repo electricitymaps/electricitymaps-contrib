@@ -372,13 +372,18 @@ EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourl
 
 FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
-    "US-NW-PGE": ["biomass", "geothermal"],
-    "US-NW-PACE": ["biomass", "geothermal"],
-    "US-MIDW-MISO": ["biomass", "geothermal"],
-    "US-TEN-TVA": ["biomass", "geothermal"],
-    "US-SE-SOCO": ["biomass", "geothermal"],
-    "US-SE-SEPA": ["biomass", "geothermal"],
-    "US-FLA-FPL": ["biomass", "geothermal"],
+    "US-NW-PGE": [
+        "biomass",
+        "geothermal",
+        "oil",
+        "solar",
+    ],  # Solar is not reported by PGE.
+    "US-NW-PACE": ["biomass", "geothermal", "oil"],
+    "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
+    "US-TEN-TVA": ["biomass", "geothermal", "oil"],
+    "US-SE-SOCO": ["biomass", "geothermal", "oil"],
+    "US-SE-SEPA": ["biomass", "geothermal", "oil"],
+    "US-FLA-FPL": ["biomass", "geothermal", "oil"],
 }
 
 
@@ -514,7 +519,6 @@ def fetch_production_mix(
         if zone_key == "US-CAR-SCEG" and production_mode == "nuclear":
             for point in production_values:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
-
         for point in production_values:
             production_mix, storage_mix = create_production_storage(
                 production_mode, point, negative_threshold
@@ -668,10 +672,10 @@ def _fetch(
     if target_datetime:
         try:
             target_datetime = arrow.get(target_datetime).datetime
-        except arrow.parser.ParserError:
+        except arrow.parser.ParserError as e:
             raise ValueError(
                 f"target_datetime must be a valid datetime - received {target_datetime}"
-            )
+            ) from e
         utc = tz.gettz("UTC")
         eia_ts_format = "%Y-%m-%dT%H"
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
@@ -691,7 +695,7 @@ def _fetch(
             "datetime": _get_utc_datetime_from_datapoint(
                 parser.parse(datapoint["period"])
             ),
-            "value": datapoint["value"],
+            "value": float(datapoint["value"]) if datapoint["value"] else None,
             "source": "eia.gov",
         }
         for datapoint in raw_data["response"]["data"]

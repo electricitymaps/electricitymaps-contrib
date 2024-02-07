@@ -62,8 +62,8 @@ def fetch_production(
     result = template_response(zone_key, timestamp, DATA_SOURCE)
 
     for production_type, ids in CELL_MAPPING.items():
-        for id in ids:
-            result["production"][production_type] += data["d_" + id]
+        for data_id in ids:
+            result["production"][production_type] += data["d_" + data_id]
 
     return [result]
 

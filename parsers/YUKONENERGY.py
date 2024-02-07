@@ -25,12 +25,12 @@ def _parse_mw(text):
     """
     try:
         return float(text[: text.index(" MW")])
-    except ValueError:
+    except ValueError as e:
         raise ParserException(
             "YUKONENERGY.py",
             f"Unable to parse power value from '{text}'",
             ZONE_KEY,
-        )
+        ) from e
 
 
 def fetch_production(

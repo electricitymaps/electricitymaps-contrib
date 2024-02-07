@@ -16,6 +16,10 @@ src-files:
   COPY pyproject.toml .
   SAVE ARTIFACT .
 
+poetry-lock:
+  COPY poetry.lock .
+  SAVE ARTIFACT .
+
 prepare:
   FROM +src-files
   RUN pip install poetry==1.6.1
