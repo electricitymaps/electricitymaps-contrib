@@ -28,13 +28,13 @@ export function filterExchanges(
   const resultZones: Record<string, ExchangeResponse> = {};
   const resultCountries: Record<string, ExchangeResponse> = {};
   // Loop through the exchanges and assign them to the correct result object
-  for (const key of Object.keys(exchanges)) {
-    if (exclusionSetZones.has(key)) {
-      resultCountries[key] = exchanges[key];
+  for (const [key, value] of Object.entries(exchanges)) {
+    if (exclusionSetCountries.has(key)) {
+      resultZones[key] = value;
       continue;
     }
-    if (exclusionSetCountries.has(key)) {
-      resultZones[key] = exchanges[key];
+    if (exclusionSetZones.has(key)) {
+      resultCountries[key] = value;
     }
   }
 
