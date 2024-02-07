@@ -147,7 +147,7 @@ def fetch_production(
         df_production_reindexed.columns, axis=1
     ).sum()
 
-    datapoints = ProductionBreakdownList(logger)
+    production_mixes = ProductionBreakdownList(logger)
     for idx, row in df_production_reindexed.iterrows():
         productionMix = ProductionMix()
         storageMix = StorageMix()
@@ -156,14 +156,14 @@ def fetch_production(
                 storageMix.add_value(mode.split("_")[0], -1 * row[mode])
             else:
                 productionMix.add_value(mode, row[mode])
-        datapoints.append(
+        production_mixes.append(
             zoneKey=zone_key,
             production=productionMix,
             storage=storageMix,
             datetime=idx.to_pydatetime(),
             source=SOURCE,
         )
-    return datapoints.to_list()
+    return production_mixes.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
@@ -178,9 +178,9 @@ def fetch_consumption(
 
     # reindex df_consumption to get 1/2 hourly values
     df_consumption_reindexed = reindex_data(df_consumption)
-    datapoints = TotalConsumptionList(logger)
+    consumption_list = TotalConsumptionList(logger)
     for row in df_consumption_reindexed.itertuples():
-        datapoints.append(
+        consumption_list.append(
             zoneKey=zone_key,
             consumption=row.consommation,
             datetime=row.Index.to_pydatetime(),
@@ -188,4 +188,4 @@ def fetch_consumption(
             sourceType=EventSourceType.measured,
         )
 
-    return datapoints.to_list()
+    return consumption_list.to_list()
