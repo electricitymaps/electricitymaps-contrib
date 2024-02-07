@@ -2,7 +2,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from requests import Session
@@ -64,14 +63,6 @@ def get_production_values(soup, zone_key, logger):
         elif cell_text == "GAS Total":
             gas_value = float(cell.find_next_sibling().text)
 
-    try:
-        gas_value, hydro_value
-    except NameError:
-        logger.warning(
-            "One or more production values could not be read " "from webpage.",
-            extra={"key": zone_key},
-        )
-
     production = {"gas": gas_value, "hydro": hydro_value}
 
     return production
@@ -80,15 +71,15 @@ def get_production_values(soup, zone_key, logger):
 def fetch_exchange(
     zone_key1: str = "IN-UP",
     zone_key2: str = "IN-UT",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     soup = web.get_response_soup(zone_key1, ENDPOINT)
     datetime = get_datetime(soup, zone_key1, logger)
 
     sorted_zone_keys = sorted([zone_key1, zone_key2])
-    sorted_zone_keys = "{}->{}".format(sorted_zone_keys[0], sorted_zone_keys[1])
+    sorted_zone_keys = f"{sorted_zone_keys[0]}->{sorted_zone_keys[1]}"
 
     connections = INTERCONNECTIONS.get(sorted_zone_keys)
     if connections is None:
@@ -112,8 +103,8 @@ def fetch_exchange(
 
 def fetch_production(
     zone_key: str = "IN-UT",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     soup = web.get_response_soup(zone_key, ENDPOINT)

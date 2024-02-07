@@ -4,7 +4,7 @@
 import urllib.parse
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 # Third-party library imports
 import arrow
@@ -22,13 +22,13 @@ URL = urllib.parse.urlsplit("https://gse.com.ge/apps/gsebackend/rest")
 URL_STRING = URL.geturl()
 
 
-@config.refetch_frequency(timedelta(hours=1))
+@config.refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "GE",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[Dict[str, Any]], Dict[str, Any]]:
+) -> list[dict[str, Any]] | dict[str, Any]:
     """Request the last known production mix (in MW) of a given country."""
     session = session or Session()
     if target_datetime is None:  # Get the current production mix.
@@ -110,10 +110,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "GE",
     zone_key2: str = "TR",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger=getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Request the last known power exchange (in MW) between two countries."""
     if target_datetime:
         return ENTSOE_fetch_exchange(

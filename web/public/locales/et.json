@@ -13,7 +13,7 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "Elektrienergia kliimamõju kaardistamine"
+      "header": "Elektrienergia kliimamõju kaardistamine"
     },
     "view2": {
       "header": "Vaadake reaalajas, kui palju CO₂ eraldub teie elektri tootmiseks.",
@@ -23,7 +23,7 @@
       "header": "Tea, kust tuleb teie elekter",
       "text": "Nooled kaardil näitavad elektrivooge erinevate piirkondade vahel. Klõpsake piirkonnal, et näha lisateavet selle elektrienergia päritolu kohta."
     },
-    "view4": {
+    "view7": {
       "header": "Reaalajas tuule- ja päikeseolud",
       "text": "Tuule- ja päikeseenergia tootmine sõltub ilmast. Vajutage päikese ja tuule nuppe, et kuvada reaalajas kogu maailma tuule ja päikesepaiste tugevus."
     }
@@ -114,13 +114,15 @@
   "misc": {
     "maintitle": "Reaalajas elektritarbimise CO₂ heitmed",
     "oops": "Ups! Meil on probleem serveriga ühendamisel. Proovime mõne sekundi pärast uuesti.",
-    "newversion": "Saadaval on uus versioon! Vajutage ümberlaadimiseks <a onClick=\"location.reload(true);\">siia</a>.",
+    "newversion": "Saadaval on uus versioon!",
     "webgl-not-supported": "Kaarti ei saa renderdada, kuna see brauser ei toeta WebGL-i.",
     "retrynow": "Proovi kohe uuesti",
     "database-ad": "Otsite ajaloo andmeid? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vaadake meie andmebaasi!</a>",
     "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
     "legend": "Legend",
-    "faq": "Korduma kippuvad küsimused"
+    "faq": "Korduma kippuvad küsimused",
+    "dismiss": "Sule",
+    "reload": "Laadi uuesti"
   },
   "wind": "tuul",
   "solar": "päike",
@@ -142,7 +144,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> eksporditakse riiki %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "CO₂eq minutis",
   "theMap": {
     "groupName": "Kaart",
     "mapColors-question": "Mida värvid kaardil tähistavad?",
@@ -1548,10 +1549,6 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Avista Corporation"
     },
-    "US-NW-AVRN": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Avangrid Renewables Cooperative"
-    },
     "US-NW-BPAT": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Bonneville Power Administration"
@@ -1644,10 +1641,6 @@
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Arizona Public Service Company"
     },
-    "US-SW-DEAA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "El Paso Electric Company"
@@ -1655,10 +1648,6 @@
     "US-SW-GRIF": {
       "countryName": "Ameerika Ühendriigid",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Ameerika Ühendriigid",

@@ -1,0 +1,6 @@
+lonlat:
+  - 89.387672
+  - 26.847837
+parsers:
+  exchange: IN_EA.fetch_exchange
+rotation: 88

@@ -3,11 +3,9 @@
 import io
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
-import pytz
 
 # BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup
@@ -17,7 +15,7 @@ from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-UY_TZ = "America/Montevideo"
+UY_TZ = ZoneInfo("America/Montevideo")
 
 ADME_URL = "https://pronos.adme.com.uy/gpf.php?fecha_ini="
 PRODUCTION_MODE_MAPPING = {
@@ -50,6 +48,11 @@ def get_adme_url(target_datetime: datetime, session: Session) -> str:
 
     link = f"{ADME_URL}{date_format}&fecha_fin={next_day_format}&send=MOSTRAR"
     r = session.get(url=link)
+    if not r.ok:
+        raise ParserException(
+            parser="UY.py",
+            message="Impossible to fetch data url from ADME",
+        )
     soup = BeautifulSoup(r.content, "html.parser")
     href_tags = soup.find_all("a", href=True)
     data_url: str = ""
@@ -57,11 +60,16 @@ def get_adme_url(target_datetime: datetime, session: Session) -> str:
         if tag.button is not None:
             if tag.button.string == "Archivo Scada Detalle 10minutal":
                 data_url = "https://pronos.adme.com.uy" + tag.get("href")
+
+    if not data_url:
+        raise ParserException(
+            parser="UY.py",
+            message="Impossible to fetch data url from ADME",
+        )
     return data_url
 
 
 def fetch_data(
-    zone_key: str,
     session: Session,
     target_datetime: datetime,
     sheet_name: str,
@@ -85,7 +93,7 @@ def fetch_data(
     else:
         raise ParserException(
             parser="UY.py",
-            message="no data available for target_dateitme",
+            message="no data available for target_datetime",
         )
 
 
@@ -101,16 +109,15 @@ def fix_solar_production(dt: datetime, row: pd.Series) -> int:
 def fetch_production(
     zone_key: str = "UY",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """collects production data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
+        target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
     data = fetch_data(
-        zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
         sheet_name="GPF",
@@ -133,7 +140,7 @@ def fetch_production(
                 production_dict[mode] = round(row.get("value"), 3)
         data_point = {
             "zoneKey": "UY",
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
+            "datetime": dt.to_pydatetime().replace(tzinfo=UY_TZ),
             "production": production_dict,
             "source": "pronos.adme.com.uy",
         }
@@ -144,17 +151,16 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str = "UY",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """collects consumption data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
+        target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
     data = fetch_data(
-        zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
         sheet_name="GPF",
@@ -167,7 +173,7 @@ def fetch_consumption(
     for dt in consumption:
         data_point = {
             "zoneKey": "UY",
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
+            "datetime": dt.to_pydatetime().replace(tzinfo=UY_TZ),
             "consumption": round(consumption[dt]["consumption"], 3),
             "source": "pronos.adme.com.uy",
         }
@@ -179,17 +185,16 @@ def fetch_consumption(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """collects exchanges data from ADME and format all data points for target_datetime"""
     if target_datetime is None:
-        target_datetime = arrow.utcnow().replace(tzinfo=UY_TZ).datetime
+        target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
     data = fetch_data(
-        zone_key=zone_key1,
         session=session,
         target_datetime=target_datetime,
         sheet_name="Intercambios.",
@@ -208,7 +213,7 @@ def fetch_exchange(
         data_point = {
             "netFlow": round(exchange[dt][sortedZoneKeys], 3),
             "sortedZoneKeys": sortedZoneKeys,
-            "datetime": arrow.get(dt).datetime.replace(tzinfo=pytz.timezone(UY_TZ)),
+            "datetime": dt.to_pydatetime().replace(tzinfo=UY_TZ),
             "source": "pronos.adme.com.uy",
         }
         all_data_points += [data_point]

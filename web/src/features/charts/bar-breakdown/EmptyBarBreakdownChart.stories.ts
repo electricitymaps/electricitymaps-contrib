@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
 const meta: Meta<typeof EmptyBarBreakdownChart> = {

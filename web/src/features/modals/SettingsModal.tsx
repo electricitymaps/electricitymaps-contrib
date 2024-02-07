@@ -1,9 +1,12 @@
 import { Button } from 'components/Button';
 import Modal from 'components/Modal';
 import ConsumptionProductionToggle from 'features/map-controls/ConsumptionProductionToggle';
+import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
+import ThemeSelector from 'features/map-controls/ThemeSelector';
 import { useAtom } from 'jotai';
+import { HiOutlineEyeOff } from 'react-icons/hi';
 import { MoonLoader } from 'react-spinners';
 import { useTranslation } from 'translation/translation';
 import { TimeAverages, ToggleOptions } from 'utils/constants';
@@ -12,10 +15,8 @@ import {
   selectedDatetimeIndexAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+
 import { isSettingsModalOpenAtom } from './modalAtoms';
-import ThemeSelector from 'features/map-controls/ThemeSelector';
-import { LanguageSelector } from 'features/map-controls/LanguageSelector';
-import { HiOutlineEyeOff } from 'react-icons/hi';
 
 function WeatherToggleButton({
   allowed,
@@ -45,7 +46,7 @@ function WeatherToggleButton({
       )}
 
       <Button
-        onClick={!isLoadingLayer ? onToggle : () => {}}
+        onClick={isLoadingLayer ? () => {} : onToggle}
         className={isEnabled ? 'bg-brand-green text-white dark:bg-brand-green' : ''}
         disabled={!allowed}
         icon={
@@ -79,8 +80,12 @@ export function SettingsModalContent() {
   const { __ } = useTranslation();
   return (
     <div className="flex flex-col items-center space-y-4">
-      <ConsumptionProductionToggle />
-      <SpatialAggregatesToggle />
+      <div className="rounded-full bg-gray-500">
+        <ConsumptionProductionToggle />
+      </div>
+      <div className="rounded-full bg-gray-500">
+        <SpatialAggregatesToggle />
+      </div>
       <LanguageSelector isMobile />
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="solar" />

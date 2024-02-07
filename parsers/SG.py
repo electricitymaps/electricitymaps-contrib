@@ -2,20 +2,21 @@
 
 import re
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
-import arrow
 from PIL import Image, ImageOps
 from pytesseract import image_to_string
 from requests import Session
 
-TIMEZONE = "Asia/Singapore"
+TIMEZONE = ZoneInfo("Asia/Singapore")
 
 TICKER_URL = "https://www.emcsg.com/ChartServer/blue/ticker"
 
-SOLAR_URL = "https://www.ema.gov.sg/cmsmedia/irradiance/plot.png"
+SOLAR_URL = (
+    "https://www.ema.gov.sg//content/dam/corporate/solar-irradiance-map/plot.png"
+)
 
 """
 Around 95% of Singapore's generation is done with combined-cycle gas turbines.
@@ -54,19 +55,18 @@ There exists an interconnection to Malaysia, it is implemented in MY_WM.py.
 TYPE_MAPPINGS = {"CCGT/COGEN/TRIGEN": "gas", "GT": "gas", "ST": "unknown"}
 
 
-def get_solar(session: Session, logger: Logger) -> Optional[float]:
+def get_solar(session: Session, logger: Logger) -> float | None:
     """
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
     """
 
-    url = SOLAR_URL
-    solar_image = Image.open(session.get(url, stream=True).raw)
+    solar_image = Image.open(session.get(SOLAR_URL, stream=True).raw)
 
     solar_mw = __detect_output_from_solar_image(solar_image, logger)
     solar_dt = __detect_datetime_from_solar_image(solar_image, logger)
 
-    singapore_dt = arrow.now("Asia/Singapore")
+    singapore_dt = datetime.now(tz=TIMEZONE)
     diff = singapore_dt - solar_dt
 
     # Need to be sure we don't get old data if image stops updating.
@@ -96,7 +96,9 @@ def parse_price(price_str) -> float:
     return float(price_str.replace("$", "").replace("/MWh", ""))
 
 
-def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
+def find_first_list_item_by_key_value(
+    section_list: list, filter_key, filter_value, sought_key
+):
     """
     Parses a common pattern in Singapore JSON response format. Examples:
 
@@ -112,7 +114,7 @@ def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
 
     return [
         list_item[sought_key]
-        for list_item in l
+        for list_item in section_list
         if list_item[filter_key] == filter_value
     ][0]
 
@@ -129,16 +131,16 @@ def sg_period_to_hour(period_str) -> float:
 def sg_data_to_datetime(data):
     data_date = data["Date"]
     data_time = sg_period_to_hour(data["Period"])
-    date_arrow = arrow.get(data_date, "DD MMM YYYY")
-    datetime_arrow = date_arrow.shift(hours=data_time)
-    data_datetime = arrow.get(datetime_arrow.datetime, TIMEZONE).datetime
+    data_datetime = datetime.strptime(data_date, "%d %b %Y").replace(
+        tzinfo=TIMEZONE
+    ) + timedelta(hours=data_time)
     return data_datetime
 
 
 def fetch_production(
     zone_key: str = "SG",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of Singapore."""
@@ -146,6 +148,8 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     requests_obj = session or Session()
+    # TODO: restore verification when source fixes configuration or we manually install their chain
+    requests_obj.verify = False
 
     response = requests_obj.get(TICKER_URL)
     data = response.json()
@@ -187,9 +191,9 @@ def fetch_production(
         else:
             # unrecognized - log it, then add into unknown
             msg = (
-                'Singapore has unrecognized generation type "{}" '
-                "with production share {}%"
-            ).format(gen_type, gen_percent)
+                f'Singapore has unrecognized generation type "{gen_type}" '
+                f"with production share {gen_percent}%"
+            )
             logger.warning(msg)
             generation_by_type["unknown"] += gen_mw
 
@@ -209,8 +213,8 @@ def fetch_production(
 
 def fetch_price(
     zone_key: str = "SG",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -229,6 +233,8 @@ def fetch_price(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     requests_obj = session or Session()
+    # TODO: restore verification when source fixes configuration or we manually install their chain
+    requests_obj.verify = False
     response = requests_obj.get(TICKER_URL)
     data = response.json()
 
@@ -270,11 +276,11 @@ def __detect_datetime_from_solar_image(solar_image, logger: Logger):
         time_pattern = r"\d+-\d+-\d+\s+\d+:\d+"
         time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
     except AttributeError:
-        msg = "Unable to get values for SG solar from OCR text: {}".format(text)
+        msg = f"Unable to get values for SG solar from OCR text: {text}"
         logger.warning(msg, extra={"key": "SG"})
         return None
 
-    solar_dt = arrow.get(time_string).replace(tzinfo="Asia/Singapore")
+    solar_dt = datetime.fromisoformat(time_string).replace(tzinfo=TIMEZONE)
     return solar_dt
 
 
@@ -292,7 +298,7 @@ def __detect_output_from_solar_image(solar_image, logger: Logger):
         pattern = r"Est. PV Output: (.*)MWac"
         val = re.search(pattern, text, re.MULTILINE).group(1)
     except AttributeError:
-        msg = "Unable to get values for SG solar from OCR text: {}".format(text)
+        msg = f"Unable to get values for SG solar from OCR text: {text}"
         logger.warning(msg, extra={"key": "SG"})
         return None
 
@@ -305,7 +311,7 @@ def __detect_output_from_solar_image(solar_image, logger: Logger):
         if val == "O":
             solar_mw = 0.0
         else:
-            msg = "Singapore solar data is unreadable - got {}.".format(val)
+            msg = f"Singapore solar data is unreadable - got {val}."
             logger.warning(msg, extra={"key": "SG"})
             return None
 

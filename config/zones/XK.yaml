@@ -4,10 +4,18 @@ bounding_box:
   - - 21.791473
     - 43.269883
 capacity:
-  coal: 1288
-  hydro: 68
-  solar: 10.002
-  wind: 136
+  coal:
+    datetime: '2023-01-01'
+    source: entsoe.eu
+    value: 1288.0
+  hydro:
+    datetime: '2023-01-01'
+    source: entsoe.eu
+    value: 68.0
+  wind:
+    datetime: '2023-01-01'
+    source: entsoe.eu
+    value: 136.0
 contributors:
   - veqtrus
 delays:
@@ -53,6 +61,7 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   production: ENTSOE.fetch_production
+  productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
 timezone: Europe/Belgrade

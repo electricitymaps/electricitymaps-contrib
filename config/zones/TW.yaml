@@ -4,21 +4,52 @@ bounding_box:
   - - 121.951243931
     - 25.2954588893
 capacity:
-  biomass: 92
-  coal: 14681
-  gas: 18365
-  geothermal: 5
-  hydro: 2094
-  hydro storage: 2609
-  nuclear: 2865
-  oil: 1586
-  solar: 7700
-  unknown: 632
-  wind: 1062
+  biomass:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
+  coal:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 19240.0
+  gas:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 18050.0
+  hydro:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 2090.0
+  hydro storage:
+    datetime: '2015-01-01'
+    source: taipower.com.tw
+    value: 2602.0
+  nuclear:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 2890.0
+  oil:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 2420.0
+  solar:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 9720.0
+  unknown:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 320.0
+  wind:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1580.0
 contributors:
   - corradio
   - MariusKroon
   - nessie2013
+  - Manu1400
+  - VIKTORVAV99
 emissionFactors:
   direct:
     battery discharge:
@@ -218,5 +249,6 @@ fallbackZoneMixes:
         unknown: 0.03206996746142614
         wind: 0.007647678020171424
 parsers:
-  production: TW.fetch_production
+  production: TAIPOWER.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Taipei

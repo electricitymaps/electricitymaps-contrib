@@ -2,6 +2,8 @@ import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
 import { modeOrder } from 'utils/constants';
+import { PowerUnits } from 'utils/units';
+
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
@@ -23,9 +25,9 @@ function EmptyBarBreakdownChart({
 }: EmptyBarBreakdownChartProps) {
   const productionData = modeOrder.map((d) => ({
     mode: d,
-    tCo2eqPerMin: 0,
-    tCo2eqPerMinByFuel: {},
-    tCo2eqPerMinByFuelAndSource: {},
+    gCo2eq: 0,
+    gCo2eqByFuel: {},
+    gCo2eqByFuelAndSource: {},
     isStorage: false,
   }));
   const { __ } = useTranslation();
@@ -35,7 +37,7 @@ function EmptyBarBreakdownChart({
   const maxCO2eqImport = 10;
   const maxCO2eqProduction = 10;
 
-  // in tCO₂eq/min
+  // in CO₂eq
   const co2Scale = useMemo(
     () =>
       scaleLinear()
@@ -50,14 +52,14 @@ function EmptyBarBreakdownChart({
   // eslint-disable-next-line unicorn/consistent-function-scoping
   const formatTick = (t: number) => {
     // TODO: format tick depending on displayByEmissions
-    return `${t} GW`;
+    return `${t} ${PowerUnits.GIGAWATTS}`;
   };
 
   return (
     <>
       <div style={{ width, height, position: 'absolute' }}>
         {overLayText && (
-          <div className="absolute top-[50%] left-[50%] z-10 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-sm dark:bg-gray-900">
+          <div className="absolute left-[50%] top-[50%] z-10 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-sm dark:bg-gray-900">
             {overLayText}
           </div>
         )}
@@ -77,7 +79,7 @@ function EmptyBarBreakdownChart({
               label={__(d.mode)}
               width={width}
               scale={co2Scale}
-              value={Math.abs(d.tCo2eqPerMin)}
+              value={Math.abs(d.gCo2eq)}
               isMobile={Boolean(isMobile)}
             >
               <HorizontalBar

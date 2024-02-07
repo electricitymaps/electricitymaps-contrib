@@ -1,3 +1,8 @@
+bounding_box:
+  - - 4.415849158491596
+    - 57.51771794304598
+  - - 31.57731077310774
+    - 71.66078268093528
 capacity:
   biomass: 113.3
   coal: 0
@@ -39,7 +44,7 @@ emissionFactors:
     biomass:
       datetime: '2021-01-01'
       source: EU-ETS 2021
-      value: 0.0
+      value: 0
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -88,7 +93,7 @@ emissionFactors:
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
-      value: 230.0
+      value: 230
     coal:
       datetime: '2012-01-01'
       source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
@@ -97,7 +102,7 @@ emissionFactors:
     gas:
       datetime: '2014-01-01'
       source: IPCC 2014
-      value: 490.0
+      value: 490
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -123,13 +128,13 @@ emissionFactors:
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
-      value: 650.0
+      value: 650
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
       datetime: '2015-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.0005701072357981111
         coal: 0.002165112851332002
         gas: 0.022452001697789756
@@ -144,7 +149,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2016 average
       datetime: '2016-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.0007190154795780213
         coal: 0.002923281533220355
         gas: 0.02179784528636955
@@ -159,7 +164,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2017 average
       datetime: '2017-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.001813106285954652
         coal: 0.002236293084317072
         gas: 0.020699841558710963
@@ -174,7 +179,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.0018208192595364492
         coal: 0.0039785798777743015
         gas: 0.023243533801313675
@@ -189,7 +194,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.0029311664363944013
         coal: 0.004413464759788742
         gas: 0.028870138064265694
@@ -204,7 +209,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.0013603547627011132
         coal: 0.0007372965949431318
         gas: 0.014643732236397583
@@ -219,7 +224,7 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
-        battery discharge: 0.0
+        battery discharge: 0
         biomass: 0.003370000115291126
         coal: 0.00297301580330705
         gas: 0.007069411944029302

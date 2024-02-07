@@ -16,7 +16,6 @@ contributors:
   - alixunderplatz
   - lorrieq
   - gopikrishna1793
-flag_file_name: in.png
 parsers:
   production: IN_UT.fetch_production
 timezone: Asia/Kolkata

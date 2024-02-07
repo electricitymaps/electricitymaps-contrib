@@ -40,7 +40,9 @@
   "misc": {
     "maintitle": "生活用電二氧化碳排放量",
     "oops": "哎呀！ 我們無法連線到服務器。 我們會在幾秒鐘後再試一次。",
-    "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">這裏</a>重新載入。"
+    "newversion": "有新版本可用!",
+    "dismiss": "移除",
+    "reload": "重新載入"
   },
   "solar": "太陽能",
   "hydro": "水力",
@@ -60,7 +62,6 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量被匯出到 %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力從 %5$s <b>%3$s</b> 匯入",
   "emissionsImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量從 %5$s <b>%3$s</b> 匯入",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "zoneShortName": {
     "AL": {
       "zoneName": "阿爾巴尼亞"

@@ -1,10 +1,12 @@
-import { useMemo } from 'react';
 import { useAtom } from 'jotai';
+import { useMemo } from 'react';
 import { useTranslation } from 'translation/translation';
-import { formatDataSources } from 'utils/formatting';
-import { getContributors } from './util';
-import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { ZoneDetails } from 'types';
+import { formatDataSources } from 'utils/formatting';
+import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
+
+import { getContributors } from './util';
+
 export function removeDuplicateSources(source: string | undefined) {
   if (!source) {
     return [''];
@@ -14,7 +16,9 @@ export function removeDuplicateSources(source: string | undefined) {
     ...new Set(
       source
         .split('","')
-        .flatMap((x) => x.split(',').map((x) => x.replace(/\\/g, '').replace(/"/g, '')))
+        .flatMap((x) =>
+          x.split(',').map((x) => x.replaceAll('\\', '').replaceAll('"', ''))
+        )
     ),
   ];
 
@@ -73,25 +77,29 @@ export default function Attribution({
 }
 
 function ContributorList({ zoneId }: { zoneId: string }) {
-  const contributors = getContributors(zoneId);
-  if (!contributors) {
+  const { zoneContributorsIndexArray, contributors } = getContributors(zoneId);
+  if (!zoneContributorsIndexArray) {
     return null;
   }
 
   return (
     <div className="mt-1 flex flex-wrap gap-1">
-      {contributors.map((contributor) => {
+      {zoneContributorsIndexArray.map((contributorIndex) => {
         return (
           <a
-            key={contributor}
-            href={`https://github.com/${contributor}`}
+            key={contributors.at(contributorIndex)}
+            href={`https://github.com/${contributors.at(contributorIndex)}`}
             rel="noopener noreferrer"
             target="_blank"
           >
             <img
-              src={`https://avatars.githubusercontent.com/${contributor}?s=20`} // loads the avatar image at a default size of 20px
-              srcSet={`https://avatars.githubusercontent.com/${contributor}?s=40 2x`} // loads the avatar image at a default size of 40px for high resolution displays
-              alt={contributor}
+              src={`https://avatars.githubusercontent.com/${contributors.at(
+                contributorIndex
+              )}?s=20`} // loads the avatar image at a default size of 20px
+              srcSet={`https://avatars.githubusercontent.com/${contributors.at(
+                contributorIndex
+              )}?s=40 2x`} // loads the avatar image at a default size of 40px for high resolution displays
+              alt={contributors.at(contributorIndex)}
               height="20"
               width="20"
               loading="lazy" // makes sure the image don't load until the user scrolls down

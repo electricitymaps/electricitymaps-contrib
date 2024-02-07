@@ -14,5 +14,8 @@ capacity:
   unknown: 0
   wind: 0
 timezone: Asia/Kolkata
+contributors:
+  - unitrium
 parsers:
   consumption: IN.fetch_consumption
+  production: IN.fetch_production

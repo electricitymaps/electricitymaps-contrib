@@ -1,3 +1,8 @@
+bounding_box:
+  - - 67.6828818288183
+    - 6.244882203814939
+  - - 97.83237332373321
+    - 35.995336317947775
 capacity:
   biomass: 10682.36
   coal: 210699.5
@@ -10,6 +15,7 @@ capacity:
 contributors:
   - systemcatch
   - gopikrishna1793
+  - unitrium
 emissionFactors:
   direct:
     battery discharge:
@@ -68,53 +74,60 @@ emissionFactors:
     unknown:
       source: assumes 43% solar PV and 57% wind
       value: 26
+estimation_method: MODE_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
-        battery discharge: 0.0
-        biomass: 0.0
+        battery discharge: 0
+        biomass: 0
         coal: 0.8089872269900487
         gas: 0.037422744593654036
-        geothermal: 0.0
+        geothermal: 0
         hydro: 0.07886209808899303
-        hydro discharge: 0.0
+        hydro discharge: 0
         nuclear: 0.027707077841435432
-        oil: 0.0
-        solar: 0.0
+        oil: 0
+        solar: 0
         unknown: 0.04702085079812528
-        wind: 0.0
+        wind: 0
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
-        battery discharge: 0.0
-        biomass: 0.0
+        battery discharge: 0
+        biomass: 0
         coal: 0.7396355796865115
         gas: 0.035903591947817
-        geothermal: 0.0
+        geothermal: 0
         hydro: 0.12315478740878912
-        hydro discharge: 0.0
+        hydro discharge: 0
         nuclear: 0.029533910596758597
-        oil: 0.0
-        solar: 0.0
+        oil: 0
+        solar: 0
         unknown: 0.07177212935296305
-        wind: 0.0
+        wind: 0
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
-        battery discharge: 0.0
-        biomass: 0.0
+        battery discharge: 0
+        biomass: 0
         coal: 0.7133026005915483
         gas: 0.03918849273359453
-        geothermal: 0.0
+        geothermal: 0
         hydro: 0.1298550483645379
-        hydro discharge: 0.0
+        hydro discharge: 0
         nuclear: 0.03209713780119373
-        oil: 0.0
-        solar: 0.0
+        oil: 0
+        solar: 0
         unknown: 0.08555672082678238
-        wind: 0.0
+        wind: 0
 parsers:
   production: IN.fetch_live_production
+subZoneNames:
+  - IN-NO
+  - IN-NE
+  - IN-EA
+  - IN-WE
+  - IN-SO
 timezone: Asia/Kolkata

@@ -7,18 +7,16 @@ function getCountryName(zoneId: string) {
   return flagName.toUpperCase();
 }
 
-type HTMLSVGElement = HTMLElement & SVGElement;
-interface CountryFlagProps
-  extends React.HTMLAttributes<HTMLSVGElement>,
-    React.SVGAttributes<HTMLSVGElement> {
+interface CountryFlagProps {
   zoneId: string;
   size?: number;
+  className?: string;
 }
 
 export function CountryFlag({
   zoneId,
   size = DEFAULT_FLAG_SIZE,
-  ...props
+  className,
 }: CountryFlagProps) {
   const countryName = getCountryName(zoneId) as keyof typeof flags;
   const FlagIcon = flags[countryName];
@@ -34,7 +32,7 @@ export function CountryFlag({
       style={{
         minWidth: size,
       }}
-      {...props}
+      className={className}
     />
   );
 }

@@ -4,7 +4,6 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup
@@ -15,8 +14,8 @@ TZ = "Pacific/Tahiti"
 
 def fetch_production(
     zone_key: str = "PF",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -30,7 +29,7 @@ def fetch_production(
     res = r.get(url)
     assert res.status_code == 200, (
         "Exception when fetching production for "
-        "{}: error when calling url={}".format(zone_key, url)
+        f"{zone_key}: error when calling url={url}"
     )
 
     soup = BeautifulSoup(res.text, "lxml")

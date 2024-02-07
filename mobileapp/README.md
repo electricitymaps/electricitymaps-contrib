@@ -2,14 +2,9 @@
 
 This is a capacitor project that builds the mobile apps from the web directory
 
-## Prerequisites:
+## Prerequisites
 
-https://capacitorjs.com/docs/getting-started/environment-setup
-
-Xcode
-
-Android Studio
-
+- Follow this guide: https://capacitorjs.com/docs/getting-started/environment-setup (but skip the Android SDK part)
 - install JDK v8 <-- to avoid having to create an Oracle account(!), you can find a `jdk-8u321-macosx-x64.dmg` in our internal Google Drive.
 - `brew install gradle`
 - install Android Studio - make sure you open it and go through the install wizard in the start
@@ -24,72 +19,106 @@ Android Studio
   export ANDROID_SDK_ROOT=~/Library/Android/sdk
   export ANDROID_HOME=~/Library/Android/sdk
   ```
+- Run `pnpm install` in the **mobileapp** directory
+- Navigate to the **web** directory and run `pnpm install`
+- Navigate back to the **mobileapp** directory and add Capacitor apps: `pnpm exec cap add android` and `pnpm exec cap add ios`
+- Run `pnpm prepare-mobile` to copy and sync assets to the capacitor apps
 
-Node 18+
+---
 
-## If you have the web app installed and running and want to do production builds the following commands will run everything you need
+## Local development
 
-Navigate to mobileapp
+### Run the app locally with hot reload
 
-`pnpm build-ios`
-`pnpm build-android`
+1. Ensure the app is running on port 5173 in one terminal window:
 
-## Detailed instruction if the above doesn't work. First make sure you have installed and built the web app:
+```bash
+cd ../web
+pnpm dev
+```
 
-Navigate to the web directory then:
+2. In another terminal window, run one of these commands:
 
-`pnpm install`
+```bash
+pnpm dev-android
+pnpm dev-ios
+```
 
-`pnpm build`
+### Run a production build locally
 
-To enable hot reload you must runt he web app locally on port 5173:
+1. Make a build of the web app with proper credentials:
 
-`pnpm dev`
+```bash
 
-Navigate to the moibleapp directory then:
+SENTRY_AUTH_TOKEN="" VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN="" pnpm run build-web
+pnpm prepare-mobile
+```
 
-`pnpm install`
+2. Then run one of these commands to open the build in XCode or Android Studio:
 
-Add Android and iOS:
+```bash
+pnpm preview-android
+pnpm preview-ios
+```
 
-`pnpm exec cap add android`
-`pnpm exec cap add ios`
+3. Select appropriate simulator or device and run the app (usually a "play" icon)
 
-Copy Assets to app directories:
+---
 
-`pnpm exec cap copy`
+## Publishing new mobile app versions
 
-Sync the web project to capacitor:
+We use [fastlane](https://fastlane.tools/) to build and deploy the apps automatically.
+See [fastlane/README.md](./fastlane/README.md) for more information.
 
-`pnpm exec cap sync`
+### Setup
 
-**Run the app locally with hot reload**
+1. `bundle install`
+2. Ensure you have the following keyfiles locally (ask the team internally to get them):
+   - `.env.default`
+   - `android/electricitymap.keystore`
+   - `android/keystore.properties`
+   - `fastlane/fastlane-key.json`
+3. Update keys in `.env.default`:
+   - Add your own Apple ID
+   - Open https://appleid.apple.com/account/manage and create an App-Specific Password to be used for the FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD environment variable
+   - Ask internally for the team ids
 
-Android:
+### Making a beta build
 
-`pnpm dev-android`
+Makes a build and distributes it for internal testing.
 
-iOS:
+```bash
+pnpm run fast android beta
+pnpm run fast ios beta
+```
 
-`pnpm dev-ios`
+### Publishing to the app stores
 
-**Build app bundles**
+Once beta builds have been tested and approved, you can publish them to the app stores.
 
-App bundles are built through Android Studio and iOS
-Android:
-
-`pnpm exec open android`
-
-iOS:
-
-`pnpm exec open ios`
+```bash
+pnpm run fast ios release
+pnpm run fast android release
+```
 
 ---
 
 If you need more information:
 https://capacitorjs.com/docs/getting-started
 
-Android emulator not working?
+## Troubleshooting
+
+<details>
+  <summary>Android emulator not working?</summary>
 
 Android studio will need a virtual device, shown here in the Android Studio opening screen:
 ![](./VDM.png)
+
+If you get XCode error "Command PhaseScriptExecution failed with a nonzero exit code"
+Then in Pods-Electricity Maps-frameworks.sh
+Replace:
+`source="$(readlink "${source}")"`
+With:
+`source="$(readlink -f "${source}")"`
+
+</details>

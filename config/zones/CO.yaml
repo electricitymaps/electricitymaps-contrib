@@ -1,14 +1,45 @@
-timezone: America/Bogota
+bounding_box:
+  - - -79.5225902259022
+    - -4.735816373474336
+  - - -66.37606876068756
+    - 12.964920287149383
 capacity:
-  biomass: 397
-  coal: 1612
-  gas: 2491
-  hydro: 12549
-  nuclear: 0
-  oil: 1346
-  solar: 297
-  wind: 18
+  biomass:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 400.0
+  coal:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1650.0
+  gas:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 4070.0
+  hydro:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 12560.0
+  oil:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1400.0
+  solar:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 490.0
+  wind:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
 contributors:
+  - lav-julien
   - alixunderplatz
+delays:
+  production: 48
 parsers:
   consumption: CO.fetch_consumption
+  price: CO.fetch_price
+  production: CO.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
+timezone: America/Bogota

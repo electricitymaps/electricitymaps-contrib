@@ -27,7 +27,8 @@
   },
   "onboarding-modal": {
     "view1": {
-      "subtitle": "將電力對氣候變遷的影響製成地圖"
+      "header": "將電力對氣候變遷的影響製成地圖",
+      "text": "在這裡你可以探索電力對全球許多國家的氣候影響。 <br/><br/>讓我們透過幾個簡單的步驟引導你瀏覽我們的地圖！"
     },
     "view2": {
       "header": "檢視即時的發電碳排量",
@@ -38,6 +39,18 @@
       "text": "地圖上的箭頭標示地區之間的電力流動。點選地區以檢視更多關於該地區的用電資訊。"
     },
     "view4": {
+      "header": "在不同視圖之間切換",
+      "text": "在電力生產和消費，以及國家或地區視圖之間切換，以便即時洞察全球能源動態，並為永續的未來做出明智的選擇。"
+    },
+    "view5": {
+      "header": "在電力和碳排放量視圖之間切換",
+      "text": "切換至不同的圖表以顯示某一區域的電力資訊或碳排放量。 所顯示的數值代表所選時期的總量，且該資訊與所選的生產或消費模式相符。"
+    },
+    "view6": {
+      "header": "探索過去",
+      "text": "在左下角，你可以查看全球即時和過去的碳排放量及電力數據。 使用切換按鈕變更聚合數據，或透過瀏覽時間軸來查看隨時間的變化。"
+    },
+    "view7": {
       "header": "風力、太陽能即時資訊",
       "text": "風力、太陽能的發電效率取決於天氣。點選「風」和「太陽」按鈕以顯示風力和太陽能的發電強度。"
     }
@@ -49,8 +62,6 @@
     "renewable": "可再生能源",
     "electricityproduction": "電力生產",
     "electricityconsumption": "用電量",
-    "bysource": "按來源",
-    "averagebysource": "來源平均",
     "emissions": "碳排放量",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或編輯來源</a>",
     "helpfrom": "with help from",
@@ -68,7 +79,16 @@
     "aggregatedTooltip": "該區域的的資料是由過去的每小時資料聚合而成。",
     "helpUs": "請檢視<a href=\"%s\" target=\"_blank\">執行環境日誌</a>並幫助我們找出問題。",
     "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href=\"%s\" target=\"_blank\">新增這個地區的資料</a>！",
-    "now": "現在"
+    "aggregationDisabled": "由於缺少詳細細分，無法取得所選時間段的資料。請嘗試選擇一個更廣泛的時間段。",
+    "now": "現在",
+    "by-source": {
+      "emissions": "碳排放量的來源",
+      "electricity-production": "電力生產的來源",
+      "electricity-consumption": "用電量的來源",
+      "total-emissions": "總碳排放量的來源",
+      "total-electricity-production": "總電力生產的來源",
+      "total-electricity-consumption": "總用電量的來源"
+    }
   },
   "time-controller": {
     "title": "顯示過去資料"
@@ -80,12 +100,31 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "過去 %1$s 碳強度",
-      "hourly": "過去24小時的碳強度",
-      "daily": "過去一個月的碳強度",
-      "monthly": "過去一年的碳強度",
-      "yearly": "過去五年的碳強度"
-    }
+      "default": "過去 %1$s 碳強度"
+    },
+    "emissions": {
+      "default": "過去 %1$s 碳排放量"
+    },
+    "emissionsorigin": {
+      "default": "過去 %1$s 的碳排放量來源"
+    },
+    "emissionsproduction": {
+      "default": "過去 %1$s 的碳排放量來源"
+    },
+    "electricityorigin": {
+      "default": "過去 %1$s 的電力來源"
+    },
+    "electricityproduction": {
+      "default": "過去 %1$s 的電力生產"
+    },
+    "electricityprices": {
+      "default": "過去 %1$s 的電價"
+    },
+    "netExchange": {
+      "default": "最近 %1$s 的淨交易量"
+    },
+    "Getdata": "使用電力地圖 API 獲取每小時的歷史數據、即時數據和預測數據",
+    "not-enough-data": "沒有足夠的數據來顯示圖表"
   },
   "footer": {
     "foundbugs": "發現錯誤或有其他想法？請",
@@ -107,6 +146,8 @@
     "carbonintensityexport": "出口碳強度",
     "ofinstalled": "的裝載容量",
     "utilizing": "利用",
+    "representing": "代表",
+    "ofemissions": "的碳排放量",
     "withcarbonintensity": "具有碳強度",
     "zoomIn": "放大",
     "zoomOut": "縮小",
@@ -125,7 +166,21 @@
     "selectLanguage": "選擇語言",
     "lowCarbDescription": "包含再生能源和核能",
     "dataIsDelayed": "資料非即時",
-    "price": "價格"
+    "price": "價格",
+    "netExchange": "淨交換",
+    "importing": "進口",
+    "exporting": "出口"
+  },
+  "aria": {
+    "label": {
+      "selectLanguage": "選擇語言",
+      "colorBlindMode": "色盲模式",
+      "windLayer": "風力圖層",
+      "solarLayer": "太陽能圖層",
+      "changeTheme": "變更主題",
+      "hideSidePanel": "隱藏側板",
+      "showSidePanel": "顯示側板"
+    }
   },
   "aggregateButtons": {
     "country": "國家",
@@ -138,7 +193,7 @@
   },
   "misc": {
     "maintitle": "生活用電二氧化碳排放量",
-    "oops": "哎呀！ 我們無法連線到服務器。 我們會在幾秒鐘後再試一次。",
+    "oops": "哎呀！ 我們無法連線到伺服器。 我們會在幾秒鐘後再試一次。",
     "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">這裏</a>重新載入。",
     "webgl-not-supported": "無法渲染地圖，因為您的瀏覽器不支援 WebGL。",
     "retrynow": "再試一次",
@@ -147,7 +202,9 @@
     "legend": "傳奇",
     "faq": "常見問題",
     "privacyPolicy": "隱私權政策",
-    "legalNotice": "法律聲明"
+    "legalNotice": "法律聲明",
+    "dismiss": "關閉",
+    "reload": "重新載入"
   },
   "wind": "風力",
   "windDataError": "目前尚無風力資料",
@@ -171,7 +228,7 @@
   "emissionsExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量被匯出到 %5$s <b>%3$s</b>",
   "electricityImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力從 %5$s <b>%3$s</b> 匯入",
   "emissionsImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量從 %5$s <b>%3$s</b> 匯入",
-  "ofCO2eqPerMinute": "每分鐘 CO₂eq",
+  "ofCO2eq": "of CO₂eq",
   "theMap": {
     "groupName": "地圖",
     "mapColors-question": "地圖上的顏色代表什麼呢？",
@@ -200,6 +257,8 @@
     "groupName": "我們的方法",
     "carbonIntensity-question": "「碳強度」是什麼?",
     "carbonIntensity-answer": "碳強度是衡量一個地區電力消耗的溫室氣體排放量的一種指標（單位為gCO₂eq/kWh，即每消耗一度電所排放的二氧化碳當量克數）。<br><br>我們測量電力消耗的溫室氣體排放量，亦即生產被一個地區消耗的電力會排放的所有溫室氣體（包含二氧化碳、甲烷等），包含從其他地區進口的電力。我們採用生命週期分析（Life Cycle Analysis），也就是，將發電廠整個生命週期（建造、燃料生產、運作、退役）的碳排量都納入計算。",
+    "methodology-question": "你們如何計算這些數值的?",
+    "methodology-answer": "我們在 <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a> 上詳細介紹了我們的完整方法論，並在我們的 <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">GitHub Wiki</a> 上提供了額外的文件.",
     "consumptionFocus-question": "為什麼要計算電力消耗的碳排量，而不是電力生產的碳排量？",
     "consumptionFocus-answer": "我們認為使用者是為他們消耗的電力負責，而不是為他們所在地生產的電量負責。而且，我們認為使用其他地區生產的不乾淨電力，以塑造自己所在區域低碳排的假象，是不應該的。",
     "renewableLowCarbonDifference-question": "「可再生」和「低碳排」的差異是什麼？",
@@ -495,15 +554,15 @@
     },
     "CL-SEA": {
       "countryName": "智利",
-      "zoneName": "Sistema Eléctrico de Aysén"
+      "zoneName": "艾森電網"
     },
     "CL-SEM": {
       "countryName": "智利",
-      "zoneName": "Sistema Eléctrico de Magallanes"
+      "zoneName": "麥哲倫電網"
     },
     "CL-SEN": {
       "countryName": "智利",
-      "zoneName": "Sistema Eléctrico Nacional"
+      "zoneName": "國家電網"
     },
     "CM": {
       "zoneName": "喀麥隆"
@@ -1615,7 +1674,7 @@
     },
     "US-FLA-TEC": {
       "countryName": "美國",
-      "zoneName": "Tampa Electric Company"
+      "zoneName": "坦帕電力公司"
     },
     "US-MIDA-PJM": {
       "countryName": "美國",
@@ -1623,7 +1682,7 @@
     },
     "US-MIDW-AECI": {
       "countryName": "美國",
-      "zoneName": "Associated Electric Cooperative, Inc."
+      "zoneName": "聯合電力合作社"
     },
     "US-MIDW-LGEE": {
       "countryName": "美國",
@@ -1631,19 +1690,15 @@
     },
     "US-MIDW-MISO": {
       "countryName": "美國",
-      "zoneName": "Midcontinent Independent Transmission System Operator, Inc."
+      "zoneName": "中部獨立電力調度中心"
     },
     "US-NE-ISNE": {
       "countryName": "美國",
-      "zoneName": "Iso New England Inc."
+      "zoneName": "新英格蘭ISO公司"
     },
     "US-NW-AVA": {
       "countryName": "美國",
       "zoneName": "阿維斯塔公司"
-    },
-    "US-NW-AVRN": {
-      "countryName": "美國",
-      "zoneName": "Avangrid Renewables Cooperative"
     },
     "US-NW-BPAT": {
       "countryName": "美國",
@@ -1651,19 +1706,19 @@
     },
     "US-NW-CHPD": {
       "countryName": "美國",
-      "zoneName": "PUD No. 1 Of Chelan County"
+      "zoneName": "奇蘭縣第一 PUD"
     },
     "US-NW-DOPD": {
       "countryName": "美國",
-      "zoneName": "PUD No. 1 Of Douglas County"
+      "zoneName": "道格拉斯縣第一 PUD"
     },
     "US-NW-GCPD": {
       "countryName": "美國",
-      "zoneName": "PUD No. 2 Of Grant County, Washington"
+      "zoneName": "格蘭特縣第二 PUD"
     },
     "US-NW-GRID": {
       "countryName": "美國",
-      "zoneName": "Gridforce Energy Management, Llc"
+      "zoneName": "Gridforce 能源管理有限公司"
     },
     "US-NW-GWA": {
       "countryName": "美國",
@@ -1711,11 +1766,11 @@
     },
     "US-NW-WACM": {
       "countryName": "美國",
-      "zoneName": "Western Area Power Administration - Rocky Mountain Region"
+      "zoneName": "西部電力管理局-洛磯山區"
     },
     "US-NW-WAUW": {
       "countryName": "美國",
-      "zoneName": "Western Area Power Administration UGP West"
+      "zoneName": "西部電力管理局-西UGP"
     },
     "US-NW-WWA": {
       "countryName": "美國",
@@ -1723,7 +1778,7 @@
     },
     "US-NY-NYIS": {
       "countryName": "美國",
-      "zoneName": "New York Independent System Operator"
+      "zoneName": "美國紐約電力調度中心"
     },
     "US-SE-SEPA": {
       "countryName": "美國",
@@ -1737,10 +1792,6 @@
       "countryName": "美國",
       "zoneName": "亞利桑那公用事業公司"
     },
-    "US-SW-DEAA": {
-      "countryName": "美國",
-      "zoneName": "Arlington Valley, LLC"
-    },
     "US-SW-EPE": {
       "countryName": "美國",
       "zoneName": "阿爾帕索電力"
@@ -1748,10 +1799,6 @@
     "US-SW-GRIF": {
       "countryName": "美國",
       "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-HGMA": {
-      "countryName": "美國",
-      "zoneName": "New Harquahala Generating Company, LLC"
     },
     "US-SW-PNM": {
       "countryName": "美國",
@@ -1767,7 +1814,7 @@
     },
     "US-SW-WALC": {
       "countryName": "美國",
-      "zoneName": "Western Area Power Administration - Desert Southwest Region"
+      "zoneName": "西部電力管理局-西南沙漠地區"
     },
     "US-TEN-TVA": {
       "countryName": "美國",
@@ -1832,6 +1879,41 @@
     },
     "ZW": {
       "zoneName": "辛巴威"
+    },
+    "AU-LH": {
+      "countryName": "澳洲",
+      "zoneName": "豪勳爵島"
+    },
+    "MX-BCS": {
+      "countryName": "墨西哥",
+      "zoneName": "南下加利福尼亞州"
+    },
+    "OM": {
+      "zoneName": "阿曼"
+    },
+    "PH-LU": {
+      "countryName": "菲律賓",
+      "zoneName": "呂宋"
+    },
+    "PH-MI": {
+      "countryName": "菲律賓",
+      "zoneName": "民答那峨島"
+    },
+    "PH-VI": {
+      "countryName": "菲律賓",
+      "zoneName": "維薩亞斯群島"
+    },
+    "VN-C": {
+      "countryName": "越南",
+      "zoneName": "越南中部"
+    },
+    "VN-N": {
+      "countryName": "越南",
+      "zoneName": "越南北部"
+    },
+    "VN-S": {
+      "countryName": "越南",
+      "zoneName": "越南南部"
     }
   }
 }

@@ -16,4 +16,4 @@ fallbackZoneMixes:
       solar: 0.00263474788812734
       unknown: 0.00452705822702292
       wind: 0.00449084176120673
-timezone: null
+timezone: Asia/Almaty # Could also be Asia/Aqtau, Asia/Aqtobe or Asia/Atyrau as Kazakhstan spans multiple timezones.

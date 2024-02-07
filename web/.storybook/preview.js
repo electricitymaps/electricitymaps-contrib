@@ -1,3 +1,5 @@
+import { withThemeByClassName } from '@storybook/addon-styling';
+
 import '../src/index.css';
 
 export const parameters = {
@@ -9,3 +11,13 @@ export const parameters = {
     },
   },
 };
+
+export const decorators = [
+  withThemeByClassName({
+    themes: {
+      light: '',
+      dark: 'dark',
+    },
+    defaultTheme: 'light',
+  }),
+];

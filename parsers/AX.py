@@ -1,16 +1,15 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from re import findall
-from typing import List, Optional
+from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
-from pytz import timezone
 from requests import Response, Session
 
 from .lib.exceptions import ParserException
 
 IFRAME_URL = "https://grafik.kraftnat.ax/grafer/tot_inm_24h_15.php"
-TIME_ZONE = "Europe/Mariehamn"
+TIME_ZONE = ZoneInfo("Europe/Mariehamn")
 SOURCE = "kraftnat.ax"
 
 
@@ -27,8 +26,8 @@ def fetch_data(session: Session, logger: Logger):
             "AX.py",
             "Did not find the expected amount of results. Check if the website has changed.",
         )
-    time_series: List = result_time_series[0].split(",")
-    raw_data: List[str] = findall(r"data:\[(.*?)\]", str(soup))
+    time_series: list = result_time_series[0].split(",")
+    raw_data: list[str] = findall(r"data:\[(.*?)\]", str(soup))
     if len(raw_data) != 6:
         raise ParserException(
             "AX.py",
@@ -49,6 +48,7 @@ def fetch_data(session: Session, logger: Logger):
         raw_data[3].split(","),
         raw_data[4].split(","),
         raw_data[5].split(","),
+        strict=True,
     ):
         data_list.append(
             {
@@ -65,17 +65,17 @@ def fetch_data(session: Session, logger: Logger):
 
 
 def formated_data(
-    zone_key: Optional[str],
-    zone_key1: Optional[str],
-    zone_key2: Optional[str],
+    zone_key: str | None,
+    zone_key1: str | None,
+    zone_key2: str | None,
     session: Session,
     logger: Logger,
-    type: str,
+    data_type: str,
 ):
     """Format data to Electricity Map standards."""
     data_list = fetch_data(session, logger)
     data_list.reverse()
-    date_time = datetime.now(timezone(TIME_ZONE))
+    date_time = datetime.now(TIME_ZONE)
     date = date_time.replace(
         hour=int(data_list[0]["time"].split(":")[0]),
         minute=int(data_list[0]["time"].split(":")[1]),
@@ -87,7 +87,7 @@ def formated_data(
     return_list = []
     for data in data_list:
         corrected_date = date - timedelta(minutes=15 * data_list.index(data))
-        if type == "production":
+        if data_type == "production":
             return_list.append(
                 {
                     "zoneKey": zone_key,
@@ -99,7 +99,7 @@ def formated_data(
                     "source": SOURCE,
                 }
             )
-        elif type == "consumption":
+        elif data_type == "consumption":
             return_list.append(
                 {
                     "zoneKey": zone_key,
@@ -108,7 +108,7 @@ def formated_data(
                     "source": SOURCE,
                 }
             )
-        elif type == "exchange":
+        elif data_type == "exchange":
             if zone_key1 == "AX" and zone_key2 == "SE-SE3":
                 return_list.append(
                     {
@@ -144,9 +144,9 @@ def formated_data(
 def fetch_production(
     zone_key: str = "AX",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Fetch production data."""
 
     if target_datetime is not None:
@@ -160,16 +160,16 @@ def fetch_production(
         zone_key2=None,
         session=session,
         logger=logger,
-        type="production",
+        data_type="production",
     )
 
 
 def fetch_consumption(
     zone_key: str = "AX",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Fetch consumption data."""
 
     if target_datetime is not None:
@@ -183,7 +183,7 @@ def fetch_consumption(
         zone_key2=None,
         session=session,
         logger=logger,
-        type="consumption",
+        data_type="consumption",
     )
 
 
@@ -191,9 +191,9 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Fetch exchange data."""
 
     if target_datetime is not None:
@@ -207,5 +207,5 @@ def fetch_exchange(
         zone_key2=zone_key2,
         session=session,
         logger=logger,
-        type="exchange",
+        data_type="exchange",
     )

@@ -4,18 +4,54 @@ bounding_box:
   - - -105.50971
     - 49.50244
 capacity:
-  battery storage: 34
-  biomass: 369.4
-  coal: 0
-  gas: 2283.7
-  geothermal: 18
-  hydro: 21708.1
-  hydro storage: 314
-  nuclear: 1200
-  oil: 0
-  solar: 137.9
-  unknown: 0
-  wind: 5314.8
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 32.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 303.4
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 729.9
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2271.7
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 18.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 19577.9
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 314.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 1200.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 137.9
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 3617.1
 comment: Bonneville Power Administration
 contributors:
   - systemcatch
@@ -25,6 +61,10 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available. This zone includes all wind related electricity production
+  from the generation-only balancing authority Avangrid Renewables, LLC. Read more
+  on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -50,19 +90,28 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 64.16281498516693
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 0.0
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 1134.898924
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 1134.898924
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 1118.44
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 394.4247594
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 394.4247594
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 385.5
     geothermal:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020
       value: 0.0
     hydro discharge:
@@ -111,19 +160,28 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 94.64933322719386
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 85.91723542
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 85.91723542
+      - datetime: '2021-01-01'
+        source: eGrid 2021; eGrid 2021
+        value: 277.252
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 1194.898924
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 1194.898924
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 1178.44
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 514.4247594000001
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 514.4247594000001
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 505.5
     geothermal:
-      datetime: '2021-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
       value: 38.0
     hydro discharge:
@@ -203,11 +261,11 @@ fallbackZoneMixes:
         solar: 0.0015106497582219824
         unknown: 0.01854558147361244
         wind: 0.0729243836931472
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
@@ -215,4 +273,6 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific

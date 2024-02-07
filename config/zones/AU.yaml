@@ -4,7 +4,9 @@ bounding_box:
   - - 150.47207507627593
     - -33.486452325214685
 bypassedSubZones:
+  - AU-LH
   - AU-TAS-CBI
+  - AU-WA-RI
 capacity:
   battery storage: 157.2
   biomass: 384.1
@@ -28,6 +30,7 @@ contributors:
   - brandongalbraith
 estimation_method: RECONSTRUCT_BREAKDOWN
 subZoneNames:
+  - AU-LH
   - AU-NSW
   - AU-NT
   - AU-QLD

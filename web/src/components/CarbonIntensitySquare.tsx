@@ -1,5 +1,7 @@
 import { animated, useSpring } from '@react-spring/web';
 import { useTranslation } from 'translation/translation';
+import { CarbonUnits } from 'utils/units';
+
 import { useCo2ColorScale } from '../hooks/theme';
 
 /**
@@ -12,7 +14,7 @@ import { useCo2ColorScale } from '../hooks/theme';
  * @param {string} rgbColor a string with the background color (e.g. "rgb(0,5,4)")
  */
 const getTextColor = (rgbColor: string) => {
-  const colors = rgbColor.replace(/[^\d,.]/g, '').split(',');
+  const colors = rgbColor.replaceAll(/[^\d,.]/g, '').split(',');
   const r = Number.parseInt(colors[0], 10);
   const g = Number.parseInt(colors[1], 10);
   const b = Number.parseInt(colors[2], 10);
@@ -32,7 +34,9 @@ interface CarbonIntensitySquareProps {
 function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquareProps) {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
-  const styles = useSpring({ backgroundColor: co2ColorScale(intensity) });
+  const backgroundColor = useSpring({
+    backgroundColor: co2ColorScale(intensity),
+  }).backgroundColor;
 
   return (
     <div>
@@ -40,7 +44,7 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
         <animated.div
           style={{
             color: getTextColor(co2ColorScale(intensity)),
-            ...styles,
+            backgroundColor,
           }}
           className="mx-auto flex h-[65px] w-[65px] flex-col items-center justify-center rounded-2xl"
         >
@@ -53,7 +57,9 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
       </div>
       <div className="mt-2 flex flex-col items-center">
         <div className="text-sm">{__('country-panel.carbonintensity')}</div>
-        {withSubtext && <div className="text-sm">(gCO₂eq/kWh)</div>}
+        {withSubtext && (
+          <div className="text-sm">{CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}</div>
+        )}
       </div>
     </div>
   );

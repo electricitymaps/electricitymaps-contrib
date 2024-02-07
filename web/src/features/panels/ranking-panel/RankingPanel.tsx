@@ -5,8 +5,9 @@ import { ReactElement, useState } from 'react';
 import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
-  timeAverageAtom,
+  spatialAggregateAtom,
 } from 'utils/state/atoms';
+
 import { useTranslation } from '../../../translation/translation';
 import { getRankedState } from './getRankingPanelData';
 import InfoText from './InfoText';
@@ -20,9 +21,14 @@ export default function RankingPanel(): ReactElement {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [searchTerm, setSearchTerm] = useState('');
   const [electricityMode] = useAtom(productionConsumptionAtom);
-  const inputHandler = (inputEvent: any) => {
-    const lowerCase = inputEvent.target.value.toLowerCase();
-    setSearchTerm(lowerCase);
+  const [spatialAggregation] = useAtom(spatialAggregateAtom);
+  const inputHandler = (inputEvent: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = inputEvent;
+
+    if (target && typeof target.value === 'string') {
+      const lowerCase = target.value.toLowerCase();
+      setSearchTerm(lowerCase);
+    }
   };
 
   const { data } = useGetState();
@@ -31,7 +37,8 @@ export default function RankingPanel(): ReactElement {
     getCo2colorScale,
     'asc',
     selectedDatetime.datetimeString,
-    electricityMode
+    electricityMode,
+    spatialAggregation
   );
   const filteredList = rankedList.filter((zone) => {
     if (zone.countryName && zone.countryName.toLowerCase().includes(searchTerm)) {

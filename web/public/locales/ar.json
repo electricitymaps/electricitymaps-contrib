@@ -40,8 +40,10 @@
   "misc": {
     "maintitle": "انبعاثات غاز ثاني أكسيد الكربون الحية من استهلاك الكهرباء",
     "oops": "نواجه مشكلات عند الاتصال بالخادم، سنعاود المحاولة خلال ثوان",
-    "newversion": "يوجد نسخة جديدة متوفرة! اضغط <a onClick=\"location.reload(true);\">هنا</a> لإعادة التحميل",
-    "retrynow": "أعد المحاولة الآن"
+    "newversion": "يوجد نسخة جديدة متوفرة!",
+    "retrynow": "أعد المحاولة الآن",
+    "dismiss": "تجاهل",
+    "reload": "إعادة التحميل"
   },
   "wind": "رياح",
   "solar": "شمسي",
@@ -63,7 +65,6 @@
   "emissionsExportedTo": "<b>%1$s %%</b> من الانبعاثات في %4$s <b>%2$s</b> تصدر إلى %5$s <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> من الكهرباء في %4$s <b>%2$s</b> تستورد من %5$s <b>%3$s</b>",
   "emissionsImportedFrom": "<b>%1$s %%</b> من الانبعاثات في %4$s <b>%2$s</b> تستورد من %5$s <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "zoneShortName": {
     "AD": {
       "zoneName": "أندورا"

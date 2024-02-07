@@ -140,6 +140,15 @@
       } else {
         document.documentElement.classList.remove('dark');
       }
+      // Init Mouseflow tracking
+      window._mfq = window._mfq || [];
+      (function () {
+        var mf = document.createElement('script');
+        mf.type = 'text/javascript';
+        mf.defer = true;
+        mf.src = '//cdn.mouseflow.com/projects/8964f228-0fea-41ca-a8a6-dc23a38dc526.js';
+        document.getElementsByTagName('head')[0].appendChild(mf);
+      })();
     </script>
     <script type="module" src="/src/main.tsx"></script>
   </head>

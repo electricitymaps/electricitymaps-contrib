@@ -7,7 +7,6 @@ import { themeAtom } from 'utils/state/atoms';
 
 import MapButton from './MapButton';
 import MapOptionSelector from './MapOptionSelector';
-import { Button } from 'components/Button';
 
 const ICONS = {
   light: <HiOutlineSun size={20} />,
@@ -40,6 +39,7 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
           <MapButton
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
             tooltipText={__('tooltips.changeTheme')}
+            ariaLabel={__('aria.label.changeTheme')}
           />
         )
       }

@@ -5,6 +5,7 @@ import type {
   MultiPolygon,
   Polygon,
 } from '@turf/turf';
+import { LineString, MultiLineString, Point } from 'geojson';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -66,7 +67,7 @@ export interface ZoneOverview {
   stateDatetime: string;
   fossilFuelRatio: number;
   renewableRatio: number;
-  estimationMethod: string;
+  estimationMethod?: string;
 }
 
 export type GenerationType =
@@ -96,7 +97,7 @@ export interface ZoneDetail extends ZoneOverview {
   dischargeCo2IntensitySources: { [key in ElectricityStorageKeyType]: string };
   exchange: Exchange;
   exchangeCapacities?: {
-    [key: ZoneKey]: [number, number];
+    [key: ZoneKey]: number[];
   };
   exchangeCo2Intensities: Exchange;
   fossilFuelRatio: number;
@@ -123,18 +124,19 @@ export interface ZoneDetail extends ZoneOverview {
   renewableRatioProduction: number;
   source: string;
   storage: { [key in ElectricityStorageKeyType]: Maybe<number> };
-  totalCo2Discharge: number;
-  totalCo2Export: number;
-  totalCo2Import: number;
-  totalCo2NetExchange: number;
+  totalCo2Consumption: number;
+  totalCo2Discharge: number | null;
+  totalCo2Export: number | null;
+  totalCo2Import: number | null;
+  totalCo2NetExchange: number | null;
   totalCo2Production: number;
-  totalCo2Storage: number;
+  totalCo2Storage: number | null;
   totalConsumption: number;
-  totalDischarge: number;
-  totalExport: number;
-  totalImport: number;
-  totalProduction: number;
-  totalStorage: number;
+  totalDischarge: number | null;
+  totalExport: number | null;
+  totalImport: number | null;
+  totalProduction: number | null;
+  totalStorage: number | null;
 }
 
 export interface ZoneDetails {
@@ -143,26 +145,41 @@ export interface ZoneDetails {
   zoneStates: {
     [key: string]: ZoneDetail;
   };
+  zoneMessage?: { message: string; issue: string };
 }
 
 export interface GeometryProperties {
   center: [number, number];
   color: string;
   countryKey: string;
-  countryName: string;
   isAggregatedView: boolean;
   isHighestGranularity: boolean;
   zoneId: string;
   zoneName: string;
 }
+export interface StateGeometryProperties {
+  center?: [number, number];
+  stateName?: string;
+  stateId?: string;
+}
 
 export interface MapGeometries extends FeatureCollection<Geometry> {
   features: Array<MapGeometry>;
+}
+
+export interface StatesGeometries extends FeatureCollection<Geometry> {
+  features: Array<StatesGeometry>;
 }
 export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   geometry: MultiPolygon | Polygon;
   Id?: number;
   properties: GeometryProperties;
+}
+
+export interface StatesGeometry extends Feature<LineString | MultiLineString | Point> {
+  geometry: LineString | MultiLineString | Point;
+  Id?: number;
+  properties: StateGeometryProperties;
 }
 
 export interface MapTheme {
@@ -173,6 +190,7 @@ export interface MapTheme {
   oceanColor: string;
   strokeWidth: number;
   strokeColor: string;
+  stateBorderColor: string;
   clickableFill: string;
   nonClickableFill: string;
 }

@@ -4,7 +4,7 @@
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import arrow
 import pandas as pd
@@ -34,6 +34,16 @@ KIND_MAPPING = {
 }
 
 
+def is_expected_downtime() -> bool:
+    current_day = datetime.now().weekday()
+    expected_outage_days = [5, 6, 0]  # Saturday, Sunday and Monday
+
+    if current_day in expected_outage_days:
+        return True
+
+    return False
+
+
 def get_date_range(dt: datetime):
     return pd.date_range(
         arrow.get(dt).floor("day").datetime,
@@ -43,9 +53,9 @@ def get_date_range(dt: datetime):
 
 
 def fetch_data(
-    kind: Optional[str] = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    kind: str | None = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
 ) -> dict:
     """- get production data from wrldc.in
     - filter all rows with same hour as target_datetime"""
@@ -59,11 +69,16 @@ def fetch_data(
 
     try:
         data = json.loads(resp.json().get("d", {}))
-    except json.decoder.JSONDecodeError:
-        raise ParserException(
-            parser="IN_WE.py",
-            message=f"{target_datetime}: {kind} data is not available",
-        )
+    except Exception as e:
+        if is_expected_downtime():
+            raise ValueError(
+                "IN_WE Parser cannot get latest data during the expected downtime (Saturday to Monday)."
+            ) from e
+        else:
+            raise ParserException(
+                parser="IN_WE.py",
+                message=f"{target_datetime}: {kind} data is not available",
+            ) from e
 
     datetime_col = KIND_MAPPING[kind]["datetime_column"]
     for item in data:
@@ -171,10 +186,10 @@ def format_consumption_data(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
 
@@ -205,10 +220,10 @@ def fetch_exchange(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("IN-WE"),
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     if target_datetime is None:
         target_datetime = arrow.utcnow().datetime
     data = fetch_data(

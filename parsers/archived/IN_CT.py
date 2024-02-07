@@ -1,6 +1,5 @@
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 from requests import Session
 
@@ -14,8 +13,8 @@ TIME_FORMAT = "hh:m DD-MM-YY"
 
 def fetch_consumption(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Chhattisgarh consumption"""
@@ -39,8 +38,8 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Chhattisgarh production"""

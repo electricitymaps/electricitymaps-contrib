@@ -1,2 +1,6 @@
-flag_file_name: bt.png
+bounding_box:
+  - - 88.23188731887316
+    - 26.19990122658588
+  - - 92.58352083520836
+    - 28.85852622998459
 timezone: Asia/Thimphu

@@ -4,17 +4,32 @@ bounding_box:
   - - 14.661440063000043
     - 65.490423895
 capacity:
-  biomass: 17.7
-  coal: 0
-  gas: 0
-  geothermal: 0
-  hydro: 4845
-  hydro storage: 87
-  nuclear: 0
-  oil: 0
-  solar: 21.9
-  unknown: 46.8
-  wind: 2112
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 4.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 19.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 4854.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 4815.0
+  hydro storage:
+    datetime: '2023-01-01'
+    source: entsoe.eu
+    value: 60.0
+  unknown:
+    datetime: '2023-01-01'
+    source: entsoe.eu
+    value: 53.0
+  wind:
+    datetime: '2023-01-01'
+    source: entsoe.eu
+    value: 2120.0
 emissionFactors:
   direct:
     battery discharge:
@@ -240,6 +255,7 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
+  productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 price_displayed: false
 sources:

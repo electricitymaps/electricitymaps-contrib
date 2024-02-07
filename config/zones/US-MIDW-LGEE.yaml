@@ -4,18 +4,54 @@ bounding_box:
   - - -82.355720806
     - 39.4703334770001
 capacity:
-  battery storage: 0
-  biomass: 2
-  coal: 5807.2
-  gas: 3977.6
-  geothermal: 0
-  hydro: 137.8
-  hydro storage: 0
-  nuclear: 0
-  oil: 11.5
-  solar: 15.1
-  unknown: 0
-  wind: 0
+  battery storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  biomass:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 2.0
+  coal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 5807.2
+  gas:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 3977.6
+  geothermal:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  hydro:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 137.8
+  hydro storage:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  nuclear:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  oil:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 11.5
+  solar:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 15.1
+  unknown:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
+  wind:
+    datetime: '2023-10-01'
+    source: EIA.gov
+    value: 0.0
 comment: Louisville Gas And Electric Company And Kentucky Utilities
 contributors:
   - systemcatch
@@ -25,6 +61,8 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
@@ -50,13 +88,19 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 788.5967508417682
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 939.8190588
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 939.8190588
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 942.23
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020
-      value: 378.1877271
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 378.1877271
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 388.35
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -103,14 +147,21 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 887.824855478869
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 1040.9717968
+      - datetime: '2020-01-01'
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1040.9717968
+      - datetime: '2021-01-01'
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
+        value: 1043.382738
     gas:
-      datetime: '2021-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 498.1877271
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 498.1877271
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 508.35
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -244,14 +295,16 @@ fallbackZoneMixes:
         solar: 0.0009727551366976726
         unknown: 0.0007099322075048294
         wind: 0.004727533285450827
-flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
+  productionCapacity: EIA.fetch_production_capacity
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Central

@@ -4,11 +4,30 @@ bounding_box:
   - - -82.5461962552
     - 11.2171192489
 capacity:
-  geothermal: 473
-  hydro: 2363
-  nuclear: 0
-  unknown: 69
-  wind: 595
+  biomass:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  geothermal:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 260.0
+  hydro:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 2330.0
+  oil:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 380.0
+  solar:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
+  wind:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 390.0
 contributors:
   - corradio
   - jarek
@@ -218,4 +237,5 @@ fallbackZoneMixes:
         wind: 0.11879820724119527
 parsers:
   production: CR.fetch_production
-timezone: null
+  productionCapacity: EMBER.fetch_production_capacity
+timezone: America/Costa_Rica

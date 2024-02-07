@@ -11,4 +11,9 @@ export interface AreaGraphElement {
 export interface InnerAreaGraphTooltipProps {
   zoneDetail?: ZoneDetail;
   selectedLayerKey?: LayerKey;
+  hasEstimationPill?: boolean;
+}
+
+export interface FillFunction {
+  (key: string): (d: { data: AreaGraphElement }) => string;
 }

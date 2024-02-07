@@ -1,4 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
+
 import { OnboardingModal } from './OnboardingModal';
 
 it('mounts', () => {

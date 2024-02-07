@@ -3,15 +3,12 @@
 """Parser for the Southwest Power Pool area of the United States."""
 
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Optional
 
-import arrow
 import pandas as pd
 from dateutil import parser
-from pytz import utc
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
@@ -73,7 +70,7 @@ EXCHANGE_MAPPING = {
 # Energy storage situation unclear as of 16/03/2018, likely to change quickly in future.
 
 
-def get_data(url, session: Optional[Session] = None):
+def get_data(url, session: Session | None = None):
     """Returns a pandas dataframe."""
 
     s = session or Session()
@@ -126,7 +123,7 @@ def data_processor(df, logger: Logger) -> list:
     for heading in unknown_keys:
         if heading not in ["Other", "Waste Heat"]:
             logger.warning(
-                "New column '{}' present in US-SPP data source.".format(heading),
+                f"New column '{heading}' present in US-SPP data source.",
                 extra={"key": "US-SPP"},
             )
 
@@ -151,8 +148,8 @@ def data_processor(df, logger: Logger) -> list:
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-SPP",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -194,7 +191,7 @@ def fetch_production(
 
     data = []
     for item in processed_data:
-        dt = item[0].replace(tzinfo=utc)
+        dt = item[0].replace(tzinfo=timezone.utc)
         datapoint = {
             "zoneKey": zone_key,
             "datetime": dt,
@@ -207,7 +204,7 @@ def fetch_production(
     return data
 
 
-def _NaN_safe_get(forecast: dict, key: str) -> Optional[float]:
+def _NaN_safe_get(forecast: dict, key: str) -> float | None:
     try:
         return float(forecast[key])
     except ValueError:
@@ -216,8 +213,8 @@ def _NaN_safe_get(forecast: dict, key: str) -> Optional[float]:
 
 def fetch_load_forecast(
     zone_key: str = "US-SPP",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the load forecast (in MW) of a given zone."""
@@ -237,7 +234,7 @@ def fetch_load_forecast(
     for index in range(len(raw_data)):
         forecast = raw_data.loc[index].to_dict()
 
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=utc)
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=timezone.utc)
         load = _NaN_safe_get(forecast, "STLF")
         if load is None:
             load = _NaN_safe_get(forecast, "MTLF")
@@ -259,8 +256,8 @@ def fetch_load_forecast(
 @refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
     zone_key: str = "US-SPP",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the load forecast (in MW) of a given zone."""
@@ -298,7 +295,7 @@ def fetch_wind_solar_forecasts(
     for index in range(len(raw_data)):
         forecast = raw_data.loc[index].to_dict()
 
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=utc)
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=timezone.utc)
 
         # Get short term forecast if available, else medium term
         solar = _NaN_safe_get(forecast, "Solar Forecast MW")
@@ -331,11 +328,10 @@ def fetch_wind_solar_forecasts(
 def fetch_live_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     data = get_data(EXCHANGE_URL, session)
 
     data = data.dropna(axis=0)
@@ -352,11 +348,10 @@ def fetch_live_exchange(
 def fetch_historical_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     filename = target_datetime.strftime("TieFlows_%b%Y.csv")
     file_url = f"{US_PROXY}/file-browser-api/download/historical-tie-flow?{HOST_PARAMETER}&path={filename}"
 
@@ -396,7 +391,7 @@ def format_exchange_data(
         data_point = {
             "sortedZoneKeys": sorted_zone_keys,
             "netFlow": round(data_dt.values[0], 4),
-            "datetime": arrow.get(dt).datetime,
+            "datetime": dt.to_pydatetime(),
             "source": "spp.org",
         }
         all_data_points.append(data_point)
@@ -410,18 +405,14 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
-    now = datetime.now(tz=utc)
-    if (
-        target_datetime is None
-        or target_datetime > arrow.get(now).floor("day").datetime
-    ):
+    now = datetime.now(tz=timezone.utc)
+    if target_datetime is None or target_datetime > now.date():
         target_datetime = now
         exchanges = fetch_live_exchange(zone_key1, zone_key2, session, target_datetime)
-    elif target_datetime < datetime(2014, 3, 1, tzinfo=utc):
+    elif target_datetime < datetime(2014, 3, 1, tzinfo=timezone.utc):
         raise NotImplementedError(
             "Exchange data is not available from this sourc before 03/2014"
         )

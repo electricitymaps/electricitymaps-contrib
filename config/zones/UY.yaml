@@ -4,11 +4,26 @@ bounding_box:
   - - -53.209588996
     - -30.1096863746
 capacity:
-  biomass: 401
-  hydro: 1538
-  solar: 258
-  unknown: 1170
-  wind: 1506
+  biomass:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 420.0
+  hydro:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1540.0
+  solar:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 280.0
+  unknown:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1150.0
+  wind:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1520.0
 contributors:
   - jarek
   - corradio
@@ -214,6 +229,7 @@ fallbackZoneMixes:
         unknown: 0.0013157338754623527
         wind: 0.2860454342790785
 parsers:
-  production: UY.fetch_production
   consumption: UY.fetch_consumption
+  production: UY.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Montevideo

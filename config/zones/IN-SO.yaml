@@ -4,18 +4,37 @@ bounding_box:
   - - 95.668945
     - 22.755921
 capacity:
-  biomass: 3733.13
-  coal: 42597.5
+  biomass: 3734.75
+  coal: 43397.5
   gas: 6491.8
   hydro: 13670.43
   nuclear: 3320.0
-  oil: 433.66
-  solar: 23926.29
+  oil: 460.49
+  solar: 25044.86
   unknown: 0
-  wind: 19429.32
+  wind: 19655.72
 contributors:
   - hectorespert
   - gopikrishna1793
+  - unitrium
 timezone: Asia/Kolkata
+emissionFactors:
+  direct:
+    unknown:
+      - datetime: '2020-01-01'
+        source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
+        value: 45
+  lifecycle:
+    unknown:
+      - datetime: '2020-01-01'
+        source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
+        value: 192
+isLowCarbon:
+  unknown:
+    value: 0.92
+isRenewable:
+  unknown:
+    value: 0.92
 parsers:
   consumption: IN.fetch_consumption
+  production: IN.fetch_production

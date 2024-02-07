@@ -7,6 +7,7 @@ import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { dateToDatetimeString } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+
 import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
 
@@ -14,7 +15,11 @@ export default function TimeController({ className }: { className?: string }) {
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
-  const { data, isLoading } = useGetState();
+  const { data, isLoading: dataLoading } = useGetState();
+
+  // Show a loading state if isLoading is true or if there is only one datetime,
+  // as this means we either have no data or only have latest hour loaded yet
+  const isLoading = dataLoading || data?.data.datetimes.length === 1;
 
   // TODO: Figure out whether we want to work with datetimes as strings
   // or as Date objects. In this case datetimes are easier to work with
@@ -30,7 +35,7 @@ export default function TimeController({ className }: { className?: string }) {
       setNumberOfEntries(datetimes.length - 1);
       // Reset the selected datetime when data changes
       setSelectedDatetime({
-        datetimeString: dateToDatetimeString(datetimes[datetimes.length - 1]),
+        datetimeString: dateToDatetimeString(datetimes.at(-1) as Date),
         index: datetimes.length - 1,
       });
     }

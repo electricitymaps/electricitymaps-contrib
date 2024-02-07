@@ -218,7 +218,6 @@ fallbackZoneMixes:
         solar: 0.013250569731097632
         unknown: 0.0
         wind: 0.03273995683843821
-flag_file_name: in.png
 parsers:
   production: IN_MH.fetch_production
 timezone: Asia/Kolkata

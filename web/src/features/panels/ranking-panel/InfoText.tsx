@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
-
+import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
+import { useSetAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
-import { createToWithState } from 'utils/helpers';
 
 function ExternalLink({ href, text }: { href: string; text: string }) {
   return (
@@ -11,10 +10,24 @@ function ExternalLink({ href, text }: { href: string; text: string }) {
   );
 }
 
+function FAQLink({ children }: { children: React.ReactNode }) {
+  const setIsFAQModalOpen = useSetAtom(isFAQModalOpenAtom);
+  return (
+    <button
+      className="text-sky-600 hover:underline dark:invert"
+      onClick={() => {
+        setIsFAQModalOpen(true);
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function InfoText() {
   const { __ } = useTranslation();
   return (
-    <div className="prose text-sm prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-invert">
+    <div className="prose text-sm dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:invert">
       <p>
         {__('panel-initial-text.thisproject')}{' '}
         <ExternalLink
@@ -46,10 +59,7 @@ export default function InfoText() {
         .
       </p>
       <p>
-        {__('footer.faq-text')}{' '}
-        <Link to={createToWithState('/faq')}>
-          <span data-test-id="faq-link">{__('footer.faq')}</span>
-        </Link>
+        {__('footer.faq-text')} <FAQLink>{__('footer.faq')}</FAQLink>
       </p>
     </div>
   );

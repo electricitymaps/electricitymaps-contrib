@@ -1,7 +1,8 @@
 import * as turf from '@turf/turf';
 import { topology } from 'topojson-server';
-import { fileExists, getJSON, round, writeJSON } from './utilities.js';
+
 import { WorldFeatureCollection } from './types.js';
+import { fileExists, getJSON, round, writeJSON } from './utilities.js';
 
 function getCenter(geojson: WorldFeatureCollection, zoneName: string) {
   switch (zoneName) {
@@ -19,7 +20,7 @@ function getCenter(geojson: WorldFeatureCollection, zoneName: string) {
     }
   }
   const geojsonFeatures = geojson.features.filter(
-    (f) => f.properties.zoneName === zoneName
+    (f) => f.properties?.zoneName === zoneName
   );
   if (geojsonFeatures.length !== 1) {
     console.error(
@@ -64,10 +65,19 @@ function generateTopojson(
   const objects = topo.objects.objects as any;
   const newObjects = {} as typeof topo.objects;
   for (const geo of objects.geometries) {
+    const isZoneFC = geo.properties?.zoneName ? true : false;
+    // Remove countryName as it is not used in the frontend
+    if (geo.properties?.countryName) {
+      delete geo.properties.countryName;
+    }
     // Precompute center for enable centering on the zone
-    geo.properties.center = getCenter(fc, geo.properties.zoneName);
+    if (geo.properties?.zoneName) {
+      geo.properties.center = getCenter(fc, geo.properties.zoneName);
+    }
 
-    newObjects[geo.properties.zoneName] = geo;
+    isZoneFC
+      ? (newObjects[geo.properties.zoneName] = geo)
+      : (newObjects[geo.properties.stateName] = geo);
   }
   topo.objects = newObjects;
 

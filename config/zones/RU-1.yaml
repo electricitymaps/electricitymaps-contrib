@@ -136,7 +136,6 @@ fallbackZoneMixes:
         solar: 0.0018235418395603495
         unknown: 0.6756927607121264
         wind: 0.000262088192472771
-flag_file_name: ru.png
 parsers:
   production: RU.fetch_production
 timezone: Europe/Moscow

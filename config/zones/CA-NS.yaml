@@ -10,11 +10,12 @@ capacity:
   coal: 1252
   gas: 500
   hydro: 418
-  oil: 222
-  wind: 568
+  oil: 300
+  wind: 600
 contributors:
   - jarek
   - corradio
+  - lav-julien
 emissionFactors:
   direct:
     battery discharge:
@@ -132,7 +133,6 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.18593467419811177
-flag_file_name: ca.png
 parsers:
   production: CA_NS.fetch_production
 timezone: America/Halifax

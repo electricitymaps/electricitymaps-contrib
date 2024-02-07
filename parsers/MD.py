@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 """Parser for Moldova."""
 
 from collections import namedtuple
+from collections.abc import Callable
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Callable, List, Optional, Union
+from zoneinfo import ZoneInfo
 
 import arrow
 from requests import Session
+
+from parsers.lib.exceptions import ParserException
+
+TZ = ZoneInfo("Europe/Chisinau")
 
 # Supports the following formats:
 # - type=csv for zip-data with semicolon-separated-values
@@ -125,7 +129,7 @@ def template_exchange_response(
     }
 
 
-def get_archive_data(session: Optional[Session] = None, dates=None) -> list:
+def get_archive_data(session: Session | None = None, dates=None) -> list:
     """
     Returns archive data as a list of ArchiveDatapoint.
 
@@ -138,7 +142,7 @@ def get_archive_data(session: Optional[Session] = None, dates=None) -> list:
 
     try:
         date1, date2 = sorted(dates)
-    except:
+    except Exception:
         date1 = date2 = dates
 
     archive_url = archive_base_url
@@ -158,38 +162,40 @@ def get_archive_data(session: Optional[Session] = None, dates=None) -> list:
                 arrow.get(
                     entry[0], archive_datetime_format, tzinfo="Europe/Chisinau"
                 ).datetime,
-                *map(float, entry[1:])
+                *map(float, entry[1:]),
             )
             for entry in data
         ]
-    except:
-        raise Exception(
-            "Not able to parse received data. Check that the specifed URL returns correct data."
-        )
+    except Exception as e:
+        raise ParserException(
+            "MD.py",
+            "Not able to parse received data. Check that the specifed URL returns correct data.",
+        ) from e
 
 
-def get_data(session: Optional[Session] = None) -> list:
+def get_data(session: Session | None = None) -> list:
     """Returns data as a list of floats."""
     s = session or Session()
 
     # In order for data_url to return data, cookies from display_url must be obtained then reused.
-    response = s.get(display_url, verify=False)
+    _response = s.get(display_url, verify=False)
     data_response = s.get(data_url, verify=False)
     raw_data = data_response.text
     try:
         data = [float(i) if i else None for i in raw_data.split(",")]
-    except:
-        raise Exception(
-            "Not able to parse received data. Check that the specifed URL returns correct data."
-        )
+    except Exception as e:
+        raise ParserException(
+            "MD.py",
+            "Not able to parse received data. Check that the specifed URL returns correct data.",
+        ) from e
 
     return data
 
 
 def fetch_price(
     zone_key: str = "MD",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -204,16 +210,16 @@ def fetch_price(
             "This parser is not yet able to parse past dates for price"
         )
 
-    dt = arrow.now("Europe/Chisinau").datetime
+    dt = datetime.now(tz=TZ)
     return template_price_response(zone_key, dt, 145.0)
 
 
 def fetch_consumption(
     zone_key: str = "MD",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Requests the consumption (in MW) of a given country."""
     if target_datetime:
         archive_data = get_archive_data(session, target_datetime)
@@ -230,7 +236,7 @@ def fetch_consumption(
 
         consumption = field_values[other_fields[0]["index"]]
 
-        dt = arrow.now("Europe/Chisinau").datetime
+        dt = datetime.now(tz=TZ)
 
         datapoint = template_consumption_response(zone_key, dt, consumption)
 
@@ -239,10 +245,10 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str = "MD",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Requests the production mix (in MW) of a given country."""
     if target_datetime:
         archive_data = get_archive_data(session, target_datetime)
@@ -298,7 +304,7 @@ def fetch_production(
             field_values[other_fields[1]["index"]] - non_renewables_production
         )
 
-        dt = arrow.now("Europe/Chisinau").datetime
+        dt = datetime.now(tz=TZ)
 
         datapoint = template_production_response(zone_key, dt, production)
 
@@ -308,10 +314,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> list[dict] | dict:
     """Requests the last known power exchange (in MW) between two countries."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
@@ -342,7 +348,7 @@ def fetch_exchange(
         else:
             raise NotImplementedError("This exchange pair is not implemented")
 
-        dt = arrow.now("Europe/Chisinau").datetime
+        dt = datetime.now(tz=TZ)
 
         datapoint = template_exchange_response(sorted_zone_keys, dt, netflow)
 
@@ -352,18 +358,18 @@ def fetch_exchange(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    def try_print(callable: Callable, *args, **kwargs):
+    def try_print(function: Callable, *args, **kwargs):
         try:
-            result = callable(*args, **kwargs)
+            result = function(*args, **kwargs)
             try:
-                print("[{}, ... ({} more elements)]".format(result[0], len(result)))
-            except:
+                print(f"[{result[0]}, ... ({len(result)} more elements)]")
+            except Exception:
                 print(result)
         except Exception as e:
             print(repr(e))
 
     for target_datetime in (None, "2021-07-25T15:00"):
-        print("For target_datetime {}:".format(target_datetime))
+        print(f"For target_datetime {target_datetime}:")
         print("fetch_price() ->")
         try_print(fetch_price, target_datetime=target_datetime)
         print("fetch_consumption() ->")

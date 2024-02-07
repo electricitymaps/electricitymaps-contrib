@@ -1,11 +1,13 @@
 from abc import ABC, abstractmethod
+from collections.abc import Sequence
 from datetime import datetime
 from logging import Logger
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any
 
-import numpy as np
 import pandas as pd
 
+from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.config.capacity import get_capacity_data
 from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
@@ -19,15 +21,18 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 
+CAPACITY_STRICT_THRESHOLD = 0
+CAPACITY_LOOSE_THRESHOLD = 0.02
+
 
 class EventList(ABC):
     """A wrapper around Events lists."""
 
     logger: Logger
-    events: List[Event]
+    events: list[Event]
 
     def __init__(self, logger: Logger):
-        self.events = list()
+        self.events = []
         self.logger = logger
 
     def __len__(self):
@@ -39,8 +44,27 @@ class EventList(ABC):
         # TODO Handle one day the creation of mixed batches.
         pass
 
-    def to_list(self) -> List[Dict[str, Any]]:
-        return [event.to_dict() for event in self.events]
+    def to_list(self) -> list[dict[str, Any]]:
+        return sorted(
+            [event.to_dict() for event in self.events], key=lambda x: x["datetime"]
+        )
+
+    @property
+    def dataframe(self) -> pd.DataFrame:
+        """Gives the dataframe representation of the events, indexed by datetime."""
+        return pd.DataFrame.from_records(
+            [
+                {
+                    "datetime": event.datetime,
+                    "zoneKey": event.zoneKey,
+                    "source": event.source,
+                    "sourceType": event.sourceType,
+                    "data": event,
+                }
+                for event in self.events
+                if len(self.events) > 0
+            ]
+        ).set_index("datetime")
 
 
 class AggregatableEventList(EventList, ABC):
@@ -62,7 +86,7 @@ class AggregatableEventList(EventList, ABC):
     def get_zone_source_type(
         cls,
         events: pd.DataFrame,
-    ) -> Tuple[ZoneKey, str, EventSourceType]:
+    ) -> tuple[ZoneKey, str, EventSourceType]:
         """
         Given a concatenated dataframe of events, return the unique zone, the aggregated sources and the unique source type.
         Raises an error if there are multiple zones or source types.
@@ -116,14 +140,14 @@ class AggregatableEventList(EventList, ABC):
 
 
 class ExchangeList(AggregatableEventList):
-    events: List[Exchange]
+    events: list[Exchange]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        netFlow: float,
+        netFlow: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Exchange.create(
@@ -134,7 +158,7 @@ class ExchangeList(AggregatableEventList):
 
     @staticmethod
     def merge_exchanges(
-        ungrouped_exchanges: List["ExchangeList"], logger: Logger
+        ungrouped_exchanges: list["ExchangeList"], logger: Logger
     ) -> "ExchangeList":
         """
         Given multiple parser outputs, sum the netflows of corresponding datetimes
@@ -158,22 +182,24 @@ class ExchangeList(AggregatableEventList):
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True
         )
-        for datetime, row in exchange_df.iterrows():
-            exchanges.append(zone_key, datetime.to_pydatetime(), sources, row["netFlow"], source_type)  # type: ignore
+        for dt, row in exchange_df.iterrows():
+            exchanges.append(
+                zone_key, dt.to_pydatetime(), sources, row["netFlow"], source_type
+            )  # type: ignore
 
         return exchanges
 
 
 class ProductionBreakdownList(AggregatableEventList):
-    events: List[ProductionBreakdown]
+    events: list[ProductionBreakdown]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        production: Optional[ProductionMix] = None,
-        storage: Optional[StorageMix] = None,
+        production: ProductionMix | None = None,
+        storage: StorageMix | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = ProductionBreakdown.create(
@@ -184,67 +210,117 @@ class ProductionBreakdownList(AggregatableEventList):
 
     @staticmethod
     def merge_production_breakdowns(
-        ungrouped_production_breakdowns: List["ProductionBreakdownList"],
+        ungrouped_production_breakdowns: list["ProductionBreakdownList"],
         logger: Logger,
+        matching_timestamps_only: bool = False,
     ) -> "ProductionBreakdownList":
         """
         Given multiple parser outputs, sum the production and storage
         of corresponding datetimes to create a unique production breakdown list.
         Sources will be aggregated in a comma-separated string. Ex: "entsoe, eia".
         There should be only one zone in the list of production breakdowns.
+        Matching timestamps only will only keep the timestamps where all the production breakdowns have data.
         """
         production_breakdowns = ProductionBreakdownList(logger)
         if ProductionBreakdownList.is_completely_empty(
             ungrouped_production_breakdowns, logger
         ):
             return production_breakdowns
-
-        # Create a dataframe for each parser output, then flatten the power mixes.
-        prod_and_storage_dfs = [
-            pd.json_normalize(breakdowns.to_list()).set_index("datetime")
-            for breakdowns in ungrouped_production_breakdowns
-            if len(breakdowns.events) > 0
-        ]
-        df = pd.concat(prod_and_storage_dfs)
-        zone_key, sources, source_type = ProductionBreakdownList.get_zone_source_type(
-            df
+        len_ungrouped_production_breakdowns = len(ungrouped_production_breakdowns)
+        df = pd.concat(
+            [
+                production_breakdowns.dataframe
+                for production_breakdowns in ungrouped_production_breakdowns
+                if len(production_breakdowns.events) > 0
+            ]
         )
-        df = df.groupby(level="datetime", dropna=False).sum(
-            numeric_only=True, min_count=1
-        )
+        _, _, _ = ProductionBreakdownList.get_zone_source_type(df)
 
-        for row in df.iterrows():
-            production_mix = ProductionMix()
-            storage_mix = StorageMix()
-            for key, value in row[1].items():
-                if np.isnan(value):
-                    value = None
-                # The key is in the form of "production.<mode>" or "storage.<mode>"
-                prefix, mode = key.split(".")  # type: ignore
-                if prefix == "production":
-                    production_mix.set_value(mode, value)
-                elif prefix == "storage":
-                    storage_mix.set_value(mode, value)
-            production_breakdowns.append(
-                zone_key,
-                row[0].to_pydatetime(),  # type: ignore
-                sources,
-                production_mix,
-                storage_mix,
-                source_type,
+        df = df.drop(columns=["source", "sourceType", "zoneKey"])
+        df = df.groupby(level=0, dropna=False)["data"].apply(list)
+        if matching_timestamps_only:
+            logger.info(
+                f"Filtering production breakdowns to keep \
+                only the timestamps where all the production breakdowns \
+                have data, {len(df[df.apply(lambda x: len(x) != len_ungrouped_production_breakdowns)])}\
+                points where discarded."
             )
+            df = df[df.apply(lambda x: len(x) == len_ungrouped_production_breakdowns)]
+        for row in df:
+            prod = ProductionBreakdown.aggregate(row)
+            production_breakdowns.events.append(prod)
         return production_breakdowns
+
+    @staticmethod
+    def filter_expected_modes(
+        breakdowns: "ProductionBreakdownList",
+        strict_storage: bool = False,
+        strict_capacity: bool = False,
+        by_passed_modes: list[str] | None = None,
+    ) -> "ProductionBreakdownList":
+        """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
+        This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
+        TODO: Remove this method once the outlier detection is able to handle it.
+        """
+
+        if by_passed_modes is None:
+            by_passed_modes = []
+
+        def select_capacity(capacity_value: float, total_capacity: float) -> bool:
+            if strict_capacity:
+                return capacity_value > CAPACITY_STRICT_THRESHOLD
+            return capacity_value / total_capacity > CAPACITY_LOOSE_THRESHOLD
+
+        events = ProductionBreakdownList(breakdowns.logger)
+        for event in breakdowns.events:
+            capacity_config = ZONES_CONFIG.get(event.zoneKey, {}).get("capacity", {})
+            capacity = get_capacity_data(capacity_config, event.datetime)
+            total_capacity = sum(capacity.values())
+            valid = True
+            required_modes = [
+                mode
+                for mode, capacity_value in capacity.items()
+                if select_capacity(capacity_value, total_capacity)
+            ]
+            required_modes = list(set(required_modes))
+            if not strict_storage:
+                required_modes = [
+                    mode for mode in required_modes if "storage" not in mode
+                ]
+            required_modes = [
+                mode for mode in required_modes if mode not in by_passed_modes
+            ]
+            for mode in required_modes:
+                value = event.get_value(mode)
+                if (
+                    value is None
+                    and mode not in event.production.corrected_negative_modes
+                ):
+                    valid = False
+                    events.logger.warning(
+                        f"Discarded production event for {event.zoneKey} at {event.datetime} due to missing {mode} value."
+                    )
+                    break
+            if valid:
+                events.append(
+                    zoneKey=event.zoneKey,
+                    datetime=event.datetime,
+                    production=event.production,
+                    storage=event.storage,
+                    source=event.source,
+                )
+        return events
 
 
 class TotalProductionList(EventList):
-    events: List[TotalProduction]
+    events: list[TotalProduction]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        value: float,
+        value: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalProduction.create(
@@ -255,14 +331,14 @@ class TotalProductionList(EventList):
 
 
 class TotalConsumptionList(EventList):
-    events: List[TotalConsumption]
+    events: list[TotalConsumption]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        consumption: float,
+        consumption: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalConsumption.create(
@@ -273,14 +349,14 @@ class TotalConsumptionList(EventList):
 
 
 class PriceList(EventList):
-    events: List[Price]
+    events: list[Price]
 
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        price: float,
+        price: float | None,
         currency: str,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
