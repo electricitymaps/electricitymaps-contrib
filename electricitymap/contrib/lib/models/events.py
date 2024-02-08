@@ -60,7 +60,7 @@ class Mix(BaseModel, ABC):
         # 6 decimal places gives us a precision of 1 W.
         super().__setattr__(name, _none_safe_round(value))
 
-    def __setitem__(self, key: str, value: Any) -> None:
+    def __setitem__(self, key: str, value: float | None) -> None:
         """
         Allows to set the value of a mode using the bracket notation.
         """
