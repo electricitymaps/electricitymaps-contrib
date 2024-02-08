@@ -4,16 +4,22 @@ bounding_box:
   - - 34.0048808123
     - 35.1731247015
 capacity:
-  biomass: 13
-  coal: 0
-  gas: 0
-  geothermal: 0
-  hydro: 0
-  hydro storage: 0
-  nuclear: 0
-  oil: 1478
-  solar: 316
-  wind: 158
+  biomass:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  oil:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1850.0
+  solar:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 430.0
+  wind:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
 contributors:
   - ultibo
   - veqtrus
@@ -252,12 +258,12 @@ sources:
     link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2019_gr.pdf#page=143
   EU-ETS, CERA 2020 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2020_gr.pdf#page=164
-  EU-ETS, TSOC 2021 Report:
-    link: https://tsoc.org.cy/files/reports/annual-reports/TSOC_Annual_Report_2021.pdf#page=34
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, TSOC 2021 Report:
+    link: https://tsoc.org.cy/files/reports/annual-reports/TSOC_Annual_Report_2021.pdf#page=34
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:

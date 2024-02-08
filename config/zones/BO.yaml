@@ -4,12 +4,26 @@ bounding_box:
   - - -56.965660766999946
     - -9.179821471999972
 capacity:
-  biomass: 122.72
-  hydro: 734.85
-  nuclear: 0
-  solar: 165.08
-  unknown: 2484.39
-  wind: 131.4
+  biomass:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 270.0
+  hydro:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 800.0
+  solar:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 170.0
+  unknown:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 2190.0
+  wind:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 130.0
 contributors:
   - igorarduin
   - corradio
