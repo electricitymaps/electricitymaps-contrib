@@ -64,7 +64,7 @@ class Mix(BaseModel, ABC):
         """
         Allows to set the value of a mode using the bracket notation.
         """
-        setattr(self, key, value)
+        self.__setattr__(key, value)
 
 
 class ProductionMix(Mix):
