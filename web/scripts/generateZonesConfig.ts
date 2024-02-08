@@ -37,6 +37,7 @@ const getConfig = (): CombinedZonesConfig => {
     'estimation_method',
     'parsers',
     'subZoneNames',
+    'aggregates_displayed',
   ]);
 
   const contributors = new Set<string>();

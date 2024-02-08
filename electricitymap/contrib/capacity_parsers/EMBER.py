@@ -33,6 +33,7 @@ SPECIFIC_MODE_MAPPING = {
     "CO": {"Other Fossil": "oil"},
     "CR": {"Other Fossil": "oil", "Other Renewables": "geothermal"},
     "CY": {"Other Fossil": "oil"},
+    "IE": {"Other Fossil": "oil"},
     "KR": {"Other Fossil": "oil"},
     "KW": {"Other Fossil": "oil"},
     "MN": {"Other Fossil": "coal"},
