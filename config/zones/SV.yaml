@@ -4,12 +4,34 @@ bounding_box:
   - - -87.7235029772
     - 14.4241327987
 capacity:
-  biomass: 301
-  geothermal: 204
-  hydro: 572
-  oil: 756
-  solar: 664
-  wind: 54
+  biomass:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 300.0
+  gas:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 380.0
+  hydro:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 570.0
+  oil:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 550.0
+  solar:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 550.0
+  unknown:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 200.0
+  wind:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
 contributors:
   - systemcatch
   - nessie2013
@@ -71,6 +93,13 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 122.47919108267666
+    unknown:
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
+        factors
+      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
+      datetime: '2022-01-01'
+      source: assumes 51% gas, 49% oil
+      value: 387.6470588235294
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -128,6 +157,13 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 185.88457877410704
+    unknown:
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
+        factors
+      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
+      datetime: '2022-01-01'
+      source: assumes 51% gas, 49% oil
+      value: 568.4313725490196
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

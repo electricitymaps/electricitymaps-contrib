@@ -10,10 +10,12 @@ import { showEstimationFeedbackCard } from './util';
 export default function EstimationCard({
   cardType,
   estimationMethod,
+  estimatedPercentage,
   outageMessage,
 }: {
   cardType: string;
-  estimationMethod: string | undefined;
+  estimationMethod?: string;
+  estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
 }) {
   const [showFeedbackCard, setShowFeedbackCard] = useState(false);
@@ -48,18 +50,24 @@ export default function EstimationCard({
 
 function getEstimationTranslation(
   field: 'title' | 'pill' | 'body',
-  estimationMethod: string | undefined
+  estimationMethod?: string,
+  estimatedPercentage?: number
 ) {
-  const { __ } = useTranslation();
-  const exactTranslation = __(
-    `estimation-card.${estimationMethod?.toLowerCase()}.${field}`
-  );
+  const { __, i18n } = useTranslation();
+  const exactTranslation =
+    (estimatedPercentage ?? 0) > 0 && estimationMethod === 'aggregated'
+      ? i18n.t(`estimation-card.aggregated_estimated.${field}`, {
+          percentage: estimatedPercentage,
+        })
+      : __(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`);
+
   const genericTranslation = __(`estimation-card.estimated_generic_method.${field}`);
   return exactTranslation.length > 0 ? exactTranslation : genericTranslation;
 }
 
 function BaseCard({
   estimationMethod,
+  estimatedPercentage,
   outageMessage,
   icon,
   iconPill,
@@ -68,12 +76,13 @@ function BaseCard({
   textColorTitle,
   setCollapsedNumber,
 }: {
-  estimationMethod: string | undefined;
+  estimationMethod?: string;
+  estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
   icon: string;
-  iconPill: string | undefined;
+  iconPill?: string;
   showMethodologyLink: boolean;
-  pillType: string | undefined;
+  pillType?: string;
   textColorTitle: string;
   setCollapsedNumber?: Dispatch<SetStateAction<number>>;
 }) {
@@ -90,8 +99,20 @@ function BaseCard({
   const { __ } = useTranslation();
 
   const title = getEstimationTranslation('title', estimationMethod);
-  const pillText = getEstimationTranslation('pill', estimationMethod);
-  const bodyText = getEstimationTranslation('body', estimationMethod);
+  const pillText = getEstimationTranslation(
+    'pill',
+    estimationMethod,
+    estimatedPercentage
+  );
+  const bodyText = getEstimationTranslation(
+    'body',
+    estimationMethod,
+    estimatedPercentage
+  );
+  const showBadge =
+    estimationMethod == 'aggregated'
+      ? Boolean(estimatedPercentage)
+      : pillType != undefined;
 
   return (
     <div
@@ -115,7 +136,7 @@ function BaseCard({
               </h2>
             </div>
             <div className="flex h-fit flex-row gap-2 text-nowrap">
-              {pillType != undefined && (
+              {showBadge && (
                 <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
               )}
               <div className="text-lg">
@@ -165,15 +186,16 @@ function OutageCard({ outageMessage }: { outageMessage: ZoneDetails['zoneMessage
   );
 }
 
-function AggregatedCard() {
+function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number }) {
   return (
     <BaseCard
       estimationMethod={'aggregated'}
+      estimatedPercentage={estimatedPercentage}
       outageMessage={undefined}
       icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
       iconPill={undefined}
       showMethodologyLink={false}
-      pillType={undefined}
+      pillType={'warning'}
       textColorTitle="text-black dark:text-white"
     />
   );

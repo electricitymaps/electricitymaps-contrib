@@ -92,23 +92,23 @@ API_PARAMETER_GROUPS = {
 }
 
 PRODUCTION_MAPPING = {
-    API_TYPE: type
+    API_TYPE: data_type
     for key in ["production"]
-    for type, groups in API_PARAMETER_GROUPS[key].items()
+    for data_type, groups in API_PARAMETER_GROUPS[key].items()
     for API_TYPE in groups
 }
 
 STORAGE_MAPPING = {
-    API_TYPE: type
+    API_TYPE: data_type
     for key in ["storage"]
-    for type, groups in API_PARAMETER_GROUPS[key].items()
+    for data_type, groups in API_PARAMETER_GROUPS[key].items()
     for API_TYPE in groups
 }
 
 PRICE_MAPPING = {
-    API_TYPE: type
+    API_TYPE: data_type
     for key in ["price"]
-    for type, groups in API_PARAMETER_GROUPS[key].items()
+    for data_type, groups in API_PARAMETER_GROUPS[key].items()
     for API_TYPE in groups
 }
 
