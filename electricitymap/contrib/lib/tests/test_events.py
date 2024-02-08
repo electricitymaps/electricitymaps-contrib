@@ -237,6 +237,7 @@ class TestProductionBreakdown(unittest.TestCase):
         )
         assert breakdown.zoneKey == ZoneKey("DE")
         assert breakdown.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert breakdown.production is not None
         assert breakdown.production.wind == 10
         assert breakdown.source == "trust.me"
 
@@ -255,7 +256,10 @@ class TestProductionBreakdown(unittest.TestCase):
             storage=storage,
             source="trust.me",
         )
+
+        assert breakdown.production is not None
         assert breakdown.production.hydro == 20
+        assert breakdown.storage is not None
         assert breakdown.storage.hydro == 10
 
     def test_invalid_breakdown_raises(self):
@@ -304,6 +308,8 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
             mock_warning.assert_called_once()
+            assert breakdown is not None
+            assert breakdown.production is not None
             assert breakdown.production.hydro is None
             assert breakdown.production.wind == 10
 
@@ -327,6 +333,8 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
             mock_warning.assert_called_once()
+            assert breakdown is not None
+            assert breakdown.production is not None
             assert breakdown.production.wind == 0
             assert breakdown.production.biomass is None
 
@@ -354,6 +362,7 @@ class TestProductionBreakdown(unittest.TestCase):
         )
         assert breakdown.zoneKey == ZoneKey("DE")
         assert breakdown.datetime == datetime(2023, 2, 1, tzinfo=timezone.utc)
+        assert breakdown.production is not None
         assert breakdown.production.wind == 10
         assert breakdown.source == "trust.me"
         assert breakdown.sourceType == EventSourceType.forecasted
