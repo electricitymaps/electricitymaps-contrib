@@ -20,7 +20,10 @@ export default function FeedbackCard() {
   }
 
   return (
-    <div className="mb-4 flex w-full flex-col rounded-lg border border-neutral-200 bg-zinc-50 pl-2.5 transition-all dark:border-gray-700 dark:bg-gray-900">
+    <div
+      data-test-id="feedback-card"
+      className="mb-4 flex w-full flex-col rounded-lg border border-neutral-200 bg-zinc-50 pl-2.5 transition-all dark:border-gray-700 dark:bg-gray-900"
+    >
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-initial flex-row gap-2">
           <div
@@ -28,16 +31,22 @@ export default function FeedbackCard() {
           />
           <h2
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
+            data-test-id="title"
           >
             {title}
           </h2>
         </div>
-        <button onClick={handleClose} className="px-3 py-2.5">
+        <button data-test-id="close-button" onClick={handleClose} className="px-3 py-2.5">
           <HiOutlineX />
         </button>
       </div>
       <div className="pb-2 pr-2.5">
-        <div className="pb-1 text-xs font-medium text-neutral-400">{subtitle}</div>
+        <div
+          className="pb-1 text-xs font-medium text-neutral-400"
+          data-test-id="subtitle"
+        >
+          {subtitle}
+        </div>
         <FeedbackActions state={state} setState={setState} />
       </div>
     </div>
@@ -64,6 +73,7 @@ function InputField({
         <div className="text-sm font-normal text-black dark:text-white">{text}</div>
       </div>
       <input
+        data-test-id="feedback-input"
         value={inputText}
         onChange={handleInputChange}
         placeholder={inputPlaceholder}
@@ -105,7 +115,9 @@ function FeedbackActions({ state, setState }: { state: string; setState: any }) 
 
   return (
     <div className="flex flex-col">
-      <div className="text-sm">{question}</div>
+      <div data-test-id="feedback-question" className="text-sm">
+        {question}
+      </div>
       <ActionPills setState={setState} />
       {state === '2' && (
         <div>
@@ -141,8 +153,15 @@ function ActionPills({ setState }: { setState: any }) {
         CurrentPillNumber={CurrentPillNumber}
       />
       <div className="flex flex-row items-center justify-between pt-1">
-        <div className="text-xs font-medium text-neutral-400">{agreeText}</div>
-        <div className="text-xs font-medium text-neutral-400">{disagreeText}</div>
+        <div
+          data-test-id="disagree-text"
+          className="text-xs font-medium text-neutral-400"
+        >
+          {disagreeText}
+        </div>
+        <div data-test-id="agree-text" className="text-xs font-medium text-neutral-400">
+          {agreeText}
+        </div>
       </div>
     </div>
   );
@@ -167,6 +186,7 @@ function PillContent({
     >
       {pillContent.map((content) => (
         <ToggleGroupPrimitive.Item
+          data-test-id={`feedback-pill-${content}`}
           key={content}
           value={String(content)}
           aria-label={String(content)}

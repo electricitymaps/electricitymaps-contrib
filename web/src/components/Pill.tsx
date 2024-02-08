@@ -29,6 +29,7 @@ export default function Pill({
       role={isButton ? 'button' : undefined}
       onClick={handleClick}
       disabled={isDisabled}
+      data-test-id="pill"
     >
       <div className={`text-xs font-semibold`}>{text}</div>
     </Element>

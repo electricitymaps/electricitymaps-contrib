@@ -80,11 +80,15 @@ export function getDisclaimer(zoneId: string) {
 
 export function showEstimationFeedbackCard(
   collapsedNumber: number,
-  showFeedbackCard: boolean,
+  currentlyShowingFeedbackCard: boolean,
   feedbackCardStatus: string | null
 ) {
-  if ((feedbackCardStatus != 'seenBefore' && collapsedNumber > 1) || showFeedbackCard) {
-    localStorage.setItem('feedbackCardStatus', 'seenBefore');
+  if (
+    (feedbackCardStatus != 'seenBefore' && collapsedNumber > 1) ||
+    currentlyShowingFeedbackCard
+  ) {
+    if (feedbackCardStatus != 'seenBefore')
+      {localStorage.setItem('feedbackCardStatus', 'seenBefore');}
     return true;
   }
   return false;
