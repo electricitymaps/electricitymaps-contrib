@@ -70,7 +70,12 @@ function InputField({
         <div className="pr-1 text-sm font-semibold text-black dark:text-white">
           {optional}
         </div>
-        <div className="text-sm font-normal text-black dark:text-white">{text}</div>
+        <div
+          data-test-id="input-title"
+          className="text-sm font-normal text-black dark:text-white"
+        >
+          {text}
+        </div>
       </div>
       <input
         data-test-id="feedback-input"
@@ -146,7 +151,7 @@ function ActionPills({ setState }: { setState: any }) {
   };
 
   return (
-    <div className="flex flex-col pt-2">
+    <div className="flex w-full max-w-sm flex-col pt-2">
       <PillContent
         pillContent={pillContent}
         handlePillClick={handlePillClick}
@@ -178,9 +183,7 @@ function PillContent({
 }) {
   return (
     <ToggleGroupPrimitive.Root
-      className={
-        'flex-start mb-2 flex flex-row items-center gap-x-2 md:gap-x-1.5 lg:gap-x-2'
-      }
+      className={'flex-start mb-2 flex flex-row items-center justify-between'}
       type="multiple"
       aria-label="Font settings"
     >

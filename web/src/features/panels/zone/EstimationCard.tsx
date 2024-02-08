@@ -1,5 +1,4 @@
 import Badge from 'components/Badge';
-import { isNull } from 'cypress/types/lodash';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
@@ -83,7 +82,9 @@ function BaseCard({
   );
 
   const handleToggleCollapse = () => {
-    if (setCollapsedNumber) {setCollapsedNumber((previous) => previous + 1);}
+    if (setCollapsedNumber) {
+      setCollapsedNumber((previous) => previous + 1);
+    }
     setIsCollapsed((previous) => !previous);
   };
   const { __ } = useTranslation();
@@ -101,7 +102,7 @@ function BaseCard({
       } mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
     >
       <div className="flex flex-col">
-        <button onClick={handleToggleCollapse}>
+        <button data-test-id="collapse-button" onClick={handleToggleCollapse}>
           <div className="flex flex-row items-center justify-between">
             <div className="flex w-2/3 flex-initial flex-row gap-2">
               <div className={`flex items-center justify-center`}>

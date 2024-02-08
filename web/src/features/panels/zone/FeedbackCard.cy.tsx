@@ -29,9 +29,10 @@ describe('FeedbackCard', () => {
 
   it('changes state when pill is clicked', () => {
     cy.get('[data-test-id=feedback-pill-4]').click();
-    cy.get('[data-test-id=feedback-input]').type('Test comment');
-    cy.get('[data-test-id=pill]').click();
-    cy.get('[data-test-id=title]').should('contain.text', 'Thank you!');
+    cy.get('[data-test-id=input-title]').should(
+      'contain.text',
+      'Anything we can do to improve it?'
+    );
   });
 
   it('changes state when the submit button is clicked', () => {
