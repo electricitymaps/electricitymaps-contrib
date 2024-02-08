@@ -77,13 +77,13 @@ def get_nuclear_power_image_url(session: Session) -> str:
 
 def get_nuclear_power_value_and_timestamp_from_image_url(
     img_url: str, session: Session
-) -> (float, datetime):
+) -> tuple[float, datetime]:
     """This method reads the image from the image url and extracts nuclear power and timestamp from it."""
     response_image = session.get(img_url)
     image = Image.open(BytesIO(response_image.content))
     width, height = image.size
     img = image.crop((0, 0, width, height))
-    text = image_to_string(img)
+    text = str(image_to_string(img))
     numeric_pattern = r"\d+"
     # this method extracts the second number from the image since it is the nuclear power value from the image
     # in case the image format changes, this method will need to be updated
