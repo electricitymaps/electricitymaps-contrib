@@ -1,7 +1,7 @@
 type BadgeProps = {
   pillText: string;
-  type: string | undefined;
-  icon: string | undefined;
+  type?: string;
+  icon?: string;
 };
 
 export default function Badge({ pillText, type, icon }: BadgeProps) {
