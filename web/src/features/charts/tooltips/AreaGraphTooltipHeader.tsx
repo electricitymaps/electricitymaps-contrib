@@ -9,10 +9,18 @@ interface AreaGraphToolTipHeaderProps {
   timeAverage: TimeAverages;
   title: string;
   hasEstimationPill?: boolean;
+  estimatedPercentage?: number;
 }
 
 export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProps) {
-  const { squareColor, datetime, timeAverage, title, hasEstimationPill = false } = props;
+  const {
+    squareColor,
+    datetime,
+    timeAverage,
+    title,
+    hasEstimationPill = false,
+    estimatedPercentage,
+  } = props;
   const { __, i18n } = useTranslation();
 
   return (
@@ -30,9 +38,15 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
           <p className="px-1 text-base">{title}</p>
         </div>
         <div className="inline-flex items-center gap-x-2">
-          {hasEstimationPill && (
+          {hasEstimationPill && estimatedPercentage !== 0 && (
             <Badge
-              pillText={__('estimation-badge.fully-estimated')}
+              pillText={
+                estimatedPercentage
+                  ? i18n.t('estimation-card.aggregated_estimated.pill', {
+                      percentage: estimatedPercentage,
+                    })
+                  : __('estimation-badge.fully-estimated')
+              }
               type="warning"
               icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
             />

@@ -58,22 +58,25 @@ export default function ZoneDetails(): JSX.Element {
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
 
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
-  const { estimationMethod } = selectedData || {};
+  const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
-  const hasEstimationPill = cardType === 'estimated' || cardType === 'outage';
-
+  const hasEstimationPill =
+    ['estimated', 'outage'].includes(cardType) || Boolean(estimatedPercentage);
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
-        {cardType != 'none' && (
-          <EstimationCard
-            cardType={cardType}
-            estimationMethod={estimationMethod}
-            outageMessage={zoneMessage}
-          ></EstimationCard>
-        )}
+        {cardType != 'none' &&
+          zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
+          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
+            <EstimationCard
+              cardType={cardType}
+              estimationMethod={estimationMethod}
+              outageMessage={zoneMessage}
+              estimatedPercentage={selectedData?.estimatedPercentage}
+            ></EstimationCard>
+          )}
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
