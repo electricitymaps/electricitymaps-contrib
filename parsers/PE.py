@@ -9,7 +9,9 @@ from requests import Session
 
 from .lib.validation import validate
 
-tz = "America/Lima"
+API_ENDPOINT = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
+
+TIMEZONE = "America/Lima"
 
 MAP_GENERATION = {
     "DIESEL": "oil",
@@ -26,7 +28,7 @@ MAP_GENERATION = {
 
 def parse_date(item):
     return arrow.get(item["Nombre"], "YYYY/MM/DD hh:mm:ss").replace(
-        tzinfo=dateutil.tz.gettz(tz)
+        tzinfo=dateutil.tz.gettz(TIMEZONE)
     )
 
 
@@ -41,9 +43,8 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or Session()
-    url = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
 
-    current_date = arrow.now(tz=tz)
+    current_date = arrow.now(tz=TIMEZONE)
 
     today = current_date.format("DD/MM/YYYY")
     yesterday = current_date.shift(days=-1).format("DD/MM/YYYY")
@@ -52,11 +53,13 @@ def fetch_production(
     # To guarantee a full 24 hours of data we must make 2 requests.
 
     response_today = r.post(
-        url, data={"fechaInicial": today, "fechaFinal": end_date, "indicador": 0}
+        API_ENDPOINT,
+        data={"fechaInicial": today, "fechaFinal": end_date, "indicador": 0},
     )
 
     response_yesterday = r.post(
-        url, data={"fechaInicial": yesterday, "fechaFinal": today, "indicador": 0}
+        API_ENDPOINT,
+        data={"fechaInicial": yesterday, "fechaFinal": today, "indicador": 0},
     )
 
     data_today = response_today.json()["GraficoTipoCombustible"]["Series"]
