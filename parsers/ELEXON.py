@@ -468,8 +468,8 @@ def fetch_exchange(
     session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
-    except arrow.parser.ParserError:
-        raise ValueError(f"Invalid target_datetime: {target_datetime}")
+    except arrow.parser.ParserError as e:
+        raise ValueError(f"Invalid target_datetime: {target_datetime}") from e
     response = query_exchange(session, target_datetime)
     data = parse_exchange(zone_key1, zone_key2, response, target_datetime, logger)
     return data
@@ -486,8 +486,8 @@ def fetch_production(
     session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
-    except arrow.parser.ParserError:
-        raise ValueError(f"Invalid target_datetime: {target_datetime}")
+    except arrow.parser.ParserError as e:
+        raise ValueError(f"Invalid target_datetime: {target_datetime}") from e
     # TODO currently resorting to FUELINST as B1620 reports 0 production in most production
     # modes at the moment. (16/12/2022) FUELINST will be decomissioned in 2023, so we should
     # switch back to B1620 at some point.

@@ -256,12 +256,15 @@ class ProductionBreakdownList(AggregatableEventList):
         breakdowns: "ProductionBreakdownList",
         strict_storage: bool = False,
         strict_capacity: bool = False,
-        by_passed_modes: list[str] = [],
+        by_passed_modes: list[str] | None = None,
     ) -> "ProductionBreakdownList":
         """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
         This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
         TODO: Remove this method once the outlier detection is able to handle it.
         """
+
+        if by_passed_modes is None:
+            by_passed_modes = []
 
         def select_capacity(capacity_value: float, total_capacity: float) -> bool:
             if strict_capacity:

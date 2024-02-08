@@ -17,8 +17,8 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
   }
 
   const totalEmissions = getTotalEmissionsAvailable(zoneDetail, mixMode);
-  const { stateDatetime, estimationMethod } = zoneDetail;
-  const hasEstimationPill = estimationMethod != undefined;
+  const { stateDatetime, estimationMethod, estimatedPercentage } = zoneDetail;
+  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
 
   return (
     <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[410px] dark:border dark:border-gray-700 dark:bg-gray-800">
@@ -28,6 +28,7 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
         squareColor="#a5292a"
         title={__('country-panel.emissions')}
         hasEstimationPill={hasEstimationPill}
+        estimatedPercentage={estimatedPercentage}
       />
       <p className="flex justify-center text-base">
         <b className="mr-1">{formatCo2(totalEmissions)}</b> {__('ofCO2eq')}
