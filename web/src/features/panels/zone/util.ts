@@ -87,8 +87,9 @@ export function showEstimationFeedbackCard(
     (feedbackCardStatus != 'seenBefore' && collapsedNumber > 1) ||
     currentlyShowingFeedbackCard
   ) {
-    if (feedbackCardStatus != 'seenBefore')
-      {localStorage.setItem('feedbackCardStatus', 'seenBefore');}
+    if (feedbackCardStatus != 'seenBefore') {
+      localStorage.setItem('feedbackCardStatus', 'seenBefore');
+    }
     return true;
   }
   return false;
