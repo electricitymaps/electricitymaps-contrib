@@ -98,8 +98,14 @@ export default function App(): ReactElement {
               </Suspense>
               <Suspense>
                 <LeftPanel />
+              </Suspense>
+              <Suspense>
                 <MapWrapper />
+              </Suspense>
+              <Suspense>
                 <TimeControllerWrapper />
+              </Suspense>
+              <Suspense>
                 <FeatureFlagsManager />
               </Suspense>
               <Suspense>
