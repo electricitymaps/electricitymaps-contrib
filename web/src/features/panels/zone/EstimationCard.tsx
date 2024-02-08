@@ -184,7 +184,7 @@ function EstimatedCard({
   setCollapsedNumber,
 }: {
   estimationMethod: string | undefined;
-  setCollapsedNumber?: any;
+  setCollapsedNumber?: Dispatch<SetStateAction<number>>;
 }) {
   return (
     <BaseCard

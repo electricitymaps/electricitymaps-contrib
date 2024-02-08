@@ -1,6 +1,6 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
-import { SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { useTranslation } from 'translation/translation';
 
@@ -58,7 +58,7 @@ function InputField({
   handleInputChange,
 }: {
   inputText: string;
-  handleInputChange: any;
+  handleInputChange: (event: { target: { value: SetStateAction<string> } }) => void;
 }) {
   const inputPlaceholder = getQuestionTranslation('placeholder');
   const optional = getQuestionTranslation('optional');
@@ -88,7 +88,7 @@ function InputField({
   );
 }
 
-function SubmitButton({ handleSave }: { handleSave: any }) {
+function SubmitButton({ handleSave }: { handleSave: () => void }) {
   const buttonText = getQuestionTranslation('submit');
 
   return (
@@ -101,7 +101,13 @@ function SubmitButton({ handleSave }: { handleSave: any }) {
   );
 }
 
-function FeedbackActions({ state, setState }: { state: string; setState: any }) {
+function FeedbackActions({
+  state,
+  setState,
+}: {
+  state: string;
+  setState: Dispatch<SetStateAction<string>>;
+}) {
   const [inputText, setInputText] = useState('');
 
   const question = getQuestionTranslation('rate-question');
@@ -137,7 +143,7 @@ function FeedbackActions({ state, setState }: { state: string; setState: any }) 
   );
 }
 
-function ActionPills({ setState }: { setState: any }) {
+function ActionPills({ setState }: { setState: Dispatch<SetStateAction<string>> }) {
   const agreeText = getQuestionTranslation('agree');
   const [pillContent] = useState([1, 2, 3, 4, 5]);
   const disagreeText = getQuestionTranslation('disagree');
