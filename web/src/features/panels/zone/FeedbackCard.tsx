@@ -1,6 +1,6 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { useTranslation } from 'translation/translation';
 
@@ -109,6 +109,7 @@ function FeedbackActions({
   setState: Dispatch<SetStateAction<string>>;
 }) {
   const [inputText, setInputText] = useState('');
+  const [feedbackScore, setfeedbackScore] = useState('');
 
   const question = getQuestionTranslation('rate-question');
 
@@ -118,6 +119,10 @@ function FeedbackActions({
 
   const handleSave = () => {
     setState('3');
+    fetch(`https://hooks.zapier.com/hooks/catch/14671709/3l9daod/`, {
+      method: 'POST',
+      body: JSON.stringify({ score: feedbackScore, feedback: inputText }),
+    });
   };
 
   if (state === '3') {
@@ -129,7 +134,7 @@ function FeedbackActions({
       <div data-test-id="feedback-question" className="text-sm">
         {question}
       </div>
-      <ActionPills setState={setState} />
+      <ActionPills setState={setState} setFeedbackScore={setfeedbackScore} />
       {state === '2' && (
         <div>
           <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-gray-700" />
@@ -143,15 +148,20 @@ function FeedbackActions({
   );
 }
 
-function ActionPills({ setState }: { setState: Dispatch<SetStateAction<string>> }) {
+function ActionPills({
+  setState,
+  setFeedbackScore,
+}: {
+  setState: Dispatch<SetStateAction<string>>;
+  setFeedbackScore: Dispatch<SetStateAction<string>>;
+}) {
   const agreeText = getQuestionTranslation('agree');
   const [pillContent] = useState([1, 2, 3, 4, 5]);
   const disagreeText = getQuestionTranslation('disagree');
   const [CurrentPillNumber, setPillNumber] = useState('');
 
-  useEffect(() => {}, [CurrentPillNumber]);
-
   const handlePillClick = (identifier: string) => {
+    setFeedbackScore(identifier);
     setPillNumber(identifier);
     setState('2');
   };

@@ -18,14 +18,14 @@ export default function EstimationCard({
   estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
 }) {
-  const [showFeedbackCard, setShowFeedbackCard] = useState(false);
+  const [currentlyShowingFeedbackCard, setcurrentlyShowingFeedbackCard] = useState(false);
   const [collapsedNumber, setCollapsedNumber] = useState(0);
 
   useEffect(() => {
-    setShowFeedbackCard(
+    setcurrentlyShowingFeedbackCard(
       showEstimationFeedbackCard(
         collapsedNumber,
-        showFeedbackCard,
+        currentlyShowingFeedbackCard,
         localStorage.getItem('feedbackCardStatus')
       )
     );
@@ -42,7 +42,7 @@ export default function EstimationCard({
           estimationMethod={estimationMethod}
           setCollapsedNumber={setCollapsedNumber}
         />
-        {showFeedbackCard && <FeedbackCard />}
+        {currentlyShowingFeedbackCard && <FeedbackCard />}
       </div>
     );
   }
