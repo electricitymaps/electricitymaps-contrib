@@ -119,10 +119,6 @@ function FeedbackActions({
 
   const handleSave = () => {
     setState('3');
-    fetch(`https://hooks.zapier.com/hooks/catch/14671709/3l9daod/`, {
-      method: 'POST',
-      body: JSON.stringify({ score: feedbackScore, feedback: inputText }),
-    });
   };
 
   if (state === '3') {
