@@ -3,7 +3,7 @@ bounding_box:
     - 24.059871521000062
   - - 52.11654707100007
     - 26.660101630000042
-capacity: #
+capacity:
   biomass:
     - datetime: '2016-01-01'
       source: 'Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing'
@@ -43,7 +43,7 @@ capacity: #
     - datetime: '2022-01-01'
       source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
       value: 354
-    - datetime: '2022-08-01'
+    - datetime: '2022-10-01'
       source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing,
       value: 899
 contributors:
