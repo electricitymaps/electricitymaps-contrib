@@ -11,8 +11,8 @@ def test_production(snapshot):
     session = Session()
     adapter = Adapter()
     session.mount("https://", adapter)
-    mock_file_today = open("parsers/test/mocks/PE/response_20240207.json", "rb")
-    mock_file_yesterday = open("parsers/test/mocks/PE/response_20240206.json", "rb")
+    mock_file_today = open("parsers/test/mocks/PE/response_20240206.json", "rb")
+    mock_file_yesterday = open("parsers/test/mocks/PE/response_20240205.json", "rb")
     # Try to use additional matcher for request json data
     # adapter.register_uri(
     #     POST,
