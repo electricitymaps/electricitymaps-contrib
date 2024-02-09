@@ -260,7 +260,7 @@ class ProductionBreakdownList(AggregatableEventList):
         """Given a new batch of production breakdowns, update the existing ones."""
         if len(new_production_breakdowns) == 0:
             return production_breakdowns
-        if len(production_breakdowns) == 0:
+        elif len(production_breakdowns) == 0:
             return new_production_breakdowns
 
         for event in new_production_breakdowns.events:
@@ -270,8 +270,6 @@ class ProductionBreakdownList(AggregatableEventList):
                         existing_event, event
                     )
                     break
-            else:
-                production_breakdowns.events.append(event)
 
         return production_breakdowns
 
