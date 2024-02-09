@@ -137,7 +137,12 @@
     },
     "aggregated": {
       "title": "Data is aggregated",
-      "body": "The data consists of summarised values of hourly recordings throughout the day. Data might be partially estimated."
+      "body": "The data consists of an aggregation of hourly values."
+    },
+    "aggregated_estimated": {
+      "title": "Data is aggregated",
+      "pill": " {{percentage}}% estimated",
+      "body": "The data consists of an aggregation of hourly values. {{percentage}}% of the production values are estimated."
     }
   },
   "time-controller": {
@@ -1629,6 +1634,10 @@
     "US-AK": {
       "countryName": "USA",
       "zoneName": "Alaska"
+    },
+    "US-AK-SEAPA": {
+      "countryName": "USA",
+      "zoneName": "Southeast Alaska Power Agency"
     },
     "US-HI-HA": {
       "countryName": "USA",
