@@ -271,7 +271,7 @@ class ProductionBreakdownList(AggregatableEventList):
                     )
                     break
             else:
-                 production_breakdowns.events.append(event)
+                production_breakdowns.events.append(event)
 
         return production_breakdowns
 
