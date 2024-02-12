@@ -4,17 +4,46 @@ bounding_box:
   - - 121.951243931
     - 25.2954588893
 capacity:
-  biomass: 92
-  coal: 14697
-  gas: 18380
-  geothermal: 5
-  hydro: 2098
-  hydro storage: 2602
-  nuclear: 2887
-  oil: 1593
-  solar: 9724
-  unknown: 632
-  wind: 1581
+  biomass:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
+  coal:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 19240.0
+  gas:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 18050.0
+  hydro:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 2090.0
+  hydro storage:
+    datetime: '2015-01-01'
+    source: taipower.com.tw
+    value: 2602.0
+  nuclear:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 2890.0
+  oil:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 2420.0
+  solar:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 9720.0
+  unknown:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 320.0
+  wind:
+    datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1580.0
 contributors:
   - corradio
   - MariusKroon
