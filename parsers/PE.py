@@ -4,8 +4,6 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
-import dateutil
 from requests import Session
 
 from .lib.validation import validate
@@ -28,8 +26,8 @@ MAP_GENERATION = {
 
 
 def parse_date(item):
-    return arrow.get(item["Nombre"], "YYYY/MM/DD hh:mm:ss").replace(
-        tzinfo=dateutil.tz.gettz(TIMEZONE.key)
+    return datetime.strptime(item["Nombre"], "%Y/%m/%d %H:%M:%S").replace(
+        tzinfo=TIMEZONE
     )
 
 
@@ -91,7 +89,7 @@ def fetch_production(
                 data.append(
                     {
                         "zoneKey": zone_key,
-                        "datetime": dt.datetime,
+                        "datetime": dt,
                         "production": {},
                         "source": "coes.org.pe",
                     }
