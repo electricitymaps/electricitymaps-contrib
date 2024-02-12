@@ -4,7 +4,7 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots["test_production 1"] = [
+snapshots["TestFetchProduction::test_snapshot 1"] = [
     {
         "datetime": "2024-02-05T00:30:00-05:00",
         "production": {
