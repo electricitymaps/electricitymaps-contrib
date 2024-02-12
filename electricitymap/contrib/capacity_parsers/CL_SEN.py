@@ -34,14 +34,19 @@ def fetch_production_capacity(
     r: Response = session.get(url)
     soup = BeautifulSoup(r.text, "html.parser")
 
-    capacity_link = soup.find_all("a", href=lambda x: x and "hist_cap_inst_por_tecnologia" in x)
+    capacity_link = soup.find_all(
+        "a", href=lambda x: x and "hist_cap_inst_por_tecnologia" in x
+    )
     if not len(capacity_link):
         logger.error(
             f"{zone_key}: No capacity data available for year {target_datetime.year}"
         )
 
     df = pd.read_excel(
-        capacity_link[0].get("href"), sheet_name="Capacidad por Tecnología", header=2, skipfooter=2
+        capacity_link[0].get("href"),
+        sheet_name="Capacidad por Tecnología",
+        header=2,
+        skipfooter=2,
     )
     df = df.drop(columns=["Unnamed: 0", "TOTAL"])
     df = df.rename(columns={"Año": "datetime"})
