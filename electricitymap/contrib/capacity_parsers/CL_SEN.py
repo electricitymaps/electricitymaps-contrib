@@ -54,7 +54,7 @@ def fetch_production_capacity(
     df["mode"] = df["mode"].apply(lambda x: MODE_MAPPING[x.strip()])
 
     df = df.groupby(["datetime", "mode"])[["value"]].sum().reset_index()
-    breakpoint()
+
     if target_datetime.year in df["datetime"].unique():
         df = df.loc[df["datetime"] == target_datetime.year]
         capacity = {}
