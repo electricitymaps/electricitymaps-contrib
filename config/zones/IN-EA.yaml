@@ -19,3 +19,4 @@ contributors:
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
+  productionCapacity: CEA.fetch_production_capacity

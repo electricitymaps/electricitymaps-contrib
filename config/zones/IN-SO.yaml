@@ -4,20 +4,30 @@ bounding_box:
   - - 95.668945
     - 22.755921
 capacity:
-  biomass: 3734.75
-  coal: 43397.5
-  gas: 6491.8
-  hydro: 13670.43
-  nuclear: 3320.0
-  oil: 460.49
-  solar: 25044.86
-  unknown: 0
-  wind: 19655.72
+  coal:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 41357.5
+  diesel:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 460.49
+  gas:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 6491.8
+  hydro:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 11747.15
+  nuclear:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 3320.0
 contributors:
   - hectorespert
   - gopikrishna1793
   - unitrium
-timezone: Asia/Kolkata
 emissionFactors:
   direct:
     unknown:
@@ -38,3 +48,5 @@ isRenewable:
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
+  productionCapacity: CEA.fetch_production_capacity
+timezone: Asia/Kolkata
