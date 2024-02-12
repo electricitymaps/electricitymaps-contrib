@@ -3,6 +3,7 @@ from datetime import datetime
 import pytest
 
 from electricitymap.contrib.config.capacity import (
+    CapacityData,
     get_capacity_data,
     get_capacity_data_with_source,
 )
@@ -74,11 +75,11 @@ def test_get_capacity_with_source():
     )
 
     assert capacity_data == {
-        "solar": {"value": 3, "source": "abc"},
-        "wind": {"value": 4, "source": "abc"},
+        "solar": CapacityData(3, "abc"),
+        "wind": CapacityData(4, "abc"),
     }
 
     assert get_capacity_data_with_source(capacity_config, datetime(2023, 11, 1)) == {
-        "solar": {"value": 3, "source": "abc"},
-        "wind": {"value": 5, "source": "abc"},
+        "solar": CapacityData(3, "abc"),
+        "wind": CapacityData(5, "abc"),
     }
