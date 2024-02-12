@@ -139,16 +139,14 @@ class ParserInterfaceTestcase(unittest.TestCase):
             )
 
             self.assertEqual(
-                sorted([a for a in args]),
+                sorted(args),
                 sorted(EXPECTED_MODE_FUNCTION_ARGS[_mode]),
                 f"invalid args for {function_name}, arg_spec={arg_spec}",
             )
 
             if annotations and "return" in annotations:
                 expected = EXPECTED_MODE_RETURN_ANNOTATIONS[_mode]
-                correct_annotations = any(
-                    [annotations["return"] == a for a in expected]
-                )
+                correct_annotations = any(annotations["return"] == a for a in expected)
                 self.assertTrue(
                     correct_annotations,
                     f"expected annotation for {function_name} to be in {expected} not {annotations['return']}",
