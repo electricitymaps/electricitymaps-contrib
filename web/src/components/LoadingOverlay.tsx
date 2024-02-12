@@ -5,7 +5,7 @@ import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'translation/translation';
 
-import { Button } from './Button';
+import LoadingSpinner from './LoadingSpinner';
 
 const TIME_BEFORE_SHOWING_RELOAD_BUTTON = 8000;
 
@@ -44,21 +44,7 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
           style={styles}
           data-test-id="loading-overlay"
         >
-          <div className="flex h-full flex-col items-center justify-center">
-            <div className="h-40 w-40 bg-[url('/images/loading-icon.svg')] bg-[length:100px] bg-center bg-no-repeat dark:bg-gray-900 dark:bg-[url('/images/loading-icon-darkmode.svg')]" />
-            {showButton && (
-              <>
-                <p>{__('misc.slow-loading-text')}</p>
-                <Button
-                  className="w-20 min-w-min dark:bg-gray-800/80"
-                  aria-label="Reload page"
-                  onClick={() => window.location.reload()}
-                >
-                  {__('misc.reload')}
-                </Button>
-              </>
-            )}
-          </div>
+          <LoadingSpinner showReloadButton={showButton} />
         </animated.div>
       )
   );

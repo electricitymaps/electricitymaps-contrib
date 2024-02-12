@@ -10,10 +10,11 @@ from electricitymap.contrib.config.capacity import (
 
 def test_get_capacity_data():
     capacity_data = {}
-    capacity_data_1 = {"solar": 3, "wind": 4}
+    capacity_data_1 = {"solar": 3, "wind": 4, "coal": None}
     capacity_data_2 = {
         "coal": {"datetime": "2022-01-01", "value": 5, "source": "abc"},
         "gas": {"datetime": "2022-01-01", "value": 6, "source": "abc"},
+        "solar": {"datetime": "2022-01-01", "value": None, "source": "abc"},
     }
     capacity_data_3 = {
         "coal": [
@@ -29,10 +30,12 @@ def test_get_capacity_data():
     assert get_capacity_data(capacity_data_1, datetime(2023, 1, 1)) == {
         "solar": 3,
         "wind": 4,
+        "coal": None,
     }
     assert get_capacity_data(capacity_data_2, datetime(2022, 6, 1)) == {
         "coal": 5,
         "gas": 6,
+        "solar": None,
     }
     assert get_capacity_data(capacity_data_3, datetime(2023, 6, 1)) == {
         "coal": 8,
