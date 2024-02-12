@@ -68,7 +68,7 @@ def _get_capacity_from_dict_or_list(
         ]
 
         if dt.isoformat() <= min(capacity_tuples)[0]:
-            return (min(capacity_tuples)[1], min(capacity_tuples)[2])
+            return CapacityData(min(capacity_tuples)[1], min(capacity_tuples)[2])
         else:
             # valid datetime is the max datetime that is lower than the given datetime
             # In other words, it is the most recent value that is valid for the given dt
