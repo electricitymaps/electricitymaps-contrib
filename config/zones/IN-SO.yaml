@@ -4,6 +4,10 @@ bounding_box:
   - - 95.668945
     - 22.755921
 capacity:
+  biomass:
+    datetime: '2023-12-01'
+    source: mnre.gov.in
+    value: 3740.7
   coal:
     datetime: '2023-12-01'
     source: cea.nic.in
@@ -18,12 +22,20 @@ capacity:
     value: 6491.8
   hydro:
     datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 11747.15
+    source: cea.nic.in, mnre.gov.in
+    value: 13675.65
   nuclear:
     datetime: '2023-12-01'
     source: cea.nic.in
     value: 3320.0
+  solar:
+    datetime: '2023-12-01'
+    source: mnre.gov.in
+    value: 26954.5
+  wind:
+    datetime: '2023-12-01'
+    source: mnre.gov.in
+    value: 20312.4
 contributors:
   - hectorespert
   - gopikrishna1793
