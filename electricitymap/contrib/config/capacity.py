@@ -1,5 +1,5 @@
-from datetime import datetime
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 
 from electricitymap.contrib.config.reading import read_zones_config
@@ -23,10 +23,13 @@ ZONE_TO_CAPACITY_PARSER_SOURCE = {
     for source, zones in CAPACITY_PARSER_SOURCE_TO_ZONES.items()
     for zone in zones
 }
+
+
 @dataclass
 class CapacityData:
     value: float | None
     source: str | None = None
+
 
 def get_capacity_data(capacity_config: dict, dt: datetime) -> dict[str, float | None]:
     """Gets the capacity data for a given zone and datetime from ZONES_CONFIG."""
@@ -63,8 +66,7 @@ def _get_capacity_from_dict_or_list(
         return CapacityData(mode_capacity["value"], mode_capacity.get("source"))
     elif isinstance(mode_capacity, list):
         capacity_tuples = [
-            (d["datetime"], d["value"], d.get("source"))
-            for d in mode_capacity
+            (d["datetime"], d["value"], d.get("source")) for d in mode_capacity
         ]
 
         if dt.isoformat() <= min(capacity_tuples)[0]:
