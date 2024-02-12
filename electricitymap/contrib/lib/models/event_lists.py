@@ -263,15 +263,19 @@ class ProductionBreakdownList(AggregatableEventList):
         elif len(production_breakdowns) == 0:
             return new_production_breakdowns
 
-        for event in new_production_breakdowns.events:
-            for i, existing_event in enumerate(production_breakdowns.events):
-                if event.datetime == existing_event.datetime:
-                    production_breakdowns.events[i] = ProductionBreakdown.update(
-                        existing_event, event
-                    )
-                    break
+        existing_events = {
+            event.datetime: event for event in production_breakdowns.events
+        }
+
+        for new_event in new_production_breakdowns.events:
+            if new_event.datetime in existing_events:
+                existing_event = existing_events[new_event.datetime]
+                updated_event = ProductionBreakdown.update(existing_event, new_event)
+                existing_events[new_event.datetime] = updated_event
             else:
-                production_breakdowns.events.append(event)
+                existing_events[new_event.datetime] = new_event
+
+        production_breakdowns.events = list(existing_events.values())
 
         return production_breakdowns
 
