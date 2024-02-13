@@ -31,6 +31,7 @@ def test_production(snapshot):
                 "storage": element["storage"],
                 "source": element["source"],
                 "zoneKey": element["zoneKey"],
+                "sourceType": "measured",
             }
             for element in production
         ]

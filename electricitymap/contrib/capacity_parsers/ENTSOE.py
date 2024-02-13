@@ -36,6 +36,11 @@ ENTSOE_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["ENTSOE"]
 ZONES_WITH_BATTERY_STORAGE = ["FR"]
 
 
+# reallocate B10 to hydro storage
+ENTSOE_CODE_TO_EM_MAPPING = ENTSOE_PARAMETER_BY_GROUP.copy()
+ENTSOE_CODE_TO_EM_MAPPING.update({"B10": "hydro storage"})
+
+
 def query_capacity(
     in_domain: str, session: Session, target_datetime: datetime
 ) -> str | None:
@@ -43,13 +48,12 @@ def query_capacity(
         "documentType": "A68",
         "processType": "A33",
         "in_Domain": in_domain,
-        "periodStart": target_datetime.strftime("%Y01010000"),
-        "periodEnd": target_datetime.strftime("%Y12312300"),
     }
     return query_ENTSOE(
         session,
         params,
         target_datetime=target_datetime,
+        span=(0, 72),
         function_name=query_capacity.__name__,
     )
 

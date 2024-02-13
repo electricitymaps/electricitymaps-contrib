@@ -268,7 +268,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
 - Hungary:
   - Biomass: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246841605/PV+STATISZTIKA_HU_20231001_ig_v1.pdf)
+  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/255200887/PV+STATISZTIKA_HU_20231231_ig_v2.pdf)
   - Other: [MAVIR](https://www.mavir.hu/web/mavir/energia-mix-eromuvi-beepitett-teljesitokepesseg-adatok)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)

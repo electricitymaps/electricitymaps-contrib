@@ -16,6 +16,30 @@ import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json'
 
 // TODO: set up proper typed method for retrieving config files.
 const exchangesConfig: Record<string, any> = exchangesConfigJSON;
+const { exchangesToExcludeZoneView, exchangesToExcludeCountryView } = exchangesToExclude;
+
+export function filterExchanges(
+  exchanges: Record<string, ExchangeResponse>,
+  exclusionArrayZones: string[],
+  exclusionArrayCountries: string[]
+) {
+  const exclusionSetZones = new Set(exclusionArrayZones);
+  const exclusionSetCountries = new Set(exclusionArrayCountries);
+  const resultZones: Record<string, ExchangeResponse> = {};
+  const resultCountries: Record<string, ExchangeResponse> = {};
+  // Loop through the exchanges and assign them to the correct result object
+  for (const [key, value] of Object.entries(exchanges)) {
+    if (exclusionSetCountries.has(key)) {
+      resultZones[key] = value;
+      continue;
+    }
+    if (exclusionSetZones.has(key)) {
+      resultCountries[key] = value;
+    }
+  }
+
+  return [resultZones, resultCountries];
+}
 
 export function useExchangeArrowsData(): ExchangeArrowData[] {
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -30,20 +54,14 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
     const exchanges = data?.data.exchanges;
 
     if (!exchanges) {
-      return [];
+      return {};
     }
 
-    const zoneViewExchanges = Object.keys(exchanges)
-      .filter((key) => !exchangesToExclude.exchangesToExcludeZoneView.includes(key))
-      .reduce((current, key) => {
-        return Object.assign(current, { [key]: exchanges[key] });
-      }, {});
-
-    const countryViewExchanges = Object.keys(exchanges)
-      .filter((key) => !exchangesToExclude.exchangesToExcludeCountryView.includes(key))
-      .reduce((current, key) => {
-        return Object.assign(current, { [key]: exchanges[key] });
-      }, {});
+    const [zoneViewExchanges, countryViewExchanges] = filterExchanges(
+      exchanges,
+      exchangesToExcludeZoneView,
+      exchangesToExcludeCountryView
+    );
 
     return viewMode === SpatialAggregate.COUNTRY
       ? countryViewExchanges

@@ -73,7 +73,7 @@ def validate_production_data(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """detects outliers: for real-time data the latest data point can be completely out of the expected range and needs to be excluded"""
-    required = [mode for mode in PRODUCTION_MAPPING]
+    required = list(PRODUCTION_MAPPING)
     floor = (
         17000  # as seen during the Covid-19 pandemic, the minimum production was 17 GW
     )

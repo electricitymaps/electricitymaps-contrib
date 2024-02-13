@@ -114,7 +114,7 @@ def extractTime(soup):
     imgUrlFull = IMAGE_CORE_URL + imgRelative
     text = getImageText(imgUrlFull, "jpn")
     digits = re.findall(r"\d+", text)
-    digits = list(map(lambda x: int(x), digits))
+    digits = [int(x) for x in digits]
     if len(digits) != 4:
         # something went wrong while extracting time from Japan
         raise Exception("Something went wrong while extracting local time")

@@ -86,7 +86,10 @@ function BarBreakdownChart({
 
   return (
     <div className="text-sm" ref={ref}>
-      <BySource hasEstimationPill={hasEstimationPill} />
+      <BySource
+        hasEstimationPill={hasEstimationPill}
+        estimatedPercentage={currentZoneDetail.estimatedPercentage}
+      />
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div

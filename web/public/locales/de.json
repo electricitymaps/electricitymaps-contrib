@@ -97,6 +97,15 @@
       "title": "Die Daten werden derzeit geschätzt",
       "pill": "Nicht verfügbar",
       "body": "Unsere Datenquellen stellen aktuell keine Werte für diese Zone zur Verfügung. Die angezeigten Werte sind Schätzungen, die auf historischen Messungen basieren und durch verifizierte Daten ersetzt werden, sobald diese verfügbar sind. Bitte beachten Sie, dass geschätzte Werte nicht immer genau sind, da sie aktuelle Wetterereignisse nicht berücksichtigen."
+    },
+    "aggregated": {
+      "title": "Aggregierte Daten",
+      "body": "Die angezeigten Daten sind eine Zusammenlegung stündlich gemessener Werte."
+    },
+    "aggregated_estimated": {
+      "title": "Aggregierte Daten",
+      "pill": " {{percentage}}% geschätzt",
+      "body": "Die angezeigten Daten sind eine Zusammenlegung stündlich gemessener Werte, wovon {{percentage}}% der Werte geschätzt sind."
     }
   },
   "country-history": {

@@ -114,7 +114,7 @@ def fetch_consumption_forecast_7_days(
     # query API
     data = fetch_api_data(kind="load_frcstd_7_day", params=params, session=session)
 
-    data_points = list()
+    data_points = []
     for elem in data:
         utc_datetime = elem["forecast_datetime_beginning_utc"]
         data_point = {

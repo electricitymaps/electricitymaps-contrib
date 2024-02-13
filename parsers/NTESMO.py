@@ -195,8 +195,8 @@ def parse_production_mix(
             "zoneKey": "AU-NT",
             "datetime": production["Period Start"].to_pydatetime(),
             "source": "ntesmo.com.au",
-            "production": dict(),
-            "storage": dict(),
+            "production": {},
+            "storage": {},
         }
         for generator_key, generator in PLANT_MAPPING.items():
             if generator_key not in production:
