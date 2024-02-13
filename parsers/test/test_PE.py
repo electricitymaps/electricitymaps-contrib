@@ -36,7 +36,6 @@ class TestFetchProduction(TestCase):
                 {
                     "datetime": element["datetime"].isoformat(),
                     "production": element["production"],
-                    # "storage": element["storage"],
                     "source": element["source"],
                     "zoneKey": element["zoneKey"],
                     "sourceType": "measured",
@@ -44,6 +43,15 @@ class TestFetchProduction(TestCase):
                 for element in production
             ]
         )
+
+    def test_result_list_elements_do_not_contain_storage_key(self):
+        production = fetch_production(
+            zone_key=ZoneKey("PE"),
+            session=self.session,
+        )
+
+        for element in production:
+            self.assertNotIn("storage", element)
 
     @freeze_time("2024-02-06 10:00:00", tz_offset=-5)
     def test_api_requests_are_sent_with_correct_dates(self):
