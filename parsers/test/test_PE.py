@@ -62,8 +62,8 @@ class TestFetchProduction(TestCase):
             session=self.session,
         )
 
-        assert self.adapter.called
-        assert self.adapter.call_count == 2
+        self.assertTrue(self.adapter.called)
+        self.assertEqual(2, self.adapter.call_count)
         actual_today_request_data = self.adapter.request_history[0].text
         self.assertEqual(expected_today_request_data, actual_today_request_data)
         actual_yesterday_request_data = self.adapter.request_history[-1].text
