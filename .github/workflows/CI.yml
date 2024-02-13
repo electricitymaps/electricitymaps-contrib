@@ -96,7 +96,21 @@ jobs:
     if: >-
       needs.setup.outputs.json != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/jsonlint.yml
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Install jsonlint-mod
+        run: |
+          npm install -g jsonlint-mod
+      - name: Lint json
+        run: |
+          jsonlint -q web/public/locales/*.json
 
   #                 #
   # Frontend checks #
