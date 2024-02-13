@@ -50,7 +50,7 @@ def parse_json(web_json: dict, logger: Logger, zone_key: ZoneKey) -> dict[str, A
         )
 
     # Then we can safely parse them
-    query_data = dict()
+    query_data = {}
     for query_key, src_key in JSON_QUERY_TO_SRC.items():
         if "time" in query_key:
             # convert to datetime
