@@ -4,13 +4,39 @@ bounding_box:
   - - -73.84780324445131
     - 57.36127350500004
 capacity:
-  biomass: 296
-  coal: 0
-  gas: 10482
-  hydro: 8868
-  nuclear: 13089
-  solar: 478
-  wind: 4883
+  biomass:
+    datetime: '2022-12-01'
+    source: ieso.ca
+    value: 296.0
+  gas:
+    - datetime: '2023-12-01'
+      source: ieso.ca
+      value: 10470.0
+    - datetime: '2022-12-01'
+      source: ieso.ca
+      value: 10482.0
+  hydro:
+    - datetime: '2023-12-01'
+      source: ieso.ca
+      value: 8922.0
+    - datetime: '2022-12-01'
+      source: ieso.ca
+      value: 8868.0
+  nuclear:
+    - datetime: '2023-12-01'
+      source: ieso.ca
+      value: 13144.0
+    - datetime: '2022-12-01'
+      source: ieso.ca
+      value: 13089.0
+  solar:
+    datetime: '2022-12-01'
+    source: ieso.ca
+    value: 478.0
+  wind:
+    datetime: '2022-12-01'
+    source: ieso.ca
+    value: 4883.0
 contributors:
   - corradio
   - jarek
