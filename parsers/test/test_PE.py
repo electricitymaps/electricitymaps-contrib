@@ -1,3 +1,5 @@
+from urllib.parse import urlencode
+
 from freezegun import freeze_time
 from requests import Session
 from requests_mock import POST, Adapter
@@ -45,9 +47,15 @@ class TestFetchProduction(TestCase):
 
     @freeze_time("2024-02-06 10:00:00", tz_offset=-5)
     def test_api_requests_are_sent_with_correct_dates(self):
-        today = "06/02/2024".replace("/", "%2F")
-        end_date = "07/02/2024".replace("/", "%2F")
-        yesterday = "05/02/2024".replace("/", "%2F")
+        today = "06/02/2024"
+        end_date = "07/02/2024"
+        yesterday = "05/02/2024"
+        expected_today_request_data = urlencode(
+            {"fechaInicial": today, "fechaFinal": end_date, "indicador": 0}
+        )
+        expected_yesterday_request_data = urlencode(
+            {"fechaInicial": yesterday, "fechaFinal": today, "indicador": 0}
+        )
 
         fetch_production(
             zone_key=ZoneKey("PE"),
@@ -56,7 +64,7 @@ class TestFetchProduction(TestCase):
 
         assert self.adapter.called
         assert self.adapter.call_count == 2
-        today_request_data = self.adapter.request_history[0].text
-        assert f"fechaInicial={today}&fechaFinal={end_date}" in today_request_data
-        yesterday_request_data = self.adapter.request_history[-1].text
-        assert f"fechaInicial={yesterday}&fechaFinal={today}" in yesterday_request_data
+        actual_today_request_data = self.adapter.request_history[0].text
+        self.assertEqual(expected_today_request_data, actual_today_request_data)
+        actual_yesterday_request_data = self.adapter.request_history[-1].text
+        self.assertEqual(expected_yesterday_request_data, actual_yesterday_request_data)
