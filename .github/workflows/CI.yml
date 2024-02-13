@@ -117,7 +117,7 @@ jobs:
   #                 #
   unit_test:
     name: Frontend / Unit tests
-    needs: [setup]
+    needs: [setup, prettier]
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
@@ -252,7 +252,7 @@ jobs:
 
   validate_generate_files:
     name: Frontend / Validate generated files
-    needs: [setup]
+    needs: [setup, prettier]
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.config != 'false' ||
