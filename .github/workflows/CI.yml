@@ -236,6 +236,43 @@ jobs:
       - name: Run TypeScript typechecking for scripts
         run: pnpm run typecheck --project tsconfig.node.json
 
+  validate_generate_files:
+    name: Frontend / Validate generated files
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.frontend != 'false' ||
+      needs.setup.outputs.config != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Restore node_modules for web
+        id: cache-web
+        uses: actions/cache@v4
+        with:
+          path: ./web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+      - name: Generate zone config
+        run: pnpm run generate-zones-config
+      - name: Generate world file
+        run: pnpm run generate-world
+
   deploy_preview_branch:
     name: Deploy preview
     needs: [eslint, typecheck, setup, validate_generate_files, unit_test]
@@ -343,15 +380,6 @@ jobs:
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/validate_filenames.yml
-
-  validate_generate_files:
-    name: Validate
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.config != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate_generate_files.yml
 
   # Code quality checks
   codeql:
