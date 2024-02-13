@@ -102,12 +102,41 @@ jobs:
   # Frontend checks #
   #                 #
   unit_test:
-    name: Unit test
+    name: Frontend / Unit tests
     needs: [setup]
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/unit_test.yml
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Restore node_modules for web
+        id: cache-web
+        uses: actions/cache@v4
+        with:
+          path: ./web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+      - name: Generate config files
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: pnpm create-generated-files
+      - name: Run test
+        run: pnpm run test:ci
 
   eslint:
     name: Frontend / ESLint
