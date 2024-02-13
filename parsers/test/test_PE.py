@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-
 from freezegun import freeze_time
 from requests import Session
 from requests_mock import POST, Adapter
@@ -47,10 +45,9 @@ class TestFetchProduction(TestCase):
 
     @freeze_time("2024-02-06 10:00:00", tz_offset=-5)
     def test_api_requests_are_sent_with_correct_dates(self):
-        def format_date(date: datetime):
-            return date.strftime("%d/%m/%Y").replace("/", "%2F")
-
-        current_date = datetime.now()
+        today = "06/02/2024".replace("/", "%2F")
+        end_date = "07/02/2024".replace("/", "%2F")
+        yesterday = "05/02/2024".replace("/", "%2F")
 
         fetch_production(
             zone_key=ZoneKey("PE"),
@@ -60,18 +57,6 @@ class TestFetchProduction(TestCase):
         assert self.adapter.called
         assert self.adapter.call_count == 2
         today_request_data = self.adapter.request_history[0].text
-        assert (
-            "fechaInicial={today}&fechaFinal={end_date}".format(
-                today=format_date(current_date),
-                end_date=format_date(current_date + timedelta(days=1)),
-            )
-            in today_request_data
-        )
+        assert f"fechaInicial={today}&fechaFinal={end_date}" in today_request_data
         yesterday_request_data = self.adapter.request_history[-1].text
-        assert (
-            "fechaInicial={yesterday}&fechaFinal={today}".format(
-                yesterday=format_date(current_date + timedelta(days=-1)),
-                today=format_date(current_date),
-            )
-            in yesterday_request_data
-        )
+        assert f"fechaInicial={yesterday}&fechaFinal={today}" in yesterday_request_data
