@@ -48,7 +48,7 @@ def fetch_production(
     date_format = "%d/%m/%Y"
     today = current_date.strftime(date_format)
     yesterday = (current_date + timedelta(days=-1)).strftime(date_format)
-    end_date = (current_date + timedelta(days=1)).strftime(date_format)
+    end_date = (current_date + timedelta(days=+1)).strftime(date_format)
 
     # To guarantee a full 24 hours of data we must make 2 requests.
 
