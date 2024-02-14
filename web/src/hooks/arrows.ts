@@ -31,9 +31,10 @@ export function filterExchanges(
   for (const [key, value] of Object.entries(exchanges)) {
     if (exclusionSetCountries.has(key)) {
       resultZones[key] = value;
-      continue;
-    }
-    if (exclusionSetZones.has(key)) {
+    } else if (exclusionSetZones.has(key)) {
+      resultCountries[key] = value;
+    } else {
+      resultZones[key] = value;
       resultCountries[key] = value;
     }
   }
