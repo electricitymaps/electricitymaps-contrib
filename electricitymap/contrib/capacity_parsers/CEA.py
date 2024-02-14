@@ -108,6 +108,7 @@ def fetch_production_capacity(
     all_capacities = fetch_production_capacity_for_all_zones(target_datetime, session)
     return all_capacities[zone_key]
 
+
 # manual update, the output of the function should be added to the config file
 def get_renewable_capacity(path: str, zone_key: ZoneKey | None = None) -> None:
     """Extract renewable capacity from MNRE report which then should be added to the config file"""
