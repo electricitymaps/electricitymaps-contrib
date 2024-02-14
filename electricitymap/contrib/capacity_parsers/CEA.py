@@ -2,7 +2,6 @@ from datetime import datetime
 from logging import getLogger
 from typing import Any
 
-
 import pandas as pd
 from requests import Response, Session
 
