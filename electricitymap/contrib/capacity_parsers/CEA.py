@@ -20,7 +20,7 @@ REGION_MAPPING = {
 MODE_MAPPING = {
     "Coal": "coal",
     "Gas": "gas",
-    "Diesel": "diesel",
+    "Diesel": "oil",
     "Nuclear": "nuclear",
     "Hydro": "hydro",
 }

@@ -12,10 +12,6 @@ capacity:
     datetime: '2023-12-01'
     source: cea.nic.in
     value: 36997.0
-  diesel:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 92.71
   gas:
     datetime: '2023-12-01'
     source: cea.nic.in
@@ -28,6 +24,10 @@ capacity:
     datetime: '2023-12-01'
     source: cea.nic.in
     value: 0.0
+  oil:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 92.71
   solar:
     datetime: '2023-12-01'
     source: mnre.gov.in
