@@ -1,5 +1,7 @@
 from datetime import datetime
 from logging import getLogger
+from typing import Any
+
 
 import pandas as pd
 from requests import Response, Session
@@ -71,7 +73,7 @@ MNRE_MODE_MAPPING = {
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session
-) -> dict[str, any] | None:
+) -> dict[str, Any] | None:
     logger.warning(
         "Renewable capacity is not available and should be downloaded from https://mnre.gov.in/physical-progress/"
     )
@@ -103,7 +105,7 @@ def fetch_production_capacity_for_all_zones(
 
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
-) -> dict[str, any] | None:
+) -> dict[str, Any] | None:
     all_capacities = fetch_production_capacity_for_all_zones(target_datetime, session)
     return all_capacities[zone_key]
 
