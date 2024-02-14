@@ -5,33 +5,33 @@ bounding_box:
     - 20.94500640900013
 capacity:
   biomass:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 4280.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 4280.0
   coal:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 6140.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 6140.0
   gas:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 38180.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 38180.0
   hydro:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 3110.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3110.0
   solar:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 3070.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3070.0
   unknown:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 190.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
   wind:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 1550.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1550.0
 contributors:
   - PPsyrius
 emissionFactors:
