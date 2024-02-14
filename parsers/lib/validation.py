@@ -71,7 +71,7 @@ def validate_production_diffs(
         if "energy" == "total":
             series = pd.Series(
                 [
-                    np.nansum([v for v in datapoint["production"].values()])
+                    np.nansum(list(datapoint["production"].values()))
                     for datapoint in datapoints
                 ]
             )

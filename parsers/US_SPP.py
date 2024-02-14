@@ -378,7 +378,7 @@ def format_exchange_data(
 ) -> list:
     """format exchanges data into list of data points"""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-    data = data[[col for col in EXCHANGE_MAPPING]]
+    data = data[list(EXCHANGE_MAPPING)]
     data = data.melt(var_name="zone_key2", value_name="exchange", ignore_index=False)
     data.zone_key2 = data.zone_key2.map(EXCHANGE_MAPPING)
 

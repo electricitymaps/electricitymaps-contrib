@@ -108,9 +108,7 @@ def fetch_production(
     # We only run this check when target_datetime is None, as to not affect refetches
     # TODO: remove this in the future, when this is automatically detected by QA layer
     data = sorted(data, key=lambda d: d["datetime"])
-    total_production_per_datapoint = list(
-        map(lambda d: sum(d["production"].values()), data)
-    )
+    total_production_per_datapoint = [sum(d["production"].values()) for d in data]
     mean_production = sum(total_production_per_datapoint) / len(
         total_production_per_datapoint
     )

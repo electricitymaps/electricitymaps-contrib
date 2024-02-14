@@ -254,10 +254,10 @@ def generate_aggregated_capacity_config_dict(
     capacity_config: list[dict[str, Any]], parent_zone: ZoneKey
 ) -> dict[str, Any] | None:
     """Generate aggregated capacity config for a parent zone if the capacity config of the subzones are a dict"""
-    datetime_values = set(
-        [capacity_config["datetime"] for capacity_config in capacity_config]
-    )
-    sources = set([capacity_config["source"] for capacity_config in capacity_config])
+    datetime_values = {
+        capacity_config["datetime"] for capacity_config in capacity_config
+    }
+    sources = {capacity_config["source"] for capacity_config in capacity_config}
     if len(datetime_values) != 1:
         logger.warning(
             f"{parent_zone} capacity could not be updated because all capacity configs must have the same datetime values"
@@ -293,7 +293,7 @@ def generate_aggregated_capacity_config_list(
 ) -> list[dict[str, Any]] | None:
     """Generate the aggregated capacity config for a parent zone if the capacity config of the subzones are a list"""
     flat_capacity_config = [item for sublist in capacity_config for item in sublist]
-    datetime_values = set([item["datetime"] for item in flat_capacity_config])
+    datetime_values = {item["datetime"] for item in flat_capacity_config}
     updated_aggregated_capacity_config = []
     for dt in datetime_values:
         datetime_capacity_config = [

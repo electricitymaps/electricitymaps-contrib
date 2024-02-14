@@ -127,7 +127,7 @@ def fetch_production(
     present_fuels = [v for v in value_columns if v in df_production.columns]
     if len(missing_fuels) == len(value_columns):
         logger.warning("No fuels present in the API response")
-        return list()
+        return []
     elif len(missing_fuels) > 0:
         mf_str = ", ".join(missing_fuels)
         logger.warning(f"Fuels [{mf_str}] are not present in the API " "response")
