@@ -5,53 +5,53 @@ bounding_box:
     - 49.884274119856
 capacity:
   battery storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 82.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 82.0
   biomass:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 2285.1
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 2285.1
   coal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 50924.4
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 50924.4
   gas:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 83093.1
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 83093.1
   geothermal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   hydro:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 2456.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 2456.9
   hydro storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 2416.8
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 2416.8
   nuclear:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 12269.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 12269.0
   oil:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 4108.2
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 4108.2
   solar:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 5665.8
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 5665.8
   unknown:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 487.5
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 487.5
   wind:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 30866.3
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 30866.3
 comment: Midcontinent Independent Transmission System Operator, Inc..
 contributors:
   - systemcatch

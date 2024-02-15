@@ -19,17 +19,17 @@ capacity:
       source: entsoe.eu
       value: 4815.0
   hydro storage:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 60.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 60.0
   unknown:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 53.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 53.0
   wind:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 2120.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 2120.0
 emissionFactors:
   direct:
     battery discharge:

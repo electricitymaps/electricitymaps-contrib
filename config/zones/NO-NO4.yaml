@@ -5,9 +5,9 @@ bounding_box:
     - 71.6652692730001
 capacity:
   gas:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 252.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 252.0
   hydro:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -16,13 +16,13 @@ capacity:
       source: entsoe.eu
       value: 5594.0
   unknown:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 77.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 77.0
   wind:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 1160.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1160.0
 emissionFactors:
   direct:
     battery discharge:

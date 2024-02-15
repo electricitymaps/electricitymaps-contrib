@@ -192,7 +192,7 @@ def parse_exchange(
 
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     exchange = "->".join(sorted_zone_keys)
-    data_points = list()
+    data_points = []
     lines = csv_text.split("\n")
 
     # check field count in report is as expected
@@ -290,7 +290,7 @@ def process_production_events(
     df = fuel_inst_data.join(eso_data, rsuffix="_eso")
     df = df.rename(columns={"wind_eso": "wind", "solar_eso": "solar"})
     df = df.groupby(df.columns, axis=1).sum()
-    data_points = list()
+    data_points = []
     for time_t in pd.unique(df.index):
         time_df = df[df.index == time_t]
 
@@ -298,8 +298,8 @@ def process_production_events(
             "zoneKey": "GB",
             "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
-            "production": dict(),
-            "storage": dict(),
+            "production": {},
+            "storage": {},
         }
 
         for row in time_df.iterrows():
@@ -356,7 +356,7 @@ def parse_production(
     df[fuel_column] = df[fuel_column].apply(lambda x: RESOURCE_TYPE_TO_FUEL[x])
 
     # loop through unique datetimes and create each data point
-    data_points = list()
+    data_points = []
     for time_t in pd.unique(df["datetime"]):
         time_df = df[df["datetime"] == time_t]
 
@@ -364,8 +364,8 @@ def parse_production(
             "zoneKey": "GB",
             "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
-            "production": dict(),
-            "storage": dict(),
+            "production": {},
+            "storage": {},
         }
 
         for row in time_df.iterrows():

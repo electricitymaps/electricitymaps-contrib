@@ -5,53 +5,53 @@ bounding_box:
     - 45.51097
 capacity:
   battery storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 217.5
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 217.5
   biomass:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 506.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 506.9
   coal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   gas:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 25158.1
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 25158.1
   geothermal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   hydro:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 4617.3
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 4617.3
   hydro storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1220.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1220.0
   nuclear:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 3398.4
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 3398.4
   oil:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 4065.4
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 4065.4
   solar:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1446.4
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1446.4
   unknown:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   wind:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 2526.3
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 2526.3
 comment: New York Independent System Operator
 contributors:
   - systemcatch

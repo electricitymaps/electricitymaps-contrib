@@ -5,33 +5,33 @@ bounding_box:
     - 12.964920287149383
 capacity:
   biomass:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 400.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 400.0
   coal:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 1650.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1650.0
   gas:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 4070.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 4070.0
   hydro:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 12560.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 12560.0
   oil:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 1400.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1400.0
   solar:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 490.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 490.0
   wind:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 20.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
 contributors:
   - lav-julien
   - alixunderplatz
