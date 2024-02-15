@@ -84,12 +84,12 @@ def update_zone_capacity_config(zone_key: ZoneKey, data: dict) -> None:
         capacity = _new_zone_config["capacity"]
 
         if all(isinstance(capacity[m], float | int) for m in capacity.keys()):
-            # TODO: this is temporry as it handles the case of the deprecated system where capacity is a single value. It will be removed in the future
-            capacity = data
+            # TODO: this is temporary as it handles the case of the deprecated system where capacity is a single value. It will be removed in the future
+            capacity = {key: [value] for key, value in data.items()}
         else:
             capacity = generate_zone_capacity_config(capacity, data)
     else:
-        capacity = data
+        capacity = {key: [value] for key, value in data.items()}
 
     _new_zone_config["capacity"] = capacity
 
@@ -111,11 +111,7 @@ def generate_zone_capacity_config(
     updated_capacity_config = deepcopy(capacity_config)
     for mode in existing_capacity_modes:
         if isinstance(capacity_config[mode], float | int):
-            updated_capacity_config[mode] = data[mode]
-        elif isinstance(capacity_config[mode], dict):
-            updated_capacity_config[mode] = generate_zone_capacity_dict(
-                mode, capacity_config, data
-            )
+            updated_capacity_config[mode] = [data[mode]]
         elif isinstance(capacity_config[mode], list):
             updated_capacity_config[mode] = generate_zone_capacity_list(
                 mode, capacity_config, data
@@ -123,34 +119,8 @@ def generate_zone_capacity_config(
 
     new_modes = [m for m in data if m not in capacity_config]
     for mode in new_modes:
-        updated_capacity_config[mode] = data[mode]
+        updated_capacity_config[mode] = [data[mode]]
     return updated_capacity_config
-
-
-def update_capacity_dict_if_value_already_exists(
-    mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
-) -> dict[str, Any]:
-    """Updates the capacity config for a zone if the capacity config is a list and the value already exists.
-    This function ensures that we don't add the same value to the config over and over and that we can backfill and get the oldest value for which the capacity is valid.
-    """
-    if new_capacity[mode]["datetime"] > capacity_config[mode]["datetime"]:
-        # if the associated datetime is more recent than the existing one, we don't add it
-        return capacity_config[mode]
-        # if the associated datetime is older than the existing one, we replace the datetime of the item
-    return new_capacity[mode]
-
-
-def generate_zone_capacity_dict(
-    mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
-) -> dict[str, Any]:
-    """Generate the updated capacity config for a zone if the capacity config is a dict"""
-    existing_capacity = capacity_config[mode]
-    if existing_capacity["value"] == new_capacity[mode]["value"]:
-        return update_capacity_dict_if_value_already_exists(
-            mode, capacity_config, new_capacity
-        )
-    else:
-        return [existing_capacity] + [new_capacity[mode]]
 
 
 def update_capacity_list_if_value_already_exists(
@@ -235,17 +205,13 @@ def generate_aggregated_capacity_config(
                 f"{parent_zone} capacity could not be updated because all capacity configs must have the same type"
             )
 
-        if check_capacity_config_type(mode_capacity_configs, dict):
-            parent_capacity_config[mode] = generate_aggregated_capacity_config_dict(
-                mode_capacity_configs, parent_zone
-            )
-        elif check_capacity_config_type(mode_capacity_configs, list):
+        if check_capacity_config_type(mode_capacity_configs, list):
             parent_capacity_config[mode] = generate_aggregated_capacity_config_list(
                 mode_capacity_configs, parent_zone
             )
         else:
             raise ValueError(
-                f"{parent_zone} capacity could not be updated because all capacity configs must be a dict or a list"
+                f"{parent_zone} capacity could not be updated because all capacity configs must be  a list"
             )
     return parent_capacity_config
 
