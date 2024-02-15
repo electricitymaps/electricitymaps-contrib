@@ -8,13 +8,13 @@ bounding_box:
     - 43.6758180933
 capacity:
   biomass:
-    datetime: '2022-12-01'
-    source: ree.es
-    value: 1219.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 1219.0
   coal:
-    datetime: '2022-12-01'
-    source: ree.es
-    value: 3223.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 3223.0
   gas:
     - datetime: '2023-12-01'
       source: ree.es
@@ -30,13 +30,13 @@ capacity:
       source: ree.es
       value: 17093.0
   hydro storage:
-    datetime: '2022-12-01'
-    source: ree.es
-    value: 3331.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 3331.0
   nuclear:
-    datetime: '2022-12-01'
-    source: ree.es
-    value: 7117.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 7117.0
   solar:
     - datetime: '2023-12-01'
       source: ree.es
@@ -45,9 +45,9 @@ capacity:
       source: ree.es
       value: 21815.0
   unknown:
-    datetime: '2022-12-01'
-    source: ree.es
-    value: 387.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 387.0
   wind:
     - datetime: '2023-12-01'
       source: ree.es

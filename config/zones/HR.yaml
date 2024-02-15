@@ -5,13 +5,13 @@ bounding_box:
     - 46.5037509222
 capacity:
   biomass:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 120.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 120.0
   coal:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 217.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 217.0
   gas:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -20,21 +20,21 @@ capacity:
       source: entsoe.eu
       value: 886.0
   geothermal:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 10.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 10.0
   hydro:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 1874.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1874.0
   hydro storage:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 281.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 281.0
   oil:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 45.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 45.0
   solar:
     - datetime: '2023-01-01'
       source: entsoe.eu
