@@ -20,17 +20,17 @@ capacity:
       source: entsoe.eu
       value: 6999.0
   hydro:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 186.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 186.0
   hydro storage:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 1308.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1308.0
   nuclear:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 5943.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 5943.0
   oil:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -46,13 +46,13 @@ capacity:
       source: entsoe.eu
       value: 8789.0
   unknown:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 27.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 27.0
   wind:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 5315.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 5315.0
 contributors:
   - corradio
   - nessie2013

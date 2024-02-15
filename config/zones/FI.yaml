@@ -40,9 +40,9 @@ capacity:
       source: entsoe.eu
       value: 4364.0
   oil:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 1051.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1051.0
   solar:
     - datetime: '2023-01-01'
       source: entsoe.eu

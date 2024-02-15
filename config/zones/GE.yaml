@@ -7,21 +7,21 @@ bounding_box:
     - 43.553104153
 capacity:
   gas:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 2010.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 2010.0
   hydro:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 3080.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3080.0
   solar:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 20.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
   wind:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 30.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
 contributors:
   - alixunderplatz
   - kruschk
