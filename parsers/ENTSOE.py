@@ -738,12 +738,14 @@ def parse_scalar(
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(timeseries.find_all("start")[0].contents[0])
         )
-        if only_inBiddingZone_Domain:
-            if not len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())):
-                continue
-        elif only_outBiddingZone_Domain:
-            if not len(timeseries.find_all("outBiddingZone_Domain.mRID".lower())):
-                continue
+        if (
+            only_inBiddingZone_Domain
+            and not len(timeseries.find_all("inBiddingZone_Domain.mRID".lower()))
+        ) or (
+            only_outBiddingZone_Domain
+            and not len(timeseries.find_all("outBiddingZone_Domain.mRID".lower()))
+        ):
+            continue
         for entry in timeseries.find_all("point"):
             position = int(entry.find_all("position")[0].contents[0])
             value = float(entry.find_all("quantity")[0].contents[0])
@@ -1046,7 +1048,7 @@ def fetch_production_per_units(
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
     # Iterate over all psr types
-    for k in ENTSOE_PARAMETER_DESC.keys():
+    for k in ENTSOE_PARAMETER_DESC:
         try:
             raw_production_per_units = query_production_per_units(
                 k, domain, session, target_datetime

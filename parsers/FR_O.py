@@ -128,7 +128,7 @@ def fetch_data(
 ) -> tuple[list, str, str]:
     ses = session or Session()
 
-    if target_datetime is None and zone_key not in LIVE_DATASETS.keys():
+    if target_datetime is None and zone_key not in LIVE_DATASETS:
         raise ParserException(
             "FR_O.py",
             f"Live data not implemented for {zone_key} in this parser.",

@@ -465,16 +465,18 @@ class ProductionBreakdown(AggregatableEvent):
 
     @validator("production")
     def _validate_production_mix(cls, v):
-        if v is not None and not v.has_corrected_negative_values:
-            if all(value is None for value in v.dict().values()):
-                raise ValueError("Mix is completely empty")
+        if (
+            v is not None
+            and not v.has_corrected_negative_values
+            and all(value is None for value in v.dict().values())
+        ):
+            raise ValueError("Mix is completely empty")
         return v
 
     @validator("storage")
     def _validate_storage_mix(cls, v):
-        if v is not None:
-            if all(value is None for value in v.dict().values()):
-                return None
+        if v is not None and all(value is None for value in v.dict().values()):
+            return None
         return v
 
     def get_value(self, mode: str) -> float | None:

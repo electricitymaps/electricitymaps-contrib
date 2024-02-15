@@ -88,12 +88,12 @@ def fetch_production(
         # production ends up calculated as 900 MW which greatly exceeds known
         # capacity of around 520 MW.
         if (
-            100 < (production_mix.biomass or 0)
-            or 1300 < (production_mix.coal or 0)
-            or 700 < (production_mix.gas or 0)
-            or 600 < (production_mix.hydro or 0)
-            or 300 < (production_mix.oil or 0)
-            or 700 < (production_mix.wind or 0)
+            (production_mix.biomass or 0) > 100
+            or (production_mix.coal or 0) > 1300
+            or (production_mix.gas or 0) > 700
+            or (production_mix.hydro or 0) > 600
+            or (production_mix.oil or 0) > 300
+            or (production_mix.wind or 0) > 700
         ):
             logger.warning(
                 "discarding datapoint at %s because some mode's production is "
