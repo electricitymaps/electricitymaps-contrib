@@ -12,11 +12,13 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
     def test_capacity_config(self):
         capacity_config = {
             "wind": 1,
-            "solar": [{
-                "datetime": "2022-01-01",
-                "source": "abc",
-                "value": 2,
-            }],
+            "solar": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 2,
+                }
+            ],
             "biomass": [
                 {
                     "datetime": "2022-01-01",
