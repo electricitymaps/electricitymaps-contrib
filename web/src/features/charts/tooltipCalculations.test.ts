@@ -1,4 +1,3 @@
-import { ca } from 'date-fns/locale';
 import { ZoneDetail } from 'types';
 import { Mode } from 'utils/constants';
 import { expect } from 'vitest';
