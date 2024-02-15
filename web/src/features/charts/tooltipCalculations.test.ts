@@ -1,3 +1,4 @@
+import { ca } from 'date-fns/locale';
 import { ZoneDetail } from 'types';
 import { Mode } from 'utils/constants';
 import { expect } from 'vitest';
@@ -19,6 +20,13 @@ const zoneDetailsData = {
     solar: 13_612,
     unknown: 1366,
     wind: 19_099,
+  },
+  capacitySources: {
+    gas: ['Tonys trust capacity source'],
+    'hydro storage': ['Tonys trust capacity source'],
+    nuclear: ['Tonys trust capacity source'],
+    solar: ['Tonys trust capacity source'],
+    wind: ['Tonys trust capacity source'],
   },
   co2intensity: 155.82,
   co2intensityProduction: 133.97,
@@ -123,6 +131,9 @@ describe('getProductionTooltipData', () => {
     expect(actual).toMatchInlineSnapshot(`
       {
         "capacity": 61370,
+        "capacitySource": [
+          "Tonys trust capacity source",
+        ],
         "co2Intensity": 5.13,
         "co2IntensitySource": "UNECE 2022",
         "displayByEmissions": false,
@@ -149,6 +160,9 @@ describe('getProductionTooltipData', () => {
     expect(actual).toMatchInlineSnapshot(`
       {
         "capacity": 61370,
+        "capacitySource": [
+          "Tonys trust capacity source",
+        ],
         "co2Intensity": 5.13,
         "co2IntensitySource": "UNECE 2022",
         "displayByEmissions": true,
@@ -175,6 +189,9 @@ describe('getProductionTooltipData', () => {
     expect(actual).toMatchInlineSnapshot(`
       {
         "capacity": 5053.47,
+        "capacitySource": [
+          "Tonys trust capacity source",
+        ],
         "co2Intensity": 54.19088892903222,
         "co2IntensitySource": "Electricity Maps, 2021 average",
         "displayByEmissions": false,
@@ -228,6 +245,9 @@ describe('getProductionTooltipData', () => {
     expect(actual).toMatchInlineSnapshot(`
       {
         "capacity": 61370,
+        "capacitySource": [
+          "Tonys trust capacity source",
+        ],
         "co2Intensity": 5.13,
         "co2IntensitySource": "UNECE 2022",
         "displayByEmissions": false,

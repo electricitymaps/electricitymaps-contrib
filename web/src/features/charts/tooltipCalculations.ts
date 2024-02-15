@@ -38,6 +38,7 @@ export function getProductionTooltipData(
     dischargeCo2IntensitySources,
     productionCo2IntensitySources,
     zoneKey,
+    capacitySources,
   } = zoneDetail;
 
   const co2IntensitySource = isStorage
@@ -46,6 +47,10 @@ export function getProductionTooltipData(
 
   const generationTypeCapacity = capacity ? capacity[selectedLayerKey] : undefined;
   const generationTypeProduction = production[generationType];
+  const capacitySource =
+    capacitySources && generationTypeCapacity
+      ? capacitySources[selectedLayerKey]
+      : undefined;
 
   const generationTypeStorage = storageKey ? storage[storageKey] : 0;
 
@@ -80,6 +85,7 @@ export function getProductionTooltipData(
     production: generationTypeProduction,
     capacity: generationTypeCapacity,
     storage: generationTypeStorage,
+    capacitySource,
   };
 }
 

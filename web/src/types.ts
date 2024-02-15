@@ -97,6 +97,7 @@ export interface ZoneDetail extends ZoneOverview {
   completenessPercentage?: number;
   // Capacity is only available on hourly details
   capacity?: { [key in ElectricityModeType]: number | null };
+  capacitySources?: { [key in ElectricityModeType]: string };
   dischargeCo2Intensities: { [key in ElectricityStorageKeyType]: number };
   dischargeCo2IntensitySources: { [key in ElectricityStorageKeyType]: string };
   exchange: Exchange;
