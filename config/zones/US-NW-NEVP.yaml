@@ -5,53 +5,53 @@ bounding_box:
     - 42.5017700000001
 capacity:
   battery storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 175.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 175.0
   biomass:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 15.2
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 15.2
   coal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 809.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 809.0
   gas:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 7606.2
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 7606.2
   geothermal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 859.7
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 859.7
   hydro:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 16.4
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 16.4
   hydro storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   nuclear:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   oil:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 15.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 15.0
   solar:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 2795.8
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 2795.8
   unknown:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 7.5
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 7.5
   wind:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 150.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 150.0
 comment: Nevada Power Company
 contributors:
   - systemcatch

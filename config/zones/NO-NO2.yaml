@@ -5,9 +5,9 @@ bounding_box:
     - 60.73048157269916
 capacity:
   biomass:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 22.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 22.0
   gas:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -23,9 +23,9 @@ capacity:
       source: entsoe.eu
       value: 11225.0
   hydro storage:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 522.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 522.0
   wind:
     - datetime: '2023-01-01'
       source: entsoe.eu
