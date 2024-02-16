@@ -43,7 +43,7 @@ class TestSolar(unittest.TestCase):
 
     @freeze_time("2021-12-24 15:12:00")
     def test_ignore_data_older_than_one_hour(self):
-        with LogCapture() as log:
+        with LogCapture():
             power = SG.get_solar(self.session, logger=self.logger)
         self.assertIsNone(power)
 

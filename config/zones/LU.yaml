@@ -4,16 +4,62 @@ bounding_box:
   - - 6.24275109216
     - 50.1280516628
 capacity:
-  biomass: 68.9
-  coal: 0
-  gas: 73.3
-  geothermal: 0
-  hydro: 34
-  hydro storage: 1096
-  nuclear: 0
-  solar: 316.9
-  unknown: 0
-  wind: 165.9
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 68.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 71.0
+  coal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 70.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 76.0
+  geothermal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 33.0
+  hydro storage:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  nuclear:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  oil:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  solar:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 300.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 350.0
+  unknown:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 152.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 174.0
 contributors:
   - corradio
   - clawfire
@@ -33,14 +79,14 @@ emissionFactors:
         value: 1057.262766
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
-        value: 1045.58
+        value: 1075.5
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
         value: 419.8221756
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
-        value: 449.46
+        value: 412.38
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
@@ -67,14 +113,14 @@ emissionFactors:
         value: 1117.262766
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1105.58
+        value: 1135.5
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
         value: 539.8221756
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 569.46
+        value: 532.38
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022

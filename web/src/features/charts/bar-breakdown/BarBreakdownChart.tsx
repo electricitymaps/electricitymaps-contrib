@@ -18,7 +18,11 @@ import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
 const X_PADDING = 9;
 
-function BarBreakdownChart() {
+function BarBreakdownChart({
+  hasEstimationPill = false,
+}: {
+  hasEstimationPill: boolean;
+}) {
   const {
     currentZoneDetail,
     zoneDetails,
@@ -82,7 +86,10 @@ function BarBreakdownChart() {
 
   return (
     <div className="text-sm" ref={ref}>
-      <BySource />
+      <BySource
+        hasEstimationPill={hasEstimationPill}
+        estimatedPercentage={currentZoneDetail.estimatedPercentage}
+      />
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div
@@ -95,8 +102,9 @@ function BarBreakdownChart() {
             <BreakdownChartTooltip
               selectedLayerKey={tooltipData?.selectedLayerKey}
               zoneDetail={currentZoneDetail}
+              hasEstimationPill={hasEstimationPill}
             />
-            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden">
+            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
               <HiXMark size="24" />
             </button>
           </div>

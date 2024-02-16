@@ -4,17 +4,62 @@ bounding_box:
   - - 28.1316992531
     - 59.6110903998
 capacity:
-  biomass: 169
-  coal: 1408
-  gas: 110
-  geothermal: 0
-  hydro: 48
-  hydro storage: 0
-  nuclear: 0
-  oil: 52
-  solar: 510
-  unknown: 20
-  wind: 317
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 169.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 167.0
+  coal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1330.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 188.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 93.0
+  geothermal:
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 0.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 8.0
+  hydro storage:
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 0.0
+  nuclear:
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 0.0
+  oil:
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 0.0
+  solar:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 510.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 680.0
+  unknown:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 20.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 317.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 409.0
 contributors:
   - corradio
   - nessie2013
@@ -59,7 +104,7 @@ emissionFactors:
         value: 419.8221756
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
-        value: 449.46
+        value: 412.38
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -129,7 +174,7 @@ emissionFactors:
         value: 539.8221756
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 569.46
+        value: 532.38
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022

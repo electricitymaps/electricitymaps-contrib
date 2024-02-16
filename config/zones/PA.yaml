@@ -4,16 +4,50 @@ bounding_box:
   - - -77.2425664944
     - 9.61161001224
 capacity:
-  biomass: 33
-  coal: 307.86
-  gas: 449.5
-  hydro: 1789
-  hydro storage: 0
-  nuclear: 0
-  oil: 243
-  solar: 522
-  unknown: 0
-  wind: 270
+  biomass:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 68.0
+  coal:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 300.0
+  gas:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 381.0
+  geothermal:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 0.0
+  hydro:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1845.0
+  hydro storage:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 0.0
+  nuclear:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 0.0
+  oil:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 650.0
+  solar:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 551.0
+  unknown:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 0.0
+  wind:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 336.0
 contributors:
   - paulotaviodr
   - jarek
@@ -224,5 +258,5 @@ fallbackZoneMixes:
 parsers:
   consumption: PA.fetch_consumption
   production: PA.fetch_production
-  productionCapacity: EMBER.fetch_production_capacity
+  productionCapacity: IRENA.fetch_production_capacity
 timezone: America/Panama

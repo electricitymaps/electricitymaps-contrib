@@ -326,7 +326,7 @@ def fetch_price(
         axis=1,
     )
 
-    data = list()
+    data = []
     for row in df.iterrows():
         data.append(
             {

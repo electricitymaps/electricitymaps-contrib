@@ -73,6 +73,21 @@
     "noParserInfo": "No tenemos aún información para esta zona.<br/> ¿Quieres ayudarnos a solucionarlo? Contribuye si quieres <a href=\"%s\" target=\"_blank\">añadiendo los datos de la zona</a>.",
     "now": "Ahora"
   },
+  "estimation-badge": {
+    "partially-estimated": "Parcialmente estimado",
+    "fully-estimated": "Estimado"
+  },
+  "estimation-card": {
+    "aggregated": {
+      "title": "Datos agregados",
+      "body": "Los datos mostrados son el resultado de la agregación de valores horarios."
+    },
+    "aggregated-estimated": {
+      "title": "Datos agregados",
+      "pill": " {{percentage}}% estimado",
+      "body": "Los datos mostrados son el resultado de la agregación de valores horarios. Un {{percentage}}% de los valores de generación son estimados."
+    }
+  },
   "time-controller": {
     "title": "Mostrar datos del pasado"
   },
@@ -83,11 +98,10 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Intensidad de carbono en los últimos %1$s",
       "hourly": "Intensidad de carbono en las últimas 24 horas",
       "daily": "Intensidad de carbono en el último mes",
       "monthly": "Intensidad de carbono en el último año",
-      "yearly": "Intensidad de carbono en los últimos 5 años"
+      "default": "Intensidad de carbono en los últimos %1$s"
     },
     "Getdata": "Obtener datos históricos por horas y en tiempo real + pronóstico con la API de Electricity Maps",
     "not-enough-data": "No hay datos suficientes disponibles para mostrar el gráfico",

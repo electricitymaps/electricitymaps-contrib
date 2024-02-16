@@ -13,7 +13,7 @@ from requests import Session
 
 timezone = "Pacific/Auckland"
 
-NZ_PRICE_REGIONS = {i for i in range(1, 14)}
+NZ_PRICE_REGIONS = set(range(1, 14))
 
 
 def fetch(session: Session | None = None):
@@ -95,7 +95,7 @@ def fetch_production(
         "datetime": datetime,
         "production": {
             "coal": productions.get("Coal", {"generation": None})["generation"],
-            "oil": productions.get("Liquid", {"generation": None})["generation"],
+            "oil": productions.get("Diesel/Oil", {"generation": None})["generation"],
             "gas": productions.get("Gas", {"generation": None})["generation"],
             "geothermal": productions.get("Geothermal", {"generation": None})[
                 "generation"
@@ -108,7 +108,7 @@ def fetch_production(
         },
         "capacity": {
             "coal": productions.get("Coal", {"capacity": None})["capacity"],
-            "oil": productions.get("Liquid", {"capacity": None})["capacity"],
+            "oil": productions.get("Diesel/Oil", {"capacity": None})["capacity"],
             "gas": productions.get("Gas", {"capacity": None})["capacity"],
             "geothermal": productions.get("Geothermal", {"capacity": None})["capacity"],
             "wind": productions.get("Wind", {"capacity": None})["capacity"],

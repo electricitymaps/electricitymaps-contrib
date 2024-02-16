@@ -5,17 +5,42 @@ bounding_box:
   - - 16.5648083839
     - 46.8523859727
 capacity:
-  battery storage: 0
-  biomass: 47
-  coal: 1191
-  gas: 618
-  geothermal: 0
-  hydro: 1129
-  hydro storage: 180
-  nuclear: 696
-  oil: 58
-  solar: 702
-  wind: 2
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 47.0
+  coal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1191.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 742.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1102.0
+  hydro storage:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 180.0
+  nuclear:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 696.0
+  oil:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 58.0
+  solar:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 294.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 2.0
 contributors:
   - corradio
 emissionFactors:
@@ -59,7 +84,7 @@ emissionFactors:
         value: 419.8221756
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
-        value: 449.46
+        value: 412.38
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -131,7 +156,7 @@ emissionFactors:
         value: 539.8221756
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 569.46
+        value: 532.38
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022

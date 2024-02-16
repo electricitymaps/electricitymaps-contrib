@@ -4,17 +4,65 @@ bounding_box:
   - - -5.705947224999932
     - 42.65362965999999
 capacity:
-  biomass: 700
-  coal: 0
-  gas: 4461
-  geothermal: 0
-  hydro: 4636
-  hydro storage: 3585
-  nuclear: 0
-  oil: 0
-  solar: 2141
-  unknown: 28
-  wind: 5374
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 681.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 647.0
+  coal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 4520.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 4585.0
+  geothermal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 4371.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 4489.0
+  hydro storage:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 2827.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 3707.0
+  nuclear:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  oil:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  solar:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1032.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1332.0
+  unknown:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 28.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 5353.0
 contributors:
   - corradio
   - nessie2013
@@ -54,7 +102,7 @@ emissionFactors:
         value: 1057.262766
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
-        value: 1045.58
+        value: 1075.5
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -126,7 +174,7 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
           hotspots of coal power generation."
-        value: 1088.293761
+        value: 1118.213761
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014

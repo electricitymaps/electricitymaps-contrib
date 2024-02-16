@@ -10,7 +10,6 @@ from logging import Logger, getLogger
 from typing import TypedDict
 from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Session
@@ -25,8 +24,8 @@ INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-d
 DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
 LATEST_URL = "https://ntesmo.com.au/data/daily-trading"
 DATA_DOC_PREFIX = "https://ntesmo.com.au/__data/assets/excel_doc/"
-# Data is being published after 5 days at the moment.
-DELAY = 24 * 5
+# Data is being published after 2 days at the moment.
+DELAY = 24 * 2
 
 
 class Generator(TypedDict):
@@ -137,11 +136,11 @@ def get_data(
 
     try:
         data_file = get_historical_daily_data(link, session)
-    except KeyError:
+    except KeyError as e:
         raise ParserException(
             "NTESMO.py",
             f"Cannot find file on the index page for date {target_datetime}",
-        )
+        ) from e
     return extraction_func(data_file)
 
 
@@ -196,8 +195,8 @@ def parse_production_mix(
             "zoneKey": "AU-NT",
             "datetime": production["Period Start"].to_pydatetime(),
             "source": "ntesmo.com.au",
-            "production": dict(),
-            "storage": dict(),
+            "production": {},
+            "storage": {},
         }
         for generator_key, generator in PLANT_MAPPING.items():
             if generator_key not in production:
@@ -224,9 +223,11 @@ def parse_production_mix(
 def fetch_consumption(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
     return parse_consumption(consumption, target_datetime, logger)
 
@@ -236,9 +237,11 @@ def fetch_consumption(
 def fetch_price(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
     consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
     return parse_consumption(consumption, target_datetime, logger, price=True)
 
@@ -248,9 +251,11 @@ def fetch_price(
 def fetch_production_mix(
     zone_key: str = "AU-NT",
     session: Session = Session(),
-    target_datetime: datetime = arrow.now().shift(hours=-DELAY).to(AUSTRALIA_TZ),
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
     production_mix = get_data(session, target_datetime, extract_production_data, logger)
     return parse_production_mix(production_mix, logger)
 

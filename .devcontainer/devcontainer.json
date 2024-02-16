@@ -18,51 +18,9 @@
         "ms-python.python",
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
-        "ms-python.isort",
         "redhat.vscode-yaml",
-        "ms-python.black-formatter"
-      ],
-      "settings": {
-        "python.languageServer": "Pylance",
-        "[python]": {
-          "editor.defaultFormatter": "ms-python.black-formatter",
-          "editor.formatOnSave": true,
-          "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-          },
-          "editor.formatOnType": true
-        },
-        "isort.args": ["--profile", "black", "--skip-gitignore"],
-        "[typescript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
-          "editor.formatOnSave": true
-        },
-        "[json]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
-          "editor.formatOnSave": true
-        },
-        "[yaml]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
-          "editor.formatOnSave": true
-        },
-        "[javascript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
-          "editor.formatOnSave": true
-        },
-        "[typescriptreact]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
-          "editor.formatOnSave": true
-        },
-        "python.testing.pytestArgs": [
-          ".",
-          "--ignore",
-          "electricitymap/contrib/parsers",
-          "--ignore",
-          "electricitymap/contrib/validators"
-        ],
-        "python.testing.unittestEnabled": false,
-        "python.testing.pytestEnabled": true
-      }
+        "charliermarsh.ruff"
+      ]
     }
   }
 }

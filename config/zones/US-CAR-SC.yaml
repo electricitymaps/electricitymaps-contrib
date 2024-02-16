@@ -4,18 +4,54 @@ bounding_box:
   - - -78.04086
     - 35.334748543
 capacity:
-  battery storage: 0
-  biomass: 219.5
-  coal: 3650.1
-  gas: 1102
-  geothermal: 0
-  hydro: 231.2
-  hydro storage: 0
-  nuclear: 0
-  oil: 229.4
-  solar: 98.2
-  unknown: 0
-  wind: 0
+  battery storage:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
+  biomass:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 218.4
+  coal:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 3650.1
+  gas:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1102.0
+  geothermal:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
+  hydro:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 231.2
+  hydro storage:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
+  nuclear:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
+  oil:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 229.4
+  solar:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 248.2
+  unknown:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
+  wind:
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
 comment: South Carolina Public Service Authority
 contributors:
   - systemcatch

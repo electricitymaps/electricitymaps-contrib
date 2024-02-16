@@ -1,7 +1,9 @@
 import * as Sentry from '@sentry/react';
+import LoadingSpinner from 'components/LoadingSpinner';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
+import { lazy, Suspense } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
@@ -14,8 +16,9 @@ import {
 import { useTranslation } from 'translation/translation';
 
 import { leftPanelOpenAtom } from './panelAtoms';
-import RankingPanel from './ranking-panel/RankingPanel';
-import ZoneDetails from './zone/ZoneDetails';
+
+const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
+const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
@@ -85,7 +88,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
 
 function MobileHeader() {
   return (
-    <div className="flex w-full items-center justify-between p-1 pt-[env(safe-area-inset-top)] shadow-md dark:bg-gray-900 sm:hidden">
+    <div className="flex w-full items-center justify-between p-1 pt-[env(safe-area-inset-top)] shadow-md sm:hidden dark:bg-gray-900">
       <Logo className="h-10 w-44 fill-black dark:fill-white" />
       <TimeDisplay className="mr-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300" />
     </div>
@@ -100,7 +103,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   return (
     <aside
       data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
+      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 sm:flex sm:w-[calc(14vw_+_16rem)] dark:bg-gray-900 dark:[color-scheme:dark] ${
         location.pathname === '/map' ? 'hidden' : ''
       } ${isOpen ? '' : '-translate-x-full'}`}
     >
@@ -120,12 +123,21 @@ export default function LeftPanel() {
           path="/zone/:zoneId"
           element={
             <ValidZoneIdGuardWrapper>
-              <ZoneDetails />
+              <Suspense fallback={<LoadingSpinner />}>
+                <ZoneDetails />
+              </Suspense>
             </ValidZoneIdGuardWrapper>
           }
         />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route path="*" element={<RankingPanel />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <RankingPanel />
+            </Suspense>
+          }
+        />
       </SentryRoutes>
     </OuterPanel>
   );

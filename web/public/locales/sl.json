@@ -83,11 +83,10 @@
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Intenzivnost ogljika v zadnjih%1$s",
       "hourly": "Intenzivnost ogljika v zadnjih 24 urah",
       "daily": "Intenzivnost ogljika v zadnjem mesecu",
       "monthly": "Intenzivnost ogljika v zadnjem letu",
-      "yearly": "Intenzivnost ogljika v zadnjih 5 letih"
+      "default": "Intenzivnost ogljika v zadnjih%1$s"
     },
     "emissions": {
       "default": "Emisije v zadnji(h) %1$s"

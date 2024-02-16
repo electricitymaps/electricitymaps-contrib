@@ -1,3 +1,4 @@
+import Badge from 'components/Badge';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
@@ -28,8 +29,16 @@ const getText = (
   return translations[period][dataType];
 };
 
-export default function BySource({ className }: { className?: string }) {
-  const { __ } = useTranslation();
+export default function BySource({
+  className,
+  hasEstimationPill = false,
+  estimatedPercentage,
+}: {
+  className?: string;
+  hasEstimationPill?: boolean;
+  estimatedPercentage?: number;
+}) {
+  const { __, i18n } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
@@ -38,6 +47,23 @@ export default function BySource({ className }: { className?: string }) {
   const text = getText(timeAverage, dataType, __);
 
   return (
-    <div className={`relative pb-2 pt-4 text-md font-bold ${className}`}>{text}</div>
+    <div
+      className={`relative flex flex-row justify-between pb-2 pt-4 text-md font-bold ${className}`}
+    >
+      {text}
+      {hasEstimationPill && (
+        <Badge
+          pillText={
+            estimatedPercentage
+              ? i18n.t('estimation-card.aggregated_estimated.pill', {
+                  percentage: estimatedPercentage,
+                })
+              : __('estimation-badge.fully-estimated')
+          }
+          type="warning"
+          icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
+        />
+      )}
+    </div>
   );
 }
