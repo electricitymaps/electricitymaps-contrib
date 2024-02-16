@@ -27,17 +27,36 @@ const mockExchangesResponses = {
     '2024-01-31T20:00:00Z': { co2intensity: 188.22, netFlow: -11 },
     '2024-01-31T21:00:00Z': { co2intensity: 178.86, netFlow: -50 },
   },
+  exchange6: {
+    '2024-01-31T22:00:00Z': { co2intensity: 150.5, netFlow: -20 },
+    '2024-01-31T23:00:00Z': { co2intensity: 140.7, netFlow: -30 },
+  },
 };
 
 const expectedAfterZoneViewFilter = {
   exchange3: mockExchangesResponses.exchange3,
   exchange5: mockExchangesResponses.exchange5,
+  exchange6: mockExchangesResponses.exchange6,
 };
 
 const expectedAfterCountryViewFilter = {
   exchange1: mockExchangesResponses.exchange1,
   exchange2: mockExchangesResponses.exchange2,
   exchange4: mockExchangesResponses.exchange4,
+  exchange6: mockExchangesResponses.exchange6,
+};
+
+const expectedAfterNoZone = {
+  exchange1: mockExchangesResponses.exchange1,
+  exchange2: mockExchangesResponses.exchange2,
+  exchange4: mockExchangesResponses.exchange4,
+  exchange6: mockExchangesResponses.exchange6,
+};
+
+const expectedAfterNoCountryViewFilter = {
+  exchange3: mockExchangesResponses.exchange3,
+  exchange5: mockExchangesResponses.exchange5,
+  exchange6: mockExchangesResponses.exchange6,
 };
 
 describe('filterExchanges', () => {
@@ -65,13 +84,13 @@ describe('filterExchanges', () => {
     it('no zone filter', () => {
       expect(
         filterExchanges(mockExchangesResponses, [], mockExchangesToExcludeCountryView)
-      ).toEqual([expectedAfterZoneViewFilter, {}]);
+      ).toEqual([mockExchangesResponses, expectedAfterNoZone]);
     });
 
     it('no country filter', () => {
       expect(
         filterExchanges(mockExchangesResponses, mockExchangesToExcludeZoneView, [])
-      ).toEqual([{}, expectedAfterCountryViewFilter]);
+      ).toEqual([expectedAfterNoCountryViewFilter, mockExchangesResponses]);
     });
   });
 
