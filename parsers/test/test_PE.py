@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from urllib.parse import urlencode
 
 from freezegun import freeze_time
@@ -34,45 +35,32 @@ class TestFetchProduction(TestCase):
         self.assertMatchSnapshot(
             [
                 {
+                    "correctedModes": element["correctedModes"],
                     "datetime": element["datetime"].isoformat(),
                     "production": element["production"],
+                    "storage": element["storage"],
                     "source": element["source"],
                     "zoneKey": element["zoneKey"],
-                    "sourceType": "measured",
+                    "sourceType": element["sourceType"].value,
                 }
                 for element in production
             ]
         )
 
-    def test_result_list_elements_do_not_contain_storage_key(self):
-        production = fetch_production(
-            zone_key=ZoneKey("PE"),
-            session=self.session,
-        )
-
-        for element in production:
-            self.assertNotIn("storage", element)
-
     @freeze_time("2024-02-06 10:00:00", tz_offset=-5)
     def test_api_requests_are_sent_with_correct_dates(self):
-        today = "06/02/2024"
-        end_date = "07/02/2024"
+        end_date = "06/02/2024"
         yesterday = "05/02/2024"
         expected_today_request_data = urlencode(
-            {"fechaInicial": today, "fechaFinal": end_date, "indicador": 0}
-        )
-        expected_yesterday_request_data = urlencode(
-            {"fechaInicial": yesterday, "fechaFinal": today, "indicador": 0}
+            {"fechaInicial": yesterday, "fechaFinal": end_date, "indicador": 0}
         )
 
         fetch_production(
             zone_key=ZoneKey("PE"),
             session=self.session,
+            target_datetime=datetime(2024, 2, 6, 0, 0, 0, tzinfo=timezone.utc),
         )
 
         self.assertTrue(self.adapter.called)
-        self.assertEqual(2, self.adapter.call_count)
         actual_today_request_data = self.adapter.request_history[0].text
         self.assertEqual(expected_today_request_data, actual_today_request_data)
-        actual_yesterday_request_data = self.adapter.request_history[-1].text
-        self.assertEqual(expected_yesterday_request_data, actual_yesterday_request_data)
