@@ -160,9 +160,7 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
-export function getBadgeText(chartData: AreaGraphElement[]) {
-  const { t } = useTranslation();
-
+export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
   const allEstimated = chartData.every(
     (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
   );
