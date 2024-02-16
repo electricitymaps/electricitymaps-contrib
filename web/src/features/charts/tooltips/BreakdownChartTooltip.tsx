@@ -112,7 +112,7 @@ interface BreakdownChartTooltipContentProperties {
   production?: Maybe<number>;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
-  capacitySource?: string[];
+  capacitySource?: string[] | null;
 }
 
 export function BreakdownChartTooltipContent({
