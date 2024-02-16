@@ -5,53 +5,53 @@ bounding_box:
     - 47.9598300000001
 capacity:
   battery storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 332.3
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 332.3
   biomass:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1281.3
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1281.3
   coal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 459.2
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 459.2
   gas:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 18600.2
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 18600.2
   geothermal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   hydro:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1905.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1905.9
   hydro storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1499.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1499.0
   nuclear:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 3404.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 3404.9
   oil:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 5886.3
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 5886.3
   solar:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 2394.8
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 2394.8
   unknown:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   wind:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1538.2
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1538.2
 comment: Iso New England Inc.
 contributors:
   - systemcatch
