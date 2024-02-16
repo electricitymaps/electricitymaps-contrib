@@ -33,9 +33,11 @@ const getText = (
 export default function BySource({
   className,
   hasEstimationPill = false,
+  estimatedPercentage,
 }: {
   className?: string;
   hasEstimationPill?: boolean;
+  estimatedPercentage?: number;
 }) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -52,7 +54,13 @@ export default function BySource({
       {text}
       {hasEstimationPill && (
         <Badge
-          pillText={t('estimation-badge.fully-estimated')}
+          pillText={
+            estimatedPercentage
+              ? t('estimation-card.aggregated_estimated.pill', {
+                  percentage: estimatedPercentage,
+                })
+              : t('estimation-badge.fully-estimated')
+          }
           type="warning"
           icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
         />

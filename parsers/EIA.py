@@ -582,7 +582,7 @@ def fetch_production_mix(
     # Fx the latest oil data could be 6 months old.
     # In this case we want to discard the old data as we won't be able to merge it
     timeframes = [
-        sorted(map(lambda x: x.datetime, breakdowns.events))
+        sorted(x.datetime for x in breakdowns.events)
         for breakdowns in all_production_breakdowns
         if len(breakdowns.events) > 0
     ]

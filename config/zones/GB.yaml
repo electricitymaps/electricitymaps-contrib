@@ -5,17 +5,66 @@ bounding_box:
   - - 2.1533203125
     - 61.0795442346
 capacity:
-  biomass: 4438
-  coal: 1491
-  gas: 37047
-  geothermal: 0
-  hydro: 2063
-  hydro storage: 5603
-  nuclear: 4950
-  oil: 0
-  solar: 14518
-  unknown: 4775
-  wind: 26945
+  biomass:
+    - datetime: '2023-12-01'
+      source: bmreports.com
+      value: 4438
+    - datetime: '2022-12-01'
+      source: bmreports.com
+      value: 4572
+  coal:
+    - datetime: '2022-12-01'
+      source: bmreports.com
+      value: 1491
+  gas:
+    - datetime: '2023-12-01'
+      source: bmreports.com
+      value: 37047
+    - datetime: '2022-12-01'
+      source: bmreports.com
+      value: 38985
+  hydro:
+    - datetime: '2023-12-01'
+      source: bmreports.com
+      value: 2063
+    - datetime: '2022-12-01'
+      source: bmreports.com
+      value: 4190
+  hydro storage:
+    - datetime: '2023-12-01'
+      source: bmreports.com
+      value: 5603
+    - datetime: '2022-12-01'
+      source: bmreports.com
+      value: 1928
+  nuclear:
+    - datetime: '2023-12-01'
+      source: bmreports.com
+      value: 4950
+    - datetime: '2022-12-01'
+      source: bmreports.com
+      value: 9256
+  solar:
+    - datetime: '2023-12-01'
+      source: bmreports.com
+      value: 14518
+    - datetime: '2022-12-01'
+      source: bmreports.com
+      value: 13324
+  unknown:
+    - datetime: '2023-12-01'
+      source: bmreports.com
+      value: 4775
+    - datetime: '2022-12-01'
+      source: bmreports.com
+      value: 4906
+  wind:
+    - datetime: '2023-12-01'
+      source: bmreports.com
+      value: 26945
+    - datetime: '2022-12-01'
+      source: bmreports.com
+      value: 27330
 contributors:
   - corradio
   - lorrieq

@@ -1,7 +1,9 @@
 import * as Sentry from '@sentry/react';
+import LoadingSpinner from 'components/LoadingSpinner';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
+import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
@@ -14,8 +16,9 @@ import {
 } from 'react-router-dom';
 
 import { leftPanelOpenAtom } from './panelAtoms';
-import RankingPanel from './ranking-panel/RankingPanel';
-import ZoneDetails from './zone/ZoneDetails';
+
+const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
+const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
@@ -120,12 +123,21 @@ export default function LeftPanel() {
           path="/zone/:zoneId"
           element={
             <ValidZoneIdGuardWrapper>
-              <ZoneDetails />
+              <Suspense fallback={<LoadingSpinner />}>
+                <ZoneDetails />
+              </Suspense>
             </ValidZoneIdGuardWrapper>
           }
         />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route path="*" element={<RankingPanel />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <RankingPanel />
+            </Suspense>
+          }
+        />
       </SentryRoutes>
     </OuterPanel>
   );

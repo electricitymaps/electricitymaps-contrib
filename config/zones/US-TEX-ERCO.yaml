@@ -5,53 +5,53 @@ bounding_box:
     - 36.5577518713004
 capacity:
   battery storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 3166.3
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 3166.3
   biomass:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 170.1
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 170.1
   coal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 14329.7
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 14329.7
   gas:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 65837.7
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 65837.7
   geothermal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   hydro:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 558.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 558.0
   hydro storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   nuclear:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 5138.6
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 5138.6
   oil:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 786.5
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 786.5
   solar:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 13478.1
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 13478.1
   unknown:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 229.7
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 229.7
   wind:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 37042.2
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 37042.2
 comment: Electric Reliability Council Of Texas, Inc.
 contributors:
   - systemcatch

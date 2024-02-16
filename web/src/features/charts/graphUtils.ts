@@ -160,14 +160,22 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
-export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
-  const hasEstimation = chartData.some((day) => day.meta.estimationMethod);
-  const allEstimated = chartData.every((day) => day.meta.estimationMethod);
+export function getBadgeText(chartData: AreaGraphElement[]) {
+  const { t } = useTranslation();
+
+  const allEstimated = chartData.every(
+    (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
+  );
 
   if (allEstimated) {
     return t('estimation-badge.fully-estimated');
-  } else if (hasEstimation) {
+  }
+
+  const hasEstimation = chartData.some(
+    (day) => day.meta.estimationMethod || Boolean(day.meta.estimatedPercentage)
+  );
+
+  if (hasEstimation) {
     return t('estimation-badge.partially-estimated');
   }
-  return undefined;
 }

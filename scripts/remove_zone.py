@@ -142,7 +142,7 @@ def find_files_mentioning_zone(text):
     )
     results = []
     for root, _dirs, files in os.walk(ROOT_PATH):
-        if any([ignored_path in root for ignored_path in IGNORED_PATHS]):
+        if any(ignored_path in root for ignored_path in IGNORED_PATHS):
             continue
         for file in files:
             if file.endswith(VALID_EXTENSIONS):

@@ -129,7 +129,7 @@ def parse_from_csv(filepath: str) -> dict:
 
     # Choose the column with the most current data;
     # assume keys start with YYYY.
-    sorted_keys = list(sorted(data.keys()))
+    sorted_keys = sorted(data.keys())
     data = data[sorted_keys[-1]]
 
     inverse_mapping = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
