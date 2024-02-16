@@ -28,8 +28,11 @@ MAP_GENERATION = {
 }
 SOURCE = "coes.org.pe"
 
-def parse_datetime(dt:str):
-    return datetime.strptime(dt, "%Y/%m/%d %H:%M:%S").replace(tzinfo=TIMEZONE) - timedelta(minutes=30)
+
+def parse_datetime(dt: str):
+    return datetime.strptime(dt, "%Y/%m/%d %H:%M:%S").replace(
+        tzinfo=TIMEZONE
+    ) - timedelta(minutes=30)
 
 
 def fetch_production(
@@ -44,28 +47,33 @@ def fetch_production(
     r = session or Session()
 
     # To guarantee a full 24 hours of data we must make 2 requests.
-    response_url: Response = r.post(API_ENDPOINT, data={
-                'fechaInicial': (target_datetime -timedelta(days=1)).strftime("%d/%m/%Y"),
-                'fechaFinal': target_datetime.strftime("%d/%m/%Y"),
-                'indicador': 0
-            })
-    production_data = response_url.json()['GraficoTipoCombustible']['Series']
+    response_url: Response = r.post(
+        API_ENDPOINT,
+        data={
+            "fechaInicial": (target_datetime - timedelta(days=1)).strftime("%d/%m/%Y"),
+            "fechaFinal": target_datetime.strftime("%d/%m/%Y"),
+            "indicador": 0,
+        },
+    )
+    production_data = response_url.json()["GraficoTipoCombustible"]["Series"]
 
     all_production_breakdowns: list[ProductionBreakdownList] = []
     for item in production_data:
         production_mode_list = ProductionBreakdownList(logger)
         production_mode = MAP_GENERATION[item["Name"]]
         for data in item["Data"]:
-            productionMix= ProductionMix()
-            productionMix.add_value(production_mode, round(float(data["Valor"]),3))
-            production_mode_list.append(zoneKey=zone_key,
+            productionMix = ProductionMix()
+            productionMix.add_value(production_mode, round(float(data["Valor"]), 3))
+            production_mode_list.append(
+                zoneKey=zone_key,
                 datetime=parse_datetime(data["Nombre"]),
-                source = SOURCE,
-                production = productionMix
-
+                source=SOURCE,
+                production=productionMix,
             )
         all_production_breakdowns.append(production_mode_list)
-    production_events = ProductionBreakdownList.merge_production_breakdowns(all_production_breakdowns, logger)
+    production_events = ProductionBreakdownList.merge_production_breakdowns(
+        all_production_breakdowns, logger
+    )
     production_events = production_events.to_list()
 
     # Drop last datapoints if it "looks" incomplete.
@@ -76,7 +84,9 @@ def fetch_production(
     # We only run this check when target_datetime is None, as to not affect refetches
     # TODO: remove this in the future, when this is automatically detected by QA layer
 
-    total_production_per_datapoint = [sum(d["production"].values()) for d in production_events]
+    total_production_per_datapoint = [
+        sum(d["production"].values()) for d in production_events
+    ]
     mean_production = sum(total_production_per_datapoint) / len(
         total_production_per_datapoint
     )
