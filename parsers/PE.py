@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -11,6 +10,8 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 
 logger = getLogger(__name__)
+
+API_ENDPOINT = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
 
 TIMEZONE = ZoneInfo("America/Lima")
 
@@ -41,10 +42,9 @@ def fetch_production(
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
     r = session or Session()
-    url = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
 
     # To guarantee a full 24 hours of data we must make 2 requests.
-    response_url: Response = r.post(url, data={
+    response_url: Response = r.post(API_ENDPOINT, data={
                 'fechaInicial': (target_datetime -timedelta(days=1)).strftime("%d/%m/%Y"),
                 'fechaFinal': target_datetime.strftime("%d/%m/%Y"),
                 'indicador': 0
