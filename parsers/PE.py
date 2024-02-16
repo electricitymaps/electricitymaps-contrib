@@ -43,12 +43,6 @@ def fetch_production(
     r = session or Session()
     url = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
 
-    # # current_date = arrow.now(tz=tz)
-
-    # today = current_date.format("DD/MM/YYYY")
-    # yesterday = current_date.shift(days=-1).format("DD/MM/YYYY")
-    # end_date = current_date.shift(days=+1).format("DD/MM/YYYY")
-
     # To guarantee a full 24 hours of data we must make 2 requests.
     response_url: Response = r.post(url, data={
                 'fechaInicial': (target_datetime -timedelta(days=1)).strftime("%d/%m/%Y"),
