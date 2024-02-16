@@ -1,5 +1,5 @@
 import { useTheme } from 'hooks/theme';
-import { Layer, Source } from 'react-map-gl';
+import { Layer, Source } from 'react-map-gl/maplibre';
 
 import { useGetGeometries } from '../map-utils/getMapGrid';
 

@@ -1,7 +1,6 @@
 import { useGetSolar } from 'api/getWeatherData';
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useRef } from 'react';
-import { MapboxMap } from 'react-map-gl';
 import { ToggleOptions } from 'utils/constants';
 import {
   selectedDatetimeIndexAtom,
@@ -33,7 +32,7 @@ function convertYToLat(yMax: number, y: number): number {
   );
 }
 
-export default function SolarLayer({ map }: { map?: MapboxMap }) {
+export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [solarLayerToggle] = useAtom(solarLayerEnabledAtom);
   const setIsLoadingSolarLayer = useSetAtom(solarLayerLoadingAtom);

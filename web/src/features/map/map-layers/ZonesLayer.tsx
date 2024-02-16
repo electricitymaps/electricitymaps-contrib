@@ -1,6 +1,6 @@
 import { useTheme } from 'hooks/theme';
 import { useMemo } from 'react';
-import { Layer, Source } from 'react-map-gl';
+import { Layer, Source } from 'react-map-gl/maplibre';
 
 import { ZONE_SOURCE } from '../Map';
 import { useGetGeometries } from '../map-utils/getMapGrid';
