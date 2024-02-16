@@ -1,10 +1,9 @@
-
 from requests import Session
 from requests_mock import GET, Adapter
-from electricitymap.contrib.lib.types import ZoneKey
-from parsers.MN import fetch_production, NDC_GENERATION, fetch_exchange
-from parsers.RU import BASE_EXCHANGE_URL
 
+from electricitymap.contrib.lib.types import ZoneKey
+from parsers.MN import NDC_GENERATION, fetch_exchange, fetch_production
+from parsers.RU import BASE_EXCHANGE_URL
 
 
 def test_production(snapshot):
@@ -38,7 +37,6 @@ def test_production(snapshot):
 
 
 def test_exchange(snapshot):
-
     session = Session()
     adapter = Adapter()
     session.mount("https://", adapter)
