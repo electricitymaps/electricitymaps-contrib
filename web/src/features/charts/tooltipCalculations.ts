@@ -47,10 +47,9 @@ export function getProductionTooltipData(
 
   const generationTypeCapacity = capacity ? capacity[selectedLayerKey] : undefined;
   const generationTypeProduction = production[generationType];
-  const capacitySource =
-    capacitySources && generationTypeCapacity
-      ? capacitySources[selectedLayerKey]
-      : undefined;
+  const capacitySource = generationTypeCapacity
+    ? capacitySources?.[selectedLayerKey]
+    : undefined;
 
   const generationTypeStorage = storageKey ? storage[storageKey] : 0;
 
