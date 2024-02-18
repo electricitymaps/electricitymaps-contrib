@@ -11,7 +11,6 @@ from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_BY_GROUP,
     query_ENTSOE,
-    zulu_to_utc,
 )
 
 """
