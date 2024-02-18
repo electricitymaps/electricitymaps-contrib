@@ -37,6 +37,11 @@ export const getZoneName = (zoneCode: string) =>
 export const getCountryName = (zoneCode: string) =>
   translateIfExists(`zoneShortName.${zoneCode}.countryName`);
 
+export const getZoneDisplayName = (zoneCode: string) => {
+  const displayName = translateIfExists(`zoneShortName.${zoneCode}.displayName`);
+  return displayName || getZoneName(zoneCode);
+};
+
 const DEFAULT_ZONE_NAME_LIMIT = 40;
 /**
  * Gets the name of a zone with the country name in parentheses and zone-name ellipsified if too long.
@@ -47,7 +52,7 @@ export function getShortenedZoneNameWithCountry(
   zoneCode: string,
   limit = DEFAULT_ZONE_NAME_LIMIT
 ) {
-  const zoneName = getZoneName(zoneCode);
+  const zoneName = getZoneDisplayName(zoneCode);
   if (!zoneName) {
     return zoneCode;
   }
