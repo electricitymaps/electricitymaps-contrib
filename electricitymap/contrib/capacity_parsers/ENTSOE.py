@@ -11,6 +11,7 @@ from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_BY_GROUP,
     query_ENTSOE,
+    zulu_to_utc,
 )
 
 """
@@ -53,7 +54,7 @@ def query_capacity(
         session,
         params,
         target_datetime=target_datetime,
-        span=(0, 72),
+        span=(0, 72),  # DO NOT USE A NEGATIVE LOOKBACK
         function_name=query_capacity.__name__,
     )
 
@@ -69,21 +70,28 @@ def fetch_production_capacity(
         fuel_code = str(
             timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
         )
-        end_date = datetime.strptime(
-            timeseries.find_all("end")[0].contents[0], "%Y-%m-%dT%H:00Z"
+        start_date = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
         )
-        if end_date.year != target_datetime.year:
-            pass  # query_ENTSOE fetches data for 2 years, so we need to filter out the data for the previous year
-        else:
-            point = timeseries.find_all("point")
-            value = float(point[0].find_all("quantity")[0].contents[0])
-            if ENTSOE_PARAMETER_BY_GROUP[fuel_code] not in capacity_dict:
-                capacity_dict[ENTSOE_PARAMETER_BY_GROUP[fuel_code]] = {
-                    "value": 0,
-                    "datetime": end_date.strftime("%Y-01-01"),
-                    "source": SOURCE,
-                }
-            capacity_dict[ENTSOE_PARAMETER_BY_GROUP[fuel_code]]["value"] += value
+
+        end_date = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find_all("end")[0].contents[0])
+        )
+        year = 0
+        if end_date.year == target_datetime.year:
+            year = end_date.year
+        elif start_date.year == target_datetime.year:
+            year = start_date.year
+
+        point = timeseries.find_all("point")
+        value = float(point[0].find_all("quantity")[0].contents[0])
+        if ENTSOE_CODE_TO_EM_MAPPING[fuel_code] not in capacity_dict:
+            capacity_dict[ENTSOE_CODE_TO_EM_MAPPING[fuel_code]] = {
+                "value": 0,
+                "datetime": f"{year}-01-01",
+                "source": SOURCE,
+            }
+        capacity_dict[ENTSOE_CODE_TO_EM_MAPPING[fuel_code]]["value"] += value
     if capacity_dict:
         logger.info(
             f"Capacity data for {zone_key} on {target_datetime.date()}: \n{capacity_dict}"
