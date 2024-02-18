@@ -32,15 +32,17 @@ export const translateIfExists = (key: string) => {
   return i18next.exists(key) ? i18next.t(key) : '';
 };
 
-export const getZoneName = (zoneCode: string) =>
-  translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
+export const getFullZoneName = (zoneCode: string) => {
+  return translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
+};
+export const getZoneName = (zoneCode: string) => {
+  const displayName = translateIfExists(`zoneShortName.${zoneCode}.displayName`);
+  const fullName = getFullZoneName(zoneCode);
+  return displayName || fullName;
+};
+
 export const getCountryName = (zoneCode: string) =>
   translateIfExists(`zoneShortName.${zoneCode}.countryName`);
-
-export const getZoneDisplayName = (zoneCode: string) => {
-  const displayName = translateIfExists(`zoneShortName.${zoneCode}.displayName`);
-  return displayName || getZoneName(zoneCode);
-};
 
 const DEFAULT_ZONE_NAME_LIMIT = 40;
 /**
@@ -52,7 +54,7 @@ export function getShortenedZoneNameWithCountry(
   zoneCode: string,
   limit = DEFAULT_ZONE_NAME_LIMIT
 ) {
-  const zoneName = getZoneDisplayName(zoneCode);
+  const zoneName = getZoneName(zoneCode);
   if (!zoneName) {
     return zoneCode;
   }
