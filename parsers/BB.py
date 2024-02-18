@@ -135,7 +135,7 @@ def fetch_production(
             production=ProductionMix(
                 solar=row["24 hr monitored solar production"],
                 wind=row["24 hr monitored wind production"],
-                unknown=row["24 hr fossil production"],
+                oil=row["24 hr fossil production"],
             ),
             storage=StorageMix(
                 battery=(
