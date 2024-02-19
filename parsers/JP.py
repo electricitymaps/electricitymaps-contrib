@@ -176,10 +176,7 @@ def fetch_consumption_df(
 
     # First roughly 40 rows of the consumption files have hourly data,
     # the parser skips to the rows with 5-min actual values
-    if zone_key == "JP-KN":
-        startrow = 57
-    else:
-        startrow = 54
+    startrow = 57 if zone_key == "JP-KN" else 54
 
     try:
         df = pd.read_csv(
@@ -241,10 +238,7 @@ def fetch_consumption_forecast(
         "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
     # Skip non-tabular data at the start of source files
-    if zone_key == "JP-KN":
-        startrow = 16
-    else:
-        startrow = 13
+    startrow = 16 if zone_key == "JP-KN" else 13
     # Read the 24 hourly values
     df = pd.read_csv(
         consumption_url[zone_key], skiprows=startrow, nrows=24, encoding="shift-jis"

@@ -11,7 +11,8 @@ yaml = YAML(typ="safe")
 def read_defaults(config_dir) -> dict[str, Any]:
     """Reads the defaults.yaml file."""
     defaults_path = config_dir.joinpath("defaults.yaml")
-    return yaml.load(open(defaults_path, encoding="utf-8"))
+    with open(defaults_path, encoding="utf-8") as file:
+        return yaml.load(file)
 
 
 def read_zones_config(config_dir) -> dict[ZoneKey, Any]:
@@ -19,7 +20,8 @@ def read_zones_config(config_dir) -> dict[ZoneKey, Any]:
     zones_config: dict[ZoneKey, Any] = {}
     for zone_path in config_dir.joinpath("zones").glob("*.yaml"):
         zone_key = ZoneKey(zone_path.stem)
-        zones_config[zone_key] = yaml.load(open(zone_path, encoding="utf-8"))
+        with open(zone_path, encoding="utf-8") as file:
+            zones_config[zone_key] = yaml.load(file)
     return zones_config
 
 
@@ -31,7 +33,6 @@ def read_exchanges_config(config_dir) -> dict[str, Any]:
         zone_keys = exchange_key_unicode.split(EXCHANGE_FILENAME_ZONE_SEPARATOR)
         assert len(zone_keys) == 2
         exchange_key = "->".join(zone_keys)
-        exchanges_config[exchange_key] = yaml.load(
-            open(exchange_path, encoding="utf-8")
-        )
+        with open(exchange_path, encoding="utf-8") as file:
+            exchanges_config[exchange_key] = yaml.load(file)
     return exchanges_config

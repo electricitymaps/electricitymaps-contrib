@@ -21,11 +21,10 @@ class TestUSSPP(unittest.TestCase):
         fake_data = read_pickle(filename)
 
         # Suppress log messages to prevent interfering with test formatting.
-        with LogCapture():
-            with patch("parsers.US_SPP.get_data") as gd:
-                gd.return_value = fake_data
-                data = US_SPP.fetch_production(logger=logging.getLogger("test"))
-                datapoint = data[-1]
+        with LogCapture(), patch("parsers.US_SPP.get_data") as gd:
+            gd.return_value = fake_data
+            data = US_SPP.fetch_production(logger=logging.getLogger("test"))
+            datapoint = data[-1]
 
         with self.subTest():
             self.assertIsInstance(data, list)

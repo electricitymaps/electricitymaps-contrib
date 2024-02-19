@@ -143,6 +143,7 @@ select = [
     "B",
     "A",
     "C4",
+    "SIM"
 ]
 ignore = [
     "B008", # This flags every parser we have, let's ignore it for now
