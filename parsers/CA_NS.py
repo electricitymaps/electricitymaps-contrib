@@ -1,212 +1,178 @@
 #!/usr/bin/env python3
-
-# The datetime library is used to handle datetimes
 from datetime import datetime, timezone
 from logging import Logger, getLogger
+from typing import Any
+from zoneinfo import ZoneInfo
 
+from bs4 import BeautifulSoup
 from requests import Session
 
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
+from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.exceptions import ParserException
 
+# The table shown on the "Daily Report" page
+# (https://www.nspower.ca/oasis/system-reports-messages/daily-report) is inside
+# an iframe which refers to the following URL.
+EXCHANGE_URL = (
+    "https://resourcesprd-nspower.aws.silvertech.net/oasis/current_report.shtml"
+)
+LOAD_URL = "https://www.nspower.ca/library/CurrentLoad/CurrentLoad.json"
+MIX_URL = "https://www.nspower.ca/library/CurrentLoad/CurrentMix.json"
+PARSER = "CA_NS.py"
 SOURCE = "nspower.ca"
+ZONE_KEY = ZoneKey("CA-NS")
 
 
-def _get_ns_info(requests_obj, logger: Logger):
-    zone_key = ZoneKey("CA-NS")
-
-    # This is based on validation logic in https://www.nspower.ca/site/renewables/assets/js/site.js
-    # In practical terms, I've seen hydro production go way too high (>70%) which is way more
-    # than reported capacity.
-    valid_percent = {
-        # The validation JS reports error when Solid Fuel (coal) is over 85%,
-        # but as far as I can tell, that can actually be a valid result, I've seen it a few times.
-        # Use 98% instead.
-        "coal": (0, 0.98),
-        "gas": (0, 0.5),
-        "oil": (0, 0.5),
-        "biomass": (0, 0.15),
-        "hydro": (0, 0.60),
-        "wind": (0, 0.55),
-        "imports": (0, 0.50),
-    }
-
-    # Sanity checks: verify that reported production doesn't exceed listed capacity by a lot.
-    # In particular, we've seen error cases where hydro production ends up calculated as 900 MW
-    # which greatly exceeds known capacity of around 520 MW.
-    valid_absolute = {
-        "coal": 1300,
-        "gas": 700,
-        "oil": 300,
-        "biomass": 100,
-        "hydro": 600,
-        "wind": 700,
-    }
-
-    mix_url = "https://www.nspower.ca/library/CurrentLoad/CurrentMix.json"
-    mix_data = requests_obj.get(mix_url).json()
-
-    load_url = "https://www.nspower.ca/library/CurrentLoad/CurrentLoad.json"
-    load_data = requests_obj.get(load_url).json()
-
-    # filter load_data that has a value of 0 MW
-    filtered_load_data = [
-        load_elem for load_elem in load_data if load_elem["Base Load"] > 0
-    ]
-
-    all_production_breakdowns = ProductionBreakdownList(logger)
-    all_exchanges = ExchangeList(logger)
-    for mix in mix_data:
-        percent_mix = {
-            "coal": mix["Solid Fuel"] / 100.0,
-            "gas": (mix["HFO/Natural Gas"] + mix["LM 6000's"]) / 100.0,
-            "oil": mix["CT's"] / 100.0,
-            "biomass": mix["Biomass"] / 100.0,
-            "hydro": mix["Hydro"] / 100.0,
-            "wind": mix["Wind"] / 100.0,
-            "imports": mix["Imports"] / 100.0,
-        }
-
-        # datetime is in format '/Date(1493924400000)/'
-        # get the timestamp 1493924400 (cutting out last three zeros as well)
-        data_timestamp = int(mix["datetime"][6:-5])
-        data_date = datetime.fromtimestamp(data_timestamp, tz=timezone.utc)
-
-        # validate
-        valid = True
-        for gen_type, value in percent_mix.items():
-            percent_bounds = valid_percent[gen_type]
-            if not (percent_bounds[0] <= value <= percent_bounds[1]):
-                # skip this datapoint in the loop
-                valid = False
-                logger.warning(
-                    f"discarding datapoint at {data_date} due to {gen_type} percentage "
-                    f"out of bounds: {value}",
-                    extra={"key": zone_key},
-                )
-        if not valid:
-            # continue the outer loop, not the inner
-            continue
-
-        # in mix_data, the values are expressed as percentages,
-        # and have to be multiplied by load to find the actual MW value.
-        corresponding_load = [
-            load_period
-            for load_period in filtered_load_data
-            if load_period["datetime"] == mix["datetime"]
-        ]
-
-        if not corresponding_load:
-            continue
-
-        load = corresponding_load[0]["Base Load"]
-        electricity_mix = {
-            gen_type: percent_value * load
-            for gen_type, percent_value in percent_mix.items()
-        }
-
-        # validate again
-        valid = True
-        for gen_type, value in electricity_mix.items():
-            absolute_bound = valid_absolute.get(
-                gen_type
-            )  # imports are not in valid_absolute
-            if absolute_bound and value > absolute_bound:
-                valid = False
-                logger.warning(
-                    f"discarding datapoint at {data_date} due to {gen_type} "
-                    f"too high: {value} MW",
-                    extra={"key": zone_key},
-                )
-        if not valid:
-            # continue the outer loop, not the inner
-            continue
-
-        productionMix = ProductionMix()
-        for mode in electricity_mix:
-            if mode in PRODUCTION_MODES:
-                productionMix.add_value(mode, electricity_mix[mode])
-            else:
-                all_exchanges.append(
-                    zoneKey=ZoneKey("CA-NB->CA-NS"),
-                    netFlow=electricity_mix["imports"],
-                    datetime=data_date,
-                    source=SOURCE,
-                )
-        all_production_breakdowns.append(
-            zoneKey=zone_key,
-            datetime=data_date,
-            production=productionMix,
-            source=SOURCE,
-        )
-    return all_production_breakdowns.to_list(), all_exchanges.to_list()
+def _parse_timestamp(timestamp: str) -> datetime:
+    """
+    Construct a datetime object from a date string formatted as, e.g.,
+    "/Date(1493924400000)/" by extracting the Unix timestamp 1493924400. Note
+    that the three trailing zeros are cut out as well).
+    """
+    return datetime.fromtimestamp(int(timestamp[6:-5]), tz=timezone.utc)
 
 
 def fetch_production(
-    zone_key: str = "CA-NS",
+    zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
-        raise NotImplementedError(
-            "This parser is unable to give information more than 24 hours in the past"
+        raise ParserException(PARSER, "Unable to fetch historical data", zone_key)
+
+    if zone_key != ZONE_KEY:
+        raise ParserException(PARSER, f"Cannot parse zone '{zone_key}'", zone_key)
+
+    # Request data from the source. Skip the first element of each JSON array
+    # because the reported base load is always 0 MW.
+    session = session or Session()
+    loads = {  # A lookup table mapping timestamps to base loads (in MW)
+        _parse_timestamp(load["datetime"]): load["Base Load"]
+        for load in session.get(LOAD_URL).json()[1:]
+    }
+    mixes = session.get(MIX_URL).json()[1:]  # Electricity mix breakdowns in %
+
+    production_breakdowns = ProductionBreakdownList(logger)
+    for mix in mixes:
+        timestamp = _parse_timestamp(mix["datetime"])
+        if timestamp not in loads:
+            logger.warning(
+                f"unable to find base load for {timestamp}",
+                extra={"zone_key": ZONE_KEY},
+            )
+            continue
+        load = loads[timestamp]
+        if load <= 0:
+            logger.warning(
+                f"invalid base load of {load} MW", extra={"zone_key": ZONE_KEY}
+            )
+            continue
+
+        production_mix = ProductionMix()
+        production_mix.add_value("biomass", load * mix["Biomass"] / 100)
+        production_mix.add_value("coal", load * mix["Solid Fuel"] / 100)
+        production_mix.add_value("gas", load * mix["HFO/Natural Gas"] / 100)
+        production_mix.add_value("gas", load * mix["LM 6000's"] / 100)
+        production_mix.add_value("hydro", load * mix["Hydro"] / 100)
+        production_mix.add_value("oil", load * mix["CT's"] / 100)
+        production_mix.add_value("wind", load * mix["Wind"] / 100)
+        # Sanity checks: verify that reported production doesn't exceed listed
+        # capacity by a lot. In particular, we've seen error cases where hydro
+        # production ends up calculated as 900 MW which greatly exceeds known
+        # capacity of around 520 MW.
+        if (
+            (production_mix.biomass or 0) > 100
+            or (production_mix.coal or 0) > 1300
+            or (production_mix.gas or 0) > 700
+            or (production_mix.hydro or 0) > 600
+            or (production_mix.oil or 0) > 300
+            or (production_mix.wind or 0) > 700
+        ):
+            logger.warning(
+                "discarding datapoint at %s because some mode's production is "
+                "infeasible: %s",
+                timestamp,
+                production_mix,
+                extra={"key": ZONE_KEY},
+            )
+            continue
+        production_breakdowns.append(
+            datetime=timestamp,
+            production=production_mix,
+            source=SOURCE,
+            zoneKey=ZONE_KEY,
         )
 
-    r = session or Session()
-
-    production, imports = _get_ns_info(r, logger)
-
-    return production
+    return production_breakdowns.to_list()
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     """
     Requests the last known power exchange (in MW) between two regions.
-
-    Note: As of early 2017, Nova Scotia only has an exchange with New Brunswick (CA-NB).
-    (An exchange with Newfoundland, "Maritime Link", is scheduled to open in "late 2017").
-
-    The API for Nova Scotia only specifies imports.
-    When NS is exporting energy, the API returns 0.
     """
     if target_datetime:
-        raise NotImplementedError(
-            "This parser is unable to give information more than 24 hours in the past"
+        raise ParserException(PARSER, "Unable to fetch historical data", ZONE_KEY)
+
+    sorted_zone_keys = ZoneKey("->".join(sorted((zone_key1, zone_key2))))
+    if sorted_zone_keys not in (ZoneKey("CA-NB->CA-NS"), ZoneKey("CA-NL-NF->CA-NS")):
+        raise ParserException(PARSER, "Unimplemented exchange pair", sorted_zone_keys)
+
+    session = session or Session()
+    soup = BeautifulSoup(session.get(EXCHANGE_URL).text, "html.parser")
+
+    # Extract the timestamp from the table header.
+    try:
+        timestamp = datetime.strptime(
+            soup.find(string="Current System Conditions").find_next("td").em.i.string,
+            "%d-%b-%y %H:%M:%S",
+        ).replace(tzinfo=ZoneInfo("America/Halifax"))
+    except (AttributeError, TypeError, ValueError) as error:
+        raise ParserException(
+            PARSER, "unable to extract timestamp", sorted_zone_keys
+        ) from error
+
+    # Choose the appropriate exchange figure for the requested zone pair.
+    try:
+        exchange = (
+            -float(soup.find(string="NS Export ").find_next("td").string)
+            if sorted_zone_keys == ZoneKey("CA-NB->CA-NS")
+            else float(soup.find(string="Maritime Link Import ").find_next("td").string)
         )
+    except (AttributeError, TypeError) as error:
+        raise ParserException(
+            PARSER, "unable to extract exchange data", sorted_zone_keys
+        ) from error
 
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-
-    if sorted_zone_keys != "CA-NB->CA-NS":
-        raise NotImplementedError("This exchange pair is not implemented")
-
-    requests_obj = session or Session()
-    _, imports = _get_ns_info(requests_obj, logger)
-
-    return imports
+    exchanges = ExchangeList(logger)
+    exchanges.append(
+        datetime=timestamp,
+        netFlow=exchange,
+        source=SOURCE,
+        zoneKey=sorted_zone_keys,
+    )
+    return exchanges.to_list()
 
 
 if __name__ == "__main__":
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
-
+    # Never used by the Electricity Map backend, but handy for testing.
     from pprint import pprint
 
-    test_logger = getLogger()
-
     print("fetch_production() ->")
-    pprint(fetch_production(logger=test_logger))
-
+    pprint(fetch_production())
     print('fetch_exchange("CA-NS", "CA-NB") ->')
-    pprint(fetch_exchange("CA-NS", "CA-NB", logger=test_logger))
+    pprint(fetch_exchange(ZoneKey("CA-NS"), ZoneKey("CA-NB")))
+    print('fetch_exchange("CA-NL-NF", "CA-NS") ->')
+    pprint(fetch_exchange(ZoneKey("CA-NL-NF"), ZoneKey("CA-NS")))

@@ -22,7 +22,8 @@ class ZonesJsonTestcase(unittest.TestCase):
                 self.assertIn(sub_zone, zone_keys)
 
     def test_zones_from_geometries_exist(self):
-        world_geometries = json.load(open("web/geo/world.geojson"))
+        with open("web/geo/world.geojson") as file:
+            world_geometries = json.load(file)
         world_geometries_zone_keys = set()
         for ft in world_geometries["features"]:
             world_geometries_zone_keys.add(ft["properties"]["zoneName"])

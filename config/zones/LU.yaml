@@ -12,9 +12,9 @@ capacity:
       source: entsoe.eu
       value: 71.0
   coal:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 0.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
   gas:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -23,25 +23,25 @@ capacity:
       source: entsoe.eu
       value: 76.0
   geothermal:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 0.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
   hydro:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 33.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 33.0
   hydro storage:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 0.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
   nuclear:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 0.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
   oil:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 0.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
   solar:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -50,9 +50,9 @@ capacity:
       source: entsoe.eu
       value: 350.0
   unknown:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 0.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
   wind:
     - datetime: '2023-01-01'
       source: entsoe.eu
