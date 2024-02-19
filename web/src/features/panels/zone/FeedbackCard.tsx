@@ -16,7 +16,7 @@ export default function FeedbackCard() {
   const subtitle = getQuestionTranslation('subtitle', state);
 
   if (isClosed) {
-    return null; // Don't render the component if closed
+    return null;
   }
 
   return (
@@ -119,6 +119,10 @@ function FeedbackActions({
 
   const handleSave = () => {
     setState('3');
+    fetch(`https://hooks.zapier.com/hooks/catch/14671709/3l9daod/`, {
+      method: 'POST',
+      body: JSON.stringify({ score: feedbackScore, feedback: inputText }),
+    });
   };
 
   if (state === '3') {
@@ -215,7 +219,7 @@ function PillContent({
             }`}
         >
           <div
-            className={`text-xs font-semibold ${
+            className={`text-sm font-semibold ${
               CurrentPillNumber == String(content)
                 ? ' text-zinc-50 dark:text-gray-900'
                 : ''

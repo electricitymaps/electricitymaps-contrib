@@ -29,7 +29,7 @@ export default function Pill({
       disabled={isDisabled}
       data-test-id="pill"
     >
-      <div className={`text-xs font-semibold`}>{text}</div>
+      <div className={`text-sm font-semibold`}>{text}</div>
     </Element>
   );
 }
