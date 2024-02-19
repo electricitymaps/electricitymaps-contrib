@@ -34,7 +34,7 @@ export default function EstimationCard({
   if (cardType == 'outage') {
     return <OutageCard outageMessage={outageMessage} />;
   } else if (cardType == 'aggregated') {
-    return <AggregatedCard />;
+    return <AggregatedCard estimatedPercentage={estimatedPercentage} />;
   } else if (cardType == 'estimated') {
     return (
       <div>
