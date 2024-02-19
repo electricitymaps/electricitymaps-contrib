@@ -91,7 +91,7 @@ def fetch_operational_data(
         # WHEN HISTORICAL DATA IS NOT AVAILABLE
         raise ParserException(
             "BB.py",
-            "This parser is not yet able to parse dates before 2000-01-01",
+            "This parser is not yet able to parse dates before 2023-02-27",
             zone_key,
         )
 
