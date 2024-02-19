@@ -13,7 +13,7 @@ from requests import Session
 
 timezone = "Pacific/Auckland"
 
-NZ_PRICE_REGIONS = {i for i in range(1, 14)}
+NZ_PRICE_REGIONS = set(range(1, 14))
 
 
 def fetch(session: Session | None = None):

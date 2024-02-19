@@ -137,6 +137,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - United Arab Emirates: [GCCIA](https://www.gccia.com.sa/)
 - United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
+  - Alaska (Southeast Alaska Power Agency): [SEAPA](https://seapahydro.org/scada)
   - California (US-CAL-CISO): [CAISO](http://www.caiso.com/Pages/default.aspx)
   - Hawaii, Oahu Island (US-HI-OA): [Islandpulse](https://www.islandpulse.org/)
   - New England (US-NE-ISNE): [NEISO](https://www.iso-ne.com/isoexpress/)
