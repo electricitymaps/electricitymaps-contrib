@@ -61,7 +61,7 @@ class WindAndSolarProductionForecastTypes(Enum):
 
 # The order of the forecast types is important for the parser to use the most recent data
 # This ensures that the order is consistent across all runs even if the enum is changed
-ORDERED_FORCAST_TYPES = [
+ORDERED_FORECAST_TYPES = [
     WindAndSolarProductionForecastTypes.DAY_AHEAD,
     WindAndSolarProductionForecastTypes.INTRADAY,
     WindAndSolarProductionForecastTypes.CURRENT,
@@ -1399,7 +1399,7 @@ def fetch_wind_solar_forecasts(
         session = Session()
     raw_forecasts = {}
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    for data_type in ORDERED_FORCAST_TYPES:
+    for data_type in ORDERED_FORECAST_TYPES:
         try:
             raw_forecasts[data_type.name] = query_wind_solar_production_forecast(
                 domain, session, data_type, target_datetime=target_datetime
