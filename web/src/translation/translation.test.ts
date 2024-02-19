@@ -25,3 +25,13 @@ describe('translateIfExists', () => {
 
   expect(translation).to.equal('');
 });
+
+describe.skip('getZoneName', () => {});
+it('...', () => {
+  console.log('TODO');
+});
+
+describe.skip('getShortenedZoneNameWithCountry', () => {});
+it('should return the shortened zone name with country', () => {
+  console.log('TODO');
+});
