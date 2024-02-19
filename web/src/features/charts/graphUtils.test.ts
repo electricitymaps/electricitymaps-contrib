@@ -11,23 +11,23 @@ import {
 describe('getRatioPercent', () => {
   it('handles 0 of 0', () => {
     const actual = getRatioPercent(0, 0);
-    expect(actual).toEqual(0);
+    expect(actual).to.deep.eq(0);
   });
   it('handles 10 of 0', () => {
     const actual = getRatioPercent(10, 0);
-    expect(actual).toEqual('?');
+    expect(actual).to.deep.eq('?');
   });
   it('handles 0 of 10', () => {
     const actual = getRatioPercent(0, 10);
-    expect(actual).toEqual(0);
+    expect(actual).to.deep.eq(0);
   });
   it('handles 5 of 5', () => {
     const actual = getRatioPercent(5, 5);
-    expect(actual).toEqual(100);
+    expect(actual).to.deep.eq(100);
   });
   it('handles 1 of 5', () => {
     const actual = getRatioPercent(1, 5);
-    expect(actual).toEqual(20);
+    expect(actual).to.deep.eq(20);
   });
 });
 
@@ -39,7 +39,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: undefined,
       generationTypeProduction: 41_161,
     });
-    expect(actual).toEqual(41_161);
+    expect(actual).to.deep.eq(41_161);
   });
 
   it('handles storage', () => {
@@ -49,7 +49,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: -3738.75,
       generationTypeProduction: 11_930.25,
     });
-    expect(actual).toEqual(3738.75);
+    expect(actual).to.deep.eq(3738.75);
   });
 
   it('handles missing storage', () => {
@@ -59,7 +59,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: null,
       generationTypeProduction: 999,
     });
-    expect(actual).toEqual(null);
+    expect(actual).to.deep.eq(null);
   });
 
   it('handles zero storage', () => {
@@ -69,7 +69,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: 0,
       generationTypeProduction: 999,
     });
-    expect(actual).toEqual(0);
+    expect(actual).to.deep.eq(0);
   });
 
   it('handles zero production', () => {
@@ -79,7 +79,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: undefined,
       generationTypeProduction: 0,
     });
-    expect(actual).toEqual(0);
+    expect(actual).to.deep.eq(0);
   });
 
   it('handles null production', () => {
@@ -89,7 +89,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: undefined,
       generationTypeProduction: null,
     });
-    expect(actual).toEqual(null);
+    expect(actual).to.deep.eq(null);
   });
 });
 
@@ -107,22 +107,22 @@ describe('getTotalEmissionsAvailableOrElectricityAvailable', () => {
 
   it('handles emissions for consumption', () => {
     const actual = getTotalEmissionsAvailable(zoneData, Mode.CONSUMPTION);
-    expect(actual).toEqual(175);
+    expect(actual).to.deep.eq(175);
   });
 
   it('handles power for consumption', () => {
     const actual = getTotalElectricityAvailable(zoneData, Mode.CONSUMPTION);
-    expect(actual).toEqual(350);
+    expect(actual).to.deep.eq(350);
   });
 
   it('handles emissions for production', () => {
     const actual = getTotalEmissionsAvailable(zoneData, Mode.PRODUCTION);
-    expect(actual).toEqual(150);
+    expect(actual).to.deep.eq(150);
   });
 
   it('handles power for production', () => {
     const actual = getTotalElectricityAvailable(zoneData, Mode.PRODUCTION);
-    expect(actual).toEqual(250);
+    expect(actual).to.deep.eq(250);
   });
 
   it('returns 0 when productionValue is 0', () => {
@@ -130,13 +130,13 @@ describe('getTotalEmissionsAvailableOrElectricityAvailable', () => {
       { ...zoneData, totalProduction: 0, totalDischarge: 0 },
       Mode.PRODUCTION
     );
-    expect(actual).toEqual(0);
+    expect(actual).to.deep.eq(0);
   });
   it('returns NaN when missing productionValue', () => {
     const actual = getTotalElectricityAvailable(
       { ...zoneData, totalProduction: null },
       Mode.PRODUCTION
     );
-    expect(actual).toEqual(Number.NaN);
+    expect(actual).to.deep.eq(Number.NaN);
   });
 });

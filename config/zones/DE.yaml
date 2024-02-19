@@ -7,18 +7,78 @@ bounding_box:
   - - 15.0732421875
     - 55.1537662685
 capacity:
-  battery storage: 7590
-  biomass: 9020
-  coal: 37940
-  gas: 34800
-  geothermal: 56
-  hydro: 4940
-  hydro storage: 9780
-  nuclear: 0
-  oil: 4680
-  solar: 80740
-  unknown: 3700
-  wind: 69090
+  battery storage:
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 7875.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 4379.0
+  biomass:
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 9030.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 8911.0
+  coal:
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 37489.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 37679.0
+  gas:
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 34799.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 34250.0
+  geothermal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 56
+  hydro:
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 6186.0
+  hydro storage:
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 9699.0
+  nuclear:
+    - datetime: '2023-04-15'
+      source: Fraunhofer ISE
+      value: 0.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 4056.0
+  oil:
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 4682.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 4689.0
+  solar:
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 81824.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 67563.0
+  unknown:
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 2766.0
+  wind:
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 69485.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 66189.0
 contributors:
   - corradio
   - bohne13

@@ -90,10 +90,9 @@ export function getExchangeTooltipData(
 ) {
   const { zoneKey, exchangeCo2Intensities, exchangeCapacities } = zoneDetail;
 
-  const co2Intensity = exchangeCo2Intensities[exchangeKey];
-
-  const exchangeCapacityRange = (exchangeCapacities || {})[exchangeKey];
-  const exchange = (zoneDetail.exchange || {})[exchangeKey];
+  const co2Intensity = exchangeCo2Intensities?.[exchangeKey];
+  const exchangeCapacityRange = exchangeCapacities?.[exchangeKey];
+  const exchange = zoneDetail?.exchange?.[exchangeKey];
 
   const isExport = exchange < 0;
 

@@ -7,10 +7,11 @@ import pycountry
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
 
 """The data is downloaded from the IRENA API. """
 logger = getLogger(__name__)
-IRENA_ZONES = ["IL", "IS", "LK", "NI", "GF", "PF"]
+IRENA_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["IRENA"]
 SOURCE = "IRENA.org"
 IRENA_JSON_TO_MODE_MAPPING = {
     0: "solar",
@@ -80,9 +81,8 @@ def get_data_from_url(target_datetime: datetime, session: Session) -> list:
 
 
 def reallocate_capacity_mode(zone_key: ZoneKey, mode: int) -> dict:
-    if zone_key in SPECIFIC_MODE_MAPPING:
-        if mode in SPECIFIC_MODE_MAPPING[zone_key]:
-            return SPECIFIC_MODE_MAPPING[zone_key][mode]
+    if zone_key in SPECIFIC_MODE_MAPPING and mode in SPECIFIC_MODE_MAPPING[zone_key]:
+        return SPECIFIC_MODE_MAPPING[zone_key][mode]
     return IRENA_JSON_TO_MODE_MAPPING[mode]
 
 

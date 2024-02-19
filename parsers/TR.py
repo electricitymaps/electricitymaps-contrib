@@ -43,12 +43,12 @@ def _str_to_datetime(date_string: str) -> datetime:
     """
     try:
         return datetime.fromisoformat(date_string[:-2] + ":" + date_string[-2:])
-    except ValueError:
+    except ValueError as e:
         raise ParserException(
             parser="TR.py",
             message="Datetime string cannot be parsed: expected "
             f"format has changed and is now {date_string}",
-        )
+        ) from e
 
 
 def fetch_data(target_datetime: datetime, kind: str) -> dict:
@@ -73,7 +73,7 @@ def validate_production_data(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """detects outliers: for real-time data the latest data point can be completely out of the expected range and needs to be excluded"""
-    required = [mode for mode in PRODUCTION_MAPPING]
+    required = list(PRODUCTION_MAPPING)
     floor = (
         17000  # as seen during the Covid-19 pandemic, the minimum production was 17 GW
     )

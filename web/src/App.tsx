@@ -4,16 +4,12 @@ import { ToastProvider } from '@radix-ui/react-toast';
 import * as Sentry from '@sentry/react';
 import { useGetAppVersion } from 'api/getAppVersion';
 import useGetState from 'api/getState';
-import LegendContainer from 'components/legend/LegendContainer';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import Toast from 'components/Toast';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import FeatureFlagsManager from 'features/feature-flags/FeatureFlagsManager';
 import Header from 'features/header/Header';
-import FAQModal from 'features/modals/FAQModal';
-import InfoModal from 'features/modals/InfoModal';
-import SettingsModal from 'features/modals/SettingsModal';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
@@ -22,6 +18,10 @@ import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
+const LegendContainer = lazy(() => import('components/legend/LegendContainer'));
+const FAQModal = lazy(() => import('features/modals/FAQModal'));
+const InfoModal = lazy(() => import('features/modals/InfoModal'));
+const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
 
 const isProduction = import.meta.env.PROD;
 
@@ -72,7 +72,9 @@ export default function App(): ReactElement {
     <Suspense fallback={<div />}>
       <main className="fixed flex h-screen w-screen flex-col">
         <ToastProvider duration={20_000}>
-          <Header />
+          <Suspense>
+            <Header />
+          </Suspense>
           <div className="relative flex flex-auto items-stretch">
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               {isSuccess && isNewVersionAvailable && (
@@ -83,16 +85,32 @@ export default function App(): ReactElement {
                   toastActionText={__('misc.reload')}
                 />
               )}
-              <LoadingOverlay />
-              <OnboardingModal />
-              <FAQModal />
-              <InfoModal />
-              <SettingsModal />
-              <LeftPanel />
-              <MapWrapper />
-              <TimeControllerWrapper />
-              <FeatureFlagsManager />
-              <LegendContainer />
+              <Suspense>
+                <LoadingOverlay />
+              </Suspense>
+              <Suspense>
+                <OnboardingModal />
+              </Suspense>
+              <Suspense>
+                <FAQModal />
+                <InfoModal />
+                <SettingsModal />
+              </Suspense>
+              <Suspense>
+                <LeftPanel />
+              </Suspense>
+              <Suspense>
+                <MapWrapper />
+              </Suspense>
+              <Suspense>
+                <TimeControllerWrapper />
+              </Suspense>
+              <Suspense>
+                <FeatureFlagsManager />
+              </Suspense>
+              <Suspense>
+                <LegendContainer />
+              </Suspense>
             </Sentry.ErrorBoundary>
           </div>
         </ToastProvider>

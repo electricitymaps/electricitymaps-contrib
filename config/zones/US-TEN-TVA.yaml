@@ -5,53 +5,53 @@ bounding_box:
     - 38.101846827
 capacity:
   battery storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1.0
   biomass:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 216.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 216.9
   coal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 7643.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 7643.9
   gas:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 17137.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 17137.0
   geothermal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   hydro:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 4846.8
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 4846.8
   hydro storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1808.6
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1808.6
   nuclear:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 8834.8
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 8834.8
   oil:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 677.8
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 677.8
   solar:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 867.5
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 867.5
   unknown:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   wind:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 28.8
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 28.8
 comment: Tennessee Valley Authority
 contributors:
   - systemcatch

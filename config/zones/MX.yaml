@@ -3,7 +3,39 @@ bounding_box:
     - 14.5388286402
   - - -86.811982388
     - 32.72083
-capacity: {}
+capacity:
+  biomass:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 880.0
+  coal:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 5380.0
+  gas:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 44590.0
+  hydro:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 13300.0
+  nuclear:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1610.0
+  solar:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 9360.0
+  unknown:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 6860.0
+  wind:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 7310.0
 contributors:
   - scriptator
 emissionFactors:

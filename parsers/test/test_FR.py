@@ -12,12 +12,12 @@ def test_production(snapshot):
     adapter = Adapter()
     os.environ["RESEAUX_ENERGIES_TOKEN"] = "test_token"
     session.mount("https://", adapter)
-    mock_file = open("parsers/test/mocks/FR/response.json", "rb")
-    adapter.register_uri(
-        GET,
-        API_ENDPOINT,
-        content=mock_file.read(),
-    )
+    with open("parsers/test/mocks/FR/response.json", "rb") as mock_file:
+        adapter.register_uri(
+            GET,
+            API_ENDPOINT,
+            content=mock_file.read(),
+        )
 
     production = fetch_production(
         zone_key=ZoneKey("FR"),
@@ -31,6 +31,7 @@ def test_production(snapshot):
                 "storage": element["storage"],
                 "source": element["source"],
                 "zoneKey": element["zoneKey"],
+                "sourceType": "measured",
             }
             for element in production
         ]

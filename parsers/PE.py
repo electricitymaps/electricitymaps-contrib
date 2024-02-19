@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
-import dateutil
 from requests import Session
 
 from .lib.validation import validate
 
-tz = "America/Lima"
+API_ENDPOINT = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
+
+TIMEZONE = ZoneInfo("America/Lima")
 
 MAP_GENERATION = {
     "DIESEL": "oil",
@@ -25,8 +26,8 @@ MAP_GENERATION = {
 
 
 def parse_date(item):
-    return arrow.get(item["Nombre"], "YYYY/MM/DD hh:mm:ss").replace(
-        tzinfo=dateutil.tz.gettz(tz)
+    return datetime.strptime(item["Nombre"], "%Y/%m/%d %H:%M:%S").replace(
+        tzinfo=TIMEZONE
     )
 
 
@@ -41,22 +42,24 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or Session()
-    url = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
 
-    current_date = arrow.now(tz=tz)
+    current_date = datetime.now(tz=TIMEZONE)
 
-    today = current_date.format("DD/MM/YYYY")
-    yesterday = current_date.shift(days=-1).format("DD/MM/YYYY")
-    end_date = current_date.shift(days=+1).format("DD/MM/YYYY")
+    date_format = "%d/%m/%Y"
+    today = current_date.strftime(date_format)
+    yesterday = (current_date + timedelta(days=-1)).strftime(date_format)
+    end_date = (current_date + timedelta(days=+1)).strftime(date_format)
 
     # To guarantee a full 24 hours of data we must make 2 requests.
 
     response_today = r.post(
-        url, data={"fechaInicial": today, "fechaFinal": end_date, "indicador": 0}
+        API_ENDPOINT,
+        data={"fechaInicial": today, "fechaFinal": end_date, "indicador": 0},
     )
 
     response_yesterday = r.post(
-        url, data={"fechaInicial": yesterday, "fechaFinal": today, "indicador": 0}
+        API_ENDPOINT,
+        data={"fechaInicial": yesterday, "fechaFinal": today, "indicador": 0},
     )
 
     data_today = response_today.json()["GraficoTipoCombustible"]["Series"]
@@ -86,7 +89,7 @@ def fetch_production(
                 data.append(
                     {
                         "zoneKey": zone_key,
-                        "datetime": dt.datetime,
+                        "datetime": dt,
                         "production": {},
                         "source": "coes.org.pe",
                     }
@@ -105,9 +108,7 @@ def fetch_production(
     # We only run this check when target_datetime is None, as to not affect refetches
     # TODO: remove this in the future, when this is automatically detected by QA layer
     data = sorted(data, key=lambda d: d["datetime"])
-    total_production_per_datapoint = list(
-        map(lambda d: sum(d["production"].values()), data)
-    )
+    total_production_per_datapoint = [sum(d["production"].values()) for d in data]
     mean_production = sum(total_production_per_datapoint) / len(
         total_production_per_datapoint
     )

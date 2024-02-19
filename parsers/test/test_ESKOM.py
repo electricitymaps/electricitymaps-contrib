@@ -11,12 +11,12 @@ def test_production(snapshot):
     session = Session()
     adapter = Adapter()
     session.mount("https://", adapter)
-    mock_file = open("parsers/test/mocks/ESKOM/Station_Build_Up.csv", "rb")
-    adapter.register_uri(
-        GET,
-        get_url(),
-        content=mock_file.read(),
-    )
+    with open("parsers/test/mocks/ESKOM/Station_Build_Up.csv", "rb") as mock_file:
+        adapter.register_uri(
+            GET,
+            get_url(),
+            content=mock_file.read(),
+        )
 
     production = fetch_production(
         zone_key=ZoneKey("ZA"),

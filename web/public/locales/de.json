@@ -1,6 +1,6 @@
 {
   "panel-initial-text": {
-    "thisproject": "Dieses App ist",
+    "thisproject": "Diese App ist",
     "opensource": "Open Source",
     "see": "siehe",
     "datasources": "Datenquellen",
@@ -82,6 +82,27 @@
   },
   "time-controller": {
     "title": "Historische Daten anzeigen"
+  },
+  "estimation-badge": {
+    "partially-estimated": "Teilweise geschätzt",
+    "fully-estimated": "Geschätzt"
+  },
+  "estimation-card": {
+    "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
+    "estimated_time_slicer_average": {
+      "title": "Die Daten werden derzeit geschätzt",
+      "pill": "Nicht verfügbar",
+      "body": "Unsere Datenquellen stellen aktuell keine Werte für diese Zone zur Verfügung. Die angezeigten Werte sind Schätzungen, die auf historischen Messungen basieren und durch verifizierte Daten ersetzt werden, sobald diese verfügbar sind. Bitte beachten Sie, dass geschätzte Werte nicht immer genau sind, da sie aktuelle Wetterereignisse nicht berücksichtigen."
+    },
+    "aggregated": {
+      "title": "Aggregierte Daten",
+      "body": "Die angezeigten Daten sind eine Zusammenlegung stündlich gemessener Werte."
+    },
+    "aggregated_estimated": {
+      "title": "Aggregierte Daten",
+      "pill": " {{percentage}}% geschätzt",
+      "body": "Die angezeigten Daten sind eine Zusammenlegung stündlich gemessener Werte, wovon {{percentage}}% der Werte geschätzt sind."
+    }
   },
   "country-history": {
     "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",

@@ -45,7 +45,7 @@ def fetch_production(
 
     datapoints = []
     for row in response:
-        for k in TYPE_MAPPING.keys():
+        for k in TYPE_MAPPING:
             if row[0].startswith(k):
                 datapoints.append((TYPE_MAPPING[k], row[1]))
                 break
