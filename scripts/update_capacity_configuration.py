@@ -83,7 +83,7 @@ def update_zone_capacity_config(zone_key: ZoneKey, data: dict) -> None:
     if "capacity" in _new_zone_config:
         capacity = _new_zone_config["capacity"]
 
-        if all(isinstance(capacity[m], float | int) for m in capacity.keys()):
+        if all(isinstance(capacity[m], float | int) for m in capacity):
             # TODO: this is temporary as it handles the case of the deprecated system where capacity is a single value. It will be removed in the future
             capacity = {key: [value] for key, value in data.items()}
         else:
