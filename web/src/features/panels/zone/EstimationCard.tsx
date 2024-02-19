@@ -42,7 +42,9 @@ export default function EstimationCard({
           estimationMethod={estimationMethod}
           setCollapsedNumber={setCollapsedNumber}
         />
-        {currentlyShowingFeedbackCard && <FeedbackCard />}
+        {currentlyShowingFeedbackCard && (
+          <FeedbackCard estimationMethod={estimationMethod} />
+        )}
       </div>
     );
   }

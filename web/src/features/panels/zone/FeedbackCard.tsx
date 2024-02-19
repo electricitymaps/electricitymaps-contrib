@@ -4,7 +4,11 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { useTranslation } from 'translation/translation';
 
-export default function FeedbackCard() {
+export default function FeedbackCard({
+  estimationMethod,
+}: {
+  estimationMethod?: string;
+}) {
   const [isClosed, setIsClosed] = useState(false);
   const [state, setState] = useState('1');
 
@@ -47,7 +51,11 @@ export default function FeedbackCard() {
         >
           {subtitle}
         </div>
-        <FeedbackActions state={state} setState={setState} />
+        <FeedbackActions
+          state={state}
+          setState={setState}
+          estimationMethod={estimationMethod}
+        />
       </div>
     </div>
   );
@@ -104,9 +112,11 @@ function SubmitButton({ handleSave }: { handleSave: () => void }) {
 function FeedbackActions({
   state,
   setState,
+  estimationMethod,
 }: {
   state: string;
   setState: Dispatch<SetStateAction<string>>;
+  estimationMethod?: string;
 }) {
   const [inputText, setInputText] = useState('');
   const [feedbackScore, setfeedbackScore] = useState('');
@@ -121,7 +131,11 @@ function FeedbackActions({
     setState('3');
     fetch(`https://hooks.zapier.com/hooks/catch/14671709/3l9daod/`, {
       method: 'POST',
-      body: JSON.stringify({ score: feedbackScore, feedback: inputText }),
+      body: JSON.stringify({
+        score: feedbackScore,
+        feedback: inputText,
+        reference: estimationMethod,
+      }),
     });
   };
 
