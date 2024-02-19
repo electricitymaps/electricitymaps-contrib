@@ -10,10 +10,14 @@ Exchange Forecast
 Day-ahead Price
 Generation Forecast
 Consumption Forecast
+
+Link to the API documentation:
+https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 """
 import itertools
 import re
 from datetime import datetime, timedelta, timezone
+from enum import Enum
 from logging import Logger, getLogger
 from typing import Any
 
@@ -47,6 +51,21 @@ ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 DEFAULT_LOOKBACK_HOURS_REALTIME = 72
 DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
 DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
+
+
+class WindAndSolarProductionForecastTypes(Enum):
+    DAY_AHEAD = "A01"
+    INTRADAY = "A40"
+    CURRENT = "A18"
+
+
+# The order of the forecast types is important for the parser to use the most recent data
+# This ensures that the order is consistent across all runs even if the enum is changed
+ORDERED_FORECAST_TYPES = [
+    WindAndSolarProductionForecastTypes.DAY_AHEAD,
+    WindAndSolarProductionForecastTypes.INTRADAY,
+    WindAndSolarProductionForecastTypes.CURRENT,
+]
 
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
@@ -686,13 +705,16 @@ def query_consumption_forecast(
 
 
 def query_wind_solar_production_forecast(
-    in_domain: str, session: Session, target_datetime: datetime | None = None
+    in_domain: str,
+    session: Session,
+    data_type: WindAndSolarProductionForecastTypes,
+    target_datetime: datetime | None = None,
 ) -> str | None:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
         "documentType": "A69",  # Forecast
-        "processType": "A01",
+        "processType": WindAndSolarProductionForecastTypes(data_type).value,
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
@@ -1377,27 +1399,35 @@ def fetch_wind_solar_forecasts(
     """
     if not session:
         session = Session()
+    raw_forecasts = {}
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    try:
-        raw_renewable_forecast = query_wind_solar_production_forecast(
-            domain, session, target_datetime=target_datetime
+    for data_type in ORDERED_FORECAST_TYPES:
+        try:
+            raw_forecasts[data_type.name] = query_wind_solar_production_forecast(
+                domain, session, data_type, target_datetime=target_datetime
+            )
+        except Exception as e:
+            logger.error(
+                f"Failed to fetch {data_type.name} wind and solar forecast for {zone_key}: {e}",
+                extra={"zone_key": zone_key},
+            )
+    if raw_forecasts == {}:
+        logger.warning(
+            f"No wind and solar forecast data found for {zone_key}",
+            extra={"zone_key": zone_key},
         )
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to fetch renewable forecast for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_renewable_forecast is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No production per mode forecast data found for {zone_key}",
-            zone_key=zone_key,
-        )
-    # Grab production
-    parsed = parse_production(raw_renewable_forecast, logger, zone_key, forecasted=True)
+        return []
 
-    return parsed.to_list()
+    forcast_breakdown_list = ProductionBreakdownList(logger)
+    for raw_forecast in raw_forecasts.values():
+        parsed_forecast = parse_production(
+            raw_forecast, logger, zone_key, forecasted=True
+        )
+        forcast_breakdown_list = ProductionBreakdownList.update_production_breakdowns(
+            forcast_breakdown_list, parsed_forecast, logger
+        )
+
+    return forcast_breakdown_list.to_list()
 
 
 if __name__ == "__main__":
