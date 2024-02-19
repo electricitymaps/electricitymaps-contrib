@@ -31,22 +31,26 @@ export default function EstimationCard({
     );
   }, [collapsedNumber]);
 
-  if (cardType == 'outage') {
-    return <OutageCard outageMessage={outageMessage} />;
-  } else if (cardType == 'aggregated') {
-    return <AggregatedCard estimatedPercentage={estimatedPercentage} />;
-  } else if (cardType == 'estimated') {
-    return (
-      <div>
-        <EstimatedCard
-          estimationMethod={estimationMethod}
-          setCollapsedNumber={setCollapsedNumber}
-        />
-        {currentlyShowingFeedbackCard && (
-          <FeedbackCard estimationMethod={estimationMethod} />
-        )}
-      </div>
-    );
+  switch (cardType) {
+    case 'outage': {
+      return <OutageCard outageMessage={outageMessage} />;
+    }
+    case 'aggregated': {
+      return <AggregatedCard estimatedPercentage={estimatedPercentage} />;
+    }
+    case 'estimated': {
+      return (
+        <div>
+          <EstimatedCard
+            estimationMethod={estimationMethod}
+            setCollapsedNumber={setCollapsedNumber}
+          />
+          {currentlyShowingFeedbackCard && (
+            <FeedbackCard estimationMethod={estimationMethod} />
+          )}
+        </div>
+      );
+    }
   }
 }
 
