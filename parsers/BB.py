@@ -16,6 +16,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 base_url = "https://dataservices.acelerex.com/api"
@@ -116,6 +117,7 @@ def fetch_operational_data(
     return operational_data
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("BB"),
     session: Session = Session(),
@@ -148,6 +150,7 @@ def fetch_production(
     return production_list.to_list()
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session = Session(),
