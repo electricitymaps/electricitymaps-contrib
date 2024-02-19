@@ -5,7 +5,7 @@ describe('showEstimationFeedbackCard', () => {
     localStorage.clear();
   });
 
-  it('should return true when feedbackCard is currently not shown, feedbackCardStatus is not seenBefore and collapsedNumber is greater than 1', () => {
+  it('should return true when feedbackCard is currently not shown, card has not been seen before and it has been collapsed more than once', () => {
     const result = showEstimationFeedbackCard(2, false, 'notSeenBefore');
     expect(result).to.equal(true);
   });

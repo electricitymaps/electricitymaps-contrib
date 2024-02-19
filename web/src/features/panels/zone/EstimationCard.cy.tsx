@@ -11,7 +11,7 @@ describe('EstimationCard', () => {
     );
   });
 
-  it('feedback card should only be visible when collapse button has been clicked twic or more', () => {
+  it('feedback card should only be visible when collapse button has been clicked twice or more', () => {
     cy.get('[data-test-id=collapse-button]').click();
     cy.get('[data-test-id=feedback-card]').should('not.exist');
     cy.get('[data-test-id=collapse-button]').click();
