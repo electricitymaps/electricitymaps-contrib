@@ -1,0 +1,6 @@
+lonlat:
+  - -59.6117
+  - 47.1693
+parsers:
+  exchange: CA_NS.fetch_exchange
+rotation: 207

@@ -26,13 +26,13 @@ capacity:
       source: entsoe.eu
       value: 129.0
   hydro storage:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 900.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 900.0
   oil:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 0.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
   solar:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -41,9 +41,9 @@ capacity:
       source: entsoe.eu
       value: 1165.0
   unknown:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 37.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 37.0
   wind:
     - datetime: '2023-01-01'
       source: entsoe.eu
