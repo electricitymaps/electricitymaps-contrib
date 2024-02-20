@@ -15,14 +15,13 @@ class TestFetchProduction(TestCase):
         self.adapter = Adapter()
         self.session = Session()
         self.session.mount("https://", self.adapter)
-        mock_file_today = open("parsers/test/mocks/PE/response_20240206.json", "rb")
-        mock_file_yesterday = open("parsers/test/mocks/PE/response_20240205.json", "rb")
+
+        mock_file = open("parsers/test/mocks/PE/response_20240205.json", "rb")
         self.adapter.register_uri(
             POST,
             API_ENDPOINT,
             response_list=[
-                {"content": mock_file_today.read()},
-                {"content": mock_file_yesterday.read()},
+                {"content": mock_file.read()},
             ],
         )
 
@@ -35,13 +34,13 @@ class TestFetchProduction(TestCase):
         self.assertMatchSnapshot(
             [
                 {
-                    "correctedModes": element["correctedModes"],
                     "datetime": element["datetime"].isoformat(),
+                    "zoneKey": element["zoneKey"],
                     "production": element["production"],
                     "storage": element["storage"],
                     "source": element["source"],
-                    "zoneKey": element["zoneKey"],
                     "sourceType": element["sourceType"].value,
+                    "correctedModes": element["correctedModes"],
                 }
                 for element in production
             ]
