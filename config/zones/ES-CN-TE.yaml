@@ -53,12 +53,15 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 692.2103624985839
     oil:
+      - datetime: '2020-01-01'
+        source: EU-ETS, REE
+        value: 703.32
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 880.903938
+        source: EU-ETS, REE
+        value: 701.15
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 925.95
+        source: EU-ETS, REE
+        value: 691.38
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -115,12 +118,15 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
+      - datetime: '2020-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 947.32
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 1124.903938
+        source: EU-ETS, REE; IPCC 2014
+        value: 945.15
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1169.95
+        source: EU-ETS, REE; IPCC 2014
+        value: 935.38
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -196,6 +202,9 @@ parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
 sources:
+  EU-ETS, REE:
+    link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link,
+          https://demanda.ree.es
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
