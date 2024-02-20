@@ -165,7 +165,7 @@ def data_processer(
         )
 
     return ProductionBreakdownList.merge_production_breakdowns(
-        [mode_generation for mode_generation in per_mode_production.values()], logger
+        list(per_mode_production.values()), logger
     )
 
 

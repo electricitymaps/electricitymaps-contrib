@@ -32,11 +32,11 @@ def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: Zo
         "exchangeForecast": ["zoneKey", "netFlow"] + standard_keys,
     }
     for key in keys_dict[kind]:
-        if key not in datapoint.keys():
+        if key not in datapoint:
             raise ValidationError(
                 "{} - data point does not have the required keys:  {} is missing".format(
                     zone_key,
-                    [key for key in keys_dict[kind] if key not in datapoint.keys()],
+                    [key for key in keys_dict[kind] if key not in datapoint],
                 ),
             )
 
@@ -91,20 +91,21 @@ def validate_exchange(item, k) -> None:
             raise ValidationError(
                 f"netFlow {item['netFlow']} exceeds physical plausibility (>100GW) for {k}"
             )
-        if len(zone_names) == 2:
-            if (zone_names in EXCHANGES_CONFIG) and (
-                "capacity" in EXCHANGES_CONFIG[zone_names]
+        if (
+            len(zone_names) == 2
+            and (zone_names in EXCHANGES_CONFIG)
+            and ("capacity" in EXCHANGES_CONFIG[zone_names])
+        ):
+            interconnector_capacities = EXCHANGES_CONFIG[zone_names]["capacity"]
+            margin = 0.1
+            if not (
+                min(interconnector_capacities) * (1 - margin)
+                <= item["netFlow"]
+                <= max(interconnector_capacities) * (1 + margin)
             ):
-                interconnector_capacities = EXCHANGES_CONFIG[zone_names]["capacity"]
-                margin = 0.1
-                if not (
-                    min(interconnector_capacities) * (1 - margin)
-                    <= item["netFlow"]
-                    <= max(interconnector_capacities) * (1 + margin)
-                ):
-                    raise ValidationError(
-                        f"netFlow {item['netFlow']} exceeds interconnector capacity for {k}"
-                    )
+                raise ValidationError(
+                    f"netFlow {item['netFlow']} exceeds interconnector capacity for {k}"
+                )
 
 
 def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
@@ -157,12 +158,10 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             " %s" % zone_key
         )
 
-    if zone_key in ["US-CAR-YAD"]:
-        if obj.get("production", {}).get("hydro", 0) < 5:
-            raise ValidationError(
-                "Hydro production value is required to be greater than 5 for %s"
-                % zone_key
-            )
+    if zone_key in ["US-CAR-YAD"] and obj.get("production", {}).get("hydro", 0) < 5:
+        raise ValidationError(
+            "Hydro production value is required to be greater than 5 for %s" % zone_key
+        )
 
     if obj.get("storage"):
         if not isinstance(obj["storage"], dict):
@@ -183,8 +182,8 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
                 f"{zone_key}: production for {key} is not realistic (>500GW) {value}"
             )
 
-    for key in obj.get("production", {}).keys():
-        if key not in emission_factors(zone_key).keys():
+    for key in obj.get("production", {}):
+        if key not in emission_factors(zone_key):
             raise ValidationError(
                 f"Couldn't find emission factor for '{key}' in '{zone_key}'. Maybe you misspelled one of the production keys?"
             )

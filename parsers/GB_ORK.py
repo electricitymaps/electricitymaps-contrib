@@ -44,7 +44,7 @@ def get_json_data():
         production[gen_type] = val
 
     for k in list(production.keys()):
-        if k not in GENERATION_MAPPING.keys():
+        if k not in GENERATION_MAPPING:
             # Get rid of unneeded keys.
             production.pop(k)
 

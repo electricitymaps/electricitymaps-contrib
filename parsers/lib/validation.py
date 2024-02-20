@@ -71,7 +71,7 @@ def validate_production_diffs(
         if "energy" == "total":
             series = pd.Series(
                 [
-                    np.nansum([v for v in datapoint["production"].values()])
+                    np.nansum(list(datapoint["production"].values()))
                     for datapoint in datapoints
                 ]
             )
@@ -271,12 +271,11 @@ def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any]
             if not check_expected_range(datapoint, total, expected_range, logger):
                 return
 
-    if fake_zeros:
-        if all((val == 0) or (val is None) for val in generation.values()):
-            logger.warning(
-                f"{datapoint['zoneKey']} - {datapoint['datetime']}: unrealistic datapoint, all production values are 0.0 MW or null"
-            )
-            return
+    if fake_zeros and all((val == 0) or (val is None) for val in generation.values()):
+        logger.warning(
+            f"{datapoint['zoneKey']} - {datapoint['datetime']}: unrealistic datapoint, all production values are 0.0 MW or null"
+        )
+        return
 
     return datapoint
 

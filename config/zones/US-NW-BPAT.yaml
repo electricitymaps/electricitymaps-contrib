@@ -5,53 +5,53 @@ bounding_box:
     - 49.50244
 capacity:
   battery storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 32.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 32.0
   biomass:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 303.4
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 303.4
   coal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 729.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 729.9
   gas:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 2271.7
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 2271.7
   geothermal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 18.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 18.0
   hydro:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 19577.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 19577.9
   hydro storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 314.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 314.0
   nuclear:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1200.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1200.0
   oil:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   solar:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 137.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 137.9
   unknown:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   wind:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 3617.1
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 3617.1
 comment: Bonneville Power Administration
 contributors:
   - systemcatch

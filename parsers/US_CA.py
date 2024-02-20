@@ -2,8 +2,8 @@
 
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 import numpy as np
 import pandas
 from requests import Session
@@ -51,6 +51,8 @@ CORRECT_NEGATIVE_PRODUCTION_MODES_WITH_ZERO = [
 ]
 STORAGE_MAPPING = {"batteries": "battery"}
 
+TIMEZONE = ZoneInfo("US/Pacific")
+
 
 def get_target_url(target_datetime: datetime | None, kind: str) -> str:
     if target_datetime is None:
@@ -81,16 +83,15 @@ def fetch_production(
     target_url = get_target_url(target_datetime, kind="production")
 
     if target_datetime is None:
-        target_datetime = arrow.now(tz="US/Pacific").floor("day").datetime
+        target_datetime = datetime.now(tz=TIMEZONE).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
 
     # Get the production from the CSV
     csv = pandas.read_csv(target_url)
 
     # Filter out last row if timestamp is 00:00
-    if csv.iloc[-1]["Time"] == "OO:OO":
-        df = csv.copy().iloc[:-1]
-    else:
-        df = csv.copy()
+    df = csv.copy().iloc[:-1] if csv.iloc[-1]["Time"] == "OO:OO" else csv.copy()
 
     # lower case column names
     df.columns = [col.lower() for col in df.columns]
@@ -100,7 +101,7 @@ def fetch_production(
         production_mix = ProductionMix()
         storage_mix = StorageMix()
         row_datetime = target_datetime.replace(
-            hour=int(row["time"][:2]), minute=int(row["time"][-2:])
+            hour=int(row["time"][:2]), minute=int(row["time"][-2:]), tzinfo=TIMEZONE
         )
 
         for mode in [
@@ -128,7 +129,7 @@ def fetch_production(
             production=production_mix,
             storage=storage_mix,
             source="caiso.com",
-            datetime=arrow.get(row_datetime).replace(tzinfo="US/Pacific").datetime,
+            datetime=row_datetime,
         )
 
     return all_data_points.to_list()
@@ -146,29 +147,28 @@ def fetch_consumption(
     target_url = get_target_url(target_datetime, kind="consumption")
 
     if target_datetime is None:
-        target_datetime = arrow.now(tz="US/Pacific").floor("day").datetime
+        target_datetime = datetime.now(tz=TIMEZONE).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
 
     # Get the demand from the CSV
     csv = pandas.read_csv(target_url)
 
     # Filter out last row if timestamp is 00:00
-    if csv.iloc[-1]["Time"] == "OO:OO":
-        df = csv.copy().iloc[:-1]
-    else:
-        df = csv.copy()
+    df = csv.copy().iloc[:-1] if csv.iloc[-1]["Time"] == "OO:OO" else csv.copy()
 
     all_data_points = TotalConsumptionList(logger)
     for row in df.itertuples():
         consumption = row._3
         row_datetime = target_datetime.replace(
-            hour=int(row.Time[:2]), minute=int(row.Time[-2:])
+            hour=int(row.Time[:2]), minute=int(row.Time[-2:]), tzinfo=TIMEZONE
         )
         if not np.isnan(consumption):
             all_data_points.append(
                 zoneKey=zone_key,
                 consumption=consumption,
                 source="caiso.com",
-                datetime=arrow.get(row_datetime).replace(tzinfo="US/Pacific").datetime,
+                datetime=row_datetime,
             )
 
     return all_data_points.to_list()
@@ -194,14 +194,12 @@ def fetch_exchange(
     daily_data = []
     for i in range(0, latest_index + 1):
         h, m = map(int, csv["Time"][i].split(":"))
-        date = (
-            arrow.utcnow()
-            .to("US/Pacific")
-            .replace(hour=h, minute=m, second=0, microsecond=0)
+        date = datetime.now(tz=TIMEZONE).replace(
+            hour=h, minute=m, second=0, microsecond=0
         )
         data = {
             "sortedZoneKeys": sorted_zone_keys,
-            "datetime": date.datetime,
+            "datetime": date,
             "netFlow": float(csv["Imports"][i]),
             "source": "caiso.com",
         }

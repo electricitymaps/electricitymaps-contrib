@@ -79,7 +79,8 @@ class YamlFilePatcher:
         self.file_path = file_path
 
     def __enter__(self):
-        self.content: dict = yaml.safe_load(open(self.file_path, encoding="utf-8"))
+        with open(self.file_path, encoding="utf-8") as f:
+            self.content: dict = yaml.safe_load(f)
 
         return self
 

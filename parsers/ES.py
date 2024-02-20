@@ -149,13 +149,13 @@ def check_valid_parameters(
     target_datetime: datetime | None,
 ):
     """Raise an exception if the parameters are not valid for this parser."""
-    if "->" not in zone_key and zone_key not in ZONE_MAPPING.keys():
+    if "->" not in zone_key and zone_key not in ZONE_MAPPING:
         raise ParserException(
             "ES.py",
             f"This parser cannot parse data for zone: {zone_key}",
             zone_key,
         )
-    elif "->" in zone_key and zone_key not in EXCHANGE_FUNCTION_MAP.keys():
+    elif "->" in zone_key and zone_key not in EXCHANGE_FUNCTION_MAP:
         zone_key1, zone_key2 = zone_key.split("->")
         raise ParserException(
             "ES.py",
@@ -221,7 +221,7 @@ def fetch_and_preprocess_data(
         # Add timezone info to time object
         value["ts"] = datetime.fromisoformat(value["ts"]).replace(tzinfo=ZoneInfo(tz))
 
-        for key in value.keys():
+        for key in value:
             check_known_key(key, logger)
     if data:
         return data
@@ -288,7 +288,7 @@ def fetch_production(
 
         production = ProductionMix()
         for key in event:
-            if key in data_mapping.keys():
+            if key in data_mapping:
                 production.add_value(data_mapping[key], event[key])
 
         productionEventList.append(
@@ -325,7 +325,7 @@ def fetch_exchange(
     for event in data:
         exchanges = {}
         for key in event:
-            if key in EXCHANGE_PARSE_MAPPING.keys():
+            if key in EXCHANGE_PARSE_MAPPING:
                 exchanges[EXCHANGE_PARSE_MAPPING[key]] = event[key]
 
         net_flow: float

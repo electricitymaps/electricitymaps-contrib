@@ -224,10 +224,8 @@ def fetch_exchange(
 
     sorted_exchange = "->".join(sorted([zone_key1, zone_key2]))
     data = _sum_of_exchanges(
-        map(
-            lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, r, target_datetime),
-            exchanges_mapping[sorted_exchange],
-        )
+        _fetch_exchanges_from_sorted_bidding_zones(e, r, target_datetime)
+        for e in exchanges_mapping[sorted_exchange]
     )
     data["sortedZoneKeys"] = "->".join(sorted([zone_key1, zone_key2]))
 
