@@ -87,7 +87,7 @@ def format_values(
     index: int,
 ):
     if kind == "production":
-        if mapping[plant_name] in values_by_hour[index].keys():
+        if mapping[plant_name] in values_by_hour[index]:
             values_by_hour[index][mapping[plant_name]] += (
                 float(value) if float(value) > 0 else 0
             )

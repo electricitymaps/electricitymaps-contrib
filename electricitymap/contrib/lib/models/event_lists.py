@@ -252,6 +252,34 @@ class ProductionBreakdownList(AggregatableEventList):
         return production_breakdowns
 
     @staticmethod
+    def update_production_breakdowns(
+        production_breakdowns: "ProductionBreakdownList",
+        new_production_breakdowns: "ProductionBreakdownList",
+        logger: Logger,
+    ) -> "ProductionBreakdownList":
+        """Given a new batch of production breakdowns, update the existing ones."""
+        if len(new_production_breakdowns) == 0:
+            return production_breakdowns
+        elif len(production_breakdowns) == 0:
+            return new_production_breakdowns
+
+        existing_events = {
+            event.datetime: event for event in production_breakdowns.events
+        }
+
+        for new_event in new_production_breakdowns.events:
+            if new_event.datetime in existing_events:
+                existing_event = existing_events[new_event.datetime]
+                updated_event = ProductionBreakdown.update(existing_event, new_event)
+                existing_events[new_event.datetime] = updated_event
+            else:
+                existing_events[new_event.datetime] = new_event
+
+        production_breakdowns.events = list(existing_events.values())
+
+        return production_breakdowns
+
+    @staticmethod
     def filter_expected_modes(
         breakdowns: "ProductionBreakdownList",
         strict_storage: bool = False,

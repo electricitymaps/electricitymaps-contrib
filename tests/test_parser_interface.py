@@ -90,7 +90,7 @@ class ParserInterfaceTestcase(unittest.TestCase):
         self.zone_parser_functions: list[ZoneParserFunction] = []
 
         for model_map in [CONFIG_MODEL.exchanges, CONFIG_MODEL.zones]:
-            for zone in model_map.keys():
+            for zone in model_map:
                 model = model_map[zone]
                 if not model.parsers:
                     continue
