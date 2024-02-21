@@ -303,10 +303,10 @@ def fetch_exchange(
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
     reversesortedcodes = "->".join(sorted([zone_key1, zone_key2], reverse=True))
 
-    if sortedcodes in exchange_ids.keys():
+    if sortedcodes in exchange_ids:
         exchange_id = exchange_ids[sortedcodes]
         direction = 1
-    elif reversesortedcodes in exchange_ids.keys():
+    elif reversesortedcodes in exchange_ids:
         exchange_id = exchange_ids[reversesortedcodes]
         direction = -1
     else:

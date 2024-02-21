@@ -304,7 +304,7 @@ def process_production_events(
 
         for row in time_df.iterrows():
             electricity_production = row[1].to_dict()
-            for key in electricity_production.keys():
+            for key in electricity_production:
                 if key in PRODUCTION_MODES:
                     data_point["production"][key] = electricity_production[key]
                 elif key == "hydro storage":
@@ -383,7 +383,7 @@ def parse_production(
                 # if/else structure allows summation of multiple quantities
                 # e.g. 'Wind Onshore' and 'Wind Offshore' both have the
                 # key 'wind' here.
-                if fuel in data_point["production"].keys():
+                if fuel in data_point["production"]:
                     data_point["production"][fuel] += quantity
                 else:
                     data_point["production"][fuel] = quantity

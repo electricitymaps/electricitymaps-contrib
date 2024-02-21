@@ -57,9 +57,11 @@ def get_adme_url(target_datetime: datetime, session: Session) -> str:
     href_tags = soup.find_all("a", href=True)
     data_url: str = ""
     for tag in href_tags:
-        if tag.button is not None:
-            if tag.button.string == "Archivo Scada Detalle 10minutal":
-                data_url = "https://pronos.adme.com.uy" + tag.get("href")
+        if (
+            tag.button is not None
+            and tag.button.string == "Archivo Scada Detalle 10minutal"
+        ):
+            data_url = "https://pronos.adme.com.uy" + tag.get("href")
 
     if not data_url:
         raise ParserException(
@@ -99,7 +101,7 @@ def fetch_data(
 
 def fix_solar_production(dt: datetime, row: pd.Series) -> int:
     """sets solar production to 0 during the night as there is only solar PV in UY"""
-    if (5 >= dt.hour or dt.hour >= 20) and row.get("value") != 0:
+    if (dt.hour <= 5 or dt.hour >= 20) and row.get("value") != 0:
         return 0
     else:
         return round(row.get("value"), 3)
