@@ -35,6 +35,7 @@ def parse_datetime(dt: str):
         tzinfo=TIMEZONE
     ) - timedelta(minutes=30)
 
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("PE"),

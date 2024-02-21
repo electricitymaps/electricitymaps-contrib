@@ -16,14 +16,14 @@ class TestFetchProduction(TestCase):
         self.session = Session()
         self.session.mount("https://", self.adapter)
 
-        mock_file = open("parsers/test/mocks/PE/response_20240205.json", "rb")
-        self.adapter.register_uri(
-            POST,
-            API_ENDPOINT,
-            response_list=[
-                {"content": mock_file.read()},
-            ],
-        )
+        with open("parsers/test/mocks/PE/response_20240205.json", "rb") as mock_file:
+            self.adapter.register_uri(
+                POST,
+                API_ENDPOINT,
+                response_list=[
+                    {"content": mock_file.read()},
+                ],
+            )
 
     def test_snapshot(self):
         production = fetch_production(
