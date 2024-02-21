@@ -36,7 +36,7 @@ def parse_datetime(dt: str):
 
 
 def fetch_production(
-    zone_key: str = ZoneKey("PE"),
+    zone_key: ZoneKey = ZoneKey("PE"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
