@@ -32,25 +32,7 @@
     "search": "Zoek gebieden"
   },
   "country-history": {
-    "Getdata": "Krijg toegang tot historische, huidige en voorspelde data via de API",
-    "carbonintensity": {
-      "hourly": "Koolstofintensiteit laatste 24 uur"
-    },
-    "emissionsorigin": {
-      "hourly": "Bron van uitstoot laatste 24 uur"
-    },
-    "emissionsproduction": {
-      "hourly": "Uitstoot laatste 24 uur"
-    },
-    "electricityorigin": {
-      "hourly": "Bron van elektriciteit laatste 24 uur"
-    },
-    "electricityproduction": {
-      "hourly": "Elektriciteitsproductie laatste 24 uur"
-    },
-    "electricityprices": {
-      "hourly": "Elektriciteitsprijs laatste 24 uur"
-    }
+    "Getdata": "Krijg toegang tot historische, huidige en voorspelde data via de API"
   },
   "footer": {
     "foundbugs": "Ondervind je problemen of heb je ideëen? Meld ze",

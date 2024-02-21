@@ -14,11 +14,6 @@
     "emissions": "انبعاثات الكربون",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">أضف أو عدّل على المصدر</a>"
   },
-  "country-history": {
-    "carbonintensity": {
-      "hourly": "كثافة الكربون في آخر 24 ساعة مضت"
-    }
-  },
   "footer": {
     "foundbugs": "وجدت أخطاء برمجية أو لديك اقتراحات؟ أبلغنا عنها",
     "here": "هنا"

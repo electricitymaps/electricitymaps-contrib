@@ -1,10 +1,9 @@
 import { useAtom } from 'jotai';
 import { resolvePath, useSearchParams } from 'react-router-dom';
+import { TranslationFunction } from 'translation/translation';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 
 import Modal, { Page } from './OnboardingModalInner';
-
-type TranslationFunction = (key: string, ...arguments_: string[]) => string;
 
 interface ViewContentProps {
   __: TranslationFunction;

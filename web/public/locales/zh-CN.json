@@ -53,32 +53,6 @@
     "country-ranking": "国家排名",
     "show-ranking": "显示排名"
   },
-  "country-history": {
-    "carbonintensity": {
-      "hourly": "过去24小时的碳强度",
-      "daily": "过去1个月的碳强度",
-      "monthly": "过去1年的碳强度",
-      "yearly": "过去5年的碳强度"
-    },
-    "emissionsorigin": {
-      "hourly": "过去24小时的排放来源"
-    },
-    "emissionsproduction": {
-      "hourly": "过去24小时产生的排放"
-    },
-    "electricityorigin": {
-      "hourly": "过去24小时的电力来源"
-    },
-    "electricityproduction": {
-      "hourly": "过去24小时的发电量"
-    },
-    "electricityprices": {
-      "hourly": "过去24小时的电价"
-    },
-    "emissions": {
-      "hourly": "过去24小时的排放量"
-    }
-  },
   "footer": {
     "foundbugs": "发现错误或有其他想法？请回报",
     "here": "这里",

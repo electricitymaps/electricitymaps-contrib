@@ -99,30 +99,6 @@
     "search": "搜尋地區"
   },
   "country-history": {
-    "carbonintensity": {
-      "default": "過去 %1$s 碳強度"
-    },
-    "emissions": {
-      "default": "過去 %1$s 碳排放量"
-    },
-    "emissionsorigin": {
-      "default": "過去 %1$s 的碳排放量來源"
-    },
-    "emissionsproduction": {
-      "default": "過去 %1$s 的碳排放量來源"
-    },
-    "electricityorigin": {
-      "default": "過去 %1$s 的電力來源"
-    },
-    "electricityproduction": {
-      "default": "過去 %1$s 的電力生產"
-    },
-    "electricityprices": {
-      "default": "過去 %1$s 的電價"
-    },
-    "netExchange": {
-      "default": "最近 %1$s 的淨交易量"
-    },
     "Getdata": "使用電力地圖 API 獲取每小時的歷史數據、即時數據和預測數據",
     "not-enough-data": "沒有足夠的數據來顯示圖表"
   },

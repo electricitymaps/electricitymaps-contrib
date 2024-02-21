@@ -82,30 +82,6 @@
     "search": "Območja iskanja"
   },
   "country-history": {
-    "carbonintensity": {
-      "hourly": "Intenzivnost ogljika v zadnjih 24 urah",
-      "daily": "Intenzivnost ogljika v zadnjem mesecu",
-      "monthly": "Intenzivnost ogljika v zadnjem letu",
-      "default": "Intenzivnost ogljika v zadnjih%1$s"
-    },
-    "emissions": {
-      "default": "Emisije v zadnji(h) %1$s"
-    },
-    "emissionsorigin": {
-      "default": "Emisije v zadnji(h) %1$s"
-    },
-    "emissionsproduction": {
-      "default": "Izvor emisij v zadnji(h) %1$s"
-    },
-    "electricityorigin": {
-      "default": "Izvor elektrike v zadnji(h) %1$s"
-    },
-    "electricityproduction": {
-      "default": "Produkcija elektrike v zadnji(h) %1$s"
-    },
-    "electricityprices": {
-      "default": "Cena elektrike v zadnji(h) %1$s"
-    },
     "Getdata": "Z API-jem za zemljevide električne energije pridobite vsako uro zgodovinske podatke, podatke v živo in napovedi"
   },
   "footer": {

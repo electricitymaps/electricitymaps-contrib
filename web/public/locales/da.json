@@ -38,28 +38,13 @@
     "now": "Nu"
   },
   "time-controller": {
-    "title": "Vis historiske data"
+    "title": "Vis historiske data",
+    "daily": "daglig",
+    "hourly": "timevis",
+    "monthly": "månedlig",
+    "yearly": "årlig"
   },
   "country-history": {
-    "carbonintensity": {
-      "default": "CO₂-intensitet i de sidste %1$s"
-    },
-    "emissionsorigin": {
-      "default": "CO₂-udledningens oprindelse i de sidste %1$s"
-    },
-    "emissionsproduction": {
-      "default": "CO₂ udledt i de sidste %1$s"
-    },
-    "electricityorigin": {
-      "default": "Elektricitetens oprindelse i de sidste %1$s"
-    },
-    "electricityproduction": {
-      "default": "Elproduktionen i de sidste %1$s"
-    },
-    "electricityprices": {
-      "default": "Elprisen i de sidste %1$s"
-    },
-    "netExchange": { "default": "Nettoudveksling i de sidste %1$s" },
     "Getdata": "Få adgang til historisk, real-time og prognoser med Electricity Maps API",
     "not-enough-data": "Ikke nok data tilgængeligt til at vise diagrammet"
   },

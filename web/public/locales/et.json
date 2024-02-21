@@ -51,28 +51,7 @@
     "search": "Otsige piirkondi"
   },
   "country-history": {
-    "Getdata": "Hangi läbi Electricity Maps API tundide kaupa ajaloo, reaalaja ja prognoosi andmeid",
-    "carbonintensity": {
-      "hourly": "Süsiniku intensiivsus viimase 24 tunni jooksul"
-    },
-    "emissionsorigin": {
-      "hourly": "Heitkoguste päritolu viimase 24 tunni jooksul"
-    },
-    "emissionsproduction": {
-      "hourly": "Tootmisel tekkinud heitmed viimase 24 tunni jooksul"
-    },
-    "electricityorigin": {
-      "hourly": "Elektrienergia päritolu viimase 24 tunni jooksul"
-    },
-    "electricityproduction": {
-      "hourly": "Elektritootmine viimase 24 tunni jooksul"
-    },
-    "electricityprices": {
-      "hourly": "Elektrihinnad viimase 24 tunni jooksul"
-    },
-    "emissions": {
-      "hourly": "Heitkogused viimase 24 tunni jooksul"
-    }
+    "Getdata": "Hangi läbi Electricity Maps API tundide kaupa ajaloo, reaalaja ja prognoosi andmeid"
   },
   "footer": {
     "foundbugs": "Leidsite vea või teil on idee? Andke nendest teada",

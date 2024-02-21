@@ -50,28 +50,7 @@
     "search": "Etsi alueita"
   },
   "country-history": {
-    "Getdata": "Hanki pääsy historia-, marginaali- ja ennuste-API:hin",
-    "carbonintensity": {
-      "hourly": "Hiili-intensiteetti viimeisen 24 tunnin aikana"
-    },
-    "emissionsorigin": {
-      "hourly": "Päästöjen alkuperä viimiesen 24 tunnin aikana"
-    },
-    "emissionsproduction": {
-      "hourly": "Päästöt tuotettu viimiesen 24 tunnin aikana"
-    },
-    "electricityorigin": {
-      "hourly": "Sähkön alkuperä viimeisen 24 tunnin aikana"
-    },
-    "electricityproduction": {
-      "hourly": "Sähkön tuotanto viimeisen 24 tunnin aikana"
-    },
-    "electricityprices": {
-      "hourly": "Sähkön hinnat viimeisen 24 tunnin aikana"
-    },
-    "emissions": {
-      "hourly": "Päästöt viimeisen 24 tunnin aikana"
-    }
+    "Getdata": "Hanki pääsy historia-, marginaali- ja ennuste-API:hin"
   },
   "footer": {
     "foundbugs": "Löysitkö vikoja tai onko ideoita? Kerro niistä",
