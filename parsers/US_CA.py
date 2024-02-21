@@ -91,10 +91,7 @@ def fetch_production(
     csv = pandas.read_csv(target_url)
 
     # Filter out last row if timestamp is 00:00
-    if csv.iloc[-1]["Time"] == "OO:OO":
-        df = csv.copy().iloc[:-1]
-    else:
-        df = csv.copy()
+    df = csv.copy().iloc[:-1] if csv.iloc[-1]["Time"] == "OO:OO" else csv.copy()
 
     # lower case column names
     df.columns = [col.lower() for col in df.columns]
@@ -158,10 +155,7 @@ def fetch_consumption(
     csv = pandas.read_csv(target_url)
 
     # Filter out last row if timestamp is 00:00
-    if csv.iloc[-1]["Time"] == "OO:OO":
-        df = csv.copy().iloc[:-1]
-    else:
-        df = csv.copy()
+    df = csv.copy().iloc[:-1] if csv.iloc[-1]["Time"] == "OO:OO" else csv.copy()
 
     all_data_points = TotalConsumptionList(logger)
     for row in df.itertuples():

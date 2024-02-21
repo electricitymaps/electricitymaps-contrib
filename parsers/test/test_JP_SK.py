@@ -20,12 +20,12 @@ class TestJapanShikokuNuclear(TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_find_nuclear_image_url(self):
-        report_byte_content = open(
+        with open(
             "./parsers/test/mocks/JP-SK/jp-sk-nuclear-html-page.html", "rb"
-        )
-        self.adapter.register_uri(
-            GET, NUCLEAR_REPORT_URL, content=report_byte_content.read()
-        )
+        ) as report_byte_content:
+            self.adapter.register_uri(
+                GET, NUCLEAR_REPORT_URL, content=report_byte_content.read()
+            )
         image_url = get_nuclear_power_image_url(self.session)
         pattern = r"(?P<filename>ikt721-1\.gif\?[0-9]{12})"
         pattern_matches = re.findall(pattern, image_url)

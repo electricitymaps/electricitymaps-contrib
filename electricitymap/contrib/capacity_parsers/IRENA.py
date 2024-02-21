@@ -81,9 +81,8 @@ def get_data_from_url(target_datetime: datetime, session: Session) -> list:
 
 
 def reallocate_capacity_mode(zone_key: ZoneKey, mode: int) -> dict:
-    if zone_key in SPECIFIC_MODE_MAPPING:
-        if mode in SPECIFIC_MODE_MAPPING[zone_key]:
-            return SPECIFIC_MODE_MAPPING[zone_key][mode]
+    if zone_key in SPECIFIC_MODE_MAPPING and mode in SPECIFIC_MODE_MAPPING[zone_key]:
+        return SPECIFIC_MODE_MAPPING[zone_key][mode]
     return IRENA_JSON_TO_MODE_MAPPING[mode]
 
 

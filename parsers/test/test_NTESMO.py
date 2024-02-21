@@ -15,8 +15,8 @@ class TestNTESMO(unittest.TestCase):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
-        data = open("parsers/test/mocks/AU/NTESMO.xlsx", "rb")
-        self.adapter.register_uri(ANY, ANY, content=data.read())
+        with open("parsers/test/mocks/AU/NTESMO.xlsx", "rb") as data:
+            self.adapter.register_uri(ANY, ANY, content=data.read())
         index_page = """<div class="smp-tiles-article__item">
                 <a href="https://ntesmo.com.au/__data/assets/excel_doc/0013/116113/Market-Information_System-Control-daily-trading-day_220401.xlsx">
                     <div class="smp-tiles-article__title">01 December 2022</div>

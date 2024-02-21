@@ -90,7 +90,7 @@ def construct_year_index(year: int, session: Session) -> dict[date, str]:
     index = {}
     # For the current we need to go to the default page.
     url = DEFAULT_URL
-    if not year == datetime.now(tz=AUSTRALIA_TZ).year:
+    if year != datetime.now(tz=AUSTRALIA_TZ).year:
         url = INDEX_URL.format(year)
     year_index_page = session.get(url)
     soup = BeautifulSoup(year_index_page.text, "html.parser")
