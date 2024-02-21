@@ -1,6 +1,6 @@
 import { round } from 'utils/helpers';
 
-import { bilinearInterpolateVector, buildBounds,distort } from './calc';
+import { bilinearInterpolateVector, buildBounds, distort } from './calc';
 
 describe('bilinearInterpolateVector', () => {
   it('should interpolate a vector at the center of the square', () => {
@@ -105,18 +105,22 @@ describe('distort', () => {
   // Use arbritrary small threshold for comparing floats
   const isFloatClose = (a: number, b: number) => Math.abs(a - b) < Number.EPSILON * 10;
 
+  // Mock the Mapbox GL object for testing - only need project method
   const mapMock: mapboxgl.Map = {
     project: (point: [number, number]) => {
       const [lon, lat] = point;
       let returnValue = [0, 0];
       if (lon === 0 || lat === 0) {
+        // Custom case - return friendly value that we choose
         returnValue = [-H, -H];
       } else if (isFloatClose(lat, 11.825_461_358_611_037)) {
+        // Real case - taken from actual Mapbox
         returnValue = [1437.999_949_237_546_4, 763.999_999_999_996_1];
       } else if (isFloatClose(lat, 11.825_455_049_037_592)) {
+        // Real case - taken from actual Mapbox
         returnValue = [1437.999_999_999_982, 764.000_051_863_153_1];
       } else {
-        throw new Error(`mock case not implemented for [ ${lon}, ${lat} ]`);
+        throw new Error(`mock project function not implemented for [ ${lon}, ${lat} ]`);
       }
       return { x: returnValue[0], y: returnValue[1] };
     },
@@ -139,6 +143,7 @@ describe('distort', () => {
 
   it('test custom project', () => {
     const result = distort(mapMock, 0, 0, 0, 0, 1, [1, 1, 1]);
+    // This result is meaningless, used as reference for following tests
     expect(result).to.deep.eq([2, 2, 1]);
   });
 
