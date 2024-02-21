@@ -13,6 +13,7 @@ https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide
 import re
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
+from typing import Any
 
 from requests import Response, Session
 
@@ -24,7 +25,6 @@ from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
-from parsers.lib.validation import validate
 
 ELEXON_API_ENDPOINT = "https://data.elexon.co.uk/bmrs/api/v1"
 ELEXON_URLS = {
@@ -117,7 +117,7 @@ def parse_datetime(settlementDate: str, settlementPeriod: int) -> datetime:
 
 def query_production(
     session: Session, target_datetime: datetime, logger: Logger
-) -> list:
+) -> ProductionBreakdownList:
     """Fetches production data from the B1620 endpoint from the ELEXON API."""
     production_params = {
         "publishDateTimeFrom": (target_datetime - timedelta(days=2)).strftime(
@@ -128,13 +128,19 @@ def query_production(
     production_data = query_elexon(
         ELEXON_URLS["production"], session, production_params
     )
-    breakpoint()
+
     parsed_events = parse_production(production_data, logger, "B1620")
     return parsed_events
 
 
+def get_event_value(event: dict[str, Any], key: str) -> float | None:
+    value = event.get(key)
+    if value is not None:
+        return float(value)
+
+
 def parse_production(
-    production_data: list[dict[str, any]], logger: Logger, dataset: str
+    production_data: list[dict[str, Any]], logger: Logger, dataset: str
 ) -> ProductionBreakdownList:
     """Parses production events from the ELEXON API. This function is used for the B1620 data or the FUELHH data."""
     dataset_info = {
@@ -170,21 +176,25 @@ def parse_production(
             continue
 
         if production_mode == "hydro storage":
-            storage_mix.add_value("hydro", -1*event.get(quantity_key))
-            production_breakdown.append(
-                zoneKey=ZoneKey("GB"),
-                storage=storage_mix,
-                source=ELEXON_SOURCE,
-                datetime=event_datetime,
-            )
+            storage_value = get_event_value(event, quantity_key)
+            if storage_value:
+                storage_mix.add_value("hydro", -1 * storage_value)
+                production_breakdown.append(
+                    zoneKey=ZoneKey("GB"),
+                    storage=storage_mix,
+                    source=ELEXON_SOURCE,
+                    datetime=event_datetime,
+                )
         else:
-            production_mix.add_value(production_mode, event.get(quantity_key))
-            production_breakdown.append(
-                zoneKey=ZoneKey("GB"),
-                production=production_mix,
-                source=ELEXON_SOURCE,
-                datetime=event_datetime,
-            )
+            production_value = get_event_value(event, quantity_key)
+            if production_value:
+                production_mix.add_value(production_mode, production_value)
+                production_breakdown.append(
+                    zoneKey=ZoneKey("GB"),
+                    production=production_mix,
+                    source=ELEXON_SOURCE,
+                    datetime=event_datetime,
+                )
 
         all_production_breakdowns.append(production_breakdown)
     events = ProductionBreakdownList.merge_production_breakdowns(
@@ -210,7 +220,7 @@ def _create_eso_historical_demand_index(session: Session) -> dict[int, str]:
 
 def query_additional_eso_data(
     target_datetime: datetime, session: Session, logger: Logger
-) -> list[dict[str, any]]:
+) -> list[dict[str, Any]]:
     """Fetches embedded wind and solar and hydro storage data from the ESO API."""
     begin = (target_datetime - timedelta(days=2)).strftime("%Y-%m-%d")
     end = (target_datetime).strftime("%Y-%m-%d")
@@ -238,25 +248,29 @@ def parse_eso_production(
         )
         production_mix = ProductionMix()
         storage_mix = StorageMix()
-        for production_mode in ESO_FUEL_MAPPING.keys():
+        for production_mode in ESO_FUEL_MAPPING:
             if ESO_FUEL_MAPPING[production_mode] == "hydro storage":
-                storage_mix.add_value("hydro", event.get(production_mode))
-                production_breakdown.append(
-                    zoneKey=ZoneKey("GB"),
-                    storage=storage_mix,
-                    source=ESO_SOURCE,
-                    datetime=event_datetime,
-                )
+                storage_value = get_event_value(event, production_mode)
+                if storage_value:
+                    storage_mix.add_value("hydro", event.get(production_mode))
+                    production_breakdown.append(
+                        zoneKey=ZoneKey("GB"),
+                        storage=storage_mix,
+                        source=ESO_SOURCE,
+                        datetime=event_datetime,
+                    )
             else:
-                production_mix.add_value(
-                    ESO_FUEL_MAPPING[production_mode], event.get(production_mode)
-                )
-                production_breakdown.append(
-                    zoneKey=ZoneKey("GB"),
-                    production=production_mix,
-                    source=ESO_SOURCE,
-                    datetime=event_datetime,
-                )
+                production_value = get_event_value(event, production_mode)
+                if production_value:
+                    production_mix.add_value(
+                        ESO_FUEL_MAPPING[production_mode], event.get(production_mode)
+                    )
+                    production_breakdown.append(
+                        zoneKey=ZoneKey("GB"),
+                        production=production_mix,
+                        source=ESO_SOURCE,
+                        datetime=event_datetime,
+                    )
 
         all_production_breakdowns.append(production_breakdown)
     events = ProductionBreakdownList.merge_production_breakdowns(
@@ -264,7 +278,8 @@ def parse_eso_production(
     )
     return events
 
-def parse_eso_hydro_storage(eso_data: list[dict[str, any]], logger: Logger ):
+
+def parse_eso_hydro_storage(eso_data: list[dict[str, any]], logger: Logger):
     """Parses only hydro storage data from the ESO API. This data will be merged with the B1620 data"""
     storage_breakdown = ProductionBreakdownList(logger=logger)
     for event in eso_data:
@@ -272,19 +287,21 @@ def parse_eso_hydro_storage(eso_data: list[dict[str, any]], logger: Logger ):
             event.get("SETTLEMENT_DATE"), event.get("SETTLEMENT_PERIOD")
         )
         storage_mix = StorageMix()
-
-        storage_mix.add_value("hydro", float(event.get("PUMP_STORAGE_PUMPING")))
-        storage_breakdown.append(
-                    zoneKey=ZoneKey("GB"),
-                    storage=storage_mix,
-                    source=ESO_SOURCE,
-                    datetime=event_datetime,
-                )
+        storage_value = get_event_value(event, "PUMP_STORAGE_PUMPING")
+        if storage_value:
+            storage_mix.add_value("hydro", storage_value)
+            storage_breakdown.append(
+                zoneKey=ZoneKey("GB"),
+                storage=storage_mix,
+                source=ESO_SOURCE,
+                datetime=event_datetime,
+            )
     return storage_breakdown
+
 
 def query_production_fuelhh(
     session: Session, target_datetime: datetime, logger: Logger
-) -> list[dict[str, any]]:
+) -> list[dict[str, Any]]:
     """Fetches production data from the FUELHH endpoint.
     This endpoint provides the half-hourly generation outturn (Generation By Fuel type)
     to give our users an indication of the generation outturn for Great Britain.
@@ -407,21 +424,7 @@ def fetch_production(
         # add hydro pumping data from ESO (B1620 only includes pumped storage production (injected on the grid) and not the pumping (withdrawn from the grid)
         eso_data = query_additional_eso_data(target_datetime, session, logger)
         parsed_hydro_storage_data = parse_eso_hydro_storage(eso_data, logger)
-        breakpoint()
         data = ProductionBreakdownList.merge_production_breakdowns(
             [data, parsed_hydro_storage_data], logger, matching_timestamps_only=True
         ).to_list()
-    required = ["coal", "gas", "nuclear", "wind"]
-    expected_range = {
-        # Historical data might be above the current capacity for coal
-        "coal": (0, 20000),
-        "gas": (100, 60000),
-        "nuclear": (100, 56000),
-        "wind": (0, 600000),
-    }
-    data = [
-        x
-        for x in data
-        if validate(x, logger, required=required, expected_range=expected_range)
-    ]
     return data
