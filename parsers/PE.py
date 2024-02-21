@@ -8,6 +8,7 @@ from requests import Response, Session
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import refetch_frequency
 
 logger = getLogger(__name__)
 
@@ -34,7 +35,7 @@ def parse_datetime(dt: str):
         tzinfo=TIMEZONE
     ) - timedelta(minutes=30)
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("PE"),
     session: Session | None = None,
@@ -99,7 +100,3 @@ def fetch_production(
         )
         production_events = production_events[:-1]
     return production_events
-
-
-if __name__ == "__main__":
-    print(fetch_production())
