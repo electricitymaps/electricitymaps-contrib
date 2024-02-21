@@ -62,8 +62,7 @@ export default function ZoneDetails(): JSX.Element {
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
-  const hasEstimationPill =
-    ['estimated'].includes(cardType) || Boolean(estimatedPercentage);
+  const hasEstimationPill = cardType === 'estimated' || Boolean(estimatedPercentage);
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
