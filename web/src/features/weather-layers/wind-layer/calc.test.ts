@@ -143,7 +143,7 @@ describe('distort', () => {
 
   it('test custom project', () => {
     const result = distort(mapMock, 0, 0, 0, 0, 1, [1, 1, 1]);
-    // This result is meaningless, used as reference for following tests
+    // This result is mainly used as reference for following tests
     expect(result).to.deep.eq([2, 2, 1]);
   });
 
