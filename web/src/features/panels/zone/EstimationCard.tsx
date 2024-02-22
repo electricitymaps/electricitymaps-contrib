@@ -1,4 +1,5 @@
 import Badge from 'components/Badge';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
@@ -20,16 +21,18 @@ export default function EstimationCard({
 }) {
   const [currentlyShowingFeedbackCard, setcurrentlyShowingFeedbackCard] = useState(false);
   const [collapsedNumber, setCollapsedNumber] = useState(0);
+  const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
 
   useEffect(() => {
     setcurrentlyShowingFeedbackCard(
-      showEstimationFeedbackCard(
-        collapsedNumber,
-        currentlyShowingFeedbackCard,
-        localStorage.getItem('feedbackCardStatus')
-      )
+      feedbackEnabled &&
+        showEstimationFeedbackCard(
+          collapsedNumber,
+          currentlyShowingFeedbackCard,
+          localStorage.getItem('feedbackCardStatus')
+        )
     );
-  }, [collapsedNumber]);
+  }, [feedbackEnabled, collapsedNumber]);
 
   switch (cardType) {
     case 'outage': {
