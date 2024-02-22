@@ -112,6 +112,7 @@ interface BreakdownChartTooltipContentProperties {
   production?: Maybe<number>;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
+  capacitySource?: string[] | null;
 }
 
 export function BreakdownChartTooltipContent({
@@ -131,6 +132,7 @@ export function BreakdownChartTooltipContent({
   selectedLayerKey,
   hasEstimationPill,
   estimatedPercentage,
+  capacitySource,
 }: BreakdownChartTooltipContentProperties) {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
@@ -201,6 +203,12 @@ export function BreakdownChartTooltipContent({
               {__('tooltips.ofinstalled')}
               <br />
               <MetricRatio value={usage} total={(capacity ??= 0)} format={formatPower} />
+              {capacitySource && (
+                <small>
+                  {' '}
+                  ({__('country-panel.source')}: {capacitySource})
+                </small>
+              )}
               <br />
             </>
           )}
@@ -231,7 +239,7 @@ export function BreakdownChartTooltipContent({
             {!isExchange && (
               <small>
                 {' '}
-                ({'Source'}: {co2IntensitySource || '?'})
+                ({__('country-panel.source')}: {co2IntensitySource || '?'})
               </small>
             )}
           </div>

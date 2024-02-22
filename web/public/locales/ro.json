@@ -51,28 +51,7 @@
     "search": "Căutați zone"
   },
   "country-history": {
-    "Getdata": "Acces la date din trecut, la interval de o ora, date în timp real, și predicții cu Electricity Maps API",
-    "carbonintensity": {
-      "hourly": "Concentrația de dioxid de carbon din ultimele 24 de ore"
-    },
-    "emissionsorigin": {
-      "hourly": "Originea emisiilor din ultimele 24 de ore"
-    },
-    "emissionsproduction": {
-      "hourly": "Emisii produse în ultimele 24 de ore"
-    },
-    "electricityorigin": {
-      "hourly": "Originea electricității din ultimele 24 de ore"
-    },
-    "electricityproduction": {
-      "hourly": "Electricitatea produsă în ultimele 24 de ore"
-    },
-    "electricityprices": {
-      "hourly": "Prețul electricității din ultimele 24 de ore"
-    },
-    "emissions": {
-      "hourly": "Emisii din ultimele 24 de ore"
-    }
+    "Getdata": "Acces la date din trecut, la interval de o ora, date în timp real, și predicții cu Electricity Maps API"
   },
   "footer": {
     "foundbugs": "Ați găsit defecte sau aveți sugestii? Reportați-le",

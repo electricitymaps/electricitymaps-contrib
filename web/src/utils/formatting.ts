@@ -148,46 +148,6 @@ const formatDate = function (date: Date, lang: string, time: string) {
   }
 };
 
-const getLocaleNumberFormat = (lang: string, { unit, unitDisplay, range }: any) => {
-  try {
-    return new Intl.NumberFormat(lang, {
-      style: 'unit',
-      unit,
-      unitDisplay: unitDisplay || 'long',
-    }).format(range);
-  } catch {
-    // As Intl.NumberFormat with custom 'unit' is not supported in all browsers, we fallback to
-    // a simple English based implementation
-    const plural = range === 1 ? '' : 's';
-    return `${range} ${unit}${plural}`;
-  }
-};
-
-const formatTimeRange = (lang: string, timeAggregate: TimeAverages) => {
-  // Note that not all browsers fully support all languages
-  switch (timeAggregate) {
-    case TimeAverages.HOURLY: {
-      return getLocaleNumberFormat(lang, { unit: 'hour', range: 24 });
-    }
-    case TimeAverages.DAILY: {
-      return getLocaleNumberFormat(lang, { unit: 'day', range: 30 });
-    }
-    case TimeAverages.MONTHLY: {
-      return getLocaleNumberFormat(lang, { unit: 'month', range: 12 });
-    }
-    case TimeAverages.YEARLY: {
-      return getLocaleNumberFormat(lang, {
-        unit: 'year',
-        range: new Date().getUTCFullYear() - 2017,
-      });
-    }
-    default: {
-      console.error(`${timeAggregate} is not implemented`);
-      return '';
-    }
-  }
-};
-
 const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAverages) {
   if (!isValidDate(date) || !timeAggregate) {
     return '';
@@ -259,4 +219,4 @@ function formatDataSources(dataSources: string[], language: string) {
       );
 }
 
-export { formatDataSources, formatDate, formatDateTick, formatTimeRange, scalePower };
+export { formatDataSources, formatDate, formatDateTick, scalePower };
