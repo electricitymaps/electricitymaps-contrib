@@ -1,6 +1,6 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { useTranslation } from 'translation/translation';
 
@@ -46,7 +46,9 @@ export default function FeedbackCard({
       </div>
       <div className="pb-2 pr-2.5">
         <div
-          className="pb-1 text-xs font-medium text-neutral-400"
+          className={`pb-1 ${
+            state == '3' ? 'text-sm' : 'text-xs'
+          } font-medium text-neutral-400`}
           data-test-id="subtitle"
         >
           {subtitle}
@@ -60,6 +62,11 @@ export default function FeedbackCard({
     </div>
   );
 }
+
+const calculateTextareaHeight = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  event.target.style.height = 'auto';
+  event.target.style.height = event.target.scrollHeight + 2 + 'px';
+};
 
 function InputField({
   inputText,
@@ -88,9 +95,13 @@ function InputField({
       <textarea
         data-test-id="feedback-input"
         value={inputText}
-        onChange={handleInputChange}
+        onChange={(event) => {
+          handleInputChange(event);
+          calculateTextareaHeight(event);
+        }}
+        rows={1}
         placeholder={inputPlaceholder}
-        className="my-2 w-full rounded border border-neutral-200 bg-transparent text-base focus:border-brand-green focus:ring-0 dark:border-gray-700"
+        className="my-2 w-full resize-none rounded border border-neutral-200 bg-transparent text-base focus:border-brand-green focus:ring-0 dark:border-gray-700"
       />
     </div>
   );
