@@ -14,7 +14,7 @@ describe('FeedbackCard', () => {
     );
     cy.get('[data-test-id=feedback-question]').should(
       'contain.text',
-      'The description above was easy to understand:'
+      'The description of the data estimation was easy to understand:'
     );
     cy.get('[data-test-id=feedback-pill-1]').should('contain.text', '1');
     cy.get('[data-test-id=feedback-pill-5]').should('contain.text', '5');
