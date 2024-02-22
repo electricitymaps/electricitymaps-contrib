@@ -64,6 +64,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 6618.0
+    - datetime: '2024-02-01'
+      source: fingrid.fi
+      value: 6931.8
 contributors:
   - corradio
   - nessie2013

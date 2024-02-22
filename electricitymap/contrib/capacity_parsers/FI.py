@@ -11,9 +11,11 @@ from electricitymap.contrib.config import ZoneKey
 API_KEY = "a411d83c96bb4abb8812dba80bdaed64"
 SOURCE = "fingrid.fi"
 
-FINGRID_URL = "https://data.fingrid.fi/api/datasets/267/data"
+FINGRID_URL = "https://data.fingrid.fi/api/datasets/{data_set}/data"
+MODE_TO_DATASET = {"solar": 267, "wind": 268}
 
-def get_solar_capacity(session: Session, target_datetime: datetime) -> dict[str, Any] | None:
+
+def get_fingrid_capacity(session: Session, target_datetime: datetime, mode: str) -> dict[str, Any] | None:
     params = {
         "format": "json",
         "locale": "en",
@@ -22,34 +24,35 @@ def get_solar_capacity(session: Session, target_datetime: datetime) -> dict[str,
         "endTime": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%dT00:00:00"),
     }
     headers = {"x-api-key": API_KEY}
-    r: Response = session.get(FINGRID_URL, params=params, headers=headers)
+    r: Response = session.get(FINGRID_URL.format(data_set=MODE_TO_DATASET[mode]), params=params, headers=headers)
 
     if not r.ok or "data" not in r.json():
         raise ValueError(f"Failed to fetch solar capacity from {FINGRID_URL} for {target_datetime.date()}")
     data = r.json()["data"]
-    solar_capacity = {"solar": parse_solar_capacity(data, target_datetime)}
-    return solar_capacity
+    capacity = {mode: parse_fingrid_capacity(data, target_datetime)}
+    return capacity
 
 
-def parse_solar_capacity(
+def parse_fingrid_capacity(
     data: dict[str, Any], target_datetime: datetime
 ) -> list[dict[str, Any]]:
     target_data=  [x for x in data if x["startTime"] == target_datetime.strftime("%Y-%m-%dT00:00:00.000Z")]
     if len(target_data) == 0:
         raise ValueError(f"No solar capacity data found for {target_datetime.date()}")
-    solar_capacity = {
+    capacity = {
             "value": target_data[0]["value"],
             "datetime": target_datetime.strftime("%Y-%m-%d"),
             "source": SOURCE,
         }
-    return solar_capacity
+    return capacity
 
 def fetch_production_capacity(
 zone_key: ZoneKey, target_datetime: datetime, session: Session
 ) -> dict[str, Any] | None:
-    solar_capacity = get_solar_capacity(session, target_datetime)
+    solar_capacity = get_fingrid_capacity(session, target_datetime, "solar")
+    wind_capacity = get_fingrid_capacity(session, target_datetime, "wind")
     entsoe_capacity = fetch_entsoe_production_capacity(zone_key, target_datetime, session)
-    return {**entsoe_capacity,**solar_capacity}
+    return {**entsoe_capacity,**solar_capacity, **wind_capacity}
 
 
 if __name__ == "__main__":
