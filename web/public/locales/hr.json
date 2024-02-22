@@ -50,25 +50,7 @@
     "search": "Traži"
   },
   "country-history": {
-    "Getdata": "Nađi povijesne podatke i API s prognozom",
-    "carbonintensity": {
-      "hourly": "Faktor emisije u zadnja 24 sata"
-    },
-    "emissionsorigin": {
-      "hourly": "Izvor emisija u zadnja 24 sata"
-    },
-    "emissionsproduction": {
-      "hourly": "Emisije proizvedene u zadnja 24 sata"
-    },
-    "electricityorigin": {
-      "hourly": "Izvor struje u zadnja 24 sata"
-    },
-    "electricityproduction": {
-      "hourly": "Proizvodnja struje u zadnja 24 sata"
-    },
-    "electricityprices": {
-      "hourly": "Cijene struje u zadnja 24 sata"
-    }
+    "Getdata": "Nađi povijesne podatke i API s prognozom"
   },
   "footer": {
     "foundbugs": "Pronašao si grešku ili imaš ideje? Prijavi ih",

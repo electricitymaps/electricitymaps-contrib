@@ -103,37 +103,7 @@
   },
   "country-history": {
     "Getdata": "Obtenir l’historique et l’API de prévision + marginal",
-    "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
-    "carbonintensity": {
-      "hourly": "Intensité carbone des 24 dernières heures",
-      "daily": "Intensité en carbone du dernier mois",
-      "monthly": "Intensité carbone au cours de la dernière année",
-      "default": "Intensité en carbone dans les derniers %1$s"
-    },
-    "emissionsorigin": {
-      "hourly": "Origine des émissions des 24 dernières heures",
-      "default": "Émissions dans les derniers %1$s"
-    },
-    "emissionsproduction": {
-      "hourly": "Émissions produites dans les 24 dernières heures",
-      "default": "Origine des émissions dans les derniers %1$s"
-    },
-    "electricityorigin": {
-      "hourly": "Origine de l’électricité des 24 dernières heures",
-      "default": "Origine de l'électricité dans les derniers %1$s"
-    },
-    "electricityproduction": {
-      "hourly": "Production électrique des 24 dernières heures",
-      "default": "Production d'électricité dans les derniers %1$s"
-    },
-    "electricityprices": {
-      "hourly": "Prix de l’électricité des 24 dernières heures",
-      "default": "Prix de l'électricité dans les derniers %1$s"
-    },
-    "emissions": {
-      "hourly": "Émissions des 24 dernières heures",
-      "default": "Émissions dans les derniers %1$s"
-    }
+    "not-enough-data": "Pas assez de données disponibles pour afficher le graphique"
   },
   "footer": {
     "foundbugs": "Un bug ? Une idée ? Cliquez",
@@ -1874,7 +1844,11 @@
     "title": "Paramètres"
   },
   "time-controller": {
-    "title": "Afficher les données passées"
+    "title": "Afficher les données passées",
+    "daily": "quotidien",
+    "hourly": "horaire",
+    "monthly": "mensuel",
+    "yearly": "annuel"
   },
   "aggregateButtons": {
     "country": "pays",

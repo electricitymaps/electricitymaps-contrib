@@ -176,7 +176,7 @@ def fetch_live_production(
     processed_data.pop("DEMANDMET", None)
 
     for k in processed_data:
-        if k not in GENERATION_MAPPING.keys():
+        if k not in GENERATION_MAPPING:
             processed_data.pop(k)
             logger.warning(
                 f"Key '{k}' in IN is not mapped to type.", extra={"key": "IN"}

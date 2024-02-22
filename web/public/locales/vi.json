@@ -50,25 +50,7 @@
     "search": "Tìm khu vực"
   },
   "country-history": {
-    "Getdata": "Get historical data, marginal and forecast API",
-    "carbonintensity": {
-      "hourly": "Mật độ cacbon trong vòng 24 giờ"
-    },
-    "emissionsorigin": {
-      "hourly": "Nguồn gốc chất thải trong vòng 24 giờ"
-    },
-    "emissionsproduction": {
-      "hourly": "Chất thải được sản sinh ra trong vòng 24 giờ"
-    },
-    "electricityorigin": {
-      "hourly": "Origin of electricity in the last 24 hours"
-    },
-    "electricityproduction": {
-      "hourly": "Electricity production in the last 24 hours"
-    },
-    "electricityprices": {
-      "hourly": "Electricity prices in the last 24 hours"
-    }
+    "Getdata": "Get historical data, marginal and forecast API"
   },
   "footer": {
     "foundbugs": "Found bugs or have ideas? Report them",

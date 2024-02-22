@@ -3,6 +3,8 @@ import { vsprintf } from 'sprintf-js';
 
 import i18next from './i18n';
 
+export type TranslationFunction = (key: string, ...arguments_: string[]) => string;
+
 // Todo: We should get rid of vsprintf and use i18next interpolation instead
 const translateWithTranslator = (
   translator: typeof i18next.t,

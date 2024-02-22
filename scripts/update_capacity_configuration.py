@@ -83,7 +83,7 @@ def update_zone_capacity_config(zone_key: ZoneKey, data: dict) -> None:
     if "capacity" in _new_zone_config:
         capacity = _new_zone_config["capacity"]
 
-        if all(isinstance(capacity[m], float | int) for m in capacity.keys()):
+        if all(isinstance(capacity[m], float | int) for m in capacity):
             # TODO: this is temporary as it handles the case of the deprecated system where capacity is a single value. It will be removed in the future
             capacity = {key: [value] for key, value in data.items()}
         else:
@@ -177,11 +177,7 @@ def generate_zone_capacity_list(
 
 def check_capacity_config_type(capacity_config: list, config_type: type) -> None:
     """Check that the capacity config is of the specified type"""
-    return (
-        True
-        if all(isinstance(item, config_type) for item in capacity_config)
-        else False
-    )
+    return bool(all(isinstance(item, config_type) for item in capacity_config))
 
 
 def generate_aggregated_capacity_config(

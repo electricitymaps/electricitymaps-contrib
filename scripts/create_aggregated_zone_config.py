@@ -33,11 +33,11 @@ def create_aggregated_config(zoneKey: str, timezone: str):
             with open(path) as file:
                 subzone = yaml.safe_load(file.read())
                 zone.sub_zone_names.append(path.stem)
-                if "contributors" in subzone.keys():
+                if "contributors" in subzone:
                     zone.contributors = list(
                         set(zone.contributors + subzone["contributors"])
                     )
-                if "capacity" in subzone.keys():
+                if "capacity" in subzone:
                     capacities: dict = subzone["capacity"]
                     for key, capacity in capacities.items():
                         mapped_key = (

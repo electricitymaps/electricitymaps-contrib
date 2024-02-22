@@ -237,6 +237,7 @@ class TestProductionBreakdown(unittest.TestCase):
         )
         assert breakdown.zoneKey == ZoneKey("DE")
         assert breakdown.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert breakdown.production is not None
         assert breakdown.production.wind == 10
         assert breakdown.source == "trust.me"
 
@@ -255,7 +256,10 @@ class TestProductionBreakdown(unittest.TestCase):
             storage=storage,
             source="trust.me",
         )
+
+        assert breakdown.production is not None
         assert breakdown.production.hydro == 20
+        assert breakdown.storage is not None
         assert breakdown.storage.hydro == 10
 
     def test_invalid_breakdown_raises(self):
@@ -304,6 +308,8 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
             mock_warning.assert_called_once()
+            assert breakdown is not None
+            assert breakdown.production is not None
             assert breakdown.production.hydro is None
             assert breakdown.production.wind == 10
 
@@ -327,6 +333,8 @@ class TestProductionBreakdown(unittest.TestCase):
                 source="trust.me",
             )
             mock_warning.assert_called_once()
+            assert breakdown is not None
+            assert breakdown.production is not None
             assert breakdown.production.wind == 0
             assert breakdown.production.biomass is None
 
@@ -354,6 +362,7 @@ class TestProductionBreakdown(unittest.TestCase):
         )
         assert breakdown.zoneKey == ZoneKey("DE")
         assert breakdown.datetime == datetime(2023, 2, 1, tzinfo=timezone.utc)
+        assert breakdown.production is not None
         assert breakdown.production.wind == 10
         assert breakdown.source == "trust.me"
         assert breakdown.sourceType == EventSourceType.forecasted
@@ -497,7 +506,89 @@ class TestMixes(unittest.TestCase):
             assert hasattr(mix, mode)
 
 
-class TestAddValue(unittest.TestCase):
+class TestMixesInternalMethods(unittest.TestCase):
+    def test_set_attr(self):
+        mix = ProductionMix()
+        mix.wind = 10
+        assert mix.wind == 10
+
+    def test_set_attr_with_negative_value(self):
+        mix = ProductionMix()
+        mix.wind = -10
+        assert mix.wind is None
+
+    def test_set_attr_with_none(self):
+        mix = ProductionMix()
+        mix.wind = None
+        assert mix.wind is None
+
+    def test_set_attr_with_invalid_mode(self):
+        mix = ProductionMix()
+        with self.assertRaises(AttributeError):
+            mix.nuke = 10
+
+    def test_set_item(self):
+        mix = ProductionMix()
+        mix["wind"] = 10
+        assert mix.wind == 10
+
+    def test_set_item_with_negative_value(self):
+        mix = ProductionMix()
+        mix["wind"] = -10
+        assert mix.wind is None
+
+    def test_set_item_with_none(self):
+        mix = ProductionMix()
+        mix["wind"] = None
+        assert mix.wind is None
+
+    def test_set_item_with_invalid_mode(self):
+        mix = ProductionMix()
+        with self.assertRaises(AttributeError):
+            mix["nuke"] = 10
+
+    def test_set_attr_storage(self):
+        mix = StorageMix()
+        mix.hydro = 10
+        assert mix.hydro == 10
+
+    def test_set_attr_storage_with_negative_value(self):
+        mix = StorageMix()
+        mix.hydro = -10
+        assert mix.hydro == -10
+
+    def test_set_attr_storage_with_none(self):
+        mix = StorageMix()
+        mix.hydro = None
+        assert mix.hydro is None
+
+    def test_set_attr_storage_with_invalid_mode(self):
+        mix = StorageMix()
+        with self.assertRaises(AttributeError):
+            mix.nuke = 10
+
+    def test_set_item_storage(self):
+        mix = StorageMix()
+        mix["hydro"] = 10
+        assert mix.hydro == 10
+
+    def test_set_item_storage_with_negative_value(self):
+        mix = StorageMix()
+        mix["hydro"] = -10
+        assert mix.hydro == -10
+
+    def test_set_item_storage_with_none(self):
+        mix = StorageMix()
+        mix["hydro"] = None
+        assert mix.hydro is None
+
+    def test_set_item_storage_with_invalid_mode(self):
+        mix = StorageMix()
+        with self.assertRaises(AttributeError):
+            mix["nuke"] = 10
+
+
+class TestMixAddValue(unittest.TestCase):
     def test_production(self):
         mix = ProductionMix()
         mix.add_value("wind", 10)
@@ -558,3 +649,101 @@ class TestAddValue(unittest.TestCase):
         assert mix.hydro == -5
         mix.add_value("hydro", None)
         assert mix.hydro == -5
+
+
+class TestMixUpdate:
+    def test_update_production(self):
+        mix = ProductionMix(wind=10, solar=20)
+        new_mix = ProductionMix(wind=5, solar=25)
+        final_mix = ProductionMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.wind == 5
+        assert final_mix.solar == 25
+
+    def test_update_storage(self):
+        mix = StorageMix(hydro=10, battery=20)
+        new_mix = StorageMix(hydro=5, battery=25)
+        final_mix = StorageMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.hydro == 5
+        assert final_mix.battery == 25
+
+    def test_update_production_with_none(self):
+        mix = ProductionMix(wind=10, solar=20)
+        new_mix = ProductionMix(wind=None, solar=25)
+        final_mix = ProductionMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.wind == 10
+        assert final_mix.solar == 25
+
+    def test_update_storage_with_none(self):
+        mix = StorageMix(hydro=10, battery=20)
+        new_mix = StorageMix(hydro=None, battery=25)
+        final_mix = StorageMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.hydro == 10
+        assert final_mix.battery == 25
+
+    def test_update_production_with_empty(self):
+        mix = ProductionMix()
+        new_mix = ProductionMix(wind=0, solar=25)
+        final_mix = ProductionMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.wind == 0
+        assert final_mix.solar == 25
+
+    def test_update_storage_with_empty(self):
+        mix = StorageMix()
+        new_mix = StorageMix(hydro=0, battery=25)
+        final_mix = StorageMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.hydro == 0
+        assert final_mix.battery == 25
+
+    def test_update_production_with_new_empty(self):
+        mix = ProductionMix(wind=10, solar=20)
+        new_mix = ProductionMix()
+        final_mix = ProductionMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.wind == 10
+        assert final_mix.solar == 20
+
+    def test_update_storage_with_new_empty(self):
+        mix = StorageMix(hydro=10, battery=20)
+        new_mix = StorageMix()
+        final_mix = StorageMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.hydro == 10
+        assert final_mix.battery == 20
+
+    def test_update_production_with_empty_and_new_none(self):
+        mix = ProductionMix()
+        new_mix = ProductionMix(wind=None, solar=None)
+        final_mix = ProductionMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.wind is None
+        assert final_mix.solar is None
+
+    def test_update_storage_with_empty_and_new_none(self):
+        mix = StorageMix()
+        new_mix = StorageMix(hydro=None, battery=None)
+        final_mix = StorageMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.hydro is None
+        assert final_mix.battery is None
+
+    def test_update_production_with_empty_and_new_empty(self):
+        mix = ProductionMix()
+        new_mix = ProductionMix()
+        final_mix = ProductionMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.wind is None
+        assert final_mix.solar is None
+
+    def test_update_storage_with_empty_and_new_empty(self):
+        mix = StorageMix()
+        new_mix = StorageMix()
+        final_mix = StorageMix.update(mix, new_mix)
+        assert final_mix is not None
+        assert final_mix.hydro is None
+        assert final_mix.battery is None

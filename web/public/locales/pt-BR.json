@@ -65,37 +65,7 @@
     "search": "Pesquise por país ou área"
   },
   "country-history": {
-    "Getdata": "Obtenha dados históricos, marginais e de previsão da API",
-    "carbonintensity": {
-      "hourly": "Intensidade da emissão de carbono nas últimas 24 horas",
-      "daily": "Intensidade de carbono no último mês",
-      "monthly": "Intensidade de carbono no último ano",
-      "default": "Intensidade de carbono nas últimas %1$s"
-    },
-    "emissionsorigin": {
-      "hourly": "Origem da emissão de carbono nas últimas 24 horas",
-      "default": "Emissões nas últimas %1$s"
-    },
-    "emissionsproduction": {
-      "hourly": "Emissões de carbono produzida nas últimas 24 horas",
-      "default": "Origem de emissões nas últimas %1$s"
-    },
-    "electricityorigin": {
-      "hourly": "Origem da eletricidade nas últimas 24 horas",
-      "default": "Origem da eletricidade nas últimas %1$s"
-    },
-    "electricityproduction": {
-      "hourly": "Produção de eletricidade nas últimas 24 horas",
-      "default": "Produção de eletricidade nas últimas %1$s"
-    },
-    "electricityprices": {
-      "hourly": "Preço da eletricidade nas últimas 24 horas",
-      "default": "Preço da eletricidade nas últimas %1$s"
-    },
-    "emissions": {
-      "hourly": "Emissões de carbono nas últimas 24 horas",
-      "default": "Emissões nas últimas %1$s"
-    }
+    "Getdata": "Obtenha dados históricos, marginais e de previsão da API"
   },
   "footer": {
     "foundbugs": "Encontrou erros ou tem alguma sugestão? Contate-nos",
