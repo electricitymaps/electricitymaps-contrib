@@ -2,7 +2,7 @@
   "info-modal": {
     "title": "介绍",
     "intro-text": "Electricity Maps应用程序在网站和手机程序上为居民，能源专家，非政府组织和决策者们提供即时的信息，从而促使人们更好的理解能源转型的挑战。",
-    "open-source-text": "这个应用程序是一个<a href=\"{{link}}\" target=\"_blank\">开源</a> (<a href=\"{{link}}\" target=\"_blank\">查看数据来源</a>)并由社区提供支持。",
+    "open-source-text": "这个应用程序是一个<a href=\"{{link}}\" target=\"_blank\">开源</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">查看数据来源</a>)并由社区提供支持。",
     "feedback-button": "提供反馈",
     "github-button": "浏览我们的GitHub",
     "twitter-button": "在推特上转发",

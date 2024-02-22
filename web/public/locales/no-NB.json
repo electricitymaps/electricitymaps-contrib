@@ -101,7 +101,7 @@
     "github-button": "Se på GitHub",
     "intro-text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
     "legal-notice": "Juridisk",
-    "open-source-text": "Tjenesten er <a href=\"{{link}}\" target=\"_blank\">åpen kildekode</a> (<a href=\"{{link}}\" target=\"_blank\">se datakilder</a>) og utviklet i samarbeid med frivillige.",
+    "open-source-text": "Tjenesten er <a href=\"{{link}}\" target=\"_blank\">åpen kildekode</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">se datakilder</a>) og utviklet i samarbeid med frivillige.",
     "privacy-policy": "Personvern",
     "slack-button": "Bli med i Slack-kanalen",
     "title": "info",

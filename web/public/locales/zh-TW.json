@@ -2,7 +2,7 @@
   "info-modal": {
     "title": "資料",
     "intro-text": "這份電力地圖為推動能源轉型的公民、能源專家、NGO 和政策制定者提供即時的用電資料。",
-    "open-source-text": "這個網站是個由社群支持的<a href=\"{{link}}\" target=\"_blank\">開源</a>(<a href=\"{{link}}\" target=\"_blank\">見資料來源</a>)軟體。",
+    "open-source-text": "這個網站是個由社群支持的<a href=\"{{link}}\" target=\"_blank\">開源</a>(<a href=\"{{sourcesLink}}\" target=\"_blank\">見資料來源</a>)軟體。",
     "feedback-button": "提供回饋",
     "github-button": "GitHub",
     "twitter-button": "Twitter 上分享",

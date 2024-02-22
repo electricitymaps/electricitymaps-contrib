@@ -26,8 +26,8 @@ export function InfoModalContent() {
           className=""
           dangerouslySetInnerHTML={{
             __html: t('info-modal.open-source-text', {
-              contribLink: 'https://github.com/electricitymaps/electricitymaps-contrib',
-              dataSourcesLink:
+              link: 'https://github.com/electricitymaps/electricitymaps-contrib',
+              sourcesLink:
                 'https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources',
             }),
           }}

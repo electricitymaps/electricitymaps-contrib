@@ -2,7 +2,7 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
-    "open-source-text": "Den här appen är <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{link}}\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
+    "open-source-text": "Den här appen är <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
     "feedback-button": "Ge återkoppling",
     "github-button": "Se vår GitHub",
     "twitter-button": "Dela på Twitter",

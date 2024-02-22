@@ -2,7 +2,7 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
-    "open-source-text": "This app is <a href=\"{{contribLink}}\" target=\"_blank\">Open Source</a> (<a href=\"{{dataSourcesLink}}\" target=\"_blank\">see data sources</a>) and powered by the community.",
+    "open-source-text": "This app is <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">see data sources</a>) and powered by the community.",
     "feedback-button": "Share feedback",
     "github-button": "View our GitHub",
     "twitter-button": "Share on Twitter",
