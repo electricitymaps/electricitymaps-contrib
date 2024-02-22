@@ -4,19 +4,20 @@ import io
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
-from electricitymap.contrib.lib.models.events import ProductionMix
+
 import pandas as pd
-from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeList,
-    ProductionBreakdownList,
-    TotalConsumptionList,
-)
 
 # BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
