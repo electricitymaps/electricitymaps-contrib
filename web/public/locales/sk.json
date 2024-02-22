@@ -4,7 +4,7 @@
     "opensource": "Open Source",
     "see": "viď",
     "datasources": "zdroje dát",
-    "contribute": "Zapojte sa <a href=\"%s\" target=\"_blank\">pridaním svojej oblasti</a>"
+    "contribute": "Zapojte sa <a href=\"{{link}}\" target=\"_blank\">pridaním svojej oblasti</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -37,11 +37,11 @@
     "electricityconsumption": "Spotreba elektriny",
     "bysource": "podľa zdroja",
     "emissions": "Uhlíkové emisie",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">pridajte alebo upravte zdroj</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">pridajte alebo upravte zdroj</a>",
     "helpfrom": "s pomocou od",
     "noDataAtTimestamp": "Dáta pre vybraný čas sú dočasne nedostupné",
     "noLiveData": "Živé dáta pre túto oblasť sú dočasne nedostupné",
-    "noParserInfo": "Zatiaľ nemáme žiadne informácie pre túto oblasť.<br/> Chcete nám pomôcť to napraviť? Môžete sa zapojiť <a href=\"%s\" target=\"_blank\">pridaním dát</a>.",
+    "noParserInfo": "Zatiaľ nemáme žiadne informácie pre túto oblasť.<br/> Chcete nám pomôcť to napraviť? Môžete sa zapojiť <a href=\"{{link}}\" target=\"_blank\">pridaním dát</a>.",
     "now": "Teraz"
   },
   "left-panel": {

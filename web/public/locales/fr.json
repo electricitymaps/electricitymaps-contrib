@@ -4,7 +4,7 @@
     "opensource": "Open Source",
     "see": "voir",
     "datasources": "source des données",
-    "contribute": "Contribuez en <a href=\"%s\" target=\"_blank\">ajoutant votre pays</a>"
+    "contribute": "Contribuez en <a href=\"{{link}}\" target=\"_blank\">ajoutant votre pays</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -57,23 +57,23 @@
       "total-electricity-consumption": "Consommation totale d'électricité par source"
     },
     "emissions": "Émissions",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">ajouter ou modifier la source</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">ajouter ou modifier la source</a>",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
-    "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"%s\" target=\"_blank\">ajoutant des données de zone</a>.",
+    "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"{{link}}\" target=\"_blank\">ajoutant des données de zone</a>.",
     "disabledPriceReasons": {
       "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
     },
     "now": "Maintenant",
-    "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à %s heures de retard. Les données temps-réel ne peuvent pas être affichées.",
+    "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
     "estimated": "estimé",
     "aggregated": "aggrégé",
     "dataIsEstimated": "Certaines données de cette région sont estimées. En savoir plus sur notre méthodologie d'estimation <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
     "exchangesAreMissing": "Les échanges sont pris en compte dans les calculs mais ne sont pas indiqués actuellement. En savoir plus sur notre agrégation historique  <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
     "estimatedTooltip": "Les données en temps réel pour cette zone sont estimées sur la base des données de la source et des hypothèses du modèle.",
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
-    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"%s\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
+    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
   },
   "estimation-badge": {
     "partially-estimated": "Partiellement estimées",
@@ -1832,7 +1832,7 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "L'application Electricity Maps fournit des informations en temps réel sur le web et sur les mobiles pour les citoyens, les experts en énergie, les ONG et les décideurs politiques, favorisant ainsi une meilleure compréhension des défis de la transition énergétique.",
-    "open-source-text": "Cette application est <a href=\\\"%s\\\" target=\\\"_blank\\\">Open Source</a> (<a href=\\\"%s\\\" target=\\\"_blank\\\">voir les sources de données</a>) et alimentée par la communauté.",
+    "open-source-text": "Cette application est <a href=\\\"{{link}}\\\" target=\\\"_blank\\\">Open Source</a> (<a href=\\\"{{link}}\\\" target=\\\"_blank\\\">voir les sources de données</a>) et alimentée par la communauté.",
     "feedback-button": "Partagez vos commentaires",
     "github-button": "Visiter notre Github",
     "twitter-button": "Partager sur Twitter",

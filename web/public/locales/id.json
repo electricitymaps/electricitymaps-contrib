@@ -4,7 +4,7 @@
     "opensource": "terbuka",
     "see": "lihat",
     "datasources": "sumber data",
-    "contribute": "Kontribusi oleh <a href=\"%s\" target=\"_blank\">tambahkan teritori Kamu</a>"
+    "contribute": "Kontribusi oleh <a href=\"{{link}}\" target=\"_blank\">tambahkan teritori Kamu</a>"
   },
   "mobile-main-menu": {
     "map": "Peta Kelistrikan",
@@ -37,11 +37,11 @@
     "electricityconsumption": "Konsumsi Listrik",
     "bysource": "menurut sumber",
     "emissions": "Emisi Karbon",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">tambah atau edit sumber</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">tambah atau edit sumber</a>",
     "helpfrom": "dengan bantuan dari",
     "noDataAtTimestamp": "Data belum tersedia pada waktu yang dipilih",
     "noLiveData": "Data belum tersedia pada area yang dipilih",
-    "noParserInfo": "Kami tidak mempunyai informasi lebih lanjut tentang area yang dipilih.<br/> Ingin memperbaikinya? Kamu bisa berkontribusi dengan <a href=\"%s\" target=\"_blank\">menambahkan data area</a>.",
+    "noParserInfo": "Kami tidak mempunyai informasi lebih lanjut tentang area yang dipilih.<br/> Ingin memperbaikinya? Kamu bisa berkontribusi dengan <a href=\"{{link}}\" target=\"_blank\">menambahkan data area</a>.",
     "now": "Sekarang"
   },
   "left-panel": {

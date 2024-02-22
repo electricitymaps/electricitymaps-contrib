@@ -4,7 +4,7 @@
     "opensource": "avatud lähtekoodiga",
     "see": "vaadake",
     "datasources": "andmeallikaid",
-    "contribute": "Aidake kaasa <a href=\"%s\" target=\"_blank\">lisades enda piirkond</a>"
+    "contribute": "Aidake kaasa <a href=\"{{link}}\" target=\"_blank\">lisades enda piirkond</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -37,12 +37,12 @@
     "electricityconsumption": "Elektritarbimine",
     "bysource": "allikas",
     "emissions": "Süsinikheitmed",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">lisa või muuda allikat</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lisa või muuda allikat</a>",
     "helpfrom": "koos aitajatega",
     "noDataAtTimestamp": "Andmed pole valitud aja jooksul ajutiselt saadaval",
     "noLiveData": "Muutuvad andmed pole selles piirkonnas ajutiselt saadaval",
-    "dataIsDelayed": "Selle piirkonna andmed võivad viibida kuni %s tundi. Muutuvaid andmeid ei saa kuvada.",
-    "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href=\"%s\" target=\"_blank\">lisades piirkonna andmed</a>.",
+    "dataIsDelayed": "Selle piirkonna andmed võivad viibida kuni {{hours}} tundi. Muutuvaid andmeid ei saa kuvada.",
+    "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href=\"{{link}}\" target=\"_blank\">lisades piirkonna andmed</a>.",
     "now": "Äsja"
   },
   "left-panel": {

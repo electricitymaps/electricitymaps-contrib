@@ -4,7 +4,7 @@
     "opensource": "Open Source",
     "see": "vidi",
     "datasources": "izvore podataka",
-    "contribute": "Daj svoj doprinos <a href=\"%s\" target=\"_blank\">dodavanjem vlastitog područja</a>"
+    "contribute": "Daj svoj doprinos <a href=\"{{link}}\" target=\"_blank\">dodavanjem vlastitog područja</a>"
   },
   "mobile-main-menu": {
     "map": "Mapa",
@@ -37,11 +37,11 @@
     "electricityconsumption": "Upotreba struje",
     "bysource": "prema izvoru",
     "emissions": "Emisije",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj ili promijeni izvor</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">dodaj ili promijeni izvor</a>",
     "helpfrom": "uz pomoć",
     "noDataAtTimestamp": "Podaci su trenutno nedostupni za odabrano vrijeme",
     "noLiveData": "Podaci uživo su trenutno nedostupni za odabrano područje",
-    "noParserInfo": "Još nemamo nikakve informacije za ovo područje.<br/> Želih nam ih pomoći dodati? Možeš dati svoj doprinos <a href=\"%s\" target=\"_blank\">dodavanjem podataka za područje</a>.",
+    "noParserInfo": "Još nemamo nikakve informacije za ovo područje.<br/> Želih nam ih pomoći dodati? Možeš dati svoj doprinos <a href=\"{{link}}\" target=\"_blank\">dodavanjem podataka za područje</a>.",
     "now": "Sada"
   },
   "left-panel": {

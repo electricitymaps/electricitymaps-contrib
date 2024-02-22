@@ -2,7 +2,7 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
-    "open-source-text": "Den här appen är <a href=\"%s\" target=\"_blank\">Open Source</a> (<a href=\"%s\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
+    "open-source-text": "Den här appen är <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{link}}\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
     "feedback-button": "Ge återkoppling",
     "github-button": "Se vår GitHub",
     "twitter-button": "Dela på Twitter",
@@ -18,7 +18,7 @@
     "opensource": "öppen källkod",
     "see": "se",
     "datasources": "datakällor",
-    "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
+    "contribute": "Bidra genom att <a href=\"{{link}}\" target=\"_blank\">lägga till din region</a>"
   },
   "mobile-main-menu": {
     "map": "Elkarta",
@@ -50,22 +50,22 @@
     "electricityproduction": "Elproduktion",
     "electricityconsumption": "Elkonsumtion",
     "emissions": "Koldioxidutsläpp",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lägg till eller redigera källa</a>",
     "helpfrom": "med hjälp från",
     "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
     "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
     "disabledPriceReasons": {
       "licensing": "Elpriser är ej tillgängliga för detta område på grund av licensvillkor"
     },
-    "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
+    "dataIsDelayed": "Data för denna region kan vara upp till {{hours}} timmar fördröjd. Aktuell data kan inte visas.",
     "estimated": "uppskattad",
     "aggregated": "aggregerad",
     "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
     "exchangesAreMissing": "Överföringar är inkluderade i beräkningarna, men visas för närvarande inte. Läs mer om våra historiska sammanställningar <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">här</a>.",
     "estimatedTooltip": "Realtidsdatan för denna region är uppskattad och baserat på källdata samt antaganden av modellen.",
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
-    "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
-    "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
+    "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"{{link}}\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
+    "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"{{link}}\" target=\"_blank\">lägga till data för regionen</a>.",
     "now": "Nu",
     "by-source": {
       "emissions": "Koldioxidutsläpp per källa",

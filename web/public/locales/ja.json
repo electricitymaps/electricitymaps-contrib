@@ -4,7 +4,7 @@
     "opensource": "オープンソースです",
     "see": "",
     "datasources": "データソースを見る",
-    "contribute": "貢献するには <a href=\"%s\" target=\"_blank\">自分の国のデータを追加してください</a>"
+    "contribute": "貢献するには <a href=\"{{link}}\" target=\"_blank\">自分の国のデータを追加してください</a>"
   },
   "mobile-main-menu": {
     "map": "電力マップ",
@@ -37,12 +37,12 @@
     "electricityconsumption": "電力消費量",
     "bysource": "ソース分け",
     "emissions": "二酸化炭素排出",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">ソースを追加または編集する</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">ソースを追加または編集する</a>",
     "helpfrom": "次の方の協力のおかげで",
     "noDataAtTimestamp": "選択された日時のデータは一時的に利用できません",
     "noLiveData": "このエリアのライブデータは一時的に利用できません",
-    "dataIsDelayed": "この地域のデータは最大 %s 時間遅延します。ライブデータは表示できません。",
-    "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"%s\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
+    "dataIsDelayed": "この地域のデータは最大 {{hours}} 時間遅延します。ライブデータは表示できません。",
+    "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"{{link}}\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
     "now": "今"
   },
   "left-panel": {

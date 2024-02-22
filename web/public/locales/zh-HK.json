@@ -4,7 +4,7 @@
     "opensource": "開源資料",
     "see": "看",
     "datasources": "數據來源",
-    "contribute": "通過<a href=\"%s\" target=\"_blank\">添加你的國家</a>進行貢獻"
+    "contribute": "通過<a href=\"{{link}}\" target=\"_blank\">添加你的國家</a>進行貢獻"
   },
   "country-panel": {
     "source": "來源",
@@ -12,7 +12,7 @@
     "electricityproduction": "電力生產",
     "bysource": "按來源",
     "emissions": "碳排放量",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或編輯來源</a>"
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">新增或編輯來源</a>"
   },
   "footer": {
     "foundbugs": "發現錯誤或有其他想法？請回報",

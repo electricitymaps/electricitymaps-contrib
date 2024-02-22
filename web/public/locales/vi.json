@@ -4,7 +4,7 @@
     "opensource": "Dự Án Nguồn mở (Open-Source)",
     "see": "xem",
     "datasources": "các nguồn dữ liệu",
-    "contribute": "Tham gia bằng cách <a href=\"%s\" target=\"_blank\">thêm khu vực của bạn</a>"
+    "contribute": "Tham gia bằng cách <a href=\"{{link}}\" target=\"_blank\">thêm khu vực của bạn</a>"
   },
   "mobile-main-menu": {
     "map": "Bản đồ",
@@ -37,11 +37,11 @@
     "electricityconsumption": "Electricity consumption",
     "bysource": "bởi nguồn",
     "emissions": "Chất thải cacbon",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">thêm hoặc chỉnh sửa nguồn</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">thêm hoặc chỉnh sửa nguồn</a>",
     "helpfrom": "with help from",
     "noDataAtTimestamp": "Dữ liệu đang tạm thời chưa có trong khoảng thời gian được chọn",
     "noLiveData": "Live data is temporarily unavailable for this area",
-    "noParserInfo": "Chúng tôi vẫn chưa có thông tin cho khu vực này.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
+    "noParserInfo": "Chúng tôi vẫn chưa có thông tin cho khu vực này.<br/> Want to help fix this? You can contribute by <a href=\"{{link}}\" target=\"_blank\">adding area data</a>.",
     "now": "Hiện tại"
   },
   "left-panel": {

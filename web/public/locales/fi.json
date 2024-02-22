@@ -4,7 +4,7 @@
     "opensource": "avoin lähdekoodi",
     "see": "katso",
     "datasources": "tietolähteet",
-    "contribute": "Avusta <a href=\"%s\" target=\"_blank\">lisäämällä alueesi</a>"
+    "contribute": "Avusta <a href=\"{{link}}\" target=\"_blank\">lisäämällä alueesi</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -37,11 +37,11 @@
     "electricityconsumption": "Sähkön kulutus",
     "bysource": "alkuperä",
     "emissions": "Hiilidioksidipäästöt",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">lisää tai muokkaa lähdettä</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lisää tai muokkaa lähdettä</a>",
     "helpfrom": "heidän avustuksella",
     "noDataAtTimestamp": "Tiedot eivät ole väliaikaisesti käytettävissä valitulle ajankohdalle",
     "noLiveData": "Live-tiedot eivät ole väliaikaisesti käytettävissä tällä alueella",
-    "noParserInfo": "Meillä ei ole vielä tietoa tästä alueesta.<br/> Haluatko auttaa tämän korjaamisessa? Voit avustaa <a href=\"%s\" target=\"_blank\">lisäämällä alueen tiedot</a>.",
+    "noParserInfo": "Meillä ei ole vielä tietoa tästä alueesta.<br/> Haluatko auttaa tämän korjaamisessa? Voit avustaa <a href=\"{{link}}\" target=\"_blank\">lisäämällä alueen tiedot</a>.",
     "now": "Tällä hetkellä"
   },
   "left-panel": {

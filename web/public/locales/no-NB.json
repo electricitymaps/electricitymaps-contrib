@@ -35,7 +35,7 @@
     "not-enough-data": "Ikke tilstrekkelig data for å vise graf"
   },
   "country-panel": {
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføy eller rediger kilde</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">Tilføy eller rediger kilde</a>",
     "aggregated": "aggregert",
     "aggregatedTooltip": "Data for denne sonen er aggregert fra historiske verdier for hver time",
     "aggregationDisabled": "Data er ikke tilgjengelig for det valgte tidsrom på grunn av manglende detaljnivå på tidsserie. Velg en lengre tidsperiode.",
@@ -48,7 +48,7 @@
       "total-emissions": "Samlet karbonutslipp etter kilde"
     },
     "carbonintensity": "CO₂-intensitet",
-    "dataIsDelayed": "Data fra denne regionen kan være %s timer forsinka. Sanntidsdata kan derfor ikke vises.",
+    "dataIsDelayed": "Data fra denne regionen kan være {{hours}} timer forsinka. Sanntidsdata kan derfor ikke vises.",
     "dataIsEstimated": "Enkelte data i regionen er estimert. Les om <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">våre estimeringsmetoder</a>.",
     "disabledPriceReasons": {
       "licensing": "Elektrisitetspriser er utilgjengelige for dette området på grunn av rettighetsbegrensninger"
@@ -60,11 +60,11 @@
     "estimatedTooltip": "Sanntidsdata for denne sonen er estimert fra kilden basert på antagelser i modellen.",
     "exchangesAreMissing": "Utveksling er tatt hensyn til i kalkulasjonene en vises for tiden ikke. Les mer om våre historiske aggregeringer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
     "helpfrom": "med hjelp fra",
-    "helpUs": "Hjelp oss å finne årsaken til problemet ved å undersøke <a href=\"%s\" target=\"_blank\">loggene</a> eller ta kontakt med datatilbyder.",
+    "helpUs": "Hjelp oss å finne årsaken til problemet ved å undersøke <a href=\"{{link}}\" target=\"_blank\">loggene</a> eller ta kontakt med datatilbyder.",
     "lowcarbon": "Lavt CO₂-utslipp",
     "noDataAtTimestamp": "Data midlertidig utilgjengelig for tidspunktet",
     "noLiveData": "Sanntidsdata er midlertidig utilgjengelig for området",
-    "noParserInfo": "Vi har ennå ingen datakilder om området.<br/>Vil du hjelpe med å løse det? Du kan bidra ved å <a href=\"%s\" target=\"_blank\">tilføye regionale data</a>.",
+    "noParserInfo": "Vi har ennå ingen datakilder om området.<br/>Vil du hjelpe med å løse det? Du kan bidra ved å <a href=\"{{link}}\" target=\"_blank\">tilføye regionale data</a>.",
     "now": "Nå",
     "renewable": "Fornybar",
     "source": "Kilde"
@@ -101,7 +101,7 @@
     "github-button": "Se på GitHub",
     "intro-text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
     "legal-notice": "Juridisk",
-    "open-source-text": "Tjenesten er <a href=\"%s\" target=\"_blank\">åpen kildekode</a> (<a href=\"%s\" target=\"_blank\">se datakilder</a>) og utviklet i samarbeid med frivillige.",
+    "open-source-text": "Tjenesten er <a href=\"{{link}}\" target=\"_blank\">åpen kildekode</a> (<a href=\"{{link}}\" target=\"_blank\">se datakilder</a>) og utviklet i samarbeid med frivillige.",
     "privacy-policy": "Personvern",
     "slack-button": "Bli med i Slack-kanalen",
     "title": "info",
@@ -204,7 +204,7 @@
     }
   },
   "panel-initial-text": {
-    "contribute": "Bidra ved å <a href=\"%s\" target=\"_blank\">legge til data for ditt område</a>",
+    "contribute": "Bidra ved å <a href=\"{{link}}\" target=\"_blank\">legge til data for ditt område</a>",
     "datasources": "kildekode",
     "opensource": "åpen kildekode",
     "see": "se",

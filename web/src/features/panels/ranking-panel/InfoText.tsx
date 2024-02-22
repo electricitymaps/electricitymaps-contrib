@@ -43,8 +43,7 @@ export default function InfoText() {
         <span
           dangerouslySetInnerHTML={{
             __html: t('panel-initial-text.contribute', {
-              gettingStartedLink:
-                'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Getting-started',
+              link: 'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Getting-started',
             }),
           }}
         />

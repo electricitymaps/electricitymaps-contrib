@@ -4,7 +4,7 @@
     "opensource": "Open Source",
     "see": "se",
     "datasources": "kildekode",
-    "contribute": "Bidrag ved at <a href=\"{{gettingStartedLink}}\" target=\"_blank\">tilføje dit område</a>"
+    "contribute": "Bidrag ved at <a href=\"{{link}}\" target=\"_blank\">tilføje dit område</a>"
   },
   "left-panel": {
     "zone-list-header-title": "Klimapåvirkning per region",
@@ -29,7 +29,7 @@
     },
     "emissions": "CO₂-udledning",
     "helpfrom": "med hjælp fra",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">Tilføj eller rediger kilde</a>",
     "noDataAtTimestamp": "Data er midlertidigt utilgængeligt for det valgte tidspunkt",
     "noLiveData": "Realtidsdata er midlertidigt utilgængeligt for dette område",
     "estimated": "anslået",

@@ -4,7 +4,7 @@
     "opensource": "مفتوح المصدر",
     "see": "انظر",
     "datasources": "مصادر البيانات",
-    "contribute": "مساهمة من <a href=\"%s\" target=\"_blank\">إضافة منطقتك</a>"
+    "contribute": "مساهمة من <a href=\"{{link}}\" target=\"_blank\">إضافة منطقتك</a>"
   },
   "country-panel": {
     "source": "المصدر",
@@ -12,7 +12,7 @@
     "electricityproduction": "إنتاج الكهرباء",
     "bysource": "عبر المصدر",
     "emissions": "انبعاثات الكربون",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">أضف أو عدّل على المصدر</a>"
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">أضف أو عدّل على المصدر</a>"
   },
   "footer": {
     "foundbugs": "وجدت أخطاء برمجية أو لديك اقتراحات؟ أبلغنا عنها",

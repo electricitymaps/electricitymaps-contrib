@@ -2,7 +2,7 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "Aplikacija Electricity Maps zagotavlja vpoglede v realnem času na spletu in mobilnih napravah za državljane, energetske strokovnjake, nevladne organizacije in oblikovalce politik, ki spodbujajo globlje razumevanje izzivov energetskega prehoda.",
-    "open-source-text": "Ta aplikacija je <a href=\"%s\" target=\"_blank\">odprtokodna</a> (<a href=\"%s\" target= '_blank'>glej vire podatkov</a>) .",
+    "open-source-text": "Ta aplikacija je <a href=\"{{link}}\" target=\"_blank\">odprtokodna</a> (<a href=\"{{link}}\" target= '_blank'>glej vire podatkov</a>) .",
     "feedback-button": "Deli povratne informacije",
     "github-button": "Oglejte si naš GitHub",
     "twitter-button": "Deli na Twitterju",
@@ -18,7 +18,7 @@
     "opensource": "Odprtokodna",
     "see": "poglej",
     "datasources": "Viri podatkov",
-    "contribute": "Prispevaj in <a href=\"%s\" target=\"_blank\">dodaj svoj teritorij</a>"
+    "contribute": "Prispevaj in <a href=\"{{link}}\" target=\"_blank\">dodaj svoj teritorij</a>"
   },
   "mobile-main-menu": {
     "map": "Mapa elektrike",
@@ -58,19 +58,19 @@
       "total-electricity-consumption": "Skupna poraba električne energije po virih"
     },
     "emissions": "ogljične emisije",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj ali uredi vir</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">dodaj ali uredi vir</a>",
     "helpfrom": "s pomočjo od",
     "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",
     "noLiveData": "Podatki v živo za to območje začasno niso na voljo",
-    "dataIsDelayed": "Podatki za to regijo lahko zamujajo do %s ur. Podatkov v živo ni mogoče prikazati.",
+    "dataIsDelayed": "Podatki za to regijo lahko zamujajo do {{hours}} ur. Podatkov v živo ni mogoče prikazati.",
     "estimated": "ocenjeno",
     "aggregated": "zbrano",
     "dataIsEstimated": "Nekateri podatki za to regijo so ocenjeni. Preberite več o naši metodologiji ocenjevanja <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target= \"_blank\">tukaj</a>.",
     "exchangesAreMissing": "Izmenjave so upoštevane v izračunih, vendar trenutno niso prikazane. Preberite več o naših zgodovinskih združevanjih <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">tukaj</a>..",
     "estimatedTooltip": "Podatki v realnem času za to območje so ocenjeni na podlagi podatkov iz vira in predpostavk modela.",
     "aggregatedTooltip": "Podatki za to območje so združeni na podlagi zgodovinskih urnih vrednosti",
-    "helpUs": "Pomagajte nam prepoznati težavo tako, da si ogledate <a href=\"%s\" target=\"_blank\">dnevnike izvajalnega časa</a> ali se obrnete na ponudnika podatkov.",
-    "noParserInfo": "Nimamo še nobenih informacij o tem območju.<br/> Želite pomagati popraviti to? Lahko prispevate tako, da <a href=\"%s\" target=\"_blank\">dodate območje podatki</a>.",
+    "helpUs": "Pomagajte nam prepoznati težavo tako, da si ogledate <a href=\"{{link}}\" target=\"_blank\">dnevnike izvajalnega časa</a> ali se obrnete na ponudnika podatkov.",
+    "noParserInfo": "Nimamo še nobenih informacij o tem območju.<br/> Želite pomagati popraviti to? Lahko prispevate tako, da <a href=\"{{link}}\" target=\"_blank\">dodate območje podatki</a>.",
     "now": "Zdaj"
   },
   "time-controller": {
