@@ -99,10 +99,9 @@
       "state-1": "Please rate the following statement.",
       "state-3": "Your response helps us understand and improve the quality of our communication and methodology."
     },
-    "rate-question": "The description above was easy to understand:",
+    "rate-question": "The description of the data estimation was easy to understand:",
     "optional": "Optional:",
     "input-question": "Anything we can do to improve it?",
-    "text": "The description above was easy to understand:",
     "agree": "Strongly agree",
     "disagree": "Strongly disagree",
     "placeholder": "Let us know in a few words...",

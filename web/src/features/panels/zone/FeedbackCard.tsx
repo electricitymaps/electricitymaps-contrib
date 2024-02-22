@@ -31,7 +31,7 @@ export default function FeedbackCard({
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-initial flex-row gap-2">
           <div
-            className={`h-[16px] w-[16px] bg-[url('/images/emaps-icon-light.svg')] bg-contain bg-center dark:bg-[url('/images/emaps-icon-dark.svg')]`}
+            className={`h-[20px] w-[20px] bg-[url('/images/electricitymaps-icon.svg')] bg-contain bg-center dark:invert`}
           />
           <h2
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
@@ -85,12 +85,12 @@ function InputField({
           {text}
         </div>
       </div>
-      <input
+      <textarea
         data-test-id="feedback-input"
         value={inputText}
         onChange={handleInputChange}
         placeholder={inputPlaceholder}
-        className="my-2 h-11 w-full items-center rounded border border-neutral-200 bg-transparent p-3 pl-2 text-base focus:outline-brand-green dark:border-gray-700"
+        className="my-2 w-full rounded border border-neutral-200 bg-transparent text-base focus:border-brand-green focus:ring-0 dark:border-gray-700"
       />
     </div>
   );
@@ -181,7 +181,7 @@ function ActionPills({
   };
 
   return (
-    <div className="flex w-full max-w-sm flex-col pt-2">
+    <div className="flex w-full flex-col pt-2">
       <PillContent
         pillContent={pillContent}
         handlePillClick={handlePillClick}
@@ -213,7 +213,7 @@ function PillContent({
 }) {
   return (
     <ToggleGroupPrimitive.Root
-      className={'flex-start mb-2 flex flex-row items-center justify-between'}
+      className={'flex-start mb-2 flex flex-row items-center justify-between gap-3'}
       type="multiple"
       aria-label="Font settings"
     >
@@ -225,7 +225,7 @@ function PillContent({
           aria-label={String(content)}
           onClick={() => handlePillClick(String(content))}
           className={`
-          mr-2 inline-flex h-9 w-[60px] select-none items-center justify-center rounded-full border border-neutral-200 text-black  dark:border-gray-700 dark:text-white
+          inline-flex h-9 w-full select-none items-center justify-center rounded-full border border-neutral-200 text-black  dark:border-gray-700 dark:text-white
             ${
               CurrentPillNumber == String(content)
                 ? 'bg-black dark:bg-white'
