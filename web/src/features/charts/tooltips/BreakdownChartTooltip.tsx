@@ -207,7 +207,7 @@ export function BreakdownChartTooltipContent({
               {capacitySource && (
                 <small>
                   {' '}
-                  ({__('country-panel.source')}: {capacitySource})
+                  ({t('country-panel.source')}: {capacitySource})
                 </small>
               )}
               <br />
@@ -240,7 +240,7 @@ export function BreakdownChartTooltipContent({
             {!isExchange && (
               <small>
                 {' '}
-                ({__('country-panel.source')}: {co2IntensitySource || '?'})
+                ({t('country-panel.source')}: {co2IntensitySource || '?'})
               </small>
             )}
           </div>
