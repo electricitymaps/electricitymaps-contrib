@@ -18,6 +18,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -106,7 +107,7 @@ def fetch_data(
         )
 
 
-def fix_solar_production(dt: datetime, value: pd.Series) -> int:
+def fix_solar_production(dt: datetime, value: float) -> int:
     """sets solar production to 0 during the night as there is only solar PV in UY"""
     if (dt.hour <= 5 or dt.hour >= 20) and value != 0:
         return 0
@@ -150,7 +151,7 @@ def fetch_production(
                     correct_negative_with_zero=True,
                 )
         production_list.append(
-            zoneKey=zone_key,
+            zoneKey=ZoneKey(zone_key),
             datetime=dt.to_pydatetime().replace(tzinfo=UY_TZ),
             source=UY_SOURCE,
             production=production_mix,
@@ -185,7 +186,7 @@ def fetch_consumption(
 
     for dt, row in consumption.iterrows():
         consumption_list.append(
-            zoneKey=zone_key,
+            zoneKey=ZoneKey(zone_key),
             datetime=dt.to_pydatetime().replace(tzinfo=UY_TZ),
             consumption=row["consumption"],
             source=UY_SOURCE,
@@ -226,7 +227,7 @@ def fetch_exchange(
 
     for dt, row in exchange.iterrows():
         exchange_list.append(
-            zoneKey=sorted_zone_keys,
+            zoneKey=ZoneKey(sorted_zone_keys),
             datetime=dt.to_pydatetime().replace(tzinfo=UY_TZ),
             netFlow=row[sorted_zone_keys],
             source=UY_SOURCE,
