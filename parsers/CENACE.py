@@ -148,7 +148,7 @@ def convert_production(series: pd.Series) -> ProductionMix:
 
     for name, val in series.iteritems():
         name = name.strip()
-        if isinstance(val, float) or isinstance(val, int):
+        if isinstance(val, float | int):
             mix.add_value(MAPPING.get(name, "unknown"), val)
 
     return mix

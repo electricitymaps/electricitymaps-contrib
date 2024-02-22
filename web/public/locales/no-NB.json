@@ -31,31 +31,7 @@
   "biomass": "biomasse",
   "coal": "kull",
   "country-history": {
-    "carbonintensity": {
-      "default": "Karbonintensitet i de siste %1$s"
-    },
-    "electricityorigin": {
-      "default": "Elektrisitetens opprinnelse i de siste %1$s"
-    },
-    "electricityprices": {
-      "default": "Elektrisitetspriser i de siste %1$s"
-    },
-    "electricityproduction": {
-      "default": "Elektrisitetsproduksjon i de siste %1$s"
-    },
-    "emissions": {
-      "default": "Utslipp i de siste %1$s"
-    },
-    "emissionsorigin": {
-      "default": "Utslippenes opprinnelse de siste %1$s"
-    },
-    "emissionsproduction": {
-      "default": "Utslippenes opprinnelse i de siste %1$s"
-    },
     "Getdata": "Få sanntids-, historiske- eller framskrivingsdata med Electricity Maps API",
-    "netExchange": {
-      "default": "Netto utveksling i de siste %1$s"
-    },
     "not-enough-data": "Ikke tilstrekkelig data for å vise graf"
   },
   "country-panel": {

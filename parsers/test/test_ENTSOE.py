@@ -411,6 +411,46 @@ class TestFetchExchangeForecast(TestENTSOE):
         )
 
 
+class TestWindAndSolarForecasts(TestENTSOE):
+    def test_wind_and_solar_forecasts(self):
+        day_ahead = Path(base_path_to_mock, "wind_solar_forecast_FI_DAY_AHEAD.xml")
+        intraday = Path(base_path_to_mock, "wind_solar_forecast_FI_INTRADAY.xml")
+        current = Path(base_path_to_mock, "wind_solar_forecast_FI_CURRENT.xml")
+
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A69&processType=A01",
+            content=day_ahead.read_bytes(),
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A69&processType=A40",
+            content=intraday.read_bytes(),
+        )
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A69&processType=A18",
+            content=current.read_bytes(),
+        )
+
+        wind_and_solar_forecasts = ENTSOE.fetch_wind_solar_forecasts(
+            ZoneKey("FI"), self.session
+        )
+        self.assert_match_snapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "production": element["production"],
+                    "storage": element["storage"],
+                    "source": element["source"],
+                    "zoneKey": element["zoneKey"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in wind_and_solar_forecasts
+            ]
+        )
+
+
 class TestENTSOE_Refetch(unittest.TestCase):
     def test_fetch_uses_normal_url(self):
         os.environ["ENTSOE_TOKEN"] = "proxy"

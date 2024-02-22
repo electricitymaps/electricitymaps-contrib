@@ -53,25 +53,7 @@
     "search": "Hledej oblasti"
   },
   "country-history": {
-    "Getdata": "Ziskejte historická a mezní data i předpověď přes API",
-    "carbonintensity": {
-      "hourly": "Uhlíková intenzita za posledních 24 hodin"
-    },
-    "emissionsorigin": {
-      "hourly": "Původ emisí za posledních 24 hodin"
-    },
-    "emissionsproduction": {
-      "hourly": "Emise vyprodukované za posledních 24 hodin"
-    },
-    "electricityorigin": {
-      "hourly": "Původ elektřiny za posledních 24 hodin"
-    },
-    "electricityproduction": {
-      "hourly": "Produkce elektřiny za posledních 24 hodin"
-    },
-    "electricityprices": {
-      "hourly": "Cena elektřiny za posledních 24 hodin"
-    }
+    "Getdata": "Ziskejte historická a mezní data i předpověď přes API"
   },
   "footer": {
     "foundbugs": "Našli jste nedostatky, nebo máte nápad? Řekněte nám o nich",

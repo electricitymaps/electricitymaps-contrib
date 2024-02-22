@@ -50,25 +50,7 @@
     "search": "Cari area"
   },
   "country-history": {
-    "Getdata": "Dapatkan data original, marjinal dan API cuaca.",
-    "carbonintensity": {
-      "hourly": "Intensitas Karbon dalam kurun waktu 24 jam terakhir"
-    },
-    "emissionsorigin": {
-      "hourly": "Originalitas emisi dalam kurun waktu 24 jam terakhir"
-    },
-    "emissionsproduction": {
-      "hourly": "Emisi yang dihasilkan dalam kurun waktu 24 jam terakhir"
-    },
-    "electricityorigin": {
-      "hourly": "Originalitas listrik dalam kurun waktu 24 jam terakhir"
-    },
-    "electricityproduction": {
-      "hourly": "Produksi listrik dalam kurun waktu 24 jam terakhir"
-    },
-    "electricityprices": {
-      "hourly": "Harga listrik dalam kurun waktu 24 jam terakhir"
-    }
+    "Getdata": "Dapatkan data original, marjinal dan API cuaca."
   },
   "footer": {
     "foundbugs": "Menemukan kesalahan dan ide baru? Laporkan pada Kami",

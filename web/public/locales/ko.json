@@ -50,25 +50,7 @@
     "search": "지역 찾기"
   },
   "country-history": {
-    "Getdata": "역사적 자료, marginal 그리고 예상된 API.",
-    "carbonintensity": {
-      "hourly": "24시간 내 탄소밀집도"
-    },
-    "emissionsorigin": {
-      "hourly": "24시간 내 배출 원인지역"
-    },
-    "emissionsproduction": {
-      "hourly": "24시간 내 생산된 배출량"
-    },
-    "electricityorigin": {
-      "hourly": "24시간 내 전력 원천"
-    },
-    "electricityproduction": {
-      "hourly": "24시간 동안 전력생산"
-    },
-    "electricityprices": {
-      "hourly": "24시간 동안 전력 사용 요금"
-    }
+    "Getdata": "역사적 자료, marginal 그리고 예상된 API."
   },
   "footer": {
     "foundbugs": "버그가 발견되었거나 의견이 있으신가요? 알려주세요",

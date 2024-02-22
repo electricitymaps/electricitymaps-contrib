@@ -71,12 +71,9 @@ def dataset_to_df(dataset):
     data_type = dataset["data_type"]
     _id = dataset.get("id")
 
-    if data_type != "power":
-        name = data_type.upper()
-    else:
-        # When `power` is given, the multiple power sources will be given
-        # we therefore set `name` to the power source
-        name = _id.split(".")[-2].upper()
+    # When `power` is given, the multiple power sources will be given
+    # we therefore set `name` to the power source
+    name = data_type.upper() if data_type != "power" else _id.split(".")[-2].upper()
 
     # Turn into minutes
     if interval[-1] == "m":
@@ -271,10 +268,7 @@ def fetch_production(
         logger=logger,
     )
     region = ZONE_KEY_TO_REGION.get(zone_key)
-    if region:
-        capacities = get_capacities(filtered_datasets, region)
-    else:
-        capacities = pd.Series()
+    capacities = get_capacities(filtered_datasets, region) if region else pd.Series()
 
     # Drop interconnectors
     df = df.drop([x for x in df.columns if "->" in x], axis=1)
