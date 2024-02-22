@@ -19,6 +19,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 3151.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 3148.0
   geothermal:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -41,7 +44,7 @@ capacity:
       value: 3300.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 3330.0
+      value: 3378.0
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -50,6 +53,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 323.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 325.0
 contributors:
   - corradio
   - nessie2013
