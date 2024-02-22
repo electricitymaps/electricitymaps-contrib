@@ -45,11 +45,11 @@ capacity:
       value: 1051.0
   solar:
     - datetime: '2023-01-01'
-      source: entsoe.eu
-      value: 18.0
-    - datetime: '2024-01-01'
-      source: entsoe.eu
-      value: 27.0
+      source: fingrid.fi
+      value: 606
+    - datetime: '2023-12-31'
+      source: fingrid.fi
+      value: 1018
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -323,7 +323,7 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
-  productionCapacity: ENTSOE.fetch_production_capacity
+  productionCapacity: FI.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
 price_displayed: false
