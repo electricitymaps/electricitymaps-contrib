@@ -10,7 +10,7 @@ capacity:
       value: 177.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 160.0
+      value: 166.0
   gas:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -31,14 +31,14 @@ capacity:
       value: 63.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 200.0
+      value: 303.0
   wind:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 165.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 133.0
+      value: 136.0
 contributors:
   - corradio
 emissionFactors:
