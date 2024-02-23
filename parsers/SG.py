@@ -4,11 +4,19 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 from PIL import Image, ImageOps
 from pytesseract import image_to_string
 from requests import Session
+
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 
 TIMEZONE = ZoneInfo("Asia/Singapore")
 
@@ -136,11 +144,11 @@ def sg_data_to_datetime(data):
 
 
 def fetch_production(
-    zone_key: str = "SG",
+    zone_key: ZoneKey = ZoneKey("SG"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of Singapore."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -178,6 +186,7 @@ def fetch_production(
     }
 
     generation_by_type = defaultdict(float)  # this dictionary will default keys to 0.0
+    production_breakdowns = ProductionBreakdownList(logger)
 
     for gen_type, gen_percent in gen_types.items():
         gen_mw = gen_percent * generation
@@ -195,22 +204,24 @@ def fetch_production(
             logger.warning(msg)
             generation_by_type["unknown"] += gen_mw
 
-    generation_by_type["solar"] = get_solar(requests_obj, logger)
+    generation_by_type["solar"] = 0#get_solar(requests_obj, logger)
 
     # some generation methods that are not used in Singapore
     generation_by_type.update({"nuclear": 0, "wind": 0, "hydro": 0})
+    mix = ProductionMix(**generation_by_type)
 
-    return {
-        "datetime": sg_data_to_datetime(data),
-        "zoneKey": zone_key,
-        "production": generation_by_type,
-        "storage": {},  # there is no known electricity storage in Singapore
-        "source": "emcsg.com, ema.gov.sg",
-    }
+    production_breakdowns.append(
+        datetime=sg_data_to_datetime(data),
+        zoneKey=zone_key,
+        production=mix,
+        storage=None,
+        source="emcsg.com, ema.gov.sg",
+    )
+    return production_breakdowns.to_list()
 
 
 def fetch_price(
-    zone_key: str = "SG",
+    zone_key: ZoneKey = ZoneKey("SG"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -246,15 +257,15 @@ def fetch_price(
         energy_section, "Label", "USEP", "Value"
     )
     price = parse_price(price_str)
-
-    return {
-        "zoneKey": zone_key,
-        "datetime": sg_data_to_datetime(data),
-        "currency": "SGD",
-        "price": price,
-        "source": "emcsg.com",
-    }
-
+    price_list = PriceList(logger)
+    price_list.append(
+        zoneKey=zone_key,
+        datetime=sg_data_to_datetime(data),
+        currency="SGD",
+        price=price,
+        source="emcsg.com"
+    )
+    return price_list.to_list()
 
 def __detect_datetime_from_solar_image(solar_image, logger: Logger):
     w, h = solar_image.size
