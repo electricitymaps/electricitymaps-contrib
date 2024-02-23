@@ -15,5 +15,17 @@ export default defineConfig({
       framework: 'react',
       bundler: 'vite',
     },
+    setupNodeEvents(on, _config) {
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (browser.family === 'chromium' && browser.name !== 'electron') {
+          launchOptions.preferences.default.intl = {
+            accept_languages: 'en-US,en',
+            selected_languages: 'en-US,en',
+          };
+
+          return launchOptions;
+        }
+      });
+    },
   },
 });
