@@ -62,16 +62,20 @@ export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
     }
     const north = gudermannian(convertYToLat(node.height - 1, 0));
     const south = gudermannian(convertYToLat(node.height - 1, node.height - 1));
-    map.addSource('solar', {
-      type: 'canvas',
-      canvas: node,
-      coordinates: [
-        [-540, north],
-        [539.999, north],
-        [539.999, south],
-        [-540, south],
-      ],
-    });
+
+    map.addSource(
+      'solar',
+      {
+        type: 'canvas',
+        canvas: node,
+        coordinates: [
+          [-540, north],
+          [539.999, north],
+          [539.999, south],
+          [-540, south],
+        ],
+      } as any // Workaround for https://github.com/maplibre/maplibre-gl-js/issues/2242
+    );
     return () => {
       if (map.getLayer('solar-point')) {
         map.removeLayer('solar-point');
