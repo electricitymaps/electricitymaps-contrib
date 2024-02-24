@@ -204,8 +204,8 @@ def thermal_production(df, logger: Logger) -> list[dict]:
 
         current_plants = {k: tp[k] for k in tp if not isnan(tp[k])}
 
-        for plant in current_plants.keys():
-            if plant not in thermal_plants.keys():
+        for plant in current_plants:
+            if plant not in thermal_plants:
                 unmapped.add(plant)
 
         mapped_plants = [

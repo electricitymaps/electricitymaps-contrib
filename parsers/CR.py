@@ -144,7 +144,7 @@ def fetch_exchange(
 
     sorted_zones = "->".join(sorted([zone_key1, zone_key2]))
 
-    if sorted_zones not in EXCHANGE_JSON_MAPPING.keys():
+    if sorted_zones not in EXCHANGE_JSON_MAPPING:
         raise NotImplementedError("This exchange is not implemented.")
 
     s = session or Session()

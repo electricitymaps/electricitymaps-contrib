@@ -6,9 +6,9 @@ import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
 import ThemeSelector from 'features/map-controls/ThemeSelector';
 import { useAtom } from 'jotai';
+import { useTranslation } from 'react-i18next';
 import { HiOutlineEyeOff } from 'react-icons/hi';
 import { MoonLoader } from 'react-spinners';
-import { useTranslation } from 'translation/translation';
 import { TimeAverages, ToggleOptions } from 'utils/constants';
 import {
   colorblindModeAtom,
@@ -25,7 +25,7 @@ function WeatherToggleButton({
   allowed: boolean;
   type: 'wind' | 'solar';
 }) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
   const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
   const isEnabled = enabled === ToggleOptions.ON;
@@ -41,9 +41,7 @@ function WeatherToggleButton({
 
   return (
     <>
-      {!allowed && (
-        <p className="text-sm italic text-red-400">{__(`${type}DataError`)}</p>
-      )}
+      {!allowed && <p className="text-sm italic text-red-400">{t(`${type}DataError`)}</p>}
 
       <Button
         onClick={isLoadingLayer ? () => {} : onToggle}
@@ -57,7 +55,7 @@ function WeatherToggleButton({
           )
         }
       >
-        {__(
+        {t(
           isEnabled
             ? `tooltips.hide${typeAsTitlecase}Layer`
             : `tooltips.show${typeAsTitlecase}Layer`
@@ -77,7 +75,7 @@ export function SettingsModalContent() {
   const areWeatherLayersAllowed =
     selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
 
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center space-y-4">
       <div className="rounded-full bg-gray-500">
@@ -96,7 +94,7 @@ export function SettingsModalContent() {
         onClick={() => setIsColorblindModeEnabled(!isColorblindModeEnabled)}
         icon={<HiOutlineEyeOff size={21} />}
       >
-        {__('legends.colorblindmode')}
+        {t('legends.colorblindmode')}
       </Button>
       <ThemeSelector isMobile />
     </div>
@@ -104,10 +102,10 @@ export function SettingsModalContent() {
 }
 
 export default function SettingsModal() {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useAtom(isSettingsModalOpenAtom);
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={__('settings-modal.title')}>
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={t('settings-modal.title')}>
       <SettingsModalContent />
     </Modal>
   );

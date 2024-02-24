@@ -9,12 +9,12 @@ def test_production(snapshot):
     session = Session()
     adapter = Adapter()
     session.mount("http://", adapter)
-    mock_file = open("parsers/test/mocks/TAIPOWER/genary.json", "rb")
-    adapter.register_uri(
-        GET,
-        PRODUCTION_URL,
-        content=mock_file.read(),
-    )
+    with open("parsers/test/mocks/TAIPOWER/genary.json", "rb") as mock_file:
+        adapter.register_uri(
+            GET,
+            PRODUCTION_URL,
+            content=mock_file.read(),
+        )
 
     production = fetch_production(
         zone_key=ZoneKey("TW"),

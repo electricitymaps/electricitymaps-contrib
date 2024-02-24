@@ -57,7 +57,7 @@ capacity:
       value: 3265.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 5884.0
+      value: 6305.0
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -71,7 +71,7 @@ capacity:
       value: 3569.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 3954.0
+      value: 3967.0
 contributors:
   - corradio
   - brandongalbraith
