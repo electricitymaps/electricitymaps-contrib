@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import re
-from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
@@ -68,7 +67,6 @@ def get_solar(session: Session, logger: Logger) -> float | None:
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
     """
-
     solar_image = Image.open(session.get(SOLAR_URL, stream=True).raw)
 
     solar_mw = __detect_output_from_solar_image(solar_image, logger)
@@ -185,15 +183,14 @@ def fetch_production(
         gen_type["Label"]: parse_percent(gen_type["Value"]) for gen_type in mix_section
     }
 
-    generation_by_type = defaultdict(float)  # this dictionary will default keys to 0.0
     production_breakdowns = ProductionBreakdownList(logger)
-
+    mix = ProductionMix()
     for gen_type, gen_percent in gen_types.items():
         gen_mw = gen_percent * generation
         mapped_type = TYPE_MAPPINGS.get(gen_type)
 
         if mapped_type:
-            generation_by_type[TYPE_MAPPINGS[gen_type]] += gen_mw
+            mix.add_value(TYPE_MAPPINGS[gen_type], gen_mw)
 
         else:
             # unrecognized - log it, then add into unknown
@@ -202,13 +199,9 @@ def fetch_production(
                 f"with production share {gen_percent}%"
             )
             logger.warning(msg)
-            generation_by_type["unknown"] += gen_mw
+            mix.add_value("unknown", gen_mw)
 
-    generation_by_type["solar"] = 0#get_solar(requests_obj, logger)
-
-    # some generation methods that are not used in Singapore
-    generation_by_type.update({"nuclear": 0, "wind": 0, "hydro": 0})
-    mix = ProductionMix(**generation_by_type)
+    mix.add_value("solar", get_solar(requests_obj, logger))
 
     production_breakdowns.append(
         datetime=sg_data_to_datetime(data),
@@ -225,7 +218,7 @@ def fetch_price(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """
     Requests the most recent known power prices in Singapore (USEP).
 
@@ -263,9 +256,10 @@ def fetch_price(
         datetime=sg_data_to_datetime(data),
         currency="SGD",
         price=price,
-        source="emcsg.com"
+        source="emcsg.com",
     )
     return price_list.to_list()
+
 
 def __detect_datetime_from_solar_image(solar_image, logger: Logger):
     w, h = solar_image.size
