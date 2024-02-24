@@ -51,7 +51,6 @@
   "dependencies": {
     "@capacitor/app": "^4.1.1",
     "@capacitor/core": "^4.8.1",
-    "@mapbox/point-geometry": "^0.1.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
