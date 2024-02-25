@@ -19,6 +19,7 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
+SOURCE = "energy.gov.bb"
 base_url = "https://dataservices.acelerex.com/api"
 
 
@@ -68,9 +69,6 @@ def fetch_operational_data(
         data = session.get(base_url + "/barbados/uploads", params=params).json()
         header, table = parse_operational_data(data)
     elif target_datetime > datetime(year=2023, month=2, day=27):
-        # WHEN HISTORICAL DATA IS AVAILABLE
-        # convert target datetime to local datetime
-
         expected_date = target_datetime.astimezone(
             ZoneInfo("America/Barbados")
         ).strftime("%Y-%m-%d")
@@ -89,7 +87,6 @@ def fetch_operational_data(
             if table[0][0][:10] > expected_date:
                 raise ParserException("BB.py", "Date not found", zone_key)
     else:
-        # WHEN HISTORICAL DATA IS NOT AVAILABLE
         raise ParserException(
             "BB.py",
             "This parser is not yet able to parse dates before 2023-02-27",
@@ -145,7 +142,7 @@ def fetch_production(
                 )
                 * -1
             ),
-            source="dataservices.acelerex.com/barbados",
+            source=SOURCE,
         )
     return production_list.to_list()
 
@@ -166,10 +163,9 @@ def fetch_consumption(
     for _index, row in operational_data.iterrows():
         consumption_list.append(
             zoneKey=zone_key,
-            # Parse the datetime and return a python datetime object
             datetime=datetime.fromisoformat(row["datetime"]),
             consumption=row["24 hr Net demand"],
-            source="dataservices.acelerex.com/barbados",
+            source=SOURCE,
         )
     return consumption_list.to_list()
 
