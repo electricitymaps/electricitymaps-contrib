@@ -1,8 +1,15 @@
+import { I18nextProvider } from 'react-i18next';
+import i18n from 'translation/i18n';
+
 import FeedbackCard from './FeedbackCard';
 
 describe('FeedbackCard', () => {
   beforeEach(() => {
-    cy.mount(<FeedbackCard />);
+    cy.mount(
+      <I18nextProvider i18n={i18n}>
+        <FeedbackCard />
+      </I18nextProvider>
+    );
   });
 
   it('renders correctly', () => {
