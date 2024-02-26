@@ -65,7 +65,8 @@ const generateTopos = (
   const stateBordersTopography = stateBordersTopo as unknown as StateBordersTopo;
 
   for (const k of Object.keys(worldTopography.objects)) {
-    if (!worldTopography.objects[k].arcs) {
+    const topoObject = worldTopography.objects[k];
+    if (!topoObject.arcs) {
       continue;
     }
 
@@ -73,7 +74,7 @@ const generateTopos = (
     // I.e excludes SE if spatialAggregate is off.
     if (
       spatialAggregate === SpatialAggregate.ZONE &&
-      !worldTopography.objects[k].properties.isHighestGranularity
+      !topoObject.properties.isHighestGranularity
     ) {
       continue;
     }
@@ -82,16 +83,16 @@ const generateTopos = (
     // I.e excludes SE-SE4 if spatialAggregate is on.
     if (
       spatialAggregate === SpatialAggregate.COUNTRY &&
-      !worldTopography.objects[k].properties.isAggregatedView
+      !topoObject.properties.isAggregatedView
     ) {
       continue;
     }
 
-    const topoObject = merge(worldTopography, [worldTopography.objects[k]]);
-    const mp = multiPolygon(topoObject.coordinates, {
-      zoneId: worldTopography.objects[k].properties.zoneName,
+    const mergedTopoObject = merge(worldTopography, [topoObject]);
+    const mp = multiPolygon(mergedTopoObject.coordinates, {
+      zoneId: topoObject.properties.zoneName,
       color: theme.nonClickableFill,
-      ...worldTopography.objects[k].properties,
+      ...topoObject.properties,
     });
 
     worldGeometries.features.push(mp);

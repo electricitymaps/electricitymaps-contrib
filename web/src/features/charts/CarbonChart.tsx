@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
@@ -14,6 +15,7 @@ interface CarbonChartProps {
 
 function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
+  const { t } = useTranslation();
 
   if (isLoading || isError || !data) {
     return null;
@@ -23,7 +25,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const badgeText = getBadgeText(chartData);
+  const badgeText = getBadgeText(chartData, t);
 
   if (!hasEnoughDataToDisplay) {
     return <NotEnoughDataMessage title="country-history.carbonintensity" />;

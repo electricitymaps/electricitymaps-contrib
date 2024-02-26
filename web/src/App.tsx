@@ -13,7 +13,7 @@ import Header from 'features/header/Header';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
-import { useTranslation } from 'translation/translation';
+import i18n from 'translation/i18n';
 import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
@@ -66,7 +66,6 @@ export default function App(): ReactElement {
       });
     }
   }, []);
-  const { __ } = useTranslation();
 
   return (
     <Suspense fallback={<div />}>
@@ -79,10 +78,10 @@ export default function App(): ReactElement {
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               {isSuccess && isNewVersionAvailable && (
                 <Toast
-                  title={__('misc.newversion')}
+                  title={i18n.t('misc.newversion')}
                   toastAction={handleReload}
                   isCloseable={true}
-                  toastActionText={__('misc.reload')}
+                  toastActionText={i18n.t('misc.reload')}
                 />
               )}
               <Suspense>

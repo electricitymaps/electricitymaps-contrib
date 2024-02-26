@@ -1,11 +1,12 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { HiOutlineClock } from 'react-icons/hi2';
-import { TranslationFunction, useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
 
-const createOption = (time: TimeAverages, __: TranslationFunction) => ({
+const createOption = (time: TimeAverages, t: TFunction) => ({
   value: time,
-  label: __(`time-controller.${time}`),
+  label: t(`time-controller.${time}`),
   dataTestId: `time-controller-${time}`,
 });
 
@@ -15,9 +16,9 @@ export interface TimeAverageToggleProps {
 }
 
 function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggleProps) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const options = Object.keys(TimeAverages).map((time) =>
-    createOption(time.toLowerCase() as TimeAverages, __)
+    createOption(time.toLowerCase() as TimeAverages, t)
   );
 
   return (
