@@ -4,20 +4,26 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { useTranslation } from 'translation/translation';
 
+enum FeedbackState {
+  INITIAL = 'initial',
+  OPTIONAL = 'optional',
+  SUCCESS = 'success',
+}
+
 export default function FeedbackCard({
   estimationMethod,
 }: {
   estimationMethod?: string;
 }) {
   const [isClosed, setIsClosed] = useState(false);
-  const [state, setState] = useState('1');
+  const [feedbackState, setFeedbackState] = useState(FeedbackState.INITIAL);
 
   const handleClose = () => {
     setIsClosed(true);
   };
 
-  const title = getQuestionTranslation('title', state);
-  const subtitle = getQuestionTranslation('subtitle', state);
+  const title = getQuestionTranslation('title', feedbackState);
+  const subtitle = getQuestionTranslation('subtitle', feedbackState);
 
   if (isClosed) {
     return null;
@@ -47,15 +53,15 @@ export default function FeedbackCard({
       <div className="pb-2 pr-2.5">
         <div
           className={`pb-1 ${
-            state == '3' ? 'text-sm' : 'text-xs'
+            feedbackState == FeedbackState.SUCCESS ? 'text-sm' : 'text-xs'
           } font-medium text-neutral-400`}
           data-test-id="subtitle"
         >
           {subtitle}
         </div>
         <FeedbackActions
-          state={state}
-          setState={setState}
+          feedbackState={feedbackState}
+          setFeedbackState={setFeedbackState}
           estimationMethod={estimationMethod}
         />
       </div>
@@ -121,12 +127,12 @@ function SubmitButton({ handleSave }: { handleSave: () => void }) {
 }
 
 function FeedbackActions({
-  state,
-  setState,
+  feedbackState,
+  setFeedbackState,
   estimationMethod,
 }: {
-  state: string;
-  setState: Dispatch<SetStateAction<string>>;
+  feedbackState: FeedbackState;
+  setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
   estimationMethod?: string;
 }) {
   const [inputText, setInputText] = useState('');
@@ -139,7 +145,7 @@ function FeedbackActions({
   };
 
   const handleSave = () => {
-    setState('3');
+    setFeedbackState(FeedbackState.SUCCESS);
     fetch(`https://hooks.zapier.com/hooks/catch/14671709/3l9daod/`, {
       method: 'POST',
       body: JSON.stringify({
@@ -150,7 +156,7 @@ function FeedbackActions({
     });
   };
 
-  if (state === '3') {
+  if (feedbackState === FeedbackState.SUCCESS) {
     return null;
   }
 
@@ -159,8 +165,11 @@ function FeedbackActions({
       <div data-test-id="feedback-question" className="text-sm">
         {question}
       </div>
-      <ActionPills setState={setState} setFeedbackScore={setfeedbackScore} />
-      {state === '2' && (
+      <ActionPills
+        setFeedbackState={setFeedbackState}
+        setFeedbackScore={setfeedbackScore}
+      />
+      {feedbackState === FeedbackState.OPTIONAL && (
         <div>
           <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-gray-700" />
           <div>
@@ -174,10 +183,10 @@ function FeedbackActions({
 }
 
 function ActionPills({
-  setState,
+  setFeedbackState,
   setFeedbackScore,
 }: {
-  setState: Dispatch<SetStateAction<string>>;
+  setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
   setFeedbackScore: Dispatch<SetStateAction<string>>;
 }) {
   const agreeText = getQuestionTranslation('agree');
@@ -188,7 +197,7 @@ function ActionPills({
   const handlePillClick = (identifier: string) => {
     setFeedbackScore(identifier);
     setPillNumber(identifier);
-    setState('2');
+    setFeedbackState(FeedbackState.OPTIONAL);
   };
 
   return (
@@ -258,13 +267,16 @@ function PillContent({
   );
 }
 
-function getQuestionTranslation(field: string, state?: string) {
+function getQuestionTranslation(field: string, feedbackState?: FeedbackState) {
   const { __ } = useTranslation();
-  if (state !== undefined) {
-    if (state == '2') {
-      return __(`estimation-feedback.${field}.state-1`);
+  if (feedbackState != undefined) {
+    if (
+      feedbackState === FeedbackState.INITIAL ||
+      feedbackState === FeedbackState.OPTIONAL
+    ) {
+      return __(`estimation-feedback.${field}.state-initial`);
     }
-    return __(`estimation-feedback.${field}.state-${state}`);
+    return __(`estimation-feedback.${field}.state-${feedbackState}`);
   }
   return __(`estimation-feedback.${field}`);
 }
