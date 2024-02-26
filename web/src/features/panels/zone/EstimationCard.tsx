@@ -2,7 +2,7 @@ import Badge from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { ZoneDetails } from 'types';
 import {

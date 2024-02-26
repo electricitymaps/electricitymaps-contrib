@@ -1,8 +1,8 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HiOutlineX } from 'react-icons/hi';
-import { useTranslation } from 'translation/translation';
 
 enum FeedbackState {
   INITIAL = 'initial',
@@ -258,15 +258,15 @@ function PillContent({
 }
 
 function getQuestionTranslation(field: string, feedbackState?: FeedbackState) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   if (feedbackState != undefined) {
     if (
       feedbackState === FeedbackState.INITIAL ||
       feedbackState === FeedbackState.OPTIONAL
     ) {
-      return __(`estimation-feedback.${field}.state-initial`);
+      return t(`estimation-feedback.${field}.state-initial`);
     }
-    return __(`estimation-feedback.${field}.state-${feedbackState}`);
+    return t(`estimation-feedback.${field}.state-${feedbackState}`);
   }
-  return __(`estimation-feedback.${field}`);
+  return t(`estimation-feedback.${field}`);
 }

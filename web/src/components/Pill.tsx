@@ -2,12 +2,10 @@ export default function Pill({
   classes,
   text,
   onClick,
-  identifier = '',
 }: {
   classes?: string;
   text: string;
   onClick?: () => void;
-  identifier?: string;
 }): JSX.Element {
   return (
     <button
