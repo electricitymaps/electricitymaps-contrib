@@ -97,7 +97,7 @@
     "estimated_generic_method": {
       "title": "Los datos son estimados",
       "pill": "Datos imprecisos",
-      "body": "Los datos publicados para esta zona no están disponible o están incompletos. Los datos mostrados en el mapa han sido estimados mediante nuestros modelos de estimación, pudiendo diferir de los valores reales."
+      "body": "Los datos publicados para esta zona no están disponibles o están incompletos. Los datos mostrados en el mapa han sido estimados mediante nuestros modelos de estimación, pudiendo diferir de los valores reales."
     },
     "estimated_construct_breakdown": {
       "title": "Los datos son siempre estimados",
@@ -112,7 +112,7 @@
     "threshold_filtered": {
       "title": "Datos no disponibles",
       "pill": "Interrupción",
-      "body": "El proveedor de datos para esta zona ha sufrido una interrupción prolongada de su servicio. Estamos revisando el problema, y la zona estará disponible de nuevo en cuanto el proveedor restablezca el servicio."
+      "body": "El proveedor de datos para esta zona ha sufrido una interrupción prolongada de su servicio. Estamos revisando el problema y la zona estará disponible de nuevo en cuanto el proveedor restablezca el servicio."
     },
     "outage": {
       "title": "Incidencia detectada",
