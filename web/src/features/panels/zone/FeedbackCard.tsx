@@ -183,9 +183,9 @@ function ActionPills({
   setFeedbackScore: Dispatch<SetStateAction<string>>;
 }) {
   const agreeText = getQuestionTranslation('agree');
-  const [pillContent] = useState([1, 2, 3, 4, 5]);
+  const [pillContent] = useState(['1', '2', '3', '4', '5']);
   const disagreeText = getQuestionTranslation('disagree');
-  const [CurrentPillNumber, setPillNumber] = useState('');
+  const [currentPillNumber, setPillNumber] = useState('');
 
   const handlePillClick = (identifier: string) => {
     setFeedbackScore(identifier);
@@ -198,7 +198,7 @@ function ActionPills({
       <PillContent
         pillContent={pillContent}
         handlePillClick={handlePillClick}
-        CurrentPillNumber={CurrentPillNumber}
+        currentPillNumber={currentPillNumber}
       />
       <div className="flex flex-row items-center justify-between pt-1">
         <div
@@ -218,38 +218,35 @@ function ActionPills({
 function PillContent({
   pillContent,
   handlePillClick,
-  CurrentPillNumber,
+  currentPillNumber,
 }: {
-  pillContent: number[];
+  pillContent: string[];
   handlePillClick: (identifier: string) => void;
-  CurrentPillNumber: string;
+  currentPillNumber: string;
 }) {
   return (
     <ToggleGroupPrimitive.Root
       className={'flex-start mb-2 flex flex-row items-center justify-between gap-3'}
       type="multiple"
-      aria-label="Font settings"
     >
       {pillContent.map((content) => (
         <ToggleGroupPrimitive.Item
           data-test-id={`feedback-pill-${content}`}
           key={content}
-          value={String(content)}
-          aria-label={String(content)}
-          onClick={() => handlePillClick(String(content))}
+          value={content}
+          aria-label={content}
+          onClick={() => handlePillClick(content)}
           className={`
           inline-flex h-9 w-full select-none items-center justify-center rounded-full border border-neutral-200 text-black  dark:border-gray-700 dark:text-white
             ${
-              CurrentPillNumber == String(content)
+              currentPillNumber == content
                 ? 'bg-black dark:bg-white'
                 : 'hover:bg-neutral-200 dark:hover:bg-gray-700'
             }`}
         >
           <div
             className={`text-sm font-semibold ${
-              CurrentPillNumber == String(content)
-                ? ' text-zinc-50 dark:text-gray-900'
-                : ''
+              currentPillNumber == content ? ' text-zinc-50 dark:text-gray-900' : ''
             }`}
           >
             {content}
