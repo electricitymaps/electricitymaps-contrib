@@ -84,7 +84,7 @@ export function showEstimationFeedbackCard(
   feedbackCardStatus: string | null
 ) {
   if (
-    (feedbackCardStatus != 'seenBefore' && collapsedNumber > 1) ||
+    (feedbackCardStatus != 'seenBefore' && collapsedNumber > 0) ||
     currentlyShowingFeedbackCard
   ) {
     if (feedbackCardStatus != 'seenBefore') {
