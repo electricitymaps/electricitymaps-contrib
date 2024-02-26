@@ -101,12 +101,12 @@
     },
     "estimated_construct_breakdown": {
       "title": "Los datos son siempre estimados",
-      "pill": "Datos no disponibles en tiempo real",
+      "pill": "Tiempo real no disponible",
       "body": "Los datos para esta zona no están disponibles en tiempo real y sólo proporcionan la generación total. Tanto los valores horarios como el desglose por fuente de generación se estiman a partir de datos históricos."
     },
     "estimated_construct_zero_breakdown": {
       "title": "Los datos son siempre estimados",
-      "pill": "Datos no disponibles en tiempo real",
+      "pill": "Tiempo real no disponible",
       "body": "Los datos para esta zona no están disponibles en tiempo real y sólo proporcionan la generación total. Tanto los valores horarios como el desglose por fuente de generación se estiman a partir de datos históricos."
     },
     "threshold_filtered": {
