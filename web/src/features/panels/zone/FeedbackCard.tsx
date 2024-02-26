@@ -227,7 +227,7 @@ function PillContent({
   return (
     <ToggleGroupPrimitive.Root
       className={'flex-start mb-2 flex flex-row items-center justify-between gap-3'}
-      type="multiple"
+      type="single"
     >
       {pillContent.map((content) => (
         <ToggleGroupPrimitive.Item
