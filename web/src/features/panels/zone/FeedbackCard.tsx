@@ -116,14 +116,7 @@ function InputField({
 function SubmitButton({ handleSave }: { handleSave: () => void }) {
   const buttonText = getQuestionTranslation('submit');
 
-  return (
-    <Pill
-      classes="dark:hover:bg-gray-700 disabled:dark:text-gray-700 disabled:text-neutral-200 dark:text-white text-black hover:bg-neutral-200 border border-black dark:border-white disabled:dark:border-gray-700 disabled:border-neutral-200 h-9 w-full"
-      text={buttonText}
-      isButton={true}
-      onClick={handleSave}
-    />
-  );
+  return <Pill text={buttonText} onClick={handleSave} />;
 }
 
 function FeedbackActions({
