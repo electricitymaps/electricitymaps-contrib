@@ -6,22 +6,22 @@ describe('showEstimationFeedbackCard', () => {
   });
 
   it('should return true when feedbackCard is currently not shown, card has not been seen before and it has been collapsed', () => {
-    const result = showEstimationFeedbackCard(1, false, 'notSeenBefore');
+    const result = showEstimationFeedbackCard(1, false, false, () => {});
     expect(result).to.equal(true);
   });
 
-  it('should return true when showFeedbackCard is true', () => {
-    const result = showEstimationFeedbackCard(1, true, 'seenBefore');
+  it('should return true when isFeedbackCardVisibile is true', () => {
+    const result = showEstimationFeedbackCard(1, true, true, () => {});
     expect(result).to.equal(true);
   });
 
   it('should return false when conditions are not met', () => {
-    const result = showEstimationFeedbackCard(0, false, 'seenBefore');
+    const result = showEstimationFeedbackCard(0, false, true, () => {});
     expect(result).to.equal(false);
   });
 
   it('should return false when conditions are not met', () => {
-    const result = showEstimationFeedbackCard(2, false, 'seenBefore');
+    const result = showEstimationFeedbackCard(2, false, true, () => {});
     expect(result).to.equal(false);
   });
 });

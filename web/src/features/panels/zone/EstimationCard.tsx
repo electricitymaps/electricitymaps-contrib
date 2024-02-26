@@ -1,9 +1,14 @@
 import Badge from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
+import { useAtom } from 'jotai';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { useTranslation } from 'translation/translation';
 import { ZoneDetails } from 'types';
+import {
+  feedbackCardCollapsedNumberAtom,
+  hasEstimationFeedbackBeenSeenAtom,
+} from 'utils/state/atoms';
 
 import FeedbackCard from './FeedbackCard';
 import { showEstimationFeedbackCard } from './util';
@@ -19,20 +24,24 @@ export default function EstimationCard({
   estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
 }) {
-  const [currentlyShowingFeedbackCard, setcurrentlyShowingFeedbackCard] = useState(false);
-  const [collapsedNumber, setCollapsedNumber] = useState(0);
+  const [isFeedbackCardVisibile, setIsFeedbackCardVisibile] = useState(false);
+  const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
+  const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
+    hasEstimationFeedbackBeenSeenAtom
+  );
 
   useEffect(() => {
-    setcurrentlyShowingFeedbackCard(
+    setIsFeedbackCardVisibile(
       feedbackEnabled &&
         showEstimationFeedbackCard(
-          collapsedNumber,
-          currentlyShowingFeedbackCard,
-          localStorage.getItem('feedbackCardStatus')
+          feedbackCardCollapsedNumber,
+          isFeedbackCardVisibile,
+          hasFeedbackCardBeenSeen,
+          setHasFeedbackCardBeenSeen
         )
     );
-  }, [feedbackEnabled, collapsedNumber]);
+  }, [feedbackEnabled, feedbackCardCollapsedNumber]);
 
   switch (cardType) {
     case 'outage': {
@@ -44,13 +53,8 @@ export default function EstimationCard({
     case 'estimated': {
       return (
         <div>
-          <EstimatedCard
-            estimationMethod={estimationMethod}
-            setCollapsedNumber={setCollapsedNumber}
-          />
-          {currentlyShowingFeedbackCard && (
-            <FeedbackCard estimationMethod={estimationMethod} />
-          )}
+          <EstimatedCard estimationMethod={estimationMethod} />
+          {isFeedbackCardVisibile && <FeedbackCard estimationMethod={estimationMethod} />}
         </div>
       );
     }
@@ -83,7 +87,6 @@ function BaseCard({
   showMethodologyLink,
   pillType,
   textColorTitle,
-  setCollapsedNumber,
 }: {
   estimationMethod?: string;
   estimatedPercentage?: number;
@@ -93,16 +96,17 @@ function BaseCard({
   showMethodologyLink: boolean;
   pillType?: string;
   textColorTitle: string;
-  setCollapsedNumber?: Dispatch<SetStateAction<number>>;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(
     estimationMethod == 'outage' ? false : true
   );
 
+  const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
+    feedbackCardCollapsedNumberAtom
+  );
+
   const handleToggleCollapse = () => {
-    if (setCollapsedNumber) {
-      setCollapsedNumber((previous) => previous + 1);
-    }
+    setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
     setIsCollapsed((previous) => !previous);
   };
   const { __ } = useTranslation();
@@ -210,13 +214,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
   );
 }
 
-function EstimatedCard({
-  estimationMethod,
-  setCollapsedNumber,
-}: {
-  estimationMethod: string | undefined;
-  setCollapsedNumber?: Dispatch<SetStateAction<number>>;
-}) {
+function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefined }) {
   return (
     <BaseCard
       estimationMethod={estimationMethod}
@@ -226,7 +224,6 @@ function EstimatedCard({
       showMethodologyLink={true}
       pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
-      setCollapsedNumber={setCollapsedNumber}
     />
   );
 }
