@@ -4,7 +4,7 @@
     "opensource": "オープンソースです",
     "see": "",
     "datasources": "データソースを見る",
-    "contribute": "貢献するには <a href=\"%s\" target=\"_blank\">自分の国のデータを追加してください</a>"
+    "contribute": "貢献するには <a href=\"{{link}}\" target=\"_blank\">自分の国のデータを追加してください</a>"
   },
   "mobile-main-menu": {
     "map": "電力マップ",
@@ -37,12 +37,12 @@
     "electricityconsumption": "電力消費量",
     "bysource": "ソース分け",
     "emissions": "二酸化炭素排出",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">ソースを追加または編集する</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">ソースを追加または編集する</a>",
     "helpfrom": "次の方の協力のおかげで",
     "noDataAtTimestamp": "選択された日時のデータは一時的に利用できません",
     "noLiveData": "このエリアのライブデータは一時的に利用できません",
-    "dataIsDelayed": "この地域のデータは最大 %s 時間遅延します。ライブデータは表示できません。",
-    "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"%s\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
+    "dataIsDelayed": "この地域のデータは最大 {{hours}} 時間遅延します。ライブデータは表示できません。",
+    "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"{{link}}\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
     "now": "今"
   },
   "left-panel": {
@@ -113,14 +113,14 @@
   "coal": "石炭",
   "oil": "石油",
   "unknown": "不明",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> is exported to %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "地図",
     "mapColors-question": "地図中の色は何を意味しますか?",

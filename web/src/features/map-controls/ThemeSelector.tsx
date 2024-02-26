@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
+import { useTranslation } from 'react-i18next';
 import { BsMoonStars } from 'react-icons/bs';
 import { HiOutlineComputerDesktop, HiOutlineSun } from 'react-icons/hi2';
-import { useTranslation } from 'translation/translation';
 import { ThemeOptions } from 'utils/constants';
 import { themeAtom } from 'utils/state/atoms';
 
@@ -20,7 +20,7 @@ const ICONS = {
 };
 
 export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [selectedTheme, setSelectedTheme] = useAtom(themeAtom);
 
   const handleThemeChange = (mode: ThemeOptions) => {
@@ -33,13 +33,13 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
         isMobile ? (
           <div className="flex w-fit min-w-[232px] items-center justify-center gap-x-2 ">
             <BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />
-            {__('tooltips.changeTheme')}
+            {t('tooltips.changeTheme')}
           </div>
         ) : (
           <MapButton
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
-            tooltipText={__('tooltips.changeTheme')}
-            ariaLabel={__('aria.label.changeTheme')}
+            tooltipText={t('tooltips.changeTheme')}
+            ariaLabel={t('aria.label.changeTheme')}
           />
         )
       }
@@ -57,7 +57,7 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
         >
           <div className="flex items-center">
             <div className="mr-2">{ICONS[option]}</div>
-            <span>{__(`themeOptions.${option}`)}</span>
+            <span>{t(`themeOptions.${option}`)}</span>
           </div>
         </button>
       ))}

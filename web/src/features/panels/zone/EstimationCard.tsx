@@ -1,9 +1,9 @@
 import Badge from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'translation/translation';
+import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { ZoneDetails } from 'types';
 import {
   feedbackCardCollapsedNumberAtom,
@@ -66,15 +66,15 @@ function getEstimationTranslation(
   estimationMethod?: string,
   estimatedPercentage?: number
 ) {
-  const { __, i18n } = useTranslation();
+  const { t } = useTranslation();
   const exactTranslation =
     (estimatedPercentage ?? 0) > 0 && estimationMethod === 'aggregated'
-      ? i18n.t(`estimation-card.aggregated_estimated.${field}`, {
+      ? t(`estimation-card.aggregated_estimated.${field}`, {
           percentage: estimatedPercentage,
         })
-      : __(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`);
+      : t(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`);
 
-  const genericTranslation = __(`estimation-card.estimated_generic_method.${field}`);
+  const genericTranslation = t(`estimation-card.estimated_generic_method.${field}`);
   return exactTranslation.length > 0 ? exactTranslation : genericTranslation;
 }
 
@@ -109,7 +109,7 @@ function BaseCard({
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
     setIsCollapsed((previous) => !previous);
   };
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
 
   const title = getEstimationTranslation('title', estimationMethod);
   const pillText = getEstimationTranslation(
@@ -174,7 +174,7 @@ function BaseCard({
                   rel="noreferrer"
                   className={`text-sm font-semibold text-black underline dark:text-white`}
                 >
-                  <span className="underline">{__(`estimation-card.link`)}</span>
+                  <span className="underline">{t(`estimation-card.link`)}</span>
                 </a>
               </div>
             )}
