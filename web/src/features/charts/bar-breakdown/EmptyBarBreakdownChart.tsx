@@ -1,6 +1,6 @@
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { modeOrder } from 'utils/constants';
 import { PowerUnits } from 'utils/units';
 
@@ -30,7 +30,7 @@ function EmptyBarBreakdownChart({
     gCo2eqByFuelAndSource: {},
     isStorage: false,
   }));
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const { productionY } = getDataBlockPositions(0, []);
 
   const maxCO2eqExport = 1;
@@ -76,7 +76,7 @@ function EmptyBarBreakdownChart({
             <Row
               key={d.mode}
               index={index}
-              label={__(d.mode)}
+              label={t(d.mode)}
               width={width}
               scale={co2Scale}
               value={Math.abs(d.gCo2eq)}

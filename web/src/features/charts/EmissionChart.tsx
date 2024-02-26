@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
@@ -14,7 +15,7 @@ interface EmissionChartProps {
 
 function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const { data, isLoading, isError } = useEmissionChartData();
-
+  const { t } = useTranslation();
   if (isLoading || isError || !data) {
     return null;
   }
@@ -24,7 +25,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
   const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
 
-  const badgeText = getBadgeText(chartData);
+  const badgeText = getBadgeText(chartData, t);
 
   return (
     <>

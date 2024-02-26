@@ -1,6 +1,6 @@
 import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
 import { useSetAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 
 function ExternalLink({ href, text }: { href: string; text: string }) {
   return (
@@ -25,41 +25,40 @@ function FAQLink({ children }: { children: React.ReactNode }) {
 }
 
 export default function InfoText() {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="prose text-sm dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:invert">
       <p>
-        {__('panel-initial-text.thisproject')}{' '}
+        {t('panel-initial-text.thisproject')}{' '}
         <ExternalLink
           href="https://github.com/electricitymaps/electricitymaps-contrib"
-          text={__('panel-initial-text.opensource')}
+          text={t('panel-initial-text.opensource')}
         />{' '}
-        ({__('panel-initial-text.see')}{' '}
+        ({t('panel-initial-text.see')}{' '}
         <ExternalLink
           href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md"
-          text={__('panel-initial-text.datasources')}
+          text={t('panel-initial-text.datasources')}
         />
         ).{' '}
         <span
           dangerouslySetInnerHTML={{
-            __html: __(
-              'panel-initial-text.contribute',
-              'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Getting-started'
-            ),
+            __html: t('panel-initial-text.contribute', {
+              link: 'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Getting-started',
+            }),
           }}
         />
         .
       </p>
       <p>
-        {__('footer.foundbugs')}{' '}
+        {t('footer.foundbugs')}{' '}
         <ExternalLink
           href="https://github.com/electricitymaps/electricitymaps-contrib/issues/new"
-          text={__('footer.here')}
+          text={t('footer.here')}
         />
         .
       </p>
       <p>
-        {__('footer.faq-text')} <FAQLink>{__('footer.faq')}</FAQLink>
+        {t('footer.faq-text')} <FAQLink>{t('footer.faq')}</FAQLink>
       </p>
     </div>
   );
