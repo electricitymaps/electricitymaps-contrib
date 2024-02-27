@@ -84,8 +84,8 @@ dependencies:
     specifier: ^3.2.0
     version: 3.2.0
   date-fns:
-    specifier: ^2.30.0
-    version: 2.30.0
+    specifier: ^3.3.1
+    version: 3.3.1
   geojson:
     specifier: ^0.5.0
     version: 0.5.0
@@ -8972,11 +8972,8 @@ packages:
       whatwg-url: 11.0.0
     dev: true
 
-  /date-fns@2.30.0:
-    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
-    engines: {node: '>=0.11'}
-    dependencies:
-      '@babel/runtime': 7.23.9
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
     dev: false
 
   /dayjs@1.11.10:
