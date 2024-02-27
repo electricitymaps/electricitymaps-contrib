@@ -150,22 +150,14 @@ jobs:
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/bun-lock.yaml') }}
       - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: bun install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache.outputs.cache-hit == 'true'
         run: bun create-generated-files
       - name: Restore ESLint cache
         uses: actions/cache@v4
         with:
-          path: ./web/node_modules/.cache/eslint/.eslintcache
+          path: ./web/.cache/eslint/.eslintcache
           key: ${{ runner.os }}-eslint_cache-${{ github.ref_name }}-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-eslint_cache-${{ github.ref_name }}
@@ -175,7 +167,7 @@ jobs:
           --ignore-path .gitignore
           --ext .ts,.tsx .
           --cache
-          --cache-location node_modules/.cache/eslint/.eslintcache
+          --cache-location .cache/eslint/.eslintcache
           --format @microsoft/eslint-formatter-sarif
           --output-file eslint-results.sarif
         continue-on-error: true
