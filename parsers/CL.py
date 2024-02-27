@@ -7,6 +7,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from operator import itemgetter
+from zoneinfo import ZoneInfo
 
 import arrow
 from requests import Session
@@ -21,6 +22,8 @@ API_BASE_URL = "https://sipub.coordinador.cl/api/v1/recursos/generacion_centrale
 # Live API
 API_BASE_URL_LIVE_TOT = "http://panelapp.coordinadorelectrico.cl/api/chart/demanda"
 API_BASE_URL_LIVE_REN = "http://panelapp.coordinadorelectrico.cl/api/chart/ernc"  # ERNC = energias renovables no convencionales
+
+TIMEZONE = ZoneInfo("Chile/Continental")
 
 # Live parser disabled because of a insuffcient breakdown of Unknown.
 # It lumps Hydro & Geothermal into unknown which makes it difficult to calculate a proper CFE%/co2 intensity
@@ -87,9 +90,7 @@ def production_processor_live(json_tot, json_ren):
                 wind = pair[1]
                 break
 
-        datapoint["datetime"] = arrow.get(
-            dt / 1000, tzinfo="Chile/Continental"
-        ).datetime
+        datapoint["datetime"] = arrow.get(dt / 1000, tzinfo=TIMEZONE.key).datetime
         datapoint["unknown"] = total[1] - wind - solar
         datapoint["wind"] = wind
         datapoint["solar"] = solar
@@ -108,10 +109,10 @@ def production_processor_historical(raw_data):
         clean_datapoint = {}
         date, hour = datapoint["fecha"], datapoint["hora"]
         hour -= 1  # `hora` starts at 1
-        date = arrow.get(date, "YYYY-MM-DD", tzinfo="Chile/Continental").shift(
-            hours=hour
-        )
-        clean_datapoint["datetime"] = date.datetime
+        parsed_datetime = datetime.strptime(date, "%Y-%m-%d").replace(
+            tzinfo=TIMEZONE
+        ) + timedelta(hours=hour)
+        clean_datapoint["datetime"] = parsed_datetime
 
         gen_type_es = datapoint["tipo_central"]
         mapped_gen_type = TYPE_MAPPING[gen_type_es]
