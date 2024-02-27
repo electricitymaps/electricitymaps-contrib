@@ -9,39 +9,32 @@
   "license": "AGPL-3.0-or-later",
   "type": "module",
   "scripts": {
-    "mockserver": "cd ../mockserver && pnpm run start",
-    "prebuild": "pnpm run create-generated-files",
-    "build": "pnpm update-version && vite build",
+    "mockserver": "cd ../mockserver && bun run start",
+    "prebuild": "bun run create-generated-files",
+    "build": "bun --bun update-version && vite build",
     "update-version": "echo '{\"version\": \"'$npm_package_version'\"}' > public/client-version.json",
-    "create-generated-files": "pnpm run generate-world && pnpm run generate-zones-config",
+    "create-generated-files": "bun run generate-world && bun run generate-zones-config",
     "generate-world": "node --import=./scripts/register-tsNodeESM.js ./geo/generateWorld.ts",
     "generate-zones-config": "node --import=./scripts/register-tsNodeESM.js ./scripts/generateZonesConfig.ts",
-    "predev": "pnpm run create-generated-files",
-    "dev": "vite --open",
+    "predev": "bun run create-generated-files",
+    "dev": "bun --bun vite --open",
     "cy:component": "cypress open --component -b electron",
     "cy:e2e": "cypress open --e2e -b electron",
     "cy:test-all": "cypress run && cypress run --component",
     "prepare": "cd .. && husky install web/.husky",
     "preview": "vite preview",
-    "pretest": "pnpm run create-generated-files",
+    "pretest": "bun run create-generated-files",
     "test": "vitest",
-    "pretest:ci": "pnpm run create-generated-files",
+    "pretest:ci": "bun run create-generated-files",
     "test:ci": "vitest run",
     "format": "prettier -uw --cache --ignore-path ../.prettierignore .",
     "format:ci": "prettier --check --cache --loglevel silent --ignore-path ../.prettierignore .",
     "typecheck": "tsc",
     "lint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
     "lint:ci": "eslint --cache --quiet --ignore-path .gitignore --ext .ts,.tsx . ",
-    "validate-generated-files": "VERIFY_NO_UPDATES=1 pnpm run create-generated-files",
+    "validate-generated-files": "VERIFY_NO_UPDATES=1 bun run create-generated-files",
     "validate": "run-p typecheck lint:ci format:ci test:ci validate-generated-files",
     "storybook": "storybook dev -p 6006"
-  },
-  "lint-staged": {
-    "*": "prettier -uw --cache",
-    "*.{ts,tsx}": [
-      "eslint --cache --fix",
-      "vitest related --run --coverage=false"
-    ]
   },
   "browserslist": [
     "defaults",
@@ -169,7 +162,6 @@
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-testing-library": "^5.11.1",
     "eslint-plugin-unicorn": "^48.0.1",
-    "husky": "8.0.3",
     "jsdom": "20.0.1",
     "lint-staged": "13.3.0",
     "msw": "2.1.5",
@@ -193,7 +185,6 @@
     "workbox-window": "7.0.0"
   },
   "engines": {
-    "node": "^20",
-    "pnpm": "^8"
+    "node": "^20"
   }
 }

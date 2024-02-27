@@ -53,23 +53,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 8
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+          bun-version: latest
       - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
         working-directory: ./web
       - name: Prettier Check
         # Uses the prettier binary from the web node_modules so it's always in sync.
@@ -129,28 +118,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 8
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+          bun-version: latest
       - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: pnpm create-generated-files
+        run: bun create-generated-files
       - name: Run test
-        run: pnpm run test:ci
+        run: bun run test:ci
 
   eslint:
     name: Frontend / ESLint
@@ -169,26 +146,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 8
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: './web/.node-version'
+          bun-version: latest
       - name: Restore node_modules for web
         id: cache-web
         uses: actions/cache@v4
         with:
           path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/bun-lock.yaml') }}
       - name: Install web dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
       - name: Generate config files
         if: steps.cache.outputs.cache-hit == 'true'
-        run: pnpm create-generated-files
+        run: bun create-generated-files
       - name: Restore ESLint cache
         uses: actions/cache@v4
         with:
@@ -226,29 +199,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 8
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+          bun-version: latest
       - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
       - name: Generate config files
-        run: pnpm create-generated-files
+        run: bun create-generated-files
       - name: Run TypeScript typechecking for app
-        run: pnpm run typecheck
+        run: bun run typecheck
       - name: Run TypeScript typechecking for scripts
-        run: pnpm run typecheck --project tsconfig.node.json
+        run: bun run typecheck --project tsconfig.node.json
 
   validate_generate_files:
     name: Frontend / Validate generated files
@@ -265,27 +227,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 8
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+          bun-version: latest
       - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
       - name: Generate zone config
-        run: pnpm run generate-zones-config
+        run: bun run generate-zones-config
       - name: Generate world file
-        run: pnpm run generate-world
+        run: bun run generate-world
 
   deploy_preview_branch:
     name: Deploy preview
@@ -306,39 +257,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 8
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: './web/.node-version'
-      - name: Install ts-node
-        run: pnpm add ts-node --save-dev
-        working-directory: ./web
+          bun-version: latest
       - name: Generate config files
-        run: pnpm create-generated-files
+        run: bun create-generated-files
         working-directory: ./web
-      - name: Cache Cypress binary
-        id: cache-cypress
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
       - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
         working-directory: ./web
       - name: Install Cypress binary
-        if: steps.cache-cypress.outputs.cache-hit != 'true'
-        run: pnpm exec cypress install
+        run: bun exec cypress install
         working-directory: ./web
       - name: Cypress run component tests
         uses: cypress-io/github-action@v6
@@ -364,33 +294,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 8
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: './web/.node-version'
-      - name: Cache Cypress binary
-        id: cache-cypress
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+          bun-version: latest
       - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
         working-directory: ./web
       - name: Install Cypress binary
-        if: steps.cache-cypress.outputs.cache-hit != 'true'
-        run: pnpm exec cypress install
+        run: bun exec cypress install
         working-directory: ./web
       - name: Cypress run e2e tests
         uses: cypress-io/github-action@v6
@@ -399,8 +311,8 @@ jobs:
         with:
           working-directory: ./web
           install: false
-          build: pnpm run build --mode testing
-          start: pnpm run preview
+          build: bun run build --mode testing
+          start: bun run preview
           config: baseUrl=http://127.0.0.1:4173/
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
