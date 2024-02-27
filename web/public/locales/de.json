@@ -106,7 +106,7 @@
     "estimated_reconstruct_breakdown": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Unpräzise",
-      "body": "Die veröffentlichten Daten für diese Zone geben nur die Gesamtproduktion an. Die erneuerbaren Quellen werden anhand aktueller Wetterdaten geschätzt, während die fossilen Quellen auf der Grundlage historischer Daten für jede Produktionsquelle abgezogen werden."
+      "body": "Die Datenquelle gibt ausschließlich die Gesamtproduktion an. Die Stromproduktion aus erneuerbaren Quellen wird anhand aktueller Wetterdaten geschätzt. Die übrige Stromproduktion wird fossilen Energieträgern zugeordnet, wobei die Verteilung auf historischen Daten basiert."
     },
     "estimated_generic_method": {
       "title": "Daten werden geschätzt",
