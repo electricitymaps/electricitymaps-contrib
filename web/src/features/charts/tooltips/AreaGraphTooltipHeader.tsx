@@ -1,5 +1,5 @@
 import Badge from 'components/Badge';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 
@@ -21,7 +21,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
     hasEstimationPill = false,
     estimatedPercentage,
   } = props;
-  const { __, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -42,10 +42,10 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
             <Badge
               pillText={
                 estimatedPercentage
-                  ? i18n.t('estimation-card.aggregated_estimated.pill', {
+                  ? t('estimation-card.aggregated_estimated.pill', {
                       percentage: estimatedPercentage,
                     })
-                  : __('estimation-badge.fully-estimated')
+                  : t('estimation-badge.fully-estimated')
               }
               type="warning"
               icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"

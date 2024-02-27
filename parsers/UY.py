@@ -12,10 +12,18 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 UY_TZ = ZoneInfo("America/Montevideo")
+UY_SOURCE = "pronos.adme.com.uy"
 
 ADME_URL = "https://pronos.adme.com.uy/gpf.php?fecha_ini="
 PRODUCTION_MODE_MAPPING = {
@@ -99,12 +107,12 @@ def fetch_data(
         )
 
 
-def fix_solar_production(dt: datetime, row: pd.Series) -> int:
+def fix_solar_production(dt: datetime, value: float) -> int:
     """sets solar production to 0 during the night as there is only solar PV in UY"""
-    if (dt.hour <= 5 or dt.hour >= 20) and row.get("value") != 0:
+    if (dt.hour <= 5 or dt.hour >= 20) and value != 0:
         return 0
     else:
-        return round(row.get("value"), 3)
+        return round(value, 3)
 
 
 @refetch_frequency(timedelta(days=1))
@@ -119,6 +127,8 @@ def fetch_production(
         target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
+    production_list = ProductionBreakdownList(logger)
+
     data = fetch_data(
         session=session,
         target_datetime=target_datetime,
@@ -128,26 +138,26 @@ def fetch_production(
     data = data.rename(columns=PRODUCTION_MODE_MAPPING)
     data = data.groupby(data.columns, axis=1).sum()
     production = data[[col for col in data.columns if col in PRODUCTION_MODES]]
-    production = pd.melt(production, var_name="production_mode", ignore_index=False)
-    all_data_points = []
-    for dt in production.index.unique():
-        production_dict = {}
-        data_dt = production.loc[production.index == dt]
-        for i in range(len(data_dt)):
-            row = data_dt.iloc[i]
-            mode = row["production_mode"]
-            if mode == "solar":
-                production_dict[mode] = fix_solar_production(dt=dt, row=row)
-            else:
-                production_dict[mode] = round(row.get("value"), 3)
-        data_point = {
-            "zoneKey": "UY",
-            "datetime": dt.to_pydatetime().replace(tzinfo=UY_TZ),
-            "production": production_dict,
-            "source": "pronos.adme.com.uy",
-        }
-        all_data_points += [data_point]
-    return all_data_points
+
+    for dt, row in production.iterrows():
+        production_mix = ProductionMix()
+        if not row.eq(0).all() and not row.isna().all():
+            for mode, value in row.items():
+                if mode == "solar":
+                    value = fix_solar_production(dt, value)
+                production_mix.add_value(
+                    mode,
+                    round(float(value), 3),
+                    correct_negative_with_zero=True,
+                )
+        production_list.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=dt.to_pydatetime().replace(tzinfo=UY_TZ),
+            source=UY_SOURCE,
+            production=production_mix,
+        )
+
+    return production_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
@@ -162,6 +172,8 @@ def fetch_consumption(
         target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
+    consumption_list = TotalConsumptionList(logger)
+
     data = fetch_data(
         session=session,
         target_datetime=target_datetime,
@@ -170,17 +182,17 @@ def fetch_consumption(
     )
     data = data.rename(columns={"Demanda": "consumption"})
 
-    consumption = data[["consumption"]].to_dict(orient="index")
-    all_data_points = []
-    for dt in consumption:
-        data_point = {
-            "zoneKey": "UY",
-            "datetime": dt.to_pydatetime().replace(tzinfo=UY_TZ),
-            "consumption": round(consumption[dt]["consumption"], 3),
-            "source": "pronos.adme.com.uy",
-        }
-        all_data_points += [data_point]
-    return all_data_points
+    consumption = data[["consumption"]]
+
+    for dt, row in consumption.iterrows():
+        consumption_list.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=dt.to_pydatetime().replace(tzinfo=UY_TZ),
+            consumption=row["consumption"],
+            source=UY_SOURCE,
+        )
+
+    return consumption_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
@@ -196,6 +208,8 @@ def fetch_exchange(
         target_datetime = datetime.now(tz=UY_TZ)
     session = session or Session()
 
+    exchange_list = ExchangeList(logger)
+
     data = fetch_data(
         session=session,
         target_datetime=target_datetime,
@@ -208,18 +222,18 @@ def fetch_exchange(
 
     data = data.rename(columns=EXCHANGES_MAPPING)
     data = data.groupby(data.columns, axis=1).sum()
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    exchange = data[[sortedZoneKeys]].to_dict(orient="index")
-    all_data_points = []
-    for dt in exchange:
-        data_point = {
-            "netFlow": round(exchange[dt][sortedZoneKeys], 3),
-            "sortedZoneKeys": sortedZoneKeys,
-            "datetime": dt.to_pydatetime().replace(tzinfo=UY_TZ),
-            "source": "pronos.adme.com.uy",
-        }
-        all_data_points += [data_point]
-    return all_data_points
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    exchange = data[[sorted_zone_keys]]
+
+    for dt, row in exchange.iterrows():
+        exchange_list.append(
+            zoneKey=ZoneKey(sorted_zone_keys),
+            datetime=dt.to_pydatetime().replace(tzinfo=UY_TZ),
+            netFlow=row[sorted_zone_keys],
+            source=UY_SOURCE,
+        )
+
+    return exchange_list.to_list()
 
 
 if __name__ == "__main__":

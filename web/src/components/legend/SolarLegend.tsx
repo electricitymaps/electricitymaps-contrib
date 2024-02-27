@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 
 import { solarColor } from '../../features/weather-layers/solar/utils';
 import HorizontalColorbar from './ColorBar';
@@ -24,10 +24,10 @@ function LegendItem({
 }
 
 export default function SolarLegend(): ReactElement {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div>
-      <LegendItem label={__('legends.solarpotential')} unit="W/m²">
+      <LegendItem label={t('legends.solarpotential')} unit="W/m²">
         <HorizontalColorbar colorScale={solarColor} id="solar" ticksCount={5} />
       </LegendItem>
     </div>

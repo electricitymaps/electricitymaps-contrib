@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useMemo } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { ZoneDetails } from 'types';
 import { formatDataSources } from 'utils/formatting';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
@@ -32,7 +32,7 @@ export default function Attribution({
   zoneId: string;
   data?: ZoneDetails;
 }) {
-  const { __, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
   const dataSources = selectedData?.source;
@@ -44,7 +44,7 @@ export default function Attribution({
 
   return (
     <div className="text-sm">
-      <span>{__('country-panel.source')}:</span>
+      <span>{t('country-panel.source')}:</span>
       <a
         style={{ textDecoration: 'none' }}
         href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
@@ -61,16 +61,15 @@ export default function Attribution({
         <span
           className="text-sm text-sky-600 no-underline hover:underline dark:invert"
           dangerouslySetInnerHTML={{
-            __html: __(
-              'country-panel.addeditsource',
-              'https://github.com/electricitymaps/electricitymaps-contrib#data-sources/tree/master/parsers'
-            ),
+            __html: t('country-panel.addeditsource', {
+              link: 'https://github.com/electricitymaps/electricitymaps-contrib#data-sources/tree/master/parsers',
+            }),
           }}
         />
         )
       </small>
       {'  '}
-      {__('country-panel.helpfrom')}
+      {t('country-panel.helpfrom')}
       <ContributorList zoneId={zoneId} />
     </div>
   );

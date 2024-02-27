@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
-
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-from requests import Session
+from requests import Response, Session
 
-from .lib.validation import validate
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import refetch_frequency
+
+logger = getLogger(__name__)
 
 API_ENDPOINT = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
 
@@ -18,87 +22,61 @@ MAP_GENERATION = {
     "CARBÓN": "coal",
     "GAS": "gas",
     "HÍDRICO": "hydro",
-    "BIOGÁS": "unknown",
+    "BIOGÁS": "biomass",
     "BAGAZO": "biomass",
     "SOLAR": "solar",
     "EÓLICA": "wind",
 }
+SOURCE = "coes.org.pe"
 
 
-def parse_date(item):
-    return datetime.strptime(item["Nombre"], "%Y/%m/%d %H:%M:%S").replace(
+def parse_datetime(dt: str):
+    return datetime.strptime(dt, "%Y/%m/%d %H:%M:%S").replace(
         tzinfo=TIMEZONE
-    )
+    ) - timedelta(minutes=30)
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "PE",
+    zone_key: ZoneKey = ZoneKey("PE"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TIMEZONE)
     r = session or Session()
 
-    current_date = datetime.now(tz=TIMEZONE)
-
-    date_format = "%d/%m/%Y"
-    today = current_date.strftime(date_format)
-    yesterday = (current_date + timedelta(days=-1)).strftime(date_format)
-    end_date = (current_date + timedelta(days=+1)).strftime(date_format)
-
     # To guarantee a full 24 hours of data we must make 2 requests.
-
-    response_today = r.post(
+    response_url: Response = r.post(
         API_ENDPOINT,
-        data={"fechaInicial": today, "fechaFinal": end_date, "indicador": 0},
+        data={
+            "fechaInicial": (target_datetime - timedelta(days=1)).strftime("%d/%m/%Y"),
+            "fechaFinal": target_datetime.strftime("%d/%m/%Y"),
+            "indicador": 0,
+        },
     )
+    production_data = response_url.json()["GraficoTipoCombustible"]["Series"]
 
-    response_yesterday = r.post(
-        API_ENDPOINT,
-        data={"fechaInicial": yesterday, "fechaFinal": today, "indicador": 0},
-    )
-
-    data_today = response_today.json()["GraficoTipoCombustible"]["Series"]
-    data_yesterday = response_yesterday.json()["GraficoTipoCombustible"]["Series"]
-    raw_data = data_today + data_yesterday
-
-    # Note: We receive MWh values between two intervals!
-    interval_hours = (
-        parse_date(raw_data[0]["Data"][1]) - parse_date(raw_data[0]["Data"][0])
-    ).total_seconds() / 3600
-
-    data = []
-    datetimes = []
-
-    for series in raw_data:
-        k = series["Name"]
-        if k not in MAP_GENERATION:
-            logger.warning(f'Unknown production type "{k}" for Peru')
-            continue
-        for v in series["Data"]:
-            dt = parse_date(v)
-            try:
-                i = datetimes.index(dt)
-            except ValueError:
-                i = len(datetimes)
-                datetimes.append(dt)
-                data.append(
-                    {
-                        "zoneKey": zone_key,
-                        "datetime": dt,
-                        "production": {},
-                        "source": "coes.org.pe",
-                    }
-                )
-
-            data[i]["production"][MAP_GENERATION[k]] = (
-                data[i]["production"].get(MAP_GENERATION[k], 0)
-                + v["Valor"] / interval_hours
+    all_production_breakdowns: list[ProductionBreakdownList] = []
+    for item in production_data:
+        production_mode_list = ProductionBreakdownList(logger)
+        production_mode = MAP_GENERATION[item["Name"]]
+        for data in item["Data"]:
+            productionMix = ProductionMix()
+            productionMix.add_value(production_mode, round(float(data["Valor"]), 3))
+            production_mode_list.append(
+                zoneKey=zone_key,
+                datetime=parse_datetime(data["Nombre"]),
+                source=SOURCE,
+                production=productionMix,
             )
+        all_production_breakdowns.append(production_mode_list)
+    production_events = ProductionBreakdownList.merge_production_breakdowns(
+        all_production_breakdowns, logger
+    )
+    production_events = production_events.to_list()
 
     # Drop last datapoints if it "looks" incomplete.
     # The last hour often only contains data from some power plants
@@ -107,8 +85,10 @@ def fetch_production(
     # it will be included when the next datapoint comes in anyway.
     # We only run this check when target_datetime is None, as to not affect refetches
     # TODO: remove this in the future, when this is automatically detected by QA layer
-    data = sorted(data, key=lambda d: d["datetime"])
-    total_production_per_datapoint = [sum(d["production"].values()) for d in data]
+
+    total_production_per_datapoint = [
+        sum(d["production"].values()) for d in production_events
+    ]
     mean_production = sum(total_production_per_datapoint) / len(
         total_production_per_datapoint
     )
@@ -119,24 +99,5 @@ def fetch_production(
         logger.warning(
             "Dropping last datapoint as it is probably incomplete. Total production is less than 90% of the mean."
         )
-        data = data[:-1]
-
-    return list(
-        filter(
-            lambda x: validate(
-                x,
-                logger,
-                required=["gas"],
-                expected_range={
-                    "gas": (100, 6000),
-                },
-                floor=0.0,
-            )
-            is not None,
-            data,
-        )
-    )
-
-
-if __name__ == "__main__":
-    print(fetch_production())
+        production_events = production_events[:-1]
+    return production_events

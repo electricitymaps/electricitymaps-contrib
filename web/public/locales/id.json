@@ -4,7 +4,7 @@
     "opensource": "terbuka",
     "see": "lihat",
     "datasources": "sumber data",
-    "contribute": "Kontribusi oleh <a href=\"%s\" target=\"_blank\">tambahkan teritori Kamu</a>"
+    "contribute": "Kontribusi oleh <a href=\"{{link}}\" target=\"_blank\">tambahkan teritori Kamu</a>"
   },
   "mobile-main-menu": {
     "map": "Peta Kelistrikan",
@@ -37,11 +37,11 @@
     "electricityconsumption": "Konsumsi Listrik",
     "bysource": "menurut sumber",
     "emissions": "Emisi Karbon",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">tambah atau edit sumber</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">tambah atau edit sumber</a>",
     "helpfrom": "dengan bantuan dari",
     "noDataAtTimestamp": "Data belum tersedia pada waktu yang dipilih",
     "noLiveData": "Data belum tersedia pada area yang dipilih",
-    "noParserInfo": "Kami tidak mempunyai informasi lebih lanjut tentang area yang dipilih.<br/> Ingin memperbaikinya? Kamu bisa berkontribusi dengan <a href=\"%s\" target=\"_blank\">menambahkan data area</a>.",
+    "noParserInfo": "Kami tidak mempunyai informasi lebih lanjut tentang area yang dipilih.<br/> Ingin memperbaikinya? Kamu bisa berkontribusi dengan <a href=\"{{link}}\" target=\"_blank\">menambahkan data area</a>.",
     "now": "Sekarang"
   },
   "left-panel": {
@@ -50,25 +50,7 @@
     "search": "Cari area"
   },
   "country-history": {
-    "Getdata": "Dapatkan data original, marjinal dan API cuaca.",
-    "carbonintensity": {
-      "hourly": "Intensitas Karbon dalam kurun waktu 24 jam terakhir"
-    },
-    "emissionsorigin": {
-      "hourly": "Originalitas emisi dalam kurun waktu 24 jam terakhir"
-    },
-    "emissionsproduction": {
-      "hourly": "Emisi yang dihasilkan dalam kurun waktu 24 jam terakhir"
-    },
-    "electricityorigin": {
-      "hourly": "Originalitas listrik dalam kurun waktu 24 jam terakhir"
-    },
-    "electricityproduction": {
-      "hourly": "Produksi listrik dalam kurun waktu 24 jam terakhir"
-    },
-    "electricityprices": {
-      "hourly": "Harga listrik dalam kurun waktu 24 jam terakhir"
-    }
+    "Getdata": "Dapatkan data original, marjinal dan API cuaca."
   },
   "footer": {
     "foundbugs": "Menemukan kesalahan dan ide baru? Laporkan pada Kami",
@@ -127,14 +109,14 @@
   "coal": "batu bara",
   "oil": "minyak",
   "unknown": "tidak diketahui",
-  "electricityComesFrom": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> berasal dari %3$s",
-  "emissionsComeFrom": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> berasal dari %3$s",
-  "electricityStoredUsing": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> tersimpan menggunakan %3$s",
-  "emissionsStoredUsing": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> tersimpan menggunakan %3$s",
-  "electricityExportedTo": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> diekspor ke %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "%1$s %% emisi dari energi listrik tersedia di %4$s <b>%2$s</b> diekspor ke %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "%1$s %% energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "%1$s %% emisi energi listrik tersedia di %4$s <b>%2$s</b> diimport dari %5$s <b>%3$s</b>",
+  "electricityComesFrom": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> berasal dari {{selectedLayerKey}}",
+  "emissionsComeFrom": "{{percentageUsage}} % emisi dari energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> berasal dari {{selectedLayerKey}}",
+  "electricityStoredUsing": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> tersimpan menggunakan {{selectedLayerKey}}",
+  "emissionsStoredUsing": "{{percentageUsage}} % emisi dari energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> tersimpan menggunakan {{selectedLayerKey}}",
+  "electricityExportedTo": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diekspor ke {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "{{percentageUsage}} % emisi dari energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diekspor ke {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diimport dari {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "{{percentageUsage}} % emisi energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diimport dari {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Peta",
     "mapColors-question": "Apa arti dari warna di dalam peta?",
