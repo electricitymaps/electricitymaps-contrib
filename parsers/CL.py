@@ -175,9 +175,12 @@ def fetch_production(
 
         return data
 
-    arr_target_datetime = arrow.get(target_datetime)
-    start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
-    end = arr_target_datetime.format("YYYY-MM-DD")
+    if target_datetime:
+        target_datetime_aware = target_datetime.replace(tzinfo=TIMEZONE)
+    else:
+        target_datetime_aware = datetime.now(tz=TIMEZONE)
+    start = (target_datetime_aware + timedelta(days=-1)).strftime("%Y-%m-%d")
+    end = target_datetime_aware.strftime("%Y-%m-%d")
 
     date_component = f"fecha__gte={start}&fecha__lte={end}"
 
