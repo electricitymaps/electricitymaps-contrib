@@ -111,7 +111,7 @@
     "estimated_generic_method": {
       "title": "Daten werden geschätzt",
       "pill": "Unpräzise",
-      "body": "Die veröffentlichten Daten für diese Zone sind nicht verfügbar oder unvollständig. Die auf der Karte gezeigten Daten sind nach bestem Wissen und Gewissen geschätzt, können aber von den tatsächlichen Werten abweichen."
+      "body": "Für diese Zone sind unvollständige, beziehungsweise keine Daten verfügbar. Die auf der Karte gezeigten Daten sind nach bestem Wissen geschätzt, können aber von den tatsächlichen Werten abweichen."
     },
     "estimated_construct_breakdown": {
       "title": "Ausschließlich geschätzte Daten",
