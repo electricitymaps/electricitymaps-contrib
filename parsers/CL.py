@@ -222,4 +222,4 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
     # For fetching historical data instead, try:
-    print(fetch_production(target_datetime=arrow.get("20200220", "YYYYMMDD")))
+    print(fetch_production(target_datetime=datetime.strptime("20200220", "%Y%m%d")))
