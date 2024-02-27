@@ -98,6 +98,40 @@
       "pill": "Nicht verfügbar",
       "body": "Unsere Datenquellen stellen aktuell keine Werte für diese Zone zur Verfügung. Die angezeigten Werte sind Schätzungen, die auf historischen Messungen basieren und durch verifizierte Daten ersetzt werden, sobald diese verfügbar sind. Bitte beachten Sie, dass geschätzte Werte nicht immer genau sind, da sie aktuelle Wetterereignisse nicht berücksichtigen."
     },
+    "estimated_mode_breakdown": {
+      "title": "Teils geschätzte Daten",
+      "pill": "Unvollständig",
+      "body": "Die Daten zur Stromerzeugung in diesem Gebiet sind unvollständig. Die fehlenden Werte wurden anhand eines statistischen Schätzmodells berechnet."
+    },
+    "estimated_reconstruct_breakdown": {
+      "title": "Ausschließlich geschätzte Daten",
+      "pill": "Unpräzise",
+      "body": "Die Datenquelle gibt ausschließlich die Gesamtproduktion an. Die Stromproduktion aus erneuerbaren Quellen wird anhand aktueller Wetterdaten geschätzt. Die übrige Stromproduktion wird fossilen Energieträgern zugeordnet, wobei die Verteilung auf historischen Daten basiert."
+    },
+    "estimated_generic_method": {
+      "title": "Daten werden geschätzt",
+      "pill": "Unpräzise",
+      "body": "Für diese Zone sind unvollständige, beziehungsweise keine Daten verfügbar. Die auf der Karte gezeigten Daten sind nach bestem Wissen geschätzt, können aber von den tatsächlichen Werten abweichen."
+    },
+    "estimated_construct_breakdown": {
+      "title": "Ausschließlich geschätzte Daten",
+      "pill": "Nicht in Echtzeit",
+      "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
+    },
+    "estimated_construct_zero_breakdown": {
+      "title": "Ausschließlich geschätzte Daten",
+      "pill": "Nicht in Echtzeit",
+      "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
+    },
+    "threshold_filtered": {
+      "title": "Fehlende Daten",
+      "pill": "Ausfall von Daten",
+      "body": "Der Datenanbieter für diese Zone hat über einen längeren Zeitraum keine Daten geliefert. Wir beobachten das Problem und werden die Zone aktualisieren, sobald die Daten wieder verfügbar sind."
+    },
+    "outage": {
+      "title": "Daten sind geschätzt",
+      "pill": "Nicht verfügbar"
+    },
     "aggregated": {
       "title": "Aggregierte Daten",
       "body": "Die angezeigten Daten sind eine Zusammenlegung stündlich gemessener Werte."
