@@ -21,7 +21,6 @@
     "cy:component": "cypress open --component -b electron",
     "cy:e2e": "cypress open --e2e -b electron",
     "cy:test-all": "cypress run && cypress run --component",
-    "prepare": "cd .. && husky install web/.husky",
     "preview": "vite preview",
     "pretest": "bun run create-generated-files",
     "test": "vitest",
