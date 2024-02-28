@@ -43,4 +43,7 @@ contributors:
   - nessie2013
 parsers:
   consumption: GCCIA.fetch_consumption
+sources:
+  Climatescope:
+    link: https://www.global-climatescope.org/markets/om/
 timezone: Asia/Muscat
