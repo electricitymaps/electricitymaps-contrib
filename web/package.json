@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.107.0",
+  "version": "1.108.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "repository": {
     "type": "git",
@@ -76,7 +76,7 @@
     "d3-scale": "^4.0.2",
     "d3-selection": "^3.0.0",
     "d3-shape": "^3.2.0",
-    "date-fns": "^2.30.0",
+    "date-fns": "^3.3.1",
     "geojson": "^0.5.0",
     "i18next": "^23.8.2",
     "i18next-browser-languagedetector": "^7.2.0",
