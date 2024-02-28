@@ -9,7 +9,6 @@ from logging import Logger, getLogger
 from operator import itemgetter
 from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
@@ -90,7 +89,7 @@ def production_processor_live(json_tot, json_ren):
                 wind = pair[1]
                 break
 
-        datapoint["datetime"] = arrow.get(dt / 1000, tzinfo=TIMEZONE.key).datetime
+        datapoint["datetime"] = datetime.fromtimestamp(dt / 1000, tz=TIMEZONE)
         datapoint["unknown"] = total[1] - wind - solar
         datapoint["wind"] = wind
         datapoint["solar"] = solar
