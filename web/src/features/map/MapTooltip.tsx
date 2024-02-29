@@ -61,12 +61,8 @@ function TooltipInner({
     <div className="w-full text-center">
       <div className="p-3">
         <div className="flex w-full flex-row justify-between">
-          <div className="pl-2">
-            <ZoneName
-              zone={zoneId}
-              textStyle="font-medium text-base font-poppins"
-              zoneNameMaxLength={18}
-            />
+          <div className="max-w-52 pl-2">
+            <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
             <div className="flex self-start text-sm text-neutral-600 dark:text-neutral-400">
               {date}
             </div>{' '}
@@ -100,6 +96,8 @@ function DataValidityBadge({
   hasOutage: boolean;
   isEstimated: boolean;
 }) {
+  const { t } = useTranslation();
+
   if (hasOutage) {
     return (
       <Badge
@@ -107,7 +105,7 @@ function DataValidityBadge({
         icon={
           "h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
         }
-        pillText={'Unavailable'}
+        pillText={t('estimation-badge.outage')}
       ></Badge>
     );
   }
@@ -118,7 +116,7 @@ function DataValidityBadge({
         icon={
           "h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
         }
-        pillText={'Estimated'}
+        pillText={t('estimation-badge.fully-estimated')}
       ></Badge>
     );
   }
