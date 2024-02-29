@@ -155,8 +155,8 @@ export default function MapTooltip() {
   if (zoneData) {
     return (
       <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
-        <div // the light mode needs to be revised
-          className="pointer-events-none relative w-[361px] rounded-2xl border bg-zinc-50  text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-900 "
+        <div
+          className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-gray-700 dark:bg-gray-900 "
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>
