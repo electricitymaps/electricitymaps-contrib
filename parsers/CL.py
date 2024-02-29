@@ -178,8 +178,8 @@ def fetch_production(
         target_datetime_aware = target_datetime.replace(tzinfo=TIMEZONE)
     else:
         target_datetime_aware = datetime.now(tz=TIMEZONE)
-    start = (target_datetime_aware + timedelta(days=-1)).strftime("%Y-%m-%d")
-    end = target_datetime_aware.strftime("%Y-%m-%d")
+    start = (target_datetime_aware + timedelta(days=-1)).date().isoformat()
+    end = target_datetime_aware.date().isoformat()
 
     date_component = f"fecha__gte={start}&fecha__lte={end}"
 
