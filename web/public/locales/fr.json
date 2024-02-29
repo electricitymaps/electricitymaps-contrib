@@ -93,7 +93,7 @@
     },
     "estimated_reconstruct_breakdown": {
       "title": "Les données sont toujours estimées",
-      "pill": "Incomplète",
+      "pill": "Incomplètes",
       "body": "Les données publiées pour cette zone ne reflètent que la production totale. Les sources renouvelables sont estimées à partir des données météorologiques en temps réel, tandis que les sources fossiles sont déduites sur la base des données historiques pour chaque mode de production."
     },
     "estimated_generic_method": {
