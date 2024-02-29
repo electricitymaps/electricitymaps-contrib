@@ -37,4 +37,11 @@ export const hasOnboardingBeenSeenAtom = atomWithStorage(
   localStorage.getItem('onboardingSeen') ?? false
 );
 
+export const hasEstimationFeedbackBeenSeenAtom = atomWithStorage(
+  'estimationFeedbackSeen',
+  localStorage.getItem('estimationFeedbackSeen') ?? false
+);
+
+export const feedbackCardCollapsedNumberAtom = atom(0);
+
 export const colorblindModeAtom = atomWithStorage('colorblindModeEnabled', false);

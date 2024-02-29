@@ -1,8 +1,17 @@
 import Badge from 'components/Badge';
-import { useState } from 'react';
+import { useFeatureFlag } from 'features/feature-flags/api';
+import { useAtom } from 'jotai';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { ZoneDetails } from 'types';
+import {
+  feedbackCardCollapsedNumberAtom,
+  hasEstimationFeedbackBeenSeenAtom,
+} from 'utils/state/atoms';
+
+import FeedbackCard from './FeedbackCard';
+import { showEstimationFeedbackCard } from './util';
 
 export default function EstimationCard({
   cardType,
@@ -15,6 +24,25 @@ export default function EstimationCard({
   estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
 }) {
+  const [isFeedbackCardVisibile, setIsFeedbackCardVisibile] = useState(false);
+  const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
+  const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
+  const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
+    hasEstimationFeedbackBeenSeenAtom
+  );
+
+  useEffect(() => {
+    setIsFeedbackCardVisibile(
+      feedbackEnabled &&
+        showEstimationFeedbackCard(
+          feedbackCardCollapsedNumber,
+          isFeedbackCardVisibile,
+          hasFeedbackCardBeenSeen,
+          setHasFeedbackCardBeenSeen
+        )
+    );
+  }, [feedbackEnabled, feedbackCardCollapsedNumber]);
+
   switch (cardType) {
     case 'outage': {
       return <OutageCard outageMessage={outageMessage} />;
@@ -23,7 +51,12 @@ export default function EstimationCard({
       return <AggregatedCard estimatedPercentage={estimatedPercentage} />;
     }
     case 'estimated': {
-      return <EstimatedCard estimationMethod={estimationMethod} />;
+      return (
+        <div>
+          <EstimatedCard estimationMethod={estimationMethod} />
+          {isFeedbackCardVisibile && <FeedbackCard estimationMethod={estimationMethod} />}
+        </div>
+      );
     }
   }
 }
@@ -67,7 +100,13 @@ function BaseCard({
   const [isCollapsed, setIsCollapsed] = useState(
     estimationMethod == 'outage' ? false : true
   );
+
+  const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
+    feedbackCardCollapsedNumberAtom
+  );
+
   const handleToggleCollapse = () => {
+    setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
     setIsCollapsed((previous) => !previous);
   };
   const { t } = useTranslation();
@@ -97,7 +136,7 @@ function BaseCard({
       } mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
     >
       <div className="flex flex-col">
-        <button onClick={handleToggleCollapse}>
+        <button data-test-id="collapse-button" onClick={handleToggleCollapse}>
           <div className="flex flex-row items-center justify-between">
             <div className="flex w-2/3 flex-initial flex-row gap-2">
               <div className={`flex items-center justify-center`}>
@@ -175,7 +214,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
   );
 }
 
-function EstimatedCard({ estimationMethod }: { estimationMethod?: string }) {
+function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefined }) {
   return (
     <BaseCard
       estimationMethod={estimationMethod}
