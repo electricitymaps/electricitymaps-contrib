@@ -983,6 +983,26 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list, by_passed_modes=["biomass"]
         )
         assert len(output) == 1
+    def test_filter_only_zero_production(self):
+        production_list = ProductionBreakdownList(logging.Logger("test"))
+        production_list.append(
+            ZoneKey("US-NW-PGE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(
+                wind=0,
+                coal=0,
+                solar=0,
+                gas=0,
+                unknown=0,
+                hydro=0,
+                oil=0,
+            ),
+            source="trust.me",
+        )
+        output = ProductionBreakdownList.filter_only_zero_production(
+            production_list
+        )
+        assert len(output) == 0
 
 
 class TestTotalProductionList(unittest.TestCase):
