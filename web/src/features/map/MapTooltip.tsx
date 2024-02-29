@@ -57,7 +57,6 @@ function TooltipInner({
     renewableRatio,
     renewableRatioProduction
   );
-  const isEstimated = estimationMethod != undefined;
   return (
     <div className="w-full text-center">
       <div className="p-3">
@@ -72,7 +71,10 @@ function TooltipInner({
               {date}
             </div>{' '}
           </div>
-          <DataValidityBadge hasOutage={hasOutage} isEstimated={isEstimated} />
+          <DataValidityBadge
+            hasOutage={hasOutage}
+            isEstimated={estimationMethod != undefined}
+          />
         </div>
         <div className="flex w-full flex-grow py-1 pt-4 sm:pr-2">
           <div className="flex w-full flex-grow flex-row justify-around">
