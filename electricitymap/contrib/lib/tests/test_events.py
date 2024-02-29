@@ -587,6 +587,46 @@ class TestMixesInternalMethods(unittest.TestCase):
         with self.assertRaises(AttributeError):
             mix["nuke"] = 10
 
+class TestMixGetItem(unittest.TestCase):
+    def test_get_item(self):
+        mix = ProductionMix()
+        mix.wind = 10
+        assert mix["wind"] == 10
+
+    def test_get_item_with_nonexistent_mode(self):
+        mix = ProductionMix()
+        assert mix["solar"] is None
+
+    def test_get_item_with_none_value(self):
+        mix = ProductionMix()
+        mix.wind = None
+        assert mix["wind"] is None
+
+    def test_get_item_with_invalid_mode(self):
+        mix = ProductionMix()
+        with self.assertRaises(KeyError):
+            _ = mix["nuke"]
+
+    def test_get_item_storage(self):
+        mix = StorageMix()
+        mix.hydro = 10
+        assert mix["hydro"] == 10
+
+    def test_get_item_storage_with_nonexistent_mode(self):
+        mix = StorageMix()
+        assert mix["solar"] is None
+
+    def test_get_item_storage_with_none_value(self):
+        mix = StorageMix()
+        mix.hydro = None
+        assert mix["hydro"] is None
+
+    def test_get_item_storage_with_invalid_mode(self):
+        mix = StorageMix()
+        with self.assertRaises(KeyError):
+            _ = mix["nuke"]
+
+
 
 class TestMixAddValue(unittest.TestCase):
     def test_production(self):

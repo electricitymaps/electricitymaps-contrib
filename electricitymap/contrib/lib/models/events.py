@@ -66,6 +66,12 @@ class Mix(BaseModel, ABC):
         """
         self.__setattr__(key, value)
 
+    def __getitem__(self, key: str) -> float | None:
+        """
+        Allows to get the value of a mode using the bracket notation.
+        """
+        return getattr(self, key)
+
 
 class ProductionMix(Mix):
     """
