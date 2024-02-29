@@ -74,7 +74,9 @@ export function CircularGauge({
           </PieChart>
         </div>
       </TooltipWrapper>
-      <p className="mt-2 text-center text-sm text-gray-900 dark:text-gray-300">{name}</p>
+      <p className="mt-2 text-center text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+        {name}
+      </p>
     </div>
   );
 }

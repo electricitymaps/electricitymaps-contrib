@@ -32,6 +32,7 @@ function TooltipInner({
     co2intensity,
     co2intensityProduction,
     estimationMethod,
+    hasOutage,
     fossilFuelRatio,
     fossilFuelRatioProduction,
     renewableRatio,
@@ -60,11 +61,16 @@ function TooltipInner({
   return (
     <div className="w-full text-center">
       <div className="p-3">
-        <div className="pl-2">
-          <ZoneName zone={zoneId} textStyle="text-base font-medium" />
-          <div className="flex self-start text-xs">{date}</div>{' '}
+        <div className="flex w-full flex-row justify-between">
+          <div className="pl-2">
+            <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
+            <div className="flex self-start text-sm text-neutral-600 dark:text-neutral-400">
+              {date}
+            </div>{' '}
+          </div>
+          <DataValidityBadge hasOutage={hasOutage} isEstimated={isEstimated} />
         </div>
-        <div className="flex w-full flex-grow py-1 sm:pr-2">
+        <div className="flex w-full flex-grow py-1 pt-4 sm:pr-2">
           <div className="flex w-full flex-grow flex-row justify-around">
             <CarbonIntensitySquare intensity={intensity} />
             <div className="pl-2 pr-6">
@@ -77,29 +83,40 @@ function TooltipInner({
           </div>
         </div>
       </div>
-      {isEstimated && (
-        <div className="bg-neutral-100 dark:bg-gray-800">
-          <div className="flex w-full flex-row items-center justify-between px-3 py-2">
-            <div className="flex w-2/3 flex-initial flex-row gap-2">
-              <div className={`flex items-center justify-center`}>
-                <div
-                  className={`h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]`}
-                />
-              </div>
-              <h2
-                className={`self-center text-left text-sm font-semibold text-amber-700 dark:text-amber-500`}
-              >
-                {'title'}
-              </h2>
-            </div>
-            <div className="flex h-fit flex-row gap-2 text-nowrap">
-              <Badge type={'default'} icon={undefined} pillText={'pillText'}></Badge>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
+}
+
+function DataValidityBadge({
+  hasOutage,
+  isEstimated,
+}: {
+  hasOutage: boolean;
+  isEstimated: boolean;
+}) {
+  if (hasOutage) {
+    return (
+      <Badge
+        type={'warning'}
+        icon={
+          "h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
+        }
+        pillText={'Unavailable'}
+      ></Badge>
+    );
+  }
+  if (isEstimated) {
+    return (
+      <Badge
+        type={'warning'}
+        icon={
+          "h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
+        }
+        pillText={'Estimated'}
+      ></Badge>
+    );
+  }
+  return null;
 }
 
 export default function MapTooltip() {
@@ -135,7 +152,7 @@ export default function MapTooltip() {
     return (
       <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
         <div // the light mode needs to be revised
-          className="pointer-events-none relative w-[300px] rounded-2xl border bg-zinc-50  text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-900 "
+          className="pointer-events-none relative w-[361px] rounded-2xl border bg-zinc-50  text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-900 "
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>

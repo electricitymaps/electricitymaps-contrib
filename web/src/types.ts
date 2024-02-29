@@ -31,12 +31,14 @@ export interface StateZoneData {
   co2intensity: number; //TODO https://linear.app/electricitymaps/issue/ELE-1495/update-app-backend-variable-naming-to-use-camel-case-update-the
   co2intensityProduction: number;
   estimationMethod: string;
+  estimatedPercentage: number;
   fossilFuelRatio: number;
   fossilFuelRatioProduction: number;
   renewableRatio: number;
   renewableRatioProduction: number;
   stateDatetime: number;
   zoneKey: string;
+  hasOutage: boolean;
   // TODO: Add spatial aggregate info to the request so we can use it for filtering in ranking panel
 }
 
