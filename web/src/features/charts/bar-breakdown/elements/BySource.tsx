@@ -1,5 +1,5 @@
 import Badge from 'components/Badge';
-import { t,TFunction } from 'i18next';
+import { t, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
