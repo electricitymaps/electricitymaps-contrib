@@ -4,7 +4,7 @@
     "opensource": "Open Source",
     "see": "siehe",
     "datasources": "Datenquellen",
-    "contribute": "Wirke mit, indem du <a href=\"%s\" target=\"_blank\">dein Land hinzufügst</a>"
+    "contribute": "Wirke mit, indem du <a href=\"{{link}}\" target=\"_blank\">dein Land hinzufügst</a>"
   },
   "mobile-main-menu": {
     "map": "Karte",
@@ -57,23 +57,23 @@
       "total-electricity-consumption": "Gesamter Stromverbrauch nach Quelle"
     },
     "emissions": "CO₂-Emissionen",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">Quelle bearbeiten oder hinzufügen</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">Quelle bearbeiten oder hinzufügen</a>",
     "helpfrom": "mit Unterstützung von",
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
     "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",
-    "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href=\"%s\" target=\"_blank\">Datenquellen hinzufügst</a>.",
+    "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href=\"{{link}}\" target=\"_blank\">Datenquellen hinzufügst</a>.",
     "disabledPriceReasons": {
       "licensing": "Aufgrund von Lizenzbedingungen sind für dieses Gebiet keine Strompreise verfügbar"
     },
     "now": "Jetzt",
     "electricity": "Elektrizität",
-    "dataIsDelayed": "Die Daten in dieser Region können bis zu %s Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
+    "dataIsDelayed": "Die Daten in dieser Region können bis zu {{hours}} Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
     "estimated": "Geschätzt",
     "aggregated": "Zusammengefasst",
     "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">hier</a> lesen.",
     "estimatedTooltip": "Die Echtzeit-Daten für diese Zone sind auf Basis der Daten der Quelle und den Annahmen des Modells geschätzt.",
     "aggregatedTooltip": "Die Daten für diese Zone sind zusammengefasst, basierend auf den stündlichen Werten der historischen Daten",
-    "helpUs": "Hilf uns Problem zu finden indem du dir die <a href=\"%s\" target=\"_blank\">Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
+    "helpUs": "Hilf uns Problem zu finden indem du dir die <a href=\"{{link}}\" target=\"_blank\">Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
   },
   "left-panel": {
     "zone-list-header-title": "Klimaeinfluss der Regionen",
@@ -81,7 +81,11 @@
     "search": "Land oder Region suchen"
   },
   "time-controller": {
-    "title": "Historische Daten anzeigen"
+    "title": "Historische Daten anzeigen",
+    "daily": "täglich",
+    "hourly": "stündlich",
+    "monthly": "monatlich",
+    "yearly": "jährlich"
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",
@@ -93,6 +97,40 @@
       "title": "Die Daten werden derzeit geschätzt",
       "pill": "Nicht verfügbar",
       "body": "Unsere Datenquellen stellen aktuell keine Werte für diese Zone zur Verfügung. Die angezeigten Werte sind Schätzungen, die auf historischen Messungen basieren und durch verifizierte Daten ersetzt werden, sobald diese verfügbar sind. Bitte beachten Sie, dass geschätzte Werte nicht immer genau sind, da sie aktuelle Wetterereignisse nicht berücksichtigen."
+    },
+    "estimated_mode_breakdown": {
+      "title": "Teils geschätzte Daten",
+      "pill": "Unvollständig",
+      "body": "Die Daten zur Stromerzeugung in diesem Gebiet sind unvollständig. Die fehlenden Werte wurden anhand eines statistischen Schätzmodells berechnet."
+    },
+    "estimated_reconstruct_breakdown": {
+      "title": "Ausschließlich geschätzte Daten",
+      "pill": "Unpräzise",
+      "body": "Die Datenquelle gibt ausschließlich die Gesamtproduktion an. Die Stromproduktion aus erneuerbaren Quellen wird anhand aktueller Wetterdaten geschätzt. Die übrige Stromproduktion wird fossilen Energieträgern zugeordnet, wobei die Verteilung auf historischen Daten basiert."
+    },
+    "estimated_generic_method": {
+      "title": "Daten werden geschätzt",
+      "pill": "Unpräzise",
+      "body": "Für diese Zone sind unvollständige, beziehungsweise keine Daten verfügbar. Die auf der Karte gezeigten Daten sind nach bestem Wissen geschätzt, können aber von den tatsächlichen Werten abweichen."
+    },
+    "estimated_construct_breakdown": {
+      "title": "Ausschließlich geschätzte Daten",
+      "pill": "Nicht in Echtzeit",
+      "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
+    },
+    "estimated_construct_zero_breakdown": {
+      "title": "Ausschließlich geschätzte Daten",
+      "pill": "Nicht in Echtzeit",
+      "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
+    },
+    "threshold_filtered": {
+      "title": "Fehlende Daten",
+      "pill": "Ausfall von Daten",
+      "body": "Der Datenanbieter für diese Zone hat über einen längeren Zeitraum keine Daten geliefert. Wir beobachten das Problem und werden die Zone aktualisieren, sobald die Daten wieder verfügbar sind."
+    },
+    "outage": {
+      "title": "Daten sind geschätzt",
+      "pill": "Nicht verfügbar"
     },
     "aggregated": {
       "title": "Aggregierte Daten",
@@ -106,37 +144,7 @@
   },
   "country-history": {
     "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
-    "not-enough-data": "Für die Diagrammanzeige sind nicht genügend Daten verfügbar",
-    "carbonintensity": {
-      "hourly": "Spezifische CO₂-Emissionen in den letzten 24 Stunden",
-      "daily": "Spezifische CO₂-Emissionen im letzten Monat",
-      "monthly": "Spezifische CO₂-Emissionen im letzten Jahr",
-      "default": "Spezifische CO₂-Emissionen in den letzten %1$s"
-    },
-    "emissionsorigin": {
-      "default": "Ursprung der Emissionen in den letzten %1$s",
-      "hourly": "Ursprung der Emissionen in den letzten 24 Stunden"
-    },
-    "emissionsproduction": {
-      "default": "Erzeugte Emissionen in den letzten %1$s",
-      "hourly": "Erzeugte Emissionen in den letzten 24 Stunden"
-    },
-    "electricityorigin": {
-      "default": "Ursprung der Elektrizität in den letzten %1$s",
-      "hourly": "Ursprung der Elektrizität in den letzten 24 Stunden"
-    },
-    "electricityproduction": {
-      "default": "Erzeugte Elektrizität in den letzten %1$s",
-      "hourly": "Erzeugte Elektrizität in den letzten 24 Stunden"
-    },
-    "electricityprices": {
-      "default": "Strompreis in den letzten %1$s",
-      "hourly": "Strompreis in den letzten 24 Stunden"
-    },
-    "emissions": {
-      "default": "Emissionen in den letzten %1$s",
-      "hourly": "Emissionen in den letzten 24 Stunden"
-    }
+    "not-enough-data": "Für die Diagrammanzeige sind nicht genügend Daten verfügbar"
   },
   "footer": {
     "foundbugs": "Hast du Bugs gefunden? Hast du Ideen zur Verbesserung der Karte?",
@@ -212,14 +220,14 @@
   "coal": "Kohle",
   "oil": "Öl",
   "unknown": "unbekannt",
-  "electricityComesFrom": "<b>%1$s %%</b> der Elektrizität der Region %4$s <b>%2$s</b> stammen aus %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> stammen aus %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> der Elektrizität der Region %4$s <b>%2$s</b> werden gespeichert in %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> werden gespeichert in %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> der Elektrizität der Region %4$s <b>%2$s</b> werden in die Region %5$s <b>%3$s</b> exportiert",
-  "emissionsExportedTo": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> werden in die Region %5$s <b>%3$s</b> exportiert",
-  "electricityImportedFrom": "<b>%1$s %%</b> der Elektrizität der Region %4$s <b>%2$s</b> werden aus der Region %5$s <b>%3$s</b> importiert",
-  "emissionsImportedFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region %4$s <b>%2$s</b> werden aus der Region %5$s <b>%3$s</b> importiert",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden in die Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> exportiert",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden in die Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> exportiert",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden aus der Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> importiert",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden aus der Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> importiert",
   "ofCO2eq": "CO₂äq",
   "theMap": {
     "groupName": "Die Karte",

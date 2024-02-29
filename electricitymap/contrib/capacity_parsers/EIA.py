@@ -86,7 +86,7 @@ def fetch_production_capacity(
     r: Response = session.get(url)
     json_data = r.json()
 
-    if not json_data.get("response", {}).get("data", []) == []:
+    if json_data.get("response", {}).get("data", []) != []:
         data = pd.DataFrame(json_data["response"]["data"])
         capacity_dict = format_capacity(data, target_datetime)
         logger.info(

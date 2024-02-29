@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { formatDate } from 'utils/formatting';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
 

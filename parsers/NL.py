@@ -135,7 +135,7 @@ def fetch_production(
         # the DSO network and be substantial (e.g. Solar).
         if (
             p["datetime"] in df_total_generations
-            and Z < df_total_generations[p["datetime"]]
+            and df_total_generations[p["datetime"]] > Z
         ):
             p["production"]["unknown"] = round(
                 (df_total_generations[p["datetime"]] - Z + p["production"]["unknown"]),
