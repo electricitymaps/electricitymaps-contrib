@@ -108,7 +108,7 @@ def production_processor_historical(raw_data):
         clean_datapoint = {}
         date, hour = datapoint["fecha"], datapoint["hora"]
         hour -= 1  # `hora` starts at 1
-        parsed_datetime = datetime.strptime(date, "%Y-%m-%d").replace(
+        parsed_datetime = datetime.fromisoformat(date).replace(
             tzinfo=TIMEZONE
         ) + timedelta(hours=hour)
         clean_datapoint["datetime"] = parsed_datetime
