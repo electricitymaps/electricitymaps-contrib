@@ -11,14 +11,9 @@ import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 interface EmissionChartProps {
   datetimes: Date[];
   timeAverage: TimeAverages;
-  hasEstimationPill: boolean;
 }
 
-function EmissionChart({
-  timeAverage,
-  datetimes,
-  hasEstimationPill,
-}: EmissionChartProps) {
+function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const { data, isLoading, isError } = useEmissionChartData();
   const { t } = useTranslation();
   if (isLoading || isError || !data) {

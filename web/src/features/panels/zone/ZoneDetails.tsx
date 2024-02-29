@@ -94,7 +94,6 @@ export default function ZoneDetails(): JSX.Element {
               datetimes={datetimes}
               timeAverage={timeAverage}
               displayByEmissions={displayByEmissions}
-              hasEstimationPill={hasEstimationPill}
             />
           )}
           <Attribution data={data} zoneId={zoneId} />

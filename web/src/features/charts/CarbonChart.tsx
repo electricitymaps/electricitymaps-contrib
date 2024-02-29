@@ -11,10 +11,9 @@ import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
 interface CarbonChartProps {
   datetimes: Date[];
   timeAverage: TimeAverages;
-  hasEstimationPill: boolean;
 }
 
-function CarbonChart({ datetimes, timeAverage, hasEstimationPill }: CarbonChartProps) {
+function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
   const { t } = useTranslation();
 

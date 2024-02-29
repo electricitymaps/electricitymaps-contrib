@@ -14,14 +14,12 @@ interface BreakdownChartProps {
   displayByEmissions: boolean;
   datetimes: Date[];
   timeAverage: TimeAverages;
-  hasEstimationPill: boolean;
 }
 
 function BreakdownChart({
   displayByEmissions,
   datetimes,
   timeAverage,
-  hasEstimationPill,
 }: BreakdownChartProps) {
   const { data, mixMode } = useBreakdownChartData();
   const { t } = useTranslation();

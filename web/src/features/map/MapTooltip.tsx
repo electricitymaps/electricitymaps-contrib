@@ -63,7 +63,11 @@ function TooltipInner({
       <div className="p-3">
         <div className="flex w-full flex-row justify-between">
           <div className="pl-2">
-            <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
+            <ZoneName
+              zone={zoneId}
+              textStyle="font-medium text-base font-poppins"
+              zoneNameMaxLength={18}
+            />
             <div className="flex self-start text-sm text-neutral-600 dark:text-neutral-400">
               {date}
             </div>{' '}
