@@ -98,7 +98,7 @@
     },
     "estimated_generic_method": {
       "title": "Données estimées",
-      "pill": "Incomplet",
+      "pill": "Incomplètes",
       "body": "Les données publiées pour cette zone sont indisponibles ou incomplètes. Les données figurant sur la carte sont estimées au mieux de nos capacités, mais peuvent différer des valeurs réelles."
     },
     "estimated_construct_breakdown": {
