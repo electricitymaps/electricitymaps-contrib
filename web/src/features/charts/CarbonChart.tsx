@@ -1,8 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { noop } from './graphUtils';
+import { getBadgeText, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
@@ -15,6 +16,7 @@ interface CarbonChartProps {
 
 function CarbonChart({ datetimes, timeAverage, hasEstimationPill }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
+  const { t } = useTranslation();
 
   if (isLoading || isError || !data) {
     return null;
@@ -24,6 +26,8 @@ function CarbonChart({ datetimes, timeAverage, hasEstimationPill }: CarbonChartP
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
+  const badgeText = getBadgeText(chartData, t);
+
   if (!hasEnoughDataToDisplay) {
     return <NotEnoughDataMessage title="country-history.carbonintensity" />;
   }
@@ -31,7 +35,7 @@ function CarbonChart({ datetimes, timeAverage, hasEstimationPill }: CarbonChartP
     <>
       <ChartTitle
         translationKey="country-history.carbonintensity"
-        hasPill={hasEstimationPill}
+        badgeText={badgeText}
       />
       <AreaGraph
         testId="details-carbon-graph"

@@ -4,8 +4,11 @@ import { bisectLeft } from 'd3-array';
 // // https://observablehq.com/@d3/d3-selection-2-0
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
+import { TFunction } from 'i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
+
+import { AreaGraphElement } from './types';
 
 export const detectHoveredDatapointIndex = (
   event_: any,
@@ -155,4 +158,22 @@ export function getElectricityProductionValue({
   }
   // Do not negate value if it is zero
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
+}
+
+export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
+  const allEstimated = chartData.every(
+    (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
+  );
+
+  if (allEstimated) {
+    return t('estimation-badge.fully-estimated');
+  }
+
+  const hasEstimation = chartData.some(
+    (day) => day.meta.estimationMethod || Boolean(day.meta.estimatedPercentage)
+  );
+
+  if (hasEstimation) {
+    return t('estimation-badge.partially-estimated');
+  }
 }

@@ -7,7 +7,6 @@ from datetime import datetime, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
 
-import arrow
 import pandas as pd
 from dateutil import parser
 from requests import Session
@@ -379,7 +378,7 @@ def format_exchange_data(
 ) -> list:
     """format exchanges data into list of data points"""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-    data = data[[col for col in EXCHANGE_MAPPING]]
+    data = data[list(EXCHANGE_MAPPING)]
     data = data.melt(var_name="zone_key2", value_name="exchange", ignore_index=False)
     data.zone_key2 = data.zone_key2.map(EXCHANGE_MAPPING)
 
@@ -392,7 +391,7 @@ def format_exchange_data(
         data_point = {
             "sortedZoneKeys": sorted_zone_keys,
             "netFlow": round(data_dt.values[0], 4),
-            "datetime": arrow.get(dt).datetime,
+            "datetime": dt.to_pydatetime(),
             "source": "spp.org",
         }
         all_data_points.append(data_point)
@@ -410,10 +409,7 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list:
     now = datetime.now(tz=timezone.utc)
-    if (
-        target_datetime is None
-        or target_datetime > arrow.get(now).floor("day").datetime
-    ):
+    if target_datetime is None or target_datetime > now.date():
         target_datetime = now
         exchanges = fetch_live_exchange(zone_key1, zone_key2, session, target_datetime)
     elif target_datetime < datetime(2014, 3, 1, tzinfo=timezone.utc):

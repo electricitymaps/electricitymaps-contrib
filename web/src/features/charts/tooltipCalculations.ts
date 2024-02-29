@@ -38,6 +38,7 @@ export function getProductionTooltipData(
     dischargeCo2IntensitySources,
     productionCo2IntensitySources,
     zoneKey,
+    capacitySources,
   } = zoneDetail;
 
   const co2IntensitySource = isStorage
@@ -46,6 +47,9 @@ export function getProductionTooltipData(
 
   const generationTypeCapacity = capacity ? capacity[selectedLayerKey] : undefined;
   const generationTypeProduction = production[generationType];
+  const capacitySource = generationTypeCapacity
+    ? capacitySources?.[selectedLayerKey]
+    : undefined;
 
   const generationTypeStorage = storageKey ? storage[storageKey] : 0;
 
@@ -80,6 +84,7 @@ export function getProductionTooltipData(
     production: generationTypeProduction,
     capacity: generationTypeCapacity,
     storage: generationTypeStorage,
+    capacitySource,
   };
 }
 
@@ -90,10 +95,9 @@ export function getExchangeTooltipData(
 ) {
   const { zoneKey, exchangeCo2Intensities, exchangeCapacities } = zoneDetail;
 
-  const co2Intensity = exchangeCo2Intensities[exchangeKey];
-
-  const exchangeCapacityRange = (exchangeCapacities || {})[exchangeKey];
-  const exchange = (zoneDetail.exchange || {})[exchangeKey];
+  const co2Intensity = exchangeCo2Intensities?.[exchangeKey];
+  const exchangeCapacityRange = exchangeCapacities?.[exchangeKey];
+  const exchange = zoneDetail?.exchange?.[exchangeKey];
 
   const isExport = exchange < 0;
 

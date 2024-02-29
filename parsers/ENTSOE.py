@@ -10,10 +10,14 @@ Exchange Forecast
 Day-ahead Price
 Generation Forecast
 Consumption Forecast
+
+Link to the API documentation:
+https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 """
 import itertools
 import re
 from datetime import datetime, timedelta, timezone
+from enum import Enum
 from logging import Logger, getLogger
 from typing import Any
 
@@ -43,6 +47,25 @@ from .lib.validation import validate
 SOURCE = "entsoe.eu"
 
 ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
+
+DEFAULT_LOOKBACK_HOURS_REALTIME = 72
+DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
+DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
+
+
+class WindAndSolarProductionForecastTypes(Enum):
+    DAY_AHEAD = "A01"
+    INTRADAY = "A40"
+    CURRENT = "A18"
+
+
+# The order of the forecast types is important for the parser to use the most recent data
+# This ensures that the order is consistent across all runs even if the enum is changed
+ORDERED_FORECAST_TYPES = [
+    WindAndSolarProductionForecastTypes.DAY_AHEAD,
+    WindAndSolarProductionForecastTypes.INTRADAY,
+    WindAndSolarProductionForecastTypes.CURRENT,
+]
 
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
@@ -84,9 +107,9 @@ ENTSOE_PARAMETER_GROUPS = {
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
-    ENTSOE_key: type
+    ENTSOE_key: data_type
     for key in ["production", "storage"]
-    for type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
+    for data_type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
     for ENTSOE_key in groups
 }
 
@@ -231,6 +254,7 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
     "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
+    "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
 }
 
@@ -368,7 +392,6 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         "required": [
             "coal",
             "gas",
-            "nuclear",
             "wind",
             "biomass",
             "hydro",
@@ -432,8 +455,12 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         "expected_range": (2000, 25000),
     },
     "RS": {
-        "required": ["coal"],
+        "required": ["biomass", "coal", "gas", "hydro", "unknown"],
         "expected_range": {
+            "coal": (
+                800,
+                7000,
+            ),  # 7 GW is 1 GW more than the production capacity of Serbia.
             "hydro": (0, 5000),  # 5 GW is double the production capacity of Serbia.
         },
     },
@@ -471,8 +498,8 @@ def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datet
 def query_ENTSOE(
     session: Session,
     params: dict[str, str],
+    span: tuple,
     target_datetime: datetime | None = None,
-    span: tuple = (-48, 24),
     function_name: str = "",
 ) -> str:
     """
@@ -537,6 +564,7 @@ def query_consumption(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_consumption.__name__,
     )
 
@@ -553,7 +581,7 @@ def query_production(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-48, 0),
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_production.__name__,
     )
 
@@ -574,7 +602,7 @@ def query_production_per_units(
     return query_ENTSOE(
         session,
         params,
-        target_datetime,
+        target_datetime=target_datetime,
         span=(-24, 0),
         function_name=query_production_per_units.__name__,
     )
@@ -595,6 +623,7 @@ def query_exchange(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_exchange.__name__,
     )
 
@@ -616,6 +645,7 @@ def query_exchange_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_exchange_forecast.__name__,
     )
 
@@ -623,6 +653,8 @@ def query_exchange_forecast(
 def query_price(
     domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
+    """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
+
     params = {
         "documentType": "A44",
         "in_Domain": domain,
@@ -632,6 +664,7 @@ def query_price(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, 24),
         function_name=query_price.__name__,
     )
 
@@ -651,6 +684,7 @@ def query_generation_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_generation_forecast.__name__,
     )
 
@@ -669,24 +703,29 @@ def query_consumption_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_consumption_forecast.__name__,
     )
 
 
 def query_wind_solar_production_forecast(
-    in_domain: str, session: Session, target_datetime: datetime | None = None
+    in_domain: str,
+    session: Session,
+    data_type: WindAndSolarProductionForecastTypes,
+    target_datetime: datetime | None = None,
 ) -> str | None:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
         "documentType": "A69",  # Forecast
-        "processType": "A01",
+        "processType": WindAndSolarProductionForecastTypes(data_type).value,
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_wind_solar_production_forecast.__name__,
     )
 
@@ -725,12 +764,14 @@ def parse_scalar(
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(timeseries.find_all("start")[0].contents[0])
         )
-        if only_inBiddingZone_Domain:
-            if not len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())):
-                continue
-        elif only_outBiddingZone_Domain:
-            if not len(timeseries.find_all("outBiddingZone_Domain.mRID".lower())):
-                continue
+        if (
+            only_inBiddingZone_Domain
+            and not len(timeseries.find_all("inBiddingZone_Domain.mRID".lower()))
+        ) or (
+            only_outBiddingZone_Domain
+            and not len(timeseries.find_all("outBiddingZone_Domain.mRID".lower()))
+        ):
+            continue
         for entry in timeseries.find_all("point"):
             position = int(entry.find_all("position")[0].contents[0])
             value = float(entry.find_all("quantity")[0].contents[0])
@@ -970,7 +1011,7 @@ def validate_production(
     return True
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1033,7 +1074,7 @@ def fetch_production_per_units(
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
     # Iterate over all psr types
-    for k in ENTSOE_PARAMETER_DESC.keys():
+    for k in ENTSOE_PARAMETER_DESC:
         try:
             raw_production_per_units = query_production_per_units(
                 k, domain, session, target_datetime
@@ -1141,7 +1182,7 @@ def get_raw_exchange(
     return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1162,7 +1203,7 @@ def fetch_exchange(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange_forecast(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1184,7 +1225,7 @@ def fetch_exchange_forecast(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1218,7 +1259,7 @@ def fetch_price(
 # ------------------- #
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_generation_forecast(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1318,7 +1359,7 @@ def get_raw_consumption_list(
     return consumption_list
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1332,7 +1373,7 @@ def fetch_consumption(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1350,7 +1391,7 @@ def fetch_consumption_forecast(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1362,27 +1403,35 @@ def fetch_wind_solar_forecasts(
     """
     if not session:
         session = Session()
+    raw_forecasts = {}
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    try:
-        raw_renewable_forecast = query_wind_solar_production_forecast(
-            domain, session, target_datetime=target_datetime
+    for data_type in ORDERED_FORECAST_TYPES:
+        try:
+            raw_forecasts[data_type.name] = query_wind_solar_production_forecast(
+                domain, session, data_type, target_datetime=target_datetime
+            )
+        except Exception as e:
+            logger.error(
+                f"Failed to fetch {data_type.name} wind and solar forecast for {zone_key}: {e}",
+                extra={"zone_key": zone_key},
+            )
+    if raw_forecasts == {}:
+        logger.warning(
+            f"No wind and solar forecast data found for {zone_key}",
+            extra={"zone_key": zone_key},
         )
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to fetch renewable forecast for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_renewable_forecast is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No production per mode forecast data found for {zone_key}",
-            zone_key=zone_key,
-        )
-    # Grab production
-    parsed = parse_production(raw_renewable_forecast, logger, zone_key, forecasted=True)
+        return []
 
-    return parsed.to_list()
+    forcast_breakdown_list = ProductionBreakdownList(logger)
+    for raw_forecast in raw_forecasts.values():
+        parsed_forecast = parse_production(
+            raw_forecast, logger, zone_key, forecasted=True
+        )
+        forcast_breakdown_list = ProductionBreakdownList.update_production_breakdowns(
+            forcast_breakdown_list, parsed_forecast, logger
+        )
+
+    return forcast_breakdown_list.to_list()
 
 
 if __name__ == "__main__":

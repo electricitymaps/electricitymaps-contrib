@@ -1,41 +1,86 @@
 import Badge from 'components/Badge';
-import { useState } from 'react';
+import { useFeatureFlag } from 'features/feature-flags/api';
+import { useAtom } from 'jotai';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
-import { useTranslation } from 'translation/translation';
 import { ZoneDetails } from 'types';
+import {
+  feedbackCardCollapsedNumberAtom,
+  hasEstimationFeedbackBeenSeenAtom,
+} from 'utils/state/atoms';
+
+import FeedbackCard from './FeedbackCard';
+import { showEstimationFeedbackCard } from './util';
 
 export default function EstimationCard({
   cardType,
   estimationMethod,
+  estimatedPercentage,
   outageMessage,
 }: {
   cardType: string;
-  estimationMethod: string | undefined;
+  estimationMethod?: string;
+  estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
 }) {
-  if (cardType == 'outage') {
-    return <OutageCard outageMessage={outageMessage} />;
-  } else if (cardType == 'aggregated') {
-    return <AggregatedCard />;
-  } else if (cardType == 'estimated') {
-    return <EstimatedCard estimationMethod={estimationMethod} />;
+  const [isFeedbackCardVisibile, setIsFeedbackCardVisibile] = useState(false);
+  const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
+  const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
+  const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
+    hasEstimationFeedbackBeenSeenAtom
+  );
+
+  useEffect(() => {
+    setIsFeedbackCardVisibile(
+      feedbackEnabled &&
+        showEstimationFeedbackCard(
+          feedbackCardCollapsedNumber,
+          isFeedbackCardVisibile,
+          hasFeedbackCardBeenSeen,
+          setHasFeedbackCardBeenSeen
+        )
+    );
+  }, [feedbackEnabled, feedbackCardCollapsedNumber]);
+
+  switch (cardType) {
+    case 'outage': {
+      return <OutageCard outageMessage={outageMessage} />;
+    }
+    case 'aggregated': {
+      return <AggregatedCard estimatedPercentage={estimatedPercentage} />;
+    }
+    case 'estimated': {
+      return (
+        <div>
+          <EstimatedCard estimationMethod={estimationMethod} />
+          {isFeedbackCardVisibile && <FeedbackCard estimationMethod={estimationMethod} />}
+        </div>
+      );
+    }
   }
 }
 
 function getEstimationTranslation(
   field: 'title' | 'pill' | 'body',
-  estimationMethod: string | undefined
+  estimationMethod?: string,
+  estimatedPercentage?: number
 ) {
-  const { __ } = useTranslation();
-  const exactTranslation = __(
-    `estimation-card.${estimationMethod?.toLowerCase()}.${field}`
-  );
-  const genericTranslation = __(`estimation-card.estimated_generic_method.${field}`);
+  const { t } = useTranslation();
+  const exactTranslation =
+    (estimatedPercentage ?? 0) > 0 && estimationMethod === 'aggregated'
+      ? t(`estimation-card.aggregated_estimated.${field}`, {
+          percentage: estimatedPercentage,
+        })
+      : t(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`);
+
+  const genericTranslation = t(`estimation-card.estimated_generic_method.${field}`);
   return exactTranslation.length > 0 ? exactTranslation : genericTranslation;
 }
 
 function BaseCard({
   estimationMethod,
+  estimatedPercentage,
   outageMessage,
   icon,
   iconPill,
@@ -43,25 +88,44 @@ function BaseCard({
   pillType,
   textColorTitle,
 }: {
-  estimationMethod: string | undefined;
+  estimationMethod?: string;
+  estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
   icon: string;
-  iconPill: string | undefined;
+  iconPill?: string;
   showMethodologyLink: boolean;
-  pillType: string | undefined;
+  pillType?: string;
   textColorTitle: string;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(
     estimationMethod == 'outage' ? false : true
   );
+
+  const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
+    feedbackCardCollapsedNumberAtom
+  );
+
   const handleToggleCollapse = () => {
+    setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
     setIsCollapsed((previous) => !previous);
   };
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
 
   const title = getEstimationTranslation('title', estimationMethod);
-  const pillText = getEstimationTranslation('pill', estimationMethod);
-  const bodyText = getEstimationTranslation('body', estimationMethod);
+  const pillText = getEstimationTranslation(
+    'pill',
+    estimationMethod,
+    estimatedPercentage
+  );
+  const bodyText = getEstimationTranslation(
+    'body',
+    estimationMethod,
+    estimatedPercentage
+  );
+  const showBadge =
+    estimationMethod == 'aggregated'
+      ? Boolean(estimatedPercentage)
+      : pillType != undefined;
 
   return (
     <div
@@ -72,7 +136,7 @@ function BaseCard({
       } mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
     >
       <div className="flex flex-col">
-        <button onClick={handleToggleCollapse}>
+        <button data-test-id="collapse-button" onClick={handleToggleCollapse}>
           <div className="flex flex-row items-center justify-between">
             <div className="flex w-2/3 flex-initial flex-row gap-2">
               <div className={`flex items-center justify-center`}>
@@ -85,7 +149,7 @@ function BaseCard({
               </h2>
             </div>
             <div className="flex h-fit flex-row gap-2 text-nowrap">
-              {pillType != undefined && (
+              {showBadge && (
                 <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
               )}
               <div className="text-lg">
@@ -110,7 +174,7 @@ function BaseCard({
                   rel="noreferrer"
                   className={`text-sm font-semibold text-black underline dark:text-white`}
                 >
-                  <span className="underline">{__(`estimation-card.link`)}</span>
+                  <span className="underline">{t(`estimation-card.link`)}</span>
                 </a>
               </div>
             )}
@@ -135,15 +199,16 @@ function OutageCard({ outageMessage }: { outageMessage: ZoneDetails['zoneMessage
   );
 }
 
-function AggregatedCard() {
+function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number }) {
   return (
     <BaseCard
       estimationMethod={'aggregated'}
+      estimatedPercentage={estimatedPercentage}
       outageMessage={undefined}
       icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
       iconPill={undefined}
       showMethodologyLink={false}
-      pillType={undefined}
+      pillType={'warning'}
       textColorTitle="text-black dark:text-white"
     />
   );

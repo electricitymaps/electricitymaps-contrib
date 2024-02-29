@@ -4,16 +4,66 @@ bounding_box:
   - - 149.90440026326144
     - -34.63950855917267
 capacity:
-  battery storage: 0
-  biomass: 102
-  coal: 8240
-  gas: 2007
-  hydro: 2658
-  hydro storage: 840
-  nuclear: 0
-  oil: 148
-  solar: 5892
-  wind: 1802
+  battery storage:
+    - datetime: '2024-01-01'
+      source: opennem.org.au
+      value: 346.0
+  biomass:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 101.98
+  coal:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 8240.0
+  gas:
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 2067.0
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 2007.0
+  hydro:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 2658.0
+  hydro storage:
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 910.0
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 840.0
+  oil:
+    - datetime: '2022-01-01'
+      source: opennem.org.au
+      value: 176.0
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 148.0
+  solar:
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 9529.31
+    - datetime: '2022-01-01'
+      source: opennem.org.au
+      value: 8821.99
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 8581.99
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 8257.99
+  wind:
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 2472.42
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 2072.62
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 1743.82
 contributors:
   - brandongalbraith
   - jarek

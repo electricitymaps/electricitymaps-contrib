@@ -49,12 +49,22 @@ class Mix(BaseModel, ABC):
     def merge(cls, mixes: list["Mix"]) -> "Mix":
         raise NotImplementedError()
 
+    @classmethod
+    def update(cls, mix: "Mix", new_mix: "Mix") -> "Mix":
+        raise NotImplementedError()
+
     def __setattr__(self, name: str, value: float | None) -> None:
         """
         Overriding the setattr method to raise an error if the mode is unknown.
         """
         # 6 decimal places gives us a precision of 1 W.
         super().__setattr__(name, _none_safe_round(value))
+
+    def __setitem__(self, key: str, value: float | None) -> None:
+        """
+        Allows to set the value of a mode using the bracket notation.
+        """
+        self.__setattr__(key, value)
 
 
 class ProductionMix(Mix):
@@ -91,7 +101,7 @@ class ProductionMix(Mix):
                 self._corrected_negative_values.add(attr)
                 self.__setattr__(attr, None)
 
-    def dict(
+    def dict(  # noqa: A003
         self,
         *,
         include: set | dict | None = None,
@@ -188,6 +198,21 @@ class ProductionMix(Mix):
             )
         return merged_production_mix
 
+    @classmethod
+    def update(
+        cls,
+        production_mix: "ProductionMix | None",
+        new_production_mix: "ProductionMix | None",
+    ) -> "ProductionMix | None":
+        """Update the production mix of a zone at a given time."""
+        if production_mix is None:
+            return new_production_mix
+        elif new_production_mix is not None:
+            for mode, value in new_production_mix:
+                if value is not None:
+                    production_mix[mode] = value
+        return production_mix
+
 
 class StorageMix(Mix):
     """
@@ -221,6 +246,19 @@ class StorageMix(Mix):
                 value = getattr(storage_mix_to_merge, mode)
                 merged_storage_mix.add_value(mode, value)
         return merged_storage_mix
+
+    @classmethod
+    def update(
+        cls, storage_mix: "StorageMix | None", new_storage_mix: "StorageMix | None"
+    ) -> "StorageMix | None":
+        """Update the storage mix of a zone at a given time."""
+        if storage_mix is None:
+            return new_storage_mix
+        elif new_storage_mix is not None:
+            for mode, value in new_storage_mix:
+                if value is not None:
+                    storage_mix[mode] = value
+        return storage_mix
 
 
 class EventSourceType(str, Enum):
@@ -465,16 +503,18 @@ class ProductionBreakdown(AggregatableEvent):
 
     @validator("production")
     def _validate_production_mix(cls, v):
-        if v is not None and not v.has_corrected_negative_values:
-            if all(value is None for value in v.dict().values()):
-                raise ValueError("Mix is completely empty")
+        if (
+            v is not None
+            and not v.has_corrected_negative_values
+            and all(value is None for value in v.dict().values())
+        ):
+            raise ValueError("Mix is completely empty")
         return v
 
     @validator("storage")
     def _validate_storage_mix(cls, v):
-        if v is not None:
-            if all(value is None for value in v.dict().values()):
-                return None
+        if v is not None and all(value is None for value in v.dict().values()):
+            return None
         return v
 
     def get_value(self, mode: str) -> float | None:
@@ -564,6 +604,38 @@ class ProductionBreakdown(AggregatableEvent):
             production=production_mix,
             storage=storage_mix,
             sourceType=source_type,
+        )
+
+    @staticmethod
+    def update(
+        event: "ProductionBreakdown", new_event: "ProductionBreakdown"
+    ) -> "ProductionBreakdown":
+        """Update the production and storage breakdown of a zone at a given time."""
+        if event.zoneKey != new_event.zoneKey:
+            raise ValueError(
+                f"Cannot update events from different zones: {event.zoneKey} and {new_event.zoneKey}"
+            )
+        if event.datetime != new_event.datetime:
+            raise ValueError(
+                f"Cannot update events from different datetimes: {event.datetime} and {new_event.datetime}"
+            )
+        if event.source != new_event.source:
+            raise ValueError(
+                f"Cannot update events from different sources: {event.source} and {new_event.source}"
+            )
+        if event.sourceType != new_event.sourceType:
+            raise ValueError(
+                f"Cannot update events from different source types: {event.sourceType} and {new_event.sourceType}"
+            )
+        production_mix = ProductionMix.update(event.production, new_event.production)
+        storage_mix = StorageMix.update(event.storage, new_event.storage)
+        return ProductionBreakdown(
+            zoneKey=event.zoneKey,
+            datetime=event.datetime,
+            source=event.source,
+            production=production_mix,
+            storage=storage_mix,
+            sourceType=event.sourceType,
         )
 
     def to_dict(self) -> dict[str, Any]:

@@ -6,7 +6,7 @@ import { CircularGauge } from 'components/CircularGauge';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { ZoneName } from 'components/ZoneName';
 import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { Mode } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
@@ -38,7 +38,7 @@ function TooltipInner({
     renewableRatio,
     renewableRatioProduction,
   } = zoneData;
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
 
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
@@ -75,11 +75,11 @@ function TooltipInner({
             <CarbonIntensitySquare intensity={intensity} />
             <div className="pl-2 pr-6">
               <CircularGauge
-                name={__('country-panel.lowcarbon')}
+                name={t('country-panel.lowcarbon')}
                 ratio={fossilFuelPercentage}
               />
             </div>
-            <CircularGauge name={__('country-panel.renewable')} ratio={renewable} />
+            <CircularGauge name={t('country-panel.renewable')} ratio={renewable} />
           </div>
         </div>
       </div>
@@ -125,7 +125,7 @@ export default function MapTooltip() {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [isMapMoving] = useAtom(mapMovingAtom);
-  const { i18n, __ } = useTranslation();
+  const { i18n, t } = useTranslation();
   const { data } = useGetState();
 
   if (!hoveredZone || isMapMoving) {
@@ -175,7 +175,7 @@ export default function MapTooltip() {
         <div>
           <ZoneName zone={hoveredZone.zoneId} textStyle="font-medium" />
           <div className="flex self-start text-xs">{formattedDate}</div>
-          <p className="text-start">{__('tooltips.noParserInfo')}</p>
+          <p className="text-start">{t('tooltips.noParserInfo')}</p>
         </div>
       </div>
     </Portal.Root>

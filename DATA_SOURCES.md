@@ -137,6 +137,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - United Arab Emirates: [GCCIA](https://www.gccia.com.sa/)
 - United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
+  - Alaska (Southeast Alaska Power Agency): [SEAPA](https://seapahydro.org/scada)
   - California (US-CAL-CISO): [CAISO](http://www.caiso.com/Pages/default.aspx)
   - Hawaii, Oahu Island (US-HI-OA): [Islandpulse](https://www.islandpulse.org/)
   - New England (US-NE-ISNE): [NEISO](https://www.iso-ne.com/isoexpress/)
@@ -268,7 +269,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Hong Kong: [CLP](https://www.clp.com.hk/en/about-clp/power-generation)
 - Hungary:
   - Biomass: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/246841605/PV+STATISZTIKA_HU_20231001_ig_v1.pdf)
+  - Solar: [MAVIR](https://www.mavir.hu/documents/10258/255200887/PV+STATISZTIKA_HU_20231231_ig_v2.pdf)
   - Other: [MAVIR](https://www.mavir.hu/web/mavir/energia-mix-eromuvi-beepitett-teljesitokepesseg-adatok)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
@@ -436,7 +437,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
   - CAISO
-    - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
+    - CEC: [CEC](https://www.energy.ca.gov/data-reports/energy-almanac/california-electricity-data/electric-generation-capacity-and-energy)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
   - Florida TECO (US-FLA-TEC)
@@ -446,7 +447,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - Coal: [The Guardian: Hawaii to close its only coal power plant in a step toward renewable energy](https://web.archive.org/web/20220902132250/https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy)
     - Other: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - NYISO: [NYISO Gold Book](https://www.nyiso.com/documents/20142/2226333/2021-Gold-Book-Final-Public.pdf)
-  - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
+  - PJM: [PJM](https://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2022.ashx)
   - PNM
     - Coal: [Github|electricitymaps-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
     - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)

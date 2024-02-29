@@ -1,6 +1,7 @@
 import Badge from 'components/Badge';
+import { t,TFunction } from 'i18next';
 import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -11,18 +12,18 @@ import {
 const getText = (
   timePeriod: TimeAverages,
   dataType: 'emissions' | 'production' | 'consumption',
-  __: (text: string) => string
+  t: TFunction
 ) => {
   const translations = {
     hourly: {
-      emissions: __('country-panel.by-source.emissions'),
-      production: __('country-panel.by-source.electricity-production'),
-      consumption: __('country-panel.by-source.electricity-consumption'),
+      emissions: t('country-panel.by-source.emissions'),
+      production: t('country-panel.by-source.electricity-production'),
+      consumption: t('country-panel.by-source.electricity-consumption'),
     },
     default: {
-      emissions: __('country-panel.by-source.total-emissions'),
-      production: __('country-panel.by-source.total-electricity-production'),
-      consumption: __('country-panel.by-source.total-electricity-consumption'),
+      emissions: t('country-panel.by-source.total-emissions'),
+      production: t('country-panel.by-source.total-electricity-production'),
+      consumption: t('country-panel.by-source.total-electricity-consumption'),
     },
   };
   const period = timePeriod === TimeAverages.HOURLY ? 'hourly' : 'default';
@@ -32,17 +33,19 @@ const getText = (
 export default function BySource({
   className,
   hasEstimationPill = false,
+  estimatedPercentage,
 }: {
   className?: string;
   hasEstimationPill?: boolean;
+  estimatedPercentage?: number;
 }) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
 
   const dataType = displayByEmissions ? 'emissions' : mixMode;
-  const text = getText(timeAverage, dataType, __);
+  const text = getText(timeAverage, dataType, t);
 
   return (
     <div
@@ -51,7 +54,13 @@ export default function BySource({
       {text}
       {hasEstimationPill && (
         <Badge
-          pillText="Estimated"
+          pillText={
+            estimatedPercentage
+              ? t('estimation-card.aggregated_estimated.pill', {
+                  percentage: estimatedPercentage,
+                })
+              : t('estimation-badge.fully-estimated')
+          }
           type="warning"
           icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
         />

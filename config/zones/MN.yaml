@@ -4,10 +4,22 @@ bounding_box:
   - - 120.40702681500011
     - 52.62958404600003
 capacity:
-  hydro: 29
-  solar: 95
-  unknown: 1320
-  wind: 156
+  coal:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 970.0
+  hydro:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  solar:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+  wind:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
 contributors:
   - q--
   - alixunderplatz
