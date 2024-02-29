@@ -89,7 +89,7 @@
     "estimated_mode_breakdown": {
       "title": "Données estimées",
       "pill": "Incomplet",
-      "body": "Les données relatives à la production d'électricité pour cette zone sont incomplètes; les valeurs manquantes ont été calculées à l'aide d'un modèle d'estimation."
+      "body": "Les données relatives à la production d'électricité pour cette zone ne sont que partiellement disponible; les valeurs manquantes ont été calculées à l'aide d'un modèle d'estimation."
     },
     "estimated_reconstruct_breakdown": {
       "title": "Les données sont toujours estimées",
