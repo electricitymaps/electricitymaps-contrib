@@ -113,7 +113,7 @@
     },
     "threshold_filtered": {
       "title": "Données manquantes",
-      "pill": "Panne de données",
+      "pill": "Panne",
       "body": "Le fournisseur de données pour cette zone a manqué de données pendant une période prolongée. Nous surveillons le problème et la zone sera mise à jour dès que les données seront à nouveau disponibles."
     },
     "outage": {
