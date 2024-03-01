@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
 import { LeftPanelToggleOptions, Mode } from 'utils/constants';
-import { productionConsumptionAtom,reduceEmissionsAtom } from 'utils/state/atoms';
+import { productionConsumptionAtom, reduceEmissionsAtom } from 'utils/state/atoms';
 
 export default function ReduceEmissionsToggle(): ReactElement {
   const [mixMode] = useAtom(productionConsumptionAtom);
