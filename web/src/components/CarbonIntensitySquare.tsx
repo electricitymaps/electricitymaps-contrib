@@ -88,7 +88,6 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
   const [reduceEmissions] = useAtom(reduceEmissionsAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [selectedFutureDatetime] = useAtom(selectedFutureDatetimeIndexAtom);
-  const [timeAverage] = useAtom(timeAverageAtom);
   const { data, isLoading } = useGetZone();
   const backgroundColor = useSpring({
     backgroundColor: co2ColorScale(intensity),
