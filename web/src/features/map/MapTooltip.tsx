@@ -1,8 +1,9 @@
 import * as Portal from '@radix-ui/react-portal';
 import useGetState from 'api/getState';
-import Badge from 'components/Badge';
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
+import EstimationBadge from 'components/EstimationBadge';
+import OutageBadge from 'components/OutageBadge';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { ZoneName } from 'components/ZoneName';
 import { useAtom } from 'jotai';
@@ -77,12 +78,10 @@ function TooltipInner({
         <div className="flex w-full flex-grow py-1 pt-4 sm:pr-2">
           <div className="flex w-full flex-grow flex-row justify-around">
             <CarbonIntensitySquare intensity={intensity} />
-            <div className="pl-2 pr-6">
-              <CircularGauge
-                name={t('country-panel.lowcarbon')}
-                ratio={fossilFuelPercentage}
-              />
-            </div>
+            <CircularGauge
+              name={t('country-panel.lowcarbon')}
+              ratio={fossilFuelPercentage}
+            />
             <CircularGauge name={t('country-panel.renewable')} ratio={renewable} />
           </div>
         </div>
@@ -103,39 +102,19 @@ function DataValidityBadge({
   const { t } = useTranslation();
 
   if (hasOutage) {
-    return (
-      <Badge
-        type={'warning'}
-        icon={
-          "h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
-        }
-        pillText={t('estimation-badge.outage')}
-      ></Badge>
-    );
+    return <OutageBadge />;
   }
   if ((estimatedPercentage ?? 0) > 0) {
     return (
-      <Badge
-        type={'warning'}
-        icon={
-          "h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
-        }
-        pillText={t(`estimation-card.aggregated_estimated.pill`, {
+      <EstimationBadge
+        text={t(`estimation-card.aggregated_estimated.pill`, {
           percentage: estimatedPercentage,
         })}
-      ></Badge>
+      />
     );
   }
   if (estimationMethod != undefined) {
-    return (
-      <Badge
-        type={'warning'}
-        icon={
-          "h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
-        }
-        pillText={t('estimation-badge.fully-estimated')}
-      ></Badge>
-    );
+    return <EstimationBadge text={t('estimation-badge.fully-estimated')} />;
   }
   return null;
 }
