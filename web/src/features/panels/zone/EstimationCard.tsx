@@ -75,9 +75,9 @@ function getEstimationTranslation(
       : t(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`);
 
   const genericTranslation = t(`estimation-card.estimated_generic_method.${field}`);
-  return exactTranslation.length > 0 && !exactTranslation.startsWith('estimation-card.')
-    ? exactTranslation
-    : genericTranslation;
+  return exactTranslation.startsWith('estimation-card.')
+    ? genericTranslation
+    : exactTranslation;
 }
 
 function BaseCard({
