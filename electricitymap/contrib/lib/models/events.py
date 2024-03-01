@@ -66,6 +66,12 @@ class Mix(BaseModel, ABC):
         """
         self.__setattr__(key, value)
 
+    def __getitem__(self, key: str) -> float | None:
+        """
+        Allows to get the value of a mode using the bracket notation.
+        """
+        return getattr(self, key)
+
 
 class ProductionMix(Mix):
     """
@@ -145,6 +151,14 @@ class ProductionMix(Mix):
             self._corrected_negative_values.add(name)
             value = None
         return super().__setattr__(name, value)
+
+    def __getitem__(self, key: str) -> float | None:
+        """
+        Overriding the getitem method to check that the key is a valid production mode.
+        """
+        if key not in PRODUCTION_MODES:
+            raise AttributeError(f"Unknown production mode: {key}")
+        return getattr(self, key)
 
     def _correct_negative_value(
         self, mode: str, value: float | None, correct_negative_with_zero: bool
@@ -231,6 +245,14 @@ class StorageMix(Mix):
         if name not in STORAGE_MODES:
             raise AttributeError(f"Unknown storage mode: {name}")
         return super().__setattr__(name, value)
+
+    def __getitem__(self, key: str) -> float | None:
+        """
+        Overriding the getitem method to check that the key is a valid storage mode.
+        """
+        if key not in STORAGE_MODES:
+            raise AttributeError(f"Unknown storage mode: {key}")
+        return getattr(self, key)
 
     @classmethod
     def merge(cls, storage_mixes: list["StorageMix"]) -> "StorageMix":
