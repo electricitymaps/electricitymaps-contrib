@@ -124,7 +124,7 @@ export default function TimeController({ className }: { className?: string }) {
       />
       <TimeAxis
         datetimes={futureDatesNextHunderedYears}
-        selectedTimeAggregate={'yearly'}
+        selectedTimeAggregate={TimeAverages.YEARLY}
         isLoading={isLoading}
         className="h-[22px] w-full overflow-visible"
         transform={`translate(12, 0)`}

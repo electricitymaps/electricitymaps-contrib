@@ -1,6 +1,5 @@
 import useGetZone from 'api/getZone';
 import LoadingSpinner from 'components/LoadingSpinner';
-import ToggleButton from 'components/ToggleButton';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import ReduceEmissionsToggle from 'features/map-controls/ReduceEmissionsToggle';
 import { useAtom } from 'jotai';

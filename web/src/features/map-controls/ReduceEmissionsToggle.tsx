@@ -2,11 +2,10 @@ import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
-import { LeftPanelToggleOptions, Mode } from 'utils/constants';
-import { productionConsumptionAtom, reduceEmissionsAtom } from 'utils/state/atoms';
+import { LeftPanelToggleOptions } from 'utils/constants';
+import { reduceEmissionsAtom } from 'utils/state/atoms';
 
 export default function ReduceEmissionsToggle(): ReactElement {
-  const [mixMode] = useAtom(productionConsumptionAtom);
   const [displayByEmissions, setDisplayByEmissions] = useAtom(reduceEmissionsAtom);
 
   // TODO: perhaps togglebutton should accept boolean values

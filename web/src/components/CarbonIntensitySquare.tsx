@@ -38,9 +38,8 @@ const getTextColor = (rgbColor: string) => {
 
 function calculateTemporaryChange(
   emissions: number,
-  timeUnit: string,
   decadeFromStart: number,
-  reduceEmissions = false
+  reduceEmissions
 ) {
   // Calculates the total temperature change with diminishing returns for each decade.
 
@@ -88,9 +87,7 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
   const [mixMode] = useAtom(productionConsumptionAtom);
   const [reduceEmissions] = useAtom(reduceEmissionsAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [selectedFutureDatetime, setSelectedFutureDatetime] = useAtom(
-    selectedFutureDatetimeIndexAtom
-  );
+  const [selectedFutureDatetime] = useAtom(selectedFutureDatetimeIndexAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
   const { data, isLoading } = useGetZone();
   const backgroundColor = useSpring({
@@ -119,16 +116,13 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
   // const emissions = 1000; // Replace with your actual emission value
   // const timeUnit = 'hourly'; // Choose from "hour", "day", "month", or "year"
   const decadeFromStart = selectedFutureDatetime.index;
-  console.log(reduceEmissions);
   const totalTemporaryChangeAllEmissions = calculateTemporaryChange(
     (54 * 10e15) / 8760,
-    timeAverage,
     decadeFromStart,
     Boolean(reduceEmissions)
   );
   const totalTemporaryChange = calculateTemporaryChange(
     totalEmission,
-    timeAverage,
     decadeFromStart,
     Boolean(reduceEmissions)
   );
