@@ -1,4 +1,5 @@
 import useGetState from 'api/getState';
+import FutureEmissions from 'components/FutureEmissions';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom } from 'jotai';
@@ -6,7 +7,11 @@ import { useEffect, useMemo, useState } from 'react';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { dateToDatetimeString } from 'utils/helpers';
-import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+import {
+  selectedDatetimeIndexAtom,
+  selectedFutureDatetimeIndexAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 
 import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
@@ -14,6 +19,9 @@ import TimeHeader from './TimeHeader';
 export default function TimeController({ className }: { className?: string }) {
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const [selectedFutureDatetime, setSelectedFutureDatetime] = useAtom(
+    selectedFutureDatetimeIndexAtom
+  );
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
 
@@ -27,6 +35,19 @@ export default function TimeController({ className }: { className?: string }) {
     () => (data ? data.data?.datetimes.map((d) => new Date(d)) : undefined),
     [data]
   );
+  const futureDatesNextHunderedYears = [
+    new Date('2020'),
+    new Date('2030'),
+    new Date('2040'),
+    new Date('2050'),
+    new Date('2060'),
+    new Date('2070'),
+    new Date('2080'),
+    new Date('2090'),
+    new Date('2100'),
+    new Date('2110'),
+    new Date('2120'),
+  ];
 
   useEffect(() => {
     if (datetimes) {
@@ -47,6 +68,17 @@ export default function TimeController({ className }: { className?: string }) {
       return;
     }
     setSelectedDatetime({
+      datetimeString: dateToDatetimeString(datetimes[index]),
+      index,
+    });
+  };
+
+  const onFutureTimeSliderChange = (index: number) => {
+    // TODO: Does this work properly missing values?
+    if (!datetimes) {
+      return;
+    }
+    setSelectedFutureDatetime({
       datetimeString: dateToDatetimeString(datetimes[index]),
       index,
     });
@@ -84,6 +116,19 @@ export default function TimeController({ className }: { className?: string }) {
         className="h-[22px] w-full overflow-visible"
         transform={`translate(12, 0)`}
         isLiveDisplay={timeAverage === TimeAverages.HOURLY}
+      />
+      <FutureEmissions
+        onChange={onFutureTimeSliderChange}
+        numberOfEntries={10}
+        selectedIndex={selectedFutureDatetime.index}
+      />
+      <TimeAxis
+        datetimes={futureDatesNextHunderedYears}
+        selectedTimeAggregate={'yearly'}
+        isLoading={isLoading}
+        className="h-[22px] w-full overflow-visible"
+        transform={`translate(12, 0)`}
+        isLiveDisplay={false}
       />
     </div>
   );

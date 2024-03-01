@@ -17,6 +17,6 @@ export enum EnergyUnits {
 }
 
 export enum CarbonUnits {
-  GRAMS_CO2EQ_PER_WATT_HOUR = 'gCO₂eq/kWh',
+  GRAMS_CO2EQ_PER_WATT_HOUR = '',
   CO2EQ_PER_HOUR = 'CO₂eq/h',
 }

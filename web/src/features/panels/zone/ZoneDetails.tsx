@@ -1,6 +1,8 @@
 import useGetZone from 'api/getZone';
 import LoadingSpinner from 'components/LoadingSpinner';
+import ToggleButton from 'components/ToggleButton';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import ReduceEmissionsToggle from 'features/map-controls/ReduceEmissionsToggle';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
@@ -87,6 +89,7 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
+          <ReduceEmissionsToggle />
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
           <Divider />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (

@@ -1,6 +1,6 @@
 import { Button } from 'components/Button';
 import Modal from 'components/Modal';
-import ConsumptionProductionToggle from 'features/map-controls/ConsumptionProductionToggle';
+import ConsumptionProductionToggle from 'features/map-controls/ReduceEmissionsToggle';
 import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';

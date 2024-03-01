@@ -1,5 +1,16 @@
 import { animated, useSpring } from '@react-spring/web';
+import useGetZone from 'api/getZone';
+import { getTotalEmissionsAvailable } from 'features/charts/graphUtils';
+import { AreaGraphElement } from 'features/charts/types';
+import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
+import {
+  productionConsumptionAtom,
+  reduceEmissionsAtom,
+  selectedDatetimeIndexAtom,
+  selectedFutureDatetimeIndexAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import { CarbonUnits } from 'utils/units';
 
 import { useCo2ColorScale } from '../hooks/theme';
@@ -26,40 +37,155 @@ const getTextColor = (rgbColor: string) => {
   return luminosity >= 0.384_741_302_385_683_16 ? 'black' : 'white';
 };
 
+function calculateTemporaryChange(
+  emissions: number,
+  timeUnit: string,
+  decadeFromStart: number,
+  reduceEmissions = false
+) {
+  // Calculates the total temperature change with diminishing returns for each decade.
+
+  // Args:
+  //     emissions: The emission rate in grams per unit (hour, day, month, or year).
+  //     timeUnit: The unit of time for the emission rate ("hour", "day", "month", or "year").
+  //     decadeFromStart: The number of decades for which to calculate the temperature change.
+  //     reduceEmissions: Optional boolean flag (default: false) to enable reduction in emissions over time.
+
+  // Returns:
+  //     The total temperature change in degrees Celsius.
+
+  // Convert emissions to grams per year
+
+  const emissionsPerYear = emissions * 24 * 365;
+
+  // Calculate total emissions with diminishing returns
+  let totalEmissions = 0;
+  let multiplier = 1;
+  for (let index = 0; index < decadeFromStart; index++) {
+    totalEmissions += emissionsPerYear * multiplier;
+    if (reduceEmissions) {multiplier *= 0.5;} // Reduce emissions per decade
+    if (!reduceEmissions) {multiplier = 1;} // Reduce emissions per decade
+  }
+
+  const totalEmissionsPg = totalEmissions / 1e15;
+  const TCRE = 1.6; // Transient Climate Response to Cumulative Emissions (°C / PgC) (low end of the range)
+  // Calculate temperature change using the provided conversion factor
+  const temporaryChange = (totalEmissionsPg * TCRE) / 1000;
+
+  return temporaryChange;
+}
+
 interface CarbonIntensitySquareProps {
   intensity: number;
   withSubtext?: boolean;
 }
 
 function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquareProps) {
-  const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
+  const [mixMode] = useAtom(productionConsumptionAtom);
+  const [reduceEmissions] = useAtom(reduceEmissionsAtom);
+  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const [selectedFutureDatetime, setSelectedFutureDatetime] = useAtom(
+    selectedFutureDatetimeIndexAtom
+  );
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const { data, isLoading } = useGetZone();
   const backgroundColor = useSpring({
     backgroundColor: co2ColorScale(intensity),
   }).backgroundColor;
 
+  if (!data || isLoading) {return null;}
+
+  const chartData: AreaGraphElement[] = Object.entries(data.zoneStates).map(
+    ([datetimeString, value]) => {
+      const datetime = new Date(datetimeString);
+      return {
+        datetime,
+        layerData: {
+          emissions: getTotalEmissionsAvailable(value, mixMode),
+        },
+        meta: value,
+      };
+    }
+  );
+
+  const totalEmission = chartData[selectedDatetime.index].layerData.emissions;
+  // Example usage
+  // const emissions = 1000; // Replace with your actual emission value
+  // const timeUnit = 'hourly'; // Choose from "hour", "day", "month", or "year"
+  const decadeFromStart = selectedFutureDatetime.index;
+  console.log(reduceEmissions);
+  const totalTemporaryChangeAllEmissions = calculateTemporaryChange(
+    (54 * 10e15) / 8760,
+    timeAverage,
+    decadeFromStart,
+    Boolean(reduceEmissions)
+  );
+  const totalTemporaryChange = calculateTemporaryChange(
+    totalEmission,
+    timeAverage,
+    decadeFromStart,
+    Boolean(reduceEmissions)
+  );
+
+  console.log(
+    `Total temperature change for ${decadeFromStart} years: ${totalTemporaryChange.toFixed(
+      2
+    )} degrees Celsius`
+  );
   return (
-    <div>
+    <div className="flex">
       <div>
-        <animated.div
-          style={{
-            color: getTextColor(co2ColorScale(intensity)),
-            backgroundColor,
-          }}
-          className="mx-auto flex h-[65px] w-[65px] flex-col items-center justify-center rounded-2xl"
-        >
-          <p className="select-none text-[1rem]" data-test-id="co2-square-value">
-            <span className="font-bold">{Math.round(intensity) || '?'}</span>
-            &nbsp;
-            <span>g</span>
-          </p>
-        </animated.div>
+        <div>
+          <animated.div
+            style={{
+              color: getTextColor(co2ColorScale(intensity)),
+              backgroundColor,
+            }}
+            className="mx-auto flex h-[65px] w-[95px] flex-col items-center justify-center rounded-2xl"
+          >
+            <p className="select-none text-[1rem]" data-test-id="co2-square-value">
+              <span className="font-bold">{totalTemporaryChange.toFixed(4) || '?'}</span>
+              &nbsp;
+              <span>°C</span>
+            </p>
+          </animated.div>
+        </div>
+        <div className="mt-2 flex flex-col items-center">
+          <div className="text-center text-sm">
+            Change in surface temp from zone electricity consumption
+          </div>
+          {withSubtext && (
+            <div className="text-sm">{CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}</div>
+          )}
+        </div>
       </div>
-      <div className="mt-2 flex flex-col items-center">
-        <div className="text-sm">{t('country-panel.carbonintensity')}</div>
-        {withSubtext && (
-          <div className="text-sm">{CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}</div>
-        )}
+      <div>
+        <div>
+          <animated.div
+            style={{
+              color: getTextColor(co2ColorScale(intensity)),
+              backgroundColor,
+            }}
+            className="mx-auto flex h-[65px] w-[95px] flex-col items-center justify-center rounded-2xl"
+          >
+            <p className="select-none text-[1rem]" data-test-id="co2-square-value">
+              <span className="font-bold">
+                {totalTemporaryChangeAllEmissions.toFixed(4) || '?'}
+              </span>
+              &nbsp;
+              <span>°C</span>
+            </p>
+          </animated.div>
+        </div>
+        <div className="mt-2 flex flex-col items-center">
+          <div className="text-center text-sm">
+            Change in surface temp from all global emissions
+          </div>
+          {withSubtext && (
+            <div className="text-sm">{CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}</div>
+          )}
+        </div>
       </div>
     </div>
   );

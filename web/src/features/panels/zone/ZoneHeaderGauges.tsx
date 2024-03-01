@@ -53,23 +53,25 @@ export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
 
   return (
     <div className="mt-1 grid w-full gap-y-5 sm:pr-4">
-      <div className="flex flex-row justify-evenly">
+      <div className="flex flex-col justify-evenly">
         <CarbonIntensitySquare
           data-test-id="co2-square-value"
           intensity={intensity}
           withSubtext
         />
-        <CircularGauge
-          name={t('country-panel.lowcarbon')}
-          ratio={fossilFuelPercentage}
-          tooltipContent={<LowCarbonTooltip />}
-          testId="zone-header-lowcarbon-gauge"
-        />
-        <CircularGauge
-          name={t('country-panel.renewable')}
-          ratio={renewable}
-          testId="zone-header-renewable-gauge"
-        />
+        <div className="flex justify-evenly pt-5">
+          <CircularGauge
+            name={t('country-panel.lowcarbon')}
+            ratio={fossilFuelPercentage}
+            tooltipContent={<LowCarbonTooltip />}
+            testId="zone-header-lowcarbon-gauge"
+          />
+          <CircularGauge
+            name={t('country-panel.renewable')}
+            ratio={renewable}
+            testId="zone-header-renewable-gauge"
+          />
+        </div>
       </div>
     </div>
   );

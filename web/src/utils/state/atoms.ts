@@ -16,6 +16,8 @@ export const timeAverageAtom = atom(TimeAverages.HOURLY);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetimeString: '', index: 0 });
+export const selectedFutureDatetimeIndexAtom = atom({ datetimeString: '', index: 0 });
+export const reduceEmissionsAtom = atom(false);
 
 export const spatialAggregateAtom = atomWithStorage(
   'country-mode',

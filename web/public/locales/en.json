@@ -57,7 +57,7 @@
   },
   "country-panel": {
     "source": "Source",
-    "carbonintensity": "Carbon Intensity",
+    "carbonintensity": "Change in surface temperature from electricity consumption",
     "lowcarbon": "Low-carbon",
     "renewable": "Renewable",
     "electricityproduction": "Electricity production",
