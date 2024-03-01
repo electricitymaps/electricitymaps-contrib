@@ -76,7 +76,9 @@ def fetch_production(
     production_events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
     )
-    filtered_production_events = ProductionBreakdownList.filter_only_zero_production(production_events)
+    filtered_production_events = ProductionBreakdownList.filter_only_zero_production(
+        production_events
+    )
     filtered_production_events = filtered_production_events.to_list()
 
     # Drop last datapoints if it "looks" incomplete.
