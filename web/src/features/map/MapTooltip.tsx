@@ -32,6 +32,7 @@ function TooltipInner({
     co2intensity,
     co2intensityProduction,
     estimationMethod,
+    estimatedPercentage,
     hasOutage,
     fossilFuelRatio,
     fossilFuelRatioProduction,
@@ -69,7 +70,8 @@ function TooltipInner({
           </div>
           <DataValidityBadge
             hasOutage={hasOutage}
-            isEstimated={estimationMethod != undefined}
+            estimationMethod={estimationMethod}
+            estimatedPercentage={estimatedPercentage}
           />
         </div>
         <div className="flex w-full flex-grow py-1 pt-4 sm:pr-2">
@@ -91,10 +93,12 @@ function TooltipInner({
 
 function DataValidityBadge({
   hasOutage,
-  isEstimated,
+  estimationMethod,
+  estimatedPercentage,
 }: {
-  hasOutage: boolean;
-  isEstimated: boolean;
+  hasOutage: boolean | undefined;
+  estimationMethod: string | undefined;
+  estimatedPercentage: number | undefined;
 }) {
   const { t } = useTranslation();
 
@@ -109,7 +113,20 @@ function DataValidityBadge({
       ></Badge>
     );
   }
-  if (isEstimated) {
+  if ((estimatedPercentage ?? 0) > 0) {
+    return (
+      <Badge
+        type={'warning'}
+        icon={
+          "h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
+        }
+        pillText={t(`estimation-card.aggregated_estimated.pill`, {
+          percentage: estimatedPercentage,
+        })}
+      ></Badge>
+    );
+  }
+  if (estimationMethod != undefined) {
     return (
       <Badge
         type={'warning'}
