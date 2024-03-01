@@ -3,7 +3,6 @@ import useGetZone from 'api/getZone';
 import { getTotalEmissionsAvailable } from 'features/charts/graphUtils';
 import { AreaGraphElement } from 'features/charts/types';
 import { useAtom } from 'jotai';
-import { useTranslation } from 'react-i18next';
 import {
   productionConsumptionAtom,
   reduceEmissionsAtom,
@@ -63,8 +62,12 @@ function calculateTemporaryChange(
   let multiplier = 1;
   for (let index = 0; index < decadeFromStart; index++) {
     totalEmissions += emissionsPerYear * multiplier;
-    if (reduceEmissions) {multiplier *= 0.5;} // Reduce emissions per decade
-    if (!reduceEmissions) {multiplier = 1;} // Reduce emissions per decade
+    if (reduceEmissions) {
+      multiplier *= 0.5;
+    } // Reduce emissions per decade
+    if (!reduceEmissions) {
+      multiplier = 1;
+    } // Reduce emissions per decade
   }
 
   const totalEmissionsPg = totalEmissions / 1e15;
@@ -94,7 +97,9 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
     backgroundColor: co2ColorScale(intensity),
   }).backgroundColor;
 
-  if (!data || isLoading) {return null;}
+  if (!data || isLoading) {
+    return null;
+  }
 
   const chartData: AreaGraphElement[] = Object.entries(data.zoneStates).map(
     ([datetimeString, value]) => {
