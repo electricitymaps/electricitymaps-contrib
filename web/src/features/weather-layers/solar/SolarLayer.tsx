@@ -60,6 +60,7 @@ export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
     if (!node || !map?.isStyleLoaded()) {
       return;
     }
+
     const north = gudermannian(convertYToLat(node.height - 1, 0));
     const south = gudermannian(convertYToLat(node.height - 1, node.height - 1));
 
@@ -76,28 +77,20 @@ export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
         ],
       } as any // Workaround for https://github.com/maplibre/maplibre-gl-js/issues/2242
     );
+
+    if (isVisibleReference.current) {
+      if (!map.getLayer('solar-point')) {
+        map.addLayer({ id: 'solar-point', type: 'raster', source: 'solar' });
+      }
+      setIsLoadingSolarLayer(false);
+    }
+
     return () => {
       if (map.getLayer('solar-point')) {
         map.removeLayer('solar-point');
       }
       if (map.getSource('solar')) {
         map.removeSource('solar');
-      }
-    };
-  }, [map, node]);
-
-  useEffect(() => {
-    if (!node || !map?.isStyleLoaded() || !isVisibleReference.current) {
-      return;
-    }
-    if (!map.getLayer('solar-point')) {
-      map.addLayer({ id: 'solar-point', type: 'raster', source: 'solar' });
-    }
-    setIsLoadingSolarLayer(false);
-
-    return () => {
-      if (map.getLayer('solar-point')) {
-        map.removeLayer('solar-point');
       }
     };
   }, [map, node, isVisibleReference.current]);
