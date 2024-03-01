@@ -39,7 +39,7 @@ const getTextColor = (rgbColor: string) => {
 function calculateTemporaryChange(
   emissions: number,
   decadeFromStart: number,
-  reduceEmissions
+  reduceEmissions: boolean
 ) {
   // Calculates the total temperature change with diminishing returns for each decade.
 
