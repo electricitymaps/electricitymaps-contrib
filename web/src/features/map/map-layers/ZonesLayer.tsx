@@ -1,5 +1,4 @@
 import { useTheme } from 'hooks/theme';
-import { useMemo } from 'react';
 import { Layer, Source } from 'react-map-gl/maplibre';
 
 import { ZONE_SOURCE } from '../Map';
