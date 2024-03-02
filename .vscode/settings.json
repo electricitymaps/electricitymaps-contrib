@@ -7,7 +7,13 @@
       "source.organizeImports": "explicit"
     }
   },
-  "python.testing.pytestArgs": [".", "--ignore", "electricitymap/contrib/parsers"],
+  "python.testing.pytestArgs": [
+    ".",
+    "--ignore",
+    "electricitymap/contrib/parsers",
+    "--ignore",
+    "electricitymap/contrib/validators"
+  ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true
 }

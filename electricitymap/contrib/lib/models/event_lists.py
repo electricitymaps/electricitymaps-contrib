@@ -142,15 +142,6 @@ class AggregatableEventList(EventList, ABC):
 class ExchangeList(AggregatableEventList):
     events: list[Exchange]
 
-    def __contains__(self, datetime) -> bool:
-        return any(event.datetime == datetime for event in self.events)
-
-    def __getitem__(self, datetime) -> Exchange:
-        return next(event for event in self.events if event.datetime == datetime)
-
-    def __setitem__(self, datetime, event: Exchange):
-        self.events[self.events.index(self[datetime])] = event
-
     def append(
         self,
         zoneKey: ZoneKey,
@@ -195,32 +186,6 @@ class ExchangeList(AggregatableEventList):
             exchanges.append(
                 zone_key, dt.to_pydatetime(), sources, row["netFlow"], source_type
             )  # type: ignore
-
-        return exchanges
-
-    @staticmethod
-    def update_exchanges(
-        exchanges: "ExchangeList", new_exchanges: "ExchangeList", logger: Logger
-    ) -> "ExchangeList":
-        """Given a new batch of exchanges, update the existing ones."""
-        if len(new_exchanges) == 0:
-            return exchanges
-        elif len(exchanges) == 0:
-            return new_exchanges
-
-        for new_event in new_exchanges.events:
-            if new_event.datetime in exchanges:
-                existing_event = exchanges[new_event.datetime]
-                updated_event = Exchange.update(existing_event, new_event)
-                exchanges[new_event.datetime] = updated_event
-            else:
-                exchanges.append(
-                    new_event.zoneKey,
-                    new_event.datetime,
-                    new_event.source,
-                    new_event.netFlow,
-                    new_event.sourceType,
-                )
 
         return exchanges
 

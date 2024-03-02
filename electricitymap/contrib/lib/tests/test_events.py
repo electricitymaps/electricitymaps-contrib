@@ -105,26 +105,6 @@ class TestExchange(unittest.TestCase):
             )
             mock_error.assert_called_once()
 
-    def test_update_exchange(self):
-        exchange = Exchange(
-            zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            netFlow=1,
-            source="trust.me",
-        )
-        new_exchange = Exchange(
-            zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            netFlow=2,
-            source="trust.me",
-        )
-        final_exchange = Exchange.update(exchange, new_exchange)
-        assert final_exchange is not None
-        assert final_exchange.netFlow == 2
-        assert final_exchange.zoneKey == ZoneKey("AT->DE")
-        assert final_exchange.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert final_exchange.source == "trust.me"
-
 
 class TestConsumption(unittest.TestCase):
     def test_create_consumption(self):
