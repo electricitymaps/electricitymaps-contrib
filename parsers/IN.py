@@ -2,7 +2,6 @@
 
 """Parser for all of India"""
 
-
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
@@ -313,9 +312,7 @@ def fetch_npp_production(
             }
         )
         df_npp["region"] = (
-            df_npp["power_station"]
-            .apply(lambda x: NPP_REGION_MAPPING[x] if x in NPP_REGION_MAPPING else None)
-            .ffill()
+            df_npp["power_station"].apply(lambda x: NPP_REGION_MAPPING.get(x)).ffill()
         )
         df_npp = df_npp[["region", "production_mode", "value"]]
 

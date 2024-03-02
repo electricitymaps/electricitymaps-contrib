@@ -183,7 +183,7 @@ def fetch_production(
 
     for gen_type, gen_percent in gen_types.items():
         gen_mw = gen_percent * generation
-        mapped_type = TYPE_MAPPINGS.get(gen_type, None)
+        mapped_type = TYPE_MAPPINGS.get(gen_type)
 
         if mapped_type:
             generation_by_type[TYPE_MAPPINGS[gen_type]] += gen_mw

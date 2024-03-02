@@ -14,6 +14,7 @@ Consumption Forecast
 Link to the API documentation:
 https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 """
+
 import itertools
 import re
 from datetime import datetime, timedelta, timezone
