@@ -430,6 +430,33 @@ class Exchange(Event):
                 },
             )
 
+    @staticmethod
+    def update(event: "Exchange", new_event: "Exchange") -> "Exchange":
+        """Update the net exchange between two zones."""
+        if event.zoneKey != new_event.zoneKey:
+            raise ValueError(
+                f"Cannot update events from different zones: {event.zoneKey} and {new_event.zoneKey}"
+            )
+        if event.datetime != new_event.datetime:
+            raise ValueError(
+                f"Cannot update events from different datetimes: {event.datetime} and {new_event.datetime}"
+            )
+        if event.source != new_event.source:
+            raise ValueError(
+                f"Cannot update events from different sources: {event.source} and {new_event.source}"
+            )
+        if event.sourceType != new_event.sourceType:
+            raise ValueError(
+                f"Cannot update events from different source types: {event.sourceType} and {new_event.sourceType}"
+            )
+        return Exchange(
+            zoneKey=event.zoneKey,
+            datetime=event.datetime,
+            source=event.source,
+            netFlow=new_event.netFlow,  # Exchange values can never be none so a new valid value will always be provided.
+            sourceType=event.sourceType,
+        )
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
