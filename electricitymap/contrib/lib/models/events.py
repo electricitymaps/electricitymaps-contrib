@@ -381,7 +381,7 @@ class Exchange(Event):
     Negative otherwise.
     """
 
-    netFlow: float | None
+    netFlow: float
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v: str):
