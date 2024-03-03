@@ -38,8 +38,8 @@ class EventList(ABC):
     def __len__(self):
         return len(self.events)
 
-    def __contains__(self, datetime):
-        return datetime in self.events
+    def __contains__(self, event: Event):
+        return event.datetime in self.events
 
     @abstractmethod
     def __iter__(self):
@@ -56,6 +56,12 @@ class EventList(ABC):
     @abstractmethod
     def _append_event(self, event: Event):
         """Appends an event to the list."""
+        if event.datetime in self.events:
+            self.logger.warning(
+                f"Event at {event.datetime} already exists in the list, discarding event.",
+                extra={"event": event.to_dict()},
+            )
+            return
         self.events.update({event.datetime: event})
 
     @abstractmethod
@@ -169,11 +175,11 @@ class ExchangeList(AggregatableEventList):
     def __iter__(self):
         return iter(self.events.values())
 
-    def __getitem__(self, datetime):
-        return self.events[datetime]
+    def __getitem__(self, event: Exchange):
+        return self.events[event.datetime]
 
-    def __setitem__(self, datetime, event: Exchange):
-        self.events[datetime] = event
+    def __setitem__(self, event: Exchange, value: Exchange):
+        self.events[event.datetime] = value
 
     def _append_event(self, event: Exchange):
         return super()._append_event(event)
@@ -236,10 +242,10 @@ class ExchangeList(AggregatableEventList):
             return new_exchanges
 
         for new_event in new_exchanges:
-            if new_event.datetime in exchanges:
-                existing_event = exchanges[new_event.datetime]
+            if new_event in exchanges:
+                existing_event = exchanges[new_event]
                 updated_event = Exchange.update(existing_event, new_event)
-                exchanges[new_event.datetime] = updated_event
+                exchanges[new_event] = updated_event
             else:
                 exchanges._append_event(new_event)
 
@@ -252,11 +258,11 @@ class ProductionBreakdownList(AggregatableEventList):
     def __iter__(self):
         return iter(self.events.values())
 
-    def __getitem__(self, datetime):
-        return self.events[datetime]
+    def __getitem__(self, event: ProductionBreakdown):
+        return self.events[event.datetime]
 
-    def __setitem__(self, datetime, event: ProductionBreakdown):
-        self.events[datetime] = event
+    def __setitem__(self, event: ProductionBreakdown, value: ProductionBreakdown):
+        self.events[event.datetime] = value
 
     def _append_event(self, event: ProductionBreakdown):
         return super()._append_event(event)
@@ -332,10 +338,10 @@ class ProductionBreakdownList(AggregatableEventList):
             return new_production_breakdowns
 
         for new_event in new_production_breakdowns:
-            if new_event.datetime in production_breakdowns:
-                existing_event = production_breakdowns[new_event.datetime]
+            if new_event in production_breakdowns:
+                existing_event = production_breakdowns[new_event]
                 updated_event = ProductionBreakdown.update(existing_event, new_event)
-                production_breakdowns[new_event.datetime] = updated_event
+                production_breakdowns[new_event] = updated_event
             else:
                 production_breakdowns._append_event(new_event)
 
