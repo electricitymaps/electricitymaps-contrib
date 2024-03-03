@@ -86,6 +86,40 @@
       "pill": "Indisponible",
       "body": "Le fournisseur de données ne publie momentanément aucune donnée pour cette zone. Les valeurs affichées sont estimées en fonction des données historiques et seront remplacées par les données consolidées dès qu'elles seront disponibles. Veuillez noter que les valeurs estimées peuvent être inexactes car elles ne tiennent pas compte d'événements météorologiques spécifiques en temps réel."
     },
+    "estimated_mode_breakdown": {
+      "title": "Données estimées",
+      "pill": "Incomplètes",
+      "body": "Les données relatives à la production d'électricité pour cette zone ne sont que partiellement disponible; les valeurs manquantes ont été calculées à l'aide d'un modèle d'estimation."
+    },
+    "estimated_reconstruct_breakdown": {
+      "title": "Les données sont toujours estimées",
+      "pill": "Incomplètes",
+      "body": "Les données publiées pour cette zone ne reflètent que la production totale. Les sources renouvelables sont estimées à partir des données météorologiques en temps réel, tandis que les sources fossiles sont déduites sur la base des données historiques pour chaque mode de production."
+    },
+    "estimated_generic_method": {
+      "title": "Données estimées",
+      "pill": "Incomplètes",
+      "body": "Les données publiées pour cette zone sont indisponibles ou incomplètes. Les données figurant sur la carte sont estimées au mieux de nos capacités, mais peuvent différer des valeurs réelles."
+    },
+    "estimated_construct_breakdown": {
+      "title": "Les données sont toujours estimées",
+      "pill": "Pas en temps réel",
+      "body": "Les données pour cette zone ne sont pas publiées en temps réel et ne fournissent que la production totale. La production horaire et les sources de production sont estimées sur la base des données historiques pour chaque source de production."
+    },
+    "estimated_construct_zero_breakdown": {
+      "title": "Les données sont toujours estimées",
+      "pill": "Pas en temps réel",
+      "body": "Les données pour cette zone ne sont pas publiées en temps réel et ne fournissent que la production totale. La production horaire et les sources de production sont estimées sur la base des données historiques pour chaque source de production."
+    },
+    "threshold_filtered": {
+      "title": "Données manquantes",
+      "pill": "Panne",
+      "body": "Le fournisseur de données pour cette zone n'a pas été en mesure de publier des données pendant une période prolongée. Nous sommes au courant de la situation et la zone sera mise à jour dès que les données seront à nouveau disponibles."
+    },
+    "outage": {
+      "title": "Problèmes en cours",
+      "pill": "Indisponible"
+    },
     "aggregated": {
       "title": "Les données sont agrégées",
       "body": "Les données consistent en une agrégation de données horaires."
