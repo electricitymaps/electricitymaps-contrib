@@ -27,7 +27,7 @@ capacity:
     - datetime: '2022-01-01'
       source: Climatescope
       value: 924
-    - datetime: '2022-10-01'
+    - datetime: '2023-01-01'
       source: Climatescope
       value: 1224
   wind:
@@ -41,6 +41,7 @@ capacity:
 contributors:
   - q--
   - nessie2013
+  - florianscheidl
 parsers:
   consumption: GCCIA.fetch_consumption
 sources:
