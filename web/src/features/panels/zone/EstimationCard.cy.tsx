@@ -42,7 +42,7 @@ describe('EstimationCard with FeedbackCard', () => {
   });
 });
 
-describe('EstimationCard with real estimation method', () => {
+describe('EstimationCard with known estimation method', () => {
   beforeEach(() => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
@@ -66,7 +66,7 @@ describe('EstimationCard with real estimation method', () => {
     );
   });
 
-  it('toggles collapse when collapse button is clicked', () => {
+  it('Toggles when collapse button is clicked', () => {
     cy.get('[data-test-id="collapse-up"]').should('not.exist');
     cy.get('[data-test-id="collapse-down"]').should('exist');
     cy.get('[data-test-id="body-text"]').should('not.exist');
@@ -80,7 +80,7 @@ describe('EstimationCard with real estimation method', () => {
 });
 
 describe('EstimationCard', () => {
-  it('Estimation card with unknown contains expected information', () => {
+  it('Estimation card with unknown estimation method contains expected information', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
@@ -100,7 +100,7 @@ describe('EstimationCard', () => {
     );
   });
 
-  it('Estimation card with unknown card should not return an estimation card', () => {
+  it('Estimation card with unknown card type should not return an estimation card', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
@@ -142,7 +142,7 @@ describe('OutageCard', () => {
 });
 
 describe('AggregatedCard', () => {
-  it('Aggregated message with estimation contains expected information', () => {
+  it('Aggregated card with estimation contains expected information', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
@@ -162,7 +162,7 @@ describe('AggregatedCard', () => {
     );
   });
 
-  it('Aggregated message contains expected information', () => {
+  it('Aggregated card contains expected information', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
