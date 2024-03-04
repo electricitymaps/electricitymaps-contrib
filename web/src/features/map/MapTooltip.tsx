@@ -104,6 +104,9 @@ function DataValidityBadge({
   if (hasOutage) {
     return <OutageBadge />;
   }
+  if (estimationMethod != undefined) {
+    return <EstimationBadge text={t('estimation-badge.fully-estimated')} />;
+  }
   if ((estimatedPercentage ?? 0) > 0) {
     return (
       <EstimationBadge
@@ -112,9 +115,6 @@ function DataValidityBadge({
         })}
       />
     );
-  }
-  if (estimationMethod != undefined) {
-    return <EstimationBadge text={t('estimation-badge.fully-estimated')} />;
   }
   return null;
 }
@@ -139,7 +139,7 @@ export default function MapTooltip() {
     : undefined;
 
   const screenWidth = window.innerWidth;
-  const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 300, 170);
+  const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);
   const emptyTooltipPosition = getSafeTooltipPosition(x, y, screenWidth, 176, 70);
 
   const formattedDate = formatDate(
