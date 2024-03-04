@@ -130,6 +130,7 @@ function BaseCard({
               </div>
               <h2
                 className={`text-left text-sm font-semibold ${textColorTitle} self-center`}
+                data-test-id="title"
               >
                 {title}
               </h2>
@@ -137,14 +138,25 @@ function BaseCard({
             <div className="flex h-fit flex-row gap-2 text-nowrap">
               {badge}
               <div className="text-lg">
-                {isCollapsed ? <HiChevronDown /> : <HiChevronUp />}
+                {isCollapsed ? (
+                  <div data-test-id="collapse-down">
+                    <HiChevronDown />
+                  </div>
+                ) : (
+                  <div data-test-id="collapse-up">
+                    <HiChevronUp />
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </button>
         {!isCollapsed && (
           <div className="gap-2 pt-1.5">
-            <div className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}>
+            <div
+              data-test-id="body-text"
+              className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
+            >
               {bodyText}
             </div>
             {showMethodologyLink && (
@@ -153,6 +165,7 @@ function BaseCard({
                   href="https://www.electricitymaps.com/methodology"
                   target="_blank"
                   rel="noreferrer"
+                  data-test-id="methodology-link"
                   className={`text-sm font-semibold text-black underline dark:text-white`}
                 >
                   <span className="underline">{t(`estimation-card.link`)}</span>
