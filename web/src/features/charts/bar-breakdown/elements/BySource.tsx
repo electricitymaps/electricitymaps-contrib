@@ -1,4 +1,4 @@
-import Badge from 'components/Badge';
+import EstimationBadge from 'components/EstimationBadge';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
@@ -53,16 +53,14 @@ export default function BySource({
     >
       {text}
       {hasEstimationPill && (
-        <Badge
-          pillText={
+        <EstimationBadge
+          text={
             estimatedPercentage
               ? t('estimation-card.aggregated_estimated.pill', {
                   percentage: estimatedPercentage,
                 })
               : t('estimation-badge.fully-estimated')
           }
-          type="warning"
-          icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
         />
       )}
     </div>

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import Badge from 'components/Badge';
+import EstimationBadge from 'components/EstimationBadge';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineArrowDownTray } from 'react-icons/hi2';
@@ -25,13 +25,7 @@ export function ChartTitle({
     <>
       <div className="flex flex-row justify-between pb-0.5 pt-4">
         <h3 className="text-md font-bold">{t(`${translationKey}.${timeAverage}`)}</h3>
-        {badgeText != undefined && (
-          <Badge
-            pillText={badgeText}
-            type="warning"
-            icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
-          />
-        )}
+        {badgeText != undefined && <EstimationBadge text={badgeText} />}
       </div>
       {hasLink && (
         <div className="flex flex-row items-center pb-2 text-center text-[0.7rem]">
