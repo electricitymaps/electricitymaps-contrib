@@ -62,7 +62,7 @@ export default function ZoneDetails(): JSX.Element {
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
-  const hasEstimationPill = cardType === 'estimated' || Boolean(estimatedPercentage);
+  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
@@ -122,7 +122,7 @@ function getCardType({
   if (timeAverage !== TimeAverages.HOURLY) {
     return 'aggregated';
   }
-  if (estimationMethod !== undefined) {
+  if (estimationMethod) {
     return 'estimated';
   }
   return 'none';
