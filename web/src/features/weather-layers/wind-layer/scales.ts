@@ -20,3 +20,10 @@ export const windColor = scaleLinear<string>()
     'rgba(255,  30, 219, 1.0)',
   ])
   .clamp(true);
+
+/**
+ * @returns {String[]} the wind color scale as an array.
+ */
+export function windIntensityColorScale() {
+  return [...windColor.range()];
+}
