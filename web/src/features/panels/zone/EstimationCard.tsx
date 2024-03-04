@@ -1,4 +1,6 @@
 import Badge from 'components/Badge';
+import EstimationBadge from 'components/EstimationBadge';
+import OutageBadge from 'components/OutageBadge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -82,22 +84,18 @@ function getEstimationTranslation(
 
 function BaseCard({
   estimationMethod,
-  estimatedPercentage,
-  outageMessage,
   icon,
-  iconPill,
+  badge,
   showMethodologyLink,
-  pillType,
   textColorTitle,
+  bodyText,
 }: {
   estimationMethod?: string;
-  estimatedPercentage?: number;
-  outageMessage: ZoneDetails['zoneMessage'];
   icon: string;
-  iconPill?: string;
+  badge?: JSX.Element;
   showMethodologyLink: boolean;
-  pillType?: string;
   textColorTitle: string;
+  bodyText: string | JSX.Element;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(
     estimationMethod == 'outage' ? false : true
@@ -114,20 +112,6 @@ function BaseCard({
   const { t } = useTranslation();
 
   const title = getEstimationTranslation('title', estimationMethod);
-  const pillText = getEstimationTranslation(
-    'pill',
-    estimationMethod,
-    estimatedPercentage
-  );
-  const bodyText = getEstimationTranslation(
-    'body',
-    estimationMethod,
-    estimatedPercentage
-  );
-  const showBadge =
-    estimationMethod == 'aggregated'
-      ? Boolean(estimatedPercentage)
-      : pillType != undefined;
 
   return (
     <div
@@ -151,9 +135,7 @@ function BaseCard({
               </h2>
             </div>
             <div className="flex h-fit flex-row gap-2 text-nowrap">
-              {showBadge && (
-                <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
-              )}
+              {badge}
               <div className="text-lg">
                 {isCollapsed ? <HiChevronDown /> : <HiChevronUp />}
               </div>
@@ -163,10 +145,7 @@ function BaseCard({
         {!isCollapsed && (
           <div className="gap-2 pt-1.5">
             <div className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}>
-              {estimationMethod != 'outage' && bodyText}
-              {estimationMethod == 'outage' && (
-                <OutageMessage outageData={outageMessage} />
-              )}
+              {bodyText}
             </div>
             {showMethodologyLink && (
               <div className="">
@@ -191,12 +170,11 @@ function OutageCard({ outageMessage }: { outageMessage: ZoneDetails['zoneMessage
   return (
     <BaseCard
       estimationMethod={'outage'}
-      outageMessage={outageMessage}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
-      iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
+      badge={<OutageBadge />}
       showMethodologyLink={false}
-      pillType="warning"
       textColorTitle="text-amber-700 dark:text-amber-500"
+      bodyText={<OutageMessage outageData={outageMessage} />}
     />
   );
 }
@@ -205,13 +183,17 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
   return (
     <BaseCard
       estimationMethod={'aggregated'}
-      estimatedPercentage={estimatedPercentage}
-      outageMessage={undefined}
       icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
-      iconPill={undefined}
       showMethodologyLink={false}
-      pillType={'warning'}
+      badge={
+        estimatedPercentage ? (
+          <EstimationBadge
+            text={getEstimationTranslation('pill', 'aggregated', estimatedPercentage)}
+          />
+        ) : undefined
+      }
       textColorTitle="text-black dark:text-white"
+      bodyText={getEstimationTranslation('body', 'aggregated', estimatedPercentage)}
     />
   );
 }
@@ -220,12 +202,16 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
   return (
     <BaseCard
       estimationMethod={estimationMethod}
-      outageMessage={undefined}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
-      iconPill={undefined}
+      badge={
+        <Badge
+          pillText={getEstimationTranslation('pill', estimationMethod)}
+          type="default"
+        />
+      }
       showMethodologyLink={true}
-      pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
+      bodyText={getEstimationTranslation('body', estimationMethod)}
     />
   );
 }
