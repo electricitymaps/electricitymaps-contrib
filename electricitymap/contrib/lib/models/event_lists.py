@@ -41,16 +41,20 @@ class EventList(ABC):
     def __contains__(self, event: Event):
         return event.datetime in self.events
 
+    def __setitem__(self, event: Event, value: Event):
+        self.events[event.datetime] = value
+
+    def __delitem__(self, event: Event):
+        del self.events[event.datetime]
+
+    # Abstract method to be implemented by subclasses so that the typing is correct.
     @abstractmethod
     def __iter__(self):
         pass
 
+    # Abstract method to be implemented by subclasses so that the typing is correct.
     @abstractmethod
-    def __getitem__(self, datetime):
-        pass
-
-    @abstractmethod
-    def __setitem__(self, datetime, event: Event):
+    def __getitem__(self, event: Event):
         pass
 
     @abstractmethod
@@ -58,11 +62,9 @@ class EventList(ABC):
         """Appends an event to the list."""
         if event.datetime in self.events:
             self.logger.warning(
-                f"Event at {event.datetime} already exists in the list, discarding event.",
-                extra={"event": event.to_dict()},
+                f"Event at {event.datetime} already exists in the list, overriding old event."
             )
-            return
-        self.events.update({event.datetime: event})
+        self.events[event.datetime] = event
 
     @abstractmethod
     def append(self, **kwargs):
@@ -178,9 +180,6 @@ class ExchangeList(AggregatableEventList):
     def __getitem__(self, event: Exchange):
         return self.events[event.datetime]
 
-    def __setitem__(self, event: Exchange, value: Exchange):
-        self.events[event.datetime] = value
-
     def _append_event(self, event: Exchange):
         return super()._append_event(event)
 
@@ -235,19 +234,25 @@ class ExchangeList(AggregatableEventList):
     def update_exchanges(
         exchanges: "ExchangeList", new_exchanges: "ExchangeList", logger: Logger
     ) -> "ExchangeList":
-        """Given a new batch of exchanges, update the existing ones."""
+        """Given a new batch of exchanges, update the existing ones.
+
+        Args:
+            exchanges (ExchangeList): The existing list of exchanges.
+            new_exchanges (ExchangeList): The new batch of exchanges.
+            logger (Logger): The logger object for logging messages.
+
+        Returns:
+            ExchangeList: The updated list of exchanges.
+        """
         if len(new_exchanges) == 0:
             return exchanges
-        elif len(exchanges) == 0:
+        if len(exchanges) == 0:
             return new_exchanges
 
         for new_event in new_exchanges:
             if new_event in exchanges:
-                existing_event = exchanges[new_event]
-                updated_event = Exchange.update(existing_event, new_event)
-                exchanges[new_event] = updated_event
-            else:
-                exchanges._append_event(new_event)
+                new_event = Exchange.update(exchanges[new_event], new_event)
+            exchanges._append_event(new_event)
 
         return exchanges
 
@@ -260,9 +265,6 @@ class ProductionBreakdownList(AggregatableEventList):
 
     def __getitem__(self, event: ProductionBreakdown):
         return self.events[event.datetime]
-
-    def __setitem__(self, event: ProductionBreakdown, value: ProductionBreakdown):
-        self.events[event.datetime] = value
 
     def _append_event(self, event: ProductionBreakdown):
         return super()._append_event(event)
@@ -339,11 +341,10 @@ class ProductionBreakdownList(AggregatableEventList):
 
         for new_event in new_production_breakdowns:
             if new_event in production_breakdowns:
-                existing_event = production_breakdowns[new_event]
-                updated_event = ProductionBreakdown.update(existing_event, new_event)
-                production_breakdowns[new_event] = updated_event
-            else:
-                production_breakdowns._append_event(new_event)
+                new_event = ProductionBreakdown.update(
+                    production_breakdowns[new_event], new_event
+                )
+            production_breakdowns._append_event(new_event)
 
         return production_breakdowns
 
@@ -414,11 +415,8 @@ class TotalProductionList(EventList):
     def __iter__(self):
         return iter(self.events.values())
 
-    def __getitem__(self, datetime):
-        return self.events[datetime]
-
-    def __setitem__(self, datetime, event: Event):
-        return super().__setitem__(datetime, event)
+    def __getitem__(self, event: TotalProduction):
+        return self.events[event.datetime]
 
     def _append_event(self, event: TotalProduction):
         return super()._append_event(event)
@@ -444,11 +442,8 @@ class TotalConsumptionList(EventList):
     def __iter__(self):
         return iter(self.events.values())
 
-    def __getitem__(self, datetime):
-        return self.events[datetime]
-
-    def __setitem__(self, datetime, event: TotalConsumption):
-        self.events[datetime] = event
+    def __getitem__(self, event: TotalConsumption):
+        return self.events[event.datetime]
 
     def _append_event(self, event: TotalConsumption):
         return super()._append_event(event)
@@ -474,11 +469,8 @@ class PriceList(EventList):
     def __iter__(self):
         return iter(self.events.values())
 
-    def __getitem__(self, datetime):
-        return self.events[datetime]
-
-    def __setitem__(self, datetime, event: Price):
-        self.events[datetime] = event
+    def __getitem__(self, event: Price):
+        return self.events[event.datetime]
 
     def _append_event(self, event: Price):
         return super()._append_event(event)
