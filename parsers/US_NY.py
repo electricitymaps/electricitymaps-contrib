@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 """Real time parser for the state of New York."""
+
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger

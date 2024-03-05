@@ -43,7 +43,7 @@ ZONE_MAP: dict[VALID_ZONE_KEYS, ZoneData] = {
 
 
 def map_generation_type(raw_generation_type):
-    return MAP_GENERATION.get(raw_generation_type, None)
+    return MAP_GENERATION.get(raw_generation_type)
 
 
 def fetch_production(

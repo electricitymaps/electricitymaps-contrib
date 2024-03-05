@@ -2,7 +2,6 @@
 
 """Parser for the MISO area of the United States."""
 
-
 from datetime import datetime
 from logging import Logger, getLogger
 

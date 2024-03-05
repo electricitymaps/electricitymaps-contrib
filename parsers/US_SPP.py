@@ -2,7 +2,6 @@
 
 """Parser for the Southwest Power Pool area of the United States."""
 
-
 from datetime import datetime, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger

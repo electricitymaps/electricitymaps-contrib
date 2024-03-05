@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 """Tests for config/__init__.py."""
+
 import unittest
 
 from electricitymap.contrib.config import emission_factors
