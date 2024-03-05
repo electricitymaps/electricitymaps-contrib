@@ -56,9 +56,13 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
         </animated.div>
       </div>
       <div className="mt-2 flex flex-col items-center">
-        <div className="text-sm">{t('country-panel.carbonintensity')}</div>
+        <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+          {t('country-panel.carbonintensity')}
+        </div>
         {withSubtext && (
-          <div className="text-sm">{CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}</div>
+          <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+            {CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}
+          </div>
         )}
       </div>
     </div>

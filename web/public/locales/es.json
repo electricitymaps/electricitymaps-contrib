@@ -75,7 +75,8 @@
   },
   "estimation-badge": {
     "partially-estimated": "Parcialmente estimado",
-    "fully-estimated": "Estimado"
+    "fully-estimated": "Estimado",
+    "outage": "No disponible"
   },
   "estimation-card": {
     "link": "Más información sobre nuestros modelos de estimación",
