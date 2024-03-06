@@ -33,7 +33,7 @@ def get_fingrid_capacity(
         params=params,
         headers=headers,
     )
-    data= r.json()
+    data = r.json()
     if not r.ok or "data" not in r.json():
         raise ValueError(
             f"Failed to fetch solar capacity from {FINGRID_URL} for {target_datetime.date()}"
