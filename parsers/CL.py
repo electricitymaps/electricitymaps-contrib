@@ -2,13 +2,12 @@
 
 """Parser for the electricity grid of Chile"""
 
-
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from operator import itemgetter
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
@@ -21,6 +20,8 @@ API_BASE_URL = "https://sipub.coordinador.cl/api/v1/recursos/generacion_centrale
 # Live API
 API_BASE_URL_LIVE_TOT = "http://panelapp.coordinadorelectrico.cl/api/chart/demanda"
 API_BASE_URL_LIVE_REN = "http://panelapp.coordinadorelectrico.cl/api/chart/ernc"  # ERNC = energias renovables no convencionales
+
+TIMEZONE = ZoneInfo("Chile/Continental")
 
 # Live parser disabled because of a insuffcient breakdown of Unknown.
 # It lumps Hydro & Geothermal into unknown which makes it difficult to calculate a proper CFE%/co2 intensity
@@ -87,9 +88,7 @@ def production_processor_live(json_tot, json_ren):
                 wind = pair[1]
                 break
 
-        datapoint["datetime"] = arrow.get(
-            dt / 1000, tzinfo="Chile/Continental"
-        ).datetime
+        datapoint["datetime"] = datetime.fromtimestamp(dt / 1000, tz=TIMEZONE)
         datapoint["unknown"] = total[1] - wind - solar
         datapoint["wind"] = wind
         datapoint["solar"] = solar
@@ -108,10 +107,10 @@ def production_processor_historical(raw_data):
         clean_datapoint = {}
         date, hour = datapoint["fecha"], datapoint["hora"]
         hour -= 1  # `hora` starts at 1
-        date = arrow.get(date, "YYYY-MM-DD", tzinfo="Chile/Continental").shift(
-            hours=hour
-        )
-        clean_datapoint["datetime"] = date.datetime
+        parsed_datetime = datetime.fromisoformat(date).replace(
+            tzinfo=TIMEZONE
+        ) + timedelta(hours=hour)
+        clean_datapoint["datetime"] = parsed_datetime
 
         gen_type_es = datapoint["tipo_central"]
         mapped_gen_type = TYPE_MAPPING[gen_type_es]
@@ -174,9 +173,12 @@ def fetch_production(
 
         return data
 
-    arr_target_datetime = arrow.get(target_datetime)
-    start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
-    end = arr_target_datetime.format("YYYY-MM-DD")
+    if target_datetime:
+        target_datetime_aware = target_datetime.replace(tzinfo=TIMEZONE)
+    else:
+        target_datetime_aware = datetime.now(tz=TIMEZONE)
+    start = (target_datetime_aware + timedelta(days=-1)).date().isoformat()
+    end = target_datetime_aware.date().isoformat()
 
     date_component = f"fecha__gte={start}&fecha__lte={end}"
 
@@ -218,4 +220,4 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
     # For fetching historical data instead, try:
-    print(fetch_production(target_datetime=arrow.get("20200220", "YYYYMMDD")))
+    print(fetch_production(target_datetime=datetime.strptime("20200220", "%Y%m%d")))

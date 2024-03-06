@@ -2,11 +2,11 @@ import { Button } from 'components/Button';
 import { isInfoModalOpenAtom, isSettingsModalOpenAtom } from 'features/modals/modalAtoms';
 import { useAtom, useSetAtom } from 'jotai';
 import { useTransition } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiWind } from 'react-icons/fi';
 import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
 import { HiCog6Tooth, HiOutlineInformationCircle } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
-import { useTranslation } from 'translation/translation';
 import trackEvent from 'utils/analytics';
 import { ThemeOptions, TimeAverages, ToggleOptions } from 'utils/constants';
 import {
@@ -70,14 +70,14 @@ export const weatherButtonMap = {
 function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
   const [theme] = useAtom(themeAtom);
   const [, startTransition] = useTransition();
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
   const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
   const isEnabled = enabled === ToggleOptions.ON;
   const Icon = weatherButtonMap[type].icon;
   const tooltipTexts = {
-    wind: isEnabled ? __('tooltips.hideWindLayer') : __('tooltips.showWindLayer'),
-    solar: isEnabled ? __('tooltips.hideSolarLayer') : __('tooltips.showSolarLayer'),
+    wind: isEnabled ? t('tooltips.hideWindLayer') : t('tooltips.showWindLayer'),
+    solar: isEnabled ? t('tooltips.hideSolarLayer') : t('tooltips.showSolarLayer'),
   };
 
   const spinnerColor = theme === ThemeOptions.DARK ? 'white' : 'black';
@@ -109,16 +109,14 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       dataTestId={`${type}-layer-button`}
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={isLoadingLayer ? () => {} : onToggle}
-      ariaLabel={
-        type == 'wind' ? __('aria.label.windLayer') : __('aria.label.solarLayer')
-      }
+      ariaLabel={type == 'wind' ? t('aria.label.windLayer') : t('aria.label.solarLayer')}
       asToggle
     />
   );
 }
 
 function DesktopMapControls() {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
@@ -148,10 +146,10 @@ function DesktopMapControls() {
             />
           }
           dataTestId="colorblind-layer-button"
-          tooltipText={__('legends.colorblindmode')}
+          tooltipText={t('legends.colorblindmode')}
           onClick={handleColorblindModeToggle}
           asToggle
-          ariaLabel={__('aria.label.colorBlindMode')}
+          ariaLabel={t('aria.label.colorBlindMode')}
         />
         {areWeatherLayersAllowed && (
           <>

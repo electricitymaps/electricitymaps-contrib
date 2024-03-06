@@ -1,6 +1,6 @@
 import * as ToastPrimitive from '@radix-ui/react-toast';
 import { useState } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   title: string;
@@ -11,7 +11,7 @@ type Props = {
 };
 
 function Toast(props: Props) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const { title, description, toastAction, toastActionText } = props;
   const [open, setOpen] = useState(true);
   const handleToastAction = () => {
@@ -52,7 +52,7 @@ function Toast(props: Props) {
               </div>
               <div className="flex h-0 flex-1 ">
                 <ToastPrimitive.Close className="flex h-6 w-full items-center justify-center rounded border border-transparent px-3 py-2 text-sm font-medium shadow">
-                  {__('misc.dismiss')}
+                  {t('misc.dismiss')}
                 </ToastPrimitive.Close>
               </div>
             </div>

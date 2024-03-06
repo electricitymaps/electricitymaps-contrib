@@ -35,7 +35,7 @@
     "not-enough-data": "Ikke tilstrekkelig data for å vise graf"
   },
   "country-panel": {
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføy eller rediger kilde</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">Tilføy eller rediger kilde</a>",
     "aggregated": "aggregert",
     "aggregatedTooltip": "Data for denne sonen er aggregert fra historiske verdier for hver time",
     "aggregationDisabled": "Data er ikke tilgjengelig for det valgte tidsrom på grunn av manglende detaljnivå på tidsserie. Velg en lengre tidsperiode.",
@@ -48,7 +48,7 @@
       "total-emissions": "Samlet karbonutslipp etter kilde"
     },
     "carbonintensity": "CO₂-intensitet",
-    "dataIsDelayed": "Data fra denne regionen kan være %s timer forsinka. Sanntidsdata kan derfor ikke vises.",
+    "dataIsDelayed": "Data fra denne regionen kan være {{hours}} timer forsinka. Sanntidsdata kan derfor ikke vises.",
     "dataIsEstimated": "Enkelte data i regionen er estimert. Les om <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">våre estimeringsmetoder</a>.",
     "disabledPriceReasons": {
       "licensing": "Elektrisitetspriser er utilgjengelige for dette området på grunn av rettighetsbegrensninger"
@@ -60,11 +60,11 @@
     "estimatedTooltip": "Sanntidsdata for denne sonen er estimert fra kilden basert på antagelser i modellen.",
     "exchangesAreMissing": "Utveksling er tatt hensyn til i kalkulasjonene en vises for tiden ikke. Les mer om våre historiske aggregeringer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
     "helpfrom": "med hjelp fra",
-    "helpUs": "Hjelp oss å finne årsaken til problemet ved å undersøke <a href=\"%s\" target=\"_blank\">loggene</a> eller ta kontakt med datatilbyder.",
+    "helpUs": "Hjelp oss å finne årsaken til problemet ved å undersøke <a href=\"{{link}}\" target=\"_blank\">loggene</a> eller ta kontakt med datatilbyder.",
     "lowcarbon": "Lavt CO₂-utslipp",
     "noDataAtTimestamp": "Data midlertidig utilgjengelig for tidspunktet",
     "noLiveData": "Sanntidsdata er midlertidig utilgjengelig for området",
-    "noParserInfo": "Vi har ennå ingen datakilder om området.<br/>Vil du hjelpe med å løse det? Du kan bidra ved å <a href=\"%s\" target=\"_blank\">tilføye regionale data</a>.",
+    "noParserInfo": "Vi har ennå ingen datakilder om området.<br/>Vil du hjelpe med å løse det? Du kan bidra ved å <a href=\"{{link}}\" target=\"_blank\">tilføye regionale data</a>.",
     "now": "Nå",
     "renewable": "Fornybar",
     "source": "Kilde"
@@ -78,14 +78,14 @@
     "dataOrigins-question": "Hvordan får dere tak i dataene?",
     "groupName": "Våre data"
   },
-  "electricityComesFrom": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> kommer fra %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
-  "electricityStoredUsing": "<b>%1$s %%</b> av elektrisitet i %4$s <b>%2$s</b> lagres gjennom %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> kommer fra %3$s",
-  "emissionsExportedTo": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
-  "emissionsStoredUsing": "<b>%1$s %%</b> av CO₂-utslipp i %4$s <b>%2$s</b> lagres gjennom %3$s",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> lagres gjennom {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> lagres gjennom {{selectedLayerKey}}",
   "footer": {
     "faq": "ofte stilte spørsmål",
     "faq-text": "Er som er vanskelig å forstå? Se de",
@@ -101,7 +101,7 @@
     "github-button": "Se på GitHub",
     "intro-text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
     "legal-notice": "Juridisk",
-    "open-source-text": "Tjenesten er <a href=\"%s\" target=\"_blank\">åpen kildekode</a> (<a href=\"%s\" target=\"_blank\">se datakilder</a>) og utviklet i samarbeid med frivillige.",
+    "open-source-text": "Tjenesten er <a href=\"{{link}}\" target=\"_blank\">åpen kildekode</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">se datakilder</a>) og utviklet i samarbeid med frivillige.",
     "privacy-policy": "Personvern",
     "slack-button": "Bli med i Slack-kanalen",
     "title": "info",
@@ -204,7 +204,7 @@
     }
   },
   "panel-initial-text": {
-    "contribute": "Bidra ved å <a href=\"%s\" target=\"_blank\">legge til data for ditt område</a>",
+    "contribute": "Bidra ved å <a href=\"{{link}}\" target=\"_blank\">legge til data for ditt område</a>",
     "datasources": "kildekode",
     "opensource": "åpen kildekode",
     "see": "se",

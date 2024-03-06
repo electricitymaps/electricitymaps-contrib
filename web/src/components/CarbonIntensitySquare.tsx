@@ -1,5 +1,5 @@
 import { animated, useSpring } from '@react-spring/web';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { CarbonUnits } from 'utils/units';
 
 import { useCo2ColorScale } from '../hooks/theme';
@@ -32,7 +32,7 @@ interface CarbonIntensitySquareProps {
 }
 
 function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquareProps) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const backgroundColor = useSpring({
     backgroundColor: co2ColorScale(intensity),
@@ -56,9 +56,13 @@ function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquare
         </animated.div>
       </div>
       <div className="mt-2 flex flex-col items-center">
-        <div className="text-sm">{__('country-panel.carbonintensity')}</div>
+        <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+          {t('country-panel.carbonintensity')}
+        </div>
         {withSubtext && (
-          <div className="text-sm">{CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}</div>
+          <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+            {CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}
+          </div>
         )}
       </div>
     </div>

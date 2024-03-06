@@ -14,6 +14,7 @@ Consumption Forecast
 Link to the API documentation:
 https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 """
+
 import itertools
 import re
 from datetime import datetime, timedelta, timezone
@@ -455,8 +456,12 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         "expected_range": (2000, 25000),
     },
     "RS": {
-        "required": ["coal"],
+        "required": ["biomass", "coal", "gas", "hydro", "unknown"],
         "expected_range": {
+            "coal": (
+                800,
+                7000,
+            ),  # 7 GW is 1 GW more than the production capacity of Serbia.
             "hydro": (0, 5000),  # 5 GW is double the production capacity of Serbia.
         },
     },

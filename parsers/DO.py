@@ -47,7 +47,7 @@ thermal_plants = {
     "ESTRELLA DEL MAR 2 SFO": "oil",
     "ESTRELLA DEL MAR 2 SGN": "gas",
     "ESTRELLA DEL MAR 3": "gas",
-    "GENERACI\xD3N DE EMERGENCIA AES ANDR\xC9S": "gas",
+    "GENERACI\xd3N DE EMERGENCIA AES ANDR\xc9S": "gas",
     "HAINA TG": "oil",
     "INCA KM22": "oil",
     "ITABO 1": "coal",

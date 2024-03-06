@@ -2,6 +2,7 @@
 This library contains validation functions applied to all parsers by the feeder.
 This is a higher level validation than validation.py
 """
+
 from datetime import datetime, timezone
 from typing import Any
 from warnings import warn
@@ -124,9 +125,9 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
         raise ValidationError(
             "datetime {} is not valid for {}".format(obj["datetime"], zone_key)
         )
-    if (obj.get("zoneKey", None) or obj.get("countryCode", None)) != zone_key:
+    if (obj.get("zoneKey") or obj.get("countryCode")) != zone_key:
         raise ValidationError(
-            f"Zone keys {obj.get('zoneKey', None)} and {zone_key} don't match in {obj}"
+            f"Zone keys {obj.get('zoneKey')} and {zone_key} don't match in {obj}"
         )
 
     if (
