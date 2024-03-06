@@ -7,8 +7,8 @@ from electricitymap.contrib.capacity_parsers.ENTSOE import (
     fetch_production_capacity as fetch_entsoe_production_capacity,
 )
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.parsers.lib.utils import get_token
 
-API_KEY = "a411d83c96bb4abb8812dba80bdaed64"
 SOURCE = "fingrid.fi"
 
 FINGRID_URL = "https://data.fingrid.fi/api/datasets/{data_set}/data"
@@ -27,13 +27,13 @@ def get_fingrid_capacity(
         ),
         "endTime": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%dT00:00:00"),
     }
-    headers = {"x-api-key": API_KEY}
+    headers = {"x-api-key": get_token("FINGRID_TOKEN")}
     r: Response = session.get(
         FINGRID_URL.format(data_set=MODE_TO_DATASET[mode]),
         params=params,
         headers=headers,
     )
-
+    data= r.json()
     if not r.ok or "data" not in r.json():
         raise ValueError(
             f"Failed to fetch solar capacity from {FINGRID_URL} for {target_datetime.date()}"
