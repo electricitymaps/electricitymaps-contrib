@@ -2,7 +2,6 @@
 
 """Parser for the electricity grid of Chile"""
 
-
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
