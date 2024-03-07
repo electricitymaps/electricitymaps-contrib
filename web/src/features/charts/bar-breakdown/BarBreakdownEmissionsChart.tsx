@@ -12,7 +12,7 @@ import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import ProductionSourceLegend from './ProductionSourceLegend';
-import { ExchangeDataType, getDataBlockPositions,ProductionDataType } from './utils';
+import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarBreakdownEmissionsChartProps {
   height: number;
