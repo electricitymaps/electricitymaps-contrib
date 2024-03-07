@@ -8,26 +8,19 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 300.0
-  gas:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 380.0
   hydro:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 570.0
-  oil:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 550.0
   solar:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 550.0
   unknown:
     - datetime: '2022-01-01'
+      _comment: Sum of unknown + gas + oil from Ember. The parser aggregates thermal into unknown.
       source: Ember, Yearly electricity data
-      value: 200.0
+      value: 1130
   wind:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
