@@ -1,5 +1,6 @@
 import useGetZone from 'api/getZone';
 import LoadingSpinner from 'components/LoadingSpinner';
+import { RoundedButton } from 'components/RoundedButton';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -89,6 +90,14 @@ export default function ZoneDetails(): JSX.Element {
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
           <Divider />
+          <RoundedButton
+            size="lg"
+            className="mt-4 w-full"
+            variant="primary"
+            href="https://www.electricitymaps.com/free-tier-api"
+          >
+            {'Get API access'}
+          </RoundedButton>
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
