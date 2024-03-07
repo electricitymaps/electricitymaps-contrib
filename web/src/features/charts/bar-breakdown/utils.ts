@@ -194,17 +194,20 @@ export const getExchangesToDisplay = (
   );
 };
 
-export const getIconPaddingFromIcon = (icon: string | undefined) => {
+export const getIconPadding = (icon: string | undefined) => {
   const height = iconHeight[icon as ElectricityModeType];
-  if (icon == 'coal') return 3;
+  if (icon == 'coal') {return 3;}
   switch (height) {
     case '6':
-    case '7':
+    case '7': {
       return 4;
-    case '8':
+    }
+    case '8': {
       return 3;
+    }
     case '9':
-    case '10':
+    case '10': {
       return 2;
+    }
   }
 };
