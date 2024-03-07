@@ -196,7 +196,9 @@ export const getExchangesToDisplay = (
 
 export const getIconPadding = (icon: string | undefined) => {
   const height = iconHeight[icon as ElectricityModeType];
-  if (icon == 'coal') {return 3;}
+  if (icon == 'coal') {
+    return 3;
+  }
   switch (height) {
     case '6':
     case '7': {
