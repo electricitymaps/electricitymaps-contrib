@@ -2,7 +2,6 @@
 
 """Parser for the Orkney Islands"""
 
-
 from datetime import datetime
 from logging import Logger, getLogger
 
