@@ -286,25 +286,19 @@ class ProductionBreakdownList(AggregatableEventList):
         """A method to filter out production breakdowns with a total production of 0 MW."""
         events = ProductionBreakdownList(breakdowns.logger)
         for event in breakdowns.events:
-            total_production = sum(
-                {
-                    k: v for k, v in event.production.dict().items() if v is not None
-                }.values()
-            )
-            valid = True
-            if total_production == 0:
-                valid = False
+            if event.production is not None and not any(
+                v for _mode, v in event.production
+            ):
                 events.logger.warning(
-                    f"Discarded production event for {event.zoneKey} at {event.datetime} because total production is 0MW."
+                    f"Discarded production event for {event.zoneKey} at {event.datetime} because all production values are 0 or None."
                 )
                 continue
-            if valid:
-                events.append(
-                    zoneKey=event.zoneKey,
-                    datetime=event.datetime,
-                    production=event.production,
-                    storage=event.storage,
-                    source=event.source,
+            events.append(
+                zoneKey=event.zoneKey,
+                datetime=event.datetime,
+                production=event.production,
+                storage=event.storage,
+                source=event.source,
                 )
         return events
 
