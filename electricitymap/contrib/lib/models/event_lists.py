@@ -286,23 +286,23 @@ class ProductionBreakdownList(AggregatableEventList):
         """
         TODO: Remove once the internal outlier detection is able to handle this.
         A method to filter out production breakdowns with a total production of 0 MW."""
-        events = ProductionBreakdownList(breakdowns.logger)
+        production_events = ProductionBreakdownList(breakdowns.logger)
         for event in breakdowns.events:
             if event.production is not None and not any(
                 v for _mode, v in event.production
             ):
-                events.logger.warning(
+                production_events.logger.warning(
                     f"Discarded production event for {event.zoneKey} at {event.datetime} because all production values are 0 or None."
                 )
                 continue
-            events.append(
+            production_events.append(
                 zoneKey=event.zoneKey,
                 datetime=event.datetime,
                 production=event.production,
                 storage=event.storage,
                 source=event.source,
-                )
-        return events
+            )
+        return production_events
 
     @staticmethod
     def filter_expected_modes(
