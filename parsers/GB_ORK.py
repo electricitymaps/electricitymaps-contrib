@@ -70,9 +70,7 @@ def get_datetime():
 
     if diff.total_seconds() > 7200:
         raise ValueError(
-            "Orkney data is too old to use, data is {} hours old.".format(
-                diff.total_seconds() / 3600
-            )
+            f"Orkney data is too old to use, data is {int(diff.total_seconds() / 3600)} hours old."
         )
 
     return aware_dt.datetime

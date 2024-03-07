@@ -190,9 +190,7 @@ def fetch_production_2nd_synchronous_zone(
 
     r = session or Session()
 
-    url = "{}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={}".format(
-        HOST, date
-    )
+    url = f"{HOST}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={date}"
 
     response = r.get(url, verify=False)
     json_content = json.loads(response.text)

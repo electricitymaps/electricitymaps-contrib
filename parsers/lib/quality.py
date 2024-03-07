@@ -35,10 +35,7 @@ def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: Zo
     for key in keys_dict[kind]:
         if key not in datapoint:
             raise ValidationError(
-                "{} - data point does not have the required keys:  {} is missing".format(
-                    zone_key,
-                    [key for key in keys_dict[kind] if key not in datapoint],
-                ),
+                f"{zone_key} - data point does not have the required keys:  { [key for key in keys_dict[kind] if key not in datapoint]} is missing"
             )
 
 
