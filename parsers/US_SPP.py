@@ -269,11 +269,7 @@ def fetch_wind_solar_forecasts(
     else:
         dt = parser.parse(target_datetime)
 
-    FORECAST_URL_PATH = (
-        "%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTRF-{0}{1:02d}{2:02d}0000.csv".format(
-            dt.year, dt.month, dt.day
-        )
-    )
+    FORECAST_URL_PATH = f"%2F{dt.year}%2F{dt.month:02d}%2F{dt.day:02d}%2FOP-MTRF-{dt.year}{dt.month:02d}{dt.day:02d}0000.csv"
     FORECAST_URL = (
         f"{US_PROXY}/file-browser-api/download/midterm-resource-forecast?{HOST_PARAMETER}&path="
         + FORECAST_URL_PATH

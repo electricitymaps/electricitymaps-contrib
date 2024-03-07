@@ -71,9 +71,7 @@ def get_solar(session: Session, logger: Logger) -> float | None:
 
     # Need to be sure we don't get old data if image stops updating.
     if diff.total_seconds() > 3600:
-        msg = (
-            "Singapore solar data is too old to use, " "parsed data timestamp was {}."
-        ).format(solar_dt)
+        msg = f"Singapore solar data is too old to use, parsed data timestamp was {solar_dt}."
         logger.warning(msg, extra={"key": "SG"})
         return None
 
