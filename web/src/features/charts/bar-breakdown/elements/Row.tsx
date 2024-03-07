@@ -1,16 +1,8 @@
 import { ScaleLinear } from 'd3-scale';
 import { MouseEventHandler } from 'react';
-import type { ElectricityModeType, Maybe } from 'types';
-import { modeColor } from 'utils/constants';
+import type { Maybe } from 'types';
 
-import {
-  iconHeight,
-  LABEL_MAX_WIDTH,
-  PADDING_Y,
-  ROW_HEIGHT,
-  TEXT_ADJUST_Y,
-} from '../constants';
-import { getIconPaddingFromIcon } from '../utils';
+import { LABEL_MAX_WIDTH, PADDING_Y, ROW_HEIGHT, TEXT_ADJUST_Y } from '../constants';
 
 type Props = {
   children: React.ReactNode;
@@ -22,7 +14,6 @@ type Props = {
   onMouseOver?: MouseEventHandler<SVGRectElement>;
   onMouseOut?: () => void;
   width: number;
-  electricityType?: ElectricityModeType;
 };
 
 export default function Row({
@@ -35,7 +26,6 @@ export default function Row({
   onMouseOver,
   onMouseOut,
   width,
-  electricityType,
 }: Props) {
   // Don't render if the width is not positive
   if (width <= 0) {
@@ -69,26 +59,6 @@ export default function Row({
       >
         {label}
       </text>
-
-      {Boolean(electricityType) && (
-        <g>
-          <rect
-            transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y - 10}, 0)`}
-            fill={modeColor[electricityType as ElectricityModeType]}
-            width={14}
-            height={14}
-            rx={2}
-          />
-          <image
-            transform={`translate(${
-              LABEL_MAX_WIDTH - 1.5 * PADDING_Y - 10
-            }, ${getIconPaddingFromIcon(electricityType)})`}
-            width={14}
-            height={iconHeight[electricityType as ElectricityModeType]}
-            xlinkHref={`/images/production-source/${electricityType}.svg`}
-          />
-        </g>
-      )}
 
       {/* Row content */}
       {children}
