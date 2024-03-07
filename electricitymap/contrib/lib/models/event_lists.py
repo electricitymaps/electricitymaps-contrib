@@ -283,7 +283,9 @@ class ProductionBreakdownList(AggregatableEventList):
     def filter_only_zero_production(
         breakdowns: "ProductionBreakdownList",
     ) -> "ProductionBreakdownList":
-        """A method to filter out production breakdowns with a total production of 0 MW."""
+        """
+        TODO: Remove once the internal outlier detection is able to handle this.
+        A method to filter out production breakdowns with a total production of 0 MW."""
         events = ProductionBreakdownList(breakdowns.logger)
         for event in breakdowns.events:
             if event.production is not None and not any(
