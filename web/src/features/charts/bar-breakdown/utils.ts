@@ -11,6 +11,7 @@ import { Mode, modeOrder } from 'utils/constants';
 import { getProductionCo2Intensity } from 'utils/helpers';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
+import { iconHeight } from './constants';
 
 const LABEL_MAX_WIDTH = 102;
 const ROW_HEIGHT = 13;
@@ -191,4 +192,19 @@ export const getExchangesToDisplay = (
   return uniqueExchangeKeys.filter(
     (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
   );
+};
+
+export const getIconPaddingFromIcon = (icon: string | undefined) => {
+  const height = iconHeight[icon as ElectricityModeType];
+  if (icon == 'coal') return 3;
+  switch (height) {
+    case '6':
+    case '7':
+      return 4;
+    case '8':
+      return 3;
+    case '9':
+    case '10':
+      return 2;
+  }
 };

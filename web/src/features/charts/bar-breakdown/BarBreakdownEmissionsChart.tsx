@@ -11,7 +11,7 @@ import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
-import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
+import { ExchangeDataType, getDataBlockPositions,ProductionDataType } from './utils';
 
 interface BarBreakdownEmissionsChartProps {
   height: number;
@@ -90,6 +90,7 @@ function BarBreakdownEmissionsChart({
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, data, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
+            electricityType={d.mode}
           >
             <HorizontalBar
               className="production"

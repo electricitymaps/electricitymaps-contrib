@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
-import { modeColor, TimeAverages } from 'utils/constants';
+import { modeColor,TimeAverages } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
 import { timeAverageAtom } from 'utils/state/atoms';
 
@@ -122,6 +122,7 @@ function BarElectricityBreakdownChart({
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, currentData, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
+            electricityType={d.mode}
           >
             <HorizontalBar
               className="text-black/10 dark:text-white/10"
