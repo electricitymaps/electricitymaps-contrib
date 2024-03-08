@@ -42,7 +42,9 @@ PRODUCTION_MAPPING = {
     "coal": ["blackCoal", "asphaltiteCoal", "lignite", "importCoal"],
     "hydro": ["river", "dammedHydro"],
 }
-
+INVERT_PRODUCTION_MAPPPING = {
+    val: mode for mode in PRODUCTION_MAPPING for val in PRODUCTION_MAPPING[mode]
+}
 SOURCE = "epias.com.tr"
 
 
@@ -113,9 +115,11 @@ def fetch_production(
     production_breakdowns = ProductionBreakdownList(logger)
     for item in data:
         mix = ProductionMix()
-        for mode in PRODUCTION_MAPPING:
-            value = sum([item[key] for key in item if key in PRODUCTION_MAPPING[mode]])
-            mix.add_value(mode, round(value, 4))
+        for key in item:
+            try:
+                mix.add_value(INVERT_PRODUCTION_MAPPPING[key], item[key])
+            except KeyError:
+                continue
 
         production_breakdowns.append(
             zoneKey=zone_key,
