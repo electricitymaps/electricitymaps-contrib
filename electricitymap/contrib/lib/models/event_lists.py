@@ -32,25 +32,43 @@ class EventList(ABC):
     """
 
     logger: Logger
-    events: list[Event]
+    events: dict[datetime, Event]
 
     def __init__(self, logger: Logger):
-        self.events = []
+        self.events = {}
         self.logger = logger
 
     def __len__(self):
         return len(self.events)
 
-    def __contains__(self, datetime) -> bool:
-        return any(event.datetime == datetime for event in self.events)
+    def __contains__(self, event: Event):
+        return event.datetime in self.events
 
-    def __setitem__(self, datetime, event: Event):
-        self.events[self.events.index(self[datetime])] = event
+    def __setitem__(self, event: Event, value: Event):
+        self.events[event.datetime] = value
+
+    def __delitem__(self, event: Event):
+        del self.events[event.datetime]
 
     # Abstract method to be implemented by subclasses so that the typing is correct.
     @abstractmethod
-    def __getitem__(self, datetime) -> Event:
+    def __iter__(self):
         pass
+
+    # Abstract method to be implemented by subclasses so that the typing is correct.
+    @abstractmethod
+    def __getitem__(self, event: Event):
+        pass
+
+    # Should be overridden so the typing is correct, but can call the super method.
+    @abstractmethod
+    def _append_event(self, event: Event):
+        """Appends an event to the list."""
+        if event.datetime in self.events:
+            self.logger.warning(
+                f"Event at {event.datetime} already exists in the list, overriding old event."
+            )
+        self.events[event.datetime] = event
 
     @abstractmethod
     def append(self, **kwargs):
@@ -59,8 +77,10 @@ class EventList(ABC):
         pass
 
     def to_list(self) -> list[dict[str, Any]]:
+        """Gives a sorted list representation of the events."""
         return sorted(
-            [event.to_dict() for event in self.events], key=lambda x: x["datetime"]
+            [event.to_dict() for event in self.events.values()],
+            key=lambda x: x["datetime"],
         )
 
     @property
@@ -75,7 +95,7 @@ class EventList(ABC):
                     "sourceType": event.sourceType,
                     "data": event,
                 }
-                for event in self.events
+                for event in self.events.values()
                 if len(self.events) > 0
             ]
         ).set_index("datetime")
@@ -154,10 +174,16 @@ class AggregatableEventList(EventList, ABC):
 
 
 class ExchangeList(AggregatableEventList):
-    events: list[Exchange]
+    events: dict[datetime, Exchange]
 
-    def __getitem__(self, datetime) -> Exchange:
-        return next(event for event in self.events if event.datetime == datetime)
+    def __iter__(self):
+        return iter(self.events.values())
+
+    def __getitem__(self, event: Exchange):
+        return self.events[event.datetime]
+
+    def _append_event(self, event: Exchange):
+        return super()._append_event(event)
 
     def append(
         self,
@@ -171,7 +197,7 @@ class ExchangeList(AggregatableEventList):
             self.logger, zoneKey, datetime, source, netFlow, sourceType
         )
         if event:
-            self.events.append(event)
+            self._append_event(event)
 
     @staticmethod
     def merge_exchanges(
@@ -213,31 +239,28 @@ class ExchangeList(AggregatableEventList):
         """Given a new batch of exchanges, update the existing ones."""
         if len(new_exchanges) == 0:
             return exchanges
-        elif len(exchanges) == 0:
+        if len(exchanges) == 0:
             return new_exchanges
 
-        for new_event in new_exchanges.events:
-            if new_event.datetime in exchanges:
-                existing_event = exchanges[new_event.datetime]
-                updated_event = Exchange._update(existing_event, new_event)
-                exchanges[new_event.datetime] = updated_event
-            else:
-                exchanges.append(
-                    new_event.zoneKey,
-                    new_event.datetime,
-                    new_event.source,
-                    new_event.netFlow,
-                    new_event.sourceType,
-                )
+        for new_event in new_exchanges:
+            if new_event in exchanges:
+                new_event = Exchange._update(exchanges[new_event], new_event)
+            exchanges._append_event(new_event)
 
         return exchanges
 
 
 class ProductionBreakdownList(AggregatableEventList):
-    events: list[ProductionBreakdown]
+    events: dict[datetime, ProductionBreakdown]
 
-    def __getitem__(self, datetime) -> ProductionBreakdown:
-        return next(event for event in self.events if event.datetime == datetime)
+    def __iter__(self):
+        return iter(self.events.values())
+
+    def __getitem__(self, event: ProductionBreakdown):
+        return self.events[event.datetime]
+
+    def _append_event(self, event: ProductionBreakdown):
+        return super()._append_event(event)
 
     def append(
         self,
@@ -252,7 +275,7 @@ class ProductionBreakdownList(AggregatableEventList):
             self.logger, zoneKey, datetime, source, production, storage, sourceType
         )
         if event:
-            self.events.append(event)
+            self._append_event(event)
 
     @staticmethod
     def merge_production_breakdowns(
@@ -294,7 +317,7 @@ class ProductionBreakdownList(AggregatableEventList):
             df = df[df.apply(lambda x: len(x) == len_ungrouped_production_breakdowns)]
         for row in df:
             prod = ProductionBreakdown.aggregate(row)
-            production_breakdowns.events.append(prod)
+            production_breakdowns.events[prod.datetime] = prod
         return production_breakdowns
 
     @staticmethod
@@ -309,20 +332,12 @@ class ProductionBreakdownList(AggregatableEventList):
         elif len(production_breakdowns) == 0:
             return new_production_breakdowns
 
-        for new_event in new_production_breakdowns.events:
-            if new_event.datetime in production_breakdowns:
-                existing_event = production_breakdowns[new_event.datetime]
-                updated_event = ProductionBreakdown._update(existing_event, new_event)
-                production_breakdowns[new_event.datetime] = updated_event
-            else:
-                production_breakdowns.append(
-                    new_event.zoneKey,
-                    new_event.datetime,
-                    new_event.source,
-                    new_event.production,
-                    new_event.storage,
-                    new_event.sourceType,
+        for new_event in new_production_breakdowns:
+            if new_event in production_breakdowns:
+                new_event = ProductionBreakdown._update(
+                    production_breakdowns[new_event], new_event
                 )
+            production_breakdowns._append_event(new_event)
 
         return production_breakdowns
 
@@ -334,7 +349,7 @@ class ProductionBreakdownList(AggregatableEventList):
         TODO: Remove once the internal outlier detection is able to handle this.
         A method to filter out production breakdowns with a total production of 0 MW."""
         production_events = ProductionBreakdownList(breakdowns.logger)
-        for event in breakdowns.events:
+        for event in breakdowns:
             if event.production is not None and not any(
                 v for _mode, v in event.production
             ):
@@ -342,13 +357,7 @@ class ProductionBreakdownList(AggregatableEventList):
                     f"Discarded production event for {event.zoneKey} at {event.datetime} because all production values are 0 or None."
                 )
                 continue
-            production_events.append(
-                zoneKey=event.zoneKey,
-                datetime=event.datetime,
-                production=event.production,
-                storage=event.storage,
-                source=event.source,
-            )
+            production_events._append_event(event)
         return production_events
 
     @staticmethod
@@ -372,7 +381,7 @@ class ProductionBreakdownList(AggregatableEventList):
             return capacity_value / total_capacity > CAPACITY_LOOSE_THRESHOLD
 
         events = ProductionBreakdownList(breakdowns.logger)
-        for event in breakdowns.events:
+        for event in breakdowns.events.values():
             capacity_config = ZONES_CONFIG.get(event.zoneKey, {}).get("capacity", {})
             capacity = get_capacity_data(capacity_config, event.datetime)
             total_capacity = sum(capacity.values())
@@ -413,10 +422,16 @@ class ProductionBreakdownList(AggregatableEventList):
 
 
 class TotalProductionList(EventList):
-    events: list[TotalProduction]
+    events: dict[datetime, TotalProduction]
 
-    def __getitem__(self, datetime) -> TotalProduction:
-        return next(event for event in self.events if event.datetime == datetime)
+    def __iter__(self):
+        return iter(self.events.values())
+
+    def __getitem__(self, event: TotalProduction):
+        return self.events[event.datetime]
+
+    def _append_event(self, event: TotalProduction):
+        return super()._append_event(event)
 
     def append(
         self,
@@ -430,14 +445,20 @@ class TotalProductionList(EventList):
             self.logger, zoneKey, datetime, source, value, sourceType
         )
         if event:
-            self.events.append(event)
+            self._append_event(event)
 
 
 class TotalConsumptionList(EventList):
-    events: list[TotalConsumption]
+    events: dict[datetime, TotalConsumption]
 
-    def __getitem__(self, datetime) -> TotalConsumption:
-        return next(event for event in self.events if event.datetime == datetime)
+    def __iter__(self):
+        return iter(self.events.values())
+
+    def __getitem__(self, event: TotalConsumption):
+        return self.events[event.datetime]
+
+    def _append_event(self, event: TotalConsumption):
+        return super()._append_event(event)
 
     def append(
         self,
@@ -451,14 +472,20 @@ class TotalConsumptionList(EventList):
             self.logger, zoneKey, datetime, source, consumption, sourceType
         )
         if event:
-            self.events.append(event)
+            self._append_event(event)
 
 
 class PriceList(EventList):
-    events: list[Price]
+    events: dict[datetime, Price]
 
-    def __getitem__(self, datetime) -> Price:
-        return next(event for event in self.events if event.datetime == datetime)
+    def __iter__(self):
+        return iter(self.events.values())
+
+    def __getitem__(self, event: Price):
+        return self.events[event.datetime]
+
+    def _append_event(self, event: Price):
+        return super()._append_event(event)
 
     def append(
         self,
@@ -473,4 +500,4 @@ class PriceList(EventList):
             self.logger, zoneKey, datetime, source, price, currency, sourceType
         )
         if event:
-            self.events.append(event)
+            self._append_event(event)
