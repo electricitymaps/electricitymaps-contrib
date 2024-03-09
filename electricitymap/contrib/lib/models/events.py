@@ -50,7 +50,7 @@ class Mix(BaseModel, ABC):
         raise NotImplementedError()
 
     @classmethod
-    def update(cls, mix: "Mix", new_mix: "Mix") -> "Mix":
+    def _update(cls, mix: "Mix", new_mix: "Mix") -> "Mix":
         raise NotImplementedError()
 
     def __setattr__(self, name: str, value: float | None) -> None:
@@ -199,7 +199,7 @@ class ProductionMix(Mix):
         return merged_production_mix
 
     @classmethod
-    def update(
+    def _update(
         cls,
         production_mix: "ProductionMix | None",
         new_production_mix: "ProductionMix | None",
@@ -248,7 +248,7 @@ class StorageMix(Mix):
         return merged_storage_mix
 
     @classmethod
-    def update(
+    def _update(
         cls, storage_mix: "StorageMix | None", new_storage_mix: "StorageMix | None"
     ) -> "StorageMix | None":
         """Update the storage mix of a zone at a given time."""
@@ -431,7 +431,7 @@ class Exchange(Event):
             )
 
     @staticmethod
-    def update(event: "Exchange", new_event: "Exchange") -> "Exchange":
+    def _update(event: "Exchange", new_event: "Exchange") -> "Exchange":
         """Update the net exchange between two zones."""
         if event.zoneKey != new_event.zoneKey:
             raise ValueError(
@@ -634,7 +634,7 @@ class ProductionBreakdown(AggregatableEvent):
         )
 
     @staticmethod
-    def update(
+    def _update(
         event: "ProductionBreakdown", new_event: "ProductionBreakdown"
     ) -> "ProductionBreakdown":
         """Update the production and storage breakdown of a zone at a given time."""
@@ -654,8 +654,8 @@ class ProductionBreakdown(AggregatableEvent):
             raise ValueError(
                 f"Cannot update events from different source types: {event.sourceType} and {new_event.sourceType}"
             )
-        production_mix = ProductionMix.update(event.production, new_event.production)
-        storage_mix = StorageMix.update(event.storage, new_event.storage)
+        production_mix = ProductionMix._update(event.production, new_event.production)
+        storage_mix = StorageMix._update(event.storage, new_event.storage)
         return ProductionBreakdown(
             zoneKey=event.zoneKey,
             datetime=event.datetime,

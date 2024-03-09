@@ -118,7 +118,7 @@ class TestExchange(unittest.TestCase):
             netFlow=2,
             source="trust.me",
         )
-        final_exchange = Exchange.update(exchange, new_exchange)
+        final_exchange = Exchange._update(exchange, new_exchange)
         assert final_exchange is not None
         assert final_exchange.netFlow == 2
         assert final_exchange.zoneKey == ZoneKey("AT->DE")
@@ -675,7 +675,7 @@ class TestMixUpdate:
     def test_update_production(self):
         mix = ProductionMix(wind=10, solar=20)
         new_mix = ProductionMix(wind=5, solar=25)
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind == 5
         assert final_mix.solar == 25
@@ -683,7 +683,7 @@ class TestMixUpdate:
     def test_update_storage(self):
         mix = StorageMix(hydro=10, battery=20)
         new_mix = StorageMix(hydro=5, battery=25)
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro == 5
         assert final_mix.battery == 25
@@ -691,7 +691,7 @@ class TestMixUpdate:
     def test_update_production_with_none(self):
         mix = ProductionMix(wind=10, solar=20)
         new_mix = ProductionMix(wind=None, solar=25)
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind == 10
         assert final_mix.solar == 25
@@ -699,7 +699,7 @@ class TestMixUpdate:
     def test_update_storage_with_none(self):
         mix = StorageMix(hydro=10, battery=20)
         new_mix = StorageMix(hydro=None, battery=25)
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro == 10
         assert final_mix.battery == 25
@@ -707,7 +707,7 @@ class TestMixUpdate:
     def test_update_production_with_empty(self):
         mix = ProductionMix()
         new_mix = ProductionMix(wind=0, solar=25)
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind == 0
         assert final_mix.solar == 25
@@ -715,7 +715,7 @@ class TestMixUpdate:
     def test_update_storage_with_empty(self):
         mix = StorageMix()
         new_mix = StorageMix(hydro=0, battery=25)
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro == 0
         assert final_mix.battery == 25
@@ -723,7 +723,7 @@ class TestMixUpdate:
     def test_update_production_with_new_empty(self):
         mix = ProductionMix(wind=10, solar=20)
         new_mix = ProductionMix()
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind == 10
         assert final_mix.solar == 20
@@ -731,7 +731,7 @@ class TestMixUpdate:
     def test_update_storage_with_new_empty(self):
         mix = StorageMix(hydro=10, battery=20)
         new_mix = StorageMix()
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro == 10
         assert final_mix.battery == 20
@@ -739,7 +739,7 @@ class TestMixUpdate:
     def test_update_production_with_empty_and_new_none(self):
         mix = ProductionMix()
         new_mix = ProductionMix(wind=None, solar=None)
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind is None
         assert final_mix.solar is None
@@ -747,7 +747,7 @@ class TestMixUpdate:
     def test_update_storage_with_empty_and_new_none(self):
         mix = StorageMix()
         new_mix = StorageMix(hydro=None, battery=None)
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro is None
         assert final_mix.battery is None
@@ -755,7 +755,7 @@ class TestMixUpdate:
     def test_update_production_with_empty_and_new_empty(self):
         mix = ProductionMix()
         new_mix = ProductionMix()
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind is None
         assert final_mix.solar is None
@@ -763,7 +763,7 @@ class TestMixUpdate:
     def test_update_storage_with_empty_and_new_empty(self):
         mix = StorageMix()
         new_mix = StorageMix()
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro is None
         assert final_mix.battery is None
