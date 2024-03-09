@@ -2,7 +2,6 @@
 
 """Parser for all of India"""
 
-
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
@@ -299,9 +298,7 @@ def fetch_npp_production(
 ) -> dict[str, Any]:
     """Gets production for conventional thermal, nuclear and hydro from NPP daily reports
     This data most likely doesn't inlcude distributed generation"""
-    npp_url = "https://npp.gov.in/public-reports/cea/daily/dgr/{date:%d-%m-%Y}/dgr2-{date:%Y-%m-%d}.xls".format(
-        date=target_datetime
-    )
+    npp_url = f"https://npp.gov.in/public-reports/cea/daily/dgr/{target_datetime:%d-%m-%Y}/dgr2-{target_datetime:%d-%m-%Y}.xls"
     r: Response = session.get(npp_url)
     if r.status_code == 200:
         df_npp = pd.read_excel(r.content, header=3)
@@ -313,9 +310,7 @@ def fetch_npp_production(
             }
         )
         df_npp["region"] = (
-            df_npp["power_station"]
-            .apply(lambda x: NPP_REGION_MAPPING[x] if x in NPP_REGION_MAPPING else None)
-            .ffill()
+            df_npp["power_station"].apply(lambda x: NPP_REGION_MAPPING.get(x)).ffill()
         )
         df_npp = df_npp[["region", "production_mode", "value"]]
 

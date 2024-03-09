@@ -85,9 +85,7 @@ def _fetch_quebec_production(
 
     if not response.ok:
         logger.info(
-            "CA-QC: failed getting requested production data from hydroquebec - URL {}".format(
-                PRODUCTION_URL
-            )
+            f"CA-QC: failed getting requested production data from hydroquebec - URL {PRODUCTION_URL}"
         )
     return response.json()["details"]
 
@@ -100,9 +98,7 @@ def _fetch_quebec_consumption(
 
     if not response.ok:
         logger.info(
-            "CA-QC: failed getting requested consumption data from hydroquebec - URL {}".format(
-                CONSUMPTION_URL
-            )
+            f"CA-QC: failed getting requested consumption data from hydroquebec - URL {CONSUMPTION_URL}"
         )
     return response.json()["details"]
 

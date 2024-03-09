@@ -2,7 +2,6 @@
 
 """Parser for the electricity grid of Iraq"""
 
-
 from datetime import datetime
 from logging import Logger, getLogger
 

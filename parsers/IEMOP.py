@@ -633,7 +633,7 @@ def match_resources_to_modes(df: pd.DataFrame) -> pd.DataFrame:
     df["resource_name"] = df["resource_name"].apply(lambda x: x.strip("0"))
     # Match resource name to mode
     df["mode"] = df["resource_name"].apply(
-        lambda x: RESOURCE_NAME_TO_MODE[x] if x in RESOURCE_NAME_TO_MODE else "unknown"
+        lambda x: RESOURCE_NAME_TO_MODE.get(x, "unknown")
     )
     # Match resource name to kind
     df["resource_kind"] = df["mode"].map(MODES_TO_RESOURCE_KIND)

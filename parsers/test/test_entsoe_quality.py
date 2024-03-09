@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 """Tests for validation in ENTSOE parser."""
+
 import logging
 import unittest
 
