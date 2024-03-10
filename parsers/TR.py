@@ -41,10 +41,13 @@ PRODUCTION_MAPPING = {
     "wind": ["wind"],
     "coal": ["blackCoal", "asphaltiteCoal", "lignite", "importCoal"],
     "hydro": ["river", "dammedHydro"],
+    "nuclear": ["nucklear"],
+    "unknown": ["wasteheat"],
 }
 INVERT_PRODUCTION_MAPPPING = {
     val: mode for mode in PRODUCTION_MAPPING for val in PRODUCTION_MAPPING[mode]
 }
+IGNORED_KEYS = ["total", "date", "importExport"]
 SOURCE = "epias.com.tr"
 
 
@@ -115,11 +118,11 @@ def fetch_production(
     production_breakdowns = ProductionBreakdownList(logger)
     for item in data:
         mix = ProductionMix()
-        for key in item:
-            try:
-                mix.add_value(INVERT_PRODUCTION_MAPPPING[key], item[key])
-            except KeyError:
-                continue
+        for key, value in item.items():
+            if key in INVERT_PRODUCTION_MAPPPING:
+                mix.add_value(INVERT_PRODUCTION_MAPPPING[key], value)
+            elif key not in IGNORED_KEYS:
+                logger.warning("Unrecognized key '%s' in data skipped", key)
 
         production_breakdowns.append(
             zoneKey=zone_key,
