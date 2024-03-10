@@ -6,6 +6,14 @@ from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+
 from .lib.exceptions import ParserException
 
 IFRAME_URL = "https://grafik.kraftnat.ax/grafer/tot_inm_24h_15.php"
@@ -64,10 +72,10 @@ def fetch_data(session: Session, logger: Logger):
     return data_list
 
 
-def formated_data(
-    zone_key: str | None,
-    zone_key1: str | None,
-    zone_key2: str | None,
+def formatted_data(
+    zone_key: ZoneKey | None,
+    zone_key1: ZoneKey | None,
+    zone_key2: ZoneKey | None,
     session: Session,
     logger: Logger,
     data_type: str,
@@ -84,48 +92,40 @@ def formated_data(
     )
     if date > date_time:
         date = date - timedelta(days=1)
-    return_list = []
+    exchanges = ExchangeList(logger)
+    production_breakdowns = ProductionBreakdownList(logger)
+    consumption = TotalConsumptionList(logger)
     for data in data_list:
         corrected_date = date - timedelta(minutes=15 * data_list.index(data))
-        if data_type == "production":
-            return_list.append(
-                {
-                    "zoneKey": zone_key,
-                    "production": {
-                        "wind": data["wind"],
-                        "oil": data["fossil"],
-                    },
-                    "datetime": corrected_date,
-                    "source": SOURCE,
-                }
+        if data_type == "production" and zone_key is not None:
+            production_mix = ProductionMix(wind=data["wind"], oil=data["fossil"])
+            production_breakdowns.append(
+                datetime=corrected_date,
+                production=production_mix,
+                source=SOURCE,
+                zoneKey=zone_key,
             )
-        elif data_type == "consumption":
-            return_list.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": corrected_date,
-                    "consumption": data["consumption"],
-                    "source": SOURCE,
-                }
+        elif data_type == "consumption" and zone_key is not None:
+            consumption.append(
+                datetime=corrected_date,
+                consumption=data["consumption"],
+                source=SOURCE,
+                zoneKey=zone_key,
             )
         elif data_type == "exchange":
-            if zone_key1 == "AX" and zone_key2 == "SE-SE3":
-                return_list.append(
-                    {
-                        "sortedZoneKeys": "AX->SE-SE3",
-                        "datetime": corrected_date,
-                        "netFlow": data["sweden"] * -1,
-                        "source": SOURCE,
-                    }
+            if zone_key1 == ZoneKey("AX") and zone_key2 == ZoneKey("SE-SE3"):
+                exchanges.append(
+                    datetime=corrected_date,
+                    netFlow=data["sweden"] * -1,
+                    source=SOURCE,
+                    zoneKey=ZoneKey("AX->SE-SE3"),
                 )
-            elif zone_key1 == "AX" and zone_key2 == "FI":
-                return_list.append(
-                    {
-                        "sortedZoneKeys": "AX->FI",
-                        "datetime": corrected_date,
-                        "netFlow": round(data["alink"] + data["gustavs"], 2) * -1,
-                        "source": SOURCE,
-                    }
+            elif zone_key1 == ZoneKey("AX") and zone_key2 == ZoneKey("FI"):
+                exchanges.append(
+                    datetime=corrected_date,
+                    netFlow=round(data["alink"] + data["gustavs"], 2) * -1,
+                    source=SOURCE,
+                    zoneKey=ZoneKey("AX->FI"),
                 )
             else:
                 raise ParserException(
@@ -138,11 +138,23 @@ def formated_data(
                 "The datasource currently implemented is only for production, consumption and exchange data",
                 zone_key,
             )
-    return return_list
+
+    if data_type == "production":
+        return production_breakdowns.to_list()
+    elif data_type == "consumption":
+        return consumption.to_list()
+    elif data_type == "exchange":
+        return exchanges.to_list()
+    else:
+        raise ParserException(
+            "AX.py",
+            "The datasource currently implemented is only for production, consumption and exchange data",
+            zone_key,
+        )
 
 
 def fetch_production(
-    zone_key: str = "AX",
+    zone_key: ZoneKey = ZoneKey("AX"),
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -154,7 +166,7 @@ def fetch_production(
             "AX.py", "The datasource currently implemented is only for real time data"
         )
 
-    return formated_data(
+    return formatted_data(
         zone_key=zone_key,
         zone_key1=None,
         zone_key2=None,
@@ -165,7 +177,7 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key: str = "AX",
+    zone_key: ZoneKey = ZoneKey("AX"),
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -177,7 +189,7 @@ def fetch_consumption(
             "AX.py", "The datasource currently implemented is only for real time data"
         )
 
-    return formated_data(
+    return formatted_data(
         zone_key=zone_key,
         zone_key1=None,
         zone_key2=None,
@@ -188,8 +200,8 @@ def fetch_consumption(
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -201,7 +213,7 @@ def fetch_exchange(
             "AX.py", "The datasource currently implemented is only for real time data"
         )
 
-    return formated_data(
+    return formatted_data(
         zone_key=None,
         zone_key1=zone_key1,
         zone_key2=zone_key2,
