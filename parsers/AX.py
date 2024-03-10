@@ -97,7 +97,7 @@ def formatted_data(
     consumption = TotalConsumptionList(logger)
     for data in data_list:
         corrected_date = date - timedelta(minutes=15 * data_list.index(data))
-        if data_type == "production":
+        if data_type == "production" and zone_key is not None:
             production_mix = ProductionMix(wind=data["wind"], oil=data["fossil"])
             production_breakdowns.append(
                 datetime=corrected_date,
@@ -105,7 +105,7 @@ def formatted_data(
                 source=SOURCE,
                 zoneKey=zone_key,
             )
-        elif data_type == "consumption":
+        elif data_type == "consumption" and zone_key is not None:
             consumption.append(
                 datetime=corrected_date,
                 consumption=data["consumption"],
