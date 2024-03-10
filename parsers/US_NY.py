@@ -13,7 +13,6 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 
 # Pumped storage is present but is not split into a separate category.
-from arrow.parser import ParserError
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -59,7 +58,7 @@ def timestamp_converter(timestamp_string: str) -> datetime:
     """Converts timestamps in nyiso data into aware datetime objects."""
     try:
         dt_naive = datetime.strptime(timestamp_string, "%m/%d/%Y %H:%M:%S")
-    except ParserError:
+    except ValueError:
         dt_naive = datetime.strptime(timestamp_string, "%m/%d/%Y %H:%M")
     dt_aware = dt_naive.replace(tzinfo=TIMEZONE)
 
@@ -129,7 +128,7 @@ def fetch_production(
         raw_data = read_csv_data(mix_url)
     except HTTPError:
         # this can happen when target_datetime has no data available
-        return None
+        return []
 
     clean_data = data_parser(raw_data, logger)
 
