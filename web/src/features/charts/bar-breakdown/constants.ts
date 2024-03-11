@@ -1,5 +1,3 @@
-import { ElectricityModeType } from 'types';
-
 export const LABEL_MAX_WIDTH = 118;
 export const TEXT_ADJUST_Y = 11;
 export const ROW_HEIGHT = 13;
