@@ -1,8 +1,8 @@
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
-import { iconHeight, LABEL_MAX_WIDTH, PADDING_Y } from './constants';
-import { getIconPadding } from './utils';
+import { LABEL_MAX_WIDTH, PADDING_Y } from './constants';
+import ProductionSourceIcon from './ProductionsSourceIcons';
 
 export default function ProductionSourceLegend({
   electricityType,
@@ -18,14 +18,13 @@ export default function ProductionSourceLegend({
         height={14}
         rx={2}
       />
-      <image
-        transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y - 10}, ${getIconPadding(
-          electricityType
-        )})`}
+      <g
+        transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y - 7}, 3)`}
         width={14}
-        height={iconHeight[electricityType as ElectricityModeType]}
-        xlinkHref={`/images/production-source/${electricityType}.svg`}
-      />
+        height={8}
+      >
+        <ProductionSourceIcon source={electricityType} />
+      </g>
     </g>
   );
 }

@@ -7,7 +7,7 @@ import { renderToString } from 'react-dom/server';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeColor, TimeAverages } from 'utils/constants';
+import { Mode, modeColor,TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
@@ -173,6 +173,7 @@ export function BreakdownChartTooltipContent({
         title={title}
         hasEstimationPill={isExchange ? false : hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
+        productionSource={isExchange ? undefined : selectedLayerKey}
       />
       <div
         className="inline-flex flex-wrap items-center gap-x-1"
