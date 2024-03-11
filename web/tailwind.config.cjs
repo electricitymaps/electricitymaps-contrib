@@ -35,10 +35,7 @@ const config = {
         'brand-green': '#135836',
         'brand-yellow': '#E9B73B',
         'brand-brown': '#702214',
-        'em-green-s1': '#467B44',
-        'em-green-em': '#126846',
-        'background-disabled': '#FAFAFA',
-        'text-disabled': '#A3A3A3',
+        'em-green': '#126846',
       },
     },
     fontFamily: {

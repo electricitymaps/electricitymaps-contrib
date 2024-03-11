@@ -1,12 +1,10 @@
 import React from 'react';
 
-// TODO: Add focus state when it is done
-// TODO: Add secondary and tertiary link styles
 interface ButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   disabled?: boolean;
-  size: 'sm' | 'md' | 'lg' | 'xl';
+  size: 'sm' | 'lg' | 'xl';
   variant: 'primary' | 'secondary' | 'tertiary' | 'link';
   href?: string;
   className?: string;
@@ -30,7 +28,7 @@ export function RoundedButton({
   return (
     <As
       className={`flex w-fit flex-row items-center justify-center rounded-full text-sm font-semibold
-      ${className} ${getClassNameFromSize(size)} ${getClassNameFromVariant(variant)}`}
+      ${className} ${getClassesFromVariant(variant, size)} `}
       disabled={disabled}
       href={href}
       type={type}
@@ -42,19 +40,19 @@ export function RoundedButton({
   );
 }
 
-function getClassNameFromSize(size: string) {
-  switch (size) {
-    case 'sm': {
-      return 'min-w-7 px-2.5 py-1 gap-x-1';
+function getDefaultClassesFromVariant(variant: string) {
+  switch (variant) {
+    case 'primary': {
+      return 'bg-em-green text-white';
     }
-    case 'md': {
-      return 'min-w-10 px-3.5 py-2.5 gap-x-1';
+    case 'secondary': {
+      return 'outline outline-1 outline-neutral-200 text-black dark:outline-gray-700 dark:bg-gray-900 dark:text-white';
     }
-    case 'lg': {
-      return 'min-w-11 px-[18px] py-3 gap-x-1.5';
+    case 'tertiary': {
+      return 'text-black dark:bg-gray-900 dark:text-white';
     }
-    case 'xl': {
-      return 'min-w-14 px-[22px] py-4 gap-x-1.5';
+    case 'link': {
+      return 'text-emerald-800 dark:text-emerald-500';
     }
     default: {
       return '';
@@ -62,22 +60,93 @@ function getClassNameFromSize(size: string) {
   }
 }
 
-function getClassNameFromVariant(variant: string) {
+function getHoverClassesFromVariant(variant: string) {
   switch (variant) {
     case 'primary': {
-      return 'bg-em-green-em text-white hover:bg-em-green-s1 active:bg-em-green-em shadow-[0px_0px_13px_rgb(0_0_0/5%)] hover:bg-em-green-s1 focus:shadow-none active:bg-em-green-em disabled:border disabled:bg-background-disabled disabled:text-text-disabled';
+      return 'hover:bg-emerald-900';
     }
     case 'secondary': {
-      return '';
+      return 'hover:dark:text-gray-300 hover:bg-zinc-100 hover:text-neutral-600 hover:text-neutral-60 hover:dark:bg-gray-800 hover:dark:text-gray-300';
     }
     case 'tertiary': {
-      return '';
+      return 'hover:dark:text-gray-300 hover:bg-zinc-100 hover:text-neutral-600 hover:text-neutral-60 hover:dark:bg-gray-800 hover:dark:text-gray-300';
     }
     case 'link': {
-      return '';
+      return 'hover:bg-zinc-100 hover:dark:bg-gray-800';
     }
     default: {
       return '';
     }
   }
+}
+
+function getFocusedClassesFromVariant(variant: string) {
+  switch (variant) {
+    case 'primary': {
+      return 'focus:outline focus:outline-2 focus:outline-emerald-500';
+    }
+    case 'secondary': {
+      return 'focus:outline focus:outline-2 focus:outline-em-green focus:dark:bg-gray-900';
+    }
+    case 'tertiary': {
+      return 'focus:outline focus:outline-2 focus:outline-em-green focus:dark:bg-gray-900';
+    }
+    case 'link': {
+      return 'focus:outline focus:outline-2 focus:dark:outline-emerald-500';
+    }
+    default: {
+      return '';
+    }
+  }
+}
+
+function getDisabledClassesFromVariant(variant: string) {
+  switch (variant) {
+    case 'primary': {
+      return 'disabled:outline disabled:outline-1 disabled:dark:bg-gray-900 disabled:text-neutral-400 disabled:dark:outline-gray-700 disabled:outline-neutral-200 disabled:bg-zinc-50';
+    }
+    case 'secondary': {
+      return 'disabled:text-neutral-400 disabled:dark:bg-gray-900 disabled:bg-inherit disabled:dark:text-neutral-400 disabled:dark:outline-gray-700 disabled:outline-neutral-200';
+    }
+    case 'tertiary': {
+      return 'disabled:text-neutral-400 disabled:dark:bg-gray-900 disabled:bg-inherit disabled:dark:text-neutral-400';
+    }
+    case 'link': {
+      return 'disabled:dark:text-gray-500 disabled:dark:bg-inherit disabled:text-neutral-400 disabled:bg-inherit';
+    }
+    default: {
+      return '';
+    }
+  }
+}
+
+function getClassNameFromSize(size: string, variant: string) {
+  switch (size) {
+    case 'sm': {
+      return variant == 'link'
+        ? 'min-w-7 px-3 py-2 gap-x-1'
+        : 'min-w-7 px-2.5 py-1 gap-x-1';
+    }
+    case 'lg': {
+      return variant == 'link'
+        ? 'min-w-7 px-3 py-2 gap-x-2'
+        : 'min-w-11 px-[18px] py-3 gap-x-1.5';
+    }
+    case 'xl': {
+      return variant == 'link'
+        ? 'min-w-7 px-3.5 py-2.5 gap-x-2'
+        : 'min-w-14 px-[22px] py-4 gap-x-1.5';
+    }
+    default: {
+      return '';
+    }
+  }
+}
+
+function getClassesFromVariant(variant: string, size: string) {
+  return `${getDefaultClassesFromVariant(variant)} ${getFocusedClassesFromVariant(
+    variant
+  )} ${getHoverClassesFromVariant(variant)} ${getDisabledClassesFromVariant(
+    variant
+  )} ${getClassNameFromSize(size, variant)}`;
 }
