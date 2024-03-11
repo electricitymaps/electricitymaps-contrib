@@ -94,9 +94,7 @@ def renewables_production_mix(
     renewables_response = session.get(CAMMESA_RENEWABLES_ENDPOINT, params=params)
     assert renewables_response.status_code == 200, (
         "Exception when fetching production for "
-        "{}: error when calling url={} with payload={}".format(
-            zone_key, CAMMESA_RENEWABLES_ENDPOINT, params
-        )
+        f"{zone_key}: error when calling url={CAMMESA_RENEWABLES_ENDPOINT} with payload={params}"
     )
 
     production_list = renewables_response.json()
@@ -126,9 +124,7 @@ def non_renewables_production_mix(
     api_cammesa_response = session.get(CAMMESA_DEMANDA_ENDPOINT, params=params)
     assert api_cammesa_response.status_code == 200, (
         "Exception when fetching production for "
-        "{}: error when calling url={} with payload={}".format(
-            zone_key, CAMMESA_DEMANDA_ENDPOINT, params
-        )
+        f"{zone_key}: error when calling url={CAMMESA_DEMANDA_ENDPOINT} with payload={params}"
     )
     production_list = api_cammesa_response.json()
     conventional_production = ProductionBreakdownList(logger)
