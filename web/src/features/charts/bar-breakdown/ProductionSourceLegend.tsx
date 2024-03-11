@@ -10,7 +10,7 @@ export default function ProductionSourceLegend({
   electricityType: ElectricityModeType;
 }) {
   return (
-    <g>
+    <g className="pointer-events-none">
       <rect
         transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y - 10}, 0)`}
         fill={modeColor[electricityType as ElectricityModeType]}
