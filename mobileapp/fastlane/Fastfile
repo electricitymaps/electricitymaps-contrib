@@ -6,6 +6,14 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+private_lane :build_web_app do
+  ensure_env_vars(
+  env_vars: ['SENTRY_AUTH_TOKEN', 'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN']
+)
+  # Build the web app if we have both environment variables set
+  sh("pnpm", "run", "build-web")
+end
+
 private_lane :increment_package_version do
   package = read_json(json_path: "./package.json")
   root_package = read_json(json_path: "../web/package.json")
@@ -47,6 +55,7 @@ platform :ios do
       ignore_files: ["mobileapp/fastlane/Fastfile"]
     )
     bump_version
+    build_web_app
     get_certificates           # invokes cert
     get_provisioning_profile   # invokes sigh
     build_app(
@@ -116,6 +125,7 @@ platform :android do
       ignore_files: ["mobileapp/fastlane/Fastfile"]
     )
     bump_version
+    build_web_app
     gradle(task: "bundle", build_type: "Release", project_dir: android_dir)
     upload_to_play_store(
       track: "internal",
