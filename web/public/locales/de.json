@@ -89,7 +89,8 @@
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",
-    "fully-estimated": "Geschätzt"
+    "fully-estimated": "Geschätzt",
+    "outage": "Nicht verfügbar"
   },
   "estimation-card": {
     "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",

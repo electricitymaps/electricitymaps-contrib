@@ -212,10 +212,8 @@ def fetch_production(
         ].string
     )
     assert "Térmicas" in thermal_production_breakdown_table_header, (
-        "Exception when extracting thermal generation breakdown for {}: table header does not contain "
-        "'Térmicas' but is instead named {}".format(
-            zone_key, thermal_production_breakdown_table_header
-        )
+        f"Exception when extracting thermal generation breakdown for {zone_key}: table header does not contain "
+        f"'Térmicas' but is instead named {thermal_production_breakdown_table_header}"
     )
     thermal_production_units = thermal_production_breakdown.select(
         "tbody tr td table.sitr-gen-group tr"
