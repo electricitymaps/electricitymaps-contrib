@@ -40,8 +40,7 @@ export interface StateZoneData {
     fr?: number | null;
     rr?: number | null;
   };
-  em?: string | null;
-  e?: number | null;
+  e?: boolean | number | null;
   outage?: boolean | null;
 }
 

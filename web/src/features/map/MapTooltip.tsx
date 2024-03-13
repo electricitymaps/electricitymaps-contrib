@@ -29,7 +29,7 @@ function TooltipInner({
   zoneId: string;
   zoneData: StateZoneData;
 }) {
-  const { em, e, outage } = zoneData;
+  const { e, outage } = zoneData;
 
   const { t } = useTranslation();
 
@@ -49,11 +49,7 @@ function TooltipInner({
               {date}
             </div>{' '}
           </div>
-          <DataValidityBadge
-            hasOutage={outage}
-            estimationMethod={em}
-            estimatedPercentage={e}
-          />
+          <DataValidityBadge hasOutage={outage} estimated={e} />
         </div>
         <div className="flex w-full flex-grow py-1 pt-4 sm:pr-2">
           <div className="flex w-full flex-grow flex-row justify-around">
@@ -72,26 +68,24 @@ function TooltipInner({
 
 function DataValidityBadge({
   hasOutage,
-  estimationMethod,
-  estimatedPercentage,
+  estimated,
 }: {
   hasOutage?: boolean | null;
-  estimationMethod?: string | null;
-  estimatedPercentage?: number | null;
+  estimated?: number | boolean | null;
 }) {
   const { t } = useTranslation();
 
   if (hasOutage) {
     return <OutageBadge />;
   }
-  if (estimationMethod) {
+  if (estimated === true) {
     return <EstimationBadge text={t('estimation-badge.fully-estimated')} />;
   }
-  if ((estimatedPercentage ?? 0) > 0) {
+  if (estimated && estimated > 0) {
     return (
       <EstimationBadge
         text={t(`estimation-card.aggregated_estimated.pill`, {
-          percentage: estimatedPercentage,
+          percentage: estimated,
         })}
       />
     );
