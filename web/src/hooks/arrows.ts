@@ -9,6 +9,31 @@ import exchangesConfigJSON from '../../config/exchanges.json'; // do something g
 import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json'; // do something globally
 
 const exchangesConfig: Record<string, any> = exchangesConfigJSON;
+const { exchangesToExcludeZoneView, exchangesToExcludeCountryView } = exchangesToExclude;
+
+export function filterExchanges(
+  exchanges: Record<string, StateExchangeData>,
+  exclusionArrayZones: string[],
+  exclusionArrayCountries: string[]
+) {
+  const exclusionSetZones = new Set(exclusionArrayZones);
+  const exclusionSetCountries = new Set(exclusionArrayCountries);
+  const resultZones: Record<string, StateExchangeData> = {};
+  const resultCountries: Record<string, StateExchangeData> = {};
+  // Loop through the exchanges and assign them to the correct result object
+  for (const [key, value] of Object.entries(exchanges)) {
+    if (exclusionSetCountries.has(key)) {
+      resultZones[key] = value;
+    } else if (exclusionSetZones.has(key)) {
+      resultCountries[key] = value;
+    } else {
+      resultZones[key] = value;
+      resultCountries[key] = value;
+    }
+  }
+
+  return [resultZones, resultCountries];
+}
 
 export function useExchangeArrowsData(): ExchangeArrowData[] {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
@@ -18,24 +43,15 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
   const exchangesToUse: { [key: string]: StateExchangeData } = useMemo(() => {
     const exchanges = data?.data?.datetimes?.[selectedDatetime?.datetimeString]?.e;
 
-    const exchangesToExcludeZoneViewSet = new Set(
-      exchangesToExclude.exchangesToExcludeZoneView
-    );
-    const exchangesToExcludeCountryViewSet = new Set(
-      exchangesToExclude.exchangesToExcludeCountryView
-    );
-
-    const zoneViewExchanges: { [key: string]: StateExchangeData } = {};
-    const countryViewExchanges: { [key: string]: StateExchangeData } = {};
-
-    for (const key of Object.keys(exchanges ?? {})) {
-      if (!exchangesToExcludeZoneViewSet.has(key)) {
-        zoneViewExchanges[key] = exchanges?.[key] ?? {};
-      }
-      if (!exchangesToExcludeCountryViewSet.has(key)) {
-        countryViewExchanges[key] = exchanges?.[key] ?? {};
-      }
+    if (!exchanges) {
+      return {};
     }
+
+    const [zoneViewExchanges, countryViewExchanges] = filterExchanges(
+      exchanges,
+      exchangesToExcludeZoneView,
+      exchangesToExcludeCountryView
+    );
 
     return viewMode === SpatialAggregate.COUNTRY
       ? countryViewExchanges

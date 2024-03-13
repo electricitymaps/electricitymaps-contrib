@@ -2,7 +2,7 @@
   "info-modal": {
     "title": "介绍",
     "intro-text": "Electricity Maps应用程序在网站和手机程序上为居民，能源专家，非政府组织和决策者们提供即时的信息，从而促使人们更好的理解能源转型的挑战。",
-    "open-source-text": "这个应用程序是一个<a href=\"%s\" target=\"_blank\">开源</a> (<a href=\"%s\" target=\"_blank\">查看数据来源</a>)并由社区提供支持。",
+    "open-source-text": "这个应用程序是一个<a href=\"{{link}}\" target=\"_blank\">开源</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">查看数据来源</a>)并由社区提供支持。",
     "feedback-button": "提供反馈",
     "github-button": "浏览我们的GitHub",
     "twitter-button": "在推特上转发",
@@ -18,7 +18,7 @@
     "opensource": "开源资料",
     "see": "看",
     "datasources": "数据来源",
-    "contribute": "通过<a href=\"%s\" target=\"_blank\">添加你的国家</a>进行贡献"
+    "contribute": "通过<a href=\"{{link}}\" target=\"_blank\">添加你的国家</a>进行贡献"
   },
   "country-panel": {
     "source": "来源",
@@ -26,7 +26,7 @@
     "electricityproduction": "电力生产",
     "helpfrom": "得力于",
     "emissions": "碳排放量",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或编辑来源</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">新增或编辑来源</a>",
     "lowcarbon": "低碳能源",
     "renewable": "可再生能源",
     "electricityconsumption": "用电量",
@@ -38,46 +38,20 @@
     "time-controller": {
       "title": "显是历史数据"
     },
-    "dataIsDelayed": "该地区的数据有至多%s小时的延迟。实时数据无法被显示。",
+    "dataIsDelayed": "该地区的数据有至多{{hours}}小时的延迟。实时数据无法被显示。",
     "estimated": "估算",
     "aggregated": "汇总",
     "dataIsEstimated": "该地区的部分数据为估算数值。了解我们的<a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">估算方法</a>。",
     "exchangesAreMissing": "能源交换在数据计算的考量范围内，但目前无法显示。了解我们的<a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">历史汇总</a>。",
     "estimatedTooltip": "该区域的实时数据是根据其提供的数据和数据模型的假设估算而来。",
     "aggregatedTooltip": "该地区的数据是历史的每小时数据的汇总。",
-    "helpUs": "看一下我们的<a href=\"%s\" target=\"_blank\">运行记录</a>来帮助我们找出问题，或着联系数据来源。",
-    "noParserInfo": "我们目前还没有该地区的信息。<br/> 想要帮忙改善？可以通过<a href=\"%s\" target=\"_blank\">添加该地区的数据</a>。",
+    "helpUs": "看一下我们的<a href=\"{{link}}\" target=\"_blank\">运行记录</a>来帮助我们找出问题，或着联系数据来源。",
+    "noParserInfo": "我们目前还没有该地区的信息。<br/> 想要帮忙改善？可以通过<a href=\"{{link}}\" target=\"_blank\">添加该地区的数据</a>。",
     "now": "当前"
   },
   "rankings-panel": {
     "country-ranking": "国家排名",
     "show-ranking": "显示排名"
-  },
-  "country-history": {
-    "carbonintensity": {
-      "hourly": "过去24小时的碳强度",
-      "daily": "过去1个月的碳强度",
-      "monthly": "过去1年的碳强度",
-      "yearly": "过去5年的碳强度"
-    },
-    "emissionsorigin": {
-      "hourly": "过去24小时的排放来源"
-    },
-    "emissionsproduction": {
-      "hourly": "过去24小时产生的排放"
-    },
-    "electricityorigin": {
-      "hourly": "过去24小时的电力来源"
-    },
-    "electricityproduction": {
-      "hourly": "过去24小时的发电量"
-    },
-    "electricityprices": {
-      "hourly": "过去24小时的电价"
-    },
-    "emissions": {
-      "hourly": "过去24小时的排放量"
-    }
   },
   "footer": {
     "foundbugs": "发现错误或有其他想法？请回报",
@@ -135,14 +109,14 @@
   "coal": "煤炭",
   "oil": "石油",
   "unknown": "未知",
-  "electricityComesFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的电力来自 %3$s",
-  "emissionsComeFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量来自 %3$s",
-  "electricityStoredUsing": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的电力使用 %3$s 储存",
-  "emissionsStoredUsing": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量使用 %3$s 储存",
-  "electricityExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的电力被汇出到 %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量被汇出到 %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的电力从 %5$s <b>%3$s</b> 汇入",
-  "emissionsImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量从 %5$s <b>%3$s</b> 汇入",
+  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的电力来自 {{selectedLayerKey}}",
+  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量来自 {{selectedLayerKey}}",
+  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的电力使用 %3$s 储存",
+  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量使用 %3$s 储存",
+  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的电力被汇出到 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量被汇出到 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的电力从 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> 汇入",
+  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量从 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> 汇入",
   "theMap": {
     "groupName": "地图",
     "mapColors-question": "在地图上的颜色是什么意思?",

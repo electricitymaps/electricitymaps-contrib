@@ -1,13 +1,12 @@
+import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { resolvePath, useSearchParams } from 'react-router-dom';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 
 import Modal, { Page } from './OnboardingModalInner';
 
-type TranslationFunction = (key: string, ...arguments_: string[]) => string;
-
 interface ViewContentProps {
-  __: TranslationFunction;
+  t: TFunction;
   translationKey: string;
   isDangerouslySet?: boolean;
 }
@@ -15,21 +14,21 @@ interface ViewContentProps {
 const HEADER_STYLE = 'mb-2 px-2 text-base font-semibold sm:text-lg sm:mb-4';
 const BODY_STYLE = 'text-sm px-4 sm:text-base pb-4';
 
-function ViewContent({ __, translationKey, isDangerouslySet = false }: ViewContentProps) {
+function ViewContent({ t, translationKey, isDangerouslySet = false }: ViewContentProps) {
   return (
     <>
       <div>
-        <h2 className={HEADER_STYLE}>{__(`${translationKey}.header`)}</h2>
+        <h2 className={HEADER_STYLE}>{t(`${translationKey}.header`)}</h2>
       </div>
       {isDangerouslySet ? (
         <p
           dangerouslySetInnerHTML={{
-            __html: __(`${translationKey}.text`),
+            __html: t(`${translationKey}.text`),
           }}
           className={BODY_STYLE}
         ></p>
       ) : (
-        <div className={BODY_STYLE}>{__(`${translationKey}.text`)}</div>
+        <div className={BODY_STYLE}>{t(`${translationKey}.text`)}</div>
       )}
     </>
   );
@@ -39,50 +38,38 @@ const views: Page[] = [
   {
     headerImage: resolvePath('images/electricitymaps-icon.svg'),
     isMainTitle: true,
-    renderContent: (__) => (
-      <ViewContent __={__} translationKey="onboarding-modal.view1" isDangerouslySet />
+    renderContent: (t) => (
+      <ViewContent t={t} translationKey="onboarding-modal.view1" isDangerouslySet />
     ),
   },
   {
     headerImage: resolvePath('images/onboarding/mapExtract'),
     hasWebp: true,
-    renderContent: (__) => (
-      <ViewContent __={__} translationKey="onboarding-modal.view2" />
-    ),
+    renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view2" />,
   },
   {
     headerImage: resolvePath('images/onboarding/exchangeArrows.gif'),
-    renderContent: (__) => (
-      <ViewContent __={__} translationKey="onboarding-modal.view3" />
-    ),
+    renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view3" />,
   },
   {
     headerImage: resolvePath('images/onboarding/switchViews'),
     hasWebp: true,
-    renderContent: (__) => (
-      <ViewContent __={__} translationKey="onboarding-modal.view4" />
-    ),
+    renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view4" />,
   },
   {
     headerImage: resolvePath('images/onboarding/switchEmissions'),
     hasWebp: true,
-    renderContent: (__) => (
-      <ViewContent __={__} translationKey="onboarding-modal.view5" />
-    ),
+    renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view5" />,
   },
   {
     headerImage: resolvePath('images/onboarding/pastData'),
     hasWebp: true,
-    renderContent: (__) => (
-      <ViewContent __={__} translationKey="onboarding-modal.view6" />
-    ),
+    renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view6" />,
   },
   {
     headerImage: resolvePath('images/onboarding/splitLayers'),
     hasWebp: true,
-    renderContent: (__) => (
-      <ViewContent __={__} translationKey="onboarding-modal.view7" />
-    ),
+    renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view7" />,
   },
 ];
 

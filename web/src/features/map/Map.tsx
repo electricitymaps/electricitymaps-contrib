@@ -170,24 +170,22 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const zoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
-    setSelectedZoneId(zoneId);
-    if (map && zoneId) {
+    const pathZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    setSelectedZoneId(pathZoneId);
+    if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(
-        (feature) => feature.properties.zoneId === zoneId
+        (feature) => feature?.properties?.zoneId === pathZoneId
       );
       // if no feature matches, it means that the selected zone is not in current spatial resolution.
       // We cannot include geometries in dependencies, as we don't want to flyTo when user switches
       // between spatial resolutions. Therefore we find an approximate feature based on the zoneId.
-      if (!feature) {
-        return;
+      if (feature) {
+        const center = feature.properties.center;
+        map.setFeatureState({ source: ZONE_SOURCE, id: pathZoneId }, { selected: true });
+        setLeftPanelOpen(true);
+        const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
+        map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
       }
-
-      const center = feature.properties.center;
-      map.setFeatureState({ source: ZONE_SOURCE, id: zoneId }, { selected: true });
-      setLeftPanelOpen(true);
-      const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
-      map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
     }
   }, [map, location.pathname, isLoadingMap]);
 

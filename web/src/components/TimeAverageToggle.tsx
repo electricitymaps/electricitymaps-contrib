@@ -1,37 +1,14 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { HiOutlineClock } from 'react-icons/hi2';
-import { useTranslation } from 'translation/translation';
 import { TimeAverages } from 'utils/constants';
-import { formatTimeRange } from 'utils/formatting';
 
-interface ToggleItem {
-  value: TimeAverages;
-  label: string;
-  dataTestId: string; // For testing with Cypress
-}
-
-const getOptions = (language: string): ToggleItem[] => [
-  {
-    value: TimeAverages.HOURLY,
-    label: formatTimeRange(language, TimeAverages.HOURLY),
-    dataTestId: 'time-controller-hourly',
-  },
-  {
-    value: TimeAverages.DAILY,
-    label: formatTimeRange(language, TimeAverages.DAILY),
-    dataTestId: 'time-controller-daily',
-  },
-  {
-    value: TimeAverages.MONTHLY,
-    label: formatTimeRange(language, TimeAverages.MONTHLY),
-    dataTestId: 'time-controller-monthly',
-  },
-  {
-    value: TimeAverages.YEARLY,
-    label: formatTimeRange(language, TimeAverages.YEARLY),
-    dataTestId: 'time-controller-yearly',
-  },
-];
+const createOption = (time: TimeAverages, t: TFunction) => ({
+  value: time,
+  label: t(`time-controller.${time}`),
+  dataTestId: `time-controller-${time}`,
+});
 
 export interface TimeAverageToggleProps {
   timeAverage: TimeAverages;
@@ -39,8 +16,11 @@ export interface TimeAverageToggleProps {
 }
 
 function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggleProps) {
-  const { i18n } = useTranslation();
-  const options = getOptions(i18n.language);
+  const { t } = useTranslation();
+  const options = Object.keys(TimeAverages).map((time) =>
+    createOption(time.toLowerCase() as TimeAverages, t)
+  );
+
   return (
     <ToggleGroupPrimitive.Root
       className={
@@ -57,7 +37,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
           aria-label={label}
           onClick={() => onToggleGroupClick(value)}
           className={`
-          inline-flex select-none rounded-full px-2.5 py-2 text-sm sm:px-2 lg:px-3
+          inline-flex select-none rounded-full px-2.5 py-2 text-sm capitalize sm:px-2 lg:px-3
             ${
               timeAverage === value
                 ? 'items-center bg-white font-bold text-green-900 shadow-2xl dark:border dark:border-gray-400/10 dark:bg-gray-600 dark:text-white'

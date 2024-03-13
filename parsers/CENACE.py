@@ -148,7 +148,7 @@ def convert_production(series: pd.Series) -> ProductionMix:
 
     for name, val in series.iteritems():
         name = name.strip()
-        if isinstance(val, float) or isinstance(val, int):
+        if isinstance(val, float | int):
             mix.add_value(MAPPING.get(name, "unknown"), val)
 
     return mix
@@ -177,7 +177,7 @@ def fetch_production(
         DATA_CACHE[cache_key] = df
 
     production = ProductionBreakdownList(logger)
-    for idx, series in df.iterrows():
+    for _idx, series in df.iterrows():
         production.append(
             zoneKey=zone_key,
             datetime=series["instante"].to_pydatetime(),

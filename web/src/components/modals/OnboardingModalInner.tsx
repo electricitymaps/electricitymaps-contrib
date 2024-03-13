@@ -1,12 +1,13 @@
+import { TFunction } from 'i18next';
 import { ReactElement, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HiCheck, HiChevronLeft, HiChevronRight, HiXMark } from 'react-icons/hi2';
-import { useTranslation } from 'translation/translation';
 
 export interface Page {
   headerImage: { pathname: string };
   isMainTitle?: boolean;
-  renderContent: (translator: any) => ReactElement;
-  title?: (translator: any) => ReactElement;
+  renderContent: (translator: TFunction) => ReactElement;
+  title?: (translator: TFunction) => ReactElement;
   hasWebp?: boolean;
 }
 
@@ -21,7 +22,7 @@ function Modal({
   visible: boolean;
   onDismiss: () => void;
 }) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
   const isOnLastView = () => currentViewIndex === views.length - 1;
   const isOnFirstView = () => currentViewIndex === 0;
@@ -82,7 +83,7 @@ function Modal({
             </button>
           )}
         </div>
-        <div className="color-white pointer-events-auto relative flex h-[450px] w-auto max-w-[500px] flex-col rounded-3xl bg-gray-50 shadow-lg dark:bg-gray-700  sm:h-[500px]">
+        <div className="color-white pointer-events-auto relative flex h-[450px] w-auto max-w-[500px] flex-col rounded-3xl bg-gray-50 shadow-lg sm:h-[500px]  dark:bg-gray-700">
           <div className="absolute self-end p-4 align-baseline">
             <button
               className="p-auto pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900"
@@ -120,10 +121,10 @@ function Modal({
                 />
               </picture>
             )}
-            <div>{currentView.title && <h1>{currentView.title(__)}</h1>}</div>
+            <div>{currentView.title && <h1>{currentView.title(t)}</h1>}</div>
           </div>
           <div className="flex w-auto flex-col justify-center px-4 pt-6 text-center dark:bg-gray-700">
-            {currentView.renderContent(__)}
+            {currentView.renderContent(t)}
           </div>
         </div>
         <div className="pointer-events-auto absolute bottom-[-60px] left-auto  h-[40px] self-center">

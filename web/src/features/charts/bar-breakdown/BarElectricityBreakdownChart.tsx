@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
 import { useMemo } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
 import { modeColor, TimeAverages } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
@@ -14,6 +14,7 @@ import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
+import ProductionSourceLegend from './ProductionSourceLegend';
 import {
   ExchangeDataType,
   getDataBlockPositions,
@@ -56,7 +57,7 @@ function BarElectricityBreakdownChart({
   onExchangeRowMouseOut,
   width,
 }: BarElectricityBreakdownChartProps) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const { productionY, exchangeY } = getDataBlockPositions(
     productionData.length,
@@ -115,7 +116,7 @@ function BarElectricityBreakdownChart({
           <Row
             key={d.mode}
             index={index}
-            label={__(d.mode)}
+            label={t(d.mode)}
             width={width}
             scale={powerScale}
             value={getElectricityProductionValue(d)}
@@ -123,6 +124,7 @@ function BarElectricityBreakdownChart({
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >
+            <ProductionSourceLegend electricityType={d.mode} />
             <HorizontalBar
               className="text-black/10 dark:text-white/10"
               fill="currentColor"

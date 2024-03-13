@@ -4,16 +4,45 @@ bounding_box:
   - - -6.03298539878
     - 55.1316222195
 capacity:
-  biomass: 107
-  coal: 1199
-  gas: 4265
-  hydro: 216
-  hydro storage: 292
-  nuclear: 0
-  oil: 1272
-  solar: 136
-  unknown: 647
-  wind: 4619
+  biomass:
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+  coal:
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 920.0
+  gas:
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 4320.0
+  hydro:
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 240.0
+  hydro storage:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 292.0
+  oil:
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 670.0
+  solar:
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
+  unknown:
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+  wind:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 4620.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 4340.0
 contributors:
   - corradio
   - nessie2013
@@ -287,12 +316,13 @@ fallbackZoneMixes:
         unknown: 0.004263137731402132
         wind: 0.38492285644272295
 parsers:
-  consumption: IE.fetch_consumption
-  consumptionForecast: IE.fetch_consumption_forecast
+  consumption: SMARTGRIDDASHBOARD.fetch_consumption
+  consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast
+  generationForecast: SMARTGRIDDASHBOARD.fetch_total_generation
   price: ENTSOE.fetch_price
-  production: IE.fetch_production
-  productionCapacity: ENTSOE.fetch_production_capacity
-  productionPerModeForecast: IE.fetch_wind_forecasts
+  production: SMARTGRIDDASHBOARD.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
+  productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

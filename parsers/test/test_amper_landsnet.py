@@ -6,10 +6,7 @@ from requests_mock import GET, Adapter
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.amper_landsnet import (
-    fetch_production,
-    SOURCE_URL
-)
+from parsers.amper_landsnet import SOURCE_URL, fetch_production
 
 
 class TestLandsnet(TestCase):

@@ -2,8 +2,8 @@ import * as Portal from '@radix-ui/react-portal';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
-import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
@@ -18,7 +18,11 @@ import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
 const X_PADDING = 9;
 
-function BarBreakdownChart() {
+function BarBreakdownChart({
+  hasEstimationPill = false,
+}: {
+  hasEstimationPill: boolean;
+}) {
   const {
     currentZoneDetail,
     zoneDetails,
@@ -29,7 +33,7 @@ function BarBreakdownChart() {
   } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width } = useReferenceWidthHeightObserver(X_PADDING);
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
 
   const [tooltipData, setTooltipData] = useState<{
@@ -49,7 +53,7 @@ function BarBreakdownChart() {
         <EmptyBarBreakdownChart
           height={height}
           width={width}
-          overLayText={__('country-panel.noDataAtTimestamp')}
+          overLayText={t('country-panel.noDataAtTimestamp')}
         />
       </div>
     );
@@ -82,7 +86,10 @@ function BarBreakdownChart() {
 
   return (
     <div className="text-sm" ref={ref}>
-      <BySource />
+      <BySource
+        hasEstimationPill={hasEstimationPill}
+        estimatedPercentage={currentZoneDetail.estimatedPercentage}
+      />
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div
@@ -95,8 +102,9 @@ function BarBreakdownChart() {
             <BreakdownChartTooltip
               selectedLayerKey={tooltipData?.selectedLayerKey}
               zoneDetail={currentZoneDetail}
+              hasEstimationPill={hasEstimationPill}
             />
-            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden">
+            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
               <HiXMark size="24" />
             </button>
           </div>

@@ -1,5 +1,5 @@
 """
-Usage: poetry run capacity_update --zone FR --target_datetime "2022-01-01"
+Usage: poetry run update_capacity --zone FR --target_datetime "2022-01-01"
 """
 
 from datetime import datetime
@@ -53,4 +53,4 @@ def capacity_update(
         update_zone(zone, parsed_target_datetime, session, update_aggregate)
 
     print("Running prettier...")
-    run_shell_command("web/node_modules/.bin/prettier --write .", cwd=ROOT_PATH)
+    run_shell_command("pnpx prettier@2 --write config/zones --cache", cwd=ROOT_PATH)

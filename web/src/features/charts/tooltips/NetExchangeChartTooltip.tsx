@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatCo2, scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
@@ -16,7 +16,7 @@ export default function NetExchangeChartTooltip({
   }
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
 
   const isHourly = timeAverage === TimeAverages.HOURLY;
   const { stateDatetime } = zoneDetail;
@@ -24,21 +24,21 @@ export default function NetExchangeChartTooltip({
   const netExchange = getNetExchange(zoneDetail, displayByEmissions);
   const { formattingFactor, unit: powerUnit } = scalePower(netExchange, isHourly);
 
-  const unit = displayByEmissions ? __('ofCO2eq') : powerUnit;
+  const unit = displayByEmissions ? t('ofCO2eq') : powerUnit;
   const value = displayByEmissions
     ? formatCo2(Math.abs(netExchange))
     : Math.abs(round(netExchange / formattingFactor));
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[350px]">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[350px] dark:border dark:border-gray-700 dark:bg-gray-800">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
         squareColor="#7f7f7f"
-        title={__('tooltips.netExchange')}
+        title={t('tooltips.netExchange')}
       />
       <p className="flex justify-center text-base">
-        {netExchange >= 0 ? __('tooltips.importing') : __('tooltips.exporting')}{' '}
+        {netExchange >= 0 ? t('tooltips.importing') : t('tooltips.exporting')}{' '}
         <b className="mx-1">{value}</b> {unit}
       </p>
     </div>

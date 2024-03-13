@@ -1,4 +1,5 @@
 import useGetZone from 'api/getZone';
+import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -15,6 +16,7 @@ import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import Divider from './Divider';
+import EstimationCard from './EstimationCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
@@ -57,18 +59,24 @@ export default function ZoneDetails(): JSX.Element {
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
 
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
-  const { estimationMethod } = selectedData || {};
-  const isEstimated = estimationMethod !== undefined;
-  const isAggregated = timeAverage !== TimeAverages.HOURLY;
-
+  const { estimationMethod, estimatedPercentage } = selectedData || {};
+  const zoneMessage = data?.zoneMessage;
+  const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
+  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
   return (
     <>
-      <ZoneHeaderTitle
-        zoneId={zoneId}
-        isAggregated={isAggregated}
-        isEstimated={isEstimated}
-      />
+      <ZoneHeaderTitle zoneId={zoneId} />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
+        {cardType != 'none' &&
+          zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
+          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
+            <EstimationCard
+              cardType={cardType}
+              estimationMethod={estimationMethod}
+              outageMessage={zoneMessage}
+              estimatedPercentage={selectedData?.estimatedPercentage}
+            ></EstimationCard>
+          )}
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
@@ -79,7 +87,7 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart />
+          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
           <Divider />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
@@ -95,6 +103,31 @@ export default function ZoneDetails(): JSX.Element {
   );
 }
 
+function getCardType({
+  estimationMethod,
+  zoneMessage,
+  timeAverage,
+}: {
+  estimationMethod: string | undefined;
+  zoneMessage: { message: string; issue: string } | undefined;
+  timeAverage: TimeAverages;
+}): 'estimated' | 'aggregated' | 'outage' | 'none' {
+  if (
+    zoneMessage !== undefined &&
+    zoneMessage?.message !== undefined &&
+    zoneMessage?.issue !== undefined
+  ) {
+    return 'outage';
+  }
+  if (timeAverage !== TimeAverages.HOURLY) {
+    return 'aggregated';
+  }
+  if (estimationMethod) {
+    return 'estimated';
+  }
+  return 'none';
+}
+
 function ZoneDetailsContent({
   isLoading,
   isError,
@@ -107,11 +140,7 @@ function ZoneDetailsContent({
   zoneDataStatus: ZoneDataStatus;
 }): JSX.Element {
   if (isLoading) {
-    return (
-      <div className={`flex h-full w-full items-center justify-center`}>
-        <div className="z-50 h-[50px] w-[50px] bg-[url('/images/loading-icon.svg')] bg-[length:60px] bg-center bg-no-repeat dark:bg-[url('/images/loading-icon-darkmode.svg')]"></div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {

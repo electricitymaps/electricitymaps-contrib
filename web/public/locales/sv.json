@@ -2,7 +2,7 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
-    "open-source-text": "Den här appen är <a href=\"%s\" target=\"_blank\">Open Source</a> (<a href=\"%s\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
+    "open-source-text": "Den här appen är <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
     "feedback-button": "Ge återkoppling",
     "github-button": "Se vår GitHub",
     "twitter-button": "Dela på Twitter",
@@ -18,7 +18,7 @@
     "opensource": "öppen källkod",
     "see": "se",
     "datasources": "datakällor",
-    "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
+    "contribute": "Bidra genom att <a href=\"{{link}}\" target=\"_blank\">lägga till din region</a>"
   },
   "mobile-main-menu": {
     "map": "Elkarta",
@@ -50,22 +50,22 @@
     "electricityproduction": "Elproduktion",
     "electricityconsumption": "Elkonsumtion",
     "emissions": "Koldioxidutsläpp",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lägg till eller redigera källa</a>",
     "helpfrom": "med hjälp från",
     "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
     "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
     "disabledPriceReasons": {
       "licensing": "Elpriser är ej tillgängliga för detta område på grund av licensvillkor"
     },
-    "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
+    "dataIsDelayed": "Data för denna region kan vara upp till {{hours}} timmar fördröjd. Aktuell data kan inte visas.",
     "estimated": "uppskattad",
     "aggregated": "aggregerad",
     "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
     "exchangesAreMissing": "Överföringar är inkluderade i beräkningarna, men visas för närvarande inte. Läs mer om våra historiska sammanställningar <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">här</a>.",
     "estimatedTooltip": "Realtidsdatan för denna region är uppskattad och baserat på källdata samt antaganden av modellen.",
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
-    "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
-    "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
+    "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"{{link}}\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
+    "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"{{link}}\" target=\"_blank\">lägga till data för regionen</a>.",
     "now": "Nu",
     "by-source": {
       "emissions": "Koldioxidutsläpp per källa",
@@ -85,62 +85,6 @@
     "search": "Sök efter region"
   },
   "country-history": {
-    "carbonintensity": {
-      "default": "Kolintensitet under de senaste %1$s",
-      "hourly": "Kolintensitet de senaste 24 timmarna",
-      "daily": "Kolintensitet den senaste månaden",
-      "monthly": "Kolintensitet det senaste året",
-      "yearly": "Kolintensitet de senaste 5 åren"
-    },
-    "emissions": {
-      "default": "Utsläpp de senaste %1$s",
-      "hourly": "Utsläpp de senaste 24 timmarna",
-      "daily": "Utsläpp den senaste månaden",
-      "monthly": "Utsläpp det senaste året",
-      "yearly": "Utsläpp de senaste 5 åren"
-    },
-    "emissionsorigin": {
-      "default": "Källa för utsläpp de senaste %1$s",
-      "hourly": "Källa för utsläpp de senaste 24 timmarna",
-      "daily": "Källa för utsläpp den senaste månaden",
-      "monthly": "Källa för utsläpp det senaste året",
-      "yearly": "Källa för utsläpp de senaste 5 åren"
-    },
-    "emissionsproduction": {
-      "default": "Utsläpp producerad de senaste %1$s",
-      "hourly": "Utsläpp producerad de senaste 24 timmarna",
-      "daily": "Utsläpp producerad den senaste månaden",
-      "monthly": "Utsläpp producerad det senaste året",
-      "yearly": "Utsläpp producerad de senaste 5 åren"
-    },
-    "electricityorigin": {
-      "default": "Källa för el de senaste %1$s",
-      "hourly": "Källa för el de senaste 24 timmarna",
-      "daily": "Källa för el den senaste månaden",
-      "monthly": "Källa för el det senaste året",
-      "yearly": "Källa för el de senaste 5 åren"
-    },
-    "electricityproduction": {
-      "default": "El producerad de senaste %1$s",
-      "hourly": "El producerad de senaste 24 timmarna",
-      "daily": "El producerad den senaste månaden",
-      "monthly": "El producerad det senaste året",
-      "yearly": "El producerad de senaste 5 åren"
-    },
-    "electricityprices": {
-      "default": "Elpriser de senaste %1$s",
-      "hourly": "Elpriser de senaste 24 timmarna",
-      "daily": "Elpriser den senaste månaden",
-      "monthly": "Elpriser det senaste året",
-      "yearly": "Elpriser de senaste 5 åren"
-    },
-    "netExchange": {
-      "default": "Nettoöverföring de senaste %1$s",
-      "hourly": "Nettoöverföring de senaste 24 timmarna",
-      "daily": "Nettoöverföring den senaste månaden",
-      "monthly": "Nettoöverföring det senaste året",
-      "yearly": "Nettoöverföring de senaste 5 åren"
-    },
     "Getdata": "Hämta timvis historisk data, aktuell data och prognosdata med Electricity Maps API",
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
   },
@@ -238,14 +182,14 @@
   "coal": "kol",
   "oil": "olja",
   "unknown": "okänd",
-  "electricityComesFrom": "<b>%1$s %%</b> av elen i %4$s <b>%2$s</b> kommer från %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> kommer från %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> av elen i %4$s <b>%2$s</b> lagras med %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> lagras med %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> av elen i %4$s <b>%2$s</b> exporteras till %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> exporteras till %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> av elen i %4$s <b>%2$s</b> importeras från %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> av utsläppen från elproduktion i %4$s <b>%2$s</b> importeras från %5$s <b>%3$s</b>",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> av elen i {{zoneFlag}} <b>{{zoneName}}</b> kommer från {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> av utsläppen från elproduktion i {{zoneFlag}} <b>{{zoneName}}</b> kommer från {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> av elen i {{zoneFlag}} <b>{{zoneName}}</b> lagras med {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> av utsläppen från elproduktion i {{zoneFlag}} <b>{{zoneName}}</b> lagras med {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> av elen i {{zoneFlag}} <b>{{zoneName}}</b> exporteras till {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> av utsläppen från elproduktion i {{zoneFlag}} <b>{{zoneName}}</b> exporteras till {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> av elen i {{zoneFlag}} <b>{{zoneName}}</b> importeras från {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> av utsläppen från elproduktion i {{zoneFlag}} <b>{{zoneName}}</b> importeras från {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "av CO₂eq",
   "theMap": {
     "groupName": "Kartan",

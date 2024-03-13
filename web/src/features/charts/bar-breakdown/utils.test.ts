@@ -230,7 +230,7 @@ describe('getProductionData', () => {
   it('returns correct data', () => {
     const result = getProductionData(zoneDetailsData);
     // TODO: Match snapshot
-    expect(result).toStrictEqual(productionData);
+    expect(result).to.deep.eq(productionData);
   });
 });
 
@@ -242,7 +242,7 @@ describe('getElectricityProductionValue', () => {
       production: 500,
       storage: 0,
     });
-    expect(result).toStrictEqual(500);
+    expect(result).to.eq(500);
   });
   it('handles missing production value with zero capacity', () => {
     const result = getElectricityProductionValue({
@@ -251,7 +251,7 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: 0,
     });
-    expect(result).toStrictEqual(0);
+    expect(result).to.eq(0);
   });
 
   it('handles missing production value', () => {
@@ -262,7 +262,7 @@ describe('getElectricityProductionValue', () => {
       storage: 0,
     });
 
-    expect(result).toStrictEqual(null);
+    expect(result).to.eq(null);
   });
   it('handles storage', () => {
     const result = getElectricityProductionValue({
@@ -271,7 +271,7 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: 300,
     });
-    expect(result).toStrictEqual(-300);
+    expect(result).to.eq(-300);
   });
   it('handles zero storage', () => {
     const result = getElectricityProductionValue({
@@ -280,7 +280,7 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: 0,
     });
-    expect(result).toStrictEqual(0);
+    expect(result).to.eq(0);
   });
   it('handles missing storage', () => {
     const result = getElectricityProductionValue({
@@ -289,14 +289,14 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: null,
     });
-    expect(result).toStrictEqual(null);
+    expect(result).to.eq(null);
   });
 });
 
 describe('getDataBlockPositions', () => {
   it('returns correct data', () => {
     const result = getDataBlockPositions(productionData.length, exchangeData);
-    expect(result).toStrictEqual({
+    expect(result).to.deep.eq({
       exchangeFlagX: 50,
       exchangeHeight: 40,
       exchangeY: 282,
@@ -315,7 +315,7 @@ describe('getExchangesToDisplay', () => {
       },
     };
     const result = getExchangesToDisplay('DE', true, ZoneStates);
-    expect(result).toEqual(['AT', 'BE', 'NO']);
+    expect(result).to.deep.eq(['AT', 'BE', 'NO']);
   });
   it('shows non-aggregated exchanges only when required', () => {
     const ZoneStates = {
@@ -325,7 +325,7 @@ describe('getExchangesToDisplay', () => {
       },
     };
     const result = getExchangesToDisplay('DE', false, ZoneStates);
-    expect(result).toEqual(['AT', 'BE', 'NO-NO2']);
+    expect(result).to.deep.eq(['AT', 'BE', 'NO-NO2']);
   });
   it('handles empty exchange', () => {
     const ZoneStates = {
@@ -335,7 +335,7 @@ describe('getExchangesToDisplay', () => {
       },
     };
     const result = getExchangesToDisplay('DE', false, ZoneStates);
-    expect(result).toEqual([]);
+    expect(result).to.deep.eq([]);
   });
 });
 
@@ -353,7 +353,7 @@ describe('getExchangeData', () => {
       Mode.CONSUMPTION
     );
 
-    expect(result).toEqual([
+    expect(result).to.deep.eq([
       {
         exchange: 934,
         exchangeCapacityRange: [-1000, 1000],
@@ -380,7 +380,7 @@ describe('getExchangeData', () => {
       Mode.CONSUMPTION
     );
 
-    expect(result).toEqual([
+    expect(result).to.deep.eq([
       {
         exchange: -934,
         exchangeCapacityRange: [0, 0],
@@ -403,7 +403,7 @@ describe('getExchangeData', () => {
       Mode.CONSUMPTION
     );
 
-    expect(result).toEqual([
+    expect(result).to.deep.equal([
       {
         exchange: undefined,
         exchangeCapacityRange: [0, 0],
@@ -428,7 +428,7 @@ describe('getExchangeCo2Intensity', () => {
       exchangeCapacitiesZoneDetailsData,
       Mode.CONSUMPTION
     );
-    expect(result).toStrictEqual(999);
+    expect(result).to.eq(999);
   });
   describe('when exchange value is less than 0', () => {
     it('returns Co2 insensity when in Consumption mode', () => {
@@ -443,7 +443,7 @@ describe('getExchangeCo2Intensity', () => {
         exchangeCapacitiesZoneDetailsData,
         Mode.CONSUMPTION
       );
-      expect(result).toStrictEqual(187.32);
+      expect(result).to.eq(187.32);
     });
     it('returns Co2 insensity production when in Production mode', () => {
       const exchangeCapacitiesZoneDetailsData = {
@@ -457,7 +457,7 @@ describe('getExchangeCo2Intensity', () => {
         exchangeCapacitiesZoneDetailsData,
         Mode.PRODUCTION
       );
-      expect(result).toStrictEqual(190.6);
+      expect(result).to.eq(190.6);
     });
   });
 });

@@ -458,7 +458,7 @@ KIND_TO_POST_ID = {"production": "5754", "exchange": "5770"}
 STORAGE_METHODS_TO_MODE = {"hydro_storage": "hydro", "battery": "battery"}
 MODES_TO_RESOURCE_KIND = {
     **{m: "production" for m in PRODUCTION_MODES},
-    **{m: "storage" for m in STORAGE_METHODS_TO_MODE.keys()},
+    **{m: "storage" for m in STORAGE_METHODS_TO_MODE},
 }
 
 
@@ -501,11 +501,11 @@ def get_all_market_reports_items(
             message=f"No reports available to fetch {kind} data",
         )
     datetime_to_items = {}
-    for id, items in id_to_items.items():
+    for report_id, items in id_to_items.items():
         market_reports_item = MarketReportsItem(
             datetime.strptime(items["date"], "%d %B %Y %H:%M"),
             items["filename"],
-            KIND_TO_URL[kind] + f"?md_file={id}",
+            KIND_TO_URL[kind] + f"?md_file={report_id}",
         )
         datetime_to_items[market_reports_item.datetime] = market_reports_item
     logger.info(
@@ -633,7 +633,7 @@ def match_resources_to_modes(df: pd.DataFrame) -> pd.DataFrame:
     df["resource_name"] = df["resource_name"].apply(lambda x: x.strip("0"))
     # Match resource name to mode
     df["mode"] = df["resource_name"].apply(
-        lambda x: RESOURCE_NAME_TO_MODE[x] if x in RESOURCE_NAME_TO_MODE else "unknown"
+        lambda x: RESOURCE_NAME_TO_MODE.get(x, "unknown")
     )
     # Match resource name to kind
     df["resource_kind"] = df["mode"].map(MODES_TO_RESOURCE_KIND)

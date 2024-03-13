@@ -32,16 +32,16 @@ def test_exchanges(neighbour_zone_key: ZoneKey):
         if sorted_zone_keys in IN_EA.INTERREGIONAL_EXCHANGES
         else "transnational_exchanges"
     )
-    data = open(f"parsers/test/mocks/IN_EA/{filename}.json", "rb")
-    adapter.register_uri(
-        GET,
-        url.format(
-            proxy=IN_EA.IN_WE_PROXY,
-            host=IN_EA.HOST,
-            target_date=target_date.strftime("%Y-%m-%d"),
-        ),
-        content=data.read(),
-    )
+    with open(f"parsers/test/mocks/IN_EA/{filename}.json", "rb") as data:
+        adapter.register_uri(
+            GET,
+            url.format(
+                proxy=IN_EA.IN_WE_PROXY,
+                host=IN_EA.HOST,
+                target_date=target_date.strftime("%Y-%m-%d"),
+            ),
+            content=data.read(),
+        )
     exchanges = IN_EA.fetch_exchange(
         ZoneKey("IN-EA"),
         neighbour_zone_key,

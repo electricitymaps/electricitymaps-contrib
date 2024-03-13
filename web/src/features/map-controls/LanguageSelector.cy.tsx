@@ -1,8 +1,15 @@
+import { I18nextProvider } from 'react-i18next';
+import i18n from 'translation/i18n';
+
 import { LanguageSelector } from './LanguageSelector';
 
 it('mounts', () => {
   cy.intercept('/locales/it.json').as('it');
-  cy.mount(<LanguageSelector />);
+  cy.mount(
+    <I18nextProvider i18n={i18n}>
+      <LanguageSelector />
+    </I18nextProvider>
+  );
   cy.get('[data-test-id=language-selector-open-button]').click();
   cy.contains('English');
   cy.contains('Français');

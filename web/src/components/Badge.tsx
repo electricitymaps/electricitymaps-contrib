@@ -1,25 +1,22 @@
 type BadgeProps = {
-  children: string;
-  type?: 'default' | 'warning';
-  className?: string;
+  pillText: string;
+  type?: string;
+  icon?: string;
 };
 
-export default function Badge({ children, type = 'default', className }: BadgeProps) {
-  // set background and text color classes depending on type
-  const bgColorClasses = {
-    default: 'bg-gray-300 dark:bg-gray-500/40',
-    warning: 'bg-yellow-400 dark:bg-yellow-500',
-  }[type];
-  const textColorClasses = {
-    default: 'text-gray-800/90 dark:text-gray-200/90',
-    warning: 'text-yellow-900/95 dark:text-gray-900/95',
-  }[type];
+export default function Badge({ pillText, type, icon }: BadgeProps) {
+  const classes =
+    type == 'warning'
+      ? 'bg-amber-700/10 dark:bg-amber-500/10 text-amber-700 dark:text-amber-500'
+      : 'bg-neutral-200 dark:bg-gray-700 text-black dark:text-white';
 
   return (
     <span
-      className={`rounded-full px-2 py-[1px] text-sm font-medium ${bgColorClasses} ${textColorClasses} ${className}`}
+      className={`ml-2 flex h-[22px] flex-row gap-1 whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-semibold ${classes}`}
+      data-test-id="badge"
     >
-      {children}
+      {icon != undefined && <div className={`${icon}`} />}
+      {pillText}
     </span>
   );
 }

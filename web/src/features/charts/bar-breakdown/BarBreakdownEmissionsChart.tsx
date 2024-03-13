@@ -2,7 +2,7 @@ import { CountryFlag } from 'components/Flag';
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
@@ -11,6 +11,7 @@ import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
+import ProductionSourceLegend from './ProductionSourceLegend';
 import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarBreakdownEmissionsChartProps {
@@ -46,7 +47,7 @@ function BarBreakdownEmissionsChart({
   onExchangeRowMouseOut,
   width,
 }: BarBreakdownEmissionsChartProps) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const { productionY, exchangeY } = getDataBlockPositions(
     productionData.length > 0 ? productionData.length : 0,
     exchangeData
@@ -83,7 +84,7 @@ function BarBreakdownEmissionsChart({
           <Row
             key={d.mode}
             index={index}
-            label={__(d.mode)}
+            label={t(d.mode)}
             width={width}
             scale={co2Scale}
             value={Math.abs(d.gCo2eq)}
@@ -91,6 +92,7 @@ function BarBreakdownEmissionsChart({
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >
+            <ProductionSourceLegend electricityType={d.mode} />
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}

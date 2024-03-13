@@ -4,17 +4,74 @@ bounding_box:
   - - 16.9796667823
     - 49.0390742051
 capacity:
-  biomass: 585
-  coal: 0
-  gas: 4206
-  geothermal: 0
-  hydro: 8673
-  hydro storage: 3363
-  nuclear: 0
-  oil: 120
-  solar: 3265
-  unknown: 845
-  wind: 3569
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 585.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 584.0
+  coal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 4206.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 4225.0
+  geothermal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 8673.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 8336.0
+  hydro storage:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 3363.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 3485.0
+  nuclear:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  oil:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 120.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 122.0
+  solar:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 3265.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 6305.0
+  unknown:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 845.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 879.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 3569.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 3967.0
 contributors:
   - corradio
   - brandongalbraith

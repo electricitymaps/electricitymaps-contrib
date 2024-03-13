@@ -156,7 +156,7 @@ def get_table_rows(soup, container_class, table_name):
             raise ValueError
         return rows
     except (AttributeError, ValueError) as err:
-        raise Exception(f"Error reading table {table_name}: {err}")
+        raise Exception(f"Error reading table {table_name}: {err}") from err
 
 
 def combine_gen(gen1, gen2):

@@ -7,6 +7,8 @@ import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
+from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.EIA import REGIONS
 from parsers.lib.utils import get_token
 
@@ -14,7 +16,7 @@ logger = getLogger(__name__)
 
 CAPACITY_URL = "https://api.eia.gov/v2/electricity/operating-generator-capacity/data/?frequency=monthly&data[0]=nameplate-capacity-mw&facets[balancing_authority_code][]={}"
 SOURCE = "EIA.gov"
-US_ZONES = {key: value for key, value in REGIONS.items() if key.startswith("US-")}
+US_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["EIA"]
 TECHNOLOGY_TO_MODE = {
     "All Other": "unknown",
     "Batteries": "battery storage",
@@ -34,16 +36,17 @@ TECHNOLOGY_TO_MODE = {
     "Nuclear": "nuclear",
     "Offshore Wind Turbine": "wind",
     "Onshore Wind Turbine": "wind",
-    "Other Gases": "unknown",
+    "Other Gases": "gas",
     "Other Natural Gas": "gas",
     "Other Waste Biomass": "biomass",
-    "Petroleum Coke": "coal",
+    "Petroleum Coke": "oil",
     "Petroleum Liquids": "oil",
     "Solar Photovoltaic": "solar",
     "Solar Thermal with Energy Storage": "solar",
     "Solar Thermal without Energy Storage": "solar",
     "Wood/Wood Waste Biomass": "biomass",
 }
+CAPACITY_MODES = PRODUCTION_MODES + ["hydro storage", "battery storage"]
 
 
 def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict[str, Any]:
@@ -52,12 +55,15 @@ def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict[str, An
     df["mode"] = df["technology"].map(TECHNOLOGY_TO_MODE)
     df_aggregated = df.groupby(["mode"])[["nameplate-capacity-mw"]].sum().reset_index()
     capacity_dict = {}
-    for mode in df_aggregated["mode"].unique():
+    for mode in CAPACITY_MODES:
         mode_dict = {}
-        mode_dict["value"] = float(
-            df_aggregated.loc[df_aggregated["mode"] == mode][
-                "nameplate-capacity-mw"
-            ].sum()
+        mode_dict["value"] = round(
+            float(
+                df_aggregated.loc[df_aggregated["mode"] == mode][
+                    "nameplate-capacity-mw"
+                ].sum()
+            ),
+            1,
         )
         mode_dict["source"] = SOURCE
         mode_dict["datetime"] = target_datetime.strftime("%Y-%m-%d")
@@ -80,7 +86,7 @@ def fetch_production_capacity(
     r: Response = session.get(url)
     json_data = r.json()
 
-    if not json_data.get("response", {}).get("data", []) == []:
+    if json_data.get("response", {}).get("data", []) != []:
         data = pd.DataFrame(json_data["response"]["data"])
         capacity_dict = format_capacity(data, target_datetime)
         logger.info(

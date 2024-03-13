@@ -40,7 +40,9 @@ export interface StateZoneData {
     fr?: number | null;
     rr?: number | null;
   };
-  e?: boolean;
+  em?: string | null;
+  e?: number | null;
+  outage?: boolean | null;
 }
 
 export interface StateExchangeData {
@@ -71,6 +73,7 @@ export interface ZoneOverview {
   fossilFuelRatio: number;
   renewableRatio: number;
   estimationMethod?: string;
+  estimatedPercentage?: number;
 }
 
 export type GenerationType =
@@ -94,8 +97,12 @@ export type Exchange = { [key: string]: number };
 
 export interface ZoneDetail extends ZoneOverview {
   _isFinestGranularity: boolean;
+  estimatedPercentage?: number;
+  measuredPercentage?: number;
+  completenessPercentage?: number;
   // Capacity is only available on hourly details
   capacity?: { [key in ElectricityModeType]: number | null };
+  capacitySources?: { [key in ElectricityModeType]: string[] | null };
   dischargeCo2Intensities: { [key in ElectricityStorageKeyType]: number };
   dischargeCo2IntensitySources: { [key in ElectricityStorageKeyType]: string };
   exchange: Exchange;

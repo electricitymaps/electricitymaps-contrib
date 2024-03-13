@@ -1,10 +1,9 @@
-import Badge from 'components/Badge';
 import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
-import { getCountryName, getZoneName, useTranslation } from 'translation/translation';
+import { getCountryName, getZoneName } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
 
 import { getDisclaimer } from './util';
@@ -15,17 +14,12 @@ interface ZoneHeaderTitleProps {
   isAggregated?: boolean;
 }
 
-export default function ZoneHeaderTitle({
-  zoneId,
-  isAggregated,
-  isEstimated,
-}: ZoneHeaderTitleProps) {
-  const { __ } = useTranslation();
+export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const title = getZoneName(zoneId);
-  const isSubZone = zoneId.includes('-');
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
+  const showCountryPill = zoneId.includes('-') && !title.includes(countryName);
 
   return (
     <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
@@ -54,9 +48,9 @@ export default function ZoneHeaderTitle({
                   <h2 className="truncate text-lg font-medium" data-test-id="zone-name">
                     {title}
                   </h2>
-                  {isSubZone && (
+                  {showCountryPill && (
                     <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">
-                      <p className="w-full truncate">{countryName || zoneId}</p>
+                      <p className="w-full truncate">{countryName ?? zoneId}</p>
                     </div>
                   )}
                 </div>
@@ -71,17 +65,7 @@ export default function ZoneHeaderTitle({
             </div>
           </div>
         </div>
-        <div className="flex h-auto flex-wrap items-center gap-1 text-center">
-          {isEstimated && (
-            <Badge type="warning" key={'badge-est'}>
-              {__('country-panel.estimated')}
-            </Badge>
-          )}
-          {isAggregated && (
-            <Badge key={'badge-agg'}>{__('country-panel.aggregated')}</Badge>
-          )}
-          <TimeDisplay className="whitespace-nowrap text-sm" />
-        </div>
+        <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 const url = require('url');
 
+const HOST = '127.0.0.1';
 const PORT = process.argv[2] || 8001;
 
 app.use(cors());
@@ -57,6 +58,6 @@ app.use(function (req, res, next) {
 
 app.use(express.static('public', { extensions: ['json'] }));
 
-const server = app.listen(PORT, () => {
-  console.log('Started mockserver on port: ' + PORT);
+const server = app.listen(PORT, HOST, () => {
+  console.log(`mockserver running at: http://${HOST}:${PORT}/`);
 });
