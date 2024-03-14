@@ -9,9 +9,9 @@ import csv
 import re
 import urllib.parse
 from datetime import datetime
-from zoneinfo import ZoneInfo
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
 # Third-party library imports
 from requests import Session
@@ -81,7 +81,9 @@ def fetch_price(
         if row[1] != "-":
             prices.append(
                 zoneKey=zone_key,
-                datetime=datetime.datetime(datetime.strptime(row[0],"%m/%d/%Y %H"), tzinfo=TIMEZONE),
+                datetime=datetime(
+                    datetime.strptime(row[0], "%m/%d/%Y %H"), tzinfo=TIMEZONE
+                ),
                 price=float(row[1]),
                 source=URL.netloc,
                 currency="CAD",
@@ -145,12 +147,9 @@ def fetch_production(
 
 def get_csd_report_timestamp(report):
     """Get the timestamp from a current supply/demand (CSD) report."""
-    return datetime.datetime(
-        datetime.strptime(
-        re.search(r'"Last Update : (.*)"', report).group(1),
-        "%b %d, %Y %H:%M"),
-        tzinfo=TIMEZONE,
-    )
+    return datetime.strptime(
+        re.search(r'"Last Update : (.*)"', report).group(1), "%b %d, %Y %H:%M"
+    ).replace(tzinfo=TIMEZONE)
 
 
 if __name__ == "__main__":
