@@ -9,11 +9,11 @@ import csv
 import re
 import urllib.parse
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from logging import Logger, getLogger
 from typing import Any
 
 # Third-party library imports
-import arrow
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList, PriceList
@@ -24,7 +24,7 @@ from parsers.lib import validation
 
 DEFAULT_ZONE_KEY = ZoneKey("CA-AB")
 MINIMUM_PRODUCTION_THRESHOLD = 10  # MW
-TIMEZONE = "Canada/Mountain"
+TIMEZONE = ZoneInfo("Canada/Mountain")
 URL = urllib.parse.urlsplit("http://ets.aeso.ca/ets_web/ip/Market/Reports")
 URL_STRING = urllib.parse.urlunsplit(URL)
 
@@ -81,7 +81,7 @@ def fetch_price(
         if row[1] != "-":
             prices.append(
                 zoneKey=zone_key,
-                datetime=arrow.get(row[0], "MM/DD/YYYY HH", tzinfo=TIMEZONE).datetime,
+                datetime=datetime.datetime(datetime.strptime(row[0],"%m/%d/%Y %H"), tzinfo=TIMEZONE),
                 price=float(row[1]),
                 source=URL.netloc,
                 currency="CAD",
@@ -145,11 +145,12 @@ def fetch_production(
 
 def get_csd_report_timestamp(report):
     """Get the timestamp from a current supply/demand (CSD) report."""
-    return arrow.get(
+    return datetime.datetime(
+        datetime.strptime(
         re.search(r'"Last Update : (.*)"', report).group(1),
-        "MMM DD, YYYY HH:mm",
+        "%b %d, %Y %H:%M"),
         tzinfo=TIMEZONE,
-    ).datetime
+    )
 
 
 if __name__ == "__main__":
