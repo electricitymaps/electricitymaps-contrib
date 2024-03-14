@@ -81,8 +81,8 @@ def fetch_price(
         if row[1] != "-":
             prices.append(
                 zoneKey=zone_key,
-                datetime=datetime(
-                    datetime.strptime(row[0], "%m/%d/%Y %H"), tzinfo=TIMEZONE
+                datetime=datetime.strptime(row[0], "%m/%d/%Y %H").replace(
+                    tzinfo=TIMEZONE
                 ),
                 price=float(row[1]),
                 source=URL.netloc,
