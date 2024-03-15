@@ -90,12 +90,7 @@ export default function ZoneDetails(): JSX.Element {
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
           <Divider />
-          <RoundedButton
-            size="lg"
-            className="mt-4 w-full"
-            variant="primary"
-            href="https://www.electricitymaps.com/free-tier-api"
-          >
+          <RoundedButton size="lg" variant="primary" forgroundClasses="text-black mt-4">
             {'Get API access'}
           </RoundedButton>
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (

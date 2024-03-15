@@ -5,9 +5,11 @@ interface ButtonProps {
   children?: React.ReactNode;
   disabled?: boolean;
   size: 'sm' | 'lg' | 'xl';
-  variant: 'primary' | 'secondary' | 'tertiary' | 'link';
+  variant: 'primary' | 'secondary' | 'tertiary' | 'link' | 'custom';
   href?: string;
-  className?: string;
+  backgroundClasses?: string;
+  forgroundClasses?: string;
+  focusOutlineColor?: string;
   onClick?: () => void;
 }
 
@@ -16,7 +18,9 @@ export function RoundedButton({
   children,
   disabled,
   href,
-  className,
+  backgroundClasses, // backgroundColor, borderColor, etc.
+  forgroundClasses, // textColor, etc.
+  focusOutlineColor,
   size,
   variant,
   onClick,
@@ -26,30 +30,50 @@ export function RoundedButton({
   const type = renderAsLink ? undefined : 'button';
 
   return (
-    <As
-      className={`flex w-fit flex-row items-center justify-center rounded-full text-sm font-semibold
-      ${className} ${getClassesFromVariant(variant, size)} `}
-      disabled={disabled}
-      href={href}
-      type={type}
-      onClick={onClick}
+    <div
+      className={`m-2 items-center justify-center rounded-full ${getBackgroundFromVariant(
+        variant,
+        disabled
+      )} ${backgroundClasses}`}
     >
-      {icon}
-      {children}
-    </As>
+      <As
+        className={`flex h-full w-full flex-row items-center justify-center rounded-full text-sm font-semibold hover:bg-[#9494944D]/30 disabled:hover:bg-inherit
+       ${getClassNameFromSize(size, variant)} ${getFocusedClassesFromVariant(
+          focusOutlineColor
+        )} ${getBorderFromVariant(variant)} ${getDisabledClassesFromVariant(
+          variant
+        )} ${forgroundClasses}`}
+        disabled={disabled}
+        href={href}
+        type={type}
+        onClick={onClick}
+      >
+        {icon}
+        {children}
+      </As>
+    </div>
   );
 }
 
-function getDefaultClassesFromVariant(variant: string) {
+function getBorderFromVariant(variant: string) {
+  if (variant == 'secondary') {
+    return 'border border-gray-300 dark:border-gray-700';
+  }
+}
+
+function getBackgroundFromVariant(variant: string, disabled: boolean | undefined) {
+  if (disabled && variant == 'primary') {
+      return 'bg-zinc-50 dark:bg-gray-800';
+    }
   switch (variant) {
     case 'primary': {
       return 'bg-em-green text-white';
     }
     case 'secondary': {
-      return 'outline outline-1 outline-neutral-200 text-black dark:outline-gray-700 dark:bg-gray-900 dark:text-white';
+      return 'text-black dark:border-gray-700 dark:text-white';
     }
     case 'tertiary': {
-      return 'text-black dark:bg-gray-900 dark:text-white';
+      return 'text-black dark:text-white';
     }
     case 'link': {
       return 'text-emerald-800 dark:text-emerald-500';
@@ -60,64 +84,20 @@ function getDefaultClassesFromVariant(variant: string) {
   }
 }
 
-function getHoverClassesFromVariant(variant: string) {
-  switch (variant) {
-    case 'primary': {
-      return 'hover:bg-emerald-900';
-    }
-    case 'secondary': {
-      return 'hover:dark:text-gray-300 hover:bg-zinc-100 hover:text-neutral-600 hover:text-neutral-60 hover:dark:bg-gray-800 hover:dark:text-gray-300';
-    }
-    case 'tertiary': {
-      return 'hover:dark:text-gray-300 hover:bg-zinc-100 hover:text-neutral-600 hover:text-neutral-60 hover:dark:bg-gray-800 hover:dark:text-gray-300';
-    }
-    case 'link': {
-      return 'hover:bg-zinc-100 hover:dark:bg-gray-800';
-    }
-    default: {
-      return '';
-    }
-  }
-}
-
-function getFocusedClassesFromVariant(variant: string) {
-  switch (variant) {
-    case 'primary': {
-      return 'focus:outline focus:outline-2 focus:outline-emerald-500';
-    }
-    case 'secondary': {
-      return 'focus:outline focus:outline-2 focus:outline-em-green focus:dark:bg-gray-900';
-    }
-    case 'tertiary': {
-      return 'focus:outline focus:outline-2 focus:outline-em-green focus:dark:bg-gray-900';
-    }
-    case 'link': {
-      return 'focus:outline focus:outline-2 focus:dark:outline-emerald-500';
-    }
-    default: {
-      return '';
-    }
+function getFocusedClassesFromVariant(focusOutlineColor: string | undefined) {
+  if (focusOutlineColor) {
+    console.log(focusOutlineColor);
+    return `focus:outline focus:outline-2 ${focusOutlineColor} outline-offset-2 focus:bg-inherit`;
+  } else {
+    return 'focus:outline focus:outline-2 focus:outline-em-green outline-offset-2 focus:bg-inherit';
   }
 }
 
 function getDisabledClassesFromVariant(variant: string) {
-  switch (variant) {
-    case 'primary': {
-      return 'disabled:outline disabled:outline-1 disabled:dark:bg-gray-900 disabled:text-neutral-400 disabled:dark:outline-gray-700 disabled:outline-neutral-200 disabled:bg-zinc-50';
-    }
-    case 'secondary': {
-      return 'disabled:text-neutral-400 disabled:dark:bg-gray-900 disabled:bg-inherit disabled:dark:text-neutral-400 disabled:dark:outline-gray-700 disabled:outline-neutral-200';
-    }
-    case 'tertiary': {
-      return 'disabled:text-neutral-400 disabled:dark:bg-gray-900 disabled:bg-inherit disabled:dark:text-neutral-400';
-    }
-    case 'link': {
-      return 'disabled:dark:text-gray-500 disabled:dark:bg-inherit disabled:text-neutral-400 disabled:bg-inherit';
-    }
-    default: {
-      return '';
-    }
+  if (variant == 'link' || variant == 'tertiary') {
+    return 'disabled:dark:text-gray-500 disabled:dark:bg-inherit disabled:text-neutral-400';
   }
+  return 'disabled:border disabled:border-1 disabled:border-neutral-200 disabled:dark:border-gray-700 disabled:dark:text-gray-500 disabled:text-neutral-400';
 }
 
 function getClassNameFromSize(size: string, variant: string) {
@@ -141,12 +121,4 @@ function getClassNameFromSize(size: string, variant: string) {
       return '';
     }
   }
-}
-
-function getClassesFromVariant(variant: string, size: string) {
-  return `${getDefaultClassesFromVariant(variant)} ${getFocusedClassesFromVariant(
-    variant
-  )} ${getHoverClassesFromVariant(variant)} ${getDisabledClassesFromVariant(
-    variant
-  )} ${getClassNameFromSize(size, variant)}`;
 }
