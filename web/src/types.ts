@@ -59,9 +59,9 @@ export interface StateZoneData {
 
 export interface StateExchangeData {
   /** The carbon intensity of the exchange */
-  ci?: number;
+  ci: number;
   /** The net flow of the exchange */
-  f?: number;
+  f: number;
 }
 
 export interface ExchangeArrowData extends StateExchangeData {

@@ -14,11 +14,8 @@ interface ExchangeTooltipProperties {
 
 export default function ExchangeTooltip(
   properties: ExchangeTooltipProperties
-): ReactElement | null {
+): ReactElement {
   const { key, f, ci } = properties.exchangeData;
-  if (!f || !ci) {
-    return null;
-  }
 
   // TODO(VIKTOR): Extract common code between MobileExchangeTooltip and Exchange Tooltip
   const { t } = useTranslation();
