@@ -31,6 +31,9 @@ function ExchangeArrow({
   if (!lonlat) {
     return null;
   }
+  if (!ci || !f) {
+    return null;
+  }
   const mapZoom = map.getZoom();
   const colorBlindModeEnabled = colorBlindMode;
 
