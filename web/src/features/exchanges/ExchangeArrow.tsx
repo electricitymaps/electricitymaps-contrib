@@ -27,14 +27,15 @@ function ExchangeArrow({
   map,
   colorBlindMode,
 }: ExchangeArrowProps) {
-  const mapZoom = map.getZoom();
-  const colorBlindModeEnabled = colorBlindMode;
   const { ci, lonlat, f, rotation, key } = data;
-  const absFlow = Math.abs(f ?? 0);
-  const setIsMoving = useSetAtom(mapMovingAtom);
   if (!lonlat) {
     return null;
   }
+  const mapZoom = map.getZoom();
+  const colorBlindModeEnabled = colorBlindMode;
+
+  const absFlow = Math.abs(f);
+  const setIsMoving = useSetAtom(mapMovingAtom);
 
   useEffect(() => {
     const cancelWheel = (event: Event) => event.preventDefault();
