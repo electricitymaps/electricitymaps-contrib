@@ -17,10 +17,13 @@ export interface GridState {
     _disclaimer: string;
     createdAt: string;
     datetimes: {
+      /** Object representing the grid state at a single point in time */
       [datetimeKey: string]: {
+        /** Array of all exchanges */
         e: {
           [key: ZoneKey]: StateExchangeData;
         };
+        /** Array of all zones */
         z: {
           [key: ZoneKey]: StateZoneData;
         };
@@ -30,31 +33,38 @@ export interface GridState {
 }
 
 export interface StateZoneData {
+  /** Object representing all production values */
   p: {
+    /** Carbon intensity */
     ci?: number | null;
+    /** Fossil ratio */
     fr?: number | null;
+    /** Renewable ratio */
     rr?: number | null;
   };
+  /** Object representing all consumption values */
   c: {
+    /** Carbon intensity */
     ci?: number | null;
+    /** Fossil ratio */
     fr?: number | null;
+    /** Renewable ratio */
     rr?: number | null;
   };
+  /** Represents if a zone is estimated or not, will be true for hourly data else number */
   e?: boolean | number | null;
+  /** Represents if the zone has a outage message or not */
   outage?: boolean | null;
 }
 
 export interface StateExchangeData {
+  /** The carbon intensity of the exchange */
   ci?: number;
+  /** The net flow of the exchange */
   f?: number;
 }
 
-export interface ExchangeOverview {
-  f: number;
-  ci: number;
-}
-
-export interface ExchangeArrowData extends ExchangeOverview {
+export interface ExchangeArrowData extends StateExchangeData {
   rotation: number;
   lonlat: [number, number];
   key: string;

@@ -29,8 +29,8 @@ function ExchangeArrow({
 }: ExchangeArrowProps) {
   const mapZoom = map.getZoom();
   const colorBlindModeEnabled = colorBlindMode;
-  const absFlow = Math.abs(data.f ?? 0);
   const { ci, lonlat, f, rotation, key } = data;
+  const absFlow = Math.abs(f ?? 0);
   const setIsMoving = useSetAtom(mapMovingAtom);
   if (!lonlat) {
     return null;
