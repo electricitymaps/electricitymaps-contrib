@@ -1,11 +1,12 @@
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   disabled?: boolean;
   size: 'sm' | 'lg' | 'xl';
-  variant: 'primary' | 'secondary' | 'secondary-elevated' | 'tertiary' | 'link';
+  type: 'primary' | 'secondary' | 'secondary-elevated' | 'tertiary' | 'link';
   href?: string;
   backgroundClasses?: string;
   forgroundClasses?: string;
@@ -22,29 +23,35 @@ export function RoundedButton({
   forgroundClasses, // textColor, etc.
   focusOutlineColor,
   size,
-  variant,
+  type,
   onClick,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
   const As = renderAsLink ? 'a' : 'button';
-  const type = renderAsLink ? undefined : 'button';
+  const componentType = renderAsLink ? undefined : 'button';
+  const isIconOnly = !children && Boolean(icon);
 
   return (
     <div
-      className={`m-2 items-center justify-center rounded-full ${getBackground(
-        variant,
-        disabled
-      )} ${backgroundClasses}`}
+      className={twMerge(
+        `m-2 items-center justify-center rounded-full ${getBackground(type, disabled)}`,
+        backgroundClasses
+      )}
     >
       <As
-        className={`flex h-full w-full flex-row items-center justify-center rounded-full text-sm font-semibold disabled:text-neutral-400
-        disabled:hover:bg-inherit disabled:dark:text-gray-500
-       ${getSize(size, variant)} ${getFocusedClassesFromVariant(
-          focusOutlineColor
-        )} ${getForeground(variant)} ${getHover(variant)} ${forgroundClasses}`}
+        className={twMerge(
+          `flex h-max w-full flex-row items-center justify-center rounded-full text-sm font-semibold disabled:text-neutral-400
+        disabled:hover:bg-inherit disabled:dark:text-gray-500 ${getSize(
+          size,
+          type,
+          isIconOnly
+        )}
+        ${getFocused(focusOutlineColor)} ${getForeground(type)} ${getHover(type)}`,
+          forgroundClasses
+        )}
         disabled={disabled}
         href={href}
-        type={type}
+        type={componentType}
         onClick={onClick}
       >
         {icon}
@@ -54,8 +61,8 @@ export function RoundedButton({
   );
 }
 
-function getHover(variant: string) {
-  switch (variant) {
+function getHover(type: string) {
+  switch (type) {
     case 'primary': {
       return 'hover:bg-black/20';
     }
@@ -65,19 +72,19 @@ function getHover(variant: string) {
   }
 }
 
-function getBackground(variant: string, disabled: boolean | undefined) {
-  switch (variant) {
+function getBackground(type: string, disabled: boolean | undefined) {
+  switch (type) {
     case 'primary': {
       if (disabled) {
-        return 'bg-zinc-50 dark:bg-gray-800 border border-1 border-neutral-200 dark:border-gray-700';
+        return 'bg-zinc-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700';
       }
-      return 'bg-em-green';
+      return 'bg-brand-green';
     }
     case 'secondary': {
-      return 'border border-1 dark:border-gray-700 border-neutral-200 bg-inherit';
+      return 'border dark:border-gray-700 border-neutral-200 bg-inherit';
     }
     case 'secondary-elevated': {
-      return 'border border-1 dark:border-gray-700 border-neutral-200 bg-neutral-100 dark:bg-gray-800';
+      return 'border dark:border-gray-700 border-neutral-200 bg-neutral-100 dark:bg-gray-800';
     }
     default: {
       return 'bg-inherit';
@@ -85,13 +92,15 @@ function getBackground(variant: string, disabled: boolean | undefined) {
   }
 }
 
-function getFocusedClassesFromVariant(focusOutlineColor: string | undefined) {
+function getFocused(focusOutlineColor: string | undefined) {
   const outline = 'focus:outline focus:outline-2 outline-offset-2 focus:bg-inherit ';
-  return focusOutlineColor ? outline + focusOutlineColor : outline + 'focus:outline-em-green';
+  return focusOutlineColor
+    ? outline + focusOutlineColor
+    : outline + 'focus:outline-brand-green';
 }
 
-function getForeground(variant: string) {
-  switch (variant) {
+function getForeground(type: string) {
+  switch (type) {
     case 'primary': {
       return 'text-white';
     }
@@ -104,22 +113,34 @@ function getForeground(variant: string) {
   }
 }
 
-function getSize(size: string, variant: string) {
+function getSize(size: string, type: string, isIconOnly: boolean) {
+  if (isIconOnly) {
+    switch (size) {
+      case 'sm': {
+        return 'min-w-7 min-h-7';
+      }
+      case 'lg': {
+        return 'min-w-11 min-h-11';
+      }
+      case 'xl': {
+        return 'min-w-14 min-h-14';
+      }
+    }
+  }
+
   switch (size) {
     case 'sm': {
-      return variant == 'link'
-        ? 'min-w-7 px-3 py-2 gap-x-1'
-        : 'min-w-7 px-2.5 py-1 gap-x-1';
+      return type == 'link' ? 'px-3 py-2 gap-x-1' : 'min-w-6 min-h-6 px-2.5 py-1 gap-x-1';
     }
     case 'lg': {
-      return variant == 'link'
-        ? 'min-w-7 px-3 py-2 gap-x-2'
-        : 'min-w-11 px-[18px] py-3 gap-x-1.5';
+      return type == 'link'
+        ? 'px-3 py-2 gap-x-2'
+        : 'min-w-10 min-h-10 px-[18px] py-3 gap-x-1.5';
     }
     case 'xl': {
-      return variant == 'link'
-        ? 'min-w-7 px-3.5 py-2.5 gap-x-2'
-        : 'min-w-14 px-[22px] py-4 gap-x-1.5';
+      return type == 'link'
+        ? 'px-3.5 py-2.5 gap-x-2'
+        : 'min-w-12 min-h-12 px-[22px] py-4 gap-x-1.5';
     }
     default: {
       return '';
