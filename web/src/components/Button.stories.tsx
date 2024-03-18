@@ -4,7 +4,7 @@ import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
-  title: 'Basics/RoundedButton',
+  title: 'Basics/Button',
   component: Button,
 };
 
