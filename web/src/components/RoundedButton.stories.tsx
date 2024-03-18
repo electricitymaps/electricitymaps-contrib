@@ -105,7 +105,19 @@ export const All: Story = {
       </RoundedButton>
 
       <RoundedButton size="lg" type="link">
-        link
+        link lg
+      </RoundedButton>
+
+      <RoundedButton size="sm" type="link" backgroundClasses="w-fit">
+        link sm
+      </RoundedButton>
+
+      <RoundedButton size="lg" type="link" backgroundClasses="w-fit">
+        link lg
+      </RoundedButton>
+
+      <RoundedButton size="xl" type="link" backgroundClasses="w-fit">
+        link xl
       </RoundedButton>
     </>
   ),

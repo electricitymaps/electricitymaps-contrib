@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from './Button';
+import { RoundedButton } from './RoundedButton';
 
 interface Properties {
   showReloadButton?: boolean;
@@ -18,13 +18,14 @@ export default function LoadingSpinner({
       {showReloadButton && (
         <>
           <p>{t('misc.slow-loading-text')}</p>
-          <Button
-            className="w-20 min-w-min dark:bg-gray-800/80"
+          <RoundedButton
+            size="lg"
+            type="secondary"
             aria-label="Reload page"
             onClick={() => window.location.reload()}
           >
             {t('misc.reload')}
-          </Button>
+          </RoundedButton>
         </>
       )}
     </div>

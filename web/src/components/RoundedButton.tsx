@@ -130,17 +130,17 @@ function getSize(size: string, type: string, isIconOnly: boolean) {
 
   switch (size) {
     case 'sm': {
-      return type == 'link' ? 'px-3 py-2 gap-x-1' : 'min-w-6 min-h-6 px-2.5 py-1 gap-x-1';
+      return 'min-w-6 min-h-6 px-2 py-1 gap-x-1 text-sm';
     }
     case 'lg': {
       return type == 'link'
-        ? 'px-3 py-2 gap-x-2'
-        : 'min-w-10 min-h-10 px-[18px] py-3 gap-x-1.5';
+        ? 'px-4 py-2 gap-x-2 text-sm'
+        : 'min-w-10 min-h-10 px-6 py-3 gap-x-1.5 text-sm';
     }
     case 'xl': {
       return type == 'link'
-        ? 'px-3.5 py-2.5 gap-x-2'
-        : 'min-w-12 min-h-12 px-[22px] py-4 gap-x-1.5';
+        ? 'px-4 py-2 gap-x-2 text-base'
+        : 'min-w-12 min-h-12 px-8 py-4 gap-x-1.5 text-base';
     }
     default: {
       return '';
