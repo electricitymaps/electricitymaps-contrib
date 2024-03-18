@@ -79,11 +79,12 @@ def fetch_price(
     prices = PriceList(logger)
     for row in csv.reader(response.text.split("\r\n\r\n")[2].splitlines()[1:]):
         if row[1] != "-":
+            date, hour = row[0].split()
             prices.append(
                 zoneKey=zone_key,
-                datetime=datetime.strptime(row[0], "%m/%d/%Y %H").replace(
-                    tzinfo=TIMEZONE
-                ),
+                datetime=datetime.strptime(
+                    f"{date} {int(hour) - 1}", "%m/%d/%Y %H"
+                ).replace(tzinfo=TIMEZONE),
                 price=float(row[1]),
                 source=URL.netloc,
                 currency="CAD",
