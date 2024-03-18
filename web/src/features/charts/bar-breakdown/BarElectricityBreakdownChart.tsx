@@ -14,6 +14,7 @@ import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
+import ProductionSourceLegend from './ProductionSourceLegend';
 import {
   ExchangeDataType,
   getDataBlockPositions,
@@ -123,6 +124,7 @@ function BarElectricityBreakdownChart({
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >
+            <ProductionSourceLegend electricityType={d.mode} />
             <HorizontalBar
               className="text-black/10 dark:text-white/10"
               fill="currentColor"
