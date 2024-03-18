@@ -5,7 +5,7 @@ interface ButtonProps {
   children?: React.ReactNode;
   disabled?: boolean;
   size: 'sm' | 'lg' | 'xl';
-  variant: 'primary' | 'secondary' | 'tertiary' | 'link' | 'custom';
+  variant: 'primary' | 'secondary' | 'secondary-elevated' | 'tertiary' | 'link';
   href?: string;
   backgroundClasses?: string;
   forgroundClasses?: string;
@@ -18,7 +18,7 @@ export function RoundedButton({
   children,
   disabled,
   href,
-  backgroundClasses, // backgroundColor, borderColor, etc.
+  backgroundClasses, // backgroundColor, borderColor, margin, etc.
   forgroundClasses, // textColor, etc.
   focusOutlineColor,
   size,
@@ -31,18 +31,17 @@ export function RoundedButton({
 
   return (
     <div
-      className={`m-2 items-center justify-center rounded-full ${getBackgroundFromVariant(
+      className={`m-2 items-center justify-center rounded-full ${getBackground(
         variant,
         disabled
       )} ${backgroundClasses}`}
     >
       <As
-        className={`flex h-full w-full flex-row items-center justify-center rounded-full text-sm font-semibold hover:bg-[#9494944D]/30 disabled:hover:bg-inherit
-       ${getClassNameFromSize(size, variant)} ${getFocusedClassesFromVariant(
+        className={`flex h-full w-full flex-row items-center justify-center rounded-full text-sm font-semibold disabled:text-neutral-400
+        disabled:hover:bg-inherit disabled:dark:text-gray-500
+       ${getSize(size, variant)} ${getFocusedClassesFromVariant(
           focusOutlineColor
-        )} ${getBorderFromVariant(variant)} ${getDisabledClassesFromVariant(
-          variant
-        )} ${forgroundClasses}`}
+        )} ${getForeground(variant)} ${getHover(variant)} ${forgroundClasses}`}
         disabled={disabled}
         href={href}
         type={type}
@@ -55,52 +54,57 @@ export function RoundedButton({
   );
 }
 
-function getBorderFromVariant(variant: string) {
-  if (variant == 'secondary') {
-    return 'border border-gray-300 dark:border-gray-700';
+function getHover(variant: string) {
+  switch (variant) {
+    case 'primary': {
+      return 'hover:bg-black/20';
+    }
+    default: {
+      return 'hover:bg-neutral-400/10';
+    }
   }
 }
 
-function getBackgroundFromVariant(variant: string, disabled: boolean | undefined) {
-  if (disabled && variant == 'primary') {
-      return 'bg-zinc-50 dark:bg-gray-800';
-    }
+function getBackground(variant: string, disabled: boolean | undefined) {
   switch (variant) {
     case 'primary': {
-      return 'bg-em-green text-white';
+      if (disabled) {
+        return 'bg-zinc-50 dark:bg-gray-800 border border-1 border-neutral-200 dark:border-gray-700';
+      }
+      return 'bg-em-green';
     }
     case 'secondary': {
-      return 'text-black dark:border-gray-700 dark:text-white';
+      return 'border border-1 dark:border-gray-700 border-neutral-200 bg-inherit';
     }
-    case 'tertiary': {
-      return 'text-black dark:text-white';
-    }
-    case 'link': {
-      return 'text-emerald-800 dark:text-emerald-500';
+    case 'secondary-elevated': {
+      return 'border border-1 dark:border-gray-700 border-neutral-200 bg-neutral-100 dark:bg-gray-800';
     }
     default: {
-      return '';
+      return 'bg-inherit';
     }
   }
 }
 
 function getFocusedClassesFromVariant(focusOutlineColor: string | undefined) {
-  if (focusOutlineColor) {
-    console.log(focusOutlineColor);
-    return `focus:outline focus:outline-2 ${focusOutlineColor} outline-offset-2 focus:bg-inherit`;
-  } else {
-    return 'focus:outline focus:outline-2 focus:outline-em-green outline-offset-2 focus:bg-inherit';
+  const outline = 'focus:outline focus:outline-2 outline-offset-2 focus:bg-inherit ';
+  return focusOutlineColor ? outline + focusOutlineColor : outline + 'focus:outline-em-green';
+}
+
+function getForeground(variant: string) {
+  switch (variant) {
+    case 'primary': {
+      return 'text-white';
+    }
+    case 'link': {
+      return 'text-emerald-800 dark:text-emerald-500';
+    }
+    default: {
+      return 'text-black dark:text-white';
+    }
   }
 }
 
-function getDisabledClassesFromVariant(variant: string) {
-  if (variant == 'link' || variant == 'tertiary') {
-    return 'disabled:dark:text-gray-500 disabled:dark:bg-inherit disabled:text-neutral-400';
-  }
-  return 'disabled:border disabled:border-1 disabled:border-neutral-200 disabled:dark:border-gray-700 disabled:dark:text-gray-500 disabled:text-neutral-400';
-}
-
-function getClassNameFromSize(size: string, variant: string) {
+function getSize(size: string, variant: string) {
   switch (size) {
     case 'sm': {
       return variant == 'link'

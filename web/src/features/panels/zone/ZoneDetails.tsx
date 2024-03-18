@@ -90,7 +90,7 @@ export default function ZoneDetails(): JSX.Element {
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
           <Divider />
-          <RoundedButton size="lg" variant="primary" forgroundClasses="text-black mt-4">
+          <RoundedButton size="lg" variant="primary" backgroundClasses="mt-4">
             {'Get API access'}
           </RoundedButton>
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
