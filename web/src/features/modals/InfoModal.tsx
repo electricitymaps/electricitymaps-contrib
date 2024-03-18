@@ -35,38 +35,51 @@ export function InfoModalContent() {
       </div>
       <div>
         <Button
+          size="lg"
+          type="secondary-elevated"
+          backgroundClasses="my-2"
           onClick={() => setIsFAQModalOpen(true)}
           icon={<FaInfoCircle size={ICON_SIZE} />}
         >
           FAQ
         </Button>
         <Button
-          background="#44ab60"
-          textColor="#fff"
+          size="lg"
+          type="primary"
           href="https://forms.gle/VHaeHzXyGodFKZY18"
+          backgroundClasses="mb-2"
           icon={<FaCommentDots size={ICON_SIZE} />}
         >
           {t('info-modal.feedback-button')}
         </Button>
         <Button
-          background="linear-gradient(to right, #04275c 0%, #040e23 100%)"
-          textColor="#fff"
+          size="lg"
+          type="primary"
+          backgroundClasses="bg-gradient-to-r from-[#04275c] to-[#040e23] mb-2"
+          forgroundClasses="text-white dark:text-white"
+          focusOutlineColor="focus:outline-[#040e23]"
           href="https://github.com/electricityMaps/electricitymaps-contrib"
           icon={<FaGithub size={ICON_SIZE} />}
         >
           {t('info-modal.github-button')}
         </Button>
         <Button
-          background="#1d9bf0"
-          textColor="#fff"
+          size="lg"
+          type="primary"
+          backgroundClasses="bg-[#1d9bf0] mb-2"
+          forgroundClasses="text-white dark:text-white"
+          focusOutlineColor="focus:outline-[#1d9bf0]"
           href="https://twitter.com/intent/tweet?url=https://app.electricitymaps.com"
           icon={<FaTwitter size={ICON_SIZE} />}
         >
           {t('info-modal.twitter-button')}
         </Button>
         <Button
-          background="#4a154b"
-          textColor="#fff"
+          size="lg"
+          type="primary"
+          backgroundClasses="bg-[#4a154b] mb-2"
+          forgroundClasses="text-white dark:text-white"
+          focusOutlineColor="focus:outline-[#4a154b]"
           href="https://slack.electricitymaps.com/"
           icon={<FaSlack size={ICON_SIZE} />}
         >

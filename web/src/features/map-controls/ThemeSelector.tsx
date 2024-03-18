@@ -1,3 +1,4 @@
+import { Button } from 'components/Button';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { BsMoonStars } from 'react-icons/bs';
@@ -31,10 +32,14 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
     <MapOptionSelector
       trigger={
         isMobile ? (
-          <div className="flex w-fit min-w-[232px] items-center justify-center gap-x-2 ">
-            <BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />
+          <Button
+            size="lg"
+            type="secondary-elevated"
+            backgroundClasses="min-w-[330px]"
+            icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
+          >
             {t('tooltips.changeTheme')}
-          </div>
+          </Button>
         ) : (
           <MapButton
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}

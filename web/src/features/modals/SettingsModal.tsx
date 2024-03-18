@@ -33,6 +33,7 @@ function WeatherToggleButton({
   const typeAsTitlecase = type.charAt(0).toUpperCase() + type.slice(1);
 
   const onToggle = () => {
+    console.log('onToggle');
     if (!isEnabled) {
       setIsLoadingLayer(true);
     }
@@ -45,8 +46,10 @@ function WeatherToggleButton({
 
       <Button
         onClick={isLoadingLayer ? () => {} : onToggle}
-        className={isEnabled ? 'bg-brand-green text-white dark:bg-brand-green' : ''}
+        size="lg"
+        type="secondary-elevated"
         disabled={!allowed}
+        backgroundClasses="min-w-[330px]"
         icon={
           isLoadingLayer ? (
             <MoonLoader size={14} color="white" className="mr-1" />
@@ -77,7 +80,7 @@ export function SettingsModalContent() {
 
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col items-center space-y-4">
+    <div className="flex flex-col items-center space-y-2">
       <div className="rounded-full bg-gray-500">
         <ConsumptionProductionToggle />
       </div>
@@ -88,9 +91,9 @@ export function SettingsModalContent() {
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="solar" />
       <Button
-        className={
-          isColorblindModeEnabled ? 'bg-brand-green text-white dark:bg-brand-green' : ''
-        }
+        size="lg"
+        type="secondary-elevated"
+        backgroundClasses="min-w-[330px]"
         onClick={() => setIsColorblindModeEnabled(!isColorblindModeEnabled)}
         icon={<HiOutlineEyeOff size={21} />}
       >

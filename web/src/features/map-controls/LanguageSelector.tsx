@@ -1,3 +1,4 @@
+import { Button } from 'components/Button';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiLanguage } from 'react-icons/hi2';
@@ -24,10 +25,14 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
     <MapOptionSelector
       trigger={
         isMobile ? (
-          <div className="flex w-fit min-w-[232px] items-center justify-center gap-x-2 ">
-            <HiLanguage size={21} />
-            {t('tooltips.selectLanguage')}
-          </div>
+          <Button
+            size="lg"
+            type="secondary-elevated"
+            icon={<HiLanguage size={20} />}
+            backgroundClasses="min-w-[330px]"
+          >
+            {t('aria.label.selectLanguage')}
+          </Button>
         ) : (
           <MapButton
             icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}

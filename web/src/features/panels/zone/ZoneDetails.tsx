@@ -1,9 +1,10 @@
 import useGetZone from 'api/getZone';
+import { Button } from 'components/Button';
 import LoadingSpinner from 'components/LoadingSpinner';
-import { RoundedButton } from 'components/RoundedButton';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
@@ -90,15 +91,14 @@ export default function ZoneDetails(): JSX.Element {
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
           <Divider />
-          <RoundedButton
+          <Button
             size="lg"
-            type="primary"
-            backgroundClasses="bg-blue-200 dark:bg-blue-200"
-            forgroundClasses="text-blue-500 dark:text-blue-500"
-            focusOutlineColor="focus:outline-blue-200 focus:dark:outline-blue-200"
+            type="link"
+            icon={<MdOutlineCloudDownload size={20} />}
+            href="https://www.electricitymaps.com/get-our-data?"
           >
-            {'Get API access'}
-          </RoundedButton>
+            {'See our commercial API offerings'}
+          </Button>
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
