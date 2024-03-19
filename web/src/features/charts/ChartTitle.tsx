@@ -23,8 +23,8 @@ export function ChartTitle({
   */
   return (
     <div className="flex flex-row justify-between pb-0.5 pt-4">
-        <h3 className="text-md font-bold">{t(`${translationKey}.${timeAverage}`)}</h3>
-        {badgeText != undefined && <EstimationBadge text={badgeText} />}
-      </div>
+      <h3 className="text-md font-bold">{t(`${translationKey}.${timeAverage}`)}</h3>
+      {badgeText != undefined && <EstimationBadge text={badgeText} />}
+    </div>
   );
 }
