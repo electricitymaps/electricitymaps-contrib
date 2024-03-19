@@ -33,11 +33,10 @@ export function InfoModalContent() {
           }}
         />
       </div>
-      <div>
+      <div className="space-y-2 py-2">
         <Button
           size="lg"
           type="secondary-elevated"
-          backgroundClasses="my-2"
           onClick={() => setIsFAQModalOpen(true)}
           icon={<FaInfoCircle size={ICON_SIZE} />}
         >
@@ -47,7 +46,6 @@ export function InfoModalContent() {
           size="lg"
           type="primary"
           href="https://forms.gle/VHaeHzXyGodFKZY18"
-          backgroundClasses="mb-2"
           icon={<FaCommentDots size={ICON_SIZE} />}
         >
           {t('info-modal.feedback-button')}
@@ -55,9 +53,8 @@ export function InfoModalContent() {
         <Button
           size="lg"
           type="primary"
-          backgroundClasses="bg-gradient-to-r from-[#04275c] to-[#040e23] mb-2"
-          forgroundClasses="text-white dark:text-white"
-          focusOutlineColor="focus:outline-[#040e23]"
+          backgroundClasses="bg-gradient-to-r from-[#04275c] to-[#040e23]"
+          forgroundClasses="text-white dark:text-white focus-visible:outline-[#04275c]"
           href="https://github.com/electricityMaps/electricitymaps-contrib"
           icon={<FaGithub size={ICON_SIZE} />}
         >
@@ -66,9 +63,8 @@ export function InfoModalContent() {
         <Button
           size="lg"
           type="primary"
-          backgroundClasses="bg-[#1d9bf0] mb-2"
-          forgroundClasses="text-white dark:text-white"
-          focusOutlineColor="focus:outline-[#1d9bf0]"
+          backgroundClasses="bg-[#1d9bf0]"
+          forgroundClasses="text-white dark:text-white focus-visible:outline-[#1d9bf0]"
           href="https://twitter.com/intent/tweet?url=https://app.electricitymaps.com"
           icon={<FaTwitter size={ICON_SIZE} />}
         >
@@ -77,9 +73,8 @@ export function InfoModalContent() {
         <Button
           size="lg"
           type="primary"
-          backgroundClasses="bg-[#4a154b] mb-2"
-          forgroundClasses="text-white dark:text-white"
-          focusOutlineColor="focus:outline-[#4a154b]"
+          backgroundClasses="bg-[#4a154b]"
+          forgroundClasses="text-white dark:text-white focus-visible:outline-[#4a154b]"
           href="https://slack.electricitymaps.com/"
           icon={<FaSlack size={ICON_SIZE} />}
         >
