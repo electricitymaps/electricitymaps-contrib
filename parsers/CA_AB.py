@@ -8,7 +8,7 @@
 import csv
 import re
 import urllib.parse
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -84,7 +84,8 @@ def fetch_price(
                 zoneKey=zone_key,
                 datetime=datetime.strptime(
                     f"{date} {int(hour) - 1}", "%m/%d/%Y %H"
-                ).replace(tzinfo=TIMEZONE),
+                ).replace(tzinfo=TIMEZONE)
+                + timedelta(hours=1),
                 price=float(row[1]),
                 source=URL.netloc,
                 currency="CAD",
