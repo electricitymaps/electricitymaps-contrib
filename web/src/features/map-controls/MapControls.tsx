@@ -39,6 +39,7 @@ function MobileMapControls() {
         size="lg"
         type="secondary-elevated"
         aria-label="open info modal"
+        backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
         onClick={handleOpenInfoModal}
         icon={<HiOutlineInformationCircle size={21} />}
       />
@@ -47,6 +48,7 @@ function MobileMapControls() {
         type="secondary-elevated"
         aria-label="open settings modal"
         onClick={handleOpenSettingsModal}
+        backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
         icon={<HiCog6Tooth size={20} />}
         data-test-id="settings-button-mobile"
       />
