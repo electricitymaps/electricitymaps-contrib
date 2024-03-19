@@ -54,7 +54,7 @@ export interface StateZoneData {
   /** Represents if a zone is estimated or not, will be true for hourly data else number */
   e?: boolean | number | null;
   /** Represents if the zone has a outage message or not */
-  outage?: boolean | null;
+  o?: boolean | null;
 }
 
 export interface StateExchangeData {

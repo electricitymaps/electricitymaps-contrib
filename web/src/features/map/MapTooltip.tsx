@@ -29,7 +29,7 @@ function TooltipInner({
   zoneId: string;
   zoneData: StateZoneData;
 }) {
-  const { e, outage } = zoneData;
+  const { e, o } = zoneData;
 
   const { t } = useTranslation();
 
@@ -49,7 +49,7 @@ function TooltipInner({
               {date}
             </div>{' '}
           </div>
-          <DataValidityBadge hasOutage={outage} estimated={e} />
+          <DataValidityBadge hasOutage={o} estimated={e} />
         </div>
         <div className="flex w-full flex-grow py-1 pt-4 sm:pr-2">
           <div className="flex w-full flex-grow flex-row justify-around">
