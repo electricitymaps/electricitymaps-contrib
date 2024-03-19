@@ -9,7 +9,7 @@ interface ButtonProps {
   type?: 'primary' | 'secondary' | 'secondary-elevated' | 'tertiary' | 'link';
   href?: string;
   backgroundClasses?: string;
-  forgroundClasses?: string;
+  foregroundClasses?: string;
   onClick?: () => void;
 }
 
@@ -19,7 +19,7 @@ export function Button({
   disabled,
   href,
   backgroundClasses, // backgroundColor, borderColor, margin, etc.
-  forgroundClasses, // textColor, etc.
+  foregroundClasses, // textColor, etc.
   size = 'lg',
   type = 'primary',
   onClick,
@@ -46,7 +46,7 @@ export function Button({
           isIconOnly
         )}
         ${getForeground(type)} ${getHover(type)}`,
-          forgroundClasses
+          foregroundClasses
         )}
         disabled={disabled}
         href={href}

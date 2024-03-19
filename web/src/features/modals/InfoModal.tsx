@@ -54,7 +54,7 @@ export function InfoModalContent() {
           size="lg"
           type="primary"
           backgroundClasses="bg-gradient-to-r from-[#04275c] to-[#040e23]"
-          forgroundClasses="text-white dark:text-white focus-visible:outline-[#04275c]"
+          foregroundClasses="text-white dark:text-white focus-visible:outline-[#04275c]"
           href="https://github.com/electricityMaps/electricitymaps-contrib"
           icon={<FaGithub size={ICON_SIZE} />}
         >
@@ -64,7 +64,7 @@ export function InfoModalContent() {
           size="lg"
           type="primary"
           backgroundClasses="bg-[#1d9bf0]"
-          forgroundClasses="text-white dark:text-white focus-visible:outline-[#1d9bf0]"
+          foregroundClasses="text-white dark:text-white focus-visible:outline-[#1d9bf0]"
           href="https://twitter.com/intent/tweet?url=https://app.electricitymaps.com"
           icon={<FaTwitter size={ICON_SIZE} />}
         >
@@ -74,7 +74,7 @@ export function InfoModalContent() {
           size="lg"
           type="primary"
           backgroundClasses="bg-[#4a154b]"
-          forgroundClasses="text-white dark:text-white focus-visible:outline-[#4a154b]"
+          foregroundClasses="text-white dark:text-white focus-visible:outline-[#4a154b]"
           href="https://slack.electricitymaps.com/"
           icon={<FaSlack size={ICON_SIZE} />}
         >

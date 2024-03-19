@@ -13,7 +13,7 @@ type Story = StoryObj<typeof Button>;
 
 export const All: Story = {
   render: () => (
-    <>
+    <div className="space-y-2">
       <Button size="xl" type="primary">
         default xl primary button
       </Button>
@@ -86,8 +86,7 @@ export const All: Story = {
         size="lg"
         type="primary"
         backgroundClasses="bg-blue-200 dark:bg-blue-200"
-        forgroundClasses="text-blue-500 dark:text-blue-500"
-        focusOutlineColor="focus:outline-blue-200 focus:dark:outline-blue-200"
+        foregroundClasses="text-blue-500 dark:text-blue-500 focus-visible:outline-blue-200 focus-visible:dark:outline-blue-200"
       >
         custom colors
       </Button>
@@ -119,6 +118,6 @@ export const All: Story = {
       <Button size="xl" type="link" backgroundClasses="w-fit">
         link xl
       </Button>
-    </>
+    </div>
   ),
 };

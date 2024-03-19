@@ -2,7 +2,6 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineArrowDownTray } from 'react-icons/hi2';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type Props = {
