@@ -4,6 +4,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
@@ -36,6 +37,7 @@ export default function ZoneDetails(): JSX.Element {
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
   const { data, isError, isLoading } = useGetZone();
+  const { t } = useTranslation();
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
   if (Array.isArray(data)) {
@@ -97,7 +99,7 @@ export default function ZoneDetails(): JSX.Element {
             icon={<MdOutlineCloudDownload size={20} />}
             href="https://www.electricitymaps.com/get-our-data?"
           >
-            {'See our commercial API offerings'}
+            {t('left-panel.get-data')}
           </Button>
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
