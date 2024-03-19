@@ -33,7 +33,6 @@ function WeatherToggleButton({
   const typeAsTitlecase = type.charAt(0).toUpperCase() + type.slice(1);
 
   const onToggle = () => {
-    console.log('onToggle');
     if (!isEnabled) {
       setIsLoadingLayer(true);
     }

@@ -31,7 +31,7 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
             icon={<HiLanguage size={20} />}
             backgroundClasses="min-w-[330px]"
           >
-            {t('aria.label.selectLanguage')}
+            {t('tooltips.selectLanguage')}
           </Button>
         ) : (
           <MapButton
