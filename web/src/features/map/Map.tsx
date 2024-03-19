@@ -7,10 +7,9 @@ import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useSetAtom } from 'jotai';
-import mapboxgl from 'mapbox-gl';
-import maplibregl from 'maplibre-gl';
+import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
-import { Map, MapRef } from 'react-map-gl';
+import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
@@ -46,7 +45,7 @@ const MAP_STYLE = {
 const isMobile = window.innerWidth < 768;
 
 type MapPageProps = {
-  onMapLoad?: (map: mapboxgl.Map) => void;
+  onMapLoad?: (map: maplibregl.Map) => void;
 };
 
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
@@ -189,7 +188,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
   }, [map, location.pathname, isLoadingMap]);
 
-  const onClick = (event: mapboxgl.MapLayerMouseEvent) => {
+  const onClick = (event: maplibregl.MapLayerMouseEvent) => {
     if (!map || !event.features) {
       return;
     }
@@ -220,7 +219,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   };
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging
-  const onMouseMove = (event: mapboxgl.MapLayerMouseEvent) => {
+  const onMouseMove = (event: maplibregl.MapLayerMouseEvent) => {
     if (!map || !event.features) {
       return;
     }
@@ -278,7 +277,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
   };
 
-  const onError = (event: mapboxgl.ErrorEvent) => {
+  const onError = (event: ErrorEvent) => {
     console.error(event.error);
     setIsLoadingMap(false);
     // TODO: Show error message to user
@@ -317,6 +316,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   return (
     <Map
+      RTLTextPlugin={false}
       ref={onMapReferenceChange}
       initialViewState={{
         latitude: 50.905,
@@ -342,9 +342,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
         [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
       ]}
-      mapLib={maplibregl}
       style={{ minWidth: '100vw', height: '100vh' }}
-      mapStyle={MAP_STYLE as mapboxgl.Style}
+      mapStyle={MAP_STYLE as StyleSpecification}
     >
       <BackgroundLayer />
       <ZonesLayer />

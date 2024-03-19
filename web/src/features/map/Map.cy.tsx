@@ -176,6 +176,6 @@ describe('Map Component', () => {
     );
     cy.get('[data-test-id=exchange-layer]').should('be.visible');
     cy.get('[data-test-id=wind-layer]').should('exist');
-    cy.get('.mapboxgl-map').should('be.visible');
+    cy.get('.maplibregl-map').should('be.visible');
   });
 });

@@ -2,7 +2,6 @@ import { GfsForecastResponse, useGetWind } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
-import { MapboxMap } from 'react-map-gl';
 import { ToggleOptions } from 'utils/constants';
 import {
   selectedDatetimeIndexAtom,
@@ -17,7 +16,7 @@ let windySingleton: Windy | null = null;
 const createWindy = async (
   canvas: HTMLCanvasElement,
   data: GfsForecastResponse,
-  map: MapboxMap
+  map: maplibregl.Map
 ) => {
   if (!windySingleton) {
     windySingleton = new Windy(canvas, data, map);
@@ -25,7 +24,7 @@ const createWindy = async (
   return windySingleton;
 };
 
-export default function WindLayer({ map }: { map?: MapboxMap }) {
+export default function WindLayer({ map }: { map?: maplibregl.Map }) {
   const [isMapMoving] = useAtom(mapMovingAtom);
   const [windy, setWindy] = useState<Windy | null>(null);
   const { ref, node, width, height } = useReferenceWidthHeightObserver();
