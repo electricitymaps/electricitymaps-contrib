@@ -97,7 +97,7 @@ export default function ZoneDetails(): JSX.Element {
             size="lg"
             type="link"
             icon={<MdOutlineCloudDownload size={20} />}
-            href="https://www.electricitymaps.com/get-our-data?"
+            href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
           >
             {t('left-panel.get-data')}
           </Button>
