@@ -5,12 +5,11 @@ interface ButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   disabled?: boolean;
-  size: 'sm' | 'lg' | 'xl';
-  type: 'primary' | 'secondary' | 'secondary-elevated' | 'tertiary' | 'link';
+  size?: 'sm' | 'lg' | 'xl';
+  type?: 'primary' | 'secondary' | 'secondary-elevated' | 'tertiary' | 'link';
   href?: string;
   backgroundClasses?: string;
   forgroundClasses?: string;
-  focusOutlineColor?: string;
   onClick?: () => void;
 }
 
@@ -21,9 +20,8 @@ export function Button({
   href,
   backgroundClasses, // backgroundColor, borderColor, margin, etc.
   forgroundClasses, // textColor, etc.
-  focusOutlineColor,
-  size,
-  type,
+  size = 'lg',
+  type = 'primary',
   onClick,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
@@ -40,19 +38,21 @@ export function Button({
     >
       <As
         className={twMerge(
-          `flex w-full flex-row items-center justify-center rounded-full text-sm font-semibold disabled:text-neutral-400
+          `flex w-full flex-row items-center justify-center rounded-full text-sm font-semibold focus-visible:outline
+        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green disabled:text-neutral-400
         disabled:hover:bg-inherit disabled:dark:text-gray-500 ${getSize(
           size,
           type,
           isIconOnly
         )}
-        ${getFocused(focusOutlineColor)} ${getForeground(type)} ${getHover(type)}`,
+        ${getForeground(type)} ${getHover(type)}`,
           forgroundClasses
         )}
         disabled={disabled}
         href={href}
         type={componentType}
         onClick={onClick}
+        target="_blank"
       >
         {icon}
         {children}
@@ -90,14 +90,6 @@ function getBackground(type: string, disabled: boolean | undefined) {
       return 'bg-inherit';
     }
   }
-}
-
-function getFocused(focusOutlineColor: string | undefined) {
-  const outline =
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ';
-  return focusOutlineColor
-    ? outline + focusOutlineColor
-    : outline + 'focus-visible:outline-brand-green';
 }
 
 function getForeground(type: string) {
