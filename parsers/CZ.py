@@ -182,9 +182,9 @@ def fetch_production(
             for k, v in mapper.items():
                 generator = translate_table_gen[k]
                 if k != "PsPP":
-                    production[generator] = float(values[v])
+                    production.add_value(mode=generator, value=float(values[v]))
                 else:
-                    storage[generator] = float(values[v]) * -1
+                    storage.add_value(mode=generator, value=float(values[v]) * -1)
 
             production_breakdowns.append(
                 zoneKey=zone_key,
