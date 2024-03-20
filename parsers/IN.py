@@ -298,22 +298,9 @@ def fetch_npp_production(
 ) -> dict[str, Any]:
     """Gets production for conventional thermal, nuclear and hydro from NPP daily reports
     This data most likely doesn't inlcude distributed generation"""
-    report_id = 1
-    npp_url = f"https://npp.gov.in/public-reports/cea/daily/dgr/{target_datetime:%d-%m-%Y}/dgr{report_id}-{target_datetime:%d-%m-%Y}.xls"
-    report_found= False
-    while not report_found and report_id <= 10:
-        r: Response = session.get(npp_url)
-        if r.status_code == 200:
-            report_found = True
-        else:
-            report_id += 1
-            npp_url = f"https://npp.gov.in/public-reports/cea/daily/dgr/{target_datetime:%d-%m-%Y}/dgr{report_id}-{target_datetime:%d-%m-%Y}.xls"
 
-    if report_id ==10:
-        raise ParserException(
-            parser="IN.py",
-            message=f"{target_datetime}: {zone_key} conventional production data is not available : [{r.status_code}]",
-        )
+    npp_url = f"https://npp.gov.in/public-reports/cea/daily/dgr/{target_datetime:%d-%m-%Y}/dgr2-{target_datetime:%Y-%m-%d}.xls"
+    r: Response = session.get(npp_url)
 
     if r.status_code == 200:
         df_npp = pd.read_excel(r.content, header=3)
