@@ -6,10 +6,14 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from operator import itemgetter
+from typing import Any
 from zoneinfo import ZoneInfo
 
 from requests import Session
 
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.config import refetch_frequency
 
 from .lib.exceptions import ParserException
@@ -143,25 +147,25 @@ def production_processor_historical(raw_data):
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "CL-SEN",
+    zone_key: ZoneKey = ZoneKey("CL-SEN"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-):
+) -> list[dict[str, Any]]:
     if target_datetime is None and ENABLE_LIVE_PARSER:
         gen_tot, gen_ren = get_data_live(session, logger)
 
-        processed_data = production_processor_live(gen_tot, gen_ren)
+        live_data = production_processor_live(gen_tot, gen_ren)
 
         data = []
 
-        for production_data in processed_data:
-            dt = production_data.pop("datetime")
+        for event in live_data:
+            dt = event.pop("datetime")
 
             datapoint = {
                 "zoneKey": zone_key,
                 "datetime": dt,
-                "production": production_data,
+                "production": event,
                 "storage": {
                     "hydro": None,
                 },
@@ -193,26 +197,29 @@ def fetch_production(
 
     req = s.get(url, headers=headers)
     raw_data = req.json()["aggs"]
-    processed_data = production_processor_historical(raw_data)
+    historical_data = production_processor_historical(raw_data)
 
-    data = []
-    for production_data in processed_data:
-        dt = production_data.pop("datetime")
-
-        datapoint = {
-            "zoneKey": zone_key,
-            "datetime": dt,
-            "production": production_data,
-            "storage": {
-                "hydro": None,
-            },
-            "source": "coordinador.cl",
-        }
-
-        data.append(datapoint)
-
-    return data[:-9]
     """The last 9 datapoints should be omitted because they usually are incomplete and shouldn't appear on the map."""
+    del historical_data[-9:]
+
+    production_list = ProductionBreakdownList(logger)
+
+    for event in historical_data:
+        dt = event.pop("datetime")
+
+        production_mix = ProductionMix()
+        for key in event:
+            production_mix.add_value(key, event[key])
+
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            production=production_mix,
+            storage=None,
+            source="coordinador.cl",
+        )
+
+    return production_list.to_list()
 
 
 if __name__ == "__main__":
