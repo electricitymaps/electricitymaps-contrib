@@ -157,7 +157,7 @@ def fetch_production(
 
         live_data = production_processor_live(gen_tot, gen_ren)
 
-        data = []
+        production_list = ProductionBreakdownList(logger)
 
         for event in live_data:
             dt = event.pop("datetime")
@@ -172,10 +172,22 @@ def fetch_production(
                 "source": "coordinadorelectrico.cl",
             }
             datapoint = validate(datapoint, logger, remove_negative=True, floor=1000)
+            if datapoint is None:
+                continue
 
-            data.append(datapoint)
+            production_mix = ProductionMix()
+            for key, value in datapoint["production"].items():
+                production_mix.add_value(key, value)
 
-        return data
+            production_list.append(
+                zoneKey=datapoint["zoneKey"],
+                datetime=datapoint["datetime"],
+                production=production_mix,
+                storage=datapoint["storage"],
+                source=datapoint["source"],
+            )
+
+        return production_list.to_list()
 
     if target_datetime:
         target_datetime_aware = target_datetime.replace(tzinfo=TIMEZONE)
