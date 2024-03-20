@@ -208,8 +208,8 @@ def fetch_production(
         dt = event.pop("datetime")
 
         production_mix = ProductionMix()
-        for key in event:
-            production_mix.add_value(key, event[key])
+        for key, value in event.items():
+            production_mix.add_value(key, value)
 
         production_list.append(
             zoneKey=zone_key,
