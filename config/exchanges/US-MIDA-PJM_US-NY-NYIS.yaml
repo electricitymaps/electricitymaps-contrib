@@ -2,5 +2,5 @@ lonlat:
   - -77.069
   - 42.0
 parsers:
-  exchange: US_PJM.fetch_exchange
+  exchange: US_NY.fetch_exchange
 rotation: 0
