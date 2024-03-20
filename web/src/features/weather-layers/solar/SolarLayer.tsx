@@ -1,7 +1,6 @@
 import { useGetSolar } from 'api/getWeatherData';
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useRef } from 'react';
-import { MapboxMap } from 'react-map-gl';
 import { ToggleOptions } from 'utils/constants';
 import {
   selectedDatetimeIndexAtom,
@@ -33,7 +32,7 @@ function convertYToLat(yMax: number, y: number): number {
   );
 }
 
-export default function SolarLayer({ map }: { map?: MapboxMap }) {
+export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [solarLayerToggle] = useAtom(solarLayerEnabledAtom);
   const setIsLoadingSolarLayer = useSetAtom(solarLayerLoadingAtom);
@@ -61,40 +60,37 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
     if (!node || !map?.isStyleLoaded()) {
       return;
     }
+
     const north = gudermannian(convertYToLat(node.height - 1, 0));
     const south = gudermannian(convertYToLat(node.height - 1, node.height - 1));
-    map.addSource('solar', {
-      type: 'canvas',
-      canvas: node,
-      coordinates: [
-        [-540, north],
-        [539.999, north],
-        [539.999, south],
-        [-540, south],
-      ],
-    });
+
+    map.addSource(
+      'solar',
+      {
+        type: 'canvas',
+        canvas: node,
+        coordinates: [
+          [-540, north],
+          [539.999, north],
+          [539.999, south],
+          [-540, south],
+        ],
+      } as any // Workaround for https://github.com/maplibre/maplibre-gl-js/issues/2242
+    );
+
+    if (isVisibleReference.current) {
+      if (!map.getLayer('solar-point')) {
+        map.addLayer({ id: 'solar-point', type: 'raster', source: 'solar' });
+      }
+      setIsLoadingSolarLayer(false);
+    }
+
     return () => {
       if (map.getLayer('solar-point')) {
         map.removeLayer('solar-point');
       }
       if (map.getSource('solar')) {
         map.removeSource('solar');
-      }
-    };
-  }, [map, node]);
-
-  useEffect(() => {
-    if (!node || !map?.isStyleLoaded() || !isVisibleReference.current) {
-      return;
-    }
-    if (!map.getLayer('solar-point')) {
-      map.addLayer({ id: 'solar-point', type: 'raster', source: 'solar' });
-    }
-    setIsLoadingSolarLayer(false);
-
-    return () => {
-      if (map.getLayer('solar-point')) {
-        map.removeLayer('solar-point');
       }
     };
   }, [map, node, isVisibleReference.current]);
