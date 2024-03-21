@@ -105,8 +105,8 @@ describe('distort', () => {
   // Use arbritrary small threshold for comparing floats
   const isFloatClose = (a: number, b: number) => Math.abs(a - b) < Number.EPSILON * 10;
 
-  // Mock the Mapbox GL object for testing - only need project method
-  const mapMock: mapboxgl.Map = {
+  // Mock the Maplibre GL object for testing - only need project method
+  const mapMock: maplibregl.Map = {
     project: (point: [number, number]) => {
       const [lon, lat] = point;
       let returnValue = [0, 0];
@@ -124,7 +124,7 @@ describe('distort', () => {
       }
       return { x: returnValue[0], y: returnValue[1] };
     },
-  } as unknown as mapboxgl.Map;
+  } as unknown as maplibregl.Map;
 
   it('test actual case', () => {
     const [u, v, m] = distort(

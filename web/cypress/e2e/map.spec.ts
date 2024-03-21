@@ -52,6 +52,6 @@ describe('Map', () => {
     // cy.get('[data-test-id=dark-mode-button]').click().click();
 
     // eslint-disable-next-line cypress/require-data-selectors
-    cy.get('.maplibregl-ctrl-zoom-in.mapboxgl-ctrl-zoom-in').click();
+    cy.get('.maplibregl-ctrl-zoom-in.maplibregl-ctrl-zoom-in').click();
   });
 });
