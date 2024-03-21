@@ -40,12 +40,12 @@ class Mix(BaseModel, ABC):
         that maps to the same Electricity Maps production mode.
         """
         existing_value: float | None = getattr(self, mode)
+        if value is not None and math.isnan(value):
+            value = None
         if existing_value is not None:
-            value = 0 if value is None or math.isnan(value) else value
+            value = 0 if value is None else value
             self.__setattr__(mode, existing_value + value)
         else:
-            if value is not None and math.isnan(value):
-                value = None
             self.__setattr__(mode, value)
 
     @classmethod
