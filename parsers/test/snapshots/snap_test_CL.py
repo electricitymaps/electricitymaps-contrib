@@ -4,7 +4,7 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots["TestFetchProduction::test_snapshot 1"] = [
+snapshots["TestFetchProduction::test_snapshot_historical_data 1"] = [
     {
         "correctedModes": [],
         "datetime": "2024-02-23T00:00:00-03:00",
