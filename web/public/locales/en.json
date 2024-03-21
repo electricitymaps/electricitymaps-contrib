@@ -55,6 +55,13 @@
       "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
     }
   },
+  "data-sources": {
+    "title": "Data sources",
+    "capacity": "Installed capacity data",
+    "power": "Power generation data",
+    "exchange": "Exchange data",
+    "emission": "Emission factor data"
+  },
   "country-panel": {
     "source": "Source",
     "carbonintensity": "Carbon Intensity",

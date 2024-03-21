@@ -4,7 +4,6 @@ import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { ZoneDetails } from 'types';
 import {
   feedbackCardCollapsedNumberAtom,
@@ -33,6 +32,7 @@ export default function EstimationCard({
   );
 
   useEffect(() => {
+    console.log('feedbackcard', feedbackCardCollapsedNumber);
     setIsFeedbackCardVisibile(
       feedbackEnabled &&
         showEstimationFeedbackCard(
@@ -100,18 +100,10 @@ function BaseCard({
   pillType?: string;
   textColorTitle: string;
 }) {
-  const [isCollapsed, setIsCollapsed] = useState(
-    estimationMethod == 'outage' ? false : true
-  );
-
   const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
     feedbackCardCollapsedNumberAtom
   );
 
-  const handleToggleCollapse = () => {
-    setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
-    setIsCollapsed((previous) => !previous);
-  };
   const { t } = useTranslation();
 
   const title = getEstimationTranslation('title', estimationMethod);
@@ -148,32 +140,28 @@ function BaseCard({
         icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}
         title={title}
       >
-        {
-          <div className="gap-2 pt-1.5">
-            <div
-              data-test-id="body-text"
-              className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
-            >
-              {estimationMethod != 'outage' && bodyText}
-              {estimationMethod == 'outage' && (
-                <OutageMessage outageData={outageMessage} />
-              )}
-            </div>
-            {showMethodologyLink && (
-              <div className="">
-                <a
-                  href="https://www.electricitymaps.com/methodology"
-                  target="_blank"
-                  rel="noreferrer"
-                  data-test-id="methodology-link"
-                  className={`text-sm font-semibold text-black underline dark:text-white`}
-                >
-                  <span className="underline">{t(`estimation-card.link`)}</span>
-                </a>
-              </div>
-            )}
+        <div className="gap-2">
+          <div
+            data-test-id="body-text"
+            className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
+          >
+            {estimationMethod != 'outage' && bodyText}
+            {estimationMethod == 'outage' && <OutageMessage outageData={outageMessage} />}
           </div>
-        }
+          {showMethodologyLink && (
+            <div className="">
+              <a
+                href="https://www.electricitymaps.com/methodology"
+                target="_blank"
+                rel="noreferrer"
+                data-test-id="methodology-link"
+                className={`text-sm font-semibold text-black underline dark:text-white`}
+              >
+                <span className="underline">{t(`estimation-card.link`)}</span>
+              </a>
+            </div>
+          )}
+        </div>
       </Accordion>
     </div>
   );

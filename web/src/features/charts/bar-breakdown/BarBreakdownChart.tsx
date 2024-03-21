@@ -1,4 +1,5 @@
 import * as Portal from '@radix-ui/react-portal';
+import Accordion from 'components/Accordion';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
@@ -138,6 +139,11 @@ function BarBreakdownChart({
           isMobile={false}
         />
       )}
+      <div className="pt-2">
+        <Accordion title={t('data-sources.title')} className="text-md">
+          {'blabal'}
+        </Accordion>
+      </div>
     </div>
   );
 }

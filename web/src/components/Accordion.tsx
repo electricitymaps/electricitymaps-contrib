@@ -1,7 +1,6 @@
-import { title } from 'node:process';
-
 import { useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
+import { twMerge } from 'tailwind-merge';
 
 export default function Accordion({
   isCollapsedDefault = true,
@@ -24,7 +23,7 @@ export default function Accordion({
 
   const handleToggleCollapse = () => {
     if (onClick != undefined) {
-      onClick;
+      onClick();
     }
     setIsCollapsed((previous) => !previous);
   };
@@ -32,13 +31,17 @@ export default function Accordion({
   return (
     <div className="flex flex-col">
       <button data-test-id="collapse-button" onClick={handleToggleCollapse}>
-        <div className={`flex flex-row items-center justify-between ${className}`}>
-          <div className="flex w-2/3 flex-initial flex-row gap-2">
-            <div className={`flex items-center justify-center`}>{icon}</div>
-            <h2
-              className={`self-center text-left text-sm font-semibold`}
-              data-test-id="title"
-            >
+        <div
+          className={twMerge(
+            `flex flex-row items-center justify-between text-sm`,
+            className
+          )}
+        >
+          <div className="flex w-2/3 flex-initial flex-row">
+            {icon && (
+              <div className={`flex items-center justify-center pr-2`}>{icon}</div>
+            )}
+            <h2 className={`self-center text-left font-semibold`} data-test-id="title">
               {title}
             </h2>
           </div>
@@ -58,7 +61,7 @@ export default function Accordion({
           </div>
         </div>
       </button>
-      {!isCollapsed && children}
+      {!isCollapsed && <div className="pt-1.5">{children}</div>}
     </div>
   );
 }
