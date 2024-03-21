@@ -37,7 +37,7 @@ function MobileMapControls() {
     <div className="absolute right-2 top-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
       <Button
         size="lg"
-        type="secondary-elevated"
+        type="secondary"
         aria-label="open info modal"
         backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
         onClick={handleOpenInfoModal}
@@ -45,7 +45,7 @@ function MobileMapControls() {
       />
       <Button
         size="lg"
-        type="secondary-elevated"
+        type="secondary"
         aria-label="open settings modal"
         onClick={handleOpenSettingsModal}
         backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"

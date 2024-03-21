@@ -46,9 +46,9 @@ function WeatherToggleButton({
       <Button
         onClick={isLoadingLayer ? () => {} : onToggle}
         size="lg"
-        type="secondary-elevated"
+        type={isEnabled ? 'primary' : 'secondary'}
         disabled={!allowed}
-        backgroundClasses="min-w-[330px]"
+        backgroundClasses="w-[330px] h-[45px]"
         icon={
           isLoadingLayer ? (
             <MoonLoader size={14} color="white" className="mr-1" />
@@ -91,8 +91,8 @@ export function SettingsModalContent() {
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="solar" />
       <Button
         size="lg"
-        type="secondary-elevated"
-        backgroundClasses="min-w-[330px]"
+        type={isColorblindModeEnabled ? 'primary' : 'secondary'}
+        backgroundClasses="w-[330px] h-[45px]"
         onClick={() => setIsColorblindModeEnabled(!isColorblindModeEnabled)}
         icon={<HiOutlineEyeOff size={21} />}
       >

@@ -6,7 +6,7 @@ interface ButtonProps {
   children?: React.ReactNode;
   disabled?: boolean;
   size?: 'sm' | 'lg' | 'xl';
-  type?: 'primary' | 'secondary' | 'secondary-elevated' | 'tertiary' | 'link';
+  type?: 'primary' | 'secondary' | 'tertiary' | 'link';
   href?: string;
   backgroundClasses?: string;
   foregroundClasses?: string;
@@ -38,8 +38,8 @@ export function Button({
     >
       <As
         className={twMerge(
-          `flex w-full flex-row items-center justify-center rounded-full text-sm font-semibold focus-visible:outline
-        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green disabled:text-neutral-400
+          `flex h-full w-full flex-row items-center justify-center rounded-full text-sm font-semibold focus:bg-inherit
+        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green disabled:text-neutral-400
         disabled:hover:bg-inherit disabled:dark:text-gray-500 ${getSize(
           size,
           type,
@@ -81,10 +81,7 @@ function getBackground(type: string, disabled: boolean | undefined) {
       return 'bg-brand-green';
     }
     case 'secondary': {
-      return 'border dark:border-gray-700 border-neutral-200 bg-inherit';
-    }
-    case 'secondary-elevated': {
-      return 'border dark:border-gray-700 border-neutral-200 bg-neutral-100 dark:bg-gray-800';
+      return 'border dark:border-gray-700 border-neutral-200 bg-white dark:bg-gray-900';
     }
     default: {
       return 'bg-inherit';

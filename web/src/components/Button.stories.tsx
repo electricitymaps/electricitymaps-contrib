@@ -95,10 +95,6 @@ export const All: Story = {
         secondary
       </Button>
 
-      <Button size="lg" type="secondary-elevated">
-        secondary-elevated
-      </Button>
-
       <Button size="lg" type="tertiary">
         tertiary
       </Button>

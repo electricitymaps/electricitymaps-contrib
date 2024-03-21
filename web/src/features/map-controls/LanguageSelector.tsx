@@ -27,9 +27,9 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
         isMobile ? (
           <Button
             size="lg"
-            type="secondary-elevated"
+            type="secondary"
             icon={<HiLanguage size={20} />}
-            backgroundClasses="min-w-[330px]"
+            backgroundClasses="w-[330px] h-[45px]"
           >
             {t('tooltips.selectLanguage')}
           </Button>

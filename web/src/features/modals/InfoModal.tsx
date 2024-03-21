@@ -33,10 +33,10 @@ export function InfoModalContent() {
           }}
         />
       </div>
-      <div className="space-y-2 py-2">
+      <div className="w-[330px] space-y-2 py-2">
         <Button
           size="lg"
-          type="secondary-elevated"
+          type="secondary"
           onClick={() => setIsFAQModalOpen(true)}
           icon={<FaInfoCircle size={ICON_SIZE} />}
         >

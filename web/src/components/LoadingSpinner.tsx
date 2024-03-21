@@ -20,7 +20,7 @@ export default function LoadingSpinner({
           <p>{t('misc.slow-loading-text')}</p>
           <Button
             size="lg"
-            type="secondary-elevated"
+            type="secondary"
             aria-label="Reload page"
             backgroundClasses="min-w-[330px] my-2"
             onClick={() => window.location.reload()}

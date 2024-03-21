@@ -34,8 +34,8 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
         isMobile ? (
           <Button
             size="lg"
-            type="secondary-elevated"
-            backgroundClasses="min-w-[330px]"
+            type="secondary"
+            backgroundClasses="w-[330px] h-[45px]"
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
           >
             {t('tooltips.changeTheme')}
