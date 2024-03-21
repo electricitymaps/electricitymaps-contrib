@@ -216,7 +216,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Wind: [Province of Manitoba](https://gov.mb.ca/sd/environment_and_biodiversity/energy/wind/windfarms.html)
 - Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
 - Canada (Québec): [Hydro-Québec](https://www.hydroquebec.com/generation/generating-stations.html)
-- Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
+- Canada (Saskatchewan): [SaskPower](https://www.saskpower.com/Our-Power-Future)
 - Canada (Yukon)
   - Hydro: [YukonEnergy](https://yukonenergy.ca/energy-in-yukon/projects-facilities)
 - Chile (SEN, SEA, SEM): [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
