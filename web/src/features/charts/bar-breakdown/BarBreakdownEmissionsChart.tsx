@@ -11,6 +11,7 @@ import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
+import ProductionSourceLegend from './ProductionSourceLegend';
 import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarBreakdownEmissionsChartProps {
@@ -91,6 +92,7 @@ function BarBreakdownEmissionsChart({
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >
+            <ProductionSourceLegend electricityType={d.mode} />
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}

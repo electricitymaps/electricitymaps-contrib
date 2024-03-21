@@ -173,6 +173,7 @@ export function BreakdownChartTooltipContent({
         title={title}
         hasEstimationPill={isExchange ? false : hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
+        productionSource={isExchange ? undefined : selectedLayerKey}
       />
       <div
         className="inline-flex flex-wrap items-center gap-x-1"

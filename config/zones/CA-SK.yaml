@@ -8,13 +8,30 @@ bounding_box:
   - - -100.86433964677866
     - 60.50005890629359
 capacity:
-  biomass: 16
-  coal: 1389
-  gas: 2160
-  hydro: 864
-  solar: 82
-  wind: 617
-  unknown: 26
+  coal:
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 1389
+  gas:
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 2065
+  hydro:
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 865
+  solar:
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 93
+  wind:
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 617
+  unknown:
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 324
 contributors:
   - VIKTORVAV99
 disclaimer: The hourly production mix is estimated based on the daily average production mix.

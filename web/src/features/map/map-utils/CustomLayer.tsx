@@ -1,11 +1,10 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/consistent-function-scoping */
-import { IControl } from 'mapbox-gl';
 import React, { useState } from 'react';
-import { MapboxMap, useControl } from 'react-map-gl';
+import { IControl, useControl } from 'react-map-gl/maplibre';
 
 class OverlayControl implements IControl {
-  _map: MapboxMap | null = null;
+  _map: maplibregl.Map | null = null;
   _container: HTMLElement | undefined;
   _redraw: () => void;
 
@@ -13,7 +12,7 @@ class OverlayControl implements IControl {
     this._redraw = redraw;
   }
 
-  onAdd(map: MapboxMap) {
+  onAdd(map: maplibregl.Map) {
     this._map = map;
     map.on('move', this._redraw);
     /* global document */

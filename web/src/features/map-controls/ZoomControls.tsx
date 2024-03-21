@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { NavigationControl } from 'react-map-gl';
+import { NavigationControl } from 'react-map-gl/maplibre';
 
 export default function ZoomControls(): ReactElement {
   return (

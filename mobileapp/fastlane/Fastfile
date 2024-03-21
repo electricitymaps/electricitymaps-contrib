@@ -5,6 +5,16 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
+ios_dir = File.expand_path("../ios")
+android_dir = File.expand_path("../android")
+
+private_lane :build_web_app do
+  ensure_env_vars(
+  env_vars: ['SENTRY_AUTH_TOKEN', 'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN']
+)
+  # Build the web app if we have both environment variables set
+  sh("pnpm", "run", "build-web")
+end
 
 private_lane :increment_package_version do
   package = read_json(json_path: "./package.json")
@@ -25,7 +35,6 @@ private_lane :increment_package_version do
 end
 
 platform :ios do
-  ios_dir = File.expand_path("../ios")
 
   lane :bump_version do
     version = increment_package_version
@@ -47,6 +56,7 @@ platform :ios do
       ignore_files: ["mobileapp/fastlane/Fastfile"]
     )
     bump_version
+    build_web_app
     get_certificates           # invokes cert
     get_provisioning_profile   # invokes sigh
     build_app(
@@ -93,7 +103,6 @@ platform :ios do
 end
 
 platform :android do
-  android_dir = File.expand_path("../android")
 
   lane :bump_version do
     version = increment_package_version
@@ -116,6 +125,7 @@ platform :android do
       ignore_files: ["mobileapp/fastlane/Fastfile"]
     )
     bump_version
+    build_web_app
     gradle(task: "bundle", build_type: "Release", project_dir: android_dir)
     upload_to_play_store(
       track: "internal",
@@ -161,6 +171,7 @@ end
 
 desc "Push new version to GitHub"
 lane :commit do
+  prompt(text: "Please switch to master and pull the latest changes. Press y and Enter to continue.")
   git_commit(path: ["./package.json", File.join(ios_dir, "App/App.xcodeproj/project.pbxproj"), File.join(android_dir, "app/build.gradle")], message: "Bumps mobile version")
   # Note: This step requires GitHub admin privileges in order to push directly to master
   push_to_git_remote(

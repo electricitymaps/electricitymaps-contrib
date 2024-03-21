@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 
+import ProductionSourceIcon from '../bar-breakdown/ProductionsSourceIcons';
+
 interface AreaGraphToolTipHeaderProps {
   squareColor: string;
   datetime: Date;
@@ -10,6 +12,7 @@ interface AreaGraphToolTipHeaderProps {
   title: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
+  productionSource?: string;
 }
 
 export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProps) {
@@ -20,6 +23,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
     title,
     hasEstimationPill = false,
     estimatedPercentage,
+    productionSource,
   } = props;
   const { t, i18n } = useTranslation();
 
@@ -34,7 +38,13 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
               width: 16,
             }}
             className="rounded-sm  font-bold"
-          ></div>
+          >
+            {productionSource && (
+              <div className="flex h-4 w-4 scale-125 justify-center pt-1">
+                <ProductionSourceIcon source={productionSource} />
+              </div>
+            )}
+          </div>
           <p className="px-1 text-base">{title}</p>
         </div>
         <div className="inline-flex items-center gap-x-2">

@@ -5,7 +5,6 @@ from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -102,7 +101,9 @@ def renewables_production_mix(
     for production_info in production_list:
         renewables_production.append(
             zoneKey=zone_key,
-            datetime=arrow.get(production_info["momento"]).datetime,
+            datetime=datetime.strptime(
+                production_info["momento"], "%Y-%m-%dT%H:%M:%S.%f%z"
+            ),
             production=ProductionMix(
                 biomass=production_info["biocombustible"],
                 hydro=production_info["hidraulica"],
@@ -131,7 +132,9 @@ def non_renewables_production_mix(
     for production_info in production_list:
         conventional_production.append(
             zoneKey=zone_key,
-            datetime=arrow.get(production_info["fecha"]).datetime,
+            datetime=datetime.strptime(
+                production_info["fecha"], "%Y-%m-%dT%H:%M:%S.%f%z"
+            ),
             production=ProductionMix(
                 hydro=production_info["hidraulico"],
                 nuclear=production_info["nuclear"],

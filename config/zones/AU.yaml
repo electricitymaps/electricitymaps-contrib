@@ -7,6 +7,8 @@ bypassedSubZones:
   - AU-LH
   - AU-TAS-CBI
   - AU-WA-RI
+  - AU-TAS-KI
+  - AU-TAS-FI
 capacity:
   battery storage: 157.2
   biomass: 384.1

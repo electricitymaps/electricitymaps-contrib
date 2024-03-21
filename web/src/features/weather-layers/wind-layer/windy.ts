@@ -13,7 +13,6 @@
 */
 
 import { GfsForecastResponse } from 'api/getWeatherData';
-import { MapboxMap } from 'react-map-gl';
 
 import { buildBounds, distort, WindVector } from './calc';
 import Field from './Field';
@@ -56,7 +55,7 @@ export class Particle {
 export class Windy {
   canvas: HTMLCanvasElement;
   data: GfsForecastResponse;
-  map: MapboxMap;
+  map: maplibregl.Map;
 
   started: boolean;
   paused: boolean;
@@ -64,7 +63,7 @@ export class Windy {
   animationRequest: number | undefined;
   field: Field | undefined;
 
-  constructor(canvas: HTMLCanvasElement, data: GfsForecastResponse, map: MapboxMap) {
+  constructor(canvas: HTMLCanvasElement, data: GfsForecastResponse, map: maplibregl.Map) {
     this.canvas = canvas;
     this.data = data;
     this.map = map;

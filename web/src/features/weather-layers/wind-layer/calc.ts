@@ -1,4 +1,3 @@
-import { MapboxMap } from 'react-map-gl';
 // u, v, m
 export type WindVector = [number, number, number];
 
@@ -28,7 +27,7 @@ export const bilinearInterpolateVector = (
 /**
  * @returns {[number, number]} uses map projection and returns needed value
  */
-const project = (map: MapboxMap, lat: number, lon: number) => {
+const project = (map: maplibregl.Map, lat: number, lon: number) => {
   // both in radians, use deg2rad if necessary
   const projected = map.project([lon, lat]);
   return [projected.x, projected.y];
@@ -40,7 +39,7 @@ const project = (map: MapboxMap, lat: number, lon: number) => {
  * @returns {WindVector}
  */
 export const distort = (
-  map: MapboxMap,
+  map: maplibregl.Map,
   λ: number,
   φ: number,
   x: number,
@@ -48,26 +47,6 @@ export const distort = (
   scale: number,
   wind: WindVector
 ) => {
-  const distortion = (map: MapboxMap, λ: number, φ: number, x: number, y: number) => {
-    const τ = 2 * Math.PI;
-    const H = Math.pow(10, -5.2);
-    const hλ = λ < 0 ? H : -H;
-    const hφ = φ < 0 ? H : -H;
-
-    const pλ = project(map, φ, λ + hλ);
-    const pφ = project(map, φ + hφ, λ);
-
-    // Meridian scale factor (see Snyder, equation 4-3), where R = 1. This handles issue where length of 1º λ
-    // changes depending on φ. Without this, there is a pinching effect at the poles.
-    const k = Math.cos((φ / 360) * τ);
-    return [
-      (pλ[0] - x) / hλ / k,
-      (pλ[1] - y) / hλ / k,
-      (pφ[0] - x) / hφ,
-      (pφ[1] - y) / hφ,
-    ];
-  };
-
   const u = wind[0] * scale;
   const v = wind[1] * scale;
   const d = distortion(map, λ, φ, x, y);
@@ -76,6 +55,21 @@ export const distort = (
   wind[0] = d[0] * u + d[2] * v;
   wind[1] = d[1] * u + d[3] * v;
   return wind;
+};
+
+const distortion = (map: maplibregl.Map, λ: number, φ: number, x: number, y: number) => {
+  const τ = 2 * Math.PI;
+  const H = Math.pow(10, -5.2);
+  const hλ = λ < 0 ? H : -H;
+  const hφ = φ < 0 ? H : -H;
+
+  const pλ = project(map, φ, λ + hλ);
+  const pφ = project(map, φ + hφ, λ);
+
+  // Meridian scale factor (see Snyder, equation 4-3), where R = 1. This handles issue where length of 1º λ
+  // changes depending on φ. Without this, there is a pinching effect at the poles.
+  const k = Math.cos((φ / 360) * τ);
+  return [(pλ[0] - x) / hλ / k, (pλ[1] - y) / hλ / k, (pφ[0] - x) / hφ, (pφ[1] - y) / hφ];
 };
 
 /**

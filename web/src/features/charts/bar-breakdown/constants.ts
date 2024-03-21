@@ -1,4 +1,4 @@
-export const LABEL_MAX_WIDTH = 102;
+export const LABEL_MAX_WIDTH = 118;
 export const TEXT_ADJUST_Y = 11;
 export const ROW_HEIGHT = 13;
 export const PADDING_Y = 7;
