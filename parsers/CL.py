@@ -101,7 +101,7 @@ def production_processor_live(json_tot, json_ren):
     return mapped_totals
 
 
-def production_processor_historical(raw_data):
+def production_processor_historical(raw_data, enable_live_parser: bool):
     """Takes raw json data and groups by datetime while mapping generation to type.
     Returns a list of dictionaries.
     """
@@ -130,7 +130,7 @@ def production_processor_historical(raw_data):
 
     ordered_data = sorted(combined.values(), key=itemgetter("datetime"))
 
-    if ENABLE_LIVE_PARSER:
+    if enable_live_parser:
         # For consistency with live API, hydro and geothermal must be squeezed into unknown
         for datapoint in ordered_data:
             if "unknown" not in datapoint:
@@ -145,14 +145,14 @@ def production_processor_historical(raw_data):
     return ordered_data
 
 
-@refetch_frequency(timedelta(days=1))
-def fetch_production(
-    zone_key: ZoneKey = ZoneKey("CL-SEN"),
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
+def _fetch_production(
+    zone_key: ZoneKey,
+    session: Session | None,
+    target_datetime: datetime | None,
     logger: Logger = getLogger(__name__),
+    enable_live_parser: bool = ENABLE_LIVE_PARSER,
 ) -> list[dict[str, Any]]:
-    if target_datetime is None and ENABLE_LIVE_PARSER:
+    if target_datetime is None and enable_live_parser:
         gen_tot, gen_ren = get_data_live(session, logger)
 
         live_data = production_processor_live(gen_tot, gen_ren)
@@ -209,7 +209,7 @@ def fetch_production(
 
     req = s.get(url, headers=headers)
     raw_data = req.json()["aggs"]
-    historical_data = production_processor_historical(raw_data)
+    historical_data = production_processor_historical(raw_data, enable_live_parser)
 
     """The last 9 datapoints should be omitted because they usually are incomplete and shouldn't appear on the map."""
     del historical_data[-9:]
@@ -232,6 +232,16 @@ def fetch_production(
         )
 
     return production_list.to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_production(
+    zone_key: ZoneKey = ZoneKey("CL-SEN"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    return _fetch_production(zone_key, session, target_datetime, logger)
 
 
 if __name__ == "__main__":
