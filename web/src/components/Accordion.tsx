@@ -10,6 +10,7 @@ export default function Accordion({
   className,
   icon,
   children,
+  title,
 }: {
   isCollapsedDefault?: boolean;
   onClick?: () => void;
@@ -17,11 +18,14 @@ export default function Accordion({
   className?: string;
   icon?: React.ReactNode;
   children?: React.ReactNode;
+  title: string;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
   const handleToggleCollapse = () => {
-    if (onClick != undefined) {onClick;}
+    if (onClick != undefined) {
+      onClick;
+    }
     setIsCollapsed((previous) => !previous);
   };
 
@@ -40,7 +44,7 @@ export default function Accordion({
           </div>
           <div className="flex h-fit flex-row gap-2 text-nowrap">
             {badge}
-            <div className="text-lg">
+            <div className="text-lg text-white">
               {isCollapsed ? (
                 <div data-test-id="collapse-down">
                   <HiChevronDown />

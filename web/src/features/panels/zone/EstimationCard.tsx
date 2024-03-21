@@ -146,8 +146,9 @@ function BaseCard({
         }
         className={textColorTitle}
         icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}
+        title={title}
       >
-        {!isCollapsed && (
+        {
           <div className="gap-2 pt-1.5">
             <div
               data-test-id="body-text"
@@ -172,7 +173,7 @@ function BaseCard({
               </div>
             )}
           </div>
-        )}
+        }
       </Accordion>
     </div>
   );
