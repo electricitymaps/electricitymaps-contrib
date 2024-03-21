@@ -14,7 +14,7 @@ capacity:
   hydro: 864
   solar: 82
   wind: 617
-  unknown: 26
+  unknown: 324
 contributors:
   - VIKTORVAV99
 disclaimer: The hourly production mix is estimated based on the daily average production mix.
