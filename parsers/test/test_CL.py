@@ -21,6 +21,7 @@ class TestFetchProduction(TestCase):
         self.adapter = Adapter()
         self.session = Session()
         self.session.mount("https://", self.adapter)
+        self.session.mount("http://", self.adapter)
 
     def test_snapshot_historical_data(self):
         target_datetime = datetime(2024, 2, 24, 0, 0, 0, tzinfo=timezone.utc)

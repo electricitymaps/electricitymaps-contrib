@@ -1144,9 +1144,9 @@ snapshots["TestFetchProduction::test_snapshot_live_data 1"] = [
         "correctedModes": [],
         "datetime": "2024-03-21T09:50:00-03:00",
         "production": {
-            "solar": 4113.601562,
-            "unknown": 4829.188309,
-            "wind": 222.590012,
+            "solar": 4207.978516,
+            "unknown": 4690.351196,
+            "wind": 267.050171,
         },
         "source": "coordinadorelectrico.cl",
         "sourceType": "measured",
