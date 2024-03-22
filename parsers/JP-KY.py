@@ -2,15 +2,15 @@
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-
-# The arrow library is used to handle datetimes
-import arrow
+from zoneinfo import ZoneInfo
 
 # The request library is used to fetch content through HTTP
 from bs4 import BeautifulSoup
 from requests import Session, get
 
 from parsers import occtonet
+
+TIMEZONE = ZoneInfo('Asia/Tokyo')
 
 
 def fetch_production(
@@ -55,7 +55,7 @@ def fetch_production(
     date = re.findall(r"(?<=chart/chart)[\d]+(?=.gif)", str(ds))[0]
     # parse datetime
     dt = f"{date[:4]}-{date[4:6]}-{date[6:]} {hours:02d}:{minutes:02d}"
-    dt = arrow.get(dt).replace(tzinfo="Asia/Tokyo").datetime
+    dt = datetime.fromisoformat(dt).replace(tzinfo=TIMEZONE)
     data["datetime"] = dt
     # consumption
     cons = soup.find("p", class_="puProgressNow__useAmount").get_text()
