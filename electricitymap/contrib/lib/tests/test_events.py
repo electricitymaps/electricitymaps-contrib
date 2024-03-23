@@ -1,10 +1,12 @@
 import logging
+import math
 import unittest
 from datetime import datetime, timezone
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
 import freezegun
+import numpy as np
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
@@ -48,6 +50,24 @@ class TestExchange(unittest.TestCase):
                 zoneKey=ZoneKey("AT->DE"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 netFlow=None,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the netFlow is NaN.
+        with self.assertRaises(ValueError):
+            Exchange(
+                zoneKey=ZoneKey("AT->DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                netFlow=math.nan,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the netFlow is Nan using Numpy.
+        with self.assertRaises(ValueError):
+            Exchange(
+                zoneKey=ZoneKey("AT->DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                netFlow=np.nan,
                 source="trust.me",
             )
 
@@ -149,6 +169,24 @@ class TestConsumption(unittest.TestCase):
                 source="trust.me",
             )
 
+        # This should raise a ValueError because the consumption is NaN.
+        with self.assertRaises(ValueError):
+            TotalConsumption(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                consumption=math.nan,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the consumption is Nan using Numpy.
+        with self.assertRaises(ValueError):
+            TotalConsumption(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                consumption=np.nan,
+                source="trust.me",
+            )
+
         with self.assertRaises(ValueError):
             TotalConsumption(
                 zoneKey=ZoneKey("ATT"),
@@ -206,6 +244,26 @@ class TestPrice(unittest.TestCase):
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 price=None,
+                source="trust.me",
+                currency="EUR",
+            )
+
+        # This should raise a ValueError because the price is NaN.
+        with self.assertRaises(ValueError):
+            Price(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                price=math.nan,
+                source="trust.me",
+                currency="EUR",
+            )
+
+        # This should raise a ValueError because the price is Nan using Numpy.
+        with self.assertRaises(ValueError):
+            Price(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                price=np.nan,
                 source="trust.me",
                 currency="EUR",
             )
@@ -412,7 +470,7 @@ class TestProductionBreakdown(unittest.TestCase):
             2023, 1, 1, 5, tzinfo=ZoneInfo("Asia/Tokyo")
         )
 
-    def test_static_create_logs_error(self):
+    def test_static_create_logs_error_with_none(self):
         logger = logging.Logger("test")
         with patch.object(logger, "error") as mock_error:
             ProductionBreakdown.create(
@@ -420,6 +478,30 @@ class TestProductionBreakdown(unittest.TestCase):
                 zoneKey=ZoneKey("DE"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 production=ProductionMix(wind=None),
+                source="trust.me",
+            )
+            mock_error.assert_called_once()
+
+    def test_static_create_logs_with_nan(self):
+        logger = logging.Logger("test")
+        with patch.object(logger, "error") as mock_error:
+            ProductionBreakdown.create(
+                logger=logger,
+                zoneKey=ZoneKey("DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                production=ProductionMix(wind=math.nan),
+                source="trust.me",
+            )
+            mock_error.assert_called_once()
+
+    def test_static_create_logs_with_nan_using_numpy(self):
+        logger = logging.Logger("test")
+        with patch.object(logger, "error") as mock_error:
+            ProductionBreakdown.create(
+                logger=logger,
+                zoneKey=ZoneKey("DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                production=ProductionMix(wind=np.nan),
                 source="trust.me",
             )
             mock_error.assert_called_once()
@@ -483,6 +565,24 @@ class TestTotalProduction(unittest.TestCase):
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 value=None,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the generation is NaN.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=math.nan,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the generation is Nan using Numpy.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=np.nan,
                 source="trust.me",
             )
 
@@ -647,6 +747,22 @@ class TestMixAddValue(unittest.TestCase):
         assert mix.wind == 10
         assert mix.corrected_negative_modes == set()
 
+    def test_production_with_nan(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", math.nan)
+        assert mix.wind == 10
+        assert mix.corrected_negative_modes == set()
+
+    def test_production_with_nan_using_numpy(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", np.nan)
+        assert mix.wind == 10
+        assert mix.corrected_negative_modes == set()
+
     def test_storage(self):
         mix = StorageMix()
         mix.add_value("hydro", 10)
@@ -668,6 +784,24 @@ class TestMixAddValue(unittest.TestCase):
         mix.add_value("hydro", -5)
         assert mix.hydro == -5
         mix.add_value("hydro", None)
+        assert mix.hydro == -5
+
+    def test_storage_with_nan(self):
+        mix = StorageMix()
+        mix.add_value("hydro", math.nan)
+        assert mix.hydro is None
+        mix.add_value("hydro", -5)
+        assert mix.hydro == -5
+        mix.add_value("hydro", math.nan)
+        assert mix.hydro == -5
+
+    def test_storage_with_nan_using_numpy(self):
+        mix = StorageMix()
+        mix.add_value("hydro", np.nan)
+        assert mix.hydro is None
+        mix.add_value("hydro", -5)
+        assert mix.hydro == -5
+        mix.add_value("hydro", np.nan)
         assert mix.hydro == -5
 
 

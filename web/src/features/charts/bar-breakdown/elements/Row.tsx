@@ -53,7 +53,9 @@ export default function Row({
         className="pointer-events-none"
         textAnchor="end"
         fill="currentColor"
-        transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
+        transform={`translate(${
+          LABEL_MAX_WIDTH - 1.5 * PADDING_Y - 16
+        }, ${TEXT_ADJUST_Y})`}
       >
         {label}
       </text>
