@@ -4,9 +4,8 @@ from datetime import datetime
 from io import BytesIO
 from logging import Logger, getLogger
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
-# The arrow library is used to handle datetimes
-import arrow
 from bs4 import BeautifulSoup
 from PIL import Image
 from pytesseract import image_to_string
@@ -18,6 +17,8 @@ from .JP import fetch_production as JP_fetch_production
 
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
+
+TIMEZONE = ZoneInfo("Asia/Tokyo")
 
 
 def fetch_production(
@@ -118,11 +119,13 @@ def extractTime(soup):
     if len(digits) != 4:
         # something went wrong while extracting time from Japan
         raise Exception("Something went wrong while extracting local time")
-    nuclear_datetime = (
-        arrow.now(tz="Asia/Tokyo")
-        .replace(month=digits[0], day=digits[1], hour=digits[2], minute=digits[3])
-        .floor("minute")
-        .datetime
+    nuclear_datetime = datetime.now(tz=TIMEZONE).replace(
+        month=digits[0],
+        day=digits[1],
+        hour=digits[2],
+        minute=digits[3],
+        second=0,
+        microsecond=0,
     )
     return nuclear_datetime
 
