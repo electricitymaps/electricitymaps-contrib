@@ -75,7 +75,7 @@ def fetch_live_consumption(
 
     for datapoint in demand_data:
         if ("." in datapoint["Fecha"]) and (len(datapoint["Fecha"].split(".")[1]) != 3):
-            datapoint["Fecha"] = datapoint["Fecha"].ljust(23, '0')
+            datapoint["Fecha"] = datapoint["Fecha"].ljust(23, "0")
         demand_list.append(
             zoneKey=zone_key,
             datetime=datetime.fromisoformat(datapoint["Fecha"]).replace(tzinfo=TZ),
@@ -99,7 +99,10 @@ def fetch_historical_consumption(
 
     # API request consumption
     df_consumption = objetoAPI.request_data(
-        "DemaReal", "Sistema", target_datetime_in_tz.date(), target_datetime_in_tz.date()
+        "DemaReal",
+        "Sistema",
+        target_datetime_in_tz.date(),
+        target_datetime_in_tz.date(),
     )
 
     if not df_consumption.empty:
@@ -138,10 +141,14 @@ def fetch_production(
     target_datetime_in_tz = datetime.now()
 
     if target_datetime is None:
-        target_datetime_in_tz = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).replace(tzinfo=TZ) + timedelta(days=-XM_DELAY_MIN)
+        target_datetime_in_tz = datetime.now().replace(
+            hour=0, minute=0, second=0, microsecond=0
+        ).replace(tzinfo=TZ) + timedelta(days=-XM_DELAY_MIN)
         # Allow retries for most recent data
         for xm_delay in range(XM_DELAY_MIN, XM_DELAY_MAX + 1):
-            target_datetime_in_tz = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).replace(tzinfo=TZ) + timedelta(days=-xm_delay)
+            target_datetime_in_tz = datetime.now().replace(
+                hour=0, minute=0, second=0, microsecond=0
+            ).replace(tzinfo=TZ) + timedelta(days=-xm_delay)
 
             # API request list of power plants with ID (column 1) and type (column 7)
             df_recursos = objetoAPI.request_data(
@@ -151,13 +158,16 @@ def fetch_production(
                 target_datetime_in_tz.date(),
             )
             df_generation = objetoAPI.request_data(
-                "Gene", "Recurso", target_datetime_in_tz.date(), target_datetime_in_tz.date()
+                "Gene",
+                "Recurso",
+                target_datetime_in_tz.date(),
+                target_datetime_in_tz.date(),
             )
 
             if not df_generation.empty and not df_recursos.empty:
                 break
     else:
-        target_datetime_in_tz = datetime.fromisoformat(target_datetime).replace(tzinfo=TZ)
+        target_datetime_in_tz = target_datetime.replace(tzinfo=TZ)
 
         # API request list of power plants with ID (column 1) and type (column 7)
         df_recursos = objetoAPI.request_data(
@@ -169,7 +179,10 @@ def fetch_production(
 
         # API request generation per power plant
         df_generation = objetoAPI.request_data(
-            "Gene", "Recurso", target_datetime_in_tz.date(), target_datetime_in_tz.date()
+            "Gene",
+            "Recurso",
+            target_datetime_in_tz.date(),
+            target_datetime_in_tz.date(),
         )
 
     if (
@@ -245,7 +258,9 @@ def fetch_price(
     if target_datetime is None:
         # Allow retries for most recent data
         for xm_delay in range(XM_DELAY_MIN, XM_DELAY_MAX + 1):
-            target_datetime_in_tz = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).replace(tzinfo=TZ) + timedelta(days=-xm_delay)
+            target_datetime_in_tz = datetime.now().replace(
+                hour=0, minute=0, second=0, microsecond=0
+            ).replace(tzinfo=TZ) + timedelta(days=-xm_delay)
 
             df_price = objetoAPI.request_data(
                 "PrecBolsNaci",
@@ -257,7 +272,9 @@ def fetch_price(
             if not df_price.empty:
                 break
     else:
-        target_datetime_in_tz = datetime.fromisoformat(target_datetime).replace(tzinfo=TZ)
+        target_datetime_in_tz = datetime.fromisoformat(target_datetime).replace(
+            tzinfo=TZ
+        )
         # API request consumption
         df_price = objetoAPI.request_data(
             "PrecBolsNaci",
